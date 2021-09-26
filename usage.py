@@ -40,7 +40,13 @@ app.layout = html.Div(
 
         fac.AntdButton('打开modal', id='modal-demo-input'),
 
-        fac.AntdModal(title='测试', id='modal-demo-output'),
+        fac.AntdModal(
+            title={
+                'content': '测试',
+                'prefixIcon': 'fc-planner'
+            },
+            id='modal-demo-output'
+        ),
 
 
         fac.AntdUpload(

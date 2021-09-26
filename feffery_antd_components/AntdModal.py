@@ -52,7 +52,13 @@ Keyword arguments:
 
 - style (dict; optional)
 
-- title (string; optional)
+- title (dict; optional)
+
+    `title` is a string | dict with keys:
+
+    - content (string; optional)
+
+    - prefixIcon (string; optional)
 
 - visible (boolean; default False)
 

@@ -46,7 +46,7 @@ Keyword arguments:
 
 - showIcon (boolean; default True)
 
-- showLine (dict; default { 'showLeafIcon': False})
+- showLine (dict; default { 'showLeafIcon': False })
 
     `showLine` is a boolean | dict with keys:
 

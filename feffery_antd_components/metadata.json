@@ -1986,7 +1986,25 @@
       },
       "title": {
         "type": {
-          "name": "string"
+          "name": "union",
+          "value": [
+            {
+              "name": "string"
+            },
+            {
+              "name": "exact",
+              "value": {
+                "content": {
+                  "name": "string",
+                  "required": false
+                },
+                "prefixIcon": {
+                  "name": "string",
+                  "required": false
+                }
+              }
+            }
+          ]
         },
         "required": false,
         "description": ""
@@ -2422,14 +2440,25 @@
       },
       "title": {
         "type": {
-          "name": "string"
-        },
-        "required": false,
-        "description": ""
-      },
-      "content": {
-        "type": {
-          "name": "node"
+          "name": "union",
+          "value": [
+            {
+              "name": "string"
+            },
+            {
+              "name": "exact",
+              "value": {
+                "content": {
+                  "name": "string",
+                  "required": false
+                },
+                "prefixIcon": {
+                  "name": "string",
+                  "required": false
+                }
+              }
+            }
+          ]
         },
         "required": false,
         "description": ""
@@ -4737,7 +4766,7 @@
         "required": false,
         "description": "",
         "defaultValue": {
-          "value": "{ 'showLeafIcon': false}",
+          "value": "{ 'showLeafIcon': false }",
           "computed": false
         }
       },

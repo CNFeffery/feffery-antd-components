@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import zhCN from 'antd/lib/locale/zh_CN';
 import { Modal, ConfigProvider } from 'antd';
+import { str2Icon } from './icons.react'
 import 'antd/dist/antd.css';
 
 // 定义对话框部件AntdModal，api参数参考https://ant.design/components/modal-cn/
@@ -56,7 +57,11 @@ export default class AntdModal extends Component {
                         id={id}
                         className={className}
                         style={style}
-                        title={title}
+                        title={title?.content ?
+                            <div style={{ display: 'flex', alignItems: 'center' }}>
+                                {str2Icon.get(title.prefixIcon)}
+                                {<span style={{ marginLeft: '5px' }}>{title.content}</span>}
+                            </div> : title}
                         visible={visible}
                         okText={okText}
                         cancelText={cancelText}
@@ -84,7 +89,11 @@ export default class AntdModal extends Component {
                         id={id}
                         className={className}
                         style={style}
-                        title={title}
+                        title={title?.content ?
+                            <div style={{ display: 'flex', alignItems: 'center' }}>
+                                {str2Icon.get(title.prefixIcon)}
+                                {<span style={{ marginLeft: '5px' }}>{title.content}</span>}
+                            </div> : title}
                         visible={visible}
                         footer={null}
                         width={width}
@@ -137,7 +146,16 @@ AntdModal.propTypes = {
     }),
 
     // 设置标题内容
-    title: PropTypes.string,
+    title: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.exact({
+            // 设置标题文本内容
+            content: PropTypes.string,
+
+            // 设置前缀icon
+            prefixIcon: PropTypes.string
+        })
+    ]),
 
     // 设置对话框是否可见
     visible: PropTypes.bool,

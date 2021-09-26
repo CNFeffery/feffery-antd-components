@@ -1,14 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Tree } from 'antd';
-import {
-    TableOutlined,
-    UserOutlined,
-    DatabaseOutlined,
-    FileOutlined,
-    FileTextOutlined,
-    ScheduleOutlined
-} from '@ant-design/icons';
+import { str2Icon } from './icons.react'
 import 'antd/dist/antd.css';
 
 // 定义树形控件AntdTree，api参数参考https://ant.design/components/tree-cn/
@@ -32,45 +25,25 @@ export default class AntdTree extends Component {
             loading_state
         } = this.props;
 
-        if (showLine){
-            showLine = { 'showLeafIcon': false}
+        if (showLine) {
+            showLine = { 'showLeafIcon': false }
         }
 
-        var { treeData } = this.props;
-
-        // 定义字符串->对应icon对象的映射
-        function str2Icon(str) {
-            switch (str) {
-                case 'table':
-                    return <TableOutlined />;
-                case 'user':
-                    return <UserOutlined />;
-                case 'database':
-                    return <DatabaseOutlined />;
-                case 'file':
-                    return <FileOutlined />;
-                case 'file-text':
-                    return <FileTextOutlined />;
-                case 'schedule':
-                    return <ScheduleOutlined />;
-                default:
-                    return undefined;
-            }
-        }
+        let { treeData } = this.props;
 
         // 用于以递归的方式将节点icon属性替换成相应的icon对象
         function add_leaf_node_icon(inputTreeData) {
             if (typeof inputTreeData == typeof {}) {
 
                 if (inputTreeData.hasOwnProperty('children')) {
-                    inputTreeData['icon'] = str2Icon(inputTreeData['icon_name'])
+                    inputTreeData['icon'] = str2Icon.get(inputTreeData.icon)
 
                     for (var i = 0; i < inputTreeData.children.length; i++) {
                         inputTreeData.children[i] = add_leaf_node_icon(inputTreeData.children[i])
                     }
 
                 } else {
-                    inputTreeData['icon'] = str2Icon(inputTreeData['icon_name'])
+                    inputTreeData['icon'] = str2Icon.get(inputTreeData.icon)
                 }
             }
 
@@ -86,7 +59,6 @@ export default class AntdTree extends Component {
         treeData = add_leaf_node_icon(treeData)
 
         function listenSelect(e) {
-            console.log(e)
             setProps({ selectedKeys: e })
         }
 
@@ -133,7 +105,7 @@ const PropTreeNodeShape = {
     disabled: PropTypes.bool,
 
     // 可选，设置节点对应icon
-    icon_name: PropTypes.node,
+    icon: PropTypes.node,
 
     // 可选，当树为checkable时，设置对应节点是否展示checkbox
     checkable: PropTypes.bool,
@@ -186,7 +158,7 @@ AntdTree.propTypes = {
     selectable: PropTypes.bool,
 
     // 设置是否显示连接线，默认为true
-    showLine: PropTypes.oneOfType([PropTypes.bool, PropTypes.exact({ showLeafIcon: PropTypes.bool})]),
+    showLine: PropTypes.oneOfType([PropTypes.bool, PropTypes.exact({ showLeafIcon: PropTypes.bool })]),
 
     // 用于存储当前已被选中的节点key数组
     selectedKeys: PropTypes.array,
@@ -227,6 +199,6 @@ AntdTree.defaultProps = {
     defaultExpandParent: false,
     multiple: false,
     selectable: true,
-    showLine: { 'showLeafIcon': false},
+    showLine: { 'showLeafIcon': false },
     showIcon: true
 }

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Popover } from 'antd';
 import 'antd/dist/antd.css';
+import { str2Icon } from './icons.react'
 
 const parseChildrenToArray = children => {
     if (children && !Array.isArray(children)) {
@@ -20,7 +21,6 @@ export default class AntdPopover extends Component {
             className,
             style,
             title,
-            content,
             placement,
             color,
             mouseEnterDelay,
@@ -56,7 +56,11 @@ export default class AntdPopover extends Component {
             <Popover id={id}
                 className={className}
                 style={style}
-                title={title}
+                title={title?.content ?
+                    <div style={{ display: 'flex', alignItems: 'center' }}>
+                        {str2Icon.get(title.prefixIcon)}
+                        {<span style={{ marginLeft: '5px' }}>{title.content}</span>}
+                    </div> : title}
                 content={contentChildren}
                 placement={placement}
                 color={color}
@@ -87,11 +91,17 @@ AntdPopover.propTypes = {
     // 自定义css字典
     style: PropTypes.object,
 
-    // 设置显示的文字内容
-    title: PropTypes.string,
+    // 设置显示的气泡卡片标题内容
+    title: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.exact({
+            // 设置标题文字内容
+            content: PropTypes.string,
 
-    // 设置气泡卡片内嵌的元素
-    content: PropTypes.node,
+            // 设置标题前缀icon
+            prefixIcon: PropTypes.string
+        })
+    ]),
 
     // 设置气泡框的位置，可选的有'top'、'left'、'right'、'bottom'、'topLeft'
     // 、'topRight'、'bottomLeft'、'bottomRight'、'leftTop'、'leftBottom'

@@ -31,7 +31,10 @@ Those elements have the following types:
 - `okText` (String; optional)
 - `renderFooter` (Bool; optional)
 - `style` (Dict; optional)
-- `title` (String; optional)
+- `title` (optional): . title has the following type: String | lists containing elements 'content', 'prefixIcon'.
+Those elements have the following types:
+  - `content` (String; optional)
+  - `prefixIcon` (String; optional)
 - `visible` (Bool; optional)
 - `width` (Real; optional)
 """
