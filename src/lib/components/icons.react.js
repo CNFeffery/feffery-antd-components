@@ -321,6 +321,7 @@ import {
     MdTune,
     MdEditLocation,
     MdLayers,
+    MdLayersClear,
     MdPinDrop,
     MdNotifications,
     MdPlusOne,
@@ -440,7 +441,7 @@ const str2Icon = new Map([
     ['md-explore', <MdExplore />],
     ['md-exit-to-app', <MdExitToApp />],
     ['md-event', <MdEvent />],
-    ['md-description', <MdDescription />]
+    ['md-description', <MdDescription />],
     ['md-delete-forever', <MdDeleteForever />],
     ['md-delete', <MdDelete />],
     ['md-dashboard', <MdDashboard />],

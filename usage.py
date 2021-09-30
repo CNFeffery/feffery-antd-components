@@ -23,8 +23,6 @@ app.server.config['MAX_CONTENT_LENGTH'] = 5 * 1024 * 1024
 
 app.layout = html.Div(
     [
-
-
         fac.AntdMenu(
             menuItems=[
                 {
@@ -321,14 +319,14 @@ app.layout = html.Div(
                             fac.AntdSpin(
                                 fac.AntdTable(
                                     id='table-demo',
-                                    mode='server-side',
+                                    # mode='server-side',
                                     filterOptions={
                                         '排序列1': {
                                             'filterMode': 'keyword'
                                         },
                                         '排序列2': {
                                             'filterMode': 'checkbox',
-                                            'filterCustomItems': [str(i) for i in range(100)]
+                                            # 'filterCustomItems': [str(i) for i in range(100)]
                                         }
                                     },
                                     titlePopoverInfo={
@@ -358,7 +356,7 @@ app.layout = html.Div(
                                             }
                                         }
                                     ],
-                                    data=demo_df.head(5).to_dict('records'),
+                                    data=demo_df.to_dict('records'),
                                     bordered=True,
                                     sortOptions={
                                         'sortDataIndexes': ['排序列1', '排序列2'],
@@ -739,137 +737,137 @@ def test(default_input_value,
     return ctx.triggered[0]['prop_id'] + '：' + str(ctx.triggered[0]['value'])
 
 
-@app.callback(
-    [Output('table-demo', 'data'),
-     Output('table-demo', 'pagination')],
-    [Input('table-demo', 'pagination'),
-     Input('table-demo', 'sorter'),
-     Input('table-demo', 'filter')],
-    State('table-demo', 'filterOptions'),
-    prevent_initial_call=True
-)
-def table_pagination_test(pagination, sorter, filter, filterOptions):
-    '''
-    服务端AntdTable数据加载示例
-    '''
+# @app.callback(
+#     [Output('table-demo', 'data'),
+#      Output('table-demo', 'pagination')],
+#     [Input('table-demo', 'pagination'),
+#      Input('table-demo', 'sorter'),
+#      Input('table-demo', 'filter')],
+#     State('table-demo', 'filterOptions'),
+#     prevent_initial_call=True
+# )
+# def table_pagination_test(pagination, sorter, filter, filterOptions):
+#     '''
+#     服务端AntdTable数据加载示例
+#     '''
 
-    time.sleep(0.5)
+#     time.sleep(0.5)
 
-    # 获取上下文信息
-    ctx = dash.callback_context
+#     # 获取上下文信息
+#     ctx = dash.callback_context
 
-    # inputs = ctx.inputs
+#     # inputs = ctx.inputs
 
-    # pagination = inputs['table-demo.pagination']
-    # sorter = inputs['table-demo.sorter']
-    # filter = inputs['table-demo.filter']
-    # print('='*100)
-    # print(ctx.triggered[0]['prop_id'])
-    # print(pagination)
-    # print(sorter)
-    # print(filter)
-    # print(filterOptions)
+#     # pagination = inputs['table-demo.pagination']
+#     # sorter = inputs['table-demo.sorter']
+#     # filter = inputs['table-demo.filter']
+#     # print('='*100)
+#     # print(ctx.triggered[0]['prop_id'])
+#     # print(pagination)
+#     # print(sorter)
+#     # print(filter)
+#     # print(filterOptions)
 
-    # 若本次回调由翻页操作触发
-    if ctx.triggered[0]['prop_id'] == 'table-demo.pagination':
+#     # 若本次回调由翻页操作触发
+#     if ctx.triggered[0]['prop_id'] == 'table-demo.pagination':
 
-        batch_df = demo_df.copy()
+#         batch_df = demo_df.copy()
 
-        # 实施筛选操作
-        if filter:
-            # 针对每个字段以其设定的过滤模式进行离线筛选
-            for key, value in filter.items():
-                if value:
-                    if 'filterMode' in filterOptions[key].keys():
-                        if filterOptions[key]['filterMode'] == 'checkbox':
-                            batch_df = batch_df.loc[batch_df[key].isin(
-                                value), :]
-                        elif filterOptions[key]['filterMode'] == 'keyword':
-                            batch_df = batch_df.loc[batch_df[key].astype(
-                                'str').str.contains(value[0]), :]
+#         # 实施筛选操作
+#         if filter:
+#             # 针对每个字段以其设定的过滤模式进行离线筛选
+#             for key, value in filter.items():
+#                 if value:
+#                     if 'filterMode' in filterOptions[key].keys():
+#                         if filterOptions[key]['filterMode'] == 'checkbox':
+#                             batch_df = batch_df.loc[batch_df[key].isin(
+#                                 value), :]
+#                         elif filterOptions[key]['filterMode'] == 'keyword':
+#                             batch_df = batch_df.loc[batch_df[key].astype(
+#                                 'str').str.contains(value[0]), :]
 
-        # 实施排序操作
-        if sorter:
-            ascending = list(map(lambda order: True if order ==
-                                 'ascend' else False, sorter['orders']))
+#         # 实施排序操作
+#         if sorter:
+#             ascending = list(map(lambda order: True if order ==
+#                                  'ascend' else False, sorter['orders']))
 
-            if ascending.__len__() == 1:
-                ascending = ascending[0]
+#             if ascending.__len__() == 1:
+#                 ascending = ascending[0]
 
-            elif ascending.__len__() == 0:
-                return demo_df.iloc[(pagination['current'] - 1)*pagination['pageSize']:pagination['current']*pagination['pageSize'], :].to_dict('records')
+#             elif ascending.__len__() == 0:
+#                 return demo_df.iloc[(pagination['current'] - 1)*pagination['pageSize']:pagination['current']*pagination['pageSize'], :].to_dict('records')
 
-            batch_df = (
-                batch_df
-                .sort_values(
-                    sorter['columns'],
-                    ascending=ascending
-                )
-            )
+#             batch_df = (
+#                 batch_df
+#                 .sort_values(
+#                     sorter['columns'],
+#                     ascending=ascending
+#                 )
+#             )
 
-        # 实施分页操作，且不更新pagination参数
+#         # 实施分页操作，且不更新pagination参数
 
-        start_index = (pagination['current'] - 1)*pagination['pageSize']
-        end_index = pagination['current']*pagination['pageSize']
+#         start_index = (pagination['current'] - 1)*pagination['pageSize']
+#         end_index = pagination['current']*pagination['pageSize']
 
-        return (
-            batch_df.iloc[start_index:end_index, :].to_dict('records'),
-            dash.no_update
-        )
+#         return (
+#             batch_df.iloc[start_index:end_index, :].to_dict('records'),
+#             dash.no_update
+#         )
 
-    # 若本次回调由筛选或排序操作触发
-    elif ctx.triggered[0]['prop_id'] in ['table-demo.sorter', 'table-demo.filter']:
+#     # 若本次回调由筛选或排序操作触发
+#     elif ctx.triggered[0]['prop_id'] in ['table-demo.sorter', 'table-demo.filter']:
 
-        batch_df = demo_df.copy()
+#         batch_df = demo_df.copy()
 
-        # 实施筛选操作
-        if filter:
-            # 针对每个字段以其设定的过滤模式进行离线筛选
-            for key, value in filter.items():
-                if value:
-                    if 'filterMode' in filterOptions[key].keys():
-                        if filterOptions[key]['filterMode'] == 'checkbox':
-                            batch_df = batch_df.loc[batch_df[key].isin(
-                                value), :]
-                        elif filterOptions[key]['filterMode'] == 'keyword':
-                            batch_df = batch_df.loc[batch_df[key].astype(
-                                'str').str.contains(value[0]), :]
+#         # 实施筛选操作
+#         if filter:
+#             # 针对每个字段以其设定的过滤模式进行离线筛选
+#             for key, value in filter.items():
+#                 if value:
+#                     if 'filterMode' in filterOptions[key].keys():
+#                         if filterOptions[key]['filterMode'] == 'checkbox':
+#                             batch_df = batch_df.loc[batch_df[key].isin(
+#                                 value), :]
+#                         elif filterOptions[key]['filterMode'] == 'keyword':
+#                             batch_df = batch_df.loc[batch_df[key].astype(
+#                                 'str').str.contains(value[0]), :]
 
-        # 实施排序操作
-        if sorter and sorter['columns'].__len__() != 0:
-            ascending = list(map(lambda order: True if order ==
-                                 'ascend' else False, sorter['orders']))
+#         # 实施排序操作
+#         if sorter and sorter['columns'].__len__() != 0:
+#             ascending = list(map(lambda order: True if order ==
+#                                  'ascend' else False, sorter['orders']))
 
-            if ascending.__len__() == 1:
-                ascending = ascending[0]
+#             if ascending.__len__() == 1:
+#                 ascending = ascending[0]
 
-            elif ascending.__len__() == 0:
-                return demo_df.iloc[(pagination['current'] - 1)*pagination['pageSize']:pagination['current']*pagination['pageSize'], :].to_dict('records')
+#             elif ascending.__len__() == 0:
+#                 return demo_df.iloc[(pagination['current'] - 1)*pagination['pageSize']:pagination['current']*pagination['pageSize'], :].to_dict('records')
 
-            batch_df = (
-                batch_df
-                .sort_values(
-                    sorter['columns'],
-                    ascending=ascending
-                )
-            )
+#             batch_df = (
+#                 batch_df
+#                 .sort_values(
+#                     sorter['columns'],
+#                     ascending=ascending
+#                 )
+#             )
 
-        pagination = {
-            'current': 1,
-            'pageSize': 5,
-            'total': batch_df.shape[0]
-        }
+#         pagination = {
+#             'current': 1,
+#             'pageSize': 5,
+#             'total': batch_df.shape[0]
+#         }
 
-        start_index = (pagination['current'] - 1)*pagination['pageSize']
-        end_index = pagination['current']*pagination['pageSize']
+#         start_index = (pagination['current'] - 1)*pagination['pageSize']
+#         end_index = pagination['current']*pagination['pageSize']
 
-        print(pagination)
+#         print(pagination)
 
-        # 实施分页操作，且不更新pagination参数
-        return (
-            batch_df.iloc[start_index:end_index, :].to_dict('records'),
-            pagination
-        )
+#         # 实施分页操作，且不更新pagination参数W
+#         return (
+#             batch_df.iloc[start_index:end_index, :].to_dict('records'),
+#             pagination
+#         )
 
 
 @app.callback(
