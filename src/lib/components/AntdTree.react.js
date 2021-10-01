@@ -14,8 +14,11 @@ export default class AntdTree extends Component {
             setProps,
             style,
             checkable,
+            checkStrictly,
             defaultExpandAll,
             defaultExpandedKeys,
+            defaultCheckedKeys,
+            defaultSelectedKeys,
             defaultExpandParent,
             multiple,
             selectable,
@@ -73,7 +76,10 @@ export default class AntdTree extends Component {
                 style={style}
                 treeData={add_leaf_node_icon(treeData)}
                 checkable={checkable}
+                checkStrictly={checkStrictly}
                 defaultExpandAll={defaultExpandAll}
+                defaultCheckedKeys={defaultCheckedKeys}
+                defaultSelectedKeys={defaultSelectedKeys}
                 defaultExpandedKeys={defaultExpandedKeys}
                 defaultExpandParent={defaultExpandParent}
                 multiple={multiple}
@@ -142,11 +148,20 @@ AntdTree.propTypes = {
     // 设置是否在节点前添加选择框，默认为false
     checkable: PropTypes.bool,
 
+    // checkStrictly
+    checkStrictly: PropTypes.bool,
+
     // 设置是否默认展开全部节点，默认为false
     defaultExpandAll: PropTypes.bool,
 
     // 设置初始状态下被展开的节点key数组
     defaultExpandedKeys: PropTypes.arrayOf(PropTypes.string),
+
+    // defaultCheckedKeys
+    defaultCheckedKeys: PropTypes.arrayOf(PropTypes.string),
+
+    // defaultSelectedKeys
+    defaultSelectedKeys: PropTypes.arrayOf(PropTypes.string),
 
     // 设置是否默认展开父节点，默认为false
     defaultExpandParent: PropTypes.bool,
@@ -164,7 +179,7 @@ AntdTree.propTypes = {
     selectedKeys: PropTypes.array,
 
     // 用于存储当前已被勾选的节点key数组
-    checkedKeys: PropTypes.array,
+    checkedKeys: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
 
     // 设置虚拟滚动模式下的窗口像素高度，不设置时则不会启动虚拟滚动模式
     height: PropTypes.number,
@@ -194,8 +209,11 @@ AntdTree.propTypes = {
 // 设置默认参数
 AntdTree.defaultProps = {
     checkable: false,
+    checkStrictly: false,
     defaultExpandAll: false,
     defaultExpandedKeys: [],
+    defaultCheckedKeys: [],
+    defaultSelectedKeys: [],
     defaultExpandParent: false,
     multiple: false,
     selectable: true,

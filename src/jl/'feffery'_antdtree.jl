@@ -9,12 +9,15 @@ An AntdTree component.
 
 Keyword arguments:
 - `id` (String; optional)
+- `checkStrictly` (Bool; optional)
 - `checkable` (Bool; optional)
-- `checkedKeys` (Array; optional)
+- `checkedKeys` (Dict | Array; optional)
 - `className` (String; optional)
+- `defaultCheckedKeys` (Array of Strings; optional)
 - `defaultExpandAll` (Bool; optional)
 - `defaultExpandParent` (Bool; optional)
 - `defaultExpandedKeys` (Array of Strings; optional)
+- `defaultSelectedKeys` (Array of Strings; optional)
 - `height` (Real; optional)
 - `loading_state` (optional): . loading_state has the following type: lists containing elements 'is_loading', 'prop_name', 'component_name'.
 Those elements have the following types:
@@ -32,7 +35,7 @@ Those elements have the following types:
 - `treeData` (optional)
 """
 function 'feffery'_antdtree(; kwargs...)
-        available_props = Symbol[:id, :checkable, :checkedKeys, :className, :defaultExpandAll, :defaultExpandParent, :defaultExpandedKeys, :height, :loading_state, :multiple, :selectable, :selectedKeys, :showIcon, :showLine, :style, :treeData]
+        available_props = Symbol[:id, :checkStrictly, :checkable, :checkedKeys, :className, :defaultCheckedKeys, :defaultExpandAll, :defaultExpandParent, :defaultExpandedKeys, :defaultSelectedKeys, :height, :loading_state, :multiple, :selectable, :selectedKeys, :showIcon, :showLine, :style, :treeData]
         wild_props = Symbol[]
         return Component("'feffery'_antdtree", "AntdTree", "feffery_antd_components", available_props, wild_props; kwargs...)
 end

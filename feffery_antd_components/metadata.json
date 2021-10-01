@@ -4687,6 +4687,17 @@
           "computed": false
         }
       },
+      "checkStrictly": {
+        "type": {
+          "name": "bool"
+        },
+        "required": false,
+        "description": "",
+        "defaultValue": {
+          "value": "false",
+          "computed": false
+        }
+      },
       "defaultExpandAll": {
         "type": {
           "name": "bool"
@@ -4699,6 +4710,34 @@
         }
       },
       "defaultExpandedKeys": {
+        "type": {
+          "name": "arrayOf",
+          "value": {
+            "name": "string"
+          }
+        },
+        "required": false,
+        "description": "",
+        "defaultValue": {
+          "value": "[]",
+          "computed": false
+        }
+      },
+      "defaultCheckedKeys": {
+        "type": {
+          "name": "arrayOf",
+          "value": {
+            "name": "string"
+          }
+        },
+        "required": false,
+        "description": "",
+        "defaultValue": {
+          "value": "[]",
+          "computed": false
+        }
+      },
+      "defaultSelectedKeys": {
         "type": {
           "name": "arrayOf",
           "value": {
@@ -4779,7 +4818,15 @@
       },
       "checkedKeys": {
         "type": {
-          "name": "array"
+          "name": "union",
+          "value": [
+            {
+              "name": "object"
+            },
+            {
+              "name": "array"
+            }
+          ]
         },
         "required": false,
         "description": ""
