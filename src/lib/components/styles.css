@@ -1,0 +1,45 @@
+.editable-cell {
+    position: relative;
+}
+
+.editable-cell-value-wrap {
+    padding: 5px 5px;
+    cursor: pointer;
+    height: 100%;
+}
+
+.editable-row:hover .editable-cell-value-wrap {
+    padding: 4px 4px;
+    border: 1px solid #d9d9d9;
+    border-radius: 4px;
+    height: 100%;
+}
+
+[data-theme='dark'] .editable-row:hover .editable-cell-value-wrap {
+    border: 1px solid #434343;
+}
+
+.ant-table-thead>tr>th, .ant-table-tbody>tr>td, .ant-table tfoot>tr>th, .ant-table tfoot>tr>td {
+    position: relative;
+    padding: 5px 5px;
+    overflow-wrap: break-word;
+}
+
+.ant-table-tbody>tr {
+    height: 36px;
+}
+
+.ant-steps-item-icon .ant-steps-icon {
+    position: relative;
+    top: -1px;
+    color: #1890ff;
+    line-height: 1;
+}
+
+.ant-spin-nested-loading {
+    height: 100%!important;
+}
+
+.ant-spin-container {
+    height: 100%!important;
+}
