@@ -1,0 +1,7 @@
+include feffery_antd_components/feffery_antd_components.min.js
+exclude feffery_antd_components/feffery_antd_components.min.js.map
+include feffery_antd_components/metadata.json
+include feffery_antd_components/package-info.json
+include README.md
+include LICENSE
+include package.json
