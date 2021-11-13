@@ -10,7 +10,6 @@ const { Option, OptGroup } = Select;
 export default class AntdSelect extends Component {
 
     constructor(props) {
-        console.log(props.value)
         super(props)
         // 初始化value
         if (props.defaultValue) {

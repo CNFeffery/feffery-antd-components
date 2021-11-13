@@ -39,14 +39,18 @@ export default class AntdTree extends Component {
             if (typeof inputTreeData == typeof {}) {
 
                 if (inputTreeData.hasOwnProperty('children')) {
-                    inputTreeData['icon'] = str2Icon.get(inputTreeData.icon)
+                    if (typeof inputTreeData.icon == typeof "") {
+                        inputTreeData.icon = str2Icon.get(inputTreeData.icon)
+                    }
 
                     for (var i = 0; i < inputTreeData.children.length; i++) {
                         inputTreeData.children[i] = add_leaf_node_icon(inputTreeData.children[i])
                     }
 
                 } else {
-                    inputTreeData['icon'] = str2Icon.get(inputTreeData.icon)
+                    if (typeof inputTreeData.icon == typeof "") {
+                        inputTreeData.icon = str2Icon.get(inputTreeData.icon)
+                    }
                 }
             }
 
@@ -61,11 +65,11 @@ export default class AntdTree extends Component {
 
         treeData = add_leaf_node_icon(treeData)
 
-        function listenSelect(e) {
+        const listenSelect = (e) => {
             setProps({ selectedKeys: e })
         }
 
-        function listenCheck(e) {
+        const listenCheck = (e) => {
             setProps({ checkedKeys: e })
         }
 
