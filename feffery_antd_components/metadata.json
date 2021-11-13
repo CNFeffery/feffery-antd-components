@@ -695,31 +695,6 @@
         "required": false,
         "description": ""
       },
-      "popupPlacement": {
-        "type": {
-          "name": "enum",
-          "value": [
-            {
-              "value": "'bottomLeft'",
-              "computed": false
-            },
-            {
-              "value": "'bottomRight'",
-              "computed": false
-            },
-            {
-              "value": "'topLeft'",
-              "computed": false
-            },
-            {
-              "value": "'topRight'",
-              "computed": false
-            }
-          ]
-        },
-        "required": false,
-        "description": ""
-      },
       "loading_state": {
         "type": {
           "name": "shape",
@@ -6223,7 +6198,25 @@
       },
       "checkedKeys": {
         "type": {
-          "name": "array"
+          "name": "union",
+          "value": [
+            {
+              "name": "array"
+            },
+            {
+              "name": "exact",
+              "value": {
+                "checked": {
+                  "name": "array",
+                  "required": false
+                },
+                "halfChecked": {
+                  "name": "array",
+                  "required": false
+                }
+              }
+            }
+          ]
         },
         "required": false,
         "description": ""
