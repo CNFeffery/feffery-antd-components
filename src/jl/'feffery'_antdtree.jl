@@ -11,7 +11,10 @@ Keyword arguments:
 - `id` (String; optional)
 - `checkStrictly` (Bool; optional)
 - `checkable` (Bool; optional)
-- `checkedKeys` (Array; optional)
+- `checkedKeys` (optional): . checkedKeys has the following type: Array | lists containing elements 'checked', 'halfChecked'.
+Those elements have the following types:
+  - `checked` (Array; optional)
+  - `halfChecked` (Array; optional)
 - `className` (String; optional)
 - `defaultCheckedKeys` (Array of Strings; optional)
 - `defaultExpandAll` (Bool; optional)

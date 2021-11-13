@@ -25,13 +25,12 @@ Those elements have the following types:
 - `options` (optional)
 - `placeholder` (String; optional)
 - `placement` (a value equal to: 'bottomLeft', 'bottomRight', 'topLeft', 'topRight'; optional)
-- `popupPlacement` (a value equal to: 'bottomLeft', 'bottomRight', 'topLeft', 'topRight'; optional)
 - `size` (a value equal to: 'small', 'middle', 'large'; optional)
 - `style` (Dict; optional)
 - `value` (Array of Bool | Real | String | Dict | Arrays; optional)
 """
 function 'feffery'_antdcascader(; kwargs...)
-        available_props = Symbol[:id, :bordered, :changeOnSelect, :className, :defaultValue, :disabled, :expandTrigger, :loading_state, :maxTagCount, :multiple, :options, :placeholder, :placement, :popupPlacement, :size, :style, :value]
+        available_props = Symbol[:id, :bordered, :changeOnSelect, :className, :defaultValue, :disabled, :expandTrigger, :loading_state, :maxTagCount, :multiple, :options, :placeholder, :placement, :size, :style, :value]
         wild_props = Symbol[]
         return Component("'feffery'_antdcascader", "AntdCascader", "feffery_antd_components", available_props, wild_props; kwargs...)
 end
