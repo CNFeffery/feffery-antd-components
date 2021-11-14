@@ -22,11 +22,10 @@ Those elements have the following types:
   - `value` (String; optional)
   - `disabled` (Bool; optional)s
 - `style` (Dict; optional)
-- `title` (String; optional)
 - `value` (Array of Strings; optional)
 """
 function 'feffery'_antdcheckboxgroup(; kwargs...)
-        available_props = Symbol[:id, :className, :disabled, :loading_state, :options, :style, :title, :value]
+        available_props = Symbol[:id, :className, :disabled, :loading_state, :options, :style, :value]
         wild_props = Symbol[]
         return Component("'feffery'_antdcheckboxgroup", "AntdCheckboxGroup", "feffery_antd_components", available_props, wild_props; kwargs...)
 end

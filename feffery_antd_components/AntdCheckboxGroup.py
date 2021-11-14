@@ -40,16 +40,14 @@ Keyword arguments:
 
 - style (dict; optional)
 
-- title (string; optional)
-
 - value (list of strings; optional)"""
     @_explicitize_args
-    def __init__(self, id=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, disabled=Component.UNDEFINED, title=Component.UNDEFINED, options=Component.UNDEFINED, value=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
-        self._prop_names = ['id', 'className', 'disabled', 'loading_state', 'options', 'style', 'title', 'value']
+    def __init__(self, id=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, disabled=Component.UNDEFINED, options=Component.UNDEFINED, value=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
+        self._prop_names = ['id', 'className', 'disabled', 'loading_state', 'options', 'style', 'value']
         self._type = 'AntdCheckboxGroup'
         self._namespace = 'feffery_antd_components'
         self._valid_wildcard_attributes =            []
-        self.available_properties = ['id', 'className', 'disabled', 'loading_state', 'options', 'style', 'title', 'value']
+        self.available_properties = ['id', 'className', 'disabled', 'loading_state', 'options', 'style', 'value']
         self.available_wildcard_properties =            []
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()
