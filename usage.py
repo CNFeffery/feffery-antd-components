@@ -22,6 +22,48 @@ colormaps = {'Blues': ['#F7FBFF', '#DEEBF7', '#C6DBEF', '#9ECAE1', '#6BAED6', '#
 app.layout = html.Div(
     html.Div(
         [
+
+            fac.AntdTree(
+                treeData=[
+                    {
+                        'title': '负责人A',
+                        'key': '负责人A',
+                        'icon': 'user',
+                        'children': [
+                                {
+                                    'title': '数仓1',
+                                    'key': '数仓1',
+                                    'icon': 'database',
+                                    'children': [
+                                        {
+                                            'title': f'业务表1-{i}',
+                                            'key': f'业务表1-{i}',
+                                            'icon': 'table'
+                                        }
+                                        for i in range(5)
+                                    ]
+                                },
+                            {
+                                    'title': '数仓2',
+                                    'key': '数仓2',
+                                    'icon': 'database',
+                                    'children': [
+                                        {
+                                            'title': f'业务表2-{i}',
+                                            'key': f'业务表2-{i}',
+                                            'icon': 'table'
+                                        }
+                                        for i in range(5)
+                                    ]
+                                }
+                        ]
+                    }
+                ],
+                # 设置默认全部展开
+                defaultExpandAll=True,
+                checkable=True
+            ),
+
             fac.AntdBackTop(
                 duration=5
             ),

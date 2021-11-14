@@ -46,20 +46,18 @@ Keyword arguments:
 
 - placement (a value equal to: 'bottomLeft', 'bottomRight', 'topLeft', 'topRight'; optional)
 
-- popupPlacement (a value equal to: 'bottomLeft', 'bottomRight', 'topLeft', 'topRight'; optional)
-
 - size (a value equal to: 'small', 'middle', 'large'; optional)
 
 - style (dict; optional)
 
 - value (list of boolean | number | string | dict | lists; optional)"""
     @_explicitize_args
-    def __init__(self, id=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, options=Component.UNDEFINED, disabled=Component.UNDEFINED, changeOnSelect=Component.UNDEFINED, size=Component.UNDEFINED, bordered=Component.UNDEFINED, placeholder=Component.UNDEFINED, placement=Component.UNDEFINED, defaultValue=Component.UNDEFINED, maxTagCount=Component.UNDEFINED, multiple=Component.UNDEFINED, value=Component.UNDEFINED, expandTrigger=Component.UNDEFINED, popupPlacement=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
-        self._prop_names = ['id', 'bordered', 'changeOnSelect', 'className', 'defaultValue', 'disabled', 'expandTrigger', 'loading_state', 'maxTagCount', 'multiple', 'options', 'placeholder', 'placement', 'popupPlacement', 'size', 'style', 'value']
+    def __init__(self, id=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, options=Component.UNDEFINED, disabled=Component.UNDEFINED, changeOnSelect=Component.UNDEFINED, size=Component.UNDEFINED, bordered=Component.UNDEFINED, placeholder=Component.UNDEFINED, placement=Component.UNDEFINED, defaultValue=Component.UNDEFINED, maxTagCount=Component.UNDEFINED, multiple=Component.UNDEFINED, value=Component.UNDEFINED, expandTrigger=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
+        self._prop_names = ['id', 'bordered', 'changeOnSelect', 'className', 'defaultValue', 'disabled', 'expandTrigger', 'loading_state', 'maxTagCount', 'multiple', 'options', 'placeholder', 'placement', 'size', 'style', 'value']
         self._type = 'AntdCascader'
         self._namespace = 'feffery_antd_components'
         self._valid_wildcard_attributes =            []
-        self.available_properties = ['id', 'bordered', 'changeOnSelect', 'className', 'defaultValue', 'disabled', 'expandTrigger', 'loading_state', 'maxTagCount', 'multiple', 'options', 'placeholder', 'placement', 'popupPlacement', 'size', 'style', 'value']
+        self.available_properties = ['id', 'bordered', 'changeOnSelect', 'className', 'defaultValue', 'disabled', 'expandTrigger', 'loading_state', 'maxTagCount', 'multiple', 'options', 'placeholder', 'placement', 'size', 'style', 'value']
         self.available_wildcard_properties =            []
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()

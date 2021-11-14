@@ -39,14 +39,18 @@ export default class AntdTree extends Component {
             if (typeof inputTreeData == typeof {}) {
 
                 if (inputTreeData.hasOwnProperty('children')) {
-                    inputTreeData['icon'] = str2Icon.get(inputTreeData.icon)
+                    if (typeof inputTreeData.icon == typeof "") {
+                        inputTreeData.icon = str2Icon.get(inputTreeData.icon)
+                    }
 
                     for (var i = 0; i < inputTreeData.children.length; i++) {
                         inputTreeData.children[i] = add_leaf_node_icon(inputTreeData.children[i])
                     }
 
                 } else {
-                    inputTreeData['icon'] = str2Icon.get(inputTreeData.icon)
+                    if (typeof inputTreeData.icon == typeof "") {
+                        inputTreeData.icon = str2Icon.get(inputTreeData.icon)
+                    }
                 }
             }
 
@@ -61,11 +65,11 @@ export default class AntdTree extends Component {
 
         treeData = add_leaf_node_icon(treeData)
 
-        function listenSelect(e) {
+        const listenSelect = (e) => {
             setProps({ selectedKeys: e })
         }
 
-        function listenCheck(e) {
+        const listenCheck = (e) => {
             setProps({ checkedKeys: e })
         }
 
@@ -179,7 +183,16 @@ AntdTree.propTypes = {
     selectedKeys: PropTypes.array,
 
     // 用于存储当前已被勾选的节点key数组
-    checkedKeys: PropTypes.array,
+    checkedKeys: PropTypes.oneOfType([
+        PropTypes.array,
+        PropTypes.exact({
+            // 对应完整勾选状态下的节点key数组
+            checked: PropTypes.array,
+
+            // 对应半勾选状态下的节点key数组
+            halfChecked: PropTypes.array
+        })
+    ]),
 
     // 设置虚拟滚动模式下的窗口像素高度，不设置时则不会启动虚拟滚动模式
     height: PropTypes.number,

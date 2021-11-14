@@ -59,9 +59,6 @@ AntdTooltip.propTypes = {
     // 部件id
     id: PropTypes.string,
 
-    /**
-     * The content of the tab - will only be displayed if this tab is selected
-     */
     children: PropTypes.node,
 
     // css类名
@@ -89,9 +86,6 @@ AntdTooltip.propTypes = {
 
     // 设置鼠标移出后延时多少才隐藏 Tooltip，单位：秒，默认为0.1
     mouseLeaveDelay: PropTypes.number,
-
-    // 卡片类名
-    overlayClassName: PropTypes.string,
 
     // 设置卡片样式
     overlayStyle: PropTypes.object,

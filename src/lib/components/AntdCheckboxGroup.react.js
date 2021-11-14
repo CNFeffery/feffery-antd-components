@@ -61,9 +61,6 @@ AntdCheckboxGroup.propTypes = {
     // 设置是否禁用组件
     disabled: PropTypes.bool,
 
-    // 用于在单checkbox模式下设置选项对应显示的标题文字内容
-    title: PropTypes.string,
-
     // 用于在checkbox组模式下定义每个选择框的信息
     options: PropTypes.arrayOf(
         PropTypes.exact({

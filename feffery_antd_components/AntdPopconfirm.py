@@ -17,13 +17,13 @@ Keyword arguments:
 
 - cancelButtonProps (dict; optional)
 
-- cancelCounts (number; optional)
+- cancelCounts (number; default 0)
 
 - cancelText (string; optional)
 
 - className (string; optional)
 
-- confirmCounts (number; optional)
+- confirmCounts (number; default 0)
 
 - containerId (string; optional)
 
@@ -50,8 +50,6 @@ Keyword arguments:
 
 - okText (string; optional)
 
-- overlayClassName (string; optional)
-
 - overlayInnerStyle (dict; optional)
 
 - overlayStyle (dict; optional)
@@ -64,12 +62,12 @@ Keyword arguments:
 
 - trigger (a value equal to: 'hover', 'focus', 'click' | list of a value equal to: 'hover', 'focus', 'click's; optional)"""
     @_explicitize_args
-    def __init__(self, children=None, id=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, title=Component.UNDEFINED, disabled=Component.UNDEFINED, placement=Component.UNDEFINED, mouseEnterDelay=Component.UNDEFINED, mouseLeaveDelay=Component.UNDEFINED, overlayClassName=Component.UNDEFINED, overlayStyle=Component.UNDEFINED, overlayInnerStyle=Component.UNDEFINED, okText=Component.UNDEFINED, okButtonProps=Component.UNDEFINED, cancelText=Component.UNDEFINED, cancelButtonProps=Component.UNDEFINED, confirmCounts=Component.UNDEFINED, cancelCounts=Component.UNDEFINED, trigger=Component.UNDEFINED, containerId=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
-        self._prop_names = ['children', 'id', 'cancelButtonProps', 'cancelCounts', 'cancelText', 'className', 'confirmCounts', 'containerId', 'disabled', 'loading_state', 'mouseEnterDelay', 'mouseLeaveDelay', 'okButtonProps', 'okText', 'overlayClassName', 'overlayInnerStyle', 'overlayStyle', 'placement', 'style', 'title', 'trigger']
+    def __init__(self, children=None, id=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, title=Component.UNDEFINED, disabled=Component.UNDEFINED, placement=Component.UNDEFINED, mouseEnterDelay=Component.UNDEFINED, mouseLeaveDelay=Component.UNDEFINED, overlayStyle=Component.UNDEFINED, overlayInnerStyle=Component.UNDEFINED, okText=Component.UNDEFINED, okButtonProps=Component.UNDEFINED, cancelText=Component.UNDEFINED, cancelButtonProps=Component.UNDEFINED, confirmCounts=Component.UNDEFINED, cancelCounts=Component.UNDEFINED, trigger=Component.UNDEFINED, containerId=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
+        self._prop_names = ['children', 'id', 'cancelButtonProps', 'cancelCounts', 'cancelText', 'className', 'confirmCounts', 'containerId', 'disabled', 'loading_state', 'mouseEnterDelay', 'mouseLeaveDelay', 'okButtonProps', 'okText', 'overlayInnerStyle', 'overlayStyle', 'placement', 'style', 'title', 'trigger']
         self._type = 'AntdPopconfirm'
         self._namespace = 'feffery_antd_components'
         self._valid_wildcard_attributes =            []
-        self.available_properties = ['children', 'id', 'cancelButtonProps', 'cancelCounts', 'cancelText', 'className', 'confirmCounts', 'containerId', 'disabled', 'loading_state', 'mouseEnterDelay', 'mouseLeaveDelay', 'okButtonProps', 'okText', 'overlayClassName', 'overlayInnerStyle', 'overlayStyle', 'placement', 'style', 'title', 'trigger']
+        self.available_properties = ['children', 'id', 'cancelButtonProps', 'cancelCounts', 'cancelText', 'className', 'confirmCounts', 'containerId', 'disabled', 'loading_state', 'mouseEnterDelay', 'mouseLeaveDelay', 'okButtonProps', 'okText', 'overlayInnerStyle', 'overlayStyle', 'placement', 'style', 'title', 'trigger']
         self.available_wildcard_properties =            []
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()
