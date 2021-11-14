@@ -20,6 +20,7 @@ import {
     SwapOutlined,
     RollbackOutlined,
     LoginOutlined,
+    TableOutlined,
     LogoutOutlined,
     MenuFoldOutlined,
     MenuUnfoldOutlined,
@@ -347,8 +348,6 @@ const str2Icon = new Map([
     ['md-tune', <MdTune />],
     ['md-transform', <MdTransform />],
     ['md-timer-off', <MdTimerOff />],
-    ['md-timer10', <MdTimer10 />],
-    ['md-timer3'], <MdTimer3 />,
     ['md-timer', <MdTimer />],
     ['md-file-upload', <MdFileUpload />],
     ['md-file-download', <MdFileDownload />],
@@ -657,7 +656,8 @@ const str2Icon = new Map([
     ['zoom-in', <ZoomInOutlined />],
     ['zoom-out', <ZoomOutOutlined />],
     ['sort-ascending', <SortAscendingOutlined />],
-    ['sort-descending', <SortDescendingOutlined />]
+    ['sort-descending', <SortDescendingOutlined />],
+    ['table', <TableOutlined />]
 ])
 
 export { str2Icon }

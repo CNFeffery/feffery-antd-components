@@ -15,7 +15,13 @@ Keyword arguments:
 
 - checkable (boolean; default False)
 
-- checkedKeys (list; optional)
+- checkedKeys (list of dicts; optional)
+
+    `checkedKeys` is a list | dict with keys:
+
+    - checked (list; optional)
+
+    - halfChecked (list; optional)
 
 - className (string; optional)
 

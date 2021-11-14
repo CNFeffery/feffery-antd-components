@@ -64,7 +64,7 @@ AntdCheckbox.propTypes = {
     // 设置是否禁用组件
     disabled: PropTypes.bool,
 
-    // 用于在单checkbox模式下设置选项对应显示的文字内容
+    // 用于设置选项对应显示的文字内容
     label: PropTypes.string,
 
     // 对应选择框当前是否被选择

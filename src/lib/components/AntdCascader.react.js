@@ -12,7 +12,6 @@ export default class AntdCascader extends Component {
         if (!props.value) {
             props.setProps({ value: props.defaultValue })
         }
-
     }
 
     render() {
@@ -32,7 +31,6 @@ export default class AntdCascader extends Component {
             maxTagCount,
             multiple,
             expandTrigger,
-            popupPlacement,
             setProps,
             loading_state
         } = this.props;
@@ -43,7 +41,6 @@ export default class AntdCascader extends Component {
         }
 
         const onSelect = (e) => {
-            console.log({ e })
             setProps({ value: e })
         }
 
@@ -64,7 +61,6 @@ export default class AntdCascader extends Component {
                     placement={placement}
                     maxTagCount={maxTagCount}
                     multiple={multiple}
-                    popupPlacement={popupPlacement}
                     expandTrigger={expandTrigger}
                     showSearch={filter}
                     onChange={onSelect}
@@ -150,9 +146,6 @@ AntdCascader.propTypes = {
 
     // 设置子菜单展开交互方式，可选的有'click'和'hover'，默认为'click'
     expandTrigger: PropTypes.oneOf(['click', 'hover']),
-
-    // 设置悬浮层的弹出位置，可选的有'bottomLeft'、'bottomRight'、'topLeft'与'topRight'，默认为'bottomLeft'
-    popupPlacement: PropTypes.oneOf(['bottomLeft', 'bottomRight', 'topLeft', 'topRight']),
 
     loading_state: PropTypes.shape({
         /**

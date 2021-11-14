@@ -13,6 +13,7 @@ export default class AntdBackTop extends Component {
             style,
             duration,
             visibilityHeight,
+            containerId,
             setProps
         } = this.props;
 
@@ -20,6 +21,7 @@ export default class AntdBackTop extends Component {
             <BackTop id={id}
                 className={className}
                 style={style}
+                target={containerId ? () => document.getElementById(containerId) : () => window}
                 duration={duration * 1000}
                 visibilityHeight={visibilityHeight} />
         );
@@ -42,6 +44,9 @@ AntdBackTop.propTypes = {
 
     // 设置出现回到顶部组件显示的滚动像素高度阈值，默认为400
     visibilityHeight: PropTypes.number,
+
+    // 设置绑定滚动条事件对应的容器id
+    containerId: PropTypes.string,
 
     loading_state: PropTypes.shape({
         /**
