@@ -29,7 +29,6 @@ Those elements have the following types:
 - `mouseLeaveDelay` (Real; optional)
 - `okButtonProps` (Dict; optional)
 - `okText` (String; optional)
-- `overlayClassName` (String; optional)
 - `overlayInnerStyle` (Dict; optional)
 - `overlayStyle` (Dict; optional)
 - `placement` (a value equal to: 'top', 'left', 'right', 'bottom', 'topLeft', 'topRight', 'bottomLeft', 'bottomRight', 'leftTop', 'leftBottom', 'rightTop', 'rightBottom'; optional)
@@ -38,7 +37,7 @@ Those elements have the following types:
 - `trigger` (a value equal to: 'hover', 'focus', 'click' | Array of a value equal to: 'hover', 'focus', 'click's; optional)
 """
 function 'feffery'_antdpopconfirm(; kwargs...)
-        available_props = Symbol[:children, :id, :cancelButtonProps, :cancelCounts, :cancelText, :className, :confirmCounts, :containerId, :disabled, :loading_state, :mouseEnterDelay, :mouseLeaveDelay, :okButtonProps, :okText, :overlayClassName, :overlayInnerStyle, :overlayStyle, :placement, :style, :title, :trigger]
+        available_props = Symbol[:children, :id, :cancelButtonProps, :cancelCounts, :cancelText, :className, :confirmCounts, :containerId, :disabled, :loading_state, :mouseEnterDelay, :mouseLeaveDelay, :okButtonProps, :okText, :overlayInnerStyle, :overlayStyle, :placement, :style, :title, :trigger]
         wild_props = Symbol[]
         return Component("'feffery'_antdpopconfirm", "AntdPopconfirm", "feffery_antd_components", available_props, wild_props; kwargs...)
 end

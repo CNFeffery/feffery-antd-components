@@ -115,9 +115,6 @@ AntdPopconfirm.propTypes = {
     // 设置鼠标移出后延时多少才隐藏 Tooltip，单位：秒，默认为0.1
     mouseLeaveDelay: PropTypes.number,
 
-    // 卡片类名
-    overlayClassName: PropTypes.string,
-
     // 设置卡片样式
     overlayStyle: PropTypes.object,
 
@@ -177,4 +174,6 @@ AntdPopconfirm.propTypes = {
 
 // 设置默认参数
 AntdPopconfirm.defaultProps = {
+    confirmCounts: 0,
+    cancelCounts: 0
 }

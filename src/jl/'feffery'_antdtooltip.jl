@@ -11,7 +11,7 @@ export 'feffery'_antdtooltip
 An AntdTooltip component.
 
 Keyword arguments:
-- `children` (a list of or a singular dash component, string or number; optional): The content of the tab - will only be displayed if this tab is selected
+- `children` (a list of or a singular dash component, string or number; optional)
 - `id` (String; optional)
 - `className` (String; optional)
 - `color` (String; optional)
@@ -23,7 +23,6 @@ Those elements have the following types:
   - `component_name` (String; optional): Holds the name of the component that is loading
 - `mouseEnterDelay` (Real; optional)
 - `mouseLeaveDelay` (Real; optional)
-- `overlayClassName` (String; optional)
 - `overlayInnerStyle` (Dict; optional)
 - `overlayStyle` (Dict; optional)
 - `placement` (a value equal to: 'top', 'left', 'right', 'bottom', 'topLeft', 'topRight', 'bottomLeft', 'bottomRight', 'leftTop', 'leftBottom', 'rightTop', 'rightBottom'; optional)
@@ -32,7 +31,7 @@ Those elements have the following types:
 - `trigger` (a value equal to: 'hover', 'focus', 'click' | Array of a value equal to: 'hover', 'focus', 'click's; optional)
 """
 function 'feffery'_antdtooltip(; kwargs...)
-        available_props = Symbol[:children, :id, :className, :color, :containerId, :loading_state, :mouseEnterDelay, :mouseLeaveDelay, :overlayClassName, :overlayInnerStyle, :overlayStyle, :placement, :style, :title, :trigger]
+        available_props = Symbol[:children, :id, :className, :color, :containerId, :loading_state, :mouseEnterDelay, :mouseLeaveDelay, :overlayInnerStyle, :overlayStyle, :placement, :style, :title, :trigger]
         wild_props = Symbol[]
         return Component("'feffery'_antdtooltip", "AntdTooltip", "feffery_antd_components", available_props, wild_props; kwargs...)
 end

@@ -10,7 +10,6 @@ export default class AntdEmpty extends Component {
         // 取得必要属性或参数
         let {
             id,
-            children,
             className,
             style,
             description,
