@@ -2393,30 +2393,6 @@
         "required": false,
         "description": ""
       },
-      "loading_state": {
-        "type": {
-          "name": "shape",
-          "value": {
-            "is_loading": {
-              "name": "bool",
-              "description": "Determines if the component is loading or not",
-              "required": false
-            },
-            "prop_name": {
-              "name": "string",
-              "description": "Holds which property is loading",
-              "required": false
-            },
-            "component_name": {
-              "name": "string",
-              "description": "Holds the name of the component that is loading",
-              "required": false
-            }
-          }
-        },
-        "required": false,
-        "description": ""
-      },
       "title": {
         "type": {
           "name": "union",
@@ -2569,6 +2545,30 @@
         },
         "required": false,
         "description": "Dash-assigned callback that should be called to report property changes\r\nto Dash, to make them available for callbacks."
+      },
+      "loading_state": {
+        "type": {
+          "name": "shape",
+          "value": {
+            "is_loading": {
+              "name": "bool",
+              "description": "Determines if the component is loading or not",
+              "required": false
+            },
+            "prop_name": {
+              "name": "string",
+              "description": "Holds which property is loading",
+              "required": false
+            },
+            "component_name": {
+              "name": "string",
+              "description": "Holds the name of the component that is loading",
+              "required": false
+            }
+          }
+        },
+        "required": false,
+        "description": ""
       }
     }
   },
@@ -3020,13 +3020,6 @@
         "required": false,
         "description": ""
       },
-      "overlayClassName": {
-        "type": {
-          "name": "string"
-        },
-        "required": false,
-        "description": ""
-      },
       "overlayStyle": {
         "type": {
           "name": "object"
@@ -3074,14 +3067,22 @@
           "name": "number"
         },
         "required": false,
-        "description": ""
+        "description": "",
+        "defaultValue": {
+          "value": "0",
+          "computed": false
+        }
       },
       "cancelCounts": {
         "type": {
           "name": "number"
         },
         "required": false,
-        "description": ""
+        "description": "",
+        "defaultValue": {
+          "value": "0",
+          "computed": false
+        }
       },
       "trigger": {
         "type": {
@@ -3301,13 +3302,6 @@
       "mouseLeaveDelay": {
         "type": {
           "name": "number"
-        },
-        "required": false,
-        "description": ""
-      },
-      "overlayClassName": {
-        "type": {
-          "name": "string"
         },
         "required": false,
         "description": ""
@@ -5634,7 +5628,7 @@
           "name": "node"
         },
         "required": false,
-        "description": "The content of the tab - will only be displayed if this tab is selected"
+        "description": ""
       },
       "className": {
         "type": {
@@ -5731,13 +5725,6 @@
       "mouseLeaveDelay": {
         "type": {
           "name": "number"
-        },
-        "required": false,
-        "description": ""
-      },
-      "overlayClassName": {
-        "type": {
-          "name": "string"
         },
         "required": false,
         "description": ""
