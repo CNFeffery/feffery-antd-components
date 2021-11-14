@@ -69,7 +69,6 @@ AntdResult.propTypes = {
     // 用于设置副标题文字内容
     subTitle: PropTypes.string,
 
-
     /**
      * Dash-assigned callback that should be called to report property changes
      * to Dash, to make them available for callbacks.
