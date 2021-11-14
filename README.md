@@ -14,12 +14,12 @@
 
 </div>
 
-`feffery-components`计划子项目，`Plotly Dash`第三方组件库，将`Antd`中的常用组件带入`Dash`的世界🥳，最新版本：`0.0.1rc6`
+`feffery-components`计划子项目，`Plotly Dash`第三方组件库，将`Antd`中的常用组件带入`Dash`的世界🥳，最新版本：`0.0.1rc7`
 
 ## 1 最新版本安装方式
 
 ```bash
-pip install feffery-antd-components==0.0.1rc6
+pip install feffery-antd-components==0.0.1rc7
 ```
 
 ## 2 最新开发版本安装方式
@@ -94,7 +94,6 @@ app = dash.Dash(serve_locally=False)
   - `AntdTabs`
   - `AntdTabPane`
 - [x] 分页：`AntdPagination`
-- [x] 骨架屏：`AntdSkeleton`
 - [x] 树选择：`AntdTreeSelect`
 - [x] 抽屉：`AntdDrawer`
 - [x] 气泡卡片：`AntdPopover`
@@ -107,10 +106,11 @@ app = dash.Dash(serve_locally=False)
 
 ## 5 在线交互式说明文档
 
-<a href='http://fac.feffery.tech/' target='_blank'>文档地址</a>（待同步至最新pypi版本）
+<a href='http://fac.feffery.tech/' target='_blank'>文档地址</a>
 
 ## 6 TODO计划
 
+- [ ] 骨架屏：`AntdSkeleton`
 - [ ] 表单：`AntdForm`
 - [ ] 卡片：`AntdCard`
 - [ ] 头像：`AntdAvatar`
