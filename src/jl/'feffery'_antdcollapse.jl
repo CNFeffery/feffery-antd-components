@@ -11,7 +11,7 @@ export 'feffery'_antdcollapse
 An AntdCollapse component.
 
 Keyword arguments:
-- `children` (a list of or a singular dash component, string or number; optional): The content of the tab - will only be displayed if this tab is selected
+- `children` (a list of or a singular dash component, string or number; optional)
 - `id` (String; optional)
 - `bordered` (Bool; optional)
 - `className` (String; optional)
@@ -23,13 +23,12 @@ Those elements have the following types:
   - `is_loading` (Bool; optional): Determines if the component is loading or not
   - `prop_name` (String; optional): Holds which property is loading
   - `component_name` (String; optional): Holds the name of the component that is loading
-- `pureMode` (Bool; optional)
 - `showArrow` (Bool; optional)
 - `style` (Dict; optional)
 - `title` (String; optional)
 """
 function 'feffery'_antdcollapse(; kwargs...)
-        available_props = Symbol[:children, :id, :bordered, :className, :collapsible, :ghost, :is_open, :loading_state, :pureMode, :showArrow, :style, :title]
+        available_props = Symbol[:children, :id, :bordered, :className, :collapsible, :ghost, :is_open, :loading_state, :showArrow, :style, :title]
         wild_props = Symbol[]
         return Component("'feffery'_antdcollapse", "AntdCollapse", "feffery_antd_components", available_props, wild_props; kwargs...)
 end

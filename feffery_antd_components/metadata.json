@@ -925,7 +925,7 @@
           "name": "node"
         },
         "required": false,
-        "description": "The content of the tab - will only be displayed if this tab is selected"
+        "description": ""
       },
       "className": {
         "type": {
@@ -937,30 +937,6 @@
       "style": {
         "type": {
           "name": "object"
-        },
-        "required": false,
-        "description": ""
-      },
-      "loading_state": {
-        "type": {
-          "name": "shape",
-          "value": {
-            "is_loading": {
-              "name": "bool",
-              "description": "Determines if the component is loading or not",
-              "required": false
-            },
-            "prop_name": {
-              "name": "string",
-              "description": "Holds which property is loading",
-              "required": false
-            },
-            "component_name": {
-              "name": "string",
-              "description": "Holds the name of the component that is loading",
-              "required": false
-            }
-          }
         },
         "required": false,
         "description": ""
@@ -984,17 +960,6 @@
         "description": "",
         "defaultValue": {
           "value": "true",
-          "computed": false
-        }
-      },
-      "pureMode": {
-        "type": {
-          "name": "bool"
-        },
-        "required": false,
-        "description": "",
-        "defaultValue": {
-          "value": "false",
           "computed": false
         }
       },
@@ -1032,6 +997,30 @@
               "computed": false
             }
           ]
+        },
+        "required": false,
+        "description": ""
+      },
+      "loading_state": {
+        "type": {
+          "name": "shape",
+          "value": {
+            "is_loading": {
+              "name": "bool",
+              "description": "Determines if the component is loading or not",
+              "required": false
+            },
+            "prop_name": {
+              "name": "string",
+              "description": "Holds which property is loading",
+              "required": false
+            },
+            "component_name": {
+              "name": "string",
+              "description": "Holds the name of the component that is loading",
+              "required": false
+            }
+          }
         },
         "required": false,
         "description": ""
