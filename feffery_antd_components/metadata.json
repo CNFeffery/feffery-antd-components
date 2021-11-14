@@ -841,13 +841,6 @@
         "required": false,
         "description": ""
       },
-      "title": {
-        "type": {
-          "name": "string"
-        },
-        "required": false,
-        "description": ""
-      },
       "options": {
         "type": {
           "name": "arrayOf",
@@ -6313,16 +6306,12 @@
         "required": false,
         "description": ""
       },
-      "listHeight": {
+      "treeLine": {
         "type": {
-          "name": "number"
+          "name": "bool"
         },
         "required": false,
-        "description": "",
-        "defaultValue": {
-          "value": "256",
-          "computed": false
-        }
+        "description": ""
       },
       "placeholder": {
         "type": {
@@ -6339,20 +6328,9 @@
               "name": "string"
             },
             {
-              "name": "number"
-            },
-            {
               "name": "arrayOf",
               "value": {
-                "name": "union",
-                "value": [
-                  {
-                    "name": "string"
-                  },
-                  {
-                    "name": "number"
-                  }
-                ]
+                "name": "string"
               }
             }
           ]
@@ -6368,20 +6346,9 @@
               "name": "string"
             },
             {
-              "name": "number"
-            },
-            {
               "name": "arrayOf",
               "value": {
-                "name": "union",
-                "value": [
-                  {
-                    "name": "string"
-                  },
-                  {
-                    "name": "number"
-                  }
-                ]
+                "name": "string"
               }
             }
           ]
@@ -6395,6 +6362,17 @@
         },
         "required": false,
         "description": ""
+      },
+      "listHeight": {
+        "type": {
+          "name": "number"
+        },
+        "required": false,
+        "description": "",
+        "defaultValue": {
+          "value": "256",
+          "computed": false
+        }
       },
       "multiple": {
         "type": {

@@ -26,6 +26,7 @@ export default class AntdTreeSelect extends Component {
             treeData,
             allowClear,
             bordered,
+            treeLine,
             listHeight,
             placeholder,
             value,
@@ -65,6 +66,7 @@ export default class AntdTreeSelect extends Component {
                     treeData={treeData}
                     allowClear={allowClear}
                     bordered={bordered}
+                    treeLine={treeLine}
                     listHeight={listHeight}
                     placeholder={placeholder}
                     value={value}
@@ -101,7 +103,7 @@ const PropTreeNodeShape = {
     key: PropTypes.string.isRequired,
 
     // 节点对应的值，供搜索筛选时进行匹配使用（具有唯一性）
-    value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+    value: PropTypes.string.isRequired,
 
     // 可选，设置是否禁用
     disabled: PropTypes.bool,
@@ -141,8 +143,8 @@ AntdTreeSelect.propTypes = {
     // 设置是否显示边框，默认为true
     bordered: PropTypes.bool,
 
-    // 设置下拉菜单的高度，默认256
-    listHeight: PropTypes.number,
+    // 设置是否展示连接线，默认为false
+    treeLine: PropTypes.bool,
 
     // 选择框默认文本
     placeholder: PropTypes.string,
@@ -150,18 +152,16 @@ AntdTreeSelect.propTypes = {
     // 对应已被选中的选项值或选项值数组
     value: PropTypes.oneOfType([
         PropTypes.string,
-        PropTypes.number,
         PropTypes.arrayOf(
-            PropTypes.oneOfType([PropTypes.string, PropTypes.number])
+            PropTypes.string,
         ),
     ]),
 
     // 设置默认被选中的选项，默认为空数组
     defaultValue: PropTypes.oneOfType([
         PropTypes.string,
-        PropTypes.number,
         PropTypes.arrayOf(
-            PropTypes.oneOfType([PropTypes.string, PropTypes.number])
+            PropTypes.string
         ),
     ]),
 
