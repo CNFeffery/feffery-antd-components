@@ -6,6 +6,7 @@
 <h1 align="center">feffery-antd-components</h1>
 <div align="center">
 
+
 [![GitHub](https://img.shields.io/github/license/plotly/dash.svg?color=dark-green)](https://github.com/plotly/dash/blob/master/LICENSE)
 [![PyPI](https://img.shields.io/pypi/v/feffery-antd-components.svg?color=dark-green)](https://pypi.org/project/feffery-antd-components/)
 [![Downloads](https://pepy.tech/badge/feffery-antd-components)](https://pepy.tech/project/feffery-antd-components)
@@ -25,19 +26,19 @@ pip install feffery-antd-components==0.0.1rc7
 ## 2 最新开发版本安装方式
 
 ```bash
-pip install git+https://github.com/CNFeffery/feffery-antd-components.git
+pip install git+https://github.com/CNFeffery/feffery-antd-components.git@0.0.1rc8dev
 ```
 
 国内镜像加速安装方式：
 
 ```bash
-pip install git+https://hub.fastgit.org/CNFeffery/feffery-antd-components.git
+pip install git+https://hub.fastgit.org/CNFeffery/feffery-antd-components.git@0.0.1rc8dev
 ```
 
 或：
 
 ```bash
-pip install git+https://github.com.cnpmjs.org/CNFeffery/feffery-antd-components.git
+pip install git+https://github.com.cnpmjs.org/CNFeffery/feffery-antd-components.git@0.0.1rc8dev
 ```
 
 ## 3 应用部署CDN加速使用方式
@@ -110,18 +111,26 @@ app = dash.Dash(serve_locally=False)
 
 ## 6 TODO计划
 
-- [ ] 骨架屏：`AntdSkeleton`
+- [ ] 固钉：`AntdAffix`
+- [ ] 面包屑：`AntdBreadcrumb`
+- [ ] 下拉菜单：`AntdDropdown`
+- [ ] 页头：`AntdPageHeader`
 - [ ] 表单：`AntdForm`
-- [ ] 卡片：`AntdCard`
+- [ ] 数字输入框：`AntdInputNumber`
+- [ ] 提及：`AntdMentions`
+- [ ] 评分：`AntdRate`
+- [ ] 时间选择框：`AntdTimePicker`
 - [ ] 头像：`AntdAvatar`
 - [ ] 徽标数：`AntdBadge`
-- [ ] 描述列表：`AntdDescriptions`
-- [ ] 评分：`AntdRate`
 - [ ] 日历：`AntdCalendar`
+- [ ] 卡片：`AntdCard`
 - [ ] 走马灯：`AntdCarousel`
 - [ ] 评论：`AntdComment`
+- [ ] 描述列表：`AntdDescriptions`
+- [ ] 图片：`AntdImage`
+- [ ] 列表：`AntdList`
 - [ ] 统计数值：`AntdStatistic`
 - [ ] 时间轴：`AntdTimeline`
 - [ ] 进度条：`AntdProgress`
-- [ ] 回到顶部：`AntdBackTop`
-- [ ] 图片：`AntdImage`
+- [ ] 骨架屏：`AntdSkeleton`
+
