@@ -15,14 +15,18 @@ export default class AntdTag extends Component {
             color,
             href,
             target,
-            setProps
+            setProps,
+            loading_state
         } = this.props;
 
         return (
             <Tag id={id}
                 className={className}
                 style={style}
-                color={color}>
+                color={color}
+                data-dash-is-loading={
+                    (loading_state && loading_state.is_loading) || undefined
+                }>
                 {href ? <a href={href} target={target}>{content}</a> : content}
             </Tag>
         );

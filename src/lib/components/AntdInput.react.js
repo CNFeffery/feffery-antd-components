@@ -23,7 +23,6 @@ export default class AntdInput extends Component {
             id,
             className,
             style,
-            loading_state,
             mode,
             placeholder,
             value,
@@ -38,7 +37,8 @@ export default class AntdInput extends Component {
             showCount,
             nClicksSearch,
             nSubmit,
-            setProps
+            setProps,
+            loading_state
         } = this.props;
 
         // 监听输入内容变化事件
@@ -92,7 +92,10 @@ export default class AntdInput extends Component {
                     maxLength={maxLength}
                     onSearch={onSearch}
                     onChange={onChange}
-                    onPressEnter={onPressEnter} />
+                    onPressEnter={onPressEnter}
+                    data-dash-is-loading={
+                        (loading_state && loading_state.is_loading) || undefined
+                    } />
             );
         } else if (mode === 'text-area') {
             return (
@@ -108,7 +111,10 @@ export default class AntdInput extends Component {
                     maxLength={maxLength}
                     showCount={showCount}
                     onChange={onChange}
-                    onPressEnter={onPressEnter} />
+                    onPressEnter={onPressEnter}
+                    data-dash-is-loading={
+                        (loading_state && loading_state.is_loading) || undefined
+                    } />
             );
         } else if (mode === 'password') {
             return (
@@ -121,7 +127,10 @@ export default class AntdInput extends Component {
                     disabled={disabled}
                     maxLength={maxLength}
                     onChange={onChange}
-                    onPressEnter={onPressEnter} />
+                    onPressEnter={onPressEnter}
+                    data-dash-is-loading={
+                        (loading_state && loading_state.is_loading) || undefined
+                    } />
             );
         }
     }

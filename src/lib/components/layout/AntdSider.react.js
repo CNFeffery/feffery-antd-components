@@ -30,7 +30,8 @@ export default class AntdSider extends Component {
             theme,
             width,
             trigger,
-            setProps
+            setProps,
+            loading_state
         } = this.props;
 
         const onCollapse = collapsed => {
@@ -52,7 +53,10 @@ export default class AntdSider extends Component {
                 theme={theme}
                 width={width}
                 trigger={trigger}
-                onCollapse={onCollapse}>
+                onCollapse={onCollapse}
+                data-dash-is-loading={
+                    (loading_state && loading_state.is_loading) || undefined
+                }>
                 {children}
             </Sider>
         );

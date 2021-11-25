@@ -38,7 +38,6 @@ import AntdTitle from './components/typography/AntdTitle.react'
 import AntdTabPane from './components/tabs/AntdTabPane.react'
 import AntdTabs from './components/tabs/AntdTabs.react'
 import AntdPagination from './components/AntdPagination.react'
-import AntdSkeleton from './components/AntdSkeleton.react'
 import AntdTreeSelect from './components/AntdTreeSelect.react'
 import AntdDrawer from './components/AntdDrawer.react'
 import AntdPopover from './components/AntdPopover.react'
@@ -49,6 +48,19 @@ import AntdUpload from './components/AntdUpload.react'
 import AntdIcon from './components/AntdIcon.react'
 import AntdPopconfirm from './components/AntdPopconfirm.react'
 import AntdBackTop from './components/AntdBackTop.react'
+import AntdSkeleton from './components/AntdSkeleton.react'
+import AntdAffix from './components/AntdAffix.react'
+import AntdBreadcrumb from './components/AntdBreadcrumb.react'
+import AntdDropdown from './components/AntdDropdown.react'
+import AntdInputNumber from './components/AntdInputNumber.react'
+import AntdRate from './components/AntdRate.react'
+import AntdStatistic from './components/AntdStatistic.react'
+import AntdCountdown from './components/AntdCountdown.react'
+import AntdTimeline from './components/AntdTimeline.react'
+import AntdProgress from './components/AntdProgress.react'
+import AntdAvatar from './components/AntdAvatar.react'
+import AntdBadge from './components/AntdBadge.react'
+import AntdRibbon from './components/AntdRibbon.react'
 
 export {
     AntdDatePicker,
@@ -90,7 +102,6 @@ export {
     AntdTabPane,
     AntdTabs,
     AntdPagination,
-    AntdSkeleton,
     AntdTreeSelect,
     AntdDrawer,
     AntdPopover,
@@ -100,5 +111,18 @@ export {
     AntdUpload,
     AntdIcon,
     AntdPopconfirm,
-    AntdBackTop
+    AntdBackTop,
+    AntdSkeleton,
+    AntdAffix,
+    AntdBreadcrumb,
+    AntdDropdown,
+    AntdInputNumber,
+    AntdRate,
+    AntdStatistic,
+    AntdCountdown,
+    AntdTimeline,
+    AntdProgress,
+    AntdAvatar,
+    AntdBadge,
+    AntdRibbon
 };

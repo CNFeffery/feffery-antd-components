@@ -25,7 +25,8 @@ export default class AntdCol extends Component {
             pull,
             push,
             flex,
-            setProps
+            setProps,
+            loading_state
         } = this.props;
 
         children = parseChildrenToArray(children)
@@ -39,7 +40,10 @@ export default class AntdCol extends Component {
                 order={order}
                 pull={pull}
                 push={push}
-                flex={flex}>
+                flex={flex}
+                data-dash-is-loading={
+                    (loading_state && loading_state.is_loading) || undefined
+                }>
                 {children}
             </Col>
         );

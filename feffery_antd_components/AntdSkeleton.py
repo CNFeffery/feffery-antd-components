@@ -9,15 +9,31 @@ class AntdSkeleton(Component):
 
 Keyword arguments:
 
-- children (a list of or a singular dash component, string or number; optional):
-    The content of the tab - will only be displayed if this tab is
-    selected.
+- children (a list of or a singular dash component, string or number; optional)
 
 - id (string; optional)
 
+- active (boolean; optional)
+
+- avatar (dict; optional)
+
+    `avatar` is a boolean | dict with keys:
+
+    - active (boolean; optional)
+
+    - shape (a value equal to: 'circle', 'square'; optional)
+
+    - size (number | a value equal to: 'large', 'small', 'default'; optional)
+
 - className (string; optional)
 
+- debug (boolean; default False)
+
 - excludeProps (list of strings; optional)
+
+- includeProps (list of strings; optional)
+
+- listenPropsMode (a value equal to: 'default', 'exclude', 'include'; default 'default')
 
 - loading (boolean; default False)
 
@@ -34,14 +50,30 @@ Keyword arguments:
     - prop_name (string; optional):
         Holds which property is loading.
 
-- style (dict; optional)"""
+- paragraph (dict; optional)
+
+    `paragraph` is a boolean | dict with keys:
+
+    - rows (number; optional)
+
+    - width (number | string | list of number | strings; optional)
+
+- round (boolean; optional)
+
+- style (dict; optional)
+
+- title (dict; optional)
+
+    `title` is a boolean | dict with keys:
+
+    - width (number | string; optional)"""
     @_explicitize_args
-    def __init__(self, children=None, id=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, loading=Component.UNDEFINED, excludeProps=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
-        self._prop_names = ['children', 'id', 'className', 'excludeProps', 'loading', 'loading_state', 'style']
+    def __init__(self, children=None, id=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, loading=Component.UNDEFINED, active=Component.UNDEFINED, avatar=Component.UNDEFINED, paragraph=Component.UNDEFINED, title=Component.UNDEFINED, round=Component.UNDEFINED, debug=Component.UNDEFINED, listenPropsMode=Component.UNDEFINED, excludeProps=Component.UNDEFINED, includeProps=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
+        self._prop_names = ['children', 'id', 'active', 'avatar', 'className', 'debug', 'excludeProps', 'includeProps', 'listenPropsMode', 'loading', 'loading_state', 'paragraph', 'round', 'style', 'title']
         self._type = 'AntdSkeleton'
         self._namespace = 'feffery_antd_components'
         self._valid_wildcard_attributes =            []
-        self.available_properties = ['children', 'id', 'className', 'excludeProps', 'loading', 'loading_state', 'style']
+        self.available_properties = ['children', 'id', 'active', 'avatar', 'className', 'debug', 'excludeProps', 'includeProps', 'listenPropsMode', 'loading', 'loading_state', 'paragraph', 'round', 'style', 'title']
         self.available_wildcard_properties =            []
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()

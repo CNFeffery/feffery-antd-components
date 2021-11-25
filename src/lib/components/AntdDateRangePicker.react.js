@@ -11,7 +11,7 @@ const { RangePicker } = DatePicker;
 export default class AntdDateRangePicker extends Component {
     render() {
         // 取得必要属性或参数
-        var {
+        let {
             id,
             className,
             style,
@@ -25,7 +25,8 @@ export default class AntdDateRangePicker extends Component {
             bordered,
             size,
             defaultPickerValue,
-            loading_state } = this.props;
+            loading_state
+        } = this.props;
 
         // defaultPickerValue为空时默认定位到今日对应面板位置
         if (!defaultPickerValue) {
