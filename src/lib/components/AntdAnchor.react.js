@@ -10,7 +10,16 @@ const { Link } = Anchor;
 export default class AntdAnchor extends Component {
     render() {
         // 取得必要属性或参数
-        var { id, className, style, linkDict, align, containerId, targetOffset, loading_state } = this.props;
+        let {
+            id,
+            className,
+            style,
+            linkDict,
+            align,
+            containerId,
+            targetOffset,
+            loading_state
+        } = this.props;
 
 
         function renderAnchorTree(obj) {

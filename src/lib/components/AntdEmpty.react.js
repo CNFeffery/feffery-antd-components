@@ -15,7 +15,8 @@ export default class AntdEmpty extends Component {
             description,
             image,
             imageStyle,
-            setProps
+            setProps,
+            loading_state
         } = this.props;
 
         return (
@@ -25,7 +26,10 @@ export default class AntdEmpty extends Component {
                     style={style}
                     description={description}
                     image={image}
-                    imageStyle={imageStyle} />
+                    imageStyle={imageStyle}
+                    data-dash-is-loading={
+                        (loading_state && loading_state.is_loading) || undefined
+                    } />
             </ConfigProvider>
         );
     }

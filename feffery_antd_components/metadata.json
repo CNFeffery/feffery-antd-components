@@ -1,4 +1,91 @@
 {
+  "src/lib/components/AntdAffix.react.js": {
+    "description": "",
+    "displayName": "AntdAffix",
+    "methods": [],
+    "props": {
+      "id": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": ""
+      },
+      "children": {
+        "type": {
+          "name": "node"
+        },
+        "required": false,
+        "description": ""
+      },
+      "className": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": ""
+      },
+      "style": {
+        "type": {
+          "name": "object"
+        },
+        "required": false,
+        "description": ""
+      },
+      "offsetBottom": {
+        "type": {
+          "name": "number"
+        },
+        "required": false,
+        "description": ""
+      },
+      "offsetTop": {
+        "type": {
+          "name": "number"
+        },
+        "required": false,
+        "description": ""
+      },
+      "target": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": ""
+      },
+      "loading_state": {
+        "type": {
+          "name": "shape",
+          "value": {
+            "is_loading": {
+              "name": "bool",
+              "description": "Determines if the component is loading or not",
+              "required": false
+            },
+            "prop_name": {
+              "name": "string",
+              "description": "Holds which property is loading",
+              "required": false
+            },
+            "component_name": {
+              "name": "string",
+              "description": "Holds the name of the component that is loading",
+              "required": false
+            }
+          }
+        },
+        "required": false,
+        "description": ""
+      },
+      "setProps": {
+        "type": {
+          "name": "func"
+        },
+        "required": false,
+        "description": "Dash-assigned callback that should be called to report property changes\r\nto Dash, to make them available for callbacks."
+      }
+    }
+  },
   "src/lib/components/AntdAlert.react.js": {
     "description": "",
     "displayName": "AntdAlert",
@@ -239,6 +326,185 @@
       }
     }
   },
+  "src/lib/components/AntdAvatar.react.js": {
+    "description": "",
+    "displayName": "AntdAvatar",
+    "methods": [],
+    "props": {
+      "id": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": ""
+      },
+      "className": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": ""
+      },
+      "style": {
+        "type": {
+          "name": "object"
+        },
+        "required": false,
+        "description": ""
+      },
+      "alt": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": ""
+      },
+      "gap": {
+        "type": {
+          "name": "number"
+        },
+        "required": false,
+        "description": ""
+      },
+      "mode": {
+        "type": {
+          "name": "enum",
+          "value": [
+            {
+              "value": "'text'",
+              "computed": false
+            },
+            {
+              "value": "'icon'",
+              "computed": false
+            },
+            {
+              "value": "'image'",
+              "computed": false
+            }
+          ]
+        },
+        "required": false,
+        "description": "",
+        "defaultValue": {
+          "value": "'icon'",
+          "computed": false
+        }
+      },
+      "icon": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": ""
+      },
+      "text": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": ""
+      },
+      "src": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": ""
+      },
+      "srcSet": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": ""
+      },
+      "size": {
+        "type": {
+          "name": "union",
+          "value": [
+            {
+              "name": "number"
+            },
+            {
+              "name": "enum",
+              "value": [
+                {
+                  "value": "'large'",
+                  "computed": false
+                },
+                {
+                  "value": "'small'",
+                  "computed": false
+                },
+                {
+                  "value": "'default'",
+                  "computed": false
+                }
+              ]
+            }
+          ]
+        },
+        "required": false,
+        "description": ""
+      },
+      "shape": {
+        "type": {
+          "name": "enum",
+          "value": [
+            {
+              "value": "'circle'",
+              "computed": false
+            },
+            {
+              "value": "'square'",
+              "computed": false
+            }
+          ]
+        },
+        "required": false,
+        "description": ""
+      },
+      "draggable": {
+        "type": {
+          "name": "bool"
+        },
+        "required": false,
+        "description": ""
+      },
+      "loading_state": {
+        "type": {
+          "name": "shape",
+          "value": {
+            "is_loading": {
+              "name": "bool",
+              "description": "Determines if the component is loading or not",
+              "required": false
+            },
+            "prop_name": {
+              "name": "string",
+              "description": "Holds which property is loading",
+              "required": false
+            },
+            "component_name": {
+              "name": "string",
+              "description": "Holds the name of the component that is loading",
+              "required": false
+            }
+          }
+        },
+        "required": false,
+        "description": ""
+      },
+      "setProps": {
+        "type": {
+          "name": "func"
+        },
+        "required": false,
+        "description": "Dash-assigned callback that should be called to report property changes\r\nto Dash, to make them available for callbacks."
+      }
+    }
+  },
   "src/lib/components/AntdBackTop.react.js": {
     "description": "",
     "displayName": "AntdBackTop",
@@ -280,6 +546,300 @@
         "description": ""
       },
       "containerId": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": ""
+      },
+      "loading_state": {
+        "type": {
+          "name": "shape",
+          "value": {
+            "is_loading": {
+              "name": "bool",
+              "description": "Determines if the component is loading or not",
+              "required": false
+            },
+            "prop_name": {
+              "name": "string",
+              "description": "Holds which property is loading",
+              "required": false
+            },
+            "component_name": {
+              "name": "string",
+              "description": "Holds the name of the component that is loading",
+              "required": false
+            }
+          }
+        },
+        "required": false,
+        "description": ""
+      },
+      "setProps": {
+        "type": {
+          "name": "func"
+        },
+        "required": false,
+        "description": "Dash-assigned callback that should be called to report property changes\r\nto Dash, to make them available for callbacks."
+      }
+    }
+  },
+  "src/lib/components/AntdBadge.react.js": {
+    "description": "",
+    "displayName": "AntdBadge",
+    "methods": [],
+    "props": {
+      "id": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": ""
+      },
+      "children": {
+        "type": {
+          "name": "node"
+        },
+        "required": false,
+        "description": ""
+      },
+      "className": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": ""
+      },
+      "style": {
+        "type": {
+          "name": "object"
+        },
+        "required": false,
+        "description": ""
+      },
+      "color": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": ""
+      },
+      "count": {
+        "type": {
+          "name": "number"
+        },
+        "required": false,
+        "description": ""
+      },
+      "dot": {
+        "type": {
+          "name": "bool"
+        },
+        "required": false,
+        "description": ""
+      },
+      "offset": {
+        "type": {
+          "name": "arrayOf",
+          "value": {
+            "name": "number"
+          }
+        },
+        "required": false,
+        "description": ""
+      },
+      "overflowCount": {
+        "type": {
+          "name": "number"
+        },
+        "required": false,
+        "description": ""
+      },
+      "showZero": {
+        "type": {
+          "name": "bool"
+        },
+        "required": false,
+        "description": ""
+      },
+      "status": {
+        "type": {
+          "name": "enum",
+          "value": [
+            {
+              "value": "'success'",
+              "computed": false
+            },
+            {
+              "value": "'processing'",
+              "computed": false
+            },
+            {
+              "value": "'default'",
+              "computed": false
+            },
+            {
+              "value": "'error'",
+              "computed": false
+            },
+            {
+              "value": "'warning'",
+              "computed": false
+            }
+          ]
+        },
+        "required": false,
+        "description": ""
+      },
+      "text": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": ""
+      },
+      "title": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": ""
+      },
+      "size": {
+        "type": {
+          "name": "enum",
+          "value": [
+            {
+              "value": "'default'",
+              "computed": false
+            },
+            {
+              "value": "'small'",
+              "computed": false
+            }
+          ]
+        },
+        "required": false,
+        "description": ""
+      },
+      "loading_state": {
+        "type": {
+          "name": "shape",
+          "value": {
+            "is_loading": {
+              "name": "bool",
+              "description": "Determines if the component is loading or not",
+              "required": false
+            },
+            "prop_name": {
+              "name": "string",
+              "description": "Holds which property is loading",
+              "required": false
+            },
+            "component_name": {
+              "name": "string",
+              "description": "Holds the name of the component that is loading",
+              "required": false
+            }
+          }
+        },
+        "required": false,
+        "description": ""
+      },
+      "setProps": {
+        "type": {
+          "name": "func"
+        },
+        "required": false,
+        "description": "Dash-assigned callback that should be called to report property changes\r\nto Dash, to make them available for callbacks."
+      }
+    }
+  },
+  "src/lib/components/AntdBreadcrumb.react.js": {
+    "description": "",
+    "displayName": "AntdBreadcrumb",
+    "methods": [],
+    "props": {
+      "id": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": ""
+      },
+      "className": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": ""
+      },
+      "style": {
+        "type": {
+          "name": "object"
+        },
+        "required": false,
+        "description": ""
+      },
+      "items": {
+        "type": {
+          "name": "arrayOf",
+          "value": {
+            "name": "exact",
+            "value": {
+              "title": {
+                "name": "string",
+                "required": false
+              },
+              "href": {
+                "name": "string",
+                "required": false
+              },
+              "target": {
+                "name": "string",
+                "required": false
+              },
+              "icon": {
+                "name": "string",
+                "required": false
+              },
+              "menuItems": {
+                "name": "arrayOf",
+                "value": {
+                  "name": "exact",
+                  "value": {
+                    "title": {
+                      "name": "string",
+                      "required": false
+                    },
+                    "href": {
+                      "name": "string",
+                      "required": false
+                    },
+                    "target": {
+                      "name": "string",
+                      "required": false
+                    },
+                    "disabled": {
+                      "name": "bool",
+                      "required": false
+                    },
+                    "icon": {
+                      "name": "string",
+                      "required": false
+                    }
+                  }
+                },
+                "required": false
+              }
+            }
+          }
+        },
+        "required": false,
+        "description": ""
+      },
+      "separator": {
         "type": {
           "name": "string"
         },
@@ -1034,6 +1594,154 @@
       }
     }
   },
+  "src/lib/components/AntdCountdown.react.js": {
+    "description": "",
+    "displayName": "AntdCountdown",
+    "methods": [],
+    "props": {
+      "id": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": ""
+      },
+      "className": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": ""
+      },
+      "style": {
+        "type": {
+          "name": "object"
+        },
+        "required": false,
+        "description": ""
+      },
+      "format": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": ""
+      },
+      "value": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": ""
+      },
+      "valueFormat": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": ""
+      },
+      "prefix": {
+        "type": {
+          "name": "exact",
+          "value": {
+            "mode": {
+              "name": "enum",
+              "value": [
+                {
+                  "value": "'text'",
+                  "computed": false
+                },
+                {
+                  "value": "'icon'",
+                  "computed": false
+                }
+              ],
+              "required": false
+            },
+            "content": {
+              "name": "string",
+              "required": false
+            }
+          }
+        },
+        "required": false,
+        "description": ""
+      },
+      "suffix": {
+        "type": {
+          "name": "exact",
+          "value": {
+            "mode": {
+              "name": "enum",
+              "value": [
+                {
+                  "value": "'text'",
+                  "computed": false
+                },
+                {
+                  "value": "'icon'",
+                  "computed": false
+                }
+              ],
+              "required": false
+            },
+            "content": {
+              "name": "string",
+              "required": false
+            }
+          }
+        },
+        "required": false,
+        "description": ""
+      },
+      "title": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": ""
+      },
+      "valueStyle": {
+        "type": {
+          "name": "object"
+        },
+        "required": false,
+        "description": ""
+      },
+      "loading_state": {
+        "type": {
+          "name": "shape",
+          "value": {
+            "is_loading": {
+              "name": "bool",
+              "description": "Determines if the component is loading or not",
+              "required": false
+            },
+            "prop_name": {
+              "name": "string",
+              "description": "Holds which property is loading",
+              "required": false
+            },
+            "component_name": {
+              "name": "string",
+              "description": "Holds the name of the component that is loading",
+              "required": false
+            }
+          }
+        },
+        "required": false,
+        "description": ""
+      },
+      "setProps": {
+        "type": {
+          "name": "func"
+        },
+        "required": false,
+        "description": "Dash-assigned callback that should be called to report property changes\r\nto Dash, to make them available for callbacks."
+      }
+    }
+  },
   "src/lib/components/AntdDatePicker.react.js": {
     "description": "",
     "displayName": "AntdDatePicker",
@@ -1096,6 +1804,13 @@
           "value": "'date'",
           "computed": false
         }
+      },
+      "disabled": {
+        "type": {
+          "name": "bool"
+        },
+        "required": false,
+        "description": ""
       },
       "selectedDate": {
         "type": {
@@ -1745,6 +2460,223 @@
       }
     }
   },
+  "src/lib/components/AntdDropdown.react.js": {
+    "description": "",
+    "displayName": "AntdDropdown",
+    "methods": [],
+    "props": {
+      "id": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": ""
+      },
+      "className": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": ""
+      },
+      "style": {
+        "type": {
+          "name": "object"
+        },
+        "required": false,
+        "description": ""
+      },
+      "title": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": ""
+      },
+      "buttonMode": {
+        "type": {
+          "name": "bool"
+        },
+        "required": false,
+        "description": "",
+        "defaultValue": {
+          "value": "false",
+          "computed": false
+        }
+      },
+      "clickedKey": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": ""
+      },
+      "menuItems": {
+        "type": {
+          "name": "arrayOf",
+          "value": {
+            "name": "exact",
+            "value": {
+              "title": {
+                "name": "string",
+                "required": false
+              },
+              "href": {
+                "name": "string",
+                "required": false
+              },
+              "target": {
+                "name": "string",
+                "required": false
+              },
+              "disabled": {
+                "name": "bool",
+                "required": false
+              },
+              "icon": {
+                "name": "string",
+                "required": false
+              },
+              "key": {
+                "name": "string",
+                "required": false
+              },
+              "isDivider": {
+                "name": "bool",
+                "required": false
+              }
+            }
+          }
+        },
+        "required": false,
+        "description": ""
+      },
+      "arrow": {
+        "type": {
+          "name": "bool"
+        },
+        "required": false,
+        "description": ""
+      },
+      "disabled": {
+        "type": {
+          "name": "bool"
+        },
+        "required": false,
+        "description": ""
+      },
+      "overlayClassName": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": ""
+      },
+      "overlayStyle": {
+        "type": {
+          "name": "object"
+        },
+        "required": false,
+        "description": ""
+      },
+      "placement": {
+        "type": {
+          "name": "enum",
+          "value": [
+            {
+              "value": "'bottomLeft'",
+              "computed": false
+            },
+            {
+              "value": "'bottomCenter'",
+              "computed": false
+            },
+            {
+              "value": "'bottomRight'",
+              "computed": false
+            },
+            {
+              "value": "'topLeft'",
+              "computed": false
+            },
+            {
+              "value": "'topCenter'",
+              "computed": false
+            },
+            {
+              "value": "'topRight'",
+              "computed": false
+            }
+          ]
+        },
+        "required": false,
+        "description": ""
+      },
+      "trigger": {
+        "type": {
+          "name": "enum",
+          "value": [
+            {
+              "value": "'click'",
+              "computed": false
+            },
+            {
+              "value": "'hover'",
+              "computed": false
+            }
+          ]
+        },
+        "required": false,
+        "description": "",
+        "defaultValue": {
+          "value": "'hover'",
+          "computed": false
+        }
+      },
+      "visible": {
+        "type": {
+          "name": "bool"
+        },
+        "required": false,
+        "description": "",
+        "defaultValue": {
+          "value": "false",
+          "computed": false
+        }
+      },
+      "loading_state": {
+        "type": {
+          "name": "shape",
+          "value": {
+            "is_loading": {
+              "name": "bool",
+              "description": "Determines if the component is loading or not",
+              "required": false
+            },
+            "prop_name": {
+              "name": "string",
+              "description": "Holds which property is loading",
+              "required": false
+            },
+            "component_name": {
+              "name": "string",
+              "description": "Holds the name of the component that is loading",
+              "required": false
+            }
+          }
+        },
+        "required": false,
+        "description": ""
+      },
+      "setProps": {
+        "type": {
+          "name": "func"
+        },
+        "required": false,
+        "description": "Dash-assigned callback that should be called to report property changes\r\nto Dash, to make them available for callbacks."
+      }
+    }
+  },
   "src/lib/components/AntdEmpty.react.js": {
     "description": "",
     "displayName": "AntdEmpty",
@@ -2082,6 +3014,235 @@
           "value": "0",
           "computed": false
         }
+      },
+      "setProps": {
+        "type": {
+          "name": "func"
+        },
+        "required": false,
+        "description": "Dash-assigned callback that should be called to report property changes\r\nto Dash, to make them available for callbacks."
+      }
+    }
+  },
+  "src/lib/components/AntdInputNumber.react.js": {
+    "description": "",
+    "displayName": "AntdInputNumber",
+    "methods": [],
+    "props": {
+      "id": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": ""
+      },
+      "className": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": ""
+      },
+      "style": {
+        "type": {
+          "name": "object"
+        },
+        "required": false,
+        "description": ""
+      },
+      "size": {
+        "type": {
+          "name": "enum",
+          "value": [
+            {
+              "value": "'small'",
+              "computed": false
+            },
+            {
+              "value": "'middle'",
+              "computed": false
+            },
+            {
+              "value": "'large'",
+              "computed": false
+            }
+          ]
+        },
+        "required": false,
+        "description": ""
+      },
+      "addonBefore": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": ""
+      },
+      "addonAfter": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": ""
+      },
+      "bordered": {
+        "type": {
+          "name": "bool"
+        },
+        "required": false,
+        "description": ""
+      },
+      "controls": {
+        "type": {
+          "name": "bool"
+        },
+        "required": false,
+        "description": ""
+      },
+      "defaultValue": {
+        "type": {
+          "name": "union",
+          "value": [
+            {
+              "name": "number"
+            },
+            {
+              "name": "string"
+            }
+          ]
+        },
+        "required": false,
+        "description": ""
+      },
+      "value": {
+        "type": {
+          "name": "union",
+          "value": [
+            {
+              "name": "number"
+            },
+            {
+              "name": "string"
+            }
+          ]
+        },
+        "required": false,
+        "description": ""
+      },
+      "disabled": {
+        "type": {
+          "name": "bool"
+        },
+        "required": false,
+        "description": ""
+      },
+      "keyboard": {
+        "type": {
+          "name": "bool"
+        },
+        "required": false,
+        "description": ""
+      },
+      "min": {
+        "type": {
+          "name": "union",
+          "value": [
+            {
+              "name": "number"
+            },
+            {
+              "name": "string"
+            }
+          ]
+        },
+        "required": false,
+        "description": ""
+      },
+      "max": {
+        "type": {
+          "name": "union",
+          "value": [
+            {
+              "name": "number"
+            },
+            {
+              "name": "string"
+            }
+          ]
+        },
+        "required": false,
+        "description": ""
+      },
+      "step": {
+        "type": {
+          "name": "union",
+          "value": [
+            {
+              "name": "number"
+            },
+            {
+              "name": "string"
+            }
+          ]
+        },
+        "required": false,
+        "description": ""
+      },
+      "precision": {
+        "type": {
+          "name": "number"
+        },
+        "required": false,
+        "description": ""
+      },
+      "readOnly": {
+        "type": {
+          "name": "bool"
+        },
+        "required": false,
+        "description": ""
+      },
+      "stringMode": {
+        "type": {
+          "name": "bool"
+        },
+        "required": false,
+        "description": ""
+      },
+      "nSubmit": {
+        "type": {
+          "name": "number"
+        },
+        "required": false,
+        "description": "",
+        "defaultValue": {
+          "value": "0",
+          "computed": false
+        }
+      },
+      "loading_state": {
+        "type": {
+          "name": "shape",
+          "value": {
+            "is_loading": {
+              "name": "bool",
+              "description": "Determines if the component is loading or not",
+              "required": false
+            },
+            "prop_name": {
+              "name": "string",
+              "description": "Holds which property is loading",
+              "required": false
+            },
+            "component_name": {
+              "name": "string",
+              "description": "Holds the name of the component that is loading",
+              "required": false
+            }
+          }
+        },
+        "required": false,
+        "description": ""
       },
       "setProps": {
         "type": {
@@ -3420,6 +4581,265 @@
       }
     }
   },
+  "src/lib/components/AntdProgress.react.js": {
+    "description": "",
+    "displayName": "AntdProgress",
+    "methods": [],
+    "props": {
+      "id": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": ""
+      },
+      "className": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": ""
+      },
+      "style": {
+        "type": {
+          "name": "object"
+        },
+        "required": false,
+        "description": ""
+      },
+      "type": {
+        "type": {
+          "name": "enum",
+          "value": [
+            {
+              "value": "'line'",
+              "computed": false
+            },
+            {
+              "value": "'circle'",
+              "computed": false
+            },
+            {
+              "value": "'dashboard'",
+              "computed": false
+            }
+          ]
+        },
+        "required": false,
+        "description": ""
+      },
+      "size": {
+        "type": {
+          "name": "enum",
+          "value": [
+            {
+              "value": "'default'",
+              "computed": false
+            },
+            {
+              "value": "'small'",
+              "computed": false
+            }
+          ]
+        },
+        "required": false,
+        "description": ""
+      },
+      "percent": {
+        "type": {
+          "name": "number"
+        },
+        "required": false,
+        "description": ""
+      },
+      "format": {
+        "type": {
+          "name": "exact",
+          "value": {
+            "prefix": {
+              "name": "string",
+              "required": false
+            },
+            "suffix": {
+              "name": "string",
+              "required": false
+            },
+            "content": {
+              "name": "string",
+              "required": false
+            }
+          }
+        },
+        "required": false,
+        "description": ""
+      },
+      "status": {
+        "type": {
+          "name": "enum",
+          "value": [
+            {
+              "value": "'success'",
+              "computed": false
+            },
+            {
+              "value": "'exception'",
+              "computed": false
+            },
+            {
+              "value": "'normal'",
+              "computed": false
+            },
+            {
+              "value": "'active'",
+              "computed": false
+            }
+          ]
+        },
+        "required": false,
+        "description": ""
+      },
+      "showInfo": {
+        "type": {
+          "name": "bool"
+        },
+        "required": false,
+        "description": ""
+      },
+      "strokeColor": {
+        "type": {
+          "name": "union",
+          "value": [
+            {
+              "name": "string"
+            },
+            {
+              "name": "exact",
+              "value": {
+                "from": {
+                  "name": "string",
+                  "required": false
+                },
+                "to": {
+                  "name": "string",
+                  "required": false
+                }
+              }
+            }
+          ]
+        },
+        "required": false,
+        "description": ""
+      },
+      "strokeLinecap": {
+        "type": {
+          "name": "enum",
+          "value": [
+            {
+              "value": "'round'",
+              "computed": false
+            },
+            {
+              "value": "'square'",
+              "computed": false
+            }
+          ]
+        },
+        "required": false,
+        "description": ""
+      },
+      "strokeWidth": {
+        "type": {
+          "name": "number"
+        },
+        "required": false,
+        "description": ""
+      },
+      "trailColor": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": ""
+      },
+      "width": {
+        "type": {
+          "name": "number"
+        },
+        "required": false,
+        "description": ""
+      },
+      "gapDegree": {
+        "type": {
+          "name": "number"
+        },
+        "required": false,
+        "description": ""
+      },
+      "gapPosition": {
+        "type": {
+          "name": "enum",
+          "value": [
+            {
+              "value": "'top'",
+              "computed": false
+            },
+            {
+              "value": "'bottom'",
+              "computed": false
+            },
+            {
+              "value": "'left'",
+              "computed": false
+            },
+            {
+              "value": "'right'",
+              "computed": false
+            }
+          ]
+        },
+        "required": false,
+        "description": ""
+      },
+      "steps": {
+        "type": {
+          "name": "number"
+        },
+        "required": false,
+        "description": ""
+      },
+      "loading_state": {
+        "type": {
+          "name": "shape",
+          "value": {
+            "is_loading": {
+              "name": "bool",
+              "description": "Determines if the component is loading or not",
+              "required": false
+            },
+            "prop_name": {
+              "name": "string",
+              "description": "Holds which property is loading",
+              "required": false
+            },
+            "component_name": {
+              "name": "string",
+              "description": "Holds the name of the component that is loading",
+              "required": false
+            }
+          }
+        },
+        "required": false,
+        "description": ""
+      },
+      "setProps": {
+        "type": {
+          "name": "func"
+        },
+        "required": false,
+        "description": "Dash-assigned callback that should be called to report property changes\r\nto Dash, to make them available for callbacks."
+      }
+    }
+  },
   "src/lib/components/AntdRadioGroup.react.js": {
     "description": "",
     "displayName": "AntdRadioGroup",
@@ -3608,6 +5028,117 @@
       }
     }
   },
+  "src/lib/components/AntdRate.react.js": {
+    "description": "",
+    "displayName": "AntdRate",
+    "methods": [],
+    "props": {
+      "id": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": ""
+      },
+      "className": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": ""
+      },
+      "style": {
+        "type": {
+          "name": "object"
+        },
+        "required": false,
+        "description": ""
+      },
+      "allowClear": {
+        "type": {
+          "name": "bool"
+        },
+        "required": false,
+        "description": ""
+      },
+      "allowHalf": {
+        "type": {
+          "name": "bool"
+        },
+        "required": false,
+        "description": ""
+      },
+      "count": {
+        "type": {
+          "name": "number"
+        },
+        "required": false,
+        "description": ""
+      },
+      "defaultValue": {
+        "type": {
+          "name": "number"
+        },
+        "required": false,
+        "description": ""
+      },
+      "disabled": {
+        "type": {
+          "name": "bool"
+        },
+        "required": false,
+        "description": ""
+      },
+      "tooltips": {
+        "type": {
+          "name": "arrayOf",
+          "value": {
+            "name": "string"
+          }
+        },
+        "required": false,
+        "description": ""
+      },
+      "value": {
+        "type": {
+          "name": "number"
+        },
+        "required": false,
+        "description": ""
+      },
+      "loading_state": {
+        "type": {
+          "name": "shape",
+          "value": {
+            "is_loading": {
+              "name": "bool",
+              "description": "Determines if the component is loading or not",
+              "required": false
+            },
+            "prop_name": {
+              "name": "string",
+              "description": "Holds which property is loading",
+              "required": false
+            },
+            "component_name": {
+              "name": "string",
+              "description": "Holds the name of the component that is loading",
+              "required": false
+            }
+          }
+        },
+        "required": false,
+        "description": ""
+      },
+      "setProps": {
+        "type": {
+          "name": "func"
+        },
+        "required": false,
+        "description": "Dash-assigned callback that should be called to report property changes\r\nto Dash, to make them available for callbacks."
+      }
+    }
+  },
   "src/lib/components/AntdResult.react.js": {
     "description": "",
     "displayName": "AntdResult",
@@ -3705,6 +5236,103 @@
       "subTitle": {
         "type": {
           "name": "string"
+        },
+        "required": false,
+        "description": ""
+      },
+      "setProps": {
+        "type": {
+          "name": "func"
+        },
+        "required": false,
+        "description": "Dash-assigned callback that should be called to report property changes\r\nto Dash, to make them available for callbacks."
+      }
+    }
+  },
+  "src/lib/components/AntdRibbon.react.js": {
+    "description": "",
+    "displayName": "AntdRibbon",
+    "methods": [],
+    "props": {
+      "id": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": ""
+      },
+      "children": {
+        "type": {
+          "name": "node"
+        },
+        "required": false,
+        "description": ""
+      },
+      "className": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": ""
+      },
+      "style": {
+        "type": {
+          "name": "object"
+        },
+        "required": false,
+        "description": ""
+      },
+      "color": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": ""
+      },
+      "placement": {
+        "type": {
+          "name": "enum",
+          "value": [
+            {
+              "value": "'start'",
+              "computed": false
+            },
+            {
+              "value": "'end'",
+              "computed": false
+            }
+          ]
+        },
+        "required": false,
+        "description": ""
+      },
+      "text": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": ""
+      },
+      "loading_state": {
+        "type": {
+          "name": "shape",
+          "value": {
+            "is_loading": {
+              "name": "bool",
+              "description": "Determines if the component is loading or not",
+              "required": false
+            },
+            "prop_name": {
+              "name": "string",
+              "description": "Holds which property is loading",
+              "required": false
+            },
+            "component_name": {
+              "name": "string",
+              "description": "Holds the name of the component that is loading",
+              "required": false
+            }
+          }
         },
         "required": false,
         "description": ""
@@ -4078,7 +5706,7 @@
           "name": "node"
         },
         "required": false,
-        "description": "The content of the tab - will only be displayed if this tab is selected"
+        "description": ""
       },
       "className": {
         "type": {
@@ -4105,7 +5733,208 @@
           "computed": false
         }
       },
+      "active": {
+        "type": {
+          "name": "bool"
+        },
+        "required": false,
+        "description": ""
+      },
+      "avatar": {
+        "type": {
+          "name": "union",
+          "value": [
+            {
+              "name": "bool"
+            },
+            {
+              "name": "exact",
+              "value": {
+                "active": {
+                  "name": "bool",
+                  "required": false
+                },
+                "shape": {
+                  "name": "enum",
+                  "value": [
+                    {
+                      "value": "'circle'",
+                      "computed": false
+                    },
+                    {
+                      "value": "'square'",
+                      "computed": false
+                    }
+                  ],
+                  "required": false
+                },
+                "size": {
+                  "name": "union",
+                  "value": [
+                    {
+                      "name": "number"
+                    },
+                    {
+                      "name": "enum",
+                      "value": [
+                        {
+                          "value": "'large'",
+                          "computed": false
+                        },
+                        {
+                          "value": "'small'",
+                          "computed": false
+                        },
+                        {
+                          "value": "'default'",
+                          "computed": false
+                        }
+                      ]
+                    }
+                  ],
+                  "required": false
+                }
+              }
+            }
+          ]
+        },
+        "required": false,
+        "description": ""
+      },
+      "paragraph": {
+        "type": {
+          "name": "union",
+          "value": [
+            {
+              "name": "bool"
+            },
+            {
+              "name": "exact",
+              "value": {
+                "rows": {
+                  "name": "number",
+                  "required": false
+                },
+                "width": {
+                  "name": "union",
+                  "value": [
+                    {
+                      "name": "number"
+                    },
+                    {
+                      "name": "string"
+                    },
+                    {
+                      "name": "arrayOf",
+                      "value": {
+                        "name": "union",
+                        "value": [
+                          {
+                            "name": "number"
+                          },
+                          {
+                            "name": "string"
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "required": false
+                }
+              }
+            }
+          ]
+        },
+        "required": false,
+        "description": ""
+      },
+      "title": {
+        "type": {
+          "name": "union",
+          "value": [
+            {
+              "name": "bool"
+            },
+            {
+              "name": "exact",
+              "value": {
+                "width": {
+                  "name": "union",
+                  "value": [
+                    {
+                      "name": "number"
+                    },
+                    {
+                      "name": "string"
+                    }
+                  ],
+                  "required": false
+                }
+              }
+            }
+          ]
+        },
+        "required": false,
+        "description": ""
+      },
+      "round": {
+        "type": {
+          "name": "bool"
+        },
+        "required": false,
+        "description": ""
+      },
+      "debug": {
+        "type": {
+          "name": "bool"
+        },
+        "required": false,
+        "description": "",
+        "defaultValue": {
+          "value": "false",
+          "computed": false
+        }
+      },
+      "listenPropsMode": {
+        "type": {
+          "name": "enum",
+          "value": [
+            {
+              "value": "'default'",
+              "computed": false
+            },
+            {
+              "value": "'exclude'",
+              "computed": false
+            },
+            {
+              "value": "'include'",
+              "computed": false
+            }
+          ]
+        },
+        "required": false,
+        "description": "",
+        "defaultValue": {
+          "value": "'default'",
+          "computed": false
+        }
+      },
       "excludeProps": {
+        "type": {
+          "name": "arrayOf",
+          "value": {
+            "name": "string"
+          }
+        },
+        "required": false,
+        "description": "",
+        "defaultValue": {
+          "value": "[]",
+          "computed": false
+        }
+      },
+      "includeProps": {
         "type": {
           "name": "arrayOf",
           "value": {
@@ -4646,6 +6475,158 @@
           "value": "[]",
           "computed": false
         }
+      },
+      "loading_state": {
+        "type": {
+          "name": "shape",
+          "value": {
+            "is_loading": {
+              "name": "bool",
+              "description": "Determines if the component is loading or not",
+              "required": false
+            },
+            "prop_name": {
+              "name": "string",
+              "description": "Holds which property is loading",
+              "required": false
+            },
+            "component_name": {
+              "name": "string",
+              "description": "Holds the name of the component that is loading",
+              "required": false
+            }
+          }
+        },
+        "required": false,
+        "description": ""
+      },
+      "setProps": {
+        "type": {
+          "name": "func"
+        },
+        "required": false,
+        "description": "Dash-assigned callback that should be called to report property changes\r\nto Dash, to make them available for callbacks."
+      }
+    }
+  },
+  "src/lib/components/AntdStatistic.react.js": {
+    "description": "",
+    "displayName": "AntdStatistic",
+    "methods": [],
+    "props": {
+      "id": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": ""
+      },
+      "className": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": ""
+      },
+      "style": {
+        "type": {
+          "name": "object"
+        },
+        "required": false,
+        "description": ""
+      },
+      "value": {
+        "type": {
+          "name": "number"
+        },
+        "required": false,
+        "description": ""
+      },
+      "showGroupSeparator": {
+        "type": {
+          "name": "bool"
+        },
+        "required": false,
+        "description": "",
+        "defaultValue": {
+          "value": "true",
+          "computed": false
+        }
+      },
+      "precision": {
+        "type": {
+          "name": "number"
+        },
+        "required": false,
+        "description": ""
+      },
+      "prefix": {
+        "type": {
+          "name": "exact",
+          "value": {
+            "mode": {
+              "name": "enum",
+              "value": [
+                {
+                  "value": "'text'",
+                  "computed": false
+                },
+                {
+                  "value": "'icon'",
+                  "computed": false
+                }
+              ],
+              "required": false
+            },
+            "content": {
+              "name": "string",
+              "required": false
+            }
+          }
+        },
+        "required": false,
+        "description": ""
+      },
+      "suffix": {
+        "type": {
+          "name": "exact",
+          "value": {
+            "mode": {
+              "name": "enum",
+              "value": [
+                {
+                  "value": "'text'",
+                  "computed": false
+                },
+                {
+                  "value": "'icon'",
+                  "computed": false
+                }
+              ],
+              "required": false
+            },
+            "content": {
+              "name": "string",
+              "required": false
+            }
+          }
+        },
+        "required": false,
+        "description": ""
+      },
+      "title": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": ""
+      },
+      "valueStyle": {
+        "type": {
+          "name": "object"
+        },
+        "required": false,
+        "description": ""
       },
       "loading_state": {
         "type": {
@@ -5611,6 +7592,324 @@
       }
     }
   },
+  "src/lib/components/AntdTimeline.react.js": {
+    "description": "",
+    "displayName": "AntdTimeline",
+    "methods": [],
+    "props": {
+      "id": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": ""
+      },
+      "className": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": ""
+      },
+      "style": {
+        "type": {
+          "name": "object"
+        },
+        "required": false,
+        "description": ""
+      },
+      "items": {
+        "type": {
+          "name": "arrayOf",
+          "value": {
+            "name": "exact",
+            "value": {
+              "content": {
+                "name": "string",
+                "required": false
+              },
+              "color": {
+                "name": "string",
+                "required": false
+              },
+              "icon": {
+                "name": "string",
+                "required": false
+              },
+              "iconStyle": {
+                "name": "object",
+                "required": false
+              },
+              "label": {
+                "name": "string",
+                "required": false
+              },
+              "position": {
+                "name": "enum",
+                "value": [
+                  {
+                    "value": "'left'",
+                    "computed": false
+                  },
+                  {
+                    "value": "'right'",
+                    "computed": false
+                  }
+                ],
+                "required": false
+              }
+            }
+          }
+        },
+        "required": false,
+        "description": ""
+      },
+      "mode": {
+        "type": {
+          "name": "enum",
+          "value": [
+            {
+              "value": "'left'",
+              "computed": false
+            },
+            {
+              "value": "'alternate'",
+              "computed": false
+            },
+            {
+              "value": "'right'",
+              "computed": false
+            }
+          ]
+        },
+        "required": false,
+        "description": ""
+      },
+      "pending": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": ""
+      },
+      "reverse": {
+        "type": {
+          "name": "bool"
+        },
+        "required": false,
+        "description": ""
+      },
+      "loading_state": {
+        "type": {
+          "name": "shape",
+          "value": {
+            "is_loading": {
+              "name": "bool",
+              "description": "Determines if the component is loading or not",
+              "required": false
+            },
+            "prop_name": {
+              "name": "string",
+              "description": "Holds which property is loading",
+              "required": false
+            },
+            "component_name": {
+              "name": "string",
+              "description": "Holds the name of the component that is loading",
+              "required": false
+            }
+          }
+        },
+        "required": false,
+        "description": ""
+      },
+      "setProps": {
+        "type": {
+          "name": "func"
+        },
+        "required": false,
+        "description": "Dash-assigned callback that should be called to report property changes\r\nto Dash, to make them available for callbacks."
+      }
+    }
+  },
+  "src/lib/components/AntdTimePicker.react.js": {
+    "description": "",
+    "displayName": "AntdTimePicker",
+    "methods": [],
+    "props": {
+      "id": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": ""
+      },
+      "className": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": ""
+      },
+      "style": {
+        "type": {
+          "name": "object"
+        },
+        "required": false,
+        "description": "",
+        "defaultValue": {
+          "value": "{\r\n    width: 220\r\n}",
+          "computed": false
+        }
+      },
+      "disabled": {
+        "type": {
+          "name": "bool"
+        },
+        "required": false,
+        "description": ""
+      },
+      "hourStep": {
+        "type": {
+          "name": "number"
+        },
+        "required": false,
+        "description": ""
+      },
+      "minuteStep": {
+        "type": {
+          "name": "number"
+        },
+        "required": false,
+        "description": ""
+      },
+      "secondStep": {
+        "type": {
+          "name": "number"
+        },
+        "required": false,
+        "description": ""
+      },
+      "format": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": ""
+      },
+      "use12Hours": {
+        "type": {
+          "name": "bool"
+        },
+        "required": false,
+        "description": ""
+      },
+      "allowClear": {
+        "type": {
+          "name": "bool"
+        },
+        "required": false,
+        "description": ""
+      },
+      "inputReadOnly": {
+        "type": {
+          "name": "bool"
+        },
+        "required": false,
+        "description": ""
+      },
+      "selectedTime": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": ""
+      },
+      "defaultValue": {
+        "type": {
+          "name": "exact",
+          "value": {
+            "value": {
+              "name": "string",
+              "required": false
+            },
+            "format": {
+              "name": "string",
+              "required": false
+            }
+          }
+        },
+        "required": false,
+        "description": ""
+      },
+      "placeholder": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": ""
+      },
+      "bordered": {
+        "type": {
+          "name": "bool"
+        },
+        "required": false,
+        "description": ""
+      },
+      "size": {
+        "type": {
+          "name": "enum",
+          "value": [
+            {
+              "value": "'small'",
+              "computed": false
+            },
+            {
+              "value": "'middle'",
+              "computed": false
+            },
+            {
+              "value": "'large'",
+              "computed": false
+            }
+          ]
+        },
+        "required": false,
+        "description": ""
+      },
+      "loading_state": {
+        "type": {
+          "name": "shape",
+          "value": {
+            "is_loading": {
+              "name": "bool",
+              "description": "Determines if the component is loading or not",
+              "required": false
+            },
+            "prop_name": {
+              "name": "string",
+              "description": "Holds which property is loading",
+              "required": false
+            },
+            "component_name": {
+              "name": "string",
+              "description": "Holds the name of the component that is loading",
+              "required": false
+            }
+          }
+        },
+        "required": false,
+        "description": "Object that holds the loading state object coming from dash-renderer"
+      },
+      "setProps": {
+        "type": {
+          "name": "func"
+        },
+        "required": false,
+        "description": "Dash-assigned callback that should be called to report property changes\r\nto Dash, to make them available for callbacks."
+      }
+    }
+  },
   "src/lib/components/AntdTooltip.react.js": {
     "description": "",
     "displayName": "AntdTooltip",
@@ -5989,6 +8288,30 @@
         },
         "required": false,
         "description": "Dash-assigned callback that should be called to report property changes\r\nto Dash, to make them available for callbacks."
+      },
+      "loading_state": {
+        "type": {
+          "name": "shape",
+          "value": {
+            "is_loading": {
+              "name": "bool",
+              "description": "Determines if the component is loading or not",
+              "required": false
+            },
+            "prop_name": {
+              "name": "string",
+              "description": "Holds which property is loading",
+              "required": false
+            },
+            "component_name": {
+              "name": "string",
+              "description": "Holds the name of the component that is loading",
+              "required": false
+            }
+          }
+        },
+        "required": false,
+        "description": ""
       }
     }
   },

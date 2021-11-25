@@ -1,8 +1,7 @@
-import React, { Component, useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 import { Skeleton } from 'antd';
 import 'antd/dist/antd.css';
-import './styles.css'
 
 const parseChildrenToArray = children => {
     if (children && !Array.isArray(children)) {
@@ -11,8 +10,7 @@ const parseChildrenToArray = children => {
     return children;
 };
 
-// 定义骨架屏部件AntdSkeleton，api参数参考https://ant.design/components/skeleton-cn/
-
+// 定义骨架屏组件AntdSkeleton，api参数参考https://ant.design/components/skeleton-cn/
 const AntdSkeleton = (props) => {
     // 取得必要属性或参数
     let {
@@ -21,14 +19,22 @@ const AntdSkeleton = (props) => {
         style,
         children,
         loading,
-        loading_state,
+        active,
+        avatar,
+        paragraph,
+        round,
+        title,
+        listenPropsMode,
         excludeProps,
+        includeProps,
+        debug,
+        loading_state,
         setProps
     } = props;
 
     children = parseChildrenToArray(children)
 
-    const [showLoading, setshowLoading] = useState(loading);
+    const [showLoading, setShowLoading] = useState(loading);
     const timer = useRef();
 
     useEffect(() => {
@@ -37,16 +43,37 @@ const AntdSkeleton = (props) => {
                 clearTimeout(timer.current);
             }
             if (loading_state.is_loading && !showLoading) {
-                // 当前触发loading_state的组件+属性组合不在排除列表中时，渲染动画
-                if (excludeProps.indexOf(loading_state.component_name + '.' + loading_state.prop_name) === -1) {
-                    setshowLoading(true);
+                // 当listenPropsMode为'default'时
+                if (listenPropsMode === 'default') {
+                    if (debug) {
+                        console.log(loading_state.component_name + '.' + loading_state.prop_name)
+                    }
+                    setShowLoading(true);
+                } else if (listenPropsMode === 'exclude') {
+                    // 当listenPropsMode为'exclude'模式时
+                    // 当前触发loading_state的组件+属性组合不在排除列表中时，激活动画
+                    if (excludeProps.indexOf(loading_state.component_name + '.' + loading_state.prop_name) === -1) {
+                        if (debug) {
+                            console.log(loading_state.component_name + '.' + loading_state.prop_name)
+                        }
+                        setShowLoading(true);
+                    }
+                } else if (listenPropsMode === 'include') {
+                    // 当listenPropsMode为'include'模式时
+                    // 当前触发loading_state的组件+属性组合在包含列表中时，激活动画
+                    if (includeProps.indexOf(loading_state.component_name + '.' + loading_state.prop_name) !== -1) {
+                        if (debug) {
+                            console.log(loading_state.component_name + '.' + loading_state.prop_name)
+                        }
+                        setShowLoading(true);
+                    }
                 }
+
             } else if (!loading_state.is_loading && showLoading) {
-                timer.current = setTimeout(() => setshowLoading(false));
+                timer.current = setTimeout(() => setShowLoading(false));
             }
         }
     }, [loading_state]);
-
 
     // 返回定制化的前端部件
     return (
@@ -55,7 +82,11 @@ const AntdSkeleton = (props) => {
             className={className}
             style={style}
             loading={showLoading}
-            active={true}
+            active={active}
+            avatar={avatar}
+            paragraph={paragraph}
+            round={round}
+            title={title}
             data-dash-is-loading={
                 (loading_state && loading_state.is_loading) || undefined
             }
@@ -71,9 +102,6 @@ AntdSkeleton.propTypes = {
     // 部件id
     id: PropTypes.string,
 
-    /**
-     * The content of the tab - will only be displayed if this tab is selected
-     */
     children: PropTypes.node,
 
     // css类名
@@ -85,8 +113,83 @@ AntdSkeleton.propTypes = {
     // 设置是否处于加载中状态
     loading: PropTypes.bool,
 
-    // 设置需要忽略输出监听过程的组件信息列表，默认为[]即不排除
+    // 设置是否显示动画效果，默认为false
+    active: PropTypes.bool,
+
+    // 设置是否显示头像占位图，默认为false
+    avatar: PropTypes.oneOfType([
+        PropTypes.bool,
+        PropTypes.exact({
+            // 设置是否对头像占位展示动画效果（仅在单独使用头像占位时生效）
+            // 默认为false
+            active: PropTypes.bool,
+
+            // 指定头像的形状，可选的有'circle'、'square'
+            shape: PropTypes.oneOf(['circle', 'square']),
+
+            // 设置头像占位图的大小
+            size: PropTypes.oneOfType([
+                // 像素大小
+                PropTypes.number,
+
+                // 固定规格，可选的有'large'、'small'与'default'
+                PropTypes.oneOf([
+                    'large', 'small', 'default'
+                ])
+            ])
+        })
+    ]),
+
+    // 设置是否显示段落占位图，默认为true
+    paragraph: PropTypes.oneOfType([
+        PropTypes.bool,
+        PropTypes.exact({
+            // 设置段落占位图的行数
+            rows: PropTypes.number,
+
+            // 设置段落占位图的宽度（数值像素或字符串css宽度），若为数组时，则一一对应每行宽度，
+            // 反之则是最后一行的宽度
+            width: PropTypes.oneOfType([
+                PropTypes.number,
+                PropTypes.string,
+                PropTypes.arrayOf(
+                    PropTypes.oneOfType([
+                        PropTypes.number,
+                        PropTypes.string
+                    ])
+                )
+            ])
+        })
+    ]),
+
+    // 设置是否显示标题占位图，默认为true
+    title: PropTypes.oneOfType([
+        PropTypes.bool,
+        PropTypes.exact({
+            // 设置标题占位图的宽度（数值像素宽度或字符串css宽度）
+            width: PropTypes.oneOfType([
+                PropTypes.number,
+                PropTypes.string
+            ])
+        })
+    ]),
+
+    // 设置段落与标题占位是否显示圆角，默认为false
+    round: PropTypes.bool,
+
+    // 设置是否开启debug模式，开启后，每次动画加载都会在开发者工具的控制台打印prop信息
+    debug: PropTypes.bool,
+
+    // 设置自定义监听组件的模式，可选的有'default'、'exclude'、'include'，默认为'default'
+    listenPropsMode: PropTypes.oneOf(['default', 'exclude', 'include']),
+
+    // 设置需要忽略输出监听过程的组件信息列表
+    // 仅在listenPropsMode为'exclude'时生效
     excludeProps: PropTypes.arrayOf(PropTypes.string),
+
+    // 设置需要包含输出监听过程的组件信息列表
+    // 仅在listenPropsMode为'include'时生效
+    includeProps: PropTypes.arrayOf(PropTypes.string),
 
     loading_state: PropTypes.shape({
         /**
@@ -113,7 +216,10 @@ AntdSkeleton.propTypes = {
 // 设置默认参数
 AntdSkeleton.defaultProps = {
     loading: false,
-    excludeProps: []
+    listenPropsMode: 'default',
+    excludeProps: [],
+    includeProps: [],
+    debug: false
 }
 
 export default AntdSkeleton;

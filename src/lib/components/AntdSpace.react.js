@@ -25,7 +25,8 @@ export default class AntdSpace extends Component {
             split,
             wrap,
             addSplitLine,
-            setProps
+            setProps,
+            loading_state
         } = this.props;
 
         children = parseChildrenToArray(children)
@@ -40,7 +41,10 @@ export default class AntdSpace extends Component {
                         direction={direction}
                         size={size}
                         split={<Divider type="vertical" />}
-                        wrap={wrap}>
+                        wrap={wrap}
+                        data-dash-is-loading={
+                            (loading_state && loading_state.is_loading) || undefined
+                        }>
                         {children}
                     </Space>
                 );
@@ -53,7 +57,10 @@ export default class AntdSpace extends Component {
                     direction={direction}
                     size={size}
                     split={<Divider />}
-                    wrap={wrap}>
+                    wrap={wrap}
+                    data-dash-is-loading={
+                        (loading_state && loading_state.is_loading) || undefined
+                    }>
                     {children}
                 </Space>
             );
@@ -67,7 +74,10 @@ export default class AntdSpace extends Component {
                 direction={direction}
                 size={size}
                 split={split}
-                wrap={wrap}>
+                wrap={wrap}
+                data-dash-is-loading={
+                    (loading_state && loading_state.is_loading) || undefined
+                }>
                 {children}
             </Space>
         );
@@ -98,7 +108,7 @@ AntdSpace.propTypes = {
 
     // 设置间隔尺寸大小，可选的有'small'、'middle'、'large'，或直接设置整数代表像素值，默认为'small'
     size: PropTypes.oneOfType([
-        PropTypes.oneOf(['small', 'middle', 'large']), 
+        PropTypes.oneOf(['small', 'middle', 'large']),
         PropTypes.number
     ]),
 

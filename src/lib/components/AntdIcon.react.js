@@ -12,13 +12,17 @@ export default class AntdIcon extends Component {
             className,
             icon,
             style,
-            setProps
+            setProps,
+            loading_state
         } = this.props;
 
         return (
             <span id={id}
                 className={className}
-                style={{ ...{ verticalAlign: 'middle', fontSize: '16px' }, ...style }}>
+                style={{ ...{ verticalAlign: 'middle', fontSize: '16px' }, ...style }}
+                data-dash-is-loading={
+                    (loading_state && loading_state.is_loading) || undefined
+                }>
                 {str2Icon.get(icon)}
             </span>
         );

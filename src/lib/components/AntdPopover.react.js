@@ -31,7 +31,8 @@ export default class AntdPopover extends Component {
             trigger,
             contentChildrenIndexes,
             containerId,
-            setProps
+            setProps,
+            loading_state
         } = this.props;
 
         children = parseChildrenToArray(children)
@@ -70,7 +71,11 @@ export default class AntdPopover extends Component {
                 overlayStyle={overlayStyle}
                 overlayInnerStyle={overlayInnerStyle}
                 trigger={trigger}
-                getPopupContainer={containerId ? () => document.getElementById(containerId) : containerId}>{realChildren}</Popover>
+                getPopupContainer={containerId ? () => document.getElementById(containerId) : containerId}
+                data-dash-is-loading={
+                    (loading_state && loading_state.is_loading) || undefined
+                }>{realChildren}
+            </Popover>
         );
     }
 }

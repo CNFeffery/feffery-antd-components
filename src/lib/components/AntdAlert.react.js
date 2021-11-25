@@ -25,7 +25,8 @@ export default class AntdAlert extends Component {
             showIcon,
             closable,
             renderLoopText,
-            setProps
+            setProps,
+            loading_state
         } = this.props;
 
         children = parseChildrenToArray(children)
@@ -43,7 +44,10 @@ export default class AntdAlert extends Component {
                     type={type}
                     description={children}
                     showIcon={showIcon}
-                    closable={closable}>
+                    closable={closable}
+                    data-dash-is-loading={
+                        (loading_state && loading_state.is_loading) || undefined
+                    }>
                 </Alert>
             );
         }

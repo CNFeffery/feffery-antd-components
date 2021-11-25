@@ -19,7 +19,8 @@ export default class AntdLayout extends Component {
             children,
             className,
             style,
-            setProps
+            setProps,
+            loading_state
         } = this.props;
 
         children = parseChildrenToArray(children)
@@ -27,7 +28,10 @@ export default class AntdLayout extends Component {
         return (
             <Layout id={id}
                 className={className}
-                style={style}>
+                style={style}
+                data-dash-is-loading={
+                    (loading_state && loading_state.is_loading) || undefined
+                }>
                 {children}
             </Layout>
         );

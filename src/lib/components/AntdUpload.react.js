@@ -114,7 +114,10 @@ const AntdUpload = (props) => {
                 style={style}
                 fileList={fileList}
                 multiple={multiple}
-                directory={directory}>
+                directory={directory}
+                data-dash-is-loading={
+                    (loading_state && loading_state.is_loading) || undefined
+                }>
                 <Button icon={<UploadOutlined />}>{buttonContent ? buttonContent : "点击上传文件"}</Button>
             </Upload>
         </ConfigProvider>

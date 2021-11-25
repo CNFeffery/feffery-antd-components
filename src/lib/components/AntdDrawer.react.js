@@ -67,7 +67,6 @@ AntdDrawer.propTypes = {
     // 部件id
     id: PropTypes.string,
 
-    // 内嵌文字的文本内容
     children: PropTypes.node,
 
     // css类名

@@ -15,6 +15,7 @@ export default class AntdDatePicker extends Component {
             style,
             setProps,
             picker,
+            disabled,
             showTime,
             placeholder,
             defaultPickerValue,
@@ -47,6 +48,7 @@ export default class AntdDatePicker extends Component {
                         style={style}
                         onChange={onChange}
                         picker={picker}
+                        disabled={disabled}
                         placeholder={placeholder}
                         bordered={bordered}
                         size={size}
@@ -76,6 +78,9 @@ AntdDatePicker.propTypes = {
 
     // 设置日期选择的粒度（date：精确到天，week：精确到周，month：精确到月，quarter：精确到季度，year：精确到年。默认为date）
     picker: PropTypes.oneOf(['date', 'week', 'month', 'quarter', 'year']),
+
+    // 设置是否禁用组件，默认为false
+    disabled: PropTypes.bool,
 
     // 对应用户选中的日期字符串
     selectedDate: PropTypes.string,

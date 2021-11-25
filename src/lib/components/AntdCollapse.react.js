@@ -21,14 +21,14 @@ export default class AntdCollapse extends Component {
             children,
             className,
             style,
-            loading_state,
             title,
             is_open,
             bordered,
             showArrow,
             collapsible,
             ghost,
-            setProps
+            setProps,
+            loading_state
         } = this.props;
 
         children = parseChildrenToArray(children)

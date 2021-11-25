@@ -44,8 +44,8 @@ pip install git+https://github.com.cnpmjs.org/CNFeffery/feffery-antd-components.
 ## 3 应用部署CDN加速使用方式
 
 ```Python
-# 实例化Dash对象时，设置参数serve_locally=False会强制浏览器端从unpkg加载各个依赖的
-# xxx.min.js静态资源，从而避免消耗服务器带宽，适合中小型站点加速用户访问
+# 非debug模式下对Dash()传入参数serve_locally=False会强制浏览器端从unpkg加载各个依赖的
+# xxx.min.js等静态资源，从而避免直接占用服务器带宽，适合中小型站点加速访问，提升用户体验
 app = dash.Dash(serve_locally=False)
 ```
 
@@ -104,6 +104,19 @@ app = dash.Dash(serve_locally=False)
 - [x] 上传：`AntdUpload`
 - [x] 气泡确认框：`AntdPopconfirm`
 - [x] 回到顶部：`AntdBackTop`
+- [x] 骨架屏：`AntdSkeleton`
+- [x] 固钉：`AntdAffix`
+- [x] 面包屑：`AntdBreadcrumb`
+- [x] 下拉菜单：`AntdDropdown`
+- [x] 数字输入框：`AntdInputNumber`
+- [x] 评分：`AntdRate`
+- [x] 统计数值：`AntdStatistic`
+- [x] 倒计时：`AntdCountdown`
+- [x] 时间轴：`AntdTimeline`
+- [x] 进度条：`AntdProgress`
+- [x] 头像：`AntdAvatar`
+- [x] 徽标数：`AntdBadge`
+- [x] 缎带：`AntdRibbon`
 
 ## 5 在线交互式说明文档
 
@@ -111,26 +124,14 @@ app = dash.Dash(serve_locally=False)
 
 ## 6 TODO计划
 
-- [ ] 固钉：`AntdAffix`
-- [ ] 面包屑：`AntdBreadcrumb`
-- [ ] 下拉菜单：`AntdDropdown`
+- [ ] 时间选择框：`AntdTimePicker`
+- [ ] 卡片：`AntdCard`
+- [ ] 提及：`AntdMentions`
 - [ ] 页头：`AntdPageHeader`
 - [ ] 表单：`AntdForm`
-- [ ] 数字输入框：`AntdInputNumber`
-- [ ] 提及：`AntdMentions`
-- [ ] 评分：`AntdRate`
-- [ ] 时间选择框：`AntdTimePicker`
-- [ ] 头像：`AntdAvatar`
-- [ ] 徽标数：`AntdBadge`
 - [ ] 日历：`AntdCalendar`
-- [ ] 卡片：`AntdCard`
 - [ ] 走马灯：`AntdCarousel`
 - [ ] 评论：`AntdComment`
 - [ ] 描述列表：`AntdDescriptions`
 - [ ] 图片：`AntdImage`
-- [ ] 列表：`AntdList`
-- [ ] 统计数值：`AntdStatistic`
-- [ ] 时间轴：`AntdTimeline`
-- [ ] 进度条：`AntdProgress`
-- [ ] 骨架屏：`AntdSkeleton`
 

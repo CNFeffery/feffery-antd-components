@@ -23,7 +23,8 @@ export default class AntdRow extends Component {
             gutter,
             justify,
             wrap,
-            setProps
+            setProps,
+            loading_state
         } = this.props;
 
         children = parseChildrenToArray(children)
@@ -35,7 +36,10 @@ export default class AntdRow extends Component {
                 align={align}
                 gutter={gutter}
                 justify={justify}
-                wrap={wrap}>
+                wrap={wrap}
+                data-dash-is-loading={
+                    (loading_state && loading_state.is_loading) || undefined
+                }>
                 {children}
             </Row>
         );
