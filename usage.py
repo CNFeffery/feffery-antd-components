@@ -11,6 +11,42 @@ app.layout = html.Div(
     [
         dcc.Location(id='url'),
 
+        fac.AntdSpin(
+            html.Div(id='tree-demo-output'),
+            text='回调中'
+        ),
+
+        fac.AntdCarousel(
+            [
+                html.Div(
+                    page,
+                    style={
+                        'height': '500px',
+                        'backgroundColor': '#8c8c8c',
+                        'display': 'flex',
+                        'justifyContent': 'center',
+                        'alignItems': 'center',
+                        'fontSize': '30px',
+                        'color': 'white'
+                    }
+                )
+                for page in range(1, 10)
+            ],
+            autoplay=True,
+            dotPosition='right',
+            effect='fade'
+        ),
+
+
+        fac.AntdTimeRangePicker(
+            placeholderStart='开始时间',
+            placeholderEnd='结束时间'
+        ),
+
+        fac.AntdTimePicker(
+            placeholder='请选择时间'
+        ),
+
         fac.AntdSkeleton(
             html.Div(
                 id='skeleton-dev-demo'
