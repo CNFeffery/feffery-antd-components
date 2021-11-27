@@ -41,7 +41,7 @@ pip install git+https://hub.fastgit.org/CNFeffery/feffery-antd-components.git@0.
 pip install git+https://github.com.cnpmjs.org/CNFeffery/feffery-antd-components.git@0.0.1rc8dev
 ```
 
-## 3 应用部署CDN加速使用方式
+## 3 静态资源CDN加速方法（0.0.1rc7及以上版本可用）
 
 ```Python
 # 非debug模式下对Dash()传入参数serve_locally=False会强制浏览器端从unpkg加载各个依赖的
@@ -117,6 +117,9 @@ app = dash.Dash(serve_locally=False)
 - [x] 头像：`AntdAvatar`
 - [x] 徽标数：`AntdBadge`
 - [x] 缎带：`AntdRibbon`
+- [x] 时间选择框：`AntdTimePicker`
+- [x] 时间范围选择框：`AntdTimeRangePicker`
+- [x] 走马灯：`AntdCarousel`
 
 ## 5 在线交互式说明文档
 
@@ -124,13 +127,11 @@ app = dash.Dash(serve_locally=False)
 
 ## 6 TODO计划
 
-- [ ] 时间选择框：`AntdTimePicker`
+- [ ] 表单：`AntdForm`
 - [ ] 卡片：`AntdCard`
 - [ ] 提及：`AntdMentions`
 - [ ] 页头：`AntdPageHeader`
-- [ ] 表单：`AntdForm`
 - [ ] 日历：`AntdCalendar`
-- [ ] 走马灯：`AntdCarousel`
 - [ ] 评论：`AntdComment`
 - [ ] 描述列表：`AntdDescriptions`
 - [ ] 图片：`AntdImage`

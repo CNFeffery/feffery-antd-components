@@ -1,11 +1,11 @@
 # AUTO GENERATED FILE - DO NOT EDIT
 
-export 'feffery'_antdtimepicker
+export 'feffery'_antdtimerangepicker
 
 """
-    'feffery'_antdtimepicker(;kwargs...)
+    'feffery'_antdtimerangepicker(;kwargs...)
 
-An AntdTimePicker component.
+An AntdTimeRangePicker component.
 
 Keyword arguments:
 - `id` (String; optional)
@@ -17,6 +17,8 @@ Those elements have the following types:
   - `value` (String; optional)
   - `format` (String; optional)
 - `disabled` (Bool; optional)
+- `disabledEnd` (Bool; optional)
+- `disabledStart` (Bool; optional)
 - `format` (String; optional)
 - `hourStep` (Real; optional)
 - `inputReadOnly` (Bool; optional)
@@ -26,16 +28,18 @@ Those elements have the following types:
   - `prop_name` (String; optional): Holds which property is loading
   - `component_name` (String; optional): Holds the name of the component that is loading
 - `minuteStep` (Real; optional)
-- `placeholder` (String; optional)
+- `placeholderEnd` (String; optional)
+- `placeholderStart` (String; optional)
 - `secondStep` (Real; optional)
-- `selectedTime` (String; optional)
+- `selectedEndTime` (String; optional)
+- `selectedStartTime` (String; optional)
 - `size` (a value equal to: 'small', 'middle', 'large'; optional)
 - `style` (Dict; optional)
 - `use12Hours` (Bool; optional)
 """
-function 'feffery'_antdtimepicker(; kwargs...)
-        available_props = Symbol[:id, :allowClear, :bordered, :className, :defaultPickerValue, :disabled, :format, :hourStep, :inputReadOnly, :loading_state, :minuteStep, :placeholder, :secondStep, :selectedTime, :size, :style, :use12Hours]
+function 'feffery'_antdtimerangepicker(; kwargs...)
+        available_props = Symbol[:id, :allowClear, :bordered, :className, :defaultPickerValue, :disabled, :disabledEnd, :disabledStart, :format, :hourStep, :inputReadOnly, :loading_state, :minuteStep, :placeholderEnd, :placeholderStart, :secondStep, :selectedEndTime, :selectedStartTime, :size, :style, :use12Hours]
         wild_props = Symbol[]
-        return Component("'feffery'_antdtimepicker", "AntdTimePicker", "feffery_antd_components", available_props, wild_props; kwargs...)
+        return Component("'feffery'_antdtimerangepicker", "AntdTimeRangePicker", "feffery_antd_components", available_props, wild_props; kwargs...)
 end
 

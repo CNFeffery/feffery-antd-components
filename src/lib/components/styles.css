@@ -19,7 +19,10 @@
     border: 1px solid #434343;
 }
 
-.ant-table-thead>tr>th, .ant-table-tbody>tr>td, .ant-table tfoot>tr>th, .ant-table tfoot>tr>td {
+.ant-table-thead>tr>th,
+.ant-table-tbody>tr>td,
+.ant-table tfoot>tr>th,
+.ant-table tfoot>tr>td {
     position: relative;
     padding: 5px 5px;
     overflow-wrap: break-word;
@@ -43,3 +46,7 @@
 .ant-spin-container {
     height: 100%!important;
 }
+
+/* .ant-tree-show-line .ant-tree-switcher-line-icon {
+    vertical-align: -0.125em!important;
+} */

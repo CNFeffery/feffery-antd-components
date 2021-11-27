@@ -6,6 +6,7 @@ from .AntdBackTop import AntdBackTop
 from .AntdBadge import AntdBadge
 from .AntdBreadcrumb import AntdBreadcrumb
 from .AntdButton import AntdButton
+from .AntdCarousel import AntdCarousel
 from .AntdCascader import AntdCascader
 from .AntdCheckbox import AntdCheckbox
 from .AntdCheckboxGroup import AntdCheckboxGroup
@@ -14,6 +15,7 @@ from .AntdCountdown import AntdCountdown
 from .AntdDatePicker import AntdDatePicker
 from .AntdDateRangePicker import AntdDateRangePicker
 from .AntdDivider import AntdDivider
+from .AntdDraggerUpload import AntdDraggerUpload
 from .AntdDrawer import AntdDrawer
 from .AntdDropdown import AntdDropdown
 from .AntdEmpty import AntdEmpty
@@ -44,6 +46,7 @@ from .AntdTable import AntdTable
 from .AntdTag import AntdTag
 from .AntdTimeline import AntdTimeline
 from .AntdTimePicker import AntdTimePicker
+from .AntdTimeRangePicker import AntdTimeRangePicker
 from .AntdTooltip import AntdTooltip
 from .AntdTransfer import AntdTransfer
 from .AntdTree import AntdTree
@@ -71,6 +74,7 @@ __all__ = [
     "AntdBadge",
     "AntdBreadcrumb",
     "AntdButton",
+    "AntdCarousel",
     "AntdCascader",
     "AntdCheckbox",
     "AntdCheckboxGroup",
@@ -79,6 +83,7 @@ __all__ = [
     "AntdDatePicker",
     "AntdDateRangePicker",
     "AntdDivider",
+    "AntdDraggerUpload",
     "AntdDrawer",
     "AntdDropdown",
     "AntdEmpty",
@@ -109,6 +114,7 @@ __all__ = [
     "AntdTag",
     "AntdTimeline",
     "AntdTimePicker",
+    "AntdTimeRangePicker",
     "AntdTooltip",
     "AntdTransfer",
     "AntdTree",

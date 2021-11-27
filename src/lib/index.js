@@ -61,6 +61,9 @@ import AntdProgress from './components/AntdProgress.react'
 import AntdAvatar from './components/AntdAvatar.react'
 import AntdBadge from './components/AntdBadge.react'
 import AntdRibbon from './components/AntdRibbon.react'
+import AntdTimePicker from './components/AntdTimePicker.react'
+import AntdTimeRangePicker from './components/AntdTimeRangePicker.react'
+import AntdCarousel from './components/AntdCarousel.react'
 
 export {
     AntdDatePicker,
@@ -124,5 +127,8 @@ export {
     AntdProgress,
     AntdAvatar,
     AntdBadge,
-    AntdRibbon
+    AntdRibbon,
+    AntdTimePicker,
+    AntdTimeRangePicker,
+    AntdCarousel
 };

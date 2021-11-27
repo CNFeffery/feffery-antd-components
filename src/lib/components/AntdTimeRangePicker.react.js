@@ -5,8 +5,10 @@ import moment from 'moment';
 import zhCN from 'antd/lib/locale/zh_CN';
 import 'antd/dist/antd.css';
 
-// 定义时间选择组件AntdTimePicker，api参数参考https://ant.design/components/time-picker-cn/
-export default class AntdTimePicker extends Component {
+const { RangePicker } = TimePicker
+
+// 定义时间范围选择组件AntdTimeRangePicker，api参数参考https://ant.design/components/time-picker-cn/
+export default class AntdTimeRangePicker extends Component {
     render() {
         // 取得必要属性或参数
         let {
@@ -14,7 +16,10 @@ export default class AntdTimePicker extends Component {
             className,
             style,
             setProps,
-            disabled,
+            placeholderStart,
+            placeholderEnd,
+            disabledStart,
+            disabledEnd,
             hourStep,
             minuteStep,
             secondStep,
@@ -22,9 +27,7 @@ export default class AntdTimePicker extends Component {
             use12Hours,
             allowClear,
             inputReadOnly,
-            selectedTime,
             defaultPickerValue,
-            placeholder,
             bordered,
             size,
             loading_state
@@ -32,7 +35,7 @@ export default class AntdTimePicker extends Component {
 
         const onChange = (time, timeString) => {
             if (typeof timeString == typeof '') {
-                setProps({ selectedTime: timeString })
+                setProps({ selectedStartTime: timeString[0], selectedEndTime: timeString[1] })
             }
         }
 
@@ -48,19 +51,19 @@ export default class AntdTimePicker extends Component {
         return (
             <div>
                 <ConfigProvider locale={zhCN}>
-                    <TimePicker
+                    <RangePicker
                         id={id}
                         className={className}
                         style={style}
                         onChange={onChange}
-                        placeholder={placeholder}
+                        placeholder={[placeholderStart, placeholderEnd]}
                         bordered={bordered}
                         size={size}
                         defaultPickerValue={
-                            moment(defaultPickerValue.value,
-                                defaultPickerValue.format)
+                            [moment(defaultPickerValue.value, defaultPickerValue.format),
+                            moment(defaultPickerValue.value, defaultPickerValue.format)]
                         }
-                        disabled={disabled}
+                        disabled={[disabledStart, disabledEnd]}
                         hourStep={hourStep}
                         minuteStep={minuteStep}
                         secondStep={secondStep}
@@ -80,7 +83,7 @@ export default class AntdTimePicker extends Component {
 }
 
 // 定义参数或属性
-AntdTimePicker.propTypes = {
+AntdTimeRangePicker.propTypes = {
     // 部件id
     id: PropTypes.string,
 
@@ -114,8 +117,23 @@ AntdTimePicker.propTypes = {
     // 设置是否开启只读模式，默认为false
     inputReadOnly: PropTypes.bool,
 
-    // 对应当前时间
-    selectedTime: PropTypes.string,
+    // 空白输入下开始输入框的填充说明文字
+    placeholderStart: PropTypes.string,
+
+    // 空白输入下结束输入框的填充说明文字
+    placeholderEnd: PropTypes.string,
+
+    // 设置开始输入框是否被禁用
+    disabledStart: PropTypes.bool,
+
+    // 设置结束输入框是否被禁用
+    disabledEnd: PropTypes.bool,
+
+    // 已选择的范围开始时间
+    selectedStartTime: PropTypes.string,
+
+    // 已选择的范围结束时间
+    selectedEndTime: PropTypes.string,
 
     // 设置时间面板默认的时间位置
     defaultPickerValue: PropTypes.exact(
@@ -127,9 +145,6 @@ AntdTimePicker.propTypes = {
             format: PropTypes.string
         }
     ),
-
-    // 空白输入下的填充说明文字，默认为'请选择时间'
-    placeholder: PropTypes.string,
 
     // 用于设置是否显示边框，默认为true即显示边框
     bordered: PropTypes.bool,
@@ -165,7 +180,7 @@ AntdTimePicker.propTypes = {
 };
 
 // 设置默认参数
-AntdTimePicker.defaultProps = {
+AntdTimeRangePicker.defaultProps = {
     style: {
         width: 220
     }
