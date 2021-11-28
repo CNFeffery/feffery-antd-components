@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { v4 as uuidv4 } from 'uuid';
-import { Upload, message, Button, ConfigProvider } from 'antd';
-import { UploadOutlined } from '@ant-design/icons';
+import { Upload, message, ConfigProvider } from 'antd';
+import { str2Icon } from './icons.react';
 import zhCN from 'antd/lib/locale/zh_CN';
 import 'antd/dist/antd.css';
 
@@ -10,8 +10,8 @@ const uuid = uuidv4();
 
 const { Dragger } = Upload;
 
-// 定义文件拖拽上传部件AntdDra，api参数参考https://ant.design/components/upload-cn/
-const AntdUpload = (props) => {
+// 定义文件拖拽上传部件AntdDraggerUpload，api参数参考https://ant.design/components/upload-cn/
+const AntdDraggerUpload = (props) => {
 
     // 取得必要属性或参数
     let {
@@ -19,9 +19,10 @@ const AntdUpload = (props) => {
         className,
         style,
         apiUrl,
+        text,
+        hint,
         uploadId,
         fileListMaxLength,
-        buttonContent,
         fileTypes,
         fileMaxSize,
         multiple,
@@ -52,7 +53,6 @@ const AntdUpload = (props) => {
             return sizeCheck;
         },
         onChange(info) {
-            console.log(info)
 
             if (info.file.status === 'done') {
 
@@ -110,7 +110,7 @@ const AntdUpload = (props) => {
     // 返回定制化的前端部件
     return (
         <ConfigProvider locale={zhCN}>
-            <Upload {...uploadProps}
+            <Dragger {...uploadProps}
                 id={id}
                 className={className}
                 style={style}
@@ -120,15 +120,21 @@ const AntdUpload = (props) => {
                 data-dash-is-loading={
                     (loading_state && loading_state.is_loading) || undefined
                 }>
-                <Button icon={<UploadOutlined />}>{buttonContent ? buttonContent : "点击上传文件"}</Button>
-            </Upload>
+                <p className="ant-upload-drag-icon">
+                    {str2Icon.get('cloud-upload')}
+                </p>
+                <p className="ant-upload-text">{text}</p>
+                <p className="ant-upload-hint">
+                    {hint}
+                </p>
+            </Dragger>
         </ConfigProvider>
 
     );
 }
 
 // 定义参数或属性
-AntdUpload.propTypes = {
+AntdDraggerUpload.propTypes = {
     // 部件id
     id: PropTypes.string,
 
@@ -140,6 +146,12 @@ AntdUpload.propTypes = {
 
     // 设置文件上传服务的接口url
     apiUrl: PropTypes.string,
+
+    // 设置上传区域主要文字说明内容
+    text: PropTypes.string,
+
+    // 设置上传区域次要文字说明内容
+    hint: PropTypes.string,
 
     // 设置已上传文件列表的最大显示长度，默认为3
     fileListMaxLength: PropTypes.number,
@@ -207,10 +219,10 @@ AntdUpload.propTypes = {
 };
 
 // 设置默认参数
-AntdUpload.defaultProps = {
+AntdDraggerUpload.defaultProps = {
     fileListMaxLength: 3,
     fileMaxSize: 500,
     lastUploadTaskRecord: {}
 }
 
-export default AntdUpload;
+export default AntdDraggerUpload;

@@ -64,6 +64,7 @@ import AntdRibbon from './components/AntdRibbon.react'
 import AntdTimePicker from './components/AntdTimePicker.react'
 import AntdTimeRangePicker from './components/AntdTimeRangePicker.react'
 import AntdCarousel from './components/AntdCarousel.react'
+import AntdDraggerUpload from './components/AntdDraggerUpload.react'
 
 export {
     AntdDatePicker,
@@ -130,5 +131,6 @@ export {
     AntdRibbon,
     AntdTimePicker,
     AntdTimeRangePicker,
-    AntdCarousel
+    AntdCarousel,
+    AntdDraggerUpload
 };
