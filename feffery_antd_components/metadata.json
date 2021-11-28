@@ -2408,7 +2408,7 @@
   },
   "src/lib/components/AntdDraggerUpload.react.js": {
     "description": "",
-    "displayName": "AntdUpload",
+    "displayName": "AntdDraggerUpload",
     "methods": [],
     "props": {
       "id": {
@@ -2433,6 +2433,20 @@
         "description": ""
       },
       "apiUrl": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": ""
+      },
+      "text": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": ""
+      },
+      "hint": {
         "type": {
           "name": "string"
         },

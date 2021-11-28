@@ -4,8 +4,42 @@ from dash import html, dcc
 import feffery_antd_components as fac
 from dash.dependencies import Input, Output
 
+import os
+from flask import request
+
 
 app = dash.Dash(__name__)
+
+# 这里的app即为Dash实例
+
+
+@app.server.route('/upload/', methods=['POST'])
+def upload():
+    '''
+    构建文件上传服务
+    :return:
+    '''
+
+    # 获取上传id参数，用于指向保存路径
+    uploadId = request.values.get('uploadId')
+
+    # 获取上传的文件名称
+    filename = request.files['file'].filename
+
+    # 基于上传id，若本地不存在则会自动创建目录
+    try:
+        os.mkdir(os.path.join('temp', uploadId))
+    except FileExistsError:
+        pass
+
+    # 流式写出文件到指定目录
+    with open(os.path.join('temp', uploadId, filename), 'wb') as f:
+        # 流式写出大型文件，这里的10代表10MB
+        for chunk in iter(lambda: request.files['file'].read(1024 * 1024 * 10), b''):
+            f.write(chunk)
+
+    return {'filename': filename}
+
 
 app.layout = html.Div(
     [
@@ -14,6 +48,13 @@ app.layout = html.Div(
         fac.AntdSpin(
             html.Div(id='tree-demo-output'),
             text='回调中'
+        ),
+
+        fac.AntdDraggerUpload(
+            apiUrl='/upload/',
+            fileMaxSize=1024,
+            text='点击此区域或拖动文件到此进行上传',
+            hint='请注意上传文件大小需低于1GB！'
         ),
 
         fac.AntdCarousel(
@@ -34,7 +75,10 @@ app.layout = html.Div(
             ],
             autoplay=True,
             dotPosition='right',
-            effect='fade'
+            effect='fade',
+            style={
+                'marginTop': '100px'
+            }
         ),
 
 
@@ -239,7 +283,6 @@ app.layout = html.Div(
 
     ],
     style={
-        'height': '100vh',
         'padding': '20px 100px'
     }
 )
