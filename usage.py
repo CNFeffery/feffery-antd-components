@@ -50,11 +50,19 @@ app.layout = html.Div(
             text='回调中'
         ),
 
-        fac.AntdDraggerUpload(
-            apiUrl='/upload/',
-            fileMaxSize=1024,
-            text='点击此区域或拖动文件到此进行上传',
-            hint='请注意上传文件大小需低于1GB！'
+        html.Div(
+            fac.AntdDraggerUpload(
+                apiUrl='/upload/',
+                fileMaxSize=1024,
+                text='点击此区域或拖动文件到此进行上传',
+                hint='请注意上传文件大小需低于1GB！',
+                style={
+                    'height': '100%'
+                }
+            ),
+            style={
+                'height': '500px'
+            }
         ),
 
         fac.AntdCarousel(
