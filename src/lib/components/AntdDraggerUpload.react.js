@@ -110,26 +110,27 @@ const AntdDraggerUpload = (props) => {
     // 返回定制化的前端部件
     return (
         <ConfigProvider locale={zhCN}>
-            <Dragger {...uploadProps}
-                id={id}
+            <div id={id}
                 className={className}
-                style={style}
-                fileList={fileList}
-                multiple={multiple}
-                directory={directory}
-                data-dash-is-loading={
-                    (loading_state && loading_state.is_loading) || undefined
-                }>
-                <p className="ant-upload-drag-icon">
-                    {str2Icon.get('cloud-upload')}
-                </p>
-                <p className="ant-upload-text">{text}</p>
-                <p className="ant-upload-hint">
-                    {hint}
-                </p>
-            </Dragger>
+                style={style}>
+                <Dragger
+                    fileList={fileList}
+                    multiple={multiple}
+                    directory={directory}
+                    data-dash-is-loading={
+                        (loading_state && loading_state.is_loading) || undefined
+                    }
+                    {...uploadProps}>
+                    <p className="ant-upload-drag-icon">
+                        {str2Icon.get('cloud-upload')}
+                    </p>
+                    <p className="ant-upload-text">{text}</p>
+                    <p className="ant-upload-hint">
+                        {hint}
+                    </p>
+                </Dragger>
+            </div>
         </ConfigProvider>
-
     );
 }
 
