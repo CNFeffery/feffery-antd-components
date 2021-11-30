@@ -167,11 +167,18 @@ export default class AntdTable extends Component {
             pagination,
             bordered,
             maxHeight,
+            size,
             mode,
             popupContainerId,
             nClicksButton,
             loading_state
         } = this.props;
+
+        let size2size = new Map([
+            ['small', 'default'],
+            ['default', 'small'],
+            ['large', 'middle']
+        ])
 
         pagination = {
             ...pagination,
@@ -760,6 +767,11 @@ export default class AntdTable extends Component {
 
             rowSelection = {
                 type: rowSelectionType,
+                selections: [
+                    Table.SELECTION_ALL,
+                    Table.SELECTION_INVERT,
+                    Table.SELECTION_NONE
+                ],
                 onChange: (selectedRowKeys, selectedRows) => {
                     setProps({
                         selectedRowKeys: selectedRowKeys,
@@ -768,6 +780,24 @@ export default class AntdTable extends Component {
                 }
             }
         }
+
+        // 添加表头单元格监听事件
+        columns = columns.map(
+            item => (
+                {
+                    ...item,
+                    ...{
+                        onHeaderCell: (e) => {
+                            return {
+                                onClick: event => { setProps({ recentlyClickedColumn: e.dataIndex }) }, // 点击字段名
+                                onMouseEnter: event => { setProps({ recentlyMouseEnterColumn: e.dataIndex }) }, // 鼠标移入字段名
+                                onMouseLeave: event => { setProps({ recentlyMouseLeaveColumn: e.dataIndex }) } // 鼠标移出字段名
+                            };
+                        }
+                    }
+                }
+            )
+        )
 
         return (
             <ConfigProvider locale={zhCN}>
@@ -779,6 +809,7 @@ export default class AntdTable extends Component {
                     rowClassName={() => 'editable-row'}
                     dataSource={data}
                     columns={columns}
+                    size={size2size.get(size)}
                     rowSelection={rowSelection}
                     pagination={{ ...pagination, ...{ showTotal: total => `${pagination.showTotalPrefix}${total}${pagination.showTotalSuffix}` } }}
                     bordered={bordered}
@@ -786,6 +817,13 @@ export default class AntdTable extends Component {
                         y: maxHeight ? maxHeight : 99999
                     }}
                     onChange={this.onPageChange}
+                    onRow={(record, index) => {
+                        return {
+                            onClick: event => { setProps({ recentlyClickedRow: record.key }) }, // 点击行
+                            onMouseEnter: event => { setProps({ recentlyMouseEnterRow: record.key }) }, // 鼠标移入行
+                            onMouseLeave: event => { setProps({ recentlyMouseLeaveRow: record.key }) } // 鼠标移出行
+                        };
+                    }}
                     data-dash-is-loading={
                         (loading_state && loading_state.is_loading) || undefined
                     }
@@ -866,6 +904,9 @@ AntdTable.propTypes = {
         })
     ),
 
+    // 设置表格单元格尺寸规格，可选的有'small'、'default'和'large'
+    size: PropTypes.oneOf(['small', 'default', 'large']),
+
     // 设置行选择模式，默认不开启，可选的有'checkbox'、'radio'
     rowSelectionType: PropTypes.oneOf(['checkbox', 'radio']),
 
@@ -874,6 +915,26 @@ AntdTable.propTypes = {
 
     // 记录已被选择的行记录值列表
     selectedRows: PropTypes.array,
+
+    // 记录表头各字段事件
+    // 记录表头各字段点击事件
+    recentlyClickedColumn: PropTypes.string,
+
+    // 记录表头各字段鼠标移入事件
+    recentlyMouseEnterColumn: PropTypes.string,
+
+    // 记录表头各字段鼠标移出事件
+    recentlyMouseLeaveColumn: PropTypes.string,
+
+    // 记录表格数据行事件
+    // 记录表格数据行点击事件
+    recentlyClickedRow: PropTypes.string,
+
+    // 记录表格数据行鼠标移入事件
+    recentlyMouseEnterRow: PropTypes.string,
+
+    // 记录表格数据行鼠标移出事件
+    recentlyMouseLeaveRow: PropTypes.string,
 
     // 为每个title设置气泡卡片悬浮说明信息，格式如{字段1: {title: '标题内容', 'content': '说明内容巴拉巴拉巴拉'}}
     titlePopoverInfo: PropTypes.object,
@@ -1006,5 +1067,6 @@ AntdTable.defaultProps = {
     },
     filterOptions: {},
     mode: 'client-side',
-    nClicksButton: 0
+    nClicksButton: 0,
+    size: 'default'
 }

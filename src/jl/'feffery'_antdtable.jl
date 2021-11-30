@@ -60,9 +60,16 @@ Those elements have the following types:
 - `popupContainerId` (String; optional)
 - `recentlyButtonClickedRow` (Dict; optional)
 - `recentlyChangedRow` (Dict; optional)
+- `recentlyClickedColumn` (String; optional)
+- `recentlyClickedRow` (String; optional)
+- `recentlyMouseEnterColumn` (String; optional)
+- `recentlyMouseEnterRow` (String; optional)
+- `recentlyMouseLeaveColumn` (String; optional)
+- `recentlyMouseLeaveRow` (String; optional)
 - `rowSelectionType` (a value equal to: 'checkbox', 'radio'; optional)
 - `selectedRowKeys` (Array of Strings; optional)
 - `selectedRows` (Array; optional)
+- `size` (a value equal to: 'small', 'default', 'large'; optional)
 - `sortOptions` (optional): . sortOptions has the following type: lists containing elements 'sortDataIndexes', 'multiple'.
 Those elements have the following types:
   - `sortDataIndexes` (Array of Strings; optional)
@@ -75,7 +82,7 @@ Those elements have the following types:
 - `titlePopoverInfo` (Dict; optional)
 """
 function 'feffery'_antdtable(; kwargs...)
-        available_props = Symbol[:id, :bordered, :className, :clickedContent, :columns, :currentData, :data, :filter, :filterOptions, :loading_state, :maxHeight, :mode, :nClicksButton, :pagination, :popupContainerId, :recentlyButtonClickedRow, :recentlyChangedRow, :rowSelectionType, :selectedRowKeys, :selectedRows, :sortOptions, :sorter, :style, :titlePopoverInfo]
+        available_props = Symbol[:id, :bordered, :className, :clickedContent, :columns, :currentData, :data, :filter, :filterOptions, :loading_state, :maxHeight, :mode, :nClicksButton, :pagination, :popupContainerId, :recentlyButtonClickedRow, :recentlyChangedRow, :recentlyClickedColumn, :recentlyClickedRow, :recentlyMouseEnterColumn, :recentlyMouseEnterRow, :recentlyMouseLeaveColumn, :recentlyMouseLeaveRow, :rowSelectionType, :selectedRowKeys, :selectedRows, :size, :sortOptions, :sorter, :style, :titlePopoverInfo]
         wild_props = Symbol[]
         return Component("'feffery'_antdtable", "AntdTable", "feffery_antd_components", available_props, wild_props; kwargs...)
 end

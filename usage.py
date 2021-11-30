@@ -1,5 +1,6 @@
 import dash
 import time
+import numpy as np
 from dash import html, dcc
 import feffery_antd_components as fac
 from dash.dependencies import Input, Output
@@ -49,6 +50,32 @@ app.layout = html.Div(
             html.Div(id='tree-demo-output'),
             text='回调中'
         ),
+
+
+        fac.AntdTable(
+            id='antd-table-test-input',
+            columns=[
+                {
+                    'title': f'字段{i}',
+                    'dataIndex': f'字段{i}'
+                }
+                for i in range(1, 6)
+            ],
+            data=[
+                {
+                    f'字段{i}': np.random.randint(1, 5)
+                    for i in range(1, 6)
+                }
+                for _ in range(100)
+            ],
+            size='large',
+            rowSelectionType='checkbox',
+            sortOptions={
+                'sortDataIndexes': ['字段1', '字段2', '字段4', '字段5']
+            }
+        ),
+
+        fac.AntdSpace(id='antd-table-test-output', direction='vertical'),
 
         html.Div(
             fac.AntdDraggerUpload(
@@ -313,6 +340,32 @@ def skeleton_dev_demo_callback(url):
         ],
         id='skeleton-dev-demo'
     )
+
+
+@app.callback(
+    Output('antd-table-test-output', 'children'),
+    [Input('antd-table-test-input', 'recentlyClickedColumn'),
+     Input('antd-table-test-input', 'recentlyMouseEnterColumn'),
+     Input('antd-table-test-input', 'recentlyMouseLeaveColumn'),
+     Input('antd-table-test-input', 'recentlyClickedRow'),
+     Input('antd-table-test-input', 'recentlyMouseEnterRow'),
+     Input('antd-table-test-input', 'recentlyMouseLeaveRow')]
+)
+def antd_table_test(recentlyClickedColumn,
+                    recentlyMouseEnterColumn,
+                    recentlyMouseLeaveColumn,
+                    recentlyClickedRow,
+                    recentlyMouseEnterRow,
+                    recentlyMouseLeaveRow):
+
+    return [
+        fac.AntdText(f'recentlyClickedColumn: {recentlyClickedColumn}'),
+        fac.AntdText(f'recentlyMouseEnterColumn: {recentlyMouseEnterColumn}'),
+        fac.AntdText(f'recentlyMouseLeaveColumn: {recentlyMouseLeaveColumn}'),
+        fac.AntdText(f'recentlyClickedRow: {recentlyClickedRow}'),
+        fac.AntdText(f'recentlyMouseEnterRow: {recentlyMouseEnterRow}'),
+        fac.AntdText(f'recentlyMouseLeaveRow: {recentlyMouseLeaveRow}')
+    ]
 
 
 if __name__ == '__main__':

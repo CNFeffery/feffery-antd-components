@@ -7465,6 +7465,31 @@
           "computed": false
         }
       },
+      "size": {
+        "type": {
+          "name": "enum",
+          "value": [
+            {
+              "value": "'small'",
+              "computed": false
+            },
+            {
+              "value": "'default'",
+              "computed": false
+            },
+            {
+              "value": "'large'",
+              "computed": false
+            }
+          ]
+        },
+        "required": false,
+        "description": "",
+        "defaultValue": {
+          "value": "'default'",
+          "computed": false
+        }
+      },
       "rowSelectionType": {
         "type": {
           "name": "enum",
@@ -7495,6 +7520,48 @@
       "selectedRows": {
         "type": {
           "name": "array"
+        },
+        "required": false,
+        "description": ""
+      },
+      "recentlyClickedColumn": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": ""
+      },
+      "recentlyMouseEnterColumn": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": ""
+      },
+      "recentlyMouseLeaveColumn": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": ""
+      },
+      "recentlyClickedRow": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": ""
+      },
+      "recentlyMouseEnterRow": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": ""
+      },
+      "recentlyMouseLeaveRow": {
+        "type": {
+          "name": "string"
         },
         "required": false,
         "description": ""
