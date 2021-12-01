@@ -41,11 +41,19 @@ const AntdUpload = (props) => {
             uploadId: uploadId
         },
         beforeUpload: (file) => {
-
             const sizeCheck = file.size / 1024 / 1024 < fileMaxSize;
             if (!sizeCheck) {
                 message.error(`${file.name} 文件大小超出${fileMaxSize}MB限制！`);
             }
+
+            if (fileTypes) {
+                if (fileTypes.indexOf(file.name.split('.')[file.name.split('.').length - 1]) === -1) {
+                    message.error(`上传失败，${file.name} 文件格式不符合要求！`);
+                }
+                updateLastFileError(!sizeCheck || fileTypes.indexOf(file.name.split('.')[file.name.split('.').length - 1]) === -1)
+                return sizeCheck && fileTypes.indexOf(file.name.split('.')[file.name.split('.').length - 1]) !== -1;
+            }
+
             updateLastFileError(!sizeCheck)
             return sizeCheck;
         },

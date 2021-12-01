@@ -82,6 +82,7 @@ app.layout = html.Div(
                 apiUrl='/upload/',
                 fileMaxSize=1024,
                 text='点击此区域或拖动文件到此进行上传',
+                fileTypes=['zip'],
                 hint='请注意上传文件大小需低于1GB！',
                 style={
                     'height': '100%'
