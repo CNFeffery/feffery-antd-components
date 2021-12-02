@@ -22,6 +22,7 @@ export default class AntdButton extends Component {
             shape,
             size,
             nClicks,
+            htmlType,
             loading_state
         } = this.props;
 

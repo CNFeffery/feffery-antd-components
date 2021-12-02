@@ -65,6 +65,8 @@ import AntdTimePicker from './components/AntdTimePicker.react'
 import AntdTimeRangePicker from './components/AntdTimeRangePicker.react'
 import AntdCarousel from './components/AntdCarousel.react'
 import AntdDraggerUpload from './components/AntdDraggerUpload.react'
+import AntdFormItem from './components/form/AntdFormItem.react'
+import AntdForm from './components/form/AntdForm.react'
 
 export {
     AntdDatePicker,
@@ -132,5 +134,7 @@ export {
     AntdTimePicker,
     AntdTimeRangePicker,
     AntdCarousel,
-    AntdDraggerUpload
+    AntdDraggerUpload,
+    AntdFormItem,
+    AntdForm
 };
