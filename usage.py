@@ -51,67 +51,87 @@ app.layout = html.Div(
             text='回调中'
         ),
 
-
-        fac.AntdForm(
-            [
-                fac.AntdFormItem(
-                    fac.AntdInput(
+        fac.AntdCard(
+            fac.AntdForm(
+                [
+                    fac.AntdFormItem(
+                        fac.AntdInput(
+                        ),
+                        required=True,
+                        validateStatus='validating',
+                        extra='测试文字',
+                        help='验证成功',
+                        label='用户名',
+                        tooltip='选项说明内容',
+                        labelCol={
+                            'span': 8
+                        },
+                        wrapperCol={
+                            'span': 16
+                        },
                     ),
-                    required=True,
-                    validateStatus='validating',
-                    extra='测试文字',
-                    help='验证成功',
-                    label='用户名',
-                    tooltip='选项说明内容',
-                    labelCol={
-                        'span': 8
-                    },
-                    wrapperCol={
-                        'span': 16
-                    },
-                ),
 
-                fac.AntdFormItem(
-                    fac.AntdInput(
-                        mode='password'
+                    fac.AntdFormItem(
+                        fac.AntdInput(
+                            mode='password'
+                        ),
+                        label='密码',
+                        labelCol={
+                            'span': 8
+                        },
+                        wrapperCol={
+                            'span': 16
+                        },
                     ),
-                    label='密码',
-                    labelCol={
-                        'span': 8
-                    },
-                    wrapperCol={
-                        'span': 16
-                    },
-                ),
 
-                fac.AntdFormItem(
-                    fac.AntdCheckbox(
-                        checked=True,
-                        label='记住密码'
+                    fac.AntdFormItem(
+                        fac.AntdCheckbox(
+                            checked=True,
+                            label='记住密码'
+                        ),
+                        wrapperCol={
+                            'span': 16,
+                            'offset': 8
+                        }
                     ),
-                    wrapperCol={
-                        'span': 16,
-                        'offset': 8
-                    }
-                ),
 
-                fac.AntdFormItem(
-                    fac.AntdButton(
-                        '提交',
-                        type='primary'
+                    fac.AntdFormItem(
+                        fac.AntdButton(
+                            '提交',
+                            type='primary'
+                        ),
+                        wrapperCol={
+                            'span': 16,
+                            'offset': 8
+                        }
                     ),
-                    wrapperCol={
-                        'span': 16,
-                        'offset': 8
-                    }
-                ),
-            ],
+                ],
+                style={
+                    'width': '600px'
+                }
+            ),
+            title='标题测试',
+            hoverable=True,
+            size='small',
             style={
-                'width': '600px'
+                'marginBottom': '100px'
             }
         ),
 
-
+        fac.AntdCard(
+            [
+                fac.AntdCardGrid(
+                    f'网格{i+1}',
+                    style={
+                        'width': '25%',
+                        'textAlign': 'center',
+                        'height': '200px'
+                    }
+                )
+                for i in range(20)
+            ],
+            title='卡片网格测试'
+        ),
 
         fac.AntdTable(
             id='antd-table-test-input',
