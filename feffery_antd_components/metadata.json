@@ -9534,6 +9534,342 @@
       }
     }
   },
+  "src/lib/components/form/AntdForm.react.js": {
+    "description": "",
+    "displayName": "AntdForm",
+    "methods": [],
+    "props": {
+      "id": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": ""
+      },
+      "children": {
+        "type": {
+          "name": "node"
+        },
+        "required": false,
+        "description": "The content of the tab - will only be displayed if this tab is selected"
+      },
+      "className": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": ""
+      },
+      "style": {
+        "type": {
+          "name": "object"
+        },
+        "required": false,
+        "description": ""
+      },
+      "labelCol": {
+        "type": {
+          "name": "exact",
+          "value": {
+            "span": {
+              "name": "number",
+              "required": false
+            },
+            "offset": {
+              "name": "number",
+              "required": false
+            }
+          }
+        },
+        "required": false,
+        "description": ""
+      },
+      "wrapperCol": {
+        "type": {
+          "name": "exact",
+          "value": {
+            "span": {
+              "name": "number",
+              "required": false
+            },
+            "offset": {
+              "name": "number",
+              "required": false
+            }
+          }
+        },
+        "required": false,
+        "description": ""
+      },
+      "colon": {
+        "type": {
+          "name": "bool"
+        },
+        "required": false,
+        "description": ""
+      },
+      "labelAlign": {
+        "type": {
+          "name": "enum",
+          "value": [
+            {
+              "value": "'left'",
+              "computed": false
+            },
+            {
+              "value": "'right'",
+              "computed": false
+            }
+          ]
+        },
+        "required": false,
+        "description": ""
+      },
+      "layout": {
+        "type": {
+          "name": "enum",
+          "value": [
+            {
+              "value": "'horizontal'",
+              "computed": false
+            },
+            {
+              "value": "'vertical'",
+              "computed": false
+            },
+            {
+              "value": "'inline'",
+              "computed": false
+            }
+          ]
+        },
+        "required": false,
+        "description": ""
+      },
+      "loading_state": {
+        "type": {
+          "name": "shape",
+          "value": {
+            "is_loading": {
+              "name": "bool",
+              "description": "Determines if the component is loading or not",
+              "required": false
+            },
+            "prop_name": {
+              "name": "string",
+              "description": "Holds which property is loading",
+              "required": false
+            },
+            "component_name": {
+              "name": "string",
+              "description": "Holds the name of the component that is loading",
+              "required": false
+            }
+          }
+        },
+        "required": false,
+        "description": ""
+      },
+      "setProps": {
+        "type": {
+          "name": "func"
+        },
+        "required": false,
+        "description": "Dash-assigned callback that should be called to report property changes\r\nto Dash, to make them available for callbacks."
+      }
+    }
+  },
+  "src/lib/components/form/AntdFormItem.react.js": {
+    "description": "",
+    "displayName": "AntdFormItem",
+    "methods": [],
+    "props": {
+      "id": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": ""
+      },
+      "children": {
+        "type": {
+          "name": "node"
+        },
+        "required": false,
+        "description": "The content of the tab - will only be displayed if this tab is selected"
+      },
+      "className": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": ""
+      },
+      "style": {
+        "type": {
+          "name": "object"
+        },
+        "required": false,
+        "description": ""
+      },
+      "required": {
+        "type": {
+          "name": "bool"
+        },
+        "required": false,
+        "description": ""
+      },
+      "labelCol": {
+        "type": {
+          "name": "exact",
+          "value": {
+            "span": {
+              "name": "number",
+              "required": false
+            },
+            "offset": {
+              "name": "number",
+              "required": false
+            }
+          }
+        },
+        "required": false,
+        "description": ""
+      },
+      "colon": {
+        "type": {
+          "name": "bool"
+        },
+        "required": false,
+        "description": ""
+      },
+      "wrapperCol": {
+        "type": {
+          "name": "exact",
+          "value": {
+            "span": {
+              "name": "number",
+              "required": false
+            },
+            "offset": {
+              "name": "number",
+              "required": false
+            }
+          }
+        },
+        "required": false,
+        "description": ""
+      },
+      "label": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": ""
+      },
+      "labelAlign": {
+        "type": {
+          "name": "enum",
+          "value": [
+            {
+              "value": "'left'",
+              "computed": false
+            },
+            {
+              "value": "'right'",
+              "computed": false
+            }
+          ]
+        },
+        "required": false,
+        "description": ""
+      },
+      "tooltip": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": ""
+      },
+      "extra": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": ""
+      },
+      "help": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": ""
+      },
+      "hidden": {
+        "type": {
+          "name": "bool"
+        },
+        "required": false,
+        "description": ""
+      },
+      "validateStatus": {
+        "type": {
+          "name": "enum",
+          "value": [
+            {
+              "value": "'success'",
+              "computed": false
+            },
+            {
+              "value": "'warning'",
+              "computed": false
+            },
+            {
+              "value": "'error'",
+              "computed": false
+            },
+            {
+              "value": "'validating'",
+              "computed": false
+            }
+          ]
+        },
+        "required": false,
+        "description": ""
+      },
+      "loading_state": {
+        "type": {
+          "name": "shape",
+          "value": {
+            "is_loading": {
+              "name": "bool",
+              "description": "Determines if the component is loading or not",
+              "required": false
+            },
+            "prop_name": {
+              "name": "string",
+              "description": "Holds which property is loading",
+              "required": false
+            },
+            "component_name": {
+              "name": "string",
+              "description": "Holds the name of the component that is loading",
+              "required": false
+            }
+          }
+        },
+        "required": false,
+        "description": ""
+      },
+      "setProps": {
+        "type": {
+          "name": "func"
+        },
+        "required": false,
+        "description": "Dash-assigned callback that should be called to report property changes\r\nto Dash, to make them available for callbacks."
+      }
+    }
+  },
   "src/lib/components/grid/AntdCol.react.js": {
     "description": "",
     "displayName": "AntdCol",

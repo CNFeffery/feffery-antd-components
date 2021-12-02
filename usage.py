@@ -52,6 +52,67 @@ app.layout = html.Div(
         ),
 
 
+        fac.AntdForm(
+            [
+                fac.AntdFormItem(
+                    fac.AntdInput(
+                    ),
+                    required=True,
+                    validateStatus='validating',
+                    extra='测试文字',
+                    help='验证成功',
+                    label='用户名',
+                    tooltip='选项说明内容',
+                    labelCol={
+                        'span': 8
+                    },
+                    wrapperCol={
+                        'span': 16
+                    },
+                ),
+
+                fac.AntdFormItem(
+                    fac.AntdInput(
+                        mode='password'
+                    ),
+                    label='密码',
+                    labelCol={
+                        'span': 8
+                    },
+                    wrapperCol={
+                        'span': 16
+                    },
+                ),
+
+                fac.AntdFormItem(
+                    fac.AntdCheckbox(
+                        checked=True,
+                        label='记住密码'
+                    ),
+                    wrapperCol={
+                        'span': 16,
+                        'offset': 8
+                    }
+                ),
+
+                fac.AntdFormItem(
+                    fac.AntdButton(
+                        '提交',
+                        type='primary'
+                    ),
+                    wrapperCol={
+                        'span': 16,
+                        'offset': 8
+                    }
+                ),
+            ],
+            style={
+                'width': '600px'
+            }
+        ),
+
+
+
         fac.AntdTable(
             id='antd-table-test-input',
             columns=[

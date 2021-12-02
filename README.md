@@ -121,6 +121,7 @@ app = dash.Dash(serve_locally=False)
 - [x] 时间范围选择框：`AntdTimeRangePicker`
 - [x] 走马灯：`AntdCarousel`
 - [x] 拖拽上传组件：`AntdDraggerUpload`
+- [x] 表单：`AntdForm`
 
 ## 5 在线交互式说明文档
 
@@ -128,7 +129,7 @@ app = dash.Dash(serve_locally=False)
 
 ## 6 TODO计划
 
-- [ ] 表单：`AntdForm`
+
 - [ ] 卡片：`AntdCard`
 - [ ] 提及：`AntdMentions`
 - [ ] 页头：`AntdPageHeader`
