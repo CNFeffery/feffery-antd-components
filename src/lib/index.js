@@ -67,6 +67,8 @@ import AntdCarousel from './components/AntdCarousel.react'
 import AntdDraggerUpload from './components/AntdDraggerUpload.react'
 import AntdFormItem from './components/form/AntdFormItem.react'
 import AntdForm from './components/form/AntdForm.react'
+import AntdCardGrid from './components/card/AntdCardGrid.react'
+import AntdCard from './components/card/AntdCard.react'
 
 export {
     AntdDatePicker,
@@ -136,5 +138,7 @@ export {
     AntdCarousel,
     AntdDraggerUpload,
     AntdFormItem,
-    AntdForm
+    AntdForm,
+    AntdCardGrid,
+    AntdCard
 };
