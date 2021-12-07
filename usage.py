@@ -52,69 +52,85 @@ app.layout = html.Div(
         ),
 
         fac.AntdCard(
-            fac.AntdForm(
-                [
-                    fac.AntdFormItem(
-                        fac.AntdInput(
-                        ),
-                        required=True,
-                        validateStatus='validating',
-                        extra='测试文字',
-                        help='验证成功',
-                        label='用户名',
-                        tooltip='选项说明内容',
-                        labelCol={
-                            'span': 8
-                        },
-                        wrapperCol={
-                            'span': 16
-                        },
-                    ),
-
-                    fac.AntdFormItem(
-                        fac.AntdInput(
-                            mode='password'
-                        ),
-                        label='密码',
-                        labelCol={
-                            'span': 8
-                        },
-                        wrapperCol={
-                            'span': 16
-                        },
-                    ),
-
-                    fac.AntdFormItem(
-                        fac.AntdCheckbox(
-                            checked=True,
-                            label='记住密码'
-                        ),
-                        wrapperCol={
-                            'span': 16,
-                            'offset': 8
-                        }
-                    ),
-
-                    fac.AntdFormItem(
-                        fac.AntdButton(
-                            '提交',
-                            type='primary'
-                        ),
-                        wrapperCol={
-                            'span': 16,
-                            'offset': 8
-                        }
-                    ),
-                ],
-                style={
-                    'width': '600px'
-                }
-            ),
+            [
+                fac.AntdTitle('说明文字内容', level=5),
+                fac.AntdParagraph(
+                    '这是一段说明文字内容'*10,
+                    italic=True
+                )
+            ],
             title='标题测试',
             hoverable=True,
             size='small',
+            extraLink={
+                'content': '链接测试',
+                'href': '#'
+            },
+            # coverImg={
+            #     'src': 'https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png'
+            # },
             style={
-                'marginBottom': '100px'
+                'marginBottom': '100px',
+                'width': '500px'
+            }
+        ),
+
+        fac.AntdForm(
+            [
+                fac.AntdFormItem(
+                    fac.AntdInput(
+                    ),
+                    required=True,
+                    validateStatus='validating',
+                    extra='测试文字',
+                    help='验证成功',
+                    label='用户名',
+                    tooltip='选项说明内容',
+                    labelCol={
+                            'span': 8
+                    },
+                    wrapperCol={
+                        'span': 16
+                    },
+                ),
+
+                fac.AntdFormItem(
+                    fac.AntdInput(
+                        mode='password'
+                    ),
+                    label='密码',
+                    labelCol={
+                        'span': 8
+                    },
+                    wrapperCol={
+                        'span': 16
+                    },
+                ),
+
+                fac.AntdFormItem(
+                    fac.AntdCheckbox(
+                        checked=True,
+                        label='记住密码'
+                    ),
+                    wrapperCol={
+                        'span': 16,
+                        'offset': 8
+                    }
+                ),
+
+                fac.AntdFormItem(
+                    fac.AntdButton(
+                        '提交',
+                        type='primary'
+                    ),
+                    wrapperCol={
+                        'span': 16,
+                        'offset': 8
+                    }
+                ),
+            ],
+            style={
+                'width': '600px'
             }
         ),
 

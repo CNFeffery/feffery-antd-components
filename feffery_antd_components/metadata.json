@@ -9567,6 +9567,56 @@
         "required": false,
         "description": ""
       },
+      "extraLink": {
+        "type": {
+          "name": "exact",
+          "value": {
+            "content": {
+              "name": "string",
+              "required": false
+            },
+            "href": {
+              "name": "string",
+              "required": false
+            },
+            "target": {
+              "name": "string",
+              "required": false
+            },
+            "className": {
+              "name": "string",
+              "required": false
+            },
+            "style": {
+              "name": "object",
+              "required": false
+            }
+          }
+        },
+        "required": false,
+        "description": ""
+      },
+      "coverImg": {
+        "type": {
+          "name": "exact",
+          "value": {
+            "src": {
+              "name": "string",
+              "required": false
+            },
+            "alt": {
+              "name": "string",
+              "required": false
+            },
+            "style": {
+              "name": "object",
+              "required": false
+            }
+          }
+        },
+        "required": false,
+        "description": ""
+      },
       "bodyStyle": {
         "type": {
           "name": "object"

@@ -10,12 +10,10 @@
 [![GitHub](https://img.shields.io/github/license/plotly/dash.svg?color=dark-green)](https://github.com/plotly/dash/blob/master/LICENSE)
 [![PyPI](https://img.shields.io/pypi/v/feffery-antd-components.svg?color=dark-green)](https://pypi.org/project/feffery-antd-components/)
 [![Downloads](https://pepy.tech/badge/feffery-antd-components)](https://pepy.tech/project/feffery-antd-components)
-[![Downloads](https://pepy.tech/badge/feffery-antd-components/month)](https://pepy.tech/project/feffery-antd-components)
-[![Downloads](https://pepy.tech/badge/feffery-antd-components/week)](https://pepy.tech/project/feffery-antd-components) 
 
 </div>
 
-`feffery-components`计划子项目，`Plotly Dash`第三方组件库，将`Antd`中的常用组件带入`Dash`的世界🥳，最新版本：`0.0.1rc7`
+`feffery-components`计划子项目，`Plotly Dash`第三方组件库，将`Antd`中的常用组件带入`Dash`的世界🥳，最新版本：`0.0.1rc7`（测试版本迭代中，敬请期待第一个正式版本的发布）
 
 ## 1 最新版本安装方式
 
