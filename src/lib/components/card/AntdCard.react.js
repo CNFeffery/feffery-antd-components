@@ -19,6 +19,8 @@ export default class AntdCard extends Component {
             children,
             className,
             style,
+            extraLink,
+            coverImg,
             bodyStyle,
             headStyle,
             border,
@@ -37,6 +39,15 @@ export default class AntdCard extends Component {
                 style={style}
                 bodyStyle={bodyStyle}
                 headStyle={headStyle}
+                extra={
+                    <a className={extraLink?.className}
+                        style={extraLink?.style}
+                        href={extraLink?.href}
+                        target={extraLink?.target || '_blank'}>
+                        {extraLink?.content}
+                    </a>
+                }
+                cover={<img alt={coverImg?.alt} src={coverImg?.src} style={coverImg?.style} />}
                 border={border}
                 hoverable={hoverable}
                 size={size}
@@ -65,6 +76,36 @@ AntdCard.propTypes = {
 
     // 自定义css字典
     style: PropTypes.object,
+
+    // 设置卡片右上角额外链接功能
+    extraLink: PropTypes.exact({
+        // 链接文字内容
+        content: PropTypes.string,
+
+        // 链接url地址
+        href: PropTypes.string,
+
+        // 链接target跳转事件，默认为'_blank'
+        target: PropTypes.string,
+
+        // 链接className
+        className: PropTypes.string,
+
+        // 链接css样式表
+        style: PropTypes.object
+    }),
+
+    // 设置卡片填充封面图片功能，会自适应卡片的尺寸
+    coverImg: PropTypes.exact({
+        // 设置src属性
+        src: PropTypes.string,
+
+        // 设置alt属性
+        alt: PropTypes.string,
+
+        // 设置css样式表
+        style: PropTypes.object
+    }),
 
     // 设置内容区域自定义样式
     bodyStyle: PropTypes.object,

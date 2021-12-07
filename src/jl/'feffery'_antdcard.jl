@@ -16,6 +16,18 @@ Keyword arguments:
 - `bodyStyle` (Dict; optional)
 - `border` (Bool; optional)
 - `className` (String; optional)
+- `coverImg` (optional): . coverImg has the following type: lists containing elements 'src', 'alt', 'style'.
+Those elements have the following types:
+  - `src` (String; optional)
+  - `alt` (String; optional)
+  - `style` (Dict; optional)
+- `extraLink` (optional): . extraLink has the following type: lists containing elements 'content', 'href', 'target', 'className', 'style'.
+Those elements have the following types:
+  - `content` (String; optional)
+  - `href` (String; optional)
+  - `target` (String; optional)
+  - `className` (String; optional)
+  - `style` (Dict; optional)
 - `headStyle` (Dict; optional)
 - `hoverable` (Bool; optional)
 - `loading_state` (optional): . loading_state has the following type: lists containing elements 'is_loading', 'prop_name', 'component_name'.
@@ -28,7 +40,7 @@ Those elements have the following types:
 - `title` (String; optional)
 """
 function 'feffery'_antdcard(; kwargs...)
-        available_props = Symbol[:children, :id, :bodyStyle, :border, :className, :headStyle, :hoverable, :loading_state, :size, :style, :title]
+        available_props = Symbol[:children, :id, :bodyStyle, :border, :className, :coverImg, :extraLink, :headStyle, :hoverable, :loading_state, :size, :style, :title]
         wild_props = Symbol[]
         return Component("'feffery'_antdcard", "AntdCard", "feffery_antd_components", available_props, wild_props; kwargs...)
 end
