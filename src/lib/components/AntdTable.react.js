@@ -171,6 +171,7 @@ export default class AntdTable extends Component {
             mode,
             popupContainerId,
             nClicksButton,
+            disabledRowListen,
             loading_state
         } = this.props;
 
@@ -817,13 +818,15 @@ export default class AntdTable extends Component {
                         y: maxHeight ? maxHeight : 99999
                     }}
                     onChange={this.onPageChange}
-                    onRow={(record, index) => {
-                        return {
-                            onClick: event => { setProps({ recentlyClickedRow: record.key }) }, // 点击行
-                            onMouseEnter: event => { setProps({ recentlyMouseEnterRow: record.key }) }, // 鼠标移入行
-                            onMouseLeave: event => { setProps({ recentlyMouseLeaveRow: record.key }) } // 鼠标移出行
-                        };
-                    }}
+                    onRow={!disabledRowListen && (
+                        (record, index) => {
+                            return {
+                                onClick: event => { setProps({ recentlyClickedRow: record.key }) }, // 点击行
+                                onMouseEnter: event => { setProps({ recentlyMouseEnterRow: record.key }) }, // 鼠标移入行
+                                onMouseLeave: event => { setProps({ recentlyMouseLeaveRow: record.key }) } // 鼠标移出行
+                            };
+                        }
+                    )}
                     data-dash-is-loading={
                         (loading_state && loading_state.is_loading) || undefined
                     }
@@ -926,15 +929,28 @@ AntdTable.propTypes = {
     // 记录表头各字段鼠标移出事件
     recentlyMouseLeaveColumn: PropTypes.string,
 
+    // 设置是否禁用行点击事件监听机制，用于解决譬如button+气泡确认卡片模式下的初次点击气泡卡片不弹出问题
+    // 默认为false
+    disabledRowListen: PropTypes.bool,
+
     // 记录表格数据行事件
     // 记录表格数据行点击事件
-    recentlyClickedRow: PropTypes.string,
+    recentlyClickedRow: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.number
+    ]),
 
     // 记录表格数据行鼠标移入事件
-    recentlyMouseEnterRow: PropTypes.string,
+    recentlyMouseEnterRow: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.number
+    ]),
 
     // 记录表格数据行鼠标移出事件
-    recentlyMouseLeaveRow: PropTypes.string,
+    recentlyMouseLeaveRow: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.number
+    ]),
 
     // 为每个title设置气泡卡片悬浮说明信息，格式如{字段1: {title: '标题内容', 'content': '说明内容巴拉巴拉巴拉'}}
     titlePopoverInfo: PropTypes.object,
@@ -1068,5 +1084,6 @@ AntdTable.defaultProps = {
     filterOptions: {},
     mode: 'client-side',
     nClicksButton: 0,
-    size: 'default'
+    size: 'default',
+    disabledRowListen: false
 }

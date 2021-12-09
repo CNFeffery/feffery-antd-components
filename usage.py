@@ -1,9 +1,10 @@
 import dash
 import time
+import json
 import numpy as np
 from dash import html, dcc
 import feffery_antd_components as fac
-from dash.dependencies import Input, Output
+from dash.dependencies import Input, Output, State
 
 import os
 from flask import request
@@ -42,12 +43,123 @@ def upload():
     return {'filename': filename}
 
 
+@app.callback(
+    [Output('table-button-click-demo-recentlyButtonClickedRow-output', 'children'),
+     Output('table-button-click-demo-nClicksButton-output', 'children'),
+     Output('table-button-click-demo-clickedContent-output', 'children')],
+    Input('table-button-click-demo', 'nClicksButton'),
+    [State('table-button-click-demo', 'recentlyButtonClickedRow'),
+     State('table-button-click-demo', 'clickedContent')],
+    prevent_initial_call=True
+)
+def table_button_click_demo_callback(nClicksButton, recentlyButtonClickedRow, clickedContent):
+    return str(nClicksButton), json.dumps(recentlyButtonClickedRow, ensure_ascii=False, indent=4), str(clickedContent)
+
+
 app.layout = html.Div(
     [
         dcc.Location(id='url'),
 
         fac.AntdSpin(
             html.Div(id='tree-demo-output'),
+            text='回调中'
+        ),
+
+        fac.AntdSpin(
+            [
+                fac.AntdTable(
+                    id='table-button-click-demo',
+                    disabledRowListen=True,
+                    columns=[
+                        {
+                            'title': '单按钮示例',
+                            'dataIndex': '单按钮示例',
+                            'renderOptions': {'renderType': 'button'},
+                            'width': '25%'
+                        },
+                        {
+                            'title': '多按钮示例',
+                            'dataIndex': '多按钮示例',
+                            'renderOptions': {'renderType': 'button'},
+                            'width': '50%'
+                        },
+                        {
+                            'title': '气泡确认按钮示例',
+                            'dataIndex': '气泡确认按钮示例',
+                            'renderOptions': {
+                                'renderType': 'button',
+                                'renderButtonPopConfirmProps': {
+                                    'title': '确认操作',
+                                    'okText': '继续',
+                                    'cancelText': '再想想'
+                                }
+                            },
+                            'width': '25%'
+                        }
+                    ],
+                    data=[
+                        {
+                            'key': i,
+                            '单按钮示例': {
+                                'content': '按钮示例',
+                                'type': 'primary'
+                            },
+                            '多按钮示例': [
+                                {
+                                    'content': '按钮示例1',
+                                    'type': 'primary'
+                                },
+                                {
+                                    'content': '按钮示例2',
+                                    'danger': True
+                                }
+                            ],
+                            '气泡确认按钮示例': {
+                                'content': '气泡确认按钮示例',
+                                'type': 'primary'
+                            }
+                        }
+                        for i in range(5)
+                    ],
+                    bordered=True,
+                    popupContainerId='docs-content'
+                ),
+
+                fac.AntdSpace(
+                    [
+                        html.Div(
+                            [
+                                fac.AntdText(
+                                    'recentlyButtonClickedRow：', strong=True),
+                                fac.AntdText(
+                                    id='table-button-click-demo-recentlyButtonClickedRow-output')
+                            ]
+                        ),
+                        html.Div(
+                            [
+                                fac.AntdText('nClicksButton：', strong=True),
+                                html.Pre(
+                                    id='table-button-click-demo-nClicksButton-output',
+                                    style={
+                                        'backgroundColor': 'rgb(250, 250, 250)'
+                                    }
+                                )
+                            ]
+                        ),
+                        html.Div(
+                            [
+                                fac.AntdText('clickedContent：', strong=True),
+                                fac.AntdText(
+                                    id='table-button-click-demo-clickedContent-output')
+                            ]
+                        )
+                    ],
+                    direction='vertical',
+                    style={
+                        'width': '100%'
+                    }
+                )
+            ],
             text='回调中'
         ),
 
