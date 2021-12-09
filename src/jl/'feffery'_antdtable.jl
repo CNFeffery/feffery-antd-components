@@ -35,7 +35,7 @@ Those elements have the following types:
   - `title_` (String; optional)s
 - `currentData` (Array; optional)
 - `data` (Array of Dicts; optional)
-- `disabledRowListen` (Bool; optional)
+- `disableRowListen` (Bool; optional)
 - `filter` (Dict; optional)
 - `filterOptions` (Dict; optional)
 - `loading_state` (optional): . loading_state has the following type: lists containing elements 'is_loading', 'prop_name', 'component_name'.
@@ -83,7 +83,7 @@ Those elements have the following types:
 - `titlePopoverInfo` (Dict; optional)
 """
 function 'feffery'_antdtable(; kwargs...)
-        available_props = Symbol[:id, :bordered, :className, :clickedContent, :columns, :currentData, :data, :disabledRowListen, :filter, :filterOptions, :loading_state, :maxHeight, :mode, :nClicksButton, :pagination, :popupContainerId, :recentlyButtonClickedRow, :recentlyChangedRow, :recentlyClickedColumn, :recentlyClickedRow, :recentlyMouseEnterColumn, :recentlyMouseEnterRow, :recentlyMouseLeaveColumn, :recentlyMouseLeaveRow, :rowSelectionType, :selectedRowKeys, :selectedRows, :size, :sortOptions, :sorter, :style, :titlePopoverInfo]
+        available_props = Symbol[:id, :bordered, :className, :clickedContent, :columns, :currentData, :data, :disableRowListen, :filter, :filterOptions, :loading_state, :maxHeight, :mode, :nClicksButton, :pagination, :popupContainerId, :recentlyButtonClickedRow, :recentlyChangedRow, :recentlyClickedColumn, :recentlyClickedRow, :recentlyMouseEnterColumn, :recentlyMouseEnterRow, :recentlyMouseLeaveColumn, :recentlyMouseLeaveRow, :rowSelectionType, :selectedRowKeys, :selectedRows, :size, :sortOptions, :sorter, :style, :titlePopoverInfo]
         wild_props = Symbol[]
         return Component("'feffery'_antdtable", "AntdTable", "feffery_antd_components", available_props, wild_props; kwargs...)
 end
