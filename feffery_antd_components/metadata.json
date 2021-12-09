@@ -7562,7 +7562,7 @@
         "required": false,
         "description": ""
       },
-      "disabledRowListen": {
+      "disableRowListen": {
         "type": {
           "name": "bool"
         },

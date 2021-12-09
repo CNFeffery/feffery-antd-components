@@ -69,7 +69,7 @@ app.layout = html.Div(
             [
                 fac.AntdTable(
                     id='table-button-click-demo',
-                    disabledRowListen=True,
+                    disableRowListen=True,
                     columns=[
                         {
                             'title': '单按钮示例',
