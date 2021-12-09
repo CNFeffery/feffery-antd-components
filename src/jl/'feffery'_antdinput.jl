@@ -12,6 +12,7 @@ Keyword arguments:
 - `addonAfter` (String; optional)
 - `addonBefore` (String; optional)
 - `allowClear` (Bool; optional)
+- `autoComplete` (Bool; optional)
 - `bordered` (Bool; optional)
 - `className` (String; optional)
 - `defaultValue` (String; optional)
@@ -32,7 +33,7 @@ Those elements have the following types:
 - `value` (String; optional)
 """
 function 'feffery'_antdinput(; kwargs...)
-        available_props = Symbol[:id, :addonAfter, :addonBefore, :allowClear, :bordered, :className, :defaultValue, :disabled, :loading_state, :maxLength, :mode, :nClicksSearch, :nSubmit, :placeholder, :showCount, :size, :style, :value]
+        available_props = Symbol[:id, :addonAfter, :addonBefore, :allowClear, :autoComplete, :bordered, :className, :defaultValue, :disabled, :loading_state, :maxLength, :mode, :nClicksSearch, :nSubmit, :placeholder, :showCount, :size, :style, :value]
         wild_props = Symbol[]
         return Component("'feffery'_antdinput", "AntdInput", "feffery_antd_components", available_props, wild_props; kwargs...)
 end

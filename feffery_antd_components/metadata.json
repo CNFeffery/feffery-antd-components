@@ -3204,6 +3204,13 @@
           "computed": false
         }
       },
+      "autoComplete": {
+        "type": {
+          "name": "bool"
+        },
+        "required": false,
+        "description": ""
+      },
       "placeholder": {
         "type": {
           "name": "string"

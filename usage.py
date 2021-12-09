@@ -287,7 +287,7 @@ app.layout = html.Div(
                     'title': '测试3'
                 }
             ],
-            buttonMode=True
+            buttonMode=False
         ),
 
         fac.AntdDivider(),
