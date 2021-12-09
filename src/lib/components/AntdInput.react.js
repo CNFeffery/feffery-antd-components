@@ -170,8 +170,8 @@ AntdInput.propTypes = {
     // 用于设置输入框功能模式类型，可选的有'default'、'search'、'text-area'、'password'，默认为'default'
     mode: PropTypes.oneOf(['default', 'search', 'text-area', 'password']),
 
-    // 设置是否允许自动补全，默认为true
-    autoComplete: PropTypes.bool,
+    // 设置是否允许自动补全，默认为'on'
+    autoComplete: PropTypes.oneOf(['off', 'on']),
 
     // 用于设置占位提示内容
     placeholder: PropTypes.string,

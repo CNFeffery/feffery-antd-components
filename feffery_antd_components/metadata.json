@@ -3206,7 +3206,17 @@
       },
       "autoComplete": {
         "type": {
-          "name": "bool"
+          "name": "enum",
+          "value": [
+            {
+              "value": "'off'",
+              "computed": false
+            },
+            {
+              "value": "'on'",
+              "computed": false
+            }
+          ]
         },
         "required": false,
         "description": ""
