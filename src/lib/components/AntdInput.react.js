@@ -24,6 +24,7 @@ export default class AntdInput extends Component {
             className,
             style,
             mode,
+            autoComplete,
             placeholder,
             value,
             size,
@@ -63,6 +64,7 @@ export default class AntdInput extends Component {
                     className={className}
                     style={style}
                     placeholder={placeholder}
+                    autoComplete={autoComplete}
                     value={value}
                     size={size}
                     addonBefore={addonBefore}
@@ -84,6 +86,7 @@ export default class AntdInput extends Component {
                     className={className}
                     style={style}
                     placeholder={placeholder}
+                    autoComplete={autoComplete}
                     size={size}
                     allowClear={allowClear}
                     bordered={bordered}
@@ -103,6 +106,7 @@ export default class AntdInput extends Component {
                     className={className}
                     style={style}
                     placeholder={placeholder}
+                    autoComplete={autoComplete}
                     size={size}
                     allowClear={allowClear}
                     bordered={bordered}
@@ -122,6 +126,7 @@ export default class AntdInput extends Component {
                     className={className}
                     style={style}
                     placeholder={placeholder}
+                    autoComplete={autoComplete}
                     size={size}
                     bordered={bordered}
                     disabled={disabled}
@@ -164,6 +169,9 @@ AntdInput.propTypes = {
 
     // 用于设置输入框功能模式类型，可选的有'default'、'search'、'text-area'、'password'，默认为'default'
     mode: PropTypes.oneOf(['default', 'search', 'text-area', 'password']),
+
+    // 设置是否允许自动补全，默认为true
+    autoComplete: PropTypes.bool,
 
     // 用于设置占位提示内容
     placeholder: PropTypes.string,
