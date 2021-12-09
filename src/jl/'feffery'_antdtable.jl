@@ -35,6 +35,7 @@ Those elements have the following types:
   - `title_` (String; optional)s
 - `currentData` (Array; optional)
 - `data` (Array of Dicts; optional)
+- `disabledRowListen` (Bool; optional)
 - `filter` (Dict; optional)
 - `filterOptions` (Dict; optional)
 - `loading_state` (optional): . loading_state has the following type: lists containing elements 'is_loading', 'prop_name', 'component_name'.
@@ -61,11 +62,11 @@ Those elements have the following types:
 - `recentlyButtonClickedRow` (Dict; optional)
 - `recentlyChangedRow` (Dict; optional)
 - `recentlyClickedColumn` (String; optional)
-- `recentlyClickedRow` (String; optional)
+- `recentlyClickedRow` (String | Real; optional)
 - `recentlyMouseEnterColumn` (String; optional)
-- `recentlyMouseEnterRow` (String; optional)
+- `recentlyMouseEnterRow` (String | Real; optional)
 - `recentlyMouseLeaveColumn` (String; optional)
-- `recentlyMouseLeaveRow` (String; optional)
+- `recentlyMouseLeaveRow` (String | Real; optional)
 - `rowSelectionType` (a value equal to: 'checkbox', 'radio'; optional)
 - `selectedRowKeys` (Array of Strings; optional)
 - `selectedRows` (Array; optional)
@@ -82,7 +83,7 @@ Those elements have the following types:
 - `titlePopoverInfo` (Dict; optional)
 """
 function 'feffery'_antdtable(; kwargs...)
-        available_props = Symbol[:id, :bordered, :className, :clickedContent, :columns, :currentData, :data, :filter, :filterOptions, :loading_state, :maxHeight, :mode, :nClicksButton, :pagination, :popupContainerId, :recentlyButtonClickedRow, :recentlyChangedRow, :recentlyClickedColumn, :recentlyClickedRow, :recentlyMouseEnterColumn, :recentlyMouseEnterRow, :recentlyMouseLeaveColumn, :recentlyMouseLeaveRow, :rowSelectionType, :selectedRowKeys, :selectedRows, :size, :sortOptions, :sorter, :style, :titlePopoverInfo]
+        available_props = Symbol[:id, :bordered, :className, :clickedContent, :columns, :currentData, :data, :disabledRowListen, :filter, :filterOptions, :loading_state, :maxHeight, :mode, :nClicksButton, :pagination, :popupContainerId, :recentlyButtonClickedRow, :recentlyChangedRow, :recentlyClickedColumn, :recentlyClickedRow, :recentlyMouseEnterColumn, :recentlyMouseEnterRow, :recentlyMouseLeaveColumn, :recentlyMouseLeaveRow, :rowSelectionType, :selectedRowKeys, :selectedRows, :size, :sortOptions, :sorter, :style, :titlePopoverInfo]
         wild_props = Symbol[]
         return Component("'feffery'_antdtable", "AntdTable", "feffery_antd_components", available_props, wild_props; kwargs...)
 end
