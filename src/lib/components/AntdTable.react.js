@@ -171,7 +171,7 @@ export default class AntdTable extends Component {
             mode,
             popupContainerId,
             nClicksButton,
-            disabledRowListen,
+            disableRowListen,
             loading_state
         } = this.props;
 
@@ -818,7 +818,7 @@ export default class AntdTable extends Component {
                         y: maxHeight ? maxHeight : 99999
                     }}
                     onChange={this.onPageChange}
-                    onRow={!disabledRowListen && (
+                    onRow={!disableRowListen && (
                         (record, index) => {
                             return {
                                 onClick: event => { setProps({ recentlyClickedRow: record.key }) }, // 点击行
@@ -931,7 +931,7 @@ AntdTable.propTypes = {
 
     // 设置是否禁用行点击事件监听机制，用于解决譬如button+气泡确认卡片模式下的初次点击气泡卡片不弹出问题
     // 默认为false
-    disabledRowListen: PropTypes.bool,
+    disableRowListen: PropTypes.bool,
 
     // 记录表格数据行事件
     // 记录表格数据行点击事件
@@ -1085,5 +1085,5 @@ AntdTable.defaultProps = {
     mode: 'client-side',
     nClicksButton: 0,
     size: 'default',
-    disabledRowListen: false
+    disableRowListen: false
 }
