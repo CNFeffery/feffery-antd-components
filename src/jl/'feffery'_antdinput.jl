@@ -12,7 +12,7 @@ Keyword arguments:
 - `addonAfter` (String; optional)
 - `addonBefore` (String; optional)
 - `allowClear` (Bool; optional)
-- `autoComplete` (Bool; optional)
+- `autoComplete` (a value equal to: 'off', 'on'; optional)
 - `bordered` (Bool; optional)
 - `className` (String; optional)
 - `defaultValue` (String; optional)

@@ -17,7 +17,7 @@ Keyword arguments:
 
 - allowClear (boolean; optional)
 
-- autoComplete (boolean; optional)
+- autoComplete (a value equal to: 'off', 'on'; optional)
 
 - bordered (boolean; optional)
 
