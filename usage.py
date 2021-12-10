@@ -9,6 +9,10 @@ from dash.dependencies import Input, Output, State
 import os
 from flask import request
 
+from faker import Faker
+
+faker = Faker(locale='zh_CN')
+
 
 app = dash.Dash(__name__)
 
@@ -63,6 +67,52 @@ app.layout = html.Div(
         fac.AntdSpin(
             html.Div(id='tree-demo-output'),
             text='回调中'
+        ),
+
+
+        fac.AntdTable(
+            columns=[
+                {
+                    'title': '国家名示例',
+                    'dataIndex': '国家名示例'
+                },
+                {
+                    'title': '省份名示例',
+                    'dataIndex': '省份名示例',
+                    'editable': True
+                },
+                {
+                    'title': '城市名示例',
+                    'dataIndex': '城市名示例'
+                },
+                {
+                    'title': '日期示例',
+                    'dataIndex': '日期示例'
+                },
+                {
+                    'title': '邮编示例',
+                    'dataIndex': '邮编示例',
+                    'editable': True
+                }
+            ],
+            data=[
+                {
+                    'key': i,
+                    '国家名示例': faker.country(),
+                    '省份名示例': faker.province(),
+                    '城市名示例': faker.city_name(),
+                    '日期示例': faker.date(pattern="%Y-%m-%d", end_datetime=None),
+                    '邮编示例': faker.postcode()
+                }
+                for i in range(10)
+            ],
+            disableRowListen=True,
+            columnsFormatConstraint={
+                '省份名示例': {
+                    'rule': '^[\u4e00-\u9fa5]+$',
+                    'content': '不符合纯汉字输入要求！'
+                }
+            }
         ),
 
         fac.AntdSpin(

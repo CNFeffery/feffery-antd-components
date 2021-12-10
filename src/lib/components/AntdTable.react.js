@@ -1,6 +1,6 @@
 import React, { Component, useContext, useState, useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
-import { Table, Tooltip, Popover, Popconfirm, ConfigProvider, Input, Form, Tag, Button, Space } from 'antd';
+import { Table, Tooltip, Popover, Popconfirm, ConfigProvider, Input, Form, Tag, Button, Space, message } from 'antd';
 import { TinyLine, TinyArea, TinyColumn, Progress } from '@ant-design/charts';
 import Highlighter from 'react-highlight-words';
 import { SearchOutlined, QuestionCircleOutlined } from '@ant-design/icons';
@@ -109,7 +109,6 @@ export default class AntdTable extends Component {
             ),
             filterIcon: filtered => <SearchOutlined style={{ color: filtered ? '#1890ff' : undefined }} />,
             onFilter: (value, record) => {
-                console.log({ value, record })
                 if (props.mode === 'client-side') {
                     return record[dataIndex]
                         ? record[dataIndex].toString().toLowerCase().includes(value.toLowerCase())
@@ -161,6 +160,7 @@ export default class AntdTable extends Component {
             columns,
             rowSelectionType,
             titlePopoverInfo,
+            columnsFormatConstraint,
             data,
             sortOptions,
             filterOptions,
@@ -251,6 +251,23 @@ export default class AntdTable extends Component {
                 const newData = [...dataSource];
                 const index = newData.findIndex((item) => row.key === item.key);
                 const item = newData[index];
+
+                const rowColumns = Object.getOwnPropertyNames(row)
+
+                // 循环取出属性名，再判断属性值是否一致
+                for (var i = 0; i < rowColumns.length; i++) {
+                    // 找到发生值修改的字段
+                    if (row[rowColumns[i]] !== item[rowColumns[i]] &&
+                        columnsFormatConstraint &&
+                        columnsFormatConstraint[rowColumns[i]] &&
+                        columnsFormatConstraint[rowColumns[i]].rule) {
+                        // 检查是否满足预设的正则表达式规则
+                        if (!eval(`/${columnsFormatConstraint[rowColumns[i]].rule}/`).test(row[rowColumns[i]])) {
+                            message.error(`编辑失败，${row[rowColumns[i]]} 输入${columnsFormatConstraint[rowColumns[i]]?.content || '不符合对应字段格式要求！'}`);
+                            return;
+                        }
+                    }
+                }
 
                 newData.splice(index, 1, { ...item, ...row });
 
@@ -954,6 +971,17 @@ AntdTable.propTypes = {
 
     // 为每个title设置气泡卡片悬浮说明信息，格式如{字段1: {title: '标题内容', 'content': '说明内容巴拉巴拉巴拉'}}
     titlePopoverInfo: PropTypes.object,
+
+    // 为每个字段设置基于【正则表达式】的格式约束，用于在“可编辑单元格”中约束新内容的写入
+    columnsFormatConstraint: PropTypes.objectOf(
+        PropTypes.exact({
+            // 设置对应字段的正则表达式规则
+            rule: PropTypes.string,
+
+            // 设置自定义错误提示内容，默认为'不符合纯汉字输入要求！'
+            content: PropTypes.string
+        })
+    ),
 
     // 定义与columns匹配的行记录数组
     data: PropTypes.arrayOf(PropTypes.object),

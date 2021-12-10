@@ -7625,6 +7625,26 @@
         "required": false,
         "description": ""
       },
+      "columnsFormatConstraint": {
+        "type": {
+          "name": "objectOf",
+          "value": {
+            "name": "exact",
+            "value": {
+              "rule": {
+                "name": "string",
+                "required": false
+              },
+              "content": {
+                "name": "string",
+                "required": false
+              }
+            }
+          }
+        },
+        "required": false,
+        "description": ""
+      },
       "data": {
         "type": {
           "name": "arrayOf",

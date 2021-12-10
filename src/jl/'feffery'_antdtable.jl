@@ -33,6 +33,10 @@ Those elements have the following types:
   - `sorter` (Bool | Real | String | Dict | Array; optional)
   - `render` (Bool | Real | String | Dict | Array; optional)
   - `title_` (String; optional)s
+- `columnsFormatConstraint` (optional): . columnsFormatConstraint has the following type: Dict with Strings as keys and values of type lists containing elements 'rule', 'content'.
+Those elements have the following types:
+  - `rule` (String; optional)
+  - `content` (String; optional)
 - `currentData` (Array; optional)
 - `data` (Array of Dicts; optional)
 - `disableRowListen` (Bool; optional)
@@ -83,7 +87,7 @@ Those elements have the following types:
 - `titlePopoverInfo` (Dict; optional)
 """
 function 'feffery'_antdtable(; kwargs...)
-        available_props = Symbol[:id, :bordered, :className, :clickedContent, :columns, :currentData, :data, :disableRowListen, :filter, :filterOptions, :loading_state, :maxHeight, :mode, :nClicksButton, :pagination, :popupContainerId, :recentlyButtonClickedRow, :recentlyChangedRow, :recentlyClickedColumn, :recentlyClickedRow, :recentlyMouseEnterColumn, :recentlyMouseEnterRow, :recentlyMouseLeaveColumn, :recentlyMouseLeaveRow, :rowSelectionType, :selectedRowKeys, :selectedRows, :size, :sortOptions, :sorter, :style, :titlePopoverInfo]
+        available_props = Symbol[:id, :bordered, :className, :clickedContent, :columns, :columnsFormatConstraint, :currentData, :data, :disableRowListen, :filter, :filterOptions, :loading_state, :maxHeight, :mode, :nClicksButton, :pagination, :popupContainerId, :recentlyButtonClickedRow, :recentlyChangedRow, :recentlyClickedColumn, :recentlyClickedRow, :recentlyMouseEnterColumn, :recentlyMouseEnterRow, :recentlyMouseLeaveColumn, :recentlyMouseLeaveRow, :rowSelectionType, :selectedRowKeys, :selectedRows, :size, :sortOptions, :sorter, :style, :titlePopoverInfo]
         wild_props = Symbol[]
         return Component("'feffery'_antdtable", "AntdTable", "feffery_antd_components", available_props, wild_props; kwargs...)
 end
