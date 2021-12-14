@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Slider } from 'antd';
 import 'antd/dist/antd.css';
 
-// 定义滑动输入条部件AntdSlider，api参数参考https://ant.design/components/slider-cn/
+// 定义滑动输入条组件AntdSlider，api参数参考https://ant.design/components/slider-cn/
 export default class AntdSlider extends Component {
 
     constructor(props) {
@@ -61,7 +61,7 @@ export default class AntdSlider extends Component {
             setProps({ value: value })
         }
 
-        // 返回定制化的前端部件
+        // 返回定制化的前端组件
         return (
             <Slider
                 id={id}
@@ -88,7 +88,7 @@ export default class AntdSlider extends Component {
 
 // 定义参数或属性
 AntdSlider.propTypes = {
-    // 部件id
+    // 组件id
     id: PropTypes.string,
 
     // css类名
@@ -102,7 +102,7 @@ AntdSlider.propTypes = {
         PropTypes.number, PropTypes.arrayOf(PropTypes.number)
     ]),
 
-    // 设置是否禁用整个部件
+    // 设置是否禁用整个组件
     disabled: PropTypes.bool,
 
     // 是否以范围形式进行渲染

@@ -10,7 +10,7 @@ const parseChildrenToArray = children => {
     return children;
 };
 
-// 定义卡片部件AntdCard，api参数参考https://ant.design/components/card-cn/
+// 定义卡片组件AntdCard，api参数参考https://ant.design/components/card-cn/
 export default class AntdCard extends Component {
     render() {
         // 取得必要属性或参数
@@ -63,7 +63,7 @@ export default class AntdCard extends Component {
 
 // 定义参数或属性
 AntdCard.propTypes = {
-    // 部件id
+    // 组件id
     id: PropTypes.string,
 
     /**

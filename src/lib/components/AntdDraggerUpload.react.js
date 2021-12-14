@@ -10,7 +10,7 @@ const uuid = uuidv4();
 
 const { Dragger } = Upload;
 
-// 定义文件拖拽上传部件AntdDraggerUpload，api参数参考https://ant.design/components/upload-cn/
+// 定义文件拖拽上传组件AntdDraggerUpload，api参数参考https://ant.design/components/upload-cn/
 const AntdDraggerUpload = (props) => {
 
     // 取得必要属性或参数
@@ -115,7 +115,7 @@ const AntdDraggerUpload = (props) => {
         Object.assign(uploadProps, { accept: '.' + fileTypes.join(',.') })
     }
 
-    // 返回定制化的前端部件
+    // 返回定制化的前端组件
     return (
         <ConfigProvider locale={zhCN}>
             <div id={id}
@@ -144,7 +144,7 @@ const AntdDraggerUpload = (props) => {
 
 // 定义参数或属性
 AntdDraggerUpload.propTypes = {
-    // 部件id
+    // 组件id
     id: PropTypes.string,
 
     // css类名

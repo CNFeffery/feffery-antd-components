@@ -74,6 +74,168 @@ app.layout = html.Div(
     [
         dcc.Location(id="url"),
         fac.AntdSpin(html.Div(id="tree-demo-output"), text="回调中"),
+
+        fac.AntdComment(
+            fac.AntdComment(
+                fac.AntdComment(
+                    fac.AntdComment(
+                        fac.AntdComment(
+                            fac.AntdComment(
+                                fac.AntdComment(
+                                    fac.AntdComment(
+                                        fac.AntdComment(
+                                            authorName='Feffery',
+                                            fromNow=True,
+                                            publishTime={
+                                                'value': '2019-01-01 12:02:19'
+                                            },
+                                            commentContent='很期待fac第一个正式版本的发布😇！',
+                                            likesCount=665,
+                                            avatarProps={
+                                                'mode': 'image',
+                                                'src': 'https://avatars.githubusercontent.com/u/49147660?v=4'
+                                            }
+                                        ),
+                                        authorName='Feffery',
+                                        fromNow=True,
+                                        publishTime={
+                                            'value': '2019-01-01 12:02:19'
+                                        },
+                                        commentContent='很期待fac第一个正式版本的发布😇！',
+                                        likesCount=665,
+                                        avatarProps={
+                                            'mode': 'image',
+                                            'src': 'https://avatars.githubusercontent.com/u/49147660?v=4'
+                                        }
+                                    ),
+                                    authorName='Feffery',
+                                    fromNow=True,
+                                    publishTime={
+                                        'value': '2019-01-01 12:02:19'
+                                    },
+                                    commentContent='很期待fac第一个正式版本的发布😇！',
+                                    likesCount=665,
+                                    avatarProps={
+                                        'mode': 'image',
+                                        'src': 'https://avatars.githubusercontent.com/u/49147660?v=4'
+                                    }
+                                ),
+                                authorName='Feffery',
+                                fromNow=True,
+                                publishTime={
+                                    'value': '2019-01-01 12:02:19'
+                                },
+                                commentContent='很期待fac第一个正式版本的发布😇！',
+                                likesCount=665,
+                                avatarProps={
+                                    'mode': 'image',
+                                    'src': 'https://avatars.githubusercontent.com/u/49147660?v=4'
+                                }
+                            ),
+                            authorName='Feffery',
+                            fromNow=True,
+                            publishTime={
+                                'value': '2019-01-01 12:02:19'
+                            },
+                            commentContent='很期待fac第一个正式版本的发布😇！',
+                            likesCount=665,
+                            avatarProps={
+                                'mode': 'image',
+                                'src': 'https://avatars.githubusercontent.com/u/49147660?v=4'
+                            }
+                        ),
+                        authorName='Feffery',
+                        fromNow=True,
+                        publishTime={
+                            'value': '2019-01-01 12:02:19'
+                        },
+                        commentContent='很期待fac第一个正式版本的发布😇！',
+                        likesCount=665,
+                        avatarProps={
+                            'mode': 'image',
+                            'src': 'https://avatars.githubusercontent.com/u/49147660?v=4'
+                        }
+                    ),
+                    authorName='Feffery',
+                    fromNow=True,
+                    publishTime={
+                        'value': '2019-01-01 12:02:19'
+                    },
+                    commentContent='很期待fac第一个正式版本的发布😇！',
+                    likesCount=665,
+                    avatarProps={
+                        'mode': 'image',
+                        'src': 'https://avatars.githubusercontent.com/u/49147660?v=4'
+                    }
+                ),
+                authorName='Feffery',
+                fromNow=True,
+                publishTime={
+                    'value': '2019-01-01 12:02:19'
+                },
+                commentContent='很期待fac第一个正式版本的发布😇！',
+                likesCount=665,
+                avatarProps={
+                    'mode': 'image',
+                    'src': 'https://avatars.githubusercontent.com/u/49147660?v=4'
+                }
+            ),
+            authorName='Feffery',
+            fromNow=True,
+            publishTime={
+                'value': '2019-01-01 12:02:19'
+            },
+            commentContent='很期待fac第一个正式版本的发布😇！',
+            likesCount=665,
+            avatarProps={
+                'mode': 'image',
+                'src': 'https://avatars.githubusercontent.com/u/49147660?v=4'
+            }
+        ),
+
+        html.Div(
+            fac.AntdCalendar(
+                size='default',
+                validRange=[
+                    {
+                        'value': '1900-01-01'
+                    },
+                    {
+                        'value': '2100-01-01'
+                    }
+                ],
+                disabledDates={
+                    'dates': ['2021-12-08', '2021-12-18']
+                },
+                defaultValue={
+                    'value': '1999-12-01'
+                }
+            ),
+            style={
+                'width': '300px'
+            }
+        ),
+        fac.AntdPageHeader(
+            [
+                html.Div(
+                    fac.AntdDraggerUpload(
+                        apiUrl="/upload/",
+                        fileMaxSize=1024,
+                        text="点击此区域或拖动文件到此进行上传",
+                        fileTypes=["zip"],
+                        hint="请注意上传文件大小需低于1GB！",
+                        style={"height": "100%"},
+                    ),
+                    style={"height": "500px"},
+                ),
+            ],
+            title="标题测试",
+            subTitle="副标题测试",
+            showBackIcon=False,
+            style={
+                "border": "1px solid rgb(235, 237, 240)"
+            },
+        ),
         fac.AntdImage(
             src=[
                 "https://gw.alipayobjects.com/zos/rmsportal/KDpgvguMpGfqaHPjicRK.svg",
@@ -167,7 +329,8 @@ app.layout = html.Div(
                     [
                         html.Div(
                             [
-                                fac.AntdText("recentlyButtonClickedRow：", strong=True),
+                                fac.AntdText(
+                                    "recentlyButtonClickedRow：", strong=True),
                                 fac.AntdText(
                                     id="table-button-click-demo-recentlyButtonClickedRow-output"
                                 ),
@@ -178,7 +341,8 @@ app.layout = html.Div(
                                 fac.AntdText("nClicksButton：", strong=True),
                                 html.Pre(
                                     id="table-button-click-demo-nClicksButton-output",
-                                    style={"backgroundColor": "rgb(250, 250, 250)"},
+                                    style={
+                                        "backgroundColor": "rgb(250, 250, 250)"},
                                 ),
                             ]
                         ),
@@ -245,7 +409,8 @@ app.layout = html.Div(
             [
                 fac.AntdCardGrid(
                     f"网格{i+1}",
-                    style={"width": "25%", "textAlign": "center", "height": "200px"},
+                    style={"width": "25%", "textAlign": "center",
+                           "height": "200px"},
                 )
                 for i in range(20)
             ],
@@ -253,7 +418,8 @@ app.layout = html.Div(
         ),
         fac.AntdTable(
             id="antd-table-test-input",
-            columns=[{"title": f"字段{i}", "dataIndex": f"字段{i}"} for i in range(1, 6)],
+            columns=[{"title": f"字段{i}", "dataIndex": f"字段{i}"}
+                     for i in range(1, 6)],
             data=[
                 {f"字段{i}": np.random.randint(1, 5) for i in range(1, 6)}
                 for _ in range(100)
@@ -295,7 +461,8 @@ app.layout = html.Div(
             effect="fade",
             style={"marginTop": "100px"},
         ),
-        fac.AntdTimeRangePicker(placeholderStart="开始时间", placeholderEnd="结束时间"),
+        fac.AntdTimeRangePicker(placeholderStart="开始时间",
+                                placeholderEnd="结束时间"),
         fac.AntdTimePicker(placeholder="请选择时间"),
         fac.AntdSkeleton(
             html.Div(id="skeleton-dev-demo"),
@@ -358,7 +525,8 @@ app.layout = html.Div(
         ),
         fac.AntdRibbon(
             html.Div(
-                style={"backgroundColor": "rgb(231, 231, 231)", "height": "400px"}
+                style={
+                    "backgroundColor": "rgb(231, 231, 231)", "height": "400px"}
             ),
             color="rgb(24, 144, 255)",
             text="缎带测试",

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Form } from 'antd';
 import 'antd/dist/antd.css';
 
-// 定义表单部件AntdForm，api参数参考https://ant.design/components/form-cn/
+// 定义表单组件AntdForm，api参数参考https://ant.design/components/form-cn/
 export default class AntdForm extends Component {
     render() {
         // 取得必要属性或参数
@@ -41,7 +41,7 @@ export default class AntdForm extends Component {
 
 // 定义参数或属性
 AntdForm.propTypes = {
-    // 部件id
+    // 组件id
     id: PropTypes.string,
 
     /**

@@ -12,7 +12,7 @@ const parseChildrenToArray = children => {
     return children;
 };
 
-// 定义侧边栏部件AntdSider，api参数参考https://ant.design/components/layout-cn/
+// 定义侧边栏组件AntdSider，api参数参考https://ant.design/components/layout-cn/
 export default class AntdSider extends Component {
     render() {
         // 取得必要属性或参数
@@ -65,7 +65,7 @@ export default class AntdSider extends Component {
 
 // 定义参数或属性
 AntdSider.propTypes = {
-    // 部件id
+    // 组件id
     id: PropTypes.string,
 
     /**

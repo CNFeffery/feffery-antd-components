@@ -4,7 +4,7 @@ import { Pagination, ConfigProvider } from 'antd';
 import zhCN from 'antd/lib/locale/zh_CN';
 import 'antd/dist/antd.css';
 
-// 定义分页部件AntdPagination，api参数参考https://ant.design/components/pagination-cn/
+// 定义分页组件AntdPagination，api参数参考https://ant.design/components/pagination-cn/
 export default class AntdPagination extends Component {
 
     constructor(props) {
@@ -55,7 +55,7 @@ export default class AntdPagination extends Component {
             return (showTotalPrefix ? showTotalPrefix : "共有记录") + ' ' + e.toString() + ' ' + (showTotalSuffix ? showTotalSuffix : "条")
         }
 
-        // 返回定制化的前端部件
+        // 返回定制化的前端组件
         return (
             <ConfigProvider locale={zhCN}>
                 <Pagination
@@ -87,7 +87,7 @@ export default class AntdPagination extends Component {
 
 // 定义参数或属性
 AntdPagination.propTypes = {
-    // 部件id
+    // 组件id
     id: PropTypes.string,
 
     // css类名

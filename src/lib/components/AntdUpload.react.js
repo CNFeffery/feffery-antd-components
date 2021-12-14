@@ -8,7 +8,7 @@ import 'antd/dist/antd.css';
 
 const uuid = uuidv4();
 
-// 定义文件上传部件AntdUpload，api参数参考https://ant.design/components/upload-cn/
+// 定义文件上传组件AntdUpload，api参数参考https://ant.design/components/upload-cn/
 const AntdUpload = (props) => {
 
     // 取得必要属性或参数
@@ -113,7 +113,7 @@ const AntdUpload = (props) => {
         Object.assign(uploadProps, { accept: '.' + fileTypes.join(',.') })
     }
 
-    // 返回定制化的前端部件
+    // 返回定制化的前端组件
     return (
         <ConfigProvider locale={zhCN}>
             <Upload {...uploadProps}
@@ -135,7 +135,7 @@ const AntdUpload = (props) => {
 
 // 定义参数或属性
 AntdUpload.propTypes = {
-    // 部件id
+    // 组件id
     id: PropTypes.string,
 
     // css类名

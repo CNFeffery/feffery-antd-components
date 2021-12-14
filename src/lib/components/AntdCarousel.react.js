@@ -39,7 +39,7 @@ export default class AntdCarousel extends Component {
 
 // 定义参数或属性
 AntdCarousel.propTypes = {
-    // 部件id
+    // 组件id
     id: PropTypes.string,
 
     // 可选，传入走马灯内各元素所组成的数组

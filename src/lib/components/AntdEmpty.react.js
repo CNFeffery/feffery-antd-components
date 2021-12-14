@@ -4,7 +4,7 @@ import { Empty, ConfigProvider } from 'antd';
 import zhCN from 'antd/lib/locale/zh_CN';
 import 'antd/dist/antd.css';
 
-// 定义空状态部件AntdEmpty，api参数参考https://ant.design/components/empty-cn/
+// 定义空状态组件AntdEmpty，api参数参考https://ant.design/components/empty-cn/
 export default class AntdEmpty extends Component {
     render() {
         // 取得必要属性或参数
@@ -37,7 +37,7 @@ export default class AntdEmpty extends Component {
 
 // 定义参数或属性
 AntdEmpty.propTypes = {
-    // 部件id
+    // 组件id
     id: PropTypes.string,
 
     // css类名

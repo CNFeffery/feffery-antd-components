@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Affix } from 'antd';
+import { PageHeader } from 'antd';
 import 'antd/dist/antd.css';
 
 const parseChildrenToArray = children => {
@@ -10,18 +10,20 @@ const parseChildrenToArray = children => {
     return children;
 };
 
-// 定义固钉组件AntdAffix，api参数参考https://ant.design/components/affix-cn/
-export default class AntdAffix extends Component {
+// 定义页头组件AntdPageHeader，api参数参考https://ant.design/components/page-header-cn/
+export default class AntdPageHeader extends Component {
     render() {
         // 取得必要属性或参数
         let {
             id,
+            children,
             className,
             style,
-            children,
-            offsetBottom,
-            offsetTop,
-            target,
+            title,
+            subTitle,
+            showBackIcon,
+            backClicks,
+            ghost,
             setProps,
             loading_state
         } = this.props;
@@ -29,27 +31,31 @@ export default class AntdAffix extends Component {
         children = parseChildrenToArray(children)
 
         return (
-            <Affix id={id}
+            <PageHeader id={id}
                 className={className}
                 style={style}
-                offsetBottom={offsetBottom}
-                offsetTop={offsetTop}
-                target={() => target ? document.getElementById(target) : window}
+                title={title}
+                subTitle={subTitle}
+                backIcon={showBackIcon ? undefined : false}
+                ghost={ghost}
+                onBack={() => setProps({ backClicks: backClicks + 1 })}
                 data-dash-is-loading={
                     (loading_state && loading_state.is_loading) || undefined
-                }
-            >
+                }>
                 {children}
-            </Affix>
+            </PageHeader>
         );
     }
 }
 
 // 定义参数或属性
-AntdAffix.propTypes = {
+AntdPageHeader.propTypes = {
     // 组件id
     id: PropTypes.string,
 
+    /**
+     * The content of the tab - will only be displayed if this tab is selected
+     */
     children: PropTypes.node,
 
     // css类名
@@ -58,16 +64,20 @@ AntdAffix.propTypes = {
     // 自定义css字典
     style: PropTypes.object,
 
-    // 设置固钉在用户滚动页面后距离窗口底部的阈值
-    // 到达这个阈值后会触发固钉的锚定页面功能
-    offsetBottom: PropTypes.number,
+    // 设置标题内容
+    title: PropTypes.string,
 
-    // 设置固钉在用户滚动页面后距离窗口顶部的阈值
-    // 到达这个阈值后会触发固钉的锚定页面功能
-    offsetTop: PropTypes.number,
+    // 设置副标题内容
+    subTitle: PropTypes.string,
 
-    // 设置固钉监听滚动事件对应的容器元素id信息
-    target: PropTypes.string,
+    // 设置是否展示返回按钮，默认为true
+    showBackIcon: PropTypes.bool,
+
+    // 监听返回按钮被点击次数
+    backClicks: PropTypes.number,
+
+    // 设置是否开启透明背景模式，默认为true
+    ghost: PropTypes.bool,
 
     loading_state: PropTypes.shape({
         /**
@@ -92,5 +102,6 @@ AntdAffix.propTypes = {
 };
 
 // 设置默认参数
-AntdAffix.defaultProps = {
+AntdPageHeader.defaultProps = {
+    backClicks: 0
 }

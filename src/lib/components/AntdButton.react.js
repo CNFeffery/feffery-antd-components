@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Button } from 'antd';
 import 'antd/dist/antd.css';
 
-// 定义分割线部件AntdButton，api参数参考https://ant.design/components/button-cn/
+// 定义分割线组件AntdButton，api参数参考https://ant.design/components/button-cn/
 export default class AntdButton extends Component {
     render() {
         // 取得必要属性或参数
@@ -33,7 +33,7 @@ export default class AntdButton extends Component {
             setProps({ nClicks: nClicks })
         }
 
-        // 返回定制化的前端部件
+        // 返回定制化的前端组件
         return (
             <Button
                 id={id}
@@ -59,7 +59,7 @@ export default class AntdButton extends Component {
 
 // 定义参数或属性
 AntdButton.propTypes = {
-    // 部件id
+    // 组件id
     id: PropTypes.string,
 
     // 内嵌文字的文本内容

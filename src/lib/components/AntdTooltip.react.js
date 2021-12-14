@@ -10,7 +10,7 @@ const parseChildrenToArray = children => {
     return children;
 };
 
-// 定义布局部件Tooltip，api参数参考https://ant.design/components/tooltip-cn/
+// 定义布局组件Tooltip，api参数参考https://ant.design/components/tooltip-cn/
 export default class AntdTooltip extends Component {
     render() {
         // 取得必要属性或参数
@@ -60,7 +60,7 @@ export default class AntdTooltip extends Component {
 
 // 定义参数或属性
 AntdTooltip.propTypes = {
-    // 部件id
+    // 组件id
     id: PropTypes.string,
 
     children: PropTypes.node,

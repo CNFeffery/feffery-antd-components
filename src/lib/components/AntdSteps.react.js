@@ -5,7 +5,7 @@ import 'antd/dist/antd.css';
 
 const { Step } = Steps;
 
-// 定义步骤条部件AntdSteps，api参数参考https://ant.design/components/steps-cn/
+// 定义步骤条组件AntdSteps，api参数参考https://ant.design/components/steps-cn/
 export default class AntdSteps extends Component {
     render() {
         // 取得必要属性或参数
@@ -55,7 +55,7 @@ export default class AntdSteps extends Component {
 
 // 定义参数或属性
 AntdSteps.propTypes = {
-    // 部件id
+    // 组件id
     id: PropTypes.string,
 
     // css类名

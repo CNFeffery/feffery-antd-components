@@ -12,7 +12,7 @@ const parseChildrenToArray = children => {
     return children;
 };
 
-// 定义折叠面板部件AntdCollapse，api参数参考https://ant.design/components/steps-cn/
+// 定义折叠面板组件AntdCollapse，api参数参考https://ant.design/components/steps-cn/
 export default class AntdCollapse extends Component {
     render() {
         // 取得必要属性或参数
@@ -59,7 +59,7 @@ export default class AntdCollapse extends Component {
 
 // 定义参数或属性
 AntdCollapse.propTypes = {
-    // 部件id
+    // 组件id
     id: PropTypes.string,
 
     children: PropTypes.node,

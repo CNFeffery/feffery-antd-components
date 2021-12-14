@@ -6,7 +6,7 @@ import 'antd/dist/antd.css';
 
 const { SHOW_ALL } = TreeSelect;
 
-// 定义树选择部件AntdTreeSelect，api参数参考https://ant.design/components/tree-select-cn/
+// 定义树选择组件AntdTreeSelect，api参数参考https://ant.design/components/tree-select-cn/
 export default class AntdTreeSelect extends Component {
 
     constructor(props) {
@@ -56,7 +56,7 @@ export default class AntdTreeSelect extends Component {
 
         }
 
-        // 返回定制化的前端部件
+        // 返回定制化的前端组件
         return (
             <ConfigProvider locale={zhCN}>
                 <TreeSelect
@@ -125,7 +125,7 @@ const treeDataPropTypes = PropTypes.arrayOf(PropTreeNode);
 
 // 定义参数或属性
 AntdTreeSelect.propTypes = {
-    // 部件id
+    // 组件id
     id: PropTypes.string,
 
     // css类名

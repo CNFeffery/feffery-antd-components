@@ -8,7 +8,7 @@ import zhCN from 'antd/lib/locale/zh_CN';
 import 'antd/dist/antd.css';
 import './styles.css'
 
-// 定义表格部件AntdTable，部分api参数参考https://ant.design/components/table-cn/
+// 定义表格组件AntdTable，部分api参数参考https://ant.design/components/table-cn/
 export default class AntdTable extends Component {
 
     constructor(props) {
@@ -734,7 +734,7 @@ export default class AntdTable extends Component {
             }
         }
 
-        // 配置自定义部件
+        // 配置自定义组件
         const components = {
             body: {
                 row: EditableRow,
@@ -856,7 +856,7 @@ export default class AntdTable extends Component {
 
 // 定义参数或属性
 AntdTable.propTypes = {
-    // 部件id
+    // 组件id
     id: PropTypes.string,
 
     // css类名
@@ -1005,7 +1005,7 @@ AntdTable.propTypes = {
         PropTypes.bool,
         PropTypes.exact({
 
-            // 设置分页部件的位置，可选项有'topLeft'、'topCenter'、'topRight'、'bottomLeft'、'bottomCenter'以及'bottomRight'
+            // 设置分页组件的位置，可选项有'topLeft'、'topCenter'、'topRight'、'bottomLeft'、'bottomCenter'以及'bottomRight'
             position: PropTypes.oneOf([
                 'topLeft', 'topCenter', 'topRight', 'bottomLeft', 'bottomCenter', 'bottomRight'
             ]),
@@ -1043,7 +1043,7 @@ AntdTable.propTypes = {
     // 设置是否为单元格添加边框线，默认为False
     bordered: PropTypes.bool,
 
-    // 设置部件最大高度，每页超出部分将自动转换为竖向滑动浏览方式
+    // 设置组件最大高度，每页超出部分将自动转换为竖向滑动浏览方式
     maxHeight: PropTypes.number,
 
     // 经过修改操作后，当前状态下最新的dataSource数据

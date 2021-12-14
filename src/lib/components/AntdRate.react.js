@@ -51,7 +51,7 @@ export default class AntdRate extends Component {
 
 // 定义参数或属性
 AntdRate.propTypes = {
-    // 部件id
+    // 组件id
     id: PropTypes.string,
 
     // css类名

@@ -7,7 +7,7 @@ import 'antd/dist/antd.css';
 
 const { RangePicker } = DatePicker;
 
-// 定义日期范围选择部件AntdDateRangePicker，api参数参考https://ant.design/components/date-picker-cn/
+// 定义日期范围选择组件AntdDateRangePicker，api参数参考https://ant.design/components/date-picker-cn/
 export default class AntdDateRangePicker extends Component {
     render() {
         // 取得必要属性或参数
@@ -43,7 +43,7 @@ export default class AntdDateRangePicker extends Component {
         }
 
         if (typeof placeholderStart == typeof undefined && typeof placeholderEnd == typeof undefined) {
-            // 返回定制化的前端部件
+            // 返回定制化的前端组件
             return (
                 <div>
                     <ConfigProvider locale={zhCN}>
@@ -71,7 +71,7 @@ export default class AntdDateRangePicker extends Component {
             );
         }
 
-        // 返回定制化的前端部件
+        // 返回定制化的前端组件
         return (
             <div>
                 <ConfigProvider locale={zhCN}>
@@ -102,7 +102,7 @@ export default class AntdDateRangePicker extends Component {
 
 // 定义参数或属性
 AntdDateRangePicker.propTypes = {
-    // 部件id
+    // 组件id
     id: PropTypes.string,
 
     // css类名

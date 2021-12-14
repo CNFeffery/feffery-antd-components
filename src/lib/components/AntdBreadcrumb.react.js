@@ -59,7 +59,7 @@ export default class AntdBreadcrumb extends Component {
 
 // 定义参数或属性
 AntdBreadcrumb.propTypes = {
-    // 部件id
+    // 组件id
     id: PropTypes.string,
 
     // css类名

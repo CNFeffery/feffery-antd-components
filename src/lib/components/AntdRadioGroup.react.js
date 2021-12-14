@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Radio, Space } from 'antd';
 import 'antd/dist/antd.css';
 
-// 定义单选框部件AntdRadio，api参数参考https://ant.design/components/radio-cn/
+// 定义单选框组件AntdRadio，api参数参考https://ant.design/components/radio-cn/
 export default class AntdRadioGroup extends Component {
 
     constructor(props) {
@@ -37,7 +37,7 @@ export default class AntdRadioGroup extends Component {
 
         if (direction === 'vertical') {
 
-            // 返回定制化的前端部件
+            // 返回定制化的前端组件
             return (
                 <Radio.Group
                     id={id}
@@ -64,7 +64,7 @@ export default class AntdRadioGroup extends Component {
             );
         }
 
-        // 返回定制化的前端部件
+        // 返回定制化的前端组件
         return (
             <Radio.Group
                 id={id}
@@ -89,7 +89,7 @@ export default class AntdRadioGroup extends Component {
 
 // 定义参数或属性
 AntdRadioGroup.propTypes = {
-    // 部件id
+    // 组件id
     id: PropTypes.string,
 
     // css类名

@@ -60,7 +60,7 @@ export default class AntdTimeline extends Component {
 
 // 定义参数或属性
 AntdTimeline.propTypes = {
-    // 部件id
+    // 组件id
     id: PropTypes.string,
 
     // css类名

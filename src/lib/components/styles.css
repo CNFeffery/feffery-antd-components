@@ -47,6 +47,12 @@
     height: 100%!important;
 }
 
-/* .ant-tree-show-line .ant-tree-switcher-line-icon {
-    vertical-align: -0.125em!important;
-} */
+.comment-action {
+    padding-left: 8px;
+    cursor: 'auto';
+  }
+  
+  [class*='-col-rtl'] .comment-action {
+    padding-right: 8px;
+    padding-left: 0;
+  }

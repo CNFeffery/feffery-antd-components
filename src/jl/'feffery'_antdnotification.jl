@@ -22,7 +22,7 @@ Those elements have the following types:
 - `placement` (a value equal to: 'topLeft', 'topRight', 'bottomLeft', 'bottomRight'; optional)
 - `style` (Dict; optional)
 - `top` (Real; optional)
-- `type` (optional)
+- `type` (a value equal to: 'default', 'success', 'error', 'info', 'warning'; optional)
 """
 function 'feffery'_antdnotification(; kwargs...)
         available_props = Symbol[:id, :bottom, :className, :description, :duration, :loading_state, :message, :placement, :style, :top, :type]

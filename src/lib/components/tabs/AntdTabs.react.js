@@ -33,7 +33,7 @@ const resolveChildProps = child => {
     }
 };
 
-// 定义标签页部件AntdTabs，api参数参考https://ant.design/components/tabs-cn/
+// 定义标签页组件AntdTabs，api参数参考https://ant.design/components/tabs-cn/
 export default class AntdTabs extends Component {
 
     constructor(props) {
@@ -163,7 +163,7 @@ export default class AntdTabs extends Component {
 
 // 定义参数或属性
 AntdTabs.propTypes = {
-    // 部件id
+    // 组件id
     id: PropTypes.string,
 
     /**

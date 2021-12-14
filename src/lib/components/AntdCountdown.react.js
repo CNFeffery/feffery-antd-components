@@ -58,7 +58,7 @@ export default class AntdCountdown extends Component {
 
 // 定义参数或属性
 AntdCountdown.propTypes = {
-    // 部件id
+    // 组件id
     id: PropTypes.string,
 
     // css类名

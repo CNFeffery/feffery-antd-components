@@ -6,7 +6,7 @@ import 'antd/dist/antd.css';
 
 const { Link } = Anchor;
 
-// 定义分割线部件AntdAnchor，api参数参考https://ant.design/components/anchor-cn/
+// 定义分割线组件AntdAnchor，api参数参考https://ant.design/components/anchor-cn/
 export default class AntdAnchor extends Component {
     render() {
         // 取得必要属性或参数
@@ -101,7 +101,7 @@ const linkDictPropTypes = PropTypes.arrayOf(PropLinkNode);
 
 // 定义参数或属性
 AntdAnchor.propTypes = {
-    // 部件id
+    // 组件id
     id: PropTypes.string,
 
     // css类名
@@ -113,7 +113,7 @@ AntdAnchor.propTypes = {
     // 用于构造目录层次结构的json字典
     linkDict: linkDictPropTypes.isRequired,
 
-    // 控制锚点部件位置，'left'代表靠左侧，'right'代表靠右侧，默认为'right'
+    // 控制锚点组件位置，'left'代表靠左侧，'right'代表靠右侧，默认为'right'
     align: PropTypes.oneOf(['left', 'right']),
 
     // 设置其绑定的容器id

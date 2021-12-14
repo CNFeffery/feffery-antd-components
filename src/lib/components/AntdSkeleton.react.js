@@ -75,7 +75,7 @@ const AntdSkeleton = (props) => {
         }
     }, [loading_state]);
 
-    // 返回定制化的前端部件
+    // 返回定制化的前端组件
     return (
         <Skeleton
             id={id}
@@ -99,7 +99,7 @@ AntdSkeleton._dashprivate_isLoadingComponent = true;
 
 // 定义参数或属性
 AntdSkeleton.propTypes = {
-    // 部件id
+    // 组件id
     id: PropTypes.string,
 
     children: PropTypes.node,

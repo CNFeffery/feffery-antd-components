@@ -53,7 +53,7 @@ export default class AntdBadge extends Component {
 
 // 定义参数或属性
 AntdBadge.propTypes = {
-    // 部件id
+    // 组件id
     id: PropTypes.string,
 
     // 可选，传入要对其添加徽标的目标元素

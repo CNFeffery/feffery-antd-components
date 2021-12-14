@@ -6,11 +6,13 @@ from .AntdBackTop import AntdBackTop
 from .AntdBadge import AntdBadge
 from .AntdBreadcrumb import AntdBreadcrumb
 from .AntdButton import AntdButton
+from .AntdCalendar import AntdCalendar
 from .AntdCarousel import AntdCarousel
 from .AntdCascader import AntdCascader
 from .AntdCheckbox import AntdCheckbox
 from .AntdCheckboxGroup import AntdCheckboxGroup
 from .AntdCollapse import AntdCollapse
+from .AntdComment import AntdComment
 from .AntdCountdown import AntdCountdown
 from .AntdDatePicker import AntdDatePicker
 from .AntdDateRangePicker import AntdDateRangePicker
@@ -28,6 +30,7 @@ from .AntdMenu import AntdMenu
 from .AntdMessage import AntdMessage
 from .AntdModal import AntdModal
 from .AntdNotification import AntdNotification
+from .AntdPageHeader import AntdPageHeader
 from .AntdPagination import AntdPagination
 from .AntdPopconfirm import AntdPopconfirm
 from .AntdPopover import AntdPopover
@@ -80,11 +83,13 @@ __all__ = [
     "AntdBadge",
     "AntdBreadcrumb",
     "AntdButton",
+    "AntdCalendar",
     "AntdCarousel",
     "AntdCascader",
     "AntdCheckbox",
     "AntdCheckboxGroup",
     "AntdCollapse",
+    "AntdComment",
     "AntdCountdown",
     "AntdDatePicker",
     "AntdDateRangePicker",
@@ -102,6 +107,7 @@ __all__ = [
     "AntdMessage",
     "AntdModal",
     "AntdNotification",
+    "AntdPageHeader",
     "AntdPagination",
     "AntdPopconfirm",
     "AntdPopover",

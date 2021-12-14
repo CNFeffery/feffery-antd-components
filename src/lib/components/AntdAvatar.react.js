@@ -82,7 +82,7 @@ export default class AntdAvatar extends Component {
 
 // 定义参数或属性
 AntdAvatar.propTypes = {
-    // 部件id
+    // 组件id
     id: PropTypes.string,
 
     // css类名

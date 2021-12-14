@@ -9,7 +9,7 @@ const parseChildrenToArray = children => {
     return children;
 };
 
-// 定义标签页面板部件AntdTabPane，api参数参考https://ant.design/components/tabs-cn/
+// 定义标签页面板组件AntdTabPane，api参数参考https://ant.design/components/tabs-cn/
 export default class AntdTabPane extends Component {
     render() {
         // 取得必要属性或参数
@@ -49,7 +49,7 @@ export default class AntdTabPane extends Component {
 
 // 定义参数或属性
 AntdTabPane.propTypes = {
-    // 部件id
+    // 组件id
     id: PropTypes.string,
 
     /**
