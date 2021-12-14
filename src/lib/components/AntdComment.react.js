@@ -197,7 +197,6 @@ AntdComment.propTypes = {
     setProps: PropTypes.func
 };
 
-// 设置默认参数
 AntdComment.defaultProps = {
     likesCount: 0,
     dislikesCount: 0,
