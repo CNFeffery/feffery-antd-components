@@ -4,7 +4,6 @@ import moment from 'moment';
 import zhCN from 'antd/lib/locale/zh_CN';
 import { Comment, Tooltip, ConfigProvider } from 'antd';
 import { AntdAvatar } from '..';
-import { omit } from 'ramda';
 import { DislikeOutlined, LikeOutlined, DislikeFilled, LikeFilled } from '@ant-design/icons';
 import 'antd/dist/antd.css';
 import './styles.css'
@@ -93,10 +92,7 @@ const AntdComment = (props) => {
                 style={style}
                 actions={actions}
                 author={<a href={authorNameHref} target={'_blank'}>{authorName}</a>}
-                avatar={<AntdAvatar {...omit(
-                    ['setProps', 'persistence', 'persistence_type', 'persisted_props'],
-                    avatarProps
-                )} />}
+                avatar={<AntdAvatar {...avatarProps} />}
                 content={
                     <p>{commentContent}</p>
                 }
@@ -122,9 +118,6 @@ AntdComment.propTypes = {
     // 组件id
     id: PropTypes.string,
 
-    /**
-     * The content of the tab - will only be displayed if this tab is selected
-     */
     children: PropTypes.node,
 
     // css类名

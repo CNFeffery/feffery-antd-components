@@ -11,7 +11,7 @@ export 'feffery'_antdcomment
 An AntdComment component.
 
 Keyword arguments:
-- `children` (a list of or a singular dash component, string or number; optional): The content of the tab - will only be displayed if this tab is selected
+- `children` (a list of or a singular dash component, string or number; optional)
 - `id` (String; optional)
 - `action` (a value equal to: 'liked', 'disliked'; optional)
 - `authorName` (String; optional)
