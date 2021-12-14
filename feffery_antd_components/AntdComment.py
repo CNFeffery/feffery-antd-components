@@ -9,9 +9,7 @@ class AntdComment(Component):
 
 Keyword arguments:
 
-- children (a list of or a singular dash component, string or number; optional):
-    The content of the tab - will only be displayed if this tab is
-    selected.
+- children (a list of or a singular dash component, string or number; optional)
 
 - id (string; optional)
 
