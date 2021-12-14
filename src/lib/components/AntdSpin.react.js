@@ -11,7 +11,7 @@ const parseChildrenToArray = children => {
     return children;
 };
 
-// 定义加载动画部件AntdSpin，api参数参考https://ant.design/components/spin-cn/
+// 定义加载动画组件AntdSpin，api参数参考https://ant.design/components/spin-cn/
 const AntdSpin = (props) => {
     // 取得必要属性或参数
     let {
@@ -75,7 +75,7 @@ const AntdSpin = (props) => {
         }
     }, [loading_state]);
 
-    // 返回定制化的前端部件
+    // 返回定制化的前端组件
     return (<
         Spin id={id}
         className={className}
@@ -95,7 +95,7 @@ AntdSpin._dashprivate_isLoadingComponent = true;
 
 // 定义参数或属性
 AntdSpin.propTypes = {
-    // 部件id
+    // 组件id
     id: PropTypes.string,
 
     /**
@@ -115,7 +115,7 @@ AntdSpin.propTypes = {
     // 设置是否处于加载中状态
     spinning: PropTypes.bool,
 
-    // 设置加载中部件的大小尺寸，可选的有'small'、'middle'及'large'，默认为'middle'
+    // 设置加载中组件的大小尺寸，可选的有'small'、'middle'及'large'，默认为'middle'
     size: PropTypes.oneOf(['small', 'middle', 'large']),
 
     // 设置延迟加载时长，单位：毫秒，若delay时长内加载结束则不渲染加载动画

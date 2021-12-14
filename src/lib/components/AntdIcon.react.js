@@ -31,7 +31,7 @@ export default class AntdIcon extends Component {
 
 // 定义参数或属性
 AntdIcon.propTypes = {
-    // 部件id
+    // 组件id
     id: PropTypes.string,
 
     // css类名

@@ -74,7 +74,7 @@ export default class AntdMentions extends Component {
             >
                 {
                     options.map(
-                        item => <Option value={item.value}>{item.label}</Option>
+                        item => <Option value={item.value} key={0}>{item.label}</Option>
                     )
                 }
             </Mentions>
@@ -84,7 +84,7 @@ export default class AntdMentions extends Component {
 
 // 定义参数或属性
 AntdMentions.propTypes = {
-    // 部件id
+    // 组件id
     id: PropTypes.string,
 
     children: PropTypes.node,

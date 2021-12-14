@@ -56,7 +56,7 @@ export default class AntdStatistic extends Component {
 
 // 定义参数或属性
 AntdStatistic.propTypes = {
-    // 部件id
+    // 组件id
     id: PropTypes.string,
 
     // css类名

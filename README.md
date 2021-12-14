@@ -1,5 +1,3 @@
-
-
 <p align="center">
 	<img src="./feffery-antd-components-logo-planB.svg" height=325></img>
 </p>
@@ -48,7 +46,7 @@ pip install git+https://github.com.cnpmjs.org/CNFeffery/feffery-antd-components.
 app = dash.Dash(serve_locally=False)
 ```
 
-## 4 已实现部件目录
+## 4 已实现组件目录
 
 - [x] 日期选择框：`AntdDatePicker`
 - [x] 日期范围选择框：`AntdDateRangePicker`
@@ -125,6 +123,9 @@ app = dash.Dash(serve_locally=False)
   - `AntdCard`
   - `AntdCardGrid`
 - [x] 提及：`AntdMentions`
+- [x] 图片：`AntdImage`
+- [x] 页头：`AntdPageHeader`
+- [x] 日历：`AntdCalendar`
 
 ## 5 在线交互式说明文档
 
@@ -132,9 +133,6 @@ app = dash.Dash(serve_locally=False)
 
 ## 6 TODO计划
 
-- [ ] 图片：`AntdImage`
-- [ ] 页头：`AntdPageHeader`
-- [ ] 日历：`AntdCalendar`
 - [ ] 评论：`AntdComment`
 - [ ] 描述列表：`AntdDescriptions`
 

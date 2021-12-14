@@ -13,7 +13,7 @@ const parseChildrenToArray = children => {
     return children;
 };
 
-// 定义文字部件AntdText，api参数参考https://ant.design/components/typography-cn/
+// 定义文字组件AntdText，api参数参考https://ant.design/components/typography-cn/
 export default class AntdText extends Component {
     render() {
         // 取得必要属性或参数
@@ -65,7 +65,7 @@ export default class AntdText extends Component {
 
 // 定义参数或属性
 AntdText.propTypes = {
-    // 部件id
+    // 组件id
     id: PropTypes.string,
 
     /**

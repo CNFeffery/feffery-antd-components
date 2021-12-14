@@ -4,7 +4,7 @@ import { Image, ConfigProvider } from 'antd';
 import zhCN from 'antd/lib/locale/zh_CN';
 import 'antd/dist/antd.css';
 
-// 定义图片部件AntdImage，api参数参考https://ant.design/components/image-cn/
+// 定义图片组件AntdImage，api参数参考https://ant.design/components/image-cn/
 const AntdImage = (props) => {
     let {
         id,
@@ -79,7 +79,7 @@ const AntdImage = (props) => {
 
 // 定义参数或属性
 AntdImage.propTypes = {
-    // 部件id
+    // 组件id
     id: PropTypes.string,
 
     // css类名

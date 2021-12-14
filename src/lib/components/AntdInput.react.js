@@ -5,7 +5,7 @@ import 'antd/dist/antd.css';
 
 const { Search, TextArea } = Input;
 
-// 定义输入框部件AntdInput，api参数参考https://ant.design/components/input-cn/
+// 定义输入框组件AntdInput，api参数参考https://ant.design/components/input-cn/
 export default class AntdInput extends Component {
 
     constructor(props) {
@@ -143,7 +143,7 @@ export default class AntdInput extends Component {
 
 // 定义参数或属性
 AntdInput.propTypes = {
-    // 部件id
+    // 组件id
     id: PropTypes.string,
 
     // css类名

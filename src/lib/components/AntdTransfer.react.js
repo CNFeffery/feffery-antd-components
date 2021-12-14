@@ -4,7 +4,7 @@ import { Transfer, ConfigProvider } from 'antd';
 import zhCN from 'antd/lib/locale/zh_CN';
 import 'antd/dist/antd.css';
 
-// 定义穿梭框部件AntdTransfer，api参数参考https://ant.design/components/transfer-cn/
+// 定义穿梭框组件AntdTransfer，api参数参考https://ant.design/components/transfer-cn/
 export default class AntdTransfer extends Component {
     render() {
         // 取得必要属性或参数
@@ -39,7 +39,7 @@ export default class AntdTransfer extends Component {
             setProps({ moveKeys: moveKeys })
         }
 
-        // 返回定制化的前端部件
+        // 返回定制化的前端组件
         return (
             <ConfigProvider locale={zhCN}>
                 <Transfer
@@ -72,7 +72,7 @@ export default class AntdTransfer extends Component {
 
 // 定义参数或属性
 AntdTransfer.propTypes = {
-    // 部件id
+    // 组件id
     id: PropTypes.string,
 
     // css类名

@@ -71,6 +71,9 @@ import AntdCardGrid from './components/card/AntdCardGrid.react'
 import AntdCard from './components/card/AntdCard.react'
 import AntdMentions from './components/AntdMentions.react'
 import AntdImage from './components/AntdImage.react'
+import AntdPageHeader from './components/AntdPageHeader.react'
+import AntdCalendar from './components/AntdCalendar.react'
+import AntdComment from './components/AntdComment.react'
 
 export {
     AntdDatePicker,
@@ -144,5 +147,8 @@ export {
     AntdCardGrid,
     AntdCard,
     AntdMentions,
-    AntdImage
+    AntdImage,
+    AntdPageHeader,
+    AntdCalendar,
+    AntdComment
 };

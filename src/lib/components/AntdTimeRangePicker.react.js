@@ -47,7 +47,7 @@ export default class AntdTimeRangePicker extends Component {
             }
         }
 
-        // 返回定制化的前端部件
+        // 返回定制化的前端组件
         return (
             <div>
                 <ConfigProvider locale={zhCN}>
@@ -84,7 +84,7 @@ export default class AntdTimeRangePicker extends Component {
 
 // 定义参数或属性
 AntdTimeRangePicker.propTypes = {
-    // 部件id
+    // 组件id
     id: PropTypes.string,
 
     // css类名

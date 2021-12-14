@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { notification } from 'antd';
 import 'antd/dist/antd.css';
 
-// 定义通知提醒框部件AntdNotification，api参数参考https://ant.design/components/notification-cn/
+// 定义通知提醒框组件AntdNotification，api参数参考https://ant.design/components/notification-cn/
 export default class AntdNotification extends Component {
 
     render() {
@@ -60,7 +60,7 @@ export default class AntdNotification extends Component {
 
 // 定义参数或属性
 AntdNotification.propTypes = {
-    // 部件id
+    // 组件id
     id: PropTypes.string,
 
     // css类名
@@ -91,7 +91,7 @@ AntdNotification.propTypes = {
     description: PropTypes.string,
 
     // 设置通知类型，可选项有'default'、'success'、'error'、'info'、'warning'，默认为'default'
-    type: PropTypes.oneOfType(['default', 'success', 'error', 'info', 'warning']),
+    type: PropTypes.oneOf(['default', 'success', 'error', 'info', 'warning']),
 
     // 设置通知在屏幕中的弹出位置，可选的有'topLeft'、'topRight'、'bottomLeft'和'bottomRight'，默认为'topRight'
     placement: PropTypes.oneOf(['topLeft', 'topRight', 'bottomLeft', 'bottomRight']),

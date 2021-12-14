@@ -11,7 +11,7 @@ const parseChildrenToArray = children => {
     return children;
 };
 
-// 定义气泡卡片部件Popover，api参数参考https://ant.design/components/popover-cn/
+// 定义气泡卡片组件Popover，api参数参考https://ant.design/components/popover-cn/
 export default class AntdPopover extends Component {
     render() {
         // 取得必要属性或参数
@@ -82,7 +82,7 @@ export default class AntdPopover extends Component {
 
 // 定义参数或属性
 AntdPopover.propTypes = {
-    // 部件id
+    // 组件id
     id: PropTypes.string,
 
     /**

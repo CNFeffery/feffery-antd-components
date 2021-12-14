@@ -5,7 +5,7 @@ import { Modal, ConfigProvider } from 'antd';
 import { str2Icon } from './icons.react'
 import 'antd/dist/antd.css';
 
-// 定义对话框部件AntdModal，api参数参考https://ant.design/components/modal-cn/
+// 定义对话框组件AntdModal，api参数参考https://ant.design/components/modal-cn/
 export default class AntdModal extends Component {
     render() {
         // 取得必要属性或参数
@@ -52,7 +52,7 @@ export default class AntdModal extends Component {
         // 若设置了渲染底部按钮区内容
         if (renderFooter) {
 
-            // 返回定制化的前端部件
+            // 返回定制化的前端组件
             return (
                 <ConfigProvider locale={zhCN}>
                     <Modal
@@ -86,7 +86,7 @@ export default class AntdModal extends Component {
                 </ConfigProvider>
             );
         } else {
-            // 返回定制化的前端部件
+            // 返回定制化的前端组件
             return (
                 <ConfigProvider locale={zhCN}>
                     <Modal
@@ -122,7 +122,7 @@ export default class AntdModal extends Component {
 
 // 定义参数或属性
 AntdModal.propTypes = {
-    // 部件id
+    // 组件id
     id: PropTypes.string,
 
     // 内嵌文字的文本内容

@@ -10,7 +10,7 @@ const parseChildrenToArray = children => {
     return children;
 };
 
-// 定义间距部件AntdSpace，api参数参考https://ant.design/components/space-cn/
+// 定义间距组件AntdSpace，api参数参考https://ant.design/components/space-cn/
 export default class AntdSpace extends Component {
     render() {
         // 取得必要属性或参数
@@ -86,7 +86,7 @@ export default class AntdSpace extends Component {
 
 // 定义参数或属性
 AntdSpace.propTypes = {
-    // 部件id
+    // 组件id
     id: PropTypes.string,
 
     /**
