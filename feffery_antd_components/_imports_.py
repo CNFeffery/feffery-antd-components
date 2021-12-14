@@ -20,8 +20,10 @@ from .AntdDrawer import AntdDrawer
 from .AntdDropdown import AntdDropdown
 from .AntdEmpty import AntdEmpty
 from .AntdIcon import AntdIcon
+from .AntdImage import AntdImage
 from .AntdInput import AntdInput
 from .AntdInputNumber import AntdInputNumber
+from .AntdMentions import AntdMentions
 from .AntdMenu import AntdMenu
 from .AntdMessage import AntdMessage
 from .AntdModal import AntdModal
@@ -92,8 +94,10 @@ __all__ = [
     "AntdDropdown",
     "AntdEmpty",
     "AntdIcon",
+    "AntdImage",
     "AntdInput",
     "AntdInputNumber",
+    "AntdMentions",
     "AntdMenu",
     "AntdMessage",
     "AntdModal",

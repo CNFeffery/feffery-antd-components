@@ -69,6 +69,8 @@ import AntdFormItem from './components/form/AntdFormItem.react'
 import AntdForm from './components/form/AntdForm.react'
 import AntdCardGrid from './components/card/AntdCardGrid.react'
 import AntdCard from './components/card/AntdCard.react'
+import AntdMentions from './components/AntdMentions.react'
+import AntdImage from './components/AntdImage.react'
 
 export {
     AntdDatePicker,
@@ -140,5 +142,7 @@ export {
     AntdFormItem,
     AntdForm,
     AntdCardGrid,
-    AntdCard
+    AntdCard,
+    AntdMentions,
+    AntdImage
 };

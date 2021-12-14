@@ -9,7 +9,8 @@
 
 [![GitHub](https://img.shields.io/github/license/plotly/dash.svg?color=dark-green)](https://github.com/plotly/dash/blob/master/LICENSE)
 [![PyPI](https://img.shields.io/pypi/v/feffery-antd-components.svg?color=dark-green)](https://pypi.org/project/feffery-antd-components/)
-[![Downloads](https://pepy.tech/badge/feffery-antd-components)](https://pepy.tech/project/feffery-antd-components)
+![PyPI - Downloads](https://img.shields.io/pypi/dm/feffery-antd-components?color=rgb%280%2C%20158%2C%20255%29)
+![PyPI - Downloads](https://img.shields.io/pypi/dw/feffery-antd-components?color=rgb%280%2C%20158%2C%20255%29)
 
 </div>
 
@@ -123,6 +124,7 @@ app = dash.Dash(serve_locally=False)
 - [x] 卡片
   - `AntdCard`
   - `AntdCardGrid`
+- [x] 提及：`AntdMentions`
 
 ## 5 在线交互式说明文档
 
@@ -130,10 +132,9 @@ app = dash.Dash(serve_locally=False)
 
 ## 6 TODO计划
 
-- [ ] 提及：`AntdMentions`
+- [ ] 图片：`AntdImage`
 - [ ] 页头：`AntdPageHeader`
 - [ ] 日历：`AntdCalendar`
 - [ ] 评论：`AntdComment`
 - [ ] 描述列表：`AntdDescriptions`
-- [ ] 图片：`AntdImage`
 
