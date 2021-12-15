@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Tag } from 'antd';
 import 'antd/dist/antd.css';
 
-// 定义标签部件AntdTag，api参数参考https://ant.design/components/tag-cn/
+// 定义标签组件AntdTag，api参数参考https://ant.design/components/tag-cn/
 export default class AntdTag extends Component {
     render() {
         // 取得必要属性或参数
@@ -15,14 +15,18 @@ export default class AntdTag extends Component {
             color,
             href,
             target,
-            setProps
+            setProps,
+            loading_state
         } = this.props;
 
         return (
             <Tag id={id}
                 className={className}
                 style={style}
-                color={color}>
+                color={color}
+                data-dash-is-loading={
+                    (loading_state && loading_state.is_loading) || undefined
+                }>
                 {href ? <a href={href} target={target}>{content}</a> : content}
             </Tag>
         );
@@ -31,7 +35,7 @@ export default class AntdTag extends Component {
 
 // 定义参数或属性
 AntdTag.propTypes = {
-    // 部件id
+    // 组件id
     id: PropTypes.string,
 
     // css类名

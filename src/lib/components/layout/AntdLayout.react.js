@@ -10,7 +10,7 @@ const parseChildrenToArray = children => {
     return children;
 };
 
-// 定义布局部件AntdLayout，api参数参考https://ant.design/components/layout-cn/
+// 定义布局组件AntdLayout，api参数参考https://ant.design/components/layout-cn/
 export default class AntdLayout extends Component {
     render() {
         // 取得必要属性或参数
@@ -19,7 +19,8 @@ export default class AntdLayout extends Component {
             children,
             className,
             style,
-            setProps
+            setProps,
+            loading_state
         } = this.props;
 
         children = parseChildrenToArray(children)
@@ -27,7 +28,10 @@ export default class AntdLayout extends Component {
         return (
             <Layout id={id}
                 className={className}
-                style={style}>
+                style={style}
+                data-dash-is-loading={
+                    (loading_state && loading_state.is_loading) || undefined
+                }>
                 {children}
             </Layout>
         );
@@ -36,7 +40,7 @@ export default class AntdLayout extends Component {
 
 // 定义参数或属性
 AntdLayout.propTypes = {
-    // 部件id
+    // 组件id
     id: PropTypes.string,
 
     /**

@@ -11,7 +11,7 @@ const parseChildrenToArray = children => {
     return children;
 };
 
-// 定义警告提示部件AntdAlert，api参数参考https://ant.design/components/alert-cn/
+// 定义警告提示组件AntdAlert，api参数参考https://ant.design/components/alert-cn/
 export default class AntdAlert extends Component {
     render() {
         // 取得必要属性或参数
@@ -25,7 +25,8 @@ export default class AntdAlert extends Component {
             showIcon,
             closable,
             renderLoopText,
-            setProps
+            setProps,
+            loading_state
         } = this.props;
 
         children = parseChildrenToArray(children)
@@ -43,7 +44,10 @@ export default class AntdAlert extends Component {
                     type={type}
                     description={children}
                     showIcon={showIcon}
-                    closable={closable}>
+                    closable={closable}
+                    data-dash-is-loading={
+                        (loading_state && loading_state.is_loading) || undefined
+                    }>
                 </Alert>
             );
         }
@@ -64,7 +68,7 @@ export default class AntdAlert extends Component {
 
 // 定义参数或属性
 AntdAlert.propTypes = {
-    // 部件id
+    // 组件id
     id: PropTypes.string,
 
     // css类名

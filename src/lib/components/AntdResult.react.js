@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Result } from 'antd';
 import 'antd/dist/antd.css';
 
-// 定义结果部件AntdResult，api参数参考https://ant.design/components/result-cn/
+// 定义结果组件AntdResult，api参数参考https://ant.design/components/result-cn/
 export default class AntdResult extends Component {
     render() {
         // 取得必要属性或参数
@@ -35,7 +35,7 @@ export default class AntdResult extends Component {
 
 // 定义参数或属性
 AntdResult.propTypes = {
-    // 部件id
+    // 组件id
     id: PropTypes.string,
 
     // css类名

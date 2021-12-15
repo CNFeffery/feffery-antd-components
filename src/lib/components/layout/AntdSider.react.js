@@ -12,7 +12,7 @@ const parseChildrenToArray = children => {
     return children;
 };
 
-// 定义侧边栏部件AntdSider，api参数参考https://ant.design/components/layout-cn/
+// 定义侧边栏组件AntdSider，api参数参考https://ant.design/components/layout-cn/
 export default class AntdSider extends Component {
     render() {
         // 取得必要属性或参数
@@ -30,7 +30,8 @@ export default class AntdSider extends Component {
             theme,
             width,
             trigger,
-            setProps
+            setProps,
+            loading_state
         } = this.props;
 
         const onCollapse = collapsed => {
@@ -52,7 +53,10 @@ export default class AntdSider extends Component {
                 theme={theme}
                 width={width}
                 trigger={trigger}
-                onCollapse={onCollapse}>
+                onCollapse={onCollapse}
+                data-dash-is-loading={
+                    (loading_state && loading_state.is_loading) || undefined
+                }>
                 {children}
             </Sider>
         );
@@ -61,7 +65,7 @@ export default class AntdSider extends Component {
 
 // 定义参数或属性
 AntdSider.propTypes = {
-    // 部件id
+    // 组件id
     id: PropTypes.string,
 
     /**

@@ -12,7 +12,7 @@ const parseChildrenToArray = children => {
     return children;
 };
 
-// 定义页尾部件AntdFooter，api参数参考https://ant.design/components/layout-cn/
+// 定义页尾组件AntdFooter，api参数参考https://ant.design/components/layout-cn/
 export default class AntdFooter extends Component {
     render() {
         // 取得必要属性或参数
@@ -21,7 +21,8 @@ export default class AntdFooter extends Component {
             children,
             className,
             style,
-            setProps
+            setProps,
+            loading_state
         } = this.props;
 
         children = parseChildrenToArray(children)
@@ -29,7 +30,10 @@ export default class AntdFooter extends Component {
         return (
             <Footer id={id}
                 className={className}
-                style={style}>
+                style={style}
+                data-dash-is-loading={
+                    (loading_state && loading_state.is_loading) || undefined
+                }>
                 {children}
             </Footer>
         );
@@ -38,7 +42,7 @@ export default class AntdFooter extends Component {
 
 // 定义参数或属性
 AntdFooter.propTypes = {
-    // 部件id
+    // 组件id
     id: PropTypes.string,
 
     /**

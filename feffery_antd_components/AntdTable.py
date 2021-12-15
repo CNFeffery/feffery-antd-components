@@ -59,9 +59,20 @@ Keyword arguments:
 
     - width (number | string; optional)
 
+- columnsFormatConstraint (dict; optional)
+
+    `columnsFormatConstraint` is a dict with strings as keys and
+    values of type dict with keys:
+
+    - content (string; optional)
+
+    - rule (string; optional)
+
 - currentData (list; optional)
 
 - data (list of dicts; optional)
+
+- disableRowListen (boolean; default False)
 
 - filter (dict; optional)
 
@@ -116,11 +127,25 @@ Keyword arguments:
 
 - recentlyChangedRow (dict; optional)
 
+- recentlyClickedColumn (string; optional)
+
+- recentlyClickedRow (string | number; optional)
+
+- recentlyMouseEnterColumn (string; optional)
+
+- recentlyMouseEnterRow (string | number; optional)
+
+- recentlyMouseLeaveColumn (string; optional)
+
+- recentlyMouseLeaveRow (string | number; optional)
+
 - rowSelectionType (a value equal to: 'checkbox', 'radio'; optional)
 
 - selectedRowKeys (list of strings; optional)
 
 - selectedRows (list; optional)
+
+- size (a value equal to: 'small', 'default', 'large'; default 'default')
 
 - sortOptions (dict; default {    sortDataIndexes: []})
 
@@ -142,12 +167,12 @@ Keyword arguments:
 
 - titlePopoverInfo (dict; optional)"""
     @_explicitize_args
-    def __init__(self, id=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, columns=Component.UNDEFINED, rowSelectionType=Component.UNDEFINED, selectedRowKeys=Component.UNDEFINED, selectedRows=Component.UNDEFINED, titlePopoverInfo=Component.UNDEFINED, data=Component.UNDEFINED, sortOptions=Component.UNDEFINED, filterOptions=Component.UNDEFINED, pagination=Component.UNDEFINED, bordered=Component.UNDEFINED, maxHeight=Component.UNDEFINED, currentData=Component.UNDEFINED, recentlyChangedRow=Component.UNDEFINED, recentlyButtonClickedRow=Component.UNDEFINED, nClicksButton=Component.UNDEFINED, clickedContent=Component.UNDEFINED, sorter=Component.UNDEFINED, filter=Component.UNDEFINED, mode=Component.UNDEFINED, popupContainerId=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
-        self._prop_names = ['id', 'bordered', 'className', 'clickedContent', 'columns', 'currentData', 'data', 'filter', 'filterOptions', 'loading_state', 'maxHeight', 'mode', 'nClicksButton', 'pagination', 'popupContainerId', 'recentlyButtonClickedRow', 'recentlyChangedRow', 'rowSelectionType', 'selectedRowKeys', 'selectedRows', 'sortOptions', 'sorter', 'style', 'titlePopoverInfo']
+    def __init__(self, id=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, columns=Component.UNDEFINED, size=Component.UNDEFINED, rowSelectionType=Component.UNDEFINED, selectedRowKeys=Component.UNDEFINED, selectedRows=Component.UNDEFINED, recentlyClickedColumn=Component.UNDEFINED, recentlyMouseEnterColumn=Component.UNDEFINED, recentlyMouseLeaveColumn=Component.UNDEFINED, disableRowListen=Component.UNDEFINED, recentlyClickedRow=Component.UNDEFINED, recentlyMouseEnterRow=Component.UNDEFINED, recentlyMouseLeaveRow=Component.UNDEFINED, titlePopoverInfo=Component.UNDEFINED, columnsFormatConstraint=Component.UNDEFINED, data=Component.UNDEFINED, sortOptions=Component.UNDEFINED, filterOptions=Component.UNDEFINED, pagination=Component.UNDEFINED, bordered=Component.UNDEFINED, maxHeight=Component.UNDEFINED, currentData=Component.UNDEFINED, recentlyChangedRow=Component.UNDEFINED, recentlyButtonClickedRow=Component.UNDEFINED, nClicksButton=Component.UNDEFINED, clickedContent=Component.UNDEFINED, sorter=Component.UNDEFINED, filter=Component.UNDEFINED, mode=Component.UNDEFINED, popupContainerId=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
+        self._prop_names = ['id', 'bordered', 'className', 'clickedContent', 'columns', 'columnsFormatConstraint', 'currentData', 'data', 'disableRowListen', 'filter', 'filterOptions', 'loading_state', 'maxHeight', 'mode', 'nClicksButton', 'pagination', 'popupContainerId', 'recentlyButtonClickedRow', 'recentlyChangedRow', 'recentlyClickedColumn', 'recentlyClickedRow', 'recentlyMouseEnterColumn', 'recentlyMouseEnterRow', 'recentlyMouseLeaveColumn', 'recentlyMouseLeaveRow', 'rowSelectionType', 'selectedRowKeys', 'selectedRows', 'size', 'sortOptions', 'sorter', 'style', 'titlePopoverInfo']
         self._type = 'AntdTable'
         self._namespace = 'feffery_antd_components'
         self._valid_wildcard_attributes =            []
-        self.available_properties = ['id', 'bordered', 'className', 'clickedContent', 'columns', 'currentData', 'data', 'filter', 'filterOptions', 'loading_state', 'maxHeight', 'mode', 'nClicksButton', 'pagination', 'popupContainerId', 'recentlyButtonClickedRow', 'recentlyChangedRow', 'rowSelectionType', 'selectedRowKeys', 'selectedRows', 'sortOptions', 'sorter', 'style', 'titlePopoverInfo']
+        self.available_properties = ['id', 'bordered', 'className', 'clickedContent', 'columns', 'columnsFormatConstraint', 'currentData', 'data', 'disableRowListen', 'filter', 'filterOptions', 'loading_state', 'maxHeight', 'mode', 'nClicksButton', 'pagination', 'popupContainerId', 'recentlyButtonClickedRow', 'recentlyChangedRow', 'recentlyClickedColumn', 'recentlyClickedRow', 'recentlyMouseEnterColumn', 'recentlyMouseEnterRow', 'recentlyMouseLeaveColumn', 'recentlyMouseLeaveRow', 'rowSelectionType', 'selectedRowKeys', 'selectedRows', 'size', 'sortOptions', 'sorter', 'style', 'titlePopoverInfo']
         self.available_wildcard_properties =            []
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()

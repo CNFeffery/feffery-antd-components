@@ -13,7 +13,7 @@ const parseChildrenToArray = children => {
     return children;
 };
 
-// 定义标题部件AntdTitle，api参数参考https://ant.design/components/typography-cn/
+// 定义标题组件AntdTitle，api参数参考https://ant.design/components/typography-cn/
 export default class AntdTitle extends Component {
     render() {
         // 取得必要属性或参数
@@ -67,7 +67,7 @@ export default class AntdTitle extends Component {
 
 // 定义参数或属性
 AntdTitle.propTypes = {
-    // 部件id
+    // 组件id
     id: PropTypes.string,
 
     /**

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Checkbox } from 'antd';
 import 'antd/dist/antd.css';
 
-// 定义选择框部件AntdCheckbox，api参数参考https://ant.design/components/checkbox-cn/
+// 定义选择框组件AntdCheckbox，api参数参考https://ant.design/components/checkbox-cn/
 export default class AntdCheckbox extends Component {
 
     constructor(props) {
@@ -30,7 +30,7 @@ export default class AntdCheckbox extends Component {
             setProps({ checked: e.target.checked })
         }
 
-        // 返回定制化的前端部件
+        // 返回定制化的前端组件
         return (
             <Checkbox
                 id={id}
@@ -52,7 +52,7 @@ export default class AntdCheckbox extends Component {
 
 // 定义参数或属性
 AntdCheckbox.propTypes = {
-    // 部件id
+    // 组件id
     id: PropTypes.string,
 
     // css类名

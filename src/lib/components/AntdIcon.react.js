@@ -12,13 +12,17 @@ export default class AntdIcon extends Component {
             className,
             icon,
             style,
-            setProps
+            setProps,
+            loading_state
         } = this.props;
 
         return (
             <span id={id}
                 className={className}
-                style={{ ...{ verticalAlign: 'middle', fontSize: '16px' }, ...style }}>
+                style={{ ...{ verticalAlign: 'middle', fontSize: '16px' }, ...style }}
+                data-dash-is-loading={
+                    (loading_state && loading_state.is_loading) || undefined
+                }>
                 {str2Icon.get(icon)}
             </span>
         );
@@ -27,7 +31,7 @@ export default class AntdIcon extends Component {
 
 // 定义参数或属性
 AntdIcon.propTypes = {
-    // 部件id
+    // 组件id
     id: PropTypes.string,
 
     // css类名

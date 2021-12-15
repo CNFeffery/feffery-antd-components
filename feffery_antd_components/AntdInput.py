@@ -17,6 +17,8 @@ Keyword arguments:
 
 - allowClear (boolean; optional)
 
+- autoComplete (a value equal to: 'off', 'on'; optional)
+
 - bordered (boolean; optional)
 
 - className (string; optional)
@@ -56,12 +58,12 @@ Keyword arguments:
 
 - value (string; optional)"""
     @_explicitize_args
-    def __init__(self, id=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, loading_state=Component.UNDEFINED, mode=Component.UNDEFINED, placeholder=Component.UNDEFINED, size=Component.UNDEFINED, addonBefore=Component.UNDEFINED, addonAfter=Component.UNDEFINED, allowClear=Component.UNDEFINED, bordered=Component.UNDEFINED, defaultValue=Component.UNDEFINED, disabled=Component.UNDEFINED, maxLength=Component.UNDEFINED, value=Component.UNDEFINED, showCount=Component.UNDEFINED, nSubmit=Component.UNDEFINED, nClicksSearch=Component.UNDEFINED, **kwargs):
-        self._prop_names = ['id', 'addonAfter', 'addonBefore', 'allowClear', 'bordered', 'className', 'defaultValue', 'disabled', 'loading_state', 'maxLength', 'mode', 'nClicksSearch', 'nSubmit', 'placeholder', 'showCount', 'size', 'style', 'value']
+    def __init__(self, id=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, loading_state=Component.UNDEFINED, mode=Component.UNDEFINED, autoComplete=Component.UNDEFINED, placeholder=Component.UNDEFINED, size=Component.UNDEFINED, addonBefore=Component.UNDEFINED, addonAfter=Component.UNDEFINED, allowClear=Component.UNDEFINED, bordered=Component.UNDEFINED, defaultValue=Component.UNDEFINED, disabled=Component.UNDEFINED, maxLength=Component.UNDEFINED, value=Component.UNDEFINED, showCount=Component.UNDEFINED, nSubmit=Component.UNDEFINED, nClicksSearch=Component.UNDEFINED, **kwargs):
+        self._prop_names = ['id', 'addonAfter', 'addonBefore', 'allowClear', 'autoComplete', 'bordered', 'className', 'defaultValue', 'disabled', 'loading_state', 'maxLength', 'mode', 'nClicksSearch', 'nSubmit', 'placeholder', 'showCount', 'size', 'style', 'value']
         self._type = 'AntdInput'
         self._namespace = 'feffery_antd_components'
         self._valid_wildcard_attributes =            []
-        self.available_properties = ['id', 'addonAfter', 'addonBefore', 'allowClear', 'bordered', 'className', 'defaultValue', 'disabled', 'loading_state', 'maxLength', 'mode', 'nClicksSearch', 'nSubmit', 'placeholder', 'showCount', 'size', 'style', 'value']
+        self.available_properties = ['id', 'addonAfter', 'addonBefore', 'allowClear', 'autoComplete', 'bordered', 'className', 'defaultValue', 'disabled', 'loading_state', 'maxLength', 'mode', 'nClicksSearch', 'nSubmit', 'placeholder', 'showCount', 'size', 'style', 'value']
         self.available_wildcard_properties =            []
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()

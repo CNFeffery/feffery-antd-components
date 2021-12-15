@@ -25,6 +25,18 @@ Keyword arguments:
 
     - value (string; optional)
 
+- disabled (boolean; optional)
+
+- disabledDates (dict; optional)
+
+    `disabledDates` is a dict with keys:
+
+    - dates (list of strings; optional)
+
+    - format (string; optional)
+
+- format (string; default 'YYYY-MM-DD')
+
 - loading_state (dict; optional):
     Object that holds the loading state object coming from
     dash-renderer.
@@ -52,12 +64,12 @@ Keyword arguments:
 
 - style (dict; default {    width: 220})"""
     @_explicitize_args
-    def __init__(self, id=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, picker=Component.UNDEFINED, selectedDate=Component.UNDEFINED, showTime=Component.UNDEFINED, allowClear=Component.UNDEFINED, defaultPickerValue=Component.UNDEFINED, placeholder=Component.UNDEFINED, bordered=Component.UNDEFINED, size=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
-        self._prop_names = ['id', 'allowClear', 'bordered', 'className', 'defaultPickerValue', 'loading_state', 'picker', 'placeholder', 'selectedDate', 'showTime', 'size', 'style']
+    def __init__(self, id=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, format=Component.UNDEFINED, picker=Component.UNDEFINED, disabled=Component.UNDEFINED, selectedDate=Component.UNDEFINED, showTime=Component.UNDEFINED, allowClear=Component.UNDEFINED, defaultPickerValue=Component.UNDEFINED, disabledDates=Component.UNDEFINED, placeholder=Component.UNDEFINED, bordered=Component.UNDEFINED, size=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
+        self._prop_names = ['id', 'allowClear', 'bordered', 'className', 'defaultPickerValue', 'disabled', 'disabledDates', 'format', 'loading_state', 'picker', 'placeholder', 'selectedDate', 'showTime', 'size', 'style']
         self._type = 'AntdDatePicker'
         self._namespace = 'feffery_antd_components'
         self._valid_wildcard_attributes =            []
-        self.available_properties = ['id', 'allowClear', 'bordered', 'className', 'defaultPickerValue', 'loading_state', 'picker', 'placeholder', 'selectedDate', 'showTime', 'size', 'style']
+        self.available_properties = ['id', 'allowClear', 'bordered', 'className', 'defaultPickerValue', 'disabled', 'disabledDates', 'format', 'loading_state', 'picker', 'placeholder', 'selectedDate', 'showTime', 'size', 'style']
         self.available_wildcard_properties =            []
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()

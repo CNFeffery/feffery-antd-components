@@ -8,7 +8,7 @@ import 'antd/dist/antd.css';
 
 const uuid = uuidv4();
 
-// 定义文件上传部件AntdUpload，api参数参考https://ant.design/components/upload-cn/
+// 定义文件上传组件AntdUpload，api参数参考https://ant.design/components/upload-cn/
 const AntdUpload = (props) => {
 
     // 取得必要属性或参数
@@ -41,11 +41,19 @@ const AntdUpload = (props) => {
             uploadId: uploadId
         },
         beforeUpload: (file) => {
-
             const sizeCheck = file.size / 1024 / 1024 < fileMaxSize;
             if (!sizeCheck) {
                 message.error(`${file.name} 文件大小超出${fileMaxSize}MB限制！`);
             }
+
+            if (fileTypes) {
+                if (fileTypes.indexOf(file.name.split('.')[file.name.split('.').length - 1]) === -1) {
+                    message.error(`上传失败，${file.name} 文件格式不符合要求！`);
+                }
+                updateLastFileError(!sizeCheck || fileTypes.indexOf(file.name.split('.')[file.name.split('.').length - 1]) === -1)
+                return sizeCheck && fileTypes.indexOf(file.name.split('.')[file.name.split('.').length - 1]) !== -1;
+            }
+
             updateLastFileError(!sizeCheck)
             return sizeCheck;
         },
@@ -105,7 +113,7 @@ const AntdUpload = (props) => {
         Object.assign(uploadProps, { accept: '.' + fileTypes.join(',.') })
     }
 
-    // 返回定制化的前端部件
+    // 返回定制化的前端组件
     return (
         <ConfigProvider locale={zhCN}>
             <Upload {...uploadProps}
@@ -114,7 +122,10 @@ const AntdUpload = (props) => {
                 style={style}
                 fileList={fileList}
                 multiple={multiple}
-                directory={directory}>
+                directory={directory}
+                data-dash-is-loading={
+                    (loading_state && loading_state.is_loading) || undefined
+                }>
                 <Button icon={<UploadOutlined />}>{buttonContent ? buttonContent : "点击上传文件"}</Button>
             </Upload>
         </ConfigProvider>
@@ -124,7 +135,7 @@ const AntdUpload = (props) => {
 
 // 定义参数或属性
 AntdUpload.propTypes = {
-    // 部件id
+    // 组件id
     id: PropTypes.string,
 
     // css类名

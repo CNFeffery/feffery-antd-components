@@ -4,7 +4,7 @@ import zhCN from 'antd/lib/locale/zh_CN';
 import { Drawer, ConfigProvider } from 'antd';
 import 'antd/dist/antd.css';
 
-// 定义抽屉部件AntdDrawer，api参数参考https://ant.design/components/drawer-cn/
+// 定义抽屉组件AntdDrawer，api参数参考https://ant.design/components/drawer-cn/
 export default class AntdDrawer extends Component {
     render() {
         // 取得必要属性或参数
@@ -64,10 +64,9 @@ export default class AntdDrawer extends Component {
 
 // 定义参数或属性
 AntdDrawer.propTypes = {
-    // 部件id
+    // 组件id
     id: PropTypes.string,
 
-    // 内嵌文字的文本内容
     children: PropTypes.node,
 
     // css类名

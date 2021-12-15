@@ -13,7 +13,7 @@ const parseChildrenToArray = children => {
     return children;
 };
 
-// 定义段落部件AntdParagraph，api参数参考https://ant.design/components/typography-cn/
+// 定义段落组件AntdParagraph，api参数参考https://ant.design/components/typography-cn/
 export default class AntdParagraph extends Component {
     render() {
         // 取得必要属性或参数
@@ -63,7 +63,7 @@ export default class AntdParagraph extends Component {
 
 // 定义参数或属性
 AntdParagraph.propTypes = {
-    // 部件id
+    // 组件id
     id: PropTypes.string,
 
     /**

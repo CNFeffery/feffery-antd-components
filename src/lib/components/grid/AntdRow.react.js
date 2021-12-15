@@ -10,7 +10,7 @@ const parseChildrenToArray = children => {
     return children;
 };
 
-// 定义行部件AntdRow，api参数参考https://ant.design/components/grid-cn/
+// 定义行组件AntdRow，api参数参考https://ant.design/components/grid-cn/
 export default class AntdRow extends Component {
     render() {
         // 取得必要属性或参数
@@ -23,7 +23,8 @@ export default class AntdRow extends Component {
             gutter,
             justify,
             wrap,
-            setProps
+            setProps,
+            loading_state
         } = this.props;
 
         children = parseChildrenToArray(children)
@@ -35,7 +36,10 @@ export default class AntdRow extends Component {
                 align={align}
                 gutter={gutter}
                 justify={justify}
-                wrap={wrap}>
+                wrap={wrap}
+                data-dash-is-loading={
+                    (loading_state && loading_state.is_loading) || undefined
+                }>
                 {children}
             </Row>
         );
@@ -44,7 +48,7 @@ export default class AntdRow extends Component {
 
 // 定义参数或属性
 AntdRow.propTypes = {
-    // 部件id
+    // 组件id
     id: PropTypes.string,
 
     /**

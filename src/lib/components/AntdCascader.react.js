@@ -4,7 +4,7 @@ import { Cascader, ConfigProvider } from 'antd';
 import zhCN from 'antd/lib/locale/zh_CN';
 import 'antd/dist/antd.css';
 
-// 定义级联选择部件AntdCascader，api参数参考https://ant.design/components/cascader-cn/
+// 定义级联选择组件AntdCascader，api参数参考https://ant.design/components/cascader-cn/
 export default class AntdCascader extends Component {
 
     constructor(props) {
@@ -44,7 +44,7 @@ export default class AntdCascader extends Component {
             setProps({ value: e })
         }
 
-        // 返回定制化的前端部件
+        // 返回定制化的前端组件
         return (
             <ConfigProvider locale={zhCN}>
                 <Cascader
@@ -93,7 +93,7 @@ const optionDataPropTypes = PropTypes.arrayOf(PropOptionNode);
 
 // 定义参数或属性
 AntdCascader.propTypes = {
-    // 部件id
+    // 组件id
     id: PropTypes.string,
 
     // css类名

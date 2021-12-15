@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { Tree } from 'antd';
 import { str2Icon } from './icons.react'
 import 'antd/dist/antd.css';
+import './styles.css'
 
 // 定义树形控件AntdTree，api参数参考https://ant.design/components/tree-cn/
 export default class AntdTree extends Component {
@@ -73,31 +74,30 @@ export default class AntdTree extends Component {
             setProps({ checkedKeys: e })
         }
 
-        return (
-            <Tree
-                id={id}
-                className={className}
-                style={style}
-                treeData={add_leaf_node_icon(treeData)}
-                checkable={checkable}
-                defaultExpandAll={defaultExpandAll}
-                defaultExpandedKeys={defaultExpandedKeys}
-                defaultExpandParent={defaultExpandParent}
-                checkStrictly={checkStrictly}
-                defaultCheckedKeys={defaultCheckedKeys}
-                defaultSelectedKeys={defaultSelectedKeys}
-                multiple={multiple}
-                selectable={selectable}
-                showLine={showLine}
-                onSelect={listenSelect}
-                onCheck={listenCheck}
-                showIcon={showIcon}
-                height={height}
-                showLeafIcon={false}
-                data-dash-is-loading={
-                    (loading_state && loading_state.is_loading) || undefined
-                }
-            />
+        return (<
+            Tree id={id}
+            className={className}
+            style={style}
+            treeData={add_leaf_node_icon(treeData)}
+            checkable={checkable}
+            defaultExpandAll={defaultExpandAll}
+            defaultExpandedKeys={defaultExpandedKeys}
+            defaultExpandParent={defaultExpandParent}
+            checkStrictly={checkStrictly}
+            defaultCheckedKeys={defaultCheckedKeys}
+            defaultSelectedKeys={defaultSelectedKeys}
+            multiple={multiple}
+            selectable={selectable}
+            showLine={showLine}
+            onSelect={listenSelect}
+            onCheck={listenCheck}
+            showIcon={showIcon}
+            height={height}
+            showLeafIcon={false}
+            data-dash-is-loading={
+                (loading_state && loading_state.is_loading) || undefined
+            }
+        />
         );
     }
 }
@@ -134,7 +134,7 @@ const treeDataPropTypes = PropTypes.arrayOf(PropTreeNode);
 
 // 定义参数或属性
 AntdTree.propTypes = {
-    // 部件id
+    // 组件id
     id: PropTypes.string,
 
     // css类名

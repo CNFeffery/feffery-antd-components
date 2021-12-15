@@ -14,7 +14,8 @@ export default class AntdBackTop extends Component {
             duration,
             visibilityHeight,
             containerId,
-            setProps
+            setProps,
+            loading_state
         } = this.props;
 
         return (
@@ -23,14 +24,17 @@ export default class AntdBackTop extends Component {
                 style={style}
                 target={containerId ? () => document.getElementById(containerId) : () => window}
                 duration={duration * 1000}
-                visibilityHeight={visibilityHeight} />
+                visibilityHeight={visibilityHeight}
+                data-dash-is-loading={
+                    (loading_state && loading_state.is_loading) || undefined
+                } />
         );
     }
 }
 
 // 定义参数或属性
 AntdBackTop.propTypes = {
-    // 部件id
+    // 组件id
     id: PropTypes.string,
 
     // css类名

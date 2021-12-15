@@ -10,7 +10,7 @@ const parseChildrenToArray = children => {
     return children;
 };
 
-// 定义列部件AntdCol，api参数参考https://ant.design/components/grid-cn/
+// 定义列组件AntdCol，api参数参考https://ant.design/components/grid-cn/
 export default class AntdCol extends Component {
     render() {
         // 取得必要属性或参数
@@ -25,7 +25,8 @@ export default class AntdCol extends Component {
             pull,
             push,
             flex,
-            setProps
+            setProps,
+            loading_state
         } = this.props;
 
         children = parseChildrenToArray(children)
@@ -39,7 +40,10 @@ export default class AntdCol extends Component {
                 order={order}
                 pull={pull}
                 push={push}
-                flex={flex}>
+                flex={flex}
+                data-dash-is-loading={
+                    (loading_state && loading_state.is_loading) || undefined
+                }>
                 {children}
             </Col>
         );
@@ -48,7 +52,7 @@ export default class AntdCol extends Component {
 
 // 定义参数或属性
 AntdCol.propTypes = {
-    // 部件id
+    // 组件id
     id: PropTypes.string,
 
     /**

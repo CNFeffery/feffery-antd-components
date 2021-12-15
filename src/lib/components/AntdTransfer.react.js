@@ -4,7 +4,7 @@ import { Transfer, ConfigProvider } from 'antd';
 import zhCN from 'antd/lib/locale/zh_CN';
 import 'antd/dist/antd.css';
 
-// 定义穿梭框部件AntdTransfer，api参数参考https://ant.design/components/transfer-cn/
+// 定义穿梭框组件AntdTransfer，api参数参考https://ant.design/components/transfer-cn/
 export default class AntdTransfer extends Component {
     render() {
         // 取得必要属性或参数
@@ -21,7 +21,8 @@ export default class AntdTransfer extends Component {
             showSelectAll,
             titles,
             disabled,
-            targetKeys
+            targetKeys,
+            loading_state
         } = this.props;
 
         if (!titles) {
@@ -38,7 +39,7 @@ export default class AntdTransfer extends Component {
             setProps({ moveKeys: moveKeys })
         }
 
-        // 返回定制化的前端部件
+        // 返回定制化的前端组件
         return (
             <ConfigProvider locale={zhCN}>
                 <Transfer
@@ -60,6 +61,9 @@ export default class AntdTransfer extends Component {
                         height: height,
                         width: '100%'
                     }}
+                    data-dash-is-loading={
+                        (loading_state && loading_state.is_loading) || undefined
+                    }
                 />
             </ConfigProvider>
         );
@@ -68,7 +72,7 @@ export default class AntdTransfer extends Component {
 
 // 定义参数或属性
 AntdTransfer.propTypes = {
-    // 部件id
+    // 组件id
     id: PropTypes.string,
 
     // css类名
@@ -122,7 +126,22 @@ AntdTransfer.propTypes = {
      * Dash-assigned callback that should be called to report property changes
      * to Dash, to make them available for callbacks.
      */
-    setProps: PropTypes.func
+    setProps: PropTypes.func,
+
+    loading_state: PropTypes.shape({
+        /**
+         * Determines if the component is loading or not
+         */
+        is_loading: PropTypes.bool,
+        /**
+         * Holds which property is loading
+         */
+        prop_name: PropTypes.string,
+        /**
+         * Holds the name of the component that is loading
+         */
+        component_name: PropTypes.string
+    }),
 };
 
 // 设置默认参数

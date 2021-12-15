@@ -40,7 +40,7 @@ Keyword arguments:
 
 - top (number; optional)
 
-- type (default 'default')"""
+- type (a value equal to: 'default', 'success', 'error', 'info', 'warning'; default 'default')"""
     @_explicitize_args
     def __init__(self, id=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, loading_state=Component.UNDEFINED, message=Component.UNDEFINED, description=Component.UNDEFINED, type=Component.UNDEFINED, placement=Component.UNDEFINED, top=Component.UNDEFINED, bottom=Component.UNDEFINED, duration=Component.UNDEFINED, **kwargs):
         self._prop_names = ['id', 'bottom', 'className', 'description', 'duration', 'loading_state', 'message', 'placement', 'style', 'top', 'type']

@@ -1,5 +1,3 @@
-
-
 <p align="center">
 	<img src="./feffery-antd-components-logo-planB.svg" height=325></img>
 </p>
@@ -9,13 +7,12 @@
 
 [![GitHub](https://img.shields.io/github/license/plotly/dash.svg?color=dark-green)](https://github.com/plotly/dash/blob/master/LICENSE)
 [![PyPI](https://img.shields.io/pypi/v/feffery-antd-components.svg?color=dark-green)](https://pypi.org/project/feffery-antd-components/)
-[![Downloads](https://pepy.tech/badge/feffery-antd-components)](https://pepy.tech/project/feffery-antd-components)
-[![Downloads](https://pepy.tech/badge/feffery-antd-components/month)](https://pepy.tech/project/feffery-antd-components)
-[![Downloads](https://pepy.tech/badge/feffery-antd-components/week)](https://pepy.tech/project/feffery-antd-components) 
+![PyPI - Downloads](https://img.shields.io/pypi/dm/feffery-antd-components?color=rgb%280%2C%20158%2C%20255%29)
+![PyPI - Downloads](https://img.shields.io/pypi/dw/feffery-antd-components?color=rgb%280%2C%20158%2C%20255%29)
 
 </div>
 
-`feffery-components`计划子项目，`Plotly Dash`第三方组件库，将`Antd`中的常用组件带入`Dash`的世界🥳，最新版本：`0.0.1rc7`
+`feffery-components`计划子项目，`Plotly Dash`第三方组件库，将`Antd`中的常用组件带入`Dash`的世界🥳，最新版本：`0.0.1rc7`（测试版本迭代中，敬请期待第一个正式版本的发布）
 
 ## 1 最新版本安装方式
 
@@ -41,15 +38,15 @@ pip install git+https://hub.fastgit.org/CNFeffery/feffery-antd-components.git@0.
 pip install git+https://github.com.cnpmjs.org/CNFeffery/feffery-antd-components.git@0.0.1rc8dev
 ```
 
-## 3 应用部署CDN加速使用方式
+## 3 静态资源CDN加速方法（0.0.1rc7及以上正式版本可用）
 
 ```Python
-# 实例化Dash对象时，设置参数serve_locally=False会强制浏览器端从unpkg加载各个依赖的
-# xxx.min.js静态资源，从而避免消耗服务器带宽，适合中小型站点加速用户访问
+# 非debug模式下对Dash()传入参数serve_locally=False会强制浏览器端从unpkg加载各个依赖的
+# xxx.min.js等静态资源，从而避免直接占用服务器带宽，适合中小型站点加速访问，提升用户体验
 app = dash.Dash(serve_locally=False)
 ```
 
-## 4 已实现部件目录
+## 4 已包含组件
 
 - [x] 日期选择框：`AntdDatePicker`
 - [x] 日期范围选择框：`AntdDateRangePicker`
@@ -104,33 +101,46 @@ app = dash.Dash(serve_locally=False)
 - [x] 上传：`AntdUpload`
 - [x] 气泡确认框：`AntdPopconfirm`
 - [x] 回到顶部：`AntdBackTop`
+- [x] 骨架屏：`AntdSkeleton`
+- [x] 固钉：`AntdAffix`
+- [x] 面包屑：`AntdBreadcrumb`
+- [x] 下拉菜单：`AntdDropdown`
+- [x] 数字输入框：`AntdInputNumber`
+- [x] 评分：`AntdRate`
+- [x] 统计数值：`AntdStatistic`
+- [x] 倒计时：`AntdCountdown`
+- [x] 时间轴：`AntdTimeline`
+- [x] 进度条：`AntdProgress`
+- [x] 头像：`AntdAvatar`
+- [x] 徽标数：`AntdBadge`
+- [x] 缎带：`AntdRibbon`
+- [x] 时间选择框：`AntdTimePicker`
+- [x] 时间范围选择框：`AntdTimeRangePicker`
+- [x] 走马灯：`AntdCarousel`
+- [x] 拖拽上传组件：`AntdDraggerUpload`
+- [x] 表单：`AntdForm`
+- [x] 卡片
+  - `AntdCard`
+  - `AntdCardGrid`
+- [x] 提及：`AntdMentions`
+- [x] 图片：`AntdImage`
+- [x] 页头：`AntdPageHeader`
+- [x] 日历：`AntdCalendar`
+- [x] 评论：`AntdComment`
+- [x] 描述列表
+  - `AntdDescriptions`
+  - `AntdDescriptionItem`
 
 ## 5 在线交互式说明文档
 
 <a href='http://fac.feffery.tech/' target='_blank'>文档地址</a>
 
-## 6 TODO计划
+## 6 近期TODO计划
 
-- [ ] 固钉：`AntdAffix`
-- [ ] 面包屑：`AntdBreadcrumb`
-- [ ] 下拉菜单：`AntdDropdown`
-- [ ] 页头：`AntdPageHeader`
-- [ ] 表单：`AntdForm`
-- [ ] 数字输入框：`AntdInputNumber`
-- [ ] 提及：`AntdMentions`
-- [ ] 评分：`AntdRate`
-- [ ] 时间选择框：`AntdTimePicker`
-- [ ] 头像：`AntdAvatar`
-- [ ] 徽标数：`AntdBadge`
-- [ ] 日历：`AntdCalendar`
-- [ ] 卡片：`AntdCard`
-- [ ] 走马灯：`AntdCarousel`
-- [ ] 评论：`AntdComment`
-- [ ] 描述列表：`AntdDescriptions`
-- [ ] 图片：`AntdImage`
-- [ ] 列表：`AntdList`
-- [ ] 统计数值：`AntdStatistic`
-- [ ] 时间轴：`AntdTimeline`
-- [ ] 进度条：`AntdProgress`
-- [ ] 骨架屏：`AntdSkeleton`
+- [ ] 为以下组件增加`响应式`功能
+  - `AntdDescriptions`
+  - `AntdRow`
+  - `AntdCol`
+  - `AntdSider`
+  - `AntdAvatar`
 

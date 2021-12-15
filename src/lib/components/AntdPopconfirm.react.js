@@ -36,7 +36,8 @@ export default class AntdPopconfirm extends Component {
             cancelCounts,
             trigger,
             containerId,
-            setProps
+            setProps,
+            loading_state
         } = this.props;
 
         children = parseChildrenToArray(children)
@@ -71,7 +72,10 @@ export default class AntdPopconfirm extends Component {
                     cancelButtonProps={cancelButtonProps}
                     getPopupContainer={containerId ? () => document.getElementById(containerId) : containerId}
                     onCancel={listenCancel}
-                    onConfirm={listenConfirm}>
+                    onConfirm={listenConfirm}
+                    data-dash-is-loading={
+                        (loading_state && loading_state.is_loading) || undefined
+                    }>
                     {children}
                 </Popconfirm>
             </ConfigProvider>
@@ -81,7 +85,7 @@ export default class AntdPopconfirm extends Component {
 
 // 定义参数或属性
 AntdPopconfirm.propTypes = {
-    // 部件id
+    // 组件id
     id: PropTypes.string,
 
     /**

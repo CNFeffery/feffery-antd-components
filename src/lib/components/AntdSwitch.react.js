@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Switch } from 'antd';
 import 'antd/dist/antd.css';
 
-// 定义开关部件AntdSwitch，api参数参考https://ant.design/components/switch-cn/
+// 定义开关组件AntdSwitch，api参数参考https://ant.design/components/switch-cn/
 export default class AntdSwitch extends Component {
 
     constructor(props) {
@@ -32,7 +32,7 @@ export default class AntdSwitch extends Component {
             setProps({ checked: checked })
         }
 
-        // 返回定制化的前端部件
+        // 返回定制化的前端组件
         return (
             <Switch
                 id={id}
@@ -55,7 +55,7 @@ export default class AntdSwitch extends Component {
 
 // 定义参数或属性
 AntdSwitch.propTypes = {
-    // 部件id
+    // 组件id
     id: PropTypes.string,
 
     // css类名

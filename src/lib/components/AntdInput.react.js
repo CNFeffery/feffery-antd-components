@@ -5,7 +5,7 @@ import 'antd/dist/antd.css';
 
 const { Search, TextArea } = Input;
 
-// 定义输入框部件AntdInput，api参数参考https://ant.design/components/input-cn/
+// 定义输入框组件AntdInput，api参数参考https://ant.design/components/input-cn/
 export default class AntdInput extends Component {
 
     constructor(props) {
@@ -23,8 +23,8 @@ export default class AntdInput extends Component {
             id,
             className,
             style,
-            loading_state,
             mode,
+            autoComplete,
             placeholder,
             value,
             size,
@@ -38,7 +38,8 @@ export default class AntdInput extends Component {
             showCount,
             nClicksSearch,
             nSubmit,
-            setProps
+            setProps,
+            loading_state
         } = this.props;
 
         // 监听输入内容变化事件
@@ -63,6 +64,7 @@ export default class AntdInput extends Component {
                     className={className}
                     style={style}
                     placeholder={placeholder}
+                    autoComplete={autoComplete}
                     value={value}
                     size={size}
                     addonBefore={addonBefore}
@@ -84,6 +86,7 @@ export default class AntdInput extends Component {
                     className={className}
                     style={style}
                     placeholder={placeholder}
+                    autoComplete={autoComplete}
                     size={size}
                     allowClear={allowClear}
                     bordered={bordered}
@@ -92,7 +95,10 @@ export default class AntdInput extends Component {
                     maxLength={maxLength}
                     onSearch={onSearch}
                     onChange={onChange}
-                    onPressEnter={onPressEnter} />
+                    onPressEnter={onPressEnter}
+                    data-dash-is-loading={
+                        (loading_state && loading_state.is_loading) || undefined
+                    } />
             );
         } else if (mode === 'text-area') {
             return (
@@ -100,6 +106,7 @@ export default class AntdInput extends Component {
                     className={className}
                     style={style}
                     placeholder={placeholder}
+                    autoComplete={autoComplete}
                     size={size}
                     allowClear={allowClear}
                     bordered={bordered}
@@ -108,7 +115,10 @@ export default class AntdInput extends Component {
                     maxLength={maxLength}
                     showCount={showCount}
                     onChange={onChange}
-                    onPressEnter={onPressEnter} />
+                    onPressEnter={onPressEnter}
+                    data-dash-is-loading={
+                        (loading_state && loading_state.is_loading) || undefined
+                    } />
             );
         } else if (mode === 'password') {
             return (
@@ -116,12 +126,16 @@ export default class AntdInput extends Component {
                     className={className}
                     style={style}
                     placeholder={placeholder}
+                    autoComplete={autoComplete}
                     size={size}
                     bordered={bordered}
                     disabled={disabled}
                     maxLength={maxLength}
                     onChange={onChange}
-                    onPressEnter={onPressEnter} />
+                    onPressEnter={onPressEnter}
+                    data-dash-is-loading={
+                        (loading_state && loading_state.is_loading) || undefined
+                    } />
             );
         }
     }
@@ -129,7 +143,7 @@ export default class AntdInput extends Component {
 
 // 定义参数或属性
 AntdInput.propTypes = {
-    // 部件id
+    // 组件id
     id: PropTypes.string,
 
     // css类名
@@ -155,6 +169,9 @@ AntdInput.propTypes = {
 
     // 用于设置输入框功能模式类型，可选的有'default'、'search'、'text-area'、'password'，默认为'default'
     mode: PropTypes.oneOf(['default', 'search', 'text-area', 'password']),
+
+    // 设置是否允许自动补全，默认为'on'
+    autoComplete: PropTypes.oneOf(['off', 'on']),
 
     // 用于设置占位提示内容
     placeholder: PropTypes.string,

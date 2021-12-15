@@ -6,7 +6,7 @@ import 'antd/dist/antd.css';
 
 const { Option, OptGroup } = Select;
 
-// 定义下拉选择部件AntdSelect，api参数参考https://ant.design/components/select-cn/
+// 定义下拉选择组件AntdSelect，api参数参考https://ant.design/components/select-cn/
 export default class AntdSelect extends Component {
 
     constructor(props) {
@@ -45,7 +45,7 @@ export default class AntdSelect extends Component {
             setProps({ value: value })
         }
 
-        // 基于dash端传入的options参数，推导出对应的部件
+        // 基于dash端传入的options参数，推导出对应的组件
         var optionsJsx = [];
         for (var i = 0; i < options.length; i++) {
             // 当存在分组时
@@ -126,7 +126,7 @@ export default class AntdSelect extends Component {
             }
         }
 
-        // 返回定制化的前端部件
+        // 返回定制化的前端组件
         return (
             <ConfigProvider locale={zhCN}>
                 <Select
@@ -158,7 +158,7 @@ export default class AntdSelect extends Component {
 
 // 定义参数或属性
 AntdSelect.propTypes = {
-    // 部件id
+    // 组件id
     id: PropTypes.string,
 
     // css类名

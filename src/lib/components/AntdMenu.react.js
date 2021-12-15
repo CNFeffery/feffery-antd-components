@@ -89,7 +89,7 @@ class UtilsLink extends Component {
     }
 }
 
-// 定义导航菜单部件AntdMenu，api参数参考https://ant.design/components/menu-cn/
+// 定义导航菜单组件AntdMenu，api参数参考https://ant.design/components/menu-cn/
 export default class AntdMenu extends Component {
 
     constructor(props) {
@@ -258,7 +258,7 @@ export default class AntdMenu extends Component {
 
 // 定义参数或属性
 AntdMenu.propTypes = {
-    // 部件id
+    // 组件id
     id: PropTypes.string,
 
     // css类名

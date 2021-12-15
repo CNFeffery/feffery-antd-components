@@ -38,7 +38,6 @@ import AntdTitle from './components/typography/AntdTitle.react'
 import AntdTabPane from './components/tabs/AntdTabPane.react'
 import AntdTabs from './components/tabs/AntdTabs.react'
 import AntdPagination from './components/AntdPagination.react'
-import AntdSkeleton from './components/AntdSkeleton.react'
 import AntdTreeSelect from './components/AntdTreeSelect.react'
 import AntdDrawer from './components/AntdDrawer.react'
 import AntdPopover from './components/AntdPopover.react'
@@ -49,6 +48,34 @@ import AntdUpload from './components/AntdUpload.react'
 import AntdIcon from './components/AntdIcon.react'
 import AntdPopconfirm from './components/AntdPopconfirm.react'
 import AntdBackTop from './components/AntdBackTop.react'
+import AntdSkeleton from './components/AntdSkeleton.react'
+import AntdAffix from './components/AntdAffix.react'
+import AntdBreadcrumb from './components/AntdBreadcrumb.react'
+import AntdDropdown from './components/AntdDropdown.react'
+import AntdInputNumber from './components/AntdInputNumber.react'
+import AntdRate from './components/AntdRate.react'
+import AntdStatistic from './components/AntdStatistic.react'
+import AntdCountdown from './components/AntdCountdown.react'
+import AntdTimeline from './components/AntdTimeline.react'
+import AntdProgress from './components/AntdProgress.react'
+import AntdAvatar from './components/AntdAvatar.react'
+import AntdBadge from './components/AntdBadge.react'
+import AntdRibbon from './components/AntdRibbon.react'
+import AntdTimePicker from './components/AntdTimePicker.react'
+import AntdTimeRangePicker from './components/AntdTimeRangePicker.react'
+import AntdCarousel from './components/AntdCarousel.react'
+import AntdDraggerUpload from './components/AntdDraggerUpload.react'
+import AntdFormItem from './components/form/AntdFormItem.react'
+import AntdForm from './components/form/AntdForm.react'
+import AntdCardGrid from './components/card/AntdCardGrid.react'
+import AntdCard from './components/card/AntdCard.react'
+import AntdMentions from './components/AntdMentions.react'
+import AntdImage from './components/AntdImage.react'
+import AntdPageHeader from './components/AntdPageHeader.react'
+import AntdCalendar from './components/AntdCalendar.react'
+import AntdComment from './components/AntdComment.react'
+import AntdDescriptions from './components/descriptions/AntdDescriptions.react'
+import AntdDescriptionItem from './components/descriptions/AntdDescriptionItem.react'
 
 export {
     AntdDatePicker,
@@ -90,7 +117,6 @@ export {
     AntdTabPane,
     AntdTabs,
     AntdPagination,
-    AntdSkeleton,
     AntdTreeSelect,
     AntdDrawer,
     AntdPopover,
@@ -100,5 +126,33 @@ export {
     AntdUpload,
     AntdIcon,
     AntdPopconfirm,
-    AntdBackTop
+    AntdBackTop,
+    AntdSkeleton,
+    AntdAffix,
+    AntdBreadcrumb,
+    AntdDropdown,
+    AntdInputNumber,
+    AntdRate,
+    AntdStatistic,
+    AntdCountdown,
+    AntdTimeline,
+    AntdProgress,
+    AntdAvatar,
+    AntdBadge,
+    AntdRibbon,
+    AntdTimePicker,
+    AntdTimeRangePicker,
+    AntdCarousel,
+    AntdDraggerUpload,
+    AntdFormItem,
+    AntdForm,
+    AntdCardGrid,
+    AntdCard,
+    AntdMentions,
+    AntdImage,
+    AntdPageHeader,
+    AntdCalendar,
+    AntdComment,
+    AntdDescriptions,
+    AntdDescriptionItem
 };

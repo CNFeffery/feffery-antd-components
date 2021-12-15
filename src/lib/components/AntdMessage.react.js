@@ -4,7 +4,7 @@ import { message } from 'antd';
 import { str2Icon } from './icons.react'
 import 'antd/dist/antd.css';
 
-// 定义全局提示部件AntdMessage，api参数参考https://ant.design/components/message-cn/
+// 定义全局提示组件AntdMessage，api参数参考https://ant.design/components/message-cn/
 export default class AntdMessage extends Component {
 
     render() {
@@ -60,7 +60,7 @@ export default class AntdMessage extends Component {
 
 // 定义参数或属性
 AntdMessage.propTypes = {
-    // 部件id
+    // 组件id
     id: PropTypes.string,
 
     // css类名
