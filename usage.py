@@ -75,6 +75,19 @@ app.layout = html.Div(
         dcc.Location(id="url"),
         fac.AntdSpin(html.Div(id="tree-demo-output"), text="回调中"),
 
+        fac.AntdDescriptions(
+            [
+                fac.AntdDescriptionItem(fac.AntdBadge(
+                    status='processing'), label=f'标签{i}')
+                for i in range(10)
+            ],
+            bordered=True,
+            title='描述列表测试',
+            size='small',
+            column=2,
+            layout='vertical'
+        ),
+
         fac.AntdComment(
             fac.AntdComment(
                 fac.AntdComment(
@@ -82,32 +95,6 @@ app.layout = html.Div(
                         fac.AntdComment(
                             fac.AntdComment(
                                 fac.AntdComment(
-                                    fac.AntdComment(
-                                        fac.AntdComment(
-                                            authorName='Feffery',
-                                            fromNow=True,
-                                            publishTime={
-                                                'value': '2019-01-01 12:02:19'
-                                            },
-                                            commentContent='很期待fac第一个正式版本的发布😇！',
-                                            likesCount=665,
-                                            avatarProps={
-                                                'mode': 'image',
-                                                'src': 'https://avatars.githubusercontent.com/u/49147660?v=4'
-                                            }
-                                        ),
-                                        authorName='Feffery',
-                                        fromNow=True,
-                                        publishTime={
-                                            'value': '2019-01-01 12:02:19'
-                                        },
-                                        commentContent='很期待fac第一个正式版本的发布😇！',
-                                        likesCount=665,
-                                        avatarProps={
-                                            'mode': 'image',
-                                            'src': 'https://avatars.githubusercontent.com/u/49147660?v=4'
-                                        }
-                                    ),
                                     authorName='Feffery',
                                     fromNow=True,
                                     publishTime={
@@ -118,6 +105,9 @@ app.layout = html.Div(
                                     avatarProps={
                                         'mode': 'image',
                                         'src': 'https://avatars.githubusercontent.com/u/49147660?v=4'
+                                    },
+                                    style={
+                                        'borderTop': '1px solid #f5f5f5'
                                     }
                                 ),
                                 authorName='Feffery',
@@ -130,6 +120,9 @@ app.layout = html.Div(
                                 avatarProps={
                                     'mode': 'image',
                                     'src': 'https://avatars.githubusercontent.com/u/49147660?v=4'
+                                },
+                                style={
+                                    'borderTop': '1px solid #f5f5f5'
                                 }
                             ),
                             authorName='Feffery',
@@ -142,6 +135,9 @@ app.layout = html.Div(
                             avatarProps={
                                 'mode': 'image',
                                 'src': 'https://avatars.githubusercontent.com/u/49147660?v=4'
+                            },
+                            style={
+                                'borderTop': '1px solid #f5f5f5'
                             }
                         ),
                         authorName='Feffery',
@@ -154,6 +150,9 @@ app.layout = html.Div(
                         avatarProps={
                             'mode': 'image',
                             'src': 'https://avatars.githubusercontent.com/u/49147660?v=4'
+                        },
+                        style={
+                            'borderTop': '1px solid #f5f5f5'
                         }
                     ),
                     authorName='Feffery',
@@ -166,6 +165,9 @@ app.layout = html.Div(
                     avatarProps={
                         'mode': 'image',
                         'src': 'https://avatars.githubusercontent.com/u/49147660?v=4'
+                    },
+                    style={
+                        'borderTop': '1px solid #f5f5f5'
                     }
                 ),
                 authorName='Feffery',
@@ -178,6 +180,9 @@ app.layout = html.Div(
                 avatarProps={
                     'mode': 'image',
                     'src': 'https://avatars.githubusercontent.com/u/49147660?v=4'
+                },
+                style={
+                    'borderTop': '1px solid #f5f5f5'
                 }
             ),
             authorName='Feffery',

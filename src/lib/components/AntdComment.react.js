@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import moment from 'moment';
 import zhCN from 'antd/lib/locale/zh_CN';
@@ -126,7 +126,7 @@ AntdComment.propTypes = {
     // 自定义css字典
     style: PropTypes.object,
 
-    // 定义评论唯一id，主要用于数据库匹配场景
+    // 可选，用于定义评论唯一id，主要用于数据库匹配场景
     commentId: PropTypes.string,
 
     // 设置评论发布用户名

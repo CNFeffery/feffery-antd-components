@@ -38,7 +38,7 @@ pip install git+https://hub.fastgit.org/CNFeffery/feffery-antd-components.git@0.
 pip install git+https://github.com.cnpmjs.org/CNFeffery/feffery-antd-components.git@0.0.1rc8dev
 ```
 
-## 3 静态资源CDN加速方法（0.0.1rc7及以上版本可用）
+## 3 静态资源CDN加速方法（0.0.1rc7及以上正式版本可用）
 
 ```Python
 # 非debug模式下对Dash()传入参数serve_locally=False会强制浏览器端从unpkg加载各个依赖的
@@ -46,7 +46,7 @@ pip install git+https://github.com.cnpmjs.org/CNFeffery/feffery-antd-components.
 app = dash.Dash(serve_locally=False)
 ```
 
-## 4 已实现组件目录
+## 4 已包含组件
 
 - [x] 日期选择框：`AntdDatePicker`
 - [x] 日期范围选择框：`AntdDateRangePicker`
@@ -127,12 +127,20 @@ app = dash.Dash(serve_locally=False)
 - [x] 页头：`AntdPageHeader`
 - [x] 日历：`AntdCalendar`
 - [x] 评论：`AntdComment`
+- [x] 描述列表
+  - `AntdDescriptions`
+  - `AntdDescriptionItem`
 
 ## 5 在线交互式说明文档
 
 <a href='http://fac.feffery.tech/' target='_blank'>文档地址</a>
 
-## 6 TODO计划
+## 6 近期TODO计划
 
-- [ ] 描述列表：`AntdDescriptions`
+- [ ] 为以下组件增加`响应式`功能
+  - `AntdDescriptions`
+  - `AntdRow`
+  - `AntdCol`
+  - `AntdSider`
+  - `AntdAvatar`
 
