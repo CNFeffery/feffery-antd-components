@@ -18,6 +18,8 @@
 
 /R
 
+/.vscode
+
 __pycache__
 
 index.html
