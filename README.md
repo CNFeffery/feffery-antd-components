@@ -23,22 +23,22 @@ pip install feffery-antd-components==0.0.1rc7
 ## 2 最新开发版本安装方式
 
 ```bash
-pip install git+https://github.com/CNFeffery/feffery-antd-components.git@0.0.1rc8dev
+pip install git+https://github.com/CNFeffery/feffery-antd-components.git
 ```
 
 国内镜像加速安装方式：
 
 ```bash
-pip install git+https://hub.fastgit.org/CNFeffery/feffery-antd-components.git@0.0.1rc8dev
+pip install git+https://hub.fastgit.org/CNFeffery/feffery-antd-components.git
 ```
 
 或：
 
 ```bash
-pip install git+https://github.com.cnpmjs.org/CNFeffery/feffery-antd-components.git@0.0.1rc8dev
+pip install git+https://github.com.cnpmjs.org/CNFeffery/feffery-antd-components.git
 ```
 
-## 3 静态资源CDN加速方法（0.0.1rc7及以上正式版本可用）
+## 3 静态资源CDN加速方法（0.0.1rc7及以上版本可用）
 
 ```Python
 # 非debug模式下对Dash()传入参数serve_locally=False会强制浏览器端从unpkg加载各个依赖的
