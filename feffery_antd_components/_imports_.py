@@ -59,6 +59,8 @@ from .AntdTreeSelect import AntdTreeSelect
 from .AntdUpload import AntdUpload
 from .AntdCard import AntdCard
 from .AntdCardGrid import AntdCardGrid
+from .AntdDescriptionItem import AntdDescriptionItem
+from .AntdDescriptions import AntdDescriptions
 from .AntdForm import AntdForm
 from .AntdFormItem import AntdFormItem
 from .AntdCol import AntdCol
@@ -136,6 +138,8 @@ __all__ = [
     "AntdUpload",
     "AntdCard",
     "AntdCardGrid",
+    "AntdDescriptionItem",
+    "AntdDescriptions",
     "AntdForm",
     "AntdFormItem",
     "AntdCol",
