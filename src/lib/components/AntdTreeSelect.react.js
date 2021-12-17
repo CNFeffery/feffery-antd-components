@@ -97,13 +97,13 @@ export default class AntdTreeSelect extends Component {
 // 定义递归PropTypes
 const PropTreeNodeShape = {
     // 标题
-    title: PropTypes.string.isRequired,
+    title: PropTypes.string,
 
     // 唯一识别id
-    key: PropTypes.string.isRequired,
+    key: PropTypes.string,
 
     // 节点对应的值，供搜索筛选时进行匹配使用（具有唯一性）
-    value: PropTypes.string.isRequired,
+    value: PropTypes.string,
 
     // 可选，设置是否禁用
     disabled: PropTypes.bool,
@@ -135,7 +135,7 @@ AntdTreeSelect.propTypes = {
     style: PropTypes.object,
 
     // 组织树形结构的json结构数据
-    treeData: treeDataPropTypes.isRequired,
+    treeData: treeDataPropTypes,
 
     // 设置是否渲染内容清空按钮，默认为true
     allowClear: PropTypes.bool,
