@@ -155,16 +155,24 @@ AntdTreeSelect.propTypes = {
     // 对应已被选中的选项值或选项值数组
     value: PropTypes.oneOfType([
         PropTypes.string,
+        PropTypes.number,
         PropTypes.arrayOf(
-            PropTypes.string,
+            PropTypes.oneOfType([
+                PropTypes.string,
+                PropTypes.number
+            ]),
         ),
     ]),
 
     // 设置默认被选中的选项，默认为空数组
     defaultValue: PropTypes.oneOfType([
         PropTypes.string,
+        PropTypes.number,
         PropTypes.arrayOf(
-            PropTypes.string
+            PropTypes.oneOfType([
+                PropTypes.string,
+                PropTypes.number
+            ]),
         ),
     ]),
 

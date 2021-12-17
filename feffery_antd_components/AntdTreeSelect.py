@@ -17,7 +17,7 @@ Keyword arguments:
 
 - className (string; optional)
 
-- defaultValue (string | list of strings; optional)
+- defaultValue (string | number | list of string | numbers; optional)
 
 - disabled (boolean; optional)
 
@@ -60,7 +60,7 @@ Keyword arguments:
 
 - treeLine (boolean; optional)
 
-- value (string | list of strings; optional)
+- value (string | number | list of string | numbers; optional)
 
 - virtual (boolean; default False)"""
     @_explicitize_args

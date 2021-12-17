@@ -12,7 +12,7 @@ Keyword arguments:
 - `allowClear` (Bool; optional)
 - `bordered` (Bool; optional)
 - `className` (String; optional)
-- `defaultValue` (String | Array of Strings; optional)
+- `defaultValue` (String | Real | Array of String | Reals; optional)
 - `disabled` (Bool; optional)
 - `listHeight` (Real; optional)
 - `loading_state` (optional): . loading_state has the following type: lists containing elements 'is_loading', 'prop_name', 'component_name'.
@@ -32,7 +32,7 @@ Those elements have the following types:
 - `treeDefaultExpandedKeys` (Array of Strings; optional)
 - `treeExpandedKeys` (Array of Strings; optional)
 - `treeLine` (Bool; optional)
-- `value` (String | Array of Strings; optional)
+- `value` (String | Real | Array of String | Reals; optional)
 - `virtual` (Bool; optional)
 """
 function 'feffery'_antdtreeselect(; kwargs...)
