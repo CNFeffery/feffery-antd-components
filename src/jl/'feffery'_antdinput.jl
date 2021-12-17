@@ -26,6 +26,19 @@ Those elements have the following types:
 - `mode` (a value equal to: 'default', 'search', 'text-area', 'password'; optional)
 - `nClicksSearch` (Real; optional)
 - `nSubmit` (Real; optional)
+- `persisted_props` (Array of a value equal to: 'value's; optional): Properties whose user interactions will persist after refreshing the
+component or the page. Since only `value` is allowed this prop can
+normally be ignored.
+- `persistence` (Bool | String | Real; optional): Used to allow user interactions in this component to be persisted when
+the component - or the page - is refreshed. If `persisted` is truthy and
+hasn't changed from its previous value, a `value` that the user has
+changed while using the app will keep that change, as long as
+the new `value` also matches what was given originally.
+Used in conjunction with `persistence_type`.
+- `persistence_type` (a value equal to: 'local', 'session', 'memory'; optional): Where persisted user changes will be stored:
+memory: only kept in memory, reset on page refresh.
+local: window.localStorage, data is kept after the browser quit.
+session: window.sessionStorage, data is cleared once the browser quit.
 - `placeholder` (String; optional)
 - `showCount` (Bool; optional)
 - `size` (a value equal to: 'small', 'middle', 'large'; optional)
@@ -33,7 +46,7 @@ Those elements have the following types:
 - `value` (String; optional)
 """
 function 'feffery'_antdinput(; kwargs...)
-        available_props = Symbol[:id, :addonAfter, :addonBefore, :allowClear, :autoComplete, :bordered, :className, :defaultValue, :disabled, :loading_state, :maxLength, :mode, :nClicksSearch, :nSubmit, :placeholder, :showCount, :size, :style, :value]
+        available_props = Symbol[:id, :addonAfter, :addonBefore, :allowClear, :autoComplete, :bordered, :className, :defaultValue, :disabled, :loading_state, :maxLength, :mode, :nClicksSearch, :nSubmit, :persisted_props, :persistence, :persistence_type, :placeholder, :showCount, :size, :style, :value]
         wild_props = Symbol[]
         return Component("'feffery'_antdinput", "AntdInput", "feffery_antd_components", available_props, wild_props; kwargs...)
 end

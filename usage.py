@@ -1,44 +1,40 @@
 import dash
-from dash import html
+from dash.dependencies import Input, Output
+import dash_core_components as dcc
+import dash_html_components as html
 import feffery_antd_components as fac
-from dash.dependencies import Input, Output, State
+import dash_bootstrap_components as dbc
 
+INITIAL = '1+1=2'
+
+CITIES = ['Boston', 'London', 'Montreal']
 
 app = dash.Dash(__name__)
 
+app.layout = html.Div([
+    "Remember this important info:",
+    html.Br(),
 
-app.layout = html.Div(
-    [
-        fac.AntdTitle('1 0.0.1rc8新增组件一览', level=5),
-        html.Div(
-            [
+    dbc.Input(id='important-info',  persistence=True),
 
-                fac.AntdBackTop(
-                    duration=1
-                ),
+    dbc.Select(
+        id='persisted-city',
+        value='Montreal',
+        options=[{'label': v, 'value': v} for v in CITIES],
+        persistence=True
+    ),
 
-                fac.AntdAffix(
-                    fac.AntdButton('固钉', shape='round'),
-                    offsetTop=200,
-                    style={
-                        'float': 'right'
-                    }
-                ),
-
-                html.Div(
-                    style={
-                        'height': '10000px'
-                    }
-                )
-
-            ]
-        )
-    ],
-    style={
-        'padding': '100px 200px',
-        'height': '100vh'
-    }
-)
+    fac.AntdSelect(
+        value='Montreal',
+        options=[{'label': v, 'value': v} for v in CITIES],
+        persistence=True,
+        persisted_props=['value'],
+        style={
+            # 使用css样式固定宽度
+            'width': '200px'
+        }
+    )
+])
 
 
 if __name__ == '__main__':

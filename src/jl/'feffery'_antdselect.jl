@@ -37,13 +37,26 @@ Those elements have the following types:
   - `value` (String | Real; required)
   - `disabled` (Bool; optional)
   - `colors` (Array of Strings; optional)ss
+- `persisted_props` (Array of a value equal to: 'value's; optional): Properties whose user interactions will persist after refreshing the
+component or the page. Since only `value` is allowed this prop can
+normally be ignored.
+- `persistence` (Bool | String | Real; optional): Used to allow user interactions in this component to be persisted when
+the component - or the page - is refreshed. If `persisted` is truthy and
+hasn't changed from its previous value, a `value` that the user has
+changed while using the app will keep that change, as long as
+the new `value` also matches what was given originally.
+Used in conjunction with `persistence_type`.
+- `persistence_type` (a value equal to: 'local', 'session', 'memory'; optional): Where persisted user changes will be stored:
+memory: only kept in memory, reset on page refresh.
+local: window.localStorage, data is kept after the browser quit.
+session: window.sessionStorage, data is cleared once the browser quit.
 - `placeholder` (String; optional)
 - `size` (a value equal to: 'small', 'middle', 'large'; optional)
 - `style` (Dict; optional)
 - `value` (String | Real | Array of String | Reals; optional)
 """
 function 'feffery'_antdselect(; kwargs...)
-        available_props = Symbol[:id, :allowClear, :className, :colorsMode, :colorsNameWidth, :defaultValue, :disabled, :listHeight, :loading_state, :maxTagCount, :mode, :options, :placeholder, :size, :style, :value]
+        available_props = Symbol[:id, :allowClear, :className, :colorsMode, :colorsNameWidth, :defaultValue, :disabled, :listHeight, :loading_state, :maxTagCount, :mode, :options, :persisted_props, :persistence, :persistence_type, :placeholder, :size, :style, :value]
         wild_props = Symbol[]
         return Component("'feffery'_antdselect", "AntdSelect", "feffery_antd_components", available_props, wild_props; kwargs...)
 end
