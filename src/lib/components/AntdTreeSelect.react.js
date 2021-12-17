@@ -103,7 +103,10 @@ const PropTreeNodeShape = {
     key: PropTypes.string,
 
     // 节点对应的值，供搜索筛选时进行匹配使用（具有唯一性）
-    value: PropTypes.string,
+    value: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.number
+    ]),
 
     // 可选，设置是否禁用
     disabled: PropTypes.bool,
