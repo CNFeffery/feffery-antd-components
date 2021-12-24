@@ -183,6 +183,7 @@ app = dash.Dash(serve_locally=False)
   - [x] `AntdTreeSelect`
     - `value`
 
+- [ ] 为`fac`添加`中文/英文`语言状态切换参数`locale`
 - [ ] 为以下组件增加`响应式`功能
   - `AntdDescriptions`
   - `AntdRow`
