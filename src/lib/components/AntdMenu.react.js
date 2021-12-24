@@ -94,11 +94,18 @@ export default class AntdMenu extends Component {
 
     constructor(props) {
         super(props)
-        // 初始化value
+        // 初始化currentKey
         if (props.defaultSelectedKey) {
             // 当defaultSelectedKey不为空时，为currentKey初始化defaultSelectedKey对应的key值
             props.setProps({ currentKey: props.defaultSelectedKey })
         }
+
+        // 初始化openKeys
+        if (props.defaultOpenKeys) {
+            // 当defaultOpenKeys不为空时，为openKeys初始化defaultOpenKeys对应的key值
+            props.setProps({ openKeys: props.defaultOpenKeys })
+        }
+
     }
 
     state = {
@@ -122,9 +129,13 @@ export default class AntdMenu extends Component {
             theme,
             defaultOpenKeys,
             currentKey,
+            openKeys,
             defaultSelectedKey,
             renderCollapsedButton,
             setProps,
+            persistence,
+            persisted_props,
+            persistence_type,
             loading_state
         } = this.props;
 
@@ -135,8 +146,8 @@ export default class AntdMenu extends Component {
         // 定义字符串-> 组件 Map对象
         let str2Jsx = new Map([['SubMenu', SubMenu], ['Item', Item], ['ItemGroup', ItemGroup]])
 
-        // 递归推导jsonx可解析的对象
-        function raw2Jsx(obj, str2Jsx, str2Icon) {
+        // 递归推导多层菜单结构
+        const raw2Jsx = (obj, str2Jsx, str2Icon) => {
             // 若obj为数组
             if (Array.isArray(obj)) {
                 // 若obj为数组，则针对数组中每个对象向下递归
@@ -199,14 +210,13 @@ export default class AntdMenu extends Component {
         }
 
         // 监听Item的点击事件
-        function listenSelected(item) {
+        const listenSelected = (item) => {
             // 将当前选中的key值赋给currentKey
             setProps({ currentKey: item.key })
         }
 
         if (renderCollapsedButton) {
             return (
-
                 <div style={{ width: '100%' }}>
                     <Button type="primary" onClick={this.toggleCollapsed} style={{ marginBottom: 16 }}>
                         {React.createElement(this.state.collapsed ? MenuUnfoldOutlined : MenuFoldOutlined)}
@@ -218,11 +228,16 @@ export default class AntdMenu extends Component {
                         mode={mode}
                         theme={theme}
                         selectedKeys={[currentKey]}
+                        openKeys={openKeys}
                         defaultOpenKeys={defaultOpenKeys}
                         defaultSelectedKeys={defaultSelectedKey ? [defaultSelectedKey] : defaultSelectedKey}
                         selectedKeys={[currentKey]}
                         onSelect={listenSelected}
+                        onOpenChange={(e) => setProps({ openKeys: e })}
                         inlineCollapsed={this.state.collapsed}
+                        persistence={persistence}
+                        persisted_props={persisted_props}
+                        persistence_type={persistence_type}
                         data-dash-is-loading={
                             (loading_state && loading_state.is_loading) || undefined
                         }
@@ -240,9 +255,14 @@ export default class AntdMenu extends Component {
                     mode={mode}
                     theme={theme}
                     selectedKeys={[currentKey]}
+                    openKeys={openKeys}
                     defaultOpenKeys={defaultOpenKeys}
                     defaultSelectedKeys={defaultSelectedKey ? [defaultSelectedKey] : defaultSelectedKey}
                     onSelect={listenSelected}
+                    onOpenChange={(e) => setProps({ openKeys: e })}
+                    persistence={persistence}
+                    persisted_props={persisted_props}
+                    persistence_type={persistence_type}
                     data-dash-is-loading={
                         (loading_state && loading_state.is_loading) || undefined
                     }
@@ -251,8 +271,6 @@ export default class AntdMenu extends Component {
                 </Menu>
             );
         }
-
-
     }
 }
 
@@ -284,6 +302,9 @@ AntdMenu.propTypes = {
     // 对应当前被选中的选项对应key
     currentKey: PropTypes.string,
 
+    // 对应当前展开的SubMenu节点key值数组
+    openKeys: PropTypes.arrayOf(PropTypes.string),
+
     // 默认展开的SubMenu菜单项key值数组
     defaultOpenKeys: PropTypes.arrayOf(PropTypes.string),
 
@@ -312,12 +333,43 @@ AntdMenu.propTypes = {
      * Dash-assigned callback that should be called to report property changes
      * to Dash, to make them available for callbacks.
      */
-    setProps: PropTypes.func
+    setProps: PropTypes.func,
+
+    /**
+   * Used to allow user interactions in this component to be persisted when
+   * the component - or the page - is refreshed. If `persisted` is truthy and
+   * hasn't changed from its previous value, a `value` that the user has
+   * changed while using the app will keep that change, as long as
+   * the new `value` also matches what was given originally.
+   * Used in conjunction with `persistence_type`.
+   */
+    persistence: PropTypes.oneOfType([
+        PropTypes.bool,
+        PropTypes.string,
+        PropTypes.number
+    ]),
+
+    /**
+     * Properties whose user interactions will persist after refreshing the
+     * component or the page. Since only `value` is allowed this prop can
+     * normally be ignored.
+     */
+    persisted_props: PropTypes.arrayOf(PropTypes.oneOf(['currentKey', 'openKeys'])),
+
+    /**
+     * Where persisted user changes will be stored:
+     * memory: only kept in memory, reset on page refresh.
+     * local: window.localStorage, data is kept after the browser quit.
+     * session: window.sessionStorage, data is cleared once the browser quit.
+     */
+    persistence_type: PropTypes.oneOf(['local', 'session', 'memory'])
 };
 
 // 设置默认参数
 AntdMenu.defaultProps = {
     mode: 'vertical',
     theme: 'light',
-    renderCollapsedButton: false
+    renderCollapsedButton: false,
+    persisted_props: ['currentKey', 'openKeys'],
+    persistence_type: 'local'
 }

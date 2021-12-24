@@ -12,29 +12,38 @@ Keyword arguments:
 - `allowClear` (Bool; optional)
 - `bordered` (Bool; optional)
 - `className` (String; optional)
-- `defaultPickerValue` (optional): . defaultPickerValue has the following type: lists containing elements 'value', 'format'.
-Those elements have the following types:
-  - `value` (String; optional)
-  - `format` (String; optional)
+- `defaultValue` (String; optional)
 - `disabled` (Bool; optional)
 - `format` (String; optional)
 - `hourStep` (Real; optional)
-- `inputReadOnly` (Bool; optional)
 - `loading_state` (optional): Object that holds the loading state object coming from dash-renderer. loading_state has the following type: lists containing elements 'is_loading', 'prop_name', 'component_name'.
 Those elements have the following types:
   - `is_loading` (Bool; optional): Determines if the component is loading or not
   - `prop_name` (String; optional): Holds which property is loading
   - `component_name` (String; optional): Holds the name of the component that is loading
 - `minuteStep` (Real; optional)
+- `persisted_props` (Array of a value equal to: 'value's; optional): Properties whose user interactions will persist after refreshing the
+component or the page. Since only `value` is allowed this prop can
+normally be ignored.
+- `persistence` (Bool | String | Real; optional): Used to allow user interactions in this component to be persisted when
+the component - or the page - is refreshed. If `persisted` is truthy and
+hasn't changed from its previous value, a `value` that the user has
+changed while using the app will keep that change, as long as
+the new `value` also matches what was given originally.
+Used in conjunction with `persistence_type`.
+- `persistence_type` (a value equal to: 'local', 'session', 'memory'; optional): Where persisted user changes will be stored:
+memory: only kept in memory, reset on page refresh.
+local: window.localStorage, data is kept after the browser quit.
+session: window.sessionStorage, data is cleared once the browser quit.
 - `placeholder` (String; optional)
 - `secondStep` (Real; optional)
-- `selectedTime` (String; optional)
 - `size` (a value equal to: 'small', 'middle', 'large'; optional)
 - `style` (Dict; optional)
 - `use12Hours` (Bool; optional)
+- `value` (String; optional)
 """
 function 'feffery'_antdtimepicker(; kwargs...)
-        available_props = Symbol[:id, :allowClear, :bordered, :className, :defaultPickerValue, :disabled, :format, :hourStep, :inputReadOnly, :loading_state, :minuteStep, :placeholder, :secondStep, :selectedTime, :size, :style, :use12Hours]
+        available_props = Symbol[:id, :allowClear, :bordered, :className, :defaultValue, :disabled, :format, :hourStep, :loading_state, :minuteStep, :persisted_props, :persistence, :persistence_type, :placeholder, :secondStep, :size, :style, :use12Hours, :value]
         wild_props = Symbol[]
         return Component("'feffery'_antdtimepicker", "AntdTimePicker", "feffery_antd_components", available_props, wild_props; kwargs...)
 end

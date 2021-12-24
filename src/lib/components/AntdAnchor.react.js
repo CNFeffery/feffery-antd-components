@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import * as jsonx from 'jsonx';
 import { Anchor } from 'antd';
 import 'antd/dist/antd.css';
 
@@ -23,29 +22,41 @@ export default class AntdAnchor extends Component {
 
 
         function renderAnchorTree(obj) {
-            // 当anchorObj类型为字典时
+            // 当anchorObj类型为对象时
             if (obj.hasOwnProperty('href')) {
                 //当anchorObj具有children属性时
                 if (obj.hasOwnProperty('children')) {
 
-                    obj = {
-                        component: Link,
-                        props: {
-                            href: obj.href,
-                            title: obj.title
-                        },
-                        children: renderAnchorTree(obj.children)
-                    }
+                    // obj = {
+                    //     component: Link,
+                    //     props: {
+                    //         href: obj.href,
+                    //         title: obj.title
+                    //     },
+                    //     children: renderAnchorTree(obj.children)
+                    // }
+
+                    obj = <Link
+                        href={obj.href}
+                        title={obj.title}
+                    >
+                        {renderAnchorTree(obj.children)}
+                    </Link>
 
                 } else {
 
-                    obj = {
-                        component: Link,
-                        props: {
-                            href: obj.href,
-                            title: obj.title
-                        },
-                    }
+                    // obj = {
+                    //     component: Link,
+                    //     props: {
+                    //         href: obj.href,
+                    //         title: obj.title
+                    //     },
+                    // }
+
+                    obj = <Link
+                        href={obj.href}
+                        title={obj.title}
+                    />
                 }
 
             } else {
@@ -67,19 +78,27 @@ export default class AntdAnchor extends Component {
                 }
             >
                 {
-                    jsonx.getReactElement(
-                        {
-                            component: Anchor,
-                            props: {
-                                id: id,
-                                className: className,
-                                style: style,
-                                getContainer: containerId ? () => document.getElementById(containerId) : containerId,
-                                targetOffset: targetOffset
-                            },
-                            children: linkDict
-                        }
-                    )
+                    // jsonx.getReactElement(
+                    //     {
+                    //         component: Anchor,
+                    //         props: {
+                    //             id: id,
+                    //             className: className,
+                    //             style: style,
+                    //             getContainer: containerId ? () => document.getElementById(containerId) : containerId,
+                    //             targetOffset: targetOffset
+                    //         },
+                    //         children: linkDict
+                    //     }
+                    // ),
+                    <Anchor
+                        id={id}
+                        className={className}
+                        style={style}
+                        getContainer={containerId ? () => document.getElementById(containerId) : containerId}
+                        targetOffset={targetOffset}>
+                        {linkDict}
+                    </Anchor>
                 }
             </div>
         );

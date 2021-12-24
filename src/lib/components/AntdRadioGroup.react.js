@@ -28,6 +28,9 @@ export default class AntdRadioGroup extends Component {
             disabled,
             size,
             setProps,
+            persistence,
+            persisted_props,
+            persistence_type,
             loading_state
         } = this.props;
 
@@ -48,6 +51,9 @@ export default class AntdRadioGroup extends Component {
                     buttonStyle={buttonStyle}
                     disabled={disabled}
                     size={size}
+                    persistence={persistence}
+                    persisted_props={persisted_props}
+                    persistence_type={persistence_type}
                     onChange={onSelect}
                     data-dash-is-loading={
                         (loading_state && loading_state.is_loading) || undefined
@@ -77,6 +83,9 @@ export default class AntdRadioGroup extends Component {
                 buttonStyle={buttonStyle}
                 disabled={disabled}
                 size={size}
+                persistence={persistence}
+                persisted_props={persisted_props}
+                persistence_type={persistence_type}
                 onChange={onSelect}
                 data-dash-is-loading={
                     (loading_state && loading_state.is_loading) || undefined
@@ -157,10 +166,41 @@ AntdRadioGroup.propTypes = {
      * Dash-assigned callback that should be called to report property changes
      * to Dash, to make them available for callbacks.
      */
-    setProps: PropTypes.func
+    setProps: PropTypes.func,
+
+    /**
+   * Used to allow user interactions in this component to be persisted when
+   * the component - or the page - is refreshed. If `persisted` is truthy and
+   * hasn't changed from its previous value, a `value` that the user has
+   * changed while using the app will keep that change, as long as
+   * the new `value` also matches what was given originally.
+   * Used in conjunction with `persistence_type`.
+   */
+    persistence: PropTypes.oneOfType([
+        PropTypes.bool,
+        PropTypes.string,
+        PropTypes.number
+    ]),
+
+    /**
+     * Properties whose user interactions will persist after refreshing the
+     * component or the page. Since only `value` is allowed this prop can
+     * normally be ignored.
+     */
+    persisted_props: PropTypes.arrayOf(PropTypes.oneOf(['value'])),
+
+    /**
+     * Where persisted user changes will be stored:
+     * memory: only kept in memory, reset on page refresh.
+     * local: window.localStorage, data is kept after the browser quit.
+     * session: window.sessionStorage, data is cleared once the browser quit.
+     */
+    persistence_type: PropTypes.oneOf(['local', 'session', 'memory'])
 };
 
 // 设置默认参数
 AntdRadioGroup.defaultProps = {
-    direction: 'horizontal'
+    direction: 'horizontal',
+    persisted_props: ['value'],
+    persistence_type: 'local'
 }

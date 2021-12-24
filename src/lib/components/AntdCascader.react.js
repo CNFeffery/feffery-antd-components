@@ -27,11 +27,15 @@ export default class AntdCascader extends Component {
             disabled,
             placeholder,
             defaultValue,
+            value,
             placement,
             maxTagCount,
             multiple,
             expandTrigger,
             setProps,
+            persistence,
+            persisted_props,
+            persistence_type,
             loading_state
         } = this.props;
 
@@ -58,9 +62,13 @@ export default class AntdCascader extends Component {
                     disabled={disabled}
                     placeholder={placeholder}
                     defaultValue={defaultValue}
+                    value={value}
                     placement={placement}
                     maxTagCount={maxTagCount}
                     multiple={multiple}
+                    persistence={persistence}
+                    persisted_props={persisted_props}
+                    persistence_type={persistence_type}
                     expandTrigger={expandTrigger}
                     showSearch={filter}
                     onChange={onSelect}
@@ -130,7 +138,12 @@ AntdCascader.propTypes = {
     ]),
 
     // 设置默认的选中项
-    defaultValue: PropTypes.arrayOf(PropTypes.string),
+    defaultValue: PropTypes.oneOfType([
+        PropTypes.arrayOf(PropTypes.string),
+        PropTypes.arrayOf(
+            PropTypes.arrayOf(PropTypes.string)
+        )
+    ]),
 
     // 设置多选模式下，最多允许展示的已选项
     maxTagCount: PropTypes.oneOfType([
@@ -142,7 +155,12 @@ AntdCascader.propTypes = {
     multiple: PropTypes.bool,
 
     // 对应回调中用户已选择的值
-    value: PropTypes.arrayOf(PropTypes.any),
+    value: PropTypes.oneOfType([
+        PropTypes.arrayOf(PropTypes.string),
+        PropTypes.arrayOf(
+            PropTypes.arrayOf(PropTypes.string)
+        )
+    ]),
 
     // 设置子菜单展开交互方式，可选的有'click'和'hover'，默认为'click'
     expandTrigger: PropTypes.oneOf(['click', 'hover']),
@@ -166,10 +184,41 @@ AntdCascader.propTypes = {
      * Dash-assigned callback that should be called to report property changes
      * to Dash, to make them available for callbacks.
      */
-    setProps: PropTypes.func
+    setProps: PropTypes.func,
+
+    /**
+  * Used to allow user interactions in this component to be persisted when
+  * the component - or the page - is refreshed. If `persisted` is truthy and
+  * hasn't changed from its previous value, a `value` that the user has
+  * changed while using the app will keep that change, as long as
+  * the new `value` also matches what was given originally.
+  * Used in conjunction with `persistence_type`.
+  */
+    persistence: PropTypes.oneOfType([
+        PropTypes.bool,
+        PropTypes.string,
+        PropTypes.number
+    ]),
+
+    /**
+     * Properties whose user interactions will persist after refreshing the
+     * component or the page. Since only `value` is allowed this prop can
+     * normally be ignored.
+     */
+    persisted_props: PropTypes.arrayOf(PropTypes.oneOf(['value'])),
+
+    /**
+     * Where persisted user changes will be stored:
+     * memory: only kept in memory, reset on page refresh.
+     * local: window.localStorage, data is kept after the browser quit.
+     * session: window.sessionStorage, data is cleared once the browser quit.
+     */
+    persistence_type: PropTypes.oneOf(['local', 'session', 'memory'])
 };
 
 // 设置默认参数
 AntdCascader.defaultProps = {
-    changeOnSelect: false
+    changeOnSelect: false,
+    persisted_props: ['value'],
+    persistence_type: 'local'
 }

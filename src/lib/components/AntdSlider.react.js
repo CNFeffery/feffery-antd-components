@@ -11,18 +11,18 @@ export default class AntdSlider extends Component {
         // 初始化value
         if (props.range) {
             // 范围选择模式时
-            var defaultValue = props.defaultValue ? props.defaultValue : [props.min + 0.25 * (props.max - props.min), props.min + 0.75 * (props.max - props.min)]
+            let defaultValue = props.defaultValue ? props.defaultValue : [props.min + 0.25 * (props.max - props.min), props.min + 0.75 * (props.max - props.min)]
             props.setProps({ value: defaultValue })
         } else {
             // 单值选择模式时
-            var defaultValue = props.defaultValue ? props.defaultValue : 0.25 * (props.max - props.min)
+            let defaultValue = props.defaultValue ? props.defaultValue : 0.25 * (props.max - props.min)
             props.setProps({ value: defaultValue })
         }
     }
 
     render() {
         // 取得必要属性或参数
-        var {
+        let {
             id,
             className,
             style,
@@ -52,7 +52,7 @@ export default class AntdSlider extends Component {
         }
 
         // 设置tipFormatter格式化函数
-        function formatter(value) {
+        const formatter = (value) => {
             return tooltipPrefix + `${value}` + tooltipSuffix
         }
 

@@ -143,4 +143,48 @@ app = dash.Dash(serve_locally=False)
   - `AntdCol`
   - `AntdSider`
   - `AntdAvatar`
-
+- [ ] 为以下表单输入类组件增加`persistence`相关特性
+  - [x] `AntdTabs`
+    - `activeKey`
+  - [x] `AntdCalendar`
+    - `value`
+  - [x] `AntdCascader`
+    - `value`
+  - [x] `AntdCheckbox`
+    - `checked`
+  - [x] `AntdCheckboxGroup`
+    - `value`
+  - [x] `AntdCollapse`
+    - `is_open`
+  - [ ] `AntdDatePicker`
+    - `value`
+  - [ ] `AntdDateRangePicker`
+    - `value`
+  - [ ] `AntdInput`
+    - `value`
+  - [ ] `AntdInputNumber`
+    - `value`
+  - [ ] `AntdMenu`
+    - `currentKey`
+    - `openKeys`
+  - [ ] `AntdPagination`
+    - `current`
+    - `pageSize`
+  - [ ] `AntdRadioGroup`
+    - `value`
+  - [ ] `AntdSelect`
+    - `value`
+  - [ ] `AntdSwitch`
+    - `checked`
+  - [ ] `AntdTimePicker`
+    - `value`
+  - [ ] `AntdTimeRangePicker`
+    - `value`
+  - [ ] `AntdTransfer`
+    - `targetKeys`
+  - [ ] `AntdTree`
+    - `selectedKeys`
+    - `checkedKeys`
+    - `expandedKeys`
+  - [ ] `AntdTreeSelect`
+    - `value`

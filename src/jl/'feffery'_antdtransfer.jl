@@ -27,6 +27,19 @@ Those elements have the following types:
 - `pagination` (optional): . pagination has the following type: Bool | lists containing elements 'pageSize'.
 Those elements have the following types:
   - `pageSize` (Real; optional)
+- `persisted_props` (Array of a value equal to: 'targetKeys's; optional): Properties whose user interactions will persist after refreshing the
+component or the page. Since only `value` is allowed this prop can
+normally be ignored.
+- `persistence` (Bool | String | Real; optional): Used to allow user interactions in this component to be persisted when
+the component - or the page - is refreshed. If `persisted` is truthy and
+hasn't changed from its previous value, a `value` that the user has
+changed while using the app will keep that change, as long as
+the new `value` also matches what was given originally.
+Used in conjunction with `persistence_type`.
+- `persistence_type` (a value equal to: 'local', 'session', 'memory'; optional): Where persisted user changes will be stored:
+memory: only kept in memory, reset on page refresh.
+local: window.localStorage, data is kept after the browser quit.
+session: window.sessionStorage, data is cleared once the browser quit.
 - `showSearch` (Bool; optional)
 - `showSelectAll` (Bool; optional)
 - `style` (Dict; optional)
@@ -34,7 +47,7 @@ Those elements have the following types:
 - `titles` (Array; optional)
 """
 function 'feffery'_antdtransfer(; kwargs...)
-        available_props = Symbol[:id, :className, :dataSource, :disabled, :height, :loading_state, :moveDirection, :moveKeys, :operations, :pagination, :showSearch, :showSelectAll, :style, :targetKeys, :titles]
+        available_props = Symbol[:id, :className, :dataSource, :disabled, :height, :loading_state, :moveDirection, :moveKeys, :operations, :pagination, :persisted_props, :persistence, :persistence_type, :showSearch, :showSelectAll, :style, :targetKeys, :titles]
         wild_props = Symbol[]
         return Component("'feffery'_antdtransfer", "AntdTransfer", "feffery_antd_components", available_props, wild_props; kwargs...)
 end

@@ -267,5 +267,7 @@ AntdInput.propTypes = {
 AntdInput.defaultProps = {
     mode: 'default',
     nClicksSearch: 0,
-    nSubmit: 0
+    nSubmit: 0,
+    persisted_props: ['value'],
+    persistence_type: 'local'
 }

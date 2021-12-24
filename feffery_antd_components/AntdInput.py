@@ -48,7 +48,7 @@ Keyword arguments:
 
 - nSubmit (number; default 0)
 
-- persisted_props (list of a value equal to: 'value's; optional):
+- persisted_props (list of a value equal to: 'value's; default ['value']):
     Properties whose user interactions will persist after refreshing
     the  component or the page. Since only `value` is allowed this
     prop can  normally be ignored.
@@ -61,7 +61,7 @@ Keyword arguments:
     change, as long as  the new `value` also matches what was given
     originally.  Used in conjunction with `persistence_type`.
 
-- persistence_type (a value equal to: 'local', 'session', 'memory'; optional):
+- persistence_type (a value equal to: 'local', 'session', 'memory'; default 'local'):
     Where persisted user changes will be stored:  memory: only kept in
     memory, reset on page refresh.  local: window.localStorage, data
     is kept after the browser quit.  session: window.sessionStorage,

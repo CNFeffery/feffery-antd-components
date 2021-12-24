@@ -28,6 +28,7 @@ export default class AntdInputNumber extends Component {
             controls,
             value,
             disabled,
+            placeholder,
             keyboard,
             min,
             max,
@@ -37,6 +38,9 @@ export default class AntdInputNumber extends Component {
             stringMode,
             nSubmit,
             setProps,
+            persistence,
+            persisted_props,
+            persistence_type,
             loading_state
         } = this.props;
 
@@ -62,6 +66,7 @@ export default class AntdInputNumber extends Component {
                 size={size}
                 addonBefore={addonBefore}
                 addonAfter={addonAfter}
+                placeholder={placeholder}
                 bordered={bordered}
                 controls={controls}
                 value={value}
@@ -76,6 +81,9 @@ export default class AntdInputNumber extends Component {
                 onChange={onChange}
                 onPressEnter={onPressEnter}
                 onStep={onStep}
+                persistence={persistence}
+                persisted_props={persisted_props}
+                persistence_type={persistence_type}
                 data-dash-is-loading={
                     (loading_state && loading_state.is_loading) || undefined
                 } />
@@ -127,6 +135,9 @@ AntdInputNumber.propTypes = {
     // 设置是否启用键盘快捷行为，默认为true
     keyboard: PropTypes.bool,
 
+    // 用于设置占位提示内容
+    placeholder: PropTypes.string,
+
     // 设置允许输入的最小值，默认不限制
     min: PropTypes.oneOfType([
         PropTypes.number,
@@ -177,10 +188,41 @@ AntdInputNumber.propTypes = {
      * Dash-assigned callback that should be called to report property changes
      * to Dash, to make them available for callbacks.
      */
-    setProps: PropTypes.func
+    setProps: PropTypes.func,
+
+    /**
+  * Used to allow user interactions in this component to be persisted when
+  * the component - or the page - is refreshed. If `persisted` is truthy and
+  * hasn't changed from its previous value, a `value` that the user has
+  * changed while using the app will keep that change, as long as
+  * the new `value` also matches what was given originally.
+  * Used in conjunction with `persistence_type`.
+  */
+    persistence: PropTypes.oneOfType([
+        PropTypes.bool,
+        PropTypes.string,
+        PropTypes.number
+    ]),
+
+    /**
+     * Properties whose user interactions will persist after refreshing the
+     * component or the page. Since only `value` is allowed this prop can
+     * normally be ignored.
+     */
+    persisted_props: PropTypes.arrayOf(PropTypes.oneOf(['value'])),
+
+    /**
+     * Where persisted user changes will be stored:
+     * memory: only kept in memory, reset on page refresh.
+     * local: window.localStorage, data is kept after the browser quit.
+     * session: window.sessionStorage, data is cleared once the browser quit.
+     */
+    persistence_type: PropTypes.oneOf(['local', 'session', 'memory'])
 };
 
 // 设置默认参数
 AntdInputNumber.defaultProps = {
-    nSubmit: 0
+    nSubmit: 0,
+    persisted_props: ['value'],
+    persistence_type: 'local'
 }

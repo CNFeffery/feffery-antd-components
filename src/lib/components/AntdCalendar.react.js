@@ -26,10 +26,14 @@ export default class AntdCalendar extends Component {
             validRange,
             disabledDates,
             defaultValue,
+            value,
             format,
             size,
             setProps,
-            loading_state
+            loading_state,
+            persistence,
+            persisted_props,
+            persistence_type
         } = this.props;
 
         const onSelect = e => {
@@ -52,9 +56,13 @@ export default class AntdCalendar extends Component {
                         moment(validRange[1].value, validRange[1].format || format)
                     ]}
                     defaultValue={defaultValue && moment(defaultValue.value, defaultValue.format || format)}
+                    value={value && moment(value, format)}
                     disabledDate={disabledDates && checkDisabledDate}
                     onSelect={onSelect}
                     fullscreen={size !== 'default'}
+                    persistence={persistence}
+                    persisted_props={persisted_props}
+                    persistence_type={persistence_type}
                     data-dash-is-loading={
                         (loading_state && loading_state.is_loading) || undefined
                     } />
@@ -108,7 +116,7 @@ AntdCalendar.propTypes = {
     // 设置全局日期格式format，优先级低于单个设置的format参数，默认为'YYYY-MM-DD'
     format: PropTypes.string,
 
-    // 设置日历尺寸规格，可选的有'default'与'large'
+    // 设置日历尺寸规格，可选的有'default'与'large'，默认为default
     size: PropTypes.oneOf(['default', 'large']),
 
     loading_state: PropTypes.shape({
@@ -130,11 +138,42 @@ AntdCalendar.propTypes = {
      * Dash-assigned callback that should be called to report property changes
      * to Dash, to make them available for callbacks.
      */
-    setProps: PropTypes.func
+    setProps: PropTypes.func,
+
+    /**
+  * Used to allow user interactions in this component to be persisted when
+  * the component - or the page - is refreshed. If `persisted` is truthy and
+  * hasn't changed from its previous value, a `value` that the user has
+  * changed while using the app will keep that change, as long as
+  * the new `value` also matches what was given originally.
+  * Used in conjunction with `persistence_type`.
+  */
+    persistence: PropTypes.oneOfType([
+        PropTypes.bool,
+        PropTypes.string,
+        PropTypes.number
+    ]),
+
+    /**
+     * Properties whose user interactions will persist after refreshing the
+     * component or the page. Since only `value` is allowed this prop can
+     * normally be ignored.
+     */
+    persisted_props: PropTypes.arrayOf(PropTypes.oneOf(['value'])),
+
+    /**
+     * Where persisted user changes will be stored:
+     * memory: only kept in memory, reset on page refresh.
+     * local: window.localStorage, data is kept after the browser quit.
+     * session: window.sessionStorage, data is cleared once the browser quit.
+     */
+    persistence_type: PropTypes.oneOf(['local', 'session', 'memory'])
 };
 
 // 设置默认参数
 AntdCalendar.defaultProps = {
     format: 'YYYY-MM-DD',
-    size: 'default'
+    size: 'default',
+    persisted_props: ['value'],
+    persistence_type: 'local'
 }

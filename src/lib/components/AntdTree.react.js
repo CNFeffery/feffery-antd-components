@@ -7,6 +7,28 @@ import './styles.css'
 
 // 定义树形控件AntdTree，api参数参考https://ant.design/components/tree-cn/
 export default class AntdTree extends Component {
+
+    constructor(props) {
+        super(props)
+        // 初始化expandedKeys
+        if (props.defaultExpandedKeys) {
+            // 当defaultExpandedKeys不为空时，为expandedKeys初始化defaultExpandedKeys对应的expandedKeys值
+            props.setProps({ expandedKeys: props.defaultExpandedKeys })
+        }
+
+        // 初始化selectedKeys
+        if (props.defaultSelectedKeys) {
+            // 当defaultSelectedKeys不为空时，为selectedKeys初始化defaultSelectedKeys对应的selectedKeys值
+            props.setProps({ selectedKeys: props.defaultSelectedKeys })
+        }
+
+        // 初始化selectedKeys
+        if (props.defaultCheckedKeys) {
+            // 当defaultCheckedKeys不为空时，为checkedKeys初始化defaultCheckedKeys对应的checkedKeys值
+            props.setProps({ checkedKeys: props.defaultCheckedKeys })
+        }
+    }
+
     render() {
         // 取得必要属性或参数
         let {
@@ -15,6 +37,10 @@ export default class AntdTree extends Component {
             setProps,
             style,
             checkable,
+            selectable,
+            selectedKeys,
+            expandedKeys,
+            checkedKeys,
             defaultExpandAll,
             defaultExpandedKeys,
             defaultExpandParent,
@@ -22,10 +48,12 @@ export default class AntdTree extends Component {
             defaultCheckedKeys,
             defaultSelectedKeys,
             multiple,
-            selectable,
             showLine,
             showIcon,
             height,
+            persistence,
+            persisted_props,
+            persistence_type,
             loading_state
         } = this.props;
 
@@ -36,11 +64,11 @@ export default class AntdTree extends Component {
         let { treeData } = this.props;
 
         // 用于以递归的方式将节点icon属性替换成相应的icon对象
-        function add_leaf_node_icon(inputTreeData) {
-            if (typeof inputTreeData == typeof {}) {
+        const add_leaf_node_icon = (inputTreeData) => {
+            if (typeof inputTreeData === typeof {}) {
 
                 if (inputTreeData.hasOwnProperty('children')) {
-                    if (typeof inputTreeData.icon == typeof "") {
+                    if (typeof inputTreeData.icon === typeof "") {
                         inputTreeData.icon = str2Icon.get(inputTreeData.icon)
                     }
 
@@ -49,7 +77,7 @@ export default class AntdTree extends Component {
                     }
 
                 } else {
-                    if (typeof inputTreeData.icon == typeof "") {
+                    if (typeof inputTreeData.icon === typeof "") {
                         inputTreeData.icon = str2Icon.get(inputTreeData.icon)
                     }
                 }
@@ -74,26 +102,38 @@ export default class AntdTree extends Component {
             setProps({ checkedKeys: e })
         }
 
-        return (<
-            Tree id={id}
+        const listenExpand = (e) => {
+            console.log({ e })
+            setProps({ expandedKeys: e })
+        }
+
+        return (<Tree
+            id={id}
             className={className}
             style={style}
             treeData={add_leaf_node_icon(treeData)}
+            selectedKeys={selectedKeys}
+            expandedKeys={expandedKeys}
+            checkedKeys={checkedKeys}
+            selectable={selectable}
             checkable={checkable}
             defaultExpandAll={defaultExpandAll}
             defaultExpandedKeys={defaultExpandedKeys}
             defaultExpandParent={defaultExpandParent}
-            checkStrictly={checkStrictly}
             defaultCheckedKeys={defaultCheckedKeys}
             defaultSelectedKeys={defaultSelectedKeys}
+            checkStrictly={checkStrictly}
             multiple={multiple}
-            selectable={selectable}
             showLine={showLine}
             onSelect={listenSelect}
             onCheck={listenCheck}
+            onExpand={listenExpand}
             showIcon={showIcon}
             height={height}
             showLeafIcon={false}
+            persistence={persistence}
+            persisted_props={persisted_props}
+            persistence_type={persistence_type}
             data-dash-is-loading={
                 (loading_state && loading_state.is_loading) || undefined
             }
@@ -101,7 +141,6 @@ export default class AntdTree extends Component {
         );
     }
 }
-
 
 // 定义递归PropTypes
 const PropTreeNodeShape = {
@@ -194,6 +233,9 @@ AntdTree.propTypes = {
         })
     ]),
 
+    // 对应当前已展开节点的key值数组
+    expandedKeys: PropTypes.arrayOf(PropTypes.string),
+
     // 设置虚拟滚动模式下的窗口像素高度，不设置时则不会启动虚拟滚动模式
     height: PropTypes.number,
 
@@ -216,17 +258,42 @@ AntdTree.propTypes = {
      * Dash-assigned callback that should be called to report property changes
      * to Dash, to make them available for callbacks.
      */
-    setProps: PropTypes.func
+    setProps: PropTypes.func,
+
+    /**
+   * Used to allow user interactions in this component to be persisted when
+   * the component - or the page - is refreshed. If `persisted` is truthy and
+   * hasn't changed from its previous value, a `value` that the user has
+   * changed while using the app will keep that change, as long as
+   * the new `value` also matches what was given originally.
+   * Used in conjunction with `persistence_type`.
+   */
+    persistence: PropTypes.oneOfType([
+        PropTypes.bool,
+        PropTypes.string,
+        PropTypes.number
+    ]),
+
+    /**
+     * Properties whose user interactions will persist after refreshing the
+     * component or the page. Since only `value` is allowed this prop can
+     * normally be ignored.
+     */
+    persisted_props: PropTypes.arrayOf(PropTypes.oneOf(['selectedKeys', 'checkedKeys', 'expandedKeys'])),
+
+    /**
+     * Where persisted user changes will be stored:
+     * memory: only kept in memory, reset on page refresh.
+     * local: window.localStorage, data is kept after the browser quit.
+     * session: window.sessionStorage, data is cleared once the browser quit.
+     */
+    persistence_type: PropTypes.oneOf(['local', 'session', 'memory'])
 };
 
 // 设置默认参数
 AntdTree.defaultProps = {
-    checkable: false,
-    defaultExpandAll: false,
-    defaultExpandedKeys: [],
-    defaultExpandParent: false,
-    multiple: false,
-    selectable: true,
     showLine: { 'showLeafIcon': false },
-    showIcon: true
+    showIcon: true,
+    persisted_props: ['selectedKeys', 'checkedKeys', 'expandedKeys'],
+    persistence_type: 'local'
 }

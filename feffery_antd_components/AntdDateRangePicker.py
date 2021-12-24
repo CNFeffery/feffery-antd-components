@@ -11,21 +11,17 @@ Keyword arguments:
 
 - id (string; optional)
 
-- bordered (boolean; default True)
+- bordered (boolean; optional)
 
 - className (string; optional)
 
-- defaultPickerValue (dict; optional)
+- defaultPickerValue (string; optional)
 
-    `defaultPickerValue` is a dict with keys:
+- defaultValue (list of strings; optional)
 
-    - format (string; optional)
+- disabled (list of booleans; optional)
 
-    - value (string; optional)
-
-- disabledEnd (boolean; optional)
-
-- disabledStart (boolean; optional)
+- format (string; optional)
 
 - loading_state (dict; optional):
     Object that holds the loading state object coming from
@@ -42,28 +38,43 @@ Keyword arguments:
     - prop_name (string; optional):
         Holds which property is loading.
 
-- picker (a value equal to: 'date', 'week', 'month', 'quarter', 'year'; default 'date')
+- persisted_props (list of a value equal to: 'value's; default ['value']):
+    Properties whose user interactions will persist after refreshing
+    the  component or the page. Since only `value` is allowed this
+    prop can  normally be ignored.
 
-- placeholderEnd (string; optional)
+- persistence (boolean | string | number; optional):
+    Used to allow user interactions in this component to be persisted
+    when  the component - or the page - is refreshed. If `persisted`
+    is truthy and  hasn't changed from its previous value, a `value`
+    that the user has  changed while using the app will keep that
+    change, as long as  the new `value` also matches what was given
+    originally.  Used in conjunction with `persistence_type`.
 
-- placeholderStart (string; optional)
+- persistence_type (a value equal to: 'local', 'session', 'memory'; default 'local'):
+    Where persisted user changes will be stored:  memory: only kept in
+    memory, reset on page refresh.  local: window.localStorage, data
+    is kept after the browser quit.  session: window.sessionStorage,
+    data is cleared once the browser quit.
 
-- selectedEndDate (string; optional)
+- picker (a value equal to: 'date', 'week', 'month', 'quarter', 'year'; optional)
 
-- selectedStartDate (string; optional)
+- placeholder (list of strings; optional)
 
 - showTime (boolean; default False)
 
 - size (a value equal to: 'small', 'middle', 'large'; optional)
 
-- style (dict; optional)"""
+- style (dict; optional)
+
+- value (list of strings; optional)"""
     @_explicitize_args
-    def __init__(self, id=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, picker=Component.UNDEFINED, showTime=Component.UNDEFINED, placeholderStart=Component.UNDEFINED, placeholderEnd=Component.UNDEFINED, disabledStart=Component.UNDEFINED, disabledEnd=Component.UNDEFINED, selectedStartDate=Component.UNDEFINED, selectedEndDate=Component.UNDEFINED, bordered=Component.UNDEFINED, size=Component.UNDEFINED, defaultPickerValue=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
-        self._prop_names = ['id', 'bordered', 'className', 'defaultPickerValue', 'disabledEnd', 'disabledStart', 'loading_state', 'picker', 'placeholderEnd', 'placeholderStart', 'selectedEndDate', 'selectedStartDate', 'showTime', 'size', 'style']
+    def __init__(self, id=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, picker=Component.UNDEFINED, format=Component.UNDEFINED, showTime=Component.UNDEFINED, placeholder=Component.UNDEFINED, disabled=Component.UNDEFINED, value=Component.UNDEFINED, defaultValue=Component.UNDEFINED, bordered=Component.UNDEFINED, size=Component.UNDEFINED, defaultPickerValue=Component.UNDEFINED, loading_state=Component.UNDEFINED, persistence=Component.UNDEFINED, persisted_props=Component.UNDEFINED, persistence_type=Component.UNDEFINED, **kwargs):
+        self._prop_names = ['id', 'bordered', 'className', 'defaultPickerValue', 'defaultValue', 'disabled', 'format', 'loading_state', 'persisted_props', 'persistence', 'persistence_type', 'picker', 'placeholder', 'showTime', 'size', 'style', 'value']
         self._type = 'AntdDateRangePicker'
         self._namespace = 'feffery_antd_components'
         self._valid_wildcard_attributes =            []
-        self.available_properties = ['id', 'bordered', 'className', 'defaultPickerValue', 'disabledEnd', 'disabledStart', 'loading_state', 'picker', 'placeholderEnd', 'placeholderStart', 'selectedEndDate', 'selectedStartDate', 'showTime', 'size', 'style']
+        self.available_properties = ['id', 'bordered', 'className', 'defaultPickerValue', 'defaultValue', 'disabled', 'format', 'loading_state', 'persisted_props', 'persistence', 'persistence_type', 'picker', 'placeholder', 'showTime', 'size', 'style', 'value']
         self.available_wildcard_properties =            []
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()

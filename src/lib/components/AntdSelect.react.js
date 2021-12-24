@@ -327,5 +327,7 @@ AntdSelect.defaultProps = {
     listHeight: 256,
     options: [],
     colorsNameWidth: 40,
-    colorsMode: 'sequential'
+    colorsMode: 'sequential',
+    persisted_props: ['value'],
+    persistence_type: 'local'
 }

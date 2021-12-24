@@ -25,9 +25,8 @@
   "dependencies": {
     "@ant-design/charts": "^1.1.4",
     "@ant-design/icons": "^4.6.3",
-    "antd": "^4.17.3",
+    "antd": "^4.17.4",
     "is-absolute-url": "^4.0.1",
-    "jsonx": "^1.10.1",
     "ramda": "^0.26.1",
     "react-highlight-words": "^0.17.0",
     "react-icons": "^4.2.0",
