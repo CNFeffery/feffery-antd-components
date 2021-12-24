@@ -137,13 +137,7 @@ app = dash.Dash(serve_locally=False)
 
 ## 6 近期TODO计划
 
-- [ ] 为以下组件增加`响应式`功能
-  - `AntdDescriptions`
-  - `AntdRow`
-  - `AntdCol`
-  - `AntdSider`
-  - `AntdAvatar`
-- [ ] 为以下表单输入类组件增加`persistence`相关特性
+- [x] 为以下表单输入类组件增加`persistence`相关特性
   - [x] `AntdTabs`
     - `activeKey`
   - [x] `AntdCalendar`
@@ -156,35 +150,42 @@ app = dash.Dash(serve_locally=False)
     - `value`
   - [x] `AntdCollapse`
     - `is_open`
-  - [ ] `AntdDatePicker`
+  - [x] `AntdDatePicker`
     - `value`
-  - [ ] `AntdDateRangePicker`
+  - [x] `AntdDateRangePicker`
     - `value`
-  - [ ] `AntdInput`
+  - [x] `AntdInput`
     - `value`
-  - [ ] `AntdInputNumber`
+  - [x] `AntdInputNumber`
     - `value`
-  - [ ] `AntdMenu`
+  - [x] `AntdMenu`
     - `currentKey`
     - `openKeys`
-  - [ ] `AntdPagination`
+  - [x] `AntdPagination`
     - `current`
     - `pageSize`
-  - [ ] `AntdRadioGroup`
+  - [x] `AntdRadioGroup`
     - `value`
-  - [ ] `AntdSelect`
+  - [x] `AntdSelect`
     - `value`
-  - [ ] `AntdSwitch`
+  - [x] `AntdSwitch`
     - `checked`
-  - [ ] `AntdTimePicker`
+  - [x] `AntdTimePicker`
     - `value`
-  - [ ] `AntdTimeRangePicker`
+  - [x] `AntdTimeRangePicker`
     - `value`
-  - [ ] `AntdTransfer`
+  - [x] `AntdTransfer`
     - `targetKeys`
-  - [ ] `AntdTree`
+  - [x] `AntdTree`
     - `selectedKeys`
     - `checkedKeys`
     - `expandedKeys`
-  - [ ] `AntdTreeSelect`
+  - [x] `AntdTreeSelect`
     - `value`
+
+- [ ] 为以下组件增加`响应式`功能
+  - `AntdDescriptions`
+  - `AntdRow`
+  - `AntdCol`
+  - `AntdSider`
+  - `AntdAvatar`
