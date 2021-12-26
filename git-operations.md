@@ -14,5 +14,11 @@ git filter-branch --force --index-filter 'git rm -rf --cached --ignore-unmatch f
 git filter-branch --force --index-filter 'git rm -rf --cached --ignore-unmatch feffery_antd_components/metadata.json' --prune-empty --tag-name-filter cat -- --all
 
 git push origin main --force
+
+rm -rf .git/refs/original/
+
+git reflog expire --expire=now --all
+
+git gc --prune=now
 ```
 
