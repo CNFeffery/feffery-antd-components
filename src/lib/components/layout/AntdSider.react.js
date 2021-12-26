@@ -104,9 +104,7 @@ AntdSider.propTypes = {
     trigger: PropTypes.node,
 
     // 设置侧边栏折叠响应式断点
-    breakpoint: PropTypes.oneOf([
-        'xs', 'sm', 'md', 'lg', 'xl', 'xxl'
-    ]),
+    breakpoint: PropTypes.oneOf(['xs', 'sm', 'md', 'lg', 'xl', 'xxl']),
 
     loading_state: PropTypes.shape({
         /**
