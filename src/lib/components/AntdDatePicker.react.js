@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { DatePicker, ConfigProvider } from 'antd';
 import moment from 'moment';
-import zhCN from 'antd/lib/locale/zh_CN';
+import { str2Locale } from './locales.react';
 import 'antd/dist/antd.css';
 
 // 定义日期选择组件AntdDatePicker，api参数参考https://ant.design/components/date-picker-cn/
@@ -30,6 +30,7 @@ export default class AntdDatePicker extends Component {
             id,
             className,
             style,
+            locale,
             setProps,
             picker,
             format,
@@ -61,7 +62,7 @@ export default class AntdDatePicker extends Component {
         // 返回定制化的前端组件
         return (
             <div>
-                <ConfigProvider locale={zhCN}>
+                <ConfigProvider locale={str2Locale.get(locale)}>
                     <DatePicker
                         id={id}
                         className={className}
@@ -102,6 +103,9 @@ AntdDatePicker.propTypes = {
 
     // 自定义css字典
     style: PropTypes.object,
+
+    // 设置语言环境，可选的有'zh-cn'、'en-us'
+    locale: PropTypes.oneOf(['zh-cn', 'en-us']),
 
     // 设置日期格式format，默认为'YYYY-MM-DD'
     format: PropTypes.string,
@@ -204,6 +208,7 @@ AntdDatePicker.defaultProps = {
     bordered: true,
     persisted_props: ['value'],
     persistence_type: 'local',
+    locale: 'zh-cn',
     style: {
         width: 220
     }

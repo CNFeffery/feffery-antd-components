@@ -21,6 +21,7 @@ Those elements have the following types:
   - `is_loading` (Bool; optional): Determines if the component is loading or not
   - `prop_name` (String; optional): Holds which property is loading
   - `component_name` (String; optional): Holds the name of the component that is loading
+- `locale` (a value equal to: 'zh-cn', 'en-us'; optional)
 - `maxTagCount` (Real; optional)
 - `mode` (a value equal to: 'multiple', 'tags'; optional)
 - `options` (optional): . options has the following type: Array of lists containing elements 'label', 'value', 'disabled', 'colors'.
@@ -56,7 +57,7 @@ session: window.sessionStorage, data is cleared once the browser quit.
 - `value` (String | Real | Array of String | Reals; optional)
 """
 function 'feffery'_antdselect(; kwargs...)
-        available_props = Symbol[:id, :allowClear, :className, :colorsMode, :colorsNameWidth, :defaultValue, :disabled, :listHeight, :loading_state, :maxTagCount, :mode, :options, :persisted_props, :persistence, :persistence_type, :placeholder, :size, :style, :value]
+        available_props = Symbol[:id, :allowClear, :className, :colorsMode, :colorsNameWidth, :defaultValue, :disabled, :listHeight, :loading_state, :locale, :maxTagCount, :mode, :options, :persisted_props, :persistence, :persistence_type, :placeholder, :size, :style, :value]
         wild_props = Symbol[]
         return Component("'feffery'_antdselect", "AntdSelect", "feffery_antd_components", available_props, wild_props; kwargs...)
 end

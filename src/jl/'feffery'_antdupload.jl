@@ -29,12 +29,13 @@ Those elements have the following types:
   - `is_loading` (Bool; optional): Determines if the component is loading or not
   - `prop_name` (String; optional): Holds which property is loading
   - `component_name` (String; optional): Holds the name of the component that is loading
+- `locale` (a value equal to: 'zh-cn', 'en-us'; optional)
 - `multiple` (Bool; optional)
 - `style` (Dict; optional)
 - `uploadId` (String; optional)
 """
 function 'feffery'_antdupload(; kwargs...)
-        available_props = Symbol[:id, :apiUrl, :buttonContent, :className, :directory, :failedTooltipInfo, :fileListMaxLength, :fileMaxSize, :fileTypes, :lastUploadTaskRecord, :loading_state, :multiple, :style, :uploadId]
+        available_props = Symbol[:id, :apiUrl, :buttonContent, :className, :directory, :failedTooltipInfo, :fileListMaxLength, :fileMaxSize, :fileTypes, :lastUploadTaskRecord, :loading_state, :locale, :multiple, :style, :uploadId]
         wild_props = Symbol[]
         return Component("'feffery'_antdupload", "AntdUpload", "feffery_antd_components", available_props, wild_props; kwargs...)
 end

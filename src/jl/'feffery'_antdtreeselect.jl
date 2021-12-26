@@ -20,6 +20,7 @@ Those elements have the following types:
   - `is_loading` (Bool; optional): Determines if the component is loading or not
   - `prop_name` (String; optional): Holds which property is loading
   - `component_name` (String; optional): Holds the name of the component that is loading
+- `locale` (a value equal to: 'zh-cn', 'en-us'; optional)
 - `maxTagCount` (Real; optional)
 - `multiple` (Bool; optional)
 - `persisted_props` (Array of a value equal to: 'value's; optional): Properties whose user interactions will persist after refreshing the
@@ -49,7 +50,7 @@ session: window.sessionStorage, data is cleared once the browser quit.
 - `virtual` (Bool; optional)
 """
 function 'feffery'_antdtreeselect(; kwargs...)
-        available_props = Symbol[:id, :allowClear, :bordered, :className, :defaultValue, :disabled, :listHeight, :loading_state, :maxTagCount, :multiple, :persisted_props, :persistence, :persistence_type, :placeholder, :size, :style, :treeCheckStrictly, :treeCheckable, :treeData, :treeDefaultExpandAll, :treeDefaultExpandedKeys, :treeExpandedKeys, :treeLine, :value, :virtual]
+        available_props = Symbol[:id, :allowClear, :bordered, :className, :defaultValue, :disabled, :listHeight, :loading_state, :locale, :maxTagCount, :multiple, :persisted_props, :persistence, :persistence_type, :placeholder, :size, :style, :treeCheckStrictly, :treeCheckable, :treeData, :treeDefaultExpandAll, :treeDefaultExpandedKeys, :treeExpandedKeys, :treeLine, :value, :virtual]
         wild_props = Symbol[]
         return Component("'feffery'_antdtreeselect", "AntdTreeSelect", "feffery_antd_components", available_props, wild_props; kwargs...)
 end

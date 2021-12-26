@@ -18,10 +18,11 @@ Those elements have the following types:
   - `is_loading` (Bool; optional): Determines if the component is loading or not
   - `prop_name` (String; optional): Holds which property is loading
   - `component_name` (String; optional): Holds the name of the component that is loading
+- `locale` (a value equal to: 'zh-cn', 'en-us'; optional)
 - `style` (Dict; optional)
 """
 function 'feffery'_antdempty(; kwargs...)
-        available_props = Symbol[:id, :className, :description, :image, :imageStyle, :loading_state, :style]
+        available_props = Symbol[:id, :className, :description, :image, :imageStyle, :loading_state, :locale, :style]
         wild_props = Symbol[]
         return Component("'feffery'_antdempty", "AntdEmpty", "feffery_antd_components", available_props, wild_props; kwargs...)
 end

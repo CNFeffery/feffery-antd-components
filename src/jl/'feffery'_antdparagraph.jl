@@ -23,6 +23,7 @@ Those elements have the following types:
   - `is_loading` (Bool; optional): Determines if the component is loading or not
   - `prop_name` (String; optional): Holds which property is loading
   - `component_name` (String; optional): Holds the name of the component that is loading
+- `locale` (a value equal to: 'zh-cn', 'en-us'; optional)
 - `mark` (Bool; optional)
 - `strikethrough` (Bool; optional)
 - `strong` (Bool; optional)
@@ -31,7 +32,7 @@ Those elements have the following types:
 - `underline` (Bool; optional)
 """
 function 'feffery'_antdparagraph(; kwargs...)
-        available_props = Symbol[:children, :id, :className, :code, :copyable, :disabled, :italic, :loading_state, :mark, :strikethrough, :strong, :style, :type, :underline]
+        available_props = Symbol[:children, :id, :className, :code, :copyable, :disabled, :italic, :loading_state, :locale, :mark, :strikethrough, :strong, :style, :type, :underline]
         wild_props = Symbol[]
         return Component("'feffery'_antdparagraph", "AntdParagraph", "feffery_antd_components", available_props, wild_props; kwargs...)
 end

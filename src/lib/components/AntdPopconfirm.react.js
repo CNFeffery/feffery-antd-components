@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Popconfirm, ConfigProvider } from 'antd';
 import 'antd/dist/antd.css';
-import zhCN from 'antd/lib/locale/zh_CN';
+import { str2Locale } from './locales.react';
 
 const parseChildrenToArray = children => {
     if (children && !Array.isArray(children)) {
@@ -20,6 +20,7 @@ export default class AntdPopconfirm extends Component {
             children,
             className,
             style,
+            locale,
             title,
             disabled,
             placement,
@@ -53,7 +54,7 @@ export default class AntdPopconfirm extends Component {
         };
 
         return (
-            <ConfigProvider locale={zhCN}>
+            <ConfigProvider locale={str2Locale.get(locale)}>
                 <Popconfirm id={id}
                     className={className}
                     style={style}
@@ -98,6 +99,9 @@ AntdPopconfirm.propTypes = {
 
     // 自定义css字典
     style: PropTypes.object,
+
+    // 设置语言环境，可选的有'zh-cn'、'en-us'
+    locale: PropTypes.oneOf(['zh-cn', 'en-us']),
 
     // 设置显示的文字内容
     title: PropTypes.string,
@@ -179,5 +183,6 @@ AntdPopconfirm.propTypes = {
 // 设置默认参数
 AntdPopconfirm.defaultProps = {
     confirmCounts: 0,
-    cancelCounts: 0
+    cancelCounts: 0,
+    locale: 'zh-cn'
 }

@@ -47,6 +47,7 @@ Those elements have the following types:
   - `is_loading` (Bool; optional): Determines if the component is loading or not
   - `prop_name` (String; optional): Holds which property is loading
   - `component_name` (String; optional): Holds the name of the component that is loading
+- `locale` (a value equal to: 'zh-cn', 'en-us'; optional)
 - `maxHeight` (Real; optional)
 - `mode` (a value equal to: 'client-side', 'server-side'; optional)
 - `nClicksButton` (Real; optional)
@@ -87,7 +88,7 @@ Those elements have the following types:
 - `titlePopoverInfo` (Dict; optional)
 """
 function 'feffery'_antdtable(; kwargs...)
-        available_props = Symbol[:id, :bordered, :className, :clickedContent, :columns, :columnsFormatConstraint, :currentData, :data, :disableRowListen, :filter, :filterOptions, :loading_state, :maxHeight, :mode, :nClicksButton, :pagination, :popupContainerId, :recentlyButtonClickedRow, :recentlyChangedRow, :recentlyClickedColumn, :recentlyClickedRow, :recentlyMouseEnterColumn, :recentlyMouseEnterRow, :recentlyMouseLeaveColumn, :recentlyMouseLeaveRow, :rowSelectionType, :selectedRowKeys, :selectedRows, :size, :sortOptions, :sorter, :style, :titlePopoverInfo]
+        available_props = Symbol[:id, :bordered, :className, :clickedContent, :columns, :columnsFormatConstraint, :currentData, :data, :disableRowListen, :filter, :filterOptions, :loading_state, :locale, :maxHeight, :mode, :nClicksButton, :pagination, :popupContainerId, :recentlyButtonClickedRow, :recentlyChangedRow, :recentlyClickedColumn, :recentlyClickedRow, :recentlyMouseEnterColumn, :recentlyMouseEnterRow, :recentlyMouseLeaveColumn, :recentlyMouseLeaveRow, :rowSelectionType, :selectedRowKeys, :selectedRows, :size, :sortOptions, :sorter, :style, :titlePopoverInfo]
         wild_props = Symbol[]
         return Component("'feffery'_antdtable", "AntdTable", "feffery_antd_components", available_props, wild_props; kwargs...)
 end

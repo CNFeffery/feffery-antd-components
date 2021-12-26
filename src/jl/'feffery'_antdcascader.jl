@@ -20,6 +20,7 @@ Those elements have the following types:
   - `is_loading` (Bool; optional): Determines if the component is loading or not
   - `prop_name` (String; optional): Holds which property is loading
   - `component_name` (String; optional): Holds the name of the component that is loading
+- `locale` (a value equal to: 'zh-cn', 'en-us'; optional)
 - `maxTagCount` (Real | a value equal to: 'responsive'; optional)
 - `multiple` (Bool; optional)
 - `options` (optional)
@@ -43,7 +44,7 @@ session: window.sessionStorage, data is cleared once the browser quit.
 - `value` (Array of Strings | Array of Array of Stringss; optional)
 """
 function 'feffery'_antdcascader(; kwargs...)
-        available_props = Symbol[:id, :bordered, :changeOnSelect, :className, :defaultValue, :disabled, :expandTrigger, :loading_state, :maxTagCount, :multiple, :options, :persisted_props, :persistence, :persistence_type, :placeholder, :placement, :size, :style, :value]
+        available_props = Symbol[:id, :bordered, :changeOnSelect, :className, :defaultValue, :disabled, :expandTrigger, :loading_state, :locale, :maxTagCount, :multiple, :options, :persisted_props, :persistence, :persistence_type, :placeholder, :placement, :size, :style, :value]
         wild_props = Symbol[]
         return Component("'feffery'_antdcascader", "AntdCascader", "feffery_antd_components", available_props, wild_props; kwargs...)
 end

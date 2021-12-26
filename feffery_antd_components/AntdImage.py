@@ -30,6 +30,8 @@ Keyword arguments:
     - prop_name (string; optional):
         Holds which property is loading.
 
+- locale (a value equal to: 'zh-cn', 'en-us'; default 'zh-cn')
+
 - multiImageMode (a value equal to: 'fold', 'unfold'; default 'fold')
 
 - preview (boolean; optional)
@@ -40,12 +42,12 @@ Keyword arguments:
 
 - width (number; optional)"""
     @_explicitize_args
-    def __init__(self, id=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, width=Component.UNDEFINED, height=Component.UNDEFINED, src=Component.UNDEFINED, fallback=Component.UNDEFINED, multiImageMode=Component.UNDEFINED, preview=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
-        self._prop_names = ['id', 'className', 'fallback', 'height', 'loading_state', 'multiImageMode', 'preview', 'src', 'style', 'width']
+    def __init__(self, id=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, locale=Component.UNDEFINED, width=Component.UNDEFINED, height=Component.UNDEFINED, src=Component.UNDEFINED, fallback=Component.UNDEFINED, multiImageMode=Component.UNDEFINED, preview=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
+        self._prop_names = ['id', 'className', 'fallback', 'height', 'loading_state', 'locale', 'multiImageMode', 'preview', 'src', 'style', 'width']
         self._type = 'AntdImage'
         self._namespace = 'feffery_antd_components'
         self._valid_wildcard_attributes =            []
-        self.available_properties = ['id', 'className', 'fallback', 'height', 'loading_state', 'multiImageMode', 'preview', 'src', 'style', 'width']
+        self.available_properties = ['id', 'className', 'fallback', 'height', 'loading_state', 'locale', 'multiImageMode', 'preview', 'src', 'style', 'width']
         self.available_wildcard_properties =            []
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()

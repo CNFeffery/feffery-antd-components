@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Typography, ConfigProvider } from 'antd';
-import zhCN from 'antd/lib/locale/zh_CN';
+import { str2Locale } from '../locales.react';
 import 'antd/dist/antd.css';
 
 const { Text } = Typography;
@@ -22,6 +22,7 @@ export default class AntdText extends Component {
             children,
             className,
             style,
+            locale,
             code,
             copyable,
             strikethrough,
@@ -39,7 +40,7 @@ export default class AntdText extends Component {
         children = parseChildrenToArray(children)
 
         return (
-            <ConfigProvider locale={zhCN}>
+            <ConfigProvider locale={str2Locale.get(locale)}>
                 <Text id={id}
                     className={className}
                     style={style}
@@ -78,6 +79,9 @@ AntdText.propTypes = {
 
     // 自定义css字典
     style: PropTypes.object,
+
+    // 设置语言环境，可选的有'zh-cn'、'en-us'
+    locale: PropTypes.oneOf(['zh-cn', 'en-us']),
 
     // 设置是否以code模式渲染内容
     code: PropTypes.bool,
@@ -133,4 +137,5 @@ AntdText.propTypes = {
 
 // 设置默认参数
 AntdText.defaultProps = {
+    locale: 'zh-cn'
 }

@@ -32,14 +32,16 @@ Keyword arguments:
     - prop_name (string; optional):
         Holds which property is loading.
 
+- locale (a value equal to: 'zh-cn', 'en-us'; default 'zh-cn')
+
 - style (dict; optional)"""
     @_explicitize_args
-    def __init__(self, id=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, description=Component.UNDEFINED, image=Component.UNDEFINED, imageStyle=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
-        self._prop_names = ['id', 'className', 'description', 'image', 'imageStyle', 'loading_state', 'style']
+    def __init__(self, id=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, locale=Component.UNDEFINED, description=Component.UNDEFINED, image=Component.UNDEFINED, imageStyle=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
+        self._prop_names = ['id', 'className', 'description', 'image', 'imageStyle', 'loading_state', 'locale', 'style']
         self._type = 'AntdEmpty'
         self._namespace = 'feffery_antd_components'
         self._valid_wildcard_attributes =            []
-        self.available_properties = ['id', 'className', 'description', 'image', 'imageStyle', 'loading_state', 'style']
+        self.available_properties = ['id', 'className', 'description', 'image', 'imageStyle', 'loading_state', 'locale', 'style']
         self.available_wildcard_properties =            []
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()

@@ -44,6 +44,8 @@ Keyword arguments:
     - prop_name (string; optional):
         Holds which property is loading.
 
+- locale (a value equal to: 'zh-cn', 'en-us'; default 'zh-cn')
+
 - persisted_props (list of a value equal to: 'value's; default ['value']):
     Properties whose user interactions will persist after refreshing
     the  component or the page. Since only `value` is allowed this
@@ -75,12 +77,12 @@ Keyword arguments:
 
     - value (string; optional)"""
     @_explicitize_args
-    def __init__(self, id=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, validRange=Component.UNDEFINED, disabledDates=Component.UNDEFINED, defaultValue=Component.UNDEFINED, format=Component.UNDEFINED, size=Component.UNDEFINED, loading_state=Component.UNDEFINED, persistence=Component.UNDEFINED, persisted_props=Component.UNDEFINED, persistence_type=Component.UNDEFINED, **kwargs):
-        self._prop_names = ['id', 'className', 'defaultValue', 'disabledDates', 'format', 'loading_state', 'persisted_props', 'persistence', 'persistence_type', 'size', 'style', 'validRange']
+    def __init__(self, id=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, locale=Component.UNDEFINED, validRange=Component.UNDEFINED, disabledDates=Component.UNDEFINED, defaultValue=Component.UNDEFINED, format=Component.UNDEFINED, size=Component.UNDEFINED, loading_state=Component.UNDEFINED, persistence=Component.UNDEFINED, persisted_props=Component.UNDEFINED, persistence_type=Component.UNDEFINED, **kwargs):
+        self._prop_names = ['id', 'className', 'defaultValue', 'disabledDates', 'format', 'loading_state', 'locale', 'persisted_props', 'persistence', 'persistence_type', 'size', 'style', 'validRange']
         self._type = 'AntdCalendar'
         self._namespace = 'feffery_antd_components'
         self._valid_wildcard_attributes =            []
-        self.available_properties = ['id', 'className', 'defaultValue', 'disabledDates', 'format', 'loading_state', 'persisted_props', 'persistence', 'persistence_type', 'size', 'style', 'validRange']
+        self.available_properties = ['id', 'className', 'defaultValue', 'disabledDates', 'format', 'loading_state', 'locale', 'persisted_props', 'persistence', 'persistence_type', 'size', 'style', 'validRange']
         self.available_wildcard_properties =            []
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()

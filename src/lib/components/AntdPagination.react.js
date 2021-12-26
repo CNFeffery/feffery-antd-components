@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Pagination, ConfigProvider } from 'antd';
-import zhCN from 'antd/lib/locale/zh_CN';
+import { str2Locale } from './locales.react';
 import 'antd/dist/antd.css';
 
 // 定义分页组件AntdPagination，api参数参考https://ant.design/components/pagination-cn/
@@ -32,6 +32,7 @@ export default class AntdPagination extends Component {
             id,
             style,
             className,
+            locale,
             defaultCurrent,
             defaultPageSize,
             current,
@@ -69,7 +70,7 @@ export default class AntdPagination extends Component {
 
         // 返回定制化的前端组件
         return (
-            <ConfigProvider locale={zhCN}>
+            <ConfigProvider locale={str2Locale.get(locale)}>
                 <Pagination
                     id={id}
                     className={className}
@@ -111,6 +112,9 @@ AntdPagination.propTypes = {
 
     // 自定义css字典
     style: PropTypes.object,
+
+    // 设置语言环境，可选的有'zh-cn'、'en-us'
+    locale: PropTypes.oneOf(['zh-cn', 'en-us']),
 
     // 设置初始化时停留的页码
     defaultCurrent: PropTypes.number,
@@ -208,5 +212,6 @@ AntdPagination.propTypes = {
 // 设置默认参数
 AntdPagination.defaultProps = {
     persisted_props: ['current', 'pageSize'],
-    persistence_type: 'local'
+    persistence_type: 'local',
+    locale: 'zh-cn'
 }

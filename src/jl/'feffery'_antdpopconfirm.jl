@@ -25,6 +25,7 @@ Those elements have the following types:
   - `is_loading` (Bool; optional): Determines if the component is loading or not
   - `prop_name` (String; optional): Holds which property is loading
   - `component_name` (String; optional): Holds the name of the component that is loading
+- `locale` (a value equal to: 'zh-cn', 'en-us'; optional)
 - `mouseEnterDelay` (Real; optional)
 - `mouseLeaveDelay` (Real; optional)
 - `okButtonProps` (Dict; optional)
@@ -37,7 +38,7 @@ Those elements have the following types:
 - `trigger` (a value equal to: 'hover', 'focus', 'click' | Array of a value equal to: 'hover', 'focus', 'click's; optional)
 """
 function 'feffery'_antdpopconfirm(; kwargs...)
-        available_props = Symbol[:children, :id, :cancelButtonProps, :cancelCounts, :cancelText, :className, :confirmCounts, :containerId, :disabled, :loading_state, :mouseEnterDelay, :mouseLeaveDelay, :okButtonProps, :okText, :overlayInnerStyle, :overlayStyle, :placement, :style, :title, :trigger]
+        available_props = Symbol[:children, :id, :cancelButtonProps, :cancelCounts, :cancelText, :className, :confirmCounts, :containerId, :disabled, :loading_state, :locale, :mouseEnterDelay, :mouseLeaveDelay, :okButtonProps, :okText, :overlayInnerStyle, :overlayStyle, :placement, :style, :title, :trigger]
         wild_props = Symbol[]
         return Component("'feffery'_antdpopconfirm", "AntdPopconfirm", "feffery_antd_components", available_props, wild_props; kwargs...)
 end

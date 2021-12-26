@@ -48,6 +48,8 @@ Keyword arguments:
     - prop_name (string; optional):
         Holds which property is loading.
 
+- locale (a value equal to: 'zh-cn', 'en-us'; default 'zh-cn')
+
 - publishTime (dict; required)
 
     `publishTime` is a dict with keys:
@@ -60,12 +62,12 @@ Keyword arguments:
 
 - style (dict; optional)"""
     @_explicitize_args
-    def __init__(self, children=None, id=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, commentId=Component.UNDEFINED, authorName=Component.UNDEFINED, authorNameHref=Component.UNDEFINED, publishTime=Component.REQUIRED, fromNow=Component.UNDEFINED, replyCounts=Component.UNDEFINED, commentContent=Component.UNDEFINED, likesCount=Component.UNDEFINED, dislikesCount=Component.UNDEFINED, action=Component.UNDEFINED, defaultAction=Component.UNDEFINED, avatarProps=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
-        self._prop_names = ['children', 'id', 'action', 'authorName', 'authorNameHref', 'avatarProps', 'className', 'commentContent', 'commentId', 'defaultAction', 'dislikesCount', 'fromNow', 'likesCount', 'loading_state', 'publishTime', 'replyCounts', 'style']
+    def __init__(self, children=None, id=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, locale=Component.UNDEFINED, commentId=Component.UNDEFINED, authorName=Component.UNDEFINED, authorNameHref=Component.UNDEFINED, publishTime=Component.REQUIRED, fromNow=Component.UNDEFINED, replyCounts=Component.UNDEFINED, commentContent=Component.UNDEFINED, likesCount=Component.UNDEFINED, dislikesCount=Component.UNDEFINED, action=Component.UNDEFINED, defaultAction=Component.UNDEFINED, avatarProps=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
+        self._prop_names = ['children', 'id', 'action', 'authorName', 'authorNameHref', 'avatarProps', 'className', 'commentContent', 'commentId', 'defaultAction', 'dislikesCount', 'fromNow', 'likesCount', 'loading_state', 'locale', 'publishTime', 'replyCounts', 'style']
         self._type = 'AntdComment'
         self._namespace = 'feffery_antd_components'
         self._valid_wildcard_attributes =            []
-        self.available_properties = ['children', 'id', 'action', 'authorName', 'authorNameHref', 'avatarProps', 'className', 'commentContent', 'commentId', 'defaultAction', 'dislikesCount', 'fromNow', 'likesCount', 'loading_state', 'publishTime', 'replyCounts', 'style']
+        self.available_properties = ['children', 'id', 'action', 'authorName', 'authorNameHref', 'avatarProps', 'className', 'commentContent', 'commentId', 'defaultAction', 'dislikesCount', 'fromNow', 'likesCount', 'loading_state', 'locale', 'publishTime', 'replyCounts', 'style']
         self.available_wildcard_properties =            []
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()

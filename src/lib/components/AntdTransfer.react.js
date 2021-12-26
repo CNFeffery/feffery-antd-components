@@ -1,7 +1,7 @@
-import React, { Component, useState } from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Transfer, ConfigProvider } from 'antd';
-import zhCN from 'antd/lib/locale/zh_CN';
+import { str2Locale } from './locales.react';
 import 'antd/dist/antd.css';
 
 // 定义穿梭框组件AntdTransfer，api参数参考https://ant.design/components/transfer-cn/
@@ -12,6 +12,7 @@ export default class AntdTransfer extends Component {
             id,
             className,
             style,
+            locale,
             setProps,
             dataSource,
             height,
@@ -44,7 +45,7 @@ export default class AntdTransfer extends Component {
 
         // 返回定制化的前端组件
         return (
-            <ConfigProvider locale={zhCN}>
+            <ConfigProvider locale={str2Locale.get(locale)}>
                 <Transfer
                     id={id}
                     style={style}
@@ -86,6 +87,9 @@ AntdTransfer.propTypes = {
 
     // 自定义css
     style: PropTypes.object,
+
+    // 设置语言环境，可选的有'zh-cn'、'en-us'
+    locale: PropTypes.oneOf(['zh-cn', 'en-us']),
 
     // 用于定义穿梭框中的每个选项信息
     dataSource: PropTypes.arrayOf(PropTypes.exact(
@@ -186,5 +190,6 @@ AntdTransfer.defaultProps = {
     showSearch: false,
     showSelectAll: true,
     persisted_props: ['targetKeys'],
-    persistence_type: 'local'
+    persistence_type: 'local',
+    locale: 'zh-cn'
 }

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { DatePicker, ConfigProvider } from 'antd';
 import moment from 'moment';
-import zhCN from 'antd/lib/locale/zh_CN';
+import { str2Locale } from './locales.react';
 import 'antd/dist/antd.css';
 
 const { RangePicker } = DatePicker;
@@ -43,6 +43,7 @@ export default class AntdDateRangePicker extends Component {
             id,
             className,
             style,
+            locale,
             setProps,
             picker,
             format,
@@ -73,7 +74,7 @@ export default class AntdDateRangePicker extends Component {
         // 返回定制化的前端组件
         return (
             <div>
-                <ConfigProvider locale={zhCN}>
+                <ConfigProvider locale={str2Locale.get(locale)}>
                     <RangePicker
                         id={id}
                         className={className}
@@ -127,6 +128,9 @@ AntdDateRangePicker.propTypes = {
 
     // 自定义css字典
     style: PropTypes.object,
+
+    // 设置语言环境，可选的有'zh-cn'、'en-us'
+    locale: PropTypes.oneOf(['zh-cn', 'en-us']),
 
     // 设置日期选择的粒度（date：精确到天，week：精确到周，month：精确到月，quarter：精确到季度，year：精确到年。默认为date）
     picker: PropTypes.oneOf(['date', 'week', 'month', 'quarter', 'year']),
@@ -218,5 +222,6 @@ AntdDateRangePicker.propTypes = {
 AntdDateRangePicker.defaultProps = {
     showTime: false,
     persisted_props: ['value'],
-    persistence_type: 'local'
+    persistence_type: 'local',
+    locale: 'zh-cn'
 }

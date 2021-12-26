@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Typography, ConfigProvider } from 'antd';
-import zhCN from 'antd/lib/locale/zh_CN';
+import { str2Locale } from '../locales.react';
 import 'antd/dist/antd.css';
 
 const { Title } = Typography;
@@ -22,6 +22,7 @@ export default class AntdTitle extends Component {
             children,
             className,
             style,
+            locale,
             level,
             code,
             copyable,
@@ -40,7 +41,7 @@ export default class AntdTitle extends Component {
         children = parseChildrenToArray(children)
 
         return (
-            <ConfigProvider locale={zhCN}>
+            <ConfigProvider locale={str2Locale.get(locale)}>
                 <Title id={id}
                     className={className}
                     style={style}
@@ -80,6 +81,9 @@ AntdTitle.propTypes = {
 
     // 自定义css字典
     style: PropTypes.object,
+
+    // 设置语言环境，可选的有'zh-cn'、'en-us'
+    locale: PropTypes.oneOf(['zh-cn', 'en-us']),
 
     // 设置标题级别，可选的有1到5之间的整数，对应h1到h5
     level: PropTypes.number,
@@ -138,4 +142,5 @@ AntdTitle.propTypes = {
 
 // 设置默认参数
 AntdTitle.defaultProps = {
+    locale: 'zh-cn'
 }

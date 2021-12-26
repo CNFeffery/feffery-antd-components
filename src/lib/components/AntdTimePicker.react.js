@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { TimePicker, ConfigProvider } from 'antd';
 import moment from 'moment';
-import zhCN from 'antd/lib/locale/zh_CN';
+import { str2Locale } from './locales.react';
 import 'antd/dist/antd.css';
 
 // 定义时间选择组件AntdTimePicker，api参数参考https://ant.design/components/time-picker-cn/
@@ -23,6 +23,7 @@ export default class AntdTimePicker extends Component {
             id,
             className,
             style,
+            locale,
             setProps,
             disabled,
             hourStep,
@@ -51,7 +52,7 @@ export default class AntdTimePicker extends Component {
         // 返回定制化的前端组件
         return (
             <div>
-                <ConfigProvider locale={zhCN}>
+                <ConfigProvider locale={str2Locale.get(locale)}>
                     <TimePicker
                         id={id}
                         className={className}
@@ -93,6 +94,9 @@ AntdTimePicker.propTypes = {
 
     // 自定义css字典
     style: PropTypes.object,
+
+    // 设置语言环境，可选的有'zh-cn'、'en-us'
+    locale: PropTypes.oneOf(['zh-cn', 'en-us']),
 
     // 设置是否禁用组件，默认为false
     disabled: PropTypes.bool,
@@ -193,5 +197,6 @@ AntdTimePicker.defaultProps = {
     },
     format: 'hh:mm:ss',
     persisted_props: ['value'],
-    persistence_type: 'local'
+    persistence_type: 'local',
+    locale: 'zh-cn'
 }

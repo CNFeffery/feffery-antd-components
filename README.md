@@ -12,7 +12,7 @@
 
 </div>
 
-`feffery-components`计划子项目，`Plotly Dash`第三方组件库，将`Antd`中的常用组件带入`Dash`的世界🥳，最新版本：`0.0.1rc7`（测试版本迭代中，敬请期待第一个正式版本的发布）
+`feffery-components`计划子项目，`Plotly Dash`第三方组件库，将`Antd`中的常用组件带入`Dash`的世界🥳，最新版本：`0.0.1rc7`（**测试版本迭代中，敬请期待第一个正式版本的发布😇**）
 
 ## 1 最新版本安装方式
 
@@ -182,8 +182,28 @@ app = dash.Dash(serve_locally=False)
     - `expandedKeys`
   - [x] `AntdTreeSelect`
     - `value`
-
-- [ ] 为`fac`添加`中文/英文`语言状态切换参数`locale`
+- [x] 为以下组件添加多语种环境切换参数`locale`
+  - `AntdParagraph`
+  - `AntdText`
+  - `AntdTitle`
+  - `AntdCalendar`
+  - `AntdCascader`
+  - `AntdComment`
+  - `AntdDatePicker`
+  - `AntdDatePickerRange`
+  - `AntdDraggerUpload`
+  - `AntdEmpty`
+  - `AntdImage`
+  - `AntdModal`
+  - `AntdPagination`
+  - `AntdPopconfirm`
+  - `AntdSelect`
+  - `AntdTable`
+  - `AntdTimePicker`
+  - `AntdTimePickerRange`
+  - `AntdTransfer`
+  - `AntdTreeSelect`
+  - `AntdUpload`
 - [ ] 为以下组件增加`响应式`功能
   - `AntdDescriptions`
   - `AntdRow`

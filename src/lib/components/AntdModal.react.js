@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import zhCN from 'antd/lib/locale/zh_CN';
+import { str2Locale } from './locales.react';
 import { Modal, ConfigProvider } from 'antd';
 import { str2Icon } from './icons.react'
 import 'antd/dist/antd.css';
@@ -14,6 +14,7 @@ export default class AntdModal extends Component {
             children,
             className,
             style,
+            locale,
             setProps,
             title,
             visible,
@@ -54,7 +55,7 @@ export default class AntdModal extends Component {
 
             // 返回定制化的前端组件
             return (
-                <ConfigProvider locale={zhCN}>
+                <ConfigProvider locale={str2Locale.get(locale)}>
                     <Modal
                         id={id}
                         className={className}
@@ -88,7 +89,7 @@ export default class AntdModal extends Component {
         } else {
             // 返回定制化的前端组件
             return (
-                <ConfigProvider locale={zhCN}>
+                <ConfigProvider locale={str2Locale.get(locale)}>
                     <Modal
                         id={id}
                         className={className}
@@ -133,6 +134,9 @@ AntdModal.propTypes = {
 
     // 自定义css字典
     style: PropTypes.object,
+
+    // 设置语言环境，可选的有'zh-cn'、'en-us'
+    locale: PropTypes.oneOf(['zh-cn', 'en-us']),
 
     // 设置标题内容
     title: PropTypes.oneOfType([
@@ -218,5 +222,6 @@ AntdModal.defaultProps = {
     visible: false,
     okCounts: 0,
     cancelCounts: 0,
-    closeCounts: 0
+    closeCounts: 0,
+    locale: 'zh-cn'
 }

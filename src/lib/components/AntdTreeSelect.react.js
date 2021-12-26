@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { TreeSelect, ConfigProvider } from 'antd';
-import zhCN from 'antd/lib/locale/zh_CN';
+import { str2Locale } from './locales.react';
 import 'antd/dist/antd.css';
 
 const { SHOW_ALL } = TreeSelect;
@@ -23,6 +23,7 @@ export default class AntdTreeSelect extends Component {
             id,
             style,
             className,
+            locale,
             treeData,
             allowClear,
             bordered,
@@ -61,7 +62,7 @@ export default class AntdTreeSelect extends Component {
 
         // 返回定制化的前端组件
         return (
-            <ConfigProvider locale={zhCN}>
+            <ConfigProvider locale={str2Locale.get(locale)}>
                 <TreeSelect
                     id={id}
                     className={className}
@@ -141,6 +142,9 @@ AntdTreeSelect.propTypes = {
 
     // 自定义css字典
     style: PropTypes.object,
+
+    // 设置语言环境，可选的有'zh-cn'、'en-us'
+    locale: PropTypes.oneOf(['zh-cn', 'en-us']),
 
     // 组织树形结构的json结构数据
     treeData: treeDataPropTypes,
@@ -271,5 +275,6 @@ AntdTreeSelect.defaultProps = {
     virtual: false,
     allowClear: true,
     persisted_props: ['value'],
-    persistence_type: 'local'
+    persistence_type: 'local',
+    locale: 'zh-cn'
 }

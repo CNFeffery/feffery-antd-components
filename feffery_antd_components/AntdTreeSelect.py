@@ -36,6 +36,8 @@ Keyword arguments:
     - prop_name (string; optional):
         Holds which property is loading.
 
+- locale (a value equal to: 'zh-cn', 'en-us'; default 'zh-cn')
+
 - maxTagCount (number; optional)
 
 - multiple (boolean; optional)
@@ -83,12 +85,12 @@ Keyword arguments:
 
 - virtual (boolean; default False)"""
     @_explicitize_args
-    def __init__(self, id=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, treeData=Component.UNDEFINED, allowClear=Component.UNDEFINED, bordered=Component.UNDEFINED, treeLine=Component.UNDEFINED, placeholder=Component.UNDEFINED, value=Component.UNDEFINED, defaultValue=Component.UNDEFINED, maxTagCount=Component.UNDEFINED, listHeight=Component.UNDEFINED, multiple=Component.UNDEFINED, size=Component.UNDEFINED, treeCheckable=Component.UNDEFINED, treeCheckStrictly=Component.UNDEFINED, treeDefaultExpandAll=Component.UNDEFINED, treeDefaultExpandedKeys=Component.UNDEFINED, treeExpandedKeys=Component.UNDEFINED, virtual=Component.UNDEFINED, disabled=Component.UNDEFINED, loading_state=Component.UNDEFINED, persistence=Component.UNDEFINED, persisted_props=Component.UNDEFINED, persistence_type=Component.UNDEFINED, **kwargs):
-        self._prop_names = ['id', 'allowClear', 'bordered', 'className', 'defaultValue', 'disabled', 'listHeight', 'loading_state', 'maxTagCount', 'multiple', 'persisted_props', 'persistence', 'persistence_type', 'placeholder', 'size', 'style', 'treeCheckStrictly', 'treeCheckable', 'treeData', 'treeDefaultExpandAll', 'treeDefaultExpandedKeys', 'treeExpandedKeys', 'treeLine', 'value', 'virtual']
+    def __init__(self, id=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, locale=Component.UNDEFINED, treeData=Component.UNDEFINED, allowClear=Component.UNDEFINED, bordered=Component.UNDEFINED, treeLine=Component.UNDEFINED, placeholder=Component.UNDEFINED, value=Component.UNDEFINED, defaultValue=Component.UNDEFINED, maxTagCount=Component.UNDEFINED, listHeight=Component.UNDEFINED, multiple=Component.UNDEFINED, size=Component.UNDEFINED, treeCheckable=Component.UNDEFINED, treeCheckStrictly=Component.UNDEFINED, treeDefaultExpandAll=Component.UNDEFINED, treeDefaultExpandedKeys=Component.UNDEFINED, treeExpandedKeys=Component.UNDEFINED, virtual=Component.UNDEFINED, disabled=Component.UNDEFINED, loading_state=Component.UNDEFINED, persistence=Component.UNDEFINED, persisted_props=Component.UNDEFINED, persistence_type=Component.UNDEFINED, **kwargs):
+        self._prop_names = ['id', 'allowClear', 'bordered', 'className', 'defaultValue', 'disabled', 'listHeight', 'loading_state', 'locale', 'maxTagCount', 'multiple', 'persisted_props', 'persistence', 'persistence_type', 'placeholder', 'size', 'style', 'treeCheckStrictly', 'treeCheckable', 'treeData', 'treeDefaultExpandAll', 'treeDefaultExpandedKeys', 'treeExpandedKeys', 'treeLine', 'value', 'virtual']
         self._type = 'AntdTreeSelect'
         self._namespace = 'feffery_antd_components'
         self._valid_wildcard_attributes =            []
-        self.available_properties = ['id', 'allowClear', 'bordered', 'className', 'defaultValue', 'disabled', 'listHeight', 'loading_state', 'maxTagCount', 'multiple', 'persisted_props', 'persistence', 'persistence_type', 'placeholder', 'size', 'style', 'treeCheckStrictly', 'treeCheckable', 'treeData', 'treeDefaultExpandAll', 'treeDefaultExpandedKeys', 'treeExpandedKeys', 'treeLine', 'value', 'virtual']
+        self.available_properties = ['id', 'allowClear', 'bordered', 'className', 'defaultValue', 'disabled', 'listHeight', 'loading_state', 'locale', 'maxTagCount', 'multiple', 'persisted_props', 'persistence', 'persistence_type', 'placeholder', 'size', 'style', 'treeCheckStrictly', 'treeCheckable', 'treeData', 'treeDefaultExpandAll', 'treeDefaultExpandedKeys', 'treeExpandedKeys', 'treeLine', 'value', 'virtual']
         self.available_wildcard_properties =            []
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()

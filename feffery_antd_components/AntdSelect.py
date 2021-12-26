@@ -38,6 +38,8 @@ Keyword arguments:
     - prop_name (string; optional):
         Holds which property is loading.
 
+- locale (a value equal to: 'zh-cn', 'en-us'; default 'zh-cn')
+
 - maxTagCount (number; default 5)
 
 - mode (a value equal to: 'multiple', 'tags'; optional)
@@ -97,12 +99,12 @@ Keyword arguments:
 
 - value (string | number | list of string | numbers; optional)"""
     @_explicitize_args
-    def __init__(self, id=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, options=Component.UNDEFINED, colorsNameWidth=Component.UNDEFINED, allowClear=Component.UNDEFINED, mode=Component.UNDEFINED, disabled=Component.UNDEFINED, placeholder=Component.UNDEFINED, size=Component.UNDEFINED, value=Component.UNDEFINED, defaultValue=Component.UNDEFINED, maxTagCount=Component.UNDEFINED, listHeight=Component.UNDEFINED, colorsMode=Component.UNDEFINED, loading_state=Component.UNDEFINED, persistence=Component.UNDEFINED, persisted_props=Component.UNDEFINED, persistence_type=Component.UNDEFINED, **kwargs):
-        self._prop_names = ['id', 'allowClear', 'className', 'colorsMode', 'colorsNameWidth', 'defaultValue', 'disabled', 'listHeight', 'loading_state', 'maxTagCount', 'mode', 'options', 'persisted_props', 'persistence', 'persistence_type', 'placeholder', 'size', 'style', 'value']
+    def __init__(self, id=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, locale=Component.UNDEFINED, options=Component.UNDEFINED, colorsNameWidth=Component.UNDEFINED, allowClear=Component.UNDEFINED, mode=Component.UNDEFINED, disabled=Component.UNDEFINED, placeholder=Component.UNDEFINED, size=Component.UNDEFINED, value=Component.UNDEFINED, defaultValue=Component.UNDEFINED, maxTagCount=Component.UNDEFINED, listHeight=Component.UNDEFINED, colorsMode=Component.UNDEFINED, loading_state=Component.UNDEFINED, persistence=Component.UNDEFINED, persisted_props=Component.UNDEFINED, persistence_type=Component.UNDEFINED, **kwargs):
+        self._prop_names = ['id', 'allowClear', 'className', 'colorsMode', 'colorsNameWidth', 'defaultValue', 'disabled', 'listHeight', 'loading_state', 'locale', 'maxTagCount', 'mode', 'options', 'persisted_props', 'persistence', 'persistence_type', 'placeholder', 'size', 'style', 'value']
         self._type = 'AntdSelect'
         self._namespace = 'feffery_antd_components'
         self._valid_wildcard_attributes =            []
-        self.available_properties = ['id', 'allowClear', 'className', 'colorsMode', 'colorsNameWidth', 'defaultValue', 'disabled', 'listHeight', 'loading_state', 'maxTagCount', 'mode', 'options', 'persisted_props', 'persistence', 'persistence_type', 'placeholder', 'size', 'style', 'value']
+        self.available_properties = ['id', 'allowClear', 'className', 'colorsMode', 'colorsNameWidth', 'defaultValue', 'disabled', 'listHeight', 'loading_state', 'locale', 'maxTagCount', 'mode', 'options', 'persisted_props', 'persistence', 'persistence_type', 'placeholder', 'size', 'style', 'value']
         self.available_wildcard_properties =            []
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()

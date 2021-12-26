@@ -26,6 +26,7 @@ Those elements have the following types:
   - `is_loading` (Bool; optional): Determines if the component is loading or not
   - `prop_name` (String; optional): Holds which property is loading
   - `component_name` (String; optional): Holds the name of the component that is loading
+- `locale` (a value equal to: 'zh-cn', 'en-us'; optional)
 - `mask` (Bool; optional)
 - `maskClosable` (Bool; optional)
 - `okButtonProps` (Dict; optional)
@@ -41,7 +42,7 @@ Those elements have the following types:
 - `width` (Real; optional)
 """
 function 'feffery'_antdmodal(; kwargs...)
-        available_props = Symbol[:children, :id, :cancelButtonProps, :cancelCounts, :cancelText, :centered, :className, :closable, :closeCounts, :keyboard, :loading_state, :mask, :maskClosable, :okButtonProps, :okCounts, :okText, :renderFooter, :style, :title, :visible, :width]
+        available_props = Symbol[:children, :id, :cancelButtonProps, :cancelCounts, :cancelText, :centered, :className, :closable, :closeCounts, :keyboard, :loading_state, :locale, :mask, :maskClosable, :okButtonProps, :okCounts, :okText, :renderFooter, :style, :title, :visible, :width]
         wild_props = Symbol[]
         return Component("'feffery'_antdmodal", "AntdModal", "feffery_antd_components", available_props, wild_props; kwargs...)
 end

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import moment from 'moment';
 import { Calendar, ConfigProvider } from 'antd';
-import zhCN from 'antd/lib/locale/zh_CN';
+import { str2Locale } from './locales.react';
 import 'antd/dist/antd.css';
 
 // 定义日历组件AntdCalendar，api参数参考https://ant.design/components/calendar-cn/
@@ -23,6 +23,7 @@ export default class AntdCalendar extends Component {
             id,
             className,
             style,
+            locale,
             validRange,
             disabledDates,
             defaultValue,
@@ -47,7 +48,7 @@ export default class AntdCalendar extends Component {
         }
 
         return (
-            <ConfigProvider locale={zhCN}>
+            <ConfigProvider locale={str2Locale.get(locale)}>
                 <Calendar id={id}
                     className={className}
                     style={style}
@@ -81,6 +82,9 @@ AntdCalendar.propTypes = {
 
     // 自定义css字典
     style: PropTypes.object,
+
+    // 设置语言环境，可选的有'zh-cn'、'en-us'
+    locale: PropTypes.oneOf(['zh-cn', 'en-us']),
 
     // 设置可显示日期范围
     validRange: PropTypes.arrayOf(
@@ -175,5 +179,6 @@ AntdCalendar.defaultProps = {
     format: 'YYYY-MM-DD',
     size: 'default',
     persisted_props: ['value'],
-    persistence_type: 'local'
+    persistence_type: 'local',
+    locale: 'zh-cn'
 }

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Cascader, ConfigProvider } from 'antd';
-import zhCN from 'antd/lib/locale/zh_CN';
+import { str2Locale } from './locales.react';
 import 'antd/dist/antd.css';
 
 // 定义级联选择组件AntdCascader，api参数参考https://ant.design/components/cascader-cn/
@@ -20,6 +20,7 @@ export default class AntdCascader extends Component {
             id,
             style,
             className,
+            locale,
             options,
             changeOnSelect,
             size,
@@ -50,7 +51,7 @@ export default class AntdCascader extends Component {
 
         // 返回定制化的前端组件
         return (
-            <ConfigProvider locale={zhCN}>
+            <ConfigProvider locale={str2Locale.get(locale)}>
                 <Cascader
                     id={id}
                     className={className}
@@ -109,6 +110,9 @@ AntdCascader.propTypes = {
 
     // 自定义css字典
     style: PropTypes.object,
+
+    // 设置语言环境，可选的有'zh-cn'、'en-us'
+    locale: PropTypes.oneOf(['zh-cn', 'en-us']),
 
     // 组织选项层级结构对应的json数据
     options: optionDataPropTypes.isRequired,
@@ -220,5 +224,6 @@ AntdCascader.propTypes = {
 AntdCascader.defaultProps = {
     changeOnSelect: false,
     persisted_props: ['value'],
-    persistence_type: 'local'
+    persistence_type: 'local',
+    locale: 'zh-cn'
 }

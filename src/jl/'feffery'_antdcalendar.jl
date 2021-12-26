@@ -24,6 +24,7 @@ Those elements have the following types:
   - `is_loading` (Bool; optional): Determines if the component is loading or not
   - `prop_name` (String; optional): Holds which property is loading
   - `component_name` (String; optional): Holds the name of the component that is loading
+- `locale` (a value equal to: 'zh-cn', 'en-us'; optional)
 - `persisted_props` (Array of a value equal to: 'value's; optional): Properties whose user interactions will persist after refreshing the
 component or the page. Since only `value` is allowed this prop can
 normally be ignored.
@@ -45,7 +46,7 @@ Those elements have the following types:
   - `format` (String; optional)s
 """
 function 'feffery'_antdcalendar(; kwargs...)
-        available_props = Symbol[:id, :className, :defaultValue, :disabledDates, :format, :loading_state, :persisted_props, :persistence, :persistence_type, :size, :style, :validRange]
+        available_props = Symbol[:id, :className, :defaultValue, :disabledDates, :format, :loading_state, :locale, :persisted_props, :persistence, :persistence_type, :size, :style, :validRange]
         wild_props = Symbol[]
         return Component("'feffery'_antdcalendar", "AntdCalendar", "feffery_antd_components", available_props, wild_props; kwargs...)
 end

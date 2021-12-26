@@ -29,6 +29,7 @@ Those elements have the following types:
   - `is_loading` (Bool; optional): Determines if the component is loading or not
   - `prop_name` (String; optional): Holds which property is loading
   - `component_name` (String; optional): Holds the name of the component that is loading
+- `locale` (a value equal to: 'zh-cn', 'en-us'; optional)
 - `publishTime` (required): . publishTime has the following type: lists containing elements 'value', 'format'.
 Those elements have the following types:
   - `value` (String; required)
@@ -37,7 +38,7 @@ Those elements have the following types:
 - `style` (Dict; optional)
 """
 function 'feffery'_antdcomment(; kwargs...)
-        available_props = Symbol[:children, :id, :action, :authorName, :authorNameHref, :avatarProps, :className, :commentContent, :commentId, :defaultAction, :dislikesCount, :fromNow, :likesCount, :loading_state, :publishTime, :replyCounts, :style]
+        available_props = Symbol[:children, :id, :action, :authorName, :authorNameHref, :avatarProps, :className, :commentContent, :commentId, :defaultAction, :dislikesCount, :fromNow, :likesCount, :loading_state, :locale, :publishTime, :replyCounts, :style]
         wild_props = Symbol[]
         return Component("'feffery'_antdcomment", "AntdComment", "feffery_antd_components", available_props, wild_props; kwargs...)
 end

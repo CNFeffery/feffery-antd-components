@@ -1,14 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import moment from 'moment';
-import zhCN from 'antd/lib/locale/zh_CN';
+import { str2Locale } from './locales.react';
 import { Comment, Tooltip, ConfigProvider } from 'antd';
 import { AntdAvatar } from '..';
 import { DislikeOutlined, LikeOutlined, DislikeFilled, LikeFilled } from '@ant-design/icons';
 import 'antd/dist/antd.css';
 import './styles.css'
-
-moment.locale('zh-cn');
 
 const parseChildrenToArray = children => {
     if (children && !Array.isArray(children)) {
@@ -25,6 +23,7 @@ const AntdComment = (props) => {
         children,
         className,
         style,
+        locale,
         commentId,
         replyCounts,
         authorName,
@@ -40,6 +39,12 @@ const AntdComment = (props) => {
         setProps,
         loading_state
     } = props;
+
+    if (locale === 'zh-cn') {
+        moment.locale('zh-cn');
+    } else if (locale === 'en-us') {
+        moment.locale('en');
+    }
 
     children = parseChildrenToArray(children)
 
@@ -85,7 +90,7 @@ const AntdComment = (props) => {
     ];
 
     return (
-        <ConfigProvider locale={zhCN}>
+        <ConfigProvider locale={str2Locale.get(locale)}>
             <Comment
                 id={id}
                 className={className}
@@ -125,6 +130,9 @@ AntdComment.propTypes = {
 
     // 自定义css字典
     style: PropTypes.object,
+
+    // 设置语言环境，可选的有'zh-cn'、'en-us'
+    locale: PropTypes.oneOf(['zh-cn', 'en-us']),
 
     // 可选，用于定义评论唯一id，主要用于数据库匹配场景
     commentId: PropTypes.string,
@@ -194,7 +202,8 @@ AntdComment.defaultProps = {
     likesCount: 0,
     dislikesCount: 0,
     fromNow: false,
-    replyCounts: 0
+    replyCounts: 0,
+    locale: 'zh-cn'
 }
 
 export default AntdComment;

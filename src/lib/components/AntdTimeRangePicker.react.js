@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { TimePicker, ConfigProvider } from 'antd';
 import moment from 'moment';
-import zhCN from 'antd/lib/locale/zh_CN';
+import { str2Locale } from './locales.react';
 import 'antd/dist/antd.css';
 
 const { RangePicker } = TimePicker
@@ -25,6 +25,7 @@ export default class AntdTimeRangePicker extends Component {
             id,
             className,
             style,
+            locale,
             setProps,
             value,
             defaultValue,
@@ -55,7 +56,7 @@ export default class AntdTimeRangePicker extends Component {
         // 返回定制化的前端组件
         return (
             <div>
-                <ConfigProvider locale={zhCN}>
+                <ConfigProvider locale={str2Locale.get(locale)}>
                     <RangePicker
                         id={id}
                         className={className}
@@ -105,6 +106,9 @@ AntdTimeRangePicker.propTypes = {
 
     // 自定义css字典
     style: PropTypes.object,
+
+    // 设置语言环境，可选的有'zh-cn'、'en-us'
+    locale: PropTypes.oneOf(['zh-cn', 'en-us']),
 
     // 设置是否禁用组件，默认为false
     disabled: PropTypes.bool,
@@ -208,5 +212,6 @@ AntdTimeRangePicker.defaultProps = {
     },
     format: 'hh:mm:ss',
     persisted_props: ['value'],
-    persistence_type: 'local'
+    persistence_type: 'local',
+    locale: 'zh-cn'
 }

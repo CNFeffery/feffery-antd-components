@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { v4 as uuidv4 } from 'uuid';
 import { Upload, message, ConfigProvider } from 'antd';
 import { str2Icon } from './icons.react';
-import zhCN from 'antd/lib/locale/zh_CN';
+import { str2Locale } from './locales.react';
 import 'antd/dist/antd.css';
 
 const uuid = uuidv4();
@@ -18,6 +18,7 @@ const AntdDraggerUpload = (props) => {
         id,
         className,
         style,
+        locale,
         apiUrl,
         text,
         hint,
@@ -32,7 +33,7 @@ const AntdDraggerUpload = (props) => {
         setProps
     } = props;
 
-    uploadId = uploadId ? uploadId : uuid;
+    uploadId = uploadId || uuid;
 
     const [fileList, updateFileList] = useState([]);
     const [lastFileError, updateLastFileError] = useState(false);
@@ -117,7 +118,7 @@ const AntdDraggerUpload = (props) => {
 
     // 返回定制化的前端组件
     return (
-        <ConfigProvider locale={zhCN}>
+        <ConfigProvider locale={str2Locale.get(locale)}>
             <div id={id}
                 className={className}
                 style={style}>
@@ -152,6 +153,9 @@ AntdDraggerUpload.propTypes = {
 
     // 自定义css字典
     style: PropTypes.object,
+
+    // 设置语言环境，可选的有'zh-cn'、'en-us'
+    locale: PropTypes.oneOf(['zh-cn', 'en-us']),
 
     // 设置文件上传服务的接口url
     apiUrl: PropTypes.string,
@@ -231,7 +235,8 @@ AntdDraggerUpload.propTypes = {
 AntdDraggerUpload.defaultProps = {
     fileListMaxLength: 3,
     fileMaxSize: 500,
-    lastUploadTaskRecord: {}
+    lastUploadTaskRecord: {},
+    locale: 'zh-cn'
 }
 
 export default AntdDraggerUpload;

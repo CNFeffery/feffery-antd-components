@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Select, ConfigProvider } from 'antd';
-import zhCN from 'antd/lib/locale/zh_CN';
+import { str2Locale } from './locales.react';
 import 'antd/dist/antd.css';
 
 const { Option, OptGroup } = Select;
@@ -24,6 +24,7 @@ export default class AntdSelect extends Component {
             id,
             style,
             className,
+            locale,
             setProps,
             placeholder,
             size,
@@ -131,7 +132,7 @@ export default class AntdSelect extends Component {
 
         // 返回定制化的前端组件
         return (
-            <ConfigProvider locale={zhCN}>
+            <ConfigProvider locale={str2Locale.get(locale)}>
                 <Select
                     id={id}
                     className={className}
@@ -172,6 +173,9 @@ AntdSelect.propTypes = {
 
     // 自定义css字典
     style: PropTypes.object,
+
+    // 设置语言环境，可选的有'zh-cn'、'en-us'
+    locale: PropTypes.oneOf(['zh-cn', 'en-us']),
 
     // 定义下拉框可选项
     options: PropTypes.arrayOf(
@@ -329,5 +333,6 @@ AntdSelect.defaultProps = {
     colorsNameWidth: 40,
     colorsMode: 'sequential',
     persisted_props: ['value'],
-    persistence_type: 'local'
+    persistence_type: 'local',
+    locale: 'zh-cn'
 }

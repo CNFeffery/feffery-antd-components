@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Empty, ConfigProvider } from 'antd';
-import zhCN from 'antd/lib/locale/zh_CN';
+import { str2Locale } from './locales.react';
 import 'antd/dist/antd.css';
 
 // 定义空状态组件AntdEmpty，api参数参考https://ant.design/components/empty-cn/
@@ -12,6 +12,7 @@ export default class AntdEmpty extends Component {
             id,
             className,
             style,
+            locale,
             description,
             image,
             imageStyle,
@@ -20,7 +21,7 @@ export default class AntdEmpty extends Component {
         } = this.props;
 
         return (
-            <ConfigProvider locale={zhCN}>
+            <ConfigProvider locale={str2Locale.get(locale)}>
                 <Empty id={id}
                     className={className}
                     style={style}
@@ -45,6 +46,9 @@ AntdEmpty.propTypes = {
 
     // 自定义css字典
     style: PropTypes.object,
+
+    // 设置语言环境，可选的有'zh-cn'、'en-us'
+    locale: PropTypes.oneOf(['zh-cn', 'en-us']),
 
     // 设置描述文字内容
     description: PropTypes.string,
@@ -79,4 +83,5 @@ AntdEmpty.propTypes = {
 
 // 设置默认参数
 AntdEmpty.defaultProps = {
+    locale: 'zh-cn'
 }
