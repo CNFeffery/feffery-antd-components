@@ -204,7 +204,7 @@ app = dash.Dash(serve_locally=False)
   - `AntdTransfer`
   - `AntdTreeSelect`
   - `AntdUpload`
-- [ ] 为以下组件增加`响应式`功能
+- [x] 为以下组件增加`响应式`功能
   - `AntdDescriptions`
   - `AntdRow`
   - `AntdCol`
