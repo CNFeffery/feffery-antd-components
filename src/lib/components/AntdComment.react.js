@@ -71,13 +71,13 @@ const AntdComment = (props) => {
     };
 
     const actions = [
-        <Tooltip key="comment-basic-like" title="支持">
+        <Tooltip key="comment-basic-like" title={locale === "zh-cn" ? "支持" : "like"}>
             <span onClick={like}>
                 {action === 'liked' ? <LikeFilled style={{ color: 'rgb(236, 65, 65)' }} /> : <LikeOutlined />}
                 <span className="comment-action">{likesCount}</span>
             </span>
         </Tooltip>,
-        <Tooltip key="comment-basic-dislike" title="反对">
+        <Tooltip key="comment-basic-dislike" title={locale === "zh-cn" ? "反对" : "dislike"}>
             <span onClick={dislike}>
                 {React.createElement(action === 'disliked' ? DislikeFilled : DislikeOutlined)}
                 <span className="comment-action">{dislikesCount}</span>
@@ -86,7 +86,7 @@ const AntdComment = (props) => {
         <span key="comment-basic-reply-to" onClick={() => {
             console.log({ replyCounts })
             setProps({ replyCounts: replyCounts + 1 })
-        }}>添加回复</span>,
+        }}>{locale === 'zh-cn' ? "添加回复" : "Add a reply"}</span>,
     ];
 
     return (

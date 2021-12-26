@@ -30,7 +30,7 @@ export default class AntdTransfer extends Component {
         } = this.props;
 
         if (!titles) {
-            titles = ['待选区', '选定区']
+            titles = [locale === 'zh-cn' ? '待选区' : 'Source', locale === 'zh-cn' ? '选定区' : 'Target']
         }
 
         // 构造监听函数，其中：
