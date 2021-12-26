@@ -81,7 +81,19 @@ AntdRow.propTypes = {
     align: PropTypes.oneOf(['top', 'middle', 'bottom']),
 
     // 设置栅格间隔
-    gutter: PropTypes.oneOfType([PropTypes.number, PropTypes.string, PropTypes.arrayOf(PropTypes.number)]),
+    gutter: PropTypes.oneOfType([
+        PropTypes.number,
+        PropTypes.arrayOf(PropTypes.number),
+        // 响应式设置水平间隔
+        PropTypes.exact({
+            xs: PropTypes.number,
+            sm: PropTypes.number,
+            md: PropTypes.number,
+            lg: PropTypes.number,
+            xl: PropTypes.number,
+            xxl: PropTypes.number
+        })
+    ]),
 
     // 设置水平排列方式，可选的有'start'、'end'、'center'、'space-around'、'space-between'，默认为'start'
     justify: PropTypes.oneOf([

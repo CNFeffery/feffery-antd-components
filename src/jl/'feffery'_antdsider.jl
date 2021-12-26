@@ -13,6 +13,7 @@ An AntdSider component.
 Keyword arguments:
 - `children` (a list of or a singular dash component, string or number; optional): The content of the tab - will only be displayed if this tab is selected
 - `id` (String; optional)
+- `breakpoint` (a value equal to: 'xs', 'sm', 'md', 'lg', 'xl', 'xxl'; optional)
 - `className` (String; optional)
 - `collapsed` (Bool; optional)
 - `collapsedWidth` (Real; optional)
@@ -30,7 +31,7 @@ Those elements have the following types:
 - `width` (Real; optional)
 """
 function 'feffery'_antdsider(; kwargs...)
-        available_props = Symbol[:children, :id, :className, :collapsed, :collapsedWidth, :collapsible, :defaultCollapsed, :loading_state, :reverseArrow, :style, :theme, :trigger, :width]
+        available_props = Symbol[:children, :id, :breakpoint, :className, :collapsed, :collapsedWidth, :collapsible, :defaultCollapsed, :loading_state, :reverseArrow, :style, :theme, :trigger, :width]
         wild_props = Symbol[]
         return Component("'feffery'_antdsider", "AntdSider", "feffery_antd_components", available_props, wild_props; kwargs...)
 end

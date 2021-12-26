@@ -15,6 +15,8 @@ Keyword arguments:
 
 - id (string; optional)
 
+- breakpoint (a value equal to: 'xs', 'sm', 'md', 'lg', 'xl', 'xxl'; optional)
+
 - className (string; optional)
 
 - collapsed (boolean; default False)
@@ -48,12 +50,12 @@ Keyword arguments:
 
 - width (number; optional)"""
     @_explicitize_args
-    def __init__(self, children=None, id=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, loading_state=Component.UNDEFINED, collapsed=Component.UNDEFINED, collapsedWidth=Component.UNDEFINED, collapsible=Component.UNDEFINED, defaultCollapsed=Component.UNDEFINED, reverseArrow=Component.UNDEFINED, theme=Component.UNDEFINED, width=Component.UNDEFINED, trigger=Component.UNDEFINED, **kwargs):
-        self._prop_names = ['children', 'id', 'className', 'collapsed', 'collapsedWidth', 'collapsible', 'defaultCollapsed', 'loading_state', 'reverseArrow', 'style', 'theme', 'trigger', 'width']
+    def __init__(self, children=None, id=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, collapsed=Component.UNDEFINED, collapsedWidth=Component.UNDEFINED, collapsible=Component.UNDEFINED, defaultCollapsed=Component.UNDEFINED, reverseArrow=Component.UNDEFINED, theme=Component.UNDEFINED, width=Component.UNDEFINED, trigger=Component.UNDEFINED, breakpoint=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
+        self._prop_names = ['children', 'id', 'breakpoint', 'className', 'collapsed', 'collapsedWidth', 'collapsible', 'defaultCollapsed', 'loading_state', 'reverseArrow', 'style', 'theme', 'trigger', 'width']
         self._type = 'AntdSider'
         self._namespace = 'feffery_antd_components'
         self._valid_wildcard_attributes =            []
-        self.available_properties = ['children', 'id', 'className', 'collapsed', 'collapsedWidth', 'collapsible', 'defaultCollapsed', 'loading_state', 'reverseArrow', 'style', 'theme', 'trigger', 'width']
+        self.available_properties = ['children', 'id', 'breakpoint', 'className', 'collapsed', 'collapsedWidth', 'collapsible', 'defaultCollapsed', 'loading_state', 'reverseArrow', 'style', 'theme', 'trigger', 'width']
         self.available_wildcard_properties =            []
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()

@@ -25,6 +25,12 @@ export default class AntdCol extends Component {
             pull,
             push,
             flex,
+            xs,
+            sm,
+            md,
+            lg,
+            xl,
+            xxl,
             setProps,
             loading_state
         } = this.props;
@@ -41,6 +47,12 @@ export default class AntdCol extends Component {
                 pull={pull}
                 push={push}
                 flex={flex}
+                xs={xs}
+                sm={sm}
+                md={md}
+                lg={lg}
+                xl={xl}
+                xxl={xxl}
                 data-dash-is-loading={
                     (loading_state && loading_state.is_loading) || undefined
                 }>
@@ -98,6 +110,127 @@ AntdCol.propTypes = {
 
     // 额外的flex属性辅助
     flex: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+
+    // 响应式参数
+    xs: PropTypes.oneOfType([
+        PropTypes.number,
+        PropTypes.exact({
+            // 设置栅格占位格数，为0时相当于display: none
+            span: PropTypes.number,
+
+            // 设置栅格左侧间隔格数，间隔内不可以有栅格，默认为0
+            offset: PropTypes.number,
+
+            // 设置栅格的顺序，默认为0
+            order: PropTypes.number,
+
+            // 设置栅格向左移动格数，默认为0
+            pull: PropTypes.number,
+
+            // 设置栅格向右移动格数，默认为0
+            push: PropTypes.number
+        })
+    ]),
+
+    sm: PropTypes.oneOfType([
+        PropTypes.number,
+        PropTypes.exact({
+            // 设置栅格占位格数，为0时相当于display: none
+            span: PropTypes.number,
+
+            // 设置栅格左侧间隔格数，间隔内不可以有栅格，默认为0
+            offset: PropTypes.number,
+
+            // 设置栅格的顺序，默认为0
+            order: PropTypes.number,
+
+            // 设置栅格向左移动格数，默认为0
+            pull: PropTypes.number,
+
+            // 设置栅格向右移动格数，默认为0
+            push: PropTypes.number
+        })
+    ]),
+
+    md: PropTypes.oneOfType([
+        PropTypes.number,
+        PropTypes.exact({
+            // 设置栅格占位格数，为0时相当于display: none
+            span: PropTypes.number,
+
+            // 设置栅格左侧间隔格数，间隔内不可以有栅格，默认为0
+            offset: PropTypes.number,
+
+            // 设置栅格的顺序，默认为0
+            order: PropTypes.number,
+
+            // 设置栅格向左移动格数，默认为0
+            pull: PropTypes.number,
+
+            // 设置栅格向右移动格数，默认为0
+            push: PropTypes.number
+        })
+    ]),
+
+    lg: PropTypes.oneOfType([
+        PropTypes.number,
+        PropTypes.exact({
+            // 设置栅格占位格数，为0时相当于display: none
+            span: PropTypes.number,
+
+            // 设置栅格左侧间隔格数，间隔内不可以有栅格，默认为0
+            offset: PropTypes.number,
+
+            // 设置栅格的顺序，默认为0
+            order: PropTypes.number,
+
+            // 设置栅格向左移动格数，默认为0
+            pull: PropTypes.number,
+
+            // 设置栅格向右移动格数，默认为0
+            push: PropTypes.number
+        })
+    ]),
+
+    xl: PropTypes.oneOfType([
+        PropTypes.number,
+        PropTypes.exact({
+            // 设置栅格占位格数，为0时相当于display: none
+            span: PropTypes.number,
+
+            // 设置栅格左侧间隔格数，间隔内不可以有栅格，默认为0
+            offset: PropTypes.number,
+
+            // 设置栅格的顺序，默认为0
+            order: PropTypes.number,
+
+            // 设置栅格向左移动格数，默认为0
+            pull: PropTypes.number,
+
+            // 设置栅格向右移动格数，默认为0
+            push: PropTypes.number
+        })
+    ]),
+
+    xxl: PropTypes.oneOfType([
+        PropTypes.number,
+        PropTypes.exact({
+            // 设置栅格占位格数，为0时相当于display: none
+            span: PropTypes.number,
+
+            // 设置栅格左侧间隔格数，间隔内不可以有栅格，默认为0
+            offset: PropTypes.number,
+
+            // 设置栅格的顺序，默认为0
+            order: PropTypes.number,
+
+            // 设置栅格向左移动格数，默认为0
+            pull: PropTypes.number,
+
+            // 设置栅格向右移动格数，默认为0
+            push: PropTypes.number
+        })
+    ]),
 
     /**
      * Dash-assigned callback that should be called to report property changes

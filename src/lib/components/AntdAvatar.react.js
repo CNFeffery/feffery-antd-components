@@ -118,7 +118,17 @@ AntdAvatar.propTypes = {
         PropTypes.number,
 
         // 固定的规格，可选的有'large'、'small'及'default'
-        PropTypes.oneOf(['large', 'small', 'default'])
+        PropTypes.oneOf(['large', 'small', 'default']),
+
+        // 响应式size
+        PropTypes.exact({
+            xs: PropTypes.number,
+            sm: PropTypes.number,
+            md: PropTypes.number,
+            lg: PropTypes.number,
+            xl: PropTypes.number,
+            xxl: PropTypes.number
+        })
     ]),
 
     // 设置头像的形状，可选的有'circle'、'square'，默认为'circle'

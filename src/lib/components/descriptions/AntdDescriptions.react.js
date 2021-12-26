@@ -132,7 +132,18 @@ AntdDescriptions.propTypes = {
     title: PropTypes.string,
 
     // 设置同一行允许放置的字段项数量，默认为3
-    column: PropTypes.number,
+    column: PropTypes.oneOfType([
+        PropTypes.number,
+        // 响应式
+        PropTypes.exact({
+            xxl: PropTypes.number,
+            xl: PropTypes.number,
+            lg: PropTypes.number,
+            md: PropTypes.number,
+            sm: PropTypes.number,
+            xs: PropTypes.number
+        })
+    ]),
 
     // 设置是否显示边框，默认为false
     bordered: PropTypes.bool,

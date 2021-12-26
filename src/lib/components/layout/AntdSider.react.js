@@ -44,7 +44,6 @@ export default class AntdSider extends Component {
             <Sider id={id}
                 className={className}
                 style={style}
-                breakpoint={breakpoint}
                 collapsed={collapsed}
                 collapsedWidth={collapsedWidth}
                 collapsible={collapsible}
@@ -53,6 +52,7 @@ export default class AntdSider extends Component {
                 theme={theme}
                 width={width}
                 trigger={trigger}
+                breakpoint={breakpoint}
                 onCollapse={onCollapse}
                 data-dash-is-loading={
                     (loading_state && loading_state.is_loading) || undefined
@@ -79,25 +79,10 @@ AntdSider.propTypes = {
     // 自定义css字典
     style: PropTypes.object,
 
-    loading_state: PropTypes.shape({
-        /**
-         * Determines if the component is loading or not
-         */
-        is_loading: PropTypes.bool,
-        /**
-         * Holds which property is loading
-         */
-        prop_name: PropTypes.string,
-        /**
-         * Holds the name of the component that is loading
-         */
-        component_name: PropTypes.string
-    }),
-
     // 对应当前侧边栏是否收起
     collapsed: PropTypes.bool,
 
-    // 设置收缩的像素宽度，默认为80即80px
+    // 设置收缩的像素宽度，默认为80即80px，设置为0时会渲染特殊触发组件
     collapsedWidth: PropTypes.number,
 
     // 设置是否可收起，默认为false
@@ -117,6 +102,26 @@ AntdSider.propTypes = {
 
     // 自定义触发器，自定义时需要设置为null
     trigger: PropTypes.node,
+
+    // 设置侧边栏折叠响应式断点
+    breakpoint: PropTypes.oneOf([
+        'xs', 'sm', 'md', 'lg', 'xl', 'xxl'
+    ]),
+
+    loading_state: PropTypes.shape({
+        /**
+         * Determines if the component is loading or not
+         */
+        is_loading: PropTypes.bool,
+        /**
+         * Holds which property is loading
+         */
+        prop_name: PropTypes.string,
+        /**
+         * Holds the name of the component that is loading
+         */
+        component_name: PropTypes.string
+    }),
 
     /**
      * Dash-assigned callback that should be called to report property changes

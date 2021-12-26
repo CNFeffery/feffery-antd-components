@@ -19,7 +19,21 @@ Keyword arguments:
 
 - className (string; optional)
 
-- gutter (number | string | list of numbers; optional)
+- gutter (dict; optional)
+
+    `gutter` is a number | list of numbers | dict with keys:
+
+    - lg (number; optional)
+
+    - md (number; optional)
+
+    - sm (number; optional)
+
+    - xl (number; optional)
+
+    - xs (number; optional)
+
+    - xxl (number; optional)
 
 - justify (a value equal to: 'start', 'end', 'center', 'space-around', 'space-between'; optional)
 

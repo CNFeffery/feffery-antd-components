@@ -15,7 +15,14 @@ Keyword arguments:
 - `id` (String; optional)
 - `bordered` (Bool; optional)
 - `className` (String; optional)
-- `column` (Real; optional)
+- `column` (optional): . column has the following type: Real | lists containing elements 'xxl', 'xl', 'lg', 'md', 'sm', 'xs'.
+Those elements have the following types:
+  - `xxl` (Real; optional)
+  - `xl` (Real; optional)
+  - `lg` (Real; optional)
+  - `md` (Real; optional)
+  - `sm` (Real; optional)
+  - `xs` (Real; optional)
 - `contentStyle` (Dict; optional)
 - `labelStyle` (Dict; optional)
 - `layout` (a value equal to: 'horizontal', 'vertical'; optional)

@@ -17,7 +17,21 @@ Keyword arguments:
 
 - className (string; optional)
 
-- column (number; optional)
+- column (dict; optional)
+
+    `column` is a number | dict with keys:
+
+    - lg (number; optional)
+
+    - md (number; optional)
+
+    - sm (number; optional)
+
+    - xl (number; optional)
+
+    - xs (number; optional)
+
+    - xxl (number; optional)
 
 - contentStyle (dict; optional)
 

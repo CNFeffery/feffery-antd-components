@@ -15,7 +15,14 @@ Keyword arguments:
 - `id` (String; optional)
 - `align` (a value equal to: 'top', 'middle', 'bottom'; optional)
 - `className` (String; optional)
-- `gutter` (Real | String | Array of Reals; optional)
+- `gutter` (optional): . gutter has the following type: Real | Array of Reals | lists containing elements 'xs', 'sm', 'md', 'lg', 'xl', 'xxl'.
+Those elements have the following types:
+  - `xs` (Real; optional)
+  - `sm` (Real; optional)
+  - `md` (Real; optional)
+  - `lg` (Real; optional)
+  - `xl` (Real; optional)
+  - `xxl` (Real; optional)
 - `justify` (a value equal to: 'start', 'end', 'center', 'space-around', 'space-between'; optional)
 - `loading_state` (optional): . loading_state has the following type: lists containing elements 'is_loading', 'prop_name', 'component_name'.
 Those elements have the following types:

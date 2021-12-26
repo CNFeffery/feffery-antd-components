@@ -38,7 +38,22 @@ Keyword arguments:
 
 - shape (a value equal to: 'circle', 'square'; optional)
 
-- size (number | a value equal to: 'large', 'small', 'default'; optional)
+- size (dict; optional)
+
+    `size` is a number | a value equal to: 'large', 'small', 'default'
+    | dict with keys:
+
+    - lg (number; optional)
+
+    - md (number; optional)
+
+    - sm (number; optional)
+
+    - xl (number; optional)
+
+    - xs (number; optional)
+
+    - xxl (number; optional)
 
 - src (string; optional)
 

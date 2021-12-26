@@ -5,7 +5,6 @@ from dash.dependencies import Input, Output, State
 
 app = dash.Dash(__name__)
 
-
 app.layout = html.Div(
     [
         fac.AntdTitle('persistence测试', level=5),

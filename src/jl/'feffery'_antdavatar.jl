@@ -21,7 +21,14 @@ Those elements have the following types:
   - `component_name` (String; optional): Holds the name of the component that is loading
 - `mode` (a value equal to: 'text', 'icon', 'image'; optional)
 - `shape` (a value equal to: 'circle', 'square'; optional)
-- `size` (Real | a value equal to: 'large', 'small', 'default'; optional)
+- `size` (optional): . size has the following type: Real | a value equal to: 'large', 'small', 'default' | lists containing elements 'xs', 'sm', 'md', 'lg', 'xl', 'xxl'.
+Those elements have the following types:
+  - `xs` (Real; optional)
+  - `sm` (Real; optional)
+  - `md` (Real; optional)
+  - `lg` (Real; optional)
+  - `xl` (Real; optional)
+  - `xxl` (Real; optional)
 - `src` (String; optional)
 - `srcSet` (String; optional)
 - `style` (Dict; optional)
