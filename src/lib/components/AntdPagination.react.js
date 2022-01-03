@@ -11,18 +11,10 @@ export default class AntdPagination extends Component {
         super(props)
         if (props.defaultCurrent) {
             props.setProps({ current: props.defaultCurrent })
-        } else if (!props.current) {
-            setProps({
-                current: 1
-            })
         }
 
         if (props.defaultPageSize) {
             props.setProps({ pageSize: props.defaultPageSize })
-        } else if (!props.pageSize) {
-            setProps({
-                pageSize: 10
-            })
         }
     }
 
@@ -211,6 +203,8 @@ AntdPagination.propTypes = {
 
 // 设置默认参数
 AntdPagination.defaultProps = {
+    current: 1,
+    pageSize: 10,
     persisted_props: ['current', 'pageSize'],
     persistence_type: 'local',
     locale: 'zh-cn'

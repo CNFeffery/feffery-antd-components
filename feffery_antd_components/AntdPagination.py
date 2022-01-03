@@ -13,7 +13,7 @@ Keyword arguments:
 
 - className (string; optional)
 
-- current (number; optional)
+- current (number; default 1)
 
 - defaultCurrent (number; optional)
 
@@ -38,7 +38,7 @@ Keyword arguments:
 
 - locale (a value equal to: 'zh-cn', 'en-us'; default 'zh-cn')
 
-- pageSize (number; optional)
+- pageSize (number; default 10)
 
 - pageSizeOptions (list of numbers; optional)
 

@@ -36,7 +36,7 @@ export default class AntdTable extends Component {
             // 当本次事件由翻页操作引发时
             if (currentData.action === 'paginate') {
                 props.setProps({
-                    pagination: { ...pagination, ...{ pageSize: pagination.pageSize, current: pagination.current } },
+                    pagination: { ...pagination, ...{ pageSize: pagination?.pageSize, current: pagination.current } },
                     currentData: currentData.currentDataSource
                 })
             } else if (currentData.action === 'sort') {
