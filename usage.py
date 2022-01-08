@@ -242,13 +242,13 @@ app.layout = html.Div(
         # ),
 
 
-        # fac.AntdPagination(
-        #     id='persistence-pagination-demo',
-        #     persistence=True,
-        #     total=100,
-        #     # defaultCurrent=2,
-        #     # defaultPageSize=24
-        # ),
+        fac.AntdPagination(
+            id='persistence-pagination-demo',
+            persistence=True,
+            total=100,
+            # defaultCurrent=2,
+            # defaultPageSize=24
+        ),
 
         # fac.AntdRadioGroup(
         #     id='persistence-radio-group-demo',
@@ -400,9 +400,8 @@ app.layout = html.Div(
         ),
         fac.AntdPagination(
             id='pagination-demo',
-            # defaultPageSize=10,
-            total=100,
-            # pageSizeOptions=[5, 10, 20]
+            # pageSize=10,
+            total=100
         )
 
     ],

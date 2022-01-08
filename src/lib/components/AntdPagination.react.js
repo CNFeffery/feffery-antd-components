@@ -4,20 +4,18 @@ import { Pagination, ConfigProvider } from 'antd';
 import { str2Locale } from './locales.react';
 import 'antd/dist/antd.css';
 
-// 定义分页组件AntdPagination，api参数参考https://ant.design/components/pagination-cn/
+// 定义分页部件AntdPagination，api参数参考https://ant.design/components/pagination-cn/
 export default class AntdPagination extends Component {
 
     constructor(props) {
         super(props)
-
         if (!props.current) {
-            if (props.defaultCurrent) {
-                props.setProps({ current: props.defaultCurrent })
-            } else {
-                props.setProps({ current: 1 })
-            }
+            props.setProps({ current: props.defaultCurrent })
         }
 
+        if (!props.pageSize) {
+            props.setProps({ pageSize: props.defaultPageSize })
+        }
     }
 
     render() {
@@ -27,6 +25,8 @@ export default class AntdPagination extends Component {
             style,
             className,
             locale,
+            defaultCurrent,
+            defaultPageSize,
             current,
             pageSize,
             disabled,
@@ -39,11 +39,11 @@ export default class AntdPagination extends Component {
             simple,
             size,
             total,
+            setProps,
+            loading_state,
             persistence,
             persisted_props,
-            persistence_type,
-            setProps,
-            loading_state
+            persistence_type
         } = this.props;
 
         const onChange = (page, pageSize) => {
@@ -55,15 +55,17 @@ export default class AntdPagination extends Component {
             return (showTotalPrefix ? showTotalPrefix : "共有记录") + ' ' + e.toString() + ' ' + (showTotalSuffix ? showTotalSuffix : "条")
         }
 
-        // 返回定制化的前端组件
+        // 返回定制化的前端部件
         return (
             <ConfigProvider locale={str2Locale.get(locale)}>
                 <Pagination
                     id={id}
                     className={className}
                     style={style}
+                    pageSize={pageSize || defaultPageSize}
+                    defaultCurrent={defaultCurrent}
+                    defaultPageSize={defaultPageSize}
                     current={current}
-                    pageSize={pageSize}
                     disabled={disabled}
                     hideOnSinglePage={hideOnSinglePage}
                     pageSizeOptions={pageSizeOptions}
@@ -73,10 +75,10 @@ export default class AntdPagination extends Component {
                     simple={simple}
                     size={size}
                     total={total}
+                    onChange={onChange}
                     persistence={persistence}
                     persisted_props={persisted_props}
                     persistence_type={persistence_type}
-                    onChange={onChange}
                     data-dash-is-loading={
                         (loading_state && loading_state.is_loading) || undefined
                     }
@@ -88,7 +90,7 @@ export default class AntdPagination extends Component {
 
 // 定义参数或属性
 AntdPagination.propTypes = {
-    // 组件id
+    // 部件id
     id: PropTypes.string,
 
     // css类名
@@ -164,13 +166,13 @@ AntdPagination.propTypes = {
     setProps: PropTypes.func,
 
     /**
-     * Used to allow user interactions in this component to be persisted when
-     * the component - or the page - is refreshed. If `persisted` is truthy and
-     * hasn't changed from its previous value, a `value` that the user has
-     * changed while using the app will keep that change, as long as
-     * the new `value` also matches what was given originally.
-     * Used in conjunction with `persistence_type`.
-     */
+   * Used to allow user interactions in this component to be persisted when
+   * the component - or the page - is refreshed. If `persisted` is truthy and
+   * hasn't changed from its previous value, a `value` that the user has
+   * changed while using the app will keep that change, as long as
+   * the new `value` also matches what was given originally.
+   * Used in conjunction with `persistence_type`.
+   */
     persistence: PropTypes.oneOfType([
         PropTypes.bool,
         PropTypes.string,
@@ -195,8 +197,9 @@ AntdPagination.propTypes = {
 
 // 设置默认参数
 AntdPagination.defaultProps = {
+    defaultCurrent: 1,
+    defaultPageSize: 10,
     persisted_props: ['current', 'pageSize'],
     persistence_type: 'local',
-    locale: 'zh-cn',
-    pageSize: 10
+    locale: 'zh-cn'
 }

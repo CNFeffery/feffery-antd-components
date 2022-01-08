@@ -15,9 +15,9 @@ Keyword arguments:
 
 - current (number; optional)
 
-- defaultCurrent (number; optional)
+- defaultCurrent (number; default 1)
 
-- defaultPageSize (number; optional)
+- defaultPageSize (number; default 10)
 
 - disabled (boolean; optional)
 
@@ -38,7 +38,7 @@ Keyword arguments:
 
 - locale (a value equal to: 'zh-cn', 'en-us'; default 'zh-cn')
 
-- pageSize (number; default 10)
+- pageSize (number; optional)
 
 - pageSizeOptions (list of numbers; optional)
 
