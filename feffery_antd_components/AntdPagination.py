@@ -13,7 +13,7 @@ Keyword arguments:
 
 - className (string; optional)
 
-- current (number; default 1)
+- current (number; optional)
 
 - defaultCurrent (number; optional)
 

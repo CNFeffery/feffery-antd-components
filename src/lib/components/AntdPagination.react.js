@@ -9,13 +9,15 @@ export default class AntdPagination extends Component {
 
     constructor(props) {
         super(props)
-        if (props.defaultCurrent) {
-            props.setProps({ current: props.defaultCurrent })
+
+        if (!props.current) {
+            if (props.defaultCurrent) {
+                props.setProps({ current: props.defaultCurrent })
+            } else {
+                props.setProps({ current: 1 })
+            }
         }
 
-        if (props.defaultPageSize) {
-            props.setProps({ pageSize: props.defaultPageSize })
-        }
     }
 
     render() {
@@ -25,8 +27,6 @@ export default class AntdPagination extends Component {
             style,
             className,
             locale,
-            defaultCurrent,
-            defaultPageSize,
             current,
             pageSize,
             disabled,
@@ -48,12 +48,7 @@ export default class AntdPagination extends Component {
 
         const onChange = (page, pageSize) => {
 
-            setProps({ current: page })
-        }
-
-        const onShowSizeChange = (current, size) => {
-
-            setProps({ pageSize: size })
+            setProps({ current: page, pageSize: pageSize })
         }
 
         const renderShowTotal = (e) => {
@@ -67,8 +62,6 @@ export default class AntdPagination extends Component {
                     id={id}
                     className={className}
                     style={style}
-                    defaultCurrent={defaultCurrent}
-                    defaultPageSize={defaultPageSize}
                     current={current}
                     pageSize={pageSize}
                     disabled={disabled}
@@ -84,7 +77,6 @@ export default class AntdPagination extends Component {
                     persisted_props={persisted_props}
                     persistence_type={persistence_type}
                     onChange={onChange}
-                    onShowSizeChange={onShowSizeChange}
                     data-dash-is-loading={
                         (loading_state && loading_state.is_loading) || undefined
                     }
@@ -172,13 +164,13 @@ AntdPagination.propTypes = {
     setProps: PropTypes.func,
 
     /**
-  * Used to allow user interactions in this component to be persisted when
-  * the component - or the page - is refreshed. If `persisted` is truthy and
-  * hasn't changed from its previous value, a `value` that the user has
-  * changed while using the app will keep that change, as long as
-  * the new `value` also matches what was given originally.
-  * Used in conjunction with `persistence_type`.
-  */
+     * Used to allow user interactions in this component to be persisted when
+     * the component - or the page - is refreshed. If `persisted` is truthy and
+     * hasn't changed from its previous value, a `value` that the user has
+     * changed while using the app will keep that change, as long as
+     * the new `value` also matches what was given originally.
+     * Used in conjunction with `persistence_type`.
+     */
     persistence: PropTypes.oneOfType([
         PropTypes.bool,
         PropTypes.string,
@@ -203,9 +195,8 @@ AntdPagination.propTypes = {
 
 // 设置默认参数
 AntdPagination.defaultProps = {
-    current: 1,
-    pageSize: 10,
     persisted_props: ['current', 'pageSize'],
     persistence_type: 'local',
-    locale: 'zh-cn'
+    locale: 'zh-cn',
+    pageSize: 10
 }

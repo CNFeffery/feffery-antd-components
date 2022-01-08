@@ -14,7 +14,6 @@ export default class AntdTreeSelect extends Component {
         if (!props.value) {
             props.setProps({ value: props.defaultValue })
         }
-
     }
 
     render() {

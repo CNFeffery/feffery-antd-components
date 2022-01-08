@@ -242,13 +242,13 @@ app.layout = html.Div(
         # ),
 
 
-        fac.AntdPagination(
-            id='persistence-pagination-demo',
-            # persistence=True,
-            total=100,
-            defaultCurrent=2,
-            defaultPageSize=24
-        ),
+        # fac.AntdPagination(
+        #     id='persistence-pagination-demo',
+        #     persistence=True,
+        #     total=100,
+        #     # defaultCurrent=2,
+        #     # defaultPageSize=24
+        # ),
 
         # fac.AntdRadioGroup(
         #     id='persistence-radio-group-demo',
@@ -391,11 +391,43 @@ app.layout = html.Div(
         #     }
         # )
 
+        fac.AntdSpin(
+            fac.AntdSpace(
+                id='pagination-demo-output',
+                direction='vertical'
+            ),
+            text='回调中'
+        ),
+        fac.AntdPagination(
+            id='pagination-demo',
+            # defaultPageSize=10,
+            total=100,
+            # pageSizeOptions=[5, 10, 20]
+        )
+
     ],
     style={
         'padding': '100px 200px'
     }
 )
+
+
+@app.callback(
+    Output('pagination-demo-output', 'children'),
+    [Input('pagination-demo', 'current'),
+     Input('pagination-demo', 'pageSize')]
+)
+def pagination_callback_demo(current, pageSize):
+    import time
+    time.sleep(1)
+    print(current, pageSize)
+    if current and pageSize:
+        return [
+            fac.AntdText(f'内容项{i}')
+            for i in range((current - 1) * pageSize, current * pageSize)
+        ]
+
+    return dash.no_update
 
 
 if __name__ == '__main__':
