@@ -16,6 +16,17 @@ export default class AntdDatePicker extends Component {
             props.setProps({ value: props.defaultValue })
         }
 
+        // 调整不同showTime下的format缺省参数
+        if (props.showTime && !props.format) {
+            props.setProps({
+                format: 'YYYY-MM-DD hh:mm:ss'
+            })
+        } else if (!props.showTime && !props.format) {
+            props.setProps({
+                format: 'YYYY-MM-DD'
+            })
+        }
+
         // defaultPickerValue为空时默认定位到今日对应面板位置
         if (!props.defaultPickerValue) {
             props.setProps({
