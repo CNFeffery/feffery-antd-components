@@ -9,6 +9,7 @@ An AntdSteps component.
 
 Keyword arguments:
 - `id` (String; optional)
+- `allowClick` (Bool; optional)
 - `className` (String; optional)
 - `current` (Real; optional)
 - `direction` (a value equal to: 'horizontal', 'vertical'; optional)
@@ -30,7 +31,7 @@ Those elements have the following types:
 - `type` (a value equal to: 'default', 'navigation'; optional)
 """
 function 'feffery'_antdsteps(; kwargs...)
-        available_props = Symbol[:id, :className, :current, :direction, :labelPlacement, :loading_state, :progressDot, :size, :status, :steps, :style, :type]
+        available_props = Symbol[:id, :allowClick, :className, :current, :direction, :labelPlacement, :loading_state, :progressDot, :size, :status, :steps, :style, :type]
         wild_props = Symbol[]
         return Component("'feffery'_antdsteps", "AntdSteps", "feffery_antd_components", available_props, wild_props; kwargs...)
 end

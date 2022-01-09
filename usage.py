@@ -402,6 +402,19 @@ app.layout = html.Div(
             id='pagination-demo',
             # pageSize=10,
             total=100
+        ),
+
+
+        fac.AntdSteps(
+            steps=[
+                {
+                    'title': f'步骤{i + 1}的title',
+                    'subTitle': f'步骤{i + 1}的subTitle',
+                    'description': f'步骤{i + 1}的description',
+                }
+                for i in range(5)
+            ],
+            allowClick=True
         )
 
     ],

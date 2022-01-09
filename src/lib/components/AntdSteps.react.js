@@ -21,6 +21,7 @@ export default class AntdSteps extends Component {
             status,
             type,
             steps,
+            allowClick,
             setProps,
             loading_state
         } = this.props;
@@ -46,6 +47,7 @@ export default class AntdSteps extends Component {
                 size={size}
                 status={status}
                 type={type}
+                onChange={allowClick ? (current) => setProps({ current: current }) : undefined}
             >
                 {steps.map(item => <Step title={item.title} subTitle={item.subTitle} description={item.description}></Step>)}
             </Steps>
@@ -100,6 +102,9 @@ AntdSteps.propTypes = {
     // 设置渲染形式，默认'default'，'navigation'表示导航形式
     type: PropTypes.oneOf(['default', 'navigation']),
 
+    // 设置是否允许点击进行步骤切换，默认为false
+    allowClick: PropTypes.bool,
+
     // 定义各步骤参数信息
     steps: PropTypes.arrayOf(
         PropTypes.exact({
@@ -127,5 +132,6 @@ AntdSteps.defaultProps = {
     direction: 'horizontal',
     progressDot: false,
     size: 'default',
-    status: 'process'
+    status: 'process',
+    allowClick: false
 }
