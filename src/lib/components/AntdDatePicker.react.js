@@ -212,7 +212,6 @@ AntdDatePicker.propTypes = {
 
 // 设置默认参数
 AntdDatePicker.defaultProps = {
-    format: 'YYYY-MM-DD',
     picker: 'date',
     showTime: false,
     allowClear: true,

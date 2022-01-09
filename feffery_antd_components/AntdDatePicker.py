@@ -25,7 +25,7 @@ Keyword arguments:
 
 - disabledDates (list of strings; optional)
 
-- format (string; default 'YYYY-MM-DD')
+- format (string; optional)
 
 - loading_state (dict; optional):
     Object that holds the loading state object coming from
