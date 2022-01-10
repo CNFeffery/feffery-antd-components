@@ -808,7 +808,6 @@ export default class AntdTable extends Component {
                         onHeaderCell: (e) => {
                             return {
                                 onMouseEnter: event => { setProps({ recentlyMouseEnterColumn: e.dataIndex }) }, // 鼠标移入字段名
-                                onMouseLeave: event => { setProps({ recentlyMouseLeaveColumn: e.dataIndex }) } // 鼠标移出字段名
                             };
                         }
                     }
@@ -837,7 +836,6 @@ export default class AntdTable extends Component {
                     onRow={(record, index) => {
                         return {
                             onMouseEnter: event => { setProps({ recentlyMouseEnterRow: record.key }) }, // 鼠标移入行
-                            onMouseLeave: event => { setProps({ recentlyMouseLeaveRow: record.key }) } // 鼠标移出行
                         };
                     }}
                     data-dash-is-loading={
@@ -940,19 +938,10 @@ AntdTable.propTypes = {
     // 记录表头各字段鼠标移入事件
     recentlyMouseEnterColumn: PropTypes.string,
 
-    // 记录表头各字段鼠标移出事件
-    recentlyMouseLeaveColumn: PropTypes.string,
-
     // 记录表格数据行事件
 
     // 记录表格数据行鼠标移入事件
     recentlyMouseEnterRow: PropTypes.oneOfType([
-        PropTypes.string,
-        PropTypes.number
-    ]),
-
-    // 记录表格数据行鼠标移出事件
-    recentlyMouseLeaveRow: PropTypes.oneOfType([
         PropTypes.string,
         PropTypes.number
     ]),
