@@ -93,9 +93,6 @@ AntdAlert.propTypes = {
     // 设置警告提示是否有关闭按钮，默认为false
     closable: PropTypes.bool,
 
-    // 设置是否启动轮播文字模式，默认为false
-    renderLoopText: PropTypes.bool,
-
     // 设置message的渲染模式，可选的有'default'、'loop-text'（轮播文字）与'marquee'（跑马灯），默认为'default'
     // 其中loop-text模式需要message输入为数组
     messageRenderMode: PropTypes.oneOf(['default', 'loop-text', 'marquee']),
