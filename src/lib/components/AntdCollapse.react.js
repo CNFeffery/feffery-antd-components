@@ -40,7 +40,7 @@ export default class AntdCollapse extends Component {
             <Collapse
                 id={id}
                 className={className}
-                defaultActiveKey={is_open ? ['1'] : []}
+                activeKey={is_open ? ['1'] : []}
                 style={style}
                 bordered={bordered}
                 ghost={ghost}

@@ -9,6 +9,22 @@ app.layout = html.Div(
     [
         fac.AntdTitle('persistence测试', level=5),
 
+        fac.AntdAlert(
+            message='新版AntdAlert功能测试',
+            messageRenderMode='marquee',
+            description='新版AntdAlert中新增了跑马灯message渲染功能',
+            type='warning',
+            showIcon=True
+        ),
+
+        fac.AntdButton('测试', id='button-test'),
+
+        fac.AntdCollapse(
+            fac.AntdText('测试测试'),
+            id='collapse-test',
+            is_open=True
+        ),
+
         # fac.AntdSelect(
         #     id='persistence-select-demo',
         #     persistence=True,
@@ -438,6 +454,19 @@ def pagination_callback_demo(current, pageSize):
             fac.AntdText(f'内容项{i}')
             for i in range((current - 1) * pageSize, current * pageSize)
         ]
+
+    return dash.no_update
+
+
+@app.callback(
+    Output('collapse-test', 'is_open'),
+    Input('button-test', 'nClicks'),
+    State('collapse-test', 'is_open')
+)
+def test(nClicks, is_open):
+
+    if nClicks:
+        return bool(1-is_open)
 
     return dash.no_update
 

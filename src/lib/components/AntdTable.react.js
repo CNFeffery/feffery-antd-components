@@ -808,7 +808,6 @@ export default class AntdTable extends Component {
                     ...{
                         onHeaderCell: (e) => {
                             return {
-                                onClick: event => { setProps({ recentlyClickedColumn: e.dataIndex }) }, // 点击字段名
                                 onMouseEnter: event => { setProps({ recentlyMouseEnterColumn: e.dataIndex }) }, // 鼠标移入字段名
                                 onMouseLeave: event => { setProps({ recentlyMouseLeaveColumn: e.dataIndex }) } // 鼠标移出字段名
                             };
@@ -839,7 +838,6 @@ export default class AntdTable extends Component {
                     onRow={!disableRowListen && (
                         (record, index) => {
                             return {
-                                onClick: event => { setProps({ recentlyClickedRow: record.key }) }, // 点击行
                                 onMouseEnter: event => { setProps({ recentlyMouseEnterRow: record.key }) }, // 鼠标移入行
                                 onMouseLeave: event => { setProps({ recentlyMouseLeaveRow: record.key }) } // 鼠标移出行
                             };
@@ -941,8 +939,6 @@ AntdTable.propTypes = {
     selectedRows: PropTypes.array,
 
     // 记录表头各字段事件
-    // 记录表头各字段点击事件
-    recentlyClickedColumn: PropTypes.string,
 
     // 记录表头各字段鼠标移入事件
     recentlyMouseEnterColumn: PropTypes.string,
@@ -955,11 +951,6 @@ AntdTable.propTypes = {
     disableRowListen: PropTypes.bool,
 
     // 记录表格数据行事件
-    // 记录表格数据行点击事件
-    recentlyClickedRow: PropTypes.oneOfType([
-        PropTypes.string,
-        PropTypes.number
-    ]),
 
     // 记录表格数据行鼠标移入事件
     recentlyMouseEnterRow: PropTypes.oneOfType([

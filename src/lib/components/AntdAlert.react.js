@@ -2,14 +2,8 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import TextLoop from 'react-text-loop'
 import { Alert } from 'antd';
+import Marquee from 'react-fast-marquee';
 import 'antd/dist/antd.css';
-
-const parseChildrenToArray = children => {
-    if (children && !Array.isArray(children)) {
-        return [children];
-    }
-    return children;
-};
 
 // 定义警告提示组件AntdAlert，api参数参考https://ant.design/components/alert-cn/
 export default class AntdAlert extends Component {
@@ -19,19 +13,17 @@ export default class AntdAlert extends Component {
             id,
             className,
             style,
-            children,
+            description,
             message,
             type,
             showIcon,
             closable,
-            renderLoopText,
+            messageRenderMode,
             setProps,
             loading_state
         } = this.props;
 
-        children = parseChildrenToArray(children)
-
-        if (renderLoopText && Array.isArray(message)) {
+        if (messageRenderMode === 'loop-text' && Array.isArray(message)) {
             return (
                 <Alert id={id}
                     className={className}
@@ -56,9 +48,15 @@ export default class AntdAlert extends Component {
             <Alert id={id}
                 className={className}
                 style={style}
-                message={message}
+                message={
+                    messageRenderMode === 'marquee' ?
+                        <Marquee pauseOnHover gradient={false}>
+                            {message}
+                        </Marquee> :
+                        message
+                }
                 type={type}
-                description={children}
+                description={description}
                 showIcon={showIcon}
                 closable={closable}>
             </Alert>
@@ -78,22 +76,7 @@ AntdAlert.propTypes = {
     style: PropTypes.object,
 
     // 设置警告组件内的额外信息元素
-    children: PropTypes.node,
-
-    loading_state: PropTypes.shape({
-        /**
-         * Determines if the component is loading or not
-         */
-        is_loading: PropTypes.bool,
-        /**
-         * Holds which property is loading
-         */
-        prop_name: PropTypes.string,
-        /**
-         * Holds the name of the component that is loading
-         */
-        component_name: PropTypes.string
-    }),
+    description: PropTypes.string,
 
     // 设置显示的文字信息
     message: PropTypes.oneOfType([
@@ -113,15 +96,34 @@ AntdAlert.propTypes = {
     // 设置是否启动轮播文字模式，默认为false
     renderLoopText: PropTypes.bool,
 
+    // 设置message的渲染模式，可选的有'default'、'loop-text'（轮播文字）与'marquee'（跑马灯），默认为'default'
+    // 其中loop-text模式需要message输入为数组
+    messageRenderMode: PropTypes.oneOf(['default', 'loop-text', 'marquee']),
+
     /**
      * Dash-assigned callback that should be called to report property changes
      * to Dash, to make them available for callbacks.
      */
-    setProps: PropTypes.func
+    setProps: PropTypes.func,
+
+    loading_state: PropTypes.shape({
+        /**
+         * Determines if the component is loading or not
+         */
+        is_loading: PropTypes.bool,
+        /**
+         * Holds which property is loading
+         */
+        prop_name: PropTypes.string,
+        /**
+         * Holds the name of the component that is loading
+         */
+        component_name: PropTypes.string
+    })
 };
 
 // 设置默认参数
 AntdAlert.defaultProps = {
     closable: false,
-    renderLoopText: false
+    messageRenderMode: 'default'
 }
