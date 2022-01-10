@@ -19,13 +19,12 @@ Those elements have the following types:
   - `component_name` (String; optional): Holds the name of the component that is loading
 - `message` (String | Array of Strings; optional)
 - `messageRenderMode` (a value equal to: 'default', 'loop-text', 'marquee'; optional)
-- `renderLoopText` (Bool; optional)
 - `showIcon` (Bool; optional)
 - `style` (Dict; optional)
 - `type` (a value equal to: 'success', 'info', 'warning', 'error'; optional)
 """
 function 'feffery'_antdalert(; kwargs...)
-        available_props = Symbol[:id, :className, :closable, :description, :loading_state, :message, :messageRenderMode, :renderLoopText, :showIcon, :style, :type]
+        available_props = Symbol[:id, :className, :closable, :description, :loading_state, :message, :messageRenderMode, :showIcon, :style, :type]
         wild_props = Symbol[]
         return Component("'feffery'_antdalert", "AntdAlert", "feffery_antd_components", available_props, wild_props; kwargs...)
 end
