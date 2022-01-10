@@ -172,7 +172,6 @@ export default class AntdTable extends Component {
             mode,
             popupContainerId,
             nClicksButton,
-            disableRowListen,
             loading_state
         } = this.props;
 
@@ -835,14 +834,12 @@ export default class AntdTable extends Component {
                         y: maxHeight ? maxHeight : 99999
                     }}
                     onChange={this.onPageChange}
-                    onRow={!disableRowListen && (
-                        (record, index) => {
-                            return {
-                                onMouseEnter: event => { setProps({ recentlyMouseEnterRow: record.key }) }, // 鼠标移入行
-                                onMouseLeave: event => { setProps({ recentlyMouseLeaveRow: record.key }) } // 鼠标移出行
-                            };
-                        }
-                    )}
+                    onRow={(record, index) => {
+                        return {
+                            onMouseEnter: event => { setProps({ recentlyMouseEnterRow: record.key }) }, // 鼠标移入行
+                            onMouseLeave: event => { setProps({ recentlyMouseLeaveRow: record.key }) } // 鼠标移出行
+                        };
+                    }}
                     data-dash-is-loading={
                         (loading_state && loading_state.is_loading) || undefined
                     }
@@ -945,10 +942,6 @@ AntdTable.propTypes = {
 
     // 记录表头各字段鼠标移出事件
     recentlyMouseLeaveColumn: PropTypes.string,
-
-    // 设置是否禁用行点击事件监听机制，用于解决譬如button+气泡确认卡片模式下的初次点击气泡卡片不弹出问题
-    // 默认为false
-    disableRowListen: PropTypes.bool,
 
     // 记录表格数据行事件
 
@@ -1108,6 +1101,5 @@ AntdTable.defaultProps = {
     mode: 'client-side',
     nClicksButton: 0,
     size: 'default',
-    disableRowListen: false,
     locale: 'zh-cn'
 }
