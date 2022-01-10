@@ -34,7 +34,7 @@ export default class AntdAlert extends Component {
                         </TextLoop>
                     }
                     type={type}
-                    description={children}
+                    description={description}
                     showIcon={showIcon}
                     closable={closable}
                     data-dash-is-loading={
