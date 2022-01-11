@@ -10,7 +10,6 @@ An AntdDraggerUpload component.
 Keyword arguments:
 - `id` (String; optional)
 - `apiUrl` (String; optional)
-- `buttonContent` (String; optional)
 - `className` (String; optional)
 - `directory` (Bool; optional)
 - `failedTooltipInfo` (String; optional)
@@ -37,7 +36,7 @@ Those elements have the following types:
 - `uploadId` (String; optional)
 """
 function 'feffery'_antddraggerupload(; kwargs...)
-        available_props = Symbol[:id, :apiUrl, :buttonContent, :className, :directory, :failedTooltipInfo, :fileListMaxLength, :fileMaxSize, :fileTypes, :hint, :lastUploadTaskRecord, :loading_state, :locale, :multiple, :style, :text, :uploadId]
+        available_props = Symbol[:id, :apiUrl, :className, :directory, :failedTooltipInfo, :fileListMaxLength, :fileMaxSize, :fileTypes, :hint, :lastUploadTaskRecord, :loading_state, :locale, :multiple, :style, :text, :uploadId]
         wild_props = Symbol[]
         return Component("'feffery'_antddraggerupload", "AntdDraggerUpload", "feffery_antd_components", available_props, wild_props; kwargs...)
 end
