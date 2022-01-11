@@ -172,9 +172,6 @@ AntdDraggerUpload.propTypes = {
     // 设置允许上传的文件后缀名数组，默认为[]即不限制
     fileTypes: PropTypes.arrayOf(PropTypes.string),
 
-    // 按钮模式下设置按钮内的文字内容
-    buttonContent: PropTypes.string,
-
     // 设置当前组件生命周期内的上传路径id信息，若未传入则会自动生成uuid
     uploadId: PropTypes.string,
 

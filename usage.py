@@ -513,7 +513,7 @@ def test(nClicks, is_open):
 
 @app.callback(
     Output('table-mouse-event-demo-output', 'children'),
-    [Input('table-mouse-event-demo', 'recentlyMouseEnterColumdn'),
+    [Input('table-mouse-event-demo', 'recentlyMouseEnterColumd'),
      Input('table-mouse-event-demo', 'recentlyMouseEnterRow')],
     prevent_initial_call=True
 )
