@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Statistic } from 'antd';
-import { str2Icon } from './icons.react'
+import AntdIcon from './AntdIcon.react';
 import 'antd/dist/antd.css';
 
 // 定义统计数值组件AntdStatistic，api参数参考https://ant.design/components/statistic-cn/
@@ -33,14 +33,14 @@ export default class AntdStatistic extends Component {
                 prefix={
                     prefix ? (
                         prefix.mode === 'icon' ?
-                            str2Icon.get(prefix.content) :
+                            <AntdIcon icon={prefix.content} /> :
                             prefix.content
                     ) : null
                 }
                 suffix={
                     suffix ? (
                         suffix.mode === 'icon' ?
-                            str2Icon.get(suffix.content) :
+                            <AntdIcon icon={suffix.content} /> :
                             suffix.content
                     ) : null
                 }
