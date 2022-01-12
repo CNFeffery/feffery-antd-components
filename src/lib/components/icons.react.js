@@ -316,8 +316,6 @@ import {
     MdFileUpload,
     MdTimer,
     MdTimerOff,
-    MdTimer3,
-    MdTimer10,
     MdTransform,
     MdTune,
     MdEditLocation,
