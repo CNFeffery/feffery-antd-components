@@ -21,8 +21,8 @@ export default class AntdIcon extends Component {
                 className={className}
                 style={
                     icon.startsWith('fc') || icon.startsWith('md') ?
-                        { ...{ transform: 'translateY(15%)', verticalAlign: 'middle', fontSize: '16px' }, ...style } :
-                        { ...{ verticalAlign: 'middle', fontSize: '16px' }, ...style }
+                        { ...{ transform: 'translateY(15%)', verticalAlign: 'middle' }, ...style } :
+                        { ...{ verticalAlign: 'middle' }, ...style }
                 }
                 data-dash-is-loading={
                     (loading_state && loading_state.is_loading) || undefined
