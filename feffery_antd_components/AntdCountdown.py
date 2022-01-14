@@ -50,7 +50,7 @@ Keyword arguments:
 
 - value (string; optional)
 
-- valueFormat (string; optional)
+- valueFormat (string; default 'YYYY-MM-DD hh:mm:ss')
 
 - valueStyle (dict; optional)"""
     @_explicitize_args
