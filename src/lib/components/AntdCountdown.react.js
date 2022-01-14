@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Statistic } from 'antd';
 import moment from 'moment';
-import { str2Icon } from './icons.react'
+import AntdIcon from './AntdIcon.react';
 import 'antd/dist/antd.css';
 
 const { Countdown } = Statistic;
@@ -35,14 +35,14 @@ export default class AntdCountdown extends Component {
                 prefix={
                     prefix ? (
                         prefix.mode === 'icon' ?
-                            str2Icon.get(prefix.content) :
+                            <AntdIcon icon={prefix.content} /> :
                             prefix.content
                     ) : null
                 }
                 suffix={
                     suffix ? (
                         suffix.mode === 'icon' ?
-                            str2Icon.get(suffix.content) :
+                            <AntdIcon icon={suffix.content} /> :
                             suffix.content
                     ) : null
                 }
