@@ -136,4 +136,5 @@ AntdCountdown.propTypes = {
 
 // 设置默认参数
 AntdCountdown.defaultProps = {
+    valueFormat: 'YYYY-MM-DD hh:mm:ss'
 }
