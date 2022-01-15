@@ -7,6 +7,28 @@ app = dash.Dash(__name__)
 
 app.layout = html.Div(
     [
+
+        fac.AntdTimeline(
+            items=[
+                {
+                    'label': '训练数据导入',
+                    'content': '内容测试\n' * 4
+                },
+                {
+                    'label': '模型训练',
+                    'content': '内容测试\n' * 4
+                },
+                {
+                    'label': '模型持久化',
+                    'content': '内容测试\n' * 4
+                },
+                {
+                    'label': '模型发布',
+                    'content': '内容测试\n' * 4
+                }
+            ]
+        ),
+
         fac.AntdTitle('persistence测试', level=5),
 
         fac.AntdAlert(
