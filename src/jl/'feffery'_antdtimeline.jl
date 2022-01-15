@@ -10,6 +10,7 @@ An AntdTimeline component.
 Keyword arguments:
 - `id` (String; optional)
 - `className` (String; optional)
+- `contentStyle` (Dict; optional)
 - `items` (optional): . items has the following type: Array of lists containing elements 'content', 'color', 'icon', 'iconStyle', 'label', 'position'.
 Those elements have the following types:
   - `content` (String; optional)
@@ -29,7 +30,7 @@ Those elements have the following types:
 - `style` (Dict; optional)
 """
 function 'feffery'_antdtimeline(; kwargs...)
-        available_props = Symbol[:id, :className, :items, :loading_state, :mode, :pending, :reverse, :style]
+        available_props = Symbol[:id, :className, :contentStyle, :items, :loading_state, :mode, :pending, :reverse, :style]
         wild_props = Symbol[]
         return Component("'feffery'_antdtimeline", "AntdTimeline", "feffery_antd_components", available_props, wild_props; kwargs...)
 end
