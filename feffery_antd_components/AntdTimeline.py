@@ -13,8 +13,6 @@ Keyword arguments:
 
 - className (string; optional)
 
-- contentStyle (dict; optional)
-
 - items (list of dicts; optional)
 
     `items` is a list of dicts with keys:
@@ -22,6 +20,8 @@ Keyword arguments:
     - color (string; optional)
 
     - content (string; optional)
+
+    - contentStyle (dict; optional)
 
     - icon (string; optional)
 
@@ -52,12 +52,12 @@ Keyword arguments:
 
 - style (dict; optional)"""
     @_explicitize_args
-    def __init__(self, id=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, items=Component.UNDEFINED, mode=Component.UNDEFINED, contentStyle=Component.UNDEFINED, pending=Component.UNDEFINED, reverse=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
-        self._prop_names = ['id', 'className', 'contentStyle', 'items', 'loading_state', 'mode', 'pending', 'reverse', 'style']
+    def __init__(self, id=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, items=Component.UNDEFINED, mode=Component.UNDEFINED, pending=Component.UNDEFINED, reverse=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
+        self._prop_names = ['id', 'className', 'items', 'loading_state', 'mode', 'pending', 'reverse', 'style']
         self._type = 'AntdTimeline'
         self._namespace = 'feffery_antd_components'
         self._valid_wildcard_attributes =            []
-        self.available_properties = ['id', 'className', 'contentStyle', 'items', 'loading_state', 'mode', 'pending', 'reverse', 'style']
+        self.available_properties = ['id', 'className', 'items', 'loading_state', 'mode', 'pending', 'reverse', 'style']
         self.available_wildcard_properties =            []
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()
