@@ -44,7 +44,7 @@ Keyword arguments:
     - prop_name (string; optional):
         Holds which property is loading.
 
-- mode (a value equal to: 'left', 'alternate', 'right'; optional)
+- mode (a value equal to: 'left', 'alternate', 'right'; default 'left')
 
 - pending (string; optional)
 
