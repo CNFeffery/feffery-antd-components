@@ -135,4 +135,5 @@ AntdTimeline.propTypes = {
 
 // 设置默认参数
 AntdTimeline.defaultProps = {
+    mode: 'left'
 }
