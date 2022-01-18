@@ -93,10 +93,7 @@ AntdTimeline.propTypes = {
             contentStyle: PropTypes.object,
 
             // 可选，设置节点在单独另一侧显示的标签内容
-            label: PropTypes.string,
-
-            // 用于设置节点位置，可选的有'left'、'right'
-            position: PropTypes.oneOf(['left', 'right'])
+            label: PropTypes.string
         })
     ),
 
