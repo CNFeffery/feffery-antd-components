@@ -21,7 +21,6 @@ export default class AntdAvatar extends Component {
             gap,
             size,
             shape,
-            draggable,
             loading_state,
             setProps
         } = this.props;
@@ -38,7 +37,6 @@ export default class AntdAvatar extends Component {
                     alt={alt}
                     size={size}
                     shape={shape}
-                    draggable={draggable}
                     data-dash-is-loading={
                         (loading_state && loading_state.is_loading) || undefined
                     }
@@ -91,20 +89,20 @@ AntdAvatar.propTypes = {
     // 自定义css字典
     style: PropTypes.object,
 
-    // 设置图像无法显示时的替代文本
-    alt: PropTypes.string,
-
     // 对于字符型头像，设置字符距离左右两侧边界的像素距离，默认为4
     gap: PropTypes.number,
 
     // 设置头像模式，可选的有'text'、'icon'及'image'，默认为'icon'
     mode: PropTypes.oneOf(['text', 'icon', 'image']),
 
+    // 对应文字类型头像的文字内容
+    text: PropTypes.string,
+
     // 设置头像的自定义icon，与AntdIcon通用，默认无icon
     icon: PropTypes.string,
 
-    // 对应文字类型头像的文字内容
-    text: PropTypes.string,
+    // 设置图像无法显示时的替代文本
+    alt: PropTypes.string,
 
     // 设置图片类型的头像资源地址
     src: PropTypes.string,
@@ -133,9 +131,6 @@ AntdAvatar.propTypes = {
 
     // 设置头像的形状，可选的有'circle'、'square'，默认为'circle'
     shape: PropTypes.oneOf(['circle', 'square']),
-
-    // 设置图片是否允许拖动
-    draggable: PropTypes.bool,
 
     loading_state: PropTypes.shape({
         /**
