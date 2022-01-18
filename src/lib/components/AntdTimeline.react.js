@@ -16,7 +16,6 @@ export default class AntdTimeline extends Component {
             mode,
             pending,
             reverse,
-            contentStyle,
             setProps,
             loading_state
         } = this.props;
@@ -45,7 +44,7 @@ export default class AntdTimeline extends Component {
                         {item.content ?
                             item.content.split('\n').map(
                                 s => (
-                                    <p style={contentStyle}>
+                                    <p style={item.contentStyle}>
                                         {s}
                                     </p>
                                 )
@@ -90,6 +89,9 @@ AntdTimeline.propTypes = {
             // 定义icon图标的css样式
             iconStyle: PropTypes.object,
 
+            // 设置content文字的css样式
+            contentStyle: PropTypes.object,
+
             // 可选，设置节点在单独另一侧显示的标签内容
             label: PropTypes.string,
 
@@ -101,9 +103,6 @@ AntdTimeline.propTypes = {
     // 设置时间轴在content的哪一侧，可选的有'left'、'alternate'及'right'
     // 默认为'right'
     mode: PropTypes.oneOf(['left', 'alternate', 'right']),
-
-    // 设置时间轴content的css样式
-    contentStyle: PropTypes.object,
 
     // 设置在时间轴尾部添加“加载中”幽灵节点对应的文字说明内容
     // 默认不设置则不会渲染该状态节点
