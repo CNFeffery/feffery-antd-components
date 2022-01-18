@@ -10,15 +10,14 @@ An AntdTimeline component.
 Keyword arguments:
 - `id` (String; optional)
 - `className` (String; optional)
-- `items` (optional): . items has the following type: Array of lists containing elements 'content', 'color', 'icon', 'iconStyle', 'contentStyle', 'label', 'position'.
+- `items` (optional): . items has the following type: Array of lists containing elements 'content', 'color', 'icon', 'iconStyle', 'contentStyle', 'label'.
 Those elements have the following types:
   - `content` (String; optional)
   - `color` (String; optional)
   - `icon` (String; optional)
   - `iconStyle` (Dict; optional)
   - `contentStyle` (Dict; optional)
-  - `label` (String; optional)
-  - `position` (a value equal to: 'left', 'right'; optional)s
+  - `label` (String; optional)s
 - `loading_state` (optional): . loading_state has the following type: lists containing elements 'is_loading', 'prop_name', 'component_name'.
 Those elements have the following types:
   - `is_loading` (Bool; optional): Determines if the component is loading or not

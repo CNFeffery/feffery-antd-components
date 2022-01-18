@@ -29,8 +29,6 @@ Keyword arguments:
 
     - label (string; optional)
 
-    - position (a value equal to: 'left', 'right'; optional)
-
 - loading_state (dict; optional)
 
     `loading_state` is a dict with keys:
