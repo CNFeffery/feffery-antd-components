@@ -22,6 +22,7 @@ Those elements have the following types:
   - `is_loading` (Bool; optional): Determines if the component is loading or not
   - `prop_name` (String; optional): Holds which property is loading
   - `component_name` (String; optional): Holds the name of the component that is loading
+- `nClicks` (Real; optional)
 - `offset` (Array of Reals; optional)
 - `overflowCount` (Real; optional)
 - `showZero` (Bool; optional)
@@ -32,7 +33,7 @@ Those elements have the following types:
 - `title` (String; optional)
 """
 function 'feffery'_antdbadge(; kwargs...)
-        available_props = Symbol[:children, :id, :className, :color, :count, :dot, :loading_state, :offset, :overflowCount, :showZero, :size, :status, :style, :text, :title]
+        available_props = Symbol[:children, :id, :className, :color, :count, :dot, :loading_state, :nClicks, :offset, :overflowCount, :showZero, :size, :status, :style, :text, :title]
         wild_props = Symbol[]
         return Component("'feffery'_antdbadge", "AntdBadge", "feffery_antd_components", available_props, wild_props; kwargs...)
 end

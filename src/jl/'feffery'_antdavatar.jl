@@ -11,7 +11,6 @@ Keyword arguments:
 - `id` (String; optional)
 - `alt` (String; optional)
 - `className` (String; optional)
-- `draggable` (Bool; optional)
 - `gap` (Real; optional)
 - `icon` (String; optional)
 - `loading_state` (optional): . loading_state has the following type: lists containing elements 'is_loading', 'prop_name', 'component_name'.
@@ -35,7 +34,7 @@ Those elements have the following types:
 - `text` (String; optional)
 """
 function 'feffery'_antdavatar(; kwargs...)
-        available_props = Symbol[:id, :alt, :className, :draggable, :gap, :icon, :loading_state, :mode, :shape, :size, :src, :srcSet, :style, :text]
+        available_props = Symbol[:id, :alt, :className, :gap, :icon, :loading_state, :mode, :shape, :size, :src, :srcSet, :style, :text]
         wild_props = Symbol[]
         return Component("'feffery'_antdavatar", "AntdAvatar", "feffery_antd_components", available_props, wild_props; kwargs...)
 end
