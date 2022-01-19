@@ -22,6 +22,7 @@ export default class AntdBadge extends Component {
             text,
             title,
             size,
+            nClicks,
             loading_state,
             setProps
         } = this.props;
@@ -42,6 +43,7 @@ export default class AntdBadge extends Component {
                 text={text}
                 title={title}
                 size={size}
+                onClick={() => setProps({ nClicks: nClicks + 1 })}
                 data-dash-is-loading={
                     (loading_state && loading_state.is_loading) || undefined
                 }
@@ -97,6 +99,9 @@ AntdBadge.propTypes = {
     // 设置徽标规格大小，可选的有'default'和'small'
     size: PropTypes.oneOf(['default', 'small']),
 
+    // 记录徽标被点击次数，默认为0
+    nClicks: PropTypes.number,
+
     loading_state: PropTypes.shape({
         /**
          * Determines if the component is loading or not
@@ -121,4 +126,5 @@ AntdBadge.propTypes = {
 
 // 设置默认参数
 AntdBadge.defaultProps = {
+    nClicks: 0
 }
