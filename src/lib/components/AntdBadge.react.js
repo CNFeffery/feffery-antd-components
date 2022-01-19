@@ -43,7 +43,10 @@ export default class AntdBadge extends Component {
                 text={text}
                 title={title}
                 size={size}
-                onClick={() => setProps({ nClicks: nClicks + 1 })}
+                onClick={() => {
+                    nClicks++;
+                    setProps({ nClicks: nClicks })
+                }}
                 data-dash-is-loading={
                     (loading_state && loading_state.is_loading) || undefined
                 }

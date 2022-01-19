@@ -26,13 +26,6 @@ export default class AntdButton extends Component {
             loading_state
         } = this.props;
 
-        // 监听点击事件并更新n_clicks属性的回调函数
-        function updateClick(e) {
-            nClicks++;
-            // 更新nClicks
-            setProps({ nClicks: nClicks })
-        }
-
         // 返回定制化的前端组件
         return (
             <Button
@@ -47,7 +40,11 @@ export default class AntdButton extends Component {
                 disabled={disabled}
                 shape={shape}
                 size={size}
-                onClick={updateClick}
+                onClick={(e) => {
+                    nClicks++;
+                    // 更新nClicks
+                    setProps({ nClicks: nClicks })
+                }}
                 data-dash-is-loading={
                     (loading_state && loading_state.is_loading) || undefined
                 }
