@@ -74,12 +74,18 @@ export default class AntdTimeRangePicker extends Component {
                         allowClear={allowClear}
                         defaultValue={
                             (defaultValue && defaultValue.length === 2) ?
-                                [moment(defaultValue[0], format), moment(defaultValue[1], format)] :
+                                (
+                                    defaultValue[0] !== '' && defaultValue[1] !== '' ?
+                                        [moment(defaultValue[0], format), moment(defaultValue[1], format)] : undefined
+                                ) :
                                 undefined
                         }
                         value={
                             (value && value.length === 2) ?
-                                [moment(value[0], format), moment(value[1], format)] :
+                                (
+                                    value[0] !== '' && value[1] !== '' ?
+                                        [moment(value[0], format), moment(value[1], format)] : undefined
+                                ) :
                                 undefined
                         }
                         persistence={persistence}
