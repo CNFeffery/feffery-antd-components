@@ -7,7 +7,6 @@ app = dash.Dash(__name__)
 
 app.layout = html.Div(
     [
-
         fac.AntdTimeline(
             items=[
                 {
