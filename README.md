@@ -120,7 +120,9 @@ app = dash.Dash(serve_locally=False)
 - [x] 时间范围选择框：`AntdTimeRangePicker`
 - [x] 走马灯：`AntdCarousel`
 - [x] 拖拽上传组件：`AntdDraggerUpload`
-- [x] 表单：`AntdForm`
+- [x] 表单
+  - `AntdForm`
+  - `AntdFormItem`
 - [x] 卡片
   - `AntdCard`
   - `AntdCardGrid`
