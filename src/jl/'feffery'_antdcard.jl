@@ -14,7 +14,7 @@ Keyword arguments:
 - `children` (a list of or a singular dash component, string or number; optional): The content of the tab - will only be displayed if this tab is selected
 - `id` (String; optional)
 - `bodyStyle` (Dict; optional)
-- `border` (Bool; optional)
+- `bordered` (Bool; optional)
 - `className` (String; optional)
 - `coverImg` (optional): . coverImg has the following type: lists containing elements 'src', 'alt', 'style'.
 Those elements have the following types:
@@ -40,7 +40,7 @@ Those elements have the following types:
 - `title` (String; optional)
 """
 function 'feffery'_antdcard(; kwargs...)
-        available_props = Symbol[:children, :id, :bodyStyle, :border, :className, :coverImg, :extraLink, :headStyle, :hoverable, :loading_state, :size, :style, :title]
+        available_props = Symbol[:children, :id, :bodyStyle, :bordered, :className, :coverImg, :extraLink, :headStyle, :hoverable, :loading_state, :size, :style, :title]
         wild_props = Symbol[]
         return Component("'feffery'_antdcard", "AntdCard", "feffery_antd_components", available_props, wild_props; kwargs...)
 end
