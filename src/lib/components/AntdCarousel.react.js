@@ -21,19 +21,18 @@ export default class AntdCarousel extends Component {
         } = this.props;
 
         return (
-            <div id={id}
+            <Carousel
+                id={id}
                 className={className}
-                style={{ ...{ width: '100%' }, ...style }}>
-                <Carousel
-                    autoplay={autoplay}
-                    dotPosition={dotPosition}
-                    easing={easing}
-                    effect={effect}
-                    data-dash-is-loading={
-                        (loading_state && loading_state.is_loading) || undefined
-                    }
-                >{children}</Carousel>
-            </div>
+                style={style}
+                autoplay={autoplay}
+                dotPosition={dotPosition}
+                easing={easing}
+                effect={effect}
+                data-dash-is-loading={
+                    (loading_state && loading_state.is_loading) || undefined
+                }
+            >{children}</Carousel>
         );
     }
 }

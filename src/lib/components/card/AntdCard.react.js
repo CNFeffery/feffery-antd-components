@@ -23,7 +23,7 @@ export default class AntdCard extends Component {
             coverImg,
             bodyStyle,
             headStyle,
-            border,
+            bordered,
             hoverable,
             size,
             title,
@@ -48,7 +48,7 @@ export default class AntdCard extends Component {
                     </a>
                 }
                 cover={<img alt={coverImg?.alt} src={coverImg?.src} style={coverImg?.style} />}
-                border={border}
+                bordered={bordered}
                 hoverable={hoverable}
                 size={size}
                 title={title}
@@ -114,7 +114,7 @@ AntdCard.propTypes = {
     headStyle: PropTypes.object,
 
     // 设置是否有边框，默认为true
-    border: PropTypes.bool,
+    bordered: PropTypes.bool,
 
     // 设置卡片鼠标悬浮时是否呈现浮起效果，默认为false
     hoverable: PropTypes.bool,
