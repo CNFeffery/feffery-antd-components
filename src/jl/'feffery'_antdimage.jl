@@ -9,6 +9,7 @@ An AntdImage component.
 
 Keyword arguments:
 - `id` (String; optional)
+- `alt` (String; optional)
 - `className` (String; optional)
 - `fallback` (String; optional)
 - `height` (Real; optional)
@@ -25,7 +26,7 @@ Those elements have the following types:
 - `width` (Real; optional)
 """
 function 'feffery'_antdimage(; kwargs...)
-        available_props = Symbol[:id, :className, :fallback, :height, :loading_state, :locale, :multiImageMode, :preview, :src, :style, :width]
+        available_props = Symbol[:id, :alt, :className, :fallback, :height, :loading_state, :locale, :multiImageMode, :preview, :src, :style, :width]
         wild_props = Symbol[]
         return Component("'feffery'_antdimage", "AntdImage", "feffery_antd_components", available_props, wild_props; kwargs...)
 end
