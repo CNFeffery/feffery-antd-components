@@ -92,6 +92,9 @@ AntdImage.propTypes = {
     // 设置语言环境，可选的有'zh-cn'、'en-us'
     locale: PropTypes.oneOf(['zh-cn', 'en-us']),
 
+    // 设置图片的描述文字
+    alt: PropTypes.string,
+
     // 设置像素宽度
     width: PropTypes.number,
 
