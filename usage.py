@@ -7,6 +7,23 @@ app = dash.Dash(__name__)
 
 app.layout = html.Div(
     [
+        fac.AntdMentions(
+            options=[
+                {
+                    'label': '费弗里',
+                    'value': '费弗里'
+                },
+                {
+                    'label': '小A',
+                    'value': '小A'
+                },
+                {
+                    'label': 'liz',
+                    'value': 'liz'
+                }
+            ]
+        ),
+
         fac.AntdTimeline(
             items=[
                 {
@@ -452,46 +469,6 @@ app.layout = html.Div(
                 for i in range(5)
             ],
             allowClick=True
-        ),
-
-        fac.AntdSpin(
-            [
-                fac.AntdTable(
-                    id='table-mouse-event-demo',
-                    columns=[
-                        {
-                            'title': '字段1',
-                            'dataIndex': '字段1'
-                        },
-                        {
-                            'title': '字段2',
-                            'dataIndex': '字段2'
-                        },
-                        {
-                            'title': '字段3',
-                            'dataIndex': '字段3'
-                        }
-                    ],
-                    data=[
-                        {
-                            'key': str(i),
-                            '字段1': i,
-                            '字段2': i,
-                            '字段3': i
-                        }
-                        for i in range(5)
-                    ]
-                ),
-
-                fac.AntdSpace(
-                    id='table-mouse-event-demo-output',
-                    direction='vertical',
-                    style={
-                        'width': '100%'
-                    }
-                )
-            ],
-            text='回调中'
         )
 
     ],
@@ -530,30 +507,6 @@ def test(nClicks, is_open):
         return bool(1-is_open)
 
     return dash.no_update
-
-
-@app.callback(
-    Output('table-mouse-event-demo-output', 'children'),
-    [Input('table-mouse-event-demo', 'recentlyMouseEnterColumd'),
-     Input('table-mouse-event-demo', 'recentlyMouseEnterRow')],
-    prevent_initial_call=True
-)
-def table_mouse_event_demo_callback(recentlyMouseEnterColumn,
-                                    recentlyMouseEnterRow):
-    return [
-        html.Div(
-            [
-                fac.AntdText('recentlyMouseEnterColumn：', strong=True),
-                fac.AntdText(recentlyMouseEnterColumn)
-            ]
-        ),
-        html.Div(
-            [
-                fac.AntdText('recentlyMouseEnterRow：', strong=True),
-                fac.AntdText(recentlyMouseEnterRow)
-            ]
-        )
-    ]
 
 
 if __name__ == '__main__':

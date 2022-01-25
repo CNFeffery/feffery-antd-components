@@ -4,14 +4,10 @@ export 'feffery'_antdmentions
 
 """
     'feffery'_antdmentions(;kwargs...)
-    'feffery'_antdmentions(children::Any;kwargs...)
-    'feffery'_antdmentions(children_maker::Function;kwargs...)
-
 
 An AntdMentions component.
 
 Keyword arguments:
-- `children` (a list of or a singular dash component, string or number; optional)
 - `id` (String; optional)
 - `autoSize` (optional): . autoSize has the following type: Bool | lists containing elements 'minRows', 'maxRows'.
 Those elements have the following types:
@@ -30,17 +26,15 @@ Those elements have the following types:
   - `label` (String; optional)
   - `value` (String; optional)s
 - `placement` (a value equal to: 'top', 'bottom'; optional)
+- `popupContainerId` (String; optional)
 - `prefix` (String; optional)
 - `selectedOptions` (Array of Strings; optional)
 - `style` (Dict; optional)
 - `value` (String; optional)
 """
 function 'feffery'_antdmentions(; kwargs...)
-        available_props = Symbol[:children, :id, :autoSize, :className, :defaultValue, :disabled, :loading_state, :options, :placement, :prefix, :selectedOptions, :style, :value]
+        available_props = Symbol[:id, :autoSize, :className, :defaultValue, :disabled, :loading_state, :options, :placement, :popupContainerId, :prefix, :selectedOptions, :style, :value]
         wild_props = Symbol[]
         return Component("'feffery'_antdmentions", "AntdMentions", "feffery_antd_components", available_props, wild_props; kwargs...)
 end
-
-'feffery'_antdmentions(children::Any; kwargs...) = 'feffery'_antdmentions(;kwargs..., children = children)
-'feffery'_antdmentions(children_maker::Function; kwargs...) = 'feffery'_antdmentions(children_maker(); kwargs...)
 

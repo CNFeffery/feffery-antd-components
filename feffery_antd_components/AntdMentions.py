@@ -9,8 +9,6 @@ class AntdMentions(Component):
 
 Keyword arguments:
 
-- children (a list of or a singular dash component, string or number; optional)
-
 - id (string; optional)
 
 - autoSize (dict; optional)
@@ -50,6 +48,8 @@ Keyword arguments:
 
 - placement (a value equal to: 'top', 'bottom'; optional)
 
+- popupContainerId (string; optional)
+
 - prefix (string; optional)
 
 - selectedOptions (list of strings; optional)
@@ -58,12 +58,12 @@ Keyword arguments:
 
 - value (string; optional)"""
     @_explicitize_args
-    def __init__(self, children=None, id=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, autoSize=Component.UNDEFINED, prefix=Component.UNDEFINED, defaultValue=Component.UNDEFINED, placement=Component.UNDEFINED, options=Component.UNDEFINED, selectedOptions=Component.UNDEFINED, value=Component.UNDEFINED, disabled=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
-        self._prop_names = ['children', 'id', 'autoSize', 'className', 'defaultValue', 'disabled', 'loading_state', 'options', 'placement', 'prefix', 'selectedOptions', 'style', 'value']
+    def __init__(self, id=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, popupContainerId=Component.UNDEFINED, autoSize=Component.UNDEFINED, prefix=Component.UNDEFINED, defaultValue=Component.UNDEFINED, placement=Component.UNDEFINED, options=Component.UNDEFINED, selectedOptions=Component.UNDEFINED, value=Component.UNDEFINED, disabled=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
+        self._prop_names = ['id', 'autoSize', 'className', 'defaultValue', 'disabled', 'loading_state', 'options', 'placement', 'popupContainerId', 'prefix', 'selectedOptions', 'style', 'value']
         self._type = 'AntdMentions'
         self._namespace = 'feffery_antd_components'
         self._valid_wildcard_attributes =            []
-        self.available_properties = ['children', 'id', 'autoSize', 'className', 'defaultValue', 'disabled', 'loading_state', 'options', 'placement', 'prefix', 'selectedOptions', 'style', 'value']
+        self.available_properties = ['id', 'autoSize', 'className', 'defaultValue', 'disabled', 'loading_state', 'options', 'placement', 'popupContainerId', 'prefix', 'selectedOptions', 'style', 'value']
         self.available_wildcard_properties =            []
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()
@@ -73,4 +73,4 @@ Keyword arguments:
             if k not in args:
                 raise TypeError(
                     'Required argument `' + k + '` was not specified.')
-        super(AntdMentions, self).__init__(children=children, **args)
+        super(AntdMentions, self).__init__(**args)
