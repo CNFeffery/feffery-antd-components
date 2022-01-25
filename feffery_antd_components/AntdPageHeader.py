@@ -36,7 +36,7 @@ Keyword arguments:
     - prop_name (string; optional):
         Holds which property is loading.
 
-- showBackIcon (boolean; optional)
+- showBackIcon (boolean; default True)
 
 - style (dict; optional)
 

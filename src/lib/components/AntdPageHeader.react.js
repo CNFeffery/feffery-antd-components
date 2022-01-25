@@ -113,5 +113,6 @@ AntdPageHeader.propTypes = {
 // 设置默认参数
 AntdPageHeader.defaultProps = {
     backClicks: 0,
+    showBackIcon: true,
     historyBackDisabled: false
 }
