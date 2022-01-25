@@ -68,6 +68,7 @@ export default class AntdMentions extends Component {
                 disabled={disabled}
                 onChange={onChange}
                 onSelect={onSelect}
+                getPopupContainer={(triggerNode) => triggerNode.parentNode}
                 data-dash-is-loading={
                     (loading_state && loading_state.is_loading) || undefined
                 }
@@ -86,8 +87,6 @@ export default class AntdMentions extends Component {
 AntdMentions.propTypes = {
     // 组件id
     id: PropTypes.string,
-
-    children: PropTypes.node,
 
     // css类名
     className: PropTypes.string,
