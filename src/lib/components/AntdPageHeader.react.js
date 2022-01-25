@@ -22,6 +22,7 @@ export default class AntdPageHeader extends Component {
             title,
             subTitle,
             showBackIcon,
+            historyBackDisabled,
             backClicks,
             ghost,
             setProps,
@@ -38,7 +39,12 @@ export default class AntdPageHeader extends Component {
                 subTitle={subTitle}
                 backIcon={showBackIcon ? undefined : false}
                 ghost={ghost}
-                onBack={() => setProps({ backClicks: backClicks + 1 })}
+                onBack={historyBackDisabled ? () => {
+                    let backClicks_ = backClicks
+                    backClicks_++
+                    setProps({ backClicks: backClicks_ })
+                } : () => window.history.back()
+                }
                 data-dash-is-loading={
                     (loading_state && loading_state.is_loading) || undefined
                 }>
@@ -73,6 +79,9 @@ AntdPageHeader.propTypes = {
     // 设置是否展示返回按钮，默认为true
     showBackIcon: PropTypes.bool,
 
+    // 设置是否禁用页头返回按钮的浏览器后退功能，默认为false
+    historyBackDisabled: PropTypes.bool,
+
     // 监听返回按钮被点击次数
     backClicks: PropTypes.number,
 
@@ -103,5 +112,6 @@ AntdPageHeader.propTypes = {
 
 // 设置默认参数
 AntdPageHeader.defaultProps = {
-    backClicks: 0
+    backClicks: 0,
+    historyBackDisabled: false
 }
