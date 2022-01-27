@@ -24,8 +24,6 @@ export default class AntdCalendar extends Component {
             className,
             style,
             locale,
-            validRange,
-            disabledDates,
             defaultValue,
             value,
             format,
@@ -43,22 +41,13 @@ export default class AntdCalendar extends Component {
             })
         };
 
-        const checkDisabledDate = date => {
-            return disabledDates.dates.indexOf(date.format(disabledDates?.format || format)) !== -1
-        }
-
         return (
             <ConfigProvider locale={str2Locale.get(locale)}>
                 <Calendar id={id}
                     className={className}
                     style={style}
-                    validRange={validRange && validRange.length && [
-                        moment(validRange[0].value, validRange[0].format || format),
-                        moment(validRange[1].value, validRange[1].format || format)
-                    ]}
-                    defaultValue={defaultValue && moment(defaultValue.value, defaultValue.format || format)}
+                    defaultValue={defaultValue && moment(defaultValue, format)}
                     value={value && moment(value, format)}
-                    disabledDate={disabledDates && checkDisabledDate}
                     onSelect={onSelect}
                     fullscreen={size !== 'default'}
                     persistence={persistence}
@@ -86,36 +75,11 @@ AntdCalendar.propTypes = {
     // 设置语言环境，可选的有'zh-cn'、'en-us'
     locale: PropTypes.oneOf(['zh-cn', 'en-us']),
 
-    // 设置可显示日期范围
-    validRange: PropTypes.arrayOf(
-        PropTypes.exact({
-            // 设置开始/结束日期字符串
-            value: PropTypes.string,
-
-            // 设置开始/结束日期格式字符串
-            format: PropTypes.string
-        })
-    ),
-
-    // 设置禁用日期数组
-    disabledDates: PropTypes.exact({
-        // 日期字符串数组
-        dates: PropTypes.arrayOf(PropTypes.string),
-
-        // 统一设置日期格式，优先级高于format
-        format: PropTypes.string
-    }),
-
     // 设置面板默认日期
-    defaultValue: PropTypes.exact(
-        {
-            // 日期值字符串
-            value: PropTypes.string,
+    defaultValue: PropTypes.string,
 
-            // 日期格式字符串
-            format: PropTypes.string
-        }
-    ),
+    // 对应当前面板已选中值
+    value: PropTypes.string,
 
     // 设置全局日期格式format，优先级低于单个设置的format参数，默认为'YYYY-MM-DD'
     format: PropTypes.string,

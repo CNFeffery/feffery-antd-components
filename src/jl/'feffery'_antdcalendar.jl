@@ -10,14 +10,7 @@ An AntdCalendar component.
 Keyword arguments:
 - `id` (String; optional)
 - `className` (String; optional)
-- `defaultValue` (optional): . defaultValue has the following type: lists containing elements 'value', 'format'.
-Those elements have the following types:
-  - `value` (String; optional)
-  - `format` (String; optional)
-- `disabledDates` (optional): . disabledDates has the following type: lists containing elements 'dates', 'format'.
-Those elements have the following types:
-  - `dates` (Array of Strings; optional)
-  - `format` (String; optional)
+- `defaultValue` (String; optional)
 - `format` (String; optional)
 - `loading_state` (optional): . loading_state has the following type: lists containing elements 'is_loading', 'prop_name', 'component_name'.
 Those elements have the following types:
@@ -40,13 +33,10 @@ local: window.localStorage, data is kept after the browser quit.
 session: window.sessionStorage, data is cleared once the browser quit.
 - `size` (a value equal to: 'default', 'large'; optional)
 - `style` (Dict; optional)
-- `validRange` (optional): . validRange has the following type: Array of lists containing elements 'value', 'format'.
-Those elements have the following types:
-  - `value` (String; optional)
-  - `format` (String; optional)s
+- `value` (String; optional)
 """
 function 'feffery'_antdcalendar(; kwargs...)
-        available_props = Symbol[:id, :className, :defaultValue, :disabledDates, :format, :loading_state, :locale, :persisted_props, :persistence, :persistence_type, :size, :style, :validRange]
+        available_props = Symbol[:id, :className, :defaultValue, :format, :loading_state, :locale, :persisted_props, :persistence, :persistence_type, :size, :style, :value]
         wild_props = Symbol[]
         return Component("'feffery'_antdcalendar", "AntdCalendar", "feffery_antd_components", available_props, wild_props; kwargs...)
 end

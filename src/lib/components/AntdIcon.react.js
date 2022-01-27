@@ -16,7 +16,7 @@ export default class AntdIcon extends Component {
             loading_state
         } = this.props;
 
-        return (
+        return ( 
             <span id={id}
                 className={className}
                 style={

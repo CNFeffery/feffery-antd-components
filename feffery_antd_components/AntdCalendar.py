@@ -13,21 +13,7 @@ Keyword arguments:
 
 - className (string; optional)
 
-- defaultValue (dict; optional)
-
-    `defaultValue` is a dict with keys:
-
-    - format (string; optional)
-
-    - value (string; optional)
-
-- disabledDates (dict; optional)
-
-    `disabledDates` is a dict with keys:
-
-    - dates (list of strings; optional)
-
-    - format (string; optional)
+- defaultValue (string; optional)
 
 - format (string; default 'YYYY-MM-DD')
 
@@ -69,20 +55,14 @@ Keyword arguments:
 
 - style (dict; optional)
 
-- validRange (list of dicts; optional)
-
-    `validRange` is a list of dicts with keys:
-
-    - format (string; optional)
-
-    - value (string; optional)"""
+- value (string; optional)"""
     @_explicitize_args
-    def __init__(self, id=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, locale=Component.UNDEFINED, validRange=Component.UNDEFINED, disabledDates=Component.UNDEFINED, defaultValue=Component.UNDEFINED, format=Component.UNDEFINED, size=Component.UNDEFINED, loading_state=Component.UNDEFINED, persistence=Component.UNDEFINED, persisted_props=Component.UNDEFINED, persistence_type=Component.UNDEFINED, **kwargs):
-        self._prop_names = ['id', 'className', 'defaultValue', 'disabledDates', 'format', 'loading_state', 'locale', 'persisted_props', 'persistence', 'persistence_type', 'size', 'style', 'validRange']
+    def __init__(self, id=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, locale=Component.UNDEFINED, defaultValue=Component.UNDEFINED, value=Component.UNDEFINED, format=Component.UNDEFINED, size=Component.UNDEFINED, loading_state=Component.UNDEFINED, persistence=Component.UNDEFINED, persisted_props=Component.UNDEFINED, persistence_type=Component.UNDEFINED, **kwargs):
+        self._prop_names = ['id', 'className', 'defaultValue', 'format', 'loading_state', 'locale', 'persisted_props', 'persistence', 'persistence_type', 'size', 'style', 'value']
         self._type = 'AntdCalendar'
         self._namespace = 'feffery_antd_components'
         self._valid_wildcard_attributes =            []
-        self.available_properties = ['id', 'className', 'defaultValue', 'disabledDates', 'format', 'loading_state', 'locale', 'persisted_props', 'persistence', 'persistence_type', 'size', 'style', 'validRange']
+        self.available_properties = ['id', 'className', 'defaultValue', 'format', 'loading_state', 'locale', 'persisted_props', 'persistence', 'persistence_type', 'size', 'style', 'value']
         self.available_wildcard_properties =            []
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()
