@@ -71,7 +71,8 @@ export default class AntdPopover extends Component {
                 overlayStyle={overlayStyle}
                 overlayInnerStyle={overlayInnerStyle}
                 trigger={trigger}
-                getPopupContainer={containerId ? () => document.getElementById(containerId) : containerId}
+                getPopupContainer={(triggerNode) => triggerNode.parentNode}
+                // getPopupContainer={containerId ? () => document.getElementById(containerId) : containerId}
                 data-dash-is-loading={
                     (loading_state && loading_state.is_loading) || undefined
                 }>{realChildren}

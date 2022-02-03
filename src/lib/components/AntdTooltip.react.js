@@ -48,7 +48,8 @@ export default class AntdTooltip extends Component {
                 overlayStyle={overlayStyle}
                 overlayInnerStyle={overlayInnerStyle}
                 trigger={trigger}
-                getPopupContainer={containerId ? () => document.getElementById(containerId) : containerId}
+                // getPopupContainer={containerId ? () => document.getElementById(containerId) : containerId}
+                getPopupContainer={(triggerNode) => triggerNode.parentNode}
                 data-dash-is-loading={
                     (loading_state && loading_state.is_loading) || undefined
                 }>

@@ -69,7 +69,8 @@ export default class AntdMentions extends Component {
                 disabled={disabled}
                 onChange={onChange}
                 onSelect={onSelect}
-                getPopupContainer={popupContainerId ? () => document.getElementById(popupContainerId) : popupContainerId}
+                getPopupContainer={(triggerNode) => triggerNode.parentNode}
+                // getPopupContainer={popupContainerId ? () => document.getElementById(popupContainerId) : popupContainerId}
                 data-dash-is-loading={
                     (loading_state && loading_state.is_loading) || undefined
                 }

@@ -9,8 +9,9 @@
 
 [![GitHub](https://img.shields.io/github/license/plotly/dash.svg?color=dark-green)](https://github.com/plotly/dash/blob/master/LICENSE)
 [![PyPI](https://img.shields.io/pypi/v/feffery-antd-components.svg?color=dark-green)](https://pypi.org/project/feffery-antd-components/)
-![PyPI - Downloads](https://img.shields.io/pypi/dm/feffery-antd-components?color=rgb%280%2C%20158%2C%20255%29)
-![PyPI - Downloads](https://img.shields.io/pypi/dw/feffery-antd-components?color=rgb%280%2C%20158%2C%20255%29)
+[![Downloads](https://pepy.tech/badge/feffery-antd-components)](https://pepy.tech/project/feffery-antd-components)
+[![Downloads](https://pepy.tech/badge/feffery-antd-components/month)](https://pepy.tech/project/feffery-antd-components)
+[![Downloads](https://pepy.tech/badge/feffery-antd-components/week)](https://pepy.tech/project/feffery-antd-components)
 
 </div>
 

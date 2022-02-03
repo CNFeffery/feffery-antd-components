@@ -71,7 +71,8 @@ export default class AntdPopconfirm extends Component {
                     okButtonProps={okButtonProps}
                     cancelText={cancelText}
                     cancelButtonProps={cancelButtonProps}
-                    getPopupContainer={containerId ? () => document.getElementById(containerId) : containerId}
+                    // getPopupContainer={containerId ? () => document.getElementById(containerId) : containerId}
+                    getPopupContainer={(triggerNode) => triggerNode.parentNode}
                     onCancel={listenCancel}
                     onConfirm={listenConfirm}
                     data-dash-is-loading={

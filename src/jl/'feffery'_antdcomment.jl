@@ -13,14 +13,15 @@ An AntdComment component.
 Keyword arguments:
 - `children` (a list of or a singular dash component, string or number; optional)
 - `id` (String; optional)
-- `action` (a value equal to: 'liked', 'disliked'; optional)
+- `action` (a value equal to: 'liked', 'disliked', 'default'; optional)
 - `authorName` (String; optional)
 - `authorNameHref` (String; optional)
 - `avatarProps` (Dict; optional)
 - `className` (String; optional)
 - `commentContent` (String; optional)
 - `commentId` (String; optional)
-- `defaultAction` (a value equal to: 'liked', 'disliked'; optional)
+- `defaultAction` (a value equal to: 'liked', 'disliked', 'default'; optional)
+- `deleteClicks` (Real; optional)
 - `dislikesCount` (Real; optional)
 - `fromNow` (Bool; optional)
 - `likesCount` (Real; optional)
@@ -34,11 +35,11 @@ Those elements have the following types:
 Those elements have the following types:
   - `value` (String; required)
   - `format` (String; optional)
-- `replyCounts` (Real; optional)
+- `replyClicks` (Real; optional)
 - `style` (Dict; optional)
 """
 function 'feffery'_antdcomment(; kwargs...)
-        available_props = Symbol[:children, :id, :action, :authorName, :authorNameHref, :avatarProps, :className, :commentContent, :commentId, :defaultAction, :dislikesCount, :fromNow, :likesCount, :loading_state, :locale, :publishTime, :replyCounts, :style]
+        available_props = Symbol[:children, :id, :action, :authorName, :authorNameHref, :avatarProps, :className, :commentContent, :commentId, :defaultAction, :deleteClicks, :dislikesCount, :fromNow, :likesCount, :loading_state, :locale, :publishTime, :replyClicks, :style]
         wild_props = Symbol[]
         return Component("'feffery'_antdcomment", "AntdComment", "feffery_antd_components", available_props, wild_props; kwargs...)
 end

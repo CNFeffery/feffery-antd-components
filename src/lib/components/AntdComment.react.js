@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import moment from 'moment';
 import { str2Locale } from './locales.react';
-import { Comment, Tooltip, ConfigProvider } from 'antd';
+import { Comment, Tooltip, Popconfirm, ConfigProvider } from 'antd';
 import { AntdAvatar } from '..';
 import { DislikeOutlined, LikeOutlined, DislikeFilled, LikeFilled } from '@ant-design/icons';
 import 'antd/dist/antd.css';
@@ -25,7 +25,8 @@ const AntdComment = (props) => {
         style,
         locale,
         commentId,
-        replyCounts,
+        replyClicks,
+        deleteClicks,
         authorName,
         authorNameHref,
         publishTime,
@@ -56,16 +57,16 @@ const AntdComment = (props) => {
 
     const like = () => {
         setProps({
-            likesCount: action === 'liked' ? likesCount : likesCount + 1,
-            action: 'liked',
+            likesCount: action === 'liked' ? likesCount - 1 : likesCount + 1,
+            action: action === 'liked' ? 'default' : 'liked',
             dislikesCount: action === 'disliked' ? dislikesCount - 1 : dislikesCount
         });
     };
 
     const dislike = () => {
         setProps({
-            dislikesCount: action === 'disliked' ? dislikesCount : dislikesCount + 1,
-            action: 'disliked',
+            dislikesCount: action === 'disliked' ? dislikesCount - 1 : dislikesCount + 1,
+            action: action === 'disliked' ? 'default' : 'disliked',
             likesCount: action === 'liked' ? likesCount - 1 : likesCount
         })
     };
@@ -84,9 +85,16 @@ const AntdComment = (props) => {
             </span>
         </Tooltip>,
         <span key="comment-basic-reply-to" onClick={() => {
-            console.log({ replyCounts })
-            setProps({ replyCounts: replyCounts + 1 })
+            setProps({ replyClicks: replyClicks + 1 })
         }}>{locale === 'zh-cn' ? "添加回复" : "Add a reply"}</span>,
+        <Popconfirm
+            title={locale === 'zh-cn' ? "确认删除" : "Confirm deletion"}
+            onConfirm={() => setProps({ deleteClicks: deleteClicks + 1 })}
+            okText={locale === 'zh-cn' ? "确认" : "Yes"}
+            cancelText={locale === 'zh-cn' ? "取消" : "No"}
+            getPopupContainer={(triggerNode) => triggerNode.parentNode}>
+            <span key="comment-basic-delete">{locale === 'zh-cn' ? "删除" : "Delete"}</span>
+        </Popconfirm>
     ];
 
     return (
@@ -95,6 +103,7 @@ const AntdComment = (props) => {
                 id={id}
                 className={className}
                 style={style}
+                key={commentId}
                 actions={actions}
                 author={<a href={authorNameHref} target={'_blank'}>{authorName}</a>}
                 avatar={<AntdAvatar {...avatarProps} />}
@@ -156,7 +165,10 @@ AntdComment.propTypes = {
     fromNow: PropTypes.bool,
 
     // 设置“添加回复”按钮被点击次数，默认为0
-    replyCounts: PropTypes.number,
+    replyClicks: PropTypes.number,
+
+    // 设置“删除”按钮被点击次数，默认为0
+    deleteClicks: PropTypes.number,
 
     // 设置评论正文内容
     commentContent: PropTypes.string,
@@ -168,10 +180,10 @@ AntdComment.propTypes = {
     dislikesCount: PropTypes.number,
 
     // 对应当前支持/反对状态，可选的有'liked'与'disliked'
-    action: PropTypes.oneOf(['liked', 'disliked']),
+    action: PropTypes.oneOf(['liked', 'disliked', 'default']),
 
     // 设置初始化时的支持/反对状态
-    defaultAction: PropTypes.oneOf(['liked', 'disliked']),
+    defaultAction: PropTypes.oneOf(['liked', 'disliked', 'default']),
 
     // 定义头像参数，与AntdAvatar一致
     avatarProps: PropTypes.object,
@@ -201,8 +213,9 @@ AntdComment.propTypes = {
 AntdComment.defaultProps = {
     likesCount: 0,
     dislikesCount: 0,
+    deleteClicks: 0,
     fromNow: false,
-    replyCounts: 0,
+    replyClicks: 0,
     locale: 'zh-cn'
 }
 

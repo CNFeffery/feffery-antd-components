@@ -13,7 +13,7 @@ Keyword arguments:
 
 - id (string; optional)
 
-- action (a value equal to: 'liked', 'disliked'; optional)
+- action (a value equal to: 'liked', 'disliked', 'default'; optional)
 
 - authorName (string; optional)
 
@@ -27,7 +27,9 @@ Keyword arguments:
 
 - commentId (string; optional)
 
-- defaultAction (a value equal to: 'liked', 'disliked'; optional)
+- defaultAction (a value equal to: 'liked', 'disliked', 'default'; optional)
+
+- deleteClicks (number; default 0)
 
 - dislikesCount (number; default 0)
 
@@ -58,16 +60,16 @@ Keyword arguments:
 
     - value (string; required)
 
-- replyCounts (number; default 0)
+- replyClicks (number; default 0)
 
 - style (dict; optional)"""
     @_explicitize_args
-    def __init__(self, children=None, id=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, locale=Component.UNDEFINED, commentId=Component.UNDEFINED, authorName=Component.UNDEFINED, authorNameHref=Component.UNDEFINED, publishTime=Component.REQUIRED, fromNow=Component.UNDEFINED, replyCounts=Component.UNDEFINED, commentContent=Component.UNDEFINED, likesCount=Component.UNDEFINED, dislikesCount=Component.UNDEFINED, action=Component.UNDEFINED, defaultAction=Component.UNDEFINED, avatarProps=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
-        self._prop_names = ['children', 'id', 'action', 'authorName', 'authorNameHref', 'avatarProps', 'className', 'commentContent', 'commentId', 'defaultAction', 'dislikesCount', 'fromNow', 'likesCount', 'loading_state', 'locale', 'publishTime', 'replyCounts', 'style']
+    def __init__(self, children=None, id=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, locale=Component.UNDEFINED, commentId=Component.UNDEFINED, authorName=Component.UNDEFINED, authorNameHref=Component.UNDEFINED, publishTime=Component.REQUIRED, fromNow=Component.UNDEFINED, replyClicks=Component.UNDEFINED, deleteClicks=Component.UNDEFINED, commentContent=Component.UNDEFINED, likesCount=Component.UNDEFINED, dislikesCount=Component.UNDEFINED, action=Component.UNDEFINED, defaultAction=Component.UNDEFINED, avatarProps=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
+        self._prop_names = ['children', 'id', 'action', 'authorName', 'authorNameHref', 'avatarProps', 'className', 'commentContent', 'commentId', 'defaultAction', 'deleteClicks', 'dislikesCount', 'fromNow', 'likesCount', 'loading_state', 'locale', 'publishTime', 'replyClicks', 'style']
         self._type = 'AntdComment'
         self._namespace = 'feffery_antd_components'
         self._valid_wildcard_attributes =            []
-        self.available_properties = ['children', 'id', 'action', 'authorName', 'authorNameHref', 'avatarProps', 'className', 'commentContent', 'commentId', 'defaultAction', 'dislikesCount', 'fromNow', 'likesCount', 'loading_state', 'locale', 'publishTime', 'replyCounts', 'style']
+        self.available_properties = ['children', 'id', 'action', 'authorName', 'authorNameHref', 'avatarProps', 'className', 'commentContent', 'commentId', 'defaultAction', 'deleteClicks', 'dislikesCount', 'fromNow', 'likesCount', 'loading_state', 'locale', 'publishTime', 'replyClicks', 'style']
         self.available_wildcard_properties =            []
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()
