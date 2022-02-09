@@ -18,7 +18,6 @@ Keyword arguments:
 - `cancelText` (String; optional)
 - `className` (String; optional)
 - `confirmCounts` (Real; optional)
-- `containerId` (String; optional)
 - `disabled` (Bool; optional)
 - `loading_state` (optional): . loading_state has the following type: lists containing elements 'is_loading', 'prop_name', 'component_name'.
 Those elements have the following types:
@@ -38,7 +37,7 @@ Those elements have the following types:
 - `trigger` (a value equal to: 'hover', 'focus', 'click' | Array of a value equal to: 'hover', 'focus', 'click's; optional)
 """
 function 'feffery'_antdpopconfirm(; kwargs...)
-        available_props = Symbol[:children, :id, :cancelButtonProps, :cancelCounts, :cancelText, :className, :confirmCounts, :containerId, :disabled, :loading_state, :locale, :mouseEnterDelay, :mouseLeaveDelay, :okButtonProps, :okText, :overlayInnerStyle, :overlayStyle, :placement, :style, :title, :trigger]
+        available_props = Symbol[:children, :id, :cancelButtonProps, :cancelCounts, :cancelText, :className, :confirmCounts, :disabled, :loading_state, :locale, :mouseEnterDelay, :mouseLeaveDelay, :okButtonProps, :okText, :overlayInnerStyle, :overlayStyle, :placement, :style, :title, :trigger]
         wild_props = Symbol[]
         return Component("'feffery'_antdpopconfirm", "AntdPopconfirm", "feffery_antd_components", available_props, wild_props; kwargs...)
 end

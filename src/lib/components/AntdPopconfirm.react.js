@@ -36,7 +36,6 @@ export default class AntdPopconfirm extends Component {
             confirmCounts,
             cancelCounts,
             trigger,
-            containerId,
             setProps,
             loading_state
         } = this.props;
@@ -71,7 +70,6 @@ export default class AntdPopconfirm extends Component {
                     okButtonProps={okButtonProps}
                     cancelText={cancelText}
                     cancelButtonProps={cancelButtonProps}
-                    // getPopupContainer={containerId ? () => document.getElementById(containerId) : containerId}
                     getPopupContainer={(triggerNode) => triggerNode.parentNode}
                     onCancel={listenCancel}
                     onConfirm={listenConfirm}
@@ -155,9 +153,6 @@ AntdPopconfirm.propTypes = {
             PropTypes.arrayOf(PropTypes.oneOf(['hover', 'focus', 'click']))
         ]
     ),
-
-    // 设置绑定的容器id
-    containerId: PropTypes.string,
 
     loading_state: PropTypes.shape({
         /**

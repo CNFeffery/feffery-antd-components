@@ -28,7 +28,6 @@ export default class AntdTooltip extends Component {
             overlayStyle,
             overlayInnerStyle,
             trigger,
-            containerId,
             setProps,
             loading_state
         } = this.props;
@@ -48,7 +47,6 @@ export default class AntdTooltip extends Component {
                 overlayStyle={overlayStyle}
                 overlayInnerStyle={overlayInnerStyle}
                 trigger={trigger}
-                // getPopupContainer={containerId ? () => document.getElementById(containerId) : containerId}
                 getPopupContainer={(triggerNode) => triggerNode.parentNode}
                 data-dash-is-loading={
                     (loading_state && loading_state.is_loading) || undefined
@@ -105,9 +103,6 @@ AntdTooltip.propTypes = {
             PropTypes.arrayOf(PropTypes.oneOf(['hover', 'focus', 'click']))
         ]
     ),
-
-    // 设置绑定的容器id
-    containerId: PropTypes.string,
 
     loading_state: PropTypes.shape({
         /**

@@ -62,7 +62,6 @@ Those elements have the following types:
   - `total` (Real; optional)
   - `hideOnSinglePage` (Bool; optional)
   - `simple` (Bool; optional)
-- `popupContainerId` (String; optional)
 - `recentlyButtonClickedRow` (Dict; optional)
 - `recentlyChangedRow` (Dict; optional)
 - `recentlyMouseEnterColumn` (String; optional)
@@ -83,7 +82,7 @@ Those elements have the following types:
 - `titlePopoverInfo` (Dict; optional)
 """
 function 'feffery'_antdtable(; kwargs...)
-        available_props = Symbol[:id, :bordered, :className, :clickedContent, :columns, :columnsFormatConstraint, :currentData, :data, :filter, :filterOptions, :loading_state, :locale, :maxHeight, :mode, :nClicksButton, :pagination, :popupContainerId, :recentlyButtonClickedRow, :recentlyChangedRow, :recentlyMouseEnterColumn, :recentlyMouseEnterRow, :rowSelectionType, :selectedRowKeys, :selectedRows, :size, :sortOptions, :sorter, :style, :titlePopoverInfo]
+        available_props = Symbol[:id, :bordered, :className, :clickedContent, :columns, :columnsFormatConstraint, :currentData, :data, :filter, :filterOptions, :loading_state, :locale, :maxHeight, :mode, :nClicksButton, :pagination, :recentlyButtonClickedRow, :recentlyChangedRow, :recentlyMouseEnterColumn, :recentlyMouseEnterRow, :rowSelectionType, :selectedRowKeys, :selectedRows, :size, :sortOptions, :sorter, :style, :titlePopoverInfo]
         wild_props = Symbol[]
         return Component("'feffery'_antdtable", "AntdTable", "feffery_antd_components", available_props, wild_props; kwargs...)
 end

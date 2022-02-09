@@ -19,7 +19,7 @@ export default class AntdDatePicker extends Component {
         // 调整不同showTime下的format缺省参数
         if (props.showTime && !props.format) {
             props.setProps({
-                format: 'YYYY-MM-DD hh:mm:ss'
+                format: 'YYYY-MM-DD HH:mm:ss'
             })
         } else if (!props.showTime && !props.format) {
             props.setProps({

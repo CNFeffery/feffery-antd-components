@@ -19,8 +19,6 @@ Keyword arguments:
 
 - color (string; optional)
 
-- containerId (string; optional)
-
 - contentChildrenIndexes (list of numbers; optional)
 
 - loading_state (dict; optional)
@@ -58,12 +56,12 @@ Keyword arguments:
 
 - trigger (a value equal to: 'hover', 'focus', 'click' | list of a value equal to: 'hover', 'focus', 'click's; optional)"""
     @_explicitize_args
-    def __init__(self, children=None, id=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, title=Component.UNDEFINED, placement=Component.UNDEFINED, color=Component.UNDEFINED, mouseEnterDelay=Component.UNDEFINED, mouseLeaveDelay=Component.UNDEFINED, overlayStyle=Component.UNDEFINED, overlayInnerStyle=Component.UNDEFINED, trigger=Component.UNDEFINED, contentChildrenIndexes=Component.UNDEFINED, containerId=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
-        self._prop_names = ['children', 'id', 'className', 'color', 'containerId', 'contentChildrenIndexes', 'loading_state', 'mouseEnterDelay', 'mouseLeaveDelay', 'overlayInnerStyle', 'overlayStyle', 'placement', 'style', 'title', 'trigger']
+    def __init__(self, children=None, id=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, title=Component.UNDEFINED, placement=Component.UNDEFINED, color=Component.UNDEFINED, mouseEnterDelay=Component.UNDEFINED, mouseLeaveDelay=Component.UNDEFINED, overlayStyle=Component.UNDEFINED, overlayInnerStyle=Component.UNDEFINED, trigger=Component.UNDEFINED, contentChildrenIndexes=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
+        self._prop_names = ['children', 'id', 'className', 'color', 'contentChildrenIndexes', 'loading_state', 'mouseEnterDelay', 'mouseLeaveDelay', 'overlayInnerStyle', 'overlayStyle', 'placement', 'style', 'title', 'trigger']
         self._type = 'AntdPopover'
         self._namespace = 'feffery_antd_components'
         self._valid_wildcard_attributes =            []
-        self.available_properties = ['children', 'id', 'className', 'color', 'containerId', 'contentChildrenIndexes', 'loading_state', 'mouseEnterDelay', 'mouseLeaveDelay', 'overlayInnerStyle', 'overlayStyle', 'placement', 'style', 'title', 'trigger']
+        self.available_properties = ['children', 'id', 'className', 'color', 'contentChildrenIndexes', 'loading_state', 'mouseEnterDelay', 'mouseLeaveDelay', 'overlayInnerStyle', 'overlayStyle', 'placement', 'style', 'title', 'trigger']
         self.available_wildcard_properties =            []
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()

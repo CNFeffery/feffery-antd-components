@@ -14,7 +14,6 @@ export default class AntdMentions extends Component {
             id,
             className,
             style,
-            popupContainerId,
             autoSize,
             prefix,
             defaultValue,
@@ -69,8 +68,7 @@ export default class AntdMentions extends Component {
                 disabled={disabled}
                 onChange={onChange}
                 onSelect={onSelect}
-                getPopupContainer={(triggerNode) => triggerNode.parentNode}
-                // getPopupContainer={popupContainerId ? () => document.getElementById(popupContainerId) : popupContainerId}
+                getPopupContainer={(triggerNode) => triggerNode.parentNode.parentNode.parentNode}
                 data-dash-is-loading={
                     (loading_state && loading_state.is_loading) || undefined
                 }
@@ -95,9 +93,6 @@ AntdMentions.propTypes = {
 
     // 自定义css字典
     style: PropTypes.object,
-
-    // 设置悬浮组件所绑定的position: relative的祖先容器对应id，用于修正内嵌滚动条组件不跟随移动问题
-    popupContainerId: PropTypes.string,
 
     // 设置是否开启自适应内容高度，默认为false
     // 特别地，还可以传入对象来自行设置最少最多展示的子项行数

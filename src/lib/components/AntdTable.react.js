@@ -170,7 +170,6 @@ export default class AntdTable extends Component {
             maxHeight,
             size,
             mode,
-            popupContainerId,
             nClicksButton,
             loading_state
         } = this.props;
@@ -841,7 +840,7 @@ export default class AntdTable extends Component {
                     data-dash-is-loading={
                         (loading_state && loading_state.is_loading) || undefined
                     }
-                    getPopupContainer={popupContainerId ? () => document.getElementById(popupContainerId) : popupContainerId}
+                    getPopupContainer={(triggerNode) => triggerNode.parentNode.parentNode.parentNode}
                 />
             </ConfigProvider>
         );
@@ -1052,9 +1051,6 @@ AntdTable.propTypes = {
 
     // 设置数据操纵模式，可选的有'client-side'（前端）、'server-side'（后端），默认为'client-side'
     mode: PropTypes.oneOf(['client-side', 'server-side']),
-
-    // 设置筛选相关的悬浮组件所绑定的position: relative的祖先容器对应id，用于修正内嵌滚动条组件不跟随移动问题
-    popupContainerId: PropTypes.string,
 
     loading_state: PropTypes.shape({
         /**
