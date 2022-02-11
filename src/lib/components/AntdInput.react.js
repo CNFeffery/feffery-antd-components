@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Input } from 'antd';
+import md5 from 'md5';
 import 'antd/dist/antd.css';
 
 const { Search, TextArea } = Input;
@@ -13,7 +14,10 @@ export default class AntdInput extends Component {
         // 初始化value
         if (props.defaultValue) {
             // 当defaultValue不为空时，为value初始化defaultValue对应的value值
-            props.setProps({ value: props.defaultValue })
+            props.setProps({
+                value: props.defaultValue,
+                md5Value: md5(props.defaultValue)
+            })
         }
     }
 
@@ -24,6 +28,7 @@ export default class AntdInput extends Component {
             className,
             style,
             mode,
+            passwordUseMd5,
             autoComplete,
             placeholder,
             value,
@@ -143,7 +148,19 @@ export default class AntdInput extends Component {
                     bordered={bordered}
                     disabled={disabled}
                     maxLength={maxLength}
-                    onChange={onChange}
+                    onChange={(e) => {
+                        // 若启用md5加密
+                        if (passwordUseMd5) {
+                            setProps({
+                                md5Value: md5(e.target.value),
+                                value: e.target.value
+                            })
+                        } else {
+                            setProps({
+                                value: e.target.value
+                            })
+                        }
+                    }}
                     onPressEnter={onPressEnter}
                     persistence={persistence}
                     persisted_props={persisted_props}
@@ -218,8 +235,14 @@ AntdInput.propTypes = {
     // 记录输入框中的已输入文字内容
     value: PropTypes.string,
 
+    // 当passwordUseMd5=true时，用于记录加密的value值
+    md5Value: PropTypes.string,
+
     // 设置是否展示字数，默认为false
     showCount: PropTypes.bool,
+
+    // password模式设置是否使用md5加密，默认为false
+    passwordUseMd5: PropTypes.bool,
 
     // 记录聚焦于输入框内部时，enter键被点按的次数
     nSubmit: PropTypes.number,
@@ -266,6 +289,7 @@ AntdInput.propTypes = {
 // 设置默认参数
 AntdInput.defaultProps = {
     mode: 'default',
+    passwordUseMd5: false,
     nClicksSearch: 0,
     nSubmit: 0,
     persisted_props: ['value'],

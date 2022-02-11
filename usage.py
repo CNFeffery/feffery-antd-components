@@ -9,6 +9,15 @@ app = dash.Dash(__name__)
 app.layout = html.Div(
     html.Div(
         [
+            html.Div(
+                id='password-md5-demo-output'
+            ),
+            fac.AntdInput(
+                id='password-md5-demo',
+                placeholder='输入框测试',
+                mode='password',
+                passwordUseMd5=True
+            ),
 
             fac.AntdTreeSelect(
                 treeData=[
@@ -267,6 +276,17 @@ app.layout = html.Div(
         'overflowY': 'auto'
     }
 )
+
+@app.callback(
+    Output('password-md5-demo-output', 'children'),
+    Input('password-md5-demo', 'md5Value')
+)
+def test(md5Value):
+
+    return md5Value
+
+
+
 
 if __name__ == '__main__':
     app.run_server(debug=True)

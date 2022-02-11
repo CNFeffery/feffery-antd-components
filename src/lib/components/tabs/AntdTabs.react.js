@@ -138,8 +138,6 @@ export default class AntdTabs extends Component {
 
         const onEdit = (targetKey, action) => {
 
-            console.log({ targetKey, action })
-
             setProps({ latestDeletePane: targetKey })
         }
 

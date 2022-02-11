@@ -27,15 +27,6 @@ export default class AntdAnchor extends Component {
                 //当anchorObj具有children属性时
                 if (obj.hasOwnProperty('children')) {
 
-                    // obj = {
-                    //     component: Link,
-                    //     props: {
-                    //         href: obj.href,
-                    //         title: obj.title
-                    //     },
-                    //     children: renderAnchorTree(obj.children)
-                    // }
-
                     obj = <Link
                         href={obj.href}
                         title={obj.title}
@@ -44,14 +35,6 @@ export default class AntdAnchor extends Component {
                     </Link>
 
                 } else {
-
-                    // obj = {
-                    //     component: Link,
-                    //     props: {
-                    //         href: obj.href,
-                    //         title: obj.title
-                    //     },
-                    // }
 
                     obj = <Link
                         href={obj.href}
@@ -78,19 +61,6 @@ export default class AntdAnchor extends Component {
                 }
             >
                 {
-                    // jsonx.getReactElement(
-                    //     {
-                    //         component: Anchor,
-                    //         props: {
-                    //             id: id,
-                    //             className: className,
-                    //             style: style,
-                    //             getContainer: containerId ? () => document.getElementById(containerId) : containerId,
-                    //             targetOffset: targetOffset
-                    //         },
-                    //         children: linkDict
-                    //     }
-                    // ),
                     <Anchor
                         id={id}
                         className={className}
