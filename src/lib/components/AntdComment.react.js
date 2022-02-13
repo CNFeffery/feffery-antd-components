@@ -25,6 +25,7 @@ const AntdComment = (props) => {
         style,
         locale,
         commentId,
+        showDelete,
         replyClicks,
         deleteClicks,
         authorName,
@@ -87,14 +88,15 @@ const AntdComment = (props) => {
         <span key="comment-basic-reply-to" onClick={() => {
             setProps({ replyClicks: replyClicks + 1 })
         }}>{locale === 'zh-cn' ? "添加回复" : "Add a reply"}</span>,
-        <Popconfirm
-            title={locale === 'zh-cn' ? "确认删除" : "Confirm deletion"}
-            onConfirm={() => setProps({ deleteClicks: deleteClicks + 1 })}
-            okText={locale === 'zh-cn' ? "确认" : "Yes"}
-            cancelText={locale === 'zh-cn' ? "取消" : "No"}
-            getPopupContainer={(triggerNode) => triggerNode.parentNode}>
-            <span key="comment-basic-delete">{locale === 'zh-cn' ? "删除" : "Delete"}</span>
-        </Popconfirm>
+        showDelete ?
+            <Popconfirm
+                title={locale === 'zh-cn' ? "确认删除" : "Confirm deletion"}
+                onConfirm={() => setProps({ deleteClicks: deleteClicks + 1 })}
+                okText={locale === 'zh-cn' ? "确认" : "Yes"}
+                cancelText={locale === 'zh-cn' ? "取消" : "No"}
+                getPopupContainer={(triggerNode) => triggerNode.parentNode}>
+                <span key="comment-basic-delete">{locale === 'zh-cn' ? "删除" : "Delete"}</span>
+            </Popconfirm> : undefined
     ];
 
     return (
@@ -164,6 +166,9 @@ AntdComment.propTypes = {
     // 设置是否展示从此刻开始倒推相对时间
     fromNow: PropTypes.bool,
 
+    // 设置是否显示“删除”按钮，默认为false
+    showDelete: PropTypes.bool,
+
     // 设置“添加回复”按钮被点击次数，默认为0
     replyClicks: PropTypes.number,
 
@@ -211,6 +216,7 @@ AntdComment.propTypes = {
 };
 
 AntdComment.defaultProps = {
+    showDelete: false,
     likesCount: 0,
     dislikesCount: 0,
     deleteClicks: 0,

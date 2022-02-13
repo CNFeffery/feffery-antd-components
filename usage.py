@@ -248,14 +248,18 @@ app.layout = html.Div(
 
 
             fac.AntdComment(
+                id='comment-demo',
                 authorName='费弗里',
                 authorNameHref='https://github.com/CNFeffery/feffery-antd-components',
                 publishTime={
                     'value': '2022-01-01 19:29:01',
                     'format': 'YYYY-MM-DD hh:mm:ss'
                 },
-                commentContent='我希望feffery-components项目系列组件可以帮助更多人快速开发心仪的网站应用！😀'
+                commentContent='我希望feffery-components项目系列组件可以帮助更多人快速开发心仪的网站应用！😀',
+                showDelete=True
             ),
+
+            html.Div(id='comment-output-demo'),
 
             html.Div(
                 style={
@@ -277,6 +281,7 @@ app.layout = html.Div(
     }
 )
 
+
 @app.callback(
     Output('password-md5-demo-output', 'children'),
     Input('password-md5-demo', 'md5Value')
@@ -286,6 +291,14 @@ def test(md5Value):
     return md5Value
 
 
+@app.callback(
+    Output('comment-output-demo', 'children'),
+    [Input('comment-demo', 'replyClicks'),
+    Input('comment-demo', 'deleteClicks')]
+)
+def test_(replyClicks, deleteClicks):
+
+    return f'{replyClicks} - {deleteClicks}'
 
 
 if __name__ == '__main__':
