@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Avatar } from 'antd';
-import { str2Icon } from './icons.react'
+import AntdIcon from './AntdIcon.react';
 import 'antd/dist/antd.css';
 
 // 定义头像组件AntdAvatar，api参数参考https://ant.design/components/avatar-cn/
@@ -65,7 +65,7 @@ export default class AntdAvatar extends Component {
                     id={id}
                     className={className}
                     style={style}
-                    icon={icon ? str2Icon.get(icon) : str2Icon.get('user')}
+                    icon={icon ? <AntdIcon icon={icon} /> : <AntdIcon icon={'user'} />}
                     size={size}
                     shape={shape}
                     data-dash-is-loading={

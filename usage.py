@@ -9,6 +9,239 @@ app = dash.Dash(__name__)
 app.layout = html.Div(
     html.Div(
         [
+            fac.AntdTitle(
+                'AntdIcon测试区域',
+                level=4
+            ),
+            fac.AntdSpace(
+                [
+                    fac.AntdButton(
+                        [
+                            fac.AntdIcon(icon='search', style={
+                                         'marginRight': '5px'}),
+                            '搜索'
+                        ]
+                    ),
+
+                    fac.AntdAvatar(
+                        mode='icon',
+                        icon='fc-vlc'
+                    )
+                ]
+            ),
+            fac.AntdBreadcrumb(
+                items=[
+                    {
+                        'title': 'feffery-components仓库主页',
+                        'href': 'https://github.com/CNFeffery/feffery-dash-components',
+                                'target': '_blank',
+                                'icon': 'github'
+                    },
+                    {
+                        'title': 'feffery-antd-components文档首页',
+                        'href': '/',
+                                'target': '_blank',
+                                'icon': 'home'
+                    },
+                    {
+                        'title': 'AntdBreadcrumb文档页',
+                        'href': '/AntdBreadcrumb',
+                                'target': '_blank',
+                                'icon': 'fc-approval'
+                    }
+                ]
+            ),
+
+            fac.AntdDraggerUpload(
+                apiUrl='/upload/',
+                fileMaxSize=1,
+                fileListMaxLength=1,
+                text='拖拽上传示例',
+                hint='点击或拖拽文件至此处进行上传'
+            ),
+
+
+            fac.AntdDropdown(
+                title='触发点',
+                menuItems=[
+                    {
+                        'title': '子页面1',
+                        'icon': 'global'
+                    },
+                    {
+                        'title': '子页面1',
+                        'icon': 'fc-plus'
+                    },
+                    {
+                        'title': '子页面2'
+                    },
+                    {
+                        'isDivider': True
+                    },
+                    {
+                        'title': '子页面3-1'
+                    },
+                    {
+                        'title': '子页面3-2'
+                    }
+                ]
+            ),
+
+            html.Div(
+                fac.AntdMenu(
+                    menuItems=[
+                        {
+                            'component': 'Item',
+                            'props': {
+                                'key': f'图标{icon}',
+                                'title': f'图标{icon}',
+                                'icon': icon
+                            }
+                        }
+                        for icon in [
+                            'home',
+                            'cloud-upload',
+                            'bar-chart',
+                            'pie-chart',
+                            'dot-chart',
+                            'line-chart',
+                            'apartment',
+                            'app-store',
+                            'app-store-add',
+                            'bell',
+                            'calculator',
+                            'calendar',
+                            'database',
+                            'history',
+                            'fc-services',
+                            'fc-questions',
+                            'fc-organization'
+                        ]
+                    ],
+                    mode='inline'
+                ),
+                style={
+                    'width': '250px'
+                }
+            ),
+            fac.AntdButton(
+                '触发全局提示框', id='message-trigger-button-demo1', type='primary'),
+            html.Div(id='message-container-demo1'),
+
+            fac.AntdButton(
+                '触发对话框',
+                type='primary',
+                id='modal-demo-trigger-1'
+            ),
+
+            fac.AntdModal(
+                fac.AntdText('对话框内容测试'),
+                id='modal-demo-1',
+                visible=False,
+                title={
+                    'content': '标题测试',
+                    'prefixIcon': 'search'
+                },
+                renderFooter=True
+            ),
+
+
+            fac.AntdPopover(
+                fac.AntdButton(
+                    '鼠标悬浮于此',
+                    type='primary'
+                ),
+                title={
+                    'content': '标题前缀图标测试',
+                    'prefixIcon': 'fc-search'
+                }
+            ),
+
+
+            fac.AntdTimeline(
+                items=[
+                    {
+                        'content': '训练数据导入',
+                        'icon': 'md-cloud-upload',
+                        'iconStyle': {
+                            'fontSize': '18px'
+                        }
+                    },
+                    {
+                        'content': '模型训练',
+                        'icon': 'clock-circle',
+                        'iconStyle': {
+                            'fontSize': '18px'
+                        }
+                    },
+                    {
+                        'content': '模型持久化',
+                        'icon': 'fc-accept-database',
+                        'iconStyle': {
+                            'fontSize': '18px'
+                        }
+                    },
+                    {
+                        'content': '模型发布',
+                        'icon': 'md-cloud-done',
+                        'iconStyle': {
+                            'fontSize': '18px'
+                        }
+                    }
+                ],
+                style={
+                    'margin': '20px'
+                }
+            ),
+
+
+            fac.AntdTree(
+                treeData=[
+                    {
+                        'title': '负责人A',
+                        'key': '负责人A',
+                        'icon': 'user',
+                        'children': [
+                            {
+                                'title': '数仓1',
+                                'key': '数仓1',
+                                'icon': 'database',
+                                'children': [
+                                    {
+                                        'title': f'业务表1-{i}',
+                                        'key': f'业务表1-{i}',
+                                        'icon': 'table'
+                                    }
+                                    for i in range(5)
+                                ]
+                            },
+                            {
+                                'title': '数仓2',
+                                'key': '数仓2',
+                                'icon': 'database',
+                                'children': [
+                                    {
+                                        'title': f'业务表2-{i}',
+                                        'key': f'业务表2-{i}',
+                                        'icon': 'fc-search'
+                                    }
+                                    for i in range(5)
+                                ]
+                            }
+                        ]
+                    }
+                ],
+                # 设置默认全部展开
+                defaultExpandAll=True,
+                checkable=True
+            ),
+
+
+            fac.AntdStatistic(
+                title='统计数值示例',
+                titleTooltip='这是一段指标说明内容巴拉巴拉'*10,
+                value=1332971
+            ),
             html.Div(
                 id='password-md5-demo-output'
             ),
@@ -294,11 +527,33 @@ def test(md5Value):
 @app.callback(
     Output('comment-output-demo', 'children'),
     [Input('comment-demo', 'replyClicks'),
-    Input('comment-demo', 'deleteClicks')]
+     Input('comment-demo', 'deleteClicks')]
 )
 def test_(replyClicks, deleteClicks):
 
     return f'{replyClicks} - {deleteClicks}'
+
+
+@app.callback(
+    Output('message-container-demo1', 'children'),
+    Input('message-trigger-button-demo1', 'nClicks'),
+    prevent_initial_call=True
+)
+def message_demo1(nClicks):
+    return fac.AntdMessage(
+        content='全局提示框示例',
+        icon='fc-overtime',
+        duration=0
+    )
+
+
+@app.callback(
+    Output('modal-demo-1', 'visible'),
+    Input('modal-demo-trigger-1', 'nClicks'),
+    prevent_initial_call=True
+)
+def modal_demo_callback1(nClicks):
+    return True
 
 
 if __name__ == '__main__':

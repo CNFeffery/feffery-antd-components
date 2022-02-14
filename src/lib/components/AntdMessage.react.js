@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { message } from 'antd';
-import { str2Icon } from './icons.react'
+import AntdIcon from './AntdIcon.react';
 import 'antd/dist/antd.css';
 
 // 定义全局提示组件AntdMessage，api参数参考https://ant.design/components/message-cn/
@@ -29,9 +29,7 @@ export default class AntdMessage extends Component {
         }
 
         if (icon) {
-            config.icon = <span style={{ verticalAlign: 'middle', marginRight: '5px' }}>
-                {str2Icon.get(icon)}
-            </span>
+            config.icon = <AntdIcon icon={icon} style={{ marginRight: 3 }} />
         }
 
         if (type === 'default') {

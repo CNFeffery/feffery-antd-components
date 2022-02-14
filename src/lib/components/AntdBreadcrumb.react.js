@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Breadcrumb, Menu } from 'antd';
-import { str2Icon } from './icons.react';
+import AntdIcon from './AntdIcon.react';
 import './styles.css'
 import 'antd/dist/antd.css';
 
@@ -34,7 +34,7 @@ export default class AntdBreadcrumb extends Component {
                                 item.menuItems ? <Menu>
                                     {item.menuItems.map(
                                         menuItem => (
-                                            <Menu.Item icon={str2Icon.get(menuItem.icon)}
+                                            <Menu.Item icon={<AntdIcon icon={menuItem.icon} style={{ marginRight: 3 }} />}
                                                 disabled={menuItem.disabled}>
                                                 <a href={menuItem.href}
                                                     target={menuItem.target}>
@@ -45,7 +45,7 @@ export default class AntdBreadcrumb extends Component {
                                     )}
                                 </Menu> : null
                             }>
-                            {str2Icon.get(item.icon)}
+                            {<AntdIcon icon={item.icon} style={{ marginRight: 3 }} />}
                             <a href={item.href}
                                 target={item.target}>
                                 {item.title}

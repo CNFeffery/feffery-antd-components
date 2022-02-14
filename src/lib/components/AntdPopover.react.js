@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Popover } from 'antd';
 import 'antd/dist/antd.css';
-import { str2Icon } from './icons.react'
+import AntdIcon from './AntdIcon.react';
 
 const parseChildrenToArray = children => {
     if (children && !Array.isArray(children)) {
@@ -57,8 +57,8 @@ export default class AntdPopover extends Component {
                 className={className}
                 style={style}
                 title={title?.content ?
-                    <div style={{ display: 'flex', alignItems: 'center' }}>
-                        {str2Icon.get(title.prefixIcon)}
+                    <div>
+                        {<AntdIcon icon={title.prefixIcon} />}
                         {<span style={{ marginLeft: '5px' }}>{title.content}</span>}
                     </div> : title}
                 content={contentChildren}

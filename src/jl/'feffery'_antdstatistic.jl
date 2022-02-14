@@ -27,11 +27,12 @@ Those elements have the following types:
   - `mode` (a value equal to: 'text', 'icon'; optional)
   - `content` (String; optional)
 - `title` (String; optional)
+- `titleTooltip` (String; optional)
 - `value` (Real; optional)
 - `valueStyle` (Dict; optional)
 """
 function 'feffery'_antdstatistic(; kwargs...)
-        available_props = Symbol[:id, :className, :loading_state, :precision, :prefix, :showGroupSeparator, :style, :suffix, :title, :value, :valueStyle]
+        available_props = Symbol[:id, :className, :loading_state, :precision, :prefix, :showGroupSeparator, :style, :suffix, :title, :titleTooltip, :value, :valueStyle]
         wild_props = Symbol[]
         return Component("'feffery'_antdstatistic", "AntdStatistic", "feffery_antd_components", available_props, wild_props; kwargs...)
 end

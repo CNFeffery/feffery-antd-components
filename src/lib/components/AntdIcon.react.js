@@ -12,24 +12,33 @@ export default class AntdIcon extends Component {
             className,
             icon,
             style,
-            setProps,
             loading_state
         } = this.props;
 
-        return ( 
-            <span id={id}
-                className={className}
-                style={
-                    icon.startsWith('fc') || icon.startsWith('md') ?
-                        { ...{ transform: 'translateY(15%)', verticalAlign: 'middle' }, ...style } :
-                        { ...{ verticalAlign: 'middle' }, ...style }
-                }
-                data-dash-is-loading={
-                    (loading_state && loading_state.is_loading) || undefined
-                }>
-                {str2Icon.get(icon)}
-            </span>
-        );
+        if (icon) {
+            return (
+                <span id={id}
+                    className={className}
+                    style={
+                        (
+                            icon.startsWith('fc-') ||
+                            icon.startsWith('md-') ||
+                            icon.startsWith('di-') ||
+                            icon.startsWith('bi-') ||
+                            icon.startsWith('bs-') ||
+                            icon.startsWith('gi-')
+                        ) ?
+                            { ...{ verticalAlign: 'middle' }, ...style } :
+                            style
+                    }
+                    data-dash-is-loading={
+                        (loading_state && loading_state.is_loading) || undefined
+                    }>
+                    {str2Icon.get(icon)}
+                </span>
+            );
+        }
+        return <span />;
     }
 }
 

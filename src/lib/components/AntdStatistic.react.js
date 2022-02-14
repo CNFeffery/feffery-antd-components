@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Statistic } from 'antd';
+import { Statistic, Space } from 'antd';
+import AntdTooltip from './AntdTooltip.react';
 import AntdIcon from './AntdIcon.react';
+import { QuestionCircleOutlined } from "@ant-design/icons";
 import 'antd/dist/antd.css';
 
 // 定义统计数值组件AntdStatistic，api参数参考https://ant.design/components/statistic-cn/
@@ -18,6 +20,7 @@ export default class AntdStatistic extends Component {
             prefix,
             suffix,
             title,
+            titleTooltip,
             valueStyle,
             setProps,
             loading_state
@@ -44,7 +47,14 @@ export default class AntdStatistic extends Component {
                             suffix.content
                     ) : null
                 }
-                title={title}
+                title={titleTooltip ?
+                    <Space size={5}>
+                        {title}
+                        <AntdTooltip title={titleTooltip} >
+                            <QuestionCircleOutlined />
+                        </AntdTooltip>
+                    </Space>
+                    : title}
                 valueStyle={valueStyle}
                 data-dash-is-loading={
                     (loading_state && loading_state.is_loading) || undefined
@@ -104,6 +114,9 @@ AntdStatistic.propTypes = {
 
     // 设置标题文字内容
     title: PropTypes.string,
+
+    // 为title设置后缀的鼠标悬浮提示框内容，默认不设置则不渲染
+    titleTooltip: PropTypes.string,
 
     // 设置数值的css样式
     valueStyle: PropTypes.object,

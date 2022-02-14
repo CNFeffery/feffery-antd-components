@@ -50,13 +50,17 @@
 .comment-action {
     padding-left: 8px;
     cursor: 'auto';
-  }
-  
-  [class*='-col-rtl'] .comment-action {
+}
+
+[class*='-col-rtl'] .comment-action {
     padding-right: 8px;
     padding-left: 0;
-  }
-
-.ant-breadcrumb-link > svg {
-    vertical-align: middle;
 }
+
+.ant-tree-switcher>span {
+    vertical-align: baseline !important;
+}
+
+/* .ant-breadcrumb-link > svg {
+    vertical-align: middle;
+} */

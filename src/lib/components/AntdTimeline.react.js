@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Timeline } from 'antd';
-import { str2Icon } from './icons.react'
+import AntdIcon from './AntdIcon.react';
 import 'antd/dist/antd.css';
 
 // 定义时间轴组件AntdTimeline，api参数参考https://ant.design/components/timeline-cn/
@@ -36,7 +36,7 @@ export default class AntdTimeline extends Component {
                         dot={
                             item.icon ?
                                 <span style={item.iconStyle}>
-                                    {str2Icon.get(item.icon)}
+                                    {<AntdIcon icon={item.icon} />}
                                 </span> : undefined
                         }
                         label={item.label}

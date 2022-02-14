@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Tree } from 'antd';
-import { str2Icon } from './icons.react'
+import AntdIcon from './AntdIcon.react';
 import 'antd/dist/antd.css';
 import './styles.css'
 
@@ -69,7 +69,7 @@ export default class AntdTree extends Component {
 
                 if (inputTreeData.hasOwnProperty('children')) {
                     if (typeof inputTreeData.icon === typeof "") {
-                        inputTreeData.icon = str2Icon.get(inputTreeData.icon)
+                        inputTreeData.icon = <AntdIcon icon={inputTreeData.icon} />
                     }
 
                     for (var i = 0; i < inputTreeData.children.length; i++) {
@@ -78,7 +78,7 @@ export default class AntdTree extends Component {
 
                 } else {
                     if (typeof inputTreeData.icon === typeof "") {
-                        inputTreeData.icon = str2Icon.get(inputTreeData.icon)
+                        inputTreeData.icon = <AntdIcon icon={inputTreeData.icon} />
                     }
                 }
             }

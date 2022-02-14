@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { v4 as uuidv4 } from 'uuid';
 import { Upload, message, ConfigProvider } from 'antd';
-import { str2Icon } from './icons.react';
+import AntdIcon from './AntdIcon.react';
 import { str2Locale } from './locales.react';
 import 'antd/dist/antd.css';
 
@@ -131,7 +131,7 @@ const AntdDraggerUpload = (props) => {
                     }
                     {...uploadProps}>
                     <p className="ant-upload-drag-icon">
-                        {str2Icon.get('cloud-upload')}
+                        {<AntdIcon icon={'cloud-upload'} />}
                     </p>
                     <p className="ant-upload-text">{text}</p>
                     <p className="ant-upload-hint">

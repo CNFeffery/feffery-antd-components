@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { str2Locale } from './locales.react';
 import { Modal, ConfigProvider } from 'antd';
-import { str2Icon } from './icons.react'
+import AntdIcon from './AntdIcon.react';
 import 'antd/dist/antd.css';
 
 // 定义对话框组件AntdModal，api参数参考https://ant.design/components/modal-cn/
@@ -61,8 +61,8 @@ export default class AntdModal extends Component {
                         className={className}
                         style={style}
                         title={title?.content ?
-                            <div style={{ display: 'flex', alignItems: 'center' }}>
-                                {str2Icon.get(title.prefixIcon)}
+                            <div>
+                                {<AntdIcon icon={title.prefixIcon} />}
                                 {<span style={{ marginLeft: '5px' }}>{title.content}</span>}
                             </div> : title}
                         visible={visible}
@@ -95,8 +95,8 @@ export default class AntdModal extends Component {
                         className={className}
                         style={style}
                         title={title?.content ?
-                            <div style={{ display: 'flex', alignItems: 'center' }}>
-                                {str2Icon.get(title.prefixIcon)}
+                            <div>
+                                {<AntdIcon icon={title.prefixIcon} />}
                                 {<span style={{ marginLeft: '5px' }}>{title.content}</span>}
                             </div> : title}
                         visible={visible}

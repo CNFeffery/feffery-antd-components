@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Dropdown, Menu, Button } from 'antd';
-import { str2Icon } from './icons.react';
+import AntdIcon from './AntdIcon.react';
 import { DownOutlined } from '@ant-design/icons';
 import 'antd/dist/antd.css';
 
@@ -43,7 +43,7 @@ export default class AntdDropdown extends Component {
                                     // 判断isDivider参数是否不为false
                                     menuItem.isDivider ?
                                         <Menu.Divider /> :
-                                        <Menu.Item icon={str2Icon.get(menuItem.icon)}
+                                        <Menu.Item icon={<AntdIcon icon={menuItem.icon} />}
                                             disabled={menuItem.disabled}
                                             key={menuItem.key ? menuItem.key : menuItem.title}>
                                             <a href={menuItem.href}

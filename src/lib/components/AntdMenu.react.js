@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 import isAbsoluteUrl from 'is-absolute-url';
 import PropTypes from 'prop-types';
+import AntdIcon from "./AntdIcon.react"
 import { Menu, Button } from 'antd';
 import {
     MenuUnfoldOutlined,
     MenuFoldOutlined,
 } from '@ant-design/icons';
 import 'antd/dist/antd.css';
-import './styles.css'
-import { str2Icon } from './icons.react'
+import './styles.css';
 
 const { SubMenu, Item, ItemGroup } = Menu;
 
@@ -147,23 +147,23 @@ export default class AntdMenu extends Component {
         let str2Jsx = new Map([['SubMenu', SubMenu], ['Item', Item], ['ItemGroup', ItemGroup]])
 
         // 递归推导多层菜单结构
-        const raw2Jsx = (obj, str2Jsx, str2Icon) => {
+        const raw2Jsx = (obj, str2Jsx) => {
             // 若obj为数组
             if (Array.isArray(obj)) {
                 // 若obj为数组，则针对数组中每个对象向下递归
-                obj = obj.map(obj_ => raw2Jsx(obj_, str2Jsx, str2Icon))
+                obj = obj.map(obj_ => raw2Jsx(obj_, str2Jsx))
 
             } else if (obj.hasOwnProperty('component')) {
                 // 若obj包含children属性，则向下递归处理
                 if (obj.hasOwnProperty('children')) {
-                    Object.assign(obj, { children: obj.children.map(obj_ => raw2Jsx(obj_, str2Jsx, str2Icon)) })
+                    Object.assign(obj, { children: obj.children.map(obj_ => raw2Jsx(obj_, str2Jsx)) })
 
                     if (obj.component === 'SubMenu') {
                         obj = <SubMenu
                             key={obj.props.key}
                             title={obj.props.title}
                             disabled={obj.props.disabled}
-                            icon={str2Icon.get(obj.props.icon)}>
+                            icon={<AntdIcon icon={obj.props.icon} />}>
                             {obj.children}
                         </SubMenu>
                     } else {
@@ -171,7 +171,7 @@ export default class AntdMenu extends Component {
                             key={obj.props.key}
                             title={obj.props.title}
                             disabled={obj.props.disabled}
-                            icon={str2Icon.get(obj.props.icon)}>
+                            icon={<AntdIcon icon={obj.props.icon} />}>
                             {obj.children}
                         </ItemGroup>
                     }
@@ -184,7 +184,7 @@ export default class AntdMenu extends Component {
                             title={obj.props.title}
                             disabled={obj.props.disabled}
                             danger={obj.props.danger}
-                            icon={str2Icon.get(obj.props.icon)}
+                            icon={<AntdIcon icon={obj.props.icon} />}
                         >
                             <UtilsLink href={obj.props.href} target={obj.props.target}>{obj.props.title}</UtilsLink>
                         </Item>
@@ -194,7 +194,7 @@ export default class AntdMenu extends Component {
                             title={obj.props.title}
                             disabled={obj.props.disabled}
                             danger={obj.props.danger}
-                            icon={str2Icon.get(obj.props.icon)}
+                            icon={<AntdIcon icon={obj.props.icon} />}
                         >
                             {obj.props.title}
                         </Item>
@@ -206,7 +206,7 @@ export default class AntdMenu extends Component {
 
         // 避免非初始化情况下的递归处理
         if (typeof menuItems[0].component == 'string') {
-            menuItems = raw2Jsx(menuItems, str2Jsx, str2Icon)
+            menuItems = raw2Jsx(menuItems, str2Jsx)
         }
 
         // 监听Item的点击事件
