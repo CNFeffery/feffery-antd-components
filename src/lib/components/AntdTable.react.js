@@ -162,6 +162,7 @@ export default class AntdTable extends Component {
             rowSelectionType,
             titlePopoverInfo,
             columnsFormatConstraint,
+            enableHoverListen,
             data,
             sortOptions,
             filterOptions,
@@ -799,20 +800,23 @@ export default class AntdTable extends Component {
         }
 
         // 添加表头单元格监听事件
-        columns = columns.map(
-            item => (
-                {
-                    ...item,
-                    ...{
-                        onHeaderCell: (e) => {
-                            return {
-                                onMouseEnter: event => { setProps({ recentlyMouseEnterColumn: e.dataIndex }) }, // 鼠标移入字段名
-                            };
+        if (enableHoverListen) {
+            columns = columns.map(
+                item => (
+                    {
+                        ...item,
+                        ...{
+                            onHeaderCell: (e) => {
+                                return {
+                                    onMouseEnter: event => { setProps({ recentlyMouseEnterColumn: e.dataIndex }) }, // 鼠标移入字段名
+                                };
+                            }
                         }
                     }
-                }
+                )
             )
-        )
+        }
+
 
         return (
             <ConfigProvider locale={str2Locale.get(locale)}>
@@ -832,11 +836,14 @@ export default class AntdTable extends Component {
                         y: maxHeight ? maxHeight : 99999
                     }}
                     onChange={this.onPageChange}
-                    onRow={(record, index) => {
-                        return {
-                            onMouseEnter: event => { setProps({ recentlyMouseEnterRow: record.key }) }, // 鼠标移入行
-                        };
-                    }}
+                    onRow={
+                        enableHoverListen ?
+                            (record, index) => {
+                                return {
+                                    onMouseEnter: event => { setProps({ recentlyMouseEnterRow: record.key }) }, // 鼠标移入行
+                                };
+                            } : undefined
+                    }
                     data-dash-is-loading={
                         (loading_state && loading_state.is_loading) || undefined
                     }
@@ -931,6 +938,9 @@ AntdTable.propTypes = {
 
     // 记录已被选择的行记录值列表
     selectedRows: PropTypes.array,
+
+    // 设置是否启用行悬浮事件监听（此功能可能会干扰其他正常表格功能，慎用），默认为false
+    enableHoverListen: PropTypes.bool,
 
     // 记录表头各字段事件
 
@@ -1076,6 +1086,7 @@ AntdTable.propTypes = {
 
 // 设置默认参数
 AntdTable.defaultProps = {
+    enableHoverListen: false,
     bordered: false,
     data: [],
     columns: [],
