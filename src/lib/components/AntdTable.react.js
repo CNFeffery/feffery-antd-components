@@ -572,7 +572,7 @@ export default class AntdTable extends Component {
                                                         okText={columns[i]['renderOptions']['renderButtonPopConfirmProps'].okText}
                                                         cancelText={columns[i]['renderOptions']['renderButtonPopConfirmProps'].cancelText}
                                                         disabled={content_.disabled}
-                                                        getPopupContainer={(triggerNode) => triggerNode.parentNode}
+                                                        getPopupContainer={(triggerNode) => triggerNode.parentNode.parentNode}
                                                         onConfirm={() => setProps({
                                                             recentlyButtonClickedRow: record,
                                                             nClicksButton: nClicksButton + 1,
@@ -596,7 +596,7 @@ export default class AntdTable extends Component {
                                     okText={columns[i]['renderOptions']['renderButtonPopConfirmProps'].okText}
                                     cancelText={columns[i]['renderOptions']['renderButtonPopConfirmProps'].cancelText}
                                     disabled={content.disabled}
-                                    getPopupContainer={(triggerNode) => triggerNode.parentNode}
+                                    getPopupContainer={(triggerNode) => triggerNode.parentNode.parentNode}
                                     onConfirm={() => setProps({
                                         recentlyButtonClickedRow: record,
                                         nClicksButton: nClicksButton + 1,

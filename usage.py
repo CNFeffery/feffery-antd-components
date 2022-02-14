@@ -9,6 +9,61 @@ app = dash.Dash(__name__)
 app.layout = html.Div(
     html.Div(
         [
+
+            fac.AntdTable(
+                columns=[
+                    {
+                        'title': '单按钮示例',
+                        'dataIndex': '单按钮示例',
+                        'renderOptions': {'renderType': 'button'},
+                        'width': '25%'
+                    },
+                    {
+                        'title': '多按钮示例',
+                        'dataIndex': '多按钮示例',
+                        'renderOptions': {'renderType': 'button'},
+                        'width': '50%'
+                    },
+                    {
+                        'title': '气泡确认按钮示例',
+                        'dataIndex': '气泡确认按钮示例',
+                        'renderOptions': {
+                            'renderType': 'button',
+                            'renderButtonPopConfirmProps': {
+                                'title': '确认操作',
+                                'okText': '继续',
+                                'cancelText': '再想想'
+                            }
+                        },
+                        'width': '25%'
+                    }
+                ],
+                data=[
+                    {
+                        'key': i,
+                        '单按钮示例': {
+                            'content': '按钮示例',
+                            'type': 'primary'
+                        },
+                        '多按钮示例': [
+                            {
+                                'content': '按钮示例1',
+                                'type': 'primary'
+                            },
+                            {
+                                'content': '按钮示例2',
+                                'danger': True
+                            }
+                        ],
+                        '气泡确认按钮示例': {
+                            'content': '气泡确认按钮示例',
+                            'type': 'primary'
+                        }
+                    }
+                    for i in range(5)
+                ],
+                bordered=True
+            ),
             fac.AntdTitle(
                 'AntdIcon测试区域',
                 level=4
