@@ -768,7 +768,8 @@ export default class AntdTable extends Component {
                                     wordBreak: 'break-all'
                                 }}>{content}</div>}
                                 overlayStyle={{ maxWidth: '250px' }}
-                                placement={'bottom'}>
+                                placement={'bottom'}
+                                getPopupContainer={containerId ? () => document.getElementById(containerId) : undefined}>
                                 <QuestionCircleOutlined
                                     style={{
                                         color: '#8c8c8c',
