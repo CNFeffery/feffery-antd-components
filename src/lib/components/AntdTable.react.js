@@ -157,6 +157,7 @@ export default class AntdTable extends Component {
             className,
             style,
             locale,
+            containerId,
             setProps,
             columns,
             rowSelectionType,
@@ -849,7 +850,7 @@ export default class AntdTable extends Component {
                     data-dash-is-loading={
                         (loading_state && loading_state.is_loading) || undefined
                     }
-                    getPopupContainer={(triggerNode) => triggerNode.parentNode.parentNode.parentNode}
+                    getPopupContainer={containerId ? () => document.getElementById(popupContainerId) : undefined}
                 />
             </ConfigProvider>
         );
@@ -869,6 +870,9 @@ AntdTable.propTypes = {
 
     // 设置语言环境，可选的有'zh-cn'、'en-us'
     locale: PropTypes.oneOf(['zh-cn', 'en-us']),
+
+    // 当表格悬浮层出现滚轮滑动不跟随情况时，用于传入需要绑定的参照容器id信息辅助定位
+    containerId: PropTypes.string,
 
     // 定义字段名称及相关属性
     columns: PropTypes.arrayOf(

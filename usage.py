@@ -9,60 +9,55 @@ app = dash.Dash(__name__)
 app.layout = html.Div(
     html.Div(
         [
-
             fac.AntdTable(
                 columns=[
                     {
-                        'title': '单按钮示例',
-                        'dataIndex': '单按钮示例',
-                        'renderOptions': {'renderType': 'button'},
-                        'width': '25%'
+                        'title': '字段示例1',
+                        'dataIndex': '字段示例1'
                     },
                     {
-                        'title': '多按钮示例',
-                        'dataIndex': '多按钮示例',
-                        'renderOptions': {'renderType': 'button'},
-                        'width': '50%'
+                        'title': '字段示例2',
+                        'dataIndex': '字段示例2'
                     },
                     {
-                        'title': '气泡确认按钮示例',
-                        'dataIndex': '气泡确认按钮示例',
-                        'renderOptions': {
-                            'renderType': 'button',
-                            'renderButtonPopConfirmProps': {
-                                'title': '确认操作',
-                                'okText': '继续',
-                                'cancelText': '再想想'
-                            }
-                        },
-                        'width': '25%'
+                        'title': '字段示例3',
+                        'dataIndex': '字段示例3'
                     }
                 ],
                 data=[
                     {
-                        'key': i,
-                        '单按钮示例': {
-                            'content': '按钮示例',
-                            'type': 'primary'
-                        },
-                        '多按钮示例': [
-                            {
-                                'content': '按钮示例1',
-                                'type': 'primary'
-                            },
-                            {
-                                'content': '按钮示例2',
-                                'danger': True
-                            }
-                        ],
-                        '气泡确认按钮示例': {
-                            'content': '气泡确认按钮示例',
-                            'type': 'primary'
-                        }
+                        '字段示例1': i,
+                        '字段示例2': i,
+                        '字段示例3': i
                     }
                     for i in range(5)
                 ],
-                bordered=True
+                rowSelectionType='checkbox'
+            ),
+            fac.AntdTable(
+                columns=[
+                    {
+                        'title': '字段示例1',
+                        'dataIndex': '字段示例1'
+                    },
+                    {
+                        'title': '字段示例2',
+                        'dataIndex': '字段示例2'
+                    },
+                    {
+                        'title': '字段示例3',
+                        'dataIndex': '字段示例3'
+                    }
+                ],
+                data=[
+                    {
+                        '字段示例1': i,
+                        '字段示例2': i,
+                        '字段示例3': i
+                    }
+                    for i in range(5)
+                ],
+                rowSelectionType='radio'
             ),
             fac.AntdTitle(
                 'AntdIcon测试区域',
