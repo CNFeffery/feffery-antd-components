@@ -1,12 +1,14 @@
 import React, { Component, useContext, useState, useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
-import { Table, Tooltip, Popover, Popconfirm, ConfigProvider, Input, Form, Tag, Button, Space, message } from 'antd';
+import { Table, Tooltip, Popover, Popconfirm, ConfigProvider, Typography, Input, Form, Tag, Button, Space, message } from 'antd';
 import { TinyLine, TinyArea, TinyColumn, Progress } from '@ant-design/charts';
 import Highlighter from 'react-highlight-words';
 import { SearchOutlined, QuestionCircleOutlined } from '@ant-design/icons';
 import { str2Locale } from './locales.react';
 import 'antd/dist/antd.css';
 import './styles.css'
+
+const { Text } = Typography;
 
 // 定义表格组件AntdTable，部分api参数参考https://ant.design/components/table-cn/
 export default class AntdTable extends Component {
@@ -550,6 +552,23 @@ export default class AntdTable extends Component {
             }
         }
 
+        // 配置字段渲染模式为copyable的相关参数
+        for (let i = 0; i < columns.length; i++) {
+            // 当前字段具有renderOptions参数时且renderOptions参数是字典时
+            if (columns[i]['renderOptions']) {
+                if (columns[i]['renderOptions'].hasOwnProperty('renderType')) {
+                    // 当renderOptions参数的renderType值设置为copyable时
+                    if (columns[i]['renderOptions']['renderType'] == 'copyable') {
+                        columns[i]['render'] = content => (
+                            <Text copyable={true}>
+                                {content}
+                            </Text>
+                        )
+                    }
+                }
+            }
+        }
+
         // 配置字段渲染模式为button的相关参数
         for (let i = 0; i < columns.length; i++) {
             // 当前字段具有renderOptions参数时且renderOptions参数是字典时
@@ -889,7 +908,7 @@ AntdTable.propTypes = {
 
                 // 设置渲染处理类型，可选项有'link'、'ellipsis'、'mini-line'、'mini-bar'、'mini-progress'、'mini-area'、"tags'、'button'
                 renderType: PropTypes.oneOf([
-                    'link', 'ellipsis', 'mini-line', 'mini-bar', 'mini-progress', 'mini-area', 'tags', 'button'
+                    'link', 'ellipsis', 'mini-line', 'mini-bar', 'mini-progress', 'mini-area', 'tags', 'button', 'copyable'
                 ]),
 
                 // 当renderType='link'时，此参数会将传入的字符串作为渲染link的显示文字内容

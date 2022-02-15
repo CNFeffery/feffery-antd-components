@@ -49,7 +49,7 @@ Keyword arguments:
 
         - renderLinkText (string; optional)
 
-        - renderType (a value equal to: 'link', 'ellipsis', 'mini-line', 'mini-bar', 'mini-progress', 'mini-area', 'tags', 'button'; optional)
+        - renderType (a value equal to: 'link', 'ellipsis', 'mini-line', 'mini-bar', 'mini-progress', 'mini-area', 'tags', 'button', 'copyable'; optional)
 
     - sorter (boolean | number | string | dict | list; optional)
 

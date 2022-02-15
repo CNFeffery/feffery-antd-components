@@ -9,55 +9,26 @@ app = dash.Dash(__name__)
 app.layout = html.Div(
     html.Div(
         [
+
             fac.AntdTable(
                 columns=[
                     {
-                        'title': '字段示例1',
-                        'dataIndex': '字段示例1'
-                    },
-                    {
-                        'title': '字段示例2',
-                        'dataIndex': '字段示例2'
-                    },
-                    {
-                        'title': '字段示例3',
-                        'dataIndex': '字段示例3'
+                        'title': 'ellipsis内容省略示例',
+                        'dataIndex': 'ellipsis内容省略示例',
+                        'renderOptions': {'renderType': 'copyable'}
                     }
                 ],
                 data=[
                     {
-                        '字段示例1': i,
-                        '字段示例2': i,
-                        '字段示例3': i
+                        'key': i,
+                        'ellipsis内容省略示例': '这是一段废话，用来演示超长内容再渲染巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉'
                     }
                     for i in range(5)
                 ],
-                rowSelectionType='checkbox'
-            ),
-            fac.AntdTable(
-                columns=[
-                    {
-                        'title': '字段示例1',
-                        'dataIndex': '字段示例1'
-                    },
-                    {
-                        'title': '字段示例2',
-                        'dataIndex': '字段示例2'
-                    },
-                    {
-                        'title': '字段示例3',
-                        'dataIndex': '字段示例3'
-                    }
-                ],
-                data=[
-                    {
-                        '字段示例1': i,
-                        '字段示例2': i,
-                        '字段示例3': i
-                    }
-                    for i in range(5)
-                ],
-                rowSelectionType='radio'
+                bordered=True,
+                style={
+                    'width': '250px'
+                }
             ),
             fac.AntdTitle(
                 'AntdIcon测试区域',
@@ -607,4 +578,4 @@ def modal_demo_callback1(nClicks):
 
 
 if __name__ == '__main__':
-    app.run_server(debug=True)
+    app.run_server(debug=False)
