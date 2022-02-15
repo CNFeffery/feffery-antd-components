@@ -850,7 +850,7 @@ export default class AntdTable extends Component {
                     data-dash-is-loading={
                         (loading_state && loading_state.is_loading) || undefined
                     }
-                    getPopupContainer={containerId ? () => document.getElementById(popupContainerId) : undefined}
+                    getPopupContainer={containerId ? () => document.getElementById(containerId) : undefined}
                 />
             </ConfigProvider>
         );
