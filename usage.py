@@ -10,6 +10,38 @@ app.layout = html.Div(
     html.Div(
         [
 
+
+            fac.AntdSpace(
+                [
+                    fac.AntdButton(
+                        [
+                            fac.AntdIcon(
+                                icon='md-power-settings-new'
+                            ),
+                            'md-power-settings-new'
+                        ]
+                    ),
+                    fac.AntdButton(
+                        [
+                            fac.AntdIcon(
+                                icon='md-layers'
+                            ),
+                            'md-layers'
+                        ],
+                        type='primary'
+                    ),
+                    fac.AntdButton(
+                        [
+                            fac.AntdIcon(
+                                icon='fc-repair'
+                            ),
+                            'fc-repair'
+                        ],
+                        type='dashed'
+                    )
+                ]
+            ),
+
             fac.AntdTable(
                 columns=[
                     {

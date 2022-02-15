@@ -15,6 +15,7 @@ export default class AntdDivider extends Component {
             innerTextOrientation,
             isDashed,
             lineColor,
+            fontSize,
             fontStyle,
             fontWeight,
             fontFamily,
@@ -31,7 +32,8 @@ export default class AntdDivider extends Component {
                         borderTopColor: lineColor,
                         fontStyle: fontStyle,
                         fontWeight: fontWeight,
-                        fontFamily: fontFamily
+                        fontFamily: fontFamily,
+                        fontSize: fontSize
                     }}
                     className={className}
                     dashed={isDashed}
@@ -52,7 +54,8 @@ export default class AntdDivider extends Component {
                         borderLeftColor: lineColor,
                         fontStyle: fontStyle,
                         fontWeight: fontWeight,
-                        fontFamily: fontFamily
+                        fontFamily: fontFamily,
+                        fontSize: fontSize
                     }}
                     className={className}
                     dashed={isDashed}
@@ -87,6 +90,9 @@ AntdDivider.propTypes = {
 
     // 分割线方向（水平：horizontal，竖直：vertical。默认为horizontal）
     direction: PropTypes.oneOf(['horizontal', 'vertical']),
+
+    // 内嵌文字大小，接受在css中合法的font-size值输入
+    fontSize: PropTypes.string,
 
     // 分割线颜色，接受在css中合法的颜色值输入
     lineColor: PropTypes.string,
