@@ -9,7 +9,31 @@ app = dash.Dash(__name__)
 app.layout = html.Div(
     html.Div(
         [
-
+            fac.AntdTable(
+                columns=[
+                    {
+                        'title': '字段示例1',
+                        'dataIndex': '字段示例1'
+                    },
+                    {
+                        'title': '字段示例2',
+                        'dataIndex': '字段示例2'
+                    },
+                    {
+                        'title': '字段示例3',
+                        'dataIndex': '字段示例3'
+                    }
+                ],
+                data=[
+                    {
+                        '字段示例1': i,
+                        '字段示例2': i,
+                        '字段示例3': i
+                    }
+                    for i in range(5)
+                ],
+                rowSelectionType='radio'
+            ),
 
             fac.AntdSpace(
                 [
@@ -610,4 +634,4 @@ def modal_demo_callback1(nClicks):
 
 
 if __name__ == '__main__':
-    app.run_server(debug=False)
+    app.run_server(debug=True)
