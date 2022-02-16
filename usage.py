@@ -9,6 +9,85 @@ app = dash.Dash(__name__)
 app.layout = html.Div(
     html.Div(
         [
+
+            html.Div(
+                fac.AntdMenu(
+                    menuItems=[
+                        {
+                            'component': 'SubMenu',
+                            'props': {
+                                'key': f'{sub_menu}',
+                                'title': f'子菜单{sub_menu}'
+                            },
+                            'children': [
+                                {
+                                    'component': 'ItemGroup',
+                                    'props': {
+                                        'key': f'{sub_menu}-{item_group}',
+                                        'title': f'菜单项分组{sub_menu}-{item_group}'
+                                    },
+                                    'children': [
+                                        {
+                                            'component': 'Item',
+                                            'props': {
+                                                'key': f'{sub_menu}-{item_group}-{item}',
+                                                'title': f'菜单项{sub_menu}-{item_group}-{item}'
+                                            }
+                                        }
+                                        for item in range(1, 3)
+                                    ]
+                                }
+                                for item_group in range(1, 3)
+                            ]
+                        }
+                        for sub_menu in range(1, 5)
+                    ],
+                    mode='horizontal'
+                ),
+                style={
+                    'width': '250px'
+                }
+            ),
+
+            html.Div(
+                fac.AntdMenu(
+                    menuItems=[
+                        {
+                            'component': 'SubMenu',
+                            'props': {
+                                'key': f'{sub_menu}',
+                                'title': f'子菜单{sub_menu}'
+                            },
+                            'children': [
+                                {
+                                    'component': 'ItemGroup',
+                                    'props': {
+                                        'key': f'{sub_menu}-{item_group}',
+                                        'title': f'菜单项分组{sub_menu}-{item_group}'
+                                    },
+                                    'children': [
+                                        {
+                                            'component': 'Item',
+                                            'props': {
+                                                'key': f'{sub_menu}-{item_group}-{item}',
+                                                'title': f'菜单项{sub_menu}-{item_group}-{item}'
+                                            }
+                                        }
+                                        for item in range(1, 3)
+                                    ]
+                                }
+                                for item_group in range(1, 3)
+                            ]
+                        }
+                        for sub_menu in range(1, 5)
+                    ]
+                ),
+                style={
+                    'width': '250px'
+                }
+            ),
+
+
             fac.AntdTable(
                 columns=[
                     {
@@ -581,7 +660,8 @@ app.layout = html.Div(
         style={
             'padding': '100px 200px',
             'position': 'relative'
-        }
+        },
+        id='container-demo'
     ),
     style={
         'margin': '100px',

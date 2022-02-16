@@ -234,6 +234,7 @@ export default class AntdMenu extends Component {
                         selectedKeys={[currentKey]}
                         onSelect={listenSelected}
                         onOpenChange={(e) => setProps({ openKeys: e })}
+                        getPopupContainer={triggerNode => triggerNode.parentNode}
                         inlineCollapsed={this.state.collapsed}
                         persistence={persistence}
                         persisted_props={persisted_props}
