@@ -791,7 +791,7 @@ const str2Icon = new Map([
     ['antd-cloud-sync', <CloudSyncOutlined />],
     ['antd-swap', <SwapOutlined />],
     ['im-earth', <ImEarth />],
-    ['antd-gi-mesh-network', <GiMeshNetwork style={{ zoom: 1.2 }} />],
+    ['gi-mesh-network', <GiMeshNetwork style={{ zoom: 1.2 }} />],
     ['antd-rollback', <RollbackOutlined />],
     ['antd-login', <LoginOutlined />],
     ['antd-logout', <LogoutOutlined />],
