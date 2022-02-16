@@ -131,7 +131,7 @@ const AntdDraggerUpload = (props) => {
                     }
                     {...uploadProps}>
                     <p className="ant-upload-drag-icon">
-                        {<AntdIcon icon={'cloud-upload'} />}
+                        {<AntdIcon icon={'antd-cloud-upload'} />}
                     </p>
                     <p className="ant-upload-text">{text}</p>
                     <p className="ant-upload-hint">

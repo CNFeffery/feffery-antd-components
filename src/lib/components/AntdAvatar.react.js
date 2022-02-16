@@ -65,7 +65,7 @@ export default class AntdAvatar extends Component {
                     id={id}
                     className={className}
                     style={style}
-                    icon={icon ? <AntdIcon icon={icon} /> : <AntdIcon icon={'user'} />}
+                    icon={icon ? <AntdIcon icon={icon} /> : <AntdIcon icon={'antd-user'} />}
                     size={size}
                     shape={shape}
                     data-dash-is-loading={
