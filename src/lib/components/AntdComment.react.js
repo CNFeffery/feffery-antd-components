@@ -25,6 +25,8 @@ const AntdComment = (props) => {
         style,
         locale,
         commentId,
+        showLikeDislike,
+        showReply,
         showDelete,
         replyClicks,
         deleteClicks,
@@ -73,21 +75,24 @@ const AntdComment = (props) => {
     };
 
     const actions = [
-        <Tooltip key="comment-basic-like" title={locale === "zh-cn" ? "支持" : "like"}>
-            <span onClick={like}>
-                {action === 'liked' ? <LikeFilled style={{ color: 'rgb(236, 65, 65)' }} /> : <LikeOutlined />}
-                <span className="comment-action">{likesCount}</span>
-            </span>
-        </Tooltip>,
-        <Tooltip key="comment-basic-dislike" title={locale === "zh-cn" ? "反对" : "dislike"}>
-            <span onClick={dislike}>
-                {React.createElement(action === 'disliked' ? DislikeFilled : DislikeOutlined)}
-                <span className="comment-action">{dislikesCount}</span>
-            </span>
-        </Tooltip>,
-        <span key="comment-basic-reply-to" onClick={() => {
-            setProps({ replyClicks: replyClicks + 1 })
-        }}>{locale === 'zh-cn' ? "添加回复" : "Add a reply"}</span>,
+        showLikeDislike ?
+            <Tooltip key="comment-basic-like" title={locale === "zh-cn" ? "支持" : "like"}>
+                <span onClick={like}>
+                    {action === 'liked' ? <LikeFilled style={{ color: 'rgb(236, 65, 65)' }} /> : <LikeOutlined />}
+                    <span className="comment-action">{likesCount}</span>
+                </span>
+            </Tooltip> : undefined,
+        showLikeDislike ?
+            <Tooltip key="comment-basic-dislike" title={locale === "zh-cn" ? "反对" : "dislike"}>
+                <span onClick={dislike}>
+                    {React.createElement(action === 'disliked' ? DislikeFilled : DislikeOutlined)}
+                    <span className="comment-action">{dislikesCount}</span>
+                </span>
+            </Tooltip> : undefined,
+        showReply ?
+            <span key="comment-basic-reply-to" onClick={() => {
+                setProps({ replyClicks: replyClicks + 1 })
+            }}>{locale === 'zh-cn' ? "添加回复" : "Add a reply"}</span> : undefined,
         showDelete ?
             <Popconfirm
                 title={locale === 'zh-cn' ? "确认删除" : "Confirm deletion"}
@@ -166,6 +171,12 @@ AntdComment.propTypes = {
     // 设置是否展示从此刻开始倒推相对时间
     fromNow: PropTypes.bool,
 
+    // 设置是否显示“支持/反对”按钮，默认为true
+    showLikeDislike: PropTypes.bool,
+
+    // 设置是否显示“添加回复”按钮，默认为true
+    showReply: PropTypes.bool,
+
     // 设置是否显示“删除”按钮，默认为false
     showDelete: PropTypes.bool,
 
@@ -216,6 +227,8 @@ AntdComment.propTypes = {
 };
 
 AntdComment.defaultProps = {
+    showLikeDislike: true,
+    showReply: true,
     showDelete: false,
     likesCount: 0,
     dislikesCount: 0,

@@ -37,10 +37,12 @@ Those elements have the following types:
   - `format` (String; optional)
 - `replyClicks` (Real; optional)
 - `showDelete` (Bool; optional)
+- `showLikeDislike` (Bool; optional)
+- `showReply` (Bool; optional)
 - `style` (Dict; optional)
 """
 function 'feffery'_antdcomment(; kwargs...)
-        available_props = Symbol[:children, :id, :action, :authorName, :authorNameHref, :avatarProps, :className, :commentContent, :commentId, :defaultAction, :deleteClicks, :dislikesCount, :fromNow, :likesCount, :loading_state, :locale, :publishTime, :replyClicks, :showDelete, :style]
+        available_props = Symbol[:children, :id, :action, :authorName, :authorNameHref, :avatarProps, :className, :commentContent, :commentId, :defaultAction, :deleteClicks, :dislikesCount, :fromNow, :likesCount, :loading_state, :locale, :publishTime, :replyClicks, :showDelete, :showLikeDislike, :showReply, :style]
         wild_props = Symbol[]
         return Component("'feffery'_antdcomment", "AntdComment", "feffery_antd_components", available_props, wild_props; kwargs...)
 end
