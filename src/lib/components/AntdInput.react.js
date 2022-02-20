@@ -101,6 +101,7 @@ export default class AntdInput extends Component {
                     size={size}
                     allowClear={allowClear}
                     bordered={bordered}
+                    value={value}
                     defaultValue={defaultValue}
                     disabled={disabled}
                     maxLength={maxLength}
@@ -124,6 +125,7 @@ export default class AntdInput extends Component {
                     size={size}
                     allowClear={allowClear}
                     bordered={bordered}
+                    value={value}
                     defaultValue={defaultValue}
                     disabled={disabled}
                     maxLength={maxLength}
@@ -147,6 +149,8 @@ export default class AntdInput extends Component {
                     size={size}
                     bordered={bordered}
                     disabled={disabled}
+                    value={value}
+                    defaultValue={defaultValue}
                     maxLength={maxLength}
                     onChange={(e) => {
                         // 若启用md5加密
