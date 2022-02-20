@@ -15,12 +15,12 @@
 
 </div>
 
-`feffery-components`计划子项目，`Plotly Dash`第三方组件库，将基于`Antd`，将超多具有丰富功能的组件引入`Dash`的世界🥳，最新版本：`0.0.1rc8`（**测试版本迭代中，敬请期待第一个正式版本的发布**）
+`feffery-components`计划子项目，`Plotly Dash`第三方组件库，将基于`Antd`，将超多具有丰富功能的组件引入`Dash`的世界🥳，最新版本：`0.1.0rc1`（**测试版本迭代中，敬请期待第一个正式版本的发布**）
 
 ## 1 最新版本安装方式
 
 ```bash
-pip install feffery-antd-components==0.0.1rc8
+pip install feffery-antd-components==0.1.0rc1
 ```
 
 ## 2 最新开发版本安装方式
