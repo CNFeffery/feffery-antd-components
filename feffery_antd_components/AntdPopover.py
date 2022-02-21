@@ -19,7 +19,7 @@ Keyword arguments:
 
 - color (string; optional)
 
-- content (boolean | number | string | dict | list; optional)
+- content (list; optional)
 
 - loading_state (dict; optional)
 

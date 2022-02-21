@@ -99,7 +99,7 @@ AntdPopover.propTypes = {
     ]),
 
     // 设置显示的气泡卡片内容
-    content: PropTypes.any,
+    content: PropTypes.array,
 
     // 设置气泡框的位置，可选的有'top'、'left'、'right'、'bottom'、'topLeft'
     // 、'topRight'、'bottomLeft'、'bottomRight'、'leftTop'、'leftBottom'
