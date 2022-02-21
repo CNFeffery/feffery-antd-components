@@ -58,9 +58,5 @@
 }
 
 .ant-tree-switcher>span {
-    vertical-align: baseline !important;
+    vertical-align: -0.125em !important;
 }
-
-/* .ant-breadcrumb-link > svg {
-    vertical-align: middle;
-} */
