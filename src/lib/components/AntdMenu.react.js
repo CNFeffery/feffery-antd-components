@@ -261,6 +261,7 @@ export default class AntdMenu extends Component {
                     defaultSelectedKeys={defaultSelectedKey ? [defaultSelectedKey] : defaultSelectedKey}
                     onSelect={listenSelected}
                     onOpenChange={(e) => setProps({ openKeys: e })}
+                    getPopupContainer={triggerNode => triggerNode.parentNode}
                     persistence={persistence}
                     persisted_props={persisted_props}
                     persistence_type={persistence_type}

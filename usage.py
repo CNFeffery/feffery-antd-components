@@ -8,6 +8,67 @@ app = dash.Dash(__name__)
 
 app.layout = html.Div(
     [
+
+        fac.AntdPopover(
+            fac.AntdButton(
+                '鼠标悬浮于此',
+                type='primary'
+            ),
+            content=[
+                fac.AntdButton(
+                    '鼠标悬浮于此',
+                    type='primary'
+                ),
+                fac.AntdButton(
+                    '鼠标悬浮于此',
+                    type='primary'
+                ),
+                fac.AntdButton(
+                    '鼠标悬浮于此',
+                    type='primary'
+                ),
+                fac.AntdTimeline(
+                    items=[
+                        {
+                            'content': '训练数据导入',
+                            'icon': 'md-cloud-upload',
+                            'iconStyle': {
+                                'fontSize': '18px'
+                            }
+                        },
+                        {
+                            'content': '模型训练',
+                            'icon': 'antd-clock-circle',
+                            'iconStyle': {
+                                'fontSize': '18px'
+                            }
+                        },
+                        {
+                            'content': '模型持久化',
+                            'icon': 'fc-accept-database',
+                            'iconStyle': {
+                                'fontSize': '18px'
+                            }
+                        },
+                        {
+                            'content': '模型发布',
+                            'icon': 'md-cloud-done',
+                            'iconStyle': {
+                                'fontSize': '18px'
+                            }
+                        }
+                    ],
+                    style={
+                        'margin': '20px'
+                    }
+                )
+            ],
+            title={
+                'content': '标题前缀图标测试',
+                'prefixIcon': 'fc-search'
+            }
+        ),
+
         fac.AntdProgress(
             percent=80
         ),
@@ -343,7 +404,7 @@ app.layout = html.Div(
                                         },
                                         {
                                             'content': '模型训练',
-                                            'icon': 'clock-circle',
+                                            'icon': 'antd-clock-circle',
                                             'iconStyle': {
                                                 'fontSize': '18px'
                                             }
