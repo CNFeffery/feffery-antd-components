@@ -15,7 +15,7 @@ Keyword arguments:
 - `id` (String; optional)
 - `className` (String; optional)
 - `color` (String; optional)
-- `contentChildrenIndexes` (Array of Reals; optional)
+- `content` (Bool | Real | String | Dict | Array; optional)
 - `loading_state` (optional): . loading_state has the following type: lists containing elements 'is_loading', 'prop_name', 'component_name'.
 Those elements have the following types:
   - `is_loading` (Bool; optional): Determines if the component is loading or not
@@ -34,7 +34,7 @@ Those elements have the following types:
 - `trigger` (a value equal to: 'hover', 'focus', 'click' | Array of a value equal to: 'hover', 'focus', 'click's; optional)
 """
 function 'feffery'_antdpopover(; kwargs...)
-        available_props = Symbol[:children, :id, :className, :color, :contentChildrenIndexes, :loading_state, :mouseEnterDelay, :mouseLeaveDelay, :overlayInnerStyle, :overlayStyle, :placement, :style, :title, :trigger]
+        available_props = Symbol[:children, :id, :className, :color, :content, :loading_state, :mouseEnterDelay, :mouseLeaveDelay, :overlayInnerStyle, :overlayStyle, :placement, :style, :title, :trigger]
         wild_props = Symbol[]
         return Component("'feffery'_antdpopover", "AntdPopover", "feffery_antd_components", available_props, wild_props; kwargs...)
 end

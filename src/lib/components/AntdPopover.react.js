@@ -2,14 +2,9 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Popover } from 'antd';
 import 'antd/dist/antd.css';
+import { omit } from "ramda";
+import { renderDashComponents } from "dash-extensions-js";
 import AntdIcon from './AntdIcon.react';
-
-const parseChildrenToArray = children => {
-    if (children && !Array.isArray(children)) {
-        return [children];
-    }
-    return children;
-};
 
 // 定义气泡卡片组件Popover，api参数参考https://ant.design/components/popover-cn/
 export default class AntdPopover extends Component {
@@ -29,28 +24,15 @@ export default class AntdPopover extends Component {
             overlayStyle,
             overlayInnerStyle,
             trigger,
-            contentChildrenIndexes,
-            setProps,
             loading_state
         } = this.props;
 
-        children = parseChildrenToArray(children)
-
-        let realChildren = [];
-        let contentChildren = [];
-        // 拆分真实children对象与需要气泡卡片内部嵌入的元素
-        if (contentChildrenIndexes.length !== 0) {
-            for (let i = 0; i < children.length; i++) {
-                // 判断当前子元素对应下标是否在contentChildrenIndexes中
-                if (contentChildrenIndexes.includes(i)) {
-                    contentChildren.push(children[i])
-                } else {
-                    realChildren.push(children[i])
-                }
-            }
-        } else {
-            realChildren = children
-        }
+        // 解析非children参数传入的其他组件数组
+        let nProps = omit(
+            ["setProps", "children", "loading_state", "className"],
+            this.props
+        );
+        nProps = renderDashComponents(nProps, ["content"]);
 
         return (
             <Popover id={id}
@@ -61,7 +43,7 @@ export default class AntdPopover extends Component {
                         {<AntdIcon icon={title.prefixIcon} />}
                         {<span style={{ marginLeft: '5px' }}>{title.content}</span>}
                     </div> : title}
-                content={contentChildren}
+                content={nProps.content}
                 placement={placement}
                 color={color}
                 mouseEnterDelay={mouseEnterDelay}
@@ -73,7 +55,7 @@ export default class AntdPopover extends Component {
                 getPopupContainer={(triggerNode) => triggerNode.parentNode}
                 data-dash-is-loading={
                     (loading_state && loading_state.is_loading) || undefined
-                }>{realChildren}
+                }>{children}
             </Popover>
         );
     }
@@ -107,6 +89,9 @@ AntdPopover.propTypes = {
         })
     ]),
 
+    // 设置显示的气泡卡片内容
+    content: PropTypes.any,
+
     // 设置气泡框的位置，可选的有'top'、'left'、'right'、'bottom'、'topLeft'
     // 、'topRight'、'bottomLeft'、'bottomRight'、'leftTop'、'leftBottom'
     // 、'rightTop'、'rightBottom'，默认为'top'
@@ -138,10 +123,6 @@ AntdPopover.propTypes = {
         ]
     ),
 
-    // 为了绕开dash非children属性不能传入组件的限制，用于指定children
-    // 属性中的哪些位置的元素应当作为气泡卡片内嵌的元素
-    contentChildrenIndexes: PropTypes.arrayOf(PropTypes.number),
-
     loading_state: PropTypes.shape({
         /**
          * Determines if the component is loading or not
@@ -166,5 +147,4 @@ AntdPopover.propTypes = {
 
 // 设置默认参数
 AntdPopover.defaultProps = {
-    contentChildrenIndexes: []
 }

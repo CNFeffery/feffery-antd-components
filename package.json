@@ -26,6 +26,7 @@
     "@ant-design/charts": "^1.1.4",
     "@ant-design/icons": "^4.6.3",
     "antd": "4.17.0-alpha.8",
+    "dash-extensions-js": "^0.0.8",
     "is-absolute-url": "^4.0.1",
     "md5": "^2.3.0",
     "ramda": "^0.26.1",
