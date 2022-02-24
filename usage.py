@@ -195,7 +195,7 @@ app.layout = html.Div(
                                     '字段示例2': i,
                                     '字段示例3': i
                                 }
-                                for i in range(5)
+                                for i in range(20)
                             ],
                             rowSelectionType='radio'
                         ),
