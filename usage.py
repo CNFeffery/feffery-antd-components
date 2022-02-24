@@ -9,6 +9,19 @@ app = dash.Dash(__name__)
 app.layout = html.Div(
     [
 
+
+        fac.AntdRadioGroup(
+            options=[
+                {
+                    'label': f'选项{i}',
+                    'value': f'选项{i}'
+                }
+                for i in range(5)
+            ],
+            direction='vertical',
+            defaultValue='选项1'
+        ),
+
         fac.AntdPopover(
             fac.AntdButton(
                 '鼠标悬浮于此',
@@ -314,6 +327,18 @@ app.layout = html.Div(
                                     'title': '子页面3-2'
                                 }
                             ]
+                        ),
+
+                        fac.AntdRadioGroup(
+                            options=[
+                                {
+                                    'label': f'选项{i}',
+                                    'value': f'选项{i}'
+                                }
+                                for i in range(5)
+                            ],
+                            direction='vertical',
+                            defaultValue='选项1'
                         ),
 
                         html.Div(
