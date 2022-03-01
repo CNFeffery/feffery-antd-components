@@ -15,7 +15,7 @@ Keyword arguments:
 
 - closable (boolean; default False)
 
-- description (string; optional)
+- description (boolean | number | string | dict | list; optional)
 
 - loading_state (dict; optional)
 
@@ -30,7 +30,7 @@ Keyword arguments:
     - prop_name (string; optional):
         Holds which property is loading.
 
-- message (string | list of strings; optional)
+- message (boolean | number | string | dict | list | list of boolean | number | string | dict | lists; optional)
 
 - messageRenderMode (a value equal to: 'default', 'loop-text', 'marquee'; default 'default')
 

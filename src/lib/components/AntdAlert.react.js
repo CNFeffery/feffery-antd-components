@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import TextLoop from 'react-text-loop'
 import { Alert } from 'antd';
+import { omit } from "ramda";
+import { renderDashComponents } from "dash-extensions-js";
 import Marquee from 'react-fast-marquee';
 import 'antd/dist/antd.css';
 
@@ -13,8 +15,8 @@ export default class AntdAlert extends Component {
             id,
             className,
             style,
-            description,
             message,
+            description,
             type,
             showIcon,
             closable,
@@ -23,18 +25,25 @@ export default class AntdAlert extends Component {
             loading_state
         } = this.props;
 
-        if (messageRenderMode === 'loop-text' && Array.isArray(message)) {
+        // 解析非children参数传入的其他组件数组
+        let nProps = omit(
+            ["setProps", "children", "loading_state", "className"],
+            this.props
+        );
+        nProps = renderDashComponents(nProps, ["message", "description"]);
+
+        if (messageRenderMode === 'loop-text' && Array.isArray(nProps.message)) {
             return (
                 <Alert id={id}
                     className={className}
                     style={style}
                     message={
                         <TextLoop mask>
-                            {message.map(item => <div>{item}</div>)}
+                            {nProps.message.map(item => <div>{item}</div>)}
                         </TextLoop>
                     }
                     type={type}
-                    description={description}
+                    description={nProps.description}
                     showIcon={showIcon}
                     closable={closable}
                     data-dash-is-loading={
@@ -51,12 +60,12 @@ export default class AntdAlert extends Component {
                 message={
                     messageRenderMode === 'marquee' ?
                         <Marquee pauseOnHover gradient={false}>
-                            {message}
+                            {nProps.message}
                         </Marquee> :
-                        message
+                        nProps.message
                 }
                 type={type}
-                description={description}
+                description={nProps.description}
                 showIcon={showIcon}
                 closable={closable}>
             </Alert>
@@ -66,6 +75,7 @@ export default class AntdAlert extends Component {
 
 // 定义参数或属性
 AntdAlert.propTypes = {
+
     // 组件id
     id: PropTypes.string,
 
@@ -76,12 +86,12 @@ AntdAlert.propTypes = {
     style: PropTypes.object,
 
     // 设置警告组件内的额外信息元素
-    description: PropTypes.string,
+    description: PropTypes.any,
 
     // 设置显示的文字信息
     message: PropTypes.oneOfType([
-        PropTypes.string,
-        PropTypes.arrayOf(PropTypes.string)
+        PropTypes.any,
+        PropTypes.arrayOf(PropTypes.any)
     ]),
 
     // 设置提示类型，可选的有'success'、'info'、'warning'和'error'四种

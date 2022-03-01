@@ -9,6 +9,73 @@ app = dash.Dash(__name__)
 app.layout = html.Div(
     [
 
+        html.Div(
+            [
+                fac.AntdAlert(
+                    description='好样的',
+                    message=[
+                        html.Div(
+                            [
+                                fac.AntdText(
+                                    '这是一段测试文字，'
+                                ),
+                                fac.AntdText(
+                                    '加粗',
+                                    strong=True
+                                ),
+                                html.A(
+                                    '链接',
+                                    href='/'
+                                )
+                            ]
+                        )
+                    ],
+                    showIcon=True
+                )
+            ]
+        ),
+
+
+        html.Div(
+            [
+                fac.AntdAlert(
+                    description='这是一段辅助说明文字',
+                    message=[
+                        '君不见黄河之水天上来',
+                        '奔流到海不复回',
+                        '君不见高堂明镜悲白发',
+                        '朝如青丝暮成雪',
+                        '人生得意须尽欢',
+                        '莫使金樽空对月',
+                        '天生我材必有用',
+                        '千金散尽还复来'
+                    ],
+                    showIcon=True,
+                    messageRenderMode='loop-text'
+                )
+            ]
+        ),
+
+        html.Div(
+            [
+                fac.AntdAlert(
+                    '这是一段辅助说明文字',
+                    message='，'.join([
+                        '君不见黄河之水天上来',
+                        '奔流到海不复回',
+                        '君不见高堂明镜悲白发',
+                        '朝如青丝暮成雪',
+                        '人生得意须尽欢',
+                        '莫使金樽空对月',
+                        '天生我材必有用',
+                        '千金散尽还复来'
+                    ]) + '。',
+                    description='这是跑马灯模式示例',
+                    showIcon=True,
+                    messageRenderMode='marquee'
+                )
+            ]
+        ),
 
         fac.AntdRadioGroup(
             options=[
@@ -905,7 +972,6 @@ def message_demo1(nClicks):
 )
 def modal_demo_callback1(nClicks):
     return True
-
 
 if __name__ == '__main__':
     app.run_server(debug=True)

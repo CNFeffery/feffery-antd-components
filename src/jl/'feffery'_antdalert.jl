@@ -11,13 +11,13 @@ Keyword arguments:
 - `id` (String; optional)
 - `className` (String; optional)
 - `closable` (Bool; optional)
-- `description` (String; optional)
+- `description` (Bool | Real | String | Dict | Array; optional)
 - `loading_state` (optional): . loading_state has the following type: lists containing elements 'is_loading', 'prop_name', 'component_name'.
 Those elements have the following types:
   - `is_loading` (Bool; optional): Determines if the component is loading or not
   - `prop_name` (String; optional): Holds which property is loading
   - `component_name` (String; optional): Holds the name of the component that is loading
-- `message` (String | Array of Strings; optional)
+- `message` (Bool | Real | String | Dict | Array | Array of Bool | Real | String | Dict | Arrays; optional)
 - `messageRenderMode` (a value equal to: 'default', 'loop-text', 'marquee'; optional)
 - `showIcon` (Bool; optional)
 - `style` (Dict; optional)
