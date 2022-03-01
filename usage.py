@@ -18,6 +18,46 @@ app.layout = html.Div(
                 }
                 for i in range(5)
             ],
+            defaultValue='选项1'
+        ),
+
+        fac.AntdSpace(
+            [
+                html.Div(
+                    '输入框',
+                    style={
+                        'height': '32px',
+                        'lineHeight': '32px',
+                        'backgroundColor': 'rgb(241, 241, 241)',
+                        'paddingLeft': '8px',
+                        'paddingRight': '8px',
+                        'borderTopLeftRadius': '5px',
+                        'borderBottomLeftRadius': '5px',
+                    }
+                ),
+                fac.AntdInput(
+                    style={
+                        'width': '100px'
+                    }
+                )
+            ],
+            size=0
+        ),
+
+        html.Div(
+            style={
+                'height': '200px'
+            }
+        ),
+
+        fac.AntdRadioGroup(
+            options=[
+                {
+                    'label': f'选项{i}',
+                    'value': f'选项{i}'
+                }
+                for i in range(5)
+            ],
             direction='vertical',
             defaultValue='选项1'
         ),
@@ -195,9 +235,8 @@ app.layout = html.Div(
                                     '字段示例2': i,
                                     '字段示例3': i
                                 }
-                                for i in range(20)
-                            ],
-                            rowSelectionType='radio'
+                                for i in range(30)
+                            ]
                         ),
 
                         fac.AntdSpace(
@@ -821,7 +860,8 @@ app.layout = html.Div(
         )
     ],
     style={
-        'height': '100vh'
+        'height': '100vh',
+        'padding': '50px'
     }
 )
 
