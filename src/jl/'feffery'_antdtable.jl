@@ -69,7 +69,8 @@ Those elements have the following types:
 - `recentlyMouseEnterColumn` (String; optional)
 - `recentlyMouseEnterRow` (String | Real; optional)
 - `rowSelectionType` (a value equal to: 'checkbox', 'radio'; optional)
-- `selectedRowKeys` (Array of Strings; optional)
+- `rowSelectionWidth` (String | Real; optional)
+- `selectedRowKeys` (Array of String | Reals; optional)
 - `selectedRows` (Array; optional)
 - `size` (a value equal to: 'small', 'default', 'large'; optional)
 - `sortOptions` (optional): . sortOptions has the following type: lists containing elements 'sortDataIndexes', 'multiple'.
@@ -80,11 +81,12 @@ Those elements have the following types:
 Those elements have the following types:
   - `columns` (Array of Strings; optional)
   - `orders` (Array of a value equal to: 'ascend', 'descend's; optional)
+- `sticky` (Bool; optional)
 - `style` (Dict; optional)
 - `titlePopoverInfo` (Dict; optional)
 """
 function 'feffery'_antdtable(; kwargs...)
-        available_props = Symbol[:id, :bordered, :className, :clickedContent, :columns, :columnsFormatConstraint, :containerId, :currentData, :data, :enableHoverListen, :filter, :filterOptions, :loading_state, :locale, :maxHeight, :mode, :nClicksButton, :pagination, :recentlyButtonClickedRow, :recentlyChangedRow, :recentlyMouseEnterColumn, :recentlyMouseEnterRow, :rowSelectionType, :selectedRowKeys, :selectedRows, :size, :sortOptions, :sorter, :style, :titlePopoverInfo]
+        available_props = Symbol[:id, :bordered, :className, :clickedContent, :columns, :columnsFormatConstraint, :containerId, :currentData, :data, :enableHoverListen, :filter, :filterOptions, :loading_state, :locale, :maxHeight, :mode, :nClicksButton, :pagination, :recentlyButtonClickedRow, :recentlyChangedRow, :recentlyMouseEnterColumn, :recentlyMouseEnterRow, :rowSelectionType, :rowSelectionWidth, :selectedRowKeys, :selectedRows, :size, :sortOptions, :sorter, :sticky, :style, :titlePopoverInfo]
         wild_props = Symbol[]
         return Component("'feffery'_antdtable", "AntdTable", "feffery_antd_components", available_props, wild_props; kwargs...)
 end

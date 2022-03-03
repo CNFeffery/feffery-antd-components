@@ -153,61 +153,6 @@ export default class AntdTable extends Component {
 
     render() {
 
-        // 取得必要属性或参数
-        let {
-            id,
-            className,
-            style,
-            locale,
-            containerId,
-            setProps,
-            columns,
-            rowSelectionType,
-            titlePopoverInfo,
-            columnsFormatConstraint,
-            enableHoverListen,
-            data,
-            sortOptions,
-            filterOptions,
-            pagination,
-            bordered,
-            maxHeight,
-            size,
-            mode,
-            nClicksButton,
-            loading_state
-        } = this.props;
-
-        let size2size = new Map([
-            ['small', 'default'],
-            ['default', 'small'],
-            ['large', 'middle']
-        ])
-
-        pagination = {
-            ...pagination,
-            ...{
-                showTotalPrefix: pagination?.showTotalPrefix ? pagination?.showTotalPrefix : '共 ',
-                showTotalSuffix: pagination?.showTotalSuffix ? pagination?.showTotalSuffix : ' 条记录',
-            }
-        }
-
-        // 为columns添加默认属性
-        for (let i in columns) {
-
-            columns[i] = {
-                ...{ align: 'center' },
-                ...columns[i]
-            }
-        }
-
-        // 当未设置行key时，自动以自增1作为key
-        for (let i in data) {
-            if (!data[i].hasOwnProperty('key')) {
-                data[i]['key'] = i.toString()
-            }
-        }
-
         // 自定义可编辑单元格
         const EditableContext = React.createContext(null);
 
@@ -325,6 +270,84 @@ export default class AntdTable extends Component {
             return <td {...restProps}>{childNode}</td>;
         };
 
+        // 配置自定义组件
+        const components = {
+            body: {
+                row: EditableRow,
+                cell: EditableCell,
+            },
+        };
+
+        // 数值比较函数
+        const compareNumeric = (x, y) => {
+            if (x.value < y.value) {
+                return -1;
+            } else if (x.value > y.value) {
+                return 1;
+            } else {
+                return 0;
+            }
+        }
+
+        // 取得必要属性或参数
+        let {
+            id,
+            className,
+            style,
+            locale,
+            containerId,
+            setProps,
+            columns,
+            rowSelectionType,
+            selectedRowKeys,
+            rowSelectionWidth,
+            sticky,
+            titlePopoverInfo,
+            columnsFormatConstraint,
+            enableHoverListen,
+            data,
+            sortOptions,
+            filterOptions,
+            pagination,
+            bordered,
+            maxHeight,
+            size,
+            mode,
+            nClicksButton,
+            loading_state
+        } = this.props;
+
+        // 重新映射size到符合常识的顺序
+        let size2size = new Map([
+            ['small', 'default'],
+            ['default', 'small'],
+            ['large', 'middle']
+        ])
+
+        pagination = {
+            ...pagination,
+            ...{
+                showTotalPrefix: pagination?.showTotalPrefix ? pagination?.showTotalPrefix : '共 ',
+                showTotalSuffix: pagination?.showTotalSuffix ? pagination?.showTotalSuffix : ' 条记录',
+            }
+        }
+
+        // 当未设置行key时，自动以自增1作为key
+        for (let i in data) {
+            if (!data[i].hasOwnProperty('key')) {
+                data[i]['key'] = i.toString()
+            }
+        }
+
+        // 为columns添加默认属性
+        for (let i in columns) {
+
+            columns[i] = {
+                ...{ align: 'center' },
+                ...columns[i]
+            }
+        }
+
         // 处理可编辑特性
         columns = columns.map((col) => {
             if (!col.editable) {
@@ -343,17 +366,6 @@ export default class AntdTable extends Component {
         });
 
         // 处理可筛选特性
-
-        // 数值比较比较函数
-        const compareNumeric = (x, y) => {
-            if (x.value < y.value) {
-                return -1;
-            } else if (x.value > y.value) {
-                return 1;
-            } else {
-                return 0;
-            }
-        }
 
         // 若为前端渲染模式，在filterOptions中每个字段filterCustomItems缺失的情况下
         // 则会自动根据前端一次性灌入的数据推算出所有添加过滤器字段的唯一值集合作为待选菜单
@@ -756,13 +768,6 @@ export default class AntdTable extends Component {
             }
         }
 
-        // 配置自定义组件
-        const components = {
-            body: {
-                row: EditableRow,
-                cell: EditableCell,
-            },
-        };
 
         // 处理columns.title的增广功能设置
         if (titlePopoverInfo) {
@@ -802,26 +807,6 @@ export default class AntdTable extends Component {
             }
         }
 
-        let rowSelection
-        // 处理行选择功能设置
-        if (rowSelectionType) {
-
-            rowSelection = {
-                type: rowSelectionType,
-                selections: [
-                    Table.SELECTION_ALL,
-                    Table.SELECTION_INVERT,
-                    Table.SELECTION_NONE
-                ],
-                onChange: (selectedRowKeys, selectedRows) => {
-                    setProps({
-                        selectedRowKeys: selectedRowKeys,
-                        selectedRows: selectedRows
-                    })
-                }
-            }
-        }
-
         // 添加表头单元格监听事件
         if (enableHoverListen) {
             columns = columns.map(
@@ -840,6 +825,28 @@ export default class AntdTable extends Component {
             )
         }
 
+        let rowSelection
+        // 处理行选择功能设置
+        if (rowSelectionType) {
+
+            rowSelection = {
+                columnWidth: rowSelectionWidth,
+                fixed: true,
+                type: rowSelectionType,
+                selectedRowKeys: selectedRowKeys,
+                selections: [
+                    Table.SELECTION_ALL,
+                    Table.SELECTION_INVERT,
+                    Table.SELECTION_NONE
+                ],
+                onChange: (selectedRowKeys, selectedRows) => {
+                    setProps({
+                        selectedRowKeys: selectedRowKeys,
+                        selectedRows: selectedRows
+                    })
+                }
+            }
+        }
 
         return (
             <ConfigProvider locale={str2Locale.get(locale)}>
@@ -853,6 +860,7 @@ export default class AntdTable extends Component {
                     columns={columns}
                     size={size2size.get(size)}
                     rowSelection={rowSelection}
+                    sticky={sticky}
                     pagination={{ ...pagination, ...{ showTotal: total => `${pagination.showTotalPrefix}${total}${pagination.showTotalSuffix}` } }}
                     bordered={bordered}
                     scroll={{
@@ -870,7 +878,7 @@ export default class AntdTable extends Component {
                     data-dash-is-loading={
                         (loading_state && loading_state.is_loading) || undefined
                     }
-                    getPopupContainer={containerId ? () => document.getElementById(containerId) : undefined}
+                    getPopupContainer={containerId ? () => (document.getElementById(containerId) ? document.getElementById(containerId) : document.body) : undefined}
                 />
             </ConfigProvider>
         );
@@ -960,10 +968,24 @@ AntdTable.propTypes = {
     rowSelectionType: PropTypes.oneOf(['checkbox', 'radio']),
 
     // 记录已被选择的行key值数组
-    selectedRowKeys: PropTypes.arrayOf(PropTypes.string),
+    selectedRowKeys: PropTypes.arrayOf(
+        PropTypes.oneOfType([
+            PropTypes.string,
+            PropTypes.number
+        ])
+    ),
+
+    // 设置行选择框宽度，默认为'32px'
+    rowSelectionWidth: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.number
+    ]),
 
     // 记录已被选择的行记录值列表
     selectedRows: PropTypes.array,
+
+    // 设置是否开启粘性头部，默认为false
+    sticky: PropTypes.bool,
 
     // 设置是否启用行悬浮事件监听（此功能可能会干扰其他正常表格功能，慎用），默认为false
     enableHoverListen: PropTypes.bool,

@@ -8,6 +8,55 @@ app = dash.Dash(__name__)
 
 app.layout = html.Div(
     [
+        fac.AntdTable(
+            selectedRowKeys=['2', '4'],
+            rowSelectionWidth='5rem',
+            columns=[
+                {
+                    'title': '默认的checkbox模式',
+                    'dataIndex': f'默认的checkbox模式',
+                    'width': 400
+                },
+                {
+                    'title': '自定义选项的checkbox模式',
+                    'dataIndex': '自定义选项的checkbox模式',
+                    'width': 400
+                },
+                {
+                    'title': 'keyword模式',
+                    'dataIndex': 'keyword模式',
+                    'width': 400
+                }
+            ],
+            containerId='docs-content',
+            sticky=True,
+            pagination={
+                'pageSize': 100
+            },
+            data=[
+                {
+                    '默认的checkbox模式': i,
+                    '自定义选项的checkbox模式': i,
+                    'keyword模式': i
+                }
+                for i in range(500)
+            ],
+            filterOptions={
+                '默认的checkbox模式': {
+                    'filterMode': 'keyword'
+                },
+                '自定义选项的checkbox模式': {
+                    'filterMode': 'keyword'
+                },
+                'keyword模式': {
+                    'filterMode': 'keyword'
+                }
+            },
+            rowSelectionType='checkbox',
+            style={
+                'width': '600px'
+            }
+        ),
 
         html.Div(
             [
@@ -972,6 +1021,7 @@ def message_demo1(nClicks):
 )
 def modal_demo_callback1(nClicks):
     return True
+
 
 if __name__ == '__main__':
     app.run_server(debug=True)

@@ -15,8 +15,6 @@ export default class AntdAlert extends Component {
             id,
             className,
             style,
-            message,
-            description,
             type,
             showIcon,
             closable,
