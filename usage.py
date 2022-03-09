@@ -1007,6 +1007,7 @@ def test_(replyClicks, deleteClicks):
     prevent_initial_call=True
 )
 def message_demo1(nClicks):
+
     return fac.AntdMessage(
         content='全局提示框示例',
         icon='fc-overtime',

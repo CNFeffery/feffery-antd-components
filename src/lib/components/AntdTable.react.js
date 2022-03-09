@@ -327,8 +327,8 @@ export default class AntdTable extends Component {
         pagination = {
             ...pagination,
             ...{
-                showTotalPrefix: pagination?.showTotalPrefix ? pagination?.showTotalPrefix : '共 ',
-                showTotalSuffix: pagination?.showTotalSuffix ? pagination?.showTotalSuffix : ' 条记录',
+                showTotalPrefix: pagination?.showTotalPrefix ? pagination.showTotalPrefix : '共 ',
+                showTotalSuffix: pagination?.showTotalSuffix ? pagination.showTotalSuffix : ' 条记录',
             }
         }
 
@@ -863,9 +863,7 @@ export default class AntdTable extends Component {
                     sticky={sticky}
                     pagination={{ ...pagination, ...{ showTotal: total => `${pagination.showTotalPrefix}${total}${pagination.showTotalSuffix}` } }}
                     bordered={bordered}
-                    scroll={{
-                        y: maxHeight ? maxHeight : 99999
-                    }}
+                    scroll={maxHeight ? { y: maxHeight } : undefined}
                     onChange={this.onPageChange}
                     onRow={
                         enableHoverListen ?
@@ -1034,7 +1032,7 @@ AntdTable.propTypes = {
     // 定义筛选参数
     filterOptions: PropTypes.object,
 
-    // 翻页相关参数
+    // 翻页相关参数，设置为false时不展示和进行分页
     pagination: PropTypes.oneOfType([
         PropTypes.bool,
         PropTypes.exact({
@@ -1050,10 +1048,16 @@ AntdTable.propTypes = {
             // 当前的页码
             current: PropTypes.number,
 
+            // 设置是否展示pageSize切换器，当total大于50时默认为true
+            showQuickJumper: PropTypes.bool,
+
             // 设定每页尺寸切换可选的范围
             pageSizeOptions: PropTypes.arrayOf(PropTypes.number),
 
-            // 设置是否渲染快速跳转控件
+            // 设置是否显示原生页面悬浮提示title信息，默认为true
+            showTitle: PropTypes.bool,
+
+            // 设置是否渲染快速跳转控件，默认为false
             showQuickJumper: PropTypes.bool,
 
             // 定义总记录行数显示部分的前缀文字，默认为"共 "
@@ -1069,8 +1073,16 @@ AntdTable.propTypes = {
             hideOnSinglePage: PropTypes.bool,
 
             // 设置是否开启简洁模式
-            simple: PropTypes.bool
+            simple: PropTypes.bool,
 
+            // 设置是否禁用分页，默认为false
+            disabled: PropTypes.bool,
+
+            // 设置是否开启响应式，即分页尺寸会根据屏幕宽度自动进行调整
+            responsive: PropTypes.bool,
+
+            // 设置分页器尺寸，可选的有'default'和'small'，默认为'default'
+            size: PropTypes.oneOf(['default', 'small'])
         })
     ]),
 

@@ -1,6 +1,6 @@
 {
   "name": "feffery_antd_components",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "description": "Best implementation of Antd components in Plotly Dash.",
   "repository": {
     "type": "git",
@@ -19,7 +19,7 @@
     "build": "npm run build:js && npm run build:backends",
     "build:activated": "npm run build:js && npm run build:backends-activated"
   },
-  "author": "CNFeffery <fefferypzy@gmail.com>",
+  "author": "CNFeffery <fefferypzy@gmail.com>", 
   "email": "fefferypzy@gmail.com",
   "license": "MIT",
   "dependencies": {
