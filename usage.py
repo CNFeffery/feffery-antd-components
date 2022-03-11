@@ -8,24 +8,110 @@ app = dash.Dash(__name__)
 
 app.layout = html.Div(
     [
+
+        fac.AntdTable(
+            miniChartHeight=60,
+            miniChartAnimation=False,
+            summaryRowContents=[{'content': '测试', 'align': 'center'}]*5+[{'content': '测试测试', 'colSpan': 2, 'align': 'center'}],
+            summaryRowFixed=True,
+            columns=[
+                {
+                    'title': 'status-badge示例',
+                    'dataIndex': 'status-badge示例',
+                    # 'width': '25%',
+                    'renderOptions': {
+                        'renderType': 'status-badge'
+                    }
+                },
+                {
+                    'title': 'mini-bar示例',
+                    'dataIndex': 'mini-bar示例',
+                    # 'width': '25%',
+                    'renderOptions': {
+                        'renderType': 'mini-bar'
+                    }
+                },
+                {
+                    'title': 'ellipsis内容省略示例',
+                    'dataIndex': 'ellipsis内容省略示例',
+                    'renderOptions': {'renderType': 'ellipsis'}
+                },
+                {
+                    # 注意，mini-progress模式接受的输入应当在0到1之间
+                    'title': 'mini-progress示例',
+                    'dataIndex': 'mini-progress示例',
+                    # 'width': '25%',
+                    'renderOptions': {
+                        'renderType': 'mini-progress'
+                    }
+                },
+                {
+                    # 注意，mini-ring-progress模式接受的输入应当在0到1之间
+                    'title': 'mini-ring-progress示例',
+                    'dataIndex': 'mini-ring-progress示例',
+                    # 'width': '25%',
+                    'renderOptions': {
+                        'renderType': 'mini-ring-progress'
+                    }
+                },
+                {
+                    'title': 'mini-area示例',
+                    'dataIndex': 'mini-area示例',
+                    # 'width': '25%',
+                    'renderOptions': {
+                        'renderType': 'mini-area'
+                    }
+                },
+                {
+                    'title': 'mini-line示例',
+                    'dataIndex': 'mini-line示例',
+                    # 'width': '25%',
+                    'renderOptions': {
+                        'renderType': 'mini-line'
+                    }
+                },
+            ],
+            data=[
+                {
+                    'key': i,
+                    'ellipsis内容省略示例': '这是一段废话，用来演示超长内容再渲染巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉',
+                    'status-badge示例': {
+                        'status': 'processing',
+                        'text': '处理中'
+                    },
+                    'mini-line示例': np.random.randint(1, 20, 10),
+                    'mini-bar示例': np.random.randint(1, 20, 10),
+                    'mini-progress示例': np.random.rand(),
+                    'mini-ring-progress示例': np.random.rand(),
+                    'mini-area示例': np.random.randint(1, 20, 10)
+                }
+                for i in range(50)
+            ],
+            maxHeight=400,
+            # maxWidth=800,
+            bordered=True,
+            containerId='docs-content'  # 绑定局部滚动容器以确保悬浮层正常显示
+        ),
+
         fac.AntdTable(
             selectedRowKeys=['2', '4'],
-            rowSelectionWidth='5rem',
+            rowSelectionWidth='4rem',
             columns=[
                 {
                     'title': '默认的checkbox模式',
                     'dataIndex': f'默认的checkbox模式',
-                    'width': 400
+                    'width': '33.33%',
+                    # 'fixed': 'left'
                 },
                 {
                     'title': '自定义选项的checkbox模式',
                     'dataIndex': '自定义选项的checkbox模式',
-                    'width': 400
+                    'width': '33.33%'
                 },
                 {
                     'title': 'keyword模式',
                     'dataIndex': 'keyword模式',
-                    'width': 400
+                    'width': '33.33%'
                 }
             ],
             containerId='docs-content',
@@ -53,8 +139,11 @@ app.layout = html.Div(
                 }
             },
             rowSelectionType='checkbox',
+            bordered=True,
+            # maxHeight=200,
+            maxWidth=1000,
             style={
-                'width': '600px'
+                # 'width': '800px'
             }
         ),
 

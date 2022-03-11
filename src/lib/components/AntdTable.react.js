@@ -1,7 +1,7 @@
 import React, { Component, useContext, useState, useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
-import { Table, Tooltip, Popover, Popconfirm, ConfigProvider, Typography, Input, Form, Tag, Button, Space, message } from 'antd';
-import { TinyLine, TinyArea, TinyColumn, Progress } from '@ant-design/charts';
+import { Table, Tooltip, Popover, Popconfirm, ConfigProvider, Typography, Input, Form, Tag, Button, Badge, Space, message } from 'antd';
+import { TinyLine, TinyArea, TinyColumn, Progress, RingProgress } from '@ant-design/charts';
 import Highlighter from 'react-highlight-words';
 import { SearchOutlined, QuestionCircleOutlined } from '@ant-design/icons';
 import { str2Locale } from './locales.react';
@@ -298,6 +298,8 @@ export default class AntdTable extends Component {
             containerId,
             setProps,
             columns,
+            miniChartHeight,
+            miniChartAnimation,
             rowSelectionType,
             selectedRowKeys,
             rowSelectionWidth,
@@ -311,9 +313,12 @@ export default class AntdTable extends Component {
             pagination,
             bordered,
             maxHeight,
+            maxWidth,
             size,
             mode,
             nClicksButton,
+            summaryRowContents,
+            summaryRowFixed,
             loading_state
         } = this.props;
 
@@ -523,14 +528,17 @@ export default class AntdTable extends Component {
                     if (columns[i]['renderOptions']['renderType'] == 'ellipsis') {
                         columns[i]['ellipsis'] = true
                         columns[i]['render'] = content => (
-                            <Tooltip placement="topLeft" title={content}>
+                            <Tooltip
+                                placement="topLeft"
+                                title={content}
+                                getPopupContainer={containerId ? () => (document.getElementById(containerId) ? document.getElementById(containerId) : document.body) : undefined}
+                            >
                                 {content}
                             </Tooltip>
                         )
                     }
                 }
             }
-
         }
 
         // 配置字段渲染模式为link的相关参数
@@ -581,6 +589,21 @@ export default class AntdTable extends Component {
             }
         }
 
+        // 配置字段渲染模式为status-badge的相关参数
+        for (let i = 0; i < columns.length; i++) {
+            // 当前字段具有renderOptions参数时且renderOptions参数是字典时
+            if (columns[i]['renderOptions']) {
+                if (columns[i]['renderOptions'].hasOwnProperty('renderType')) {
+                    // 当renderOptions参数的renderType值设置为status-badge时
+                    if (columns[i]['renderOptions']['renderType'] == 'status-badge') {
+                        columns[i]['render'] = content => (
+                            <Badge status={content.status} text={content.text} />
+                        )
+                    }
+                }
+            }
+        }
+
         // 配置字段渲染模式为button的相关参数
         for (let i = 0; i < columns.length; i++) {
             // 当前字段具有renderOptions参数时且renderOptions参数是字典时
@@ -604,7 +627,7 @@ export default class AntdTable extends Component {
                                                         okText={columns[i]['renderOptions']['renderButtonPopConfirmProps'].okText}
                                                         cancelText={columns[i]['renderOptions']['renderButtonPopConfirmProps'].cancelText}
                                                         disabled={content_.disabled}
-                                                        getPopupContainer={containerId ? () => document.getElementById(containerId) : undefined}
+                                                        getPopupContainer={containerId ? () => (document.getElementById(containerId) ? document.getElementById(containerId) : document.body) : undefined}
                                                         onConfirm={() => setProps({
                                                             recentlyButtonClickedRow: record,
                                                             nClicksButton: nClicksButton + 1,
@@ -628,7 +651,7 @@ export default class AntdTable extends Component {
                                     okText={columns[i]['renderOptions']['renderButtonPopConfirmProps'].okText}
                                     cancelText={columns[i]['renderOptions']['renderButtonPopConfirmProps'].cancelText}
                                     disabled={content.disabled}
-                                    getPopupContainer={containerId ? () => document.getElementById(containerId) : undefined}
+                                    getPopupContainer={containerId ? () => (document.getElementById(containerId) ? document.getElementById(containerId) : document.body) : undefined}
                                     onConfirm={() => setProps({
                                         recentlyButtonClickedRow: record,
                                         nClicksButton: nClicksButton + 1,
@@ -719,50 +742,57 @@ export default class AntdTable extends Component {
                 // 当renderOptions参数的renderType值设置为mini-line时
                 if (columns[i]['renderOptions']['renderType'] == 'mini-line') {
                     columns[i]['render'] = data => {
-                        var config = {
-                            height: "100%",
-                            width: "100%",
+                        let config = {
                             autoFit: true,
                             padding: 0,
                             data: data,
+                            animation: miniChartAnimation,
                             smooth: true,
                         };
-                        return <div><TinyLine {...config} /></div>;
+                        return <div style={{ height: miniChartHeight }}><TinyLine {...config} /></div>;
                     }
                 } else if (columns[i]['renderOptions']['renderType'] == 'mini-bar') {
                     columns[i]['render'] = data => {
-                        var config = {
-                            height: "100%",
-                            width: "100%",
+                        let config = {
                             padding: 0,
                             autoFit: true,
                             data: data,
+                            animation: miniChartAnimation,
                         };
-                        return <div><TinyColumn {...config} /></div>;
+                        return <div style={{ height: miniChartHeight }}><TinyColumn {...config} /></div>;
                     }
                 } else if (columns[i]['renderOptions']['renderType'] == 'mini-progress') {
                     columns[i]['render'] = data => {
-                        var config = {
-                            height: "100%",
-                            width: "100%",
+                        let config = {
                             autoFit: true,
                             padding: 0,
                             percent: data,
+                            animation: miniChartAnimation,
                             color: ['#5B8FF9', '#E8EDF3'],
                         };
-                        return <div><Progress {...config} /></div>;
+                        return <div style={{ height: miniChartHeight }}><Progress {...config} /></div>;
+                    }
+                } else if (columns[i]['renderOptions']['renderType'] == 'mini-ring-progress') {
+                    columns[i]['render'] = data => {
+                        let config = {
+                            autoFit: true,
+                            padding: 0,
+                            percent: data,
+                            animation: miniChartAnimation,
+                            color: ['#5B8FF9', '#E8EDF3'],
+                        };
+                        return <div style={{ height: miniChartHeight }}><RingProgress {...config} /></div>;
                     }
                 } else if (columns[i]['renderOptions']['renderType'] == 'mini-area') {
                     columns[i]['render'] = data => {
-                        var config = {
-                            height: "100%",
-                            width: "100%",
+                        let config = {
                             autoFit: true,
                             padding: 0,
                             data: data,
+                            animation: miniChartAnimation,
                             smooth: true,
                         };
-                        return <div><TinyArea {...config} /></div>;
+                        return <div style={{ height: miniChartHeight }}><TinyArea {...config} /></div>;
                     }
                 }
             }
@@ -793,7 +823,7 @@ export default class AntdTable extends Component {
                                 }}>{content}</div>}
                                 overlayStyle={{ maxWidth: '250px' }}
                                 placement={'bottom'}
-                                getPopupContainer={containerId ? () => document.getElementById(containerId) : undefined}>
+                                getPopupContainer={containerId ? () => (document.getElementById(containerId) ? document.getElementById(containerId) : document.body) : undefined}>
                                 <QuestionCircleOutlined
                                     style={{
                                         color: '#8c8c8c',
@@ -863,7 +893,7 @@ export default class AntdTable extends Component {
                     sticky={sticky}
                     pagination={{ ...pagination, ...{ showTotal: total => `${pagination.showTotalPrefix}${total}${pagination.showTotalSuffix}` } }}
                     bordered={bordered}
-                    scroll={maxHeight ? { y: maxHeight } : undefined}
+                    scroll={{ x: maxWidth, y: maxHeight, scrollToFirstRowOnChange: true }}
                     onChange={this.onPageChange}
                     onRow={
                         enableHoverListen ?
@@ -873,6 +903,17 @@ export default class AntdTable extends Component {
                                 };
                             } : undefined
                     }
+                    summary={summaryRowContents ? () => (
+                        <Table.Summary fixed={summaryRowFixed}>
+                            <Table.Summary.Row>
+                                {summaryRowContents.map((item, i) =>
+                                    <Table.Summary.Cell index={i} colSpan={item.colSpan} align={item.align}>
+                                        {item.content}
+                                    </Table.Summary.Cell>
+                                )}
+                            </Table.Summary.Row>
+                        </Table.Summary>
+                    ) : undefined}
                     data-dash-is-loading={
                         (loading_state && loading_state.is_loading) || undefined
                     }
@@ -912,9 +953,12 @@ AntdTable.propTypes = {
             // 预处理方式
             renderOptions: PropTypes.exact({
 
-                // 设置渲染处理类型，可选项有'link'、'ellipsis'、'mini-line'、'mini-bar'、'mini-progress'、'mini-area'、"tags'、'button'
+                // 设置渲染处理类型，可选项有'link'、'ellipsis'、'mini-line'、'mini-bar'、'mini-progress'、'mini-area'、'tags'、'button'
+                // 'copyable'、'status-badge'
                 renderType: PropTypes.oneOf([
-                    'link', 'ellipsis', 'mini-line', 'mini-bar', 'mini-progress', 'mini-area', 'tags', 'button', 'copyable'
+                    'link', 'ellipsis', 'mini-line', 'mini-bar', 'mini-progress',
+                    'mini-ring-progress', 'mini-area', 'tags', 'button', 'copyable',
+                    'status-badge'
                 ]),
 
                 // 当renderType='link'时，此参数会将传入的字符串作为渲染link的显示文字内容
@@ -958,6 +1002,12 @@ AntdTable.propTypes = {
             title_: PropTypes.string
         })
     ),
+
+    // 为迷你图模式单元格设置像素高度，默认为30
+    miniChartHeight: PropTypes.number,
+
+    // 设置迷你图模式是否启用出现动画，默认为false
+    miniChartAnimation: PropTypes.bool,
 
     // 设置表格单元格尺寸规格，可选的有'small'、'default'和'large'
     size: PropTypes.oneOf(['small', 'default', 'large']),
@@ -1016,7 +1066,75 @@ AntdTable.propTypes = {
     ),
 
     // 定义与columns匹配的行记录数组
-    data: PropTypes.arrayOf(PropTypes.object),
+    data: PropTypes.arrayOf(
+        PropTypes.objectOf(
+            PropTypes.oneOfType([
+                // 常规模式、ellipsis模式、copyable模式
+                PropTypes.string,
+
+                // 常规模式、ellipsis模式、mini-prorgess模式、mini-ring-progress模式、copyable模式
+                // 其中mini-prorgess模式、mini-ring-progress模式输入值需在0~1之间
+                PropTypes.number,
+
+                // link模式
+                PropTypes.exact({
+                    // href链接
+                    href: PropTypes.string,
+                    // target行为属性，默认为'_blank'
+                    target: PropTypes.string,
+                    // 设置是否禁用当前链接，默认为false
+                    disabled: PropTypes.bool
+                }),
+
+                // mini-line模式、mini-bar模式、mini-area模式
+                PropTypes.arrayOf(PropTypes.number),
+
+                // tags模式
+                PropTypes.arrayOf(
+                    PropTypes.exact({
+                        // 标签颜色
+                        color: PropTypes.string,
+                        // 标签内容
+                        tag: PropTypes.oneOfType([
+                            PropTypes.string,
+                            PropTypes.number
+                        ])
+                    })
+                ),
+
+                // button模式
+                PropTypes.oneOfType([
+                    // 单按钮模式
+                    PropTypes.exact({
+                        // 设置是否禁用按钮，默认为false
+                        disabled: PropTypes.bool,
+                        // 设置按钮的type属性，同AntdButton
+                        type: PropTypes.oneOf(['primary', 'ghost', 'dashed', 'link', 'text', 'default']),
+                        // 设置按钮的danger属性，同AntdButton
+                        danger: PropTypes.bool,
+                        // 设置按钮的css样式
+                        style: PropTypes.object,
+                        // 设置按钮的文本内容
+                        content: PropTypes.oneOfType([
+                            PropTypes.string,
+                            PropTypes.number
+                        ])
+                    })
+                ]),
+
+                // status-badge模式
+                PropTypes.exact({
+                    // 设置状态徽标的状态
+                    status: PropTypes.oneOf(['success', 'processing', 'default', 'error', 'warning']),
+                    // 设置状态徽标的后缀文字内容
+                    text: PropTypes.oneOfType([
+                        PropTypes.string,
+                        PropTypes.number
+                    ])
+                })
+            ])
+        )
+    ),
 
     // 定义排序参数
     sortOptions: PropTypes.exact({
@@ -1049,7 +1167,7 @@ AntdTable.propTypes = {
             current: PropTypes.number,
 
             // 设置是否展示pageSize切换器，当total大于50时默认为true
-            showQuickJumper: PropTypes.bool,
+            showSizeChanger: PropTypes.bool,
 
             // 设定每页尺寸切换可选的范围
             pageSizeOptions: PropTypes.arrayOf(PropTypes.number),
@@ -1092,6 +1210,9 @@ AntdTable.propTypes = {
     // 设置组件最大高度，每页超出部分将自动转换为竖向滑动浏览方式
     maxHeight: PropTypes.number,
 
+    // 设置组件最大宽度，每页超出部分将自动转换为横向滑动浏览方式
+    maxWidth: PropTypes.number,
+
     // 经过修改操作后，当前状态下最新的dataSource数据
     currentData: PropTypes.array,
 
@@ -1122,6 +1243,26 @@ AntdTable.propTypes = {
     // 设置数据操纵模式，可选的有'client-side'（前端）、'server-side'（后端），默认为'client-side'
     mode: PropTypes.oneOf(['client-side', 'server-side']),
 
+    // 设置总结栏内容数组，请与每个字段保持一一对应
+    summaryRowContents: PropTypes.arrayOf(
+        PropTypes.exact({
+            // 总结栏单元格内容
+            content: PropTypes.oneOfType([
+                PropTypes.string,
+                PropTypes.number
+            ]),
+
+            // 设置当前值横跨的字段数量，默认为1
+            colSpan: PropTypes.number,
+
+            // 设置列对齐方式，可选项有'left'、'center'、'right'
+            align: PropTypes.oneOf(['left', 'center', 'right'])
+        })
+    ),
+
+    // 设置总结栏是否启用fixed功能，默认为false
+    summaryRowFixed: PropTypes.bool,
+
     loading_state: PropTypes.shape({
         /**
          * Determines if the component is loading or not
@@ -1146,6 +1287,9 @@ AntdTable.propTypes = {
 
 // 设置默认参数
 AntdTable.defaultProps = {
+    summaryRowFixed: false,
+    miniChartHeight: 30,
+    miniChartAnimation: false,
     enableHoverListen: false,
     bordered: false,
     data: [],

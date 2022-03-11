@@ -18,7 +18,7 @@ Those elements have the following types:
   - `dataIndex` (String; required)
   - `renderOptions` (optional): . renderOptions has the following type: lists containing elements 'renderType', 'renderLinkText', 'renderButtonPopConfirmProps'.
 Those elements have the following types:
-  - `renderType` (a value equal to: 'link', 'ellipsis', 'mini-line', 'mini-bar', 'mini-progress', 'mini-area', 'tags', 'button', 'copyable'; optional)
+  - `renderType` (a value equal to: 'link', 'ellipsis', 'mini-line', 'mini-bar', 'mini-progress', 'mini-ring-progress', 'mini-area', 'tags', 'button', 'copyable', 'status-badge'; optional)
   - `renderLinkText` (String; optional)
   - `renderButtonPopConfirmProps` (optional): . renderButtonPopConfirmProps has the following type: lists containing elements 'title', 'okText', 'cancelText'.
 Those elements have the following types:
@@ -39,7 +39,23 @@ Those elements have the following types:
   - `content` (String; optional)
 - `containerId` (String; optional)
 - `currentData` (Array; optional)
-- `data` (Array of Dicts; optional)
+- `data` (optional): . data has the following type: Array of Dict with Strings as keys and values of type String | Real | lists containing elements 'href', 'target', 'disabled'.
+Those elements have the following types:
+  - `href` (String; optional)
+  - `target` (String; optional)
+  - `disabled` (Bool; optional) | Array of Reals | Array of lists containing elements 'color', 'tag'.
+Those elements have the following types:
+  - `color` (String; optional)
+  - `tag` (String | Real; optional)s | lists containing elements 'disabled', 'type', 'danger', 'style', 'content'.
+Those elements have the following types:
+  - `disabled` (Bool; optional)
+  - `type` (a value equal to: 'primary', 'ghost', 'dashed', 'link', 'text', 'default'; optional)
+  - `danger` (Bool; optional)
+  - `style` (Dict; optional)
+  - `content` (String | Real; optional) | lists containing elements 'status', 'text'.
+Those elements have the following types:
+  - `status` (a value equal to: 'success', 'processing', 'default', 'error', 'warning'; optional)
+  - `text` (String | Real; optional)s
 - `enableHoverListen` (Bool; optional)
 - `filter` (Dict; optional)
 - `filterOptions` (Dict; optional)
@@ -50,20 +66,28 @@ Those elements have the following types:
   - `component_name` (String; optional): Holds the name of the component that is loading
 - `locale` (a value equal to: 'zh-cn', 'en-us'; optional)
 - `maxHeight` (Real; optional)
+- `maxWidth` (Real; optional)
+- `miniChartAnimation` (Bool; optional)
+- `miniChartHeight` (Real; optional)
 - `mode` (a value equal to: 'client-side', 'server-side'; optional)
 - `nClicksButton` (Real; optional)
-- `pagination` (optional): . pagination has the following type: Bool | lists containing elements 'position', 'pageSize', 'current', 'pageSizeOptions', 'showQuickJumper', 'showTotalPrefix', 'showTotalSuffix', 'total', 'hideOnSinglePage', 'simple'.
+- `pagination` (optional): . pagination has the following type: Bool | lists containing elements 'position', 'pageSize', 'current', 'showSizeChanger', 'pageSizeOptions', 'showTitle', 'showQuickJumper', 'showTotalPrefix', 'showTotalSuffix', 'total', 'hideOnSinglePage', 'simple', 'disabled', 'responsive', 'size'.
 Those elements have the following types:
   - `position` (a value equal to: 'topLeft', 'topCenter', 'topRight', 'bottomLeft', 'bottomCenter', 'bottomRight'; optional)
   - `pageSize` (Real; optional)
   - `current` (Real; optional)
+  - `showSizeChanger` (Bool; optional)
   - `pageSizeOptions` (Array of Reals; optional)
+  - `showTitle` (Bool; optional)
   - `showQuickJumper` (Bool; optional)
   - `showTotalPrefix` (String; optional)
   - `showTotalSuffix` (String; optional)
   - `total` (Real; optional)
   - `hideOnSinglePage` (Bool; optional)
   - `simple` (Bool; optional)
+  - `disabled` (Bool; optional)
+  - `responsive` (Bool; optional)
+  - `size` (a value equal to: 'default', 'small'; optional)
 - `recentlyButtonClickedRow` (Dict; optional)
 - `recentlyChangedRow` (Dict; optional)
 - `recentlyMouseEnterColumn` (String; optional)
@@ -83,10 +107,16 @@ Those elements have the following types:
   - `orders` (Array of a value equal to: 'ascend', 'descend's; optional)
 - `sticky` (Bool; optional)
 - `style` (Dict; optional)
+- `summaryRowContents` (optional): . summaryRowContents has the following type: Array of lists containing elements 'content', 'colSpan', 'align'.
+Those elements have the following types:
+  - `content` (String | Real; optional)
+  - `colSpan` (Real; optional)
+  - `align` (a value equal to: 'left', 'center', 'right'; optional)s
+- `summaryRowFixed` (Bool; optional)
 - `titlePopoverInfo` (Dict; optional)
 """
 function 'feffery'_antdtable(; kwargs...)
-        available_props = Symbol[:id, :bordered, :className, :clickedContent, :columns, :columnsFormatConstraint, :containerId, :currentData, :data, :enableHoverListen, :filter, :filterOptions, :loading_state, :locale, :maxHeight, :mode, :nClicksButton, :pagination, :recentlyButtonClickedRow, :recentlyChangedRow, :recentlyMouseEnterColumn, :recentlyMouseEnterRow, :rowSelectionType, :rowSelectionWidth, :selectedRowKeys, :selectedRows, :size, :sortOptions, :sorter, :sticky, :style, :titlePopoverInfo]
+        available_props = Symbol[:id, :bordered, :className, :clickedContent, :columns, :columnsFormatConstraint, :containerId, :currentData, :data, :enableHoverListen, :filter, :filterOptions, :loading_state, :locale, :maxHeight, :maxWidth, :miniChartAnimation, :miniChartHeight, :mode, :nClicksButton, :pagination, :recentlyButtonClickedRow, :recentlyChangedRow, :recentlyMouseEnterColumn, :recentlyMouseEnterRow, :rowSelectionType, :rowSelectionWidth, :selectedRowKeys, :selectedRows, :size, :sortOptions, :sorter, :sticky, :style, :summaryRowContents, :summaryRowFixed, :titlePopoverInfo]
         wild_props = Symbol[]
         return Component("'feffery'_antdtable", "AntdTable", "feffery_antd_components", available_props, wild_props; kwargs...)
 end

@@ -19,13 +19,13 @@
     "build": "npm run build:js && npm run build:backends",
     "build:activated": "npm run build:js && npm run build:backends-activated"
   },
-  "author": "CNFeffery <fefferypzy@gmail.com>", 
+  "author": "CNFeffery <fefferypzy@gmail.com>",
   "email": "fefferypzy@gmail.com",
   "license": "MIT",
   "dependencies": {
-    "@ant-design/charts": "^1.1.4",
+    "@ant-design/charts": "^1.3.5",
     "@ant-design/icons": "^4.6.3",
-    "antd": "^4.18.5",
+    "antd": "^4.19.1",
     "dash-extensions-js": "^0.0.8",
     "is-absolute-url": "^4.0.1",
     "md5": "^2.3.0",
