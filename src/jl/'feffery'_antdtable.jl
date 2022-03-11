@@ -52,7 +52,13 @@ Those elements have the following types:
   - `type` (a value equal to: 'primary', 'ghost', 'dashed', 'link', 'text', 'default'; optional)
   - `danger` (Bool; optional)
   - `style` (Dict; optional)
-  - `content` (String | Real; optional) | lists containing elements 'status', 'text'.
+  - `content` (String | Real; optional) | Array of lists containing elements 'disabled', 'type', 'danger', 'style', 'content'.
+Those elements have the following types:
+  - `disabled` (Bool; optional)
+  - `type` (a value equal to: 'primary', 'ghost', 'dashed', 'link', 'text', 'default'; optional)
+  - `danger` (Bool; optional)
+  - `style` (Dict; optional)
+  - `content` (String | Real; optional)s | lists containing elements 'status', 'text'.
 Those elements have the following types:
   - `status` (a value equal to: 'success', 'processing', 'default', 'error', 'warning'; optional)
   - `text` (String | Real; optional)s

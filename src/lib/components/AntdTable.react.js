@@ -1119,7 +1119,26 @@ AntdTable.propTypes = {
                             PropTypes.string,
                             PropTypes.number
                         ])
-                    })
+                    }),
+
+                    // 多按钮模式
+                    PropTypes.arrayOf(
+                        PropTypes.exact({
+                            // 设置是否禁用按钮，默认为false
+                            disabled: PropTypes.bool,
+                            // 设置按钮的type属性，同AntdButton
+                            type: PropTypes.oneOf(['primary', 'ghost', 'dashed', 'link', 'text', 'default']),
+                            // 设置按钮的danger属性，同AntdButton
+                            danger: PropTypes.bool,
+                            // 设置按钮的css样式
+                            style: PropTypes.object,
+                            // 设置按钮的文本内容
+                            content: PropTypes.oneOfType([
+                                PropTypes.string,
+                                PropTypes.number
+                            ])
+                        })
+                    )
                 ]),
 
                 // status-badge模式

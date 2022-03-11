@@ -97,6 +97,16 @@ Keyword arguments:
 
     - style (dict; optional)
 
+    - type (a value equal to: 'primary', 'ghost', 'dashed', 'link', 'text', 'default'; optional) | list of dicts with keys:
+
+    - content (string | number; optional)
+
+    - danger (boolean; optional)
+
+    - disabled (boolean; optional)
+
+    - style (dict; optional)
+
     - type (a value equal to: 'primary', 'ghost', 'dashed', 'link', 'text', 'default'; optional) | dict with keys:
 
     - status (a value equal to: 'success', 'processing', 'default', 'error', 'warning'; optional)
