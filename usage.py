@@ -12,7 +12,8 @@ app.layout = html.Div(
         fac.AntdTable(
             miniChartHeight=60,
             miniChartAnimation=False,
-            summaryRowContents=[{'content': '测试', 'align': 'center'}]*5+[{'content': '测试测试', 'colSpan': 2, 'align': 'center'}],
+            summaryRowContents=[{'content': '测试', 'align': 'center'}] *
+            5+[{'content': '测试测试', 'colSpan': 2, 'align': 'center'}],
             summaryRowFixed=True,
             columns=[
                 {
