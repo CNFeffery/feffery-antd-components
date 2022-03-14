@@ -220,6 +220,66 @@ app.layout = html.Div(
             ]
         ),
 
+
+        fac.AntdTabs(
+            [
+                fac.AntdTabPane(
+                    html.Div(
+                        '标签页1测试',
+                        style={
+                            'backgroundColor': 'rgba(241, 241, 241, 0.4)',
+                            'height': '200px',
+                            'display': 'flex',
+                            'justifyContent': 'center',
+                            'alignItems': 'center'
+                        }
+                    ),
+                    tab='标签页1',
+                    key='标签页1',
+                    titleSideInfoPopover={
+                        'title': '标签页1说明',
+                        'content': '这是标签页1的说明文字内容示例'
+                    }
+                ),
+                fac.AntdTabPane(
+                    html.Div(
+                        fac.AntdButton('标签页2测试', type='primary'),
+                        style={
+                            'backgroundColor': 'rgba(241, 241, 241, 0.4)',
+                            'height': '200px',
+                            'display': 'flex',
+                            'justifyContent': 'center',
+                            'alignItems': 'center'
+                        }
+                    ),
+                    tab='标签页2',
+                    key='标签页2',
+                    titleSideInfoPopover={
+                        'title': '标签页2说明',
+                        'content': '这是标签页2的说明文字内容示例'
+                    }
+                ),
+                fac.AntdTabPane(
+                    html.Div(
+                        fac.AntdButton('标签页3测试', type='dashed'),
+                        style={
+                            'backgroundColor': 'rgba(241, 241, 241, 0.4)',
+                            'height': '200px',
+                            'display': 'flex',
+                            'justifyContent': 'center',
+                            'alignItems': 'center'
+                        }
+                    ),
+                    tab='标签页3',
+                    key='标签页3',
+                    titleSideInfoPopover={
+                        'title': '标签页3说明',
+                        'content': '这是标签页3的说明文字内容示例'
+                    }
+                )
+            ]
+        ),
+
         html.Div(
             [
                 fac.AntdAlert(
