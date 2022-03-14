@@ -23,6 +23,8 @@ Keyword arguments:
 
     - align (a value equal to: 'left', 'center', 'right'; optional)
 
+    - conditionStyle (string; optional)
+
     - dataIndex (string; required)
 
     - editable (boolean; optional)
@@ -30,6 +32,8 @@ Keyword arguments:
     - ellipsis (boolean | number | string | dict | list; optional)
 
     - fixed (a value equal to: 'left', 'right'; optional)
+
+    - onCell (boolean | number | string | dict | list; optional)
 
     - render (boolean | number | string | dict | list; optional)
 

@@ -12,7 +12,7 @@ Keyword arguments:
 - `bordered` (Bool; optional)
 - `className` (String; optional)
 - `clickedContent` (String; optional)
-- `columns` (optional): . columns has the following type: Array of lists containing elements 'title', 'dataIndex', 'renderOptions', 'fixed', 'editable', 'align', 'width', 'ellipsis', 'sorter', 'render', 'title_'.
+- `columns` (optional): . columns has the following type: Array of lists containing elements 'title', 'dataIndex', 'renderOptions', 'fixed', 'editable', 'align', 'width', 'conditionStyle', 'ellipsis', 'sorter', 'render', 'onCell', 'title_'.
 Those elements have the following types:
   - `title` (String; required)
   - `dataIndex` (String; required)
@@ -29,9 +29,11 @@ Those elements have the following types:
   - `editable` (Bool; optional)
   - `align` (a value equal to: 'left', 'center', 'right'; optional)
   - `width` (Real | String; optional)
+  - `conditionStyle` (String; optional)
   - `ellipsis` (Bool | Real | String | Dict | Array; optional)
   - `sorter` (Bool | Real | String | Dict | Array; optional)
   - `render` (Bool | Real | String | Dict | Array; optional)
+  - `onCell` (Bool | Real | String | Dict | Array; optional)
   - `title_` (String; optional)s
 - `columnsFormatConstraint` (optional): . columnsFormatConstraint has the following type: Dict with Strings as keys and values of type lists containing elements 'rule', 'content'.
 Those elements have the following types:

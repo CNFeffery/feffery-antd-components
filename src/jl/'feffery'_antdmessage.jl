@@ -19,10 +19,11 @@ Those elements have the following types:
   - `prop_name` (String; optional): Holds which property is loading
   - `component_name` (String; optional): Holds the name of the component that is loading
 - `style` (Dict; optional)
+- `top` (Real; optional)
 - `type` (a value equal to: 'default', 'success', 'error', 'info', 'warning'; optional)
 """
 function 'feffery'_antdmessage(; kwargs...)
-        available_props = Symbol[:id, :className, :content, :duration, :icon, :loading_state, :style, :type]
+        available_props = Symbol[:id, :className, :content, :duration, :icon, :loading_state, :style, :top, :type]
         wild_props = Symbol[]
         return Component("'feffery'_antdmessage", "AntdMessage", "feffery_antd_components", available_props, wild_props; kwargs...)
 end

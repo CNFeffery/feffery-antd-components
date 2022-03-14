@@ -349,7 +349,10 @@ export default class AntdTable extends Component {
 
             columns[i] = {
                 ...{ align: 'center' },
-                ...columns[i]
+                ...columns[i],
+                ...{
+                    onCell: columns[i]?.conditionStyle ? eval(columns[i].conditionStyle) : columns[i]?.onCell
+                }
             }
         }
 
@@ -989,6 +992,9 @@ AntdTable.propTypes = {
             // 自定义列像素宽度
             width: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
 
+            // 用于传入js函数字符串
+            conditionStyle: PropTypes.string,
+
             // 防止状态更新报错占位用，无实际意义
             ellipsis: PropTypes.any,
 
@@ -997,6 +1003,9 @@ AntdTable.propTypes = {
 
             // 防止状态更新报错占位用，无实际意义
             render: PropTypes.any,
+
+            // 确保onCell属性类型检查通过
+            onCell: PropTypes.any,
 
             // 备份title信息
             title_: PropTypes.string

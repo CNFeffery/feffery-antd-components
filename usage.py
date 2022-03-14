@@ -9,6 +9,8 @@ app = dash.Dash(__name__)
 app.layout = html.Div(
     [
 
+        fac.AntdParagraph('巴拉巴拉'*100, style={'textIndent': '2em'}),
+
         fac.AntdTable(
             miniChartHeight=60,
             miniChartAnimation=False,
@@ -102,6 +104,29 @@ app.layout = html.Div(
                     'title': '默认的checkbox模式',
                     'dataIndex': f'默认的checkbox模式',
                     'width': '33.33%',
+                    'conditionStyle': '''
+                    (record, index) => {
+                        if (record.默认的checkbox模式 >= 10) {
+                            return {
+                                style: {
+                                    color: "red"
+                                }
+                            }
+                        }
+                        if (record.默认的checkbox模式 % 2 === 0) {
+                            return {
+                                style: {
+                                    backgroundColor: "#ffe7ba"
+                                }
+                            }
+                        }
+                        return {
+                            style: {
+                                fontWeight: "bold"
+                            }
+                        }
+                    }
+                    '''
                     # 'fixed': 'left'
                 },
                 {

@@ -91,6 +91,9 @@ AntdMessage.propTypes = {
     // 设置通知从显示到自动消失的时长（秒），默认为3，当传入0时表示不会自动消失
     duration: PropTypes.number,
 
+    // 设置消息距离顶端的像素距离，默认为8
+    top: PropTypes.number,
+
     // 设置自定义icon，与AntdIcon中支持的图标相对应
     icon: PropTypes.string,
 
