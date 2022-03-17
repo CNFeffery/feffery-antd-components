@@ -39,6 +39,7 @@ export default class AntdTimeRangePicker extends Component {
             allowClear,
             bordered,
             size,
+            status,
             persistence,
             persisted_props,
             persistence_type,
@@ -88,6 +89,7 @@ export default class AntdTimeRangePicker extends Component {
                                 ) :
                                 undefined
                         }
+                        status={status}
                         persistence={persistence}
                         persisted_props={persisted_props}
                         persistence_type={persistence_type}
@@ -156,6 +158,9 @@ AntdTimeRangePicker.propTypes = {
     size: PropTypes.oneOf([
         'small', 'middle', 'large'
     ]),
+
+    // 设置校验状态，可选的有'error'、'warning'
+    status: PropTypes.oneOf(['error', 'warning']),
 
     /**
     * Object that holds the loading state object coming from dash-renderer

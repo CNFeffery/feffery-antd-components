@@ -43,6 +43,7 @@ export default class AntdInput extends Component {
             showCount,
             nClicksSearch,
             nSubmit,
+            status,
             setProps,
             loading_state,
             persistence,
@@ -82,6 +83,7 @@ export default class AntdInput extends Component {
                     defaultValue={defaultValue}
                     disabled={disabled}
                     maxLength={maxLength}
+                    status={status}
                     onChange={onChange}
                     onPressEnter={onPressEnter}
                     persistence={persistence}
@@ -105,6 +107,7 @@ export default class AntdInput extends Component {
                     defaultValue={defaultValue}
                     disabled={disabled}
                     maxLength={maxLength}
+                    status={status}
                     onSearch={onSearch}
                     onChange={onChange}
                     onPressEnter={onPressEnter}
@@ -130,6 +133,7 @@ export default class AntdInput extends Component {
                     disabled={disabled}
                     maxLength={maxLength}
                     showCount={showCount}
+                    status={status}
                     onChange={onChange}
                     onPressEnter={onPressEnter}
                     persistence={persistence}
@@ -152,6 +156,7 @@ export default class AntdInput extends Component {
                     value={value}
                     defaultValue={defaultValue}
                     maxLength={maxLength}
+                    status={status}
                     onChange={(e) => {
                         // 若启用md5加密
                         if (passwordUseMd5) {
@@ -253,6 +258,9 @@ AntdInput.propTypes = {
 
     // 记录search模式下搜索按钮被点按的次数
     nClicksSearch: PropTypes.number,
+
+    // 设置校验状态，可选的有'error'、'warning'
+    status: PropTypes.oneOf(['error', 'warning']),
 
     /**
      * Dash-assigned callback that should be called to report property changes

@@ -55,6 +55,7 @@ export default class AntdDateRangePicker extends Component {
             bordered,
             size,
             defaultPickerValue,
+            status,
             persistence,
             persisted_props,
             persistence_type,
@@ -101,6 +102,7 @@ export default class AntdDateRangePicker extends Component {
                                 [moment(defaultValue[0], format), moment(defaultValue[1], format)] :
                                 undefined
                         }
+                        status={status}
                         persistence={persistence}
                         persisted_props={persisted_props}
                         persistence_type={persistence_type}
@@ -160,6 +162,9 @@ AntdDateRangePicker.propTypes = {
 
     // 设置日期面板默认的时间位置
     defaultPickerValue: PropTypes.string,
+
+    // 设置校验状态，可选的有'error'、'warning'
+    status: PropTypes.oneOf(['error', 'warning']),
 
     /**
     * Object that holds the loading state object coming from dash-renderer

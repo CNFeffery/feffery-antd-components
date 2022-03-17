@@ -37,6 +37,7 @@ export default class AntdInputNumber extends Component {
             readOnly,
             stringMode,
             nSubmit,
+            status,
             setProps,
             persistence,
             persisted_props,
@@ -78,6 +79,7 @@ export default class AntdInputNumber extends Component {
                 precision={precision}
                 readOnly={readOnly}
                 stringMode={stringMode}
+                status={status}
                 onChange={onChange}
                 onPressEnter={onPressEnter}
                 onStep={onStep}
@@ -168,6 +170,9 @@ AntdInputNumber.propTypes = {
 
     // 记录聚焦于输入框内部时，enter键被点按的次数
     nSubmit: PropTypes.number,
+
+    // 设置校验状态，可选的有'error'、'warning'
+    status: PropTypes.oneOf(['error', 'warning']),
 
     loading_state: PropTypes.shape({
         /**

@@ -38,6 +38,8 @@ export default class AntdSelect extends Component {
             maxTagCount,
             listHeight,
             colorsMode,
+            placement,
+            status,
             loading_state,
             persistence,
             persisted_props,
@@ -148,6 +150,8 @@ export default class AntdSelect extends Component {
                     listHeight={listHeight}
                     disabled={disabled}
                     showSearch={true}
+                    placement={placement}
+                    status={status}
                     persistence={persistence}
                     persisted_props={persisted_props}
                     persistence_type={persistence_type}
@@ -272,6 +276,13 @@ AntdSelect.propTypes = {
 
     // 色带模式下用于设置连续色带还是离散色带，可选的有'sequential'、'diverging'
     colorsMode: PropTypes.oneOf(['sequential', 'diverging']),
+
+    // 用于设置悬浮展开层的方位，可选的有'bottomLeft'、'bottomRight'、'topLeft'、'topRight'
+    // 默认为'bottomLeft'
+    placement: PropTypes.oneOf(['bottomLeft', 'bottomRight', 'topLeft', 'topRight']),
+
+    // 设置校验状态，可选的有'error'、'warning'
+    status: PropTypes.oneOf(['error', 'warning']),
 
     loading_state: PropTypes.shape({
         /**

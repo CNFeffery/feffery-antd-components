@@ -40,11 +40,12 @@ session: window.sessionStorage, data is cleared once the browser quit.
 - `placeholder` (String; optional)
 - `placement` (a value equal to: 'bottomLeft', 'bottomRight', 'topLeft', 'topRight'; optional)
 - `size` (a value equal to: 'small', 'middle', 'large'; optional)
+- `status` (a value equal to: 'error', 'warning'; optional)
 - `style` (Dict; optional)
 - `value` (Array of Strings | Array of Array of Stringss; optional)
 """
 function 'feffery'_antdcascader(; kwargs...)
-        available_props = Symbol[:id, :bordered, :changeOnSelect, :className, :defaultValue, :disabled, :expandTrigger, :loading_state, :locale, :maxTagCount, :multiple, :options, :persisted_props, :persistence, :persistence_type, :placeholder, :placement, :size, :style, :value]
+        available_props = Symbol[:id, :bordered, :changeOnSelect, :className, :defaultValue, :disabled, :expandTrigger, :loading_state, :locale, :maxTagCount, :multiple, :options, :persisted_props, :persistence, :persistence_type, :placeholder, :placement, :size, :status, :style, :value]
         wild_props = Symbol[]
         return Component("'feffery'_antdcascader", "AntdCascader", "feffery_antd_components", available_props, wild_props; kwargs...)
 end

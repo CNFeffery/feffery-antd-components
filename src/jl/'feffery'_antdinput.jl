@@ -44,11 +44,12 @@ session: window.sessionStorage, data is cleared once the browser quit.
 - `placeholder` (String; optional)
 - `showCount` (Bool; optional)
 - `size` (a value equal to: 'small', 'middle', 'large'; optional)
+- `status` (a value equal to: 'error', 'warning'; optional)
 - `style` (Dict; optional)
 - `value` (String; optional)
 """
 function 'feffery'_antdinput(; kwargs...)
-        available_props = Symbol[:id, :addonAfter, :addonBefore, :allowClear, :autoComplete, :bordered, :className, :defaultValue, :disabled, :loading_state, :maxLength, :md5Value, :mode, :nClicksSearch, :nSubmit, :passwordUseMd5, :persisted_props, :persistence, :persistence_type, :placeholder, :showCount, :size, :style, :value]
+        available_props = Symbol[:id, :addonAfter, :addonBefore, :allowClear, :autoComplete, :bordered, :className, :defaultValue, :disabled, :loading_state, :maxLength, :md5Value, :mode, :nClicksSearch, :nSubmit, :passwordUseMd5, :persisted_props, :persistence, :persistence_type, :placeholder, :showCount, :size, :status, :style, :value]
         wild_props = Symbol[]
         return Component("'feffery'_antdinput", "AntdInput", "feffery_antd_components", available_props, wild_props; kwargs...)
 end

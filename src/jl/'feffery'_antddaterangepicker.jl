@@ -38,11 +38,12 @@ session: window.sessionStorage, data is cleared once the browser quit.
 - `placeholder` (Array of Strings; optional)
 - `showTime` (Bool; optional)
 - `size` (a value equal to: 'small', 'middle', 'large'; optional)
+- `status` (a value equal to: 'error', 'warning'; optional)
 - `style` (Dict; optional)
 - `value` (Array of Strings; optional)
 """
 function 'feffery'_antddaterangepicker(; kwargs...)
-        available_props = Symbol[:id, :bordered, :className, :defaultPickerValue, :defaultValue, :disabled, :format, :loading_state, :locale, :persisted_props, :persistence, :persistence_type, :picker, :placeholder, :showTime, :size, :style, :value]
+        available_props = Symbol[:id, :bordered, :className, :defaultPickerValue, :defaultValue, :disabled, :format, :loading_state, :locale, :persisted_props, :persistence, :persistence_type, :picker, :placeholder, :showTime, :size, :status, :style, :value]
         wild_props = Symbol[]
         return Component("'feffery'_antddaterangepicker", "AntdDateRangePicker", "feffery_antd_components", available_props, wild_props; kwargs...)
 end

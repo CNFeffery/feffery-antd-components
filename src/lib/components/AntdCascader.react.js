@@ -33,6 +33,7 @@ export default class AntdCascader extends Component {
             maxTagCount,
             multiple,
             expandTrigger,
+            status,
             setProps,
             persistence,
             persisted_props,
@@ -71,6 +72,7 @@ export default class AntdCascader extends Component {
                     persisted_props={persisted_props}
                     persistence_type={persistence_type}
                     expandTrigger={expandTrigger}
+                    status={status}
                     showSearch={filter}
                     onChange={onSelect}
                     data-dash-is-loading={
@@ -168,6 +170,9 @@ AntdCascader.propTypes = {
 
     // 设置子菜单展开交互方式，可选的有'click'和'hover'，默认为'click'
     expandTrigger: PropTypes.oneOf(['click', 'hover']),
+
+    // 设置校验状态，可选的有'error'、'warning'
+    status: PropTypes.oneOf(['error', 'warning']),
 
     loading_state: PropTypes.shape({
         /**

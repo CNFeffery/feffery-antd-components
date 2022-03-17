@@ -11,10 +11,7 @@ Keyword arguments:
 - `id` (String; optional)
 - `checkStrictly` (Bool; optional)
 - `checkable` (Bool; optional)
-- `checkedKeys` (optional): . checkedKeys has the following type: Array | lists containing elements 'checked', 'halfChecked'.
-Those elements have the following types:
-  - `checked` (Array; optional)
-  - `halfChecked` (Array; optional)
+- `checkedKeys` (Array; optional)
 - `className` (String; optional)
 - `defaultCheckedKeys` (Array of Strings; optional)
 - `defaultExpandAll` (Bool; optional)
@@ -22,6 +19,7 @@ Those elements have the following types:
 - `defaultExpandedKeys` (Array of Strings; optional)
 - `defaultSelectedKeys` (Array of Strings; optional)
 - `expandedKeys` (Array of Strings; optional)
+- `halfCheckedKeys` (Array; optional)
 - `height` (Real; optional)
 - `loading_state` (optional): . loading_state has the following type: lists containing elements 'is_loading', 'prop_name', 'component_name'.
 Those elements have the following types:
@@ -52,7 +50,7 @@ Those elements have the following types:
 - `treeData` (optional)
 """
 function 'feffery'_antdtree(; kwargs...)
-        available_props = Symbol[:id, :checkStrictly, :checkable, :checkedKeys, :className, :defaultCheckedKeys, :defaultExpandAll, :defaultExpandParent, :defaultExpandedKeys, :defaultSelectedKeys, :expandedKeys, :height, :loading_state, :multiple, :persisted_props, :persistence, :persistence_type, :selectable, :selectedKeys, :showIcon, :showLine, :style, :treeData]
+        available_props = Symbol[:id, :checkStrictly, :checkable, :checkedKeys, :className, :defaultCheckedKeys, :defaultExpandAll, :defaultExpandParent, :defaultExpandedKeys, :defaultSelectedKeys, :expandedKeys, :halfCheckedKeys, :height, :loading_state, :multiple, :persisted_props, :persistence, :persistence_type, :selectable, :selectedKeys, :showIcon, :showLine, :style, :treeData]
         wild_props = Symbol[]
         return Component("'feffery'_antdtree", "AntdTree", "feffery_antd_components", available_props, wild_props; kwargs...)
 end

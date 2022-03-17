@@ -41,6 +41,8 @@ export default class AntdTreeSelect extends Component {
             treeExpandedKeys,
             virtual,
             disabled,
+            placement,
+            status,
             setProps,
             persistence,
             persisted_props,
@@ -87,6 +89,8 @@ export default class AntdTreeSelect extends Component {
                     showSearch={true}
                     virtual={virtual}
                     disabled={disabled}
+                    placement={placement}
+                    status={status}
                     persistence={persistence}
                     persisted_props={persisted_props}
                     persistence_type={persistence_type}
@@ -216,6 +220,13 @@ AntdTreeSelect.propTypes = {
 
     // 设置是否禁用整个组件
     disabled: PropTypes.bool,
+
+    // 设置悬浮展开层的方位，可选的有'bottomLeft'、'bottomRight'、'topLeft'、'topRight'
+    // 默认为'bottomLeft'
+    placement: PropTypes.oneOf(['bottomLeft', 'bottomRight', 'topLeft', 'topRight']),
+
+    // 设置校验状态，可选的有'error'、'warning'
+    status: PropTypes.oneOf(['error', 'warning']),
 
     loading_state: PropTypes.shape({
         /**

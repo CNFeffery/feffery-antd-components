@@ -17,6 +17,7 @@ export default class AntdMessage extends Component {
             type,
             duration,
             icon,
+            top,
             loading_state,
             setProps
         } = this.props;
@@ -25,7 +26,8 @@ export default class AntdMessage extends Component {
             className: className,
             style: style,
             content: content,
-            duration: duration
+            duration: duration,
+            top: top
         }
 
         if (icon) {

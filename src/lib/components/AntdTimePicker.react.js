@@ -37,6 +37,7 @@ export default class AntdTimePicker extends Component {
             placeholder,
             bordered,
             size,
+            status,
             persistence,
             persisted_props,
             persistence_type,
@@ -70,6 +71,7 @@ export default class AntdTimePicker extends Component {
                         defaultValue={defaultValue ? moment(defaultValue, format) : undefined}
                         use12Hours={use12Hours}
                         allowClear={allowClear}
+                        status={status}
                         persistence={persistence}
                         persisted_props={persisted_props}
                         persistence_type={persistence_type}
@@ -135,6 +137,9 @@ AntdTimePicker.propTypes = {
     size: PropTypes.oneOf([
         'small', 'middle', 'large'
     ]),
+
+    // 设置校验状态，可选的有'error'、'warning'
+    status: PropTypes.oneOf(['error', 'warning']),
 
     /**
     * Object that holds the loading state object coming from dash-renderer

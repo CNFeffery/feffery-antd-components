@@ -54,6 +54,7 @@ export default class AntdDatePicker extends Component {
             defaultValue,
             bordered,
             size,
+            status,
             persistence,
             persisted_props,
             persistence_type,
@@ -90,6 +91,7 @@ export default class AntdDatePicker extends Component {
                         value={value ? moment(value, format) : undefined}
                         defaultValue={defaultValue ? moment(defaultValue, format) : undefined}
                         showTime={showTime}
+                        status={status}
                         persistence={persistence}
                         persisted_props={persisted_props}
                         persistence_type={persistence_type}
@@ -155,6 +157,9 @@ AntdDatePicker.propTypes = {
     size: PropTypes.oneOf([
         'small', 'middle', 'large'
     ]),
+
+    // 设置校验状态，可选的有'error'、'warning'
+    status: PropTypes.oneOf(['error', 'warning']),
 
     /**
     * Object that holds the loading state object coming from dash-renderer

@@ -98,12 +98,11 @@ export default class AntdTree extends Component {
             setProps({ selectedKeys: e })
         }
 
-        const listenCheck = (e) => {
-            setProps({ checkedKeys: e })
+        const listenCheck = (checkedKeys, e) => {
+            setProps({ checkedKeys: checkedKeys, halfCheckedKeys: e.halfCheckedKeys })
         }
 
         const listenExpand = (e) => {
-            console.log({ e })
             setProps({ expandedKeys: e })
         }
 
@@ -222,16 +221,10 @@ AntdTree.propTypes = {
     selectedKeys: PropTypes.array,
 
     // 用于存储当前已被勾选的节点key数组
-    checkedKeys: PropTypes.oneOfType([
-        PropTypes.array,
-        PropTypes.exact({
-            // 对应完整勾选状态下的节点key数组
-            checked: PropTypes.array,
+    checkedKeys: PropTypes.array,
 
-            // 对应半勾选状态下的节点key数组
-            halfChecked: PropTypes.array
-        })
-    ]),
+    // 不可控属性，用于记录当前状态下处于半勾选状态下的节点key数组
+    halfCheckedKeys: PropTypes.array,
 
     // 对应当前已展开节点的key值数组
     expandedKeys: PropTypes.arrayOf(PropTypes.string),

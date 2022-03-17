@@ -52,12 +52,14 @@ memory: only kept in memory, reset on page refresh.
 local: window.localStorage, data is kept after the browser quit.
 session: window.sessionStorage, data is cleared once the browser quit.
 - `placeholder` (String; optional)
+- `placement` (a value equal to: 'bottomLeft', 'bottomRight', 'topLeft', 'topRight'; optional)
 - `size` (a value equal to: 'small', 'middle', 'large'; optional)
+- `status` (a value equal to: 'error', 'warning'; optional)
 - `style` (Dict; optional)
 - `value` (String | Real | Array of String | Reals; optional)
 """
 function 'feffery'_antdselect(; kwargs...)
-        available_props = Symbol[:id, :allowClear, :className, :colorsMode, :colorsNameWidth, :defaultValue, :disabled, :listHeight, :loading_state, :locale, :maxTagCount, :mode, :options, :persisted_props, :persistence, :persistence_type, :placeholder, :size, :style, :value]
+        available_props = Symbol[:id, :allowClear, :className, :colorsMode, :colorsNameWidth, :defaultValue, :disabled, :listHeight, :loading_state, :locale, :maxTagCount, :mode, :options, :persisted_props, :persistence, :persistence_type, :placeholder, :placement, :size, :status, :style, :value]
         wild_props = Symbol[]
         return Component("'feffery'_antdselect", "AntdSelect", "feffery_antd_components", available_props, wild_props; kwargs...)
 end

@@ -28,11 +28,12 @@ Those elements have the following types:
 - `placement` (a value equal to: 'top', 'bottom'; optional)
 - `prefix` (String; optional)
 - `selectedOptions` (Array of Strings; optional)
+- `status` (a value equal to: 'error', 'warning'; optional)
 - `style` (Dict; optional)
 - `value` (String; optional)
 """
 function 'feffery'_antdmentions(; kwargs...)
-        available_props = Symbol[:id, :autoSize, :className, :defaultValue, :disabled, :loading_state, :options, :placement, :prefix, :selectedOptions, :style, :value]
+        available_props = Symbol[:id, :autoSize, :className, :defaultValue, :disabled, :loading_state, :options, :placement, :prefix, :selectedOptions, :status, :style, :value]
         wild_props = Symbol[]
         return Component("'feffery'_antdmentions", "AntdMentions", "feffery_antd_components", available_props, wild_props; kwargs...)
 end

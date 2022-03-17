@@ -21,6 +21,7 @@ export default class AntdMentions extends Component {
             value,
             options,
             disabled,
+            status,
             setProps,
             loading_state
         } = this.props;
@@ -66,6 +67,7 @@ export default class AntdMentions extends Component {
                 defaultValue={defaultValue}
                 placement={placement}
                 disabled={disabled}
+                status={status}
                 onChange={onChange}
                 onSelect={onSelect}
                 getPopupContainer={(triggerNode) => triggerNode.parentNode.parentNode.parentNode}
@@ -135,6 +137,9 @@ AntdMentions.propTypes = {
 
     // 设置是否禁用，默认为false
     disabled: PropTypes.bool,
+
+    // 设置校验状态，可选的有'error'、'warning'
+    status: PropTypes.oneOf(['error', 'warning']),
 
     loading_state: PropTypes.shape({
         /**

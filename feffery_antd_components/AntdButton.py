@@ -23,6 +23,8 @@ Keyword arguments:
 
 - href (string; optional)
 
+- loading (boolean; optional)
+
 - loading_state (dict; optional)
 
     `loading_state` is a dict with keys:
@@ -48,12 +50,12 @@ Keyword arguments:
 
 - type (a value equal to: 'primary', 'ghost', 'dashed', 'link', 'text', 'default'; default 'default')"""
     @_explicitize_args
-    def __init__(self, children=None, id=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, type=Component.UNDEFINED, href=Component.UNDEFINED, target=Component.UNDEFINED, block=Component.UNDEFINED, danger=Component.UNDEFINED, disabled=Component.UNDEFINED, shape=Component.UNDEFINED, size=Component.UNDEFINED, nClicks=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
-        self._prop_names = ['children', 'id', 'block', 'className', 'danger', 'disabled', 'href', 'loading_state', 'nClicks', 'shape', 'size', 'style', 'target', 'type']
+    def __init__(self, children=None, id=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, type=Component.UNDEFINED, href=Component.UNDEFINED, target=Component.UNDEFINED, block=Component.UNDEFINED, danger=Component.UNDEFINED, disabled=Component.UNDEFINED, shape=Component.UNDEFINED, size=Component.UNDEFINED, nClicks=Component.UNDEFINED, loading=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
+        self._prop_names = ['children', 'id', 'block', 'className', 'danger', 'disabled', 'href', 'loading', 'loading_state', 'nClicks', 'shape', 'size', 'style', 'target', 'type']
         self._type = 'AntdButton'
         self._namespace = 'feffery_antd_components'
         self._valid_wildcard_attributes =            []
-        self.available_properties = ['children', 'id', 'block', 'className', 'danger', 'disabled', 'href', 'loading_state', 'nClicks', 'shape', 'size', 'style', 'target', 'type']
+        self.available_properties = ['children', 'id', 'block', 'className', 'danger', 'disabled', 'href', 'loading', 'loading_state', 'nClicks', 'shape', 'size', 'style', 'target', 'type']
         self.available_wildcard_properties =            []
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()

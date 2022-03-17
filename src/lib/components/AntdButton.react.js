@@ -22,7 +22,7 @@ export default class AntdButton extends Component {
             shape,
             size,
             nClicks,
-            htmlType,
+            loading,
             loading_state
         } = this.props;
 
@@ -45,6 +45,7 @@ export default class AntdButton extends Component {
                     // 更新nClicks
                     setProps({ nClicks: nClicks })
                 }}
+                loading={loading}
                 data-dash-is-loading={
                     (loading_state && loading_state.is_loading) || undefined
                 }
@@ -94,6 +95,9 @@ AntdButton.propTypes = {
 
     // 记录按钮从渲染后开始被点击的次数，默认为0
     nClicks: PropTypes.number,
+
+    // 用于设置是否为按钮渲染“加载中不可点击”效果，默认为false
+    loading: PropTypes.bool,
 
     loading_state: PropTypes.shape({
         /**
