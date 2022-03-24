@@ -5,7 +5,7 @@ import 'antd/dist/antd.css';
 
 const { Link } = Anchor;
 
-// 定义分割线组件AntdAnchor，api参数参考https://ant.design/components/anchor-cn/
+// 定义锚点组件AntdAnchor，api参数参考https://ant.design/components/anchor-cn/
 export default class AntdAnchor extends Component {
     render() {
         // 取得必要属性或参数
@@ -17,6 +17,9 @@ export default class AntdAnchor extends Component {
             align,
             containerId,
             targetOffset,
+            affix,
+            bounds,
+            offsetTop,
             loading_state
         } = this.props;
 
@@ -66,7 +69,10 @@ export default class AntdAnchor extends Component {
                         className={className}
                         style={style}
                         getContainer={containerId ? () => document.getElementById(containerId) : containerId}
-                        targetOffset={targetOffset}>
+                        targetOffset={targetOffset}
+                        affix={affix}
+                        bounds={bounds}
+                        offsetTop={offsetTop}>
                         {linkDict}
                     </Anchor>
                 }
@@ -108,8 +114,17 @@ AntdAnchor.propTypes = {
     // 设置其绑定的容器id
     containerId: PropTypes.string,
 
-    // 设置锚点位移偏移量
+    // 设置锚点位移偏移量，默认与offsetTop相同
     targetOffset: PropTypes.number,
+
+    // 设置是否开启“固定模式”，默认为true
+    affix: PropTypes.bool,
+
+    // 设置锚点区域的边界像素大小，默认为5
+    bounds: PropTypes.number,
+
+    // 设置距离窗口顶部触发锚定效果的指定像素偏移量
+    offsetTop: PropTypes.number,
 
     loading_state: PropTypes.shape({
         /**

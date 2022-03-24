@@ -11,7 +11,11 @@ Keyword arguments:
 
 - id (string; optional)
 
+- affix (boolean; optional)
+
 - align (a value equal to: 'left', 'right'; default 'right')
+
+- bounds (number; optional)
 
 - className (string; optional)
 
@@ -32,16 +36,18 @@ Keyword arguments:
     - prop_name (string; optional):
         Holds which property is loading.
 
+- offsetTop (number; optional)
+
 - style (dict; optional)
 
 - targetOffset (number; optional)"""
     @_explicitize_args
-    def __init__(self, id=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, linkDict=Component.UNDEFINED, align=Component.UNDEFINED, containerId=Component.UNDEFINED, targetOffset=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
-        self._prop_names = ['id', 'align', 'className', 'containerId', 'linkDict', 'loading_state', 'style', 'targetOffset']
+    def __init__(self, id=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, linkDict=Component.UNDEFINED, align=Component.UNDEFINED, containerId=Component.UNDEFINED, targetOffset=Component.UNDEFINED, affix=Component.UNDEFINED, bounds=Component.UNDEFINED, offsetTop=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
+        self._prop_names = ['id', 'affix', 'align', 'bounds', 'className', 'containerId', 'linkDict', 'loading_state', 'offsetTop', 'style', 'targetOffset']
         self._type = 'AntdAnchor'
         self._namespace = 'feffery_antd_components'
         self._valid_wildcard_attributes =            []
-        self.available_properties = ['id', 'align', 'className', 'containerId', 'linkDict', 'loading_state', 'style', 'targetOffset']
+        self.available_properties = ['id', 'affix', 'align', 'bounds', 'className', 'containerId', 'linkDict', 'loading_state', 'offsetTop', 'style', 'targetOffset']
         self.available_wildcard_properties =            []
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()
