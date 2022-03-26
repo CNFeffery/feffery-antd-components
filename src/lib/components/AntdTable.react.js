@@ -1041,8 +1041,13 @@ AntdTable.propTypes = {
     // 记录已被选择的行记录值列表
     selectedRows: PropTypes.array,
 
-    // 设置是否开启粘性头部，默认为false
-    sticky: PropTypes.bool,
+    // 设置粘性表头属性，默认为false
+    sticky: PropTypes.oneOfType([
+        PropTypes.bool,
+        PropTypes.exact({
+            offsetHeader: PropTypes.number
+        })
+    ]),
 
     // 设置是否启用行悬浮事件监听（此功能可能会干扰其他正常表格功能，慎用），默认为false
     enableHoverListen: PropTypes.bool,

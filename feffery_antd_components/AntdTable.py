@@ -218,7 +218,11 @@ Keyword arguments:
 
     - orders (list of a value equal to: 'ascend', 'descend's; optional)
 
-- sticky (boolean; optional)
+- sticky (dict; optional)
+
+    `sticky` is a boolean | dict with keys:
+
+    - offsetHeader (number; optional)
 
 - style (dict; optional)
 

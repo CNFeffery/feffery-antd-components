@@ -113,7 +113,9 @@ Those elements have the following types:
 Those elements have the following types:
   - `columns` (Array of Strings; optional)
   - `orders` (Array of a value equal to: 'ascend', 'descend's; optional)
-- `sticky` (Bool; optional)
+- `sticky` (optional): . sticky has the following type: Bool | lists containing elements 'offsetHeader'.
+Those elements have the following types:
+  - `offsetHeader` (Real; optional)
 - `style` (Dict; optional)
 - `summaryRowContents` (optional): . summaryRowContents has the following type: Array of lists containing elements 'content', 'colSpan', 'align'.
 Those elements have the following types:

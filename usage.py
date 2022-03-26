@@ -8,6 +8,83 @@ app = dash.Dash(__name__)
 
 app.layout = html.Div(
     [
+        fac.AntdTable(
+            selectedRowKeys=['2', '4'],
+            rowSelectionWidth='4rem',
+            columns=[
+                {
+                    'title': '默认的checkbox模式',
+                    'dataIndex': f'默认的checkbox模式',
+                    'width': '33.33%',
+                    'conditionStyle': '''
+                    (record, index) => {
+                        if (record.默认的checkbox模式 >= 10) {
+                            return {
+                                style: {
+                                    color: "red"
+                                }
+                            }
+                        }
+                        if (record.默认的checkbox模式 % 2 === 0) {
+                            return {
+                                style: {
+                                    backgroundColor: "#ffe7ba"
+                                }
+                            }
+                        }
+                        return {
+                            style: {
+                                fontWeight: "bold"
+                            }
+                        }
+                    }
+                    '''
+                    # 'fixed': 'left'
+                },
+                {
+                    'title': '自定义选项的checkbox模式',
+                    'dataIndex': '自定义选项的checkbox模式',
+                    'width': '33.33%'
+                },
+                {
+                    'title': 'keyword模式',
+                    'dataIndex': 'keyword模式',
+                    'width': '33.33%'
+                }
+            ],
+            sticky={
+                'offsetHeader': 800
+            },
+            pagination={
+                'pageSize': 100
+            },
+            data=[
+                {
+                    '默认的checkbox模式': i,
+                    '自定义选项的checkbox模式': i,
+                    'keyword模式': i
+                }
+                for i in range(500)
+            ],
+            filterOptions={
+                '默认的checkbox模式': {
+                    'filterMode': 'keyword'
+                },
+                '自定义选项的checkbox模式': {
+                    'filterMode': 'keyword'
+                },
+                'keyword模式': {
+                    'filterMode': 'keyword'
+                }
+            },
+            rowSelectionType='checkbox',
+            bordered=True,
+            # maxHeight=200,
+            maxWidth=1000,
+            style={
+                # 'width': '800px'
+            }
+        ),
         fac.AntdRate(
             count=10,
             tooltips=[f'等级{i + 1}' for i in range(10)]
@@ -150,83 +227,6 @@ app.layout = html.Div(
             # maxWidth=800,
             bordered=True,
             containerId='docs-content'  # 绑定局部滚动容器以确保悬浮层正常显示
-        ),
-
-        fac.AntdTable(
-            selectedRowKeys=['2', '4'],
-            rowSelectionWidth='4rem',
-            columns=[
-                {
-                    'title': '默认的checkbox模式',
-                    'dataIndex': f'默认的checkbox模式',
-                    'width': '33.33%',
-                    'conditionStyle': '''
-                    (record, index) => {
-                        if (record.默认的checkbox模式 >= 10) {
-                            return {
-                                style: {
-                                    color: "red"
-                                }
-                            }
-                        }
-                        if (record.默认的checkbox模式 % 2 === 0) {
-                            return {
-                                style: {
-                                    backgroundColor: "#ffe7ba"
-                                }
-                            }
-                        }
-                        return {
-                            style: {
-                                fontWeight: "bold"
-                            }
-                        }
-                    }
-                    '''
-                    # 'fixed': 'left'
-                },
-                {
-                    'title': '自定义选项的checkbox模式',
-                    'dataIndex': '自定义选项的checkbox模式',
-                    'width': '33.33%'
-                },
-                {
-                    'title': 'keyword模式',
-                    'dataIndex': 'keyword模式',
-                    'width': '33.33%'
-                }
-            ],
-            containerId='docs-content',
-            sticky=True,
-            pagination={
-                'pageSize': 100
-            },
-            data=[
-                {
-                    '默认的checkbox模式': i,
-                    '自定义选项的checkbox模式': i,
-                    'keyword模式': i
-                }
-                for i in range(500)
-            ],
-            filterOptions={
-                '默认的checkbox模式': {
-                    'filterMode': 'keyword'
-                },
-                '自定义选项的checkbox模式': {
-                    'filterMode': 'keyword'
-                },
-                'keyword模式': {
-                    'filterMode': 'keyword'
-                }
-            },
-            rowSelectionType='checkbox',
-            bordered=True,
-            # maxHeight=200,
-            maxWidth=1000,
-            style={
-                # 'width': '800px'
-            }
         ),
 
         html.Div(
