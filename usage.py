@@ -89,6 +89,24 @@ app.layout = html.Div(
             count=10,
             tooltips=[f'等级{i + 1}' for i in range(10)]
         ),
+
+        fac.AntdButton(
+            '触发对话框',
+            type='primary',
+            id='modal-demo-trigger-1'
+        ),
+
+        fac.AntdModal(
+            fac.AntdText('对话框内容测试'),
+            id='modal-demo-1',
+            visible=False,
+            title={
+                'content': '标题测试',
+                'prefixIcon': 'search'
+            },
+            renderFooter=True
+        ),
+
         fac.AntdTree(
             id='tree-demo',
             treeData=[
@@ -767,24 +785,6 @@ app.layout = html.Div(
                         fac.AntdButton(
                             '触发全局提示框', id='message-trigger-button-demo1', type='primary'),
                         html.Div(id='message-container-demo1'),
-
-                        fac.AntdButton(
-                            '触发对话框',
-                            type='primary',
-                            id='modal-demo-trigger-1'
-                        ),
-
-                        fac.AntdModal(
-                            fac.AntdText('对话框内容测试'),
-                            id='modal-demo-1',
-                            visible=False,
-                            title={
-                                'content': '标题测试',
-                                'prefixIcon': 'search'
-                            },
-                            renderFooter=True
-                        ),
-
 
                         fac.AntdPopover(
                             fac.AntdButton(
