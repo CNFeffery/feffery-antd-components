@@ -8,58 +8,62 @@ app = dash.Dash(__name__)
 
 app.layout = html.Div(
     [
+        fac.AntdRate(
+            count=10,
+            tooltips=[f'等级{i + 1}' for i in range(10)]
+        ),
         fac.AntdTree(
-    id='tree-demo',
-    treeData=[
-        {
-            'title': '重庆市',
-            'key': '重庆市',
-            'children': [
+            id='tree-demo',
+            treeData=[
                 {
-                    'title': '渝北区',
-                    'key': '渝北区'
-                },
-                {
-                    'title': '江北区',
-                    'key': '江北区',
-                    'disabled': True
-                }
-            ]
-        },
-        {
-            'title': '北京市',
-            'key': '北京市',
-            'children': [
-                {
-                    'title': '西城区',
-                    'key': '西城区'
-                },
-                {
-                    'title': '东城区',
-                    'key': '东城区'
-                }
-            ]
-        },
-        {
-            'title': '四川省',
-            'key': '四川省',
-            'children': [
-                {
-                    'title': '成都市',
-                    'key': '成都市',
+                    'title': '重庆市',
+                    'key': '重庆市',
                     'children': [
                         {
-                            'title': '天府新区',
-                            'key': '天府新区'
+                            'title': '渝北区',
+                            'key': '渝北区'
+                        },
+                        {
+                            'title': '江北区',
+                            'key': '江北区',
+                            'disabled': True
+                        }
+                    ]
+                },
+                {
+                    'title': '北京市',
+                    'key': '北京市',
+                    'children': [
+                        {
+                            'title': '西城区',
+                            'key': '西城区'
+                        },
+                        {
+                            'title': '东城区',
+                            'key': '东城区'
+                        }
+                    ]
+                },
+                {
+                    'title': '四川省',
+                    'key': '四川省',
+                    'children': [
+                        {
+                            'title': '成都市',
+                            'key': '成都市',
+                            'children': [
+                                {
+                                    'title': '天府新区',
+                                    'key': '天府新区'
+                                }
+                            ]
                         }
                     ]
                 }
-            ]
-        }
-    ],
-    multiple=True,
-    checkable=True
-),
+            ],
+            multiple=True,
+            checkable=True
+        ),
 
         fac.AntdParagraph('巴拉巴拉'*100, style={'textIndent': '2em'}),
 
