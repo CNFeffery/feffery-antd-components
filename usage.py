@@ -85,6 +85,12 @@ app.layout = html.Div(
                 # 'width': '800px'
             }
         ),
+
+
+        fac.AntdImage(
+            src='https://gw.alipayobjects.com/zos/antfincdn/LlvErxo8H9/photo-1503185912284-5271ff81b9a8.webp'
+        ),
+
         fac.AntdRate(
             count=10,
             tooltips=[f'等级{i + 1}' for i in range(10)]

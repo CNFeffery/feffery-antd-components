@@ -80,7 +80,6 @@ export default class AntdModal extends Component {
                         onCancel={listenCancel}
                         afterClose={listenClose}
                         destroyOnClose={true}
-                        getContainer={false}
                         data-dash-is-loading={
                             (loading_state && loading_state.is_loading) || undefined
                         }
@@ -111,7 +110,6 @@ export default class AntdModal extends Component {
                         onOk={listenOk}
                         onCancel={listenCancel}
                         destroyOnClose={true}
-                        getContainer={false}
                         afterClose={listenClose}
                         data-dash-is-loading={
                             (loading_state && loading_state.is_loading) || undefined
