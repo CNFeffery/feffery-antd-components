@@ -8,6 +8,26 @@ app = dash.Dash(__name__)
 
 app.layout = html.Div(
     [
+        fac.AntdPasteImage(
+            id='test',
+            style={
+                'height': '500px',
+                'width': '800px',
+                'marginBottom': '100px'
+            }
+        ),
+
+        html.Div(id='test-output'),
+        fac.AntdWatermark(
+            html.Div(
+                style={
+                    'width': '800px',
+                    'height': '400px'
+                }
+            ),
+            content='水印测试',
+            fontSize=28
+        ),
         fac.AntdTable(
             selectedRowKeys=['2', '4'],
             rowSelectionWidth='4rem',
@@ -1259,6 +1279,21 @@ def message_demo1(nClicks):
 )
 def modal_demo_callback1(nClicks):
     return True
+
+
+@app.callback(
+    Output('test-output', 'children'),
+    Input('test', 'currentPastedImages')
+)
+def paste_image_test(currentPastedImages):
+
+    if currentPastedImages:
+        return [
+            html.Img(
+                src=currentPastedImage
+            )
+            for currentPastedImage in currentPastedImages
+        ]
 
 
 if __name__ == '__main__':

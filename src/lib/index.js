@@ -76,6 +76,8 @@ import AntdCalendar from './components/AntdCalendar.react'
 import AntdComment from './components/AntdComment.react'
 import AntdDescriptions from './components/descriptions/AntdDescriptions.react'
 import AntdDescriptionItem from './components/descriptions/AntdDescriptionItem.react'
+import AntdWatermark from './components/AntdWatermark.react'
+import AntdPasteImage from './components/AntdPasteImage.react'
 
 export {
     AntdDatePicker,
@@ -154,5 +156,7 @@ export {
     AntdCalendar,
     AntdComment,
     AntdDescriptions,
-    AntdDescriptionItem
+    AntdDescriptionItem,
+    AntdWatermark,
+    AntdPasteImage
 };

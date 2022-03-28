@@ -32,6 +32,7 @@ from .AntdModal import AntdModal
 from .AntdNotification import AntdNotification
 from .AntdPageHeader import AntdPageHeader
 from .AntdPagination import AntdPagination
+from .AntdPasteImage import AntdPasteImage
 from .AntdPopconfirm import AntdPopconfirm
 from .AntdPopover import AntdPopover
 from .AntdProgress import AntdProgress
@@ -57,6 +58,7 @@ from .AntdTransfer import AntdTransfer
 from .AntdTree import AntdTree
 from .AntdTreeSelect import AntdTreeSelect
 from .AntdUpload import AntdUpload
+from .AntdWatermark import AntdWatermark
 from .AntdCard import AntdCard
 from .AntdCardGrid import AntdCardGrid
 from .AntdDescriptionItem import AntdDescriptionItem
@@ -111,6 +113,7 @@ __all__ = [
     "AntdNotification",
     "AntdPageHeader",
     "AntdPagination",
+    "AntdPasteImage",
     "AntdPopconfirm",
     "AntdPopover",
     "AntdProgress",
@@ -136,6 +139,7 @@ __all__ = [
     "AntdTree",
     "AntdTreeSelect",
     "AntdUpload",
+    "AntdWatermark",
     "AntdCard",
     "AntdCardGrid",
     "AntdDescriptionItem",
