@@ -9,7 +9,7 @@ class AntdPasteImage(Component):
 
 Keyword arguments:
 
-- id (string; required)
+- id (string; optional)
 
 - className (string; default 'feffery-paste-image-container')
 
@@ -34,7 +34,7 @@ Keyword arguments:
 
 - style (dict; optional)"""
     @_explicitize_args
-    def __init__(self, id=Component.REQUIRED, className=Component.UNDEFINED, style=Component.UNDEFINED, currentPastedImages=Component.UNDEFINED, deletedIdx=Component.UNDEFINED, imageHeight=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
+    def __init__(self, id=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, currentPastedImages=Component.UNDEFINED, deletedIdx=Component.UNDEFINED, imageHeight=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
         self._prop_names = ['id', 'className', 'currentPastedImages', 'deletedIdx', 'imageHeight', 'loading_state', 'style']
         self._type = 'AntdPasteImage'
         self._namespace = 'feffery_antd_components'
@@ -45,7 +45,7 @@ Keyword arguments:
         _locals = locals()
         _locals.update(kwargs)  # For wildcard attrs
         args = {k: _locals[k] for k in _explicit_args if k != 'children'}
-        for k in ['id']:
+        for k in []:
             if k not in args:
                 raise TypeError(
                     'Required argument `' + k + '` was not specified.')

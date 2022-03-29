@@ -116,7 +116,7 @@ const AntdPasteImage = (props) => {
 // 定义参数或属性
 AntdPasteImage.propTypes = {
     // 部件id
-    id: PropTypes.string.isRequired,
+    id: PropTypes.string,
 
     // css类名
     className: PropTypes.string,

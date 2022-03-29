@@ -8,7 +8,7 @@ export 'feffery'_antdpasteimage
 An AntdPasteImage component.
 
 Keyword arguments:
-- `id` (String; required)
+- `id` (String; optional)
 - `className` (String; optional)
 - `currentPastedImages` (Array of Bool | Real | String | Dict | Arrays; optional)
 - `deletedIdx` (Array of Reals; optional)
