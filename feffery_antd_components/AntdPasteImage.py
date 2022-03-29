@@ -9,10 +9,6 @@ class AntdPasteImage(Component):
 
 Keyword arguments:
 
-- children (a list of or a singular dash component, string or number; optional):
-    The content of the tab - will only be displayed if this tab is
-    selected.
-
 - id (string; required)
 
 - className (string; default 'feffery-paste-image-container')
@@ -38,12 +34,12 @@ Keyword arguments:
 
 - style (dict; optional)"""
     @_explicitize_args
-    def __init__(self, children=None, id=Component.REQUIRED, className=Component.UNDEFINED, style=Component.UNDEFINED, currentPastedImages=Component.UNDEFINED, deletedIdx=Component.UNDEFINED, imageHeight=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
-        self._prop_names = ['children', 'id', 'className', 'currentPastedImages', 'deletedIdx', 'imageHeight', 'loading_state', 'style']
+    def __init__(self, id=Component.REQUIRED, className=Component.UNDEFINED, style=Component.UNDEFINED, currentPastedImages=Component.UNDEFINED, deletedIdx=Component.UNDEFINED, imageHeight=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
+        self._prop_names = ['id', 'className', 'currentPastedImages', 'deletedIdx', 'imageHeight', 'loading_state', 'style']
         self._type = 'AntdPasteImage'
         self._namespace = 'feffery_antd_components'
         self._valid_wildcard_attributes =            []
-        self.available_properties = ['children', 'id', 'className', 'currentPastedImages', 'deletedIdx', 'imageHeight', 'loading_state', 'style']
+        self.available_properties = ['id', 'className', 'currentPastedImages', 'deletedIdx', 'imageHeight', 'loading_state', 'style']
         self.available_wildcard_properties =            []
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()
@@ -53,4 +49,4 @@ Keyword arguments:
             if k not in args:
                 raise TypeError(
                     'Required argument `' + k + '` was not specified.')
-        super(AntdPasteImage, self).__init__(children=children, **args)
+        super(AntdPasteImage, self).__init__(**args)
