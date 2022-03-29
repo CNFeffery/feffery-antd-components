@@ -122,11 +122,6 @@ AntdPasteImage.propTypes = {
     // 部件id
     id: PropTypes.string,
 
-    /**
-     * The content of the tab - will only be displayed if this tab is selected
-     */
-    children: PropTypes.node,
-
     // css类名
     className: PropTypes.string,
 

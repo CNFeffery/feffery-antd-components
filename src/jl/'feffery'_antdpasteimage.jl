@@ -4,14 +4,10 @@ export 'feffery'_antdpasteimage
 
 """
     'feffery'_antdpasteimage(;kwargs...)
-    'feffery'_antdpasteimage(children::Any;kwargs...)
-    'feffery'_antdpasteimage(children_maker::Function;kwargs...)
-
 
 An AntdPasteImage component.
 
 Keyword arguments:
-- `children` (a list of or a singular dash component, string or number; optional): The content of the tab - will only be displayed if this tab is selected
 - `id` (String; optional)
 - `className` (String; optional)
 - `currentPastedImages` (Array of Bool | Real | String | Dict | Arrays; optional)
@@ -25,11 +21,8 @@ Those elements have the following types:
 - `style` (Dict; optional)
 """
 function 'feffery'_antdpasteimage(; kwargs...)
-        available_props = Symbol[:children, :id, :className, :currentPastedImages, :deletedIdx, :imageHeight, :loading_state, :style]
+        available_props = Symbol[:id, :className, :currentPastedImages, :deletedIdx, :imageHeight, :loading_state, :style]
         wild_props = Symbol[]
         return Component("'feffery'_antdpasteimage", "AntdPasteImage", "feffery_antd_components", available_props, wild_props; kwargs...)
 end
-
-'feffery'_antdpasteimage(children::Any; kwargs...) = 'feffery'_antdpasteimage(;kwargs..., children = children)
-'feffery'_antdpasteimage(children_maker::Function; kwargs...) = 'feffery'_antdpasteimage(children_maker(); kwargs...)
 
