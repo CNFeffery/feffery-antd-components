@@ -1,6 +1,6 @@
 import React, { useCallback } from 'react';
 import PropTypes from 'prop-types';
-import { Card, Button, Image, ConfigProvider } from 'antd';
+import { Card, Button, ConfigProvider, Image as Image_ } from 'antd';
 import zhCN from 'antd/lib/locale/zh_CN';
 import { Gluejar } from '@charliewilco/gluejar'
 import { DeleteOutlined } from '@ant-design/icons';
@@ -94,15 +94,12 @@ const AntdPasteImage = (props) => {
                                                     <Button shape="circle" size={"small"} icon={<DeleteOutlined />}
                                                         style={{ position: 'absolute', 'right': 10, top: 10, zIndex: 1 }}
                                                         onClick={() => handleDelete(idx)} />
-                                                    <Image src={image}
+                                                    <Image_ src={image}
                                                         key={idx}
-                                                        alt={`已粘贴图片${idx}`}
-                                                        width={'100%'}
-                                                        height={'100%'}
-                                                        style={{
-                                                            borderTop: '1px solid #f0f0f0',
-                                                            objectFit: 'contain'
-                                                        }} />
+                                                        alt={`Pasted: ${idx}`}
+                                                        width={"100%"}
+                                                        height={"100%"}
+                                                        style={{ borderTop: '1px solid #f0f0f0', objectFit: 'contain' }} />
                                                 </Card.Grid>
                                             ) : null
                                         }
@@ -123,7 +120,12 @@ const AntdPasteImage = (props) => {
 // 定义参数或属性
 AntdPasteImage.propTypes = {
     // 部件id
-    id: PropTypes.string,
+    id: PropTypes.string.isRequired,
+
+    /**
+     * The content of the tab - will only be displayed if this tab is selected
+     */
+    children: PropTypes.node,
 
     // css类名
     className: PropTypes.string,
