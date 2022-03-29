@@ -92,10 +92,17 @@ const AntdPasteImage = (props) => {
                                                     style={{ width: '25%', height: imageHeight, padding: 5, cursor: 'pointer', position: 'relative' }}
                                                 >
                                                     <Button shape="circle" size={"small"} icon={<DeleteOutlined />}
-                                                        style={{ position: 'absolute', 'right': 10, top: 10 }}
+                                                        style={{ position: 'absolute', 'right': 10, top: 10, zIndex: 1 }}
                                                         onClick={() => handleDelete(idx)} />
-                                                    <Image src={image} key={image} alt={`Pasted: ${image}`}
-                                                        style={{ borderTop: '1px solid #f0f0f0', height: '100%', width: '100%', objectFit: 'contain' }} />
+                                                    <Image src={image}
+                                                        key={idx}
+                                                        alt={`已粘贴图片${idx}`}
+                                                        width={'100%'}
+                                                        height={'100%'}
+                                                        style={{
+                                                            borderTop: '1px solid #f0f0f0',
+                                                            objectFit: 'contain'
+                                                        }} />
                                                 </Card.Grid>
                                             ) : null
                                         }
