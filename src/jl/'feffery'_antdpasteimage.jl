@@ -12,7 +12,7 @@ An AntdPasteImage component.
 
 Keyword arguments:
 - `children` (a list of or a singular dash component, string or number; optional): The content of the tab - will only be displayed if this tab is selected
-- `id` (String; required)
+- `id` (String; optional)
 - `className` (String; optional)
 - `currentPastedImages` (Array of Bool | Real | String | Dict | Arrays; optional)
 - `deletedIdx` (Array of Reals; optional)

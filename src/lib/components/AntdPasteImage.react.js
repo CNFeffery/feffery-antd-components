@@ -120,7 +120,7 @@ const AntdPasteImage = (props) => {
 // 定义参数或属性
 AntdPasteImage.propTypes = {
     // 部件id
-    id: PropTypes.string.isRequired,
+    id: PropTypes.string,
 
     /**
      * The content of the tab - will only be displayed if this tab is selected
