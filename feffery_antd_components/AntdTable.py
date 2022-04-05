@@ -53,7 +53,7 @@ Keyword arguments:
 
         - renderLinkText (string; optional)
 
-        - renderType (a value equal to: 'link', 'ellipsis', 'mini-line', 'mini-bar', 'mini-progress', 'mini-ring-progress', 'mini-area', 'tags', 'button', 'copyable', 'status-badge'; optional)
+        - renderType (a value equal to: 'link', 'ellipsis', 'mini-line', 'mini-bar', 'mini-progress', 'mini-ring-progress', 'mini-area', 'tags', 'button', 'copyable', 'status-badge', 'image'; optional)
 
     - sorter (boolean | number | string | dict | list; optional)
 
@@ -115,7 +115,13 @@ Keyword arguments:
 
     - status (a value equal to: 'success', 'processing', 'default', 'error', 'warning'; optional)
 
-    - text (string | number; optional)
+    - text (string | number; optional) | dict with keys:
+
+    - height (string | number; optional)
+
+    - preview (boolean; optional)
+
+    - src (string; optional)
 
 - enableHoverListen (boolean; default False)
 

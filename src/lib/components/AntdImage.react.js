@@ -96,10 +96,16 @@ AntdImage.propTypes = {
     alt: PropTypes.string,
 
     // 设置像素宽度
-    width: PropTypes.number,
+    width: PropTypes.oneOfType([
+        PropTypes.number,
+        PropTypes.string
+    ]),
 
     // 设置图像高度
-    height: PropTypes.number,
+    height: PropTypes.oneOfType([
+        PropTypes.number,
+        PropTypes.string
+    ]),
 
     // 设置图片源地址，单个字符串传入时为单图片模式
     // 多个字符串数组传入时为多图片切换模式

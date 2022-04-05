@@ -18,7 +18,7 @@ Those elements have the following types:
   - `dataIndex` (String; required)
   - `renderOptions` (optional): . renderOptions has the following type: lists containing elements 'renderType', 'renderLinkText', 'renderButtonPopConfirmProps'.
 Those elements have the following types:
-  - `renderType` (a value equal to: 'link', 'ellipsis', 'mini-line', 'mini-bar', 'mini-progress', 'mini-ring-progress', 'mini-area', 'tags', 'button', 'copyable', 'status-badge'; optional)
+  - `renderType` (a value equal to: 'link', 'ellipsis', 'mini-line', 'mini-bar', 'mini-progress', 'mini-ring-progress', 'mini-area', 'tags', 'button', 'copyable', 'status-badge', 'image'; optional)
   - `renderLinkText` (String; optional)
   - `renderButtonPopConfirmProps` (optional): . renderButtonPopConfirmProps has the following type: lists containing elements 'title', 'okText', 'cancelText'.
 Those elements have the following types:
@@ -63,7 +63,11 @@ Those elements have the following types:
   - `content` (String | Real; optional)s | lists containing elements 'status', 'text'.
 Those elements have the following types:
   - `status` (a value equal to: 'success', 'processing', 'default', 'error', 'warning'; optional)
-  - `text` (String | Real; optional)s
+  - `text` (String | Real; optional) | lists containing elements 'src', 'height', 'preview'.
+Those elements have the following types:
+  - `src` (String; optional)
+  - `height` (String | Real; optional)
+  - `preview` (Bool; optional)s
 - `enableHoverListen` (Bool; optional)
 - `filter` (Dict; optional)
 - `filterOptions` (Dict; optional)

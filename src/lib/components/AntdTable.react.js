@@ -1,6 +1,6 @@
 import React, { Component, useContext, useState, useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
-import { Table, Tooltip, Popover, Popconfirm, ConfigProvider, Typography, Input, Form, Tag, Button, Badge, Space, message } from 'antd';
+import { Table, Tooltip, Popover, Popconfirm, ConfigProvider, Typography, Input, Form, Tag, Button, Badge, Space, Image, message } from 'antd';
 import { TinyLine, TinyArea, TinyColumn, Progress, RingProgress } from '@ant-design/charts';
 import Highlighter from 'react-highlight-words';
 import { SearchOutlined, QuestionCircleOutlined } from '@ant-design/icons';
@@ -607,6 +607,21 @@ export default class AntdTable extends Component {
             }
         }
 
+        // 配置字段渲染模式为image的相关参数
+        for (let i = 0; i < columns.length; i++) {
+            // 当前字段具有renderOptions参数时且renderOptions参数是字典时
+            if (columns[i]['renderOptions']) {
+                if (columns[i]['renderOptions'].hasOwnProperty('renderType')) {
+                    // 当renderOptions参数的renderType值设置为image时
+                    if (columns[i]['renderOptions']['renderType'] == 'image') {
+                        columns[i]['render'] = content => (
+                            <Image src={content.src} height={content.height} preview={content.preview} />
+                        )
+                    }
+                }
+            }
+        }
+
         // 配置字段渲染模式为button的相关参数
         for (let i = 0; i < columns.length; i++) {
             // 当前字段具有renderOptions参数时且renderOptions参数是字典时
@@ -961,7 +976,7 @@ AntdTable.propTypes = {
                 renderType: PropTypes.oneOf([
                     'link', 'ellipsis', 'mini-line', 'mini-bar', 'mini-progress',
                     'mini-ring-progress', 'mini-area', 'tags', 'button', 'copyable',
-                    'status-badge'
+                    'status-badge', 'image'
                 ]),
 
                 // 当renderType='link'时，此参数会将传入的字符串作为渲染link的显示文字内容
@@ -1164,6 +1179,21 @@ AntdTable.propTypes = {
                         PropTypes.string,
                         PropTypes.number
                     ])
+                }),
+
+                // image模式
+                PropTypes.exact({
+                    // 设置图片的src属性
+                    src: PropTypes.string,
+
+                    // 设置图片的高度
+                    height: PropTypes.oneOfType([
+                        PropTypes.string,
+                        PropTypes.number
+                    ]),
+
+                    // 设置是否允许预览，默认为true
+                    preview: PropTypes.bool
                 })
             ])
         )
