@@ -23,7 +23,13 @@ Those elements have the following types:
   - `fileSize` (Real; optional)
   - `completeTimestamp` (Real; optional)
   - `taskStatus` (String; optional)
-  - `taskId` (String; optional)
+  - `taskId` (String; optional) | Array of lists containing elements 'fileName', 'fileSize', 'completeTimestamp', 'taskStatus', 'taskId'.
+Those elements have the following types:
+  - `fileName` (String; optional)
+  - `fileSize` (Real; optional)
+  - `completeTimestamp` (Real; optional)
+  - `taskStatus` (String; optional)
+  - `taskId` (String; optional)s
 - `loading_state` (optional): . loading_state has the following type: lists containing elements 'is_loading', 'prop_name', 'component_name'.
 Those elements have the following types:
   - `is_loading` (Bool; optional): Determines if the component is loading or not
@@ -31,11 +37,12 @@ Those elements have the following types:
   - `component_name` (String; optional): Holds the name of the component that is loading
 - `locale` (a value equal to: 'zh-cn', 'en-us'; optional)
 - `multiple` (Bool; optional)
+- `showUploadList` (Bool; optional)
 - `style` (Dict; optional)
 - `uploadId` (String; optional)
 """
 function 'feffery'_antdupload(; kwargs...)
-        available_props = Symbol[:id, :apiUrl, :buttonContent, :className, :directory, :failedTooltipInfo, :fileListMaxLength, :fileMaxSize, :fileTypes, :lastUploadTaskRecord, :loading_state, :locale, :multiple, :style, :uploadId]
+        available_props = Symbol[:id, :apiUrl, :buttonContent, :className, :directory, :failedTooltipInfo, :fileListMaxLength, :fileMaxSize, :fileTypes, :lastUploadTaskRecord, :loading_state, :locale, :multiple, :showUploadList, :style, :uploadId]
         wild_props = Symbol[]
         return Component("'feffery'_antdupload", "AntdUpload", "feffery_antd_components", available_props, wild_props; kwargs...)
 end

@@ -26,6 +26,7 @@ const AntdDraggerUpload = (props) => {
         fileListMaxLength,
         fileTypes,
         fileMaxSize,
+        showUploadList,
         multiple,
         directory,
         failedTooltipInfo,
@@ -65,16 +66,38 @@ const AntdDraggerUpload = (props) => {
 
             if (info.file.status === 'done') {
 
-                // 更新任务记录
-                setProps({
-                    lastUploadTaskRecord: {
-                        fileName: info.file.name,
-                        fileSize: info.file.size,
-                        completeTimestamp: new Date().getTime(),
-                        taskStatus: 'success',
-                        taskId: uploadId
+                // 检查是否为多文件上传模式
+                if (multiple || directory) {
+                    // 检查上传列表中是否全部文件都已完成上传
+                    if (info.fileList.every(file => file.status === 'done')) {
+                        console.log(info.fileList)
+                        // 更新任务记录
+                        setProps({
+                            lastUploadTaskRecord: info.fileList.map(
+                                (file) => {
+                                    return {
+                                        fileName: file.name,
+                                        fileSize: file.size,
+                                        completeTimestamp: new Date().getTime(),
+                                        taskStatus: 'success',
+                                        taskId: uploadId
+                                    }
+                                }
+                            )
+                        })
                     }
-                })
+                } else {
+                    // 更新任务记录
+                    setProps({
+                        lastUploadTaskRecord: {
+                            fileName: info.file.name,
+                            fileSize: info.file.size,
+                            completeTimestamp: new Date().getTime(),
+                            taskStatus: 'success',
+                            taskId: uploadId
+                        }
+                    })
+                }
                 message.success(`${info.file.name} 上传成功！`);
             } else if (info.file.status === 'error') {
 
@@ -106,7 +129,11 @@ const AntdDraggerUpload = (props) => {
             )
 
             // 基于fileListMaxLength参数设置，对fileList状态进行更新
-            updateFileList(info.fileList.slice(-fileListMaxLength))
+            if (fileListMaxLength) {
+                updateFileList(info.fileList.slice(-fileListMaxLength))
+            } else {
+                updateFileList(info.fileList)
+            }
         },
     };
 
@@ -187,6 +214,9 @@ AntdDraggerUpload.propTypes = {
     // 自定义上传失败文件鼠标悬浮tooltip文字内容，默认为'上传失败'
     failedTooltipInfo: PropTypes.string,
 
+    // 设置是否显示已上传文件列表，默认为true
+    showUploadList: PropTypes.bool,
+
     // 用于在每次文件上传动作完成后，记录相关的信息
     lastUploadTaskRecord: PropTypes.exact({
         // 记录文件名称
@@ -230,7 +260,7 @@ AntdDraggerUpload.propTypes = {
 
 // 设置默认参数
 AntdDraggerUpload.defaultProps = {
-    fileListMaxLength: 3,
+    fileListMaxLength: null,
     fileMaxSize: 500,
     lastUploadTaskRecord: {},
     locale: 'zh-cn'

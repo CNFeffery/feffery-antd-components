@@ -1,13 +1,53 @@
 import dash
 import numpy as np
 from dash import html
+from flask import request
 import feffery_antd_components as fac
 from dash.dependencies import Input, Output, State
 
 app = dash.Dash(__name__)
 
+
+@app.server.route('/upload/', methods=['POST'])
+def upload():
+    '''
+    构建文件上传服务
+    :return:
+    '''
+
+    # 获取上传id参数，用于指向保存路径
+    uploadId = request.values.get('uploadId')
+
+    # 获取上传的文件名称
+    filename = request.files['file'].filename
+
+    print({'filename': filename})
+
+    return {'filename': filename}
+
+
+@app.callback(
+    Output('output', 'children'),
+    Input('input', 'lastUploadTaskRecord')
+)
+def test(lastUploadTaskRecord):
+    if lastUploadTaskRecord:
+        print(lastUploadTaskRecord)
+
+    return dash.no_update
+
 app.layout = html.Div(
     [
+
+        fac.AntdUpload(
+            id='input',
+            apiUrl='/upload/',
+            directory=True
+        ),
+
+        html.Div(
+            id='output'
+        ),
 
         fac.AntdTable(
             columns=[

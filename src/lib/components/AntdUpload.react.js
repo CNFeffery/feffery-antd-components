@@ -23,6 +23,7 @@ const AntdUpload = (props) => {
         buttonContent,
         fileTypes,
         fileMaxSize,
+        showUploadList,
         multiple,
         directory,
         failedTooltipInfo,
@@ -59,20 +60,42 @@ const AntdUpload = (props) => {
             return sizeCheck;
         },
         onChange(info) {
-            console.log(info)
 
             if (info.file.status === 'done') {
 
-                // 更新任务记录
-                setProps({
-                    lastUploadTaskRecord: {
-                        fileName: info.file.name,
-                        fileSize: info.file.size,
-                        completeTimestamp: new Date().getTime(),
-                        taskStatus: 'success',
-                        taskId: uploadId
+                // 检查是否为多文件上传模式
+                if (multiple || directory) {
+                    // 检查上传列表中是否全部文件都已完成上传
+                    if (info.fileList.every(file => file.status === 'done')) {
+                        console.log(info.fileList)
+                        // 更新任务记录
+                        setProps({
+                            lastUploadTaskRecord: info.fileList.map(
+                                (file) => {
+                                    return {
+                                        fileName: file.name,
+                                        fileSize: file.size,
+                                        completeTimestamp: new Date().getTime(),
+                                        taskStatus: 'success',
+                                        taskId: uploadId
+                                    }
+                                }
+                            )
+                        })
                     }
-                })
+                } else {
+                    // 更新任务记录
+                    setProps({
+                        lastUploadTaskRecord: {
+                            fileName: info.file.name,
+                            fileSize: info.file.size,
+                            completeTimestamp: new Date().getTime(),
+                            taskStatus: 'success',
+                            taskId: uploadId
+                        }
+                    })
+                }
+
                 message.success(`${info.file.name} 上传成功！`);
             } else if (info.file.status === 'error') {
 
@@ -104,7 +127,11 @@ const AntdUpload = (props) => {
             )
 
             // 基于fileListMaxLength参数设置，对fileList状态进行更新
-            updateFileList(info.fileList.slice(-fileListMaxLength))
+            if (fileListMaxLength) {
+                updateFileList(info.fileList.slice(-fileListMaxLength))
+            } else {
+                updateFileList(info.fileList)
+            }
         },
     };
 
@@ -123,6 +150,7 @@ const AntdUpload = (props) => {
                 style={style}
                 fileList={fileList}
                 multiple={multiple}
+                showUploadList={showUploadList}
                 directory={directory}
                 data-dash-is-loading={
                     (loading_state && loading_state.is_loading) || undefined
@@ -175,24 +203,50 @@ AntdUpload.propTypes = {
     // 自定义上传失败文件鼠标悬浮tooltip文字内容，默认为'上传失败'
     failedTooltipInfo: PropTypes.string,
 
+    // 设置是否显示已上传文件列表，默认为true
+    showUploadList: PropTypes.bool,
+
     // 用于在每次文件上传动作完成后，记录相关的信息
-    lastUploadTaskRecord: PropTypes.exact({
-        // 记录文件名称
-        fileName: PropTypes.string,
+    lastUploadTaskRecord: PropTypes.oneOfType([
+        // 单文件
+        PropTypes.exact({
+            // 记录文件名称
+            fileName: PropTypes.string,
 
-        // 记录文件大小
-        fileSize: PropTypes.number,
+            // 记录文件大小
+            fileSize: PropTypes.number,
 
-        // 记录完成时间戳信息
-        completeTimestamp: PropTypes.number,
+            // 记录完成时间戳信息
+            completeTimestamp: PropTypes.number,
 
-        // 记录此次上传任务的状态信息，'success'表示成功，'failed'表示失败
-        taskStatus: PropTypes.string,
+            // 记录此次上传任务的状态信息，'success'表示成功，'failed'表示失败
+            taskStatus: PropTypes.string,
 
-        // 记录本次任务的id信息，若最近一次任务状态为'failed'，则不会携带此信息
-        taskId: PropTypes.string
+            // 记录本次任务的id信息，若最近一次任务状态为'failed'，则不会携带此信息
+            taskId: PropTypes.string
 
-    }),
+        }),
+        // 文件夹或多文件上传
+        PropTypes.arrayOf(
+            PropTypes.exact({
+                // 记录文件名称
+                fileName: PropTypes.string,
+
+                // 记录文件大小
+                fileSize: PropTypes.number,
+
+                // 记录完成时间戳信息
+                completeTimestamp: PropTypes.number,
+
+                // 记录此次上传任务的状态信息，'success'表示成功，'failed'表示失败
+                taskStatus: PropTypes.string,
+
+                // 记录本次任务的id信息，若最近一次任务状态为'failed'，则不会携带此信息
+                taskId: PropTypes.string
+
+            })
+        )
+    ]),
 
     loading_state: PropTypes.shape({
         /**
@@ -218,7 +272,7 @@ AntdUpload.propTypes = {
 
 // 设置默认参数
 AntdUpload.defaultProps = {
-    fileListMaxLength: 3,
+    fileListMaxLength: null,
     fileMaxSize: 500,
     lastUploadTaskRecord: {},
     locale: 'zh-cn'
