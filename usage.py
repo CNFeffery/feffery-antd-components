@@ -10,6 +10,33 @@ app = dash.Dash(__name__)
 
 app.layout = html.Div(
     [
+
+        fac.AntdTable(
+            columns=[
+                {
+                    'title': '超链接示例',
+                    'dataIndex': '超链接示例',
+                    'renderOptions': {
+                        'renderType': 'link',
+                        'renderLinkText': '点击跳转'
+                    }
+                }
+            ],
+            data=[
+                {
+                    'key': i,
+                    '超链接示例': {
+                        'href': 'https://github.com/CNFeffery/feffery-antd-components'
+                    }
+                }
+                for i in range(3)
+            ],
+            bordered=True,
+            style={
+                'width': '250px'
+            }
+        ),
+
         fac.AntdTable(
             columns=[
                 {
@@ -81,7 +108,6 @@ app.layout = html.Div(
                 },
                 '数值测试': '''
                     (record, index) => {
-                        console.log({ record })
                         if ( record['数值测试'] <= 0.5 ) {
                             return {
                                     style: {

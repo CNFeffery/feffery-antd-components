@@ -1420,5 +1420,6 @@ AntdTable.defaultProps = {
     mode: 'client-side',
     nClicksButton: 0,
     size: 'default',
-    locale: 'zh-cn'
+    locale: 'zh-cn',
+    conditionalStyleFuncs: {}
 }
