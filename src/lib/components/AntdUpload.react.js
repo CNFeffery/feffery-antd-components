@@ -32,8 +32,6 @@ const AntdUpload = (props) => {
         setProps
     } = props;
 
-    console.log('redraw！')
-
     uploadId = uploadId || uuid;
 
     const [fileList, updateFileList] = useState([]);
@@ -62,10 +60,6 @@ const AntdUpload = (props) => {
         },
         onChange(info) {
 
-            console.log('---------------------------------------------------------')
-
-            console.log({ info })
-
             // 计算最近一次任务的子任务数量
             let lastTaskCount
             if (info.file.status === 'removed') {
@@ -78,8 +72,7 @@ const AntdUpload = (props) => {
             if (multiple || directory) {
                 // 若当前事件为removed
                 if (info.file.status === 'removed') {
-                    console.log('removed事件，更新listUploadTaskRecord')
-                    console.log(info.fileList)
+
                     // 更新任务记录
                     setProps({
                         listUploadTaskRecord: info.fileList.map(
@@ -98,16 +91,10 @@ const AntdUpload = (props) => {
                     // 其他常规事件
                     // 判断此次任务所有文件是否已上传结束（done或error）
                     if (info.fileList.slice(-lastTaskCount).every(file => file.status !== 'uploading')) {
-                        console.log('所有状态均不为uploading!')
-                        console.log(info.fileList.slice(-lastTaskCount).map(file => file.status))
+
                         if (info.fileList.slice(-lastTaskCount).every(file => !file.status)) {
-                            console.log('所有任务状态均为undefined')
-                            console.log(info.fileList.slice(-lastTaskCount))
-                            console.log(info.fileList.slice(-lastTaskCount).map(file => file.status))
                         } else {
                             if (lastTaskCount > 0) {
-                                console.log('更新任务记录')
-                                console.log(lastTaskCount)
 
                                 // 更新任务记录
                                 setProps({
@@ -145,8 +132,7 @@ const AntdUpload = (props) => {
                 // 单文件上传模式
                 // 若当前事件为removed
                 if (info.file.status === 'removed') {
-                    console.log('removed事件，更新listUploadTaskRecord')
-                    console.log(info.fileList)
+
                     // 更新任务记录
                     setProps({
                         listUploadTaskRecord: info.fileList.map(
@@ -200,16 +186,13 @@ const AntdUpload = (props) => {
                 _fileList = _fileList.slice(-fileListMaxLength);
             }
 
-            console.log('手动判断修改status！')
-            console.log('lastTaskCount:', lastTaskCount)
-            console.log('_fileList:', _fileList)
             if (lastTaskCount !== 0) {
                 _fileList = _fileList.slice(0, _fileList.length - lastTaskCount)
                     .concat(
                         _fileList.slice(-lastTaskCount).map(
                             item => {
                                 if (item.status === 'error' || !item.status) {
-                                    console.log({ item })
+    
                                     item.status = 'error'
                                     item.response = failedTooltipInfo ? failedTooltipInfo : '上传失败'
                                 }
@@ -219,9 +202,6 @@ const AntdUpload = (props) => {
                     )
             }
 
-            console.log('当前文件状态：')
-            console.log(info.file.status)
-            console.log({ _fileList })
             updateFileList(_fileList)
         }
     };

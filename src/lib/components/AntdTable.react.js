@@ -319,6 +319,8 @@ export default class AntdTable extends Component {
             nClicksButton,
             summaryRowContents,
             summaryRowFixed,
+            customFormatFuncs,
+            conditionalStyleFuncs,
             loading_state
         } = this.props;
 
@@ -348,10 +350,11 @@ export default class AntdTable extends Component {
         for (let i in columns) {
 
             columns[i] = {
-                ...{ align: 'center' },
+                align: 'center',
                 ...columns[i],
                 ...{
-                    onCell: columns[i]?.conditionStyle ? eval(columns[i].conditionStyle) : columns[i]?.onCell
+                    onCell: conditionalStyleFuncs[columns[i].dataIndex] ?
+                        eval(conditionalStyleFuncs[columns[i].dataIndex]) : undefined
                 }
             }
         }
@@ -399,7 +402,9 @@ export default class AntdTable extends Component {
                                 ...columns[i],
                                 filters: filterOptions[columns[i].dataIndex].filterCustomItems
                                     .map(value => ({ text: value.toString(), value: value })),
-                                onFilter: (value, record) => record[columns[i].dataIndex] === value
+                                onFilter: (value, record) => record[columns[i].dataIndex] === value,
+                                filterMultiple: filterOptions[columns[i].dataIndex]?.filterMultiple,
+                                filterSearch: filterOptions[columns[i].dataIndex]?.filterSearch
                             }
                         } else {
                             columns[i] = {
@@ -407,7 +412,9 @@ export default class AntdTable extends Component {
                                 filters: Array.from(new Set(data.map(item => item[columns[i].dataIndex]))).map(
                                     value => ({ text: value.toString(), value: value })
                                 ).sort(compareNumeric),
-                                onFilter: (value, record) => record[columns[i].dataIndex] === value
+                                onFilter: (value, record) => record[columns[i].dataIndex] === value,
+                                filterMultiple: filterOptions[columns[i].dataIndex]?.filterMultiple,
+                                filterSearch: filterOptions[columns[i].dataIndex]?.filterSearch
                             }
                         }
                     }
@@ -496,7 +503,7 @@ export default class AntdTable extends Component {
                                 }
 
                             },
-                            multiple: sortOptions.sortDataIndexes.length - i,
+                            multiple: sortOptions['multiple'] === 'auto' ? 1 : sortOptions.sortDataIndexes.length - i,
                         }
                     } else { // 若非组合排序模式
                         columns[j]['sorter'] = (a, b) => {
@@ -753,6 +760,24 @@ export default class AntdTable extends Component {
             }
         }
 
+        // 配置字段渲染模式为custom-format的相关参数
+        for (let i = 0; i < columns.length; i++) {
+            // 当前字段具有renderOptions参数时且renderOptions参数是字典时
+            if (columns[i]['renderOptions']) {
+                if (columns[i]['renderOptions'].hasOwnProperty('renderType')) {
+                    // 当renderOptions参数的renderType值设置为custom-format时
+                    if (columns[i]['renderOptions']['renderType'] == 'custom-format') {
+                        // 若customFormatFuncs对应当前字段的属性值存在
+                        if (customFormatFuncs[columns[i]['dataIndex']]) {
+                            columns[i]['render'] = content => (
+                                eval(customFormatFuncs[columns[i]['dataIndex']])(content)
+                            )
+                        }
+                    }
+                }
+            }
+        }
+
         // 配置字段渲染模式对应迷你图模式的情况
         for (let i = 0; i < columns.length; i++) {
             // 当前字段具有renderOptions参数时且renderOptions参数是字典时
@@ -976,7 +1001,7 @@ AntdTable.propTypes = {
                 renderType: PropTypes.oneOf([
                     'link', 'ellipsis', 'mini-line', 'mini-bar', 'mini-progress',
                     'mini-ring-progress', 'mini-area', 'tags', 'button', 'copyable',
-                    'status-badge', 'image'
+                    'status-badge', 'image', 'custom-format'
                 ]),
 
                 // 当renderType='link'时，此参数会将传入的字符串作为渲染link的显示文字内容
@@ -1006,9 +1031,6 @@ AntdTable.propTypes = {
 
             // 自定义列像素宽度
             width: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-
-            // 用于传入js函数字符串
-            conditionStyle: PropTypes.string,
 
             // 防止状态更新报错占位用，无实际意义
             ellipsis: PropTypes.any,
@@ -1098,10 +1120,10 @@ AntdTable.propTypes = {
     data: PropTypes.arrayOf(
         PropTypes.objectOf(
             PropTypes.oneOfType([
-                // 常规模式、ellipsis模式、copyable模式
+                // 常规模式、ellipsis模式、copyable模式、custom-format模式
                 PropTypes.string,
 
-                // 常规模式、ellipsis模式、mini-prorgess模式、mini-ring-progress模式、copyable模式
+                // 常规模式、ellipsis模式、mini-prorgess模式、mini-ring-progress模式、copyable模式、custom-format模式
                 // 其中mini-prorgess模式、mini-ring-progress模式输入值需在0~1之间
                 PropTypes.number,
 
@@ -1205,13 +1227,36 @@ AntdTable.propTypes = {
         // 定义要参与排序的字段对应的dataIndex，多字段组合排序情况下顺序即为优先级，从高往低
         sortDataIndexes: PropTypes.arrayOf(PropTypes.string),
 
-        // 设置是否进行多列组合排序
-        multiple: PropTypes.bool
+        // 设置是否进行多列组合排序，当设置为'auto'时会开启自动组合排序模式，此时组合排序的字段优先级由用户点击排序的字段顺序所动态决定
+        multiple: PropTypes.oneOfType([
+            PropTypes.bool,
+            PropTypes.oneOf(['auto'])
+        ])
 
     }),
 
     // 定义筛选参数
-    filterOptions: PropTypes.object,
+    filterOptions: PropTypes.objectOf(
+        PropTypes.exact({
+            // 设置筛选模式，可选的有'checkbox'、'keyword'，默认为'checkbox'
+            filterMode: PropTypes.oneOf(['checkbox', 'keyword']),
+
+            // 'checkbox'模式下可用，用于自定义待筛选项
+            filterCustomItems: PropTypes.oneOfType([
+                PropTypes.arrayOf([
+                    PropTypes.string,
+                    PropTypes.number
+                ]),
+                PropTypes.any
+            ]),
+
+            // 'checkbox'模式下可用，用于设置是否允许多选，默认为true
+            filterMultiple: PropTypes.bool,
+
+            // 'checkbox'模式下可用，用于设置是否开启搜索框，默认为false
+            filterSearch: PropTypes.bool
+        })
+    ),
 
     // 翻页相关参数，设置为false时不展示和进行分页
     pagination: PropTypes.oneOfType([
@@ -1325,6 +1370,17 @@ AntdTable.propTypes = {
 
     // 设置总结栏是否启用fixed功能，默认为false
     summaryRowFixed: PropTypes.bool,
+
+    // 针对custom-format自定义格式化对应的字段，设置针对对应列每个值从原始数值到格式化结果的js函数字符串
+    // 键名为对应字段的dataIndex
+    customFormatFuncs: PropTypes.objectOf(
+        PropTypes.string
+    ),
+
+    // 以对应字段的dataIndex为键，传入js函数字符串，用于自定义逻辑改变每个单元格的style样式
+    conditionalStyleFuncs: PropTypes.objectOf(
+        PropTypes.string
+    ),
 
     loading_state: PropTypes.shape({
         /**

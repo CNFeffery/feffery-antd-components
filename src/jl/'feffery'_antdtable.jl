@@ -12,13 +12,13 @@ Keyword arguments:
 - `bordered` (Bool; optional)
 - `className` (String; optional)
 - `clickedContent` (String; optional)
-- `columns` (optional): . columns has the following type: Array of lists containing elements 'title', 'dataIndex', 'renderOptions', 'fixed', 'editable', 'align', 'width', 'conditionStyle', 'ellipsis', 'sorter', 'render', 'onCell', 'title_'.
+- `columns` (optional): . columns has the following type: Array of lists containing elements 'title', 'dataIndex', 'renderOptions', 'fixed', 'editable', 'align', 'width', 'ellipsis', 'sorter', 'render', 'onCell', 'title_'.
 Those elements have the following types:
   - `title` (String; required)
   - `dataIndex` (String; required)
   - `renderOptions` (optional): . renderOptions has the following type: lists containing elements 'renderType', 'renderLinkText', 'renderButtonPopConfirmProps'.
 Those elements have the following types:
-  - `renderType` (a value equal to: 'link', 'ellipsis', 'mini-line', 'mini-bar', 'mini-progress', 'mini-ring-progress', 'mini-area', 'tags', 'button', 'copyable', 'status-badge', 'image'; optional)
+  - `renderType` (a value equal to: 'link', 'ellipsis', 'mini-line', 'mini-bar', 'mini-progress', 'mini-ring-progress', 'mini-area', 'tags', 'button', 'copyable', 'status-badge', 'image', 'custom-format'; optional)
   - `renderLinkText` (String; optional)
   - `renderButtonPopConfirmProps` (optional): . renderButtonPopConfirmProps has the following type: lists containing elements 'title', 'okText', 'cancelText'.
 Those elements have the following types:
@@ -29,7 +29,6 @@ Those elements have the following types:
   - `editable` (Bool; optional)
   - `align` (a value equal to: 'left', 'center', 'right'; optional)
   - `width` (Real | String; optional)
-  - `conditionStyle` (String; optional)
   - `ellipsis` (Bool | Real | String | Dict | Array; optional)
   - `sorter` (Bool | Real | String | Dict | Array; optional)
   - `render` (Bool | Real | String | Dict | Array; optional)
@@ -39,8 +38,10 @@ Those elements have the following types:
 Those elements have the following types:
   - `rule` (String; optional)
   - `content` (String; optional)
+- `conditionalStyleFuncs` (Dict with Strings as keys and values of type String; optional)
 - `containerId` (String; optional)
 - `currentData` (Array; optional)
+- `customFormatFuncs` (Dict with Strings as keys and values of type String; optional)
 - `data` (optional): . data has the following type: Array of Dict with Strings as keys and values of type String | Real | lists containing elements 'href', 'target', 'disabled'.
 Those elements have the following types:
   - `href` (String; optional)
@@ -70,7 +71,12 @@ Those elements have the following types:
   - `preview` (Bool; optional)s
 - `enableHoverListen` (Bool; optional)
 - `filter` (Dict; optional)
-- `filterOptions` (Dict; optional)
+- `filterOptions` (optional): . filterOptions has the following type: Dict with Strings as keys and values of type lists containing elements 'filterMode', 'filterCustomItems', 'filterMultiple', 'filterSearch'.
+Those elements have the following types:
+  - `filterMode` (a value equal to: 'checkbox', 'keyword'; optional)
+  - `filterCustomItems` (Array | Bool | Real | String | Dict | Array; optional)
+  - `filterMultiple` (Bool; optional)
+  - `filterSearch` (Bool; optional)
 - `loading_state` (optional): . loading_state has the following type: lists containing elements 'is_loading', 'prop_name', 'component_name'.
 Those elements have the following types:
   - `is_loading` (Bool; optional): Determines if the component is loading or not
@@ -112,7 +118,7 @@ Those elements have the following types:
 - `sortOptions` (optional): . sortOptions has the following type: lists containing elements 'sortDataIndexes', 'multiple'.
 Those elements have the following types:
   - `sortDataIndexes` (Array of Strings; optional)
-  - `multiple` (Bool; optional)
+  - `multiple` (Bool | a value equal to: 'auto'; optional)
 - `sorter` (optional): . sorter has the following type: lists containing elements 'columns', 'orders'.
 Those elements have the following types:
   - `columns` (Array of Strings; optional)
@@ -130,7 +136,7 @@ Those elements have the following types:
 - `titlePopoverInfo` (Dict; optional)
 """
 function 'feffery'_antdtable(; kwargs...)
-        available_props = Symbol[:id, :bordered, :className, :clickedContent, :columns, :columnsFormatConstraint, :containerId, :currentData, :data, :enableHoverListen, :filter, :filterOptions, :loading_state, :locale, :maxHeight, :maxWidth, :miniChartAnimation, :miniChartHeight, :mode, :nClicksButton, :pagination, :recentlyButtonClickedRow, :recentlyChangedRow, :recentlyMouseEnterColumn, :recentlyMouseEnterRow, :rowSelectionType, :rowSelectionWidth, :selectedRowKeys, :selectedRows, :size, :sortOptions, :sorter, :sticky, :style, :summaryRowContents, :summaryRowFixed, :titlePopoverInfo]
+        available_props = Symbol[:id, :bordered, :className, :clickedContent, :columns, :columnsFormatConstraint, :conditionalStyleFuncs, :containerId, :currentData, :customFormatFuncs, :data, :enableHoverListen, :filter, :filterOptions, :loading_state, :locale, :maxHeight, :maxWidth, :miniChartAnimation, :miniChartHeight, :mode, :nClicksButton, :pagination, :recentlyButtonClickedRow, :recentlyChangedRow, :recentlyMouseEnterColumn, :recentlyMouseEnterRow, :rowSelectionType, :rowSelectionWidth, :selectedRowKeys, :selectedRows, :size, :sortOptions, :sorter, :sticky, :style, :summaryRowContents, :summaryRowFixed, :titlePopoverInfo]
         wild_props = Symbol[]
         return Component("'feffery'_antdtable", "AntdTable", "feffery_antd_components", available_props, wild_props; kwargs...)
 end
