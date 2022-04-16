@@ -3,7 +3,7 @@ module FefferyAntdComponents
 using Dash
 
 const resources_path = realpath(joinpath( @__DIR__, "..", "deps"))
-const version = "0.1.7"
+const version = "0.1.8"
 
 include("jl/'feffery'_antdaffix.jl")
 include("jl/'feffery'_antdalert.jl")
@@ -94,14 +94,14 @@ function __init__()
             [
                 DashBase.Resource(
     relative_package_path = "feffery_antd_components.min.js",
-    external_url = "https://unpkg.com/feffery_antd_components@0.1.7/feffery_antd_components/feffery_antd_components.min.js",
+    external_url = "https://unpkg.com/feffery_antd_components@0.1.8/feffery_antd_components/feffery_antd_components.min.js",
     dynamic = nothing,
     async = nothing,
     type = :js
 ),
 DashBase.Resource(
     relative_package_path = "feffery_antd_components.min.js.map",
-    external_url = "https://unpkg.com/feffery_antd_components@0.1.7/feffery_antd_components/feffery_antd_components.min.js.map",
+    external_url = "https://unpkg.com/feffery_antd_components@0.1.8/feffery_antd_components/feffery_antd_components.min.js.map",
     dynamic = true,
     async = nothing,
     type = :js
