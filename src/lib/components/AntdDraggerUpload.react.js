@@ -91,7 +91,7 @@ const AntdDraggerUpload = (props) => {
                                     fileName: file.name,
                                     fileSize: file.size,
                                     completeTimestamp: new Date().getTime(),
-                                    taskStatus: file.status === 'done' ? 'success' : 'error',
+                                    taskStatus: file.status === 'done' ? 'success' : 'failed',
                                     taskId: uploadId
                                 }
                             }
@@ -120,7 +120,7 @@ const AntdDraggerUpload = (props) => {
                                                 fileName: file.name,
                                                 fileSize: file.size,
                                                 completeTimestamp: new Date().getTime(),
-                                                taskStatus: file.status === 'done' ? 'success' : 'error',
+                                                taskStatus: file.status === 'done' ? 'success' : 'failed',
                                                 taskId: uploadId
                                             }
                                         }
@@ -131,7 +131,7 @@ const AntdDraggerUpload = (props) => {
                                                 fileName: file.name,
                                                 fileSize: file.size,
                                                 completeTimestamp: new Date().getTime(),
-                                                taskStatus: file.status === 'done' ? 'success' : 'error',
+                                                taskStatus: file.status === 'done' ? 'success' : 'failed',
                                                 taskId: uploadId
                                             }
                                         }
@@ -158,7 +158,7 @@ const AntdDraggerUpload = (props) => {
                                     fileName: file.name,
                                     fileSize: file.size,
                                     completeTimestamp: new Date().getTime(),
-                                    taskStatus: file.status === 'done' ? 'success' : 'error',
+                                    taskStatus: file.status === 'done' ? 'success' : 'failed',
                                     taskId: uploadId
                                 }
                             }
