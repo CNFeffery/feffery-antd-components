@@ -27,14 +27,16 @@ const AntdUpload = (props) => {
         multiple,
         directory,
         failedTooltipInfo,
+        listUploadTaskRecord,
         loading_state,
         setProps
     } = props;
 
+    console.log('redraw！')
+
     uploadId = uploadId || uuid;
 
     const [fileList, updateFileList] = useState([]);
-    const [lastFileError, updateLastFileError] = useState(false);
 
     let uploadProps = {
         name: 'file',
@@ -52,87 +54,176 @@ const AntdUpload = (props) => {
                 if (fileTypes.indexOf(file.name.split('.')[file.name.split('.').length - 1]) === -1) {
                     message.error(`上传失败，${file.name} 文件格式不符合要求！`);
                 }
-                updateLastFileError(!sizeCheck || fileTypes.indexOf(file.name.split('.')[file.name.split('.').length - 1]) === -1)
+
                 return sizeCheck && fileTypes.indexOf(file.name.split('.')[file.name.split('.').length - 1]) !== -1;
             }
 
-            updateLastFileError(!sizeCheck)
             return sizeCheck;
         },
         onChange(info) {
 
-            if (info.file.status === 'done') {
+            console.log('---------------------------------------------------------')
 
-                // 检查是否为多文件上传模式
-                if (multiple || directory) {
-                    // 检查上传列表中是否全部文件都已完成上传
-                    if (info.fileList.every(file => file.status === 'done')) {
-                        console.log(info.fileList)
-                        // 更新任务记录
-                        setProps({
-                            lastUploadTaskRecord: info.fileList.map(
-                                (file) => {
-                                    return {
-                                        fileName: file.name,
-                                        fileSize: file.size,
-                                        completeTimestamp: new Date().getTime(),
-                                        taskStatus: 'success',
-                                        taskId: uploadId
-                                    }
-                                }
-                            )
-                        })
-                    }
-                } else {
+            console.log({ info })
+
+            // 计算最近一次任务的子任务数量
+            let lastTaskCount
+            if (info.file.status === 'removed') {
+                lastTaskCount = 0
+            } else {
+                lastTaskCount = info.fileList.length - listUploadTaskRecord.length;
+            }
+
+            // 当上传模式为multiple或directory时
+            if (multiple || directory) {
+                // 若当前事件为removed
+                if (info.file.status === 'removed') {
+                    console.log('removed事件，更新listUploadTaskRecord')
+                    console.log(info.fileList)
                     // 更新任务记录
+                    setProps({
+                        listUploadTaskRecord: info.fileList.map(
+                            (file) => {
+                                return {
+                                    fileName: file.name,
+                                    fileSize: file.size,
+                                    completeTimestamp: new Date().getTime(),
+                                    taskStatus: file.status === 'done' ? 'success' : 'error',
+                                    taskId: uploadId
+                                }
+                            }
+                        )
+                    })
+                } else {
+                    // 其他常规事件
+                    // 判断此次任务所有文件是否已上传结束（done或error）
+                    if (info.fileList.slice(-lastTaskCount).every(file => file.status !== 'uploading')) {
+                        console.log('所有状态均不为uploading!')
+                        console.log(info.fileList.slice(-lastTaskCount).map(file => file.status))
+                        if (info.fileList.slice(-lastTaskCount).every(file => !file.status)) {
+                            console.log('所有任务状态均为undefined')
+                            console.log(info.fileList.slice(-lastTaskCount))
+                            console.log(info.fileList.slice(-lastTaskCount).map(file => file.status))
+                        } else {
+                            if (lastTaskCount > 0) {
+                                console.log('更新任务记录')
+                                console.log(lastTaskCount)
+
+                                // 更新任务记录
+                                setProps({
+                                    lastUploadTaskRecord: info.fileList.slice(-lastTaskCount).map(
+                                        (file) => {
+                                            return {
+                                                fileName: file.name,
+                                                fileSize: file.size,
+                                                completeTimestamp: new Date().getTime(),
+                                                taskStatus: file.status === 'done' ? 'success' : 'error',
+                                                taskId: uploadId
+                                            }
+                                        }
+                                    ),
+                                    listUploadTaskRecord: info.fileList.map(
+                                        (file) => {
+                                            return {
+                                                fileName: file.name,
+                                                fileSize: file.size,
+                                                completeTimestamp: new Date().getTime(),
+                                                taskStatus: file.status === 'done' ? 'success' : 'error',
+                                                taskId: uploadId
+                                            }
+                                        }
+                                    )
+                                })
+                            }
+                        }
+
+                    }
+
+                }
+
+            } else {
+                // 单文件上传模式
+                // 若当前事件为removed
+                if (info.file.status === 'removed') {
+                    console.log('removed事件，更新listUploadTaskRecord')
+                    console.log(info.fileList)
+                    // 更新任务记录
+                    setProps({
+                        listUploadTaskRecord: info.fileList.map(
+                            (file) => {
+                                return {
+                                    fileName: file.name,
+                                    fileSize: file.size,
+                                    completeTimestamp: new Date().getTime(),
+                                    taskStatus: file.status === 'done' ? 'success' : 'error',
+                                    taskId: uploadId
+                                }
+                            }
+                        )
+                    })
+                } else if (info.file.status === 'done' || info.file.status === 'error' || !info.file.status) {
                     setProps({
                         lastUploadTaskRecord: {
                             fileName: info.file.name,
                             fileSize: info.file.size,
                             completeTimestamp: new Date().getTime(),
-                            taskStatus: 'success',
+                            taskStatus: info.file.status === 'done' ? 'success' : 'failed',
                             taskId: uploadId
-                        }
+                        },
+                        listUploadTaskRecord: info.fileList.map(
+                            (file) => {
+                                return {
+                                    fileName: file.name,
+                                    fileSize: file.size,
+                                    completeTimestamp: new Date().getTime(),
+                                    taskStatus: file.status === 'done' ? 'success' : 'failed',
+                                    taskId: uploadId
+                                }
+                            }
+                        )
                     })
                 }
+            }
 
+            if (info.file.status === 'done') {
                 message.success(`${info.file.name} 上传成功！`);
             } else if (info.file.status === 'error') {
-
-                // 更新任务记录
-                setProps({
-                    lastUploadTaskRecord: {
-                        fileName: info.file.name,
-                        fileSize: info.file.size,
-                        completeTimestamp: new Date().getTime(),
-                        taskStatus: 'failed'
-                    }
-                })
                 message.error(`${info.file.name} 上传失败！`);
             }
 
-            if (lastFileError && info.fileList.length !== 0) {
-                info.fileList[info.fileList.length - 1].status = 'error'
 
-                updateLastFileError(false)
-            }
+            // 获取当前上传文件列表
+            let _fileList = [...info.fileList];
 
-            info.fileList = info.fileList.map(
-                item => {
-                    if (item.status === 'error') {
-                        item.response = failedTooltipInfo ? failedTooltipInfo : '上传失败'
-                    }
-                    return item
-                }
-            )
-
-            // 基于fileListMaxLength参数设置，对fileList状态进行更新
+            // 是否限制上传记录列表最大数量
             if (fileListMaxLength) {
-                updateFileList(info.fileList.slice(-fileListMaxLength))
-            } else {
-                updateFileList(info.fileList)
+                _fileList = _fileList.slice(-fileListMaxLength);
             }
-        },
+
+            console.log('手动判断修改status！')
+            console.log('lastTaskCount:', lastTaskCount)
+            console.log('_fileList:', _fileList)
+            if (lastTaskCount !== 0) {
+                _fileList = _fileList.slice(0, _fileList.length - lastTaskCount)
+                    .concat(
+                        _fileList.slice(-lastTaskCount).map(
+                            item => {
+                                if (item.status === 'error' || !item.status) {
+                                    console.log({ item })
+                                    item.status = 'error'
+                                    item.response = failedTooltipInfo ? failedTooltipInfo : '上传失败'
+                                }
+                                return item
+                            }
+                        )
+                    )
+            }
+
+            console.log('当前文件状态：')
+            console.log(info.file.status)
+            console.log({ _fileList })
+            updateFileList(_fileList)
+        }
     };
 
     // 添加accept参数
@@ -248,6 +339,48 @@ AntdUpload.propTypes = {
         )
     ]),
 
+    // 用于在每次的上传任务完成后，更新当前文件列表中全部文件的上传信息
+    listUploadTaskRecord: PropTypes.oneOfType([
+        // 单文件
+        PropTypes.exact({
+            // 记录文件名称
+            fileName: PropTypes.string,
+
+            // 记录文件大小
+            fileSize: PropTypes.number,
+
+            // 记录完成时间戳信息
+            completeTimestamp: PropTypes.number,
+
+            // 记录此次上传任务的状态信息，'success'表示成功，'failed'表示失败
+            taskStatus: PropTypes.string,
+
+            // 记录本次任务的id信息，若最近一次任务状态为'failed'，则不会携带此信息
+            taskId: PropTypes.string
+
+        }),
+        // 文件夹或多文件上传
+        PropTypes.arrayOf(
+            PropTypes.exact({
+                // 记录文件名称
+                fileName: PropTypes.string,
+
+                // 记录文件大小
+                fileSize: PropTypes.number,
+
+                // 记录完成时间戳信息
+                completeTimestamp: PropTypes.number,
+
+                // 记录此次上传任务的状态信息，'success'表示成功，'failed'表示失败
+                taskStatus: PropTypes.string,
+
+                // 记录本次任务的id信息，若最近一次任务状态为'failed'，则不会携带此信息
+                taskId: PropTypes.string
+
+            })
+        )
+    ]),
+
     loading_state: PropTypes.shape({
         /**
          * Determines if the component is loading or not
@@ -274,7 +407,8 @@ AntdUpload.propTypes = {
 AntdUpload.defaultProps = {
     fileListMaxLength: null,
     fileMaxSize: 500,
-    lastUploadTaskRecord: {},
+    lastUploadTaskRecord: null,
+    listUploadTaskRecord: [],
     locale: 'zh-cn'
 }
 
