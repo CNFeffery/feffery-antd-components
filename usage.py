@@ -44,10 +44,10 @@ def test(lastUploadTaskRecord, listUploadTaskRecord):
 app.layout = html.Div(
     [
 
-        fac.AntdUpload(
+        fac.AntdDraggerUpload(
             id='input',
             apiUrl='/upload/',
-            # multiple=True,
+            multiple=True,
             style={
                 'marginBottom': '200px'
             }

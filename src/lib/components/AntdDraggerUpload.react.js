@@ -30,6 +30,7 @@ const AntdDraggerUpload = (props) => {
         multiple,
         directory,
         failedTooltipInfo,
+        listUploadTaskRecord,
         loading_state,
         setProps
     } = props;
@@ -242,6 +243,7 @@ const AntdDraggerUpload = (props) => {
                 style={style}>
                 <Dragger
                     fileList={fileList}
+                    showUploadList={showUploadList}
                     multiple={multiple}
                     directory={directory}
                     data-dash-is-loading={
@@ -309,23 +311,88 @@ AntdDraggerUpload.propTypes = {
     showUploadList: PropTypes.bool,
 
     // 用于在每次文件上传动作完成后，记录相关的信息
-    lastUploadTaskRecord: PropTypes.exact({
-        // 记录文件名称
-        fileName: PropTypes.string,
+    lastUploadTaskRecord: PropTypes.oneOfType([
+        // 单文件
+        PropTypes.exact({
+            // 记录文件名称
+            fileName: PropTypes.string,
 
-        // 记录文件大小
-        fileSize: PropTypes.number,
+            // 记录文件大小
+            fileSize: PropTypes.number,
 
-        // 记录完成时间戳信息
-        completeTimestamp: PropTypes.number,
+            // 记录完成时间戳信息
+            completeTimestamp: PropTypes.number,
 
-        // 记录此次上传任务的状态信息，'success'表示成功，'failed'表示失败
-        taskStatus: PropTypes.string,
+            // 记录此次上传任务的状态信息，'success'表示成功，'failed'表示失败
+            taskStatus: PropTypes.string,
 
-        // 记录本次任务的id信息，若最近一次任务状态为'failed'，则不会携带此信息
-        taskId: PropTypes.string
+            // 记录本次任务的id信息，若最近一次任务状态为'failed'，则不会携带此信息
+            taskId: PropTypes.string
 
-    }),
+        }),
+        // 文件夹或多文件上传
+        PropTypes.arrayOf(
+            PropTypes.exact({
+                // 记录文件名称
+                fileName: PropTypes.string,
+
+                // 记录文件大小
+                fileSize: PropTypes.number,
+
+                // 记录完成时间戳信息
+                completeTimestamp: PropTypes.number,
+
+                // 记录此次上传任务的状态信息，'success'表示成功，'failed'表示失败
+                taskStatus: PropTypes.string,
+
+                // 记录本次任务的id信息，若最近一次任务状态为'failed'，则不会携带此信息
+                taskId: PropTypes.string
+
+            })
+        )
+    ]),
+
+    // 用于在每次的上传任务完成后，更新当前文件列表中全部文件的上传信息
+    listUploadTaskRecord: PropTypes.oneOfType([
+        // 单文件
+        PropTypes.exact({
+            // 记录文件名称
+            fileName: PropTypes.string,
+
+            // 记录文件大小
+            fileSize: PropTypes.number,
+
+            // 记录完成时间戳信息
+            completeTimestamp: PropTypes.number,
+
+            // 记录此次上传任务的状态信息，'success'表示成功，'failed'表示失败
+            taskStatus: PropTypes.string,
+
+            // 记录本次任务的id信息，若最近一次任务状态为'failed'，则不会携带此信息
+            taskId: PropTypes.string
+
+        }),
+        // 文件夹或多文件上传
+        PropTypes.arrayOf(
+            PropTypes.exact({
+                // 记录文件名称
+                fileName: PropTypes.string,
+
+                // 记录文件大小
+                fileSize: PropTypes.number,
+
+                // 记录完成时间戳信息
+                completeTimestamp: PropTypes.number,
+
+                // 记录此次上传任务的状态信息，'success'表示成功，'failed'表示失败
+                taskStatus: PropTypes.string,
+
+                // 记录本次任务的id信息，若最近一次任务状态为'failed'，则不会携带此信息
+                taskId: PropTypes.string
+
+            })
+        )
+    ]),
 
     loading_state: PropTypes.shape({
         /**
@@ -353,7 +420,8 @@ AntdDraggerUpload.propTypes = {
 AntdDraggerUpload.defaultProps = {
     fileListMaxLength: null,
     fileMaxSize: 500,
-    lastUploadTaskRecord: {},
+    lastUploadTaskRecord: null,
+    listUploadTaskRecord: [],
     locale: 'zh-cn'
 }
 

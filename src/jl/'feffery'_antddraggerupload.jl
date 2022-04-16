@@ -23,7 +23,26 @@ Those elements have the following types:
   - `fileSize` (Real; optional)
   - `completeTimestamp` (Real; optional)
   - `taskStatus` (String; optional)
-  - `taskId` (String; optional)
+  - `taskId` (String; optional) | Array of lists containing elements 'fileName', 'fileSize', 'completeTimestamp', 'taskStatus', 'taskId'.
+Those elements have the following types:
+  - `fileName` (String; optional)
+  - `fileSize` (Real; optional)
+  - `completeTimestamp` (Real; optional)
+  - `taskStatus` (String; optional)
+  - `taskId` (String; optional)s
+- `listUploadTaskRecord` (optional): . listUploadTaskRecord has the following type: lists containing elements 'fileName', 'fileSize', 'completeTimestamp', 'taskStatus', 'taskId'.
+Those elements have the following types:
+  - `fileName` (String; optional)
+  - `fileSize` (Real; optional)
+  - `completeTimestamp` (Real; optional)
+  - `taskStatus` (String; optional)
+  - `taskId` (String; optional) | Array of lists containing elements 'fileName', 'fileSize', 'completeTimestamp', 'taskStatus', 'taskId'.
+Those elements have the following types:
+  - `fileName` (String; optional)
+  - `fileSize` (Real; optional)
+  - `completeTimestamp` (Real; optional)
+  - `taskStatus` (String; optional)
+  - `taskId` (String; optional)s
 - `loading_state` (optional): . loading_state has the following type: lists containing elements 'is_loading', 'prop_name', 'component_name'.
 Those elements have the following types:
   - `is_loading` (Bool; optional): Determines if the component is loading or not
@@ -37,7 +56,7 @@ Those elements have the following types:
 - `uploadId` (String; optional)
 """
 function 'feffery'_antddraggerupload(; kwargs...)
-        available_props = Symbol[:id, :apiUrl, :className, :directory, :failedTooltipInfo, :fileListMaxLength, :fileMaxSize, :fileTypes, :hint, :lastUploadTaskRecord, :loading_state, :locale, :multiple, :showUploadList, :style, :text, :uploadId]
+        available_props = Symbol[:id, :apiUrl, :className, :directory, :failedTooltipInfo, :fileListMaxLength, :fileMaxSize, :fileTypes, :hint, :lastUploadTaskRecord, :listUploadTaskRecord, :loading_state, :locale, :multiple, :showUploadList, :style, :text, :uploadId]
         wild_props = Symbol[]
         return Component("'feffery'_antddraggerupload", "AntdDraggerUpload", "feffery_antd_components", available_props, wild_props; kwargs...)
 end
