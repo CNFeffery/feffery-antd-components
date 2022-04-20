@@ -36,6 +36,7 @@ export default class AntdPopconfirm extends Component {
             confirmCounts,
             cancelCounts,
             trigger,
+            containerStrategy,
             setProps,
             loading_state
         } = this.props;
@@ -70,7 +71,7 @@ export default class AntdPopconfirm extends Component {
                     okButtonProps={okButtonProps}
                     cancelText={cancelText}
                     cancelButtonProps={cancelButtonProps}
-                    getPopupContainer={(triggerNode) => triggerNode.parentNode}
+                    getPopupContainer={containerStrategy === 'parent' ? (triggerNode) => triggerNode.parentNode : undefined}
                     onCancel={listenCancel}
                     onConfirm={listenConfirm}
                     data-dash-is-loading={
@@ -146,6 +147,9 @@ AntdPopconfirm.propTypes = {
     // 记录取消按钮被点击的次数
     cancelCounts: PropTypes.number,
 
+    // 设置绑定容器的策略，可选的有'parent'、'body'，默认为'parent'
+    containerStrategy: PropTypes.oneOf(['parent', 'body']),
+
     // 设置触发行为，可选的有'hover'、'focus'、'click'，或是以上多个组成的数组，默认为'hover'
     trigger: PropTypes.oneOfType(
         [
@@ -180,5 +184,6 @@ AntdPopconfirm.propTypes = {
 AntdPopconfirm.defaultProps = {
     confirmCounts: 0,
     cancelCounts: 0,
-    locale: 'zh-cn'
+    locale: 'zh-cn',
+    containerStrategy: 'parent',
 }

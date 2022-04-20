@@ -8,7 +8,9 @@ export default class AntdSwitch extends Component {
 
     constructor(props) {
         super(props)
-        if (!props.checked) {
+        if (props.defaultChecked) {
+            props.setProps({ checked: props.defaultChecked })
+        } else if (!props.checked) {
             props.setProps({ checked: false })
         }
     }
@@ -24,6 +26,7 @@ export default class AntdSwitch extends Component {
             checkedChildren,
             unCheckedChildren,
             size,
+            loading,
             setProps,
             persistence,
             persisted_props,
@@ -44,8 +47,10 @@ export default class AntdSwitch extends Component {
                 disabled={disabled}
                 defaultChecked={checked}
                 checkedChildren={checkedChildren}
+                checked={checked}
                 unCheckedChildren={unCheckedChildren}
                 size={size}
+                loading={loading}
                 onChange={onChange}
                 persistence={persistence}
                 persisted_props={persisted_props}
@@ -83,6 +88,9 @@ AntdSwitch.propTypes = {
 
     // 设置开关大小，可选的有'default'与'small'，默认为'default'
     size: PropTypes.oneOf(['default', 'small']),
+
+    // 设置是否渲染loading状态，默认为false
+    loading: PropTypes.bool,
 
     loading_state: PropTypes.shape({
         /**

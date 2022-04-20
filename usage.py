@@ -8,8 +8,24 @@ from dash.dependencies import Input, Output, State
 app = dash.Dash(__name__)
 
 
+@app.callback(
+    Output('switch-demo', 'checked'),
+    Input('switch', 'nClicks'),
+    State('switch-demo', 'checked')
+)
+def switch_demo(nClicks, checked):
+
+    if nClicks:
+        return not checked
+
+    return dash.no_update
+
+
 app.layout = html.Div(
     [
+
+        fac.AntdButton('切换', id='switch'),
+        fac.AntdSwitch(id='switch-demo', loading=True),
 
         fac.AntdTable(
             columns=[
