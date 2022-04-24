@@ -40,6 +40,7 @@ from .AntdRadioGroup import AntdRadioGroup
 from .AntdRate import AntdRate
 from .AntdResult import AntdResult
 from .AntdRibbon import AntdRibbon
+from .AntdSegmented import AntdSegmented
 from .AntdSelect import AntdSelect
 from .AntdSkeleton import AntdSkeleton
 from .AntdSlider import AntdSlider
@@ -121,6 +122,7 @@ __all__ = [
     "AntdRate",
     "AntdResult",
     "AntdRibbon",
+    "AntdSegmented",
     "AntdSelect",
     "AntdSkeleton",
     "AntdSlider",

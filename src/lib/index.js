@@ -78,6 +78,7 @@ import AntdDescriptions from './components/descriptions/AntdDescriptions.react'
 import AntdDescriptionItem from './components/descriptions/AntdDescriptionItem.react'
 import AntdWatermark from './components/AntdWatermark.react'
 import AntdPasteImage from './components/AntdPasteImage.react'
+import AntdSegmented from './components/AntdSegmented.react'
 
 export {
     AntdDatePicker,
@@ -158,5 +159,6 @@ export {
     AntdDescriptions,
     AntdDescriptionItem,
     AntdWatermark,
-    AntdPasteImage
+    AntdPasteImage,
+    AntdSegmented
 };

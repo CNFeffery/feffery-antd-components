@@ -1,148 +1,45 @@
 import dash
-import numpy as np
 from dash import html
-from flask import request
 import feffery_antd_components as fac
-from dash.dependencies import Input, Output, State
+from dash.dependencies import Input, Output
 
-app = dash.Dash(__name__)
+app = dash.Dash(
+    __name__
+)
 
 
 @app.callback(
-    Output('switch-demo', 'checked'),
-    Input('switch', 'nClicks'),
-    State('switch-demo', 'checked')
+    Output('segmented-output-demo', 'children'),
+    Input('segmented-demo', 'value')
 )
-def switch_demo(nClicks, checked):
+def segmented_demo(value):
 
-    if nClicks:
-        return not checked
-
-    return dash.no_update
+    return value
 
 
 app.layout = html.Div(
     [
-
-        fac.AntdButton('切换', id='switch'),
-        fac.AntdSwitch(id='switch-demo', loading=True),
-
-        fac.AntdTable(
-            columns=[
+        fac.AntdSegmented(
+            id='segmented-demo',
+            block=True,
+            options=[
                 {
-                    'title': '超链接示例',
-                    'dataIndex': '超链接示例',
-                    'renderOptions': {
-                        'renderType': 'link',
-                        'renderLinkText': '点击跳转'
-                    }
+                    'label': f'选项{i}',
+                    'value': i
                 }
-            ],
-            data=[
-                {
-                    'key': i,
-                    '超链接示例': {
-                        'href': 'https://github.com/CNFeffery/feffery-antd-components'
-                    }
-                }
-                for i in range(3)
-            ],
-            bordered=True,
-            style={
-                'width': '250px'
-            }
+                for i in range(5)
+            ]
         ),
-
-        fac.AntdTable(
-            columns=[
-                {
-                    'title': '默认的checkbox模式',
-                    'dataIndex': '默认的checkbox模式',
-                    'width': '25%'
-                },
-                {
-                    'title': '自定义选项的checkbox模式',
-                    'dataIndex': '自定义选项的checkbox模式',
-                    'width': '25%'
-                },
-                {
-                    'title': 'keyword模式',
-                    'dataIndex': 'keyword模式',
-                    'width': '25%'
-                },
-                {
-                    'title': '数值测试',
-                    'dataIndex': '数值测试',
-                    'width': '25%',
-                    'renderOptions': {
-                        'renderType': 'custom-format'
-                    }
-                }
-            ],
-            data=[
-                {
-                    '默认的checkbox模式': i,
-                    '自定义选项的checkbox模式': i,
-                    'keyword模式': i,
-                    '数值测试': np.random.rand()
-                }
-                for i in range(20)
-            ],
-            bordered=True,
-            filterOptions={
-                '默认的checkbox模式': {},
-                '自定义选项的checkbox模式': {
-                    'filterMode': 'checkbox',
-                    'filterCustomItems': [1, 2, 3],
-                    'filterMultiple': False,
-                    'filterSearch': True
-                },
-                'keyword模式': {
-                    'filterMode': 'keyword'
-                }
-            },
-            pagination={
-                'pageSize': 20
-            },
-            customFormatFuncs={
-                '数值测试': '(x) => `${(x*100).toFixed(2)}%`'
-            },
-            conditionalStyleFuncs={
-                **{
-                    key: '''
-                        (record, index) => {
-                            if ( index % 2 === 1 ) {
-                                return {
-                                    style: {
-                                        backgroundColor: "rgb(250, 250, 250)"
-                                    }
-                                }
-                            }
-                        }
-                    '''
-                    for key in ['默认的checkbox模式', '自定义选项的checkbox模式', 'keyword模式']
-                },
-                '数值测试': '''
-                    (record, index) => {
-                        if ( record['数值测试'] <= 0.5 ) {
-                            return {
-                                    style: {
-                                        background: `linear-gradient(90deg, rgb(61, 153, 112) 0%, rgb(61, 153, 112) ${record['数值测试']*100}%, white ${record['数值测试']*100}%, white 100%)`
-                                }
-                            };
-                        }
-                        return {
-                            style: {
-                                background: `linear-gradient(90deg, rgb(255, 65, 54) 0%, rgb(255, 65, 54) ${record['数值测试']*100}%, white ${record['数值测试']*100}%, white 100%)`
-                            }
-                        };
-                    }
-                '''
-            }
+        fac.AntdText(
+            id='segmented-output-demo'
+        ),
+        fac.AntdMessage(
+            content='AntdMessage top参数测试',
+            top=400,
+            duration=1000
         )
     ],
     style={
-        'height': '100vh',
         'padding': '50px'
     }
 )

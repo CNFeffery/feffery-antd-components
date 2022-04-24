@@ -34,6 +34,8 @@ export default class AntdMessage extends Component {
             config.icon = <AntdIcon icon={icon} style={{ marginRight: 3 }} />
         }
 
+        message.config(config)
+
         if (type === 'default') {
             message.open(config)
         } else if (type === 'success') {

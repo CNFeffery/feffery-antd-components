@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Radio, Space } from 'antd';
+import { Segmented } from 'antd';
 import 'antd/dist/antd.css';
 
-// 定义单选框组件AntdRadioGroup，api参数参考https://ant.design/components/radio-cn/
-export default class AntdRadioGroup extends Component {
+// 定义分段控制器组件AntdSegmented，api参数参考https://ant.design/components/segmented-cn/
+export default class AntdSegmented extends Component {
 
     constructor(props) {
         super(props)
@@ -22,9 +22,7 @@ export default class AntdRadioGroup extends Component {
             options,
             defaultValue,
             value,
-            direction,
-            optionType,
-            buttonStyle,
+            block,
             disabled,
             size,
             setProps,
@@ -34,53 +32,20 @@ export default class AntdRadioGroup extends Component {
             loading_state
         } = this.props;
 
-        const onSelect = (e) => {
-            setProps({ value: e.target.value })
-        }
-
-        if (direction === 'vertical') {
-
-            // 返回定制化的前端组件
-            return (
-                <Radio.Group
-                    id={id}
-                    className={className}
-                    style={style}
-                    defaultValue={defaultValue}
-                    value={value}
-                    buttonStyle={buttonStyle}
-                    disabled={disabled}
-                    size={size}
-                    persistence={persistence}
-                    persisted_props={persisted_props}
-                    persistence_type={persistence_type}
-                    onChange={onSelect}
-                    data-dash-is-loading={
-                        (loading_state && loading_state.is_loading) || undefined
-                    }
-                >
-                    <Space direction='vertical'>
-                        {options.map(item => {
-                            return optionType !== 'button' ?
-                                <Radio value={item.value} disabled={item.disabled}>{item.label}</Radio> :
-                                <Radio.Button value={item.value} disabled={item.disabled}>{item.label}</Radio.Button>
-                        })}
-                    </Space>
-                </Radio.Group>
-            );
+        const onSelect = (v) => {
+            setProps({ value: v })
         }
 
         // 返回定制化的前端组件
         return (
-            <Radio.Group
+            <Segmented
                 id={id}
                 className={className}
                 style={style}
                 options={options}
                 defaultValue={defaultValue}
                 value={value}
-                optionType={optionType}
-                buttonStyle={buttonStyle}
+                block={block}
                 disabled={disabled}
                 size={size}
                 persistence={persistence}
@@ -97,7 +62,7 @@ export default class AntdRadioGroup extends Component {
 }
 
 // 定义参数或属性
-AntdRadioGroup.propTypes = {
+AntdSegmented.propTypes = {
     // 组件id
     id: PropTypes.string,
 
@@ -106,9 +71,6 @@ AntdRadioGroup.propTypes = {
 
     // 自定义css字典
     style: PropTypes.object,
-
-    // 设置单选框组方向，可选的有'horizontal'、'vertical'
-    direction: PropTypes.oneOf(['horizontal', 'vertical']),
 
     // 设置选项参数数组
     options: PropTypes.arrayOf(
@@ -139,12 +101,8 @@ AntdRadioGroup.propTypes = {
         PropTypes.number
     ]),
 
-    // 设置选项的渲染方式，可选的有'default'和'button'，默认为'default'
-    optionType: PropTypes.oneOf(['default', 'button']),
-
-    // 当optionType为'button'时，用于设置按钮的显示样式，
-    // 可选的有'outline'和'solid'，默认为'outline'
-    buttonStyle: PropTypes.oneOf(['outline', 'solid']),
+    // 设置是否占据父级容器全部宽度，默认为false
+    block: PropTypes.bool,
 
     // 设置是否禁用整体组件
     disabled: PropTypes.bool,
@@ -205,8 +163,5 @@ AntdRadioGroup.propTypes = {
 };
 
 // 设置默认参数
-AntdRadioGroup.defaultProps = {
-    direction: 'horizontal',
-    persisted_props: ['value'],
-    persistence_type: 'local'
+AntdSegmented.defaultProps = {
 }

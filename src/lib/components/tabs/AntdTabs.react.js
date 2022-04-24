@@ -108,7 +108,6 @@ export default class AntdTabs extends Component {
                                     overlayStyle={{ maxWidth: "250px" }}
                                     placement={"right"}
                                     getPopupContainer={(triggerNode) => {
-                                        console.log(triggerNode.parentNode)
                                         return triggerNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode;
                                     }}
                                 >
