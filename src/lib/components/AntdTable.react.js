@@ -541,7 +541,9 @@ export default class AntdTable extends Component {
                             <Tooltip
                                 placement="topLeft"
                                 title={content}
-                            // getPopupContainer={containerId ? () => (document.getElementById(containerId) ? document.getElementById(containerId) : document.body) : undefined}
+                                getPopupContainer={containerId ? () => (document.getElementById(containerId) ?
+                                    document.getElementById(containerId) : document.body) :
+                                    () => document.body}
                             >
                                 {content}
                             </Tooltip>
