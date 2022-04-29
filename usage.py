@@ -8,37 +8,32 @@ app = dash.Dash(
 )
 
 
-@app.callback(
-    Output('segmented-output-demo', 'children'),
-    Input('segmented-demo', 'value')
-)
-def segmented_demo(value):
-
-    return value
-
-
 app.layout = html.Div(
     [
-        fac.AntdSegmented(
-            id='segmented-demo',
-            block=True,
-            options=[
+
+        fac.AntdTable(
+            columns=[
                 {
-                    'label': f'选项{i}',
-                    'value': i
+                    'title': 'ellipsis内容省略示例',
+                    'dataIndex': 'ellipsis内容省略示例',
+                    'renderOptions': {
+                        'renderType': 'ellipsis'
+                    }
                 }
-                for i in range(5)
-            ]
-        ),
-        fac.AntdText(
-            id='segmented-output-demo'
-        ),
-        fac.AntdMessage(
-            content='AntdMessage top参数测试',
-            top=400,
-            duration=1000
+            ],
+            data=[
+                {
+                    'key': i,
+                    'ellipsis内容省略示例': '这是一段废话，用来演示超长内容再渲染巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉'
+                }
+                for i in range(3)
+            ],
+            bordered=True,
+            style={
+                'width': '250px'
+            }
         )
-    ],
+    ] * 100,
     style={
         'padding': '50px'
     }
