@@ -3,15 +3,9 @@ import PropTypes from 'prop-types';
 import { Typography, ConfigProvider } from 'antd';
 import { str2Locale } from '../locales.react';
 import 'antd/dist/antd.css';
+import { parseChildrenToArray } from '../utils';
 
 const { Paragraph } = Typography;
-
-const parseChildrenToArray = children => {
-    if (children && !Array.isArray(children)) {
-        return [children];
-    }
-    return children;
-};
 
 // 定义段落组件AntdParagraph，api参数参考https://ant.design/components/typography-cn/
 export default class AntdParagraph extends Component {

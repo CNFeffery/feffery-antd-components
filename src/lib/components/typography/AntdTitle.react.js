@@ -3,15 +3,9 @@ import PropTypes from 'prop-types';
 import { Typography, ConfigProvider } from 'antd';
 import { str2Locale } from '../locales.react';
 import 'antd/dist/antd.css';
+import { parseChildrenToArray } from '../utils';
 
 const { Title } = Typography;
-
-const parseChildrenToArray = children => {
-    if (children && !Array.isArray(children)) {
-        return [children];
-    }
-    return children;
-};
 
 // 定义标题组件AntdTitle，api参数参考https://ant.design/components/typography-cn/
 export default class AntdTitle extends Component {

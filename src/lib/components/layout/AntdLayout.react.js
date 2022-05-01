@@ -2,13 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Layout } from 'antd';
 import 'antd/dist/antd.css';
-
-const parseChildrenToArray = children => {
-    if (children && !Array.isArray(children)) {
-        return [children];
-    }
-    return children;
-};
+import { parseChildrenToArray } from '../utils';
 
 // 定义布局组件AntdLayout，api参数参考https://ant.design/components/layout-cn/
 export default class AntdLayout extends Component {

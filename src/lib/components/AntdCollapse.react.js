@@ -2,15 +2,9 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Collapse } from 'antd';
 import 'antd/dist/antd.css';
+import { parseChildrenToArray } from './utils';
 
 const { Panel } = Collapse;
-
-const parseChildrenToArray = children => {
-    if (children && !Array.isArray(children)) {
-        return [children];
-    }
-    return children;
-};
 
 // 定义折叠面板组件AntdCollapse，api参数参考https://ant.design/components/steps-cn/
 export default class AntdCollapse extends Component {

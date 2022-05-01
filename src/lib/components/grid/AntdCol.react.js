@@ -2,13 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Col } from 'antd';
 import 'antd/dist/antd.css';
-
-const parseChildrenToArray = children => {
-    if (children && !Array.isArray(children)) {
-        return [children];
-    }
-    return children;
-};
+import { parseChildrenToArray } from '../utils';
 
 // 定义列组件AntdCol，api参数参考https://ant.design/components/grid-cn/
 export default class AntdCol extends Component {

@@ -4,15 +4,9 @@ import { Tabs, Popover } from 'antd';
 import { InfoCircleOutlined } from "@ant-design/icons";
 import { isNil, omit } from 'ramda';
 import 'antd/dist/antd.css';
+import { parseChildrenToArray } from '../utils';
 
 const { TabPane } = Tabs;
-
-const parseChildrenToArray = children => {
-    if (children && !Array.isArray(children)) {
-        return [children];
-    }
-    return children;
-};
 
 const resolveChildProps = child => {
     // This may need to change in the future if https://github.com/plotly/dash-renderer/issues/84 is addressed

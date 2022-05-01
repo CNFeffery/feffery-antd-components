@@ -2,13 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Space, Divider } from 'antd';
 import 'antd/dist/antd.css';
-
-const parseChildrenToArray = children => {
-    if (children && !Array.isArray(children)) {
-        return [children];
-    }
-    return children;
-};
+import { parseChildrenToArray } from './utils';
 
 // 定义间距组件AntdSpace，api参数参考https://ant.design/components/space-cn/
 export default class AntdSpace extends Component {

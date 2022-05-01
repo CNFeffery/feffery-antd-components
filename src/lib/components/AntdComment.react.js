@@ -7,13 +7,7 @@ import { AntdAvatar } from '..';
 import { DislikeOutlined, LikeOutlined, DislikeFilled, LikeFilled } from '@ant-design/icons';
 import 'antd/dist/antd.css';
 import './styles.css'
-
-const parseChildrenToArray = children => {
-    if (children && !Array.isArray(children)) {
-        return [children];
-    }
-    return children;
-};
+import { parseChildrenToArray } from './utils';
 
 // 定义评论组件AntdComment，api参数参考https://ant.design/components/comment-cn/
 const AntdComment = (props) => {

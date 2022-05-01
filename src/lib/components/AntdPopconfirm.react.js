@@ -3,13 +3,7 @@ import PropTypes from 'prop-types';
 import { Popconfirm, ConfigProvider } from 'antd';
 import 'antd/dist/antd.css';
 import { str2Locale } from './locales.react';
-
-const parseChildrenToArray = children => {
-    if (children && !Array.isArray(children)) {
-        return [children];
-    }
-    return children;
-};
+import { parseChildrenToArray } from './utils';
 
 // 定义气泡确认框组件AntdPopconfirm，api参数参考https://ant.design/components/popconfirm-cn/
 export default class AntdPopconfirm extends Component {

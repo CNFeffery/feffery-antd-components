@@ -3,13 +3,7 @@ import PropTypes from 'prop-types';
 import { Spin } from 'antd';
 import 'antd/dist/antd.css';
 import './styles.css'
-
-const parseChildrenToArray = children => {
-    if (children && !Array.isArray(children)) {
-        return [children];
-    }
-    return children;
-};
+import { parseChildrenToArray } from './utils';
 
 // 定义加载动画组件AntdSpin，api参数参考https://ant.design/components/spin-cn/
 const AntdSpin = (props) => {

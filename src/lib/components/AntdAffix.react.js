@@ -2,13 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Affix } from 'antd';
 import 'antd/dist/antd.css';
-
-const parseChildrenToArray = children => {
-    if (children && !Array.isArray(children)) {
-        return [children];
-    }
-    return children;
-};
+import { parseChildrenToArray } from './utils';
 
 // 定义固钉组件AntdAffix，api参数参考https://ant.design/components/affix-cn/
 export default class AntdAffix extends Component {

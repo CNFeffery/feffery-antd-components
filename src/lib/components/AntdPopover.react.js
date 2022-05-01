@@ -5,13 +5,7 @@ import 'antd/dist/antd.css';
 import { omit } from "ramda";
 import { renderDashComponents } from "dash-extensions-js";
 import AntdIcon from './AntdIcon.react';
-
-const parseChildrenToArray = children => {
-    if (children && !Array.isArray(children)) {
-        return [children];
-    }
-    return children;
-};
+import { parseChildrenToArray } from './utils';
 
 // 定义气泡卡片组件Popover，api参数参考https://ant.design/components/popover-cn/
 export default class AntdPopover extends Component {

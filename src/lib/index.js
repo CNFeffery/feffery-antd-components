@@ -79,6 +79,7 @@ import AntdDescriptionItem from './components/descriptions/AntdDescriptionItem.r
 import AntdWatermark from './components/AntdWatermark.react'
 import AntdPasteImage from './components/AntdPasteImage.react'
 import AntdSegmented from './components/AntdSegmented.react'
+import AntdCheckCard from './components/check-card/AntdCheckCard.react'
 
 export {
     AntdDatePicker,
@@ -160,5 +161,6 @@ export {
     AntdDescriptionItem,
     AntdWatermark,
     AntdPasteImage,
-    AntdSegmented
+    AntdSegmented,
+    AntdCheckCard
 };

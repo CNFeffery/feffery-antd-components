@@ -2,13 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { PageHeader } from 'antd';
 import 'antd/dist/antd.css';
-
-const parseChildrenToArray = children => {
-    if (children && !Array.isArray(children)) {
-        return [children];
-    }
-    return children;
-};
+import { parseChildrenToArray } from './utils';
 
 // 定义页头组件AntdPageHeader，api参数参考https://ant.design/components/page-header-cn/
 export default class AntdPageHeader extends Component {

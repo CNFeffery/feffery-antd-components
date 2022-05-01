@@ -2,13 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { WaterMark } from '@ant-design/pro-layout';
 import '@ant-design/pro-layout/dist/layout.css';
-
-const parseChildrenToArray = children => {
-    if (children && !Array.isArray(children)) {
-        return [children];
-    }
-    return children;
-};
+import { parseChildrenToArray } from './utils';
 
 // 定义水印组件AntdWatermark，api参数参考https://procomponents.ant.design/components/water-mark
 export default class AntdWatermark extends Component {

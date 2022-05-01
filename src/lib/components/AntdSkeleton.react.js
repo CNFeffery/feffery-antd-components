@@ -2,13 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 import { Skeleton } from 'antd';
 import 'antd/dist/antd.css';
-
-const parseChildrenToArray = children => {
-    if (children && !Array.isArray(children)) {
-        return [children];
-    }
-    return children;
-};
+import { parseChildrenToArray } from './utils';
 
 // 定义骨架屏组件AntdSkeleton，api参数参考https://ant.design/components/skeleton-cn/
 const AntdSkeleton = (props) => {

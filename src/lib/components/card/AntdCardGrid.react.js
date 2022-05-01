@@ -2,13 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Card } from 'antd';
 import 'antd/dist/antd.css';
-
-const parseChildrenToArray = children => {
-    if (children && !Array.isArray(children)) {
-        return [children];
-    }
-    return children;
-};
+import { parseChildrenToArray } from '../utils';
 
 // 定义卡片网格组件AntdCardGrid，api参数参考https://ant.design/components/card-cn/
 export default class AntdCardGrid extends Component {

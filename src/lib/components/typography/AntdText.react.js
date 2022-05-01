@@ -3,15 +3,9 @@ import PropTypes from 'prop-types';
 import { Typography, ConfigProvider } from 'antd';
 import { str2Locale } from '../locales.react';
 import 'antd/dist/antd.css';
+import { parseChildrenToArray } from '../utils';
 
 const { Text } = Typography;
-
-const parseChildrenToArray = children => {
-    if (children && !Array.isArray(children)) {
-        return [children];
-    }
-    return children;
-};
 
 // 定义文字组件AntdText，api参数参考https://ant.design/components/typography-cn/
 export default class AntdText extends Component {
