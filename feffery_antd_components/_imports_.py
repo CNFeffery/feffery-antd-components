@@ -63,6 +63,7 @@ from .AntdWatermark import AntdWatermark
 from .AntdCard import AntdCard
 from .AntdCardGrid import AntdCardGrid
 from .AntdCheckCard import AntdCheckCard
+from .AntdCheckCardGroup import AntdCheckCardGroup
 from .AntdDescriptionItem import AntdDescriptionItem
 from .AntdDescriptions import AntdDescriptions
 from .AntdForm import AntdForm
@@ -146,6 +147,7 @@ __all__ = [
     "AntdCard",
     "AntdCardGrid",
     "AntdCheckCard",
+    "AntdCheckCardGroup",
     "AntdDescriptionItem",
     "AntdDescriptions",
     "AntdForm",
