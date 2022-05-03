@@ -1,5 +1,7 @@
 # AUTO GENERATED FILE - DO NOT EDIT
 
+export('feffery'AntdAccordion)
+export('feffery'AntdAccordionItem)
 export('feffery'AntdAffix)
 export('feffery'AntdAlert)
 export('feffery'AntdAnchor)

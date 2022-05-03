@@ -81,6 +81,15 @@ import AntdPasteImage from './components/AntdPasteImage.react'
 import AntdSegmented from './components/AntdSegmented.react'
 import AntdCheckCard from './components/check-card/AntdCheckCard.react'
 import AntdCheckCardGroup from './components/check-card/AntdCheckCardGroup.react'
+import AntdAccordionItem from './components/accordion/AntdAccordionItem.react'
+import AntdAccordion from './components/accordion/AntdAccordion.react'
+
+// 屏蔽所有warning信息
+window.console = (function () {
+    var c = {};
+    c.warn = function () { };
+    return c;
+})();
 
 export {
     AntdDatePicker,
@@ -164,5 +173,7 @@ export {
     AntdPasteImage,
     AntdSegmented,
     AntdCheckCard,
-    AntdCheckCardGroup
+    AntdCheckCardGroup,
+    AntdAccordionItem,
+    AntdAccordion
 };

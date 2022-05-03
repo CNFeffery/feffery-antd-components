@@ -1,3 +1,5 @@
+from .AntdAccordion import AntdAccordion
+from .AntdAccordionItem import AntdAccordionItem
 from .AntdAffix import AntdAffix
 from .AntdAlert import AntdAlert
 from .AntdAnchor import AntdAnchor
@@ -82,6 +84,8 @@ from .AntdText import AntdText
 from .AntdTitle import AntdTitle
 
 __all__ = [
+    "AntdAccordion",
+    "AntdAccordionItem",
     "AntdAffix",
     "AntdAlert",
     "AntdAnchor",

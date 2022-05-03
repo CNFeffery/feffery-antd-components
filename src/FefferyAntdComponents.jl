@@ -5,6 +5,8 @@ using Dash
 const resources_path = realpath(joinpath( @__DIR__, "..", "deps"))
 const version = "0.1.10"
 
+include("jl/'feffery'_antdaccordion.jl")
+include("jl/'feffery'_antdaccordionitem.jl")
 include("jl/'feffery'_antdaffix.jl")
 include("jl/'feffery'_antdalert.jl")
 include("jl/'feffery'_antdanchor.jl")

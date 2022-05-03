@@ -2,30 +2,12 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Tabs, Popover } from 'antd';
 import { InfoCircleOutlined } from "@ant-design/icons";
-import { isNil, omit } from 'ramda';
+import { omit } from 'ramda';
 import 'antd/dist/antd.css';
-import { parseChildrenToArray } from '../utils';
+import { parseChildrenToArray, resolveChildProps } from '../utils';
 
 const { TabPane } = Tabs;
 
-const resolveChildProps = child => {
-    // This may need to change in the future if https://github.com/plotly/dash-renderer/issues/84 is addressed
-    if (
-        // disabled is a defaultProp (so it's always set)
-        // meaning that if it's not set on child.props, the actual
-        // props we want are lying a bit deeper - which means they
-        // are coming from Dash
-        isNil(child.props.disabled) &&
-        child.props._dashprivate_layout &&
-        child.props._dashprivate_layout.props
-    ) {
-        // props are coming from Dash
-        return child.props._dashprivate_layout.props;
-    } else {
-        // else props are coming from React (e.g. Demo.js, or Tabs.test.js)
-        return child.props;
-    }
-};
 
 // 定义标签页组件AntdTabs，api参数参考https://ant.design/components/tabs-cn/
 export default class AntdTabs extends Component {

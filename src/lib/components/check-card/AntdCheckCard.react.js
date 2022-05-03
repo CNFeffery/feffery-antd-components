@@ -86,7 +86,6 @@ AntdCheckCard.propTypes = {
     // 默认为'default'
     size: PropTypes.oneOf(['small', 'default', 'large']),
 
-
     loading_state: PropTypes.shape({
         /**
          * Determines if the component is loading or not
