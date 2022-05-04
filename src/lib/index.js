@@ -84,9 +84,6 @@ import AntdCheckCardGroup from './components/check-card/AntdCheckCardGroup.react
 import AntdAccordionItem from './components/accordion/AntdAccordionItem.react'
 import AntdAccordion from './components/accordion/AntdAccordion.react'
 
-// 屏蔽所有warning信息
-window.console.warn = () => { }
-
 export {
     AntdDatePicker,
     AntdDateRangePicker,

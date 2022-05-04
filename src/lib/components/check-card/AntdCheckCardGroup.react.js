@@ -58,6 +58,7 @@ AntdCheckCardGroup.propTypes = {
     // 组件id
     id: PropTypes.string,
 
+    // 传入内部嵌套的各个AntdCheckCard组件
     children: PropTypes.node,
 
     // css类名
