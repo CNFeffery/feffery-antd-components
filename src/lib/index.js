@@ -85,11 +85,7 @@ import AntdAccordionItem from './components/accordion/AntdAccordionItem.react'
 import AntdAccordion from './components/accordion/AntdAccordion.react'
 
 // 屏蔽所有warning信息
-window.console = (function () {
-    var c = {};
-    c.warn = function () { };
-    return c;
-})();
+window.console.warn = function () { };
 
 export {
     AntdDatePicker,
