@@ -50,6 +50,9 @@ app.layout = html.Div(
             editable=True,
             editConfig={
                 'rotate': True
+            },
+            style={
+                'display': 'none'
             }
         ),
         html.Pre(

@@ -187,21 +187,49 @@ const AntdPictureUpload = (props) => {
     if (editable) {
         // 返回定制化的前端组件
         return (
-            <ConfigProvider locale={str2Locale.get(locale)}
-                id={id}
+            <ConfigProvider locale={str2Locale.get(locale)}>
+                <div id={id}
+                    className={className}
+                    style={style}>
+                    <ImgCrop {...editConfig}>
+                        <Upload {...uploadProps}
+                            fileList={fileList}
+                            listType="picture-card"
+                            onPreview={handlePreview}
+                            data-dash-is-loading={
+                                (loading_state && loading_state.is_loading) || undefined
+                            }>
+                            {uploadButton}
+                        </Upload>
+                    </ImgCrop>
+                    <Modal
+                        visible={previewVisible}
+                        title={previewTitle}
+                        footer={null}
+                        onCancel={handleCancel}
+                    >
+                        <img alt="" style={{ width: '100%' }} src={previewImage} />
+                    </Modal>
+                </div>
+            </ConfigProvider>
+        );
+    }
+
+    // 返回定制化的前端组件
+    return (
+        <ConfigProvider locale={str2Locale.get(locale)}>
+            <div id={id}
                 className={className}
                 style={style}>
-                <ImgCrop {...editConfig}>
-                    <Upload {...uploadProps}
-                        fileList={fileList}
-                        listType="picture-card"
-                        onPreview={handlePreview}
-                        data-dash-is-loading={
-                            (loading_state && loading_state.is_loading) || undefined
-                        }>
-                        {uploadButton}
-                    </Upload>
-                </ImgCrop>
+                <Upload {...uploadProps}
+                    fileList={fileList}
+                    listType="picture-card"
+                    onPreview={handlePreview}
+                    data-dash-is-loading={
+                        (loading_state && loading_state.is_loading) || undefined
+                    }>
+                    {uploadButton}
+                </Upload>
                 <Modal
                     visible={previewVisible}
                     title={previewTitle}
@@ -210,33 +238,7 @@ const AntdPictureUpload = (props) => {
                 >
                     <img alt="" style={{ width: '100%' }} src={previewImage} />
                 </Modal>
-            </ConfigProvider>
-        );
-    }
-
-    // 返回定制化的前端组件
-    return (
-        <ConfigProvider locale={str2Locale.get(locale)}>
-            <Upload {...uploadProps}
-                id={id}
-                className={className}
-                style={style}
-                fileList={fileList}
-                listType="picture-card"
-                onPreview={handlePreview}
-                data-dash-is-loading={
-                    (loading_state && loading_state.is_loading) || undefined
-                }>
-                {uploadButton}
-            </Upload>
-            <Modal
-                visible={previewVisible}
-                title={previewTitle}
-                footer={null}
-                onCancel={handleCancel}
-            >
-                <img alt="" style={{ width: '100%' }} src={previewImage} />
-            </Modal>
+            </div>
         </ConfigProvider>
     );
 }
