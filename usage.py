@@ -1,4 +1,6 @@
 import dash
+import json
+from flask import request
 from dash import html
 from requests import options
 import feffery_antd_components as fac
@@ -9,80 +11,103 @@ app = dash.Dash(
 )
 
 
-app.layout = html.Div(
-    [
+@app.server.route('/upload/', methods=['POST'])
+def upload():
+    '''
+    构建文件上传服务
+    :return:
+    '''
 
-        fac.AntdAccordion(
-            [
-                fac.AntdAccordionItem(
-                    f'内容测试{i}',
-                    title=f'手风琴项{i}',
-                    key=i
-                )
-                for i in range(1, 11)
-            ],
-            ghost=True,
-            accordion=True,
-            defaultActiveKey=[5, 7]
-        ),
+    # 获取上传id参数，用于指向保存路径
+    uploadId = request.values.get('uploadId')
 
-        fac.AntdDivider(
-            isDashed=True
-        ),
+    # 获取上传的文件名称
+    filename = request.files['file'].filename
 
-        fac.AntdCheckCardGroup(
-            fac.AntdSpace(
-                [
-                    fac.AntdCheckCard(
-                        fac.AntdStatistic(
-                            title='统计数值示例',
-                            value=1332971
-                        ),
-                        value='option1'
-                    ),
-                    fac.AntdCheckCard(
-                        fac.AntdStatistic(
-                            title='统计数值示例',
-                            value=1332971
-                        ),
-                        value='option2'
-                    ),
-                    fac.AntdCheckCard(
-                        fac.AntdStatistic(
-                            title='统计数值示例',
-                            value=1332971
-                        ),
-                        value='option3'
-                    ),
-                    fac.AntdCheckCard(
-                        fac.AntdStatistic(
-                            title='统计数值示例',
-                            value=1332971
-                        ),
-                        value='option4'
-                    )
-                ],
-                size=5
-            ),
-            id='check-card-group-demo',
-            multiple=True
-        ),
-        html.Div(
-            id='check-card-group-demo-output'
-        )
-    ],
-    style={
-        'padding': '50px'
-    }
-)
+    return {'filename': filename}
 
 
 @app.callback(
-    Output('check-card-group-demo-output', 'children'),
-    Input('check-card-group-demo', 'value')
+    Output('picture-upload-upload', 'children'),
+    [Input('picture-upload', 'lastUploadTaskRecord'),
+    Input('picture-upload', 'listUploadTaskRecord')]
 )
-def check_card_group_demo_output(value):
-    return '当前选中的值为：{}'.format(value)
+def picture_upload_callback(lastUploadTaskRecord, listUploadTaskRecord):
+
+    return json.dumps({
+        'lastUploadTaskRecord': lastUploadTaskRecord,
+        'listUploadTaskRecord': listUploadTaskRecord
+    }, indent=4, ensure_ascii=False)
+
+
+app.layout = html.Div(
+    [
+        fac.AntdPictureUpload(
+            id='picture-upload',
+            apiUrl='/upload/',
+            fileListMaxLength=10,
+            buttonContent='上传图片',
+            editable=True,
+            editConfig={
+                'rotate': True
+            }
+        ),
+        html.Pre(
+            id='picture-upload-upload'
+        ),
+        fac.AntdDivider(isDashed=True),
+
+        fac.AntdTable(
+            columns=[
+                {
+                    'title': 'ellipsis内容省略示例',
+                    'dataIndex': 'ellipsis内容省略示例',
+                    'renderOptions': {
+                        'renderType': 'ellipsis'
+                    }
+                }
+            ],
+            data=[
+                {
+                    'key': i,
+                    'ellipsis内容省略示例': '这是一段废话，用来演示超长内容再渲染巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉'
+                }
+                for i in range(3)
+            ],
+            bordered=True,
+            style={
+                'width': '250px'
+            }
+        ),
+        fac.AntdDivider(isDashed=True),
+
+        fac.AntdTable(
+            columns=[
+                {
+                    'title': 'ellipsis-copyable模式示例',
+                    'dataIndex': 'ellipsis-copyable模式示例',
+                    'renderOptions': {
+                        'renderType': 'ellipsis-copyable'
+                    }
+                }
+            ],
+            data=[
+                {
+                    'key': i,
+                    'ellipsis-copyable模式示例': '这是一段废话，用来演示超长内容再渲染巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉'
+                }
+                for i in range(3)
+            ],
+            bordered=True,
+            style={
+                'width': '250px'
+            }
+        )
+    ],
+    style={
+        'padding': '100px'
+    }
+)
 
 
 if __name__ == '__main__':

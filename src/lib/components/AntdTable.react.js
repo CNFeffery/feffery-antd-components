@@ -538,15 +538,9 @@ export default class AntdTable extends Component {
                     if (columns[i]['renderOptions']['renderType'] == 'ellipsis') {
                         columns[i]['ellipsis'] = true
                         columns[i]['render'] = content => (
-                            <Tooltip
-                                placement="topLeft"
-                                title={content}
-                                getPopupContainer={containerId ? () => (document.getElementById(containerId) ?
-                                    document.getElementById(containerId) : document.body) :
-                                    () => document.body}
-                            >
+                            <Text ellipsis={{ tooltip: content }}>
                                 {content}
-                            </Tooltip>
+                            </Text>
                         )
                     }
                 }
@@ -593,6 +587,24 @@ export default class AntdTable extends Component {
                     if (columns[i]['renderOptions']['renderType'] == 'copyable') {
                         columns[i]['render'] = content => (
                             <Text copyable={true}>
+                                {content}
+                            </Text>
+                        )
+                    }
+                }
+            }
+        }
+
+        // 配置字段渲染模式为ellipsis-copyable的相关参数
+        for (let i = 0; i < columns.length; i++) {
+            // 当前字段具有renderOptions参数时且renderOptions参数是字典时
+            if (columns[i]['renderOptions']) {
+                if (columns[i]['renderOptions'].hasOwnProperty('renderType')) {
+                    // 当renderOptions参数的renderType值设置为ellipsis-copyable时
+                    if (columns[i]['renderOptions']['renderType'] === 'ellipsis-copyable') {
+                        columns[i]['ellipsis'] = true
+                        columns[i]['render'] = content => (
+                            <Text copyable={true} ellipsis={{ tooltip: content }}>
                                 {content}
                             </Text>
                         )
@@ -1003,7 +1015,7 @@ AntdTable.propTypes = {
                 renderType: PropTypes.oneOf([
                     'link', 'ellipsis', 'mini-line', 'mini-bar', 'mini-progress',
                     'mini-ring-progress', 'mini-area', 'tags', 'button', 'copyable',
-                    'status-badge', 'image', 'custom-format'
+                    'status-badge', 'image', 'custom-format', 'ellipsis-copyable'
                 ]),
 
                 // 当renderType='link'时，此参数会将传入的字符串作为渲染link的显示文字内容
@@ -1122,7 +1134,7 @@ AntdTable.propTypes = {
     data: PropTypes.arrayOf(
         PropTypes.objectOf(
             PropTypes.oneOfType([
-                // 常规模式、ellipsis模式、copyable模式、custom-format模式
+                // 常规模式、ellipsis模式、copyable模式、custom-format模式、ellipsis-copyable模式
                 PropTypes.string,
 
                 // 常规模式、ellipsis模式、mini-prorgess模式、mini-ring-progress模式、copyable模式、custom-format模式

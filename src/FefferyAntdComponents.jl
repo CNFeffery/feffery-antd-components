@@ -3,7 +3,7 @@ module FefferyAntdComponents
 using Dash
 
 const resources_path = realpath(joinpath( @__DIR__, "..", "deps"))
-const version = "0.1.10"
+const version = "0.1.11"
 
 include("jl/'feffery'_antdaccordion.jl")
 include("jl/'feffery'_antdaccordionitem.jl")
@@ -42,6 +42,7 @@ include("jl/'feffery'_antdnotification.jl")
 include("jl/'feffery'_antdpageheader.jl")
 include("jl/'feffery'_antdpagination.jl")
 include("jl/'feffery'_antdpasteimage.jl")
+include("jl/'feffery'_antdpictureupload.jl")
 include("jl/'feffery'_antdpopconfirm.jl")
 include("jl/'feffery'_antdpopover.jl")
 include("jl/'feffery'_antdprogress.jl")
@@ -99,14 +100,14 @@ function __init__()
             [
                 DashBase.Resource(
     relative_package_path = "feffery_antd_components.min.js",
-    external_url = "https://unpkg.com/feffery_antd_components@0.1.10/feffery_antd_components/feffery_antd_components.min.js",
+    external_url = "https://unpkg.com/feffery_antd_components@0.1.11/feffery_antd_components/feffery_antd_components.min.js",
     dynamic = nothing,
     async = nothing,
     type = :js
 ),
 DashBase.Resource(
     relative_package_path = "feffery_antd_components.min.js.map",
-    external_url = "https://unpkg.com/feffery_antd_components@0.1.10/feffery_antd_components/feffery_antd_components.min.js.map",
+    external_url = "https://unpkg.com/feffery_antd_components@0.1.11/feffery_antd_components/feffery_antd_components.min.js.map",
     dynamic = true,
     async = nothing,
     type = :js

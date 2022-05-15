@@ -35,6 +35,7 @@ from .AntdNotification import AntdNotification
 from .AntdPageHeader import AntdPageHeader
 from .AntdPagination import AntdPagination
 from .AntdPasteImage import AntdPasteImage
+from .AntdPictureUpload import AntdPictureUpload
 from .AntdPopconfirm import AntdPopconfirm
 from .AntdPopover import AntdPopover
 from .AntdProgress import AntdProgress
@@ -121,6 +122,7 @@ __all__ = [
     "AntdPageHeader",
     "AntdPagination",
     "AntdPasteImage",
+    "AntdPictureUpload",
     "AntdPopconfirm",
     "AntdPopover",
     "AntdProgress",

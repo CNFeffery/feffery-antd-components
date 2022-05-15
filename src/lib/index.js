@@ -83,6 +83,7 @@ import AntdCheckCard from './components/check-card/AntdCheckCard.react'
 import AntdCheckCardGroup from './components/check-card/AntdCheckCardGroup.react'
 import AntdAccordionItem from './components/accordion/AntdAccordionItem.react'
 import AntdAccordion from './components/accordion/AntdAccordion.react'
+import AntdPictureUpload from './components/AntdPictureUpload.react'
 
 export {
     AntdDatePicker,
@@ -168,5 +169,6 @@ export {
     AntdCheckCard,
     AntdCheckCardGroup,
     AntdAccordionItem,
-    AntdAccordion
+    AntdAccordion,
+    AntdPictureUpload
 };
