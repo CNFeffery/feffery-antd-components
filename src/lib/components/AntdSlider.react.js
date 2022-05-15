@@ -11,12 +11,16 @@ export default class AntdSlider extends Component {
         // 初始化value
         if (props.range) {
             // 范围选择模式时
-            let defaultValue = props.defaultValue ? props.defaultValue : [props.min + 0.25 * (props.max - props.min), props.min + 0.75 * (props.max - props.min)]
-            props.setProps({ value: defaultValue })
+            let defaultValue = props.defaultValue ? props.defaultValue : [props.min, props.max]
+            if (!props.value) {
+                props.setProps({ value: defaultValue })
+            }
         } else {
             // 单值选择模式时
-            let defaultValue = props.defaultValue ? props.defaultValue : 0.25 * (props.max - props.min)
-            props.setProps({ value: defaultValue })
+            let defaultValue = props.defaultValue ? props.defaultValue : props.max
+            if (!props.value && props.value !== 0) {
+                props.setProps({ value: defaultValue })
+            }
         }
     }
 
@@ -26,6 +30,7 @@ export default class AntdSlider extends Component {
             id,
             className,
             style,
+            value,
             defaultValue,
             disabled,
             range,
@@ -40,25 +45,14 @@ export default class AntdSlider extends Component {
             setProps
         } = this.props;
 
-        // 初始化defaultValue
-        if (range) {
-            // 范围选择模式时
-            defaultValue = defaultValue ? defaultValue : [min + 0.25 * (max - min), min + 0.75 * (max - min)]
-            setProps({ defaultValue: defaultValue })
-        } else {
-            // 单值选择模式时
-            defaultValue = defaultValue ? defaultValue : 0.5 * (max + min)
-            setProps({ defaultValue: defaultValue })
-        }
-
         // 设置tipFormatter格式化函数
-        const formatter = (value) => {
-            return tooltipPrefix + `${value}` + tooltipSuffix
+        const formatter = (e) => {
+            return tooltipPrefix + `${e}` + tooltipSuffix
         }
 
         // 监听用户完成拖拽的动作
-        const onAfterChange = (value) => {
-            setProps({ value: value })
+        const onChange = (e) => {
+            setProps({ value: e })
         }
 
         // 返回定制化的前端组件
@@ -67,6 +61,7 @@ export default class AntdSlider extends Component {
                 id={id}
                 className={className}
                 style={style}
+                value={value}
                 defaultValue={defaultValue}
                 disabled={disabled}
                 range={range}
@@ -75,7 +70,7 @@ export default class AntdSlider extends Component {
                 step={step}
                 marks={marks}
                 tooltipVisible={tooltipVisible}
-                onAfterChange={onAfterChange}
+                onChange={onChange}
                 tipFormatter={formatter}
                 getTooltipPopupContainer={(triggerNode) => triggerNode.parentNode}
                 data-dash-is-loading={

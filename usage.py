@@ -42,6 +42,17 @@ def picture_upload_callback(lastUploadTaskRecord, listUploadTaskRecord):
 
 app.layout = html.Div(
     [
+
+        fac.AntdSlider(
+            id='qr-version',
+            min=1,
+            max=40,
+            step=1,
+            # defaultValue=1,
+            style={
+                'width': '300px'
+            }
+        ),
         fac.AntdPictureUpload(
             id='picture-upload',
             apiUrl='/upload/',
