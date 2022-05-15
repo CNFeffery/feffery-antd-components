@@ -187,12 +187,12 @@ const AntdPictureUpload = (props) => {
     if (editable) {
         // 返回定制化的前端组件
         return (
-            <ConfigProvider locale={str2Locale.get(locale)}>
+            <ConfigProvider locale={str2Locale.get(locale)}
+                id={id}
+                className={className}
+                style={style}>
                 <ImgCrop {...editConfig}>
                     <Upload {...uploadProps}
-                        id={id}
-                        className={className}
-                        style={style}
                         fileList={fileList}
                         listType="picture-card"
                         onPreview={handlePreview}

@@ -30,7 +30,7 @@ def upload():
 @app.callback(
     Output('picture-upload-upload', 'children'),
     [Input('picture-upload', 'lastUploadTaskRecord'),
-    Input('picture-upload', 'listUploadTaskRecord')]
+     Input('picture-upload', 'listUploadTaskRecord')]
 )
 def picture_upload_callback(lastUploadTaskRecord, listUploadTaskRecord):
 
