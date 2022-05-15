@@ -11,6 +11,7 @@ export default class AntdResult extends Component {
             id,
             className,
             style,
+            key,
             status,
             title,
             subTitle,
@@ -22,6 +23,7 @@ export default class AntdResult extends Component {
             <Result id={id}
                 className={className}
                 style={style}
+                key={key}
                 status={status}
                 title={title}
                 subTitle={subTitle}
@@ -43,6 +45,9 @@ AntdResult.propTypes = {
 
     // 自定义css字典
     style: PropTypes.object,
+
+    // 辅助刷新用唯一标识key值
+    key: PropTypes.string,
 
     loading_state: PropTypes.shape({
         /**

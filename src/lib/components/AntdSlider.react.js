@@ -30,6 +30,7 @@ export default class AntdSlider extends Component {
             id,
             className,
             style,
+            key,
             value,
             defaultValue,
             disabled,
@@ -61,6 +62,7 @@ export default class AntdSlider extends Component {
                 id={id}
                 className={className}
                 style={style}
+                key={key}
                 value={value}
                 defaultValue={defaultValue}
                 disabled={disabled}
@@ -91,6 +93,9 @@ AntdSlider.propTypes = {
 
     // 自定义css字典
     style: PropTypes.object,
+
+    // 辅助刷新用唯一标识key值
+    key: PropTypes.string,
 
     // 设置默认值或默认范围
     defaultValue: PropTypes.oneOfType([

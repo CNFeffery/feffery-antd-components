@@ -23,6 +23,7 @@ Those elements have the following types:
 - `debug` (Bool; optional)
 - `excludeProps` (Array of Strings; optional)
 - `includeProps` (Array of Strings; optional)
+- `key` (String; optional)
 - `listenPropsMode` (a value equal to: 'default', 'exclude', 'include'; optional)
 - `loading` (Bool; optional)
 - `loading_state` (optional): . loading_state has the following type: lists containing elements 'is_loading', 'prop_name', 'component_name'.
@@ -41,7 +42,7 @@ Those elements have the following types:
   - `width` (Real | String; optional)
 """
 function 'feffery'_antdskeleton(; kwargs...)
-        available_props = Symbol[:children, :id, :active, :avatar, :className, :debug, :excludeProps, :includeProps, :listenPropsMode, :loading, :loading_state, :paragraph, :round, :style, :title]
+        available_props = Symbol[:children, :id, :active, :avatar, :className, :debug, :excludeProps, :includeProps, :key, :listenPropsMode, :loading, :loading_state, :paragraph, :round, :style, :title]
         wild_props = Symbol[]
         return Component("'feffery'_antdskeleton", "AntdSkeleton", "feffery_antd_components", available_props, wild_props; kwargs...)
 end

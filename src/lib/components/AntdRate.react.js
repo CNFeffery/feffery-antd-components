@@ -21,6 +21,7 @@ export default class AntdRate extends Component {
             id,
             className,
             style,
+            key,
             allowClear,
             allowHalf,
             count,
@@ -35,6 +36,7 @@ export default class AntdRate extends Component {
             <Rate id={id}
                 className={className}
                 style={style}
+                key={key}
                 allowClear={allowClear}
                 allowHalf={allowHalf}
                 count={count}
@@ -59,6 +61,9 @@ AntdRate.propTypes = {
 
     // 自定义css字典
     style: PropTypes.object,
+
+    // 辅助刷新用唯一标识key值
+    key: PropTypes.string,
 
     // 设置是否允许再次点击后清除已评分数，默认为true
     allowClear: PropTypes.bool,

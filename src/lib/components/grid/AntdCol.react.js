@@ -13,6 +13,7 @@ export default class AntdCol extends Component {
             children,
             className,
             style,
+            key,
             span,
             offset,
             order,
@@ -35,6 +36,7 @@ export default class AntdCol extends Component {
             <Col id={id}
                 className={className}
                 style={{ height: '100%', ...style }}
+                key={key}
                 span={span}
                 offset={offset}
                 order={order}
@@ -71,6 +73,9 @@ AntdCol.propTypes = {
 
     // 自定义css字典
     style: PropTypes.object,
+
+    // 辅助刷新用唯一标识key值
+    key: PropTypes.string,
 
     loading_state: PropTypes.shape({
         /**

@@ -15,6 +15,7 @@ Keyword arguments:
 - `id` (String; optional)
 - `className` (String; optional)
 - `color` (String; optional)
+- `key` (String; optional)
 - `loading_state` (optional): . loading_state has the following type: lists containing elements 'is_loading', 'prop_name', 'component_name'.
 Those elements have the following types:
   - `is_loading` (Bool; optional): Determines if the component is loading or not
@@ -25,7 +26,7 @@ Those elements have the following types:
 - `text` (String; optional)
 """
 function 'feffery'_antdribbon(; kwargs...)
-        available_props = Symbol[:children, :id, :className, :color, :loading_state, :placement, :style, :text]
+        available_props = Symbol[:children, :id, :className, :color, :key, :loading_state, :placement, :style, :text]
         wild_props = Symbol[]
         return Component("'feffery'_antdribbon", "AntdRibbon", "feffery_antd_components", available_props, wild_props; kwargs...)
 end

@@ -14,6 +14,7 @@ Keyword arguments:
 - `className` (String; optional)
 - `clickedKey` (String; optional)
 - `disabled` (Bool; optional)
+- `key` (String; optional)
 - `loading_state` (optional): . loading_state has the following type: lists containing elements 'is_loading', 'prop_name', 'component_name'.
 Those elements have the following types:
   - `is_loading` (Bool; optional): Determines if the component is loading or not
@@ -37,7 +38,7 @@ Those elements have the following types:
 - `visible` (Bool; optional)
 """
 function 'feffery'_antddropdown(; kwargs...)
-        available_props = Symbol[:id, :arrow, :buttonMode, :className, :clickedKey, :disabled, :loading_state, :menuItems, :overlayClassName, :overlayStyle, :placement, :style, :title, :trigger, :visible]
+        available_props = Symbol[:id, :arrow, :buttonMode, :className, :clickedKey, :disabled, :key, :loading_state, :menuItems, :overlayClassName, :overlayStyle, :placement, :style, :title, :trigger, :visible]
         wild_props = Symbol[]
         return Component("'feffery'_antddropdown", "AntdDropdown", "feffery_antd_components", available_props, wild_props; kwargs...)
 end

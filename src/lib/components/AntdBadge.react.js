@@ -12,6 +12,7 @@ export default class AntdBadge extends Component {
             children,
             className,
             style,
+            key,
             color,
             count,
             dot,
@@ -33,6 +34,7 @@ export default class AntdBadge extends Component {
                 id={id}
                 className={className}
                 style={style}
+                key={key}
                 color={color}
                 count={count}
                 dot={dot}
@@ -69,6 +71,9 @@ AntdBadge.propTypes = {
 
     // 自定义css字典
     style: PropTypes.object,
+
+    // 辅助刷新用唯一标识key值
+    key: PropTypes.string,
 
     // 自定义徽标颜色
     color: PropTypes.string,

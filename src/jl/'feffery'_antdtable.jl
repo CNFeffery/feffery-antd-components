@@ -77,6 +77,7 @@ Those elements have the following types:
   - `filterCustomItems` (Array | Bool | Real | String | Dict | Array; optional)
   - `filterMultiple` (Bool; optional)
   - `filterSearch` (Bool; optional)
+- `key` (String; optional)
 - `loading_state` (optional): . loading_state has the following type: lists containing elements 'is_loading', 'prop_name', 'component_name'.
 Those elements have the following types:
   - `is_loading` (Bool; optional): Determines if the component is loading or not
@@ -136,7 +137,7 @@ Those elements have the following types:
 - `titlePopoverInfo` (Dict; optional)
 """
 function 'feffery'_antdtable(; kwargs...)
-        available_props = Symbol[:id, :bordered, :className, :clickedContent, :columns, :columnsFormatConstraint, :conditionalStyleFuncs, :containerId, :currentData, :customFormatFuncs, :data, :enableHoverListen, :filter, :filterOptions, :loading_state, :locale, :maxHeight, :maxWidth, :miniChartAnimation, :miniChartHeight, :mode, :nClicksButton, :pagination, :recentlyButtonClickedRow, :recentlyChangedRow, :recentlyMouseEnterColumn, :recentlyMouseEnterRow, :rowSelectionType, :rowSelectionWidth, :selectedRowKeys, :selectedRows, :size, :sortOptions, :sorter, :sticky, :style, :summaryRowContents, :summaryRowFixed, :titlePopoverInfo]
+        available_props = Symbol[:id, :bordered, :className, :clickedContent, :columns, :columnsFormatConstraint, :conditionalStyleFuncs, :containerId, :currentData, :customFormatFuncs, :data, :enableHoverListen, :filter, :filterOptions, :key, :loading_state, :locale, :maxHeight, :maxWidth, :miniChartAnimation, :miniChartHeight, :mode, :nClicksButton, :pagination, :recentlyButtonClickedRow, :recentlyChangedRow, :recentlyMouseEnterColumn, :recentlyMouseEnterRow, :rowSelectionType, :rowSelectionWidth, :selectedRowKeys, :selectedRows, :size, :sortOptions, :sorter, :sticky, :style, :summaryRowContents, :summaryRowFixed, :titlePopoverInfo]
         wild_props = Symbol[]
         return Component("'feffery'_antdtable", "AntdTable", "feffery_antd_components", available_props, wild_props; kwargs...)
 end

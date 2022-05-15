@@ -17,6 +17,8 @@ Keyword arguments:
 
 - format (string; default 'YYYY-MM-DD')
 
+- key (string; optional)
+
 - loading_state (dict; optional)
 
     `loading_state` is a dict with keys:
@@ -57,12 +59,12 @@ Keyword arguments:
 
 - value (string; optional)"""
     @_explicitize_args
-    def __init__(self, id=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, locale=Component.UNDEFINED, defaultValue=Component.UNDEFINED, value=Component.UNDEFINED, format=Component.UNDEFINED, size=Component.UNDEFINED, loading_state=Component.UNDEFINED, persistence=Component.UNDEFINED, persisted_props=Component.UNDEFINED, persistence_type=Component.UNDEFINED, **kwargs):
-        self._prop_names = ['id', 'className', 'defaultValue', 'format', 'loading_state', 'locale', 'persisted_props', 'persistence', 'persistence_type', 'size', 'style', 'value']
+    def __init__(self, id=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, key=Component.UNDEFINED, locale=Component.UNDEFINED, defaultValue=Component.UNDEFINED, value=Component.UNDEFINED, format=Component.UNDEFINED, size=Component.UNDEFINED, loading_state=Component.UNDEFINED, persistence=Component.UNDEFINED, persisted_props=Component.UNDEFINED, persistence_type=Component.UNDEFINED, **kwargs):
+        self._prop_names = ['id', 'className', 'defaultValue', 'format', 'key', 'loading_state', 'locale', 'persisted_props', 'persistence', 'persistence_type', 'size', 'style', 'value']
         self._type = 'AntdCalendar'
         self._namespace = 'feffery_antd_components'
         self._valid_wildcard_attributes =            []
-        self.available_properties = ['id', 'className', 'defaultValue', 'format', 'loading_state', 'locale', 'persisted_props', 'persistence', 'persistence_type', 'size', 'style', 'value']
+        self.available_properties = ['id', 'className', 'defaultValue', 'format', 'key', 'loading_state', 'locale', 'persisted_props', 'persistence', 'persistence_type', 'size', 'style', 'value']
         self.available_wildcard_properties =            []
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()

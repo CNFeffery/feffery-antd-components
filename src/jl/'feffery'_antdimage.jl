@@ -13,6 +13,7 @@ Keyword arguments:
 - `className` (String; optional)
 - `fallback` (String; optional)
 - `height` (Real | String; optional)
+- `key` (String; optional)
 - `loading_state` (optional): . loading_state has the following type: lists containing elements 'is_loading', 'prop_name', 'component_name'.
 Those elements have the following types:
   - `is_loading` (Bool; optional): Determines if the component is loading or not
@@ -26,7 +27,7 @@ Those elements have the following types:
 - `width` (Real | String; optional)
 """
 function 'feffery'_antdimage(; kwargs...)
-        available_props = Symbol[:id, :alt, :className, :fallback, :height, :loading_state, :locale, :multiImageMode, :preview, :src, :style, :width]
+        available_props = Symbol[:id, :alt, :className, :fallback, :height, :key, :loading_state, :locale, :multiImageMode, :preview, :src, :style, :width]
         wild_props = Symbol[]
         return Component("'feffery'_antdimage", "AntdImage", "feffery_antd_components", available_props, wild_props; kwargs...)
 end

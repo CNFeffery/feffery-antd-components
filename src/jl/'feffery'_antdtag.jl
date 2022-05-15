@@ -13,6 +13,7 @@ Keyword arguments:
 - `color` (String; optional)
 - `content` (String; optional)
 - `href` (String; optional)
+- `key` (String; optional)
 - `loading_state` (optional): . loading_state has the following type: lists containing elements 'is_loading', 'prop_name', 'component_name'.
 Those elements have the following types:
   - `is_loading` (Bool; optional): Determines if the component is loading or not
@@ -22,7 +23,7 @@ Those elements have the following types:
 - `target` (String; optional)
 """
 function 'feffery'_antdtag(; kwargs...)
-        available_props = Symbol[:id, :className, :color, :content, :href, :loading_state, :style, :target]
+        available_props = Symbol[:id, :className, :color, :content, :href, :key, :loading_state, :style, :target]
         wild_props = Symbol[]
         return Component("'feffery'_antdtag", "AntdTag", "feffery_antd_components", available_props, wild_props; kwargs...)
 end

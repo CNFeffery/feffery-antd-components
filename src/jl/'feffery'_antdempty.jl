@@ -13,6 +13,7 @@ Keyword arguments:
 - `description` (String; optional)
 - `image` (String; optional)
 - `imageStyle` (Dict; optional)
+- `key` (String; optional)
 - `loading_state` (optional): . loading_state has the following type: lists containing elements 'is_loading', 'prop_name', 'component_name'.
 Those elements have the following types:
   - `is_loading` (Bool; optional): Determines if the component is loading or not
@@ -22,7 +23,7 @@ Those elements have the following types:
 - `style` (Dict; optional)
 """
 function 'feffery'_antdempty(; kwargs...)
-        available_props = Symbol[:id, :className, :description, :image, :imageStyle, :loading_state, :locale, :style]
+        available_props = Symbol[:id, :className, :description, :image, :imageStyle, :key, :loading_state, :locale, :style]
         wild_props = Symbol[]
         return Component("'feffery'_antdempty", "AntdEmpty", "feffery_antd_components", available_props, wild_props; kwargs...)
 end

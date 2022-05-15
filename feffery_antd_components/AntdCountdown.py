@@ -15,6 +15,8 @@ Keyword arguments:
 
 - format (string; optional)
 
+- key (string; optional)
+
 - loading_state (dict; optional)
 
     `loading_state` is a dict with keys:
@@ -54,12 +56,12 @@ Keyword arguments:
 
 - valueStyle (dict; optional)"""
     @_explicitize_args
-    def __init__(self, id=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, format=Component.UNDEFINED, value=Component.UNDEFINED, valueFormat=Component.UNDEFINED, prefix=Component.UNDEFINED, suffix=Component.UNDEFINED, title=Component.UNDEFINED, valueStyle=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
-        self._prop_names = ['id', 'className', 'format', 'loading_state', 'prefix', 'style', 'suffix', 'title', 'value', 'valueFormat', 'valueStyle']
+    def __init__(self, id=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, key=Component.UNDEFINED, format=Component.UNDEFINED, value=Component.UNDEFINED, valueFormat=Component.UNDEFINED, prefix=Component.UNDEFINED, suffix=Component.UNDEFINED, title=Component.UNDEFINED, valueStyle=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
+        self._prop_names = ['id', 'className', 'format', 'key', 'loading_state', 'prefix', 'style', 'suffix', 'title', 'value', 'valueFormat', 'valueStyle']
         self._type = 'AntdCountdown'
         self._namespace = 'feffery_antd_components'
         self._valid_wildcard_attributes =            []
-        self.available_properties = ['id', 'className', 'format', 'loading_state', 'prefix', 'style', 'suffix', 'title', 'value', 'valueFormat', 'valueStyle']
+        self.available_properties = ['id', 'className', 'format', 'key', 'loading_state', 'prefix', 'style', 'suffix', 'title', 'value', 'valueFormat', 'valueStyle']
         self.available_wildcard_properties =            []
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()

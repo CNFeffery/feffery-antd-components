@@ -20,6 +20,7 @@ Keyword arguments:
 - `className` (String; optional)
 - `closable` (Bool; optional)
 - `closeCounts` (Real; optional)
+- `key` (String; optional)
 - `keyboard` (Bool; optional)
 - `loading_state` (optional): . loading_state has the following type: lists containing elements 'is_loading', 'prop_name', 'component_name'.
 Those elements have the following types:
@@ -42,7 +43,7 @@ Those elements have the following types:
 - `width` (Real; optional)
 """
 function 'feffery'_antdmodal(; kwargs...)
-        available_props = Symbol[:children, :id, :cancelButtonProps, :cancelCounts, :cancelText, :centered, :className, :closable, :closeCounts, :keyboard, :loading_state, :locale, :mask, :maskClosable, :okButtonProps, :okCounts, :okText, :renderFooter, :style, :title, :visible, :width]
+        available_props = Symbol[:children, :id, :cancelButtonProps, :cancelCounts, :cancelText, :centered, :className, :closable, :closeCounts, :key, :keyboard, :loading_state, :locale, :mask, :maskClosable, :okButtonProps, :okCounts, :okText, :renderFooter, :style, :title, :visible, :width]
         wild_props = Symbol[]
         return Component("'feffery'_antdmodal", "AntdModal", "feffery_antd_components", available_props, wild_props; kwargs...)
 end

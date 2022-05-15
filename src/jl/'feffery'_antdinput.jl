@@ -17,6 +17,7 @@ Keyword arguments:
 - `className` (String; optional)
 - `defaultValue` (String; optional)
 - `disabled` (Bool; optional)
+- `key` (String; optional)
 - `loading_state` (optional): . loading_state has the following type: lists containing elements 'is_loading', 'prop_name', 'component_name'.
 Those elements have the following types:
   - `is_loading` (Bool; optional): Determines if the component is loading or not
@@ -49,7 +50,7 @@ session: window.sessionStorage, data is cleared once the browser quit.
 - `value` (String; optional)
 """
 function 'feffery'_antdinput(; kwargs...)
-        available_props = Symbol[:id, :addonAfter, :addonBefore, :allowClear, :autoComplete, :bordered, :className, :defaultValue, :disabled, :loading_state, :maxLength, :md5Value, :mode, :nClicksSearch, :nSubmit, :passwordUseMd5, :persisted_props, :persistence, :persistence_type, :placeholder, :showCount, :size, :status, :style, :value]
+        available_props = Symbol[:id, :addonAfter, :addonBefore, :allowClear, :autoComplete, :bordered, :className, :defaultValue, :disabled, :key, :loading_state, :maxLength, :md5Value, :mode, :nClicksSearch, :nSubmit, :passwordUseMd5, :persisted_props, :persistence, :persistence_type, :placeholder, :showCount, :size, :status, :style, :value]
         wild_props = Symbol[]
         return Component("'feffery'_antdinput", "AntdInput", "feffery_antd_components", available_props, wild_props; kwargs...)
 end

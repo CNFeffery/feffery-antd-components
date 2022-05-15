@@ -19,6 +19,7 @@ Keyword arguments:
 - `fontSize` (Real; optional)
 - `gapX` (Real; optional)
 - `gapY` (Real; optional)
+- `key` (String; optional)
 - `loading_state` (optional): . loading_state has the following type: lists containing elements 'is_loading', 'prop_name', 'component_name'.
 Those elements have the following types:
   - `is_loading` (Bool; optional): Determines if the component is loading or not
@@ -29,7 +30,7 @@ Those elements have the following types:
 - `zIndex` (Real; optional)
 """
 function 'feffery'_antdwatermark(; kwargs...)
-        available_props = Symbol[:children, :id, :className, :content, :fontColor, :fontSize, :gapX, :gapY, :loading_state, :rotate, :style, :zIndex]
+        available_props = Symbol[:children, :id, :className, :content, :fontColor, :fontSize, :gapX, :gapY, :key, :loading_state, :rotate, :style, :zIndex]
         wild_props = Symbol[]
         return Component("'feffery'_antdwatermark", "AntdWatermark", "feffery_antd_components", available_props, wild_props; kwargs...)
 end

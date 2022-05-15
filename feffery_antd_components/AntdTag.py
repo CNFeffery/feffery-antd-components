@@ -19,6 +19,8 @@ Keyword arguments:
 
 - href (string; optional)
 
+- key (string; optional)
+
 - loading_state (dict; optional)
 
     `loading_state` is a dict with keys:
@@ -36,12 +38,12 @@ Keyword arguments:
 
 - target (string; default '_blank')"""
     @_explicitize_args
-    def __init__(self, id=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, content=Component.UNDEFINED, color=Component.UNDEFINED, href=Component.UNDEFINED, target=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
-        self._prop_names = ['id', 'className', 'color', 'content', 'href', 'loading_state', 'style', 'target']
+    def __init__(self, id=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, key=Component.UNDEFINED, content=Component.UNDEFINED, color=Component.UNDEFINED, href=Component.UNDEFINED, target=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
+        self._prop_names = ['id', 'className', 'color', 'content', 'href', 'key', 'loading_state', 'style', 'target']
         self._type = 'AntdTag'
         self._namespace = 'feffery_antd_components'
         self._valid_wildcard_attributes =            []
-        self.available_properties = ['id', 'className', 'color', 'content', 'href', 'loading_state', 'style', 'target']
+        self.available_properties = ['id', 'className', 'color', 'content', 'href', 'key', 'loading_state', 'style', 'target']
         self.available_wildcard_properties =            []
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()

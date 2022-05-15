@@ -12,6 +12,7 @@ export default class AntdAffix extends Component {
             id,
             className,
             style,
+            key,
             children,
             offsetBottom,
             offsetTop,
@@ -26,6 +27,7 @@ export default class AntdAffix extends Component {
             <Affix id={id}
                 className={className}
                 style={style}
+                key={key}
                 offsetBottom={offsetBottom}
                 offsetTop={offsetTop}
                 target={() => target ? document.getElementById(target) : window}
@@ -51,6 +53,9 @@ AntdAffix.propTypes = {
 
     // 自定义css字典
     style: PropTypes.object,
+
+    // 辅助刷新用唯一标识key值
+    key: PropTypes.string,
 
     // 设置固钉在用户滚动页面后距离窗口底部的阈值
     // 到达这个阈值后会触发固钉的锚定页面功能

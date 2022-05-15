@@ -17,6 +17,7 @@ Those elements have the following types:
   - `content` (String; optional)
 - `gapDegree` (Real; optional)
 - `gapPosition` (a value equal to: 'top', 'bottom', 'left', 'right'; optional)
+- `key` (String; optional)
 - `loading_state` (optional): . loading_state has the following type: lists containing elements 'is_loading', 'prop_name', 'component_name'.
 Those elements have the following types:
   - `is_loading` (Bool; optional): Determines if the component is loading or not
@@ -39,7 +40,7 @@ Those elements have the following types:
 - `width` (Real; optional)
 """
 function 'feffery'_antdprogress(; kwargs...)
-        available_props = Symbol[:id, :className, :format, :gapDegree, :gapPosition, :loading_state, :percent, :showInfo, :size, :status, :steps, :strokeColor, :strokeLinecap, :strokeWidth, :style, :trailColor, :type, :width]
+        available_props = Symbol[:id, :className, :format, :gapDegree, :gapPosition, :key, :loading_state, :percent, :showInfo, :size, :status, :steps, :strokeColor, :strokeLinecap, :strokeWidth, :style, :trailColor, :type, :width]
         wild_props = Symbol[]
         return Component("'feffery'_antdprogress", "AntdProgress", "feffery_antd_components", available_props, wild_props; kwargs...)
 end

@@ -18,6 +18,7 @@ Those elements have the following types:
   - `iconStyle` (Dict; optional)
   - `contentStyle` (Dict; optional)
   - `label` (String; optional)s
+- `key` (String; optional)
 - `loading_state` (optional): . loading_state has the following type: lists containing elements 'is_loading', 'prop_name', 'component_name'.
 Those elements have the following types:
   - `is_loading` (Bool; optional): Determines if the component is loading or not
@@ -29,7 +30,7 @@ Those elements have the following types:
 - `style` (Dict; optional)
 """
 function 'feffery'_antdtimeline(; kwargs...)
-        available_props = Symbol[:id, :className, :items, :loading_state, :mode, :pending, :reverse, :style]
+        available_props = Symbol[:id, :className, :items, :key, :loading_state, :mode, :pending, :reverse, :style]
         wild_props = Symbol[]
         return Component("'feffery'_antdtimeline", "AntdTimeline", "feffery_antd_components", available_props, wild_props; kwargs...)
 end

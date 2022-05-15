@@ -12,6 +12,7 @@ export default class AntdNotification extends Component {
             id,
             className,
             style,
+            key,
             message,
             description,
             type,
@@ -50,6 +51,7 @@ export default class AntdNotification extends Component {
         return (
             <div
                 id={id}
+                key={key}
                 data-dash-is-loading={
                     (loading_state && loading_state.is_loading) || undefined
                 }
@@ -68,6 +70,9 @@ AntdNotification.propTypes = {
 
     // 自定义css字典
     style: PropTypes.object,
+
+    // 辅助刷新用唯一标识key值
+    key: PropTypes.string,
 
     loading_state: PropTypes.shape({
         /**

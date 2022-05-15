@@ -15,6 +15,7 @@ Keyword arguments:
 - `defaultPageSize` (Real; optional)
 - `disabled` (Bool; optional)
 - `hideOnSinglePage` (Bool; optional)
+- `key` (String; optional)
 - `loading_state` (optional): . loading_state has the following type: lists containing elements 'is_loading', 'prop_name', 'component_name'.
 Those elements have the following types:
   - `is_loading` (Bool; optional): Determines if the component is loading or not
@@ -46,7 +47,7 @@ session: window.sessionStorage, data is cleared once the browser quit.
 - `total` (Real; optional)
 """
 function 'feffery'_antdpagination(; kwargs...)
-        available_props = Symbol[:id, :className, :current, :defaultCurrent, :defaultPageSize, :disabled, :hideOnSinglePage, :loading_state, :locale, :pageSize, :pageSizeOptions, :persisted_props, :persistence, :persistence_type, :showQuickJumper, :showSizeChanger, :showTotalPrefix, :showTotalSuffix, :simple, :size, :style, :total]
+        available_props = Symbol[:id, :className, :current, :defaultCurrent, :defaultPageSize, :disabled, :hideOnSinglePage, :key, :loading_state, :locale, :pageSize, :pageSizeOptions, :persisted_props, :persistence, :persistence_type, :showQuickJumper, :showSizeChanger, :showTotalPrefix, :showTotalSuffix, :simple, :size, :style, :total]
         wild_props = Symbol[]
         return Component("'feffery'_antdpagination", "AntdPagination", "feffery_antd_components", available_props, wild_props; kwargs...)
 end

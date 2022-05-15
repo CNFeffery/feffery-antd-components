@@ -17,6 +17,7 @@ const AntdComment = (props) => {
         children,
         className,
         style,
+        key,
         locale,
         commentId,
         showLikeDislike,

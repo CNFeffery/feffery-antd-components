@@ -13,6 +13,7 @@ export default class AntdMessage extends Component {
             id,
             className,
             style,
+            key,
             content,
             type,
             duration,
@@ -52,6 +53,7 @@ export default class AntdMessage extends Component {
         return (
             <div
                 id={id}
+                key={key}
                 data-dash-is-loading={
                     (loading_state && loading_state.is_loading) || undefined
                 }
@@ -70,6 +72,9 @@ AntdMessage.propTypes = {
 
     // 自定义css字典
     style: PropTypes.object,
+
+    // 辅助刷新用唯一标识key值
+    key: PropTypes.string,
 
     loading_state: PropTypes.shape({
         /**

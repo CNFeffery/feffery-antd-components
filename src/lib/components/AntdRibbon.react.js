@@ -12,6 +12,7 @@ export default class AntdRibbon extends Component {
             children,
             className,
             style,
+            key,
             color,
             placement,
             text,
@@ -25,6 +26,7 @@ export default class AntdRibbon extends Component {
                 id={id}
                 className={className}
                 style={style}
+                key={key}
                 color={color}
                 placement={placement}
                 text={text}
@@ -49,6 +51,9 @@ AntdRibbon.propTypes = {
 
     // 自定义css字典
     style: PropTypes.object,
+
+    // 辅助刷新用唯一标识key值
+    key: PropTypes.string,
 
     // 自定义缎带的颜色
     color: PropTypes.string,

@@ -23,6 +23,7 @@ export default class AntdCheckCard extends Component {
             children,
             className,
             style,
+            key,
             checked,
             bordered,
             value,
@@ -39,6 +40,7 @@ export default class AntdCheckCard extends Component {
             <CheckCard id={id}
                 className={className}
                 style={style}
+                key={key}
                 description={children}
                 checked={checked}
                 bordered={bordered}
@@ -66,6 +68,9 @@ AntdCheckCard.propTypes = {
 
     // 自定义css字典
     style: PropTypes.object,
+
+    // 辅助刷新用唯一标识key值
+    key: PropTypes.string,
 
     // 设置当前选择卡片是否处于选择状态，默认为false
     checked: PropTypes.bool,

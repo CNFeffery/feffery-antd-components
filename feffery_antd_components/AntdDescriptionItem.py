@@ -19,6 +19,8 @@ Keyword arguments:
 
 - contentStyle (dict; optional)
 
+- key (string; optional)
+
 - label (string; optional)
 
 - labelStyle (dict; optional)
@@ -40,12 +42,12 @@ Keyword arguments:
 
 - style (dict; optional)"""
     @_explicitize_args
-    def __init__(self, children=None, id=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, label=Component.UNDEFINED, span=Component.UNDEFINED, labelStyle=Component.UNDEFINED, contentStyle=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
-        self._prop_names = ['children', 'id', 'className', 'contentStyle', 'label', 'labelStyle', 'loading_state', 'span', 'style']
+    def __init__(self, children=None, id=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, key=Component.UNDEFINED, label=Component.UNDEFINED, span=Component.UNDEFINED, labelStyle=Component.UNDEFINED, contentStyle=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
+        self._prop_names = ['children', 'id', 'className', 'contentStyle', 'key', 'label', 'labelStyle', 'loading_state', 'span', 'style']
         self._type = 'AntdDescriptionItem'
         self._namespace = 'feffery_antd_components'
         self._valid_wildcard_attributes =            []
-        self.available_properties = ['children', 'id', 'className', 'contentStyle', 'label', 'labelStyle', 'loading_state', 'span', 'style']
+        self.available_properties = ['children', 'id', 'className', 'contentStyle', 'key', 'label', 'labelStyle', 'loading_state', 'span', 'style']
         self.available_wildcard_properties =            []
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()

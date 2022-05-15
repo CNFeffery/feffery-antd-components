@@ -21,6 +21,7 @@ Keyword arguments:
 - `fontWeight` (String; optional)
 - `innerTextOrientation` (a value equal to: 'left', 'center', 'right'; optional)
 - `isDashed` (Bool; optional)
+- `key` (String; optional)
 - `lineColor` (String; optional)
 - `loading_state` (optional): . loading_state has the following type: lists containing elements 'is_loading', 'prop_name', 'component_name'.
 Those elements have the following types:
@@ -29,7 +30,7 @@ Those elements have the following types:
   - `component_name` (String; optional): Holds the name of the component that is loading
 """
 function 'feffery'_antddivider(; kwargs...)
-        available_props = Symbol[:children, :id, :className, :direction, :fontFamily, :fontSize, :fontStyle, :fontWeight, :innerTextOrientation, :isDashed, :lineColor, :loading_state]
+        available_props = Symbol[:children, :id, :className, :direction, :fontFamily, :fontSize, :fontStyle, :fontWeight, :innerTextOrientation, :isDashed, :key, :lineColor, :loading_state]
         wild_props = Symbol[]
         return Component("'feffery'_antddivider", "AntdDivider", "feffery_antd_components", available_props, wild_props; kwargs...)
 end

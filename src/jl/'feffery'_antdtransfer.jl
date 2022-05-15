@@ -16,6 +16,7 @@ Those elements have the following types:
   - `title` (String; optional)s
 - `disabled` (Bool; optional)
 - `height` (String; optional)
+- `key` (String; optional)
 - `loading_state` (optional): . loading_state has the following type: lists containing elements 'is_loading', 'prop_name', 'component_name'.
 Those elements have the following types:
   - `is_loading` (Bool; optional): Determines if the component is loading or not
@@ -48,7 +49,7 @@ session: window.sessionStorage, data is cleared once the browser quit.
 - `titles` (Array; optional)
 """
 function 'feffery'_antdtransfer(; kwargs...)
-        available_props = Symbol[:id, :className, :dataSource, :disabled, :height, :loading_state, :locale, :moveDirection, :moveKeys, :operations, :pagination, :persisted_props, :persistence, :persistence_type, :showSearch, :showSelectAll, :style, :targetKeys, :titles]
+        available_props = Symbol[:id, :className, :dataSource, :disabled, :height, :key, :loading_state, :locale, :moveDirection, :moveKeys, :operations, :pagination, :persisted_props, :persistence, :persistence_type, :showSearch, :showSelectAll, :style, :targetKeys, :titles]
         wild_props = Symbol[]
         return Component("'feffery'_antdtransfer", "AntdTransfer", "feffery_antd_components", available_props, wild_props; kwargs...)
 end

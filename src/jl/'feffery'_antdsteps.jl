@@ -13,6 +13,7 @@ Keyword arguments:
 - `className` (String; optional)
 - `current` (Real; optional)
 - `direction` (a value equal to: 'horizontal', 'vertical'; optional)
+- `key` (String; optional)
 - `labelPlacement` (a value equal to: 'horizontal', 'vertical'; optional)
 - `loading_state` (optional): . loading_state has the following type: lists containing elements 'is_loading', 'prop_name', 'component_name'.
 Those elements have the following types:
@@ -31,7 +32,7 @@ Those elements have the following types:
 - `type` (a value equal to: 'default', 'navigation'; optional)
 """
 function 'feffery'_antdsteps(; kwargs...)
-        available_props = Symbol[:id, :allowClick, :className, :current, :direction, :labelPlacement, :loading_state, :progressDot, :size, :status, :steps, :style, :type]
+        available_props = Symbol[:id, :allowClick, :className, :current, :direction, :key, :labelPlacement, :loading_state, :progressDot, :size, :status, :steps, :style, :type]
         wild_props = Symbol[]
         return Component("'feffery'_antdsteps", "AntdSteps", "feffery_antd_components", available_props, wild_props; kwargs...)
 end

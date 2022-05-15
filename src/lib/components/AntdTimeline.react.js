@@ -12,6 +12,7 @@ export default class AntdTimeline extends Component {
             id,
             className,
             style,
+            key,
             items,
             mode,
             pending,
@@ -24,6 +25,7 @@ export default class AntdTimeline extends Component {
             <Timeline id={id}
                 className={className}
                 style={style}
+                key={key}
                 mode={mode}
                 pending={pending}
                 reverse={reverse}
@@ -68,6 +70,9 @@ AntdTimeline.propTypes = {
 
     // 自定义css字典
     style: PropTypes.object,
+
+    // 辅助刷新用唯一标识key值
+    key: PropTypes.string,
 
     // 用于按顺序定义时间轴节点信息
     items: PropTypes.arrayOf(

@@ -15,6 +15,7 @@ Keyword arguments:
 - `id` (String; optional)
 - `className` (String; optional)
 - `colon` (Bool; optional)
+- `key` (String; optional)
 - `labelAlign` (a value equal to: 'left', 'right'; optional)
 - `labelCol` (optional): . labelCol has the following type: lists containing elements 'span', 'offset'.
 Those elements have the following types:
@@ -33,7 +34,7 @@ Those elements have the following types:
   - `offset` (Real; optional)
 """
 function 'feffery'_antdform(; kwargs...)
-        available_props = Symbol[:children, :id, :className, :colon, :labelAlign, :labelCol, :layout, :loading_state, :style, :wrapperCol]
+        available_props = Symbol[:children, :id, :className, :colon, :key, :labelAlign, :labelCol, :layout, :loading_state, :style, :wrapperCol]
         wild_props = Symbol[]
         return Component("'feffery'_antdform", "AntdForm", "feffery_antd_components", available_props, wild_props; kwargs...)
 end

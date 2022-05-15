@@ -15,6 +15,7 @@ export default class AntdCollapse extends Component {
             children,
             className,
             style,
+            key,
             title,
             is_open,
             bordered,
@@ -36,6 +37,7 @@ export default class AntdCollapse extends Component {
                 className={className}
                 activeKey={is_open ? ['1'] : []}
                 style={style}
+                key={key}
                 bordered={bordered}
                 ghost={ghost}
                 collapsible={collapsible}
@@ -80,6 +82,9 @@ AntdCollapse.propTypes = {
 
     // 自定义css字典
     style: PropTypes.object,
+
+    // 辅助刷新用唯一标识key值
+    key: PropTypes.string,
 
     // 设置折叠控件所显示的标题文字
     title: PropTypes.string,

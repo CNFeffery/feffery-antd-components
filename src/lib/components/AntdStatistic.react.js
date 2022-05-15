@@ -14,6 +14,7 @@ export default class AntdStatistic extends Component {
             id,
             className,
             style,
+            key,
             value,
             showGroupSeparator,
             precision,
@@ -30,6 +31,7 @@ export default class AntdStatistic extends Component {
             <Statistic id={id}
                 className={className}
                 style={style}
+                key={key}
                 value={value}
                 groupSeparator={showGroupSeparator ? ',' : ''}
                 precision={precision}
@@ -74,6 +76,9 @@ AntdStatistic.propTypes = {
 
     // 自定义css字典
     style: PropTypes.object,
+
+    // 辅助刷新用唯一标识key值
+    key: PropTypes.string,
 
     // 设定要显示的数值
     value: PropTypes.number,

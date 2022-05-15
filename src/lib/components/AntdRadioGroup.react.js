@@ -19,6 +19,7 @@ export default class AntdRadioGroup extends Component {
             id,
             style,
             className,
+            key,
             options,
             defaultValue,
             value,
@@ -46,6 +47,7 @@ export default class AntdRadioGroup extends Component {
                     id={id}
                     className={className}
                     style={style}
+                    key={key}
                     defaultValue={defaultValue}
                     value={value}
                     buttonStyle={buttonStyle}
@@ -76,6 +78,7 @@ export default class AntdRadioGroup extends Component {
                 id={id}
                 className={className}
                 style={style}
+                key={key}
                 options={options}
                 defaultValue={defaultValue}
                 value={value}
@@ -106,6 +109,9 @@ AntdRadioGroup.propTypes = {
 
     // 自定义css字典
     style: PropTypes.object,
+
+    // 辅助刷新用唯一标识key值
+    key: PropTypes.string,
 
     // 设置单选框组方向，可选的有'horizontal'、'vertical'
     direction: PropTypes.oneOf(['horizontal', 'vertical']),

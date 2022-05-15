@@ -19,6 +19,8 @@ Keyword arguments:
 
 - disabled (boolean; optional)
 
+- key (string; optional)
+
 - loading_state (dict; optional)
 
     `loading_state` is a dict with keys:
@@ -67,12 +69,12 @@ Keyword arguments:
 
 - value (string | number; optional)"""
     @_explicitize_args
-    def __init__(self, id=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, options=Component.UNDEFINED, value=Component.UNDEFINED, defaultValue=Component.UNDEFINED, block=Component.UNDEFINED, disabled=Component.UNDEFINED, size=Component.UNDEFINED, loading_state=Component.UNDEFINED, persistence=Component.UNDEFINED, persisted_props=Component.UNDEFINED, persistence_type=Component.UNDEFINED, **kwargs):
-        self._prop_names = ['id', 'block', 'className', 'defaultValue', 'disabled', 'loading_state', 'options', 'persisted_props', 'persistence', 'persistence_type', 'size', 'style', 'value']
+    def __init__(self, id=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, key=Component.UNDEFINED, options=Component.UNDEFINED, value=Component.UNDEFINED, defaultValue=Component.UNDEFINED, block=Component.UNDEFINED, disabled=Component.UNDEFINED, size=Component.UNDEFINED, loading_state=Component.UNDEFINED, persistence=Component.UNDEFINED, persisted_props=Component.UNDEFINED, persistence_type=Component.UNDEFINED, **kwargs):
+        self._prop_names = ['id', 'block', 'className', 'defaultValue', 'disabled', 'key', 'loading_state', 'options', 'persisted_props', 'persistence', 'persistence_type', 'size', 'style', 'value']
         self._type = 'AntdSegmented'
         self._namespace = 'feffery_antd_components'
         self._valid_wildcard_attributes =            []
-        self.available_properties = ['id', 'block', 'className', 'defaultValue', 'disabled', 'loading_state', 'options', 'persisted_props', 'persistence', 'persistence_type', 'size', 'style', 'value']
+        self.available_properties = ['id', 'block', 'className', 'defaultValue', 'disabled', 'key', 'loading_state', 'options', 'persisted_props', 'persistence', 'persistence_type', 'size', 'style', 'value']
         self.available_wildcard_properties =            []
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()

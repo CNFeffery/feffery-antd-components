@@ -21,6 +21,8 @@ Keyword arguments:
 
 - disabled (boolean; optional)
 
+- key (string; optional)
+
 - loading_state (dict; optional)
 
     `loading_state` is a dict with keys:
@@ -66,12 +68,12 @@ Keyword arguments:
 
 - visible (boolean; default False)"""
     @_explicitize_args
-    def __init__(self, id=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, title=Component.UNDEFINED, buttonMode=Component.UNDEFINED, clickedKey=Component.UNDEFINED, menuItems=Component.UNDEFINED, arrow=Component.UNDEFINED, disabled=Component.UNDEFINED, overlayClassName=Component.UNDEFINED, overlayStyle=Component.UNDEFINED, placement=Component.UNDEFINED, trigger=Component.UNDEFINED, visible=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
-        self._prop_names = ['id', 'arrow', 'buttonMode', 'className', 'clickedKey', 'disabled', 'loading_state', 'menuItems', 'overlayClassName', 'overlayStyle', 'placement', 'style', 'title', 'trigger', 'visible']
+    def __init__(self, id=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, key=Component.UNDEFINED, title=Component.UNDEFINED, buttonMode=Component.UNDEFINED, clickedKey=Component.UNDEFINED, menuItems=Component.UNDEFINED, arrow=Component.UNDEFINED, disabled=Component.UNDEFINED, overlayClassName=Component.UNDEFINED, overlayStyle=Component.UNDEFINED, placement=Component.UNDEFINED, trigger=Component.UNDEFINED, visible=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
+        self._prop_names = ['id', 'arrow', 'buttonMode', 'className', 'clickedKey', 'disabled', 'key', 'loading_state', 'menuItems', 'overlayClassName', 'overlayStyle', 'placement', 'style', 'title', 'trigger', 'visible']
         self._type = 'AntdDropdown'
         self._namespace = 'feffery_antd_components'
         self._valid_wildcard_attributes =            []
-        self.available_properties = ['id', 'arrow', 'buttonMode', 'className', 'clickedKey', 'disabled', 'loading_state', 'menuItems', 'overlayClassName', 'overlayStyle', 'placement', 'style', 'title', 'trigger', 'visible']
+        self.available_properties = ['id', 'arrow', 'buttonMode', 'className', 'clickedKey', 'disabled', 'key', 'loading_state', 'menuItems', 'overlayClassName', 'overlayStyle', 'placement', 'style', 'title', 'trigger', 'visible']
         self.available_wildcard_properties =            []
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()

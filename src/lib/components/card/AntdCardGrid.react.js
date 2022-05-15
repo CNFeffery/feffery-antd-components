@@ -13,6 +13,7 @@ export default class AntdCardGrid extends Component {
             children,
             className,
             style,
+            key,
             hoverable,
             setProps,
             loading_state
@@ -24,6 +25,7 @@ export default class AntdCardGrid extends Component {
             <Card.Grid id={id}
                 className={className}
                 style={style}
+                key={key}
                 hoverable={hoverable}
                 data-dash-is-loading={
                     (loading_state && loading_state.is_loading) || undefined
@@ -49,6 +51,9 @@ AntdCardGrid.propTypes = {
 
     // 自定义css字典
     style: PropTypes.object,
+
+    // 辅助刷新用唯一标识key值
+    key: PropTypes.string,
 
     // 设置网格是否可鼠标悬浮呈现浮起效果，默认为true
     hoverable: PropTypes.bool,

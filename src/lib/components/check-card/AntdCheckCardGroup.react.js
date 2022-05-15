@@ -21,6 +21,7 @@ export default class AntdCheckCardGroup extends Component {
             children,
             className,
             style,
+            key,
             multiple,
             bordered,
             value,
@@ -37,6 +38,7 @@ export default class AntdCheckCardGroup extends Component {
             <CheckCard.Group id={id}
                 className={className}
                 style={style}
+                key={key}
                 multiple={multiple}
                 bordered={bordered}
                 value={value}
@@ -66,6 +68,9 @@ AntdCheckCardGroup.propTypes = {
 
     // 自定义css字典
     style: PropTypes.object,
+
+    // 辅助刷新用唯一标识key值
+    key: PropTypes.string,
 
     // 设置是否允许多选，默认为false
     multiple: PropTypes.bool,

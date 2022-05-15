@@ -16,6 +16,7 @@ export default class AntdPopover extends Component {
             children,
             className,
             style,
+            key,
             title,
             placement,
             color,
@@ -41,6 +42,7 @@ export default class AntdPopover extends Component {
             <Popover id={id}
                 className={className}
                 style={style}
+                key={key}
                 title={title?.content ?
                     <div>
                         {<AntdIcon icon={title.prefixIcon} />}
@@ -79,6 +81,9 @@ AntdPopover.propTypes = {
 
     // 自定义css字典
     style: PropTypes.object,
+
+    // 辅助刷新用唯一标识key值
+    key: PropTypes.string,
 
     // 设置显示的气泡卡片标题内容
     title: PropTypes.oneOfType([

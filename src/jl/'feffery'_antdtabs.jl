@@ -16,6 +16,7 @@ Keyword arguments:
 - `activeKey` (String; optional)
 - `className` (String; optional)
 - `defaultActiveKey` (String; optional)
+- `key` (String; optional)
 - `latestDeletePane` (String; optional)
 - `loading_state` (optional): . loading_state has the following type: lists containing elements 'is_loading', 'prop_name', 'component_name'.
 Those elements have the following types:
@@ -41,7 +42,7 @@ session: window.sessionStorage, data is cleared once the browser quit.
 - `type` (a value equal to: 'line', 'card', 'editable-card'; optional)
 """
 function 'feffery'_antdtabs(; kwargs...)
-        available_props = Symbol[:children, :id, :activeKey, :className, :defaultActiveKey, :latestDeletePane, :loading_state, :persisted_props, :persistence, :persistence_type, :size, :style, :tabPosition, :type]
+        available_props = Symbol[:children, :id, :activeKey, :className, :defaultActiveKey, :key, :latestDeletePane, :loading_state, :persisted_props, :persistence, :persistence_type, :size, :style, :tabPosition, :type]
         wild_props = Symbol[]
         return Component("'feffery'_antdtabs", "AntdTabs", "feffery_antd_components", available_props, wild_props; kwargs...)
 end

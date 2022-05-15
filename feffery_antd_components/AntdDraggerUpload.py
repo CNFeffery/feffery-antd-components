@@ -27,6 +27,8 @@ Keyword arguments:
 
 - hint (string; optional)
 
+- key (string; optional)
+
 - lastUploadTaskRecord (dict; optional)
 
     `lastUploadTaskRecord` is a dict with keys:
@@ -100,12 +102,12 @@ Keyword arguments:
 
 - uploadId (string; optional)"""
     @_explicitize_args
-    def __init__(self, id=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, locale=Component.UNDEFINED, apiUrl=Component.UNDEFINED, text=Component.UNDEFINED, hint=Component.UNDEFINED, fileListMaxLength=Component.UNDEFINED, fileTypes=Component.UNDEFINED, uploadId=Component.UNDEFINED, fileMaxSize=Component.UNDEFINED, multiple=Component.UNDEFINED, directory=Component.UNDEFINED, failedTooltipInfo=Component.UNDEFINED, showUploadList=Component.UNDEFINED, lastUploadTaskRecord=Component.UNDEFINED, listUploadTaskRecord=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
-        self._prop_names = ['id', 'apiUrl', 'className', 'directory', 'failedTooltipInfo', 'fileListMaxLength', 'fileMaxSize', 'fileTypes', 'hint', 'lastUploadTaskRecord', 'listUploadTaskRecord', 'loading_state', 'locale', 'multiple', 'showUploadList', 'style', 'text', 'uploadId']
+    def __init__(self, id=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, key=Component.UNDEFINED, locale=Component.UNDEFINED, apiUrl=Component.UNDEFINED, text=Component.UNDEFINED, hint=Component.UNDEFINED, fileListMaxLength=Component.UNDEFINED, fileTypes=Component.UNDEFINED, uploadId=Component.UNDEFINED, fileMaxSize=Component.UNDEFINED, multiple=Component.UNDEFINED, directory=Component.UNDEFINED, failedTooltipInfo=Component.UNDEFINED, showUploadList=Component.UNDEFINED, lastUploadTaskRecord=Component.UNDEFINED, listUploadTaskRecord=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
+        self._prop_names = ['id', 'apiUrl', 'className', 'directory', 'failedTooltipInfo', 'fileListMaxLength', 'fileMaxSize', 'fileTypes', 'hint', 'key', 'lastUploadTaskRecord', 'listUploadTaskRecord', 'loading_state', 'locale', 'multiple', 'showUploadList', 'style', 'text', 'uploadId']
         self._type = 'AntdDraggerUpload'
         self._namespace = 'feffery_antd_components'
         self._valid_wildcard_attributes =            []
-        self.available_properties = ['id', 'apiUrl', 'className', 'directory', 'failedTooltipInfo', 'fileListMaxLength', 'fileMaxSize', 'fileTypes', 'hint', 'lastUploadTaskRecord', 'listUploadTaskRecord', 'loading_state', 'locale', 'multiple', 'showUploadList', 'style', 'text', 'uploadId']
+        self.available_properties = ['id', 'apiUrl', 'className', 'directory', 'failedTooltipInfo', 'fileListMaxLength', 'fileMaxSize', 'fileTypes', 'hint', 'key', 'lastUploadTaskRecord', 'listUploadTaskRecord', 'loading_state', 'locale', 'multiple', 'showUploadList', 'style', 'text', 'uploadId']
         self.available_wildcard_properties =            []
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()

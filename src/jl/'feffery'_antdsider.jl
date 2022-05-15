@@ -19,6 +19,7 @@ Keyword arguments:
 - `collapsedWidth` (Real; optional)
 - `collapsible` (Bool; optional)
 - `defaultCollapsed` (Bool; optional)
+- `key` (String; optional)
 - `loading_state` (optional): . loading_state has the following type: lists containing elements 'is_loading', 'prop_name', 'component_name'.
 Those elements have the following types:
   - `is_loading` (Bool; optional): Determines if the component is loading or not
@@ -31,7 +32,7 @@ Those elements have the following types:
 - `width` (Real; optional)
 """
 function 'feffery'_antdsider(; kwargs...)
-        available_props = Symbol[:children, :id, :breakpoint, :className, :collapsed, :collapsedWidth, :collapsible, :defaultCollapsed, :loading_state, :reverseArrow, :style, :theme, :trigger, :width]
+        available_props = Symbol[:children, :id, :breakpoint, :className, :collapsed, :collapsedWidth, :collapsible, :defaultCollapsed, :key, :loading_state, :reverseArrow, :style, :theme, :trigger, :width]
         wild_props = Symbol[]
         return Component("'feffery'_antdsider", "AntdSider", "feffery_antd_components", available_props, wild_props; kwargs...)
 end

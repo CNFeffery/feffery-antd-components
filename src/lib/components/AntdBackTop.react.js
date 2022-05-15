@@ -11,6 +11,7 @@ export default class AntdBackTop extends Component {
             id,
             className,
             style,
+            key,
             duration,
             visibilityHeight,
             containerId,
@@ -22,6 +23,7 @@ export default class AntdBackTop extends Component {
             <BackTop id={id}
                 className={className}
                 style={style}
+                key={key}
                 target={containerId ? () => document.getElementById(containerId) : () => window}
                 duration={duration * 1000}
                 visibilityHeight={visibilityHeight}
@@ -42,6 +44,9 @@ AntdBackTop.propTypes = {
 
     // 自定义css字典
     style: PropTypes.object,
+
+    // 辅助刷新用唯一标识key值
+    key: PropTypes.string,
 
     // 设置回到顶部所需时间，单位秒，默认0.45
     duration: PropTypes.number,

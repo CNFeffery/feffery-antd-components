@@ -14,6 +14,7 @@ export default class AntdMentions extends Component {
             id,
             className,
             style,
+            key,
             autoSize,
             prefix,
             defaultValue,
@@ -62,6 +63,7 @@ export default class AntdMentions extends Component {
             <Mentions id={id}
                 className={className}
                 style={style}
+                key={key}
                 autoSize={autoSize}
                 prefix={prefix}
                 defaultValue={defaultValue}
@@ -95,6 +97,9 @@ AntdMentions.propTypes = {
 
     // 自定义css字典
     style: PropTypes.object,
+
+    // 辅助刷新用唯一标识key值
+    key: PropTypes.string,
 
     // 设置是否开启自适应内容高度，默认为false
     // 特别地，还可以传入对象来自行设置最少最多展示的子项行数

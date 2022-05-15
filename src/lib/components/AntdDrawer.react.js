@@ -13,6 +13,7 @@ export default class AntdDrawer extends Component {
             children,
             className,
             style,
+            key,
             visible,
             title,
             placement,
@@ -39,6 +40,7 @@ export default class AntdDrawer extends Component {
                     id={id}
                     className={className}
                     style={containerId ? { ...style, ...{ position: 'absolute' } } : style}
+                    key={key}
                     visible={visible}
                     title={title}
                     placement={placement}
@@ -74,6 +76,9 @@ AntdDrawer.propTypes = {
 
     // 自定义css字典
     style: PropTypes.object,
+
+    // 辅助刷新用唯一标识key值
+    key: PropTypes.string,
 
     // 设置抽屉是否弹出，默认为false
     visible: PropTypes.bool,

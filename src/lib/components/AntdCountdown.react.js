@@ -15,6 +15,7 @@ export default class AntdCountdown extends Component {
             id,
             className,
             style,
+            key,
             value,
             format,
             valueFormat,
@@ -30,6 +31,7 @@ export default class AntdCountdown extends Component {
             <Countdown id={id}
                 className={className}
                 style={style}
+                key={key}
                 value={moment(value, valueFormat)}
                 format={format}
                 prefix={
@@ -66,6 +68,9 @@ AntdCountdown.propTypes = {
 
     // 自定义css字典
     style: PropTypes.object,
+
+    // 辅助刷新用唯一标识key值
+    key: PropTypes.string,
 
     // 用于设置日期时间信息格式化显示的格式模板
     // 格式参考：https://momentjs.com/，如HH:mm:ss代表 时:分:秒

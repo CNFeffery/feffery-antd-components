@@ -12,6 +12,7 @@ export default class AntdButton extends Component {
             children,
             className,
             style,
+            key,
             setProps,
             type,
             href,
@@ -32,6 +33,7 @@ export default class AntdButton extends Component {
                 id={id}
                 className={className}
                 style={style}
+                key={key}
                 type={type}
                 href={href}
                 target={target}
@@ -68,6 +70,9 @@ AntdButton.propTypes = {
 
     // 自定义css字典
     style: PropTypes.object,
+
+    // 辅助刷新用唯一标识key值
+    key: PropTypes.string,
 
     // 设置按钮整体风格（可选项有primary、ghost、dashed、link、text、default，默认为default）
     type: PropTypes.oneOf(['primary', 'ghost', 'dashed', 'link', 'text', 'default']),

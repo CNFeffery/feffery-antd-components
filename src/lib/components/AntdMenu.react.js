@@ -124,6 +124,7 @@ export default class AntdMenu extends Component {
             id,
             className,
             style,
+            key,
             menuItems,
             mode,
             theme,
@@ -225,13 +226,13 @@ export default class AntdMenu extends Component {
                         id={id}
                         className={className}
                         style={style}
+                        key={key}
                         mode={mode}
                         theme={theme}
                         selectedKeys={[currentKey]}
                         openKeys={openKeys}
                         defaultOpenKeys={defaultOpenKeys}
                         defaultSelectedKeys={defaultSelectedKey ? [defaultSelectedKey] : defaultSelectedKey}
-                        selectedKeys={[currentKey]}
                         onSelect={listenSelected}
                         onOpenChange={(e) => setProps({ openKeys: e })}
                         getPopupContainer={triggerNode => triggerNode.parentNode}
@@ -253,6 +254,7 @@ export default class AntdMenu extends Component {
                     id={id}
                     className={className}
                     style={style}
+                    key={key}
                     mode={mode}
                     theme={theme}
                     selectedKeys={[currentKey]}
@@ -286,6 +288,9 @@ AntdMenu.propTypes = {
 
     // 自定义css字典
     style: PropTypes.object,
+
+    // 辅助刷新用唯一标识key值
+    key: PropTypes.string,
 
     // 用于构建菜单内容结构的对象
     menuItems: PropTypes.array,

@@ -17,6 +17,7 @@ Keyword arguments:
 - `className` (String; optional)
 - `defaultValue` (String | Array of Strings; optional)
 - `disabled` (Bool; optional)
+- `key` (String; optional)
 - `loading_state` (optional): . loading_state has the following type: lists containing elements 'is_loading', 'prop_name', 'component_name'.
 Those elements have the following types:
   - `is_loading` (Bool; optional): Determines if the component is loading or not
@@ -28,7 +29,7 @@ Those elements have the following types:
 - `value` (String | Array of Strings; optional)
 """
 function 'feffery'_antdcheckcardgroup(; kwargs...)
-        available_props = Symbol[:children, :id, :bordered, :className, :defaultValue, :disabled, :loading_state, :multiple, :size, :style, :value]
+        available_props = Symbol[:children, :id, :bordered, :className, :defaultValue, :disabled, :key, :loading_state, :multiple, :size, :style, :value]
         wild_props = Symbol[]
         return Component("'feffery'_antdcheckcardgroup", "AntdCheckCardGroup", "feffery_antd_components", available_props, wild_props; kwargs...)
 end

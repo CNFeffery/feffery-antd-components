@@ -13,6 +13,7 @@ export default class AntdWatermark extends Component {
             children,
             className,
             style,
+            key,
             content,
             rotate,
             zIndex,
@@ -29,6 +30,7 @@ export default class AntdWatermark extends Component {
             <WaterMark id={id}
                 className={className}
                 style={style}
+                key={key}
                 content={content}
                 rotate={rotate}
                 zIndex={zIndex}
@@ -60,6 +62,9 @@ AntdWatermark.propTypes = {
 
     // 自定义css字典
     style: PropTypes.object,
+
+    // 辅助刷新用唯一标识key值
+    key: PropTypes.string,
 
     // 设置水印文字内容
     content: PropTypes.string,

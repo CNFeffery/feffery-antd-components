@@ -38,6 +38,7 @@ const AntdPasteImage = (props) => {
         id,
         className,
         style,
+        key,
         currentPastedImages,
         deletedIdx,
         imageHeight,
@@ -74,6 +75,7 @@ const AntdPasteImage = (props) => {
         <div id={id}
             className={className}
             style={style}
+            key={key}
             data-dash-is-loading={
                 (loading_state && loading_state.is_loading) || undefined
             }>
@@ -127,6 +129,9 @@ AntdPasteImage.propTypes = {
 
     // 自定义css字典
     style: PropTypes.object,
+
+    // 辅助刷新用唯一标识key值
+    key: PropTypes.string,
 
     // 存储当前保存的所有图片的base64字符串
     currentPastedImages: PropTypes.arrayOf(PropTypes.any),

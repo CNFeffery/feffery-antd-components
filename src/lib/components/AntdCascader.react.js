@@ -20,6 +20,7 @@ export default class AntdCascader extends Component {
             id,
             style,
             className,
+            key,
             locale,
             options,
             changeOnSelect,
@@ -57,6 +58,7 @@ export default class AntdCascader extends Component {
                     id={id}
                     className={className}
                     style={{ ...{ width: '100%' }, ...style }}
+                    key={key}
                     options={options}
                     changeOnSelect={changeOnSelect}
                     size={size}
@@ -112,6 +114,9 @@ AntdCascader.propTypes = {
 
     // 自定义css字典
     style: PropTypes.object,
+
+    // 辅助刷新用唯一标识key值
+    key: PropTypes.string,
 
     // 设置语言环境，可选的有'zh-cn'、'en-us'
     locale: PropTypes.oneOf(['zh-cn', 'en-us']),

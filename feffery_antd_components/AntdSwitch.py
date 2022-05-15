@@ -19,6 +19,8 @@ Keyword arguments:
 
 - disabled (boolean; optional)
 
+- key (string; optional)
+
 - loading (boolean; optional)
 
 - loading_state (dict; optional)
@@ -59,12 +61,12 @@ Keyword arguments:
 
 - unCheckedChildren (string; optional)"""
     @_explicitize_args
-    def __init__(self, id=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, disabled=Component.UNDEFINED, checked=Component.UNDEFINED, checkedChildren=Component.UNDEFINED, unCheckedChildren=Component.UNDEFINED, size=Component.UNDEFINED, loading=Component.UNDEFINED, loading_state=Component.UNDEFINED, persistence=Component.UNDEFINED, persisted_props=Component.UNDEFINED, persistence_type=Component.UNDEFINED, **kwargs):
-        self._prop_names = ['id', 'checked', 'checkedChildren', 'className', 'disabled', 'loading', 'loading_state', 'persisted_props', 'persistence', 'persistence_type', 'size', 'style', 'unCheckedChildren']
+    def __init__(self, id=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, key=Component.UNDEFINED, disabled=Component.UNDEFINED, checked=Component.UNDEFINED, checkedChildren=Component.UNDEFINED, unCheckedChildren=Component.UNDEFINED, size=Component.UNDEFINED, loading=Component.UNDEFINED, loading_state=Component.UNDEFINED, persistence=Component.UNDEFINED, persisted_props=Component.UNDEFINED, persistence_type=Component.UNDEFINED, **kwargs):
+        self._prop_names = ['id', 'checked', 'checkedChildren', 'className', 'disabled', 'key', 'loading', 'loading_state', 'persisted_props', 'persistence', 'persistence_type', 'size', 'style', 'unCheckedChildren']
         self._type = 'AntdSwitch'
         self._namespace = 'feffery_antd_components'
         self._valid_wildcard_attributes =            []
-        self.available_properties = ['id', 'checked', 'checkedChildren', 'className', 'disabled', 'loading', 'loading_state', 'persisted_props', 'persistence', 'persistence_type', 'size', 'style', 'unCheckedChildren']
+        self.available_properties = ['id', 'checked', 'checkedChildren', 'className', 'disabled', 'key', 'loading', 'loading_state', 'persisted_props', 'persistence', 'persistence_type', 'size', 'style', 'unCheckedChildren']
         self.available_wildcard_properties =            []
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()

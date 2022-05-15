@@ -13,6 +13,7 @@ Keyword arguments:
 - `checkedChildren` (String; optional)
 - `className` (String; optional)
 - `disabled` (Bool; optional)
+- `key` (String; optional)
 - `loading` (Bool; optional)
 - `loading_state` (optional): . loading_state has the following type: lists containing elements 'is_loading', 'prop_name', 'component_name'.
 Those elements have the following types:
@@ -37,7 +38,7 @@ session: window.sessionStorage, data is cleared once the browser quit.
 - `unCheckedChildren` (String; optional)
 """
 function 'feffery'_antdswitch(; kwargs...)
-        available_props = Symbol[:id, :checked, :checkedChildren, :className, :disabled, :loading, :loading_state, :persisted_props, :persistence, :persistence_type, :size, :style, :unCheckedChildren]
+        available_props = Symbol[:id, :checked, :checkedChildren, :className, :disabled, :key, :loading, :loading_state, :persisted_props, :persistence, :persistence_type, :size, :style, :unCheckedChildren]
         wild_props = Symbol[]
         return Component("'feffery'_antdswitch", "AntdSwitch", "feffery_antd_components", available_props, wild_props; kwargs...)
 end

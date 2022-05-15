@@ -13,6 +13,7 @@ const AntdSpin = (props) => {
         className,
         wrapperClassName,
         style,
+        key,
         children,
         spinning,
         size,
@@ -73,6 +74,7 @@ const AntdSpin = (props) => {
     return (<
         Spin id={id}
         className={className}
+        key={key}
         wrapperClassName={wrapperClassName}
         style={style}
         spinning={showSpinning}

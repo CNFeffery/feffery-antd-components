@@ -8,7 +8,6 @@ import { parseChildrenToArray, resolveChildProps } from '../utils';
 
 const { TabPane } = Tabs;
 
-
 // 定义标签页组件AntdTabs，api参数参考https://ant.design/components/tabs-cn/
 export default class AntdTabs extends Component {
 
@@ -28,6 +27,7 @@ export default class AntdTabs extends Component {
             children,
             className,
             style,
+            key,
             defaultActiveKey,
             activeKey,
             size,
@@ -124,6 +124,7 @@ export default class AntdTabs extends Component {
             <Tabs id={id}
                 className={className}
                 style={style}
+                key={key}
                 defaultActiveKey={defaultActiveKey}
                 activeKey={activeKey}
                 size={size}
@@ -159,6 +160,9 @@ AntdTabs.propTypes = {
 
     // 自定义css字典
     style: PropTypes.object,
+
+    // 辅助刷新用唯一标识key值
+    key: PropTypes.string,
 
     // 设置默认激活的标签页面板对应key
     defaultActiveKey: PropTypes.string,

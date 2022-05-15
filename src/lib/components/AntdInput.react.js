@@ -27,6 +27,7 @@ export default class AntdInput extends Component {
             id,
             className,
             style,
+            key,
             mode,
             passwordUseMd5,
             autoComplete,
@@ -72,6 +73,7 @@ export default class AntdInput extends Component {
                 <Input id={id}
                     className={className}
                     style={style}
+                    key={key}
                     placeholder={placeholder}
                     autoComplete={autoComplete}
                     value={value}
@@ -98,6 +100,7 @@ export default class AntdInput extends Component {
                 <Search id={id}
                     className={className}
                     style={style}
+                    key={key}
                     placeholder={placeholder}
                     autoComplete={autoComplete}
                     size={size}
@@ -123,6 +126,7 @@ export default class AntdInput extends Component {
                 <TextArea id={id}
                     className={className}
                     style={style}
+                    key={key}
                     placeholder={placeholder}
                     autoComplete={autoComplete}
                     size={size}
@@ -148,6 +152,7 @@ export default class AntdInput extends Component {
                 <Input.Password id={id}
                     className={className}
                     style={style}
+                    key={key}
                     placeholder={placeholder}
                     autoComplete={autoComplete}
                     size={size}
@@ -192,6 +197,9 @@ AntdInput.propTypes = {
 
     // 自定义css字典
     style: PropTypes.object,
+
+    // 辅助刷新用唯一标识key值
+    key: PropTypes.string,
 
     loading_state: PropTypes.shape({
         /**

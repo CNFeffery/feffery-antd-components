@@ -10,6 +10,7 @@ const AntdImage = (props) => {
         id,
         className,
         style,
+        key,
         locale,
         width,
         height,
@@ -33,6 +34,7 @@ const AntdImage = (props) => {
                         id={id}
                         style={style}
                         className={className}
+                        key={key}
                         preview={{ visible: false }}
                         width={width}
                         height={height}
@@ -52,7 +54,10 @@ const AntdImage = (props) => {
         } else {
             return (
                 <ConfigProvider locale={str2Locale.get(locale)}>
-                    <Image.PreviewGroup>
+                    <Image.PreviewGroup id={id}
+                        style={style}
+                        className={className}
+                        key={key}>
                         {src.map(
                             src_ => <Image src={src_} fallback={fallback} width={width} height={height} />
                         )}
@@ -67,6 +72,7 @@ const AntdImage = (props) => {
                     id={id}
                     style={style}
                     className={className}
+                    key={key}
                     width={width}
                     height={height}
                     src={src}
@@ -88,6 +94,9 @@ AntdImage.propTypes = {
 
     // 自定义css字典
     style: PropTypes.object,
+
+    // 辅助刷新用唯一标识key值
+    key: PropTypes.string,
 
     // 设置语言环境，可选的有'zh-cn'、'en-us'
     locale: PropTypes.oneOf(['zh-cn', 'en-us']),

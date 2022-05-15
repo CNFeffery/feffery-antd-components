@@ -16,6 +16,7 @@ export default class AntdTitle extends Component {
             children,
             className,
             style,
+            key,
             locale,
             level,
             code,
@@ -39,6 +40,7 @@ export default class AntdTitle extends Component {
                 <Title id={id}
                     className={className}
                     style={style}
+                    key={key}
                     level={level}
                     code={code}
                     copyable={copyable}
@@ -75,6 +77,9 @@ AntdTitle.propTypes = {
 
     // 自定义css字典
     style: PropTypes.object,
+
+    // 辅助刷新用唯一标识key值
+    key: PropTypes.string,
 
     // 设置语言环境，可选的有'zh-cn'、'en-us'
     locale: PropTypes.oneOf(['zh-cn', 'en-us']),

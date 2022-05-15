@@ -25,6 +25,8 @@ Keyword arguments:
 
 - disabled (boolean; optional)
 
+- key (string; optional)
+
 - keyboard (boolean; optional)
 
 - loading_state (dict; optional)
@@ -83,12 +85,12 @@ Keyword arguments:
 
 - value (number | string; optional)"""
     @_explicitize_args
-    def __init__(self, id=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, size=Component.UNDEFINED, addonBefore=Component.UNDEFINED, addonAfter=Component.UNDEFINED, bordered=Component.UNDEFINED, controls=Component.UNDEFINED, defaultValue=Component.UNDEFINED, value=Component.UNDEFINED, disabled=Component.UNDEFINED, keyboard=Component.UNDEFINED, placeholder=Component.UNDEFINED, min=Component.UNDEFINED, max=Component.UNDEFINED, step=Component.UNDEFINED, precision=Component.UNDEFINED, readOnly=Component.UNDEFINED, stringMode=Component.UNDEFINED, nSubmit=Component.UNDEFINED, status=Component.UNDEFINED, loading_state=Component.UNDEFINED, persistence=Component.UNDEFINED, persisted_props=Component.UNDEFINED, persistence_type=Component.UNDEFINED, **kwargs):
-        self._prop_names = ['id', 'addonAfter', 'addonBefore', 'bordered', 'className', 'controls', 'defaultValue', 'disabled', 'keyboard', 'loading_state', 'max', 'min', 'nSubmit', 'persisted_props', 'persistence', 'persistence_type', 'placeholder', 'precision', 'readOnly', 'size', 'status', 'step', 'stringMode', 'style', 'value']
+    def __init__(self, id=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, key=Component.UNDEFINED, size=Component.UNDEFINED, addonBefore=Component.UNDEFINED, addonAfter=Component.UNDEFINED, bordered=Component.UNDEFINED, controls=Component.UNDEFINED, defaultValue=Component.UNDEFINED, value=Component.UNDEFINED, disabled=Component.UNDEFINED, keyboard=Component.UNDEFINED, placeholder=Component.UNDEFINED, min=Component.UNDEFINED, max=Component.UNDEFINED, step=Component.UNDEFINED, precision=Component.UNDEFINED, readOnly=Component.UNDEFINED, stringMode=Component.UNDEFINED, nSubmit=Component.UNDEFINED, status=Component.UNDEFINED, loading_state=Component.UNDEFINED, persistence=Component.UNDEFINED, persisted_props=Component.UNDEFINED, persistence_type=Component.UNDEFINED, **kwargs):
+        self._prop_names = ['id', 'addonAfter', 'addonBefore', 'bordered', 'className', 'controls', 'defaultValue', 'disabled', 'key', 'keyboard', 'loading_state', 'max', 'min', 'nSubmit', 'persisted_props', 'persistence', 'persistence_type', 'placeholder', 'precision', 'readOnly', 'size', 'status', 'step', 'stringMode', 'style', 'value']
         self._type = 'AntdInputNumber'
         self._namespace = 'feffery_antd_components'
         self._valid_wildcard_attributes =            []
-        self.available_properties = ['id', 'addonAfter', 'addonBefore', 'bordered', 'className', 'controls', 'defaultValue', 'disabled', 'keyboard', 'loading_state', 'max', 'min', 'nSubmit', 'persisted_props', 'persistence', 'persistence_type', 'placeholder', 'precision', 'readOnly', 'size', 'status', 'step', 'stringMode', 'style', 'value']
+        self.available_properties = ['id', 'addonAfter', 'addonBefore', 'bordered', 'className', 'controls', 'defaultValue', 'disabled', 'key', 'keyboard', 'loading_state', 'max', 'min', 'nSubmit', 'persisted_props', 'persistence', 'persistence_type', 'placeholder', 'precision', 'readOnly', 'size', 'status', 'step', 'stringMode', 'style', 'value']
         self.available_wildcard_properties =            []
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()

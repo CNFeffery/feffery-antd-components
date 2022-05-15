@@ -18,6 +18,7 @@ Keyword arguments:
 - `copyable` (Bool; optional)
 - `disabled` (Bool; optional)
 - `italic` (Bool; optional)
+- `key` (String; optional)
 - `loading_state` (optional): . loading_state has the following type: lists containing elements 'is_loading', 'prop_name', 'component_name'.
 Those elements have the following types:
   - `is_loading` (Bool; optional): Determines if the component is loading or not
@@ -32,7 +33,7 @@ Those elements have the following types:
 - `underline` (Bool; optional)
 """
 function 'feffery'_antdparagraph(; kwargs...)
-        available_props = Symbol[:children, :id, :className, :code, :copyable, :disabled, :italic, :loading_state, :locale, :mark, :strikethrough, :strong, :style, :type, :underline]
+        available_props = Symbol[:children, :id, :className, :code, :copyable, :disabled, :italic, :key, :loading_state, :locale, :mark, :strikethrough, :strong, :style, :type, :underline]
         wild_props = Symbol[]
         return Component("'feffery'_antdparagraph", "AntdParagraph", "feffery_antd_components", available_props, wild_props; kwargs...)
 end

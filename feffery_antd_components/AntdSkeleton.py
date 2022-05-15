@@ -33,6 +33,8 @@ Keyword arguments:
 
 - includeProps (list of strings; optional)
 
+- key (string; optional)
+
 - listenPropsMode (a value equal to: 'default', 'exclude', 'include'; default 'default')
 
 - loading (boolean; default False)
@@ -68,12 +70,12 @@ Keyword arguments:
 
     - width (number | string; optional)"""
     @_explicitize_args
-    def __init__(self, children=None, id=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, loading=Component.UNDEFINED, active=Component.UNDEFINED, avatar=Component.UNDEFINED, paragraph=Component.UNDEFINED, title=Component.UNDEFINED, round=Component.UNDEFINED, debug=Component.UNDEFINED, listenPropsMode=Component.UNDEFINED, excludeProps=Component.UNDEFINED, includeProps=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
-        self._prop_names = ['children', 'id', 'active', 'avatar', 'className', 'debug', 'excludeProps', 'includeProps', 'listenPropsMode', 'loading', 'loading_state', 'paragraph', 'round', 'style', 'title']
+    def __init__(self, children=None, id=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, key=Component.UNDEFINED, loading=Component.UNDEFINED, active=Component.UNDEFINED, avatar=Component.UNDEFINED, paragraph=Component.UNDEFINED, title=Component.UNDEFINED, round=Component.UNDEFINED, debug=Component.UNDEFINED, listenPropsMode=Component.UNDEFINED, excludeProps=Component.UNDEFINED, includeProps=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
+        self._prop_names = ['children', 'id', 'active', 'avatar', 'className', 'debug', 'excludeProps', 'includeProps', 'key', 'listenPropsMode', 'loading', 'loading_state', 'paragraph', 'round', 'style', 'title']
         self._type = 'AntdSkeleton'
         self._namespace = 'feffery_antd_components'
         self._valid_wildcard_attributes =            []
-        self.available_properties = ['children', 'id', 'active', 'avatar', 'className', 'debug', 'excludeProps', 'includeProps', 'listenPropsMode', 'loading', 'loading_state', 'paragraph', 'round', 'style', 'title']
+        self.available_properties = ['children', 'id', 'active', 'avatar', 'className', 'debug', 'excludeProps', 'includeProps', 'key', 'listenPropsMode', 'loading', 'loading_state', 'paragraph', 'round', 'style', 'title']
         self.available_wildcard_properties =            []
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()

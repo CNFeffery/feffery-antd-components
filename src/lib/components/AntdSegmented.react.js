@@ -19,6 +19,7 @@ export default class AntdSegmented extends Component {
             id,
             style,
             className,
+            key,
             options,
             defaultValue,
             value,
@@ -42,6 +43,7 @@ export default class AntdSegmented extends Component {
                 id={id}
                 className={className}
                 style={style}
+                key={key}
                 options={options}
                 defaultValue={defaultValue}
                 value={value}
@@ -71,6 +73,9 @@ AntdSegmented.propTypes = {
 
     // 自定义css字典
     style: PropTypes.object,
+
+    // 辅助刷新用唯一标识key值
+    key: PropTypes.string,
 
     // 设置选项参数数组
     options: PropTypes.arrayOf(

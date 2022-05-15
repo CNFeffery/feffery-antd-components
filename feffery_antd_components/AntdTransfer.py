@@ -25,6 +25,8 @@ Keyword arguments:
 
 - height (string; optional)
 
+- key (string; optional)
+
 - loading_state (dict; optional)
 
     `loading_state` is a dict with keys:
@@ -81,12 +83,12 @@ Keyword arguments:
 
 - titles (list; optional)"""
     @_explicitize_args
-    def __init__(self, id=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, locale=Component.UNDEFINED, dataSource=Component.UNDEFINED, height=Component.UNDEFINED, pagination=Component.UNDEFINED, operations=Component.UNDEFINED, showSearch=Component.UNDEFINED, showSelectAll=Component.UNDEFINED, titles=Component.UNDEFINED, targetKeys=Component.UNDEFINED, moveDirection=Component.UNDEFINED, moveKeys=Component.UNDEFINED, disabled=Component.UNDEFINED, loading_state=Component.UNDEFINED, persistence=Component.UNDEFINED, persisted_props=Component.UNDEFINED, persistence_type=Component.UNDEFINED, **kwargs):
-        self._prop_names = ['id', 'className', 'dataSource', 'disabled', 'height', 'loading_state', 'locale', 'moveDirection', 'moveKeys', 'operations', 'pagination', 'persisted_props', 'persistence', 'persistence_type', 'showSearch', 'showSelectAll', 'style', 'targetKeys', 'titles']
+    def __init__(self, id=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, key=Component.UNDEFINED, locale=Component.UNDEFINED, dataSource=Component.UNDEFINED, height=Component.UNDEFINED, pagination=Component.UNDEFINED, operations=Component.UNDEFINED, showSearch=Component.UNDEFINED, showSelectAll=Component.UNDEFINED, titles=Component.UNDEFINED, targetKeys=Component.UNDEFINED, moveDirection=Component.UNDEFINED, moveKeys=Component.UNDEFINED, disabled=Component.UNDEFINED, loading_state=Component.UNDEFINED, persistence=Component.UNDEFINED, persisted_props=Component.UNDEFINED, persistence_type=Component.UNDEFINED, **kwargs):
+        self._prop_names = ['id', 'className', 'dataSource', 'disabled', 'height', 'key', 'loading_state', 'locale', 'moveDirection', 'moveKeys', 'operations', 'pagination', 'persisted_props', 'persistence', 'persistence_type', 'showSearch', 'showSelectAll', 'style', 'targetKeys', 'titles']
         self._type = 'AntdTransfer'
         self._namespace = 'feffery_antd_components'
         self._valid_wildcard_attributes =            []
-        self.available_properties = ['id', 'className', 'dataSource', 'disabled', 'height', 'loading_state', 'locale', 'moveDirection', 'moveKeys', 'operations', 'pagination', 'persisted_props', 'persistence', 'persistence_type', 'showSearch', 'showSelectAll', 'style', 'targetKeys', 'titles']
+        self.available_properties = ['id', 'className', 'dataSource', 'disabled', 'height', 'key', 'loading_state', 'locale', 'moveDirection', 'moveKeys', 'operations', 'pagination', 'persisted_props', 'persistence', 'persistence_type', 'showSearch', 'showSelectAll', 'style', 'targetKeys', 'titles']
         self.available_wildcard_properties =            []
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()

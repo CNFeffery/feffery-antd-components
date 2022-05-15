@@ -23,6 +23,8 @@ Keyword arguments:
 
 - effect (a value equal to: 'scrollx', 'fade'; optional)
 
+- key (string; optional)
+
 - loading_state (dict; optional)
 
     `loading_state` is a dict with keys:
@@ -38,12 +40,12 @@ Keyword arguments:
 
 - style (dict; optional)"""
     @_explicitize_args
-    def __init__(self, children=None, id=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, autoplay=Component.UNDEFINED, dotPosition=Component.UNDEFINED, easing=Component.UNDEFINED, effect=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
-        self._prop_names = ['children', 'id', 'autoplay', 'className', 'dotPosition', 'easing', 'effect', 'loading_state', 'style']
+    def __init__(self, children=None, id=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, key=Component.UNDEFINED, autoplay=Component.UNDEFINED, dotPosition=Component.UNDEFINED, easing=Component.UNDEFINED, effect=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
+        self._prop_names = ['children', 'id', 'autoplay', 'className', 'dotPosition', 'easing', 'effect', 'key', 'loading_state', 'style']
         self._type = 'AntdCarousel'
         self._namespace = 'feffery_antd_components'
         self._valid_wildcard_attributes =            []
-        self.available_properties = ['children', 'id', 'autoplay', 'className', 'dotPosition', 'easing', 'effect', 'loading_state', 'style']
+        self.available_properties = ['children', 'id', 'autoplay', 'className', 'dotPosition', 'easing', 'effect', 'key', 'loading_state', 'style']
         self.available_wildcard_properties =            []
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()

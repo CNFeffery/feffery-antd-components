@@ -15,6 +15,7 @@ Keyword arguments:
 - `id` (String; optional)
 - `className` (String; optional)
 - `color` (String; optional)
+- `key` (String; optional)
 - `loading_state` (optional): . loading_state has the following type: lists containing elements 'is_loading', 'prop_name', 'component_name'.
 Those elements have the following types:
   - `is_loading` (Bool; optional): Determines if the component is loading or not
@@ -30,7 +31,7 @@ Those elements have the following types:
 - `trigger` (a value equal to: 'hover', 'focus', 'click' | Array of a value equal to: 'hover', 'focus', 'click's; optional)
 """
 function 'feffery'_antdtooltip(; kwargs...)
-        available_props = Symbol[:children, :id, :className, :color, :loading_state, :mouseEnterDelay, :mouseLeaveDelay, :overlayInnerStyle, :overlayStyle, :placement, :style, :title, :trigger]
+        available_props = Symbol[:children, :id, :className, :color, :key, :loading_state, :mouseEnterDelay, :mouseLeaveDelay, :overlayInnerStyle, :overlayStyle, :placement, :style, :title, :trigger]
         wild_props = Symbol[]
         return Component("'feffery'_antdtooltip", "AntdTooltip", "feffery_antd_components", available_props, wild_props; kwargs...)
 end

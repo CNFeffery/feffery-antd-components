@@ -17,6 +17,8 @@ Keyword arguments:
 
 - disabled (boolean; default False)
 
+- key (string; optional)
+
 - loading_state (dict; optional)
 
     `loading_state` is a dict with keys:
@@ -50,12 +52,12 @@ Keyword arguments:
 
 - value (number | list of numbers; optional)"""
     @_explicitize_args
-    def __init__(self, id=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, defaultValue=Component.UNDEFINED, disabled=Component.UNDEFINED, range=Component.UNDEFINED, min=Component.UNDEFINED, max=Component.UNDEFINED, step=Component.UNDEFINED, value=Component.UNDEFINED, marks=Component.UNDEFINED, tooltipVisible=Component.UNDEFINED, tooltipPrefix=Component.UNDEFINED, tooltipSuffix=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
-        self._prop_names = ['id', 'className', 'defaultValue', 'disabled', 'loading_state', 'marks', 'max', 'min', 'range', 'step', 'style', 'tooltipPrefix', 'tooltipSuffix', 'tooltipVisible', 'value']
+    def __init__(self, id=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, key=Component.UNDEFINED, defaultValue=Component.UNDEFINED, disabled=Component.UNDEFINED, range=Component.UNDEFINED, min=Component.UNDEFINED, max=Component.UNDEFINED, step=Component.UNDEFINED, value=Component.UNDEFINED, marks=Component.UNDEFINED, tooltipVisible=Component.UNDEFINED, tooltipPrefix=Component.UNDEFINED, tooltipSuffix=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
+        self._prop_names = ['id', 'className', 'defaultValue', 'disabled', 'key', 'loading_state', 'marks', 'max', 'min', 'range', 'step', 'style', 'tooltipPrefix', 'tooltipSuffix', 'tooltipVisible', 'value']
         self._type = 'AntdSlider'
         self._namespace = 'feffery_antd_components'
         self._valid_wildcard_attributes =            []
-        self.available_properties = ['id', 'className', 'defaultValue', 'disabled', 'loading_state', 'marks', 'max', 'min', 'range', 'step', 'style', 'tooltipPrefix', 'tooltipSuffix', 'tooltipVisible', 'value']
+        self.available_properties = ['id', 'className', 'defaultValue', 'disabled', 'key', 'loading_state', 'marks', 'max', 'min', 'range', 'step', 'style', 'tooltipPrefix', 'tooltipSuffix', 'tooltipVisible', 'value']
         self.available_wildcard_properties =            []
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()

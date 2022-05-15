@@ -13,6 +13,7 @@ export default class AntdDropdown extends Component {
             id,
             className,
             style,
+            key,
             title,
             buttonMode,
             arrow,
@@ -31,6 +32,7 @@ export default class AntdDropdown extends Component {
             <Dropdown id={id}
                 className={className}
                 style={style}
+                key={key}
                 overlay={
                     <Menu onClick={(item, key, keyPath, domEvent) => (
                         setProps({
@@ -96,6 +98,9 @@ AntdDropdown.propTypes = {
 
     // 自定义css字典
     style: PropTypes.object,
+
+    // 辅助刷新用唯一标识key值
+    key: PropTypes.string,
 
     // 设置下拉菜单触发点文字标题信息
     title: PropTypes.string,

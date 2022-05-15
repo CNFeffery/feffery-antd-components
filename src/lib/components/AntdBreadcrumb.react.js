@@ -13,6 +13,7 @@ export default class AntdBreadcrumb extends Component {
             id,
             className,
             style,
+            key,
             separator,
             items,
             setProps,
@@ -23,6 +24,7 @@ export default class AntdBreadcrumb extends Component {
             <Breadcrumb id={id}
                 className={className}
                 style={style}
+                key={key}
                 separator={separator}
                 data-dash-is-loading={
                     (loading_state && loading_state.is_loading) || undefined
@@ -68,6 +70,9 @@ AntdBreadcrumb.propTypes = {
 
     // 自定义css字典
     style: PropTypes.object,
+
+    // 辅助刷新用唯一标识key值
+    key: PropTypes.string,
 
     // 定义生成面包屑的数据结构
     items: PropTypes.arrayOf(

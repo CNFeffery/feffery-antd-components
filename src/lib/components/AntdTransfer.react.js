@@ -12,6 +12,7 @@ export default class AntdTransfer extends Component {
             id,
             className,
             style,
+            key,
             locale,
             setProps,
             dataSource,
@@ -50,6 +51,7 @@ export default class AntdTransfer extends Component {
                     id={id}
                     style={style}
                     className={className}
+                    key={key}
                     dataSource={dataSource}
                     targetKeys={targetKeys}
                     onChange={listenMove}
@@ -87,6 +89,9 @@ AntdTransfer.propTypes = {
 
     // 自定义css
     style: PropTypes.object,
+
+    // 辅助刷新用唯一标识key值
+    key: PropTypes.string,
 
     // 设置语言环境，可选的有'zh-cn'、'en-us'
     locale: PropTypes.oneOf(['zh-cn', 'en-us']),

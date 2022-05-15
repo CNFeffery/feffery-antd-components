@@ -17,6 +17,7 @@ Keyword arguments:
 - `className` (String; optional)
 - `ghost` (Bool; optional)
 - `historyBackDisabled` (Bool; optional)
+- `key` (String; optional)
 - `loading_state` (optional): . loading_state has the following type: lists containing elements 'is_loading', 'prop_name', 'component_name'.
 Those elements have the following types:
   - `is_loading` (Bool; optional): Determines if the component is loading or not
@@ -28,7 +29,7 @@ Those elements have the following types:
 - `title` (String; optional)
 """
 function 'feffery'_antdpageheader(; kwargs...)
-        available_props = Symbol[:children, :id, :backClicks, :className, :ghost, :historyBackDisabled, :loading_state, :showBackIcon, :style, :subTitle, :title]
+        available_props = Symbol[:children, :id, :backClicks, :className, :ghost, :historyBackDisabled, :key, :loading_state, :showBackIcon, :style, :subTitle, :title]
         wild_props = Symbol[]
         return Component("'feffery'_antdpageheader", "AntdPageHeader", "feffery_antd_components", available_props, wild_props; kwargs...)
 end

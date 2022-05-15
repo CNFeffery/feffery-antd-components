@@ -23,6 +23,7 @@ Those elements have the following types:
   - `target` (String; optional)
   - `disabled` (Bool; optional)
   - `icon` (String; optional)ss
+- `key` (String; optional)
 - `loading_state` (optional): . loading_state has the following type: lists containing elements 'is_loading', 'prop_name', 'component_name'.
 Those elements have the following types:
   - `is_loading` (Bool; optional): Determines if the component is loading or not
@@ -32,7 +33,7 @@ Those elements have the following types:
 - `style` (Dict; optional)
 """
 function 'feffery'_antdbreadcrumb(; kwargs...)
-        available_props = Symbol[:id, :className, :items, :loading_state, :separator, :style]
+        available_props = Symbol[:id, :className, :items, :key, :loading_state, :separator, :style]
         wild_props = Symbol[]
         return Component("'feffery'_antdbreadcrumb", "AntdBreadcrumb", "feffery_antd_components", available_props, wild_props; kwargs...)
 end

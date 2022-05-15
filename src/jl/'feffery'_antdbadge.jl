@@ -17,6 +17,7 @@ Keyword arguments:
 - `color` (String; optional)
 - `count` (Real; optional)
 - `dot` (Bool; optional)
+- `key` (String; optional)
 - `loading_state` (optional): . loading_state has the following type: lists containing elements 'is_loading', 'prop_name', 'component_name'.
 Those elements have the following types:
   - `is_loading` (Bool; optional): Determines if the component is loading or not
@@ -33,7 +34,7 @@ Those elements have the following types:
 - `title` (String; optional)
 """
 function 'feffery'_antdbadge(; kwargs...)
-        available_props = Symbol[:children, :id, :className, :color, :count, :dot, :loading_state, :nClicks, :offset, :overflowCount, :showZero, :size, :status, :style, :text, :title]
+        available_props = Symbol[:children, :id, :className, :color, :count, :dot, :key, :loading_state, :nClicks, :offset, :overflowCount, :showZero, :size, :status, :style, :text, :title]
         wild_props = Symbol[]
         return Component("'feffery'_antdbadge", "AntdBadge", "feffery_antd_components", available_props, wild_props; kwargs...)
 end

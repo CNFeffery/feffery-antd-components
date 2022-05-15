@@ -21,6 +21,7 @@ Keyword arguments:
 - `defaultActiveKey` (String | Array of Strings | Real | Array of Reals; optional)
 - `expandIconPosition` (a value equal to: 'left', 'right'; optional)
 - `ghost` (Bool; optional)
+- `key` (String; optional)
 - `loading_state` (optional): . loading_state has the following type: lists containing elements 'is_loading', 'prop_name', 'component_name'.
 Those elements have the following types:
   - `is_loading` (Bool; optional): Determines if the component is loading or not
@@ -29,7 +30,7 @@ Those elements have the following types:
 - `style` (Dict; optional)
 """
 function 'feffery'_antdaccordion(; kwargs...)
-        available_props = Symbol[:children, :id, :accordion, :activeKey, :bordered, :className, :collapsible, :defaultActiveKey, :expandIconPosition, :ghost, :loading_state, :style]
+        available_props = Symbol[:children, :id, :accordion, :activeKey, :bordered, :className, :collapsible, :defaultActiveKey, :expandIconPosition, :ghost, :key, :loading_state, :style]
         wild_props = Symbol[]
         return Component("'feffery'_antdaccordion", "AntdAccordion", "feffery_antd_components", available_props, wild_props; kwargs...)
 end

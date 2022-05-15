@@ -19,6 +19,7 @@ export default class AntdCheckboxGroup extends Component {
             id,
             style,
             className,
+            key,
             options,
             value,
             setProps,
@@ -38,6 +39,7 @@ export default class AntdCheckboxGroup extends Component {
                 id={id}
                 className={className}
                 style={style}
+                key={key}
                 options={options}
                 value={value}
                 onChange={onChange}
@@ -63,6 +65,9 @@ AntdCheckboxGroup.propTypes = {
 
     // 自定义css字典
     style: PropTypes.object,
+
+    // 辅助刷新用唯一标识key值
+    key: PropTypes.string,
 
     // 设置是否禁用组件
     disabled: PropTypes.bool,

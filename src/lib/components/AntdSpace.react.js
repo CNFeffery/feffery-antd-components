@@ -13,6 +13,7 @@ export default class AntdSpace extends Component {
             children,
             className,
             style,
+            key,
             align,
             direction,
             size,
@@ -31,6 +32,7 @@ export default class AntdSpace extends Component {
                     <Space id={id}
                         className={className}
                         style={style}
+                        key={key}
                         align={align}
                         direction={direction}
                         size={size}
@@ -47,6 +49,7 @@ export default class AntdSpace extends Component {
                 <Space id={id}
                     className={className}
                     style={style}
+                    key={key}
                     align={align}
                     direction={direction}
                     size={size}
@@ -64,6 +67,7 @@ export default class AntdSpace extends Component {
             <Space id={id}
                 className={className}
                 style={style}
+                key={key}
                 align={align}
                 direction={direction}
                 size={size}
@@ -93,6 +97,9 @@ AntdSpace.propTypes = {
 
     // 自定义css字典
     style: PropTypes.object,
+
+    // 辅助刷新用唯一标识key值
+    key: PropTypes.string,
 
     // 自定义对齐方式，可选的有'start'、'end'、'center'、'baseline'，默认为'start'
     align: PropTypes.oneOf(['start', 'end', 'center', 'baseline']),

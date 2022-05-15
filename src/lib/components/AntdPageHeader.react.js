@@ -13,6 +13,7 @@ export default class AntdPageHeader extends Component {
             children,
             className,
             style,
+            key,
             title,
             subTitle,
             showBackIcon,
@@ -29,6 +30,7 @@ export default class AntdPageHeader extends Component {
             <PageHeader id={id}
                 className={className}
                 style={style}
+                key={key}
                 title={title}
                 subTitle={subTitle}
                 backIcon={showBackIcon ? undefined : false}
@@ -63,6 +65,9 @@ AntdPageHeader.propTypes = {
 
     // 自定义css字典
     style: PropTypes.object,
+
+    // 辅助刷新用唯一标识key值
+    key: PropTypes.string,
 
     // 设置标题内容
     title: PropTypes.string,

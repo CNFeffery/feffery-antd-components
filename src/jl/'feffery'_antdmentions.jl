@@ -16,6 +16,7 @@ Those elements have the following types:
 - `className` (String; optional)
 - `defaultValue` (String; optional)
 - `disabled` (Bool; optional)
+- `key` (String; optional)
 - `loading_state` (optional): . loading_state has the following type: lists containing elements 'is_loading', 'prop_name', 'component_name'.
 Those elements have the following types:
   - `is_loading` (Bool; optional): Determines if the component is loading or not
@@ -33,7 +34,7 @@ Those elements have the following types:
 - `value` (String; optional)
 """
 function 'feffery'_antdmentions(; kwargs...)
-        available_props = Symbol[:id, :autoSize, :className, :defaultValue, :disabled, :loading_state, :options, :placement, :prefix, :selectedOptions, :status, :style, :value]
+        available_props = Symbol[:id, :autoSize, :className, :defaultValue, :disabled, :key, :loading_state, :options, :placement, :prefix, :selectedOptions, :status, :style, :value]
         wild_props = Symbol[]
         return Component("'feffery'_antdmentions", "AntdMentions", "feffery_antd_components", available_props, wild_props; kwargs...)
 end

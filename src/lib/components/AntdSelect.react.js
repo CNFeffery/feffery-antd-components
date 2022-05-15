@@ -24,6 +24,7 @@ export default class AntdSelect extends Component {
             id,
             style,
             className,
+            key,
             locale,
             setProps,
             placeholder,
@@ -139,6 +140,7 @@ export default class AntdSelect extends Component {
                     id={id}
                     className={className}
                     style={style}
+                    key={key}
                     mode={mode}
                     allowClear={allowClear}
                     placeholder={placeholder}
@@ -177,6 +179,9 @@ AntdSelect.propTypes = {
 
     // 自定义css字典
     style: PropTypes.object,
+
+    // 辅助刷新用唯一标识key值
+    key: PropTypes.string,
 
     // 设置语言环境，可选的有'zh-cn'、'en-us'
     locale: PropTypes.oneOf(['zh-cn', 'en-us']),

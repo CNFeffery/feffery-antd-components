@@ -24,6 +24,7 @@ export default class AntdAccordion extends Component {
             children,
             className,
             style,
+            key,
             accordion,
             activeKey,
             defaultActiveKey,
@@ -78,6 +79,7 @@ export default class AntdAccordion extends Component {
                 id={id}
                 className={className}
                 style={style}
+                key={key}
                 accordion={accordion}
                 activeKey={activeKey}
                 defaultActiveKey={defaultActiveKey}
@@ -107,6 +109,9 @@ AntdAccordion.propTypes = {
 
     // 自定义css字典
     style: PropTypes.object,
+
+    // 辅助刷新用唯一标识key值
+    key: PropTypes.string,
 
     // 设置是否开启手风琴模式，默认为true
     accordion: PropTypes.bool,

@@ -15,6 +15,7 @@ export default class AntdContent extends Component {
             children,
             className,
             style,
+            key,
             setProps,
             loading_state
         } = this.props;
@@ -25,6 +26,7 @@ export default class AntdContent extends Component {
             <Content id={id}
                 className={className}
                 style={style}
+                key={key}
                 data-dash-is-loading={
                     (loading_state && loading_state.is_loading) || undefined
                 }>
@@ -49,6 +51,9 @@ AntdContent.propTypes = {
 
     // 自定义css字典
     style: PropTypes.object,
+
+    // 辅助刷新用唯一标识key值
+    key: PropTypes.string,
 
     loading_state: PropTypes.shape({
         /**

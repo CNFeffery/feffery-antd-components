@@ -17,6 +17,8 @@ Keyword arguments:
 
 - duration (number; optional)
 
+- key (string; optional)
+
 - loading_state (dict; optional)
 
     `loading_state` is a dict with keys:
@@ -34,12 +36,12 @@ Keyword arguments:
 
 - visibilityHeight (number; optional)"""
     @_explicitize_args
-    def __init__(self, id=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, duration=Component.UNDEFINED, visibilityHeight=Component.UNDEFINED, containerId=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
-        self._prop_names = ['id', 'className', 'containerId', 'duration', 'loading_state', 'style', 'visibilityHeight']
+    def __init__(self, id=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, key=Component.UNDEFINED, duration=Component.UNDEFINED, visibilityHeight=Component.UNDEFINED, containerId=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
+        self._prop_names = ['id', 'className', 'containerId', 'duration', 'key', 'loading_state', 'style', 'visibilityHeight']
         self._type = 'AntdBackTop'
         self._namespace = 'feffery_antd_components'
         self._valid_wildcard_attributes =            []
-        self.available_properties = ['id', 'className', 'containerId', 'duration', 'loading_state', 'style', 'visibilityHeight']
+        self.available_properties = ['id', 'className', 'containerId', 'duration', 'key', 'loading_state', 'style', 'visibilityHeight']
         self.available_wildcard_properties =            []
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()

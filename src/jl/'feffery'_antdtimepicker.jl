@@ -16,6 +16,7 @@ Keyword arguments:
 - `disabled` (Bool; optional)
 - `format` (String; optional)
 - `hourStep` (Real; optional)
+- `key` (String; optional)
 - `loading_state` (optional): Object that holds the loading state object coming from dash-renderer. loading_state has the following type: lists containing elements 'is_loading', 'prop_name', 'component_name'.
 Those elements have the following types:
   - `is_loading` (Bool; optional): Determines if the component is loading or not
@@ -45,7 +46,7 @@ session: window.sessionStorage, data is cleared once the browser quit.
 - `value` (String; optional)
 """
 function 'feffery'_antdtimepicker(; kwargs...)
-        available_props = Symbol[:id, :allowClear, :bordered, :className, :defaultValue, :disabled, :format, :hourStep, :loading_state, :locale, :minuteStep, :persisted_props, :persistence, :persistence_type, :placeholder, :secondStep, :size, :status, :style, :use12Hours, :value]
+        available_props = Symbol[:id, :allowClear, :bordered, :className, :defaultValue, :disabled, :format, :hourStep, :key, :loading_state, :locale, :minuteStep, :persisted_props, :persistence, :persistence_type, :placeholder, :secondStep, :size, :status, :style, :use12Hours, :value]
         wild_props = Symbol[]
         return Component("'feffery'_antdtimepicker", "AntdTimePicker", "feffery_antd_components", available_props, wild_props; kwargs...)
 end

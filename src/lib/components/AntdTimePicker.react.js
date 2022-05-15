@@ -23,6 +23,7 @@ export default class AntdTimePicker extends Component {
             id,
             className,
             style,
+            key,
             locale,
             setProps,
             disabled,
@@ -58,6 +59,7 @@ export default class AntdTimePicker extends Component {
                         id={id}
                         className={className}
                         style={style}
+                        key={key}
                         onChange={onChange}
                         placeholder={placeholder}
                         bordered={bordered}
@@ -96,6 +98,9 @@ AntdTimePicker.propTypes = {
 
     // 自定义css字典
     style: PropTypes.object,
+
+    // 辅助刷新用唯一标识key值
+    key: PropTypes.string,
 
     // 设置语言环境，可选的有'zh-cn'、'en-us'
     locale: PropTypes.oneOf(['zh-cn', 'en-us']),

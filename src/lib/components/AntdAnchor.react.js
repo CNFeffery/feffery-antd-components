@@ -13,6 +13,7 @@ export default class AntdAnchor extends Component {
             id,
             className,
             style,
+            key,
             linkDict,
             align,
             containerId,
@@ -68,6 +69,7 @@ export default class AntdAnchor extends Component {
                         id={id}
                         className={className}
                         style={style}
+                        key={key}
                         getContainer={containerId ? () => document.getElementById(containerId) : containerId}
                         targetOffset={targetOffset}
                         affix={affix}
@@ -104,6 +106,9 @@ AntdAnchor.propTypes = {
 
     // 自定义css字典
     style: PropTypes.object,
+
+    // 辅助刷新用唯一标识key值
+    key: PropTypes.string,
 
     // 用于构造目录层次结构的json字典
     linkDict: linkDictPropTypes.isRequired,

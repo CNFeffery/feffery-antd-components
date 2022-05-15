@@ -21,6 +21,7 @@ export default class AntdInputNumber extends Component {
             id,
             className,
             style,
+            key,
             size,
             addonBefore,
             addonAfter,
@@ -64,6 +65,7 @@ export default class AntdInputNumber extends Component {
             <InputNumber id={id}
                 className={className}
                 style={style}
+                key={key}
                 size={size}
                 addonBefore={addonBefore}
                 addonAfter={addonAfter}
@@ -103,6 +105,9 @@ AntdInputNumber.propTypes = {
 
     // 自定义css字典
     style: PropTypes.object,
+
+    // 辅助刷新用唯一标识key值
+    key: PropTypes.string,
 
     // 用于设置输入框尺寸，可选的有'small'、'middle'与'large'，默认不填则为'middle'
     size: PropTypes.oneOf(['small', 'middle', 'large']),

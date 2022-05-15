@@ -15,6 +15,7 @@ Keyword arguments:
 - `defaultValue` (Array of Strings | Array of Array of Stringss; optional)
 - `disabled` (Bool; optional)
 - `expandTrigger` (a value equal to: 'click', 'hover'; optional)
+- `key` (String; optional)
 - `loading_state` (optional): . loading_state has the following type: lists containing elements 'is_loading', 'prop_name', 'component_name'.
 Those elements have the following types:
   - `is_loading` (Bool; optional): Determines if the component is loading or not
@@ -45,7 +46,7 @@ session: window.sessionStorage, data is cleared once the browser quit.
 - `value` (Array of Strings | Array of Array of Stringss; optional)
 """
 function 'feffery'_antdcascader(; kwargs...)
-        available_props = Symbol[:id, :bordered, :changeOnSelect, :className, :defaultValue, :disabled, :expandTrigger, :loading_state, :locale, :maxTagCount, :multiple, :options, :persisted_props, :persistence, :persistence_type, :placeholder, :placement, :size, :status, :style, :value]
+        available_props = Symbol[:id, :bordered, :changeOnSelect, :className, :defaultValue, :disabled, :expandTrigger, :key, :loading_state, :locale, :maxTagCount, :multiple, :options, :persisted_props, :persistence, :persistence_type, :placeholder, :placement, :size, :status, :style, :value]
         wild_props = Symbol[]
         return Component("'feffery'_antdcascader", "AntdCascader", "feffery_antd_components", available_props, wild_props; kwargs...)
 end

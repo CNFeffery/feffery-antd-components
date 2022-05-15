@@ -15,6 +15,7 @@ Keyword arguments:
 - `colorsNameWidth` (Real; optional)
 - `defaultValue` (String | Real | Array of String | Reals; optional)
 - `disabled` (Bool; optional)
+- `key` (String; optional)
 - `listHeight` (Real; optional)
 - `loading_state` (optional): . loading_state has the following type: lists containing elements 'is_loading', 'prop_name', 'component_name'.
 Those elements have the following types:
@@ -59,7 +60,7 @@ session: window.sessionStorage, data is cleared once the browser quit.
 - `value` (String | Real | Array of String | Reals; optional)
 """
 function 'feffery'_antdselect(; kwargs...)
-        available_props = Symbol[:id, :allowClear, :className, :colorsMode, :colorsNameWidth, :defaultValue, :disabled, :listHeight, :loading_state, :locale, :maxTagCount, :mode, :options, :persisted_props, :persistence, :persistence_type, :placeholder, :placement, :size, :status, :style, :value]
+        available_props = Symbol[:id, :allowClear, :className, :colorsMode, :colorsNameWidth, :defaultValue, :disabled, :key, :listHeight, :loading_state, :locale, :maxTagCount, :mode, :options, :persisted_props, :persistence, :persistence_type, :placeholder, :placement, :size, :status, :style, :value]
         wild_props = Symbol[]
         return Component("'feffery'_antdselect", "AntdSelect", "feffery_antd_components", available_props, wild_props; kwargs...)
 end

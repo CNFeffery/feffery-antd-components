@@ -37,6 +37,8 @@ Keyword arguments:
 
 - justify (a value equal to: 'start', 'end', 'center', 'space-around', 'space-between'; optional)
 
+- key (string; optional)
+
 - loading_state (dict; optional)
 
     `loading_state` is a dict with keys:
@@ -54,12 +56,12 @@ Keyword arguments:
 
 - wrap (boolean; optional)"""
     @_explicitize_args
-    def __init__(self, children=None, id=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, loading_state=Component.UNDEFINED, align=Component.UNDEFINED, gutter=Component.UNDEFINED, justify=Component.UNDEFINED, wrap=Component.UNDEFINED, **kwargs):
-        self._prop_names = ['children', 'id', 'align', 'className', 'gutter', 'justify', 'loading_state', 'style', 'wrap']
+    def __init__(self, children=None, id=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, key=Component.UNDEFINED, loading_state=Component.UNDEFINED, align=Component.UNDEFINED, gutter=Component.UNDEFINED, justify=Component.UNDEFINED, wrap=Component.UNDEFINED, **kwargs):
+        self._prop_names = ['children', 'id', 'align', 'className', 'gutter', 'justify', 'key', 'loading_state', 'style', 'wrap']
         self._type = 'AntdRow'
         self._namespace = 'feffery_antd_components'
         self._valid_wildcard_attributes =            []
-        self.available_properties = ['children', 'id', 'align', 'className', 'gutter', 'justify', 'loading_state', 'style', 'wrap']
+        self.available_properties = ['children', 'id', 'align', 'className', 'gutter', 'justify', 'key', 'loading_state', 'style', 'wrap']
         self.available_wildcard_properties =            []
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()

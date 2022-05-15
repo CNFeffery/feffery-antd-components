@@ -18,6 +18,7 @@ Keyword arguments:
 - `collapsible` (a value equal to: 'header', 'disabled'; optional)
 - `ghost` (Bool; optional)
 - `is_open` (Bool; optional)
+- `key` (String; optional)
 - `loading_state` (optional): . loading_state has the following type: lists containing elements 'is_loading', 'prop_name', 'component_name'.
 Those elements have the following types:
   - `is_loading` (Bool; optional): Determines if the component is loading or not
@@ -41,7 +42,7 @@ session: window.sessionStorage, data is cleared once the browser quit.
 - `title` (String; optional)
 """
 function 'feffery'_antdcollapse(; kwargs...)
-        available_props = Symbol[:children, :id, :bordered, :className, :collapsible, :ghost, :is_open, :loading_state, :persisted_props, :persistence, :persistence_type, :showArrow, :style, :title]
+        available_props = Symbol[:children, :id, :bordered, :className, :collapsible, :ghost, :is_open, :key, :loading_state, :persisted_props, :persistence, :persistence_type, :showArrow, :style, :title]
         wild_props = Symbol[]
         return Component("'feffery'_antdcollapse", "AntdCollapse", "feffery_antd_components", available_props, wild_props; kwargs...)
 end

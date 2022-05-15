@@ -15,6 +15,7 @@ Keyword arguments:
 - `id` (String; optional)
 - `className` (String; optional)
 - `hoverable` (Bool; optional)
+- `key` (String; optional)
 - `loading_state` (optional): . loading_state has the following type: lists containing elements 'is_loading', 'prop_name', 'component_name'.
 Those elements have the following types:
   - `is_loading` (Bool; optional): Determines if the component is loading or not
@@ -23,7 +24,7 @@ Those elements have the following types:
 - `style` (Dict; optional)
 """
 function 'feffery'_antdcardgrid(; kwargs...)
-        available_props = Symbol[:children, :id, :className, :hoverable, :loading_state, :style]
+        available_props = Symbol[:children, :id, :className, :hoverable, :key, :loading_state, :style]
         wild_props = Symbol[]
         return Component("'feffery'_antdcardgrid", "AntdCardGrid", "feffery_antd_components", available_props, wild_props; kwargs...)
 end

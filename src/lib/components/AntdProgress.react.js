@@ -11,6 +11,7 @@ export default class AntdProgress extends Component {
             id,
             className,
             style,
+            key,
             type,
             size,
             percent,
@@ -34,6 +35,7 @@ export default class AntdProgress extends Component {
                 id={id}
                 className={className}
                 style={style}
+                key={key}
                 type={type}
                 size={size}
                 percent={percent}
@@ -79,6 +81,9 @@ AntdProgress.propTypes = {
 
     // 自定义css字典
     style: PropTypes.object,
+
+    // 辅助刷新用唯一标识key值
+    key: PropTypes.string,
 
     // 设置进度条类型，可选的有'line'（条形）、'circle'（环形）与'dashboard'（仪表盘型）
     type: PropTypes.oneOf(['line', 'circle', 'dashboard']),

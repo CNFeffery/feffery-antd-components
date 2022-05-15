@@ -12,6 +12,7 @@ export default class AntdForm extends Component {
             children,
             className,
             style,
+            key,
             labelCol,
             wrapperCol,
             colon,
@@ -25,6 +26,7 @@ export default class AntdForm extends Component {
             <Form id={id}
                 className={className}
                 style={style}
+                key={key}
                 labelCol={labelCol}
                 wrapperCol={wrapperCol}
                 colon={colon}
@@ -54,6 +56,9 @@ AntdForm.propTypes = {
 
     // 自定义css字典
     style: PropTypes.object,
+
+    // 辅助刷新用唯一标识key值
+    key: PropTypes.string,
 
     // 设置表单项标签列宽相关属性，同AntdCol划分为24份宽度
     labelCol: PropTypes.exact({

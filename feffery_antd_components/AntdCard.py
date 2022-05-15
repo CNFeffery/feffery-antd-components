@@ -49,6 +49,8 @@ Keyword arguments:
 
 - hoverable (boolean; optional)
 
+- key (string; optional)
+
 - loading_state (dict; optional)
 
     `loading_state` is a dict with keys:
@@ -68,12 +70,12 @@ Keyword arguments:
 
 - title (string; optional)"""
     @_explicitize_args
-    def __init__(self, children=None, id=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, extraLink=Component.UNDEFINED, coverImg=Component.UNDEFINED, bodyStyle=Component.UNDEFINED, headStyle=Component.UNDEFINED, bordered=Component.UNDEFINED, hoverable=Component.UNDEFINED, size=Component.UNDEFINED, title=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
-        self._prop_names = ['children', 'id', 'bodyStyle', 'bordered', 'className', 'coverImg', 'extraLink', 'headStyle', 'hoverable', 'loading_state', 'size', 'style', 'title']
+    def __init__(self, children=None, id=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, key=Component.UNDEFINED, extraLink=Component.UNDEFINED, coverImg=Component.UNDEFINED, bodyStyle=Component.UNDEFINED, headStyle=Component.UNDEFINED, bordered=Component.UNDEFINED, hoverable=Component.UNDEFINED, size=Component.UNDEFINED, title=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
+        self._prop_names = ['children', 'id', 'bodyStyle', 'bordered', 'className', 'coverImg', 'extraLink', 'headStyle', 'hoverable', 'key', 'loading_state', 'size', 'style', 'title']
         self._type = 'AntdCard'
         self._namespace = 'feffery_antd_components'
         self._valid_wildcard_attributes =            []
-        self.available_properties = ['children', 'id', 'bodyStyle', 'bordered', 'className', 'coverImg', 'extraLink', 'headStyle', 'hoverable', 'loading_state', 'size', 'style', 'title']
+        self.available_properties = ['children', 'id', 'bodyStyle', 'bordered', 'className', 'coverImg', 'extraLink', 'headStyle', 'hoverable', 'key', 'loading_state', 'size', 'style', 'title']
         self.available_wildcard_properties =            []
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()

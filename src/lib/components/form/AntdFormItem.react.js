@@ -12,6 +12,7 @@ export default class AntdFormItem extends Component {
             children,
             className,
             style,
+            key,
             labelCol,
             colon,
             wrapperCol,
@@ -31,6 +32,7 @@ export default class AntdFormItem extends Component {
             <Form.Item id={id}
                 className={className}
                 style={style}
+                key={key}
                 labelCol={labelCol}
                 colon={colon}
                 wrapperCol={wrapperCol}
@@ -67,6 +69,9 @@ AntdFormItem.propTypes = {
 
     // 自定义css字典
     style: PropTypes.object,
+
+    // 辅助刷新用唯一标识key值
+    key: PropTypes.string,
 
     // 设置是否为标签添加必填*标识，默认为false
     required: PropTypes.bool,

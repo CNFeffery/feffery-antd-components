@@ -30,6 +30,7 @@ Those elements have the following types:
   - `style` (Dict; optional)
 - `headStyle` (Dict; optional)
 - `hoverable` (Bool; optional)
+- `key` (String; optional)
 - `loading_state` (optional): . loading_state has the following type: lists containing elements 'is_loading', 'prop_name', 'component_name'.
 Those elements have the following types:
   - `is_loading` (Bool; optional): Determines if the component is loading or not
@@ -40,7 +41,7 @@ Those elements have the following types:
 - `title` (String; optional)
 """
 function 'feffery'_antdcard(; kwargs...)
-        available_props = Symbol[:children, :id, :bodyStyle, :bordered, :className, :coverImg, :extraLink, :headStyle, :hoverable, :loading_state, :size, :style, :title]
+        available_props = Symbol[:children, :id, :bodyStyle, :bordered, :className, :coverImg, :extraLink, :headStyle, :hoverable, :key, :loading_state, :size, :style, :title]
         wild_props = Symbol[]
         return Component("'feffery'_antdcard", "AntdCard", "feffery_antd_components", available_props, wild_props; kwargs...)
 end

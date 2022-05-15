@@ -15,6 +15,7 @@ Keyword arguments:
 - `id` (String; optional)
 - `className` (String; optional)
 - `flex` (String | Real; optional)
+- `key` (String; optional)
 - `lg` (optional): . lg has the following type: Real | lists containing elements 'span', 'offset', 'order', 'pull', 'push'.
 Those elements have the following types:
   - `span` (Real; optional)
@@ -70,7 +71,7 @@ Those elements have the following types:
   - `push` (Real; optional)
 """
 function 'feffery'_antdcol(; kwargs...)
-        available_props = Symbol[:children, :id, :className, :flex, :lg, :loading_state, :md, :offset, :order, :pull, :push, :sm, :span, :style, :xl, :xs, :xxl]
+        available_props = Symbol[:children, :id, :className, :flex, :key, :lg, :loading_state, :md, :offset, :order, :pull, :push, :sm, :span, :style, :xl, :xs, :xxl]
         wild_props = Symbol[]
         return Component("'feffery'_antdcol", "AntdCol", "feffery_antd_components", available_props, wild_props; kwargs...)
 end

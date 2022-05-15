@@ -21,6 +21,7 @@ export default class AntdSwitch extends Component {
             id,
             style,
             className,
+            key,
             disabled,
             checked,
             checkedChildren,
@@ -44,6 +45,7 @@ export default class AntdSwitch extends Component {
                 id={id}
                 className={className}
                 style={style}
+                key={key}
                 disabled={disabled}
                 defaultChecked={checked}
                 checkedChildren={checkedChildren}
@@ -73,6 +75,9 @@ AntdSwitch.propTypes = {
 
     // 自定义css
     style: PropTypes.object,
+
+    // 辅助刷新用唯一标识key值
+    key: PropTypes.string,
 
     // 设置是否禁用组件
     disabled: PropTypes.bool,

@@ -24,6 +24,7 @@ Those elements have the following types:
   - `sm` (Real; optional)
   - `xs` (Real; optional)
 - `contentStyle` (Dict; optional)
+- `key` (String; optional)
 - `labelStyle` (Dict; optional)
 - `layout` (a value equal to: 'horizontal', 'vertical'; optional)
 - `loading_state` (optional): . loading_state has the following type: lists containing elements 'is_loading', 'prop_name', 'component_name'.
@@ -36,7 +37,7 @@ Those elements have the following types:
 - `title` (String; optional)
 """
 function 'feffery'_antddescriptions(; kwargs...)
-        available_props = Symbol[:children, :id, :bordered, :className, :column, :contentStyle, :labelStyle, :layout, :loading_state, :size, :style, :title]
+        available_props = Symbol[:children, :id, :bordered, :className, :column, :contentStyle, :key, :labelStyle, :layout, :loading_state, :size, :style, :title]
         wild_props = Symbol[]
         return Component("'feffery'_antddescriptions", "AntdDescriptions", "feffery_antd_components", available_props, wild_props; kwargs...)
 end

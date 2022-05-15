@@ -13,6 +13,7 @@ export default class AntdTooltip extends Component {
             children,
             className,
             style,
+            key,
             title,
             placement,
             color,
@@ -32,6 +33,7 @@ export default class AntdTooltip extends Component {
             <Tooltip id={id}
                 className={className}
                 style={style}
+                key={key}
                 title={title}
                 placement={placement}
                 color={color}
@@ -63,6 +65,9 @@ AntdTooltip.propTypes = {
 
     // 自定义css字典
     style: PropTypes.object,
+
+    // 辅助刷新用唯一标识key值
+    key: PropTypes.string,
 
     // 设置显示的文字内容
     title: PropTypes.string,

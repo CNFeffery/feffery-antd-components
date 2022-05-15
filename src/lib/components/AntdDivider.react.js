@@ -11,6 +11,7 @@ export default class AntdDivider extends Component {
             id,
             children,
             className,
+            key,
             direction,
             innerTextOrientation,
             isDashed,
@@ -36,6 +37,7 @@ export default class AntdDivider extends Component {
                         fontSize: fontSize
                     }}
                     className={className}
+                    key={key}
                     dashed={isDashed}
                     orientation={innerTextOrientation}
                     type={'horizontal'}
@@ -58,6 +60,7 @@ export default class AntdDivider extends Component {
                         fontSize: fontSize
                     }}
                     className={className}
+                    key={key}
                     dashed={isDashed}
                     orientation={innerTextOrientation}
                     type={'vertical'}
@@ -81,6 +84,9 @@ AntdDivider.propTypes = {
 
     // css类名
     className: PropTypes.string,
+
+    // 辅助刷新用唯一标识key值
+    key: PropTypes.string,
 
     // 内嵌文字的对齐方式（left：左对齐，center：居中，right：右对齐。默认为center）
     innerTextOrientation: PropTypes.oneOf(['left', 'center', 'right']),

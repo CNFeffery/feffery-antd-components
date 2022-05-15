@@ -17,6 +17,7 @@ Keyword arguments:
 - `align` (a value equal to: 'start', 'end', 'center', 'baseline'; optional)
 - `className` (String; optional)
 - `direction` (a value equal to: 'vertical', 'horizontal'; optional)
+- `key` (String; optional)
 - `loading_state` (optional): . loading_state has the following type: lists containing elements 'is_loading', 'prop_name', 'component_name'.
 Those elements have the following types:
   - `is_loading` (Bool; optional): Determines if the component is loading or not
@@ -27,7 +28,7 @@ Those elements have the following types:
 - `wrap` (Bool; optional)
 """
 function 'feffery'_antdspace(; kwargs...)
-        available_props = Symbol[:children, :id, :addSplitLine, :align, :className, :direction, :loading_state, :size, :style, :wrap]
+        available_props = Symbol[:children, :id, :addSplitLine, :align, :className, :direction, :key, :loading_state, :size, :style, :wrap]
         wild_props = Symbol[]
         return Component("'feffery'_antdspace", "AntdSpace", "feffery_antd_components", available_props, wild_props; kwargs...)
 end

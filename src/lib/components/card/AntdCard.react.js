@@ -13,6 +13,7 @@ export default class AntdCard extends Component {
             children,
             className,
             style,
+            key,
             extraLink,
             coverImg,
             bodyStyle,
@@ -31,6 +32,7 @@ export default class AntdCard extends Component {
             <Card id={id}
                 className={className}
                 style={style}
+                key={key}
                 bodyStyle={bodyStyle}
                 headStyle={headStyle}
                 extra={
@@ -70,6 +72,9 @@ AntdCard.propTypes = {
 
     // 自定义css字典
     style: PropTypes.object,
+
+    // 辅助刷新用唯一标识key值
+    key: PropTypes.string,
 
     // 设置卡片右上角额外链接功能
     extraLink: PropTypes.exact({

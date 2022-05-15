@@ -13,6 +13,7 @@ export default class AntdRow extends Component {
             children,
             className,
             style,
+            key,
             align,
             gutter,
             justify,
@@ -27,6 +28,7 @@ export default class AntdRow extends Component {
             <Row id={id}
                 className={className}
                 style={style}
+                key={key}
                 align={align}
                 gutter={gutter}
                 justify={justify}
@@ -55,6 +57,9 @@ AntdRow.propTypes = {
 
     // 自定义css字典
     style: PropTypes.object,
+
+    // 辅助刷新用唯一标识key值
+    key: PropTypes.string,
 
     loading_state: PropTypes.shape({
         /**

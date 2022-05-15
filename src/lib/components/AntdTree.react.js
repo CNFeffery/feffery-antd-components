@@ -36,6 +36,7 @@ export default class AntdTree extends Component {
             className,
             setProps,
             style,
+            key,
             checkable,
             selectable,
             selectedKeys,
@@ -110,6 +111,7 @@ export default class AntdTree extends Component {
             id={id}
             className={className}
             style={style}
+            key={key}
             treeData={add_leaf_node_icon(treeData)}
             selectedKeys={selectedKeys}
             expandedKeys={expandedKeys}
@@ -180,6 +182,9 @@ AntdTree.propTypes = {
 
     // 自定义css字典
     style: PropTypes.object,
+
+    // 辅助刷新用唯一标识key值
+    key: PropTypes.string,
 
     // 组织树形结构的json结构数据
     treeData: treeDataPropTypes.isRequired,

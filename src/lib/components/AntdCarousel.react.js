@@ -12,6 +12,7 @@ export default class AntdCarousel extends Component {
             children,
             className,
             style,
+            key,
             autoplay,
             dotPosition,
             easing,
@@ -25,6 +26,7 @@ export default class AntdCarousel extends Component {
                 id={id}
                 className={className}
                 style={style}
+                key={key}
                 autoplay={autoplay}
                 dotPosition={dotPosition}
                 easing={easing}
@@ -50,6 +52,9 @@ AntdCarousel.propTypes = {
 
     // 自定义css字典
     style: PropTypes.object,
+
+    // 辅助刷新用唯一标识key值
+    key: PropTypes.string,
 
     // 设置是否开启自动切换模式，默认为false
     autoplay: PropTypes.bool,

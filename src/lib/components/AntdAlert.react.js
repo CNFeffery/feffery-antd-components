@@ -15,6 +15,7 @@ export default class AntdAlert extends Component {
             id,
             className,
             style,
+            key,
             type,
             showIcon,
             closable,
@@ -35,6 +36,7 @@ export default class AntdAlert extends Component {
                 <Alert id={id}
                     className={className}
                     style={style}
+                    key={key}
                     message={
                         <TextLoop mask>
                             {nProps.message.map(item => <div>{item}</div>)}
@@ -55,6 +57,7 @@ export default class AntdAlert extends Component {
             <Alert id={id}
                 className={className}
                 style={style}
+                key={key}
                 message={
                     messageRenderMode === 'marquee' ?
                         <Marquee pauseOnHover gradient={false}>
@@ -82,6 +85,9 @@ AntdAlert.propTypes = {
 
     // 自定义css字典
     style: PropTypes.object,
+
+    // 辅助刷新用唯一标识key值
+    key: PropTypes.string,
 
     // 设置警告组件内的额外信息元素
     description: PropTypes.any,

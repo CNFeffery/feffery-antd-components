@@ -11,6 +11,7 @@ const AntdSkeleton = (props) => {
         id,
         className,
         style,
+        key,
         children,
         loading,
         active,
@@ -75,6 +76,7 @@ const AntdSkeleton = (props) => {
             id={id}
             className={className}
             style={style}
+            key={key}
             loading={showLoading}
             active={active}
             avatar={avatar}
@@ -103,6 +105,9 @@ AntdSkeleton.propTypes = {
 
     // 自定义css字典
     style: PropTypes.object,
+
+    // 辅助刷新用唯一标识key值
+    key: PropTypes.string,
 
     // 设置是否处于加载中状态
     loading: PropTypes.bool,

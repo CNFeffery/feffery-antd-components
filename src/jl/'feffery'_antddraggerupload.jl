@@ -17,6 +17,7 @@ Keyword arguments:
 - `fileMaxSize` (Real; optional)
 - `fileTypes` (Array of Strings; optional)
 - `hint` (String; optional)
+- `key` (String; optional)
 - `lastUploadTaskRecord` (optional): . lastUploadTaskRecord has the following type: lists containing elements 'fileName', 'fileSize', 'completeTimestamp', 'taskStatus', 'taskId'.
 Those elements have the following types:
   - `fileName` (String; optional)
@@ -56,7 +57,7 @@ Those elements have the following types:
 - `uploadId` (String; optional)
 """
 function 'feffery'_antddraggerupload(; kwargs...)
-        available_props = Symbol[:id, :apiUrl, :className, :directory, :failedTooltipInfo, :fileListMaxLength, :fileMaxSize, :fileTypes, :hint, :lastUploadTaskRecord, :listUploadTaskRecord, :loading_state, :locale, :multiple, :showUploadList, :style, :text, :uploadId]
+        available_props = Symbol[:id, :apiUrl, :className, :directory, :failedTooltipInfo, :fileListMaxLength, :fileMaxSize, :fileTypes, :hint, :key, :lastUploadTaskRecord, :listUploadTaskRecord, :loading_state, :locale, :multiple, :showUploadList, :style, :text, :uploadId]
         wild_props = Symbol[]
         return Component("'feffery'_antddraggerupload", "AntdDraggerUpload", "feffery_antd_components", available_props, wild_props; kwargs...)
 end

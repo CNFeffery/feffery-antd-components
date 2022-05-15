@@ -12,6 +12,7 @@ export default class AntdAvatar extends Component {
             id,
             className,
             style,
+            key,
             mode,
             text,
             src,
@@ -32,6 +33,7 @@ export default class AntdAvatar extends Component {
                     id={id}
                     className={className}
                     style={style}
+                    key={key}
                     src={src}
                     srcSet={srcSet}
                     alt={alt}
@@ -50,6 +52,7 @@ export default class AntdAvatar extends Component {
                     id={id}
                     className={className}
                     style={style}
+                    key={key}
                     gap={gap}
                     size={size}
                     shape={shape}
@@ -65,6 +68,7 @@ export default class AntdAvatar extends Component {
                     id={id}
                     className={className}
                     style={style}
+                    key={key}
                     icon={icon ? <AntdIcon icon={icon} /> : <AntdIcon icon={'antd-user'} />}
                     size={size}
                     shape={shape}
@@ -88,6 +92,9 @@ AntdAvatar.propTypes = {
 
     // 自定义css字典
     style: PropTypes.object,
+
+    // 辅助刷新用唯一标识key值
+    key: PropTypes.string,
 
     // 对于字符型头像，设置字符距离左右两侧边界的像素距离，默认为4
     gap: PropTypes.number,

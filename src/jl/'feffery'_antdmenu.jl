@@ -13,6 +13,7 @@ Keyword arguments:
 - `currentKey` (String; optional)
 - `defaultOpenKeys` (Array of Strings; optional)
 - `defaultSelectedKey` (String; optional)
+- `key` (String; optional)
 - `loading_state` (optional): . loading_state has the following type: lists containing elements 'is_loading', 'prop_name', 'component_name'.
 Those elements have the following types:
   - `is_loading` (Bool; optional): Determines if the component is loading or not
@@ -39,7 +40,7 @@ session: window.sessionStorage, data is cleared once the browser quit.
 - `theme` (a value equal to: 'light', 'dark'; optional)
 """
 function 'feffery'_antdmenu(; kwargs...)
-        available_props = Symbol[:id, :className, :currentKey, :defaultOpenKeys, :defaultSelectedKey, :loading_state, :menuItems, :mode, :openKeys, :persisted_props, :persistence, :persistence_type, :renderCollapsedButton, :style, :theme]
+        available_props = Symbol[:id, :className, :currentKey, :defaultOpenKeys, :defaultSelectedKey, :key, :loading_state, :menuItems, :mode, :openKeys, :persisted_props, :persistence, :persistence_type, :renderCollapsedButton, :style, :theme]
         wild_props = Symbol[]
         return Component("'feffery'_antdmenu", "AntdMenu", "feffery_antd_components", available_props, wild_props; kwargs...)
 end

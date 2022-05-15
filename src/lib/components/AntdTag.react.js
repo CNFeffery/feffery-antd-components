@@ -11,6 +11,7 @@ export default class AntdTag extends Component {
             id,
             className,
             style,
+            key,
             content,
             color,
             href,
@@ -43,6 +44,9 @@ AntdTag.propTypes = {
 
     // 自定义css字典
     style: PropTypes.object,
+
+    // 辅助刷新用唯一标识key值
+    key: PropTypes.string,
 
     // 自定义标签内部文字内容
     content: PropTypes.string,
