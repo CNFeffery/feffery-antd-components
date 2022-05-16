@@ -21,7 +21,7 @@ Keyword arguments:
 
 - disabled (boolean; optional)
 
-- format (string; default 'hh:mm:ss')
+- format (string; default 'HH:mm:ss')
 
 - hourStep (number; optional)
 

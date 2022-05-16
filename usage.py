@@ -42,13 +42,17 @@ def picture_upload_callback(lastUploadTaskRecord, listUploadTaskRecord):
 
 app.layout = html.Div(
     [
+        fac.AntdTimeRangePicker(
+            allowClear=True,
+            format='HH:mm:ss'
+        ),
 
         fac.AntdSlider(
             id='qr-version',
             min=1,
             max=40,
             step=1,
-            # defaultValue=1,
+            defaultValue=10,
             style={
                 'width': '300px'
             }

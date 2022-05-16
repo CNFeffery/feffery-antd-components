@@ -226,7 +226,7 @@ AntdTimeRangePicker.defaultProps = {
     style: {
         width: 220
     },
-    format: 'hh:mm:ss',
+    format: 'HH:mm:ss',
     persisted_props: ['value'],
     persistence_type: 'local',
     locale: 'zh-cn'
