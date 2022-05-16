@@ -15,12 +15,12 @@
 
 </div>
 
-`feffery-components`计划子项目，`Plotly Dash`第三方组件库，将基于`Antd`，将超多具有丰富功能的组件引入`Dash`的世界🥳，最新版本：`0.1.10`
+`feffery-components`计划子项目，`Plotly Dash`第三方组件库，将基于`Antd`，将超多具有丰富功能的组件引入`Dash`的世界🥳，最新版本：`0.1.11`
 
 ## 1 最新版本安装方式
 
 ```bash
-pip install feffery-antd-components==0.1.10
+pip install feffery-antd-components==0.1.11
 ```
 
 ## 2 最新开发版本安装方式
@@ -32,13 +32,7 @@ pip install git+https://github.com/CNFeffery/feffery-antd-components.git
 国内镜像加速安装方式：
 
 ```bash
-pip install git+https://hub.fastgit.org/CNFeffery/feffery-antd-components.git
-```
-
-或：
-
-```bash
-pip install git+https://github.com.cnpmjs.org/CNFeffery/feffery-antd-components.git
+pip install git+https://github.91chi.fun/https://github.com/CNFeffery/feffery-antd-components.git
 ```
 
 ## 3 静态资源CDN加速方法（0.0.1rc7及以上版本可用）
