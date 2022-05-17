@@ -14,6 +14,11 @@ Keyword arguments:
 - `defaultPickerValue` (String; optional)
 - `defaultValue` (Array of Strings; optional)
 - `disabled` (Array of Bools; optional)
+- `disabledDatesStrategy` (optional): . disabledDatesStrategy has the following type: Array of lists containing elements 'mode', 'target', 'value'.
+Those elements have the following types:
+  - `mode` (a value equal to: 'eq', 'ne', 'le', 'lt', 'ge', 'gt', 'in', 'not in', 'in-enumerate-dates', 'not-in-enumerate-dates'; optional)
+  - `target` (a value equal to: 'day', 'month', 'quarter', 'year', 'dayOfYear', 'dayOfWeek'; optional)
+  - `value` (Real | Array of Reals | Array of Strings; optional)s
 - `format` (String; optional)
 - `key` (String; optional)
 - `loading_state` (optional): Object that holds the loading state object coming from dash-renderer. loading_state has the following type: lists containing elements 'is_loading', 'prop_name', 'component_name'.
@@ -44,7 +49,7 @@ session: window.sessionStorage, data is cleared once the browser quit.
 - `value` (Array of Strings; optional)
 """
 function 'feffery'_antddaterangepicker(; kwargs...)
-        available_props = Symbol[:id, :bordered, :className, :defaultPickerValue, :defaultValue, :disabled, :format, :key, :loading_state, :locale, :persisted_props, :persistence, :persistence_type, :picker, :placeholder, :showTime, :size, :status, :style, :value]
+        available_props = Symbol[:id, :bordered, :className, :defaultPickerValue, :defaultValue, :disabled, :disabledDatesStrategy, :format, :key, :loading_state, :locale, :persisted_props, :persistence, :persistence_type, :picker, :placeholder, :showTime, :size, :status, :style, :value]
         wild_props = Symbol[]
         return Component("'feffery'_antddaterangepicker", "AntdDateRangePicker", "feffery_antd_components", available_props, wild_props; kwargs...)
 end
