@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Result } from 'antd';
+import { LoadingOutlined } from '@ant-design/icons';
 import 'antd/dist/antd.css';
 
 // 定义结果组件AntdResult，api参数参考https://ant.design/components/result-cn/
@@ -24,6 +25,7 @@ export default class AntdResult extends Component {
                 className={className}
                 style={style}
                 key={key}
+                icon={status === 'loading' ? <LoadingOutlined style={{ color: '#1890ff' }} /> : undefined}
                 status={status}
                 title={title}
                 subTitle={subTitle}
@@ -66,7 +68,7 @@ AntdResult.propTypes = {
 
     // 用于设置结果的状态风格，可选的有'success'、'error'、
     // 'info'、'warning'、'404'、'403'、'500'，默认为'info'
-    status: PropTypes.oneOf(['success', 'error', 'info', 'warning', '404', '403', '500']),
+    status: PropTypes.oneOf(['success', 'error', 'info', 'warning', '404', '403', '500', 'loading']),
 
     // 用于设置标题文字内容
     title: PropTypes.string,

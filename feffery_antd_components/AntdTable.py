@@ -51,7 +51,7 @@ Keyword arguments:
 
         - renderLinkText (string; optional)
 
-        - renderType (a value equal to: 'link', 'ellipsis', 'mini-line', 'mini-bar', 'mini-progress', 'mini-ring-progress', 'mini-area', 'tags', 'button', 'copyable', 'status-badge', 'image', 'custom-format', 'ellipsis-copyable'; optional)
+        - renderType (a value equal to: 'link', 'ellipsis', 'mini-line', 'mini-bar', 'mini-progress', 'mini-ring-progress', 'mini-area', 'tags', 'button', 'copyable', 'status-badge', 'image', 'custom-format', 'ellipsis-copyable', 'corner-mark'; optional)
 
     - sorter (boolean | number | string | dict | list; optional)
 
@@ -123,7 +123,19 @@ Keyword arguments:
 
     - preview (boolean; optional)
 
-    - src (string; optional)
+    - src (string; optional) | dict with keys:
+
+    - color (string; optional)
+
+    - content (number | string; optional)
+
+    - hide (boolean; optional)
+
+    - offsetX (number; optional)
+
+    - offsetY (number; optional)
+
+    - placement (a value equal to: 'top-left', 'top-right', 'bottom-left', 'bottom-right'; optional)
 
 - enableHoverListen (boolean; default False)
 

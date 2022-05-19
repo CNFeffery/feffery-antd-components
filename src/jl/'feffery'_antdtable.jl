@@ -18,7 +18,7 @@ Those elements have the following types:
   - `dataIndex` (String; required)
   - `renderOptions` (optional): . renderOptions has the following type: lists containing elements 'renderType', 'renderLinkText', 'renderButtonPopConfirmProps'.
 Those elements have the following types:
-  - `renderType` (a value equal to: 'link', 'ellipsis', 'mini-line', 'mini-bar', 'mini-progress', 'mini-ring-progress', 'mini-area', 'tags', 'button', 'copyable', 'status-badge', 'image', 'custom-format', 'ellipsis-copyable'; optional)
+  - `renderType` (a value equal to: 'link', 'ellipsis', 'mini-line', 'mini-bar', 'mini-progress', 'mini-ring-progress', 'mini-area', 'tags', 'button', 'copyable', 'status-badge', 'image', 'custom-format', 'ellipsis-copyable', 'corner-mark'; optional)
   - `renderLinkText` (String; optional)
   - `renderButtonPopConfirmProps` (optional): . renderButtonPopConfirmProps has the following type: lists containing elements 'title', 'okText', 'cancelText'.
 Those elements have the following types:
@@ -68,7 +68,14 @@ Those elements have the following types:
 Those elements have the following types:
   - `src` (String; optional)
   - `height` (String | Real; optional)
-  - `preview` (Bool; optional)s
+  - `preview` (Bool; optional) | lists containing elements 'placement', 'color', 'content', 'offsetX', 'offsetY', 'hide'.
+Those elements have the following types:
+  - `placement` (a value equal to: 'top-left', 'top-right', 'bottom-left', 'bottom-right'; optional)
+  - `color` (String; optional)
+  - `content` (Real | String; optional)
+  - `offsetX` (Real; optional)
+  - `offsetY` (Real; optional)
+  - `hide` (Bool; optional)s
 - `enableHoverListen` (Bool; optional)
 - `filter` (Dict; optional)
 - `filterOptions` (optional): . filterOptions has the following type: Dict with Strings as keys and values of type lists containing elements 'filterMode', 'filterCustomItems', 'filterMultiple', 'filterSearch'.

@@ -1,6 +1,6 @@
 import React, { Component, useContext, useState, useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
-import { Table, Tooltip, Popover, Popconfirm, ConfigProvider, Typography, Input, Form, Tag, Button, Badge, Space, Image, message } from 'antd';
+import { Table, Popover, Popconfirm, ConfigProvider, Typography, Input, Form, Tag, Button, Badge, Space, Image, message } from 'antd';
 import { TinyLine, TinyArea, TinyColumn, Progress, RingProgress } from '@ant-design/charts';
 import Highlighter from 'react-highlight-words';
 import { SearchOutlined, QuestionCircleOutlined } from '@ant-design/icons';
@@ -614,6 +614,27 @@ export default class AntdTable extends Component {
             }
         }
 
+        // 配置字段渲染模式为corner-mark的相关参数
+        for (let i = 0; i < columns.length; i++) {
+            // 当前字段具有renderOptions参数时且renderOptions参数是字典时
+            if (columns[i]['renderOptions']) {
+                if (columns[i]['renderOptions'].hasOwnProperty('renderType')) {
+                    // 当renderOptions参数的renderType值设置为corner-mark时
+                    if (columns[i]['renderOptions']['renderType'] === 'corner-mark') {
+                        columns[i]['render'] = content => (
+                            <div className={content.placement ? 'ant-corner-mark-' + content.placement : 'ant-corner-mark-top-right'}
+                                style={{
+                                    '--ant-corner-mark-color': content.hide ? 'transparent' : (content.color ? content.color : 'rgb(24, 144, 255)'),
+                                    '--ant-corner-mark-transform': `translate(${content.offsetX ? content.offsetX : 0}px, ${content.offsetY ? content.offsetY : 0}px)`
+                                }}>
+                                {content.content}
+                            </div>
+                        )
+                    }
+                }
+            }
+        }
+
         // 配置字段渲染模式为status-badge的相关参数
         for (let i = 0; i < columns.length; i++) {
             // 当前字段具有renderOptions参数时且renderOptions参数是字典时
@@ -950,7 +971,7 @@ export default class AntdTable extends Component {
                     size={size2size.get(size)}
                     rowSelection={rowSelection}
                     sticky={sticky}
-                    pagination={{ ...pagination, ...{ showTotal: total => `${pagination.showTotalPrefix}${total}${pagination.showTotalSuffix}` } }}
+                    pagination={{ ...pagination, ...{ showTotal: total => `${pagination.showTotalPrefix} ${total} ${pagination.showTotalSuffix}` } }}
                     bordered={bordered}
                     scroll={{ x: maxWidth, y: maxHeight, scrollToFirstRowOnChange: true }}
                     onChange={this.onPageChange}
@@ -1020,7 +1041,8 @@ AntdTable.propTypes = {
                 renderType: PropTypes.oneOf([
                     'link', 'ellipsis', 'mini-line', 'mini-bar', 'mini-progress',
                     'mini-ring-progress', 'mini-area', 'tags', 'button', 'copyable',
-                    'status-badge', 'image', 'custom-format', 'ellipsis-copyable'
+                    'status-badge', 'image', 'custom-format', 'ellipsis-copyable',
+                    'corner-mark'
                 ]),
 
                 // 当renderType='link'时，此参数会将传入的字符串作为渲染link的显示文字内容
@@ -1235,6 +1257,25 @@ AntdTable.propTypes = {
 
                     // 设置是否允许预览，默认为true
                     preview: PropTypes.bool
+                }),
+
+                // corner-mark模式
+                PropTypes.exact({
+                    // 设置角标的方位，可选的有'top-left'、'top-right'、'bottom-left'、'bottom-right'
+                    placement: PropTypes.oneOf(['top-left', 'top-right', 'bottom-left', 'bottom-right']),
+                    // 设置角标的颜色，默认为'rgb(24, 144, 255)'
+                    color: PropTypes.string,
+                    // 设置单元格数值内容
+                    content: PropTypes.oneOfType([
+                        PropTypes.number,
+                        PropTypes.string
+                    ]),
+                    // 设置角标x方向像素偏移量
+                    offsetX: PropTypes.number,
+                    // 设置角标y方向像素偏移量
+                    offsetY: PropTypes.number,
+                    // 设置是否隐藏当前角标，默认为false
+                    hide: PropTypes.bool
                 })
             ])
         )

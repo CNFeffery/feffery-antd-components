@@ -5,14 +5,82 @@ from flask import request
 from dash import html
 from requests import options
 import feffery_antd_components as fac
-from dash.dependencies import Input, Output
+from dash.dependencies import Input, Output, ALL
 
 app = dash.Dash(
     __name__
 )
 
+
+@app.callback(
+    Output('accordion-output', 'children'),
+    Input({
+        'type': 'button',
+        'index': ALL
+    }, 'nClicks')
+)
+def accordion_callback(nClicks):
+
+    return str(nClicks)
+
+
 app.layout = html.Div(
     [
+        fac.AntdResult(
+            status='loading',
+            subTitle='loading状态示例'
+        ),
+        fac.AntdTable(
+            size='small',
+            columns=[
+                {
+                    'title': '角标模式',
+                    'dataIndex': '角标模式',
+                    'renderOptions': {'renderType': 'corner-mark'}
+                }
+            ],
+            data=[
+                {
+                    'key': i,
+                    '角标模式': {
+                        'content': '角标模式',
+                        'color': ['red', 'green', 'blue'][i],
+                        'offsetX': -7.5,
+                        'offsetY': -8.5,
+                        'placement': 'top-left',
+                        'hide': [False, True, False][i]
+                    }
+                }
+                for i in range(3)
+            ],
+            bordered=True,
+            style={
+                'width': '200px'
+            }
+        ),
+        fac.AntdDivider(isDashed=True),
+        fac.AntdAccordion(
+            [
+                fac.AntdAccordionItem(
+                    fac.AntdButton(
+                        f'测试{i}',
+                        type='primary',
+                        id={
+                            'type': 'button',
+                            'index': i
+                        }
+                    ),
+                    title=f'手风琴项{i}',
+                    key=str(i)
+                )
+                for i in range(5)
+            ],
+            id='accordion-demo',
+            defaultActiveKey='3'
+        ),
+
+        html.Div(id='accordion-output'),
+
         fac.AntdSpace(
             [
                 fac.AntdSelect(
@@ -110,7 +178,7 @@ def render_date_picker_demo(component, mode, target, picker):
                     {
                         'mode': mode,
                         'target': target,
-                        'value': 8
+                        'value': 2
                     }
                 ],
                 style={

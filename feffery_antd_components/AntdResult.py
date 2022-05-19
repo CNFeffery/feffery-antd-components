@@ -28,7 +28,7 @@ Keyword arguments:
     - prop_name (string; optional):
         Holds which property is loading.
 
-- status (a value equal to: 'success', 'error', 'info', 'warning', '404', '403', '500'; optional)
+- status (a value equal to: 'success', 'error', 'info', 'warning', '404', '403', '500', 'loading'; optional)
 
 - style (dict; optional)
 

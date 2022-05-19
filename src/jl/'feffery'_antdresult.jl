@@ -16,7 +16,7 @@ Those elements have the following types:
   - `is_loading` (Bool; optional): Determines if the component is loading or not
   - `prop_name` (String; optional): Holds which property is loading
   - `component_name` (String; optional): Holds the name of the component that is loading
-- `status` (a value equal to: 'success', 'error', 'info', 'warning', '404', '403', '500'; optional)
+- `status` (a value equal to: 'success', 'error', 'info', 'warning', '404', '403', '500', 'loading'; optional)
 - `style` (Dict; optional)
 - `subTitle` (String; optional)
 - `title` (String; optional)

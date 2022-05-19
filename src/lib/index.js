@@ -85,6 +85,17 @@ import AntdAccordionItem from './components/accordion/AntdAccordionItem.react'
 import AntdAccordion from './components/accordion/AntdAccordion.react'
 import AntdPictureUpload from './components/AntdPictureUpload.react'
 
+
+const backup = console.warn;
+
+console.warn = function filterWarnings(msg) {
+    const supressedWarnings = ['React does not recognize the'];
+
+    if (!supressedWarnings.some(entry => msg.includes(entry))) {
+        backup.apply(console, arguments);
+    }
+};
+
 export {
     AntdDatePicker,
     AntdDateRangePicker,

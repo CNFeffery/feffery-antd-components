@@ -1,10 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Collapse } from 'antd';
 import 'antd/dist/antd.css';
 import { parseChildrenToArray } from '../utils';
-
-const { Panel } = Collapse;
 
 // 定义手风琴项组件AntdAccordionItem，api参数参考https://ant.design/components/collapse-cn/#Collapse.Panel
 export default class AntdAccordionItem extends Component {
@@ -25,7 +22,7 @@ export default class AntdAccordionItem extends Component {
         children = parseChildrenToArray(children)
 
         return (
-            <Panel
+            <div
                 id={id}
                 className={className}
                 style={style}
@@ -37,7 +34,7 @@ export default class AntdAccordionItem extends Component {
                     (loading_state && loading_state.is_loading) || undefined
                 }>
                 {children}
-            </Panel>
+            </div>
         );
     }
 }
