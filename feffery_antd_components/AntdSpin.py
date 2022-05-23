@@ -25,6 +25,8 @@ Keyword arguments:
 
 - includeProps (list of strings; optional)
 
+- indicator (list; optional)
+
 - listenPropsMode (a value equal to: 'default', 'exclude', 'include'; default 'default')
 
 - loading_state (dict; optional)
@@ -50,12 +52,12 @@ Keyword arguments:
 
 - wrapperClassName (string; optional)"""
     @_explicitize_args
-    def __init__(self, children=None, id=Component.UNDEFINED, className=Component.UNDEFINED, wrapperClassName=Component.UNDEFINED, style=Component.UNDEFINED, spinning=Component.UNDEFINED, size=Component.UNDEFINED, delay=Component.UNDEFINED, text=Component.UNDEFINED, debug=Component.UNDEFINED, listenPropsMode=Component.UNDEFINED, excludeProps=Component.UNDEFINED, includeProps=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
-        self._prop_names = ['children', 'id', 'className', 'debug', 'delay', 'excludeProps', 'includeProps', 'listenPropsMode', 'loading_state', 'size', 'spinning', 'style', 'text', 'wrapperClassName']
+    def __init__(self, children=None, id=Component.UNDEFINED, className=Component.UNDEFINED, wrapperClassName=Component.UNDEFINED, style=Component.UNDEFINED, spinning=Component.UNDEFINED, size=Component.UNDEFINED, delay=Component.UNDEFINED, text=Component.UNDEFINED, debug=Component.UNDEFINED, listenPropsMode=Component.UNDEFINED, excludeProps=Component.UNDEFINED, includeProps=Component.UNDEFINED, indicator=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
+        self._prop_names = ['children', 'id', 'className', 'debug', 'delay', 'excludeProps', 'includeProps', 'indicator', 'listenPropsMode', 'loading_state', 'size', 'spinning', 'style', 'text', 'wrapperClassName']
         self._type = 'AntdSpin'
         self._namespace = 'feffery_antd_components'
         self._valid_wildcard_attributes =            []
-        self.available_properties = ['children', 'id', 'className', 'debug', 'delay', 'excludeProps', 'includeProps', 'listenPropsMode', 'loading_state', 'size', 'spinning', 'style', 'text', 'wrapperClassName']
+        self.available_properties = ['children', 'id', 'className', 'debug', 'delay', 'excludeProps', 'includeProps', 'indicator', 'listenPropsMode', 'loading_state', 'size', 'spinning', 'style', 'text', 'wrapperClassName']
         self.available_wildcard_properties =            []
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()

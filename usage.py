@@ -6,6 +6,7 @@ from dash import html
 from requests import options
 import feffery_antd_components as fac
 from dash.dependencies import Input, Output, ALL
+import feffery_utils_components as fuc
 
 app = dash.Dash(
     __name__
@@ -24,8 +25,35 @@ def accordion_callback(nClicks):
     return str(nClicks)
 
 
+@app.callback(
+    Output('spin-basic-demo-output', 'children'),
+    Input('spin-basic-demo-input', 'nClicks')
+)
+def spin_basic_callback_demo(nClicks):
+    import time
+    time.sleep(300)
+
+    return f'nClicks: {nClicks}'
+
+
 app.layout = html.Div(
     [
+        fac.AntdButton('触发2秒加载动画', id='spin-basic-demo-input', type='primary'),
+
+        fac.AntdSpin(
+            fac.AntdText(
+                'nClicks: 0', id='spin-basic-demo-output', strong=True),
+            indicator=[
+                fuc.FefferyExtraSpinner(
+                    type='metro',
+                    style={
+                        'transform': 'translateY(-25px)'
+                    }
+                )
+            ],
+            text='回调中'
+        ),
+        fac.AntdDivider(isDashed=True),
         fac.AntdResult(
             status='loading',
             subTitle='loading状态示例'

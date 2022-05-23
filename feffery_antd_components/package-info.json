@@ -27,7 +27,7 @@
     "@ant-design/icons": "^4.7.0",
     "@ant-design/pro-card": "^1.20.1",
     "@ant-design/pro-layout": "^6.34.7",
-    "antd": "^4.20.0",
+    "antd": "^4.20.6",
     "antd-img-crop": "^4.2.3",
     "dash-extensions-js": "0.0.8",
     "is-absolute-url": "4.0.1",
