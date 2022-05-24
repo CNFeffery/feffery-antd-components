@@ -13,6 +13,8 @@ Keyword arguments:
 
 - className (string; optional)
 
+- icon (list; optional)
+
 - key (string; optional)
 
 - loading_state (dict; optional)
@@ -36,12 +38,12 @@ Keyword arguments:
 
 - title (string; optional)"""
     @_explicitize_args
-    def __init__(self, id=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, key=Component.UNDEFINED, loading_state=Component.UNDEFINED, status=Component.UNDEFINED, title=Component.UNDEFINED, subTitle=Component.UNDEFINED, **kwargs):
-        self._prop_names = ['id', 'className', 'key', 'loading_state', 'status', 'style', 'subTitle', 'title']
+    def __init__(self, id=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, key=Component.UNDEFINED, status=Component.UNDEFINED, title=Component.UNDEFINED, subTitle=Component.UNDEFINED, icon=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
+        self._prop_names = ['id', 'className', 'icon', 'key', 'loading_state', 'status', 'style', 'subTitle', 'title']
         self._type = 'AntdResult'
         self._namespace = 'feffery_antd_components'
         self._valid_wildcard_attributes =            []
-        self.available_properties = ['id', 'className', 'key', 'loading_state', 'status', 'style', 'subTitle', 'title']
+        self.available_properties = ['id', 'className', 'icon', 'key', 'loading_state', 'status', 'style', 'subTitle', 'title']
         self.available_wildcard_properties =            []
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()

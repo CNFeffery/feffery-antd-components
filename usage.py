@@ -38,6 +38,19 @@ def spin_basic_callback_demo(nClicks):
 
 app.layout = html.Div(
     [
+        fac.AntdResult(
+            status='loading',
+            subTitle='loading状态示例',
+            icon=[
+                fuc.FefferyExtraSpinner(
+                    type='metro',
+                    style={
+                        'transform': 'translateY(-25px)'
+                    }
+                )
+            ]
+        ),
+
         fac.AntdButton('触发2秒加载动画', id='spin-basic-demo-input', type='primary'),
 
         fac.AntdSpin(

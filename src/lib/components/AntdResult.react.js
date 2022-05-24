@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Result } from 'antd';
 import { LoadingOutlined } from '@ant-design/icons';
+import { omit } from "ramda";
+import { renderDashComponents } from "dash-extensions-js";
 import 'antd/dist/antd.css';
 
 // 定义结果组件AntdResult，api参数参考https://ant.design/components/result-cn/
@@ -16,16 +18,24 @@ export default class AntdResult extends Component {
             status,
             title,
             subTitle,
+            icon,
             loading_state,
             setProps
         } = this.props;
+
+        // 解析非children参数传入的其他组件数组
+        let nProps = omit(
+            ["setProps", "children", "loading_state", "className"],
+            this.props
+        );
+        nProps = renderDashComponents(nProps, ["icon"]);
 
         return (
             <Result id={id}
                 className={className}
                 style={style}
                 key={key}
-                icon={status === 'loading' ? <LoadingOutlined style={{ color: '#1890ff' }} /> : undefined}
+                icon={icon ? nProps.icon[0] : (status === 'loading' ? <LoadingOutlined style={{ color: '#1890ff' }} /> : undefined)}
                 status={status}
                 title={title}
                 subTitle={subTitle}
@@ -51,6 +61,19 @@ AntdResult.propTypes = {
     // 辅助刷新用唯一标识key值
     key: PropTypes.string,
 
+    // 用于设置结果的状态风格，可选的有'success'、'error'、
+    // 'info'、'warning'、'404'、'403'、'500'，默认为'info'
+    status: PropTypes.oneOf(['success', 'error', 'info', 'warning', '404', '403', '500', 'loading']),
+
+    // 用于设置标题文字内容
+    title: PropTypes.string,
+
+    // 用于设置副标题文字内容
+    subTitle: PropTypes.string,
+
+    // 自定义图标元素
+    icon: PropTypes.array,
+
     loading_state: PropTypes.shape({
         /**
          * Determines if the component is loading or not
@@ -65,16 +88,6 @@ AntdResult.propTypes = {
          */
         component_name: PropTypes.string
     }),
-
-    // 用于设置结果的状态风格，可选的有'success'、'error'、
-    // 'info'、'warning'、'404'、'403'、'500'，默认为'info'
-    status: PropTypes.oneOf(['success', 'error', 'info', 'warning', '404', '403', '500', 'loading']),
-
-    // 用于设置标题文字内容
-    title: PropTypes.string,
-
-    // 用于设置副标题文字内容
-    subTitle: PropTypes.string,
 
     /**
      * Dash-assigned callback that should be called to report property changes
