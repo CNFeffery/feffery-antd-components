@@ -35,6 +35,7 @@ export default class AntdCascader extends Component {
             multiple,
             expandTrigger,
             status,
+            allowClear,
             setProps,
             persistence,
             persisted_props,
@@ -75,6 +76,7 @@ export default class AntdCascader extends Component {
                     persistence_type={persistence_type}
                     expandTrigger={expandTrigger}
                     status={status}
+                    allowClear={allowClear}
                     showSearch={filter}
                     onChange={onSelect}
                     data-dash-is-loading={
@@ -178,6 +180,9 @@ AntdCascader.propTypes = {
 
     // 设置校验状态，可选的有'error'、'warning'
     status: PropTypes.oneOf(['error', 'warning']),
+
+    // 设置是否添加内容清除按钮，默认true
+    allowClear: PropTypes.bool,
 
     loading_state: PropTypes.shape({
         /**

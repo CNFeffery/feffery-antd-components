@@ -9,6 +9,7 @@ An AntdCascader component.
 
 Keyword arguments:
 - `id` (String; optional)
+- `allowClear` (Bool; optional)
 - `bordered` (Bool; optional)
 - `changeOnSelect` (Bool; optional)
 - `className` (String; optional)
@@ -46,7 +47,7 @@ session: window.sessionStorage, data is cleared once the browser quit.
 - `value` (Array of Strings | Array of Array of Stringss; optional)
 """
 function 'feffery'_antdcascader(; kwargs...)
-        available_props = Symbol[:id, :bordered, :changeOnSelect, :className, :defaultValue, :disabled, :expandTrigger, :key, :loading_state, :locale, :maxTagCount, :multiple, :options, :persisted_props, :persistence, :persistence_type, :placeholder, :placement, :size, :status, :style, :value]
+        available_props = Symbol[:id, :allowClear, :bordered, :changeOnSelect, :className, :defaultValue, :disabled, :expandTrigger, :key, :loading_state, :locale, :maxTagCount, :multiple, :options, :persisted_props, :persistence, :persistence_type, :placeholder, :placement, :size, :status, :style, :value]
         wild_props = Symbol[]
         return Component("'feffery'_antdcascader", "AntdCascader", "feffery_antd_components", available_props, wild_props; kwargs...)
 end

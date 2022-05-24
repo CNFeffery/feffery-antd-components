@@ -11,6 +11,8 @@ Keyword arguments:
 
 - id (string; optional)
 
+- allowClear (boolean; optional)
+
 - bordered (boolean; optional)
 
 - changeOnSelect (boolean; default False)
@@ -77,12 +79,12 @@ Keyword arguments:
 
 - value (list of strings | list of list of stringss; optional)"""
     @_explicitize_args
-    def __init__(self, id=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, key=Component.UNDEFINED, locale=Component.UNDEFINED, options=Component.UNDEFINED, disabled=Component.UNDEFINED, changeOnSelect=Component.UNDEFINED, size=Component.UNDEFINED, bordered=Component.UNDEFINED, placeholder=Component.UNDEFINED, placement=Component.UNDEFINED, defaultValue=Component.UNDEFINED, maxTagCount=Component.UNDEFINED, multiple=Component.UNDEFINED, value=Component.UNDEFINED, expandTrigger=Component.UNDEFINED, status=Component.UNDEFINED, loading_state=Component.UNDEFINED, persistence=Component.UNDEFINED, persisted_props=Component.UNDEFINED, persistence_type=Component.UNDEFINED, **kwargs):
-        self._prop_names = ['id', 'bordered', 'changeOnSelect', 'className', 'defaultValue', 'disabled', 'expandTrigger', 'key', 'loading_state', 'locale', 'maxTagCount', 'multiple', 'options', 'persisted_props', 'persistence', 'persistence_type', 'placeholder', 'placement', 'size', 'status', 'style', 'value']
+    def __init__(self, id=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, key=Component.UNDEFINED, locale=Component.UNDEFINED, options=Component.UNDEFINED, disabled=Component.UNDEFINED, changeOnSelect=Component.UNDEFINED, size=Component.UNDEFINED, bordered=Component.UNDEFINED, placeholder=Component.UNDEFINED, placement=Component.UNDEFINED, defaultValue=Component.UNDEFINED, maxTagCount=Component.UNDEFINED, multiple=Component.UNDEFINED, value=Component.UNDEFINED, expandTrigger=Component.UNDEFINED, status=Component.UNDEFINED, allowClear=Component.UNDEFINED, loading_state=Component.UNDEFINED, persistence=Component.UNDEFINED, persisted_props=Component.UNDEFINED, persistence_type=Component.UNDEFINED, **kwargs):
+        self._prop_names = ['id', 'allowClear', 'bordered', 'changeOnSelect', 'className', 'defaultValue', 'disabled', 'expandTrigger', 'key', 'loading_state', 'locale', 'maxTagCount', 'multiple', 'options', 'persisted_props', 'persistence', 'persistence_type', 'placeholder', 'placement', 'size', 'status', 'style', 'value']
         self._type = 'AntdCascader'
         self._namespace = 'feffery_antd_components'
         self._valid_wildcard_attributes =            []
-        self.available_properties = ['id', 'bordered', 'changeOnSelect', 'className', 'defaultValue', 'disabled', 'expandTrigger', 'key', 'loading_state', 'locale', 'maxTagCount', 'multiple', 'options', 'persisted_props', 'persistence', 'persistence_type', 'placeholder', 'placement', 'size', 'status', 'style', 'value']
+        self.available_properties = ['id', 'allowClear', 'bordered', 'changeOnSelect', 'className', 'defaultValue', 'disabled', 'expandTrigger', 'key', 'loading_state', 'locale', 'maxTagCount', 'multiple', 'options', 'persisted_props', 'persistence', 'persistence_type', 'placeholder', 'placement', 'size', 'status', 'style', 'value']
         self.available_wildcard_properties =            []
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()
