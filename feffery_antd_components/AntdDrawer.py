@@ -23,7 +23,7 @@ Keyword arguments:
 
 - forceRender (boolean; default False)
 
-- height (number; optional)
+- height (number | string; optional)
 
 - key (string; optional)
 
@@ -52,7 +52,7 @@ Keyword arguments:
 
 - visible (boolean; optional)
 
-- width (number; optional)
+- width (number | string; optional)
 
 - zIndex (number; optional)"""
     @_explicitize_args

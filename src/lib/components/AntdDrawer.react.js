@@ -102,7 +102,10 @@ AntdDrawer.propTypes = {
     containerId: PropTypes.string,
 
     // 当placement为'top'或'bottom'时，用于设置抽屉的像素高度，默认为256
-    height: PropTypes.number,
+    height: PropTypes.oneOfType([
+        PropTypes.number,
+        PropTypes.string
+    ]),
 
     // 设置是否在抽屉展开时，在空白区域显示蒙版，默认为true
     mask: PropTypes.bool,
@@ -111,7 +114,10 @@ AntdDrawer.propTypes = {
     maskClosable: PropTypes.bool,
 
     // 设置抽屉的像素宽度，默认为256
-    width: PropTypes.number,
+    width: PropTypes.oneOfType([
+        PropTypes.number,
+        PropTypes.string
+    ]),
 
     // 快捷设置抽屉整体的z-index，默认为1000
     zIndex: PropTypes.number,

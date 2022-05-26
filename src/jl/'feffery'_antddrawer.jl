@@ -18,7 +18,7 @@ Keyword arguments:
 - `containerId` (String; optional)
 - `destroyOnClose` (Bool; optional)
 - `forceRender` (Bool; optional)
-- `height` (Real; optional)
+- `height` (Real | String; optional)
 - `key` (String; optional)
 - `loading_state` (optional): . loading_state has the following type: lists containing elements 'is_loading', 'prop_name', 'component_name'.
 Those elements have the following types:
@@ -31,7 +31,7 @@ Those elements have the following types:
 - `style` (Dict; optional)
 - `title` (String; optional)
 - `visible` (Bool; optional)
-- `width` (Real; optional)
+- `width` (Real | String; optional)
 - `zIndex` (Real; optional)
 """
 function 'feffery'_antddrawer(; kwargs...)
