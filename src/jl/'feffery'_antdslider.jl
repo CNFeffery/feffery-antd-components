@@ -28,9 +28,10 @@ Those elements have the following types:
 - `tooltipSuffix` (String; optional)
 - `tooltipVisible` (Bool; optional)
 - `value` (Real | Array of Reals; optional)
+- `vertical` (Bool; optional)
 """
 function 'feffery'_antdslider(; kwargs...)
-        available_props = Symbol[:id, :className, :defaultValue, :disabled, :key, :loading_state, :marks, :max, :min, :range, :step, :style, :tooltipPrefix, :tooltipSuffix, :tooltipVisible, :value]
+        available_props = Symbol[:id, :className, :defaultValue, :disabled, :key, :loading_state, :marks, :max, :min, :range, :step, :style, :tooltipPrefix, :tooltipSuffix, :tooltipVisible, :value, :vertical]
         wild_props = Symbol[]
         return Component("'feffery'_antdslider", "AntdSlider", "feffery_antd_components", available_props, wild_props; kwargs...)
 end

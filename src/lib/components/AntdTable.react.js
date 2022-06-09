@@ -561,7 +561,7 @@ export default class AntdTable extends Component {
                                 <a href={content.disabled ? undefined : content.href}
                                     target={content.target ? content.target : '_blank'}
                                     disabled={content.disabled}>
-                                    {columns[i]['renderOptions']['renderLinkText']}
+                                    {content.content ? content.content : columns[i]['renderOptions']['renderLinkText']}
                                 </a>
                             )
 
@@ -570,7 +570,7 @@ export default class AntdTable extends Component {
                                 <a href={content.disabled ? undefined : content.href}
                                     target={content.target ? content.target : '_blank'}
                                     disabled={content.disabled}>
-                                    {'链接🔗'}
+                                    {content.content ? content.content : '链接🔗'}
                                 </a>
                             )
                         }
@@ -1170,6 +1170,8 @@ AntdTable.propTypes = {
 
                 // link模式
                 PropTypes.exact({
+                    // 自定义链接显示的文字内容，优先级高于renderLinkText参数
+                    content: PropTypes.string,
                     // href链接
                     href: PropTypes.string,
                     // target行为属性，默认为'_blank'

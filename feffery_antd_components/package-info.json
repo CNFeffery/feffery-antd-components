@@ -1,6 +1,6 @@
 {
   "name": "feffery_antd_components",
-  "version": "0.1.12",
+  "version": "0.1.13",
   "description": "Best implementation of Antd components in Plotly Dash.",
   "repository": {
     "type": "git",
@@ -58,9 +58,9 @@
     "less-loader": "^5.0.0",
     "npm": "^6.1.0",
     "prop-types": "^15.7.2",
-    "react": "^17.0.0",
+    "react": "^16.0.0",
     "react-docgen": "^4.1.1",
-    "react-dom": "^17.0.0",
+    "react-dom": "^16.0.0",
     "style-loader": "^0.23.1",
     "styled-jsx": "^3.2.1",
     "uglifyjs-webpack-plugin": "^2.2.0",

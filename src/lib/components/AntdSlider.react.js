@@ -34,6 +34,7 @@ export default class AntdSlider extends Component {
             value,
             defaultValue,
             disabled,
+            vertical,
             range,
             min,
             max,
@@ -66,6 +67,7 @@ export default class AntdSlider extends Component {
                 value={value}
                 defaultValue={defaultValue}
                 disabled={disabled}
+                vertical={vertical}
                 range={range}
                 min={min}
                 max={max}
@@ -104,6 +106,9 @@ AntdSlider.propTypes = {
 
     // 设置是否禁用整个组件
     disabled: PropTypes.bool,
+
+    // 设置是否以垂直模式显示滑动输入条，默认为false
+    vertical: PropTypes.bool,
 
     // 是否以范围形式进行渲染
     range: PropTypes.bool,

@@ -83,6 +83,8 @@ Keyword arguments:
     `data` is a list of dicts with strings as keys and values of type
     string | number | dict with keys:
 
+    - content (string; optional)
+
     - disabled (boolean; optional)
 
     - href (string; optional)
