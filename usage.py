@@ -39,6 +39,18 @@ def spin_basic_callback_demo(nClicks):
 app.layout = html.Div(
     [
 
+        fac.AntdSegmented(
+            id='segmented-persistence-test',
+            options=[
+                {
+                    'label': f'选项{i}',
+                    'value': f'选项{i}'
+                }
+                for i in range(6)
+            ],
+            persistence=True
+        ),
+
         fac.AntdResult(
             status='loading',
             subTitle='loading状态示例',
