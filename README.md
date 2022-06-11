@@ -15,7 +15,7 @@
 
 </div>
 
-`feffery-components`计划子项目，`Plotly Dash`第三方组件库，基于`Antd`，将超多具有丰富功能的组件引入`Dash`的世界🥳，最新版本：`0.1.12`
+`feffery-components`计划子项目，`Plotly Dash`第三方组件库，基于`Antd`，将超多具有丰富功能的组件引入`Dash`的世界🥳，最新版本：`0.1.13`
 
 ## 1 最新版本安装方式
 
