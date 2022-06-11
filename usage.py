@@ -39,6 +39,34 @@ def spin_basic_callback_demo(nClicks):
 app.layout = html.Div(
     [
 
+
+        fac.AntdTable(
+            columns=[
+                {
+                    'title': '超链接示例',
+                    'dataIndex': '超链接示例',
+                    'renderOptions': {
+                        'renderType': 'link',
+                        'renderLinkText': '点击跳转'
+                    }
+                }
+            ],
+            data=[
+                {
+                    'key': i,
+                    '超链接示例': {
+                        'href': 'https://github.com/CNFeffery/feffery-antd-components',
+                        'content': f'链接{i}'
+                    }
+                }
+                for i in range(3)
+            ],
+            bordered=True,
+            style={
+                'width': '250px'
+            }
+        ),
+
         fac.AntdSegmented(
             id='segmented-persistence-test',
             options=[
