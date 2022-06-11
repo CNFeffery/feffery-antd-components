@@ -25,7 +25,7 @@ Keyword arguments:
 
     `disabledDatesStrategy` is a list of dicts with keys:
 
-    - mode (a value equal to: 'eq', 'ne', 'le', 'lt', 'ge', 'gt', 'in', 'not in', 'in-enumerate-dates', 'not-in-enumerate-dates'; optional)
+    - mode (a value equal to: 'eq', 'ne', 'le', 'lt', 'ge', 'gt', 'in', 'not-in', 'in-enumerate-dates', 'not-in-enumerate-dates'; optional)
 
     - target (a value equal to: 'day', 'month', 'quarter', 'year', 'dayOfYear', 'dayOfWeek'; optional)
 

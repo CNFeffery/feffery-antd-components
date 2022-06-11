@@ -410,7 +410,7 @@ AntdDateRangePicker.propTypes = {
             // 策略方式，可选的有'eq'（等于）、'ne'（不等于）、'le'（小于等于）、'lt'（小于）、
             // 'ge'（大于等于）、'gt'（大于）、'in'（属于）、'not-in'（不属于）、'in-enumerate-dates'（属于日期字符串枚举数组）、
             // 'not-in-enumerate-dates'（不属于日期字符串枚举数组）
-            mode: PropTypes.oneOf(['eq', 'ne', 'le', 'lt', 'ge', 'gt', 'in', 'not in', 'in-enumerate-dates', 'not-in-enumerate-dates']),
+            mode: PropTypes.oneOf(['eq', 'ne', 'le', 'lt', 'ge', 'gt', 'in', 'not-in', 'in-enumerate-dates', 'not-in-enumerate-dates']),
 
             // 策略约束目标，可选的有'dayOfYear'（按年份天数）、'dayOfWeek'（按周天数）、
             // 'day'（按日）、'month'（按月份）、'quarter'（按季度）、'year'（按年份）

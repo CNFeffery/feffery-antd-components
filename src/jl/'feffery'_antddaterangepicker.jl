@@ -16,7 +16,7 @@ Keyword arguments:
 - `disabled` (Array of Bools; optional)
 - `disabledDatesStrategy` (optional): . disabledDatesStrategy has the following type: Array of lists containing elements 'mode', 'target', 'value'.
 Those elements have the following types:
-  - `mode` (a value equal to: 'eq', 'ne', 'le', 'lt', 'ge', 'gt', 'in', 'not in', 'in-enumerate-dates', 'not-in-enumerate-dates'; optional)
+  - `mode` (a value equal to: 'eq', 'ne', 'le', 'lt', 'ge', 'gt', 'in', 'not-in', 'in-enumerate-dates', 'not-in-enumerate-dates'; optional)
   - `target` (a value equal to: 'day', 'month', 'quarter', 'year', 'dayOfYear', 'dayOfWeek'; optional)
   - `value` (Real | Array of Reals | Array of Strings; optional)s
 - `format` (String; optional)
