@@ -5457,6 +5457,31 @@
         "required": false,
         "description": ""
       },
+      "autoSize": {
+        "type": {
+          "name": "union",
+          "value": [
+            {
+              "name": "bool"
+            },
+            {
+              "name": "exact",
+              "value": {
+                "minRows": {
+                  "name": "number",
+                  "required": false
+                },
+                "maxRows": {
+                  "name": "number",
+                  "required": false
+                }
+              }
+            }
+          ]
+        },
+        "required": false,
+        "description": ""
+      },
       "setProps": {
         "type": {
           "name": "func"

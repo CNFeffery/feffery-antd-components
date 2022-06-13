@@ -45,6 +45,7 @@ export default class AntdInput extends Component {
             nClicksSearch,
             nSubmit,
             status,
+            autoSize,
             setProps,
             loading_state,
             persistence,
@@ -138,6 +139,7 @@ export default class AntdInput extends Component {
                     maxLength={maxLength}
                     showCount={showCount}
                     status={status}
+                    autoSize={autoSize}
                     onChange={onChange}
                     onPressEnter={onPressEnter}
                     persistence={persistence}
@@ -269,6 +271,15 @@ AntdInput.propTypes = {
 
     // 设置校验状态，可选的有'error'、'warning'
     status: PropTypes.oneOf(['error', 'warning']),
+
+    // 针对文本域配置自适应高度相关功能，默认为false
+    autoSize: PropTypes.oneOfType([
+        PropTypes.bool,
+        PropTypes.exact({
+            minRows: PropTypes.number,
+            maxRows: PropTypes.number
+        })
+    ]),
 
     /**
      * Dash-assigned callback that should be called to report property changes

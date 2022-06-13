@@ -13,6 +13,10 @@ Keyword arguments:
 - `addonBefore` (String; optional)
 - `allowClear` (Bool; optional)
 - `autoComplete` (a value equal to: 'off', 'on'; optional)
+- `autoSize` (optional): . autoSize has the following type: Bool | lists containing elements 'minRows', 'maxRows'.
+Those elements have the following types:
+  - `minRows` (Real; optional)
+  - `maxRows` (Real; optional)
 - `bordered` (Bool; optional)
 - `className` (String; optional)
 - `defaultValue` (String; optional)
@@ -50,7 +54,7 @@ session: window.sessionStorage, data is cleared once the browser quit.
 - `value` (String; optional)
 """
 function 'feffery'_antdinput(; kwargs...)
-        available_props = Symbol[:id, :addonAfter, :addonBefore, :allowClear, :autoComplete, :bordered, :className, :defaultValue, :disabled, :key, :loading_state, :maxLength, :md5Value, :mode, :nClicksSearch, :nSubmit, :passwordUseMd5, :persisted_props, :persistence, :persistence_type, :placeholder, :showCount, :size, :status, :style, :value]
+        available_props = Symbol[:id, :addonAfter, :addonBefore, :allowClear, :autoComplete, :autoSize, :bordered, :className, :defaultValue, :disabled, :key, :loading_state, :maxLength, :md5Value, :mode, :nClicksSearch, :nSubmit, :passwordUseMd5, :persisted_props, :persistence, :persistence_type, :placeholder, :showCount, :size, :status, :style, :value]
         wild_props = Symbol[]
         return Component("'feffery'_antdinput", "AntdInput", "feffery_antd_components", available_props, wild_props; kwargs...)
 end
