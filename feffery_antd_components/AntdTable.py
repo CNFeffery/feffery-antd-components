@@ -53,6 +53,8 @@ Keyword arguments:
 
         - renderType (a value equal to: 'link', 'ellipsis', 'mini-line', 'mini-bar', 'mini-progress', 'mini-ring-progress', 'mini-area', 'tags', 'button', 'copyable', 'status-badge', 'image', 'custom-format', 'ellipsis-copyable', 'corner-mark'; optional)
 
+        - tooltipCustomContent (string; optional)
+
     - sorter (boolean | number | string | dict | list; optional)
 
     - title (string; required)

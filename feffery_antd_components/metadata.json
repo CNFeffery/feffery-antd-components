@@ -11447,6 +11447,10 @@
                       }
                     },
                     "required": false
+                  },
+                  "tooltipCustomContent": {
+                    "name": "string",
+                    "required": false
                   }
                 },
                 "required": false
