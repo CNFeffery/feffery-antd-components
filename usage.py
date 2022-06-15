@@ -21,7 +21,11 @@ app.layout = html.Div(
                     'dataIndex': 'mini-line示例',
                     'width': '20%',
                     'renderOptions': {
-                        'renderType': 'mini-line'
+                        'renderType': 'mini-line',
+                        'tooltipCustomContent': '''(x, data) => {
+                            return `<div style="font-size: 20px;height: 200px;display: flex;align-items: center;">${data[0]?.data?.y}</ div>`;
+                        }
+                        '''
                     }
                 },
                 {
@@ -29,11 +33,7 @@ app.layout = html.Div(
                     'dataIndex': 'mini-bar示例',
                     'width': '20%',
                     'renderOptions': {
-                        'renderType': 'mini-bar',
-                        'tooltipCustomContent': '''(x, data) => {
-                            console.log({x, data})
-                            return `<font style="color:red;" >${data[0].data.y}</ font >`;
-                        }'''
+                        'renderType': 'mini-bar'
                     }
                 },
                 {
