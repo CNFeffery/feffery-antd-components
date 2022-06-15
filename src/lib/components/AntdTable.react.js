@@ -828,6 +828,15 @@ export default class AntdTable extends Component {
                             animation: miniChartAnimation,
                             smooth: true,
                         };
+                        // 检查是否设置了tooltipCustomContent参数
+                        if (columns[i]['renderOptions']?.tooltipCustomContent) {
+                            config = {
+                                ...config,
+                                tooltip: {
+                                    customContent: eval(columns[i]['renderOptions'].tooltipCustomContent)
+                                }
+                            }
+                        }
                         return <div style={{ height: miniChartHeight }}><TinyLine {...config} /></div>;
                     }
                 } else if (columns[i]['renderOptions']['renderType'] == 'mini-bar') {
@@ -838,6 +847,15 @@ export default class AntdTable extends Component {
                             data: data,
                             animation: miniChartAnimation,
                         };
+                        // 检查是否设置了tooltipCustomContent参数
+                        if (columns[i]['renderOptions']?.tooltipCustomContent) {
+                            config = {
+                                ...config,
+                                tooltip: {
+                                    customContent: eval(columns[i]['renderOptions'].tooltipCustomContent)
+                                }
+                            }
+                        }
                         return <div style={{ height: miniChartHeight }}><TinyColumn {...config} /></div>;
                     }
                 } else if (columns[i]['renderOptions']['renderType'] == 'mini-progress') {
@@ -871,6 +889,15 @@ export default class AntdTable extends Component {
                             animation: miniChartAnimation,
                             smooth: true,
                         };
+                        // 检查是否设置了tooltipCustomContent参数
+                        if (columns[i]['renderOptions']?.tooltipCustomContent) {
+                            config = {
+                                ...config,
+                                tooltip: {
+                                    customContent: eval(columns[i]['renderOptions'].tooltipCustomContent)
+                                }
+                            }
+                        }
                         return <div style={{ height: miniChartHeight }}><TinyArea {...config} /></div>;
                     }
                 }
@@ -1058,7 +1085,11 @@ AntdTable.propTypes = {
 
                     // 设置气泡卡片的cancelText内容
                     cancelText: PropTypes.string
-                })
+                }),
+
+                // 当renderType='mini-line'、'mini-area'或'mini-bar'时
+                // 用于设置渲染tooltip所使用到的自定义格式化函数字符串
+                tooltipCustomContent: PropTypes.string
             }),
 
             // 列固定对齐方式，可选项有'left'、'right'

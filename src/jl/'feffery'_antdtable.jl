@@ -16,7 +16,7 @@ Keyword arguments:
 Those elements have the following types:
   - `title` (String; required)
   - `dataIndex` (String; required)
-  - `renderOptions` (optional): . renderOptions has the following type: lists containing elements 'renderType', 'renderLinkText', 'renderButtonPopConfirmProps'.
+  - `renderOptions` (optional): . renderOptions has the following type: lists containing elements 'renderType', 'renderLinkText', 'renderButtonPopConfirmProps', 'tooltipCustomContent'.
 Those elements have the following types:
   - `renderType` (a value equal to: 'link', 'ellipsis', 'mini-line', 'mini-bar', 'mini-progress', 'mini-ring-progress', 'mini-area', 'tags', 'button', 'copyable', 'status-badge', 'image', 'custom-format', 'ellipsis-copyable', 'corner-mark'; optional)
   - `renderLinkText` (String; optional)
@@ -25,6 +25,7 @@ Those elements have the following types:
   - `title` (String; required)
   - `okText` (String; optional)
   - `cancelText` (String; optional)
+  - `tooltipCustomContent` (String; optional)
   - `fixed` (a value equal to: 'left', 'right'; optional)
   - `editable` (Bool; optional)
   - `align` (a value equal to: 'left', 'center', 'right'; optional)
