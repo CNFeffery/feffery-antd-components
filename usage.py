@@ -20,10 +20,10 @@ app.layout = html.Div(
                 fac.AntdCardGrid(
                     f'网格{i}',
                     style={
-                        # 'width': '25%',
-                        # 'display': 'flex',
-                        # 'justifyContent': 'center',
-                        # 'alignItems': 'center'
+                        'width': '25%',
+                        'display': 'flex',
+                        'justifyContent': 'center',
+                        'alignItems': 'center'
                     }
                 )
                 for i in range(10)
