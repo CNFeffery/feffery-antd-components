@@ -41,17 +41,19 @@ Keyword arguments:
 - style (dict; optional)
 
 - type (a value equal to: 'success', 'info', 'warning', 'error'; optional)"""
+    _children_props = []
+    _base_nodes = ['children']
+    _namespace = 'feffery_antd_components'
+    _type = 'AntdAlert'
     @_explicitize_args
     def __init__(self, id=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, key=Component.UNDEFINED, description=Component.UNDEFINED, message=Component.UNDEFINED, type=Component.UNDEFINED, showIcon=Component.UNDEFINED, closable=Component.UNDEFINED, messageRenderMode=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
         self._prop_names = ['id', 'className', 'closable', 'description', 'key', 'loading_state', 'message', 'messageRenderMode', 'showIcon', 'style', 'type']
-        self._type = 'AntdAlert'
-        self._namespace = 'feffery_antd_components'
         self._valid_wildcard_attributes =            []
         self.available_properties = ['id', 'className', 'closable', 'description', 'key', 'loading_state', 'message', 'messageRenderMode', 'showIcon', 'style', 'type']
         self.available_wildcard_properties =            []
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()
-        _locals.update(kwargs)  # For wildcard attrs
+        _locals.update(kwargs)  # For wildcard attrs and excess named props
         args = {k: _locals[k] for k in _explicit_args if k != 'children'}
         for k in []:
             if k not in args:

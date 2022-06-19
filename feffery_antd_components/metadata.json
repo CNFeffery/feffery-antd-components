@@ -4678,6 +4678,17 @@
         "required": false,
         "description": ""
       },
+      "nClicks": {
+        "type": {
+          "name": "number"
+        },
+        "required": false,
+        "description": "",
+        "defaultValue": {
+          "value": "0",
+          "computed": false
+        }
+      },
       "menuItems": {
         "type": {
           "name": "arrayOf",

@@ -51,17 +51,19 @@ Keyword arguments:
 - trigger (a list of or a singular dash component, string or number; optional)
 
 - width (number; optional)"""
+    _children_props = ['trigger']
+    _base_nodes = ['trigger', 'children']
+    _namespace = 'feffery_antd_components'
+    _type = 'AntdSider'
     @_explicitize_args
     def __init__(self, children=None, id=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, key=Component.UNDEFINED, collapsed=Component.UNDEFINED, collapsedWidth=Component.UNDEFINED, collapsible=Component.UNDEFINED, defaultCollapsed=Component.UNDEFINED, reverseArrow=Component.UNDEFINED, theme=Component.UNDEFINED, width=Component.UNDEFINED, trigger=Component.UNDEFINED, breakpoint=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
         self._prop_names = ['children', 'id', 'breakpoint', 'className', 'collapsed', 'collapsedWidth', 'collapsible', 'defaultCollapsed', 'key', 'loading_state', 'reverseArrow', 'style', 'theme', 'trigger', 'width']
-        self._type = 'AntdSider'
-        self._namespace = 'feffery_antd_components'
         self._valid_wildcard_attributes =            []
         self.available_properties = ['children', 'id', 'breakpoint', 'className', 'collapsed', 'collapsedWidth', 'collapsible', 'defaultCollapsed', 'key', 'loading_state', 'reverseArrow', 'style', 'theme', 'trigger', 'width']
         self.available_wildcard_properties =            []
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()
-        _locals.update(kwargs)  # For wildcard attrs
+        _locals.update(kwargs)  # For wildcard attrs and excess named props
         args = {k: _locals[k] for k in _explicit_args if k != 'children'}
         for k in []:
             if k not in args:

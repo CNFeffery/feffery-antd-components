@@ -64,17 +64,19 @@ Keyword arguments:
 - style (dict; optional)
 
 - theme (a value equal to: 'light', 'dark'; default 'light')"""
+    _children_props = []
+    _base_nodes = ['children']
+    _namespace = 'feffery_antd_components'
+    _type = 'AntdMenu'
     @_explicitize_args
     def __init__(self, id=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, key=Component.UNDEFINED, menuItems=Component.UNDEFINED, mode=Component.UNDEFINED, theme=Component.UNDEFINED, currentKey=Component.UNDEFINED, openKeys=Component.UNDEFINED, defaultOpenKeys=Component.UNDEFINED, defaultSelectedKey=Component.UNDEFINED, renderCollapsedButton=Component.UNDEFINED, loading_state=Component.UNDEFINED, persistence=Component.UNDEFINED, persisted_props=Component.UNDEFINED, persistence_type=Component.UNDEFINED, **kwargs):
         self._prop_names = ['id', 'className', 'currentKey', 'defaultOpenKeys', 'defaultSelectedKey', 'key', 'loading_state', 'menuItems', 'mode', 'openKeys', 'persisted_props', 'persistence', 'persistence_type', 'renderCollapsedButton', 'style', 'theme']
-        self._type = 'AntdMenu'
-        self._namespace = 'feffery_antd_components'
         self._valid_wildcard_attributes =            []
         self.available_properties = ['id', 'className', 'currentKey', 'defaultOpenKeys', 'defaultSelectedKey', 'key', 'loading_state', 'menuItems', 'mode', 'openKeys', 'persisted_props', 'persistence', 'persistence_type', 'renderCollapsedButton', 'style', 'theme']
         self.available_wildcard_properties =            []
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()
-        _locals.update(kwargs)  # For wildcard attrs
+        _locals.update(kwargs)  # For wildcard attrs and excess named props
         args = {k: _locals[k] for k in _explicit_args if k != 'children'}
         for k in []:
             if k not in args:
