@@ -29,6 +29,7 @@ Those elements have the following types:
   - `icon` (String; optional)
   - `key` (String; optional)
   - `isDivider` (Bool; optional)s
+- `nClicks` (Real; optional)
 - `overlayClassName` (String; optional)
 - `overlayStyle` (Dict; optional)
 - `placement` (a value equal to: 'bottomLeft', 'bottomCenter', 'bottomRight', 'topLeft', 'topCenter', 'topRight'; optional)
@@ -38,7 +39,7 @@ Those elements have the following types:
 - `visible` (Bool; optional)
 """
 function 'feffery'_antddropdown(; kwargs...)
-        available_props = Symbol[:id, :arrow, :buttonMode, :className, :clickedKey, :disabled, :key, :loading_state, :menuItems, :overlayClassName, :overlayStyle, :placement, :style, :title, :trigger, :visible]
+        available_props = Symbol[:id, :arrow, :buttonMode, :className, :clickedKey, :disabled, :key, :loading_state, :menuItems, :nClicks, :overlayClassName, :overlayStyle, :placement, :style, :title, :trigger, :visible]
         wild_props = Symbol[]
         return Component("'feffery'_antddropdown", "AntdDropdown", "feffery_antd_components", available_props, wild_props; kwargs...)
 end

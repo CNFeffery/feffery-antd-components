@@ -33,7 +33,11 @@ export default class AntdCard extends Component {
                 className={className}
                 style={style}
                 key={key}
-                bodyStyle={bodyStyle}
+                bodyStyle={{
+                    display: 'flex',
+                    flexWrap: 'wrap',
+                    ...bodyStyle
+                }}
                 headStyle={headStyle}
                 extra={
                     <a className={extraLink?.className}

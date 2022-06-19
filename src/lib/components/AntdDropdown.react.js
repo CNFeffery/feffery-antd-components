@@ -24,6 +24,7 @@ export default class AntdDropdown extends Component {
             trigger,
             visible,
             menuItems,
+            nClicks,
             setProps,
             loading_state
         } = this.props;
@@ -36,7 +37,8 @@ export default class AntdDropdown extends Component {
                 overlay={
                     <Menu onClick={(item, key, keyPath, domEvent) => (
                         setProps({
-                            clickedKey: item.key
+                            clickedKey: item.key,
+                            nClicks: nClicks + 1
                         })
                     )}>
                         {
@@ -110,6 +112,9 @@ AntdDropdown.propTypes = {
 
     // 记录最近一次被点击的下拉菜单选项对应key
     clickedKey: PropTypes.string,
+
+    // 记录总被点击次数，用于在clickedKey未更新时辅助触发回调
+    nClicks: PropTypes.number,
 
     // 用于设置下拉菜单的数据结构
     menuItems: PropTypes.arrayOf(
@@ -188,5 +193,6 @@ AntdDropdown.propTypes = {
 AntdDropdown.defaultProps = {
     visible: false,
     buttonMode: false,
-    trigger: 'hover'
+    trigger: 'hover',
+    nClicks: 0
 }

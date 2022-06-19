@@ -14,6 +14,27 @@ app = dash.Dash(
 
 app.layout = html.Div(
     [
+
+        fac.AntdCard(
+            [
+                fac.AntdCardGrid(
+                    f'网格{i}',
+                    style={
+                        # 'width': '25%',
+                        # 'display': 'flex',
+                        # 'justifyContent': 'center',
+                        # 'alignItems': 'center'
+                    }
+                )
+                for i in range(10)
+            ],
+            title='卡片网格示例',
+            style={
+                'width': '800px',
+                'marginBottom': '10px'
+            }
+        ),
+
         fac.AntdTable(
             columns=[
                 {
