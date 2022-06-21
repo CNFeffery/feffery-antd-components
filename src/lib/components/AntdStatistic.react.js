@@ -81,7 +81,10 @@ AntdStatistic.propTypes = {
     key: PropTypes.string,
 
     // 设定要显示的数值
-    value: PropTypes.number,
+    value: PropTypes.oneOfType([
+        PropTypes.number,
+        PropTypes.string
+    ]),
 
     // 设置是否为数值渲染千分位逗号标识符，默认为true
     showGroupSeparator: PropTypes.bool,

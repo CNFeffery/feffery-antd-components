@@ -10745,7 +10745,15 @@
       },
       "value": {
         "type": {
-          "name": "number"
+          "name": "union",
+          "value": [
+            {
+              "name": "number"
+            },
+            {
+              "name": "string"
+            }
+          ]
         },
         "required": false,
         "description": ""

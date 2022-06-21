@@ -54,7 +54,7 @@ Keyword arguments:
 
 - titleTooltip (string; optional)
 
-- value (number; optional)
+- value (number | string; optional)
 
 - valueStyle (dict; optional)"""
     _children_props = []
