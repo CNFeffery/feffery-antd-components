@@ -29,7 +29,7 @@ Those elements have the following types:
   - `content` (String; optional)
 - `title` (String; optional)
 - `titleTooltip` (String; optional)
-- `value` (Real; optional)
+- `value` (Real | String; optional)
 - `valueStyle` (Dict; optional)
 """
 function 'feffery'_antdstatistic(; kwargs...)
