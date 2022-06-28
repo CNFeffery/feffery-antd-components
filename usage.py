@@ -15,6 +15,100 @@ app = dash.Dash(
 app.layout = html.Div(
     [
 
+        fac.AntdTreeSelect(
+            treeDefaultExpandAll=True,
+            treeData=[
+                {
+                    "title": "Node1",
+                    "value": "0-0",
+                    "key": "0-0",
+                    "children": [
+                        {
+                            "title": "Child Node1",
+                            "value": "0-0-0",
+                            "key": "0-0-0"
+                        }
+                    ]
+                },
+                {
+                    "title": "Node2",
+                    "value": "0-1",
+                    "key": "0-1",
+                    "children": [
+                        {
+                            "title": "Child Node3",
+                            "value": "0-1-0",
+                            "key": "0-1-0"
+                        },
+                        {
+                            "title": "Child Node4",
+                            "value": "0-1-1",
+                            "key": "0-1-1"
+                        },
+                        {
+                            "title": "Child Node5",
+                            "value": "0-1-2",
+                            "key": "0-1-2"
+                        }
+                    ]
+                }
+            ],
+            style={
+                'width': '250px'
+            }
+        ),
+
+        fac.AntdTree(
+            defaultExpandAll=True,
+            treeData=[
+                {
+                    'title': '重庆市',
+                    'key': '重庆市',
+                    'children': [
+                        {
+                            'title': '渝北区',
+                            'key': '渝北区'
+                        },
+                        {
+                            'title': '江北区',
+                            'key': '江北区',
+                            'disabled': True
+                        }
+                    ]
+                },
+                {
+                    'title': '北京市',
+                    'key': '北京市',
+                    'children': [
+                        {
+                            'title': '西城区',
+                            'key': '西城区'
+                        },
+                        {
+                            'title': '东城区',
+                            'key': '东城区'
+                        }
+                    ]
+                },
+                {
+                    'title': '四川省',
+                    'key': '四川省',
+                    'children': [
+                        {
+                            'title': '成都市',
+                            'key': '成都市',
+                            'children': [
+                                {
+                                    'title': '天府新区',
+                                    'key': '天府新区'
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        ),
+
         fac.AntdCard(
             [
                 fac.AntdCardGrid(
