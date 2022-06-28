@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Tree } from 'antd';
 import AntdIcon from './AntdIcon.react';
+import { omitBy, isUndefined } from 'lodash';
 import 'antd/dist/antd.css';
 import './styles.css'
 
@@ -11,19 +12,19 @@ export default class AntdTree extends Component {
     constructor(props) {
         super(props)
         // 初始化expandedKeys
-        if (props.defaultExpandedKeys) {
+        if (props.defaultExpandedKeys && !props.expandedKeys) {
             // 当defaultExpandedKeys不为空时，为expandedKeys初始化defaultExpandedKeys对应的expandedKeys值
             props.setProps({ expandedKeys: props.defaultExpandedKeys })
         }
 
         // 初始化selectedKeys
-        if (props.defaultSelectedKeys) {
+        if (props.defaultSelectedKeys && !props.selectedKeys) {
             // 当defaultSelectedKeys不为空时，为selectedKeys初始化defaultSelectedKeys对应的selectedKeys值
             props.setProps({ selectedKeys: props.defaultSelectedKeys })
         }
 
         // 初始化selectedKeys
-        if (props.defaultCheckedKeys) {
+        if (props.defaultCheckedKeys && !props.checkedKeys) {
             // 当defaultCheckedKeys不为空时，为checkedKeys初始化defaultCheckedKeys对应的checkedKeys值
             props.setProps({ checkedKeys: props.defaultCheckedKeys })
         }
@@ -107,38 +108,45 @@ export default class AntdTree extends Component {
             setProps({ expandedKeys: e })
         }
 
-        return (<Tree
-            id={id}
-            className={className}
-            style={style}
-            key={key}
-            treeData={add_leaf_node_icon(treeData)}
-            selectedKeys={selectedKeys}
-            expandedKeys={expandedKeys}
-            checkedKeys={checkedKeys}
-            selectable={selectable}
-            checkable={checkable}
-            defaultExpandAll={defaultExpandAll}
-            defaultExpandedKeys={defaultExpandedKeys}
-            defaultExpandParent={defaultExpandParent}
-            defaultCheckedKeys={defaultCheckedKeys}
-            defaultSelectedKeys={defaultSelectedKeys}
-            checkStrictly={checkStrictly}
-            multiple={multiple}
-            showLine={showLine}
-            onSelect={listenSelect}
-            onCheck={listenCheck}
-            onExpand={listenExpand}
-            showIcon={showIcon}
-            height={height}
-            showLeafIcon={false}
-            persistence={persistence}
-            persisted_props={persisted_props}
-            persistence_type={persistence_type}
-            data-dash-is-loading={
-                (loading_state && loading_state.is_loading) || undefined
-            }
-        />
+        let config = {
+            expandedKeys
+        }
+
+        config = omitBy(config, isUndefined)
+
+        return (
+            <Tree
+                id={id}
+                className={className}
+                style={style}
+                key={key}
+                treeData={add_leaf_node_icon(treeData)}
+                selectedKeys={selectedKeys}
+                checkedKeys={checkedKeys}
+                selectable={selectable}
+                checkable={checkable}
+                defaultExpandAll={defaultExpandAll}
+                defaultExpandedKeys={defaultExpandedKeys}
+                defaultExpandParent={defaultExpandParent}
+                defaultCheckedKeys={defaultCheckedKeys}
+                defaultSelectedKeys={defaultSelectedKeys}
+                checkStrictly={checkStrictly}
+                multiple={multiple}
+                showLine={showLine}
+                onSelect={listenSelect}
+                onCheck={listenCheck}
+                onExpand={listenExpand}
+                showIcon={showIcon}
+                height={height}
+                showLeafIcon={false}
+                persistence={persistence}
+                persisted_props={persisted_props}
+                persistence_type={persistence_type}
+                data-dash-is-loading={
+                    (loading_state && loading_state.is_loading) || undefined
+                }
+                {...config}
+            />
         );
     }
 }
