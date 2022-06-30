@@ -60,6 +60,11 @@ def result_subTitle_callback(nClicks):
 
 app.layout = html.Div(
     [
+
+        fac.AntdDatePicker(allowClear=False),
+
+        fac.AntdDateRangePicker(allowClear=False),
+
         fac.AntdAlert(
             message=fac.AntdSpace(
                 [

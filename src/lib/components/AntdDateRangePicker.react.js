@@ -49,6 +49,7 @@ export default class AntdDateRangePicker extends Component {
             picker,
             format,
             showTime,
+            allowClear,
             value,
             disabledDatesStrategy,
             defaultValue,
@@ -321,6 +322,7 @@ export default class AntdDateRangePicker extends Component {
                         size={size}
                         picker={picker}
                         showTime={showTime}
+                        allowClear={allowClear}
                         disabled={(disabled && disabled.length === 2) ? disabled : undefined}
                         placeholder={(placeholder && placeholder.length === 2) ? placeholder : undefined}
                         onChange={onChange}
@@ -380,6 +382,9 @@ AntdDateRangePicker.propTypes = {
 
     // 设置是否显示时间选择界面，默认为false即不显示
     showTime: PropTypes.bool,
+
+    // 设置是否显示输入框内容清除按钮，默认为true即显示
+    allowClear: PropTypes.bool,
 
     // 空白输入下输入框的填充说明文字
     placeholder: PropTypes.arrayOf(PropTypes.string),
@@ -485,6 +490,7 @@ AntdDateRangePicker.propTypes = {
 // 设置默认参数
 AntdDateRangePicker.defaultProps = {
     showTime: false,
+    allowClear: true,
     persisted_props: ['value'],
     persistence_type: 'local',
     locale: 'zh-cn'

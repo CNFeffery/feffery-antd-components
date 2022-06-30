@@ -48,6 +48,7 @@ export default class AntdDatePicker extends Component {
             format,
             disabled,
             showTime,
+            allowClear,
             placeholder,
             disabledDatesStrategy,
             defaultPickerValue,
@@ -323,6 +324,7 @@ export default class AntdDatePicker extends Component {
                         value={value ? moment(value, format) : undefined}
                         defaultValue={defaultValue ? moment(defaultValue, format) : undefined}
                         showTime={showTime}
+                        allowClear={allowClear}
                         status={status}
                         persistence={persistence}
                         persisted_props={persisted_props}
@@ -370,7 +372,7 @@ AntdDatePicker.propTypes = {
     // 设置是否显示时间选择界面，默认为false即不显示
     showTime: PropTypes.bool,
 
-    // 设置是否显示输入框内容清除按钮，默认为true即不显示
+    // 设置是否显示输入框内容清除按钮，默认为true即显示
     allowClear: PropTypes.bool,
 
     // 设置日期面板默认的时间位置
