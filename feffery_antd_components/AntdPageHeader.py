@@ -42,11 +42,11 @@ Keyword arguments:
 
 - style (dict; optional)
 
-- subTitle (string; optional)
+- subTitle (a list of or a singular dash component, string or number; optional)
 
-- title (string; optional)"""
-    _children_props = []
-    _base_nodes = ['children']
+- title (a list of or a singular dash component, string or number; optional)"""
+    _children_props = ['title', 'subTitle']
+    _base_nodes = ['title', 'subTitle', 'children']
     _namespace = 'feffery_antd_components'
     _type = 'AntdPageHeader'
     @_explicitize_args

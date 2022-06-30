@@ -13,7 +13,7 @@ Keyword arguments:
 
 - className (string; optional)
 
-- icon (list; optional)
+- icon (a list of or a singular dash component, string or number; optional)
 
 - key (string; optional)
 
@@ -34,11 +34,11 @@ Keyword arguments:
 
 - style (dict; optional)
 
-- subTitle (string; optional)
+- subTitle (a list of or a singular dash component, string or number; optional)
 
-- title (string; optional)"""
-    _children_props = []
-    _base_nodes = ['children']
+- title (a list of or a singular dash component, string or number; optional)"""
+    _children_props = ['title', 'subTitle', 'icon']
+    _base_nodes = ['title', 'subTitle', 'icon', 'children']
     _namespace = 'feffery_antd_components'
     _type = 'AntdResult'
     @_explicitize_args

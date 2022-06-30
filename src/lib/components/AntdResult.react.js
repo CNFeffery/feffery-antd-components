@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Result } from 'antd';
 import { LoadingOutlined } from '@ant-design/icons';
-import { omit } from "ramda";
-import { renderDashComponents } from "dash-extensions-js";
 import 'antd/dist/antd.css';
 
 // 定义结果组件AntdResult，api参数参考https://ant.design/components/result-cn/
@@ -23,19 +21,13 @@ export default class AntdResult extends Component {
             setProps
         } = this.props;
 
-        // 解析非children参数传入的其他组件数组
-        let nProps = omit(
-            ["setProps", "children", "loading_state", "className"],
-            this.props
-        );
-        nProps = renderDashComponents(nProps, ["icon"]);
 
         return (
             <Result id={id}
                 className={className}
                 style={style}
                 key={key}
-                icon={icon ? nProps.icon[0] : (status === 'loading' ? <LoadingOutlined style={{ color: '#1890ff' }} /> : undefined)}
+                icon={icon || (status === 'loading' ? <LoadingOutlined style={{ color: '#1890ff' }} /> : undefined)}
                 status={status}
                 title={title}
                 subTitle={subTitle}
@@ -66,13 +58,13 @@ AntdResult.propTypes = {
     status: PropTypes.oneOf(['success', 'error', 'info', 'warning', '404', '403', '500', 'loading']),
 
     // 用于设置标题文字内容
-    title: PropTypes.string,
+    title: PropTypes.node,
 
     // 用于设置副标题文字内容
-    subTitle: PropTypes.string,
+    subTitle: PropTypes.node,
 
     // 自定义图标元素
-    icon: PropTypes.array,
+    icon: PropTypes.node,
 
     loading_state: PropTypes.shape({
         /**

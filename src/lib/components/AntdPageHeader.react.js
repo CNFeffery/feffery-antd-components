@@ -70,10 +70,10 @@ AntdPageHeader.propTypes = {
     key: PropTypes.string,
 
     // 设置标题内容
-    title: PropTypes.string,
+    title: PropTypes.node,
 
     // 设置副标题内容
-    subTitle: PropTypes.string,
+    subTitle: PropTypes.node,
 
     // 设置是否展示返回按钮，默认为true
     showBackIcon: PropTypes.bool,

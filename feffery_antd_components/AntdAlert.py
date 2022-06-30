@@ -15,7 +15,7 @@ Keyword arguments:
 
 - closable (boolean; default False)
 
-- description (boolean | number | string | dict | list; optional)
+- description (a list of or a singular dash component, string or number; optional)
 
 - key (string; optional)
 
@@ -32,7 +32,7 @@ Keyword arguments:
     - prop_name (string; optional):
         Holds which property is loading.
 
-- message (boolean | number | string | dict | list | list of boolean | number | string | dict | lists; optional)
+- message (a list of or a singular dash component, string or number; optional)
 
 - messageRenderMode (a value equal to: 'default', 'loop-text', 'marquee'; default 'default')
 
@@ -41,8 +41,8 @@ Keyword arguments:
 - style (dict; optional)
 
 - type (a value equal to: 'success', 'info', 'warning', 'error'; optional)"""
-    _children_props = []
-    _base_nodes = ['children']
+    _children_props = ['description', 'message']
+    _base_nodes = ['description', 'message', 'children']
     _namespace = 'feffery_antd_components'
     _type = 'AntdAlert'
     @_explicitize_args

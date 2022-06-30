@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { Popover } from 'antd';
 import 'antd/dist/antd.css';
 import { omit } from "ramda";
-import { renderDashComponents } from "dash-extensions-js";
 import AntdIcon from './AntdIcon.react';
 import { parseChildrenToArray } from './utils';
 
@@ -18,6 +17,7 @@ export default class AntdPopover extends Component {
             style,
             key,
             title,
+            content,
             placement,
             color,
             mouseEnterDelay,
@@ -28,13 +28,6 @@ export default class AntdPopover extends Component {
             trigger,
             loading_state
         } = this.props;
-
-        // 解析非children参数传入的其他组件数组
-        let nProps = omit(
-            ["setProps", "children", "loading_state", "className"],
-            this.props
-        );
-        nProps = renderDashComponents(nProps, ["content"]);
 
         children = parseChildrenToArray(children)
 
@@ -48,7 +41,7 @@ export default class AntdPopover extends Component {
                         {<AntdIcon icon={title.prefixIcon} />}
                         {<span style={{ marginLeft: '5px' }}>{title.content}</span>}
                     </div> : title}
-                content={nProps.content}
+                content={content}
                 placement={placement}
                 color={color}
                 mouseEnterDelay={mouseEnterDelay}
@@ -98,7 +91,7 @@ AntdPopover.propTypes = {
     ]),
 
     // 设置显示的气泡卡片内容
-    content: PropTypes.array,
+    content: PropTypes.node,
 
     // 设置气泡框的位置，可选的有'top'、'left'、'right'、'bottom'、'topLeft'
     // 、'topRight'、'bottomLeft'、'bottomRight'、'leftTop'、'leftBottom'

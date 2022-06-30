@@ -18,7 +18,7 @@ Keyword arguments:
 - `delay` (Real; optional)
 - `excludeProps` (Array of Strings; optional)
 - `includeProps` (Array of Strings; optional)
-- `indicator` (Array; optional)
+- `indicator` (a list of or a singular dash component, string or number; optional)
 - `listenPropsMode` (a value equal to: 'default', 'exclude', 'include'; optional)
 - `loading_state` (optional): . loading_state has the following type: lists containing elements 'is_loading', 'prop_name', 'component_name'.
 Those elements have the following types:

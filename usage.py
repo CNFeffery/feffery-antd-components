@@ -12,49 +12,141 @@ app = dash.Dash(
     __name__
 )
 
+
+@app.callback(
+    Output('alert-message-text', 'children'),
+    Input('alert-message-button', 'nClicks')
+)
+def alert_message_callback(nClicks):
+
+    return nClicks
+
+
+@app.callback(
+    Output('alert-description-text', 'children'),
+    Input('alert-description-button', 'nClicks')
+)
+def alert_description_callback(nClicks):
+
+    return nClicks
+
+
+@app.callback(
+    Output('popover-content-text', 'children'),
+    Input('popover-content-button', 'nClicks')
+)
+def popover_content_callback(nClicks):
+
+    return nClicks
+
+
+@app.callback(
+    Output('result-title-text', 'children'),
+    Input('result-title-button', 'nClicks')
+)
+def result_title_callback(nClicks):
+
+    return nClicks
+
+
+@app.callback(
+    Output('result-subTitle-text', 'children'),
+    Input('result-subTitle-button', 'nClicks')
+)
+def result_subTitle_callback(nClicks):
+
+    return nClicks
+
+
 app.layout = html.Div(
     [
+        fac.AntdAlert(
+            message=fac.AntdSpace(
+                [
+                    fac.AntdButton(
+                        'message测试',
+                        id='alert-message-button',
+                        type='primary'
+                    ),
+                    fac.AntdText(id='alert-message-text')
+                ]
+            ),
+            description=fac.AntdSpace(
+                [
+                    fac.AntdButton(
+                        'description测试',
+                        id='alert-description-button',
+                        type='primary'
+                    ),
+                    fac.AntdText(id='alert-description-text')
+                ]
+            ),
+            showIcon=True
+        ),
 
-        fac.AntdTreeSelect(
-            treeDefaultExpandAll=True,
-            treeData=[
-                {
-                    "title": "Node1",
-                    "value": "0-0",
-                    "key": "0-0",
-                    "children": [
-                        {
-                            "title": "Child Node1",
-                            "value": "0-0-0",
-                            "key": "0-0-0"
-                        }
-                    ]
-                },
-                {
-                    "title": "Node2",
-                    "value": "0-1",
-                    "key": "0-1",
-                    "children": [
-                        {
-                            "title": "Child Node3",
-                            "value": "0-1-0",
-                            "key": "0-1-0"
-                        },
-                        {
-                            "title": "Child Node4",
-                            "value": "0-1-1",
-                            "key": "0-1-1"
-                        },
-                        {
-                            "title": "Child Node5",
-                            "value": "0-1-2",
-                            "key": "0-1-2"
-                        }
-                    ]
+        fac.AntdPageHeader(
+            title=fac.AntdTitle(
+                'title测试',
+                level=3,
+                copyable=True
+            ),
+            subTitle=fac.AntdText(
+                'subTitle测试',
+                copyable=True
+            )
+        ),
+
+        fac.AntdPopover(
+            fac.AntdButton(
+                'popover测试',
+                type='primary'
+            ),
+            title='popover测试',
+            content=fac.AntdSpace(
+                [
+                    fac.AntdButton(
+                        'content测试',
+                        id='popover-content-button',
+                        type='primary'
+                    ),
+                    fac.AntdText(id='popover-content-text')
+                ]
+            )
+        ),
+
+        fac.AntdResult(
+            icon=fac.AntdIcon(
+                icon='antd-bulb',
+                style={
+                    'fontSize': '80px',
+                    'color': '#1890ff'
                 }
-            ],
+            ),
+            title=fac.AntdSpace(
+                [
+                    fac.AntdButton(
+                        'title测试',
+                        id='result-title-button',
+                        type='primary'
+                    ),
+                    fac.AntdText(id='result-title-text')
+                ]
+            ),
+            subTitle=fac.AntdSpace(
+                [
+                    fac.AntdButton(
+                        'subTitle测试',
+                        id='result-subTitle-button',
+                        type='primary'
+                    ),
+                    fac.AntdText(id='result-subTitle-text')
+                ]
+            )
+        ),
+
+        html.Div(
             style={
-                'width': '250px'
+                'height': '200px'
             }
         ),
 

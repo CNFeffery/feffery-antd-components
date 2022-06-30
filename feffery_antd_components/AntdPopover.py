@@ -19,7 +19,7 @@ Keyword arguments:
 
 - color (string; optional)
 
-- content (list; optional)
+- content (a list of or a singular dash component, string or number; optional)
 
 - key (string; optional)
 
@@ -57,8 +57,8 @@ Keyword arguments:
     - prefixIcon (string; optional)
 
 - trigger (a value equal to: 'hover', 'focus', 'click' | list of a value equal to: 'hover', 'focus', 'click's; optional)"""
-    _children_props = []
-    _base_nodes = ['children']
+    _children_props = ['content']
+    _base_nodes = ['content', 'children']
     _namespace = 'feffery_antd_components'
     _type = 'AntdPopover'
     @_explicitize_args
