@@ -150,8 +150,8 @@ app.layout = html.Div(
             }
         ),
 
+
         fac.AntdTree(
-            defaultExpandAll=True,
             treeData=[
                 {
                     'title': '重庆市',
@@ -163,8 +163,7 @@ app.layout = html.Div(
                         },
                         {
                             'title': '江北区',
-                            'key': '江北区',
-                            'disabled': True
+                            'key': '江北区'
                         }
                     ]
                 },
@@ -198,91 +197,11 @@ app.layout = html.Div(
                         }
                     ]
                 }
-            ]
-        ),
-
-        fac.AntdCard(
-            [
-                fac.AntdCardGrid(
-                    f'网格{i}',
-                    style={
-                        'width': '25%',
-                        'display': 'flex',
-                        'justifyContent': 'center',
-                        'alignItems': 'center'
-                    }
-                )
-                for i in range(10)
             ],
-            title='卡片网格示例',
-            style={
-                'width': '800px',
-                'marginBottom': '10px'
-            }
-        ),
-
-        fac.AntdTable(
-            columns=[
-                {
-                    'title': 'mini-line示例',
-                    'dataIndex': 'mini-line示例',
-                    'width': '20%',
-                    'renderOptions': {
-                        'renderType': 'mini-line',
-                        'tooltipCustomContent': '''(x, data) => {
-                            return `<div style="font-size: 20px;height: 200px;display: flex;align-items: center;">${data[0]?.data?.y}</ div>`;
-                        }
-                        '''
-                    }
-                },
-                {
-                    'title': 'mini-bar示例',
-                    'dataIndex': 'mini-bar示例',
-                    'width': '20%',
-                    'renderOptions': {
-                        'renderType': 'mini-bar'
-                    }
-                },
-                {
-                    # 注意，mini-progress模式接受的输入应当在0到1之间
-                    'title': 'mini-progress示例',
-                    'dataIndex': 'mini-progress示例',
-                    'width': '20%',
-                    'renderOptions': {
-                        'renderType': 'mini-progress'
-                    }
-                },
-                {
-                    # 注意，mini-ring-progress模式接受的输入应当在0到1之间
-                    'title': 'mini-ring-progress示例',
-                    'dataIndex': 'mini-ring-progress示例',
-                    'width': '20%',
-                    'renderOptions': {
-                        'renderType': 'mini-ring-progress'
-                    }
-                },
-                {
-                    'title': 'mini-area示例',
-                    'dataIndex': 'mini-area示例',
-                    'width': '20%',
-                    'renderOptions': {
-                        'renderType': 'mini-area'
-                    }
-                }
-            ],
-            data=[
-                {
-                    'key': i,
-                    'mini-line示例': np.random.randint(1, 20, 10),
-                    'mini-bar示例': np.random.randint(1, 20, 10),
-                    'mini-progress示例': np.random.rand(),
-                    'mini-ring-progress示例': np.random.rand(),
-                    'mini-area示例': np.random.randint(1, 20, 10)
-                }
-                for i in range(3)
-            ],
-            miniChartHeight=60,
-            bordered=True
+            checkable=True,
+            selectable=False,
+            checkStrictly=True,
+            defaultExpandAll=True
         )
     ],
     style={
