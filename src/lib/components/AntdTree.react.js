@@ -101,7 +101,18 @@ export default class AntdTree extends Component {
         }
 
         const listenCheck = (checkedKeys, e) => {
-            setProps({ checkedKeys: checkedKeys, halfCheckedKeys: e.halfCheckedKeys })
+            console.log({ checkedKeys, e })
+            if (checkStrictly) {
+                setProps({
+                    checkedKeys: checkedKeys.checked,
+                    halfCheckedKeys: checkedKeys.halfChecked
+                })
+            } else {
+                setProps({
+                    checkedKeys: checkedKeys,
+                    halfCheckedKeys: e.halfCheckedKeys
+                })
+            }
         }
 
         const listenExpand = (e) => {
