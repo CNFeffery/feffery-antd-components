@@ -3632,6 +3632,17 @@
           "computed": false
         }
       },
+      "allowClear": {
+        "type": {
+          "name": "bool"
+        },
+        "required": false,
+        "description": "",
+        "defaultValue": {
+          "value": "true",
+          "computed": false
+        }
+      },
       "placeholder": {
         "type": {
           "name": "arrayOf",
