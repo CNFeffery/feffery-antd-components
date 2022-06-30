@@ -25,7 +25,7 @@ Keyword arguments:
 
 - includeProps (list of strings; optional)
 
-- indicator (list; optional)
+- indicator (a list of or a singular dash component, string or number; optional)
 
 - listenPropsMode (a value equal to: 'default', 'exclude', 'include'; default 'default')
 
@@ -51,8 +51,8 @@ Keyword arguments:
 - text (string; optional)
 
 - wrapperClassName (string; optional)"""
-    _children_props = []
-    _base_nodes = ['children']
+    _children_props = ['indicator']
+    _base_nodes = ['indicator', 'children']
     _namespace = 'feffery_antd_components'
     _type = 'AntdSpin'
     @_explicitize_args

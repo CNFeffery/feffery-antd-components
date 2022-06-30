@@ -25,8 +25,8 @@ Those elements have the following types:
   - `component_name` (String; optional): Holds the name of the component that is loading
 - `showBackIcon` (Bool; optional)
 - `style` (Dict; optional)
-- `subTitle` (String; optional)
-- `title` (String; optional)
+- `subTitle` (a list of or a singular dash component, string or number; optional)
+- `title` (a list of or a singular dash component, string or number; optional)
 """
 function 'feffery'_antdpageheader(; kwargs...)
         available_props = Symbol[:children, :id, :backClicks, :className, :ghost, :historyBackDisabled, :key, :loading_state, :showBackIcon, :style, :subTitle, :title]

@@ -430,25 +430,14 @@
       },
       "description": {
         "type": {
-          "name": "any"
+          "name": "node"
         },
         "required": false,
         "description": ""
       },
       "message": {
         "type": {
-          "name": "union",
-          "value": [
-            {
-              "name": "any"
-            },
-            {
-              "name": "arrayOf",
-              "value": {
-                "name": "any"
-              }
-            }
-          ]
+          "name": "node"
         },
         "required": false,
         "description": ""
@@ -6882,14 +6871,14 @@
       },
       "title": {
         "type": {
-          "name": "string"
+          "name": "node"
         },
         "required": false,
         "description": ""
       },
       "subTitle": {
         "type": {
-          "name": "string"
+          "name": "node"
         },
         "required": false,
         "description": ""
@@ -8087,7 +8076,7 @@
       },
       "content": {
         "type": {
-          "name": "array"
+          "name": "node"
         },
         "required": false,
         "description": ""
@@ -8997,21 +8986,21 @@
       },
       "title": {
         "type": {
-          "name": "string"
+          "name": "node"
         },
         "required": false,
         "description": ""
       },
       "subTitle": {
         "type": {
-          "name": "string"
+          "name": "node"
         },
         "required": false,
         "description": ""
       },
       "icon": {
         "type": {
-          "name": "array"
+          "name": "node"
         },
         "required": false,
         "description": ""
@@ -10672,7 +10661,7 @@
       },
       "indicator": {
         "type": {
-          "name": "array"
+          "name": "node"
         },
         "required": false,
         "description": ""

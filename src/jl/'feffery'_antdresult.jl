@@ -10,7 +10,7 @@ An AntdResult component.
 Keyword arguments:
 - `id` (String; optional)
 - `className` (String; optional)
-- `icon` (Array; optional)
+- `icon` (a list of or a singular dash component, string or number; optional)
 - `key` (String; optional)
 - `loading_state` (optional): . loading_state has the following type: lists containing elements 'is_loading', 'prop_name', 'component_name'.
 Those elements have the following types:
@@ -19,8 +19,8 @@ Those elements have the following types:
   - `component_name` (String; optional): Holds the name of the component that is loading
 - `status` (a value equal to: 'success', 'error', 'info', 'warning', '404', '403', '500', 'loading'; optional)
 - `style` (Dict; optional)
-- `subTitle` (String; optional)
-- `title` (String; optional)
+- `subTitle` (a list of or a singular dash component, string or number; optional)
+- `title` (a list of or a singular dash component, string or number; optional)
 """
 function 'feffery'_antdresult(; kwargs...)
         available_props = Symbol[:id, :className, :icon, :key, :loading_state, :status, :style, :subTitle, :title]

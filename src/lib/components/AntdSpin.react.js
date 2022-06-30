@@ -3,8 +3,6 @@ import PropTypes from 'prop-types';
 import { Spin } from 'antd';
 import 'antd/dist/antd.css';
 import './styles.css'
-import { omit } from "ramda";
-import { renderDashComponents } from "dash-extensions-js";
 import { parseChildrenToArray } from './utils';
 
 // 定义加载动画组件AntdSpin，api参数参考https://ant.design/components/spin-cn/
@@ -29,13 +27,6 @@ const AntdSpin = (props) => {
         indicator,
         setProps
     } = props;
-
-    // 解析非children参数传入的其他组件数组
-    let nProps = omit(
-        ["setProps", "children", "loading_state", "className"],
-        props
-    );
-    nProps = renderDashComponents(nProps, ["indicator"]);
 
     children = parseChildrenToArray(children)
 
@@ -91,7 +82,7 @@ const AntdSpin = (props) => {
         size={size}
         delay={delay}
         tip={text}
-        indicator={indicator ? nProps.indicator[0] : undefined}
+        indicator={indicator}
         data-dash-is-loading={
             (loading_state && loading_state.is_loading) || undefined
         } > {children} </Spin>
@@ -146,7 +137,7 @@ AntdSpin.propTypes = {
     includeProps: PropTypes.arrayOf(PropTypes.string),
 
     // 传入作为自定义指示符的组件
-    indicator: PropTypes.array,
+    indicator: PropTypes.node,
 
     loading_state: PropTypes.shape({
         /**
