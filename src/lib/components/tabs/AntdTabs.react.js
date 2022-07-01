@@ -25,6 +25,8 @@ export default class AntdTabs extends Component {
         let {
             id,
             children,
+            tabBarLeftExtraContent,
+            tabBarRightExtraContent,
             className,
             style,
             key,
@@ -33,6 +35,10 @@ export default class AntdTabs extends Component {
             size,
             tabPosition,
             type,
+            centered,
+            tabBarGutter,
+            inkBarAnimated,
+            tabPaneAnimated,
             setProps,
             persistence,
             persisted_props,
@@ -130,6 +136,16 @@ export default class AntdTabs extends Component {
                 size={size}
                 tabPosition={tabPosition}
                 type={type}
+                centered={centered}
+                tabBarGutter={tabBarGutter}
+                tabBarExtraContent={{
+                    left: tabBarLeftExtraContent,
+                    right: tabBarRightExtraContent
+                }}
+                animated={{
+                    inkBar: inkBarAnimated,
+                    tabPane: tabPaneAnimated
+                }}
                 hideAdd={true}
                 onChange={onChange}
                 onEdit={onEdit}
@@ -155,6 +171,12 @@ AntdTabs.propTypes = {
      */
     children: PropTypes.node,
 
+    // 用于设置第一方位额外元素
+    tabBarLeftExtraContent: PropTypes.node,
+
+    // 用于设置第二方位额外元素
+    tabBarRightExtraContent: PropTypes.node,
+
     // css类名
     className: PropTypes.string,
 
@@ -175,6 +197,18 @@ AntdTabs.propTypes = {
 
     // 设置标签页渲染类型，可选的有'line'、'card'和'editable-card'，默认为'line'
     type: PropTypes.oneOf(['line', 'card', 'editable-card']),
+
+    // 设置是否开启居中布局，默认为false
+    centered: PropTypes.bool,
+
+    // 设置标签卡之间的像素间距
+    tabBarGutter: PropTypes.number,
+
+    // 设置标签卡切换是否渲染动画效果，默认为true
+    inkBarAnimated: PropTypes.bool,
+
+    // 设置标签内容切换是否渲染动画效果，默认为false
+    tabPaneAnimated: PropTypes.bool,
 
     // 对应当前被选中的标签页面板对应key
     activeKey: PropTypes.string,
@@ -236,5 +270,7 @@ AntdTabs.propTypes = {
 // 设置默认参数
 AntdTabs.defaultProps = {
     persisted_props: ['activeKey'],
-    persistence_type: 'local'
+    persistence_type: 'local',
+    inkBarAnimated: true,
+    tabPaneAnimated: false
 }

@@ -10,6 +10,7 @@ export default class AntdEmpty extends Component {
         // 取得必要属性或参数
         let {
             id,
+            children,
             className,
             style,
             key,
@@ -32,7 +33,7 @@ export default class AntdEmpty extends Component {
                     imageStyle={imageStyle}
                     data-dash-is-loading={
                         (loading_state && loading_state.is_loading) || undefined
-                    } />
+                    } >{children}</Empty>
             </ConfigProvider>
         );
     }
@@ -42,6 +43,8 @@ export default class AntdEmpty extends Component {
 AntdEmpty.propTypes = {
     // 组件id
     id: PropTypes.string,
+
+    children: PropTypes.node,
 
     // css类名
     className: PropTypes.string,
@@ -55,8 +58,8 @@ AntdEmpty.propTypes = {
     // 设置语言环境，可选的有'zh-cn'、'en-us'
     locale: PropTypes.oneOf(['zh-cn', 'en-us']),
 
-    // 设置描述文字内容
-    description: PropTypes.string,
+    // 设置描述信息内容
+    description: PropTypes.node,
 
     // 设置自定义图片的url地址，默认为内建图片
     image: PropTypes.string,

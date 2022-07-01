@@ -15,7 +15,7 @@ Keyword arguments:
 
 - className (string; optional)
 
-- description (string; optional)
+- description (a list of or a singular dash component, string or number; optional)
 
 - duration (number; optional)
 
@@ -34,7 +34,7 @@ Keyword arguments:
     - prop_name (string; optional):
         Holds which property is loading.
 
-- message (string; optional)
+- message (a list of or a singular dash component, string or number; optional)
 
 - placement (a value equal to: 'topLeft', 'topRight', 'bottomLeft', 'bottomRight'; optional)
 
@@ -43,12 +43,12 @@ Keyword arguments:
 - top (number; optional)
 
 - type (a value equal to: 'default', 'success', 'error', 'info', 'warning'; default 'default')"""
-    _children_props = []
-    _base_nodes = ['children']
+    _children_props = ['message', 'description']
+    _base_nodes = ['message', 'description', 'children']
     _namespace = 'feffery_antd_components'
     _type = 'AntdNotification'
     @_explicitize_args
-    def __init__(self, id=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, key=Component.UNDEFINED, loading_state=Component.UNDEFINED, message=Component.UNDEFINED, description=Component.UNDEFINED, type=Component.UNDEFINED, placement=Component.UNDEFINED, top=Component.UNDEFINED, bottom=Component.UNDEFINED, duration=Component.UNDEFINED, **kwargs):
+    def __init__(self, id=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, key=Component.UNDEFINED, message=Component.UNDEFINED, description=Component.UNDEFINED, type=Component.UNDEFINED, placement=Component.UNDEFINED, top=Component.UNDEFINED, bottom=Component.UNDEFINED, duration=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
         self._prop_names = ['id', 'bottom', 'className', 'description', 'duration', 'key', 'loading_state', 'message', 'placement', 'style', 'top', 'type']
         self._valid_wildcard_attributes =            []
         self.available_properties = ['id', 'bottom', 'className', 'description', 'duration', 'key', 'loading_state', 'message', 'placement', 'style', 'top', 'type']

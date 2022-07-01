@@ -9,11 +9,13 @@ class AntdEmpty(Component):
 
 Keyword arguments:
 
+- children (a list of or a singular dash component, string or number; optional)
+
 - id (string; optional)
 
 - className (string; optional)
 
-- description (string; optional)
+- description (a list of or a singular dash component, string or number; optional)
 
 - image (string; optional)
 
@@ -37,15 +39,15 @@ Keyword arguments:
 - locale (a value equal to: 'zh-cn', 'en-us'; default 'zh-cn')
 
 - style (dict; optional)"""
-    _children_props = []
-    _base_nodes = ['children']
+    _children_props = ['description']
+    _base_nodes = ['description', 'children']
     _namespace = 'feffery_antd_components'
     _type = 'AntdEmpty'
     @_explicitize_args
-    def __init__(self, id=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, key=Component.UNDEFINED, locale=Component.UNDEFINED, description=Component.UNDEFINED, image=Component.UNDEFINED, imageStyle=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
-        self._prop_names = ['id', 'className', 'description', 'image', 'imageStyle', 'key', 'loading_state', 'locale', 'style']
+    def __init__(self, children=None, id=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, key=Component.UNDEFINED, locale=Component.UNDEFINED, description=Component.UNDEFINED, image=Component.UNDEFINED, imageStyle=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
+        self._prop_names = ['children', 'id', 'className', 'description', 'image', 'imageStyle', 'key', 'loading_state', 'locale', 'style']
         self._valid_wildcard_attributes =            []
-        self.available_properties = ['id', 'className', 'description', 'image', 'imageStyle', 'key', 'loading_state', 'locale', 'style']
+        self.available_properties = ['children', 'id', 'className', 'description', 'image', 'imageStyle', 'key', 'loading_state', 'locale', 'style']
         self.available_wildcard_properties =            []
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()
@@ -55,4 +57,4 @@ Keyword arguments:
             if k not in args:
                 raise TypeError(
                     'Required argument `' + k + '` was not specified.')
-        super(AntdEmpty, self).__init__(**args)
+        super(AntdEmpty, self).__init__(children=children, **args)
