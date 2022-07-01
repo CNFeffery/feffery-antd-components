@@ -510,6 +510,13 @@
           "computed": false
         }
       },
+      "action": {
+        "type": {
+          "name": "node"
+        },
+        "required": false,
+        "description": ""
+      },
       "setProps": {
         "type": {
           "name": "func"
@@ -4587,6 +4594,13 @@
         "required": false,
         "description": ""
       },
+      "extra": {
+        "type": {
+          "name": "node"
+        },
+        "required": false,
+        "description": ""
+      },
       "loading_state": {
         "type": {
           "name": "shape",
@@ -4867,6 +4881,13 @@
         "required": false,
         "description": ""
       },
+      "children": {
+        "type": {
+          "name": "node"
+        },
+        "required": false,
+        "description": ""
+      },
       "className": {
         "type": {
           "name": "string"
@@ -4911,7 +4932,7 @@
       },
       "description": {
         "type": {
-          "name": "string"
+          "name": "node"
         },
         "required": false,
         "description": ""
@@ -6615,6 +6636,17 @@
         "required": false,
         "description": ""
       },
+      "okClickClose": {
+        "type": {
+          "name": "bool"
+        },
+        "required": false,
+        "description": "",
+        "defaultValue": {
+          "value": "true",
+          "computed": false
+        }
+      },
       "okCounts": {
         "type": {
           "name": "number"
@@ -6714,40 +6746,16 @@
         "required": false,
         "description": ""
       },
-      "loading_state": {
-        "type": {
-          "name": "shape",
-          "value": {
-            "is_loading": {
-              "name": "bool",
-              "description": "Determines if the component is loading or not",
-              "required": false
-            },
-            "prop_name": {
-              "name": "string",
-              "description": "Holds which property is loading",
-              "required": false
-            },
-            "component_name": {
-              "name": "string",
-              "description": "Holds the name of the component that is loading",
-              "required": false
-            }
-          }
-        },
-        "required": false,
-        "description": ""
-      },
       "message": {
         "type": {
-          "name": "string"
+          "name": "node"
         },
         "required": false,
         "description": ""
       },
       "description": {
         "type": {
-          "name": "string"
+          "name": "node"
         },
         "required": false,
         "description": ""
@@ -6827,6 +6835,30 @@
       "duration": {
         "type": {
           "name": "number"
+        },
+        "required": false,
+        "description": ""
+      },
+      "loading_state": {
+        "type": {
+          "name": "shape",
+          "value": {
+            "is_loading": {
+              "name": "bool",
+              "description": "Determines if the component is loading or not",
+              "required": false
+            },
+            "prop_name": {
+              "name": "string",
+              "description": "Holds which property is loading",
+              "required": false
+            },
+            "component_name": {
+              "name": "string",
+              "description": "Holds the name of the component that is loading",
+              "required": false
+            }
+          }
         },
         "required": false,
         "description": ""
@@ -7773,7 +7805,7 @@
       },
       "title": {
         "type": {
-          "name": "string"
+          "name": "node"
         },
         "required": false,
         "description": ""
@@ -13352,7 +13384,7 @@
       },
       "title": {
         "type": {
-          "name": "string"
+          "name": "node"
         },
         "required": false,
         "description": ""
@@ -17204,6 +17236,20 @@
         "required": false,
         "description": "The content of the tab - will only be displayed if this tab is selected"
       },
+      "tabBarLeftExtraContent": {
+        "type": {
+          "name": "node"
+        },
+        "required": false,
+        "description": ""
+      },
+      "tabBarRightExtraContent": {
+        "type": {
+          "name": "node"
+        },
+        "required": false,
+        "description": ""
+      },
       "className": {
         "type": {
           "name": "string"
@@ -17298,6 +17344,42 @@
         },
         "required": false,
         "description": ""
+      },
+      "centered": {
+        "type": {
+          "name": "bool"
+        },
+        "required": false,
+        "description": ""
+      },
+      "tabBarGutter": {
+        "type": {
+          "name": "number"
+        },
+        "required": false,
+        "description": ""
+      },
+      "inkBarAnimated": {
+        "type": {
+          "name": "bool"
+        },
+        "required": false,
+        "description": "",
+        "defaultValue": {
+          "value": "true",
+          "computed": false
+        }
+      },
+      "tabPaneAnimated": {
+        "type": {
+          "name": "bool"
+        },
+        "required": false,
+        "description": "",
+        "defaultValue": {
+          "value": "false",
+          "computed": false
+        }
       },
       "activeKey": {
         "type": {

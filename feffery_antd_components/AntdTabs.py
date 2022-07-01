@@ -17,9 +17,13 @@ Keyword arguments:
 
 - activeKey (string; optional)
 
+- centered (boolean; optional)
+
 - className (string; optional)
 
 - defaultActiveKey (string; optional)
+
+- inkBarAnimated (boolean; default True)
 
 - key (string; optional)
 
@@ -61,18 +65,26 @@ Keyword arguments:
 
 - style (dict; optional)
 
+- tabBarGutter (number; optional)
+
+- tabBarLeftExtraContent (a list of or a singular dash component, string or number; optional)
+
+- tabBarRightExtraContent (a list of or a singular dash component, string or number; optional)
+
+- tabPaneAnimated (boolean; default False)
+
 - tabPosition (a value equal to: 'top', 'left', 'right', 'bottom'; optional)
 
 - type (a value equal to: 'line', 'card', 'editable-card'; optional)"""
-    _children_props = []
-    _base_nodes = ['children']
+    _children_props = ['tabBarLeftExtraContent', 'tabBarRightExtraContent']
+    _base_nodes = ['tabBarLeftExtraContent', 'tabBarRightExtraContent', 'children']
     _namespace = 'feffery_antd_components'
     _type = 'AntdTabs'
     @_explicitize_args
-    def __init__(self, children=None, id=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, key=Component.UNDEFINED, defaultActiveKey=Component.UNDEFINED, tabPosition=Component.UNDEFINED, size=Component.UNDEFINED, type=Component.UNDEFINED, activeKey=Component.UNDEFINED, latestDeletePane=Component.UNDEFINED, loading_state=Component.UNDEFINED, persistence=Component.UNDEFINED, persisted_props=Component.UNDEFINED, persistence_type=Component.UNDEFINED, **kwargs):
-        self._prop_names = ['children', 'id', 'activeKey', 'className', 'defaultActiveKey', 'key', 'latestDeletePane', 'loading_state', 'persisted_props', 'persistence', 'persistence_type', 'size', 'style', 'tabPosition', 'type']
+    def __init__(self, children=None, id=Component.UNDEFINED, tabBarLeftExtraContent=Component.UNDEFINED, tabBarRightExtraContent=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, key=Component.UNDEFINED, defaultActiveKey=Component.UNDEFINED, tabPosition=Component.UNDEFINED, size=Component.UNDEFINED, type=Component.UNDEFINED, centered=Component.UNDEFINED, tabBarGutter=Component.UNDEFINED, inkBarAnimated=Component.UNDEFINED, tabPaneAnimated=Component.UNDEFINED, activeKey=Component.UNDEFINED, latestDeletePane=Component.UNDEFINED, loading_state=Component.UNDEFINED, persistence=Component.UNDEFINED, persisted_props=Component.UNDEFINED, persistence_type=Component.UNDEFINED, **kwargs):
+        self._prop_names = ['children', 'id', 'activeKey', 'centered', 'className', 'defaultActiveKey', 'inkBarAnimated', 'key', 'latestDeletePane', 'loading_state', 'persisted_props', 'persistence', 'persistence_type', 'size', 'style', 'tabBarGutter', 'tabBarLeftExtraContent', 'tabBarRightExtraContent', 'tabPaneAnimated', 'tabPosition', 'type']
         self._valid_wildcard_attributes =            []
-        self.available_properties = ['children', 'id', 'activeKey', 'className', 'defaultActiveKey', 'key', 'latestDeletePane', 'loading_state', 'persisted_props', 'persistence', 'persistence_type', 'size', 'style', 'tabPosition', 'type']
+        self.available_properties = ['children', 'id', 'activeKey', 'centered', 'className', 'defaultActiveKey', 'inkBarAnimated', 'key', 'latestDeletePane', 'loading_state', 'persisted_props', 'persistence', 'persistence_type', 'size', 'style', 'tabBarGutter', 'tabBarLeftExtraContent', 'tabBarRightExtraContent', 'tabPaneAnimated', 'tabPosition', 'type']
         self.available_wildcard_properties =            []
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()

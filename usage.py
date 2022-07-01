@@ -12,202 +12,110 @@ app = dash.Dash(
     __name__
 )
 
-
-@app.callback(
-    Output('alert-message-text', 'children'),
-    Input('alert-message-button', 'nClicks')
-)
-def alert_message_callback(nClicks):
-
-    return nClicks
-
-
-@app.callback(
-    Output('alert-description-text', 'children'),
-    Input('alert-description-button', 'nClicks')
-)
-def alert_description_callback(nClicks):
-
-    return nClicks
-
-
-@app.callback(
-    Output('popover-content-text', 'children'),
-    Input('popover-content-button', 'nClicks')
-)
-def popover_content_callback(nClicks):
-
-    return nClicks
-
-
-@app.callback(
-    Output('result-title-text', 'children'),
-    Input('result-title-button', 'nClicks')
-)
-def result_title_callback(nClicks):
-
-    return nClicks
-
-
-@app.callback(
-    Output('result-subTitle-text', 'children'),
-    Input('result-subTitle-button', 'nClicks')
-)
-def result_subTitle_callback(nClicks):
-
-    return nClicks
-
-
 app.layout = html.Div(
     [
 
-        fac.AntdDatePicker(allowClear=False),
-
-        fac.AntdDateRangePicker(allowClear=False),
-
-        fac.AntdAlert(
-            message=fac.AntdSpace(
-                [
-                    fac.AntdButton(
-                        'message测试',
-                        id='alert-message-button',
-                        type='primary'
-                    ),
-                    fac.AntdText(id='alert-message-text')
-                ]
-            ),
-            description=fac.AntdSpace(
-                [
-                    fac.AntdButton(
-                        'description测试',
-                        id='alert-description-button',
-                        type='primary'
-                    ),
-                    fac.AntdText(id='alert-description-text')
-                ]
-            ),
-            showIcon=True
-        ),
-
-        fac.AntdPageHeader(
-            title=fac.AntdTitle(
-                'title测试',
-                level=3,
-                copyable=True
-            ),
-            subTitle=fac.AntdText(
-                'subTitle测试',
-                copyable=True
-            )
-        ),
-
-        fac.AntdPopover(
+        fac.AntdPopconfirm(
             fac.AntdButton(
-                'popover测试',
+                '点击触发',
                 type='primary'
             ),
-            title='popover测试',
-            content=fac.AntdSpace(
+            title=html.Span(
                 [
-                    fac.AntdButton(
-                        'content测试',
-                        id='popover-content-button',
-                        type='primary'
-                    ),
-                    fac.AntdText(id='popover-content-text')
+                    fac.AntdText('气泡确认', strong=True),
+                    fac.AntdText('测试')
                 ]
             )
         ),
 
-        fac.AntdResult(
-            icon=fac.AntdIcon(
-                icon='antd-bulb',
-                style={
-                    'fontSize': '80px',
-                    'color': '#1890ff'
-                }
-            ),
-            title=fac.AntdSpace(
+        fac.AntdEmpty(
+            fac.AntdButton('children测试', type='primary'),
+            description=fac.AntdButton('description测试', type='primary'),
+        ),
+
+        fac.AntdAlert(
+            type="success",
+            showIcon=True,
+            message="This is a success alert",
+            description="This is a description",
+            closable=True,
+            action=fac.AntdSpace(
                 [
-                    fac.AntdButton(
-                        'title测试',
-                        id='result-title-button',
-                        type='primary'
-                    ),
-                    fac.AntdText(id='result-title-text')
-                ]
-            ),
-            subTitle=fac.AntdSpace(
-                [
-                    fac.AntdButton(
-                        'subTitle测试',
-                        id='result-subTitle-button',
-                        type='primary'
-                    ),
-                    fac.AntdText(id='result-subTitle-text')
-                ]
+                    fac.AntdButton('接受', type="primary"),
+                    fac.AntdButton('拒绝', type="primary", danger=True),
+                ],
+                direction="vertical",
             )
         ),
 
-        html.Div(
-            style={
-                'height': '200px'
-            }
-        ),
-
-
-        fac.AntdTree(
-            treeData=[
-                {
-                    'title': '重庆市',
-                    'key': '重庆市',
-                    'children': [
-                        {
-                            'title': '渝北区',
-                            'key': '渝北区'
-                        },
-                        {
-                            'title': '江北区',
-                            'key': '江北区'
+        fac.AntdTabs(
+            [
+                fac.AntdTabPane(
+                    html.Div(
+                        '标签页1测试',
+                        style={
+                            'backgroundColor': 'rgba(241, 241, 241, 0.4)',
+                            'height': '200px',
+                            'display': 'flex',
+                            'justifyContent': 'center',
+                            'alignItems': 'center'
                         }
-                    ]
-                },
-                {
-                    'title': '北京市',
-                    'key': '北京市',
-                    'children': [
-                        {
-                            'title': '西城区',
-                            'key': '西城区'
-                        },
-                        {
-                            'title': '东城区',
-                            'key': '东城区'
+                    ),
+                    tab='标签页1',
+                    key='标签页1'
+                ),
+                fac.AntdTabPane(
+                    html.Div(
+                        fac.AntdButton('标签页2测试', type='primary'),
+                        style={
+                            'backgroundColor': 'rgba(241, 241, 241, 0.4)',
+                            'height': '200px',
+                            'display': 'flex',
+                            'justifyContent': 'center',
+                            'alignItems': 'center'
                         }
-                    ]
-                },
-                {
-                    'title': '四川省',
-                    'key': '四川省',
-                    'children': [
-                        {
-                            'title': '成都市',
-                            'key': '成都市',
-                            'children': [
-                                {
-                                    'title': '天府新区',
-                                    'key': '天府新区'
-                                }
-                            ]
+                    ),
+                    tab='标签页2',
+                    key='标签页2'
+                ),
+                fac.AntdTabPane(
+                    html.Div(
+                        fac.AntdButton('标签页3测试', type='dashed'),
+                        style={
+                            'backgroundColor': 'rgba(241, 241, 241, 0.4)',
+                            'height': '200px',
+                            'display': 'flex',
+                            'justifyContent': 'center',
+                            'alignItems': 'center'
                         }
-                    ]
-                }
+                    ),
+                    tab='标签页3',
+                    key='标签页3'
+                )
             ],
-            checkable=True,
-            selectable=False,
-            checkStrictly=True,
-            defaultExpandAll=True
-        )
+            tabBarGutter=50,
+            tabPaneAnimated=True,
+            tabBarLeftExtraContent=html.Div(
+                fac.AntdButton('测试', type='primary'),
+                style={
+                    'padding': '0 20px',
+                    'display': 'flex',
+                    'justifyContent': 'center'
+                }
+            ),
+            tabBarRightExtraContent=html.Div(
+                fac.AntdButton('测试', type='primary'),
+                style={
+                    'padding': '0 20px',
+                    'display': 'flex',
+                    'justifyContent': 'center'
+                }
+            )
+        ),
+
+        fac.AntdDatePicker(allowClear=False),
+
+        fac.AntdDateRangePicker(allowClear=False)
     ],
     style={
         'padding': '100px'

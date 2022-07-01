@@ -138,3 +138,8 @@
     content: "";
     transform: var(--ant-corner-mark-transform);
 }
+
+/* 修复AntdTabs开启tabPane切换动画后滚动条异常问题 */
+.ant-tabs {
+    overflow-x: hidden;
+}

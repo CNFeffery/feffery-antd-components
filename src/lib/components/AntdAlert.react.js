@@ -20,6 +20,7 @@ export default class AntdAlert extends Component {
             message,
             messageRenderMode,
             description,
+            action,
             setProps,
             loading_state
         } = this.props;
@@ -39,6 +40,7 @@ export default class AntdAlert extends Component {
                     description={description}
                     showIcon={showIcon}
                     closable={closable}
+                    action={action}
                     data-dash-is-loading={
                         (loading_state && loading_state.is_loading) || undefined
                     }>
@@ -61,7 +63,8 @@ export default class AntdAlert extends Component {
                 type={type}
                 description={description}
                 showIcon={showIcon}
-                closable={closable}>
+                closable={closable}
+                action={action}>
             </Alert>
         );
     }
@@ -100,6 +103,9 @@ AntdAlert.propTypes = {
     // 设置message的渲染模式，可选的有'default'、'loop-text'（轮播文字）与'marquee'（跑马灯），默认为'default'
     // 其中loop-text模式需要message输入为数组
     messageRenderMode: PropTypes.oneOf(['default', 'loop-text', 'marquee']),
+
+    // 设置右上角操作区额外元素
+    action: PropTypes.node,
 
     /**
      * Dash-assigned callback that should be called to report property changes

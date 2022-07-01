@@ -35,7 +35,7 @@ Those elements have the following types:
 - `overlayStyle` (Dict; optional)
 - `placement` (a value equal to: 'top', 'left', 'right', 'bottom', 'topLeft', 'topRight', 'bottomLeft', 'bottomRight', 'leftTop', 'leftBottom', 'rightTop', 'rightBottom'; optional)
 - `style` (Dict; optional)
-- `title` (String; optional)
+- `title` (a list of or a singular dash component, string or number; optional)
 - `trigger` (a value equal to: 'hover', 'focus', 'click' | Array of a value equal to: 'hover', 'focus', 'click's; optional)
 """
 function 'feffery'_antdpopconfirm(; kwargs...)

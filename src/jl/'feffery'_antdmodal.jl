@@ -31,6 +31,7 @@ Those elements have the following types:
 - `mask` (Bool; optional)
 - `maskClosable` (Bool; optional)
 - `okButtonProps` (Dict; optional)
+- `okClickClose` (Bool; optional)
 - `okCounts` (Real; optional)
 - `okText` (String; optional)
 - `renderFooter` (Bool; optional)
@@ -43,7 +44,7 @@ Those elements have the following types:
 - `width` (Real; optional)
 """
 function 'feffery'_antdmodal(; kwargs...)
-        available_props = Symbol[:children, :id, :cancelButtonProps, :cancelCounts, :cancelText, :centered, :className, :closable, :closeCounts, :key, :keyboard, :loading_state, :locale, :mask, :maskClosable, :okButtonProps, :okCounts, :okText, :renderFooter, :style, :title, :visible, :width]
+        available_props = Symbol[:children, :id, :cancelButtonProps, :cancelCounts, :cancelText, :centered, :className, :closable, :closeCounts, :key, :keyboard, :loading_state, :locale, :mask, :maskClosable, :okButtonProps, :okClickClose, :okCounts, :okText, :renderFooter, :style, :title, :visible, :width]
         wild_props = Symbol[]
         return Component("'feffery'_antdmodal", "AntdModal", "feffery_antd_components", available_props, wild_props; kwargs...)
 end

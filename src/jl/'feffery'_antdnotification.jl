@@ -11,7 +11,7 @@ Keyword arguments:
 - `id` (String; optional)
 - `bottom` (Real; optional)
 - `className` (String; optional)
-- `description` (String; optional)
+- `description` (a list of or a singular dash component, string or number; optional)
 - `duration` (Real; optional)
 - `key` (String; optional)
 - `loading_state` (optional): . loading_state has the following type: lists containing elements 'is_loading', 'prop_name', 'component_name'.
@@ -19,7 +19,7 @@ Those elements have the following types:
   - `is_loading` (Bool; optional): Determines if the component is loading or not
   - `prop_name` (String; optional): Holds which property is loading
   - `component_name` (String; optional): Holds the name of the component that is loading
-- `message` (String; optional)
+- `message` (a list of or a singular dash component, string or number; optional)
 - `placement` (a value equal to: 'topLeft', 'topRight', 'bottomLeft', 'bottomRight'; optional)
 - `style` (Dict; optional)
 - `top` (Real; optional)

@@ -14,8 +14,10 @@ Keyword arguments:
 - `children` (a list of or a singular dash component, string or number; optional): The content of the tab - will only be displayed if this tab is selected
 - `id` (String; optional)
 - `activeKey` (String; optional)
+- `centered` (Bool; optional)
 - `className` (String; optional)
 - `defaultActiveKey` (String; optional)
+- `inkBarAnimated` (Bool; optional)
 - `key` (String; optional)
 - `latestDeletePane` (String; optional)
 - `loading_state` (optional): . loading_state has the following type: lists containing elements 'is_loading', 'prop_name', 'component_name'.
@@ -38,11 +40,15 @@ local: window.localStorage, data is kept after the browser quit.
 session: window.sessionStorage, data is cleared once the browser quit.
 - `size` (a value equal to: 'small', 'default', 'large'; optional)
 - `style` (Dict; optional)
+- `tabBarGutter` (Real; optional)
+- `tabBarLeftExtraContent` (a list of or a singular dash component, string or number; optional)
+- `tabBarRightExtraContent` (a list of or a singular dash component, string or number; optional)
+- `tabPaneAnimated` (Bool; optional)
 - `tabPosition` (a value equal to: 'top', 'left', 'right', 'bottom'; optional)
 - `type` (a value equal to: 'line', 'card', 'editable-card'; optional)
 """
 function 'feffery'_antdtabs(; kwargs...)
-        available_props = Symbol[:children, :id, :activeKey, :className, :defaultActiveKey, :key, :latestDeletePane, :loading_state, :persisted_props, :persistence, :persistence_type, :size, :style, :tabPosition, :type]
+        available_props = Symbol[:children, :id, :activeKey, :centered, :className, :defaultActiveKey, :inkBarAnimated, :key, :latestDeletePane, :loading_state, :persisted_props, :persistence, :persistence_type, :size, :style, :tabBarGutter, :tabBarLeftExtraContent, :tabBarRightExtraContent, :tabPaneAnimated, :tabPosition, :type]
         wild_props = Symbol[]
         return Component("'feffery'_antdtabs", "AntdTabs", "feffery_antd_components", available_props, wild_props; kwargs...)
 end

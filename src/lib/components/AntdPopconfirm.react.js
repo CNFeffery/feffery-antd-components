@@ -103,7 +103,7 @@ AntdPopconfirm.propTypes = {
     locale: PropTypes.oneOf(['zh-cn', 'en-us']),
 
     // 设置显示的文字内容
-    title: PropTypes.string,
+    title: PropTypes.node,
 
     // 设置是否禁用点击子元素唤起气泡卡片的交互行为
     disabled: PropTypes.bool,

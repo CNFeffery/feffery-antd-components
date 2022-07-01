@@ -74,26 +74,11 @@ AntdNotification.propTypes = {
     // 辅助刷新用唯一标识key值
     key: PropTypes.string,
 
-    loading_state: PropTypes.shape({
-        /**
-         * Determines if the component is loading or not
-         */
-        is_loading: PropTypes.bool,
-        /**
-         * Holds which property is loading
-         */
-        prop_name: PropTypes.string,
-        /**
-         * Holds the name of the component that is loading
-         */
-        component_name: PropTypes.string
-    }),
-
     // 设置通知提醒标题，必填
-    message: PropTypes.string,
+    message: PropTypes.node,
 
     // 设置通知提醒内容
-    description: PropTypes.string,
+    description: PropTypes.node,
 
     // 设置通知类型，可选项有'default'、'success'、'error'、'info'、'warning'，默认为'default'
     type: PropTypes.oneOf(['default', 'success', 'error', 'info', 'warning']),
@@ -110,11 +95,26 @@ AntdNotification.propTypes = {
     // 设置通知从显示到自动消失的时长（秒），默认为4.5，当传入null时表示不会自动消失
     duration: PropTypes.number,
 
+    loading_state: PropTypes.shape({
+        /**
+         * Determines if the component is loading or not
+         */
+        is_loading: PropTypes.bool,
+        /**
+         * Holds which property is loading
+         */
+        prop_name: PropTypes.string,
+        /**
+         * Holds the name of the component that is loading
+         */
+        component_name: PropTypes.string
+    }),
+
     /**
      * Dash-assigned callback that should be called to report property changes
      * to Dash, to make them available for callbacks.
      */
-    setProps: PropTypes.func
+    setProps: PropTypes.func,
 };
 
 // 设置默认参数

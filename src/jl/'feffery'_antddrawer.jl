@@ -17,6 +17,7 @@ Keyword arguments:
 - `closable` (Bool; optional)
 - `containerId` (String; optional)
 - `destroyOnClose` (Bool; optional)
+- `extra` (a list of or a singular dash component, string or number; optional)
 - `forceRender` (Bool; optional)
 - `height` (Real | String; optional)
 - `key` (String; optional)
@@ -35,7 +36,7 @@ Those elements have the following types:
 - `zIndex` (Real; optional)
 """
 function 'feffery'_antddrawer(; kwargs...)
-        available_props = Symbol[:children, :id, :className, :closable, :containerId, :destroyOnClose, :forceRender, :height, :key, :loading_state, :mask, :maskClosable, :placement, :style, :title, :visible, :width, :zIndex]
+        available_props = Symbol[:children, :id, :className, :closable, :containerId, :destroyOnClose, :extra, :forceRender, :height, :key, :loading_state, :mask, :maskClosable, :placement, :style, :title, :visible, :width, :zIndex]
         wild_props = Symbol[]
         return Component("'feffery'_antddrawer", "AntdDrawer", "feffery_antd_components", available_props, wild_props; kwargs...)
 end

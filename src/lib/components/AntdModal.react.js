@@ -30,6 +30,7 @@ export default class AntdModal extends Component {
             closable,
             mask,
             maskClosable,
+            okClickClose,
             okCounts,
             cancelCounts,
             closeCounts,
@@ -38,7 +39,11 @@ export default class AntdModal extends Component {
 
         // 监听确认按钮点击事件
         const listenOk = () => {
-            setProps({ visible: false, okCounts: okCounts + 1 })
+            if (okClickClose) {
+                setProps({ visible: false, okCounts: okCounts + 1 })
+            } else {
+                setProps({ okCounts: okCounts + 1 })
+            }
         };
 
         // 监听取消按钮点击事件
@@ -192,6 +197,9 @@ AntdModal.propTypes = {
     // 点击背景蒙版是否可以关闭对话框
     maskClosable: PropTypes.bool,
 
+    // 设置点击确认按钮是否会触发对话框关闭，默认为true
+    okClickClose: PropTypes.bool,
+
     // 记录确认按钮被点击的次数
     okCounts: PropTypes.number,
 
@@ -229,5 +237,6 @@ AntdModal.defaultProps = {
     okCounts: 0,
     cancelCounts: 0,
     closeCounts: 0,
-    locale: 'zh-cn'
+    locale: 'zh-cn',
+    okClickClose: true
 }

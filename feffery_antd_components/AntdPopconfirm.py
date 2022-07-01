@@ -62,11 +62,11 @@ Keyword arguments:
 
 - style (dict; optional)
 
-- title (string; optional)
+- title (a list of or a singular dash component, string or number; optional)
 
 - trigger (a value equal to: 'hover', 'focus', 'click' | list of a value equal to: 'hover', 'focus', 'click's; optional)"""
-    _children_props = []
-    _base_nodes = ['children']
+    _children_props = ['title']
+    _base_nodes = ['title', 'children']
     _namespace = 'feffery_antd_components'
     _type = 'AntdPopconfirm'
     @_explicitize_args

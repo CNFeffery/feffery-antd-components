@@ -70,7 +70,7 @@ AntdTooltip.propTypes = {
     key: PropTypes.string,
 
     // 设置显示的文字内容
-    title: PropTypes.string,
+    title: PropTypes.node,
 
     // 设置气泡框的位置，可选的有'top'、'left'、'right'、'bottom'、'topLeft'
     // 、'topRight'、'bottomLeft'、'bottomRight'、'leftTop'、'leftBottom'

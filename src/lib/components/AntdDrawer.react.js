@@ -26,6 +26,7 @@ export default class AntdDrawer extends Component {
             maskClosable,
             width,
             zIndex,
+            extra,
             setProps,
             loading_state
         } = this.props;
@@ -53,6 +54,7 @@ export default class AntdDrawer extends Component {
                     maskClosable={maskClosable}
                     width={width}
                     zIndex={zIndex}
+                    extra={extra}
                     onClose={onClose}
                     data-dash-is-loading={
                         (loading_state && loading_state.is_loading) || undefined
@@ -121,6 +123,9 @@ AntdDrawer.propTypes = {
 
     // 快捷设置抽屉整体的z-index，默认为1000
     zIndex: PropTypes.number,
+
+    // 设置额外操作区元素
+    extra: PropTypes.node,
 
     loading_state: PropTypes.shape({
         /**
