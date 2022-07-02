@@ -9887,305 +9887,6 @@
       }
     }
   },
-  "src/lib/components/AntdSkeleton.react.js": {
-    "description": "",
-    "displayName": "AntdSkeleton",
-    "methods": [],
-    "props": {
-      "id": {
-        "type": {
-          "name": "string"
-        },
-        "required": false,
-        "description": ""
-      },
-      "children": {
-        "type": {
-          "name": "node"
-        },
-        "required": false,
-        "description": ""
-      },
-      "className": {
-        "type": {
-          "name": "string"
-        },
-        "required": false,
-        "description": ""
-      },
-      "style": {
-        "type": {
-          "name": "object"
-        },
-        "required": false,
-        "description": ""
-      },
-      "key": {
-        "type": {
-          "name": "string"
-        },
-        "required": false,
-        "description": ""
-      },
-      "loading": {
-        "type": {
-          "name": "bool"
-        },
-        "required": false,
-        "description": "",
-        "defaultValue": {
-          "value": "false",
-          "computed": false
-        }
-      },
-      "active": {
-        "type": {
-          "name": "bool"
-        },
-        "required": false,
-        "description": ""
-      },
-      "avatar": {
-        "type": {
-          "name": "union",
-          "value": [
-            {
-              "name": "bool"
-            },
-            {
-              "name": "exact",
-              "value": {
-                "active": {
-                  "name": "bool",
-                  "required": false
-                },
-                "shape": {
-                  "name": "enum",
-                  "value": [
-                    {
-                      "value": "'circle'",
-                      "computed": false
-                    },
-                    {
-                      "value": "'square'",
-                      "computed": false
-                    }
-                  ],
-                  "required": false
-                },
-                "size": {
-                  "name": "union",
-                  "value": [
-                    {
-                      "name": "number"
-                    },
-                    {
-                      "name": "enum",
-                      "value": [
-                        {
-                          "value": "'large'",
-                          "computed": false
-                        },
-                        {
-                          "value": "'small'",
-                          "computed": false
-                        },
-                        {
-                          "value": "'default'",
-                          "computed": false
-                        }
-                      ]
-                    }
-                  ],
-                  "required": false
-                }
-              }
-            }
-          ]
-        },
-        "required": false,
-        "description": ""
-      },
-      "paragraph": {
-        "type": {
-          "name": "union",
-          "value": [
-            {
-              "name": "bool"
-            },
-            {
-              "name": "exact",
-              "value": {
-                "rows": {
-                  "name": "number",
-                  "required": false
-                },
-                "width": {
-                  "name": "union",
-                  "value": [
-                    {
-                      "name": "number"
-                    },
-                    {
-                      "name": "string"
-                    },
-                    {
-                      "name": "arrayOf",
-                      "value": {
-                        "name": "union",
-                        "value": [
-                          {
-                            "name": "number"
-                          },
-                          {
-                            "name": "string"
-                          }
-                        ]
-                      }
-                    }
-                  ],
-                  "required": false
-                }
-              }
-            }
-          ]
-        },
-        "required": false,
-        "description": ""
-      },
-      "title": {
-        "type": {
-          "name": "union",
-          "value": [
-            {
-              "name": "bool"
-            },
-            {
-              "name": "exact",
-              "value": {
-                "width": {
-                  "name": "union",
-                  "value": [
-                    {
-                      "name": "number"
-                    },
-                    {
-                      "name": "string"
-                    }
-                  ],
-                  "required": false
-                }
-              }
-            }
-          ]
-        },
-        "required": false,
-        "description": ""
-      },
-      "round": {
-        "type": {
-          "name": "bool"
-        },
-        "required": false,
-        "description": ""
-      },
-      "debug": {
-        "type": {
-          "name": "bool"
-        },
-        "required": false,
-        "description": "",
-        "defaultValue": {
-          "value": "false",
-          "computed": false
-        }
-      },
-      "listenPropsMode": {
-        "type": {
-          "name": "enum",
-          "value": [
-            {
-              "value": "'default'",
-              "computed": false
-            },
-            {
-              "value": "'exclude'",
-              "computed": false
-            },
-            {
-              "value": "'include'",
-              "computed": false
-            }
-          ]
-        },
-        "required": false,
-        "description": "",
-        "defaultValue": {
-          "value": "'default'",
-          "computed": false
-        }
-      },
-      "excludeProps": {
-        "type": {
-          "name": "arrayOf",
-          "value": {
-            "name": "string"
-          }
-        },
-        "required": false,
-        "description": "",
-        "defaultValue": {
-          "value": "[]",
-          "computed": false
-        }
-      },
-      "includeProps": {
-        "type": {
-          "name": "arrayOf",
-          "value": {
-            "name": "string"
-          }
-        },
-        "required": false,
-        "description": "",
-        "defaultValue": {
-          "value": "[]",
-          "computed": false
-        }
-      },
-      "loading_state": {
-        "type": {
-          "name": "shape",
-          "value": {
-            "is_loading": {
-              "name": "bool",
-              "description": "Determines if the component is loading or not",
-              "required": false
-            },
-            "prop_name": {
-              "name": "string",
-              "description": "Holds which property is loading",
-              "required": false
-            },
-            "component_name": {
-              "name": "string",
-              "description": "Holds the name of the component that is loading",
-              "required": false
-            }
-          }
-        },
-        "required": false,
-        "description": ""
-      },
-      "setProps": {
-        "type": {
-          "name": "func"
-        },
-        "required": false,
-        "description": "Dash-assigned callback that should be called to report property changes\r\nto Dash, to make them available for callbacks."
-      }
-    }
-  },
   "src/lib/components/AntdSlider.react.js": {
     "description": "",
     "displayName": "AntdSlider",
@@ -17066,6 +16767,777 @@
             },
             {
               "value": "'xxl'",
+              "computed": false
+            }
+          ]
+        },
+        "required": false,
+        "description": ""
+      },
+      "loading_state": {
+        "type": {
+          "name": "shape",
+          "value": {
+            "is_loading": {
+              "name": "bool",
+              "description": "Determines if the component is loading or not",
+              "required": false
+            },
+            "prop_name": {
+              "name": "string",
+              "description": "Holds which property is loading",
+              "required": false
+            },
+            "component_name": {
+              "name": "string",
+              "description": "Holds the name of the component that is loading",
+              "required": false
+            }
+          }
+        },
+        "required": false,
+        "description": ""
+      },
+      "setProps": {
+        "type": {
+          "name": "func"
+        },
+        "required": false,
+        "description": "Dash-assigned callback that should be called to report property changes\r\nto Dash, to make them available for callbacks."
+      }
+    }
+  },
+  "src/lib/components/skeleton/AntdCustomSkeleton.react.js": {
+    "description": "",
+    "displayName": "AntdCustomSkeleton",
+    "methods": [],
+    "props": {
+      "id": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": ""
+      },
+      "children": {
+        "type": {
+          "name": "node"
+        },
+        "required": false,
+        "description": ""
+      },
+      "skeletonContent": {
+        "type": {
+          "name": "node"
+        },
+        "required": false,
+        "description": ""
+      },
+      "className": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": ""
+      },
+      "style": {
+        "type": {
+          "name": "object"
+        },
+        "required": false,
+        "description": ""
+      },
+      "key": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": ""
+      },
+      "loading": {
+        "type": {
+          "name": "bool"
+        },
+        "required": false,
+        "description": "",
+        "defaultValue": {
+          "value": "false",
+          "computed": false
+        }
+      },
+      "debug": {
+        "type": {
+          "name": "bool"
+        },
+        "required": false,
+        "description": "",
+        "defaultValue": {
+          "value": "false",
+          "computed": false
+        }
+      },
+      "listenPropsMode": {
+        "type": {
+          "name": "enum",
+          "value": [
+            {
+              "value": "'default'",
+              "computed": false
+            },
+            {
+              "value": "'exclude'",
+              "computed": false
+            },
+            {
+              "value": "'include'",
+              "computed": false
+            }
+          ]
+        },
+        "required": false,
+        "description": "",
+        "defaultValue": {
+          "value": "'default'",
+          "computed": false
+        }
+      },
+      "excludeProps": {
+        "type": {
+          "name": "arrayOf",
+          "value": {
+            "name": "string"
+          }
+        },
+        "required": false,
+        "description": "",
+        "defaultValue": {
+          "value": "[]",
+          "computed": false
+        }
+      },
+      "includeProps": {
+        "type": {
+          "name": "arrayOf",
+          "value": {
+            "name": "string"
+          }
+        },
+        "required": false,
+        "description": "",
+        "defaultValue": {
+          "value": "[]",
+          "computed": false
+        }
+      },
+      "loading_state": {
+        "type": {
+          "name": "shape",
+          "value": {
+            "is_loading": {
+              "name": "bool",
+              "description": "Determines if the component is loading or not",
+              "required": false
+            },
+            "prop_name": {
+              "name": "string",
+              "description": "Holds which property is loading",
+              "required": false
+            },
+            "component_name": {
+              "name": "string",
+              "description": "Holds the name of the component that is loading",
+              "required": false
+            }
+          }
+        },
+        "required": false,
+        "description": ""
+      },
+      "setProps": {
+        "type": {
+          "name": "func"
+        },
+        "required": false,
+        "description": "Dash-assigned callback that should be called to report property changes\r\nto Dash, to make them available for callbacks."
+      }
+    }
+  },
+  "src/lib/components/skeleton/AntdSkeleton.react.js": {
+    "description": "",
+    "displayName": "AntdSkeleton",
+    "methods": [],
+    "props": {
+      "id": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": ""
+      },
+      "children": {
+        "type": {
+          "name": "node"
+        },
+        "required": false,
+        "description": ""
+      },
+      "className": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": ""
+      },
+      "style": {
+        "type": {
+          "name": "object"
+        },
+        "required": false,
+        "description": ""
+      },
+      "key": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": ""
+      },
+      "loading": {
+        "type": {
+          "name": "bool"
+        },
+        "required": false,
+        "description": "",
+        "defaultValue": {
+          "value": "false",
+          "computed": false
+        }
+      },
+      "active": {
+        "type": {
+          "name": "bool"
+        },
+        "required": false,
+        "description": ""
+      },
+      "avatar": {
+        "type": {
+          "name": "union",
+          "value": [
+            {
+              "name": "bool"
+            },
+            {
+              "name": "exact",
+              "value": {
+                "active": {
+                  "name": "bool",
+                  "required": false
+                },
+                "shape": {
+                  "name": "enum",
+                  "value": [
+                    {
+                      "value": "'circle'",
+                      "computed": false
+                    },
+                    {
+                      "value": "'square'",
+                      "computed": false
+                    }
+                  ],
+                  "required": false
+                },
+                "size": {
+                  "name": "union",
+                  "value": [
+                    {
+                      "name": "number"
+                    },
+                    {
+                      "name": "enum",
+                      "value": [
+                        {
+                          "value": "'large'",
+                          "computed": false
+                        },
+                        {
+                          "value": "'small'",
+                          "computed": false
+                        },
+                        {
+                          "value": "'default'",
+                          "computed": false
+                        }
+                      ]
+                    }
+                  ],
+                  "required": false
+                }
+              }
+            }
+          ]
+        },
+        "required": false,
+        "description": ""
+      },
+      "paragraph": {
+        "type": {
+          "name": "union",
+          "value": [
+            {
+              "name": "bool"
+            },
+            {
+              "name": "exact",
+              "value": {
+                "rows": {
+                  "name": "number",
+                  "required": false
+                },
+                "width": {
+                  "name": "union",
+                  "value": [
+                    {
+                      "name": "number"
+                    },
+                    {
+                      "name": "string"
+                    },
+                    {
+                      "name": "arrayOf",
+                      "value": {
+                        "name": "union",
+                        "value": [
+                          {
+                            "name": "number"
+                          },
+                          {
+                            "name": "string"
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "required": false
+                }
+              }
+            }
+          ]
+        },
+        "required": false,
+        "description": ""
+      },
+      "title": {
+        "type": {
+          "name": "union",
+          "value": [
+            {
+              "name": "bool"
+            },
+            {
+              "name": "exact",
+              "value": {
+                "width": {
+                  "name": "union",
+                  "value": [
+                    {
+                      "name": "number"
+                    },
+                    {
+                      "name": "string"
+                    }
+                  ],
+                  "required": false
+                }
+              }
+            }
+          ]
+        },
+        "required": false,
+        "description": ""
+      },
+      "round": {
+        "type": {
+          "name": "bool"
+        },
+        "required": false,
+        "description": ""
+      },
+      "debug": {
+        "type": {
+          "name": "bool"
+        },
+        "required": false,
+        "description": "",
+        "defaultValue": {
+          "value": "false",
+          "computed": false
+        }
+      },
+      "listenPropsMode": {
+        "type": {
+          "name": "enum",
+          "value": [
+            {
+              "value": "'default'",
+              "computed": false
+            },
+            {
+              "value": "'exclude'",
+              "computed": false
+            },
+            {
+              "value": "'include'",
+              "computed": false
+            }
+          ]
+        },
+        "required": false,
+        "description": "",
+        "defaultValue": {
+          "value": "'default'",
+          "computed": false
+        }
+      },
+      "excludeProps": {
+        "type": {
+          "name": "arrayOf",
+          "value": {
+            "name": "string"
+          }
+        },
+        "required": false,
+        "description": "",
+        "defaultValue": {
+          "value": "[]",
+          "computed": false
+        }
+      },
+      "includeProps": {
+        "type": {
+          "name": "arrayOf",
+          "value": {
+            "name": "string"
+          }
+        },
+        "required": false,
+        "description": "",
+        "defaultValue": {
+          "value": "[]",
+          "computed": false
+        }
+      },
+      "loading_state": {
+        "type": {
+          "name": "shape",
+          "value": {
+            "is_loading": {
+              "name": "bool",
+              "description": "Determines if the component is loading or not",
+              "required": false
+            },
+            "prop_name": {
+              "name": "string",
+              "description": "Holds which property is loading",
+              "required": false
+            },
+            "component_name": {
+              "name": "string",
+              "description": "Holds the name of the component that is loading",
+              "required": false
+            }
+          }
+        },
+        "required": false,
+        "description": ""
+      },
+      "setProps": {
+        "type": {
+          "name": "func"
+        },
+        "required": false,
+        "description": "Dash-assigned callback that should be called to report property changes\r\nto Dash, to make them available for callbacks."
+      }
+    }
+  },
+  "src/lib/components/skeleton/AntdSkeletonAvatar.react.js": {
+    "description": "",
+    "displayName": "AntdSkeletonAvatar",
+    "methods": [],
+    "props": {
+      "id": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": ""
+      },
+      "active": {
+        "type": {
+          "name": "bool"
+        },
+        "required": false,
+        "description": ""
+      },
+      "shape": {
+        "type": {
+          "name": "enum",
+          "value": [
+            {
+              "value": "'circle'",
+              "computed": false
+            },
+            {
+              "value": "'square'",
+              "computed": false
+            }
+          ]
+        },
+        "required": false,
+        "description": ""
+      },
+      "size": {
+        "type": {
+          "name": "union",
+          "value": [
+            {
+              "name": "number"
+            },
+            {
+              "name": "enum",
+              "value": [
+                {
+                  "value": "'large'",
+                  "computed": false
+                },
+                {
+                  "value": "'small'",
+                  "computed": false
+                },
+                {
+                  "value": "'default'",
+                  "computed": false
+                }
+              ]
+            }
+          ]
+        },
+        "required": false,
+        "description": ""
+      },
+      "loading_state": {
+        "type": {
+          "name": "shape",
+          "value": {
+            "is_loading": {
+              "name": "bool",
+              "description": "Determines if the component is loading or not",
+              "required": false
+            },
+            "prop_name": {
+              "name": "string",
+              "description": "Holds which property is loading",
+              "required": false
+            },
+            "component_name": {
+              "name": "string",
+              "description": "Holds the name of the component that is loading",
+              "required": false
+            }
+          }
+        },
+        "required": false,
+        "description": ""
+      },
+      "setProps": {
+        "type": {
+          "name": "func"
+        },
+        "required": false,
+        "description": "Dash-assigned callback that should be called to report property changes\r\nto Dash, to make them available for callbacks."
+      }
+    }
+  },
+  "src/lib/components/skeleton/AntdSkeletonButton.react.js": {
+    "description": "",
+    "displayName": "AntdSkeletonButton",
+    "methods": [],
+    "props": {
+      "id": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": ""
+      },
+      "active": {
+        "type": {
+          "name": "bool"
+        },
+        "required": false,
+        "description": ""
+      },
+      "block": {
+        "type": {
+          "name": "bool"
+        },
+        "required": false,
+        "description": ""
+      },
+      "shape": {
+        "type": {
+          "name": "enum",
+          "value": [
+            {
+              "value": "'circle'",
+              "computed": false
+            },
+            {
+              "value": "'round'",
+              "computed": false
+            },
+            {
+              "value": "'default'",
+              "computed": false
+            }
+          ]
+        },
+        "required": false,
+        "description": ""
+      },
+      "size": {
+        "type": {
+          "name": "enum",
+          "value": [
+            {
+              "value": "'large'",
+              "computed": false
+            },
+            {
+              "value": "'small'",
+              "computed": false
+            },
+            {
+              "value": "'default'",
+              "computed": false
+            }
+          ]
+        },
+        "required": false,
+        "description": ""
+      },
+      "loading_state": {
+        "type": {
+          "name": "shape",
+          "value": {
+            "is_loading": {
+              "name": "bool",
+              "description": "Determines if the component is loading or not",
+              "required": false
+            },
+            "prop_name": {
+              "name": "string",
+              "description": "Holds which property is loading",
+              "required": false
+            },
+            "component_name": {
+              "name": "string",
+              "description": "Holds the name of the component that is loading",
+              "required": false
+            }
+          }
+        },
+        "required": false,
+        "description": ""
+      },
+      "setProps": {
+        "type": {
+          "name": "func"
+        },
+        "required": false,
+        "description": "Dash-assigned callback that should be called to report property changes\r\nto Dash, to make them available for callbacks."
+      }
+    }
+  },
+  "src/lib/components/skeleton/AntdSkeletonImage.react.js": {
+    "description": "",
+    "displayName": "AntdSkeletonImage",
+    "methods": [],
+    "props": {
+      "id": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": ""
+      },
+      "loading_state": {
+        "type": {
+          "name": "shape",
+          "value": {
+            "is_loading": {
+              "name": "bool",
+              "description": "Determines if the component is loading or not",
+              "required": false
+            },
+            "prop_name": {
+              "name": "string",
+              "description": "Holds which property is loading",
+              "required": false
+            },
+            "component_name": {
+              "name": "string",
+              "description": "Holds the name of the component that is loading",
+              "required": false
+            }
+          }
+        },
+        "required": false,
+        "description": ""
+      },
+      "setProps": {
+        "type": {
+          "name": "func"
+        },
+        "required": false,
+        "description": "Dash-assigned callback that should be called to report property changes\r\nto Dash, to make them available for callbacks."
+      }
+    }
+  },
+  "src/lib/components/skeleton/AntdSkeletonInput.react.js": {
+    "description": "",
+    "displayName": "AntdSkeletonInput",
+    "methods": [],
+    "props": {
+      "id": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": ""
+      },
+      "active": {
+        "type": {
+          "name": "bool"
+        },
+        "required": false,
+        "description": ""
+      },
+      "size": {
+        "type": {
+          "name": "enum",
+          "value": [
+            {
+              "value": "'large'",
+              "computed": false
+            },
+            {
+              "value": "'small'",
+              "computed": false
+            },
+            {
+              "value": "'default'",
               "computed": false
             }
           ]

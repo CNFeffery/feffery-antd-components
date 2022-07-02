@@ -48,7 +48,7 @@ import AntdUpload from './components/AntdUpload.react'
 import AntdIcon from './components/AntdIcon.react'
 import AntdPopconfirm from './components/AntdPopconfirm.react'
 import AntdBackTop from './components/AntdBackTop.react'
-import AntdSkeleton from './components/AntdSkeleton.react'
+import AntdSkeleton from './components/skeleton/AntdSkeleton.react'
 import AntdAffix from './components/AntdAffix.react'
 import AntdBreadcrumb from './components/AntdBreadcrumb.react'
 import AntdDropdown from './components/AntdDropdown.react'
@@ -84,6 +84,11 @@ import AntdCheckCardGroup from './components/check-card/AntdCheckCardGroup.react
 import AntdAccordionItem from './components/accordion/AntdAccordionItem.react'
 import AntdAccordion from './components/accordion/AntdAccordion.react'
 import AntdPictureUpload from './components/AntdPictureUpload.react'
+import AntdCustomSkeleton from './components/skeleton/AntdCustomSkeleton.react'
+import AntdSkeletonAvatar from './components/skeleton/AntdSkeletonAvatar.react'
+import AntdSkeletonButton from './components/skeleton/AntdSkeletonButton.react'
+import AntdSkeletonInput from './components/skeleton/AntdSkeletonInput.react'
+import AntdSkeletonImage from './components/skeleton/AntdSkeletonImage.react'
 
 export {
     AntdDatePicker,
@@ -170,5 +175,10 @@ export {
     AntdCheckCardGroup,
     AntdAccordionItem,
     AntdAccordion,
-    AntdPictureUpload
+    AntdPictureUpload,
+    AntdCustomSkeleton,
+    AntdSkeletonAvatar,
+    AntdSkeletonButton,
+    AntdSkeletonInput,
+    AntdSkeletonImage
 };
