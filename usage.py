@@ -15,6 +15,72 @@ app = dash.Dash(
 app.layout = html.Div(
     [
 
+        fac.AntdSpace(
+            [
+                fac.AntdButton(
+                    '触发2秒骨骼屏动画', id='skeleton-custom-demo-input',
+                    type='primary'
+                ),
+
+                fac.AntdCustomSkeleton(
+                    fac.AntdText(
+                        'nClicks: 0', id='skeleton-custom-demo-output', strong=True),
+                    skeletonContent=fac.AntdSpace(
+                        [
+                            fac.AntdRow(
+                                [
+                                    fac.AntdCol(
+                                        fac.AntdSkeletonAvatar(
+                                            active=True,
+                                            size='large'
+                                        ),
+                                        flex='none'
+                                    ),
+
+                                    *[
+                                        fac.AntdCol(
+                                            fac.AntdSkeletonButton(
+                                                block=True,
+                                                active=True,
+                                                size='small'
+                                            ),
+                                            flex='auto'
+                                        )
+                                    ] * 10
+                                ],
+                                align='middle',
+                                gutter=10
+                            ),
+                            fac.AntdSkeletonButton(
+                                block=True,
+                                active=True,
+                                size='small'
+                            ),
+                            fac.AntdSkeletonButton(
+                                block=True,
+                                active=True,
+                                size='small'
+                            ),
+                            fac.AntdSkeletonButton(
+                                block=True,
+                                active=True,
+                                size='small'
+                            )
+                        ],
+                        direction='vertical',
+                        style={
+                            'width': '100%'
+                        }
+                    )
+                ),
+            ],
+            direction='vertical',
+            style={
+                'width': '100%',
+                'paddingBottom': '50px'
+            }
+        ),
+
         fac.AntdPopconfirm(
             fac.AntdButton(
                 '点击触发',
@@ -121,6 +187,19 @@ app.layout = html.Div(
         'padding': '100px'
     }
 )
+
+
+@app.callback(
+    Output('skeleton-custom-demo-output', 'children'),
+    Input('skeleton-custom-demo-input', 'nClicks'),
+    prevent_initial_call=True
+)
+def skeleton_custom_callback_demo(nClicks):
+    import time
+    time.sleep(20)
+
+    return f'nClicks: {nClicks}'
+
 
 if __name__ == '__main__':
     app.run_server(debug=True)

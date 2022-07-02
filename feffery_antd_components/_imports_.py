@@ -45,7 +45,6 @@ from .AntdResult import AntdResult
 from .AntdRibbon import AntdRibbon
 from .AntdSegmented import AntdSegmented
 from .AntdSelect import AntdSelect
-from .AntdSkeleton import AntdSkeleton
 from .AntdSlider import AntdSlider
 from .AntdSpace import AntdSpace
 from .AntdSpin import AntdSpin
@@ -78,6 +77,12 @@ from .AntdFooter import AntdFooter
 from .AntdHeader import AntdHeader
 from .AntdLayout import AntdLayout
 from .AntdSider import AntdSider
+from .AntdCustomSkeleton import AntdCustomSkeleton
+from .AntdSkeleton import AntdSkeleton
+from .AntdSkeletonAvatar import AntdSkeletonAvatar
+from .AntdSkeletonButton import AntdSkeletonButton
+from .AntdSkeletonImage import AntdSkeletonImage
+from .AntdSkeletonInput import AntdSkeletonInput
 from .AntdTabPane import AntdTabPane
 from .AntdTabs import AntdTabs
 from .AntdParagraph import AntdParagraph
@@ -132,7 +137,6 @@ __all__ = [
     "AntdRibbon",
     "AntdSegmented",
     "AntdSelect",
-    "AntdSkeleton",
     "AntdSlider",
     "AntdSpace",
     "AntdSpin",
@@ -165,6 +169,12 @@ __all__ = [
     "AntdHeader",
     "AntdLayout",
     "AntdSider",
+    "AntdCustomSkeleton",
+    "AntdSkeleton",
+    "AntdSkeletonAvatar",
+    "AntdSkeletonButton",
+    "AntdSkeletonImage",
+    "AntdSkeletonInput",
     "AntdTabPane",
     "AntdTabs",
     "AntdParagraph",
