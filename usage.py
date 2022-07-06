@@ -17,6 +17,22 @@ app = dash.Dash(
 
 app.layout = html.Div(
     [
+        fac.AntdSegmentedColoring(
+            bordered=False,
+            readOnly=True,
+            step=0.001,
+            precision=3,
+            min=0,
+            disabled=False,
+            controls=True,
+            inputNumberStyle={
+                'width': '50px',
+                'textAlign': 'center'
+            },
+            size='small',
+            breakpoints=[0, 1, 2, 3, 4, 5],
+            colors=["#deecf9", "#71afe5", "#2b88d8", "#0078d4", "#106ebe"]
+        ),
 
         fac.AntdSpace(
             [

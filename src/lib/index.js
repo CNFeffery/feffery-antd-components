@@ -89,6 +89,8 @@ import AntdSkeletonAvatar from './components/skeleton/AntdSkeletonAvatar.react'
 import AntdSkeletonButton from './components/skeleton/AntdSkeletonButton.react'
 import AntdSkeletonInput from './components/skeleton/AntdSkeletonInput.react'
 import AntdSkeletonImage from './components/skeleton/AntdSkeletonImage.react'
+import AntdSegmentedColoring from './components/AntdSegmentedColoring.react'
+
 
 export {
     AntdDatePicker,
@@ -180,5 +182,6 @@ export {
     AntdSkeletonAvatar,
     AntdSkeletonButton,
     AntdSkeletonInput,
-    AntdSkeletonImage
+    AntdSkeletonImage,
+    AntdSegmentedColoring
 };
