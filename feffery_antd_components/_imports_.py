@@ -44,6 +44,7 @@ from .AntdRate import AntdRate
 from .AntdResult import AntdResult
 from .AntdRibbon import AntdRibbon
 from .AntdSegmented import AntdSegmented
+from .AntdSegmentedColoring import AntdSegmentedColoring
 from .AntdSelect import AntdSelect
 from .AntdSlider import AntdSlider
 from .AntdSpace import AntdSpace
@@ -136,6 +137,7 @@ __all__ = [
     "AntdResult",
     "AntdRibbon",
     "AntdSegmented",
+    "AntdSegmentedColoring",
     "AntdSelect",
     "AntdSlider",
     "AntdSpace",
