@@ -917,12 +917,6 @@ class AntdTable extends Component {
             )
         }
 
-        console.log({
-            rowExpandedRowRender,
-            expandedRowContents,
-            expandedRowContentsKeys
-        })
-
         return (
             <ConfigProvider locale={str2Locale.get(locale)}>
                 <Table
