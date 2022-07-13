@@ -10,6 +10,7 @@ import './styles.css'
 
 const { Text } = Typography;
 
+
 // 定义表格组件AntdTable，部分api参数参考https://ant.design/components/table-cn/
 class AntdTable extends Component {
 
@@ -149,6 +150,26 @@ class AntdTable extends Component {
             clearFilters();
             this.setState({ searchText: '' });
         };
+    }
+
+    shouldComponentUpdate(nextProps) {
+
+        // 无需进行重绘的属性值变化
+        if (this.props.recentlyMouseEnterColumn !== nextProps.recentlyMouseEnterColumn) {
+            return false;
+        } else if (this.props.recentlyMouseEnterRow !== nextProps.recentlyMouseEnterRow) {
+            return false;
+        } else if (this.props.recentlyChangedRow !== nextProps.recentlyChangedRow) {
+            return false;
+        } else if (this.props.recentlyButtonClickedRow !== nextProps.recentlyButtonClickedRow) {
+            return false;
+        } else if (this.props.nClicksButton !== nextProps.nClicksButton) {
+            return false;
+        } else if (this.props.clickedContent !== nextProps.clickedContent) {
+            return false;
+        }
+
+        return true;
     }
 
     render() {
@@ -324,6 +345,10 @@ class AntdTable extends Component {
             conditionalStyleFuncs,
             expandedRowContents,
             expandedRowContentsKeys,
+            expandedRowWidth,
+            expandRowByClick,
+            expandedRowFixed,
+            expandedRowIndentSize,
             loading_state
         } = this.props;
 
@@ -957,7 +982,11 @@ class AntdTable extends Component {
                     expandable={
                         rowExpandedRowRender ? {
                             expandedRowRender: (record) => rowExpandedRowRender.get(record.key),
-                            rowExpandable: (record) => Boolean(rowExpandedRowRender.get(record.key))
+                            rowExpandable: (record) => Boolean(rowExpandedRowRender.get(record.key)),
+                            columnWidth: expandedRowWidth,
+                            expandRowByClick: expandRowByClick,
+                            fixed: expandedRowFixed,
+                            indentSize: expandedRowIndentSize
                         } : undefined
                     }
                     data-dash-is-loading={
@@ -1425,6 +1454,24 @@ AntdTable.propTypes = {
             PropTypes.number
         ])
     ),
+
+    // 设置行展开控件所占的宽度
+    expandedRowWidth: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.number
+    ]),
+
+    // 设置是否允许直接点击行进行展开，默认为false
+    expandRowByClick: PropTypes.bool,
+
+    // 设置行展开控件列是否固定，默认为false，可选的有'left'、'right'
+    expandedRowFixed: PropTypes.oneOfType([
+        PropTypes.bool,
+        PropTypes.oneOf(['left', 'right'])
+    ]),
+
+    // 设置行展开内容的像素缩进距离，默认为15
+    expandedRowIndentSize: PropTypes.number,
 
     loading_state: PropTypes.shape({
         /**

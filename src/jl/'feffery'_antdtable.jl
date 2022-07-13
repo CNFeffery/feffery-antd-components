@@ -79,8 +79,12 @@ Those elements have the following types:
   - `offsetY` (Real; optional)
   - `hide` (Bool; optional)s
 - `enableHoverListen` (Bool; optional)
+- `expandRowByClick` (Bool; optional)
 - `expandedRowContents` (Array of a list of or a singular dash component, string or numbers; optional)
 - `expandedRowContentsKeys` (Array of String | Reals; optional)
+- `expandedRowFixed` (Bool | a value equal to: 'left', 'right'; optional)
+- `expandedRowIndentSize` (Real; optional)
+- `expandedRowWidth` (String | Real; optional)
 - `filter` (Dict; optional)
 - `filterOptions` (optional): . filterOptions has the following type: Dict with Strings as keys and values of type lists containing elements 'filterMode', 'filterCustomItems', 'filterMultiple', 'filterSearch'.
 Those elements have the following types:
@@ -148,7 +152,7 @@ Those elements have the following types:
 - `titlePopoverInfo` (Dict; optional)
 """
 function 'feffery'_antdtable(; kwargs...)
-        available_props = Symbol[:id, :bordered, :className, :clickedContent, :columns, :columnsFormatConstraint, :conditionalStyleFuncs, :containerId, :currentData, :customFormatFuncs, :data, :enableHoverListen, :expandedRowContents, :expandedRowContentsKeys, :filter, :filterOptions, :key, :loading_state, :locale, :maxHeight, :maxWidth, :miniChartAnimation, :miniChartHeight, :mode, :nClicksButton, :pagination, :recentlyButtonClickedRow, :recentlyChangedRow, :recentlyMouseEnterColumn, :recentlyMouseEnterRow, :rowSelectionType, :rowSelectionWidth, :selectedRowKeys, :selectedRows, :size, :sortOptions, :sorter, :sticky, :style, :summaryRowContents, :summaryRowFixed, :titlePopoverInfo]
+        available_props = Symbol[:id, :bordered, :className, :clickedContent, :columns, :columnsFormatConstraint, :conditionalStyleFuncs, :containerId, :currentData, :customFormatFuncs, :data, :enableHoverListen, :expandRowByClick, :expandedRowContents, :expandedRowContentsKeys, :expandedRowFixed, :expandedRowIndentSize, :expandedRowWidth, :filter, :filterOptions, :key, :loading_state, :locale, :maxHeight, :maxWidth, :miniChartAnimation, :miniChartHeight, :mode, :nClicksButton, :pagination, :recentlyButtonClickedRow, :recentlyChangedRow, :recentlyMouseEnterColumn, :recentlyMouseEnterRow, :rowSelectionType, :rowSelectionWidth, :selectedRowKeys, :selectedRows, :size, :sortOptions, :sorter, :sticky, :style, :summaryRowContents, :summaryRowFixed, :titlePopoverInfo]
         wild_props = Symbol[]
         return Component("'feffery'_antdtable", "AntdTable", "feffery_antd_components", available_props, wild_props; kwargs...)
 end
