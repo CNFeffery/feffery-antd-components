@@ -1,6 +1,6 @@
 /* eslint-disable no-undefined */
 /* eslint-disable no-unused-vars */
-import React, { useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { InputNumber, Space, message } from 'antd';
 import 'antd/dist/antd.css';
@@ -34,6 +34,8 @@ const AntdSegmentedColoring = (props) => {
         breakpoints,
         colors,
         inputNumberStyle,
+        colorBlockPosition,
+        colorBlockStyle,
         loading_state,
         setProps
     } = props;
@@ -57,6 +59,15 @@ const AntdSegmentedColoring = (props) => {
             {breakpoints.slice(0, breakpoints.length - 1).map((v, i) => {
                 return (
                     <Space key={`color-segment-${i}`}>
+                        {colorBlockPosition === 'left' ?
+                            (<div
+                                style={{
+                                    height: size2size.get(size),
+                                    backgroundColor: colors[i],
+                                    width: size2size.get(size),
+                                    ...colorBlockStyle
+                                }}
+                            />) : null}
                         <InputNumber
                             style={inputNumberStyle}
                             size={size}
@@ -133,13 +144,15 @@ const AntdSegmentedColoring = (props) => {
                                 }
                             }}
                         />
-                        <div
-                            style={{
-                                height: size2size.get(size),
-                                backgroundColor: colors[i],
-                                width: size2size.get(size)
-                            }}
-                        />
+                        {colorBlockPosition === 'right' ?
+                            (<div
+                                style={{
+                                    height: size2size.get(size),
+                                    backgroundColor: colors[i],
+                                    width: size2size.get(size),
+                                    ...colorBlockStyle
+                                }}
+                            />) : null}
                     </Space>
                 );
             })}
@@ -202,6 +215,12 @@ AntdSegmentedColoring.propTypes = {
     // 为数字输入框设置统一的css样式
     inputNumberStyle: PropTypes.object,
 
+    // 设置色块css样式
+    colorBlockStyle: PropTypes.object,
+
+    // 设置色块方位，可选的有'left'、'right'，默认为'left'
+    colorBlockPosition: PropTypes.oneOf(['left', 'right']),
+
     loading_state: PropTypes.shape({
         /**
          * Determines if the component is loading or not
@@ -233,7 +252,8 @@ AntdSegmentedColoring.defaultProps = {
     keyboard: true,
     step: 0.01,
     precision: 2,
-    readOnly: false
+    readOnly: false,
+    colorBlockPosition: 'right'
 }
 
 export default React.memo(AntdSegmentedColoring);

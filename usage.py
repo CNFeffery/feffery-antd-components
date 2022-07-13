@@ -17,6 +17,35 @@ app = dash.Dash(
 
 app.layout = html.Div(
     [
+
+        fac.AntdTable(
+            columns=[
+                {
+                    'title': f'字段{i}',
+                    'dataIndex': f'字段{i}'
+                }
+                for i in range(1, 6)
+            ],
+            data=[
+                {
+                    f'字段{j}': np.random.randint(1, 5)
+                    for j in range(1, 6)
+                }
+                for i in range(3)
+            ],
+            bordered=True,
+            sortOptions={
+                'sortDataIndexes': ['字段1', '字段2', '字段4', '字段5']
+            },
+            expandedRowContents=[
+                fac.AntdButton(
+                    f'可展开内容测试{i}',
+                    type='primary'
+                )
+                for i in range(3)
+            ]
+        ),
+
         fac.AntdSegmentedColoring(
             bordered=False,
             readOnly=True,
@@ -26,7 +55,7 @@ app.layout = html.Div(
             disabled=False,
             controls=True,
             inputNumberStyle={
-                'width': '50px',
+                'width': '100px',
                 'textAlign': 'center'
             },
             size='small',

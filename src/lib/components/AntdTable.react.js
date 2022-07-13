@@ -11,7 +11,7 @@ import './styles.css'
 const { Text } = Typography;
 
 // 定义表格组件AntdTable，部分api参数参考https://ant.design/components/table-cn/
-export default class AntdTable extends Component {
+class AntdTable extends Component {
 
     constructor(props) {
         super(props)
@@ -322,6 +322,8 @@ export default class AntdTable extends Component {
             summaryRowFixed,
             customFormatFuncs,
             conditionalStyleFuncs,
+            expandedRowContents,
+            expandedRowContentsKeys,
             loading_state
         } = this.props;
 
@@ -332,6 +334,7 @@ export default class AntdTable extends Component {
             ['large', 'middle']
         ])
 
+        // 为pagination补充默认参数值
         pagination = {
             ...pagination,
             ...{
@@ -340,14 +343,14 @@ export default class AntdTable extends Component {
             }
         }
 
-        // 当未设置行key时，自动以自增1作为key
+        // 当未设置行key时，自动以自增1的字符型结果作为key
         for (let i in data) {
             if (!data[i].hasOwnProperty('key')) {
                 data[i]['key'] = i.toString()
             }
         }
 
-        // 为columns添加默认属性
+        // 为columns配置默认align、conditionalStyleFuncs参数
         for (let i in columns) {
 
             columns[i] = {
@@ -378,7 +381,6 @@ export default class AntdTable extends Component {
         });
 
         // 处理可筛选特性
-
         // 若为前端渲染模式，在filterOptions中每个字段filterCustomItems缺失的情况下
         // 则会自动根据前端一次性灌入的数据推算出所有添加过滤器字段的唯一值集合作为待选菜单
         if (mode !== 'server-side') {
@@ -460,7 +462,6 @@ export default class AntdTable extends Component {
             }
         }
 
-        // 解析dash端传递参数
         // 处理sortOptions参数的默认值问题
         sortOptions = {
             ...{
@@ -496,7 +497,6 @@ export default class AntdTable extends Component {
 
                                         if (stringA > stringB) {
                                             return 1;
-
                                         }
 
                                         return 0;
@@ -530,219 +530,107 @@ export default class AntdTable extends Component {
             }
         }
 
-        // 配置字段渲染模式为ellipsis的相关参数
+        // 配置各种再渲染模式
         for (let i = 0; i < columns.length; i++) {
             // 当前字段具有renderOptions参数时且renderOptions参数是字典时
-            if (columns[i]['renderOptions']) {
-                if (columns[i]['renderOptions'].hasOwnProperty('renderType')) {
-                    // 当renderOptions参数的renderType值设置为ellipsis时
-                    if (columns[i]['renderOptions']['renderType'] == 'ellipsis') {
-                        columns[i]['ellipsis'] = true
+            if (columns[i]['renderOptions'] && columns[i]['renderOptions']['renderType']) {
+                // ellipsis模式
+                if (columns[i]['renderOptions']['renderType'] === 'ellipsis') {
+                    columns[i]['ellipsis'] = true
+                    columns[i]['render'] = content => (
+                        <Text ellipsis={{ tooltip: content }}>
+                            {content}
+                        </Text>
+                    )
+                }
+                // link模式
+                else if (columns[i]['renderOptions']['renderType'] === 'link') {
+                    // 检查renderLinkText参数是否定义
+                    if (columns[i]['renderOptions']['renderLinkText']) {
                         columns[i]['render'] = content => (
-                            <Text ellipsis={{ tooltip: content }}>
-                                {content}
-                            </Text>
+                            <a href={content.disabled ? undefined : content.href}
+                                target={content.target ? content.target : '_blank'}
+                                disabled={content.disabled}>
+                                {content.content ? content.content : columns[i]['renderOptions']['renderLinkText']}
+                            </a>
+                        )
+
+                    } else {
+                        columns[i]['render'] = content => (
+                            <a href={content.disabled ? undefined : content.href}
+                                target={content.target ? content.target : '_blank'}
+                                disabled={content.disabled}>
+                                {content.content ? content.content : '链接🔗'}
+                            </a>
                         )
                     }
                 }
-            }
-        }
-
-        // 配置字段渲染模式为link的相关参数
-        for (let i = 0; i < columns.length; i++) {
-            // 当前字段具有renderOptions参数时且renderOptions参数是字典时
-            if (columns[i]['renderOptions']) {
-                if (columns[i]['renderOptions'].hasOwnProperty('renderType')) {
-                    // 当renderOptions参数的renderType值设置为link时
-                    if (columns[i]['renderOptions']['renderType'] == 'link') {
-                        // 检查renderLinkText参数是否定义
-                        if (columns[i]['renderOptions'].hasOwnProperty('renderLinkText')) {
-                            columns[i]['render'] = content => (
-                                <a href={content.disabled ? undefined : content.href}
-                                    target={content.target ? content.target : '_blank'}
-                                    disabled={content.disabled}>
-                                    {content.content ? content.content : columns[i]['renderOptions']['renderLinkText']}
-                                </a>
-                            )
-
-                        } else {
-                            columns[i]['render'] = content => (
-                                <a href={content.disabled ? undefined : content.href}
-                                    target={content.target ? content.target : '_blank'}
-                                    disabled={content.disabled}>
-                                    {content.content ? content.content : '链接🔗'}
-                                </a>
-                            )
-                        }
-                    }
+                // copyable模式
+                else if (columns[i]['renderOptions']['renderType'] === 'copyable') {
+                    columns[i]['render'] = content => (
+                        <Text copyable={true}>
+                            {content}
+                        </Text>
+                    )
                 }
-            }
-        }
-
-        // 配置字段渲染模式为copyable的相关参数
-        for (let i = 0; i < columns.length; i++) {
-            // 当前字段具有renderOptions参数时且renderOptions参数是字典时
-            if (columns[i]['renderOptions']) {
-                if (columns[i]['renderOptions'].hasOwnProperty('renderType')) {
-                    // 当renderOptions参数的renderType值设置为copyable时
-                    if (columns[i]['renderOptions']['renderType'] == 'copyable') {
-                        columns[i]['render'] = content => (
-                            <Text copyable={true}>
-                                {content}
-                            </Text>
-                        )
-                    }
+                // ellipsis-copyable模式
+                else if (columns[i]['renderOptions']['renderType'] === 'ellipsis-copyable') {
+                    columns[i]['ellipsis'] = true
+                    columns[i]['render'] = content => (
+                        <Text copyable={true} ellipsis={{ tooltip: content }}>
+                            {content}
+                        </Text>
+                    )
                 }
-            }
-        }
-
-        // 配置字段渲染模式为ellipsis-copyable的相关参数
-        for (let i = 0; i < columns.length; i++) {
-            // 当前字段具有renderOptions参数时且renderOptions参数是字典时
-            if (columns[i]['renderOptions']) {
-                if (columns[i]['renderOptions'].hasOwnProperty('renderType')) {
-                    // 当renderOptions参数的renderType值设置为ellipsis-copyable时
-                    if (columns[i]['renderOptions']['renderType'] === 'ellipsis-copyable') {
-                        columns[i]['ellipsis'] = true
-                        columns[i]['render'] = content => (
-                            <Text copyable={true} ellipsis={{ tooltip: content }}>
-                                {content}
-                            </Text>
-                        )
-                    }
+                // corner-mark模式
+                else if (columns[i]['renderOptions']['renderType'] === 'corner-mark') {
+                    columns[i]['render'] = content => (
+                        <div className={content.placement ? 'ant-corner-mark-' + content.placement : 'ant-corner-mark-top-right'}
+                            style={{
+                                '--ant-corner-mark-color': content.hide ? 'transparent' : (content.color ? content.color : 'rgb(24, 144, 255)'),
+                                '--ant-corner-mark-transform': `translate(${content.offsetX ? content.offsetX : 0}px, ${content.offsetY ? content.offsetY : 0}px)`
+                            }}>
+                            {content.content}
+                        </div>
+                    )
                 }
-            }
-        }
-
-        // 配置字段渲染模式为corner-mark的相关参数
-        for (let i = 0; i < columns.length; i++) {
-            // 当前字段具有renderOptions参数时且renderOptions参数是字典时
-            if (columns[i]['renderOptions']) {
-                if (columns[i]['renderOptions'].hasOwnProperty('renderType')) {
-                    // 当renderOptions参数的renderType值设置为corner-mark时
-                    if (columns[i]['renderOptions']['renderType'] === 'corner-mark') {
-                        columns[i]['render'] = content => (
-                            <div className={content.placement ? 'ant-corner-mark-' + content.placement : 'ant-corner-mark-top-right'}
-                                style={{
-                                    '--ant-corner-mark-color': content.hide ? 'transparent' : (content.color ? content.color : 'rgb(24, 144, 255)'),
-                                    '--ant-corner-mark-transform': `translate(${content.offsetX ? content.offsetX : 0}px, ${content.offsetY ? content.offsetY : 0}px)`
-                                }}>
-                                {content.content}
-                            </div>
-                        )
-                    }
+                // status-badge模式
+                else if (columns[i]['renderOptions']['renderType'] === 'status-badge') {
+                    columns[i]['render'] = content => (
+                        <Badge status={content.status} text={content.text} />
+                    )
                 }
-            }
-        }
-
-        // 配置字段渲染模式为status-badge的相关参数
-        for (let i = 0; i < columns.length; i++) {
-            // 当前字段具有renderOptions参数时且renderOptions参数是字典时
-            if (columns[i]['renderOptions']) {
-                if (columns[i]['renderOptions'].hasOwnProperty('renderType')) {
-                    // 当renderOptions参数的renderType值设置为status-badge时
-                    if (columns[i]['renderOptions']['renderType'] == 'status-badge') {
-                        columns[i]['render'] = content => (
-                            <Badge status={content.status} text={content.text} />
-                        )
-                    }
+                // image模式
+                else if (columns[i]['renderOptions']['renderType'] === 'image') {
+                    columns[i]['render'] = content => (
+                        <Image src={content.src} height={content.height} preview={content.preview} />
+                    )
                 }
-            }
-        }
+                // button模式
+                else if (columns[i]['renderOptions']['renderType'] === 'button') {
 
-        // 配置字段渲染模式为image的相关参数
-        for (let i = 0; i < columns.length; i++) {
-            // 当前字段具有renderOptions参数时且renderOptions参数是字典时
-            if (columns[i]['renderOptions']) {
-                if (columns[i]['renderOptions'].hasOwnProperty('renderType')) {
-                    // 当renderOptions参数的renderType值设置为image时
-                    if (columns[i]['renderOptions']['renderType'] == 'image') {
-                        columns[i]['render'] = content => (
-                            <Image src={content.src} height={content.height} preview={content.preview} />
-                        )
-                    }
-                }
-            }
-        }
+                    // 当renderOptions参数的renderButtonPopConfirmProps参数存在
+                    if (columns[i]['renderOptions']['renderButtonPopConfirmProps']) {
+                        columns[i]['render'] = (content, record) => {
 
-        // 配置字段渲染模式为button的相关参数
-        for (let i = 0; i < columns.length; i++) {
-            // 当前字段具有renderOptions参数时且renderOptions参数是字典时
-            if (columns[i]['renderOptions']) {
-                if (columns[i]['renderOptions'].hasOwnProperty('renderType')) {
-                    // 当renderOptions参数的renderType值设置为button时
-                    if (columns[i]['renderOptions']['renderType'] === 'button') {
-
-                        // 当renderOptions参数的renderButtonPopConfirmProps参数存在
-                        if (columns[i]['renderOptions']['renderButtonPopConfirmProps']) {
-                            columns[i]['render'] = (content, record) => {
-
-                                // 根据content是否为数组，来决定渲染单个按钮还是多个按钮
-                                return Array.isArray(content) ? (
-                                    <Space>
-                                        {
-                                            content.map(
-                                                content_ => (
-                                                    <Popconfirm
-                                                        title={columns[i]['renderOptions']['renderButtonPopConfirmProps'].title}
-                                                        okText={columns[i]['renderOptions']['renderButtonPopConfirmProps'].okText}
-                                                        cancelText={columns[i]['renderOptions']['renderButtonPopConfirmProps'].cancelText}
-                                                        disabled={content_.disabled}
-                                                        getPopupContainer={containerId ? () => (document.getElementById(containerId) ? document.getElementById(containerId) : document.body) : undefined}
-                                                        onConfirm={() => setProps({
-                                                            recentlyButtonClickedRow: record,
-                                                            nClicksButton: nClicksButton + 1,
-                                                            clickedContent: content_.content
-                                                        })}>
-                                                        <Button
-                                                            size={'small'}
-                                                            type={content_.type}
-                                                            danger={content_.danger}
-                                                            disabled={content_.disabled}
-                                                            style={content_.style}>
-                                                            {content_.content}
-                                                        </Button>
-                                                    </Popconfirm>
-                                                )
-                                            )
-                                        }
-                                    </Space>
-                                ) : <Popconfirm
-                                    title={columns[i]['renderOptions']['renderButtonPopConfirmProps'].title}
-                                    okText={columns[i]['renderOptions']['renderButtonPopConfirmProps'].okText}
-                                    cancelText={columns[i]['renderOptions']['renderButtonPopConfirmProps'].cancelText}
-                                    disabled={content.disabled}
-                                    getPopupContainer={containerId ? () => (document.getElementById(containerId) ? document.getElementById(containerId) : document.body) : undefined}
-                                    onConfirm={() => setProps({
-                                        recentlyButtonClickedRow: record,
-                                        nClicksButton: nClicksButton + 1,
-                                        clickedContent: content.content
-                                    })}>
-                                    <Button
-                                        size={'small'}
-                                        type={content.type}
-                                        danger={content.danger}
-                                        disabled={content.disabled}
-                                        style={content.style}>
-                                        {content.content}
-                                    </Button>
-                                </Popconfirm>
-                            }
-                        } else {
-                            columns[i]['render'] = (content, record) => {
-
-                                // 根据content是否为数组，来决定渲染单个按钮还是多个按钮
-                                return Array.isArray(content) ? (
-                                    <Space>
-                                        {
-                                            content.map(
-                                                content_ => (
+                            // 根据content是否为数组，来决定渲染单个按钮还是多个按钮
+                            return Array.isArray(content) ? (
+                                <Space>
+                                    {
+                                        content.map(
+                                            content_ => (
+                                                <Popconfirm
+                                                    title={columns[i]['renderOptions']['renderButtonPopConfirmProps'].title}
+                                                    okText={columns[i]['renderOptions']['renderButtonPopConfirmProps'].okText}
+                                                    cancelText={columns[i]['renderOptions']['renderButtonPopConfirmProps'].cancelText}
+                                                    disabled={content_.disabled}
+                                                    getPopupContainer={containerId ? () => (document.getElementById(containerId) ? document.getElementById(containerId) : document.body) : undefined}
+                                                    onConfirm={() => setProps({
+                                                        recentlyButtonClickedRow: record,
+                                                        nClicksButton: nClicksButton + 1,
+                                                        clickedContent: content_.content
+                                                    })}>
                                                     <Button
-                                                        onClick={() => setProps({
-                                                            recentlyButtonClickedRow: record,
-                                                            nClicksButton: nClicksButton + 1,
-                                                            clickedContent: content_.content
-                                                        })}
                                                         size={'small'}
                                                         type={content_.type}
                                                         danger={content_.danger}
@@ -750,15 +638,23 @@ export default class AntdTable extends Component {
                                                         style={content_.style}>
                                                         {content_.content}
                                                     </Button>
-                                                )
+                                                </Popconfirm>
                                             )
-                                        }</Space>
-                                ) : <Button
-                                    onClick={() => setProps({
-                                        recentlyButtonClickedRow: record,
-                                        nClicksButton: nClicksButton + 1,
-                                        clickedContent: content.content
-                                    })}
+                                        )
+                                    }
+                                </Space>
+                            ) : <Popconfirm
+                                title={columns[i]['renderOptions']['renderButtonPopConfirmProps'].title}
+                                okText={columns[i]['renderOptions']['renderButtonPopConfirmProps'].okText}
+                                cancelText={columns[i]['renderOptions']['renderButtonPopConfirmProps'].cancelText}
+                                disabled={content.disabled}
+                                getPopupContainer={containerId ? () => (document.getElementById(containerId) ? document.getElementById(containerId) : document.body) : undefined}
+                                onConfirm={() => setProps({
+                                    recentlyButtonClickedRow: record,
+                                    nClicksButton: nClicksButton + 1,
+                                    clickedContent: content.content
+                                })}>
+                                <Button
                                     size={'small'}
                                     type={content.type}
                                     danger={content.danger}
@@ -766,60 +662,74 @@ export default class AntdTable extends Component {
                                     style={content.style}>
                                     {content.content}
                                 </Button>
-                            }
+                            </Popconfirm>
+                        }
+                    } else {
+                        columns[i]['render'] = (content, record) => {
+
+                            // 根据content是否为数组，来决定渲染单个按钮还是多个按钮
+                            return Array.isArray(content) ? (
+                                <Space>
+                                    {
+                                        content.map(
+                                            content_ => (
+                                                <Button
+                                                    onClick={() => setProps({
+                                                        recentlyButtonClickedRow: record,
+                                                        nClicksButton: nClicksButton + 1,
+                                                        clickedContent: content_.content
+                                                    })}
+                                                    size={'small'}
+                                                    type={content_.type}
+                                                    danger={content_.danger}
+                                                    disabled={content_.disabled}
+                                                    style={content_.style}>
+                                                    {content_.content}
+                                                </Button>
+                                            )
+                                        )
+                                    }</Space>
+                            ) : <Button
+                                onClick={() => setProps({
+                                    recentlyButtonClickedRow: record,
+                                    nClicksButton: nClicksButton + 1,
+                                    clickedContent: content.content
+                                })}
+                                size={'small'}
+                                type={content.type}
+                                danger={content.danger}
+                                disabled={content.disabled}
+                                style={content.style}>
+                                {content.content}
+                            </Button>
                         }
                     }
                 }
-            }
-        }
-
-        // 配置字段渲染模式为tag的相关参数
-        for (let i = 0; i < columns.length; i++) {
-            // 当前字段具有renderOptions参数时且renderOptions参数是字典时
-            if (columns[i]['renderOptions']) {
-                if (columns[i]['renderOptions'].hasOwnProperty('renderType')) {
-                    // 当renderOptions参数的renderType值设置为tags时
-                    if (columns[i]['renderOptions']['renderType'] == 'tags') {
-                        columns[i]['render'] = tags => (
-                            <>
-                                {tags.map(tag => {
-                                    return (
-                                        <Tag color={tag.color}>
-                                            {tag.tag}
-                                        </Tag>
-                                    );
-                                })}
-                            </>
+                // tag模式
+                else if (columns[i]['renderOptions']['renderType'] === 'tags') {
+                    columns[i]['render'] = tags => (
+                        <>
+                            {tags.map(tag => {
+                                return (
+                                    <Tag color={tag.color}>
+                                        {tag.tag}
+                                    </Tag>
+                                );
+                            })}
+                        </>
+                    )
+                }
+                // custom-format模式
+                else if (columns[i]['renderOptions']['renderType'] === 'custom-format') {
+                    // 若customFormatFuncs对应当前字段的属性值存在
+                    if (customFormatFuncs[columns[i]['dataIndex']]) {
+                        columns[i]['render'] = content => (
+                            eval(customFormatFuncs[columns[i]['dataIndex']])(content)
                         )
                     }
                 }
-            }
-        }
-
-        // 配置字段渲染模式为custom-format的相关参数
-        for (let i = 0; i < columns.length; i++) {
-            // 当前字段具有renderOptions参数时且renderOptions参数是字典时
-            if (columns[i]['renderOptions']) {
-                if (columns[i]['renderOptions'].hasOwnProperty('renderType')) {
-                    // 当renderOptions参数的renderType值设置为custom-format时
-                    if (columns[i]['renderOptions']['renderType'] == 'custom-format') {
-                        // 若customFormatFuncs对应当前字段的属性值存在
-                        if (customFormatFuncs[columns[i]['dataIndex']]) {
-                            columns[i]['render'] = content => (
-                                eval(customFormatFuncs[columns[i]['dataIndex']])(content)
-                            )
-                        }
-                    }
-                }
-            }
-        }
-
-        // 配置字段渲染模式对应迷你图模式的情况
-        for (let i = 0; i < columns.length; i++) {
-            // 当前字段具有renderOptions参数时且renderOptions参数是字典时
-            if (typeof columns[i]['renderOptions'] == typeof {}) {
-                // 当renderOptions参数的renderType值设置为mini-line时
-                if (columns[i]['renderOptions']['renderType'] == 'mini-line') {
+                // mini-line模式
+                else if (columns[i]['renderOptions']['renderType'] === 'mini-line') {
                     columns[i]['render'] = data => {
                         let config = {
                             autoFit: true,
@@ -839,7 +749,9 @@ export default class AntdTable extends Component {
                         }
                         return <div style={{ height: miniChartHeight }}><TinyLine {...config} /></div>;
                     }
-                } else if (columns[i]['renderOptions']['renderType'] == 'mini-bar') {
+                }
+                // mini-bar模式
+                else if (columns[i]['renderOptions']['renderType'] === 'mini-bar') {
                     columns[i]['render'] = data => {
                         let config = {
                             padding: 0,
@@ -858,7 +770,9 @@ export default class AntdTable extends Component {
                         }
                         return <div style={{ height: miniChartHeight }}><TinyColumn {...config} /></div>;
                     }
-                } else if (columns[i]['renderOptions']['renderType'] == 'mini-progress') {
+                }
+                // mini-progress模式
+                else if (columns[i]['renderOptions']['renderType'] === 'mini-progress') {
                     columns[i]['render'] = data => {
                         let config = {
                             autoFit: true,
@@ -869,7 +783,9 @@ export default class AntdTable extends Component {
                         };
                         return <div style={{ height: miniChartHeight }}><Progress {...config} /></div>;
                     }
-                } else if (columns[i]['renderOptions']['renderType'] == 'mini-ring-progress') {
+                }
+                // mini-ring-progress模式
+                else if (columns[i]['renderOptions']['renderType'] === 'mini-ring-progress') {
                     columns[i]['render'] = data => {
                         let config = {
                             autoFit: true,
@@ -880,7 +796,9 @@ export default class AntdTable extends Component {
                         };
                         return <div style={{ height: miniChartHeight }}><RingProgress {...config} /></div>;
                     }
-                } else if (columns[i]['renderOptions']['renderType'] == 'mini-area') {
+                }
+                // mini-area模式
+                else if (columns[i]['renderOptions']['renderType'] === 'mini-area') {
                     columns[i]['render'] = data => {
                         let config = {
                             autoFit: true,
@@ -903,7 +821,6 @@ export default class AntdTable extends Component {
                 }
             }
         }
-
 
         // 处理columns.title的增广功能设置
         if (titlePopoverInfo) {
@@ -984,6 +901,28 @@ export default class AntdTable extends Component {
             }
         }
 
+        // 处理行可展开内容功能
+        let rowExpandedRowRender
+        if (expandedRowContents && !expandedRowContentsKeys) {
+            expandedRowContentsKeys = expandedRowContents.map((_, index) => index.toString())
+        }
+        // 若expandedRowContents参数与expandedRowContentsKeys参数长度一致
+        if (expandedRowContents &&
+            expandedRowContentsKeys &&
+            expandedRowContents.length === expandedRowContentsKeys.length) {
+            rowExpandedRowRender = new Map(
+                expandedRowContentsKeys.map(
+                    (key, index) => [key, expandedRowContents[index]]
+                )
+            )
+        }
+
+        console.log({
+            rowExpandedRowRender,
+            expandedRowContents,
+            expandedRowContentsKeys
+        })
+
         return (
             <ConfigProvider locale={str2Locale.get(locale)}>
                 <Table
@@ -1021,6 +960,12 @@ export default class AntdTable extends Component {
                             </Table.Summary.Row>
                         </Table.Summary>
                     ) : undefined}
+                    expandable={
+                        rowExpandedRowRender ? {
+                            expandedRowRender: (record) => rowExpandedRowRender.get(record.key),
+                            rowExpandable: (record) => Boolean(rowExpandedRowRender.get(record.key))
+                        } : undefined
+                    }
                     data-dash-is-loading={
                         (loading_state && loading_state.is_loading) || undefined
                     }
@@ -1475,6 +1420,18 @@ AntdTable.propTypes = {
         PropTypes.string
     ),
 
+    // 配置行可展开内容，与expandedRowContentsKeys按位置一一对应
+    expandedRowContents: PropTypes.arrayOf(PropTypes.node),
+
+    // 设置与expandedContents按位置一一对应的行记录key数组
+    // 缺省情况下，会按顺序以expandedRowContents中各元素的下标idnex作为key
+    expandedRowContentsKeys: PropTypes.arrayOf(
+        PropTypes.oneOfType([
+            PropTypes.string,
+            PropTypes.number
+        ])
+    ),
+
     loading_state: PropTypes.shape({
         /**
          * Determines if the component is loading or not
@@ -1516,3 +1473,5 @@ AntdTable.defaultProps = {
     locale: 'zh-cn',
     conditionalStyleFuncs: {}
 }
+
+export default React.memo(AntdTable);
