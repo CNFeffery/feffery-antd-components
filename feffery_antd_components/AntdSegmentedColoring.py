@@ -17,6 +17,10 @@ Keyword arguments:
 
 - className (string; optional)
 
+- colorBlockPosition (a value equal to: 'left', 'right'; default 'right')
+
+- colorBlockStyle (dict; optional)
+
 - colors (list of strings; required)
 
 - controls (boolean; default True)
@@ -62,10 +66,10 @@ Keyword arguments:
     _namespace = 'feffery_antd_components'
     _type = 'AntdSegmentedColoring'
     @_explicitize_args
-    def __init__(self, id=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, key=Component.UNDEFINED, size=Component.UNDEFINED, bordered=Component.UNDEFINED, controls=Component.UNDEFINED, disabled=Component.UNDEFINED, keyboard=Component.UNDEFINED, placeholder=Component.UNDEFINED, min=Component.UNDEFINED, max=Component.UNDEFINED, step=Component.UNDEFINED, precision=Component.UNDEFINED, readOnly=Component.UNDEFINED, breakpoints=Component.REQUIRED, colors=Component.REQUIRED, inputNumberStyle=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
-        self._prop_names = ['id', 'bordered', 'breakpoints', 'className', 'colors', 'controls', 'disabled', 'inputNumberStyle', 'key', 'keyboard', 'loading_state', 'max', 'min', 'placeholder', 'precision', 'readOnly', 'size', 'step', 'style']
+    def __init__(self, id=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, key=Component.UNDEFINED, size=Component.UNDEFINED, bordered=Component.UNDEFINED, controls=Component.UNDEFINED, disabled=Component.UNDEFINED, keyboard=Component.UNDEFINED, placeholder=Component.UNDEFINED, min=Component.UNDEFINED, max=Component.UNDEFINED, step=Component.UNDEFINED, precision=Component.UNDEFINED, readOnly=Component.UNDEFINED, breakpoints=Component.REQUIRED, colors=Component.REQUIRED, inputNumberStyle=Component.UNDEFINED, colorBlockStyle=Component.UNDEFINED, colorBlockPosition=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
+        self._prop_names = ['id', 'bordered', 'breakpoints', 'className', 'colorBlockPosition', 'colorBlockStyle', 'colors', 'controls', 'disabled', 'inputNumberStyle', 'key', 'keyboard', 'loading_state', 'max', 'min', 'placeholder', 'precision', 'readOnly', 'size', 'step', 'style']
         self._valid_wildcard_attributes =            []
-        self.available_properties = ['id', 'bordered', 'breakpoints', 'className', 'colors', 'controls', 'disabled', 'inputNumberStyle', 'key', 'keyboard', 'loading_state', 'max', 'min', 'placeholder', 'precision', 'readOnly', 'size', 'step', 'style']
+        self.available_properties = ['id', 'bordered', 'breakpoints', 'className', 'colorBlockPosition', 'colorBlockStyle', 'colors', 'controls', 'disabled', 'inputNumberStyle', 'key', 'keyboard', 'loading_state', 'max', 'min', 'placeholder', 'precision', 'readOnly', 'size', 'step', 'style']
         self.available_wildcard_properties =            []
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()

@@ -12,6 +12,8 @@ Keyword arguments:
 - `bordered` (Bool; optional)
 - `breakpoints` (Array of Reals; required)
 - `className` (String; optional)
+- `colorBlockPosition` (a value equal to: 'left', 'right'; optional)
+- `colorBlockStyle` (Dict; optional)
 - `colors` (Array of Strings; required)
 - `controls` (Bool; optional)
 - `disabled` (Bool; optional)
@@ -33,7 +35,7 @@ Those elements have the following types:
 - `style` (Dict; optional)
 """
 function 'feffery'_antdsegmentedcoloring(; kwargs...)
-        available_props = Symbol[:id, :bordered, :breakpoints, :className, :colors, :controls, :disabled, :inputNumberStyle, :key, :keyboard, :loading_state, :max, :min, :placeholder, :precision, :readOnly, :size, :step, :style]
+        available_props = Symbol[:id, :bordered, :breakpoints, :className, :colorBlockPosition, :colorBlockStyle, :colors, :controls, :disabled, :inputNumberStyle, :key, :keyboard, :loading_state, :max, :min, :placeholder, :precision, :readOnly, :size, :step, :style]
         wild_props = Symbol[]
         return Component("'feffery'_antdsegmentedcoloring", "AntdSegmentedColoring", "feffery_antd_components", available_props, wild_props; kwargs...)
 end

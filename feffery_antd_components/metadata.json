@@ -9594,6 +9594,34 @@
         "required": false,
         "description": ""
       },
+      "colorBlockStyle": {
+        "type": {
+          "name": "object"
+        },
+        "required": false,
+        "description": ""
+      },
+      "colorBlockPosition": {
+        "type": {
+          "name": "enum",
+          "value": [
+            {
+              "value": "'left'",
+              "computed": false
+            },
+            {
+              "value": "'right'",
+              "computed": false
+            }
+          ]
+        },
+        "required": false,
+        "description": "",
+        "defaultValue": {
+          "value": "'right'",
+          "computed": false
+        }
+      },
       "loading_state": {
         "type": {
           "name": "shape",
@@ -12424,6 +12452,34 @@
           "value": "{}",
           "computed": false
         }
+      },
+      "expandedRowContents": {
+        "type": {
+          "name": "arrayOf",
+          "value": {
+            "name": "node"
+          }
+        },
+        "required": false,
+        "description": ""
+      },
+      "expandedRowContentsKeys": {
+        "type": {
+          "name": "arrayOf",
+          "value": {
+            "name": "union",
+            "value": [
+              {
+                "name": "string"
+              },
+              {
+                "name": "number"
+              }
+            ]
+          }
+        },
+        "required": false,
+        "description": ""
       },
       "loading_state": {
         "type": {
