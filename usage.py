@@ -31,7 +31,7 @@ app.layout = html.Div(
                     f'字段{j}': np.random.randint(1, 5)
                     for j in range(1, 6)
                 }
-                for i in range(3)
+                for i in range(10)
             ],
             bordered=True,
             sortOptions={
@@ -42,7 +42,10 @@ app.layout = html.Div(
                     f'可展开内容测试{i}',
                     type='primary'
                 )
-                for i in range(3)
+                if i >= 3
+                else
+                None
+                for i in range(10)
             ]
         ),
 
