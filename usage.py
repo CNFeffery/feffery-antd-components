@@ -18,6 +18,9 @@ app = dash.Dash(
 
 app.layout = html.Div(
     [
+        fac.AntdCopyText(
+            text='copy-target-demo'
+        ),
         fac.AntdTable(
             size='small',
             columns=[

@@ -90,6 +90,7 @@ import AntdSkeletonButton from './components/skeleton/AntdSkeletonButton.react'
 import AntdSkeletonInput from './components/skeleton/AntdSkeletonInput.react'
 import AntdSkeletonImage from './components/skeleton/AntdSkeletonImage.react'
 import AntdSegmentedColoring from './components/AntdSegmentedColoring.react'
+import AntdCopyText from './components/AntdCopyText.react'
 
 
 export {
@@ -183,5 +184,6 @@ export {
     AntdSkeletonButton,
     AntdSkeletonInput,
     AntdSkeletonImage,
-    AntdSegmentedColoring
+    AntdSegmentedColoring,
+    AntdCopyText
 };
