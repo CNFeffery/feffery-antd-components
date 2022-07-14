@@ -10,7 +10,6 @@ import './styles.css'
 
 const { Text } = Typography;
 
-
 // 定义表格组件AntdTable，部分api参数参考https://ant.design/components/table-cn/
 class AntdTable extends Component {
 
