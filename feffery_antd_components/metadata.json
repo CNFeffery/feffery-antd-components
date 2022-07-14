@@ -6394,7 +6394,7 @@
       },
       "content": {
         "type": {
-          "name": "string"
+          "name": "node"
         },
         "required": false,
         "description": ""
