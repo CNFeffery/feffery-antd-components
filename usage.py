@@ -17,7 +17,6 @@ app = dash.Dash(
 
 app.layout = html.Div(
     [
-
         fac.AntdTable(
             columns=[
                 {
@@ -46,7 +45,8 @@ app.layout = html.Div(
                 else
                 None
                 for i in range(10)
-            ]
+            ],
+            expandRowByClick=True
         ),
 
         fac.AntdSegmentedColoring(
