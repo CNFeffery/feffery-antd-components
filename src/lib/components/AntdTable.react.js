@@ -4,6 +4,7 @@ import { Table, Popover, Popconfirm, ConfigProvider, Typography, Input, Form, Ta
 import { TinyLine, TinyArea, TinyColumn, Progress, RingProgress } from '@ant-design/charts';
 import Highlighter from 'react-highlight-words';
 import { SearchOutlined, QuestionCircleOutlined } from '@ant-design/icons';
+import { isNumber } from 'lodash';
 import { str2Locale } from './locales.react';
 import 'antd/dist/antd.css';
 import './styles.css'
@@ -498,7 +499,7 @@ class AntdTable extends Component {
         for (let i = 0; i < sortOptions.sortDataIndexes.length; i++) {
             for (let j = 0; j < columns.length; j++) {
                 // 若sortOptions与data中本轮迭代到的dataIndex一致
-                if (sortOptions.sortDataIndexes[i] == columns[j].dataIndex) {
+                if (sortOptions.sortDataIndexes[i] === columns[j].dataIndex) {
 
                     if (sortOptions['multiple']) { // 若为组合排序模式
                         columns[j]['sorter'] = {
@@ -507,8 +508,7 @@ class AntdTable extends Component {
                                 if (mode === 'server-side') {
                                     return 0
                                 } else {
-                                    if (typeof a[columns[j].dataIndex] == typeof 1 ||
-                                        typeof b[columns[j].dataIndex] == typeof 1.0) {
+                                    if (isNumber(a[columns[j].dataIndex])) {
                                         return a[columns[j].dataIndex] - b[columns[j].dataIndex]
                                     } else {
                                         let stringA = a[columns[j].dataIndex].toUpperCase(); // ignore upper and lowercase
@@ -532,8 +532,27 @@ class AntdTable extends Component {
                         }
                     } else { // 若非组合排序模式
                         columns[j]['sorter'] = (a, b) => {
+                            // 处理corner-mark模式排序问题
+                            if (columns.filter(item => item.dataIndex === columns[j].dataIndex)[0]?.renderOptions?.renderType === 'corner-mark') {
+                                if (isNumber(a[columns[j].dataIndex].content)) {
+                                    return a[columns[j].dataIndex].content - b[columns[j].dataIndex].content
+                                } else {
+                                    let stringA = a[columns[j].dataIndex].content.toUpperCase(); // ignore upper and lowercase
+
+                                    let stringB = b[columns[j].dataIndex].content.toUpperCase(); // ignore upper and lowercase
+
+                                    if (stringA < stringB) {
+                                        return -1;
+                                    }
+
+                                    if (stringA > stringB) {
+                                        return 1;
+                                    }
+                                }
+                            }
+
                             if (typeof a[columns[j].dataIndex] == typeof 1 ||
-                                typeof b[columns[j].dataIndex] == typeof 1.0) {
+                                typeof b[a] == typeof 1.0) {
                                 return a[columns[j].dataIndex] - b[columns[j].dataIndex]
                             } else {
                                 let stringA = a[columns[j].dataIndex].toUpperCase(); // ignore upper and lowercase
