@@ -6,7 +6,7 @@ from flask import request
 from dash import html
 from requests import options
 import feffery_antd_components as fac
-from dash.dependencies import Input, Output, ALL
+from dash.dependencies import Input, Output, ALL, State
 from faker import Faker
 
 faker = Faker(locale='zh_CN')
@@ -15,9 +15,9 @@ app = dash.Dash(
     __name__
 )
 
+
 app.layout = html.Div(
     [
-
         fac.AntdTable(
             size='small',
             columns=[

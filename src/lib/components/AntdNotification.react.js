@@ -75,10 +75,10 @@ AntdNotification.propTypes = {
     key: PropTypes.string,
 
     // 设置通知提醒标题，必填
-    message: PropTypes.node,
+    message: PropTypes.string,
 
     // 设置通知提醒内容
-    description: PropTypes.node,
+    description: PropTypes.string,
 
     // 设置通知类型，可选项有'default'、'success'、'error'、'info'、'warning'，默认为'default'
     type: PropTypes.oneOf(['default', 'success', 'error', 'info', 'warning']),

@@ -15,7 +15,7 @@ Keyword arguments:
 
 - className (string; optional)
 
-- description (a list of or a singular dash component, string or number; optional)
+- description (string; optional)
 
 - duration (number; optional)
 
@@ -34,7 +34,7 @@ Keyword arguments:
     - prop_name (string; optional):
         Holds which property is loading.
 
-- message (a list of or a singular dash component, string or number; optional)
+- message (string; optional)
 
 - placement (a value equal to: 'topLeft', 'topRight', 'bottomLeft', 'bottomRight'; optional)
 
@@ -43,8 +43,8 @@ Keyword arguments:
 - top (number; optional)
 
 - type (a value equal to: 'default', 'success', 'error', 'info', 'warning'; default 'default')"""
-    _children_props = ['message', 'description']
-    _base_nodes = ['message', 'description', 'children']
+    _children_props = []
+    _base_nodes = ['children']
     _namespace = 'feffery_antd_components'
     _type = 'AntdNotification'
     @_explicitize_args
