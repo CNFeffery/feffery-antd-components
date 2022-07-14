@@ -13,7 +13,7 @@ Keyword arguments:
 
 - className (string; optional)
 
-- content (a list of or a singular dash component, string or number; optional)
+- content (string; optional)
 
 - duration (number; optional)
 
@@ -39,8 +39,8 @@ Keyword arguments:
 - top (number; optional)
 
 - type (a value equal to: 'default', 'success', 'error', 'info', 'warning'; default 'default')"""
-    _children_props = ['content']
-    _base_nodes = ['content', 'children']
+    _children_props = []
+    _base_nodes = ['children']
     _namespace = 'feffery_antd_components'
     _type = 'AntdMessage'
     @_explicitize_args
