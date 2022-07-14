@@ -12503,38 +12503,6 @@
         "required": false,
         "description": ""
       },
-      "expandedRowFixed": {
-        "type": {
-          "name": "union",
-          "value": [
-            {
-              "name": "bool"
-            },
-            {
-              "name": "enum",
-              "value": [
-                {
-                  "value": "'left'",
-                  "computed": false
-                },
-                {
-                  "value": "'right'",
-                  "computed": false
-                }
-              ]
-            }
-          ]
-        },
-        "required": false,
-        "description": ""
-      },
-      "expandedRowIndentSize": {
-        "type": {
-          "name": "number"
-        },
-        "required": false,
-        "description": ""
-      },
       "loading_state": {
         "type": {
           "name": "shape",

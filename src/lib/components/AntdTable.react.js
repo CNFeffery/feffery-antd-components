@@ -347,8 +347,6 @@ class AntdTable extends Component {
             expandedRowContentsKeys,
             expandedRowWidth,
             expandRowByClick,
-            expandedRowFixed,
-            expandedRowIndentSize,
             loading_state
         } = this.props;
 
@@ -508,7 +506,28 @@ class AntdTable extends Component {
                                 if (mode === 'server-side') {
                                     return 0
                                 } else {
-                                    if (isNumber(a[columns[j].dataIndex])) {
+                                    // 处理corner-mark模式排序问题
+                                    if (columns.filter(item => item.dataIndex === columns[j].dataIndex)[0]?.renderOptions?.renderType === 'corner-mark') {
+                                        if (isNumber(a[columns[j].dataIndex].content) ||
+                                            isNumber(b[columns[j].dataIndex].content)) {
+                                            return a[columns[j].dataIndex].content - b[columns[j].dataIndex].content
+                                        } else {
+                                            let stringA = a[columns[j].dataIndex].content.toUpperCase(); // ignore upper and lowercase
+
+                                            let stringB = b[columns[j].dataIndex].content.toUpperCase(); // ignore upper and lowercase
+
+                                            if (stringA < stringB) {
+                                                return -1;
+                                            }
+
+                                            if (stringA > stringB) {
+                                                return 1;
+                                            }
+                                        }
+                                    }
+
+                                    if (isNumber(a[columns[j].dataIndex]) ||
+                                        isNumber(b[columns[j].dataIndex])) {
                                         return a[columns[j].dataIndex] - b[columns[j].dataIndex]
                                     } else {
                                         let stringA = a[columns[j].dataIndex].toUpperCase(); // ignore upper and lowercase
@@ -530,42 +549,50 @@ class AntdTable extends Component {
                             },
                             multiple: sortOptions['multiple'] === 'auto' ? 1 : sortOptions.sortDataIndexes.length - i,
                         }
-                    } else { // 若非组合排序模式
+                    } else {
+                        // 若非组合排序模式
                         columns[j]['sorter'] = (a, b) => {
-                            // 处理corner-mark模式排序问题
-                            if (columns.filter(item => item.dataIndex === columns[j].dataIndex)[0]?.renderOptions?.renderType === 'corner-mark') {
-                                if (isNumber(a[columns[j].dataIndex].content)) {
-                                    return a[columns[j].dataIndex].content - b[columns[j].dataIndex].content
-                                } else {
-                                    let stringA = a[columns[j].dataIndex].content.toUpperCase(); // ignore upper and lowercase
 
-                                    let stringB = b[columns[j].dataIndex].content.toUpperCase(); // ignore upper and lowercase
+                            // 当渲染模式为server-side时，禁用前端排序操作
+                            if (mode === 'server-side') {
+                                return 0
+                            } else {
+                                // 处理corner-mark模式排序问题
+                                if (columns.filter(item => item.dataIndex === columns[j].dataIndex)[0]?.renderOptions?.renderType === 'corner-mark') {
+                                    if (isNumber(a[columns[j].dataIndex].content) ||
+                                        isNumber(b[columns[j].dataIndex].content)) {
+                                        return a[columns[j].dataIndex].content - b[columns[j].dataIndex].content
+                                    } else {
+                                        let stringA = a[columns[j].dataIndex].content.toUpperCase(); // ignore upper and lowercase
+
+                                        let stringB = b[columns[j].dataIndex].content.toUpperCase(); // ignore upper and lowercase
+
+                                        if (stringA < stringB) {
+                                            return -1;
+                                        }
+
+                                        if (stringA > stringB) {
+                                            return 1;
+                                        }
+                                    }
+                                }
+
+                                if (isNumber(a[columns[j].dataIndex]) ||
+                                    isNumber(b[columns[j].dataIndex])) {
+                                    return a[columns[j].dataIndex] - b[columns[j].dataIndex]
+                                } else {
+                                    let stringA = a[columns[j].dataIndex].toUpperCase(); // ignore upper and lowercase
+
+                                    let stringB = b[columns[j].dataIndex].toUpperCase(); // ignore upper and lowercase
 
                                     if (stringA < stringB) {
                                         return -1;
                                     }
-
                                     if (stringA > stringB) {
                                         return 1;
                                     }
+                                    return 0;
                                 }
-                            }
-
-                            if (typeof a[columns[j].dataIndex] == typeof 1 ||
-                                typeof b[a] == typeof 1.0) {
-                                return a[columns[j].dataIndex] - b[columns[j].dataIndex]
-                            } else {
-                                let stringA = a[columns[j].dataIndex].toUpperCase(); // ignore upper and lowercase
-
-                                let stringB = b[columns[j].dataIndex].toUpperCase(); // ignore upper and lowercase
-
-                                if (stringA < stringB) {
-                                    return -1;
-                                }
-                                if (stringA > stringB) {
-                                    return 1;
-                                }
-                                return 0;
                             }
                         }
                     }
@@ -1002,9 +1029,7 @@ class AntdTable extends Component {
                             expandedRowRender: (record) => rowExpandedRowRender.get(record.key),
                             rowExpandable: (record) => Boolean(rowExpandedRowRender.get(record.key)),
                             columnWidth: expandedRowWidth,
-                            expandRowByClick: expandRowByClick,
-                            fixed: expandedRowFixed,
-                            indentSize: expandedRowIndentSize
+                            expandRowByClick: expandRowByClick
                         } : undefined
                     }
                     data-dash-is-loading={
@@ -1481,15 +1506,6 @@ AntdTable.propTypes = {
 
     // 设置是否允许直接点击行进行展开，默认为false
     expandRowByClick: PropTypes.bool,
-
-    // 设置行展开控件列是否固定，默认为false，可选的有'left'、'right'
-    expandedRowFixed: PropTypes.oneOfType([
-        PropTypes.bool,
-        PropTypes.oneOf(['left', 'right'])
-    ]),
-
-    // 设置行展开内容的像素缩进距离，默认为15
-    expandedRowIndentSize: PropTypes.number,
 
     loading_state: PropTypes.shape({
         /**

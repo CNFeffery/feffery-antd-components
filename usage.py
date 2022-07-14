@@ -22,16 +22,29 @@ app.layout = html.Div(
             size='small',
             columns=[
                 {
-                    'title': '角标模式',
-                    'dataIndex': '角标模式',
+                    'title': '角标模式1',
+                    'dataIndex': '角标模式1',
+                    'renderOptions': {'renderType': 'corner-mark'}
+                },
+                {
+                    'title': '角标模式2',
+                    'dataIndex': '角标模式2',
                     'renderOptions': {'renderType': 'corner-mark'}
                 }
             ],
             data=[
                 {
                     'key': i,
-                    '角标模式': {
+                    '角标模式1': {
                         'content': i,
+                        'color': ['red', 'blue', 'green'][i],
+                        'offsetX': -7.5,
+                        'offsetY': -8.5,
+                        'placement': 'top-left',
+                        'hide': [False, True, False][i]
+                    },
+                    '角标模式2': {
+                        'content': 3-i,
                         'color': ['red', 'blue', 'green'][i],
                         'offsetX': -7.5,
                         'offsetY': -8.5,
@@ -43,7 +56,8 @@ app.layout = html.Div(
             ],
             bordered=True,
             sortOptions={
-                'sortDataIndexes': ['角标模式']
+                'sortDataIndexes': ['角标模式1', '角标模式2'],
+                'multiple': True
             },
             style={
                 'width': '200px'
