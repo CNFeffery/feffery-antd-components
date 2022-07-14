@@ -10,7 +10,7 @@ An AntdMessage component.
 Keyword arguments:
 - `id` (String; optional)
 - `className` (String; optional)
-- `content` (a list of or a singular dash component, string or number; optional)
+- `content` (String; optional)
 - `duration` (Real; optional)
 - `icon` (String; optional)
 - `key` (String; optional)

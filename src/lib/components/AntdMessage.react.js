@@ -92,7 +92,7 @@ AntdMessage.propTypes = {
     }),
 
     // 设置文字内容，必填
-    content: PropTypes.node,
+    content: PropTypes.string,
 
     // 设置通知类型，可选项有'default'、'success'、'error'、'info'、'warning'，默认为'default'
     type: PropTypes.oneOf(['default', 'success', 'error', 'info', 'warning']),
