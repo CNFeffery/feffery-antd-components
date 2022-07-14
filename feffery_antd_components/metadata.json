@@ -6748,14 +6748,14 @@
       },
       "message": {
         "type": {
-          "name": "node"
+          "name": "string"
         },
         "required": false,
         "description": ""
       },
       "description": {
         "type": {
-          "name": "node"
+          "name": "string"
         },
         "required": false,
         "description": ""
