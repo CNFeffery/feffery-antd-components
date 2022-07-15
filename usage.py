@@ -40,13 +40,21 @@ app.layout = html.Div(
                     'title': '角标模式2',
                     'dataIndex': '角标模式2',
                     'renderOptions': {'renderType': 'corner-mark'}
+                },
+                {
+                    'title': '常规数值字段',
+                    'dataIndex': '常规数值字段'
+                },
+                {
+                    'title': '常规数值字段(带缺失值)',
+                    'dataIndex': '常规数值字段(带缺失值)'
                 }
             ],
             data=[
                 {
                     'key': i,
                     '角标模式1': {
-                        'content': i if i == 0 else None,
+                        'content': i if i == 1 else None,
                         'color': ['red', 'blue', 'green'][i],
                         'offsetX': -7.5,
                         'offsetY': -8.5,
@@ -60,17 +68,19 @@ app.layout = html.Div(
                         'offsetY': -8.5,
                         'placement': 'top-left',
                         'hide': [False, True, False][i]
-                    }
+                    },
+                    '常规数值字段': i,
+                    '常规数值字段(带缺失值)': i if i == 1 else None
                 }
                 for i in range(3)
             ],
             bordered=True,
             sortOptions={
-                'sortDataIndexes': ['角标模式1', '角标模式2'],
+                'sortDataIndexes': ['角标模式1', '角标模式2', '常规数值字段', '常规数值字段(带缺失值)'],
                 'multiple': True
             },
             style={
-                'width': '200px'
+                'width': '400px'
             }
         ),
 
