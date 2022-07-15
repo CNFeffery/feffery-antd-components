@@ -508,7 +508,7 @@ class AntdTable extends Component {
                                 } else {
                                     // 处理corner-mark模式排序问题
                                     if (columns.filter(item => item.dataIndex === columns[j].dataIndex)[0]?.renderOptions?.renderType === 'corner-mark') {
-                                        if (isNumber(a[columns[j].dataIndex].content) &&
+                                        if (isNumber(a[columns[j].dataIndex].content) ||
                                             isNumber(b[columns[j].dataIndex].content)) {
                                             return a[columns[j].dataIndex].content - b[columns[j].dataIndex].content
                                         } else {
@@ -523,13 +523,16 @@ class AntdTable extends Component {
                                             if (stringA > stringB) {
                                                 return 1;
                                             }
+
+                                            return 0;
                                         }
                                     }
 
-                                    if (isNumber(a[columns[j].dataIndex]) &&
+                                    if (isNumber(a[columns[j].dataIndex]) ||
                                         isNumber(b[columns[j].dataIndex])) {
                                         return a[columns[j].dataIndex] - b[columns[j].dataIndex]
                                     } else {
+
                                         let stringA = a[columns[j].dataIndex] ? a[columns[j].dataIndex].toUpperCase() : ''
 
                                         let stringB = b[columns[j].dataIndex] ? b[columns[j].dataIndex].toUpperCase() : ''
@@ -559,7 +562,7 @@ class AntdTable extends Component {
                             } else {
                                 // 处理corner-mark模式排序问题
                                 if (columns.filter(item => item.dataIndex === columns[j].dataIndex)[0]?.renderOptions?.renderType === 'corner-mark') {
-                                    if (isNumber(a[columns[j].dataIndex].content) &&
+                                    if (isNumber(a[columns[j].dataIndex].content) ||
                                         isNumber(b[columns[j].dataIndex].content)) {
                                         return a[columns[j].dataIndex].content - b[columns[j].dataIndex].content
                                     } else {
@@ -574,10 +577,12 @@ class AntdTable extends Component {
                                         if (stringA > stringB) {
                                             return 1;
                                         }
+
+                                        return 0;
                                     }
                                 }
 
-                                if (isNumber(a[columns[j].dataIndex]) &&
+                                if (isNumber(a[columns[j].dataIndex]) ||
                                     isNumber(b[columns[j].dataIndex])) {
                                     return a[columns[j].dataIndex] - b[columns[j].dataIndex]
                                 } else {
