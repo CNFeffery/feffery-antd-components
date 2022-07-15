@@ -17,6 +17,8 @@ export default class AntdCopyText extends Component {
             key,
             locale,
             text,
+            beforeIcon,
+            afterIcon,
             setProps,
             loading_state
         } = this.props;
@@ -28,7 +30,8 @@ export default class AntdCopyText extends Component {
                     style={style}
                     key={key}
                     copyable={{
-                        text: text
+                        text: text,
+                        icon: [beforeIcon, afterIcon]
                     }}
                     data-dash-is-loading={
                         (loading_state && loading_state.is_loading) || undefined
@@ -42,11 +45,6 @@ export default class AntdCopyText extends Component {
 AntdCopyText.propTypes = {
     // 组件id
     id: PropTypes.string,
-
-    /**
-     * The content of the tab - will only be displayed if this tab is selected
-     */
-    children: PropTypes.node,
 
     // css类名
     className: PropTypes.string,
@@ -62,6 +60,12 @@ AntdCopyText.propTypes = {
 
     // 设置点击按钮后复制到粘贴板的文字内容
     text: PropTypes.string,
+
+    // 定义复制之前的图标
+    beforeIcon: PropTypes.node,
+
+    // 定义复制之后的图标
+    afterIcon: PropTypes.node,
 
     loading_state: PropTypes.shape({
         /**

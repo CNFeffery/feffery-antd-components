@@ -24,7 +24,9 @@ app.layout = html.Div(
         ),
 
         fac.AntdCopyText(
-            text='copy-target-demo'
+            text='copy-target-demo',
+            beforeIcon='点我复制',
+            afterIcon='复制成功'
         ),
         fac.AntdTable(
             size='small',
