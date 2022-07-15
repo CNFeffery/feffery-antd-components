@@ -334,12 +334,14 @@ export default class AntdDateRangePicker extends Component {
                                 undefined}
                         value={
                             (value && value.length === 2) ?
-                                [moment(value[0], format), moment(value[1], format)] :
+                                [value[0] ? moment(value[0], format) : undefined,
+                                value[1] ? moment(value[1], format) : undefined] :
                                 undefined
                         }
                         defaultValue={
                             (defaultValue && defaultValue.length === 2) ?
-                                [moment(defaultValue[0], format), moment(defaultValue[1], format)] :
+                                [defaultValue[0] ? moment(defaultValue[0], format) : undefined,
+                                defaultValue[1] ? moment(defaultValue[1], format) : undefined] :
                                 undefined
                         }
                         status={status}

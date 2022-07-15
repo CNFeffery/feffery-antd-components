@@ -6,6 +6,7 @@ from flask import request
 from dash import html
 from requests import options
 import feffery_antd_components as fac
+from datetime import datetime
 from dash.dependencies import Input, Output, ALL, State
 from faker import Faker
 
@@ -18,6 +19,10 @@ app = dash.Dash(
 
 app.layout = html.Div(
     [
+        fac.AntdDateRangePicker(
+            defaultValue=[None, datetime.now()]
+        ),
+
         fac.AntdCopyText(
             text='copy-target-demo'
         ),
@@ -39,7 +44,7 @@ app.layout = html.Div(
                 {
                     'key': i,
                     '角标模式1': {
-                        'content': i,
+                        'content': i if i == 0 else None,
                         'color': ['red', 'blue', 'green'][i],
                         'offsetX': -7.5,
                         'offsetY': -8.5,

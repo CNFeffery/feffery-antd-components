@@ -4,7 +4,7 @@ import { Table, Popover, Popconfirm, ConfigProvider, Typography, Input, Form, Ta
 import { TinyLine, TinyArea, TinyColumn, Progress, RingProgress } from '@ant-design/charts';
 import Highlighter from 'react-highlight-words';
 import { SearchOutlined, QuestionCircleOutlined } from '@ant-design/icons';
-import { isNumber } from 'lodash';
+import { isNumber, isString } from 'lodash';
 import { str2Locale } from './locales.react';
 import 'antd/dist/antd.css';
 import './styles.css'
@@ -508,7 +508,7 @@ class AntdTable extends Component {
                                 } else {
                                     // 处理corner-mark模式排序问题
                                     if (columns.filter(item => item.dataIndex === columns[j].dataIndex)[0]?.renderOptions?.renderType === 'corner-mark') {
-                                        if (isNumber(a[columns[j].dataIndex].content) ||
+                                        if (isNumber(a[columns[j].dataIndex].content) &&
                                             isNumber(b[columns[j].dataIndex].content)) {
                                             return a[columns[j].dataIndex].content - b[columns[j].dataIndex].content
                                         } else {
@@ -526,7 +526,7 @@ class AntdTable extends Component {
                                         }
                                     }
 
-                                    if (isNumber(a[columns[j].dataIndex]) ||
+                                    if (isNumber(a[columns[j].dataIndex]) &&
                                         isNumber(b[columns[j].dataIndex])) {
                                         return a[columns[j].dataIndex] - b[columns[j].dataIndex]
                                     } else {
@@ -559,7 +559,7 @@ class AntdTable extends Component {
                             } else {
                                 // 处理corner-mark模式排序问题
                                 if (columns.filter(item => item.dataIndex === columns[j].dataIndex)[0]?.renderOptions?.renderType === 'corner-mark') {
-                                    if (isNumber(a[columns[j].dataIndex].content) ||
+                                    if (isNumber(a[columns[j].dataIndex].content) &&
                                         isNumber(b[columns[j].dataIndex].content)) {
                                         return a[columns[j].dataIndex].content - b[columns[j].dataIndex].content
                                     } else {
@@ -577,7 +577,7 @@ class AntdTable extends Component {
                                     }
                                 }
 
-                                if (isNumber(a[columns[j].dataIndex]) ||
+                                if (isNumber(a[columns[j].dataIndex]) &&
                                     isNumber(b[columns[j].dataIndex])) {
                                     return a[columns[j].dataIndex] - b[columns[j].dataIndex]
                                 } else {
