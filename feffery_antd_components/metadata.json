@@ -2982,13 +2982,6 @@
         "required": false,
         "description": ""
       },
-      "children": {
-        "type": {
-          "name": "node"
-        },
-        "required": false,
-        "description": "The content of the tab - will only be displayed if this tab is selected"
-      },
       "className": {
         "type": {
           "name": "string"
@@ -3041,6 +3034,20 @@
           "value": "''",
           "computed": false
         }
+      },
+      "beforeIcon": {
+        "type": {
+          "name": "node"
+        },
+        "required": false,
+        "description": ""
+      },
+      "afterIcon": {
+        "type": {
+          "name": "node"
+        },
+        "required": false,
+        "description": ""
       },
       "loading_state": {
         "type": {

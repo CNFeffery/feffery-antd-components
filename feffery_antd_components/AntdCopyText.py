@@ -9,11 +9,11 @@ class AntdCopyText(Component):
 
 Keyword arguments:
 
-- children (a list of or a singular dash component, string or number; optional):
-    The content of the tab - will only be displayed if this tab is
-    selected.
-
 - id (string; optional)
+
+- afterIcon (a list of or a singular dash component, string or number; optional)
+
+- beforeIcon (a list of or a singular dash component, string or number; optional)
 
 - className (string; optional)
 
@@ -37,15 +37,15 @@ Keyword arguments:
 - style (dict; optional)
 
 - text (string; default '')"""
-    _children_props = []
-    _base_nodes = ['children']
+    _children_props = ['beforeIcon', 'afterIcon']
+    _base_nodes = ['beforeIcon', 'afterIcon', 'children']
     _namespace = 'feffery_antd_components'
     _type = 'AntdCopyText'
     @_explicitize_args
-    def __init__(self, children=None, id=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, key=Component.UNDEFINED, locale=Component.UNDEFINED, text=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
-        self._prop_names = ['children', 'id', 'className', 'key', 'loading_state', 'locale', 'style', 'text']
+    def __init__(self, id=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, key=Component.UNDEFINED, locale=Component.UNDEFINED, text=Component.UNDEFINED, beforeIcon=Component.UNDEFINED, afterIcon=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
+        self._prop_names = ['id', 'afterIcon', 'beforeIcon', 'className', 'key', 'loading_state', 'locale', 'style', 'text']
         self._valid_wildcard_attributes =            []
-        self.available_properties = ['children', 'id', 'className', 'key', 'loading_state', 'locale', 'style', 'text']
+        self.available_properties = ['id', 'afterIcon', 'beforeIcon', 'className', 'key', 'loading_state', 'locale', 'style', 'text']
         self.available_wildcard_properties =            []
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()
@@ -55,4 +55,4 @@ Keyword arguments:
             if k not in args:
                 raise TypeError(
                     'Required argument `' + k + '` was not specified.')
-        super(AntdCopyText, self).__init__(children=children, **args)
+        super(AntdCopyText, self).__init__(**args)
