@@ -512,9 +512,9 @@ class AntdTable extends Component {
                                             isNumber(b[columns[j].dataIndex].content)) {
                                             return a[columns[j].dataIndex].content - b[columns[j].dataIndex].content
                                         } else {
-                                            let stringA = (a[columns[j].dataIndex].content || '').toUpperCase(); // ignore upper and lowercase
+                                            let stringA = a[columns[j].dataIndex].content ? a[columns[j].dataIndex].content.toUpperCase() : ''
 
-                                            let stringB = (b[columns[j].dataIndex].content || '').toUpperCase(); // ignore upper and lowercase
+                                            let stringB = b[columns[j].dataIndex].content ? b[columns[j].dataIndex].content.toUpperCase() : ''
 
                                             if (stringA < stringB) {
                                                 return -1;
@@ -530,9 +530,9 @@ class AntdTable extends Component {
                                         isNumber(b[columns[j].dataIndex])) {
                                         return a[columns[j].dataIndex] - b[columns[j].dataIndex]
                                     } else {
-                                        let stringA = (a[columns[j].dataIndex] || '').toUpperCase(); // ignore upper and lowercase
+                                        let stringA = a[columns[j].dataIndex] ? a[columns[j].dataIndex].toUpperCase() : ''
 
-                                        let stringB = (b[columns[j].dataIndex] || '').toUpperCase(); // ignore upper and lowercase
+                                        let stringB = b[columns[j].dataIndex] ? b[columns[j].dataIndex].toUpperCase() : ''
 
                                         if (stringA < stringB) {
                                             return -1;
@@ -563,9 +563,9 @@ class AntdTable extends Component {
                                         isNumber(b[columns[j].dataIndex].content)) {
                                         return a[columns[j].dataIndex].content - b[columns[j].dataIndex].content
                                     } else {
-                                        let stringA = (a[columns[j].dataIndex].content || '').toUpperCase(); // ignore upper and lowercase
+                                        let stringA = a[columns[j].dataIndex].content ? a[columns[j].dataIndex].content.toUpperCase() : ''
 
-                                        let stringB = (b[columns[j].dataIndex].content || '').toUpperCase(); // ignore upper and lowercase
+                                        let stringB = b[columns[j].dataIndex].content ? b[columns[j].dataIndex].content.toUpperCase() : ''
 
                                         if (stringA < stringB) {
                                             return -1;
@@ -581,9 +581,9 @@ class AntdTable extends Component {
                                     isNumber(b[columns[j].dataIndex])) {
                                     return a[columns[j].dataIndex] - b[columns[j].dataIndex]
                                 } else {
-                                    let stringA = (a[columns[j].dataIndex] || '').toUpperCase(); // ignore upper and lowercase
+                                    let stringA = a[columns[j].dataIndex] ? a[columns[j].dataIndex].toUpperCase() : ''
 
-                                    let stringB = (b[columns[j].dataIndex] || '').toUpperCase(); // ignore upper and lowercase
+                                    let stringB = b[columns[j].dataIndex] ? b[columns[j].dataIndex].toUpperCase() : ''
 
                                     if (stringA < stringB) {
                                         return -1;
