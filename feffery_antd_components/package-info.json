@@ -38,7 +38,8 @@
     "react-highlight-words": "0.17.0",
     "react-icons": "4.2.0",
     "react-text-loop": "2.3.0",
-    "uuid": "8.3.2"
+    "uuid": "8.3.2",
+    "webpack-bundle-analyzer": "^4.5.0"
   },
   "devDependencies": {
     "@babel/core": "^7.5.4",
