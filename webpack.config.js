@@ -1,5 +1,6 @@
 const path = require('path');
 const packagejson = require('./package.json');
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
 const dashLibraryName = packagejson.name.replace(/-/g, '_');
 
@@ -83,5 +84,17 @@ module.exports = (env, argv) => {
                 },
             ],
         },
+        optimization: {
+            minimizer: [new UglifyJsPlugin(
+                {
+                    parallel: true,
+                    uglifyOptions: {
+                        output: {
+                            comments: false,
+                        },
+                    }
+                }
+            )],
+        }
     }
 };
