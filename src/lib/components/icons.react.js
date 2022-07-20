@@ -1,4 +1,17 @@
 import {
+    StarOutlined,
+    SkinOutlined,
+    SmileOutlined,
+    InsuranceOutlined,
+    BlockOutlined,
+    BankOutlined,
+    SketchOutlined,
+    CheckOutlined,
+    CloseOutlined,
+    MinusOutlined,
+    PlusOutlined,
+    QuestionOutlined,
+    FullscreenOutlined,
     ArrowDownOutlined,
     ArrowUpOutlined,
     ArrowLeftOutlined,
@@ -105,7 +118,6 @@ import {
     LogoutOutlined,
     MenuFoldOutlined,
     MenuUnfoldOutlined,
-    FullscreenOutlined,
     FullscreenExitOutlined,
     QuestionCircleOutlined,
     PlusCircleOutlined,
@@ -817,7 +829,19 @@ const str2Icon = new Map([
     ['antd-zoom-out', <ZoomOutOutlined />],
     ['antd-sort-ascending', <SortAscendingOutlined />],
     ['antd-sort-descending', <SortDescendingOutlined />],
-    ['antd-table', <TableOutlined />]
+    ['antd-table', <TableOutlined />],
+    ['antd-question', <QuestionOutlined />],
+    ['antd-plus', <PlusOutlined />],
+    ['antd-minus', <MinusOutlined />],
+    ['antd-close', <CloseOutlined />],
+    ['antd-check', <CheckOutlined />],
+    ['antd-sketch', <SketchOutlined />],
+    ['antd-bank', <BankOutlined />],
+    ['antd-block', <BlockOutlined />],
+    ['antd-insurance', <InsuranceOutlined />],
+    ['antd-smile', <SmileOutlined />],
+    ['antd-skin', <SkinOutlined />],
+    ['antd-star', <StarOutlined />]
 ])
 
 export { str2Icon }
