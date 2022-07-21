@@ -758,6 +758,8 @@ class AntdTable extends Component {
                                                     type={content_.type}
                                                     danger={content_.danger}
                                                     disabled={content_.disabled}
+                                                    href={content_.href}
+                                                    target={content_.target}
                                                     style={content_.style}>
                                                     {content_.content}
                                                 </Button>
@@ -774,6 +776,8 @@ class AntdTable extends Component {
                                 type={content.type}
                                 danger={content.danger}
                                 disabled={content.disabled}
+                                href={content_.href}
+                                target={content_.target}
                                 style={content.style}>
                                 {content.content}
                             </Button>
@@ -1259,7 +1263,11 @@ AntdTable.propTypes = {
                         content: PropTypes.oneOfType([
                             PropTypes.string,
                             PropTypes.number
-                        ])
+                        ]),
+                        // link类型对应的href
+                        href: PropTypes.string,
+                        // link类型对应的target
+                        target: PropTypes.string
                     }),
 
                     // 多按钮模式

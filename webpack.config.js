@@ -92,6 +92,7 @@ module.exports = (env, argv) => {
                         output: {
                             comments: false,
                         },
+                        warnings: false
                     }
                 }
             )],
