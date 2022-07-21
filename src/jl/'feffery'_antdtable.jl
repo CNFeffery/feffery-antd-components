@@ -51,13 +51,15 @@ Those elements have the following types:
   - `disabled` (Bool; optional) | Array of Reals | Array of lists containing elements 'color', 'tag'.
 Those elements have the following types:
   - `color` (String; optional)
-  - `tag` (String | Real; optional)s | lists containing elements 'disabled', 'type', 'danger', 'style', 'content'.
+  - `tag` (String | Real; optional)s | lists containing elements 'disabled', 'type', 'danger', 'style', 'content', 'href', 'target'.
 Those elements have the following types:
   - `disabled` (Bool; optional)
   - `type` (a value equal to: 'primary', 'ghost', 'dashed', 'link', 'text', 'default'; optional)
   - `danger` (Bool; optional)
   - `style` (Dict; optional)
-  - `content` (String | Real; optional) | Array of lists containing elements 'disabled', 'type', 'danger', 'style', 'content'.
+  - `content` (String | Real; optional)
+  - `href` (String; optional)
+  - `target` (String; optional) | Array of lists containing elements 'disabled', 'type', 'danger', 'style', 'content'.
 Those elements have the following types:
   - `disabled` (Bool; optional)
   - `type` (a value equal to: 'primary', 'ghost', 'dashed', 'link', 'text', 'default'; optional)

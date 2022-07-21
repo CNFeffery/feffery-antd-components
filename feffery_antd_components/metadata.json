@@ -11950,6 +11950,14 @@
                             }
                           ],
                           "required": false
+                        },
+                        "href": {
+                          "name": "string",
+                          "required": false
+                        },
+                        "target": {
+                          "name": "string",
+                          "required": false
                         }
                       }
                     },

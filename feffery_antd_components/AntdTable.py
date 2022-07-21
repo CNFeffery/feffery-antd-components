@@ -105,7 +105,11 @@ Keyword arguments:
 
     - disabled (boolean; optional)
 
+    - href (string; optional)
+
     - style (dict; optional)
+
+    - target (string; optional)
 
     - type (a value equal to: 'primary', 'ghost', 'dashed', 'link', 'text', 'default'; optional) | list of dicts with keys:
 
