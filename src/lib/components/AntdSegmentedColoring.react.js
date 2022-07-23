@@ -218,7 +218,7 @@ AntdSegmentedColoring.propTypes = {
     // 设置色块css样式
     colorBlockStyle: PropTypes.object,
 
-    // 设置色块方位，可选的有'left'、'right'，默认为'left'
+    // 设置色块方位，可选的有'left'、'right'，默认为'right'
     colorBlockPosition: PropTypes.oneOf(['left', 'right']),
 
     loading_state: PropTypes.shape({
