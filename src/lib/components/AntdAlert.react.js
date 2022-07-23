@@ -61,7 +61,7 @@ export default class AntdAlert extends Component {
                         message
                 }
                 type={type}
-                description={description['demo']}
+                description={description}
                 showIcon={showIcon}
                 closable={closable}
                 action={action}>
