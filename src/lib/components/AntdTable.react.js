@@ -776,8 +776,8 @@ class AntdTable extends Component {
                                 type={content.type}
                                 danger={content.danger}
                                 disabled={content.disabled}
-                                href={content_.href}
-                                target={content_.target}
+                                href={content.href}
+                                target={content.target}
                                 style={content.style}>
                                 {content.content}
                             </Button>
