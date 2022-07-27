@@ -158,7 +158,8 @@ AntdModal.propTypes = {
 
             // 设置前缀icon
             prefixIcon: PropTypes.string
-        })
+        }),
+        PropTypes.node
     ]),
 
     // 设置对话框是否可见
