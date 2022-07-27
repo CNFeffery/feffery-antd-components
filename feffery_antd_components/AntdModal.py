@@ -68,13 +68,13 @@ Keyword arguments:
 
     - content (string; optional)
 
-    - prefixIcon (string; optional)
+    - prefixIcon (string; optional) | a list of or a singular dash component, string or number
 
 - visible (boolean; default False)
 
 - width (number; optional)"""
-    _children_props = []
-    _base_nodes = ['children']
+    _children_props = ['title']
+    _base_nodes = ['title', 'children']
     _namespace = 'feffery_antd_components'
     _type = 'AntdModal'
     @_explicitize_args

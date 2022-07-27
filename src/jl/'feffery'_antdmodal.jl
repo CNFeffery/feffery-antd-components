@@ -39,7 +39,7 @@ Those elements have the following types:
 - `title` (optional): . title has the following type: String | lists containing elements 'content', 'prefixIcon'.
 Those elements have the following types:
   - `content` (String; optional)
-  - `prefixIcon` (String; optional)
+  - `prefixIcon` (String; optional) | a list of or a singular dash component, string or number
 - `visible` (Bool; optional)
 - `width` (Real; optional)
 """
