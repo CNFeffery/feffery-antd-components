@@ -6637,28 +6637,7 @@
       },
       "title": {
         "type": {
-          "name": "union",
-          "value": [
-            {
-              "name": "string"
-            },
-            {
-              "name": "exact",
-              "value": {
-                "content": {
-                  "name": "string",
-                  "required": false
-                },
-                "prefixIcon": {
-                  "name": "string",
-                  "required": false
-                }
-              }
-            },
-            {
-              "name": "node"
-            }
-          ]
+          "name": "node"
         },
         "required": false,
         "description": ""

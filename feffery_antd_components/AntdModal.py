@@ -62,13 +62,7 @@ Keyword arguments:
 
 - style (dict; optional)
 
-- title (dict; optional)
-
-    `title` is a string | dict with keys:
-
-    - content (string; optional)
-
-    - prefixIcon (string; optional) | a list of or a singular dash component, string or number
+- title (a list of or a singular dash component, string or number; optional)
 
 - visible (boolean; default False)
 
