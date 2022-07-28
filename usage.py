@@ -81,7 +81,9 @@ app.layout = html.Div(
             },
             style={
                 'width': '400px'
-            }
+            },
+            expandedRowContents=None,
+            expandedRowContentsKeys=None
         ),
 
         fac.AntdTable(

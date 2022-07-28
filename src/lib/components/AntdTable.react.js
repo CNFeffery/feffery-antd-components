@@ -350,6 +350,10 @@ class AntdTable extends Component {
             loading_state
         } = this.props;
 
+        if (!data) {
+            data = []
+        }
+
         // 重新映射size到符合常识的顺序
         let size2size = new Map([
             ['small', 'default'],
