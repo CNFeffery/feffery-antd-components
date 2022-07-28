@@ -20,6 +20,11 @@ app = dash.Dash(
 app.layout = html.Div(
     [
         fac.AntdDateRangePicker(
+            picker='year',
+            defaultPickerValue='2000-01-01'
+        ),
+
+        fac.AntdDateRangePicker(
             defaultValue=[None, datetime.now()]
         ),
 

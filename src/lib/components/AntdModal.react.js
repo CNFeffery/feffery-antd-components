@@ -67,11 +67,7 @@ export default class AntdModal extends Component {
                         className={className}
                         style={style}
                         key={key}
-                        title={title?.content ?
-                            <div>
-                                {<AntdIcon icon={title.prefixIcon} />}
-                                {<span style={{ marginLeft: '5px' }}>{title.content}</span>}
-                            </div> : title}
+                        title={title}
                         visible={visible}
                         okText={okText}
                         cancelText={cancelText}
@@ -150,17 +146,7 @@ AntdModal.propTypes = {
     locale: PropTypes.oneOf(['zh-cn', 'en-us']),
 
     // 设置标题内容
-    title: PropTypes.oneOfType([
-        PropTypes.string,
-        PropTypes.exact({
-            // 设置标题文本内容
-            content: PropTypes.string,
-
-            // 设置前缀icon
-            prefixIcon: PropTypes.string
-        }),
-        PropTypes.node
-    ]),
+    title: PropTypes.node,
 
     // 设置对话框是否可见
     visible: PropTypes.bool,
