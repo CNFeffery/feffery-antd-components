@@ -22,6 +22,7 @@ export default class AntdCollapse extends Component {
             showArrow,
             collapsible,
             ghost,
+            forceRender,
             setProps,
             persistence,
             persisted_props,
@@ -62,6 +63,7 @@ export default class AntdCollapse extends Component {
                     key='1'
                     header={title}
                     showArrow={showArrow}
+                    forceRender={forceRender}
                 >
                     {children}
                 </Panel>
@@ -103,6 +105,9 @@ AntdCollapse.propTypes = {
 
     // 设置可折叠点击触发区域，'header'表示仅限标题文字区域，'disabled'表示禁用折叠
     collapsible: PropTypes.oneOf(['header', 'disabled']),
+
+    // 设置当折叠面板默认未展开时强制渲染内部元素，默认为false
+    forceRender: PropTypes.bool,
 
     loading_state: PropTypes.shape({
         /**

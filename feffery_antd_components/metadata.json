@@ -2605,6 +2605,13 @@
         "required": false,
         "description": ""
       },
+      "forceRender": {
+        "type": {
+          "name": "bool"
+        },
+        "required": false,
+        "description": ""
+      },
       "loading_state": {
         "type": {
           "name": "shape",
