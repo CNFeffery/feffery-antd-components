@@ -16,6 +16,7 @@ export default class AntdAccordionItem extends Component {
             collapsible,
             title,
             showArrow,
+            forceRender,
             loading_state
         } = this.props;
 
@@ -30,6 +31,7 @@ export default class AntdAccordionItem extends Component {
                 collapsible={collapsible}
                 header={title}
                 showArrow={showArrow}
+                forceRender={forceRender}
                 data-dash-is-loading={
                     (loading_state && loading_state.is_loading) || undefined
                 }>
@@ -66,6 +68,9 @@ AntdAccordionItem.propTypes = {
 
     // 设置是否展示当前手风琴项的箭头图标，默认为true
     showArrow: PropTypes.bool,
+
+    // 设置当折叠面板默认未展开时强制渲染内部元素，默认为false
+    forceRender: PropTypes.bool,
 
     loading_state: PropTypes.shape({
         /**

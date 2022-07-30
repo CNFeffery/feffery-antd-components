@@ -17,6 +17,8 @@ Keyword arguments:
 
 - collapsible (a value equal to: 'header', 'disabled'; optional)
 
+- forceRender (boolean; optional)
+
 - key (string | number; required)
 
 - loading_state (dict; optional)
@@ -42,10 +44,10 @@ Keyword arguments:
     _namespace = 'feffery_antd_components'
     _type = 'AntdAccordionItem'
     @_explicitize_args
-    def __init__(self, children=None, id=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, key=Component.REQUIRED, collapsible=Component.UNDEFINED, title=Component.UNDEFINED, showArrow=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
-        self._prop_names = ['children', 'id', 'className', 'collapsible', 'key', 'loading_state', 'showArrow', 'style', 'title']
+    def __init__(self, children=None, id=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, key=Component.REQUIRED, collapsible=Component.UNDEFINED, title=Component.UNDEFINED, showArrow=Component.UNDEFINED, forceRender=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
+        self._prop_names = ['children', 'id', 'className', 'collapsible', 'forceRender', 'key', 'loading_state', 'showArrow', 'style', 'title']
         self._valid_wildcard_attributes =            []
-        self.available_properties = ['children', 'id', 'className', 'collapsible', 'key', 'loading_state', 'showArrow', 'style', 'title']
+        self.available_properties = ['children', 'id', 'className', 'collapsible', 'forceRender', 'key', 'loading_state', 'showArrow', 'style', 'title']
         self.available_wildcard_properties =            []
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()
