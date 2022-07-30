@@ -50,6 +50,7 @@ export default class AntdAccordion extends Component {
                     collapsible,
                     title,
                     showArrow,
+                    forceRender,
                     loading_state,
                     ...otherProps
                 } = childProps;
@@ -63,6 +64,7 @@ export default class AntdAccordion extends Component {
                         collapsible={collapsible}
                         header={title}
                         showArrow={showArrow}
+                        forceRender={forceRender}
                         loading_state={loading_state}
                         {...omit(
                             ['setProps', 'persistence', 'persistence_type', 'persisted_props'],

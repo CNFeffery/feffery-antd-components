@@ -15,6 +15,7 @@ Keyword arguments:
 - `id` (String; optional)
 - `className` (String; optional)
 - `collapsible` (a value equal to: 'header', 'disabled'; optional)
+- `forceRender` (Bool; optional)
 - `key` (String | Real; required)
 - `loading_state` (optional): . loading_state has the following type: lists containing elements 'is_loading', 'prop_name', 'component_name'.
 Those elements have the following types:
@@ -26,7 +27,7 @@ Those elements have the following types:
 - `title` (String; optional)
 """
 function 'feffery'_antdaccordionitem(; kwargs...)
-        available_props = Symbol[:children, :id, :className, :collapsible, :key, :loading_state, :showArrow, :style, :title]
+        available_props = Symbol[:children, :id, :className, :collapsible, :forceRender, :key, :loading_state, :showArrow, :style, :title]
         wild_props = Symbol[]
         return Component("'feffery'_antdaccordionitem", "AntdAccordionItem", "feffery_antd_components", available_props, wild_props; kwargs...)
 end
