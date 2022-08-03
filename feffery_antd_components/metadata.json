@@ -3977,6 +3977,27 @@
         "required": false,
         "description": ""
       },
+      "popupContainer": {
+        "type": {
+          "name": "enum",
+          "value": [
+            {
+              "value": "'parent'",
+              "computed": false
+            },
+            {
+              "value": "'body'",
+              "computed": false
+            }
+          ]
+        },
+        "required": false,
+        "description": "",
+        "defaultValue": {
+          "value": "'parent'",
+          "computed": false
+        }
+      },
       "loading_state": {
         "type": {
           "name": "shape",
