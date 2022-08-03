@@ -18,7 +18,9 @@ export default class AntdSlider extends Component {
         } else {
             // 单值选择模式时
             let defaultValue = props.defaultValue ? props.defaultValue : props.max
-            if (!props.value && props.value !== 0) {
+            if (props.value === 0) {
+                props.setProps({ value: defaultValue })
+            } else if (!props.value) {
                 props.setProps({ value: defaultValue })
             }
         }
