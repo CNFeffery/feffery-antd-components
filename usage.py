@@ -19,43 +19,37 @@ app = dash.Dash(
 
 app.layout = html.Div(
     [
+
         fac.AntdTable(
-            locale='en-us',
             columns=[
                 {
-                    'title': '默认的checkbox模式',
-                    'dataIndex': f'默认的checkbox模式'
-                },
-                {
-                    'title': '自定义选项的checkbox模式',
-                    'dataIndex': '自定义选项的checkbox模式'
-                },
-                {
-                    'title': 'keyword模式标题',
-                    'dataIndex': 'keyword模式'
-                }
-            ],
-            data=[
-                {
-                    '默认的checkbox模式': i,
-                    '自定义选项的checkbox模式': i,
-                    'keyword模式': i
+                    'title': f'字段{i}',
+                    'dataIndex': f'字段{i}',
+                    'width': 400
                 }
                 for i in range(5)
             ],
-            bordered=True,
-            filterOptions={
-                '默认的checkbox模式': {
-                    'filterSearch': True
-                },
-                '自定义选项的checkbox模式': {
-                    'filterMode': 'checkbox',
-                    'filterCustomItems': [1, 2, 3]
-                },
-                'keyword模式': {
-                    'filterMode': 'keyword'
+            data=[
+                {
+                    **{
+                        f'字段{j}': i
+                        for j in range(5)
+                    },
+                    'key': f'row-{i}'
                 }
-            }
+                for i in range(10)
+            ],
+            bordered=True,
+            expandedRowKeyToContent=[
+                {
+                    'key': f'row-{i}',
+                    'content': fac.AntdButton(
+                        f'第{i}行展开内容示例',
+                        type='primary'
+                    )
+                }
+                for i in range(0, 10, 2)
+            ]
         )
     ],
     style={

@@ -323,8 +323,7 @@ class AntdTable extends Component {
             summaryRowFixed,
             customFormatFuncs,
             conditionalStyleFuncs,
-            expandedRowContents,
-            expandedRowContentsKeys,
+            expandedRowKeyToContent,
             expandedRowWidth,
             expandRowByClick,
             loading_state
@@ -966,16 +965,10 @@ class AntdTable extends Component {
 
         // 处理行可展开内容功能
         let rowExpandedRowRender
-        if (expandedRowContents && !expandedRowContentsKeys) {
-            expandedRowContentsKeys = expandedRowContents.map((_, index) => index.toString())
-        }
-        // 若expandedRowContents参数与expandedRowContentsKeys参数长度一致
-        if (expandedRowContents &&
-            expandedRowContentsKeys &&
-            expandedRowContents.length === expandedRowContentsKeys.length) {
+        if (expandedRowKeyToContent) {
             rowExpandedRowRender = new Map(
-                expandedRowContentsKeys.map(
-                    (key, index) => [key, expandedRowContents[index]]
+                expandedRowKeyToContent.map(
+                    item => [item.key, item.content]
                 )
             )
         }
@@ -1483,16 +1476,15 @@ AntdTable.propTypes = {
         PropTypes.string
     ),
 
-    // 配置行可展开内容，与expandedRowContentsKeys按位置一一对应
-    expandedRowContents: PropTypes.arrayOf(PropTypes.node),
-
-    // 设置与expandedContents按位置一一对应的行记录key数组
-    // 缺省情况下，会按顺序以expandedRowContents中各元素的下标idnex作为key
-    expandedRowContentsKeys: PropTypes.arrayOf(
-        PropTypes.oneOfType([
-            PropTypes.string,
-            PropTypes.number
-        ])
+    // 配置行可展开内容，键名为对应行的key，键值为对应行的展开内容
+    expandedRowKeyToContent: PropTypes.arrayOf(
+        PropTypes.exact({
+            'key': PropTypes.oneOfType([
+                PropTypes.string,
+                PropTypes.number
+            ]).isRequired,
+            'content': PropTypes.node
+        })
     ),
 
     // 设置行展开控件所占的宽度
