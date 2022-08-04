@@ -4,10 +4,10 @@ import { Table, Popover, Popconfirm, ConfigProvider, Typography, Input, Form, Ta
 import { TinyLine, TinyArea, TinyColumn, Progress, RingProgress } from '@ant-design/charts';
 import Highlighter from 'react-highlight-words';
 import { SearchOutlined, QuestionCircleOutlined } from '@ant-design/icons';
-import { isNumber, isString } from 'lodash';
+import { isNumber } from 'lodash';
 import { str2Locale } from './locales.react';
 import 'antd/dist/antd.css';
-import './styles.css'
+import './styles.css';
 
 const { Text } = Typography;
 
@@ -81,14 +81,14 @@ class AntdTable extends Component {
         }
 
         // 自定义关键词搜索过滤模式
-        this.getColumnSearchProps = dataIndex => ({
+        this.getColumnSearchProps = (dataIndex, title) => ({
             filterDropdown: ({ setSelectedKeys, selectedKeys, confirm, clearFilters }) => (
                 <div style={{ padding: 8 }}>
                     <Input
                         ref={node => {
                             this.searchInput = node;
                         }}
-                        placeholder={`搜索 ${dataIndex}`}
+                        placeholder={`${props.locale === 'en-us' ? 'Search' : '搜索'} ${title}`}
                         value={selectedKeys[0]}
                         onChange={e => setSelectedKeys(e.target.value ? [e.target.value] : [])}
                         onPressEnter={() => this.handleSearch(selectedKeys, confirm, dataIndex)}
@@ -102,10 +102,10 @@ class AntdTable extends Component {
                             size="small"
                             style={{ width: 90 }}
                         >
-                            搜索
+                            {props.locale === 'en-us' ? 'Search' : '搜索'}
                         </Button>
                         <Button onClick={() => this.handleSearchReset(clearFilters)} size="small" style={{ width: 90 }}>
-                            重置
+                            {props.locale === 'en-us' ? 'Reset' : '重置'}
                         </Button>
                     </Space>
                 </div>
@@ -150,26 +150,6 @@ class AntdTable extends Component {
             clearFilters();
             this.setState({ searchText: '' });
         };
-    }
-
-    shouldComponentUpdate(nextProps) {
-
-        // 无需进行重绘的属性值变化
-        if (this.props.recentlyMouseEnterColumn !== nextProps.recentlyMouseEnterColumn) {
-            return false;
-        } else if (this.props.recentlyMouseEnterRow !== nextProps.recentlyMouseEnterRow) {
-            return false;
-        } else if (this.props.recentlyChangedRow !== nextProps.recentlyChangedRow) {
-            return false;
-        } else if (this.props.recentlyButtonClickedRow !== nextProps.recentlyButtonClickedRow) {
-            return false;
-        } else if (this.props.nClicksButton !== nextProps.nClicksButton) {
-            return false;
-        } else if (this.props.clickedContent !== nextProps.clickedContent) {
-            return false;
-        }
-
-        return true;
     }
 
     render() {
@@ -420,7 +400,7 @@ class AntdTable extends Component {
                     if (filterOptions[columns[i].dataIndex].hasOwnProperty('filterMode') && filterOptions[columns[i].dataIndex].filterMode === 'keyword') {
                         columns[i] = {
                             ...columns[i],
-                            ...this.getColumnSearchProps(columns[i].dataIndex)
+                            ...this.getColumnSearchProps(columns[i].dataIndex, columns[i].title)
                         }
                     } else {
                         // 否则则一律视为'checkbox'模式
@@ -463,7 +443,7 @@ class AntdTable extends Component {
                     if (filterOptions[columns[i].dataIndex].hasOwnProperty('filterMode') && filterOptions[columns[i].dataIndex].filterMode === 'keyword') {
                         columns[i] = {
                             ...columns[i],
-                            ...this.getColumnSearchProps(columns[i].dataIndex)
+                            ...this.getColumnSearchProps(columns[i].dataIndex, columns[i].title)
                         }
                     } else {
                         // 否则则一律视为'checkbox'模式
