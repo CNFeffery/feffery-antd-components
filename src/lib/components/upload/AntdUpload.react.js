@@ -1,25 +1,15 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { v4 as uuidv4 } from 'uuid';
-import { Upload, message, Modal, ConfigProvider } from 'antd';
-import { PlusOutlined } from '@ant-design/icons';
-import { str2Locale } from './locales.react';
-import ImgCrop from 'antd-img-crop';
+import { Upload, message, Button, ConfigProvider } from 'antd';
+import { UploadOutlined } from '@ant-design/icons';
+import { str2Locale } from '../locales.react';
 import 'antd/dist/antd.css';
 
 const uuid = uuidv4();
 
-const getBase64 = (file) => {
-    return new Promise((resolve, reject) => {
-        const reader = new FileReader();
-        reader.readAsDataURL(file);
-        reader.onload = () => resolve(reader.result);
-        reader.onerror = error => reject(error);
-    });
-}
-
-// 定义图片上传组件AntdPictureUpload，api参数参考https://ant.design/components/upload-cn/
-const AntdPictureUpload = (props) => {
+// 定义文件上传组件AntdUpload，api参数参考https://ant.design/components/upload-cn/
+const AntdUpload = (props) => {
 
     // 取得必要属性或参数
     let {
@@ -29,13 +19,14 @@ const AntdPictureUpload = (props) => {
         key,
         locale,
         apiUrl,
-        editable,
-        editConfig,
         uploadId,
         fileListMaxLength,
         buttonContent,
         fileTypes,
         fileMaxSize,
+        showUploadList,
+        multiple,
+        directory,
         failedTooltipInfo,
         listUploadTaskRecord,
         loading_state,
@@ -45,31 +36,6 @@ const AntdPictureUpload = (props) => {
     uploadId = uploadId || uuid;
 
     const [fileList, updateFileList] = useState([]);
-    const [previewVisible, setPreviewVisible] = useState(false);
-    const [previewImage, setPreviewImage] = useState('');
-    const [previewTitle, setPreviewTitle] = useState('');
-
-    const handleCancel = () => setPreviewVisible(false);
-
-    const handlePreview = async file => {
-        if (!file.url && !file.preview) {
-            file.preview = await getBase64(file.originFileObj);
-        }
-
-        setPreviewImage(file.url || file.preview)
-        setPreviewVisible(true)
-        setPreviewTitle(file.name || file.url.substring(file.url.lastIndexOf('/') + 1))
-
-    }
-
-    const uploadButton = (
-        <div>
-            <PlusOutlined />
-            <div style={{ marginTop: 8 }}>
-                {buttonContent}
-            </div>
-        </div>
-    );
 
     let uploadProps = {
         name: 'file',
@@ -103,45 +69,104 @@ const AntdPictureUpload = (props) => {
                 lastTaskCount = info.fileList.length - listUploadTaskRecord.length;
             }
 
-            // 单文件上传模式
-            // 若当前事件为removed
-            if (info.file.status === 'removed') {
+            // 当上传模式为multiple或directory时
+            if (multiple || directory) {
+                // 若当前事件为removed
+                if (info.file.status === 'removed') {
 
-                // 更新任务记录
-                setProps({
-                    listUploadTaskRecord: info.fileList.map(
-                        (file) => {
-                            return {
-                                fileName: file.name,
-                                fileSize: file.size,
-                                completeTimestamp: new Date().getTime(),
-                                taskStatus: file.status === 'done' ? 'success' : 'failed',
-                                taskId: uploadId
+                    // 更新任务记录
+                    setProps({
+                        listUploadTaskRecord: info.fileList.map(
+                            (file) => {
+                                return {
+                                    fileName: file.name,
+                                    fileSize: file.size,
+                                    completeTimestamp: parseInt(/(\d{13})/.exec(file.uid)[0]),
+                                    taskStatus: file.status === 'done' ? 'success' : 'failed',
+                                    taskId: uploadId
+                                }
+                            }
+                        )
+                    })
+                } else {
+                    // 其他常规事件
+                    // 判断此次任务所有文件是否已上传结束（done或error）
+                    if (info.fileList.slice(-lastTaskCount).every(file => file.status !== 'uploading')) {
+
+                        if (info.fileList.slice(-lastTaskCount).every(file => !file.status)) {
+                        } else {
+                            if (lastTaskCount > 0) {
+
+                                // 更新任务记录
+                                setProps({
+                                    lastUploadTaskRecord: info.fileList.slice(-lastTaskCount).map(
+                                        (file) => {
+                                            return {
+                                                fileName: file.name,
+                                                fileSize: file.size,
+                                                completeTimestamp: parseInt(/(\d{13})/.exec(file.uid)[0]),
+                                                taskStatus: file.status === 'done' ? 'success' : 'failed',
+                                                taskId: uploadId
+                                            }
+                                        }
+                                    ),
+                                    listUploadTaskRecord: info.fileList.map(
+                                        (file) => {
+                                            return {
+                                                fileName: file.name,
+                                                fileSize: file.size,
+                                                completeTimestamp: parseInt(/(\d{13})/.exec(file.uid)[0]),
+                                                taskStatus: file.status === 'done' ? 'success' : 'failed',
+                                                taskId: uploadId
+                                            }
+                                        }
+                                    )
+                                })
                             }
                         }
-                    )
-                })
-            } else if (info.file.status === 'done' || info.file.status === 'error' || !info.file.status) {
-                setProps({
-                    lastUploadTaskRecord: {
-                        fileName: info.file.name,
-                        fileSize: info.file.size,
-                        completeTimestamp: new Date().getTime(),
-                        taskStatus: info.file.status === 'done' ? 'success' : 'failed',
-                        taskId: uploadId
-                    },
-                    listUploadTaskRecord: info.fileList.map(
-                        (file) => {
-                            return {
-                                fileName: file.name,
-                                fileSize: file.size,
-                                completeTimestamp: new Date().getTime(),
-                                taskStatus: file.status === 'done' ? 'success' : 'failed',
-                                taskId: uploadId
+                    }
+                }
+            } else {
+                // 单文件上传模式
+                // 若当前事件为removed
+                if (info.file.status === 'removed') {
+
+                    // 更新任务记录
+                    setProps({
+                        listUploadTaskRecord: info.fileList.map(
+                            (file) => {
+                                return {
+                                    fileName: file.name,
+                                    fileSize: file.size,
+                                    completeTimestamp: parseInt(/(\d{13})/.exec(file.uid)[0]),
+                                    taskStatus: file.status === 'done' ? 'success' : 'failed',
+                                    taskId: uploadId
+                                }
                             }
-                        }
-                    )
-                })
+                        )
+                    })
+                } else if (info.file.status === 'done' || info.file.status === 'error' || !info.file.status) {
+                    setProps({
+                        lastUploadTaskRecord: {
+                            fileName: info.file.name,
+                            fileSize: info.file.size,
+                            completeTimestamp: parseInt(/(\d{13})/.exec(file.uid)[0]),
+                            taskStatus: info.file.status === 'done' ? 'success' : 'failed',
+                            taskId: uploadId
+                        },
+                        listUploadTaskRecord: info.fileList.map(
+                            (file) => {
+                                return {
+                                    fileName: file.name,
+                                    fileSize: file.size,
+                                    completeTimestamp: parseInt(/(\d{13})/.exec(file.uid)[0]),
+                                    taskStatus: file.status === 'done' ? 'success' : 'failed',
+                                    taskId: uploadId
+                                }
+                            }
+                        )
+                    })
+                }
             }
 
             if (info.file.status === 'done') {
@@ -185,69 +210,30 @@ const AntdPictureUpload = (props) => {
         Object.assign(uploadProps, { accept: '.' + fileTypes.join(',.') })
     }
 
-    if (editable) {
-        // 返回定制化的前端组件
-        return (
-            <ConfigProvider locale={str2Locale.get(locale)}>
-                <div id={id}
-                    className={className}
-                    style={style}
-                    key={key}>
-                    <ImgCrop {...editConfig}>
-                        <Upload {...uploadProps}
-                            fileList={fileList}
-                            listType="picture-card"
-                            onPreview={handlePreview}
-                            data-dash-is-loading={
-                                (loading_state && loading_state.is_loading) || undefined
-                            }>
-                            {uploadButton}
-                        </Upload>
-                    </ImgCrop>
-                    <Modal
-                        visible={previewVisible}
-                        title={previewTitle}
-                        footer={null}
-                        onCancel={handleCancel}
-                    >
-                        <img alt="" style={{ width: '100%' }} src={previewImage} />
-                    </Modal>
-                </div>
-            </ConfigProvider>
-        );
-    }
-
     // 返回定制化的前端组件
     return (
         <ConfigProvider locale={str2Locale.get(locale)}>
-            <div id={id}
+            <Upload {...uploadProps}
+                id={id}
                 className={className}
                 style={style}
-                key={key}>
-                <Upload {...uploadProps}
-                    fileList={fileList}
-                    listType="picture-card"
-                    onPreview={handlePreview}
-                    data-dash-is-loading={
-                        (loading_state && loading_state.is_loading) || undefined
-                    }>
-                    {uploadButton}
-                </Upload>
-                <Modal
-                    visible={previewVisible}
-                    title={previewTitle}
-                    footer={null}
-                    onCancel={handleCancel}
-                >
-                    <img alt="" style={{ width: '100%' }} src={previewImage} />
-                </Modal>
-            </div>
+                key={key}
+                fileList={fileList}
+                multiple={multiple}
+                showUploadList={showUploadList}
+                directory={directory}
+                data-dash-is-loading={
+                    (loading_state && loading_state.is_loading) || undefined
+                }>
+                <Button icon={<UploadOutlined />}>{buttonContent ? buttonContent : "点击上传文件"}</Button>
+            </Upload>
         </ConfigProvider>
+
     );
 }
 
 // 定义参数或属性
-AntdPictureUpload.propTypes = {
+AntdUpload.propTypes = {
     // 组件id
     id: PropTypes.string,
 
@@ -266,41 +252,10 @@ AntdPictureUpload.propTypes = {
     // 设置文件上传服务的接口url
     apiUrl: PropTypes.string,
 
-    // 设置是否添加图片裁切、旋转预处理功能，默认为false
-    editable: PropTypes.bool,
-
-    // 图片裁切、旋转预处理功能的配置参数
-    editConfig: PropTypes.exact({
-        // 设置裁切区域的宽高比，默认为1，即1:1
-        aspect: PropTypes.number,
-        // 设置裁切区域形状，可选的有'rect'、'round'，默认为'rect'
-        shape: PropTypes.oneOf(['rect', 'round']),
-        // 设置是否显示裁切区域辅助网格线，默认为false
-        grid: PropTypes.bool,
-        // 设置图片质量，默认为0.4，取值范围为0-1
-        quality: PropTypes.number,
-        // 设置是否启用图片缩放功能，默认为true
-        zoom: PropTypes.bool,
-        // 设置是否启用图片旋转功能，默认为false
-        rotate: PropTypes.bool,
-        // 当开启缩放功能时，用于设置最小缩放倍数，默认为1
-        minZoom: PropTypes.number,
-        // 当开启缩放功能时，用于设置最大缩放倍数，默认为3
-        maxZoom: PropTypes.number,
-        // 设置编辑弹窗的标题，默认为'编辑图片'
-        modalTitle: PropTypes.string,
-        // 设置编辑弹窗的宽度，默认为520
-        modalWidth: PropTypes.number,
-        // 设置编辑弹窗确定按钮的文字内容，默认为'确定'
-        modalOk: PropTypes.string,
-        // 设置编辑弹窗取消按钮的文字内容，默认为'取消'
-        modalCancel: PropTypes.string
-    }),
-
     // 设置已上传文件列表的最大显示长度，默认为3
     fileListMaxLength: PropTypes.number,
 
-    // 设置允许上传的文件后缀名数组，默认为['tiff', 'bmp', 'gif', 'png', 'jpeg', 'jpg', 'webp', 'ico', 'tif']
+    // 设置允许上传的文件后缀名数组，默认为[]即不限制
     fileTypes: PropTypes.arrayOf(PropTypes.string),
 
     // 按钮模式下设置按钮内的文字内容
@@ -309,11 +264,20 @@ AntdPictureUpload.propTypes = {
     // 设置当前组件生命周期内的上传路径id信息，若未传入则会自动生成uuid
     uploadId: PropTypes.string,
 
-    // 设置文件上传尺寸上限，单位：兆
+    // 设置 文件上传尺寸上限，单位：兆
     fileMaxSize: PropTypes.number,
+
+    // 设置是否开启多文件上传模式，默认为false
+    multiple: PropTypes.bool,
+
+    // 设置是否开启文件夹上传模式，默认为false
+    directory: PropTypes.bool,
 
     // 自定义上传失败文件鼠标悬浮tooltip文字内容，默认为'上传失败'
     failedTooltipInfo: PropTypes.string,
+
+    // 设置是否显示已上传文件列表，默认为true
+    showUploadList: PropTypes.bool,
 
     // 用于在每次文件上传动作完成后，记录相关的信息
     lastUploadTaskRecord: PropTypes.oneOfType([
@@ -422,14 +386,12 @@ AntdPictureUpload.propTypes = {
 };
 
 // 设置默认参数
-AntdPictureUpload.defaultProps = {
-    editable: false,
-    fileTypes: ['tiff', 'bmp', 'gif', 'png', 'jpeg', 'jpg', 'webp', 'ico', 'tif'],
+AntdUpload.defaultProps = {
     fileListMaxLength: null,
-    fileMaxSize: 10,
+    fileMaxSize: 500,
     lastUploadTaskRecord: null,
     listUploadTaskRecord: [],
     locale: 'zh-cn'
 }
 
-export default AntdPictureUpload;
+export default AntdUpload;

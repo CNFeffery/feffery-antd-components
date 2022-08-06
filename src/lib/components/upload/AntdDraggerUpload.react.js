@@ -1,15 +1,17 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { v4 as uuidv4 } from 'uuid';
-import { Upload, message, Button, ConfigProvider } from 'antd';
-import { UploadOutlined } from '@ant-design/icons';
-import { str2Locale } from './locales.react';
+import { Upload, message, ConfigProvider } from 'antd';
+import AntdIcon from '../AntdIcon.react';
+import { str2Locale } from '../locales.react';
 import 'antd/dist/antd.css';
 
 const uuid = uuidv4();
 
-// 定义文件上传组件AntdUpload，api参数参考https://ant.design/components/upload-cn/
-const AntdUpload = (props) => {
+const { Dragger } = Upload;
+
+// 定义文件拖拽上传组件AntdDraggerUpload，api参数参考https://ant.design/components/upload-cn/
+const AntdDraggerUpload = (props) => {
 
     // 取得必要属性或参数
     let {
@@ -19,9 +21,10 @@ const AntdUpload = (props) => {
         key,
         locale,
         apiUrl,
+        text,
+        hint,
         uploadId,
         fileListMaxLength,
-        buttonContent,
         fileTypes,
         fileMaxSize,
         showUploadList,
@@ -81,7 +84,7 @@ const AntdUpload = (props) => {
                                 return {
                                     fileName: file.name,
                                     fileSize: file.size,
-                                    completeTimestamp: new Date().getTime(),
+                                    completeTimestamp: parseInt(/(\d{13})/.exec(file.uid)[0]),
                                     taskStatus: file.status === 'done' ? 'success' : 'failed',
                                     taskId: uploadId
                                 }
@@ -94,6 +97,7 @@ const AntdUpload = (props) => {
                     if (info.fileList.slice(-lastTaskCount).every(file => file.status !== 'uploading')) {
 
                         if (info.fileList.slice(-lastTaskCount).every(file => !file.status)) {
+
                         } else {
                             if (lastTaskCount > 0) {
 
@@ -104,7 +108,7 @@ const AntdUpload = (props) => {
                                             return {
                                                 fileName: file.name,
                                                 fileSize: file.size,
-                                                completeTimestamp: new Date().getTime(),
+                                                completeTimestamp: parseInt(/(\d{13})/.exec(file.uid)[0]),
                                                 taskStatus: file.status === 'done' ? 'success' : 'failed',
                                                 taskId: uploadId
                                             }
@@ -115,7 +119,7 @@ const AntdUpload = (props) => {
                                             return {
                                                 fileName: file.name,
                                                 fileSize: file.size,
-                                                completeTimestamp: new Date().getTime(),
+                                                completeTimestamp: parseInt(/(\d{13})/.exec(file.uid)[0]),
                                                 taskStatus: file.status === 'done' ? 'success' : 'failed',
                                                 taskId: uploadId
                                             }
@@ -141,7 +145,7 @@ const AntdUpload = (props) => {
                                 return {
                                     fileName: file.name,
                                     fileSize: file.size,
-                                    completeTimestamp: new Date().getTime(),
+                                    completeTimestamp: parseInt(/(\d{13})/.exec(file.uid)[0]),
                                     taskStatus: file.status === 'done' ? 'success' : 'failed',
                                     taskId: uploadId
                                 }
@@ -153,7 +157,7 @@ const AntdUpload = (props) => {
                         lastUploadTaskRecord: {
                             fileName: info.file.name,
                             fileSize: info.file.size,
-                            completeTimestamp: new Date().getTime(),
+                            completeTimestamp: parseInt(/(\d{13})/.exec(file.uid)[0]),
                             taskStatus: info.file.status === 'done' ? 'success' : 'failed',
                             taskId: uploadId
                         },
@@ -162,7 +166,7 @@ const AntdUpload = (props) => {
                                 return {
                                     fileName: file.name,
                                     fileSize: file.size,
-                                    completeTimestamp: new Date().getTime(),
+                                    completeTimestamp: parseInt(/(\d{13})/.exec(file.uid)[0]),
                                     taskStatus: file.status === 'done' ? 'success' : 'failed',
                                     taskId: uploadId
                                 }
@@ -216,27 +220,34 @@ const AntdUpload = (props) => {
     // 返回定制化的前端组件
     return (
         <ConfigProvider locale={str2Locale.get(locale)}>
-            <Upload {...uploadProps}
-                id={id}
+            <div id={id}
                 className={className}
                 style={style}
-                key={key}
-                fileList={fileList}
-                multiple={multiple}
-                showUploadList={showUploadList}
-                directory={directory}
-                data-dash-is-loading={
-                    (loading_state && loading_state.is_loading) || undefined
-                }>
-                <Button icon={<UploadOutlined />}>{buttonContent ? buttonContent : "点击上传文件"}</Button>
-            </Upload>
+                key={key}>
+                <Dragger
+                    fileList={fileList}
+                    showUploadList={showUploadList}
+                    multiple={multiple}
+                    directory={directory}
+                    data-dash-is-loading={
+                        (loading_state && loading_state.is_loading) || undefined
+                    }
+                    {...uploadProps}>
+                    <p className="ant-upload-drag-icon">
+                        {<AntdIcon icon={'antd-cloud-upload'} />}
+                    </p>
+                    <p className="ant-upload-text">{text}</p>
+                    <p className="ant-upload-hint">
+                        {hint}
+                    </p>
+                </Dragger>
+            </div>
         </ConfigProvider>
-
     );
 }
 
 // 定义参数或属性
-AntdUpload.propTypes = {
+AntdDraggerUpload.propTypes = {
     // 组件id
     id: PropTypes.string,
 
@@ -255,14 +266,17 @@ AntdUpload.propTypes = {
     // 设置文件上传服务的接口url
     apiUrl: PropTypes.string,
 
+    // 设置上传区域主要文字说明内容
+    text: PropTypes.string,
+
+    // 设置上传区域次要文字说明内容
+    hint: PropTypes.string,
+
     // 设置已上传文件列表的最大显示长度，默认为3
     fileListMaxLength: PropTypes.number,
 
     // 设置允许上传的文件后缀名数组，默认为[]即不限制
     fileTypes: PropTypes.arrayOf(PropTypes.string),
-
-    // 按钮模式下设置按钮内的文字内容
-    buttonContent: PropTypes.string,
 
     // 设置当前组件生命周期内的上传路径id信息，若未传入则会自动生成uuid
     uploadId: PropTypes.string,
@@ -389,7 +403,7 @@ AntdUpload.propTypes = {
 };
 
 // 设置默认参数
-AntdUpload.defaultProps = {
+AntdDraggerUpload.defaultProps = {
     fileListMaxLength: null,
     fileMaxSize: 500,
     lastUploadTaskRecord: null,
@@ -397,4 +411,4 @@ AntdUpload.defaultProps = {
     locale: 'zh-cn'
 }
 
-export default AntdUpload;
+export default AntdDraggerUpload;

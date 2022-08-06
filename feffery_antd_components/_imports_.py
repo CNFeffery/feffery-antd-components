@@ -20,7 +20,6 @@ from .AntdCountdown import AntdCountdown
 from .AntdDatePicker import AntdDatePicker
 from .AntdDateRangePicker import AntdDateRangePicker
 from .AntdDivider import AntdDivider
-from .AntdDraggerUpload import AntdDraggerUpload
 from .AntdDrawer import AntdDrawer
 from .AntdDropdown import AntdDropdown
 from .AntdEmpty import AntdEmpty
@@ -36,7 +35,6 @@ from .AntdNotification import AntdNotification
 from .AntdPageHeader import AntdPageHeader
 from .AntdPagination import AntdPagination
 from .AntdPasteImage import AntdPasteImage
-from .AntdPictureUpload import AntdPictureUpload
 from .AntdPopconfirm import AntdPopconfirm
 from .AntdPopover import AntdPopover
 from .AntdProgress import AntdProgress
@@ -62,7 +60,6 @@ from .AntdTooltip import AntdTooltip
 from .AntdTransfer import AntdTransfer
 from .AntdTree import AntdTree
 from .AntdTreeSelect import AntdTreeSelect
-from .AntdUpload import AntdUpload
 from .AntdWatermark import AntdWatermark
 from .AntdCard import AntdCard
 from .AntdCardGrid import AntdCardGrid
@@ -90,6 +87,9 @@ from .AntdTabs import AntdTabs
 from .AntdParagraph import AntdParagraph
 from .AntdText import AntdText
 from .AntdTitle import AntdTitle
+from .AntdDraggerUpload import AntdDraggerUpload
+from .AntdPictureUpload import AntdPictureUpload
+from .AntdUpload import AntdUpload
 
 __all__ = [
     "AntdAccordion",
@@ -114,7 +114,6 @@ __all__ = [
     "AntdDatePicker",
     "AntdDateRangePicker",
     "AntdDivider",
-    "AntdDraggerUpload",
     "AntdDrawer",
     "AntdDropdown",
     "AntdEmpty",
@@ -130,7 +129,6 @@ __all__ = [
     "AntdPageHeader",
     "AntdPagination",
     "AntdPasteImage",
-    "AntdPictureUpload",
     "AntdPopconfirm",
     "AntdPopover",
     "AntdProgress",
@@ -156,7 +154,6 @@ __all__ = [
     "AntdTransfer",
     "AntdTree",
     "AntdTreeSelect",
-    "AntdUpload",
     "AntdWatermark",
     "AntdCard",
     "AntdCardGrid",
@@ -183,5 +180,8 @@ __all__ = [
     "AntdTabs",
     "AntdParagraph",
     "AntdText",
-    "AntdTitle"
+    "AntdTitle",
+    "AntdDraggerUpload",
+    "AntdPictureUpload",
+    "AntdUpload"
 ]
