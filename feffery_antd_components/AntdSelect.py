@@ -46,6 +46,8 @@ Keyword arguments:
 
 - mode (a value equal to: 'multiple', 'tags'; optional)
 
+- optionFilterProp (a value equal to: 'value', 'label'; default 'value')
+
 - options (list of dicts; optional)
 
     `options` is a list of dicts with keys:
@@ -109,10 +111,10 @@ Keyword arguments:
     _namespace = 'feffery_antd_components'
     _type = 'AntdSelect'
     @_explicitize_args
-    def __init__(self, id=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, key=Component.UNDEFINED, locale=Component.UNDEFINED, options=Component.UNDEFINED, colorsNameWidth=Component.UNDEFINED, allowClear=Component.UNDEFINED, mode=Component.UNDEFINED, disabled=Component.UNDEFINED, placeholder=Component.UNDEFINED, size=Component.UNDEFINED, value=Component.UNDEFINED, defaultValue=Component.UNDEFINED, maxTagCount=Component.UNDEFINED, listHeight=Component.UNDEFINED, colorsMode=Component.UNDEFINED, placement=Component.UNDEFINED, status=Component.UNDEFINED, loading_state=Component.UNDEFINED, persistence=Component.UNDEFINED, persisted_props=Component.UNDEFINED, persistence_type=Component.UNDEFINED, **kwargs):
-        self._prop_names = ['id', 'allowClear', 'className', 'colorsMode', 'colorsNameWidth', 'defaultValue', 'disabled', 'key', 'listHeight', 'loading_state', 'locale', 'maxTagCount', 'mode', 'options', 'persisted_props', 'persistence', 'persistence_type', 'placeholder', 'placement', 'size', 'status', 'style', 'value']
+    def __init__(self, id=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, key=Component.UNDEFINED, locale=Component.UNDEFINED, options=Component.UNDEFINED, colorsNameWidth=Component.UNDEFINED, allowClear=Component.UNDEFINED, mode=Component.UNDEFINED, disabled=Component.UNDEFINED, placeholder=Component.UNDEFINED, size=Component.UNDEFINED, value=Component.UNDEFINED, defaultValue=Component.UNDEFINED, maxTagCount=Component.UNDEFINED, listHeight=Component.UNDEFINED, colorsMode=Component.UNDEFINED, placement=Component.UNDEFINED, status=Component.UNDEFINED, optionFilterProp=Component.UNDEFINED, loading_state=Component.UNDEFINED, persistence=Component.UNDEFINED, persisted_props=Component.UNDEFINED, persistence_type=Component.UNDEFINED, **kwargs):
+        self._prop_names = ['id', 'allowClear', 'className', 'colorsMode', 'colorsNameWidth', 'defaultValue', 'disabled', 'key', 'listHeight', 'loading_state', 'locale', 'maxTagCount', 'mode', 'optionFilterProp', 'options', 'persisted_props', 'persistence', 'persistence_type', 'placeholder', 'placement', 'size', 'status', 'style', 'value']
         self._valid_wildcard_attributes =            []
-        self.available_properties = ['id', 'allowClear', 'className', 'colorsMode', 'colorsNameWidth', 'defaultValue', 'disabled', 'key', 'listHeight', 'loading_state', 'locale', 'maxTagCount', 'mode', 'options', 'persisted_props', 'persistence', 'persistence_type', 'placeholder', 'placement', 'size', 'status', 'style', 'value']
+        self.available_properties = ['id', 'allowClear', 'className', 'colorsMode', 'colorsNameWidth', 'defaultValue', 'disabled', 'key', 'listHeight', 'loading_state', 'locale', 'maxTagCount', 'mode', 'optionFilterProp', 'options', 'persisted_props', 'persistence', 'persistence_type', 'placeholder', 'placement', 'size', 'status', 'style', 'value']
         self.available_wildcard_properties =            []
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()

@@ -41,6 +41,7 @@ export default class AntdSelect extends Component {
             colorsMode,
             placement,
             status,
+            optionFilterProp,
             loading_state,
             persistence,
             persisted_props,
@@ -154,6 +155,7 @@ export default class AntdSelect extends Component {
                     showSearch={true}
                     placement={placement}
                     status={status}
+                    optionFilterProp={optionFilterProp}
                     persistence={persistence}
                     persisted_props={persisted_props}
                     persistence_type={persistence_type}
@@ -289,6 +291,9 @@ AntdSelect.propTypes = {
     // 设置校验状态，可选的有'error'、'warning'
     status: PropTypes.oneOf(['error', 'warning']),
 
+    // 设置输入框下输入内容进行搜索的字段，可选的有'value'、'label'，默认为'value'
+    optionFilterProp: PropTypes.oneOf(['value', 'label']),
+
     loading_state: PropTypes.shape({
         /**
          * Determines if the component is loading or not
@@ -350,5 +355,6 @@ AntdSelect.defaultProps = {
     colorsMode: 'sequential',
     persisted_props: ['value'],
     persistence_type: 'local',
-    locale: 'zh-cn'
+    locale: 'zh-cn',
+    optionFilterProp: 'value'
 }

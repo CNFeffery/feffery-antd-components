@@ -84,7 +84,7 @@ const AntdDraggerUpload = (props) => {
                                 return {
                                     fileName: file.name,
                                     fileSize: file.size,
-                                    completeTimestamp: parseInt(/(\d{13})/.exec(file.uid)[0]),
+                                    completeTimestamp: new Date().getTime(),
                                     taskStatus: file.status === 'done' ? 'success' : 'failed',
                                     taskId: uploadId
                                 }
@@ -108,7 +108,7 @@ const AntdDraggerUpload = (props) => {
                                             return {
                                                 fileName: file.name,
                                                 fileSize: file.size,
-                                                completeTimestamp: parseInt(/(\d{13})/.exec(file.uid)[0]),
+                                                completeTimestamp: new Date().getTime(),
                                                 taskStatus: file.status === 'done' ? 'success' : 'failed',
                                                 taskId: uploadId
                                             }
@@ -119,7 +119,7 @@ const AntdDraggerUpload = (props) => {
                                             return {
                                                 fileName: file.name,
                                                 fileSize: file.size,
-                                                completeTimestamp: parseInt(/(\d{13})/.exec(file.uid)[0]),
+                                                completeTimestamp: new Date().getTime(),
                                                 taskStatus: file.status === 'done' ? 'success' : 'failed',
                                                 taskId: uploadId
                                             }
@@ -145,7 +145,7 @@ const AntdDraggerUpload = (props) => {
                                 return {
                                     fileName: file.name,
                                     fileSize: file.size,
-                                    completeTimestamp: parseInt(/(\d{13})/.exec(file.uid)[0]),
+                                    completeTimestamp: new Date().getTime(),
                                     taskStatus: file.status === 'done' ? 'success' : 'failed',
                                     taskId: uploadId
                                 }
@@ -157,7 +157,7 @@ const AntdDraggerUpload = (props) => {
                         lastUploadTaskRecord: {
                             fileName: info.file.name,
                             fileSize: info.file.size,
-                            completeTimestamp: parseInt(/(\d{13})/.exec(file.uid)[0]),
+                            completeTimestamp: new Date().getTime(),
                             taskStatus: info.file.status === 'done' ? 'success' : 'failed',
                             taskId: uploadId
                         },
@@ -166,7 +166,7 @@ const AntdDraggerUpload = (props) => {
                                 return {
                                     fileName: file.name,
                                     fileSize: file.size,
-                                    completeTimestamp: parseInt(/(\d{13})/.exec(file.uid)[0]),
+                                    completeTimestamp: new Date().getTime(),
                                     taskStatus: file.status === 'done' ? 'success' : 'failed',
                                     taskId: uploadId
                                 }
