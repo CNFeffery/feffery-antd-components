@@ -93,7 +93,9 @@ Keyword arguments:
 
     - taskId (string; optional)
 
-    - taskStatus (string; optional) | list of dicts with keys:
+    - taskStatus (string; optional)
+
+    - uid (string; optional) | list of dicts with keys:
 
     - completeTimestamp (number; optional)
 
@@ -104,6 +106,8 @@ Keyword arguments:
     - taskId (string; optional)
 
     - taskStatus (string; optional)
+
+    - uid (string; optional)
 
 - loading_state (dict; optional)
 

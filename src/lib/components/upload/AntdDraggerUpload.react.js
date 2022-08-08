@@ -10,6 +10,15 @@ const uuid = uuidv4();
 
 const { Dragger } = Upload;
 
+// 解析历史任务完成时间信息
+const parseHistoryTaskCompleteTime = (e) => {
+    let uid2CompleteTime = new Map()
+    e.forEach((item) => {
+        uid2CompleteTime.set(item.uid, item.completeTimestamp)
+    })
+    return uid2CompleteTime
+}
+
 // 定义文件拖拽上传组件AntdDraggerUpload，api参数参考https://ant.design/components/upload-cn/
 const AntdDraggerUpload = (props) => {
 
@@ -35,6 +44,9 @@ const AntdDraggerUpload = (props) => {
         loading_state,
         setProps
     } = props;
+
+    // 更新已上传文件 -> 上传完成时间映射字典
+    const uploadedFile2CompleteTime = parseHistoryTaskCompleteTime(listUploadTaskRecord)
 
     uploadId = uploadId || uuid;
 
@@ -84,9 +96,10 @@ const AntdDraggerUpload = (props) => {
                                 return {
                                     fileName: file.name,
                                     fileSize: file.size,
-                                    completeTimestamp: new Date().getTime(),
+                                    completeTimestamp: uploadedFile2CompleteTime.get(file.uid) || new Date().getTime(),
                                     taskStatus: file.status === 'done' ? 'success' : 'failed',
-                                    taskId: uploadId
+                                    taskId: uploadId,
+                                    uid: file.uid
                                 }
                             }
                         )
@@ -119,9 +132,10 @@ const AntdDraggerUpload = (props) => {
                                             return {
                                                 fileName: file.name,
                                                 fileSize: file.size,
-                                                completeTimestamp: new Date().getTime(),
+                                                completeTimestamp: uploadedFile2CompleteTime.get(file.uid) || new Date().getTime(),
                                                 taskStatus: file.status === 'done' ? 'success' : 'failed',
-                                                taskId: uploadId
+                                                taskId: uploadId,
+                                                uid: file.uid
                                             }
                                         }
                                     )
@@ -145,9 +159,10 @@ const AntdDraggerUpload = (props) => {
                                 return {
                                     fileName: file.name,
                                     fileSize: file.size,
-                                    completeTimestamp: new Date().getTime(),
+                                    completeTimestamp: uploadedFile2CompleteTime.get(file.uid) || new Date().getTime(),
                                     taskStatus: file.status === 'done' ? 'success' : 'failed',
-                                    taskId: uploadId
+                                    taskId: uploadId,
+                                    uid: file.uid
                                 }
                             }
                         )
@@ -166,9 +181,10 @@ const AntdDraggerUpload = (props) => {
                                 return {
                                     fileName: file.name,
                                     fileSize: file.size,
-                                    completeTimestamp: new Date().getTime(),
+                                    completeTimestamp: uploadedFile2CompleteTime.get(file.uid) || new Date().getTime(),
                                     taskStatus: file.status === 'done' ? 'success' : 'failed',
-                                    taskId: uploadId
+                                    taskId: uploadId,
+                                    uid: file.uid
                                 }
                             }
                         )
@@ -355,7 +371,10 @@ AntdDraggerUpload.propTypes = {
             taskStatus: PropTypes.string,
 
             // 记录本次任务的id信息，若最近一次任务状态为'failed'，则不会携带此信息
-            taskId: PropTypes.string
+            taskId: PropTypes.string,
+
+            // 唯一标识当前任务的uuid信息，前端生成与后端无关
+            uid: PropTypes.string
 
         }),
         // 文件夹或多文件上传
@@ -374,7 +393,10 @@ AntdDraggerUpload.propTypes = {
                 taskStatus: PropTypes.string,
 
                 // 记录本次任务的id信息，若最近一次任务状态为'failed'，则不会携带此信息
-                taskId: PropTypes.string
+                taskId: PropTypes.string,
+
+                // 唯一标识当前任务的uuid信息，前端生成与后端无关
+                uid: PropTypes.string
 
             })
         )
