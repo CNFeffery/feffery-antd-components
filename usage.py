@@ -20,36 +20,43 @@ app = dash.Dash(
 app.layout = html.Div(
     [
 
-        fac.AntdTable(
-            columns=[
-                {
-                    'title': f'字段{i}',
-                    'dataIndex': f'字段{i}',
-                    'width': 400
-                }
-                for i in range(5)
-            ],
-            data=[
-                {
-                    **{
-                        f'字段{j}': i
-                        for j in range(5)
-                    },
-                    'key': f'row-{i}'
-                }
-                for i in range(10)
-            ],
-            bordered=True,
-            expandedRowKeyToContent=[
-                {
-                    'key': f'row-{i}',
-                    'content': fac.AntdButton(
-                        f'第{i}行展开内容示例',
-                        type='primary'
-                    )
-                }
-                for i in range(0, 10, 2)
-            ]
+        html.Div(
+            fac.AntdMenu(
+                menuItems=[
+                    {
+                        'component': 'SubMenu',
+                        'props': {
+                            'key': f'{sub_menu}',
+                            'title': f'子菜单{sub_menu}'
+                        },
+                        'children': [
+                            {
+                                'component': 'SubMenu',
+                                'props': {
+                                    'key': f'{sub_menu}-{item_group}',
+                                    'title': f'菜单项分组{sub_menu}-{item_group}'
+                                },
+                                'children': [
+                                    {
+                                        'component': 'Item',
+                                        'props': {
+                                            'key': f'{sub_menu}-{item_group}-{item}',
+                                            'title': f'菜单项{sub_menu}-{item_group}-{item}'
+                                        }
+                                    }
+                                    for item in range(1, 3)
+                                ]
+                            }
+                            for item_group in range(1, 3)
+                        ]
+                    }
+                    for sub_menu in range(1, 5)
+                ],
+                mode='inline'
+            ),
+            style={
+                'width': '250px'
+            }
         )
     ],
     style={

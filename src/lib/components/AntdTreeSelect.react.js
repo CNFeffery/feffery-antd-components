@@ -44,6 +44,7 @@ export default class AntdTreeSelect extends Component {
             disabled,
             placement,
             status,
+            treeNodeFilterProp,
             setProps,
             persistence,
             persisted_props,
@@ -93,6 +94,7 @@ export default class AntdTreeSelect extends Component {
                     disabled={disabled}
                     placement={placement}
                     status={status}
+                    treeNodeFilterProp={treeNodeFilterProp}
                     persistence={persistence}
                     persisted_props={persisted_props}
                     persistence_type={persistence_type}
@@ -233,6 +235,9 @@ AntdTreeSelect.propTypes = {
     // 设置校验状态，可选的有'error'、'warning'
     status: PropTypes.oneOf(['error', 'warning']),
 
+    // 设置输入框中搜索时针对的字段，可选的有'title'、'value'，默认为'value'
+    treeNodeFilterProp: PropTypes.oneOf(['title', 'value']),
+
     loading_state: PropTypes.shape({
         /**
          * Determines if the component is loading or not
@@ -291,5 +296,6 @@ AntdTreeSelect.defaultProps = {
     allowClear: true,
     persisted_props: ['value'],
     persistence_type: 'local',
-    locale: 'zh-cn'
+    locale: 'zh-cn',
+    treeNodeFilterProp: 'value'
 }
