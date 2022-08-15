@@ -91,7 +91,7 @@ import AntdSkeletonInput from './components/skeleton/AntdSkeletonInput.react'
 import AntdSkeletonImage from './components/skeleton/AntdSkeletonImage.react'
 import AntdSegmentedColoring from './components/AntdSegmentedColoring.react'
 import AntdCopyText from './components/AntdCopyText.react'
-
+import AntdPopupCard from './components/AntdPopupCard.react'
 
 export {
     AntdDatePicker,
@@ -185,5 +185,6 @@ export {
     AntdSkeletonInput,
     AntdSkeletonImage,
     AntdSegmentedColoring,
-    AntdCopyText
+    AntdCopyText,
+    AntdPopupCard
 };

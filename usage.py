@@ -19,43 +19,28 @@ app = dash.Dash(
 
 app.layout = html.Div(
     [
+        fac.AntdButton(
+            '打开弹出式卡片',
+            id='open-popup-card',
+            type='primary'
+        ),
 
         html.Div(
-            fac.AntdMenu(
-                menuItems=[
-                    {
-                        'component': 'SubMenu',
-                        'props': {
-                            'key': f'{sub_menu}',
-                            'title': f'子菜单{sub_menu}'
-                        },
-                        'children': [
-                            {
-                                'component': 'SubMenu',
-                                'props': {
-                                    'key': f'{sub_menu}-{item_group}',
-                                    'title': f'菜单项分组{sub_menu}-{item_group}'
-                                },
-                                'children': [
-                                    {
-                                        'component': 'Item',
-                                        'props': {
-                                            'key': f'{sub_menu}-{item_group}-{item}',
-                                            'title': f'菜单项{sub_menu}-{item_group}-{item}'
-                                        }
-                                    }
-                                    for item in range(1, 3)
-                                ]
-                            }
-                            for item_group in range(1, 3)
-                        ]
-                    }
-                    for sub_menu in range(1, 5)
-                ],
-                mode='inline'
+            fac.AntdPopupCard(
+                'AntdPopupCard内容测试'*20,
+                id='popup-card',
+                title='AntdPopupCard示例',
+                draggable=True,
+                # style={
+                #     'position': 'absolute',
+                #     'top': 25,
+                #     'right': 25
+                # },
+                closeIconType='outlined',
             ),
             style={
-                'width': '250px'
+                'height': '400px',
+                'border': '1px solid grey'
             }
         )
     ],
@@ -63,6 +48,18 @@ app.layout = html.Div(
         'padding': '100px'
     }
 )
+
+
+@app.callback(
+    Output('popup-card', 'visible'),
+    Input('open-popup-card', 'nClicks')
+)
+def open_popup_card(nClicks):
+
+    if nClicks:
+        return True
+
+    return dash.no_update
 
 
 if __name__ == '__main__':

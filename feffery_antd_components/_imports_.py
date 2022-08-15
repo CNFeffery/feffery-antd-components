@@ -37,6 +37,7 @@ from .AntdPagination import AntdPagination
 from .AntdPasteImage import AntdPasteImage
 from .AntdPopconfirm import AntdPopconfirm
 from .AntdPopover import AntdPopover
+from .AntdPopupCard import AntdPopupCard
 from .AntdProgress import AntdProgress
 from .AntdRadioGroup import AntdRadioGroup
 from .AntdRate import AntdRate
@@ -131,6 +132,7 @@ __all__ = [
     "AntdPasteImage",
     "AntdPopconfirm",
     "AntdPopover",
+    "AntdPopupCard",
     "AntdProgress",
     "AntdRadioGroup",
     "AntdRate",

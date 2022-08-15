@@ -66,7 +66,7 @@ Keyword arguments:
 
 - visible (boolean; default False)
 
-- width (number; optional)"""
+- width (number | string; optional)"""
     _children_props = ['title']
     _base_nodes = ['title', 'children']
     _namespace = 'feffery_antd_components'

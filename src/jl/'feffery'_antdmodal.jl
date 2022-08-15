@@ -38,7 +38,7 @@ Those elements have the following types:
 - `style` (Dict; optional)
 - `title` (a list of or a singular dash component, string or number; optional)
 - `visible` (Bool; optional)
-- `width` (Real; optional)
+- `width` (Real | String; optional)
 """
 function 'feffery'_antdmodal(; kwargs...)
         available_props = Symbol[:children, :id, :cancelButtonProps, :cancelCounts, :cancelText, :centered, :className, :closable, :closeCounts, :key, :keyboard, :loading_state, :locale, :mask, :maskClosable, :okButtonProps, :okClickClose, :okCounts, :okText, :renderFooter, :style, :title, :visible, :width]

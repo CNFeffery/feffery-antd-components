@@ -167,7 +167,10 @@ AntdModal.propTypes = {
     renderFooter: PropTypes.bool,
 
     // 自定义对话框的像素宽度
-    width: PropTypes.number,
+    width: PropTypes.oneOfType([
+        PropTypes.number,
+        PropTypes.string
+    ]),
 
     // 设置是否垂直居中显示对话框
     centered: PropTypes.bool,
