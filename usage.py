@@ -19,30 +19,34 @@ app = dash.Dash(
 
 app.layout = html.Div(
     [
-        fac.AntdButton(
-            '打开弹出式卡片',
-            id='open-popup-card',
-            type='primary'
+        fac.AntdDatePicker(
+            locale='en-us'
         ),
 
-        html.Div(
-            fac.AntdPopupCard(
-                'AntdPopupCard内容测试'*20,
-                id='popup-card',
-                title='AntdPopupCard示例',
-                draggable=True,
-                # style={
-                #     'position': 'absolute',
-                #     'top': 25,
-                #     'right': 25
-                # },
-                closeIconType='outlined',
-            ),
-            style={
-                'height': '400px',
-                'border': '1px solid grey'
-            }
-        )
+        # fac.AntdButton(
+        #     '打开弹出式卡片',
+        #     id='open-popup-card',
+        #     type='primary'
+        # ),
+
+        # html.Div(
+        #     fac.AntdPopupCard(
+        #         'AntdPopupCard内容测试'*20,
+        #         id='popup-card',
+        #         title='AntdPopupCard示例',
+        #         draggable=True,
+        #         # style={
+        #         #     'position': 'absolute',
+        #         #     'top': 25,
+        #         #     'right': 25
+        #         # },
+        #         closeIconType='outlined',
+        #     ),
+        #     style={
+        #         'height': '400px',
+        #         'border': '1px solid grey'
+        #     }
+        # )
     ],
     style={
         'padding': '100px'
@@ -50,16 +54,16 @@ app.layout = html.Div(
 )
 
 
-@app.callback(
-    Output('popup-card', 'visible'),
-    Input('open-popup-card', 'nClicks')
-)
-def open_popup_card(nClicks):
+# @app.callback(
+#     Output('popup-card', 'visible'),
+#     Input('open-popup-card', 'nClicks')
+# )
+# def open_popup_card(nClicks):
 
-    if nClicks:
-        return True
+#     if nClicks:
+#         return True
 
-    return dash.no_update
+#     return dash.no_update
 
 
 if __name__ == '__main__':

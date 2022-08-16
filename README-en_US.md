@@ -39,3 +39,15 @@ app = dash.Dash(serve_locally=False)
 ## 4 Documents
 
 <a href='http://fac.feffery.tech/' target='_blank'>fac.feffery.tech</a>
+
+## 5 Internationalization
+
+The default language of `fac` is currently simplified Chinese. If you wish to use English, just set `locale='en-us'`, for example：
+
+```Python
+fac.AntdDatePicker(
+	locale='en-us'
+)
+```
+
+<img src="./images/国际化示例.png" height=250></img>
