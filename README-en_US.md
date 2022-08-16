@@ -24,11 +24,10 @@ pip install feffery-antd-components -U
 
 ## 2 Install from GitHub
 
-````bash
-
 ```bash
+
 pip install git+https://github.com/CNFeffery/feffery-antd-components.git
-````
+```
 
 ## 3 Use CDN
 
