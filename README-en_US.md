@@ -12,36 +12,31 @@
 
 </div>
 
-简体中文 | [English](./README-en_US.md)
+[简体中文](./README.md) | English
 
-`feffery-components`计划子项目，`Plotly Dash`第三方组件库，基于`Antd`，将超多具有丰富功能的通用网页常用交互组件引入`Dash`的生态中 🥳，最新版本：`0.1.15`
+Subproject of `feffery-components` projects, third-party component library of `Plotly Dash`, based on the [Antd](https://github.com/ant-design/ant-design), bring many common and powerful components into `Dash`🥳, latest version: `0.1.15`
 
-## 1 最新版本安装方式
+## 1 Install
 
 ```bash
 pip install feffery-antd-components -U
 ```
 
-## 2 最新开发版本安装方式
+## 2 Install from GitHub
+
+````bash
 
 ```bash
 pip install git+https://github.com/CNFeffery/feffery-antd-components.git
-```
+````
 
-国内镜像加速安装方式：
-
-```bash
-pip install git+https://github.91chi.fun/https://github.com/CNFeffery/feffery-antd-components.git
-```
-
-## 3 静态资源 CDN 加速方法
+## 3 Use CDN
 
 ```Python
-# 非debug模式下对Dash()传入参数serve_locally=False会强制浏览器端从unpkg cdn加载各个依赖的
-# xxx.min.js等静态资源，从而避免占用服务器带宽，适合中小型站点加速访问
+# just set serve_locally=False in dash.Dash()
 app = dash.Dash(serve_locally=False)
 ```
 
-## 4 在线文档
+## 4 Documents
 
-<a href='http://fac.feffery.tech/' target='_blank'>文档地址</a>
+<a href='http://fac.feffery.tech/' target='_blank'>fac.feffery.tech</a>
