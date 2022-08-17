@@ -36,6 +36,8 @@ export default class AntdInput extends Component {
             size,
             addonBefore,
             addonAfter,
+            prefix,
+            suffix,
             allowClear,
             bordered,
             defaultValue,
@@ -81,6 +83,8 @@ export default class AntdInput extends Component {
                     size={size}
                     addonBefore={addonBefore}
                     addonAfter={addonAfter}
+                    prefix={prefix}
+                    suffix={suffix}
                     allowClear={allowClear}
                     bordered={bordered}
                     defaultValue={defaultValue}
@@ -164,6 +168,8 @@ export default class AntdInput extends Component {
                     defaultValue={defaultValue}
                     maxLength={maxLength}
                     status={status}
+                    prefix={prefix}
+                    suffix={suffix}
                     onChange={(e) => {
                         // 若启用md5加密
                         if (passwordUseMd5) {
@@ -231,10 +237,16 @@ AntdInput.propTypes = {
     size: PropTypes.oneOf(['small', 'middle', 'large']),
 
     // 设置前置标签内容
-    addonBefore: PropTypes.string,
+    addonBefore: PropTypes.node,
 
     // 设置后置标签内容
-    addonAfter: PropTypes.string,
+    addonAfter: PropTypes.node,
+
+    // 设置框内嵌前缀内容
+    prefix: PropTypes.node,
+
+    // 设置框内嵌后缀内容
+    suffix: PropTypes.node,
 
     // 设置是否添加内容清除按钮，默认false
     allowClear: PropTypes.bool,

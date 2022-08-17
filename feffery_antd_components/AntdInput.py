@@ -11,9 +11,9 @@ Keyword arguments:
 
 - id (string; optional)
 
-- addonAfter (string; optional)
+- addonAfter (a list of or a singular dash component, string or number; optional)
 
-- addonBefore (string; optional)
+- addonBefore (a list of or a singular dash component, string or number; optional)
 
 - allowClear (boolean; optional)
 
@@ -83,6 +83,8 @@ Keyword arguments:
 
 - placeholder (string; optional)
 
+- prefix (a list of or a singular dash component, string or number; optional)
+
 - showCount (boolean; optional)
 
 - size (a value equal to: 'small', 'middle', 'large'; optional)
@@ -91,16 +93,18 @@ Keyword arguments:
 
 - style (dict; optional)
 
+- suffix (a list of or a singular dash component, string or number; optional)
+
 - value (string; optional)"""
-    _children_props = []
-    _base_nodes = ['children']
+    _children_props = ['addonBefore', 'addonAfter', 'prefix', 'suffix']
+    _base_nodes = ['addonBefore', 'addonAfter', 'prefix', 'suffix', 'children']
     _namespace = 'feffery_antd_components'
     _type = 'AntdInput'
     @_explicitize_args
-    def __init__(self, id=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, key=Component.UNDEFINED, loading_state=Component.UNDEFINED, mode=Component.UNDEFINED, autoComplete=Component.UNDEFINED, placeholder=Component.UNDEFINED, size=Component.UNDEFINED, addonBefore=Component.UNDEFINED, addonAfter=Component.UNDEFINED, allowClear=Component.UNDEFINED, bordered=Component.UNDEFINED, defaultValue=Component.UNDEFINED, disabled=Component.UNDEFINED, maxLength=Component.UNDEFINED, value=Component.UNDEFINED, md5Value=Component.UNDEFINED, showCount=Component.UNDEFINED, passwordUseMd5=Component.UNDEFINED, nSubmit=Component.UNDEFINED, nClicksSearch=Component.UNDEFINED, status=Component.UNDEFINED, autoSize=Component.UNDEFINED, persistence=Component.UNDEFINED, persisted_props=Component.UNDEFINED, persistence_type=Component.UNDEFINED, **kwargs):
-        self._prop_names = ['id', 'addonAfter', 'addonBefore', 'allowClear', 'autoComplete', 'autoSize', 'bordered', 'className', 'defaultValue', 'disabled', 'key', 'loading_state', 'maxLength', 'md5Value', 'mode', 'nClicksSearch', 'nSubmit', 'passwordUseMd5', 'persisted_props', 'persistence', 'persistence_type', 'placeholder', 'showCount', 'size', 'status', 'style', 'value']
+    def __init__(self, id=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, key=Component.UNDEFINED, loading_state=Component.UNDEFINED, mode=Component.UNDEFINED, autoComplete=Component.UNDEFINED, placeholder=Component.UNDEFINED, size=Component.UNDEFINED, addonBefore=Component.UNDEFINED, addonAfter=Component.UNDEFINED, prefix=Component.UNDEFINED, suffix=Component.UNDEFINED, allowClear=Component.UNDEFINED, bordered=Component.UNDEFINED, defaultValue=Component.UNDEFINED, disabled=Component.UNDEFINED, maxLength=Component.UNDEFINED, value=Component.UNDEFINED, md5Value=Component.UNDEFINED, showCount=Component.UNDEFINED, passwordUseMd5=Component.UNDEFINED, nSubmit=Component.UNDEFINED, nClicksSearch=Component.UNDEFINED, status=Component.UNDEFINED, autoSize=Component.UNDEFINED, persistence=Component.UNDEFINED, persisted_props=Component.UNDEFINED, persistence_type=Component.UNDEFINED, **kwargs):
+        self._prop_names = ['id', 'addonAfter', 'addonBefore', 'allowClear', 'autoComplete', 'autoSize', 'bordered', 'className', 'defaultValue', 'disabled', 'key', 'loading_state', 'maxLength', 'md5Value', 'mode', 'nClicksSearch', 'nSubmit', 'passwordUseMd5', 'persisted_props', 'persistence', 'persistence_type', 'placeholder', 'prefix', 'showCount', 'size', 'status', 'style', 'suffix', 'value']
         self._valid_wildcard_attributes =            []
-        self.available_properties = ['id', 'addonAfter', 'addonBefore', 'allowClear', 'autoComplete', 'autoSize', 'bordered', 'className', 'defaultValue', 'disabled', 'key', 'loading_state', 'maxLength', 'md5Value', 'mode', 'nClicksSearch', 'nSubmit', 'passwordUseMd5', 'persisted_props', 'persistence', 'persistence_type', 'placeholder', 'showCount', 'size', 'status', 'style', 'value']
+        self.available_properties = ['id', 'addonAfter', 'addonBefore', 'allowClear', 'autoComplete', 'autoSize', 'bordered', 'className', 'defaultValue', 'disabled', 'key', 'loading_state', 'maxLength', 'md5Value', 'mode', 'nClicksSearch', 'nSubmit', 'passwordUseMd5', 'persisted_props', 'persistence', 'persistence_type', 'placeholder', 'prefix', 'showCount', 'size', 'status', 'style', 'suffix', 'value']
         self.available_wildcard_properties =            []
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()

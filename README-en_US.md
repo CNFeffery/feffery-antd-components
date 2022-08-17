@@ -45,9 +45,7 @@ app = dash.Dash(serve_locally=False)
 The default language of `fac` is currently simplified Chinese. If you wish to use English, just set `locale='en-us'`, for example：
 
 ```Python
-fac.AntdDatePicker(
-	locale='en-us'
-)
+fac.AntdDatePicker(locale='en-us')
 ```
 
-<img src="./images/国际化示例.png" height=300></img>
+<img src="./images/国际化示例.png" height=350></img>

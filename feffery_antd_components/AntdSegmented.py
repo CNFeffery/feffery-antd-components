@@ -40,9 +40,11 @@ Keyword arguments:
 
     - disabled (boolean; optional)
 
-    - label (string; optional)
+    - icon (string; optional)
 
-    - value (string | number; optional)
+    - label (string | a list of or a singular dash component, string or number; required)
+
+    - value (string | number; required)
 
 - persisted_props (list of a value equal to: 'value's; default ['value']):
     Properties whose user interactions will persist after refreshing
@@ -68,7 +70,7 @@ Keyword arguments:
 - style (dict; optional)
 
 - value (string | number; optional)"""
-    _children_props = []
+    _children_props = ['options[].label']
     _base_nodes = ['children']
     _namespace = 'feffery_antd_components'
     _type = 'AntdSegmented'

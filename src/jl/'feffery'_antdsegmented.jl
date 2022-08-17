@@ -19,11 +19,12 @@ Those elements have the following types:
   - `is_loading` (Bool; optional): Determines if the component is loading or not
   - `prop_name` (String; optional): Holds which property is loading
   - `component_name` (String; optional): Holds the name of the component that is loading
-- `options` (optional): . options has the following type: Array of lists containing elements 'label', 'value', 'disabled'.
+- `options` (optional): . options has the following type: Array of lists containing elements 'label', 'value', 'disabled', 'icon'.
 Those elements have the following types:
-  - `label` (String; optional)
-  - `value` (String | Real; optional)
-  - `disabled` (Bool; optional)s
+  - `label` (String | a list of or a singular dash component, string or number; required)
+  - `value` (String | Real; required)
+  - `disabled` (Bool; optional)
+  - `icon` (String; optional)s
 - `persisted_props` (Array of a value equal to: 'value's; optional): Properties whose user interactions will persist after refreshing the
 component or the page. Since only `value` is allowed this prop can
 normally be ignored.

@@ -9,8 +9,8 @@ An AntdInput component.
 
 Keyword arguments:
 - `id` (String; optional)
-- `addonAfter` (String; optional)
-- `addonBefore` (String; optional)
+- `addonAfter` (a list of or a singular dash component, string or number; optional)
+- `addonBefore` (a list of or a singular dash component, string or number; optional)
 - `allowClear` (Bool; optional)
 - `autoComplete` (a value equal to: 'off', 'on'; optional)
 - `autoSize` (optional): . autoSize has the following type: Bool | lists containing elements 'minRows', 'maxRows'.
@@ -47,14 +47,16 @@ memory: only kept in memory, reset on page refresh.
 local: window.localStorage, data is kept after the browser quit.
 session: window.sessionStorage, data is cleared once the browser quit.
 - `placeholder` (String; optional)
+- `prefix` (a list of or a singular dash component, string or number; optional)
 - `showCount` (Bool; optional)
 - `size` (a value equal to: 'small', 'middle', 'large'; optional)
 - `status` (a value equal to: 'error', 'warning'; optional)
 - `style` (Dict; optional)
+- `suffix` (a list of or a singular dash component, string or number; optional)
 - `value` (String; optional)
 """
 function 'feffery'_antdinput(; kwargs...)
-        available_props = Symbol[:id, :addonAfter, :addonBefore, :allowClear, :autoComplete, :autoSize, :bordered, :className, :defaultValue, :disabled, :key, :loading_state, :maxLength, :md5Value, :mode, :nClicksSearch, :nSubmit, :passwordUseMd5, :persisted_props, :persistence, :persistence_type, :placeholder, :showCount, :size, :status, :style, :value]
+        available_props = Symbol[:id, :addonAfter, :addonBefore, :allowClear, :autoComplete, :autoSize, :bordered, :className, :defaultValue, :disabled, :key, :loading_state, :maxLength, :md5Value, :mode, :nClicksSearch, :nSubmit, :passwordUseMd5, :persisted_props, :persistence, :persistence_type, :placeholder, :prefix, :showCount, :size, :status, :style, :suffix, :value]
         wild_props = Symbol[]
         return Component("'feffery'_antdinput", "AntdInput", "feffery_antd_components", available_props, wild_props; kwargs...)
 end

@@ -25,6 +25,8 @@ export default class AntdInputNumber extends Component {
             size,
             addonBefore,
             addonAfter,
+            prefix,
+            suffix,
             bordered,
             controls,
             value,
@@ -69,6 +71,8 @@ export default class AntdInputNumber extends Component {
                 size={size}
                 addonBefore={addonBefore}
                 addonAfter={addonAfter}
+                prefix={prefix}
+                suffix={suffix}
                 placeholder={placeholder}
                 bordered={bordered}
                 controls={controls}
@@ -113,10 +117,16 @@ AntdInputNumber.propTypes = {
     size: PropTypes.oneOf(['small', 'middle', 'large']),
 
     // 设置前置标签内容
-    addonBefore: PropTypes.string,
+    addonBefore: PropTypes.node,
 
     // 设置后置标签内容
-    addonAfter: PropTypes.string,
+    addonAfter: PropTypes.node,
+
+    // 设置框内嵌前缀内容
+    prefix: PropTypes.node,
+
+    // 设置框内嵌后缀内容
+    suffix: PropTypes.node,
 
     // 设置是否有边框，默认为true
     bordered: PropTypes.bool,

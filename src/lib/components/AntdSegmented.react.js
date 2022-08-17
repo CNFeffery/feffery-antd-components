@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Segmented } from 'antd';
 import 'antd/dist/antd.css';
+import AntdIcon from "./AntdIcon.react"
+import propTypes from 'prop-types';
 
 // 定义分段控制器组件AntdSegmented，api参数参考https://ant.design/components/segmented-cn/
 export default class AntdSegmented extends Component {
@@ -45,7 +47,14 @@ export default class AntdSegmented extends Component {
                 className={className}
                 style={style}
                 key={key}
-                options={options}
+                options={
+                    options.map(item => {
+                        return {
+                            ...item,
+                            icon: item.icon && <AntdIcon icon={item.icon} />
+                        }
+                    })
+                }
                 defaultValue={defaultValue}
                 value={value}
                 block={block}
@@ -82,16 +91,22 @@ AntdSegmented.propTypes = {
     options: PropTypes.arrayOf(
         PropTypes.exact({
             // 设置选项的标题内容
-            label: PropTypes.string,
+            label: propTypes.oneOfType([
+                PropTypes.string,
+                PropTypes.node
+            ]).isRequired,
 
             // 设置选项的对应值
             value: PropTypes.oneOfType([
                 PropTypes.string,
                 PropTypes.number
-            ]),
+            ]).isRequired,
 
             // 设置是否禁用当前选项
-            disabled: PropTypes.bool
+            disabled: PropTypes.bool,
+
+            // 传入与AntdIcon相通的icon代号
+            icon: PropTypes.string
         })
     ),
 

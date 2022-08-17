@@ -19,6 +19,37 @@ app = dash.Dash(
 
 app.layout = html.Div(
     [
+
+
+        fac.AntdInput(
+            placeholder='default输入框示例',
+            prefix=fac.AntdIcon(
+                icon='antd-user',
+                style={
+                    'color': 'grey'
+                }
+            ),
+            style={
+                'width': '300px',
+                'marginBottom': '5px'
+            }
+        ),
+
+
+        fac.AntdSegmented(
+            options=[
+                {
+                    'label': f'选项{i}',
+                    'value': f'选项{i}',
+                    'icon': 'antd-github'
+                }
+                for i in range(5)
+            ],
+            defaultValue='选项1'
+        ),
+
+        html.Br(),
+
         fac.AntdButton(
             '打开弹出式卡片',
             id='open-popup-card',
@@ -33,7 +64,7 @@ app.layout = html.Div(
             style={
                 'position': 'absolute',
                 'top': 25,
-                'left': 25
+                'right': 25
             },
             closeIconType='two-tone',
         )
