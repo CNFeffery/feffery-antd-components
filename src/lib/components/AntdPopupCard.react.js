@@ -23,9 +23,11 @@ const AntdPopupCard = (props) => {
         visible,
         title,
         width,
-        transitionName,
+        transitionType,
         closeIconType,
         draggable,
+        zIndex,
+        bodyStyle,
         setProps,
         loading_state
     } = props;
@@ -117,11 +119,13 @@ const AntdPopupCard = (props) => {
                         }
                     </div>
                 }
-                transitionName={transitionName === 'none' ? '' : `ant-${transitionName}`}
+                transitionName={transitionType === 'none' ? '' : `ant-${transitionType}`}
+                width={width}
                 visible={visible}
+                zIndex={zIndex}
+                bodyStyle={bodyStyle}
                 mask={false}
                 maskClosable={false}
-                width={width}
                 closable={false}
                 footer={false}
                 wrapClassName={'ant-modal-wrap-overwrite'}
@@ -178,7 +182,7 @@ AntdPopupCard.propTypes = {
     // 设置卡片显隐动画类型，可选的有'fade'、'zoom'、'zoom-big'、'zoom-big-fast'、'zoom-up'、
     // 'zoom-down'、'zoom-left'、'zoom-right'、'slide-up'、'slide-down'、'slide-left'、
     // 'slide-right'、'move-up'、'move-down'、'move-left'、'move-right'
-    transitionName: PropTypes.oneOf([
+    transitionType: PropTypes.oneOf([
         'none', 'fade', 'zoom', 'zoom-big', 'zoom-big-fast', 'zoom-up',
         'zoom-down', 'zoom-left', 'zoom-right', 'slide-up', 'slide-down', 'slide-left',
         'slide-right', 'move-up', 'move-down', 'move-left', 'move-right'
@@ -189,6 +193,12 @@ AntdPopupCard.propTypes = {
 
     // 设置是否可拖拽，默认为false
     draggable: PropTypes.bool,
+
+    // 设置弹出卡片的zIndex，默认为1000
+    zIndex: PropTypes.number,
+
+    // 自定义弹出卡片主体区域css样式
+    bodyStyle: PropTypes.object,
 
     /**
      * Dash-assigned callback that should be called to report property changes
@@ -215,7 +225,7 @@ AntdPopupCard.propTypes = {
 // 设置默认参数
 AntdPopupCard.defaultProps = {
     locale: 'zh-cn',
-    transitionName: 'fade',
+    transitionType: 'fade',
     closeIconType: 'default',
     draggable: false,
     visible: true

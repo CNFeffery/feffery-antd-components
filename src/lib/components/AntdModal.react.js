@@ -31,6 +31,9 @@ export default class AntdModal extends Component {
             mask,
             maskClosable,
             okClickClose,
+            zIndex,
+            maskStyle,
+            bodyStyle,
             okCounts,
             cancelCounts,
             closeCounts,
@@ -79,6 +82,9 @@ export default class AntdModal extends Component {
                         closable={closable}
                         mask={mask}
                         maskClosable={maskClosable}
+                        zIndex={zIndex}
+                        maskStyle={maskStyle}
+                        bodyStyle={bodyStyle}
                         onOk={listenOk}
                         onCancel={listenCancel}
                         afterClose={listenClose}
@@ -111,6 +117,9 @@ export default class AntdModal extends Component {
                         closable={closable}
                         mask={mask}
                         maskClosable={maskClosable}
+                        zIndex={zIndex}
+                        maskStyle={maskStyle}
+                        bodyStyle={bodyStyle}
                         onOk={listenOk}
                         onCancel={listenCancel}
                         destroyOnClose={true}
@@ -189,6 +198,15 @@ AntdModal.propTypes = {
 
     // 设置点击确认按钮是否会触发对话框关闭，默认为true
     okClickClose: PropTypes.bool,
+
+    // 设置模态框的zIndex，默认为1000
+    zIndex: PropTypes.number,
+
+    // 自定义mask遮罩css样式
+    maskStyle: PropTypes.object,
+
+    // 自定义模态框主体区域css样式
+    bodyStyle: PropTypes.object,
 
     // 记录确认按钮被点击的次数
     okCounts: PropTypes.number,

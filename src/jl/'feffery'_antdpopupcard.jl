@@ -13,6 +13,7 @@ An AntdPopupCard component.
 Keyword arguments:
 - `children` (a list of or a singular dash component, string or number; optional)
 - `id` (String; optional)
+- `bodyStyle` (Dict; optional)
 - `className` (String; optional)
 - `closeIconType` (a value equal to: 'default', 'outlined', 'two-tone'; optional)
 - `draggable` (Bool; optional)
@@ -25,12 +26,13 @@ Those elements have the following types:
 - `locale` (a value equal to: 'zh-cn', 'en-us'; optional)
 - `style` (Dict; optional)
 - `title` (a list of or a singular dash component, string or number; optional)
-- `transitionName` (a value equal to: 'none', 'fade', 'zoom', 'zoom-big', 'zoom-big-fast', 'zoom-up', 'zoom-down', 'zoom-left', 'zoom-right', 'slide-up', 'slide-down', 'slide-left', 'slide-right', 'move-up', 'move-down', 'move-left', 'move-right'; optional)
+- `transitionType` (a value equal to: 'none', 'fade', 'zoom', 'zoom-big', 'zoom-big-fast', 'zoom-up', 'zoom-down', 'zoom-left', 'zoom-right', 'slide-up', 'slide-down', 'slide-left', 'slide-right', 'move-up', 'move-down', 'move-left', 'move-right'; optional)
 - `visible` (Bool; optional)
 - `width` (Real | String; optional)
+- `zIndex` (Real; optional)
 """
 function 'feffery'_antdpopupcard(; kwargs...)
-        available_props = Symbol[:children, :id, :className, :closeIconType, :draggable, :key, :loading_state, :locale, :style, :title, :transitionName, :visible, :width]
+        available_props = Symbol[:children, :id, :bodyStyle, :className, :closeIconType, :draggable, :key, :loading_state, :locale, :style, :title, :transitionType, :visible, :width, :zIndex]
         wild_props = Symbol[]
         return Component("'feffery'_antdpopupcard", "AntdPopupCard", "feffery_antd_components", available_props, wild_props; kwargs...)
 end

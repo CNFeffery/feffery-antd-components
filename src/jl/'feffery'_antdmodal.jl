@@ -13,6 +13,7 @@ An AntdModal component.
 Keyword arguments:
 - `children` (a list of or a singular dash component, string or number; optional)
 - `id` (String; optional)
+- `bodyStyle` (Dict; optional)
 - `cancelButtonProps` (Dict; optional)
 - `cancelCounts` (Real; optional)
 - `cancelText` (String; optional)
@@ -30,6 +31,7 @@ Those elements have the following types:
 - `locale` (a value equal to: 'zh-cn', 'en-us'; optional)
 - `mask` (Bool; optional)
 - `maskClosable` (Bool; optional)
+- `maskStyle` (Dict; optional)
 - `okButtonProps` (Dict; optional)
 - `okClickClose` (Bool; optional)
 - `okCounts` (Real; optional)
@@ -39,9 +41,10 @@ Those elements have the following types:
 - `title` (a list of or a singular dash component, string or number; optional)
 - `visible` (Bool; optional)
 - `width` (Real | String; optional)
+- `zIndex` (Real; optional)
 """
 function 'feffery'_antdmodal(; kwargs...)
-        available_props = Symbol[:children, :id, :cancelButtonProps, :cancelCounts, :cancelText, :centered, :className, :closable, :closeCounts, :key, :keyboard, :loading_state, :locale, :mask, :maskClosable, :okButtonProps, :okClickClose, :okCounts, :okText, :renderFooter, :style, :title, :visible, :width]
+        available_props = Symbol[:children, :id, :bodyStyle, :cancelButtonProps, :cancelCounts, :cancelText, :centered, :className, :closable, :closeCounts, :key, :keyboard, :loading_state, :locale, :mask, :maskClosable, :maskStyle, :okButtonProps, :okClickClose, :okCounts, :okText, :renderFooter, :style, :title, :visible, :width, :zIndex]
         wild_props = Symbol[]
         return Component("'feffery'_antdmodal", "AntdModal", "feffery_antd_components", available_props, wild_props; kwargs...)
 end

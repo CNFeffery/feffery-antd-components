@@ -35,7 +35,6 @@ app.layout = html.Div(
             }
         ),
 
-
         fac.AntdSegmented(
             options=[
                 {
@@ -56,22 +55,25 @@ app.layout = html.Div(
             type='primary'
         ),
 
+        html.Div(
+            style={
+                'height': '300px'
+            }
+        ),
+
         fac.AntdPopupCard(
             'AntdPopupCard内容测试'*20,
             id='popup-card',
             title='AntdPopupCard示例',
             draggable=True,
             style={
-                'position': 'absolute',
-                'top': 25,
-                'right': 25
+                # 'position': 'fixed',
+                # 'top': 25,
+                # 'right': 25
             },
-            closeIconType='two-tone',
+            closeIconType='two-tone'
         )
-    ],
-    style={
-        'padding': '100px'
-    }
+    ]
 )
 
 
