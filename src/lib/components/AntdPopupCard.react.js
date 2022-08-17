@@ -84,9 +84,9 @@ const AntdPopupCard = (props) => {
                                 (<CloseCircleOutlined
                                     style={{
                                         position: "absolute",
-                                        top: -10,
-                                        right: -10,
-                                        fontSize: 20,
+                                        top: -12,
+                                        right: -12,
+                                        fontSize: 24,
                                         cursor: "pointer"
                                     }}
                                     onClick={() => setProps({ visible: false })}
@@ -96,9 +96,9 @@ const AntdPopupCard = (props) => {
                                         ((<CloseCircleTwoTone
                                             style={{
                                                 position: "absolute",
-                                                top: -10,
-                                                right: -10,
-                                                fontSize: 20,
+                                                top: -12,
+                                                right: -12,
+                                                fontSize: 24,
                                                 cursor: "pointer"
                                             }}
                                             onClick={() => setProps({ visible: false })}
@@ -106,9 +106,9 @@ const AntdPopupCard = (props) => {
                                         (<CloseCircleFilled
                                             style={{
                                                 position: "absolute",
-                                                top: -10,
-                                                right: -10,
-                                                fontSize: 20,
+                                                top: -12,
+                                                right: -12,
+                                                fontSize: 24,
                                                 cursor: "pointer"
                                             }}
                                             onClick={() => setProps({ visible: false })}

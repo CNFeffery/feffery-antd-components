@@ -410,7 +410,7 @@ class AntdTable extends Component {
                             columns[i] = {
                                 ...columns[i],
                                 filters: filterOptions[columns[i].dataIndex].filterCustomItems
-                                    .map(value => ({ text: value.toString(), value: value })),
+                                    .map(value => ({ text: value ? value.toString() : '', value: value })),
                                 onFilter: (value, record) => record[columns[i].dataIndex] === value,
                                 filterMultiple: filterOptions[columns[i].dataIndex]?.filterMultiple,
                                 filterSearch: filterOptions[columns[i].dataIndex]?.filterSearch
@@ -419,7 +419,7 @@ class AntdTable extends Component {
                             columns[i] = {
                                 ...columns[i],
                                 filters: Array.from(new Set(data.map(item => item[columns[i].dataIndex]))).map(
-                                    value => ({ text: value.toString(), value: value })
+                                    value => ({ text: value ? value.toString() : '', value: value })
                                 ).sort(compareNumeric),
                                 onFilter: (value, record) => record[columns[i].dataIndex] === value,
                                 filterMultiple: filterOptions[columns[i].dataIndex]?.filterMultiple,
@@ -453,7 +453,7 @@ class AntdTable extends Component {
                             columns[i] = {
                                 ...columns[i],
                                 filters: filterOptions[columns[i].dataIndex].filterCustomItems
-                                    .map(value => ({ text: value.toString(), value: value })),
+                                    .map(value => ({ text: value ? value.toString() : '', value: value })),
                                 onFilter: (value, record) => true // 契合后端刷新模式
                             }
                         } else {

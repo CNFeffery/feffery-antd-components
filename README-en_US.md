@@ -14,7 +14,7 @@
 
 [简体中文](./README.md) | English
 
-Subproject of `feffery-components` projects, third-party components library of `Plotly Dash`, based on the [Antd](https://github.com/ant-design/ant-design), bring many common and powerful components into `Dash`🥳, latest version: `0.1.15`
+Subproject of `feffery-components` projects, third-party components library of `Plotly Dash`, based on the [Antd](https://github.com/ant-design/ant-design), brings many common and powerful components into `Dash`🥳, latest version: `0.1.15`
 
 ## 1 Install
 
@@ -36,7 +36,7 @@ pip install git+https://github.com/CNFeffery/feffery-antd-components.git
 app = dash.Dash(serve_locally=False)
 ```
 
-## 4 Documents
+## 4 Documentation
 
 <a href='http://fac.feffery.tech/' target='_blank'>fac.feffery.tech</a>
 
@@ -50,4 +50,4 @@ fac.AntdDatePicker(
 )
 ```
 
-<img src="./images/国际化示例.png" height=250></img>
+<img src="./images/国际化示例.png" height=300></img>
