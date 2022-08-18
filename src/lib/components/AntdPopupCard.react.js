@@ -24,6 +24,7 @@ const AntdPopupCard = (props) => {
         title,
         width,
         transitionType,
+        closable,
         closeIconType,
         draggable,
         zIndex,
@@ -82,40 +83,42 @@ const AntdPopupCard = (props) => {
                     >
                         {title}
                         {
-                            closeIconType === "outlined" ?
-                                (<CloseCircleOutlined
-                                    style={{
-                                        position: "absolute",
-                                        top: -12,
-                                        right: -12,
-                                        fontSize: 24,
-                                        cursor: "pointer"
-                                    }}
-                                    onClick={() => setProps({ visible: false })}
-                                />) :
-                                (
-                                    closeIconType == 'two-tone' ?
-                                        ((<CloseCircleTwoTone
-                                            style={{
-                                                position: "absolute",
-                                                top: -12,
-                                                right: -12,
-                                                fontSize: 24,
-                                                cursor: "pointer"
-                                            }}
-                                            onClick={() => setProps({ visible: false })}
-                                        />)) :
-                                        (<CloseCircleFilled
-                                            style={{
-                                                position: "absolute",
-                                                top: -12,
-                                                right: -12,
-                                                fontSize: 24,
-                                                cursor: "pointer"
-                                            }}
-                                            onClick={() => setProps({ visible: false })}
-                                        />)
-                                )
+                            closable ?
+                                closeIconType === "outlined" ?
+                                    (<CloseCircleOutlined
+                                        style={{
+                                            position: "absolute",
+                                            top: -12,
+                                            right: -12,
+                                            fontSize: 24,
+                                            cursor: "pointer"
+                                        }}
+                                        onClick={() => setProps({ visible: false })}
+                                    />) :
+                                    (
+                                        closeIconType == 'two-tone' ?
+                                            ((<CloseCircleTwoTone
+                                                style={{
+                                                    position: "absolute",
+                                                    top: -12,
+                                                    right: -12,
+                                                    fontSize: 24,
+                                                    cursor: "pointer"
+                                                }}
+                                                onClick={() => setProps({ visible: false })}
+                                            />)) :
+                                            (<CloseCircleFilled
+                                                style={{
+                                                    position: "absolute",
+                                                    top: -12,
+                                                    right: -12,
+                                                    fontSize: 24,
+                                                    cursor: "pointer"
+                                                }}
+                                                onClick={() => setProps({ visible: false })}
+                                            />)
+                                    ) :
+                                null
                         }
                     </div>
                 }
@@ -188,6 +191,9 @@ AntdPopupCard.propTypes = {
         'slide-right', 'move-up', 'move-down', 'move-left', 'move-right'
     ]),
 
+    // 设置是否渲染关闭按钮，默认为true
+    closable: PropTypes.bool,
+
     // 设置关闭按钮类型，可选的有'default'、'outlined'、'two-tone'
     closeIconType: PropTypes.oneOf(['default', 'outlined', 'two-tone']),
 
@@ -228,7 +234,8 @@ AntdPopupCard.defaultProps = {
     transitionType: 'fade',
     closeIconType: 'default',
     draggable: false,
-    visible: true
+    visible: true,
+    closable: true
 }
 
 export default AntdPopupCard;

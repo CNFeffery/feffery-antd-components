@@ -15,6 +15,7 @@ Keyword arguments:
 - `id` (String; optional)
 - `bodyStyle` (Dict; optional)
 - `className` (String; optional)
+- `closable` (Bool; optional)
 - `closeIconType` (a value equal to: 'default', 'outlined', 'two-tone'; optional)
 - `draggable` (Bool; optional)
 - `key` (String; optional)
@@ -32,7 +33,7 @@ Those elements have the following types:
 - `zIndex` (Real; optional)
 """
 function 'feffery'_antdpopupcard(; kwargs...)
-        available_props = Symbol[:children, :id, :bodyStyle, :className, :closeIconType, :draggable, :key, :loading_state, :locale, :style, :title, :transitionType, :visible, :width, :zIndex]
+        available_props = Symbol[:children, :id, :bodyStyle, :className, :closable, :closeIconType, :draggable, :key, :loading_state, :locale, :style, :title, :transitionType, :visible, :width, :zIndex]
         wild_props = Symbol[]
         return Component("'feffery'_antdpopupcard", "AntdPopupCard", "feffery_antd_components", available_props, wild_props; kwargs...)
 end

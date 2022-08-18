@@ -965,7 +965,7 @@ class AntdTable extends Component {
 
         // 处理行可展开内容功能
         let rowExpandedRowRender
-        if (expandedRowKeyToContent) {
+        if (expandedRowKeyToContent && Array.isArray(expandedRowKeyToContent)) {
             rowExpandedRowRender = new Map(
                 expandedRowKeyToContent.map(
                     item => [item.key, item.content]
