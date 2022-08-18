@@ -70,7 +70,7 @@ const AntdPopupCard = (props) => {
                     <div
                         style={{
                             width: "100%",
-                            cursor: "move"
+                            cursor: draggable ? "move" : 'inherit'
                         }}
                         onMouseOver={() => {
                             if (disabled) {
