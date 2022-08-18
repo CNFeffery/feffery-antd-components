@@ -62,7 +62,7 @@ AntdRibbon.propTypes = {
     placement: PropTypes.oneOf(['start', 'end']),
 
     // 设置缎带中需要填入的文字
-    text: PropTypes.string,
+    text: PropTypes.node,
 
     loading_state: PropTypes.shape({
         /**

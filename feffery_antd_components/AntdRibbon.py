@@ -36,9 +36,9 @@ Keyword arguments:
 
 - style (dict; optional)
 
-- text (string; optional)"""
-    _children_props = []
-    _base_nodes = ['children']
+- text (a list of or a singular dash component, string or number; optional)"""
+    _children_props = ['text']
+    _base_nodes = ['text', 'children']
     _namespace = 'feffery_antd_components'
     _type = 'AntdRibbon'
     @_explicitize_args

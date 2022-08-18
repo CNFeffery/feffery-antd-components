@@ -23,7 +23,7 @@ Those elements have the following types:
   - `component_name` (String; optional): Holds the name of the component that is loading
 - `placement` (a value equal to: 'start', 'end'; optional)
 - `style` (Dict; optional)
-- `text` (String; optional)
+- `text` (a list of or a singular dash component, string or number; optional)
 """
 function 'feffery'_antdribbon(; kwargs...)
         available_props = Symbol[:children, :id, :className, :color, :key, :loading_state, :placement, :style, :text]
