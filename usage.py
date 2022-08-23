@@ -20,6 +20,45 @@ app = dash.Dash(
 app.layout = html.Div(
     [
 
+        fac.AntdTable(
+            id='table-demo',
+            columns=[
+                {
+                    'title': f'字段{i}',
+                    'dataIndex': f'字段{i}',
+                    'width': '20%',
+                    'editable': True
+                }
+                for i in range(1, 6)
+            ],
+            data=[
+                {
+                    f'字段{i}': np.random.randint(1, 5)
+                    for i in range(1, 6)
+                }
+                for _ in range(20)
+            ],
+            sortOptions={
+                'sortDataIndexes': ['字段2', '字段4', '字段5'],
+                'multiple': True
+            },
+            filterOptions={
+                '字段1': {
+                    'filterMode': 'checkbox'
+                },
+                '字段3': {
+                    'filterMode': 'keyword'
+                }
+            },
+            bordered=True,
+            pagination={
+                'pageSize': 5
+            }
+        ),
+        fac.AntdSpin(
+            html.Div(id='table-demo-output'),
+            text='回调中'
+        ),
 
         fac.AntdInput(
             placeholder='default输入框示例',
@@ -71,7 +110,8 @@ app.layout = html.Div(
                 # 'top': 25,
                 # 'right': 25
             },
-            closeIconType='two-tone'
+            closeIconType='two-tone',
+            visible=False
         )
     ]
 )
@@ -87,6 +127,45 @@ def open_popup_card(nClicks):
         return True
 
     return dash.no_update
+
+
+@app.callback(
+    Output('table-demo-output', 'children'),
+    [Input('table-demo', 'currentData'),
+     Input('table-demo', 'recentlyChangedRow'),
+     Input('table-demo', 'sorter'),
+     Input('table-demo', 'filter'),
+     Input('table-demo', 'pagination')],
+    prevent_initial_call=True
+)
+def table_callback_demo(currentData,
+                        recentlyChangedRow,
+                        sorter,
+                        filter,
+                        pagination):
+
+    ctx = dash.callback_context
+
+    return [
+        fac.AntdTitle('本次回调由{}所触发'.format(
+            ctx.triggered[0]['prop_id'].split('.')[-1]), level=3),
+        fac.AntdDivider(),
+
+        fac.AntdTitle('currentData：', level=5),
+        html.Pre(str(currentData)),
+
+        fac.AntdTitle('recentlyChangedRow：', level=5),
+        html.Pre(str(recentlyChangedRow)),
+
+        fac.AntdTitle('sorter：', level=5),
+        html.Pre(str(sorter)),
+
+        fac.AntdTitle('filter：', level=5),
+        html.Pre(str(filter)),
+
+        fac.AntdTitle('pagination：', level=5),
+        html.Pre(str(pagination))
+    ]
 
 
 if __name__ == '__main__':

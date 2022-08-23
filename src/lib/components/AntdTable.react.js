@@ -114,7 +114,7 @@ class AntdTable extends Component {
             onFilter: (value, record) => {
                 if (props.mode === 'client-side') {
                     return record[dataIndex]
-                        ? record[dataIndex].toString().toLowerCase().includes(value.toLowerCase())
+                        ? record[dataIndex].toString().toLowerCase().includes(value ? value.toLowerCase() : '')
                         : ''
                 } else {
                     return true

@@ -51,9 +51,7 @@ app = dash.Dash(serve_locally=False)
 `fac`中的部分组件具有自带的文案信息，通过参数`locale`可以进行国际化设置，默认为`'zh-cn'`即简体中文，你可以设置为`'en-us'`来使用英文文案，譬如：
 
 ```Python
-fac.AntdDatePicker(
-	locale='en-us'
-)
+fac.AntdDatePicker(locale='en-us')
 ```
 
-<img src="./images/国际化示例.png" height=250></img>
+<img src="./images/国际化示例.png" height=350></img>
