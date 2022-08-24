@@ -113,9 +113,10 @@ class AntdTable extends Component {
             filterIcon: filtered => <SearchOutlined style={{ color: filtered ? '#1890ff' : undefined }} />,
             onFilter: (value, record) => {
                 if (props.mode === 'client-side') {
-                    return record[dataIndex]
-                        ? record[dataIndex].toString().toLowerCase().includes(value ? value.toLowerCase() : '')
-                        : ''
+                    if (record[dataIndex]) {
+                        return record[dataIndex].toString().toLowerCase().includes(value?.toLowerCase())
+                    }
+                    return false;
                 } else {
                     return true
                 }
