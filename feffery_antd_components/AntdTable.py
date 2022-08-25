@@ -13,6 +13,8 @@ Keyword arguments:
 
 - bordered (boolean; default False)
 
+- checkedDataIndex (string; optional)
+
 - className (string; optional)
 
 - clickedContent (string; optional)
@@ -51,7 +53,7 @@ Keyword arguments:
 
         - renderLinkText (string; optional)
 
-        - renderType (a value equal to: 'link', 'ellipsis', 'mini-line', 'mini-bar', 'mini-progress', 'mini-ring-progress', 'mini-area', 'tags', 'button', 'copyable', 'status-badge', 'image', 'custom-format', 'ellipsis-copyable', 'corner-mark'; optional)
+        - renderType (a value equal to: 'link', 'ellipsis', 'mini-line', 'mini-bar', 'mini-progress', 'mini-ring-progress', 'mini-area', 'tags', 'button', 'copyable', 'status-badge', 'image', 'custom-format', 'ellipsis-copyable', 'corner-mark', 'checkbox'; optional)
 
         - tooltipCustomContent (string; optional)
 
@@ -143,7 +145,13 @@ Keyword arguments:
 
     - offsetY (number; optional)
 
-    - placement (a value equal to: 'top-left', 'top-right', 'bottom-left', 'bottom-right'; optional)
+    - placement (a value equal to: 'top-left', 'top-right', 'bottom-left', 'bottom-right'; optional) | dict with keys:
+
+    - checked (boolean; optional)
+
+    - disabled (boolean; optional)
+
+    - label (string; optional)
 
 - enableHoverListen (boolean; default False)
 
@@ -241,6 +249,12 @@ Keyword arguments:
 
 - recentlyChangedRow (dict; optional)
 
+- recentlyCheckedLabel (string; optional)
+
+- recentlyCheckedRow (dict; optional)
+
+- recentlyCheckedStatus (boolean; optional)
+
 - recentlyMouseEnterColumn (string; optional)
 
 - recentlyMouseEnterRow (string | number; optional)
@@ -297,10 +311,10 @@ Keyword arguments:
     _namespace = 'feffery_antd_components'
     _type = 'AntdTable'
     @_explicitize_args
-    def __init__(self, id=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, key=Component.UNDEFINED, locale=Component.UNDEFINED, containerId=Component.UNDEFINED, columns=Component.UNDEFINED, miniChartHeight=Component.UNDEFINED, miniChartAnimation=Component.UNDEFINED, size=Component.UNDEFINED, rowSelectionType=Component.UNDEFINED, selectedRowKeys=Component.UNDEFINED, rowSelectionWidth=Component.UNDEFINED, selectedRows=Component.UNDEFINED, sticky=Component.UNDEFINED, enableHoverListen=Component.UNDEFINED, recentlyMouseEnterColumn=Component.UNDEFINED, recentlyMouseEnterRow=Component.UNDEFINED, titlePopoverInfo=Component.UNDEFINED, columnsFormatConstraint=Component.UNDEFINED, data=Component.UNDEFINED, sortOptions=Component.UNDEFINED, filterOptions=Component.UNDEFINED, pagination=Component.UNDEFINED, bordered=Component.UNDEFINED, maxHeight=Component.UNDEFINED, maxWidth=Component.UNDEFINED, currentData=Component.UNDEFINED, recentlyChangedRow=Component.UNDEFINED, recentlyButtonClickedRow=Component.UNDEFINED, nClicksButton=Component.UNDEFINED, clickedContent=Component.UNDEFINED, sorter=Component.UNDEFINED, filter=Component.UNDEFINED, mode=Component.UNDEFINED, summaryRowContents=Component.UNDEFINED, summaryRowFixed=Component.UNDEFINED, customFormatFuncs=Component.UNDEFINED, conditionalStyleFuncs=Component.UNDEFINED, expandedRowKeyToContent=Component.UNDEFINED, expandedRowWidth=Component.UNDEFINED, expandRowByClick=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
-        self._prop_names = ['id', 'bordered', 'className', 'clickedContent', 'columns', 'columnsFormatConstraint', 'conditionalStyleFuncs', 'containerId', 'currentData', 'customFormatFuncs', 'data', 'enableHoverListen', 'expandRowByClick', 'expandedRowKeyToContent', 'expandedRowWidth', 'filter', 'filterOptions', 'key', 'loading_state', 'locale', 'maxHeight', 'maxWidth', 'miniChartAnimation', 'miniChartHeight', 'mode', 'nClicksButton', 'pagination', 'recentlyButtonClickedRow', 'recentlyChangedRow', 'recentlyMouseEnterColumn', 'recentlyMouseEnterRow', 'rowSelectionType', 'rowSelectionWidth', 'selectedRowKeys', 'selectedRows', 'size', 'sortOptions', 'sorter', 'sticky', 'style', 'summaryRowContents', 'summaryRowFixed', 'titlePopoverInfo']
+    def __init__(self, id=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, key=Component.UNDEFINED, locale=Component.UNDEFINED, containerId=Component.UNDEFINED, columns=Component.UNDEFINED, miniChartHeight=Component.UNDEFINED, miniChartAnimation=Component.UNDEFINED, size=Component.UNDEFINED, rowSelectionType=Component.UNDEFINED, selectedRowKeys=Component.UNDEFINED, rowSelectionWidth=Component.UNDEFINED, selectedRows=Component.UNDEFINED, sticky=Component.UNDEFINED, enableHoverListen=Component.UNDEFINED, recentlyMouseEnterColumn=Component.UNDEFINED, recentlyMouseEnterRow=Component.UNDEFINED, titlePopoverInfo=Component.UNDEFINED, columnsFormatConstraint=Component.UNDEFINED, data=Component.UNDEFINED, sortOptions=Component.UNDEFINED, filterOptions=Component.UNDEFINED, pagination=Component.UNDEFINED, bordered=Component.UNDEFINED, maxHeight=Component.UNDEFINED, maxWidth=Component.UNDEFINED, currentData=Component.UNDEFINED, recentlyChangedRow=Component.UNDEFINED, recentlyButtonClickedRow=Component.UNDEFINED, nClicksButton=Component.UNDEFINED, clickedContent=Component.UNDEFINED, sorter=Component.UNDEFINED, filter=Component.UNDEFINED, mode=Component.UNDEFINED, summaryRowContents=Component.UNDEFINED, summaryRowFixed=Component.UNDEFINED, customFormatFuncs=Component.UNDEFINED, conditionalStyleFuncs=Component.UNDEFINED, expandedRowKeyToContent=Component.UNDEFINED, expandedRowWidth=Component.UNDEFINED, expandRowByClick=Component.UNDEFINED, recentlyCheckedRow=Component.UNDEFINED, recentlyCheckedLabel=Component.UNDEFINED, checkedDataIndex=Component.UNDEFINED, recentlyCheckedStatus=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
+        self._prop_names = ['id', 'bordered', 'checkedDataIndex', 'className', 'clickedContent', 'columns', 'columnsFormatConstraint', 'conditionalStyleFuncs', 'containerId', 'currentData', 'customFormatFuncs', 'data', 'enableHoverListen', 'expandRowByClick', 'expandedRowKeyToContent', 'expandedRowWidth', 'filter', 'filterOptions', 'key', 'loading_state', 'locale', 'maxHeight', 'maxWidth', 'miniChartAnimation', 'miniChartHeight', 'mode', 'nClicksButton', 'pagination', 'recentlyButtonClickedRow', 'recentlyChangedRow', 'recentlyCheckedLabel', 'recentlyCheckedRow', 'recentlyCheckedStatus', 'recentlyMouseEnterColumn', 'recentlyMouseEnterRow', 'rowSelectionType', 'rowSelectionWidth', 'selectedRowKeys', 'selectedRows', 'size', 'sortOptions', 'sorter', 'sticky', 'style', 'summaryRowContents', 'summaryRowFixed', 'titlePopoverInfo']
         self._valid_wildcard_attributes =            []
-        self.available_properties = ['id', 'bordered', 'className', 'clickedContent', 'columns', 'columnsFormatConstraint', 'conditionalStyleFuncs', 'containerId', 'currentData', 'customFormatFuncs', 'data', 'enableHoverListen', 'expandRowByClick', 'expandedRowKeyToContent', 'expandedRowWidth', 'filter', 'filterOptions', 'key', 'loading_state', 'locale', 'maxHeight', 'maxWidth', 'miniChartAnimation', 'miniChartHeight', 'mode', 'nClicksButton', 'pagination', 'recentlyButtonClickedRow', 'recentlyChangedRow', 'recentlyMouseEnterColumn', 'recentlyMouseEnterRow', 'rowSelectionType', 'rowSelectionWidth', 'selectedRowKeys', 'selectedRows', 'size', 'sortOptions', 'sorter', 'sticky', 'style', 'summaryRowContents', 'summaryRowFixed', 'titlePopoverInfo']
+        self.available_properties = ['id', 'bordered', 'checkedDataIndex', 'className', 'clickedContent', 'columns', 'columnsFormatConstraint', 'conditionalStyleFuncs', 'containerId', 'currentData', 'customFormatFuncs', 'data', 'enableHoverListen', 'expandRowByClick', 'expandedRowKeyToContent', 'expandedRowWidth', 'filter', 'filterOptions', 'key', 'loading_state', 'locale', 'maxHeight', 'maxWidth', 'miniChartAnimation', 'miniChartHeight', 'mode', 'nClicksButton', 'pagination', 'recentlyButtonClickedRow', 'recentlyChangedRow', 'recentlyCheckedLabel', 'recentlyCheckedRow', 'recentlyCheckedStatus', 'recentlyMouseEnterColumn', 'recentlyMouseEnterRow', 'rowSelectionType', 'rowSelectionWidth', 'selectedRowKeys', 'selectedRows', 'size', 'sortOptions', 'sorter', 'sticky', 'style', 'summaryRowContents', 'summaryRowFixed', 'titlePopoverInfo']
         self.available_wildcard_properties =            []
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()

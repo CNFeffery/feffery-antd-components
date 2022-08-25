@@ -10,6 +10,7 @@ An AntdTable component.
 Keyword arguments:
 - `id` (String; optional)
 - `bordered` (Bool; optional)
+- `checkedDataIndex` (String; optional)
 - `className` (String; optional)
 - `clickedContent` (String; optional)
 - `columns` (optional): . columns has the following type: Array of lists containing elements 'title', 'dataIndex', 'renderOptions', 'fixed', 'editable', 'align', 'width', 'ellipsis', 'sorter', 'render', 'onCell', 'title_'.
@@ -18,7 +19,7 @@ Those elements have the following types:
   - `dataIndex` (String; required)
   - `renderOptions` (optional): . renderOptions has the following type: lists containing elements 'renderType', 'renderLinkText', 'renderButtonPopConfirmProps', 'tooltipCustomContent'.
 Those elements have the following types:
-  - `renderType` (a value equal to: 'link', 'ellipsis', 'mini-line', 'mini-bar', 'mini-progress', 'mini-ring-progress', 'mini-area', 'tags', 'button', 'copyable', 'status-badge', 'image', 'custom-format', 'ellipsis-copyable', 'corner-mark'; optional)
+  - `renderType` (a value equal to: 'link', 'ellipsis', 'mini-line', 'mini-bar', 'mini-progress', 'mini-ring-progress', 'mini-area', 'tags', 'button', 'copyable', 'status-badge', 'image', 'custom-format', 'ellipsis-copyable', 'corner-mark', 'checkbox'; optional)
   - `renderLinkText` (String; optional)
   - `renderButtonPopConfirmProps` (optional): . renderButtonPopConfirmProps has the following type: lists containing elements 'title', 'okText', 'cancelText'.
 Those elements have the following types:
@@ -79,7 +80,11 @@ Those elements have the following types:
   - `content` (Real | String; optional)
   - `offsetX` (Real; optional)
   - `offsetY` (Real; optional)
-  - `hide` (Bool; optional)s
+  - `hide` (Bool; optional) | lists containing elements 'checked', 'disabled', 'label'.
+Those elements have the following types:
+  - `checked` (Bool; optional)
+  - `disabled` (Bool; optional)
+  - `label` (String; optional)s
 - `enableHoverListen` (Bool; optional)
 - `expandRowByClick` (Bool; optional)
 - `expandedRowKeyToContent` (optional): . expandedRowKeyToContent has the following type: Array of lists containing elements 'key', 'content'.
@@ -126,6 +131,9 @@ Those elements have the following types:
   - `size` (a value equal to: 'default', 'small'; optional)
 - `recentlyButtonClickedRow` (Dict; optional)
 - `recentlyChangedRow` (Dict; optional)
+- `recentlyCheckedLabel` (String; optional)
+- `recentlyCheckedRow` (Dict; optional)
+- `recentlyCheckedStatus` (Bool; optional)
 - `recentlyMouseEnterColumn` (String; optional)
 - `recentlyMouseEnterRow` (String | Real; optional)
 - `rowSelectionType` (a value equal to: 'checkbox', 'radio'; optional)
@@ -154,7 +162,7 @@ Those elements have the following types:
 - `titlePopoverInfo` (Dict; optional)
 """
 function 'feffery'_antdtable(; kwargs...)
-        available_props = Symbol[:id, :bordered, :className, :clickedContent, :columns, :columnsFormatConstraint, :conditionalStyleFuncs, :containerId, :currentData, :customFormatFuncs, :data, :enableHoverListen, :expandRowByClick, :expandedRowKeyToContent, :expandedRowWidth, :filter, :filterOptions, :key, :loading_state, :locale, :maxHeight, :maxWidth, :miniChartAnimation, :miniChartHeight, :mode, :nClicksButton, :pagination, :recentlyButtonClickedRow, :recentlyChangedRow, :recentlyMouseEnterColumn, :recentlyMouseEnterRow, :rowSelectionType, :rowSelectionWidth, :selectedRowKeys, :selectedRows, :size, :sortOptions, :sorter, :sticky, :style, :summaryRowContents, :summaryRowFixed, :titlePopoverInfo]
+        available_props = Symbol[:id, :bordered, :checkedDataIndex, :className, :clickedContent, :columns, :columnsFormatConstraint, :conditionalStyleFuncs, :containerId, :currentData, :customFormatFuncs, :data, :enableHoverListen, :expandRowByClick, :expandedRowKeyToContent, :expandedRowWidth, :filter, :filterOptions, :key, :loading_state, :locale, :maxHeight, :maxWidth, :miniChartAnimation, :miniChartHeight, :mode, :nClicksButton, :pagination, :recentlyButtonClickedRow, :recentlyChangedRow, :recentlyCheckedLabel, :recentlyCheckedRow, :recentlyCheckedStatus, :recentlyMouseEnterColumn, :recentlyMouseEnterRow, :rowSelectionType, :rowSelectionWidth, :selectedRowKeys, :selectedRows, :size, :sortOptions, :sorter, :sticky, :style, :summaryRowContents, :summaryRowFixed, :titlePopoverInfo]
         wild_props = Symbol[]
         return Component("'feffery'_antdtable", "AntdTable", "feffery_antd_components", available_props, wild_props; kwargs...)
 end

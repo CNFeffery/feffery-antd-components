@@ -1,10 +1,10 @@
 import React, { Component, useContext, useState, useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
-import { Table, Popover, Popconfirm, ConfigProvider, Typography, Input, Form, Tag, Button, Badge, Space, Image, message } from 'antd';
+import { Table, Checkbox, Popover, Popconfirm, ConfigProvider, Typography, Input, Form, Tag, Button, Badge, Space, Image, message } from 'antd';
 import { TinyLine, TinyArea, TinyColumn, Progress, RingProgress } from '@ant-design/charts';
 import Highlighter from 'react-highlight-words';
 import { SearchOutlined, QuestionCircleOutlined } from '@ant-design/icons';
-import { isNumber } from 'lodash';
+import { isNumber, isEqual } from 'lodash';
 import { str2Locale } from './locales.react';
 import 'antd/dist/antd.css';
 import './styles.css';
@@ -151,6 +151,15 @@ class AntdTable extends Component {
             clearFilters();
             this.setState({ searchText: '' });
         };
+    }
+
+    shouldComponentUpdate(nextProps) {
+
+        // 计算发生变化的参数名
+        const changedProps = Object.keys(nextProps)
+            .filter(key => !isEqual(this.props[key], nextProps[key]))
+
+        return true;
     }
 
     render() {
@@ -665,6 +674,42 @@ class AntdTable extends Component {
                         <Image src={content.src} height={content.height} preview={content.preview} />
                     )
                 }
+                // checkbox模式
+                else if (columns[i]['renderOptions']['renderType'] === 'checkbox') {
+                    columns[i]['render'] = (content, record) => {
+                        const currentDataIndex = columns[i]['dataIndex']
+                        return (
+                            <Checkbox checked={content.checked}
+                                disabled={content.disabled}
+                                onChange={(e) => {
+                                    // 修改对应行对应字段item.checked值
+                                    try {
+                                        data.forEach(function (item, i) {
+                                            // 命中后，修改值并利用错误抛出来跳出循环
+                                            if (item.key === record.key) {
+                                                data[i][currentDataIndex] = {
+                                                    ...record[currentDataIndex],
+                                                    checked: e.target.checked
+                                                }
+                                                throw new Error("目标已修改");
+                                            }
+                                        });
+                                    } catch (e) {
+                                    };
+
+                                    setProps({
+                                        data: data,
+                                        recentlyCheckedRow: record,
+                                        recentlyCheckedLabel: content.label,
+                                        checkedDataIndex: columns[i]['dataIndex'],
+                                        recentlyCheckedStatus: e.target.checked
+                                    })
+                                }}>
+                                {content.label}
+                            </Checkbox>
+                        );
+                    }
+                }
                 // button模式
                 else if (columns[i]['renderOptions']['renderType'] === 'button') {
 
@@ -1062,12 +1107,12 @@ AntdTable.propTypes = {
             renderOptions: PropTypes.exact({
 
                 // 设置渲染处理类型，可选项有'link'、'ellipsis'、'mini-line'、'mini-bar'、'mini-progress'、'mini-area'、'tags'、'button'
-                // 'copyable'、'status-badge'
+                // 'copyable'、'status-badge'、'image'、'custom-format'、'ellipsis-copyable'、'corner-mark'、'checkbox'
                 renderType: PropTypes.oneOf([
                     'link', 'ellipsis', 'mini-line', 'mini-bar', 'mini-progress',
                     'mini-ring-progress', 'mini-area', 'tags', 'button', 'copyable',
                     'status-badge', 'image', 'custom-format', 'ellipsis-copyable',
-                    'corner-mark'
+                    'corner-mark', 'checkbox'
                 ]),
 
                 // 当renderType='link'时，此参数会将传入的字符串作为渲染link的显示文字内容
@@ -1311,6 +1356,16 @@ AntdTable.propTypes = {
                     offsetY: PropTypes.number,
                     // 设置是否隐藏当前角标，默认为false
                     hide: PropTypes.bool
+                }),
+
+                // checkbox模式
+                PropTypes.exact({
+                    // 设置初始化勾选状态，必填
+                    checked: PropTypes.bool,
+                    // 设置是否禁用当前checkbox
+                    disabled: PropTypes.bool,
+                    // 设置勾选框文本标签信息
+                    label: PropTypes.string
                 })
             ])
         )
@@ -1496,6 +1551,19 @@ AntdTable.propTypes = {
 
     // 设置是否允许直接点击行进行展开，默认为false
     expandRowByClick: PropTypes.bool,
+
+    // 处理checkbox再渲染模式
+    // 用于监听最近发生勾选事件的记录行
+    recentlyCheckedRow: PropTypes.object,
+
+    // 用于监听最近发生勾选事件的勾选框标签内容
+    recentlyCheckedLabel: PropTypes.string,
+
+    // 用于监听最近发生勾选事件的字段dataIndex信息
+    checkedDataIndex: PropTypes.string,
+
+    // 用于监听最近发生的勾选行为对应的勾选状态
+    recentlyCheckedStatus: PropTypes.bool,
 
     loading_state: PropTypes.shape({
         /**
