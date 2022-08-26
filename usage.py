@@ -17,14 +17,32 @@ app.layout = html.Div(
                     'title': 'checkbox1',
                     'renderOptions': {
                         'renderType': 'checkbox'
-                    }
+                    },
+                    'width': '25%'
                 },
                 {
                     'dataIndex': 'checkbox2',
                     'title': 'checkbox2',
                     'renderOptions': {
                         'renderType': 'checkbox'
-                    }
+                    },
+                    'width': '25%'
+                },
+                {
+                    'dataIndex': 'switch1',
+                    'title': 'switch1',
+                    'renderOptions': {
+                        'renderType': 'switch'
+                    },
+                    'width': '25%'
+                },
+                {
+                    'dataIndex': 'switch2',
+                    'title': 'switch2',
+                    'renderOptions': {
+                        'renderType': 'switch'
+                    },
+                    'width': '25%'
                 }
             ],
             data=[
@@ -35,13 +53,21 @@ app.layout = html.Div(
                     'checkbox2': {
                         'checked': False,
                         'label': f'勾选框{i}'
+                    },
+                    'switch1': {
+                        'checked': True
+                    },
+                    'switch2': {
+                        'checked': False,
+                        'checkedChildren': '开',
+                        'unCheckedChildren': '关'
                     }
                 }
-                for i in range(5)
+                for i in range(3)
             ],
             bordered=True,
             style={
-                'width': '200px'
+                'width': '400px'
             }
         ),
         html.Pre(id='output')
@@ -57,16 +83,28 @@ app.layout = html.Div(
     [Input('table-demo', 'recentlyCheckedRow'),
      Input('table-demo', 'recentlyCheckedLabel'),
      Input('table-demo', 'checkedDataIndex'),
-     Input('table-demo', 'recentlyCheckedStatus')]
+     Input('table-demo', 'recentlyCheckedStatus'),
+     Input('table-demo', 'recentlySwtichRow'),
+     Input('table-demo', 'swtichDataIndex'),
+     Input('table-demo', 'recentlySwtichStatus')]
 )
-def demo(recentlyCheckedRow, recentlyCheckedLabel, checkedDataIndex, recentlyCheckedStatus):
+def demo(recentlyCheckedRow,
+         recentlyCheckedLabel,
+         checkedDataIndex,
+         recentlyCheckedStatus,
+         recentlySwtichRow,
+         swtichDataIndex,
+         recentlySwtichStatus):
 
     return json.dumps(
         dict(
             recentlyCheckedRow=recentlyCheckedRow,
             recentlyCheckedLabel=recentlyCheckedLabel,
             checkedDataIndex=checkedDataIndex,
-            recentlyCheckedStatus=recentlyCheckedStatus
+            recentlyCheckedStatus=recentlyCheckedStatus,
+            recentlySwtichRow=recentlySwtichRow,
+            swtichDataIndex=swtichDataIndex,
+            recentlySwtichStatus=recentlySwtichStatus,
         ),
         indent=4,
         ensure_ascii=False

@@ -1,10 +1,10 @@
 import React, { Component, useContext, useState, useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
-import { Table, Checkbox, Popover, Popconfirm, ConfigProvider, Typography, Input, Form, Tag, Button, Badge, Space, Image, message } from 'antd';
+import { Table, Checkbox, Switch, Popover, Popconfirm, ConfigProvider, Typography, Input, Form, Tag, Button, Badge, Space, Image, message } from 'antd';
 import { TinyLine, TinyArea, TinyColumn, Progress, RingProgress } from '@ant-design/charts';
 import Highlighter from 'react-highlight-words';
 import { SearchOutlined, QuestionCircleOutlined } from '@ant-design/icons';
-import { isNumber, isEqual } from 'lodash';
+import { isNumber, isEqual, cloneDeep } from 'lodash';
 import { str2Locale } from './locales.react';
 import 'antd/dist/antd.css';
 import './styles.css';
@@ -158,6 +158,9 @@ class AntdTable extends Component {
         // 计算发生变化的参数名
         const changedProps = Object.keys(nextProps)
             .filter(key => !isEqual(this.props[key], nextProps[key]))
+
+        console.log('重绘')
+        console.log(changedProps)
 
         return true;
     }
@@ -679,7 +682,7 @@ class AntdTable extends Component {
                     columns[i]['render'] = (content, record) => {
                         const currentDataIndex = columns[i]['dataIndex']
                         return (
-                            <Checkbox checked={content.checked}
+                            <Checkbox defaultChecked={content.checked}
                                 disabled={content.disabled}
                                 onChange={(e) => {
                                     // 修改对应行对应字段item.checked值
@@ -697,16 +700,55 @@ class AntdTable extends Component {
                                     } catch (e) {
                                     };
 
-                                    setProps({
-                                        data: data,
-                                        recentlyCheckedRow: record,
-                                        recentlyCheckedLabel: content.label,
-                                        checkedDataIndex: columns[i]['dataIndex'],
-                                        recentlyCheckedStatus: e.target.checked
-                                    })
+                                    setTimeout(function () {
+                                        setProps({
+                                            data: data,
+                                            recentlyCheckedRow: record,
+                                            recentlyCheckedLabel: content.label,
+                                            checkedDataIndex: columns[i]['dataIndex'],
+                                            recentlyCheckedStatus: e.target.checked
+                                        })
+                                    }, 200);
                                 }}>
                                 {content.label}
                             </Checkbox>
+                        );
+                    }
+                }
+                // switch模式
+                else if (columns[i]['renderOptions']['renderType'] === 'switch') {
+                    columns[i]['render'] = (content, record) => {
+                        const currentDataIndex = columns[i]['dataIndex']
+                        return (
+                            <Switch defaultChecked={content.checked}
+                                disabled={content.disabled}
+                                checkedChildren={content.checkedChildren}
+                                unCheckedChildren={content.unCheckedChildren}
+                                onChange={(checked) => {
+                                    // 修改对应行对应字段item.checked值
+                                    try {
+                                        data.forEach(function (item, i) {
+                                            // 命中后，修改值并利用错误抛出来跳出循环
+                                            if (item.key === record.key) {
+                                                data[i][currentDataIndex] = {
+                                                    ...record[currentDataIndex],
+                                                    checked: checked
+                                                }
+                                                throw new Error("目标已修改");
+                                            }
+                                        });
+                                    } catch (e) {
+                                    };
+
+                                    setTimeout(function () {
+                                        setProps({
+                                            data: data,
+                                            recentlySwtichRow: record,
+                                            swtichDataIndex: columns[i]['dataIndex'],
+                                            recentlySwtichStatus: checked
+                                        })
+                                    }, 200);
+                                }} />
                         );
                     }
                 }
@@ -1112,7 +1154,7 @@ AntdTable.propTypes = {
                     'link', 'ellipsis', 'mini-line', 'mini-bar', 'mini-progress',
                     'mini-ring-progress', 'mini-area', 'tags', 'button', 'copyable',
                     'status-badge', 'image', 'custom-format', 'ellipsis-copyable',
-                    'corner-mark', 'checkbox'
+                    'corner-mark', 'checkbox', 'switch'
                 ]),
 
                 // 当renderType='link'时，此参数会将传入的字符串作为渲染link的显示文字内容
@@ -1366,6 +1408,20 @@ AntdTable.propTypes = {
                     disabled: PropTypes.bool,
                     // 设置勾选框文本标签信息
                     label: PropTypes.string
+                }),
+
+                // switch模式
+                PropTypes.exact({
+                    // 设置初始化开关状态，必填
+                    checked: PropTypes.bool,
+                    // 设置是否禁用当前开关
+                    disabled: PropTypes.bool,
+                    // 设置勾选框文本标签信息
+                    label: PropTypes.string,
+                    // 设置“开”状态下标签信息
+                    checkedChildren: PropTypes.string,
+                    // 设置“关”状态下标签信息
+                    unCheckedChildren: PropTypes.string
                 })
             ])
         )
@@ -1564,6 +1620,16 @@ AntdTable.propTypes = {
 
     // 用于监听最近发生的勾选行为对应的勾选状态
     recentlyCheckedStatus: PropTypes.bool,
+
+    // 处理switch再渲染模式
+    // 用于监听最近发生开关切换事件的记录行
+    recentlySwtichRow: PropTypes.object,
+
+    // 用于监听最近发生开关切换事件的字段dataIndex信息
+    swtichDataIndex: PropTypes.string,
+
+    // 用于监听最近发生的开关切换行为对应的切换后状态
+    recentlySwtichStatus: PropTypes.bool,
 
     loading_state: PropTypes.shape({
         /**
