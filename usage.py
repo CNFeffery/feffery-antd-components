@@ -9,6 +9,23 @@ app = dash.Dash(__name__)
 
 app.layout = html.Div(
     [
+
+
+        fac.AntdSelect(
+            placeholder='请选择国家：',
+            options=[
+                {'label': '中国', 'value': 'China'},
+                {'label': '美国', 'value': 'Usa'},
+                {'label': '俄罗斯', 'value': 'Russia'},
+                {'label': '德国', 'value': 'Germany', 'disabled': True},
+                {'label': '加拿大', 'value': 'Canada'}
+            ],
+            optionFilterProp='label',
+            style={
+                # 使用css样式固定宽度
+                'width': '200px'
+            }
+        ),
         fac.AntdTable(
             id='table-demo',
             columns=[

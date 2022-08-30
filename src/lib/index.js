@@ -93,6 +93,16 @@ import AntdSegmentedColoring from './components/AntdSegmentedColoring.react'
 import AntdCopyText from './components/AntdCopyText.react'
 import AntdPopupCard from './components/AntdPopupCard.react'
 
+// 忽略部分console警告信息
+const backup = console.error;
+console.error = (msg) => {
+    const supressedWarnings = ['Warning:'];
+
+    if (!supressedWarnings.some(entry => msg.includes(entry))) {
+        backup.apply(console, arguments);
+    }
+};
+
 export {
     AntdDatePicker,
     AntdDateRangePicker,

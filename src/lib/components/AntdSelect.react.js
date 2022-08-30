@@ -134,6 +134,11 @@ export default class AntdSelect extends Component {
             }
         }
 
+        // 处理optionFilterProp映射
+        if (optionFilterProp === 'label') {
+            optionFilterProp = 'children'
+        }
+
         // 返回定制化的前端组件
         return (
             <ConfigProvider locale={str2Locale.get(locale)}>
