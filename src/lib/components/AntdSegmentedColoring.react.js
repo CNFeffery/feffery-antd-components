@@ -58,7 +58,7 @@ const AntdSegmentedColoring = (props) => {
         >
             {breakpoints.slice(0, breakpoints.length - 1).map((v, i) => {
                 return (
-                    <Space key={`color-segment-${i}`}>
+                    <Space key={`color-segment-${i}`} style={{ display: 'flex' }}>
                         {colorBlockPosition === 'left' ?
                             (<div
                                 style={{
