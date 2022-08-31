@@ -39,6 +39,7 @@ const AntdSegmentedColoring = (props) => {
         inputNumberStyle,
         colorBlockPosition,
         colorBlockStyle,
+        pureLegendLabelStyle,
         loading_state,
         setProps
     } = props;
@@ -76,9 +77,9 @@ const AntdSegmentedColoring = (props) => {
                             pureLegend ?
                                 (
                                     <>
-                                        <Text >{breakpoints[i].toFixed(precision)}</Text>
-                                        <span>~</span>
-                                        <Text >{breakpoints[i + 1].toFixed(precision)}</Text>
+                                        <Text style={pureLegendLabelStyle}>{breakpoints[i].toFixed(precision)}</Text>
+                                        <Text style={pureLegendLabelStyle}>~</Text>
+                                        <Text style={pureLegendLabelStyle}>{breakpoints[i + 1].toFixed(precision)}</Text>
                                     </>
                                 ) : (
                                     <>
@@ -241,6 +242,9 @@ AntdSegmentedColoring.propTypes = {
 
     // 设置色块方位，可选的有'left'、'right'，默认为'right'
     colorBlockPosition: PropTypes.oneOf(['left', 'right']),
+
+    // pureLegend模式下，设置文字css样式
+    pureLegendLabelStyle: PropTypes.object,
 
     loading_state: PropTypes.shape({
         /**
