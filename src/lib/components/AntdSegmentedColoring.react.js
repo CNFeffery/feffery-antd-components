@@ -2,8 +2,10 @@
 /* eslint-disable no-unused-vars */
 import React from 'react';
 import PropTypes from 'prop-types';
-import { InputNumber, Space, message } from 'antd';
+import { InputNumber, Space, message, Typography } from 'antd';
 import 'antd/dist/antd.css';
+
+const { Text } = Typography;
 
 const size2size = new Map([
     ["small", "24px"],
@@ -31,6 +33,7 @@ const AntdSegmentedColoring = (props) => {
         step,
         precision,
         readOnly,
+        pureLegend,
         breakpoints,
         colors,
         inputNumberStyle,
@@ -58,7 +61,7 @@ const AntdSegmentedColoring = (props) => {
         >
             {breakpoints.slice(0, breakpoints.length - 1).map((v, i) => {
                 return (
-                    <Space key={`color-segment-${i}`} style={{ display: 'flex' }}>
+                    <Space style={{ display: 'flex' }} size={"small"}>
                         {colorBlockPosition === 'left' ?
                             (<div
                                 style={{
@@ -67,83 +70,97 @@ const AntdSegmentedColoring = (props) => {
                                     width: size2size.get(size),
                                     ...colorBlockStyle
                                 }}
-                            />) : null}
-                        <InputNumber
-                            style={inputNumberStyle}
-                            size={size}
-                            bordered={bordered}
-                            controls={controls}
-                            disabled={disabled}
-                            keyboard={keyboard}
-                            placeholder={placeholder}
-                            min={min}
-                            max={max}
-                            step={step}
-                            precision={precision}
-                            readOnly={readOnly}
-                            value={breakpoints[i]}
-                            onChange={(e) => {
-                                if (e !== null && i === 0 && e < breakpoints[i + 1]) {
-                                    let _breakpoints = [...breakpoints];
-                                    _breakpoints[i] = e;
-                                    setProps({ breakpoints: _breakpoints });
-                                } else if (
-                                    e !== null &&
-                                    i > 0 &&
-                                    e > breakpoints[i - 1] &&
-                                    e < breakpoints[i + 1]
-                                ) {
-                                    let _breakpoints = [...breakpoints];
-                                    _breakpoints[i] = e;
-                                    setProps({ breakpoints: _breakpoints });
-                                } else if (e !== null) {
-                                    message.warning({
-                                        content: "数值超出相邻断点，请调整后再输入！",
-                                        duration: 1.5
-                                    });
-                                }
-                            }}
-                        />
-                        <span>~</span>
-                        <InputNumber
-                            style={inputNumberStyle}
-                            size={size}
-                            bordered={bordered}
-                            controls={controls}
-                            disabled={disabled}
-                            keyboard={keyboard}
-                            placeholder={placeholder}
-                            min={min}
-                            max={max}
-                            step={step}
-                            precision={precision}
-                            readOnly={readOnly}
-                            value={breakpoints[i + 1]}
-                            onChange={(e) => {
-                                if (
-                                    e !== null &&
-                                    i === breakpoints.length - 2 &&
-                                    e > breakpoints[i]
-                                ) {
-                                    let _breakpoints = [...breakpoints];
-                                    _breakpoints[i + 1] = e;
-                                    setProps({ breakpoints: _breakpoints });
-                                } else if (
-                                    e !== null &&
-                                    e > breakpoints[i] &&
-                                    e < breakpoints[i + 2]
-                                ) {
-                                    let _breakpoints = [...breakpoints];
-                                    _breakpoints[i + 1] = e;
-                                    setProps({ breakpoints: _breakpoints });
-                                } else if (e !== null) {
-                                    message.warning({
-                                        content: "数值超出相邻断点，请调整后再输入！",
-                                        duration: 1.5
-                                    });
-                                }
-                            }}
-                        />
+                            />) : null
+                        }
+                        {
+                            pureLegend ?
+                                (
+                                    <>
+                                        <Text >{breakpoints[i].toFixed(precision)}</Text>
+                                        <span>~</span>
+                                        <Text >{breakpoints[i + 1].toFixed(precision)}</Text>
+                                    </>
+                                ) : (
+                                    <>
+                                        <InputNumber
+                                            style={inputNumberStyle}
+                                            size={size}
+                                            bordered={bordered}
+                                            controls={controls}
+                                            disabled={disabled}
+                                            keyboard={keyboard}
+                                            placeholder={placeholder}
+                                            min={min}
+                                            max={max}
+                                            step={step}
+                                            precision={precision}
+                                            readOnly={readOnly}
+                                            value={breakpoints[i]}
+                                            onChange={(e) => {
+                                                if (e !== null && i === 0 && e < breakpoints[i + 1]) {
+                                                    let _breakpoints = [...breakpoints];
+                                                    _breakpoints[i] = e;
+                                                    setProps({ breakpoints: _breakpoints });
+                                                } else if (
+                                                    e !== null &&
+                                                    i > 0 &&
+                                                    e > breakpoints[i - 1] &&
+                                                    e < breakpoints[i + 1]
+                                                ) {
+                                                    let _breakpoints = [...breakpoints];
+                                                    _breakpoints[i] = e;
+                                                    setProps({ breakpoints: _breakpoints });
+                                                } else if (e !== null) {
+                                                    message.warning({
+                                                        content: "数值超出相邻断点，请调整后再输入！",
+                                                        duration: 1.5
+                                                    });
+                                                }
+                                            }}
+                                        />
+                                        <span>~</span>
+                                        <InputNumber
+                                            style={inputNumberStyle}
+                                            size={size}
+                                            bordered={bordered}
+                                            controls={controls}
+                                            disabled={disabled}
+                                            keyboard={keyboard}
+                                            placeholder={placeholder}
+                                            min={min}
+                                            max={max}
+                                            step={step}
+                                            precision={precision}
+                                            readOnly={readOnly}
+                                            value={breakpoints[i + 1]}
+                                            onChange={(e) => {
+                                                if (
+                                                    e !== null &&
+                                                    i === breakpoints.length - 2 &&
+                                                    e > breakpoints[i]
+                                                ) {
+                                                    let _breakpoints = [...breakpoints];
+                                                    _breakpoints[i + 1] = e;
+                                                    setProps({ breakpoints: _breakpoints });
+                                                } else if (
+                                                    e !== null &&
+                                                    e > breakpoints[i] &&
+                                                    e < breakpoints[i + 2]
+                                                ) {
+                                                    let _breakpoints = [...breakpoints];
+                                                    _breakpoints[i + 1] = e;
+                                                    setProps({ breakpoints: _breakpoints });
+                                                } else if (e !== null) {
+                                                    message.warning({
+                                                        content: "数值超出相邻断点，请调整后再输入！",
+                                                        duration: 1.5
+                                                    });
+                                                }
+                                            }}
+                                        />
+                                    </>
+                                )
+                        }
                         {colorBlockPosition === 'right' ?
                             (<div
                                 style={{
@@ -152,7 +169,8 @@ const AntdSegmentedColoring = (props) => {
                                     width: size2size.get(size),
                                     ...colorBlockStyle
                                 }}
-                            />) : null}
+                            />) : null
+                        }
                     </Space>
                 );
             })}
@@ -206,6 +224,9 @@ AntdSegmentedColoring.propTypes = {
     // 设置是否开启只读模式，默认为false
     readOnly: PropTypes.bool,
 
+    // 设置是否开启纯图例模式，默认为false
+    pureLegend: PropTypes.bool,
+
     // 设置&更新分段断点数组
     breakpoints: PropTypes.arrayOf(PropTypes.number).isRequired,
 
@@ -253,7 +274,8 @@ AntdSegmentedColoring.defaultProps = {
     step: 0.01,
     precision: 2,
     readOnly: false,
-    colorBlockPosition: 'right'
+    colorBlockPosition: 'right',
+    pureLegend: false
 }
 
 export default React.memo(AntdSegmentedColoring);

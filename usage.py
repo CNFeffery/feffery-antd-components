@@ -9,8 +9,6 @@ app = dash.Dash(__name__)
 
 app.layout = html.Div(
     [
-
-
         fac.AntdSelect(
             placeholder='请选择国家：',
             options=[

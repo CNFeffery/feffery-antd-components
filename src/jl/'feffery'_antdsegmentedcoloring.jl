@@ -29,13 +29,14 @@ Those elements have the following types:
 - `min` (Real; optional)
 - `placeholder` (String; optional)
 - `precision` (Real; optional)
+- `pureLegend` (Bool; optional)
 - `readOnly` (Bool; optional)
 - `size` (a value equal to: 'large', 'small', 'default'; optional)
 - `step` (Real; optional)
 - `style` (Dict; optional)
 """
 function 'feffery'_antdsegmentedcoloring(; kwargs...)
-        available_props = Symbol[:id, :bordered, :breakpoints, :className, :colorBlockPosition, :colorBlockStyle, :colors, :controls, :disabled, :inputNumberStyle, :key, :keyboard, :loading_state, :max, :min, :placeholder, :precision, :readOnly, :size, :step, :style]
+        available_props = Symbol[:id, :bordered, :breakpoints, :className, :colorBlockPosition, :colorBlockStyle, :colors, :controls, :disabled, :inputNumberStyle, :key, :keyboard, :loading_state, :max, :min, :placeholder, :precision, :pureLegend, :readOnly, :size, :step, :style]
         wild_props = Symbol[]
         return Component("'feffery'_antdsegmentedcoloring", "AntdSegmentedColoring", "feffery_antd_components", available_props, wild_props; kwargs...)
 end
