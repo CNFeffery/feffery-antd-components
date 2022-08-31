@@ -49,7 +49,6 @@ const AntdSegmentedColoring = (props) => {
             id={id}
             key={key}
             style={{
-                border: bordered ? "1px solid #d9d9d9" : 'none',
                 borderRadius: "2px",
                 padding: "12px 20px",
                 ...style
