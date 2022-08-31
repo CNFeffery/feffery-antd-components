@@ -85,16 +85,18 @@ Keyword arguments:
 
 - style (dict; optional)
 
-- treeData (optional)"""
+- treeData (list; optional)
+
+- treeDataMode (a value equal to: 'tree', 'flat'; default 'tree')"""
     _children_props = []
     _base_nodes = ['children']
     _namespace = 'feffery_antd_components'
     _type = 'AntdTree'
     @_explicitize_args
-    def __init__(self, id=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, key=Component.UNDEFINED, treeData=Component.UNDEFINED, showIcon=Component.UNDEFINED, checkable=Component.UNDEFINED, defaultExpandAll=Component.UNDEFINED, defaultExpandedKeys=Component.UNDEFINED, defaultExpandParent=Component.UNDEFINED, checkStrictly=Component.UNDEFINED, defaultCheckedKeys=Component.UNDEFINED, defaultSelectedKeys=Component.UNDEFINED, multiple=Component.UNDEFINED, selectable=Component.UNDEFINED, showLine=Component.UNDEFINED, selectedKeys=Component.UNDEFINED, checkedKeys=Component.UNDEFINED, halfCheckedKeys=Component.UNDEFINED, expandedKeys=Component.UNDEFINED, height=Component.UNDEFINED, loading_state=Component.UNDEFINED, persistence=Component.UNDEFINED, persisted_props=Component.UNDEFINED, persistence_type=Component.UNDEFINED, **kwargs):
-        self._prop_names = ['id', 'checkStrictly', 'checkable', 'checkedKeys', 'className', 'defaultCheckedKeys', 'defaultExpandAll', 'defaultExpandParent', 'defaultExpandedKeys', 'defaultSelectedKeys', 'expandedKeys', 'halfCheckedKeys', 'height', 'key', 'loading_state', 'multiple', 'persisted_props', 'persistence', 'persistence_type', 'selectable', 'selectedKeys', 'showIcon', 'showLine', 'style', 'treeData']
+    def __init__(self, id=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, key=Component.UNDEFINED, treeData=Component.UNDEFINED, treeDataMode=Component.UNDEFINED, showIcon=Component.UNDEFINED, checkable=Component.UNDEFINED, defaultExpandAll=Component.UNDEFINED, defaultExpandedKeys=Component.UNDEFINED, defaultExpandParent=Component.UNDEFINED, checkStrictly=Component.UNDEFINED, defaultCheckedKeys=Component.UNDEFINED, defaultSelectedKeys=Component.UNDEFINED, multiple=Component.UNDEFINED, selectable=Component.UNDEFINED, showLine=Component.UNDEFINED, selectedKeys=Component.UNDEFINED, checkedKeys=Component.UNDEFINED, halfCheckedKeys=Component.UNDEFINED, expandedKeys=Component.UNDEFINED, height=Component.UNDEFINED, loading_state=Component.UNDEFINED, persistence=Component.UNDEFINED, persisted_props=Component.UNDEFINED, persistence_type=Component.UNDEFINED, **kwargs):
+        self._prop_names = ['id', 'checkStrictly', 'checkable', 'checkedKeys', 'className', 'defaultCheckedKeys', 'defaultExpandAll', 'defaultExpandParent', 'defaultExpandedKeys', 'defaultSelectedKeys', 'expandedKeys', 'halfCheckedKeys', 'height', 'key', 'loading_state', 'multiple', 'persisted_props', 'persistence', 'persistence_type', 'selectable', 'selectedKeys', 'showIcon', 'showLine', 'style', 'treeData', 'treeDataMode']
         self._valid_wildcard_attributes =            []
-        self.available_properties = ['id', 'checkStrictly', 'checkable', 'checkedKeys', 'className', 'defaultCheckedKeys', 'defaultExpandAll', 'defaultExpandParent', 'defaultExpandedKeys', 'defaultSelectedKeys', 'expandedKeys', 'halfCheckedKeys', 'height', 'key', 'loading_state', 'multiple', 'persisted_props', 'persistence', 'persistence_type', 'selectable', 'selectedKeys', 'showIcon', 'showLine', 'style', 'treeData']
+        self.available_properties = ['id', 'checkStrictly', 'checkable', 'checkedKeys', 'className', 'defaultCheckedKeys', 'defaultExpandAll', 'defaultExpandParent', 'defaultExpandedKeys', 'defaultSelectedKeys', 'expandedKeys', 'halfCheckedKeys', 'height', 'key', 'loading_state', 'multiple', 'persisted_props', 'persistence', 'persistence_type', 'selectable', 'selectedKeys', 'showIcon', 'showLine', 'style', 'treeData', 'treeDataMode']
         self.available_wildcard_properties =            []
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()

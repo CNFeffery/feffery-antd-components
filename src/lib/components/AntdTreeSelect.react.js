@@ -1,126 +1,159 @@
-import React, { Component } from 'react';
+import { useEffect, useMemo } from 'react';
 import PropTypes from 'prop-types';
 import { TreeSelect, ConfigProvider } from 'antd';
 import { str2Locale } from './locales.react';
+import { flatToTree } from './utils';
 import 'antd/dist/antd.css';
 
 const { SHOW_ALL } = TreeSelect;
 
 // 定义树选择组件AntdTreeSelect，api参数参考https://ant.design/components/tree-select-cn/
-export default class AntdTreeSelect extends Component {
+const AntdTreeSelect = (props) => {
+    // 取得必要属性或参数
+    let {
+        id,
+        style,
+        className,
+        key,
+        locale,
+        treeData,
+        treeDataMode,
+        allowClear,
+        bordered,
+        treeLine,
+        listHeight,
+        placeholder,
+        value,
+        defaultValue,
+        maxTagCount,
+        multiple,
+        size,
+        treeCheckable,
+        treeCheckStrictly,
+        treeDefaultExpandAll,
+        treeDefaultExpandedKeys,
+        treeExpandedKeys,
+        virtual,
+        disabled,
+        placement,
+        status,
+        treeNodeFilterProp,
+        setProps,
+        persistence,
+        persisted_props,
+        persistence_type,
+        loading_state
+    } = props;
 
-    constructor(props) {
-        super(props)
-        if (!props.value) {
-            props.setProps({ value: props.defaultValue })
+    useEffect(() => {
+        if (!value && defaultValue) {
+            setProps({ value: defaultValue })
         }
+    }, [])
+
+    const flatToTreeData = useMemo(() => {
+        return flatToTree(treeData);
+    }, [treeData])
+
+    // 用于获取用户已选择值的回调函数
+    const updateSelectedValue = (value) => {
+
+        if (treeCheckStrictly) {
+            setProps({ value: value.map(item => item.value) })
+        } else {
+            setProps({ value: value })
+        }
+
     }
 
-    render() {
-        // 取得必要属性或参数
-        let {
-            id,
-            style,
-            className,
-            key,
-            locale,
-            treeData,
-            allowClear,
-            bordered,
-            treeLine,
-            listHeight,
-            placeholder,
-            value,
-            defaultValue,
-            maxTagCount,
-            multiple,
-            size,
-            treeCheckable,
-            treeCheckStrictly,
-            treeDefaultExpandAll,
-            treeDefaultExpandedKeys,
-            treeExpandedKeys,
-            virtual,
-            disabled,
-            placement,
-            status,
-            treeNodeFilterProp,
-            setProps,
-            persistence,
-            persisted_props,
-            persistence_type,
-            loading_state
-        } = this.props;
-
-        // 用于获取用户已选择值的回调函数
-        const updateSelectedValue = (value) => {
-
-            if (treeCheckStrictly) {
-                setProps({ value: value.map(item => item.value) })
-            } else {
-                setProps({ value: value })
-            }
-
-        }
-
-        // 返回定制化的前端组件
-        return (
-            <ConfigProvider locale={str2Locale.get(locale)}>
-                <TreeSelect
-                    id={id}
-                    className={className}
-                    style={{ ...{ width: '100%' }, ...style }}
-                    key={key}
-                    treeData={treeData}
-                    allowClear={allowClear}
-                    bordered={bordered}
-                    treeLine={treeLine}
-                    listHeight={listHeight}
-                    placeholder={placeholder}
-                    value={value}
-                    defaultValue={defaultValue}
-                    maxTagCount={maxTagCount}
-                    multiple={multiple}
-                    size={size}
-                    treeCheckable={treeCheckable}
-                    showCheckedStrategy={SHOW_ALL}
-                    treeCheckStrictly={treeCheckStrictly}
-                    treeDefaultExpandAll={treeDefaultExpandAll}
-                    treeDefaultExpandedKeys={treeDefaultExpandedKeys}
-                    treeExpandedKeys={treeExpandedKeys}
-                    onChange={updateSelectedValue}
-                    showSearch={true}
-                    virtual={virtual}
-                    disabled={disabled}
-                    placement={placement}
-                    status={status}
-                    treeNodeFilterProp={treeNodeFilterProp}
-                    persistence={persistence}
-                    persisted_props={persisted_props}
-                    persistence_type={persistence_type}
-                    data-dash-is-loading={
-                        (loading_state && loading_state.is_loading) || undefined
-                    }
-                    getPopupContainer={(triggerNode) => triggerNode.parentNode}
-                />
-            </ConfigProvider>
-        );
-    }
+    // 返回定制化的前端组件
+    return (
+        <ConfigProvider locale={str2Locale.get(locale)}>
+            <TreeSelect
+                id={id}
+                className={className}
+                style={{ ...{ width: '100%' }, ...style }}
+                key={key}
+                treeData={treeDataMode === 'flat' ? flatToTreeData : treeData}
+                allowClear={allowClear}
+                bordered={bordered}
+                treeLine={treeLine}
+                listHeight={listHeight}
+                placeholder={placeholder}
+                value={value}
+                defaultValue={defaultValue}
+                maxTagCount={maxTagCount}
+                multiple={multiple}
+                size={size}
+                treeCheckable={treeCheckable}
+                showCheckedStrategy={SHOW_ALL}
+                treeCheckStrictly={treeCheckStrictly}
+                treeDefaultExpandAll={treeDefaultExpandAll}
+                treeDefaultExpandedKeys={treeDefaultExpandedKeys}
+                treeExpandedKeys={treeExpandedKeys}
+                onChange={updateSelectedValue}
+                showSearch={true}
+                virtual={virtual}
+                disabled={disabled}
+                placement={placement}
+                status={status}
+                treeNodeFilterProp={treeNodeFilterProp}
+                persistence={persistence}
+                persisted_props={persisted_props}
+                persistence_type={persistence_type}
+                data-dash-is-loading={
+                    (loading_state && loading_state.is_loading) || undefined
+                }
+                getPopupContainer={(triggerNode) => triggerNode.parentNode}
+            />
+        </ConfigProvider>
+    );
 }
 
 // 定义递归PropTypes
 const PropTreeNodeShape = {
     // 标题
-    title: PropTypes.string,
+    title: PropTypes.string.isRequired,
 
     // 唯一识别id
-    key: PropTypes.string,
+    key: PropTypes.string.isRequired,
 
     // 节点对应的值，供搜索筛选时进行匹配使用（具有唯一性）
     value: PropTypes.oneOfType([
         PropTypes.string,
         PropTypes.number
-    ]),
+    ]).isRequired,
+
+    // 可选，设置是否禁用
+    disabled: PropTypes.bool,
+
+    // 可选，当树为treeCheckable时，设置对应节点是否展示checkbox
+    checkable: PropTypes.bool,
+
+    // 可选，设置是否禁用checkbox
+    disableCheckbox: PropTypes.bool,
+
+    // 可选，设置对应节点是否可选
+    selectable: PropTypes.bool
+};
+
+const PropTreeNode = PropTypes.shape(PropTreeNodeShape);
+PropTreeNodeShape.children = PropTypes.arrayOf(PropTreeNode);
+const treeDataPropTypes = PropTypes.arrayOf(PropTreeNode);
+
+// 定义扁平结构节点类型
+const PropFlatNodeShape = {
+    // 标题
+    title: PropTypes.string.isRequired,
+
+    // 唯一识别id
+    key: PropTypes.string.isRequired,
+
+    // 节点对应的值，供搜索筛选时进行匹配使用（具有唯一性）
+    value: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.number
+    ]).isRequired,
 
     // 可选，设置是否禁用
     disabled: PropTypes.bool,
@@ -133,11 +166,10 @@ const PropTreeNodeShape = {
 
     // 可选，设置对应节点是否可选
     selectable: PropTypes.bool,
-};
 
-const PropTreeNode = PropTypes.shape(PropTreeNodeShape);
-PropTreeNodeShape.children = PropTypes.arrayOf(PropTreeNode);
-const treeDataPropTypes = PropTypes.arrayOf(PropTreeNode);
+    // 可选，设置对应节点的父节点key值
+    parent: PropTypes.string
+};
 
 // 定义参数或属性
 AntdTreeSelect.propTypes = {
@@ -157,7 +189,15 @@ AntdTreeSelect.propTypes = {
     locale: PropTypes.oneOf(['zh-cn', 'en-us']),
 
     // 组织树形结构的json结构数据
-    treeData: treeDataPropTypes,
+    treeData: PropTypes.oneOfType([
+        // 树形结构
+        treeDataPropTypes,
+        // 扁平结构
+        PropTypes.arrayOf(PropFlatNodeShape)
+    ]).isRequired,
+
+    // 设置treeData模式，可选的有'tree'、'flat'，默认为'tree'
+    treeDataMode: PropTypes.oneOf(['tree', 'flat']),
 
     // 设置是否渲染内容清空按钮，默认为true
     allowClear: PropTypes.bool,
@@ -297,5 +337,8 @@ AntdTreeSelect.defaultProps = {
     persisted_props: ['value'],
     persistence_type: 'local',
     locale: 'zh-cn',
-    treeNodeFilterProp: 'value'
+    treeNodeFilterProp: 'value',
+    treeDataMode: 'tree'
 }
+
+export default AntdTreeSelect;

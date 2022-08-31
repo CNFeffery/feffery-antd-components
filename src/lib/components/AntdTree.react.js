@@ -1,165 +1,160 @@
-import React, { Component } from 'react';
+import { useEffect, useMemo } from 'react';
 import PropTypes from 'prop-types';
 import { Tree } from 'antd';
 import AntdIcon from './AntdIcon.react';
 import { omitBy, isUndefined } from 'lodash';
+import { flatToTree } from './utils';
 import 'antd/dist/antd.css';
 import './styles.css'
 
+
 // 定义树形控件AntdTree，api参数参考https://ant.design/components/tree-cn/
-export default class AntdTree extends Component {
+const AntdTree = (props) => {
 
-    constructor(props) {
-        super(props)
-        // 初始化expandedKeys
-        if (props.defaultExpandedKeys && !props.expandedKeys) {
-            // 当defaultExpandedKeys不为空时，为expandedKeys初始化defaultExpandedKeys对应的expandedKeys值
-            props.setProps({ expandedKeys: props.defaultExpandedKeys })
-        }
+    // 取得必要属性或参数
+    let {
+        id,
+        className,
+        setProps,
+        style,
+        key,
+        checkable,
+        selectable,
+        selectedKeys,
+        expandedKeys,
+        checkedKeys,
+        defaultExpandAll,
+        defaultExpandedKeys,
+        defaultExpandParent,
+        checkStrictly,
+        defaultCheckedKeys,
+        defaultSelectedKeys,
+        multiple,
+        showLine,
+        showIcon,
+        height,
+        persistence,
+        persisted_props,
+        persistence_type,
+        loading_state
+    } = props;
 
-        // 初始化selectedKeys
-        if (props.defaultSelectedKeys && !props.selectedKeys) {
-            // 当defaultSelectedKeys不为空时，为selectedKeys初始化defaultSelectedKeys对应的selectedKeys值
-            props.setProps({ selectedKeys: props.defaultSelectedKeys })
-        }
-
-        // 初始化selectedKeys
-        if (props.defaultCheckedKeys && !props.checkedKeys) {
-            // 当defaultCheckedKeys不为空时，为checkedKeys初始化defaultCheckedKeys对应的checkedKeys值
-            props.setProps({ checkedKeys: props.defaultCheckedKeys })
-        }
+    if (showLine) {
+        showLine = { 'showLeafIcon': false }
     }
 
-    render() {
-        // 取得必要属性或参数
-        let {
-            id,
-            className,
-            setProps,
-            style,
-            key,
-            checkable,
-            selectable,
-            selectedKeys,
-            expandedKeys,
-            checkedKeys,
-            defaultExpandAll,
-            defaultExpandedKeys,
-            defaultExpandParent,
-            checkStrictly,
-            defaultCheckedKeys,
-            defaultSelectedKeys,
-            multiple,
-            showLine,
-            showIcon,
-            height,
-            persistence,
-            persisted_props,
-            persistence_type,
-            loading_state
-        } = this.props;
+    let { treeData, treeDataMode } = props;
 
-        if (showLine) {
-            showLine = { 'showLeafIcon': false }
-        }
+    useEffect(() => {
+        setProps({
+            expandedKeys: defaultExpandedKeys && !expandedKeys ? defaultExpandedKeys : expandedKeys,
+            selectedKeys: defaultSelectedKeys && !selectedKeys ? defaultSelectedKeys : selectedKeys,
+            checkedKeys: defaultCheckedKeys && !checkedKeyd ? defaultCheckedKeys : checkedKeys
+        })
+    }, [])
 
-        let { treeData } = this.props;
+    const flatToTreeData = useMemo(() => {
+        return flatToTree(treeData);
+    }, [treeData])
 
-        // 用于以递归的方式将节点icon属性替换成相应的icon对象
-        const add_leaf_node_icon = (inputTreeData) => {
-            if (typeof inputTreeData === typeof {}) {
+    // 根据treeDataMode对treeData进行预处理
+    if (treeDataMode === 'flat') {
+        treeData = flatToTreeData
+    }
 
-                if (inputTreeData.hasOwnProperty('children')) {
-                    if (typeof inputTreeData.icon === typeof "") {
-                        inputTreeData.icon = <AntdIcon icon={inputTreeData.icon} />
-                    }
+    // 用于以递归的方式将节点icon属性替换成相应的icon对象
+    const add_leaf_node_icon = (inputTreeData) => {
+        if (typeof inputTreeData === typeof {}) {
 
-                    for (var i = 0; i < inputTreeData.children.length; i++) {
-                        inputTreeData.children[i] = add_leaf_node_icon(inputTreeData.children[i])
-                    }
-
-                } else {
-                    if (typeof inputTreeData.icon === typeof "") {
-                        inputTreeData.icon = <AntdIcon icon={inputTreeData.icon} />
-                    }
+            if (inputTreeData.hasOwnProperty('children')) {
+                if (typeof inputTreeData.icon === typeof "") {
+                    inputTreeData.icon = <AntdIcon icon={inputTreeData.icon} />
                 }
-            }
 
-            if (typeof inputTreeData == typeof []) {
-                for (var i = 0; i < inputTreeData.length; i++) {
-                    inputTreeData[i] = add_leaf_node_icon(inputTreeData[i])
+                for (var i = 0; i < inputTreeData.children.length; i++) {
+                    inputTreeData.children[i] = add_leaf_node_icon(inputTreeData.children[i])
                 }
-            }
 
-            return inputTreeData;
-        }
-
-        treeData = add_leaf_node_icon(treeData)
-
-        const listenSelect = (e) => {
-            setProps({ selectedKeys: e })
-        }
-
-        const listenCheck = (checkedKeys, e) => {
-            console.log({ checkedKeys, e })
-            if (checkStrictly) {
-                setProps({
-                    checkedKeys: checkedKeys.checked,
-                    halfCheckedKeys: checkedKeys.halfChecked
-                })
             } else {
-                setProps({
-                    checkedKeys: checkedKeys,
-                    halfCheckedKeys: e.halfCheckedKeys
-                })
+                if (typeof inputTreeData.icon === typeof "") {
+                    inputTreeData.icon = <AntdIcon icon={inputTreeData.icon} />
+                }
             }
         }
 
-        const listenExpand = (e) => {
-            setProps({ expandedKeys: e })
+        if (typeof inputTreeData == typeof []) {
+            for (var i = 0; i < inputTreeData.length; i++) {
+                inputTreeData[i] = add_leaf_node_icon(inputTreeData[i])
+            }
         }
 
-        let config = {
-            expandedKeys
-        }
-
-        config = omitBy(config, isUndefined)
-
-        return (
-            <Tree
-                id={id}
-                className={className}
-                style={style}
-                key={key}
-                treeData={add_leaf_node_icon(treeData)}
-                selectedKeys={selectedKeys}
-                checkedKeys={checkedKeys}
-                selectable={selectable}
-                checkable={checkable}
-                defaultExpandAll={defaultExpandAll}
-                defaultExpandedKeys={defaultExpandedKeys}
-                defaultExpandParent={defaultExpandParent}
-                defaultCheckedKeys={defaultCheckedKeys}
-                defaultSelectedKeys={defaultSelectedKeys}
-                checkStrictly={checkStrictly}
-                multiple={multiple}
-                showLine={showLine}
-                onSelect={listenSelect}
-                onCheck={listenCheck}
-                onExpand={listenExpand}
-                showIcon={showIcon}
-                height={height}
-                showLeafIcon={false}
-                persistence={persistence}
-                persisted_props={persisted_props}
-                persistence_type={persistence_type}
-                data-dash-is-loading={
-                    (loading_state && loading_state.is_loading) || undefined
-                }
-                {...config}
-            />
-        );
+        return inputTreeData;
     }
+
+    treeData = add_leaf_node_icon(treeData)
+
+    const listenSelect = (e) => {
+        setProps({ selectedKeys: e })
+    }
+
+    const listenCheck = (checkedKeys, e) => {
+        if (checkStrictly) {
+            setProps({
+                checkedKeys: checkedKeys.checked,
+                halfCheckedKeys: checkedKeys.halfChecked
+            })
+        } else {
+            setProps({
+                checkedKeys: checkedKeys,
+                halfCheckedKeys: e.halfCheckedKeys
+            })
+        }
+    }
+
+    const listenExpand = (e) => {
+        setProps({ expandedKeys: e })
+    }
+
+    let config = {
+        expandedKeys
+    }
+
+    config = omitBy(config, isUndefined)
+
+    return (
+        <Tree
+            id={id}
+            className={className}
+            style={style}
+            key={key}
+            treeData={add_leaf_node_icon(treeData)}
+            selectedKeys={selectedKeys}
+            checkedKeys={checkedKeys}
+            selectable={selectable}
+            checkable={checkable}
+            defaultExpandAll={defaultExpandAll}
+            defaultExpandedKeys={defaultExpandedKeys}
+            defaultExpandParent={defaultExpandParent}
+            defaultCheckedKeys={defaultCheckedKeys}
+            defaultSelectedKeys={defaultSelectedKeys}
+            checkStrictly={checkStrictly}
+            multiple={multiple}
+            showLine={showLine}
+            onSelect={listenSelect}
+            onCheck={listenCheck}
+            onExpand={listenExpand}
+            showIcon={showIcon}
+            height={height}
+            showLeafIcon={false}
+            persistence={persistence}
+            persisted_props={persisted_props}
+            persistence_type={persistence_type}
+            data-dash-is-loading={
+                (loading_state && loading_state.is_loading) || undefined
+            }
+            {...config}
+        />
+    );
 }
 
 // 定义递归PropTypes
@@ -191,6 +186,31 @@ const PropTreeNode = PropTypes.shape(PropTreeNodeShape);
 PropTreeNodeShape.children = PropTypes.arrayOf(PropTreeNode);
 const treeDataPropTypes = PropTypes.arrayOf(PropTreeNode);
 
+// 定义偏平结构节点类型
+const PropFlatNodeShape = {
+    // 标题
+    title: PropTypes.string.isRequired,
+
+    // 唯一识别id
+    key: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+
+    // 可选，设置是否禁用
+    disabled: PropTypes.bool,
+
+    // 可选，设置节点对应icon
+    icon: PropTypes.node,
+
+    // 可选，当树为checkable时，设置对应节点是否展示checkbox
+    checkable: PropTypes.bool,
+
+    // 可选，设置是否禁用checkbox
+    disableCheckbox: PropTypes.bool,
+
+    // 可选，设置对应节点是否可选
+    selectable: PropTypes.bool,
+
+};
+
 // 定义参数或属性
 AntdTree.propTypes = {
     // 组件id
@@ -206,7 +226,15 @@ AntdTree.propTypes = {
     key: PropTypes.string,
 
     // 组织树形结构的json结构数据
-    treeData: treeDataPropTypes.isRequired,
+    treeData: PropTypes.oneOfType([
+        // 树结构
+        treeDataPropTypes,
+        // 偏平结构
+        PropTypes.arrayOf(PropFlatNodeShape)
+    ]),
+
+    // 设置treeData模式，可选的有'tree'、'flat'，默认为'tree'
+    treeDataMode: PropTypes.oneOf(['tree', 'flat']),
 
     // 设置是否渲染icon，默认为true
     showIcon: PropTypes.bool,
@@ -312,5 +340,8 @@ AntdTree.defaultProps = {
     showLine: { 'showLeafIcon': false },
     showIcon: true,
     persisted_props: ['selectedKeys', 'checkedKeys', 'expandedKeys'],
-    persistence_type: 'local'
+    persistence_type: 'local',
+    treeDataMode: 'tree'
 }
+
+export default AntdTree;

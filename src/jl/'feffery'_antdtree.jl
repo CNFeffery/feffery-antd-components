@@ -48,10 +48,11 @@ session: window.sessionStorage, data is cleared once the browser quit.
 Those elements have the following types:
   - `showLeafIcon` (Bool; optional)
 - `style` (Dict; optional)
-- `treeData` (optional)
+- `treeData` (Array; optional)
+- `treeDataMode` (a value equal to: 'tree', 'flat'; optional)
 """
 function 'feffery'_antdtree(; kwargs...)
-        available_props = Symbol[:id, :checkStrictly, :checkable, :checkedKeys, :className, :defaultCheckedKeys, :defaultExpandAll, :defaultExpandParent, :defaultExpandedKeys, :defaultSelectedKeys, :expandedKeys, :halfCheckedKeys, :height, :key, :loading_state, :multiple, :persisted_props, :persistence, :persistence_type, :selectable, :selectedKeys, :showIcon, :showLine, :style, :treeData]
+        available_props = Symbol[:id, :checkStrictly, :checkable, :checkedKeys, :className, :defaultCheckedKeys, :defaultExpandAll, :defaultExpandParent, :defaultExpandedKeys, :defaultSelectedKeys, :expandedKeys, :halfCheckedKeys, :height, :key, :loading_state, :multiple, :persisted_props, :persistence, :persistence_type, :selectable, :selectedKeys, :showIcon, :showLine, :style, :treeData, :treeDataMode]
         wild_props = Symbol[]
         return Component("'feffery'_antdtree", "AntdTree", "feffery_antd_components", available_props, wild_props; kwargs...)
 end

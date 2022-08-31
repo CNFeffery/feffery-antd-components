@@ -44,7 +44,8 @@ session: window.sessionStorage, data is cleared once the browser quit.
 - `style` (Dict; optional)
 - `treeCheckStrictly` (Bool; optional)
 - `treeCheckable` (Bool; optional)
-- `treeData` (optional)
+- `treeData` (Array; required)
+- `treeDataMode` (a value equal to: 'tree', 'flat'; optional)
 - `treeDefaultExpandAll` (Bool; optional)
 - `treeDefaultExpandedKeys` (Array of Strings; optional)
 - `treeExpandedKeys` (Array of Strings; optional)
@@ -54,7 +55,7 @@ session: window.sessionStorage, data is cleared once the browser quit.
 - `virtual` (Bool; optional)
 """
 function 'feffery'_antdtreeselect(; kwargs...)
-        available_props = Symbol[:id, :allowClear, :bordered, :className, :defaultValue, :disabled, :key, :listHeight, :loading_state, :locale, :maxTagCount, :multiple, :persisted_props, :persistence, :persistence_type, :placeholder, :placement, :size, :status, :style, :treeCheckStrictly, :treeCheckable, :treeData, :treeDefaultExpandAll, :treeDefaultExpandedKeys, :treeExpandedKeys, :treeLine, :treeNodeFilterProp, :value, :virtual]
+        available_props = Symbol[:id, :allowClear, :bordered, :className, :defaultValue, :disabled, :key, :listHeight, :loading_state, :locale, :maxTagCount, :multiple, :persisted_props, :persistence, :persistence_type, :placeholder, :placement, :size, :status, :style, :treeCheckStrictly, :treeCheckable, :treeData, :treeDataMode, :treeDefaultExpandAll, :treeDefaultExpandedKeys, :treeExpandedKeys, :treeLine, :treeNodeFilterProp, :value, :virtual]
         wild_props = Symbol[]
         return Component("'feffery'_antdtreeselect", "AntdTreeSelect", "feffery_antd_components", available_props, wild_props; kwargs...)
 end
