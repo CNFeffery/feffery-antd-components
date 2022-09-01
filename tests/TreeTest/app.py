@@ -1,9 +1,34 @@
 if True:
     import sys
     sys.path.append('../..')
+    import os
     import dash
     from dash import html
     import feffery_antd_components as fac
+
+paths = [path[0].replace('C:\\Conda\\', '')
+         for path in os.walk(r'C:\Conda\envs')]
+
+pathTreeData = [
+    {
+        'title': path.split('\\')[-1],
+        'key': path,
+        'value': path,
+        'parent': '\\'.join(path.split('\\')[:-1])
+    }
+    for path in paths
+    if '\\' in path
+]
+
+pathTreeData.append(
+    {
+        'title': 'envs',
+        'key': 'envs',
+        'value': 'envs',
+    }
+)
+
+print(len(pathTreeData))
 
 app = dash.Dash(__name__)
 
@@ -36,18 +61,20 @@ app.layout = html.Div(
     html.Div(
         [
             fac.AntdTreeSelect(
-                treeData=treeData,
+                # treeData=treeData,
+                treeData=pathTreeData,
                 treeDataMode='flat',
                 treeDefaultExpandAll=True,
-                listHeight=700
+                listHeight=600
             ),
 
             fac.AntdDivider(),
 
             fac.AntdTree(
-                treeData=treeData,
+                treeData=pathTreeData,
                 treeDataMode='flat',
-                defaultExpandAll=True
+                defaultExpandAll=True,
+                height=700
             )
         ],
         style={

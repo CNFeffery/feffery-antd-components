@@ -332,7 +332,7 @@ AntdTreeSelect.propTypes = {
 // 设置默认参数
 AntdTreeSelect.defaultProps = {
     listHeight: 256,
-    virtual: false,
+    virtual: true,
     allowClear: true,
     persisted_props: ['value'],
     persistence_type: 'local',

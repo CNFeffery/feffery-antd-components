@@ -49,7 +49,7 @@ const AntdTree = (props) => {
         setProps({
             expandedKeys: defaultExpandedKeys && !expandedKeys ? defaultExpandedKeys : expandedKeys,
             selectedKeys: defaultSelectedKeys && !selectedKeys ? defaultSelectedKeys : selectedKeys,
-            checkedKeys: defaultCheckedKeys && !checkedKeyd ? defaultCheckedKeys : checkedKeys
+            checkedKeys: defaultCheckedKeys && !checkedKeys ? defaultCheckedKeys : checkedKeys
         })
     }, [])
 

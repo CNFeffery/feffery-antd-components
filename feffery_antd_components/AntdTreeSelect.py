@@ -93,7 +93,7 @@ Keyword arguments:
 
 - value (string | number | list of string | numbers; optional)
 
-- virtual (boolean; default False)"""
+- virtual (boolean; default True)"""
     _children_props = []
     _base_nodes = ['children']
     _namespace = 'feffery_antd_components'
