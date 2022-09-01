@@ -98,8 +98,7 @@ const PropOptionNodeShape = {
     label: PropTypes.string.isRequired,
 
     // 设置是否禁止选中
-    disabled: PropTypes.bool,
-
+    disabled: PropTypes.bool
 };
 
 const PropOptionNode = PropTypes.shape(PropOptionNodeShape);
