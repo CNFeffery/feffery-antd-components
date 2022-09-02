@@ -159,9 +159,6 @@ class AntdTable extends Component {
         const changedProps = Object.keys(nextProps)
             .filter(key => !isEqual(this.props[key], nextProps[key]))
 
-        console.log('重绘')
-        console.log(changedProps)
-
         return true;
     }
 

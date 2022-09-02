@@ -16,6 +16,7 @@ Keyword arguments:
 - `block` (Bool; optional)
 - `className` (String; optional)
 - `danger` (Bool; optional)
+- `debounceWait` (Real; optional)
 - `disabled` (Bool; optional)
 - `href` (String; optional)
 - `key` (String; optional)
@@ -33,7 +34,7 @@ Those elements have the following types:
 - `type` (a value equal to: 'primary', 'ghost', 'dashed', 'link', 'text', 'default'; optional)
 """
 function 'feffery'_antdbutton(; kwargs...)
-        available_props = Symbol[:children, :id, :block, :className, :danger, :disabled, :href, :key, :loading, :loading_state, :nClicks, :shape, :size, :style, :target, :type]
+        available_props = Symbol[:children, :id, :block, :className, :danger, :debounceWait, :disabled, :href, :key, :loading, :loading_state, :nClicks, :shape, :size, :style, :target, :type]
         wild_props = Symbol[]
         return Component("'feffery'_antdbutton", "AntdButton", "feffery_antd_components", available_props, wild_props; kwargs...)
 end

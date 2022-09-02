@@ -1,60 +1,68 @@
-import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Button } from 'antd';
 import 'antd/dist/antd.css';
+import { useRequest } from 'ahooks';
 
 // 定义分割线组件AntdButton，api参数参考https://ant.design/components/button-cn/
-export default class AntdButton extends Component {
-    render() {
-        // 取得必要属性或参数
-        let {
-            id,
-            children,
-            className,
-            style,
-            key,
-            setProps,
-            type,
-            href,
-            target,
-            block,
-            danger,
-            disabled,
-            shape,
-            size,
-            nClicks,
-            loading,
-            loading_state
-        } = this.props;
+const AntdButton = (props) => {
+    // 取得必要属性或参数
+    let {
+        id,
+        children,
+        className,
+        style,
+        key,
+        setProps,
+        type,
+        href,
+        target,
+        block,
+        danger,
+        disabled,
+        shape,
+        size,
+        nClicks,
+        debounceWait,
+        loading,
+        loading_state
+    } = props;
 
-        // 返回定制化的前端组件
-        return (
-            <Button
-                id={id}
-                className={className}
-                style={style}
-                key={key}
-                type={type}
-                href={href}
-                target={target}
-                block={block}
-                danger={danger}
-                disabled={disabled}
-                shape={shape}
-                size={size}
-                onClick={(e) => {
-                    nClicks++;
-                    // 更新nClicks
-                    setProps({ nClicks: nClicks })
-                }}
-                loading={loading}
-                data-dash-is-loading={
-                    (loading_state && loading_state.is_loading) || undefined
-                }
-            >{children}
-            </Button>
-        );
-    }
+    const { run: onClick } = useRequest(
+        () => {
+            nClicks++;
+            // 更新nClicks
+            setProps({ nClicks: nClicks })
+        },
+        {
+            debounceWait: debounceWait,
+            debounceLeading: true,
+            manual: true
+        }
+    )
+
+    // 返回定制化的前端组件
+    return (
+        <Button
+            id={id}
+            className={className}
+            style={style}
+            key={key}
+            type={type}
+            href={href}
+            target={target}
+            block={block}
+            danger={danger}
+            disabled={disabled}
+            shape={shape}
+            size={size}
+            onClick={onClick}
+            loading={loading}
+            data-dash-is-loading={
+                (loading_state && loading_state.is_loading) || undefined
+            }
+        >{children}
+        </Button>
+    );
 }
 
 // 定义参数或属性
@@ -101,6 +109,9 @@ AntdButton.propTypes = {
     // 记录按钮从渲染后开始被点击的次数，默认为0
     nClicks: PropTypes.number,
 
+    // 用于配置value变化更新的防抖等待时长（单位：毫秒），默认为0
+    debounceWait: PropTypes.number,
+
     // 用于设置是否为按钮渲染“加载中不可点击”效果，默认为false
     loading: PropTypes.bool,
 
@@ -132,5 +143,8 @@ AntdButton.defaultProps = {
     block: false,
     danger: false,
     disabled: false,
-    nClicks: 0
+    nClicks: 0,
+    debounceWait: 0
 }
+
+export default AntdButton;
