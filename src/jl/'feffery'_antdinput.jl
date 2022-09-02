@@ -19,6 +19,7 @@ Those elements have the following types:
   - `maxRows` (Real; optional)
 - `bordered` (Bool; optional)
 - `className` (String; optional)
+- `debounceWait` (Real; optional)
 - `defaultValue` (String; optional)
 - `disabled` (Bool; optional)
 - `key` (String; optional)
@@ -56,7 +57,7 @@ session: window.sessionStorage, data is cleared once the browser quit.
 - `value` (String; optional)
 """
 function 'feffery'_antdinput(; kwargs...)
-        available_props = Symbol[:id, :addonAfter, :addonBefore, :allowClear, :autoComplete, :autoSize, :bordered, :className, :defaultValue, :disabled, :key, :loading_state, :maxLength, :md5Value, :mode, :nClicksSearch, :nSubmit, :passwordUseMd5, :persisted_props, :persistence, :persistence_type, :placeholder, :prefix, :showCount, :size, :status, :style, :suffix, :value]
+        available_props = Symbol[:id, :addonAfter, :addonBefore, :allowClear, :autoComplete, :autoSize, :bordered, :className, :debounceWait, :defaultValue, :disabled, :key, :loading_state, :maxLength, :md5Value, :mode, :nClicksSearch, :nSubmit, :passwordUseMd5, :persisted_props, :persistence, :persistence_type, :placeholder, :prefix, :showCount, :size, :status, :style, :suffix, :value]
         wild_props = Symbol[]
         return Component("'feffery'_antdinput", "AntdInput", "feffery_antd_components", available_props, wild_props; kwargs...)
 end

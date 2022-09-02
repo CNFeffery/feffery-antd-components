@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { Input } from 'antd';
 import md5 from 'md5';
 import 'antd/dist/antd.css';
+import { useRequest } from 'ahooks';
 
 const { Search, TextArea } = Input;
 
@@ -48,6 +49,7 @@ export default class AntdInput extends Component {
             nSubmit,
             status,
             autoSize,
+            debounceWait,
             setProps,
             loading_state,
             persistence,
@@ -55,10 +57,27 @@ export default class AntdInput extends Component {
             persistence_type
         } = this.props;
 
-        // 监听输入内容变化事件
-        const onChange = e => {
-            setProps({ value: e.target.value })
-        }
+        // 防抖监听输入内容变化事件
+        const { run: onChange } = useRequest(
+            (e) => {
+                // 若mode='password'且启用md5加密
+                if (mode === 'password' && passwordUseMd5) {
+                    setProps({
+                        md5Value: md5(e.target.value),
+                        value: e.target.value
+                    })
+                } else {
+                    setProps({
+                        value: e.target.value
+                    })
+                }
+            },
+            {
+                debounceWait: debounceWait,
+                debounceLeading: true,
+                manual: true
+            }
+        )
 
         // 监听聚焦到输入框时enter键点按次数
         const onPressEnter = e => {
@@ -170,19 +189,7 @@ export default class AntdInput extends Component {
                     status={status}
                     prefix={prefix}
                     suffix={suffix}
-                    onChange={(e) => {
-                        // 若启用md5加密
-                        if (passwordUseMd5) {
-                            setProps({
-                                md5Value: md5(e.target.value),
-                                value: e.target.value
-                            })
-                        } else {
-                            setProps({
-                                value: e.target.value
-                            })
-                        }
-                    }}
+                    onChange={onChange}
                     onPressEnter={onPressEnter}
                     persistence={persistence}
                     persisted_props={persisted_props}
@@ -293,6 +300,9 @@ AntdInput.propTypes = {
         })
     ]),
 
+    // 用于配置value变化更新的防抖等待时长（单位：毫秒），默认为0
+    debounceWait: PropTypes.number,
+
     /**
      * Dash-assigned callback that should be called to report property changes
      * to Dash, to make them available for callbacks.
@@ -335,6 +345,7 @@ AntdInput.defaultProps = {
     passwordUseMd5: false,
     nClicksSearch: 0,
     nSubmit: 0,
+    debounceWait: 0,
     persisted_props: ['value'],
     persistence_type: 'local'
 }
