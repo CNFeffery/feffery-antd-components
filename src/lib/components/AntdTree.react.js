@@ -209,6 +209,8 @@ const PropFlatNodeShape = {
     // 可选，设置对应节点是否可选
     selectable: PropTypes.bool,
 
+    // 可选，设置对应节点的父节点key值
+    parent: PropTypes.string
 };
 
 // 定义参数或属性

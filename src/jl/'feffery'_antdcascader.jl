@@ -25,7 +25,8 @@ Those elements have the following types:
 - `locale` (a value equal to: 'zh-cn', 'en-us'; optional)
 - `maxTagCount` (Real | a value equal to: 'responsive'; optional)
 - `multiple` (Bool; optional)
-- `options` (optional)
+- `options` (Array; required)
+- `optionsMode` (a value equal to: 'tree', 'flat'; optional)
 - `persisted_props` (Array of a value equal to: 'value's; optional): Properties whose user interactions will persist after refreshing the
 component or the page. Since only `value` is allowed this prop can
 normally be ignored.
@@ -47,7 +48,7 @@ session: window.sessionStorage, data is cleared once the browser quit.
 - `value` (Array of Strings | Array of Array of Stringss; optional)
 """
 function 'feffery'_antdcascader(; kwargs...)
-        available_props = Symbol[:id, :allowClear, :bordered, :changeOnSelect, :className, :defaultValue, :disabled, :expandTrigger, :key, :loading_state, :locale, :maxTagCount, :multiple, :options, :persisted_props, :persistence, :persistence_type, :placeholder, :placement, :size, :status, :style, :value]
+        available_props = Symbol[:id, :allowClear, :bordered, :changeOnSelect, :className, :defaultValue, :disabled, :expandTrigger, :key, :loading_state, :locale, :maxTagCount, :multiple, :options, :optionsMode, :persisted_props, :persistence, :persistence_type, :placeholder, :placement, :size, :status, :style, :value]
         wild_props = Symbol[]
         return Component("'feffery'_antdcascader", "AntdCascader", "feffery_antd_components", available_props, wild_props; kwargs...)
 end

@@ -1,92 +1,98 @@
-import React, { Component } from 'react';
+import { useEffect, useMemo } from 'react';
 import PropTypes from 'prop-types';
 import { Cascader, ConfigProvider } from 'antd';
 import { str2Locale } from './locales.react';
+import { flatToTree } from './utils';
 import 'antd/dist/antd.css';
 
 // 定义级联选择组件AntdCascader，api参数参考https://ant.design/components/cascader-cn/
-export default class AntdCascader extends Component {
+const AntdCascader = (props) => {
+    // 取得必要属性或参数
+    let {
+        id,
+        style,
+        className,
+        key,
+        locale,
+        options,
+        optionsMode,
+        changeOnSelect,
+        size,
+        bordered,
+        disabled,
+        placeholder,
+        defaultValue,
+        value,
+        placement,
+        maxTagCount,
+        multiple,
+        expandTrigger,
+        status,
+        allowClear,
+        setProps,
+        persistence,
+        persisted_props,
+        persistence_type,
+        loading_state
+    } = props;
 
-    constructor(props) {
-        super(props)
-        if (!props.value) {
-            props.setProps({ value: props.defaultValue })
+    useEffect(() => {
+        if (!value) {
+            setProps({ value: defaultValue })
         }
+    }, [])
+
+    const flatToTreeOptions = useMemo(() => {
+        return flatToTree(options);
+    }, [options])
+
+    // 根据optionsMode对options进行预处理
+    if (optionsMode === 'flat') {
+        options = flatToTreeOptions
     }
 
-    render() {
-        // 取得必要属性或参数
-        let {
-            id,
-            style,
-            className,
-            key,
-            locale,
-            options,
-            changeOnSelect,
-            size,
-            bordered,
-            disabled,
-            placeholder,
-            defaultValue,
-            value,
-            placement,
-            maxTagCount,
-            multiple,
-            expandTrigger,
-            status,
-            allowClear,
-            setProps,
-            persistence,
-            persisted_props,
-            persistence_type,
-            loading_state
-        } = this.props;
-
-
-        const filter = (inputValue, path) => {
-            return path.some(option => option.label.toLowerCase().indexOf(inputValue.toLowerCase()) > -1);
-        }
-
-        const onSelect = (e) => {
-            setProps({ value: e })
-        }
-
-        // 返回定制化的前端组件
-        return (
-            <ConfigProvider locale={str2Locale.get(locale)}>
-                <Cascader
-                    id={id}
-                    className={className}
-                    style={{ ...{ width: '100%' }, ...style }}
-                    key={key}
-                    options={options}
-                    changeOnSelect={changeOnSelect}
-                    size={size}
-                    bordered={bordered}
-                    disabled={disabled}
-                    placeholder={placeholder}
-                    defaultValue={defaultValue}
-                    value={value}
-                    placement={placement}
-                    maxTagCount={maxTagCount}
-                    multiple={multiple}
-                    persistence={persistence}
-                    persisted_props={persisted_props}
-                    persistence_type={persistence_type}
-                    expandTrigger={expandTrigger}
-                    status={status}
-                    allowClear={allowClear}
-                    showSearch={filter}
-                    onChange={onSelect}
-                    data-dash-is-loading={
-                        (loading_state && loading_state.is_loading) || undefined
-                    }
-                    getPopupContainer={(triggerNode) => triggerNode.parentNode}
-                />
-            </ConfigProvider>
-        );
+    const filter = (inputValue, path) => {
+        return path.some(option => option.label.toLowerCase().indexOf(inputValue.toLowerCase()) > -1);
     }
+
+    const onSelect = (e) => {
+        setProps({ value: e })
+    }
+
+    // 返回定制化的前端组件
+    return (
+        <ConfigProvider locale={str2Locale.get(locale)}>
+            <Cascader
+                id={id}
+                className={className}
+                style={{ ...{ width: '100%' }, ...style }}
+                key={key}
+                options={options}
+                changeOnSelect={changeOnSelect}
+                size={size}
+                bordered={bordered}
+                disabled={disabled}
+                placeholder={placeholder}
+                defaultValue={defaultValue}
+                value={value}
+                placement={placement}
+                maxTagCount={maxTagCount}
+                multiple={multiple}
+                persistence={persistence}
+                persisted_props={persisted_props}
+                persistence_type={persistence_type}
+                expandTrigger={expandTrigger}
+                status={status}
+                allowClear={allowClear}
+                showSearch={filter}
+                onChange={onSelect}
+                data-dash-is-loading={
+                    (loading_state && loading_state.is_loading) || undefined
+                }
+                getPopupContainer={(triggerNode) => triggerNode.parentNode}
+            />
+        </ConfigProvider>
+    );
 }
 
 // 定义递归PropTypes
@@ -104,6 +110,24 @@ const PropOptionNodeShape = {
 const PropOptionNode = PropTypes.shape(PropOptionNodeShape);
 PropOptionNodeShape.children = PropTypes.arrayOf(PropOptionNode);
 const optionDataPropTypes = PropTypes.arrayOf(PropOptionNode);
+
+// 定义扁平节点PropTypes
+const PropFlatOptionNodeShape = {
+    // 选项对应的值
+    value: PropTypes.string.isRequired,
+
+    // 选项对应显示的文字标题
+    label: PropTypes.string.isRequired,
+
+    // 设置是否禁止选中
+    disabled: PropTypes.bool,
+
+    // 对应当前节点唯一key值
+    key: PropTypes.string,
+
+    // 可选，设置对应节点的父节点key值
+    parent: PropTypes.string
+};
 
 // 定义参数或属性
 AntdCascader.propTypes = {
@@ -123,7 +147,13 @@ AntdCascader.propTypes = {
     locale: PropTypes.oneOf(['zh-cn', 'en-us']),
 
     // 组织选项层级结构对应的json数据
-    options: optionDataPropTypes.isRequired,
+    options: PropTypes.oneOfType([
+        optionDataPropTypes,
+        PropTypes.arrayOf(PropFlatOptionNodeShape)
+    ]).isRequired,
+
+    // 设置options模式，可选的有'tree'、'flat'，默认为'tree'
+    optionsMode: PropTypes.oneOf(['tree', 'flat']),
 
     // 设置是否禁用组件
     disabled: PropTypes.bool,
@@ -239,5 +269,8 @@ AntdCascader.defaultProps = {
     changeOnSelect: false,
     persisted_props: ['value'],
     persistence_type: 'local',
-    locale: 'zh-cn'
+    locale: 'zh-cn',
+    optionsMode: 'tree'
 }
+
+export default AntdCascader;
