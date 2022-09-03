@@ -21,7 +21,21 @@ app.layout = html.Div(
                 'width': '200px'
             }
         ),
-        fac.AntdText(id='button-debounce-test-output')
+        fac.AntdText(id='button-debounce-test-output'),
+
+        html.Br(),
+
+        fac.AntdIcon(
+            id='icon-debounce-test',
+            icon='antd-question',
+            debounceWait=500,
+            style={
+                'padding': '5px',
+                'border': '1px solid grey',
+                'cursor': 'pointer'
+            }
+        ),
+        fac.AntdText(id='icon-debounce-test-output')
     ],
     style={
         'width': '800px',
@@ -35,7 +49,15 @@ app.layout = html.Div(
     Input('button-debounce-test', 'nClicks')
 )
 def buton_debounce_test(nClicks):
-    print(nClicks)
+
+    return nClicks or 0
+
+
+@app.callback(
+    Output('icon-debounce-test-output', 'children'),
+    Input('icon-debounce-test', 'nClicks')
+)
+def icon_debounce_test(nClicks):
 
     return nClicks or 0
 

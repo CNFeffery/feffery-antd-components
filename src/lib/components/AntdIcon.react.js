@@ -1,47 +1,61 @@
 import { str2Icon } from './icons.react';
-import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import 'antd/dist/antd.css';
+import { useRequest } from 'ahooks';
 
 // 定义图标组件AntdIcon
-export default class AntdIcon extends Component {
-    render() {
-        // 取得必要属性或参数
-        let {
-            id,
-            className,
-            icon,
-            style,
-            key,
-            loading_state
-        } = this.props;
+const AntdIcon = (props) => {
+    // 取得必要属性或参数
+    let {
+        id,
+        className,
+        icon,
+        style,
+        key,
+        nClicks,
+        debounceWait,
+        loading_state,
+        setProps
+    } = props;
 
-        if (icon) {
-            return (
-                <span id={id}
-                    className={className}
-                    style={
-                        (
-                            icon.startsWith('fc-') ||
-                            icon.startsWith('md-') ||
-                            icon.startsWith('di-') ||
-                            icon.startsWith('bi-') ||
-                            icon.startsWith('bs-') ||
-                            icon.startsWith('gi-')
-                        ) ?
-                            { ...{ verticalAlign: 'middle' }, ...style } :
-                            style
-                    }
-                    key={key}
-                    data-dash-is-loading={
-                        (loading_state && loading_state.is_loading) || undefined
-                    }>
-                    {str2Icon.get(icon)}
-                </span>
-            );
+    const { run: onClick } = useRequest(
+        () => {
+            // 更新nClicks
+            setProps({ nClicks: nClicks + 1 })
+        },
+        {
+            debounceWait: debounceWait,
+            debounceLeading: true,
+            manual: true
         }
-        return <span />;
+    )
+
+    if (icon) {
+        return (
+            <span id={id}
+                className={className}
+                style={
+                    (
+                        icon.startsWith('fc-') ||
+                        icon.startsWith('md-') ||
+                        icon.startsWith('di-') ||
+                        icon.startsWith('bi-') ||
+                        icon.startsWith('bs-') ||
+                        icon.startsWith('gi-')
+                    ) ?
+                        { ...{ verticalAlign: 'middle' }, ...style } :
+                        style
+                }
+                key={key}
+                onClick={onClick}
+                data-dash-is-loading={
+                    (loading_state && loading_state.is_loading) || undefined
+                }>
+                {str2Icon.get(icon)}
+            </span>
+        );
     }
+    return null;
 }
 
 // 定义参数或属性
@@ -60,6 +74,12 @@ AntdIcon.propTypes = {
 
     // 辅助刷新用唯一标识key值
     key: PropTypes.string,
+
+    // 记录按钮从渲染后开始被点击的次数，默认为0
+    nClicks: PropTypes.number,
+
+    // 用于配置value变化更新的防抖等待时长（单位：毫秒），默认为0
+    debounceWait: PropTypes.number,
 
     loading_state: PropTypes.shape({
         /**
@@ -85,4 +105,8 @@ AntdIcon.propTypes = {
 
 // 设置默认参数
 AntdIcon.defaultProps = {
+    nClicks: 0,
+    debounceWait: 0
 }
+
+export default AntdIcon;
