@@ -19,6 +19,7 @@ Keyword arguments:
 - `debounceWait` (Real; optional)
 - `disabled` (Bool; optional)
 - `href` (String; optional)
+- `icon` (a list of or a singular dash component, string or number; optional)
 - `key` (String; optional)
 - `loading` (Bool; optional)
 - `loading_state` (optional): . loading_state has the following type: lists containing elements 'is_loading', 'prop_name', 'component_name'.
@@ -34,7 +35,7 @@ Those elements have the following types:
 - `type` (a value equal to: 'primary', 'ghost', 'dashed', 'link', 'text', 'default'; optional)
 """
 function 'feffery'_antdbutton(; kwargs...)
-        available_props = Symbol[:children, :id, :block, :className, :danger, :debounceWait, :disabled, :href, :key, :loading, :loading_state, :nClicks, :shape, :size, :style, :target, :type]
+        available_props = Symbol[:children, :id, :block, :className, :danger, :debounceWait, :disabled, :href, :icon, :key, :loading, :loading_state, :nClicks, :shape, :size, :style, :target, :type]
         wild_props = Symbol[]
         return Component("'feffery'_antdbutton", "AntdButton", "feffery_antd_components", available_props, wild_props; kwargs...)
 end

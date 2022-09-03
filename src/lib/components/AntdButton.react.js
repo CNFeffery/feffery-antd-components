@@ -23,6 +23,7 @@ const AntdButton = (props) => {
         size,
         nClicks,
         debounceWait,
+        icon,
         loading,
         loading_state
     } = props;
@@ -55,6 +56,7 @@ const AntdButton = (props) => {
             disabled={disabled}
             shape={shape}
             size={size}
+            icon={icon}
             onClick={onClick}
             loading={loading}
             data-dash-is-loading={
@@ -111,6 +113,9 @@ AntdButton.propTypes = {
 
     // 用于配置value变化更新的防抖等待时长（单位：毫秒），默认为0
     debounceWait: PropTypes.number,
+
+    // 组件型参数，设置按钮前缀图标元素
+    icon: PropTypes.node,
 
     // 用于设置是否为按钮渲染“加载中不可点击”效果，默认为false
     loading: PropTypes.bool,
