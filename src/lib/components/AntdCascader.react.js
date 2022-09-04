@@ -5,6 +5,13 @@ import { str2Locale } from './locales.react';
 import { flatToTree } from './utils';
 import 'antd/dist/antd.css';
 
+const { SHOW_CHILD, SHOW_PARENT } = Cascader;
+
+const str2ShowCheckedStrategy = new Map([
+    ['show-child', SHOW_CHILD],
+    ['show-parent', SHOW_PARENT]
+])
+
 // 定义级联选择组件AntdCascader，api参数参考https://ant.design/components/cascader-cn/
 const AntdCascader = (props) => {
     // 取得必要属性或参数
@@ -29,6 +36,7 @@ const AntdCascader = (props) => {
         expandTrigger,
         status,
         allowClear,
+        showCheckedStrategy,
         setProps,
         persistence,
         persisted_props,
@@ -84,6 +92,7 @@ const AntdCascader = (props) => {
                 expandTrigger={expandTrigger}
                 status={status}
                 allowClear={allowClear}
+                showCheckedStrategy={str2ShowCheckedStrategy.get(showCheckedStrategy)}
                 showSearch={filter}
                 onChange={onSelect}
                 data-dash-is-loading={
@@ -213,6 +222,10 @@ AntdCascader.propTypes = {
     // 设置是否添加内容清除按钮，默认true
     allowClear: PropTypes.bool,
 
+    // 设置已选项回填策略，可选的有'show-parent'、'show-children'
+    // 默认为'show-parent'
+    showCheckedStrategy: PropTypes.oneOf(['show-parent', 'show-children']),
+
     loading_state: PropTypes.shape({
         /**
          * Determines if the component is loading or not
@@ -270,7 +283,8 @@ AntdCascader.defaultProps = {
     persisted_props: ['value'],
     persistence_type: 'local',
     locale: 'zh-cn',
-    optionsMode: 'tree'
+    optionsMode: 'tree',
+    showCheckedStrategy: 'show-parent'
 }
 
 export default AntdCascader;
