@@ -336,6 +336,8 @@ class AntdTable extends Component {
             expandedRowKeyToContent,
             expandedRowWidth,
             expandRowByClick,
+            enableCellClickListenColumns,
+            nClicksCell,
             loading_state
         } = this.props;
 
@@ -1025,6 +1027,34 @@ class AntdTable extends Component {
             )
         }
 
+        // 添加单元格监听事件
+        if (enableCellClickListenColumns) {
+            columns = columns.map(
+                item => {
+                    if (enableCellClickListenColumns.includes(item.dataIndex)) {
+                        let currentDataIndex = item.dataIndex
+                        return {
+                            ...item,
+                            ...{
+                                onCell: (e) => {
+                                    return {
+                                        onClick: event => {
+                                            setProps({
+                                                recentlyCellClickColumn: currentDataIndex,
+                                                recentlyCellClickRecord: e,
+                                                nClicksCell: nClicksCell + 1
+                                            })
+                                        }
+                                    };
+                                }
+                            }
+                        }
+                    }
+                    return item;
+                }
+            )
+        }
+
         let rowSelection
         // 处理行选择功能设置
         if (rowSelectionType) {
@@ -1628,6 +1658,23 @@ AntdTable.propTypes = {
     // 用于监听最近发生的开关切换行为对应的切换后状态
     recentlySwtichStatus: PropTypes.bool,
 
+    // 设置启用单元格点击事件监听的字段dataIndex数组，开启后会干扰多种再渲染模式的交互，
+    // 以及自定义条件单元格模式，请慎用
+    enableCellClickListenColumns: PropTypes.bool,
+
+    // 记录单元格点击事件
+    // 记录单元格点击事件对应的字段dataIndex信息
+    recentlyCellClickColumn: PropTypes.string,
+
+    // 记录单元格点击事件对应的行key信息
+    recentlyCellClickRecord: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.number
+    ]),
+
+    // 记录单元格单击事件发生的总次数
+    nClicksCell: PropTypes.number,
+
     loading_state: PropTypes.shape({
         /**
          * Determines if the component is loading or not
@@ -1665,6 +1712,7 @@ AntdTable.defaultProps = {
     filterOptions: {},
     mode: 'client-side',
     nClicksButton: 0,
+    nClicksCell: 0,
     size: 'default',
     locale: 'zh-cn',
     conditionalStyleFuncs: {}

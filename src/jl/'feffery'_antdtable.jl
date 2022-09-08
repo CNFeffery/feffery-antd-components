@@ -91,6 +91,7 @@ Those elements have the following types:
   - `label` (String; optional)
   - `checkedChildren` (String; optional)
   - `unCheckedChildren` (String; optional)s
+- `enableCellClickListenColumns` (Bool; optional)
 - `enableHoverListen` (Bool; optional)
 - `expandRowByClick` (Bool; optional)
 - `expandedRowKeyToContent` (optional): . expandedRowKeyToContent has the following type: Array of lists containing elements 'key', 'content'.
@@ -118,6 +119,7 @@ Those elements have the following types:
 - `miniChartHeight` (Real; optional)
 - `mode` (a value equal to: 'client-side', 'server-side'; optional)
 - `nClicksButton` (Real; optional)
+- `nClicksCell` (Real; optional)
 - `pagination` (optional): . pagination has the following type: Bool | lists containing elements 'position', 'pageSize', 'current', 'showSizeChanger', 'pageSizeOptions', 'showTitle', 'showQuickJumper', 'showTotalPrefix', 'showTotalSuffix', 'total', 'hideOnSinglePage', 'simple', 'disabled', 'responsive', 'size'.
 Those elements have the following types:
   - `position` (a value equal to: 'topLeft', 'topCenter', 'topRight', 'bottomLeft', 'bottomCenter', 'bottomRight'; optional)
@@ -136,6 +138,8 @@ Those elements have the following types:
   - `responsive` (Bool; optional)
   - `size` (a value equal to: 'default', 'small'; optional)
 - `recentlyButtonClickedRow` (Dict; optional)
+- `recentlyCellClickColumn` (String; optional)
+- `recentlyCellClickRecord` (String | Real; optional)
 - `recentlyChangedRow` (Dict; optional)
 - `recentlyCheckedLabel` (String; optional)
 - `recentlyCheckedRow` (Dict; optional)
@@ -171,7 +175,7 @@ Those elements have the following types:
 - `titlePopoverInfo` (Dict; optional)
 """
 function 'feffery'_antdtable(; kwargs...)
-        available_props = Symbol[:id, :bordered, :checkedDataIndex, :className, :clickedContent, :columns, :columnsFormatConstraint, :conditionalStyleFuncs, :containerId, :currentData, :customFormatFuncs, :data, :enableHoverListen, :expandRowByClick, :expandedRowKeyToContent, :expandedRowWidth, :filter, :filterOptions, :key, :loading_state, :locale, :maxHeight, :maxWidth, :miniChartAnimation, :miniChartHeight, :mode, :nClicksButton, :pagination, :recentlyButtonClickedRow, :recentlyChangedRow, :recentlyCheckedLabel, :recentlyCheckedRow, :recentlyCheckedStatus, :recentlyMouseEnterColumn, :recentlyMouseEnterRow, :recentlySwtichRow, :recentlySwtichStatus, :rowSelectionType, :rowSelectionWidth, :selectedRowKeys, :selectedRows, :size, :sortOptions, :sorter, :sticky, :style, :summaryRowContents, :summaryRowFixed, :swtichDataIndex, :titlePopoverInfo]
+        available_props = Symbol[:id, :bordered, :checkedDataIndex, :className, :clickedContent, :columns, :columnsFormatConstraint, :conditionalStyleFuncs, :containerId, :currentData, :customFormatFuncs, :data, :enableCellClickListenColumns, :enableHoverListen, :expandRowByClick, :expandedRowKeyToContent, :expandedRowWidth, :filter, :filterOptions, :key, :loading_state, :locale, :maxHeight, :maxWidth, :miniChartAnimation, :miniChartHeight, :mode, :nClicksButton, :nClicksCell, :pagination, :recentlyButtonClickedRow, :recentlyCellClickColumn, :recentlyCellClickRecord, :recentlyChangedRow, :recentlyCheckedLabel, :recentlyCheckedRow, :recentlyCheckedStatus, :recentlyMouseEnterColumn, :recentlyMouseEnterRow, :recentlySwtichRow, :recentlySwtichStatus, :rowSelectionType, :rowSelectionWidth, :selectedRowKeys, :selectedRows, :size, :sortOptions, :sorter, :sticky, :style, :summaryRowContents, :summaryRowFixed, :swtichDataIndex, :titlePopoverInfo]
         wild_props = Symbol[]
         return Component("'feffery'_antdtable", "AntdTable", "feffery_antd_components", available_props, wild_props; kwargs...)
 end
