@@ -9,6 +9,27 @@ app = dash.Dash(__name__)
 
 app.layout = html.Div(
     [
+
+        fac.AntdTable(
+            columns=[
+                {
+                    'title': f'字段{i}',
+                    'dataIndex': f'字段{i}',
+                    'width': 100
+                }
+                for i in range(5)
+            ],
+            data=[
+                {
+                    f'字段{j}': i
+                    for j in range(5)
+                }
+                for i in range(10)
+            ],
+            bordered=True,
+            rowSelectionType='radio'
+        ),
+
         fac.AntdSelect(
             placeholder='请选择国家：',
             options=[

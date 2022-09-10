@@ -1,197 +1,213 @@
-import React, { Component } from 'react';
+import { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { Input } from 'antd';
 import md5 from 'md5';
+import { useRequest } from 'ahooks';
 import 'antd/dist/antd.css';
 
 const { Search, TextArea } = Input;
 
 // 定义输入框组件AntdInput，api参数参考https://ant.design/components/input-cn/
-export default class AntdInput extends Component {
+const AntdInput = (props) => {
+    // 取得必要属性或参数
+    let {
+        id,
+        className,
+        style,
+        key,
+        mode,
+        passwordUseMd5,
+        autoComplete,
+        placeholder,
+        value,
+        size,
+        addonBefore,
+        addonAfter,
+        prefix,
+        suffix,
+        allowClear,
+        bordered,
+        defaultValue,
+        disabled,
+        maxLength,
+        showCount,
+        nClicksSearch,
+        nSubmit,
+        status,
+        autoSize,
+        debounceWait,
+        setProps,
+        loading_state,
+        persistence,
+        persisted_props,
+        persistence_type
+    } = props;
 
-    constructor(props) {
-        super(props)
+    useEffect(() => {
         // 初始化value
-        if (props.defaultValue) {
+        if (defaultValue) {
             // 当defaultValue不为空时，为value初始化defaultValue对应的value值
-            props.setProps({
-                value: props.defaultValue,
-                md5Value: md5(props.defaultValue)
+            setProps({
+                value: defaultValue,
+                md5Value: md5(defaultValue)
             })
+        }
+    }, [])
+
+    // 监听输入内容变化事件
+    const onChange = e => {
+        // 若启用md5加密且为密码模式
+        if (passwordUseMd5 && mode === 'password') {
+            setProps({
+                md5Value: md5(e.target.value),
+                value: e.target.value
+            })
+        } else {
+            setProps({ value: e.target.value })
         }
     }
 
-    render() {
-        // 取得必要属性或参数
-        let {
-            id,
-            className,
-            style,
-            key,
-            mode,
-            passwordUseMd5,
-            autoComplete,
-            placeholder,
-            value,
-            size,
-            addonBefore,
-            addonAfter,
-            prefix,
-            suffix,
-            allowClear,
-            bordered,
-            defaultValue,
-            disabled,
-            maxLength,
-            showCount,
-            nClicksSearch,
-            nSubmit,
-            status,
-            autoSize,
-            setProps,
-            loading_state,
-            persistence,
-            persisted_props,
-            persistence_type
-        } = this.props;
-
-        // 监听输入内容变化事件
-        const onChange = e => {
-            setProps({ value: e.target.value })
+    const { run: onDebounceChange } = useRequest(
+        (e) => {
+            setProps({ debounceValue: e })
+        },
+        {
+            debounceWait: debounceWait,
+            manual: true
         }
+    )
 
-        // 监听聚焦到输入框时enter键点按次数
-        const onPressEnter = e => {
-            setProps({ nSubmit: nSubmit + 1 })
-        }
+    // 监听聚焦到输入框时enter键点按次数
+    const onPressEnter = e => {
+        setProps({ nSubmit: nSubmit + 1 })
+    }
 
-        // 监听搜索按钮点按事件
-        const onSearch = e => {
-            setProps({ nClicksSearch: nClicksSearch + 1 })
-        }
+    // 监听搜索按钮点按事件
+    const onSearch = e => {
+        setProps({ nClicksSearch: nClicksSearch + 1 })
+    }
 
-        // 不同的mode模式下渲染不同的组件
-        if (mode === 'default') {
-            return (
-                <Input id={id}
-                    className={className}
-                    style={style}
-                    key={key}
-                    placeholder={placeholder}
-                    autoComplete={autoComplete}
-                    value={value}
-                    size={size}
-                    addonBefore={addonBefore}
-                    addonAfter={addonAfter}
-                    prefix={prefix}
-                    suffix={suffix}
-                    allowClear={allowClear}
-                    bordered={bordered}
-                    defaultValue={defaultValue}
-                    disabled={disabled}
-                    maxLength={maxLength}
-                    status={status}
-                    onChange={onChange}
-                    onPressEnter={onPressEnter}
-                    persistence={persistence}
-                    persisted_props={persisted_props}
-                    persistence_type={persistence_type}
-                    data-dash-is-loading={
-                        (loading_state && loading_state.is_loading) || undefined
-                    } />
-            );
-        } else if (mode === 'search') {
-            return (
-                <Search id={id}
-                    className={className}
-                    style={style}
-                    key={key}
-                    placeholder={placeholder}
-                    autoComplete={autoComplete}
-                    size={size}
-                    allowClear={allowClear}
-                    bordered={bordered}
-                    value={value}
-                    defaultValue={defaultValue}
-                    disabled={disabled}
-                    maxLength={maxLength}
-                    status={status}
-                    onSearch={onSearch}
-                    onChange={onChange}
-                    onPressEnter={onPressEnter}
-                    persistence={persistence}
-                    persisted_props={persisted_props}
-                    persistence_type={persistence_type}
-                    data-dash-is-loading={
-                        (loading_state && loading_state.is_loading) || undefined
-                    } />
-            );
-        } else if (mode === 'text-area') {
-            return (
-                <TextArea id={id}
-                    className={className}
-                    style={style}
-                    key={key}
-                    placeholder={placeholder}
-                    autoComplete={autoComplete}
-                    size={size}
-                    allowClear={allowClear}
-                    bordered={bordered}
-                    value={value}
-                    defaultValue={defaultValue}
-                    disabled={disabled}
-                    maxLength={maxLength}
-                    showCount={showCount}
-                    status={status}
-                    autoSize={autoSize}
-                    onChange={onChange}
-                    onPressEnter={onPressEnter}
-                    persistence={persistence}
-                    persisted_props={persisted_props}
-                    persistence_type={persistence_type}
-                    data-dash-is-loading={
-                        (loading_state && loading_state.is_loading) || undefined
-                    } />
-            );
-        } else if (mode === 'password') {
-            return (
-                <Input.Password id={id}
-                    className={className}
-                    style={style}
-                    key={key}
-                    placeholder={placeholder}
-                    autoComplete={autoComplete}
-                    size={size}
-                    bordered={bordered}
-                    disabled={disabled}
-                    value={value}
-                    defaultValue={defaultValue}
-                    maxLength={maxLength}
-                    status={status}
-                    prefix={prefix}
-                    suffix={suffix}
-                    onChange={(e) => {
-                        // 若启用md5加密
-                        if (passwordUseMd5) {
-                            setProps({
-                                md5Value: md5(e.target.value),
-                                value: e.target.value
-                            })
-                        } else {
-                            setProps({
-                                value: e.target.value
-                            })
-                        }
-                    }}
-                    onPressEnter={onPressEnter}
-                    persistence={persistence}
-                    persisted_props={persisted_props}
-                    persistence_type={persistence_type}
-                    data-dash-is-loading={
-                        (loading_state && loading_state.is_loading) || undefined
-                    } />
-            );
-        }
+    // 不同的mode模式下渲染不同的组件
+    if (mode === 'default') {
+        return (
+            <Input id={id}
+                className={className}
+                style={style}
+                key={key}
+                placeholder={placeholder}
+                autoComplete={autoComplete}
+                value={value}
+                size={size}
+                addonBefore={addonBefore}
+                addonAfter={addonAfter}
+                prefix={prefix}
+                suffix={suffix}
+                allowClear={allowClear}
+                bordered={bordered}
+                defaultValue={defaultValue}
+                disabled={disabled}
+                maxLength={maxLength}
+                status={status}
+                onChange={(e) => {
+                    onChange(e)
+                    onDebounceChange(e.target.value)
+                }}
+                onPressEnter={onPressEnter}
+                persistence={persistence}
+                persisted_props={persisted_props}
+                persistence_type={persistence_type}
+                data-dash-is-loading={
+                    (loading_state && loading_state.is_loading) || undefined
+                } />
+        );
+    } else if (mode === 'search') {
+        return (
+            <Search id={id}
+                className={className}
+                style={style}
+                key={key}
+                placeholder={placeholder}
+                autoComplete={autoComplete}
+                size={size}
+                allowClear={allowClear}
+                bordered={bordered}
+                value={value}
+                defaultValue={defaultValue}
+                disabled={disabled}
+                maxLength={maxLength}
+                status={status}
+                onSearch={onSearch}
+                onChange={(e) => {
+                    onChange(e)
+                    onDebounceChange(e.target.value)
+                }}
+                onPressEnter={onPressEnter}
+                persistence={persistence}
+                persisted_props={persisted_props}
+                persistence_type={persistence_type}
+                data-dash-is-loading={
+                    (loading_state && loading_state.is_loading) || undefined
+                } />
+        );
+    } else if (mode === 'text-area') {
+        return (
+            <TextArea id={id}
+                className={className}
+                style={style}
+                key={key}
+                placeholder={placeholder}
+                autoComplete={autoComplete}
+                size={size}
+                allowClear={allowClear}
+                bordered={bordered}
+                value={value}
+                defaultValue={defaultValue}
+                disabled={disabled}
+                maxLength={maxLength}
+                showCount={showCount}
+                status={status}
+                autoSize={autoSize}
+                onChange={(e) => {
+                    onChange(e)
+                    onDebounceChange(e.target.value)
+                }}
+                onPressEnter={onPressEnter}
+                persistence={persistence}
+                persisted_props={persisted_props}
+                persistence_type={persistence_type}
+                data-dash-is-loading={
+                    (loading_state && loading_state.is_loading) || undefined
+                } />
+        );
+    } else if (mode === 'password') {
+        return (
+            <Input.Password id={id}
+                className={className}
+                style={style}
+                key={key}
+                placeholder={placeholder}
+                autoComplete={autoComplete}
+                size={size}
+                bordered={bordered}
+                disabled={disabled}
+                value={value}
+                defaultValue={defaultValue}
+                maxLength={maxLength}
+                status={status}
+                prefix={prefix}
+                suffix={suffix}
+                onChange={(e) => {
+                    onChange(e)
+                    onDebounceChange(e.target.value)
+                }}
+                onPressEnter={onPressEnter}
+                persistence={persistence}
+                persisted_props={persisted_props}
+                persistence_type={persistence_type}
+                data-dash-is-loading={
+                    (loading_state && loading_state.is_loading) || undefined
+                } />
+        );
     }
 }
 
@@ -269,6 +285,12 @@ AntdInput.propTypes = {
     // 当passwordUseMd5=true时，用于记录加密的value值
     md5Value: PropTypes.string,
 
+    // 记录防抖状态下的已输入文字内容
+    debounceValue: PropTypes.string,
+
+    // 用于配置debounceValue变化更新的防抖等待时长（单位：毫秒），默认为0
+    debounceWait: PropTypes.number,
+
     // 设置是否展示字数，默认为false
     showCount: PropTypes.bool,
 
@@ -318,7 +340,7 @@ AntdInput.propTypes = {
      * component or the page. Since only `value` is allowed this prop can
      * normally be ignored.
      */
-    persisted_props: PropTypes.arrayOf(PropTypes.oneOf(['value'])),
+    persisted_props: PropTypes.arrayOf(PropTypes.oneOf(['value', 'md5Value'])),
 
     /**
      * Where persisted user changes will be stored:
@@ -336,5 +358,8 @@ AntdInput.defaultProps = {
     nClicksSearch: 0,
     nSubmit: 0,
     persisted_props: ['value'],
-    persistence_type: 'local'
+    persistence_type: 'local',
+    debounceWait: 300
 }
+
+export default AntdInput;

@@ -19,6 +19,8 @@ Those elements have the following types:
   - `maxRows` (Real; optional)
 - `bordered` (Bool; optional)
 - `className` (String; optional)
+- `debounceValue` (String; optional)
+- `debounceWait` (Real; optional)
 - `defaultValue` (String; optional)
 - `disabled` (Bool; optional)
 - `key` (String; optional)
@@ -33,7 +35,7 @@ Those elements have the following types:
 - `nClicksSearch` (Real; optional)
 - `nSubmit` (Real; optional)
 - `passwordUseMd5` (Bool; optional)
-- `persisted_props` (Array of a value equal to: 'value's; optional): Properties whose user interactions will persist after refreshing the
+- `persisted_props` (Array of a value equal to: 'value', 'md5Value's; optional): Properties whose user interactions will persist after refreshing the
 component or the page. Since only `value` is allowed this prop can
 normally be ignored.
 - `persistence` (Bool | String | Real; optional): Used to allow user interactions in this component to be persisted when
@@ -56,7 +58,7 @@ session: window.sessionStorage, data is cleared once the browser quit.
 - `value` (String; optional)
 """
 function 'feffery'_antdinput(; kwargs...)
-        available_props = Symbol[:id, :addonAfter, :addonBefore, :allowClear, :autoComplete, :autoSize, :bordered, :className, :defaultValue, :disabled, :key, :loading_state, :maxLength, :md5Value, :mode, :nClicksSearch, :nSubmit, :passwordUseMd5, :persisted_props, :persistence, :persistence_type, :placeholder, :prefix, :showCount, :size, :status, :style, :suffix, :value]
+        available_props = Symbol[:id, :addonAfter, :addonBefore, :allowClear, :autoComplete, :autoSize, :bordered, :className, :debounceValue, :debounceWait, :defaultValue, :disabled, :key, :loading_state, :maxLength, :md5Value, :mode, :nClicksSearch, :nSubmit, :passwordUseMd5, :persisted_props, :persistence, :persistence_type, :placeholder, :prefix, :showCount, :size, :status, :style, :suffix, :value]
         wild_props = Symbol[]
         return Component("'feffery'_antdinput", "AntdInput", "feffery_antd_components", available_props, wild_props; kwargs...)
 end

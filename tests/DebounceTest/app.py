@@ -13,6 +13,7 @@ app = dash.Dash(
 
 app.layout = html.Div(
     [
+        fac.AntdParagraph('AntdButton nClicks测试'),
         fac.AntdButton(
             '测试测试',
             id='button-debounce-test',
@@ -25,6 +26,7 @@ app.layout = html.Div(
 
         html.Br(),
 
+        fac.AntdParagraph('AntdIcon nClicks测试'),
         fac.AntdIcon(
             id='icon-debounce-test',
             icon='antd-question',
@@ -35,7 +37,19 @@ app.layout = html.Div(
                 'cursor': 'pointer'
             }
         ),
-        fac.AntdText(id='icon-debounce-test-output')
+        fac.AntdText(id='icon-debounce-test-output'),
+
+        html.Br(),
+
+        fac.AntdParagraph('AntdInput debounceValue测试'),
+        fac.AntdInput(
+            id='input-debounce-test',
+            debounceWait=500,
+            style={
+                'width': '200px'
+            }
+        ),
+        fac.AntdText(id='input-debounce-test-output'),
     ],
     style={
         'width': '800px',
@@ -60,6 +74,15 @@ def buton_debounce_test(nClicks):
 def icon_debounce_test(nClicks):
 
     return nClicks or 0
+
+
+@app.callback(
+    Output('input-debounce-test-output', 'children'),
+    Input('input-debounce-test', 'debounceValue')
+)
+def input_debounce_test(debounceValue):
+
+    return debounceValue
 
 
 if __name__ == '__main__':
