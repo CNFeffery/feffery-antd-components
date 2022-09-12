@@ -145,6 +145,14 @@ const AntdTree = (props) => {
             onExpand={listenExpand}
             showIcon={showIcon}
             height={height}
+            titleRender={(nodeData) => {
+                return (
+                    <span className={"ant-tree-title"}
+                        style={nodeData.style}>
+                        {nodeData.title}
+                    </span>
+                );
+            }}
             showLeafIcon={false}
             persistence={persistence}
             persisted_props={persisted_props}
@@ -180,6 +188,8 @@ const PropTreeNodeShape = {
     // 可选，设置对应节点是否可选
     selectable: PropTypes.bool,
 
+    // 设置当前节点css样式
+    style: PropTypes.object
 };
 
 const PropTreeNode = PropTypes.shape(PropTreeNodeShape);
@@ -210,7 +220,10 @@ const PropFlatNodeShape = {
     selectable: PropTypes.bool,
 
     // 可选，设置对应节点的父节点key值
-    parent: PropTypes.string
+    parent: PropTypes.string,
+
+    // 设置当前节点css样式
+    style: PropTypes.object
 };
 
 // 定义参数或属性
