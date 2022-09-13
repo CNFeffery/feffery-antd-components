@@ -53,7 +53,7 @@ Keyword arguments:
 
         - renderLinkText (string; optional)
 
-        - renderType (a value equal to: 'link', 'ellipsis', 'mini-line', 'mini-bar', 'mini-progress', 'mini-ring-progress', 'mini-area', 'tags', 'button', 'copyable', 'status-badge', 'image', 'custom-format', 'ellipsis-copyable', 'corner-mark', 'checkbox', 'switch'; optional)
+        - renderType (a value equal to: 'link', 'ellipsis', 'mini-line', 'mini-bar', 'mini-progress', 'mini-ring-progress', 'mini-area', 'tags', 'button', 'copyable', 'status-badge', 'image', 'custom-format', 'ellipsis-copyable', 'corner-mark', 'checkbox', 'switch', 'row-merge'; optional)
 
         - tooltipCustomContent (string; optional)
 
@@ -161,7 +161,11 @@ Keyword arguments:
 
     - label (string; optional)
 
-    - unCheckedChildren (string; optional)
+    - unCheckedChildren (string; optional) | dict with keys:
+
+    - content (number | string; optional)
+
+    - rowSpan (number; optional)
 
 - enableCellClickListenColumns (boolean; optional)
 

@@ -19,7 +19,7 @@ Those elements have the following types:
   - `dataIndex` (String; required)
   - `renderOptions` (optional): . renderOptions has the following type: lists containing elements 'renderType', 'renderLinkText', 'renderButtonPopConfirmProps', 'tooltipCustomContent'.
 Those elements have the following types:
-  - `renderType` (a value equal to: 'link', 'ellipsis', 'mini-line', 'mini-bar', 'mini-progress', 'mini-ring-progress', 'mini-area', 'tags', 'button', 'copyable', 'status-badge', 'image', 'custom-format', 'ellipsis-copyable', 'corner-mark', 'checkbox', 'switch'; optional)
+  - `renderType` (a value equal to: 'link', 'ellipsis', 'mini-line', 'mini-bar', 'mini-progress', 'mini-ring-progress', 'mini-area', 'tags', 'button', 'copyable', 'status-badge', 'image', 'custom-format', 'ellipsis-copyable', 'corner-mark', 'checkbox', 'switch', 'row-merge'; optional)
   - `renderLinkText` (String; optional)
   - `renderButtonPopConfirmProps` (optional): . renderButtonPopConfirmProps has the following type: lists containing elements 'title', 'okText', 'cancelText'.
 Those elements have the following types:
@@ -90,7 +90,10 @@ Those elements have the following types:
   - `disabled` (Bool; optional)
   - `label` (String; optional)
   - `checkedChildren` (String; optional)
-  - `unCheckedChildren` (String; optional)s
+  - `unCheckedChildren` (String; optional) | lists containing elements 'content', 'rowSpan'.
+Those elements have the following types:
+  - `content` (Real | String; optional)
+  - `rowSpan` (Real; optional)s
 - `enableCellClickListenColumns` (Bool; optional)
 - `enableHoverListen` (Bool; optional)
 - `expandRowByClick` (Bool; optional)

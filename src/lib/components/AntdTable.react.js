@@ -370,7 +370,6 @@ class AntdTable extends Component {
 
         // 为columns配置默认align、conditionalStyleFuncs参数
         for (let i in columns) {
-
             columns[i] = {
                 align: 'center',
                 ...columns[i],
@@ -612,6 +611,17 @@ class AntdTable extends Component {
                             {content}
                         </Text>
                     )
+                }
+                // row-merge模式
+                else if (columns[i]['renderOptions']['renderType'] === 'row-merge') {
+                    columns[i]['render'] = (content, record, index) => {
+                        return {
+                            children: content.content,
+                            props: {
+                                rowSpan: content.rowSpan
+                            }
+                        };
+                    }
                 }
                 // link模式
                 else if (columns[i]['renderOptions']['renderType'] === 'link') {
@@ -1176,12 +1186,13 @@ AntdTable.propTypes = {
             renderOptions: PropTypes.exact({
 
                 // 设置渲染处理类型，可选项有'link'、'ellipsis'、'mini-line'、'mini-bar'、'mini-progress'、'mini-area'、'tags'、'button'
-                // 'copyable'、'status-badge'、'image'、'custom-format'、'ellipsis-copyable'、'corner-mark'、'checkbox'
+                // 'copyable'、'status-badge'、'image'、'custom-format'、'ellipsis-copyable'、'corner-mark'、'checkbox'、'switch'
+                // 'row-merge'
                 renderType: PropTypes.oneOf([
                     'link', 'ellipsis', 'mini-line', 'mini-bar', 'mini-progress',
                     'mini-ring-progress', 'mini-area', 'tags', 'button', 'copyable',
                     'status-badge', 'image', 'custom-format', 'ellipsis-copyable',
-                    'corner-mark', 'checkbox', 'switch'
+                    'corner-mark', 'checkbox', 'switch', 'row-merge'
                 ]),
 
                 // 当renderType='link'时，此参数会将传入的字符串作为渲染link的显示文字内容
@@ -1213,7 +1224,7 @@ AntdTable.propTypes = {
             // 设置列对齐方式，可选项有'left'、'center'、'right'
             align: PropTypes.oneOf(['left', 'center', 'right']),
 
-            // 自定义列像素宽度
+            // 自定义列宽度
             width: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
 
             // 防止状态更新报错占位用，无实际意义
@@ -1449,6 +1460,17 @@ AntdTable.propTypes = {
                     checkedChildren: PropTypes.string,
                     // 设置“关”状态下标签信息
                     unCheckedChildren: PropTypes.string
+                }),
+
+                // row-merge模式
+                PropTypes.exact({
+                    // 设置单元格数值内容
+                    content: PropTypes.oneOfType([
+                        PropTypes.number,
+                        PropTypes.string
+                    ]),
+                    // 设置从当前单元格开始向后合并的单元格数量，0则代表不向后合并
+                    rowSpan: PropTypes.number
                 })
             ])
         )

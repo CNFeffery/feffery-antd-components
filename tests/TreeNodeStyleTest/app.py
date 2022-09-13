@@ -26,7 +26,7 @@ app.layout = html.Div(
                                     {
                                         'title': '中国',
                                         'key': '中国',
-                                        'icon_name': 'table',
+                                        'icon': 'antd-table',
                                         'style': {
                                             'color': 'red'
                                         }
