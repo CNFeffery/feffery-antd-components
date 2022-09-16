@@ -41,6 +41,8 @@ Keyword arguments:
 
         `renderOptions` is a dict with keys:
 
+        - progressOneHundredPercentColor (string; optional)
+
         - renderButtonPopConfirmProps (dict; optional)
 
             `renderButtonPopConfirmProps` is a dict with keys:
@@ -54,6 +56,8 @@ Keyword arguments:
         - renderLinkText (string; optional)
 
         - renderType (a value equal to: 'link', 'ellipsis', 'mini-line', 'mini-bar', 'mini-progress', 'mini-ring-progress', 'mini-area', 'tags', 'button', 'copyable', 'status-badge', 'image', 'custom-format', 'ellipsis-copyable', 'corner-mark', 'checkbox', 'switch', 'row-merge'; optional)
+
+        - ringProgressFontSize (number; optional)
 
         - tooltipCustomContent (string; optional)
 

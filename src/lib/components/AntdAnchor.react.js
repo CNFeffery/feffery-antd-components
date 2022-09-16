@@ -6,81 +6,78 @@ import 'antd/dist/antd.css';
 const { Link } = Anchor;
 
 // 定义锚点组件AntdAnchor，api参数参考https://ant.design/components/anchor-cn/
-export default class AntdAnchor extends Component {
-    render() {
-        // 取得必要属性或参数
-        let {
-            id,
-            className,
-            style,
-            key,
-            linkDict,
-            align,
-            containerId,
-            targetOffset,
-            affix,
-            bounds,
-            offsetTop,
-            loading_state
-        } = this.props;
+const AntdAnchor = (props) => {
+    // 取得必要属性或参数
+    let {
+        id,
+        className,
+        style,
+        key,
+        linkDict,
+        align,
+        containerId,
+        targetOffset,
+        affix,
+        bounds,
+        offsetTop,
+        loading_state
+    } = props;
 
+    const renderAnchorTree = (obj) => {
+        // 当anchorObj类型为对象时
+        if (obj.hasOwnProperty('href')) {
+            //当anchorObj具有children属性时
+            if (obj.hasOwnProperty('children')) {
 
-        function renderAnchorTree(obj) {
-            // 当anchorObj类型为对象时
-            if (obj.hasOwnProperty('href')) {
-                //当anchorObj具有children属性时
-                if (obj.hasOwnProperty('children')) {
-
-                    obj = <Link
-                        href={obj.href}
-                        title={obj.title}
-                    >
-                        {renderAnchorTree(obj.children)}
-                    </Link>
-
-                } else {
-
-                    obj = <Link
-                        href={obj.href}
-                        title={obj.title}
-                    />
-                }
+                obj = <Link
+                    href={obj.href}
+                    title={obj.title}
+                >
+                    {renderAnchorTree(obj.children)}
+                </Link>
 
             } else {
-                for (let i = 0; i < obj.length; i++) {
-                    obj[i] = renderAnchorTree(obj[i])
-                }
+
+                obj = <Link
+                    href={obj.href}
+                    title={obj.title}
+                />
             }
 
-            return obj;
+        } else {
+            for (let i = 0; i < obj.length; i++) {
+                obj[i] = renderAnchorTree(obj[i])
+            }
         }
 
-        linkDict = renderAnchorTree(linkDict)
-
-        return (
-            <div
-                style={{ float: align }}
-                data-dash-is-loading={
-                    (loading_state && loading_state.is_loading) || undefined
-                }
-            >
-                {
-                    <Anchor
-                        id={id}
-                        className={className}
-                        style={style}
-                        key={key}
-                        getContainer={containerId ? () => document.getElementById(containerId) : containerId}
-                        targetOffset={targetOffset}
-                        affix={affix}
-                        bounds={bounds}
-                        offsetTop={offsetTop}>
-                        {linkDict}
-                    </Anchor>
-                }
-            </div>
-        );
+        return obj;
     }
+
+    return (
+        <div
+            style={{ float: align }}
+            data-dash-is-loading={
+                (loading_state && loading_state.is_loading) || undefined
+            }
+        >
+            {
+                <Anchor
+                    id={id}
+                    className={className}
+                    style={style}
+                    key={key}
+                    getContainer={containerId ? (
+                        document.getElementById(containerId) ? () => document.getElementById(containerId) : undefined
+                    ) : undefined}
+                    targetOffset={targetOffset}
+                    affix={affix}
+                    bounds={bounds}
+                    offsetTop={offsetTop}>
+                    {renderAnchorTree(linkDict)}
+                </Anchor>
+            }
+        </div>
+    );
 }
 
 // 定义递归PropTypes
@@ -157,3 +154,6 @@ AntdAnchor.propTypes = {
 AntdAnchor.defaultProps = {
     align: 'right'
 }
+
+
+export default AntdAnchor;

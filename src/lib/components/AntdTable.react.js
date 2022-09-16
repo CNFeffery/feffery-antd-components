@@ -895,7 +895,7 @@ class AntdTable extends Component {
                             padding: 0,
                             data: data,
                             animation: miniChartAnimation,
-                            smooth: true,
+                            smooth: true
                         };
                         // 检查是否设置了tooltipCustomContent参数
                         if (columns[i]['renderOptions']?.tooltipCustomContent) {
@@ -938,7 +938,12 @@ class AntdTable extends Component {
                             padding: 0,
                             percent: data,
                             animation: miniChartAnimation,
-                            color: ['#5B8FF9', '#E8EDF3'],
+                            color: [
+                                data === 1 ?
+                                    (columns[i]['renderOptions']['progressOneHundredPercentColor'] || '#52c41a') :
+                                    '#5B8FF9',
+                                '#E8EDF3'
+                            ]
                         };
                         return <div style={{ height: miniChartHeight }}><Progress {...config} /></div>;
                     }
@@ -951,7 +956,19 @@ class AntdTable extends Component {
                             padding: 0,
                             percent: data,
                             animation: miniChartAnimation,
-                            color: ['#5B8FF9', '#E8EDF3'],
+                            color: [
+                                data === 1 ?
+                                    (columns[i]['renderOptions']['progressOneHundredPercentColor'] || '#52c41a') :
+                                    '#5B8FF9',
+                                '#E8EDF3'
+                            ],
+                            statistic: {
+                                content: {
+                                    style: {
+                                        fontSize: columns[i]['renderOptions']['ringProgressFontSize']
+                                    }
+                                }
+                            }
                         };
                         return <div style={{ height: miniChartHeight }}><RingProgress {...config} /></div>;
                     }
@@ -1212,7 +1229,15 @@ AntdTable.propTypes = {
 
                 // 当renderType='mini-line'、'mini-area'或'mini-bar'时
                 // 用于设置渲染tooltip所使用到的自定义格式化函数字符串
-                tooltipCustomContent: PropTypes.string
+                tooltipCustomContent: PropTypes.string,
+
+                // 若当前字段再渲染模式为mini-progress或mini-ring-progress时生效
+                // 用于设置进度为1时的填充色，默认为#52c41a
+                progressOneHundredPercentColor: PropTypes.string,
+
+                // 若当前字段再渲染模式为mini-ring-progress时生效
+                // 用于设置百分比文字字体像素大小
+                ringProgressFontSize: PropTypes.number
             }),
 
             // 列固定对齐方式，可选项有'left'、'right'
