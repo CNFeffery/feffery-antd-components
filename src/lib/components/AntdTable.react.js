@@ -4,7 +4,7 @@ import { Table, Checkbox, Switch, Popover, Popconfirm, ConfigProvider, Typograph
 import { TinyLine, TinyArea, TinyColumn, Progress, RingProgress } from '@ant-design/charts';
 import Highlighter from 'react-highlight-words';
 import { SearchOutlined, QuestionCircleOutlined } from '@ant-design/icons';
-import { isNumber, isEqual, cloneDeep } from 'lodash';
+import { isNumber, isEqual } from 'lodash';
 import { str2Locale } from './locales.react';
 import 'antd/dist/antd.css';
 import './styles.css';
@@ -338,6 +338,7 @@ class AntdTable extends Component {
             expandRowByClick,
             enableCellClickListenColumns,
             nClicksCell,
+            emptyContent,
             loading_state
         } = this.props;
 
@@ -1116,7 +1117,10 @@ class AntdTable extends Component {
         }
 
         return (
-            <ConfigProvider locale={str2Locale.get(locale)}>
+            <ConfigProvider
+                locale={str2Locale.get(locale)}
+                renderEmpty={emptyContent ? () => emptyContent : undefined}
+            >
                 <Table
                     id={id}
                     className={className}
@@ -1721,6 +1725,9 @@ AntdTable.propTypes = {
 
     // 记录单元格单击事件发生的总次数
     nClicksCell: PropTypes.number,
+
+    // 自定义空数据状态内容
+    emptyContent: PropTypes.node,
 
     loading_state: PropTypes.shape({
         /**
