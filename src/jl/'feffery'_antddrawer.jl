@@ -13,7 +13,7 @@ An AntdDrawer component.
 Keyword arguments:
 - `children` (a list of or a singular dash component, string or number; optional)
 - `id` (String; optional)
-- `className` (String; optional)
+- `className` (String | Dict; optional)
 - `closable` (Bool; optional)
 - `containerId` (String; optional)
 - `destroyOnClose` (Bool; optional)

@@ -25,7 +25,7 @@ Keyword arguments:
 
     - size (number | a value equal to: 'large', 'small', 'default'; optional)
 
-- className (string; optional)
+- className (string | dict; optional)
 
 - debug (boolean; default False)
 

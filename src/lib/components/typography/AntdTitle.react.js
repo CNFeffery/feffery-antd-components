@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Typography, ConfigProvider } from 'antd';
+import { useCss } from 'react-use';
+import { isString } from 'lodash';
 import { str2Locale } from '../locales.react';
 import 'antd/dist/antd.css';
 import { parseChildrenToArray } from '../utils';
@@ -38,7 +40,11 @@ export default class AntdTitle extends Component {
         return (
             <ConfigProvider locale={str2Locale.get(locale)}>
                 <Title id={id}
-                    className={className}
+                    className={
+                        isString(className) ?
+                            className :
+                            useCss(className)
+                    }
                     style={style}
                     key={key}
                     level={level}
@@ -73,7 +79,10 @@ AntdTitle.propTypes = {
     children: PropTypes.node,
 
     // css类名
-    className: PropTypes.string,
+    className: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.object
+    ]),
 
     // 自定义css字典
     style: PropTypes.object,

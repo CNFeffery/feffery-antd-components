@@ -14,7 +14,7 @@ Keyword arguments:
 - `children` (a list of or a singular dash component, string or number; optional)
 - `id` (String; optional)
 - `block` (Bool; optional)
-- `className` (String; optional)
+- `className` (String | Dict; optional)
 - `danger` (Bool; optional)
 - `debounceWait` (Real; optional)
 - `disabled` (Bool; optional)

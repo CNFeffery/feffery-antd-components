@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import { Statistic, Space } from 'antd';
 import AntdTooltip from './AntdTooltip.react';
 import AntdIcon from './AntdIcon.react';
+import { useCss } from 'react-use';
+import { isString } from 'lodash';
 import { QuestionCircleOutlined } from "@ant-design/icons";
 import 'antd/dist/antd.css';
 
@@ -29,7 +31,11 @@ export default class AntdStatistic extends Component {
 
         return (
             <Statistic id={id}
-                className={className}
+                className={
+                    isString(className) ?
+                        className :
+                        useCss(className)
+                }
                 style={style}
                 key={key}
                 value={value}
@@ -72,7 +78,10 @@ AntdStatistic.propTypes = {
     id: PropTypes.string,
 
     // css类名
-    className: PropTypes.string,
+    className: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.object
+    ]),
 
     // 自定义css字典
     style: PropTypes.object,

@@ -13,7 +13,7 @@ Keyword arguments:
 
 - alt (string; optional)
 
-- className (string; optional)
+- className (string | dict; optional)
 
 - gap (number; optional)
 

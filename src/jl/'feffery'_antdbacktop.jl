@@ -9,7 +9,7 @@ An AntdBackTop component.
 
 Keyword arguments:
 - `id` (String; optional)
-- `className` (String; optional)
+- `className` (String | Dict; optional)
 - `containerId` (String; optional)
 - `duration` (Real; optional)
 - `key` (String; optional)

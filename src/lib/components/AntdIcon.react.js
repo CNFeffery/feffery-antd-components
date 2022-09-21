@@ -1,5 +1,7 @@
 import { str2Icon } from './icons.react';
 import PropTypes from 'prop-types';
+import { useCss } from 'react-use';
+import { isString } from 'lodash';
 import 'antd/dist/antd.css';
 import { useRequest } from 'ahooks';
 
@@ -33,7 +35,11 @@ const AntdIcon = (props) => {
     if (icon) {
         return (
             <span id={id}
-                className={className}
+                className={
+                    isString(className) ?
+                        className :
+                        useCss(className)
+                }
                 style={
                     (
                         icon.startsWith('fc-') ||
@@ -64,7 +70,10 @@ AntdIcon.propTypes = {
     id: PropTypes.string,
 
     // css类名
-    className: PropTypes.string,
+    className: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.object
+    ]),
 
     // 用于指定icon类型,
     icon: PropTypes.string,

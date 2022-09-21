@@ -2,6 +2,8 @@ import React, { useCallback } from 'react';
 import PropTypes from 'prop-types';
 import { Card, Button, ConfigProvider, Image as Image_ } from 'antd';
 import zhCN from 'antd/lib/locale/zh_CN';
+import { useCss } from 'react-use';
+import { isString } from 'lodash';
 import { Gluejar } from '@charliewilco/gluejar'
 import { DeleteOutlined } from '@ant-design/icons';
 import './styles.css'
@@ -73,7 +75,11 @@ const AntdPasteImage = (props) => {
 
     return (
         <div id={id}
-            className={className}
+            className={
+                isString(className) ?
+                    className :
+                    useCss(className)
+            }
             style={style}
             key={key}
             data-dash-is-loading={
@@ -125,7 +131,10 @@ AntdPasteImage.propTypes = {
     id: PropTypes.string,
 
     // css类名
-    className: PropTypes.string,
+    className: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.object
+    ]),
 
     // 自定义css字典
     style: PropTypes.object,

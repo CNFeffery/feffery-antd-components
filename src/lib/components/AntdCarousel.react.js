@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Carousel } from 'antd';
+import { useCss } from 'react-use';
+import { isString } from 'lodash';
 import 'antd/dist/antd.css';
 
 // 定义走马灯组件AntdCarousel，api参数参考https://ant.design/components/carousel-cn/
@@ -24,7 +26,11 @@ export default class AntdCarousel extends Component {
         return (
             <Carousel
                 id={id}
-                className={className}
+                className={
+                    isString(className) ?
+                        className :
+                        useCss(className)
+                }
                 style={style}
                 key={key}
                 autoplay={autoplay}
@@ -48,7 +54,10 @@ AntdCarousel.propTypes = {
     children: PropTypes.node,
 
     // css类名
-    className: PropTypes.string,
+    className: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.object
+    ]),
 
     // 自定义css字典
     style: PropTypes.object,

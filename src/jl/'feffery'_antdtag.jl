@@ -9,7 +9,7 @@ An AntdTag component.
 
 Keyword arguments:
 - `id` (String; optional)
-- `className` (String; optional)
+- `className` (String | Dict; optional)
 - `color` (String; optional)
 - `content` (String; optional)
 - `href` (String; optional)

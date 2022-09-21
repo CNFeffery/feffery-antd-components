@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Layout } from 'antd';
+import { isString } from 'lodash';
+import { useCss } from 'react-use';
 import 'antd/dist/antd.css';
 import { parseChildrenToArray } from '../utils';
 
@@ -37,7 +39,11 @@ export default class AntdSider extends Component {
 
         return (
             <Sider id={id}
-                className={className}
+                className={
+                    isString(className) ?
+                        className :
+                        useCss(className)
+                }
                 style={style}
                 key={key}
                 collapsed={collapsed}
@@ -70,7 +76,10 @@ AntdSider.propTypes = {
     children: PropTypes.node,
 
     // css类名
-    className: PropTypes.string,
+    className: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.object
+    ]),
 
     // 自定义css字典
     style: PropTypes.object,

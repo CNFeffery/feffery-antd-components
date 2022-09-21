@@ -13,7 +13,7 @@ Keyword arguments:
 
 - apiUrl (string; optional)
 
-- className (string; optional)
+- className (string | dict; optional)
 
 - directory (boolean; optional)
 

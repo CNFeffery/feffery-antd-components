@@ -14,7 +14,7 @@ Keyword arguments:
 - `children` (a list of or a singular dash component, string or number; optional): The content of the tab - will only be displayed if this tab is selected
 - `id` (String; optional)
 - `align` (a value equal to: 'top', 'middle', 'bottom'; optional)
-- `className` (String; optional)
+- `className` (String | Dict; optional)
 - `gutter` (optional): . gutter has the following type: Real | Array of Reals | lists containing elements 'xs', 'sm', 'md', 'lg', 'xl', 'xxl'.
 Those elements have the following types:
   - `xs` (Real; optional)

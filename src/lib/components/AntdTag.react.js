@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { useCss } from 'react-use';
+import { isString } from 'lodash';
 import { Tag } from 'antd';
 import 'antd/dist/antd.css';
 
@@ -22,7 +24,12 @@ export default class AntdTag extends Component {
 
         return (
             <Tag id={id}
-                className={className}
+                key={key}
+                className={
+                    isString(className) ?
+                        className :
+                        useCss(className)
+                }
                 style={style}
                 color={color}
                 data-dash-is-loading={
@@ -40,7 +47,10 @@ AntdTag.propTypes = {
     id: PropTypes.string,
 
     // css类名
-    className: PropTypes.string,
+    className: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.object
+    ]),
 
     // 自定义css字典
     style: PropTypes.object,

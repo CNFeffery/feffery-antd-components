@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Row, Col } from 'antd';
+import { Row } from 'antd';
+import { useCss } from 'react-use';
+import { isString } from 'lodash';
 import 'antd/dist/antd.css';
 import { parseChildrenToArray } from '../utils';
 
@@ -26,7 +28,11 @@ export default class AntdRow extends Component {
 
         return (
             <Row id={id}
-                className={className}
+                className={
+                    isString(className) ?
+                        className :
+                        useCss(className)
+                }
                 style={style}
                 key={key}
                 align={align}
@@ -53,7 +59,10 @@ AntdRow.propTypes = {
     children: PropTypes.node,
 
     // css类名
-    className: PropTypes.string,
+    className: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.object
+    ]),
 
     // 自定义css字典
     style: PropTypes.object,

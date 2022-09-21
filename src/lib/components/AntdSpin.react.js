@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 import { Spin } from 'antd';
+import { useCss } from 'react-use';
+import { isString } from 'lodash';
 import 'antd/dist/antd.css';
 import './styles.css'
 import { parseChildrenToArray } from './utils';
@@ -72,11 +74,18 @@ const AntdSpin = (props) => {
     }, [loading_state]);
 
     // 返回定制化的前端组件
-    return (<
-        Spin id={id}
-        className={className}
+    return (<Spin id={id}
+        className={
+            isString(className) ?
+                className :
+                useCss(className)
+        }
         key={key}
-        wrapperClassName={wrapperClassName}
+        wrapperClassName={
+            isString(wrapperClassName) ?
+                wrapperClassName :
+                useCss(wrapperClassName)
+        }
         style={style}
         spinning={showSpinning}
         size={size}
@@ -102,10 +111,16 @@ AntdSpin.propTypes = {
     children: PropTypes.node,
 
     // css类名
-    className: PropTypes.string,
+    className: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.object
+    ]),
 
     // 包装器类名
-    wrapperClassName: PropTypes.string,
+    wrapperClassName: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.object
+    ]),
 
     // 自定义css字典
     style: PropTypes.object,

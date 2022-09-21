@@ -17,7 +17,7 @@ Keyword arguments:
 
 - bounds (number; optional)
 
-- className (string; optional)
+- className (string | dict; optional)
 
 - containerId (string; optional)
 

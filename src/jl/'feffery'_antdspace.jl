@@ -15,7 +15,7 @@ Keyword arguments:
 - `id` (String; optional)
 - `addSplitLine` (Bool; optional)
 - `align` (a value equal to: 'start', 'end', 'center', 'baseline'; optional)
-- `className` (String; optional)
+- `className` (String | Dict; optional)
 - `direction` (a value equal to: 'vertical', 'horizontal'; optional)
 - `key` (String; optional)
 - `loading_state` (optional): . loading_state has the following type: lists containing elements 'is_loading', 'prop_name', 'component_name'.

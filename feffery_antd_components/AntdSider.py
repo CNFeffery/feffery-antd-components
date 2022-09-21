@@ -17,7 +17,7 @@ Keyword arguments:
 
 - breakpoint (a value equal to: 'xs', 'sm', 'md', 'lg', 'xl', 'xxl'; optional)
 
-- className (string; optional)
+- className (string | dict; optional)
 
 - collapsed (boolean; default False)
 

@@ -15,7 +15,7 @@ Keyword arguments:
 
 - autoplay (boolean; optional)
 
-- className (string; optional)
+- className (string | dict; optional)
 
 - dotPosition (a value equal to: 'top', 'bottom', 'left', 'right'; optional)
 

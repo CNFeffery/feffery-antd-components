@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import TextLoop from 'react-text-loop'
 import { Alert } from 'antd';
+import { useCss } from 'react-use';
+import { isString } from 'lodash';
 import Marquee from 'react-fast-marquee';
 import 'antd/dist/antd.css';
 
@@ -28,7 +30,11 @@ export default class AntdAlert extends Component {
         if (messageRenderMode === 'loop-text' && Array.isArray(message)) {
             return (
                 <Alert id={id}
-                    className={className}
+                    className={
+                        isString(className) ?
+                            className :
+                            useCss(className)
+                    }
                     style={style}
                     key={key}
                     message={
@@ -50,7 +56,11 @@ export default class AntdAlert extends Component {
 
         return (
             <Alert id={id}
-                className={className}
+                className={
+                    isString(className) ?
+                        className :
+                        useCss(className)
+                }
                 style={style}
                 key={key}
                 message={
@@ -77,7 +87,10 @@ AntdAlert.propTypes = {
     id: PropTypes.string,
 
     // css类名
-    className: PropTypes.string,
+    className: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.object
+    ]),
 
     // 自定义css字典
     style: PropTypes.object,

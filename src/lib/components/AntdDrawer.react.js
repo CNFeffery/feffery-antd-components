@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { useCss } from 'react-use';
+import { isString } from 'lodash';
 import zhCN from 'antd/lib/locale/zh_CN';
 import { Drawer, ConfigProvider } from 'antd';
 import 'antd/dist/antd.css';
@@ -39,7 +41,11 @@ export default class AntdDrawer extends Component {
             <ConfigProvider locale={zhCN}>
                 <Drawer
                     id={id}
-                    className={className}
+                    className={
+                        isString(className) ?
+                            className :
+                            useCss(className)
+                    }
                     style={containerId ? { ...style, ...{ position: 'absolute' } } : style}
                     key={key}
                     visible={visible}
@@ -74,7 +80,10 @@ AntdDrawer.propTypes = {
     children: PropTypes.node,
 
     // css类名
-    className: PropTypes.string,
+    className: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.object
+    ]),
 
     // 自定义css字典
     style: PropTypes.object,

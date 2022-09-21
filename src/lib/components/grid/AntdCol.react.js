@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Col } from 'antd';
+import { useCss } from 'react-use';
+import { isString } from 'lodash';
 import 'antd/dist/antd.css';
 import { parseChildrenToArray } from '../utils';
 
@@ -34,7 +36,11 @@ export default class AntdCol extends Component {
 
         return (
             <Col id={id}
-                className={className}
+                className={
+                    isString(className) ?
+                        className :
+                        useCss(className)
+                }
                 style={{ height: '100%', ...style }}
                 key={key}
                 span={span}
@@ -69,7 +75,10 @@ AntdCol.propTypes = {
     children: PropTypes.node,
 
     // css类名
-    className: PropTypes.string,
+    className: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.object
+    ]),
 
     // 自定义css字典
     style: PropTypes.object,

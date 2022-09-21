@@ -13,7 +13,7 @@ An AntdCol component.
 Keyword arguments:
 - `children` (a list of or a singular dash component, string or number; optional): The content of the tab - will only be displayed if this tab is selected
 - `id` (String; optional)
-- `className` (String; optional)
+- `className` (String | Dict; optional)
 - `flex` (String | Real; optional)
 - `key` (String; optional)
 - `lg` (optional): . lg has the following type: Real | lists containing elements 'span', 'offset', 'order', 'pull', 'push'.

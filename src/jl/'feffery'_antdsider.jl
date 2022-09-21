@@ -14,7 +14,7 @@ Keyword arguments:
 - `children` (a list of or a singular dash component, string or number; optional): The content of the tab - will only be displayed if this tab is selected
 - `id` (String; optional)
 - `breakpoint` (a value equal to: 'xs', 'sm', 'md', 'lg', 'xl', 'xxl'; optional)
-- `className` (String; optional)
+- `className` (String | Dict; optional)
 - `collapsed` (Bool; optional)
 - `collapsedWidth` (Real; optional)
 - `collapsible` (Bool; optional)

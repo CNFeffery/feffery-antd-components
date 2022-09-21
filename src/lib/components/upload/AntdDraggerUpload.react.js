@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import { v4 as uuidv4 } from 'uuid';
 import { Upload, message, ConfigProvider } from 'antd';
 import AntdIcon from '../AntdIcon.react';
+import { useCss } from 'react-use';
+import { isString } from 'lodash';
 import { str2Locale } from '../locales.react';
 import 'antd/dist/antd.css';
 
@@ -237,7 +239,11 @@ const AntdDraggerUpload = (props) => {
     return (
         <ConfigProvider locale={str2Locale.get(locale)}>
             <div id={id}
-                className={className}
+                className={
+                    isString(className) ?
+                        className :
+                        useCss(className)
+                }
                 style={style}
                 key={key}>
                 <Dragger
@@ -268,7 +274,10 @@ AntdDraggerUpload.propTypes = {
     id: PropTypes.string,
 
     // css类名
-    className: PropTypes.string,
+    className: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.object
+    ]),
 
     // 自定义css字典
     style: PropTypes.object,

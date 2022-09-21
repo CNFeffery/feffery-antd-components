@@ -19,7 +19,7 @@ Keyword arguments:
 
 - align (a value equal to: 'start', 'end', 'center', 'baseline'; optional)
 
-- className (string; optional)
+- className (string | dict; optional)
 
 - direction (a value equal to: 'vertical', 'horizontal'; default 'horizontal')
 

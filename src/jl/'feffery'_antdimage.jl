@@ -10,7 +10,7 @@ An AntdImage component.
 Keyword arguments:
 - `id` (String; optional)
 - `alt` (String; optional)
-- `className` (String; optional)
+- `className` (String | Dict; optional)
 - `fallback` (String; optional)
 - `height` (Real | String; optional)
 - `key` (String; optional)

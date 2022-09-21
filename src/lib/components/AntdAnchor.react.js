@@ -1,5 +1,7 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
+import { useCss } from 'react-use';
+import { isString } from 'lodash';
 import { Anchor } from 'antd';
 import 'antd/dist/antd.css';
 
@@ -63,7 +65,11 @@ const AntdAnchor = (props) => {
             {
                 <Anchor
                     id={id}
-                    className={className}
+                    className={
+                        isString(className) ?
+                            className :
+                            useCss(className)
+                    }
                     style={style}
                     key={key}
                     getContainer={containerId ? (
@@ -99,7 +105,10 @@ AntdAnchor.propTypes = {
     id: PropTypes.string,
 
     // css类名
-    className: PropTypes.string,
+    className: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.object
+    ]),
 
     // 自定义css字典
     style: PropTypes.object,

@@ -11,7 +11,7 @@ Keyword arguments:
 
 - id (string; optional)
 
-- className (string; default 'feffery-paste-image-container')
+- className (string | dict; default 'feffery-paste-image-container')
 
 - currentPastedImages (list of boolean | number | string | dict | lists; optional)
 

@@ -13,7 +13,7 @@ An AntdSpin component.
 Keyword arguments:
 - `children` (a list of or a singular dash component, string or number; optional): The content of the tab - will only be displayed if this tab is selected
 - `id` (String; optional)
-- `className` (String; optional)
+- `className` (String | Dict; optional)
 - `debug` (Bool; optional)
 - `delay` (Real; optional)
 - `excludeProps` (Array of Strings; optional)
@@ -29,7 +29,7 @@ Those elements have the following types:
 - `spinning` (Bool; optional)
 - `style` (Dict; optional)
 - `text` (String; optional)
-- `wrapperClassName` (String; optional)
+- `wrapperClassName` (String | Dict; optional)
 """
 function 'feffery'_antdspin(; kwargs...)
         available_props = Symbol[:children, :id, :className, :debug, :delay, :excludeProps, :includeProps, :indicator, :listenPropsMode, :loading_state, :size, :spinning, :style, :text, :wrapperClassName]

@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 import { Skeleton } from 'antd';
+import { useCss } from 'react-use';
+import { isString } from 'lodash';
 import 'antd/dist/antd.css';
 import { parseChildrenToArray } from '../utils';
 
@@ -74,7 +76,11 @@ const AntdSkeleton = (props) => {
     return (
         <Skeleton
             id={id}
-            className={className}
+            className={
+                isString(className) ?
+                    className :
+                    useCss(className)
+            }
             style={style}
             key={key}
             loading={showLoading}
@@ -101,7 +107,10 @@ AntdSkeleton.propTypes = {
     children: PropTypes.node,
 
     // css类名
-    className: PropTypes.string,
+    className: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.object
+    ]),
 
     // 自定义css字典
     style: PropTypes.object,

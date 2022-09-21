@@ -10,7 +10,7 @@ An AntdDraggerUpload component.
 Keyword arguments:
 - `id` (String; optional)
 - `apiUrl` (String; optional)
-- `className` (String; optional)
+- `className` (String | Dict; optional)
 - `directory` (Bool; optional)
 - `failedTooltipInfo` (String; optional)
 - `fileListMaxLength` (Real; optional)

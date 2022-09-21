@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
-import { Skeleton } from 'antd';
+import { isString } from 'lodash';
+import { useCss } from 'react-use';
 import 'antd/dist/antd.css';
 import { parseChildrenToArray } from '../utils';
 
@@ -70,7 +71,11 @@ const AntdCustomSkeleton = (props) => {
     return (
         <div
             id={id}
-            className={className}
+            className={
+                isString(className) ?
+                    className :
+                    useCss(className)
+            }
             style={style}
             key={key}
             data-dash-is-loading={
@@ -94,7 +99,10 @@ AntdCustomSkeleton.propTypes = {
     skeletonContent: PropTypes.node,
 
     // css类名
-    className: PropTypes.string,
+    className: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.object
+    ]),
 
     // 自定义css字典
     style: PropTypes.object,

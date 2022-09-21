@@ -10,7 +10,7 @@ An AntdAvatar component.
 Keyword arguments:
 - `id` (String; optional)
 - `alt` (String; optional)
-- `className` (String; optional)
+- `className` (String | Dict; optional)
 - `gap` (Real; optional)
 - `icon` (String; optional)
 - `key` (String; optional)

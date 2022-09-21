@@ -14,7 +14,7 @@ Keyword arguments:
 - `children` (a list of or a singular dash component, string or number; optional)
 - `id` (String; optional)
 - `autoplay` (Bool; optional)
-- `className` (String; optional)
+- `className` (String | Dict; optional)
 - `dotPosition` (a value equal to: 'top', 'bottom', 'left', 'right'; optional)
 - `easing` (String; optional)
 - `effect` (a value equal to: 'scrollx', 'fade'; optional)

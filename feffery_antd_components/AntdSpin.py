@@ -15,7 +15,7 @@ Keyword arguments:
 
 - id (string; optional)
 
-- className (string; optional)
+- className (string | dict; optional)
 
 - debug (boolean; default False)
 
@@ -50,7 +50,7 @@ Keyword arguments:
 
 - text (string; optional)
 
-- wrapperClassName (string; optional)"""
+- wrapperClassName (string | dict; optional)"""
     _children_props = ['indicator']
     _base_nodes = ['indicator', 'children']
     _namespace = 'feffery_antd_components'

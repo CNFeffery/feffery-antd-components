@@ -13,7 +13,7 @@ An AntdTitle component.
 Keyword arguments:
 - `children` (a list of or a singular dash component, string or number; optional): The content of the tab - will only be displayed if this tab is selected
 - `id` (String; optional)
-- `className` (String; optional)
+- `className` (String | Dict; optional)
 - `code` (Bool; optional)
 - `copyable` (Bool; optional)
 - `disabled` (Bool; optional)

@@ -9,7 +9,7 @@ An AntdIcon component.
 
 Keyword arguments:
 - `id` (String; optional)
-- `className` (String; optional)
+- `className` (String | Dict; optional)
 - `debounceWait` (Real; optional)
 - `icon` (String; optional)
 - `key` (String; optional)

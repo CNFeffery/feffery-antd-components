@@ -10,7 +10,7 @@ An AntdAlert component.
 Keyword arguments:
 - `id` (String; optional)
 - `action` (a list of or a singular dash component, string or number; optional)
-- `className` (String; optional)
+- `className` (String | Dict; optional)
 - `closable` (Bool; optional)
 - `description` (a list of or a singular dash component, string or number; optional)
 - `key` (String; optional)

@@ -9,7 +9,7 @@ An AntdPasteImage component.
 
 Keyword arguments:
 - `id` (String; optional)
-- `className` (String; optional)
+- `className` (String | Dict; optional)
 - `currentPastedImages` (Array of Bool | Real | String | Dict | Arrays; optional)
 - `deletedIdx` (Array of Reals; optional)
 - `imageHeight` (Real; optional)

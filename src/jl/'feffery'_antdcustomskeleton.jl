@@ -13,7 +13,7 @@ An AntdCustomSkeleton component.
 Keyword arguments:
 - `children` (a list of or a singular dash component, string or number; optional)
 - `id` (String; optional)
-- `className` (String; optional)
+- `className` (String | Dict; optional)
 - `debug` (Bool; optional)
 - `excludeProps` (Array of Strings; optional)
 - `includeProps` (Array of Strings; optional)

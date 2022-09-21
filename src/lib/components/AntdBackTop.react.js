@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { useCss } from 'react-use';
+import { isString } from 'lodash';
 import { BackTop } from 'antd';
 import 'antd/dist/antd.css';
 
@@ -21,7 +23,11 @@ export default class AntdBackTop extends Component {
 
         return (
             <BackTop id={id}
-                className={className}
+                className={
+                    isString(className) ?
+                        className :
+                        useCss(className)
+                }
                 style={style}
                 key={key}
                 target={containerId ? () => document.getElementById(containerId) : () => window}
@@ -40,7 +46,10 @@ AntdBackTop.propTypes = {
     id: PropTypes.string,
 
     // css类名
-    className: PropTypes.string,
+    className: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.object
+    ]),
 
     // 自定义css字典
     style: PropTypes.object,

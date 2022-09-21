@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import { useCss } from 'react-use';
+import { isString } from 'lodash';
 import { Image, ConfigProvider } from 'antd';
 import { str2Locale } from './locales.react';
 import 'antd/dist/antd.css';
@@ -33,7 +35,11 @@ const AntdImage = (props) => {
                     <Image
                         id={id}
                         style={style}
-                        className={className}
+                        className={
+                            isString(className) ?
+                                className :
+                                useCss(className)
+                        }
                         key={key}
                         preview={{ visible: false }}
                         width={width}
@@ -56,7 +62,11 @@ const AntdImage = (props) => {
                 <ConfigProvider locale={str2Locale.get(locale)}>
                     <Image.PreviewGroup id={id}
                         style={style}
-                        className={className}
+                        className={
+                            isString(className) ?
+                                className :
+                                useCss(className)
+                        }
                         key={key}>
                         {src.map(
                             src_ => <Image src={src_} fallback={fallback} width={width} height={height} />
@@ -90,7 +100,10 @@ AntdImage.propTypes = {
     id: PropTypes.string,
 
     // css类名
-    className: PropTypes.string,
+    className: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.object
+    ]),
 
     // 自定义css字典
     style: PropTypes.object,

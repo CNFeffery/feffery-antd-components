@@ -12,7 +12,7 @@ Keyword arguments:
 - `affix` (Bool; optional)
 - `align` (a value equal to: 'left', 'right'; optional)
 - `bounds` (Real; optional)
-- `className` (String; optional)
+- `className` (String | Dict; optional)
 - `containerId` (String; optional)
 - `key` (String; optional)
 - `linkDict` (optional)

@@ -1,5 +1,7 @@
 import PropTypes from 'prop-types';
 import { Button } from 'antd';
+import { useCss } from 'react-use';
+import { isString } from 'lodash';
 import 'antd/dist/antd.css';
 import { useRequest } from 'ahooks';
 
@@ -45,7 +47,11 @@ const AntdButton = (props) => {
     return (
         <Button
             id={id}
-            className={className}
+            className={
+                isString(className) ?
+                    className :
+                    useCss(className)
+            }
             style={style}
             key={key}
             type={type}
@@ -76,7 +82,10 @@ AntdButton.propTypes = {
     children: PropTypes.node,
 
     // css类名
-    className: PropTypes.string,
+    className: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.object
+    ]),
 
     // 自定义css字典
     style: PropTypes.object,

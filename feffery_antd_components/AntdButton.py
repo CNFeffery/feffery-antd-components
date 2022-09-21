@@ -15,7 +15,7 @@ Keyword arguments:
 
 - block (boolean; default False)
 
-- className (string; optional)
+- className (string | dict; optional)
 
 - danger (boolean; default False)
 

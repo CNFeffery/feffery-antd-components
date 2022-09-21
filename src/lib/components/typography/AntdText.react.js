@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Typography, ConfigProvider } from 'antd';
 import { str2Locale } from '../locales.react';
+import { useCss } from 'react-use';
+import { isString } from 'lodash';
 import 'antd/dist/antd.css';
 import { parseChildrenToArray } from '../utils';
 
@@ -37,7 +39,11 @@ export default class AntdText extends Component {
         return (
             <ConfigProvider locale={str2Locale.get(locale)}>
                 <Text id={id}
-                    className={className}
+                    className={
+                        isString(className) ?
+                            className :
+                            useCss(className)
+                    }
                     style={style}
                     key={key}
                     code={code}
@@ -71,7 +77,10 @@ AntdText.propTypes = {
     children: PropTypes.node,
 
     // css类名
-    className: PropTypes.string,
+    className: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.object
+    ]),
 
     // 自定义css字典
     style: PropTypes.object,

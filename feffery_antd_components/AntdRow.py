@@ -17,7 +17,7 @@ Keyword arguments:
 
 - align (a value equal to: 'top', 'middle', 'bottom'; optional)
 
-- className (string; optional)
+- className (string | dict; optional)
 
 - gutter (dict; optional)
 

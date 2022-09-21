@@ -19,7 +19,7 @@ Those elements have the following types:
   - `active` (Bool; optional)
   - `shape` (a value equal to: 'circle', 'square'; optional)
   - `size` (Real | a value equal to: 'large', 'small', 'default'; optional)
-- `className` (String; optional)
+- `className` (String | Dict; optional)
 - `debug` (Bool; optional)
 - `excludeProps` (Array of Strings; optional)
 - `includeProps` (Array of Strings; optional)
