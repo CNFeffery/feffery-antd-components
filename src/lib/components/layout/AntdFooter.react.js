@@ -9,37 +9,35 @@ import { parseChildrenToArray } from '../utils';
 const { Footer } = Layout;
 
 // 定义页尾组件AntdFooter，api参数参考https://ant.design/components/layout-cn/
-export default class AntdFooter extends Component {
-    render() {
-        // 取得必要属性或参数
-        let {
-            id,
-            children,
-            className,
-            style,
-            key,
-            setProps,
-            loading_state
-        } = this.props;
+const AntdFooter = (props) => {
+    // 取得必要属性或参数
+    let {
+        id,
+        children,
+        className,
+        style,
+        key,
+        setProps,
+        loading_state
+    } = props;
 
-        children = parseChildrenToArray(children)
+    children = parseChildrenToArray(children)
 
-        return (
-            <Footer id={id}
-                className={
-                    isString(className) ?
-                        className :
-                        useCss(className)
-                }
-                style={style}
-                key={key}
-                data-dash-is-loading={
-                    (loading_state && loading_state.is_loading) || undefined
-                }>
-                {children}
-            </Footer>
-        );
-    }
+    return (
+        <Footer id={id}
+            className={
+                isString(className) ?
+                    className :
+                    useCss(className)
+            }
+            style={style}
+            key={key}
+            data-dash-is-loading={
+                (loading_state && loading_state.is_loading) || undefined
+            }>
+            {children}
+        </Footer>
+    );
 }
 
 // 定义参数或属性
@@ -89,3 +87,5 @@ AntdFooter.propTypes = {
 // 设置默认参数
 AntdFooter.defaultProps = {
 }
+
+export default AntdFooter;

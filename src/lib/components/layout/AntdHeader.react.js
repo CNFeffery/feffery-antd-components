@@ -9,37 +9,35 @@ import { parseChildrenToArray } from '../utils';
 const { Header } = Layout;
 
 // 定义页首组件AntdHeader，api参数参考https://ant.design/components/layout-cn/
-export default class AntdHeader extends Component {
-    render() {
-        // 取得必要属性或参数
-        let {
-            id,
-            children,
-            className,
-            style,
-            key,
-            setProps,
-            loading_state
-        } = this.props;
+const AntdHeader = (props) => {
+    // 取得必要属性或参数
+    let {
+        id,
+        children,
+        className,
+        style,
+        key,
+        setProps,
+        loading_state
+    } = props;
 
-        children = parseChildrenToArray(children)
+    children = parseChildrenToArray(children)
 
-        return (
-            <Header id={id}
-                className={
-                    isString(className) ?
-                        className :
-                        useCss(className)
-                }
-                style={style}
-                key={key}
-                data-dash-is-loading={
-                    (loading_state && loading_state.is_loading) || undefined
-                }>
-                {children}
-            </Header>
-        );
-    }
+    return (
+        <Header id={id}
+            className={
+                isString(className) ?
+                    className :
+                    useCss(className)
+            }
+            style={style}
+            key={key}
+            data-dash-is-loading={
+                (loading_state && loading_state.is_loading) || undefined
+            }>
+            {children}
+        </Header>
+    );
 }
 
 // 定义参数或属性
@@ -89,3 +87,5 @@ AntdHeader.propTypes = {
 // 设置默认参数
 AntdHeader.defaultProps = {
 }
+
+export default AntdHeader;

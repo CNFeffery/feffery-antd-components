@@ -6,38 +6,36 @@ import { BackTop } from 'antd';
 import 'antd/dist/antd.css';
 
 // 定义回到顶部组件AntdBackTop，api参数参考https://ant.design/components/back-top-cn/
-export default class AntdBackTop extends Component {
-    render() {
-        // 取得必要属性或参数
-        let {
-            id,
-            className,
-            style,
-            key,
-            duration,
-            visibilityHeight,
-            containerId,
-            setProps,
-            loading_state
-        } = this.props;
+const AntdBackTop = (props) => {
+    // 取得必要属性或参数
+    let {
+        id,
+        className,
+        style,
+        key,
+        duration,
+        visibilityHeight,
+        containerId,
+        setProps,
+        loading_state
+    } = props;
 
-        return (
-            <BackTop id={id}
-                className={
-                    isString(className) ?
-                        className :
-                        useCss(className)
-                }
-                style={style}
-                key={key}
-                target={containerId ? () => document.getElementById(containerId) : () => window}
-                duration={duration * 1000}
-                visibilityHeight={visibilityHeight}
-                data-dash-is-loading={
-                    (loading_state && loading_state.is_loading) || undefined
-                } />
-        );
-    }
+    return (
+        <BackTop id={id}
+            className={
+                isString(className) ?
+                    className :
+                    useCss(className)
+            }
+            style={style}
+            key={key}
+            target={containerId ? () => document.getElementById(containerId) : () => window}
+            duration={duration * 1000}
+            visibilityHeight={visibilityHeight}
+            data-dash-is-loading={
+                (loading_state && loading_state.is_loading) || undefined
+            } />
+    );
 }
 
 // 定义参数或属性
@@ -91,3 +89,5 @@ AntdBackTop.propTypes = {
 // 设置默认参数
 AntdBackTop.defaultProps = {
 }
+
+export default AntdBackTop;

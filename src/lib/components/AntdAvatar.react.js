@@ -7,92 +7,89 @@ import AntdIcon from './AntdIcon.react';
 import 'antd/dist/antd.css';
 
 // 定义头像组件AntdAvatar，api参数参考https://ant.design/components/avatar-cn/
-export default class AntdAvatar extends Component {
-    render() {
-        // 取得必要属性或参数
-        let {
-            id,
-            className,
-            style,
-            key,
-            mode,
-            text,
-            src,
-            srcSet,
-            icon,
-            alt,
-            gap,
-            size,
-            shape,
-            loading_state,
-            setProps
-        } = this.props;
+const AntdAvatar = (props) => {
+    // 取得必要属性或参数
+    let {
+        id,
+        className,
+        style,
+        key,
+        mode,
+        text,
+        src,
+        srcSet,
+        icon,
+        alt,
+        gap,
+        size,
+        shape,
+        loading_state,
+        setProps
+    } = props;
 
-        // image图片模式
-        if (mode === 'image') {
-            return (
-                <Avatar
-                    id={id}
-                    className={
-                        isString(className) ?
-                            className :
-                            useCss(className)
-                    }
-                    style={style}
-                    key={key}
-                    src={src}
-                    srcSet={srcSet}
-                    alt={alt}
-                    size={size}
-                    shape={shape}
-                    data-dash-is-loading={
-                        (loading_state && loading_state.is_loading) || undefined
-                    }
-                />
-            );
-        } else if (mode === 'text') {
+    // image图片模式
+    if (mode === 'image') {
+        return (
+            <Avatar
+                id={id}
+                className={
+                    isString(className) ?
+                        className :
+                        useCss(className)
+                }
+                style={style}
+                key={key}
+                src={src}
+                srcSet={srcSet}
+                alt={alt}
+                size={size}
+                shape={shape}
+                data-dash-is-loading={
+                    (loading_state && loading_state.is_loading) || undefined
+                }
+            />
+        );
+    } else if (mode === 'text') {
 
-            // text文字模式
-            return (
-                <Avatar
-                    id={id}
-                    className={
-                        isString(className) ?
-                            className :
-                            useCss(className)
-                    }
-                    style={style}
-                    key={key}
-                    gap={gap}
-                    size={size}
-                    shape={shape}
-                    data-dash-is-loading={
-                        (loading_state && loading_state.is_loading) || undefined
-                    }
-                >{text}</Avatar>
-            );
-        } else {
-            // icon图标模式
-            return (
-                <Avatar
-                    id={id}
-                    className={
-                        isString(className) ?
-                            className :
-                            useCss(className)
-                    }
-                    style={style}
-                    key={key}
-                    icon={icon ? <AntdIcon icon={icon} /> : <AntdIcon icon={'antd-user'} />}
-                    size={size}
-                    shape={shape}
-                    data-dash-is-loading={
-                        (loading_state && loading_state.is_loading) || undefined
-                    }
-                />
-            );
-        }
-
+        // text文字模式
+        return (
+            <Avatar
+                id={id}
+                className={
+                    isString(className) ?
+                        className :
+                        useCss(className)
+                }
+                style={style}
+                key={key}
+                gap={gap}
+                size={size}
+                shape={shape}
+                data-dash-is-loading={
+                    (loading_state && loading_state.is_loading) || undefined
+                }
+            >{text}</Avatar>
+        );
+    } else {
+        // icon图标模式
+        return (
+            <Avatar
+                id={id}
+                className={
+                    isString(className) ?
+                        className :
+                        useCss(className)
+                }
+                style={style}
+                key={key}
+                icon={icon ? <AntdIcon icon={icon} /> : <AntdIcon icon={'antd-user'} />}
+                size={size}
+                shape={shape}
+                data-dash-is-loading={
+                    (loading_state && loading_state.is_loading) || undefined
+                }
+            />
+        );
     }
 }
 
@@ -182,3 +179,5 @@ AntdAvatar.propTypes = {
 AntdAvatar.defaultProps = {
     mode: 'icon'
 }
+
+export default AntdAvatar;

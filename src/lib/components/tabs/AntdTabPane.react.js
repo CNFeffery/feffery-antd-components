@@ -6,45 +6,43 @@ import 'antd/dist/antd.css';
 import { parseChildrenToArray } from '../utils';
 
 // 定义标签页面板组件AntdTabPane，api参数参考https://ant.design/components/tabs-cn/
-export default class AntdTabPane extends Component {
-    render() {
-        // 取得必要属性或参数
-        let {
-            id,
-            children,
-            className,
-            style,
-            tab,
-            key,
-            disabled,
-            closable,
-            titleSideInfoPopover,
-            setProps,
-            loading_state
-        } = this.props;
+const AntdTabPane = (props) => {
+    // 取得必要属性或参数
+    let {
+        id,
+        children,
+        className,
+        style,
+        tab,
+        key,
+        disabled,
+        closable,
+        titleSideInfoPopover,
+        setProps,
+        loading_state
+    } = props;
 
-        children = parseChildrenToArray(children)
+    children = parseChildrenToArray(children)
 
-        return (
-            <div id={id}
-                className={
-                    isString(className) ?
-                        className :
-                        useCss(className)
-                }
-                style={style}
-                tab={tab}
-                key={key}
-                titleSideInfoPopover={titleSideInfoPopover}
-                disabled={disabled}
-                closable={closable}
-                children={children}
-                data-dash-is-loading={
-                    (loading_state && loading_state.is_loading) || undefined
-                }>
-            </div>
-        );
-    }
+    return (
+        <div id={id}
+            className={
+                isString(className) ?
+                    className :
+                    useCss(className)
+            }
+            style={style}
+            tab={tab}
+            key={key}
+            titleSideInfoPopover={titleSideInfoPopover}
+            disabled={disabled}
+            closable={closable}
+            children={children}
+            data-dash-is-loading={
+                (loading_state && loading_state.is_loading) || undefined
+            }>
+        </div>
+    );
 }
 
 // 定义参数或属性
@@ -112,3 +110,5 @@ AntdTabPane.propTypes = {
 // 设置默认参数
 AntdTabPane.defaultProps = {
 }
+
+export default AntdTabPane;

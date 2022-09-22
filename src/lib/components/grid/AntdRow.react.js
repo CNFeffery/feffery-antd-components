@@ -7,45 +7,43 @@ import 'antd/dist/antd.css';
 import { parseChildrenToArray } from '../utils';
 
 // 定义行组件AntdRow，api参数参考https://ant.design/components/grid-cn/
-export default class AntdRow extends Component {
-    render() {
-        // 取得必要属性或参数
-        let {
-            id,
-            children,
-            className,
-            style,
-            key,
-            align,
-            gutter,
-            justify,
-            wrap,
-            setProps,
-            loading_state
-        } = this.props;
+const AntdRow = (props) => {
+    // 取得必要属性或参数
+    let {
+        id,
+        children,
+        className,
+        style,
+        key,
+        align,
+        gutter,
+        justify,
+        wrap,
+        setProps,
+        loading_state
+    } = props;
 
-        children = parseChildrenToArray(children)
+    children = parseChildrenToArray(children)
 
-        return (
-            <Row id={id}
-                className={
-                    isString(className) ?
-                        className :
-                        useCss(className)
-                }
-                style={style}
-                key={key}
-                align={align}
-                gutter={gutter}
-                justify={justify}
-                wrap={wrap}
-                data-dash-is-loading={
-                    (loading_state && loading_state.is_loading) || undefined
-                }>
-                {children}
-            </Row>
-        );
-    }
+    return (
+        <Row id={id}
+            className={
+                isString(className) ?
+                    className :
+                    useCss(className)
+            }
+            style={style}
+            key={key}
+            align={align}
+            gutter={gutter}
+            justify={justify}
+            wrap={wrap}
+            data-dash-is-loading={
+                (loading_state && loading_state.is_loading) || undefined
+            }>
+            {children}
+        </Row>
+    );
 }
 
 // 定义参数或属性
@@ -121,3 +119,5 @@ AntdRow.propTypes = {
 // 设置默认参数
 AntdRow.defaultProps = {
 }
+
+export default AntdRow;

@@ -7,37 +7,35 @@ import 'antd/dist/antd.css';
 import { parseChildrenToArray } from '../utils';
 
 // 定义布局组件AntdLayout，api参数参考https://ant.design/components/layout-cn/
-export default class AntdLayout extends Component {
-    render() {
-        // 取得必要属性或参数
-        let {
-            id,
-            children,
-            className,
-            style,
-            key,
-            setProps,
-            loading_state
-        } = this.props;
+const AntdLayout = (props) => {
+    // 取得必要属性或参数
+    let {
+        id,
+        children,
+        className,
+        style,
+        key,
+        setProps,
+        loading_state
+    } = props;
 
-        children = parseChildrenToArray(children)
+    children = parseChildrenToArray(children)
 
-        return (
-            <Layout id={id}
-                className={
-                    isString(className) ?
-                        className :
-                        useCss(className)
-                }
-                style={style}
-                key={key}
-                data-dash-is-loading={
-                    (loading_state && loading_state.is_loading) || undefined
-                }>
-                {children}
-            </Layout>
-        );
-    }
+    return (
+        <Layout id={id}
+            className={
+                isString(className) ?
+                    className :
+                    useCss(className)
+            }
+            style={style}
+            key={key}
+            data-dash-is-loading={
+                (loading_state && loading_state.is_loading) || undefined
+            }>
+            {children}
+        </Layout>
+    );
 }
 
 // 定义参数或属性
@@ -87,3 +85,5 @@ AntdLayout.propTypes = {
 // 设置默认参数
 AntdLayout.defaultProps = {
 }
+
+export default AntdLayout;

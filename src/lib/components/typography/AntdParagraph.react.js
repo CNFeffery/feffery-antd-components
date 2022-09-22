@@ -10,58 +10,56 @@ import { parseChildrenToArray } from '../utils';
 const { Paragraph } = Typography;
 
 // 定义段落组件AntdParagraph，api参数参考https://ant.design/components/typography-cn/
-export default class AntdParagraph extends Component {
-    render() {
-        // 取得必要属性或参数
-        let {
-            id,
-            children,
-            className,
-            style,
-            key,
-            locale,
-            code,
-            copyable,
-            strikethrough,
-            disabled,
-            mark,
-            strong,
-            italic,
-            underline,
-            type,
-            setProps,
-            loading_state
-        } = this.props;
+const AntdParagraph = (props) => {
+    // 取得必要属性或参数
+    let {
+        id,
+        children,
+        className,
+        style,
+        key,
+        locale,
+        code,
+        copyable,
+        strikethrough,
+        disabled,
+        mark,
+        strong,
+        italic,
+        underline,
+        type,
+        setProps,
+        loading_state
+    } = props;
 
-        children = parseChildrenToArray(children)
+    children = parseChildrenToArray(children)
 
-        return (
-            <ConfigProvider locale={str2Locale.get(locale)}>
-                <Paragraph id={id}
-                    className={
-                        isString(className) ?
-                            className :
-                            useCss(className)
-                    }
-                    style={style}
-                    key={key}
-                    code={code}
-                    copyable={copyable}
-                    delete={strikethrough}
-                    disabled={disabled}
-                    mark={mark}
-                    strong={strong}
-                    italic={italic}
-                    underline={underline}
-                    type={type}
-                    data-dash-is-loading={
-                        (loading_state && loading_state.is_loading) || undefined
-                    }>
-                    {children}
-                </Paragraph>
-            </ConfigProvider>
-        );
-    }
+    return (
+        <ConfigProvider locale={str2Locale.get(locale)}>
+            <Paragraph id={id}
+                className={
+                    isString(className) ?
+                        className :
+                        useCss(className)
+                }
+                style={style}
+                key={key}
+                code={code}
+                copyable={copyable}
+                delete={strikethrough}
+                disabled={disabled}
+                mark={mark}
+                strong={strong}
+                italic={italic}
+                underline={underline}
+                type={type}
+                data-dash-is-loading={
+                    (loading_state && loading_state.is_loading) || undefined
+                }>
+                {children}
+            </Paragraph>
+        </ConfigProvider>
+    );
 }
 
 // 定义参数或属性
@@ -142,3 +140,5 @@ AntdParagraph.propTypes = {
 AntdParagraph.defaultProps = {
     locale: 'zh-cn'
 }
+
+export default AntdParagraph;

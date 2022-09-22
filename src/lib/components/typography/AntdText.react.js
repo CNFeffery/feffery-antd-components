@@ -10,60 +10,58 @@ import { parseChildrenToArray } from '../utils';
 const { Text } = Typography;
 
 // 定义文字组件AntdText，api参数参考https://ant.design/components/typography-cn/
-export default class AntdText extends Component {
-    render() {
-        // 取得必要属性或参数
-        let {
-            id,
-            children,
-            className,
-            style,
-            key,
-            locale,
-            code,
-            copyable,
-            strikethrough,
-            disabled,
-            mark,
-            strong,
-            italic,
-            underline,
-            type,
-            keyboard,
-            setProps,
-            loading_state
-        } = this.props;
+const AntdText = (props) => {
+    // 取得必要属性或参数
+    let {
+        id,
+        children,
+        className,
+        style,
+        key,
+        locale,
+        code,
+        copyable,
+        strikethrough,
+        disabled,
+        mark,
+        strong,
+        italic,
+        underline,
+        type,
+        keyboard,
+        setProps,
+        loading_state
+    } = props;
 
-        children = parseChildrenToArray(children)
+    children = parseChildrenToArray(children)
 
-        return (
-            <ConfigProvider locale={str2Locale.get(locale)}>
-                <Text id={id}
-                    className={
-                        isString(className) ?
-                            className :
-                            useCss(className)
-                    }
-                    style={style}
-                    key={key}
-                    code={code}
-                    copyable={copyable}
-                    delete={strikethrough}
-                    disabled={disabled}
-                    mark={mark}
-                    strong={strong}
-                    italic={italic}
-                    underline={underline}
-                    type={type}
-                    keyboard={keyboard}
-                    data-dash-is-loading={
-                        (loading_state && loading_state.is_loading) || undefined
-                    }>
-                    {children}
-                </Text>
-            </ConfigProvider>
-        );
-    }
+    return (
+        <ConfigProvider locale={str2Locale.get(locale)}>
+            <Text id={id}
+                className={
+                    isString(className) ?
+                        className :
+                        useCss(className)
+                }
+                style={style}
+                key={key}
+                code={code}
+                copyable={copyable}
+                delete={strikethrough}
+                disabled={disabled}
+                mark={mark}
+                strong={strong}
+                italic={italic}
+                underline={underline}
+                type={type}
+                keyboard={keyboard}
+                data-dash-is-loading={
+                    (loading_state && loading_state.is_loading) || undefined
+                }>
+                {children}
+            </Text>
+        </ConfigProvider>
+    );
 }
 
 // 定义参数或属性
@@ -147,3 +145,5 @@ AntdText.propTypes = {
 AntdText.defaultProps = {
     locale: 'zh-cn'
 }
+
+export default AntdText;

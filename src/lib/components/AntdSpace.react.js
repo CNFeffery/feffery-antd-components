@@ -7,50 +7,28 @@ import 'antd/dist/antd.css';
 import { parseChildrenToArray } from './utils';
 
 // 定义间距组件AntdSpace，api参数参考https://ant.design/components/space-cn/
-export default class AntdSpace extends Component {
-    render() {
-        // 取得必要属性或参数
-        let {
-            id,
-            children,
-            className,
-            style,
-            key,
-            align,
-            direction,
-            size,
-            split,
-            wrap,
-            addSplitLine,
-            setProps,
-            loading_state
-        } = this.props;
+const AntdSpace = (props) => {
+    // 取得必要属性或参数
+    let {
+        id,
+        children,
+        className,
+        style,
+        key,
+        align,
+        direction,
+        size,
+        split,
+        wrap,
+        addSplitLine,
+        setProps,
+        loading_state
+    } = props;
 
-        children = parseChildrenToArray(children)
+    children = parseChildrenToArray(children)
 
-        if (addSplitLine) {
-            if (direction === 'horizontal') {
-                return (
-                    <Space id={id}
-                        className={
-                            isString(className) ?
-                                className :
-                                useCss(className)
-                        }
-                        style={style}
-                        key={key}
-                        align={align}
-                        direction={direction}
-                        size={size}
-                        split={<Divider type="vertical" />}
-                        wrap={wrap}
-                        data-dash-is-loading={
-                            (loading_state && loading_state.is_loading) || undefined
-                        }>
-                        {children}
-                    </Space>
-                );
-            }
+    if (addSplitLine) {
+        if (direction === 'horizontal') {
             return (
                 <Space id={id}
                     className={
@@ -63,7 +41,7 @@ export default class AntdSpace extends Component {
                     align={align}
                     direction={direction}
                     size={size}
-                    split={<Divider />}
+                    split={<Divider type="vertical" />}
                     wrap={wrap}
                     data-dash-is-loading={
                         (loading_state && loading_state.is_loading) || undefined
@@ -72,7 +50,6 @@ export default class AntdSpace extends Component {
                 </Space>
             );
         }
-
         return (
             <Space id={id}
                 className={
@@ -85,7 +62,7 @@ export default class AntdSpace extends Component {
                 align={align}
                 direction={direction}
                 size={size}
-                split={split}
+                split={<Divider />}
                 wrap={wrap}
                 data-dash-is-loading={
                     (loading_state && loading_state.is_loading) || undefined
@@ -94,6 +71,27 @@ export default class AntdSpace extends Component {
             </Space>
         );
     }
+
+    return (
+        <Space id={id}
+            className={
+                isString(className) ?
+                    className :
+                    useCss(className)
+            }
+            style={style}
+            key={key}
+            align={align}
+            direction={direction}
+            size={size}
+            split={split}
+            wrap={wrap}
+            data-dash-is-loading={
+                (loading_state && loading_state.is_loading) || undefined
+            }>
+            {children}
+        </Space>
+    );
 }
 
 // 定义参数或属性
@@ -163,3 +161,5 @@ AntdSpace.defaultProps = {
     addSplitLine: false,
     direction: 'horizontal'
 }
+
+export default AntdSpace;

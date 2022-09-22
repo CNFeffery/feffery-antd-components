@@ -9,60 +9,58 @@ import { parseChildrenToArray } from '../utils';
 const { Sider } = Layout;
 
 // 定义侧边栏组件AntdSider，api参数参考https://ant.design/components/layout-cn/
-export default class AntdSider extends Component {
-    render() {
-        // 取得必要属性或参数
-        let {
-            id,
-            children,
-            className,
-            style,
-            key,
-            breakpoint,
-            collapsed,
-            collapsedWidth,
-            collapsible,
-            defaultCollapsed,
-            reverseArrow,
-            theme,
-            width,
-            trigger,
-            setProps,
-            loading_state
-        } = this.props;
+const AntdSider = (props) => {
+    // 取得必要属性或参数
+    let {
+        id,
+        children,
+        className,
+        style,
+        key,
+        breakpoint,
+        collapsed,
+        collapsedWidth,
+        collapsible,
+        defaultCollapsed,
+        reverseArrow,
+        theme,
+        width,
+        trigger,
+        setProps,
+        loading_state
+    } = props;
 
-        const onCollapse = collapsed => {
-            setProps({ collapsed });
-        };
+    const onCollapse = collapsed => {
+        setProps({ collapsed });
+    };
 
-        children = parseChildrenToArray(children)
+    children = parseChildrenToArray(children)
 
-        return (
-            <Sider id={id}
-                className={
-                    isString(className) ?
-                        className :
-                        useCss(className)
-                }
-                style={style}
-                key={key}
-                collapsed={collapsed}
-                collapsedWidth={collapsedWidth}
-                collapsible={collapsible}
-                defaultCollapsed={defaultCollapsed}
-                reverseArrow={reverseArrow}
-                theme={theme}
-                width={width}
-                trigger={trigger}
-                breakpoint={breakpoint}
-                onCollapse={onCollapse}
-                data-dash-is-loading={
-                    (loading_state && loading_state.is_loading) || undefined
-                }>
-                {children}
-            </Sider>
-        );
-    }
+    return (
+        <Sider id={id}
+            className={
+                isString(className) ?
+                    className :
+                    useCss(className)
+            }
+            style={style}
+            key={key}
+            collapsed={collapsed}
+            collapsedWidth={collapsedWidth}
+            collapsible={collapsible}
+            defaultCollapsed={defaultCollapsed}
+            reverseArrow={reverseArrow}
+            theme={theme}
+            width={width}
+            trigger={trigger}
+            breakpoint={breakpoint}
+            onCollapse={onCollapse}
+            data-dash-is-loading={
+                (loading_state && loading_state.is_loading) || undefined
+            }>
+            {children}
+        </Sider>
+    );
 }
 
 // 定义参数或属性
@@ -140,3 +138,5 @@ AntdSider.propTypes = {
 AntdSider.defaultProps = {
     collapsed: false
 }
+
+export default AntdSider;

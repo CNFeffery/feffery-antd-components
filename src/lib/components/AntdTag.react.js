@@ -6,39 +6,37 @@ import { Tag } from 'antd';
 import 'antd/dist/antd.css';
 
 // 定义标签组件AntdTag，api参数参考https://ant.design/components/tag-cn/
-export default class AntdTag extends Component {
-    render() {
-        // 取得必要属性或参数
-        let {
-            id,
-            className,
-            style,
-            key,
-            content,
-            color,
-            href,
-            target,
-            setProps,
-            loading_state
-        } = this.props;
+const AntdTag = (props) => {
+    // 取得必要属性或参数
+    let {
+        id,
+        className,
+        style,
+        key,
+        content,
+        color,
+        href,
+        target,
+        setProps,
+        loading_state
+    } = props;
 
-        return (
-            <Tag id={id}
-                key={key}
-                className={
-                    isString(className) ?
-                        className :
-                        useCss(className)
-                }
-                style={style}
-                color={color}
-                data-dash-is-loading={
-                    (loading_state && loading_state.is_loading) || undefined
-                }>
-                {href ? <a href={href} target={target}>{content}</a> : content}
-            </Tag>
-        );
-    }
+    return (
+        <Tag id={id}
+            key={key}
+            className={
+                isString(className) ?
+                    className :
+                    useCss(className)
+            }
+            style={style}
+            color={color}
+            data-dash-is-loading={
+                (loading_state && loading_state.is_loading) || undefined
+            }>
+            {href ? <a href={href} target={target}>{content}</a> : content}
+        </Tag>
+    );
 }
 
 // 定义参数或属性
@@ -97,3 +95,5 @@ AntdTag.defaultProps = {
     content: '',
     target: '_blank'
 }
+
+export default AntdTag;

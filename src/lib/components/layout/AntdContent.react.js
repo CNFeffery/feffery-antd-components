@@ -9,37 +9,35 @@ import { parseChildrenToArray } from '../utils';
 const { Content } = Layout;
 
 // 定义内容组件AntdContent，api参数参考https://ant.design/components/layout-cn/
-export default class AntdContent extends Component {
-    render() {
-        // 取得必要属性或参数
-        let {
-            id,
-            children,
-            className,
-            style,
-            key,
-            setProps,
-            loading_state
-        } = this.props;
+const AntdContent = (props) => {
+    // 取得必要属性或参数
+    let {
+        id,
+        children,
+        className,
+        style,
+        key,
+        setProps,
+        loading_state
+    } = props;
 
-        children = parseChildrenToArray(children)
+    children = parseChildrenToArray(children)
 
-        return (
-            <Content id={id}
-                className={
-                    isString(className) ?
-                        className :
-                        useCss(className)
-                }
-                style={style}
-                key={key}
-                data-dash-is-loading={
-                    (loading_state && loading_state.is_loading) || undefined
-                }>
-                {children}
-            </Content>
-        );
-    }
+    return (
+        <Content id={id}
+            className={
+                isString(className) ?
+                    className :
+                    useCss(className)
+            }
+            style={style}
+            key={key}
+            data-dash-is-loading={
+                (loading_state && loading_state.is_loading) || undefined
+            }>
+            {children}
+        </Content>
+    );
 }
 
 // 定义参数或属性
@@ -89,3 +87,5 @@ AntdContent.propTypes = {
 // 设置默认参数
 AntdContent.defaultProps = {
 }
+
+export default AntdContent;

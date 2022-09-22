@@ -7,69 +7,67 @@ import { Drawer, ConfigProvider } from 'antd';
 import 'antd/dist/antd.css';
 
 // 定义抽屉组件AntdDrawer，api参数参考https://ant.design/components/drawer-cn/
-export default class AntdDrawer extends Component {
-    render() {
-        // 取得必要属性或参数
-        let {
-            id,
-            children,
-            className,
-            style,
-            key,
-            visible,
-            title,
-            placement,
-            closable,
-            forceRender,
-            destroyOnClose,
-            containerId,
-            height,
-            mask,
-            maskClosable,
-            width,
-            zIndex,
-            extra,
-            setProps,
-            loading_state
-        } = this.props;
+const AntdDrawer = (props) => {
+    // 取得必要属性或参数
+    let {
+        id,
+        children,
+        className,
+        style,
+        key,
+        visible,
+        title,
+        placement,
+        closable,
+        forceRender,
+        destroyOnClose,
+        containerId,
+        height,
+        mask,
+        maskClosable,
+        width,
+        zIndex,
+        extra,
+        setProps,
+        loading_state
+    } = props;
 
-        const onClose = () => {
-            setProps({ visible: false })
-        }
-
-        return (
-            <ConfigProvider locale={zhCN}>
-                <Drawer
-                    id={id}
-                    className={
-                        isString(className) ?
-                            className :
-                            useCss(className)
-                    }
-                    style={containerId ? { ...style, ...{ position: 'absolute' } } : style}
-                    key={key}
-                    visible={visible}
-                    title={title}
-                    placement={placement}
-                    closable={closable}
-                    forceRender={forceRender}
-                    destroyOnClose={destroyOnClose}
-                    getContainer={containerId ? () => document.getElementById(containerId) : containerId}
-                    height={height}
-                    mask={mask}
-                    maskClosable={maskClosable}
-                    width={width}
-                    zIndex={zIndex}
-                    extra={extra}
-                    onClose={onClose}
-                    data-dash-is-loading={
-                        (loading_state && loading_state.is_loading) || undefined
-                    }
-                >{children}
-                </Drawer>
-            </ConfigProvider>
-        );
+    const onClose = () => {
+        setProps({ visible: false })
     }
+
+    return (
+        <ConfigProvider locale={zhCN}>
+            <Drawer
+                id={id}
+                className={
+                    isString(className) ?
+                        className :
+                        useCss(className)
+                }
+                style={containerId ? { ...style, ...{ position: 'absolute' } } : style}
+                key={key}
+                visible={visible}
+                title={title}
+                placement={placement}
+                closable={closable}
+                forceRender={forceRender}
+                destroyOnClose={destroyOnClose}
+                getContainer={containerId ? () => document.getElementById(containerId) : containerId}
+                height={height}
+                mask={mask}
+                maskClosable={maskClosable}
+                width={width}
+                zIndex={zIndex}
+                extra={extra}
+                onClose={onClose}
+                data-dash-is-loading={
+                    (loading_state && loading_state.is_loading) || undefined
+                }
+            >{children}
+            </Drawer>
+        </ConfigProvider>
+    );
 }
 
 // 定义参数或属性
@@ -163,3 +161,5 @@ AntdDrawer.defaultProps = {
     forceRender: false,
     destroyOnClose: true
 }
+
+export default AntdDrawer;

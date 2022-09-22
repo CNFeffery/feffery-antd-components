@@ -8,52 +8,25 @@ import Marquee from 'react-fast-marquee';
 import 'antd/dist/antd.css';
 
 // 定义警告提示组件AntdAlert，api参数参考https://ant.design/components/alert-cn/
-export default class AntdAlert extends Component {
-    render() {
-        // 取得必要属性或参数
-        let {
-            id,
-            className,
-            style,
-            key,
-            type,
-            showIcon,
-            closable,
-            message,
-            messageRenderMode,
-            description,
-            action,
-            setProps,
-            loading_state
-        } = this.props;
+const AntdAlert = (props) => {
+    // 取得必要属性或参数
+    let {
+        id,
+        className,
+        style,
+        key,
+        type,
+        showIcon,
+        closable,
+        message,
+        messageRenderMode,
+        description,
+        action,
+        setProps,
+        loading_state
+    } = props;
 
-        if (messageRenderMode === 'loop-text' && Array.isArray(message)) {
-            return (
-                <Alert id={id}
-                    className={
-                        isString(className) ?
-                            className :
-                            useCss(className)
-                    }
-                    style={style}
-                    key={key}
-                    message={
-                        <TextLoop mask>
-                            {message.map(item => <div>{item}</div>)}
-                        </TextLoop>
-                    }
-                    type={type}
-                    description={description}
-                    showIcon={showIcon}
-                    closable={closable}
-                    action={action}
-                    data-dash-is-loading={
-                        (loading_state && loading_state.is_loading) || undefined
-                    }>
-                </Alert>
-            );
-        }
-
+    if (messageRenderMode === 'loop-text' && Array.isArray(message)) {
         return (
             <Alert id={id}
                 className={
@@ -64,20 +37,45 @@ export default class AntdAlert extends Component {
                 style={style}
                 key={key}
                 message={
-                    messageRenderMode === 'marquee' ?
-                        <Marquee pauseOnHover gradient={false}>
-                            {message}
-                        </Marquee> :
-                        message
+                    <TextLoop mask>
+                        {message.map(item => <div>{item}</div>)}
+                    </TextLoop>
                 }
                 type={type}
                 description={description}
                 showIcon={showIcon}
                 closable={closable}
-                action={action}>
+                action={action}
+                data-dash-is-loading={
+                    (loading_state && loading_state.is_loading) || undefined
+                }>
             </Alert>
         );
     }
+
+    return (
+        <Alert id={id}
+            className={
+                isString(className) ?
+                    className :
+                    useCss(className)
+            }
+            style={style}
+            key={key}
+            message={
+                messageRenderMode === 'marquee' ?
+                    <Marquee pauseOnHover gradient={false}>
+                        {message}
+                    </Marquee> :
+                    message
+            }
+            type={type}
+            description={description}
+            showIcon={showIcon}
+            closable={closable}
+            action={action}>
+        </Alert>
+    );
 }
 
 // 定义参数或属性
@@ -147,3 +145,6 @@ AntdAlert.defaultProps = {
     closable: false,
     messageRenderMode: 'default'
 }
+
+
+export default AntdAlert;

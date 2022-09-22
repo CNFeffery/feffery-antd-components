@@ -9,67 +9,65 @@ import { QuestionCircleOutlined } from "@ant-design/icons";
 import 'antd/dist/antd.css';
 
 // 定义统计数值组件AntdStatistic，api参数参考https://ant.design/components/statistic-cn/
-export default class AntdStatistic extends Component {
-    render() {
-        // 取得必要属性或参数
-        let {
-            id,
-            className,
-            style,
-            key,
-            value,
-            showGroupSeparator,
-            precision,
-            prefix,
-            suffix,
-            title,
-            titleTooltip,
-            valueStyle,
-            setProps,
-            loading_state
-        } = this.props;
+const AntdStatistic = (props) => {
+    // 取得必要属性或参数
+    let {
+        id,
+        className,
+        style,
+        key,
+        value,
+        showGroupSeparator,
+        precision,
+        prefix,
+        suffix,
+        title,
+        titleTooltip,
+        valueStyle,
+        setProps,
+        loading_state
+    } = props;
 
-        return (
-            <Statistic id={id}
-                className={
-                    isString(className) ?
-                        className :
-                        useCss(className)
-                }
-                style={style}
-                key={key}
-                value={value}
-                groupSeparator={showGroupSeparator ? ',' : ''}
-                precision={precision}
-                prefix={
-                    prefix ? (
-                        prefix.mode === 'icon' ?
-                            <AntdIcon icon={prefix.content} /> :
-                            prefix.content
-                    ) : null
-                }
-                suffix={
-                    suffix ? (
-                        suffix.mode === 'icon' ?
-                            <AntdIcon icon={suffix.content} /> :
-                            suffix.content
-                    ) : null
-                }
-                title={titleTooltip ?
-                    <Space size={5}>
-                        {title}
-                        <AntdTooltip title={titleTooltip} >
-                            <QuestionCircleOutlined />
-                        </AntdTooltip>
-                    </Space>
-                    : title}
-                valueStyle={valueStyle}
-                data-dash-is-loading={
-                    (loading_state && loading_state.is_loading) || undefined
-                }
-            />
-        );
-    }
+    return (
+        <Statistic id={id}
+            className={
+                isString(className) ?
+                    className :
+                    useCss(className)
+            }
+            style={style}
+            key={key}
+            value={value}
+            groupSeparator={showGroupSeparator ? ',' : ''}
+            precision={precision}
+            prefix={
+                prefix ? (
+                    prefix.mode === 'icon' ?
+                        <AntdIcon icon={prefix.content} /> :
+                        prefix.content
+                ) : null
+            }
+            suffix={
+                suffix ? (
+                    suffix.mode === 'icon' ?
+                        <AntdIcon icon={suffix.content} /> :
+                        suffix.content
+                ) : null
+            }
+            title={titleTooltip ?
+                <Space size={5}>
+                    {title}
+                    <AntdTooltip title={titleTooltip} >
+                        <QuestionCircleOutlined />
+                    </AntdTooltip>
+                </Space>
+                : title}
+            valueStyle={valueStyle}
+            data-dash-is-loading={
+                (loading_state && loading_state.is_loading) || undefined
+            }
+        />
+    );
 }
 
 // 定义参数或属性
@@ -164,3 +162,5 @@ AntdStatistic.propTypes = {
 AntdStatistic.defaultProps = {
     showGroupSeparator: true
 }
+
+export default AntdStatistic;

@@ -6,43 +6,41 @@ import { isString } from 'lodash';
 import 'antd/dist/antd.css';
 
 // 定义走马灯组件AntdCarousel，api参数参考https://ant.design/components/carousel-cn/
-export default class AntdCarousel extends Component {
-    render() {
-        // 取得必要属性或参数
-        let {
-            id,
-            children,
-            className,
-            style,
-            key,
-            autoplay,
-            dotPosition,
-            easing,
-            effect,
-            loading_state,
-            setProps
-        } = this.props;
+const AntdCarousel = (props) => {
+    // 取得必要属性或参数
+    let {
+        id,
+        children,
+        className,
+        style,
+        key,
+        autoplay,
+        dotPosition,
+        easing,
+        effect,
+        loading_state,
+        setProps
+    } = props;
 
-        return (
-            <Carousel
-                id={id}
-                className={
-                    isString(className) ?
-                        className :
-                        useCss(className)
-                }
-                style={style}
-                key={key}
-                autoplay={autoplay}
-                dotPosition={dotPosition}
-                easing={easing}
-                effect={effect}
-                data-dash-is-loading={
-                    (loading_state && loading_state.is_loading) || undefined
-                }
-            >{children}</Carousel>
-        );
-    }
+    return (
+        <Carousel
+            id={id}
+            className={
+                isString(className) ?
+                    className :
+                    useCss(className)
+            }
+            style={style}
+            key={key}
+            autoplay={autoplay}
+            dotPosition={dotPosition}
+            easing={easing}
+            effect={effect}
+            data-dash-is-loading={
+                (loading_state && loading_state.is_loading) || undefined
+            }
+        >{children}</Carousel>
+    );
 }
 
 // 定义参数或属性
@@ -102,3 +100,5 @@ AntdCarousel.propTypes = {
 // 设置默认参数
 AntdCarousel.defaultProps = {
 }
+
+export default AntdCarousel;
