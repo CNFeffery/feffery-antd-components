@@ -22,6 +22,7 @@ export default class AntdCheckboxGroup extends Component {
             key,
             options,
             value,
+            disabled,
             setProps,
             persistence,
             persisted_props,
@@ -42,6 +43,7 @@ export default class AntdCheckboxGroup extends Component {
                 key={key}
                 options={options}
                 value={value}
+                disabled={disabled}
                 onChange={onChange}
                 persistence={persistence}
                 persisted_props={persisted_props}

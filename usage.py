@@ -10,6 +10,18 @@ app = dash.Dash(__name__)
 app.layout = html.Div(
     [
 
+
+        fac.AntdCheckboxGroup(
+            options=[
+                {
+                    'label': f'选项{i}',
+                    'value': f'选项{i}'
+                }
+                for i in range(5)
+            ],
+            disabled=True
+        ),
+
         fac.AntdTable(
             columns=[
                 {
