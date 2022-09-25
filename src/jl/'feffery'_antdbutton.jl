@@ -13,6 +13,7 @@ An AntdButton component.
 Keyword arguments:
 - `children` (a list of or a singular dash component, string or number; optional)
 - `id` (String; optional)
+- `autoSpin` (Bool; optional)
 - `block` (Bool; optional)
 - `className` (String | Dict; optional)
 - `danger` (Bool; optional)
@@ -35,7 +36,7 @@ Those elements have the following types:
 - `type` (a value equal to: 'primary', 'ghost', 'dashed', 'link', 'text', 'default'; optional)
 """
 function 'feffery'_antdbutton(; kwargs...)
-        available_props = Symbol[:children, :id, :block, :className, :danger, :debounceWait, :disabled, :href, :icon, :key, :loading, :loading_state, :nClicks, :shape, :size, :style, :target, :type]
+        available_props = Symbol[:children, :id, :autoSpin, :block, :className, :danger, :debounceWait, :disabled, :href, :icon, :key, :loading, :loading_state, :nClicks, :shape, :size, :style, :target, :type]
         wild_props = Symbol[]
         return Component("'feffery'_antdbutton", "AntdButton", "feffery_antd_components", available_props, wild_props; kwargs...)
 end
