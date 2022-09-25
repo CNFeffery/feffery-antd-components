@@ -135,7 +135,7 @@ AntdButton.propTypes = {
     // 用于设置是否为按钮渲染“加载中不可点击”效果，默认为false
     loading: PropTypes.bool,
 
-    // 设置是否在每次按钮点击之后，自动更新loading=true，从而配合回调
+    // 设置是否在每次按钮点击之后，是否自动更新loading=true，从而配合回调
     // 实现回调运作中按钮无可点击的效果
     // 默认为false
     autoSpin: PropTypes.bool,

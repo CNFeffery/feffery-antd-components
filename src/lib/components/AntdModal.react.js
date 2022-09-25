@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { str2Locale } from './locales.react';
 import { Modal, ConfigProvider } from 'antd';
-import AntdIcon from './AntdIcon.react';
 import 'antd/dist/antd.css';
 
 // 定义对话框组件AntdModal，api参数参考https://ant.design/components/modal-cn/
@@ -37,6 +36,8 @@ export default class AntdModal extends Component {
             okCounts,
             cancelCounts,
             closeCounts,
+            confirmLoading,
+            confirmAutoSpin,
             loading_state
         } = this.props;
 
@@ -44,6 +45,8 @@ export default class AntdModal extends Component {
         const listenOk = () => {
             if (okClickClose) {
                 setProps({ visible: false, okCounts: okCounts + 1 })
+            } else if (confirmAutoSpin) {
+                setProps({ okCounts: okCounts + 1, confirmLoading: true })
             } else {
                 setProps({ okCounts: okCounts + 1 })
             }
@@ -59,78 +62,41 @@ export default class AntdModal extends Component {
             setProps({ closeCounts: closeCounts + 1 })
         };
 
-        // 若设置了渲染底部按钮区内容
-        if (renderFooter) {
-
-            // 返回定制化的前端组件
-            return (
-                <ConfigProvider locale={str2Locale.get(locale)}>
-                    <Modal
-                        id={id}
-                        className={className}
-                        style={style}
-                        key={key}
-                        title={title}
-                        visible={visible}
-                        okText={okText}
-                        cancelText={cancelText}
-                        okButtonProps={okButtonProps}
-                        cancelButtonProps={cancelButtonProps}
-                        width={width}
-                        centered={centered}
-                        keyboard={keyboard}
-                        closable={closable}
-                        mask={mask}
-                        maskClosable={maskClosable}
-                        zIndex={zIndex}
-                        maskStyle={maskStyle}
-                        bodyStyle={bodyStyle}
-                        onOk={listenOk}
-                        onCancel={listenCancel}
-                        afterClose={listenClose}
-                        destroyOnClose={true}
-                        data-dash-is-loading={
-                            (loading_state && loading_state.is_loading) || undefined
-                        }
-                    >{children}</Modal>
-                </ConfigProvider>
-            );
-        } else {
-            // 返回定制化的前端组件
-            return (
-                <ConfigProvider locale={str2Locale.get(locale)}>
-                    <Modal
-                        id={id}
-                        className={className}
-                        style={style}
-                        key={key}
-                        title={title?.content ?
-                            <div>
-                                {<AntdIcon icon={title.prefixIcon} />}
-                                {<span style={{ marginLeft: '5px' }}>{title.content}</span>}
-                            </div> : title}
-                        visible={visible}
-                        footer={null}
-                        width={width}
-                        centered={centered}
-                        keyboard={keyboard}
-                        closable={closable}
-                        mask={mask}
-                        maskClosable={maskClosable}
-                        zIndex={zIndex}
-                        maskStyle={maskStyle}
-                        bodyStyle={bodyStyle}
-                        onOk={listenOk}
-                        onCancel={listenCancel}
-                        destroyOnClose={true}
-                        afterClose={listenClose}
-                        data-dash-is-loading={
-                            (loading_state && loading_state.is_loading) || undefined
-                        }
-                    >{children}</Modal>
-                </ConfigProvider>
-            );
-        }
+        // 返回定制化的前端组件
+        return (
+            <ConfigProvider locale={str2Locale.get(locale)}>
+                <Modal
+                    id={id}
+                    className={className}
+                    style={style}
+                    key={key}
+                    title={title}
+                    visible={visible}
+                    okText={okText}
+                    cancelText={cancelText}
+                    okButtonProps={okButtonProps}
+                    cancelButtonProps={cancelButtonProps}
+                    width={width}
+                    centered={centered}
+                    keyboard={keyboard}
+                    closable={closable}
+                    mask={mask}
+                    maskClosable={maskClosable}
+                    zIndex={zIndex}
+                    maskStyle={maskStyle}
+                    bodyStyle={bodyStyle}
+                    onOk={listenOk}
+                    onCancel={listenCancel}
+                    afterClose={listenClose}
+                    footer={renderFooter ? undefined : null}
+                    confirmLoading={confirmLoading}
+                    destroyOnClose={true}
+                    data-dash-is-loading={
+                        (loading_state && loading_state.is_loading) || undefined
+                    }
+                >{children}</Modal>
+            </ConfigProvider>
+        );
     }
 }
 
@@ -217,6 +183,14 @@ AntdModal.propTypes = {
     // 记录关闭按钮被点击的次数
     closeCounts: PropTypes.number,
 
+    // 设置页脚中确认按钮是否处于加载中状态，默认为false
+    confirmLoading: PropTypes.bool,
+
+    // 设置是否在每次确认按钮点击之后，是否自动更新confirmLoading=true，从而配合回调
+    // 实现回调运作中按钮无可点击的效果
+    // 默认为false
+    confirmAutoSpin: PropTypes.bool,
+
     /**
      * Dash-assigned callback that should be called to report property changes
      * to Dash, to make them available for callbacks.
@@ -246,5 +220,7 @@ AntdModal.defaultProps = {
     cancelCounts: 0,
     closeCounts: 0,
     locale: 'zh-cn',
-    okClickClose: true
+    okClickClose: true,
+    confirmLoading: false,
+    confirmAutoSpin: false
 }
