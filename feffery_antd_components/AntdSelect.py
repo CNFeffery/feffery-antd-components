@@ -13,11 +13,15 @@ Keyword arguments:
 
 - allowClear (boolean; default True)
 
+- autoSpin (boolean; default False)
+
 - className (string; optional)
 
 - colorsMode (a value equal to: 'sequential', 'diverging'; default 'sequential')
 
 - colorsNameWidth (number; default 40)
+
+- debounceWait (number; default 300)
 
 - defaultValue (string | number | list of string | numbers; optional)
 
@@ -99,6 +103,8 @@ Keyword arguments:
 
 - placement (a value equal to: 'bottomLeft', 'bottomRight', 'topLeft', 'topRight'; optional)
 
+- searchValue (string; optional)
+
 - size (a value equal to: 'small', 'middle', 'large'; optional)
 
 - status (a value equal to: 'error', 'warning'; optional)
@@ -111,10 +117,10 @@ Keyword arguments:
     _namespace = 'feffery_antd_components'
     _type = 'AntdSelect'
     @_explicitize_args
-    def __init__(self, id=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, key=Component.UNDEFINED, locale=Component.UNDEFINED, options=Component.UNDEFINED, colorsNameWidth=Component.UNDEFINED, allowClear=Component.UNDEFINED, mode=Component.UNDEFINED, disabled=Component.UNDEFINED, placeholder=Component.UNDEFINED, size=Component.UNDEFINED, value=Component.UNDEFINED, defaultValue=Component.UNDEFINED, maxTagCount=Component.UNDEFINED, listHeight=Component.UNDEFINED, colorsMode=Component.UNDEFINED, placement=Component.UNDEFINED, status=Component.UNDEFINED, optionFilterProp=Component.UNDEFINED, loading_state=Component.UNDEFINED, persistence=Component.UNDEFINED, persisted_props=Component.UNDEFINED, persistence_type=Component.UNDEFINED, **kwargs):
-        self._prop_names = ['id', 'allowClear', 'className', 'colorsMode', 'colorsNameWidth', 'defaultValue', 'disabled', 'key', 'listHeight', 'loading_state', 'locale', 'maxTagCount', 'mode', 'optionFilterProp', 'options', 'persisted_props', 'persistence', 'persistence_type', 'placeholder', 'placement', 'size', 'status', 'style', 'value']
+    def __init__(self, id=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, key=Component.UNDEFINED, locale=Component.UNDEFINED, options=Component.UNDEFINED, colorsNameWidth=Component.UNDEFINED, allowClear=Component.UNDEFINED, mode=Component.UNDEFINED, disabled=Component.UNDEFINED, placeholder=Component.UNDEFINED, size=Component.UNDEFINED, value=Component.UNDEFINED, defaultValue=Component.UNDEFINED, maxTagCount=Component.UNDEFINED, listHeight=Component.UNDEFINED, colorsMode=Component.UNDEFINED, placement=Component.UNDEFINED, status=Component.UNDEFINED, optionFilterProp=Component.UNDEFINED, searchValue=Component.UNDEFINED, autoSpin=Component.UNDEFINED, debounceWait=Component.UNDEFINED, loading_state=Component.UNDEFINED, persistence=Component.UNDEFINED, persisted_props=Component.UNDEFINED, persistence_type=Component.UNDEFINED, **kwargs):
+        self._prop_names = ['id', 'allowClear', 'autoSpin', 'className', 'colorsMode', 'colorsNameWidth', 'debounceWait', 'defaultValue', 'disabled', 'key', 'listHeight', 'loading_state', 'locale', 'maxTagCount', 'mode', 'optionFilterProp', 'options', 'persisted_props', 'persistence', 'persistence_type', 'placeholder', 'placement', 'searchValue', 'size', 'status', 'style', 'value']
         self._valid_wildcard_attributes =            []
-        self.available_properties = ['id', 'allowClear', 'className', 'colorsMode', 'colorsNameWidth', 'defaultValue', 'disabled', 'key', 'listHeight', 'loading_state', 'locale', 'maxTagCount', 'mode', 'optionFilterProp', 'options', 'persisted_props', 'persistence', 'persistence_type', 'placeholder', 'placement', 'size', 'status', 'style', 'value']
+        self.available_properties = ['id', 'allowClear', 'autoSpin', 'className', 'colorsMode', 'colorsNameWidth', 'debounceWait', 'defaultValue', 'disabled', 'key', 'listHeight', 'loading_state', 'locale', 'maxTagCount', 'mode', 'optionFilterProp', 'options', 'persisted_props', 'persistence', 'persistence_type', 'placeholder', 'placement', 'searchValue', 'size', 'status', 'style', 'value']
         self.available_wildcard_properties =            []
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()

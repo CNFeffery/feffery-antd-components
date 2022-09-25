@@ -1,5 +1,6 @@
-import React, { Component } from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
+import { useRequest } from 'ahooks';
 import { Select, ConfigProvider } from 'antd';
 import { str2Locale } from './locales.react';
 import 'antd/dist/antd.css';
@@ -7,173 +8,186 @@ import 'antd/dist/antd.css';
 const { Option, OptGroup } = Select;
 
 // 定义下拉选择组件AntdSelect，api参数参考https://ant.design/components/select-cn/
-export default class AntdSelect extends Component {
+const AntdSelect = (props) => {
 
-    constructor(props) {
-        super(props)
+    // 取得必要属性或参数
+    let {
+        id,
+        style,
+        className,
+        key,
+        locale,
+        setProps,
+        placeholder,
+        size,
+        options,
+        colorsNameWidth,
+        allowClear,
+        disabled,
+        value,
+        mode,
+        defaultValue,
+        maxTagCount,
+        listHeight,
+        colorsMode,
+        placement,
+        status,
+        optionFilterProp,
+        autoSpin,
+        debounceWait,
+        loading_state,
+        persistence,
+        persisted_props,
+        persistence_type
+    } = props;
+
+    useEffect(() => {
         // 初始化value
-        if (props.defaultValue) {
+        if (defaultValue) {
             // 当defaultValue不为空时，为value初始化defaultValue对应的value值
-            props.setProps({ value: props.defaultValue })
+            setProps({ value: defaultValue })
         }
+    }, [])
+
+    // 用于获取用户已选择值的回调函数
+    const updateSelectedValue = (value) => {
+        setProps({ value: value })
     }
 
-    render() {
-        // 取得必要属性或参数
-        let {
-            id,
-            style,
-            className,
-            key,
-            locale,
-            setProps,
-            placeholder,
-            size,
-            options,
-            colorsNameWidth,
-            allowClear,
-            disabled,
-            value,
-            mode,
-            defaultValue,
-            maxTagCount,
-            listHeight,
-            colorsMode,
-            placement,
-            status,
-            optionFilterProp,
-            loading_state,
-            persistence,
-            persisted_props,
-            persistence_type
-        } = this.props;
-
-        // 用于获取用户已选择值的回调函数
-        function updateSelectedValue(value) {
-            setProps({ value: value })
+    const { run: onSearch } = useRequest(
+        (e) => {
+            setProps({ searchValue: e })
+        },
+        {
+            debounceWait: debounceWait,
+            manual: true
         }
+    )
 
-        // 基于dash端传入的options参数，推导出对应的组件
-        var optionsJsx = [];
-        for (var i = 0; i < options.length; i++) {
-            // 当存在分组时
-            if (options[i].hasOwnProperty('group')) {
-                var groupOptions = [];
-                // 构造OptGroup > Option结构
-                for (var j = 0; j < options[i].options.length; j++) {
-                    groupOptions.push(
-                        <Option value={options[i].options[j].value} disabled={options[i].options[j].disabled}>
-                            {
-                                options[i].options[j].colors ?
-                                    <div style={{ display: 'flex' }}>
-                                        <div style={{
-                                            flex: 'none',
-                                            textAlign: 'center',
-                                            width: colorsNameWidth,
-                                            fontSize: 12
-                                        }}>{options[i].options[j].label}</div>
-                                        {
-                                            colorsMode === 'sequential' ? <div style={{
-                                                margin: "1px 0 1px 10px",
-                                                borderRadius: "2px",
-                                                flex: 'auto',
-                                                background: options[i].options[j].colors.length > 1 ?
-                                                    `linear-gradient(to right, ${options[i].options[j].colors.join()})` : options[i].options[j].colors[0]
-                                            }} /> : <div style={{
-                                                margin: "1px 0 1px 10px",
-                                                borderRadius: "2px",
-                                                flex: 'auto',
-                                                'display': 'flex'
-                                            }} >{
-                                                    options[i].options[j].colors.map(c => <div style={{
-                                                        flex: 'auto',
-                                                        background: c
-                                                    }} />)
-                                                }</ div>
-                                        }
-                                    </div> : options[i].options[j].label
-                            }
-                        </Option>
-                    )
-                }
-                optionsJsx.push(<OptGroup label={options[i].group}>{groupOptions}</OptGroup>)
-            } else {
-                optionsJsx.push(<Option value={options[i].value} disabled={options[i].disabled}>
-                    {
-                        options[i].colors ?
-                            <div style={{ display: 'flex' }}>
-                                <div style={{
-                                    flex: 'none',
-                                    textAlign: 'center',
-                                    fontSize: 12,
-                                    width: colorsNameWidth
-                                }}>{options[i].label}</div>
-                                {
-                                    colorsMode === 'sequential' ? <div style={{
-                                        margin: "1px 0 1px 10px",
-                                        borderRadius: "2px",
-                                        flex: 'auto',
-                                        background: options[i].colors.length > 1 ?
-                                            `linear-gradient(to right, ${options[i].colors.join()})` : options[i].colors[0]
-                                    }} /> : <div style={{
-                                        margin: "1px 0 1px 10px",
-                                        borderRadius: "2px",
-                                        flex: 'auto',
-                                        'display': 'flex'
-                                    }} >{
-                                            options[i].colors.map(c => <div style={{
-                                                flex: 'auto',
-                                                background: c
-                                            }} />)
-                                        }</ div>
-                                }
+    options = options || []
 
-                            </div> : options[i].label
-                    }
-                </Option>)
+    // 基于dash端传入的options参数，推导出对应的组件
+    var optionsJsx = [];
+    for (var i = 0; i < options.length; i++) {
+        // 当存在分组时
+        if (options[i].hasOwnProperty('group')) {
+            var groupOptions = [];
+            // 构造OptGroup > Option结构
+            for (var j = 0; j < options[i].options.length; j++) {
+                groupOptions.push(
+                    <Option value={options[i].options[j].value} disabled={options[i].options[j].disabled}>
+                        {
+                            options[i].options[j].colors ?
+                                <div style={{ display: 'flex' }}>
+                                    <div style={{
+                                        flex: 'none',
+                                        textAlign: 'center',
+                                        width: colorsNameWidth,
+                                        fontSize: 12
+                                    }}>{options[i].options[j].label}</div>
+                                    {
+                                        colorsMode === 'sequential' ? <div style={{
+                                            margin: "1px 0 1px 10px",
+                                            borderRadius: "2px",
+                                            flex: 'auto',
+                                            background: options[i].options[j].colors.length > 1 ?
+                                                `linear-gradient(to right, ${options[i].options[j].colors.join()})` : options[i].options[j].colors[0]
+                                        }} /> : <div style={{
+                                            margin: "1px 0 1px 10px",
+                                            borderRadius: "2px",
+                                            flex: 'auto',
+                                            'display': 'flex'
+                                        }} >{
+                                                options[i].options[j].colors.map(c => <div style={{
+                                                    flex: 'auto',
+                                                    background: c
+                                                }} />)
+                                            }</ div>
+                                    }
+                                </div> : options[i].options[j].label
+                        }
+                    </Option>
+                )
             }
-        }
+            optionsJsx.push(<OptGroup label={options[i].group}>{groupOptions}</OptGroup>)
+        } else {
+            optionsJsx.push(<Option value={options[i].value} disabled={options[i].disabled}>
+                {
+                    options[i].colors ?
+                        <div style={{ display: 'flex' }}>
+                            <div style={{
+                                flex: 'none',
+                                textAlign: 'center',
+                                fontSize: 12,
+                                width: colorsNameWidth
+                            }}>{options[i].label}</div>
+                            {
+                                colorsMode === 'sequential' ? <div style={{
+                                    margin: "1px 0 1px 10px",
+                                    borderRadius: "2px",
+                                    flex: 'auto',
+                                    background: options[i].colors.length > 1 ?
+                                        `linear-gradient(to right, ${options[i].colors.join()})` : options[i].colors[0]
+                                }} /> : <div style={{
+                                    margin: "1px 0 1px 10px",
+                                    borderRadius: "2px",
+                                    flex: 'auto',
+                                    'display': 'flex'
+                                }} >{
+                                        options[i].colors.map(c => <div style={{
+                                            flex: 'auto',
+                                            background: c
+                                        }} />)
+                                    }</ div>
+                            }
 
-        // 处理optionFilterProp映射
-        if (optionFilterProp === 'label') {
-            optionFilterProp = 'children'
+                        </div> : options[i].label
+                }
+            </Option>)
         }
-
-        // 返回定制化的前端组件
-        return (
-            <ConfigProvider locale={str2Locale.get(locale)}>
-                <Select
-                    id={id}
-                    className={className}
-                    style={style}
-                    key={key}
-                    mode={mode}
-                    allowClear={allowClear}
-                    placeholder={placeholder}
-                    size={size}
-                    value={value}
-                    defaultValue={defaultValue}
-                    onChange={updateSelectedValue}
-                    maxTagCount={maxTagCount}
-                    listHeight={listHeight}
-                    disabled={disabled}
-                    showSearch={true}
-                    placement={placement}
-                    status={status}
-                    optionFilterProp={optionFilterProp}
-                    persistence={persistence}
-                    persisted_props={persisted_props}
-                    persistence_type={persistence_type}
-                    data-dash-is-loading={
-                        (loading_state && loading_state.is_loading) || undefined
-                    }
-                    getPopupContainer={(triggerNode) => triggerNode.parentNode}
-                >
-                    {optionsJsx}
-                </Select>
-            </ConfigProvider>
-        );
     }
+
+    // 处理optionFilterProp映射
+    if (optionFilterProp === 'label') {
+        optionFilterProp = 'children'
+    }
+
+    // 返回定制化的前端组件
+    return (
+        <ConfigProvider locale={str2Locale.get(locale)}>
+            <Select
+                id={id}
+                className={className}
+                style={style}
+                key={key}
+                mode={mode}
+                allowClear={allowClear}
+                placeholder={placeholder}
+                size={size}
+                value={value}
+                defaultValue={defaultValue}
+                onChange={updateSelectedValue}
+                maxTagCount={maxTagCount}
+                listHeight={listHeight}
+                disabled={disabled}
+                showSearch={true}
+                placement={placement}
+                status={status}
+                optionFilterProp={optionFilterProp}
+                onSearch={onSearch}
+                loading={autoSpin && loading_state.is_loading}
+                persistence={persistence}
+                persisted_props={persisted_props}
+                persistence_type={persistence_type}
+                data-dash-is-loading={
+                    (loading_state && loading_state.is_loading) || undefined
+                }
+                getPopupContainer={(triggerNode) => triggerNode.parentNode}
+            >
+                {optionsJsx}
+            </Select>
+        </ConfigProvider>
+    );
 }
 
 // 定义参数或属性
@@ -299,6 +313,16 @@ AntdSelect.propTypes = {
     // 设置输入框下输入内容进行搜索的字段，可选的有'value'、'label'，默认为'value'
     optionFilterProp: PropTypes.oneOf(['value', 'label']),
 
+    // 监听搜索框中的已输入搜索文字内容
+    searchValue: PropTypes.string,
+
+    // 设置当组件内的prop正处于回调加载中状态时，是否渲染后缀加载图标
+    // 默认为false
+    autoSpin: PropTypes.bool,
+
+    // 用于配置debounceValue变化更新的防抖等待时长（单位：毫秒），默认为0
+    debounceWait: PropTypes.number,
+
     loading_state: PropTypes.shape({
         /**
          * Determines if the component is loading or not
@@ -361,5 +385,9 @@ AntdSelect.defaultProps = {
     persisted_props: ['value'],
     persistence_type: 'local',
     locale: 'zh-cn',
-    optionFilterProp: 'value'
+    optionFilterProp: 'value',
+    autoSpin: false,
+    debounceWait: 300
 }
+
+export default AntdSelect;
