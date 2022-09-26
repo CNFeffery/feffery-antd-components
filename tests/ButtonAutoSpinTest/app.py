@@ -16,6 +16,7 @@ app.layout = html.Div(
     [
         fac.AntdButton(
             '执行',
+            loadingChildren='执行中',
             id='button-demo',
             type='primary',
             autoSpin=True

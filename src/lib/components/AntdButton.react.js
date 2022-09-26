@@ -11,6 +11,7 @@ const AntdButton = (props) => {
     let {
         id,
         children,
+        loadingChildren,
         className,
         style,
         key,
@@ -74,7 +75,7 @@ const AntdButton = (props) => {
             data-dash-is-loading={
                 (loading_state && loading_state.is_loading) || undefined
             }
-        >{children}
+        >{loading ? (loadingChildren || children) : children}
         </Button>
     );
 }
@@ -84,8 +85,11 @@ AntdButton.propTypes = {
     // 组件id
     id: PropTypes.string,
 
-    // 内嵌文字的文本内容
+    // 设置按钮内嵌元素内容
     children: PropTypes.node,
+
+    // 设置loading状态下按钮内嵌元素内容
+    loadingChildren: PropTypes.node,
 
     // css类名
     className: PropTypes.oneOfType([

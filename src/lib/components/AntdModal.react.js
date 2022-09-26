@@ -22,6 +22,7 @@ export default class AntdModal extends Component {
             okButtonProps,
             cancelButtonProps,
             okText,
+            loadingOkText,
             cancelText,
             width,
             centered,
@@ -72,7 +73,7 @@ export default class AntdModal extends Component {
                     key={key}
                     title={title}
                     visible={visible}
-                    okText={okText}
+                    okText={confirmLoading ? (loadingOkText || okText) : okText}
                     cancelText={cancelText}
                     okButtonProps={okButtonProps}
                     cancelButtonProps={cancelButtonProps}
@@ -128,6 +129,9 @@ AntdModal.propTypes = {
 
     // 设置确认按钮文字
     okText: PropTypes.string,
+
+    // 设置confirmLoading状态下按钮的文字内容
+    loadingOkText: PropTypes.string,
 
     // 配置确认按钮相关参数
     okButtonProps: PropTypes.object,

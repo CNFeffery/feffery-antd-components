@@ -25,6 +25,7 @@ Keyword arguments:
 - `confirmLoading` (Bool; optional)
 - `key` (String; optional)
 - `keyboard` (Bool; optional)
+- `loadingOkText` (String; optional)
 - `loading_state` (optional): . loading_state has the following type: lists containing elements 'is_loading', 'prop_name', 'component_name'.
 Those elements have the following types:
   - `is_loading` (Bool; optional): Determines if the component is loading or not
@@ -46,7 +47,7 @@ Those elements have the following types:
 - `zIndex` (Real; optional)
 """
 function 'feffery'_antdmodal(; kwargs...)
-        available_props = Symbol[:children, :id, :bodyStyle, :cancelButtonProps, :cancelCounts, :cancelText, :centered, :className, :closable, :closeCounts, :confirmAutoSpin, :confirmLoading, :key, :keyboard, :loading_state, :locale, :mask, :maskClosable, :maskStyle, :okButtonProps, :okClickClose, :okCounts, :okText, :renderFooter, :style, :title, :visible, :width, :zIndex]
+        available_props = Symbol[:children, :id, :bodyStyle, :cancelButtonProps, :cancelCounts, :cancelText, :centered, :className, :closable, :closeCounts, :confirmAutoSpin, :confirmLoading, :key, :keyboard, :loadingOkText, :loading_state, :locale, :mask, :maskClosable, :maskStyle, :okButtonProps, :okClickClose, :okCounts, :okText, :renderFooter, :style, :title, :visible, :width, :zIndex]
         wild_props = Symbol[]
         return Component("'feffery'_antdmodal", "AntdModal", "feffery_antd_components", available_props, wild_props; kwargs...)
 end

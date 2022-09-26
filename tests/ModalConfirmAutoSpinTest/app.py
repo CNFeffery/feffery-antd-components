@@ -19,7 +19,8 @@ app.layout = html.Div(
             okClickClose=False,
             renderFooter=True,
             confirmAutoSpin=True,
-            visible=True
+            visible=True,
+            loadingOkText='计算中'
         )
     ],
     style={
