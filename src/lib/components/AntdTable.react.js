@@ -114,6 +114,10 @@ class AntdTable extends Component {
             onFilter: (value, record) => {
                 if (props.mode === 'client-side') {
                     if (record[dataIndex]) {
+                        // 判断当前记录是否有content属性
+                        if (record[dataIndex]?.content) {
+                            return record[dataIndex].content.toString().toLowerCase().includes(value?.toLowerCase())
+                        }
                         return record[dataIndex].toString().toLowerCase().includes(value?.toLowerCase())
                     }
                     return false;
