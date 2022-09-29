@@ -9,37 +9,59 @@ app = dash.Dash(__name__)
 
 app.layout = html.Div(
     [
-
-        fac.AntdTable(
-            columns=[
-                {
-                    'title': f'字段{i}',
-                    'dataIndex': f'字段{i}',
-                    'width': 400
-                }
-                for i in range(5)
-            ],
-            data=[
-                {
-                    **{
-                        f'字段{j}': i
-                        for j in range(5)
+        fac.AntdWatermark(
+            html.Div(
+                fac.AntdForm(
+                    [
+                        fac.AntdFormItem(
+                            fac.AntdInput(
+                                autoComplete='off'
+                            ),
+                            label='用户名'
+                        ),
+                        fac.AntdFormItem(
+                            fac.AntdInput(
+                                mode='password'
+                            ),
+                            label='密码'
+                        ),
+                        fac.AntdFormItem(
+                            fac.AntdCheckbox(
+                                label='记住密码'
+                            ),
+                            wrapperCol={
+                                'offset': 4
+                            }
+                        ),
+                        fac.AntdFormItem(
+                            fac.AntdButton(
+                                '登录',
+                                type='primary'
+                            ),
+                            wrapperCol={
+                                'offset': 4
+                            }
+                        )
+                    ],
+                    labelCol={
+                        'span': 4
                     },
-                    'key': f'row-{i}'
+                    wrapperCol={
+                        'span': 8
+                    }
+                ),
+                style={
+                    'boxShadow': '0 6px 16px rgb(107 147 224 / 14%)',
+                    'padding': '25px',
+                    'position': 'relative',
+                    'zIndex': 10
                 }
-                for i in range(10)
-            ],
-            bordered=True,
-            expandedRowKeyToContent=[
-                {
-                    'key': f'row-{i}',
-                    'content': fac.AntdButton(
-                        f'第{i}行展开内容示例',
-                        type='primary'
-                    )
-                }
-                for i in range(0, 10, 2)
-            ]
+            ),
+            content='水印内容测试',
+            fontSize=14,
+            rotate=22,
+            gapX=10,
+            gapY=10
         )
     ],
     style={

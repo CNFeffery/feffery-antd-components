@@ -34,7 +34,19 @@ app.layout = html.Div(
                     )
                 }
                 for i in range(5)
-            ]
+            ],
+            pending='asdasd',
+            # pendingDot=fac.AntdTooltip(
+            #     fac.AntdAvatar(
+            #         mode='text',
+            #         text='王',
+            #         style={
+            #             'backgroundColor': 'rgb(16, 105, 246)'
+            #         }
+            #     ),
+            #     title='等待校核',
+            #     placement='left'
+            # )
         )
     ],
     style={
