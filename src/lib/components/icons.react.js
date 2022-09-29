@@ -1,4 +1,6 @@
 import {
+    RightCircleTwoTone,
+    LeftCircleTwoTone,
     StarOutlined,
     SkinOutlined,
     SmileOutlined,
@@ -841,7 +843,9 @@ const str2Icon = new Map([
     ['antd-insurance', <InsuranceOutlined />],
     ['antd-smile', <SmileOutlined />],
     ['antd-skin', <SkinOutlined />],
-    ['antd-star', <StarOutlined />]
+    ['antd-star', <StarOutlined />],
+    ['antd-right-circle-two-tone', <RightCircleTwoTone />],
+    ['antd-left-circle-two-tone', <LeftCircleTwoTone />]
 ])
 
 export { str2Icon }
