@@ -78,13 +78,13 @@ const AntdSpin = (props) => {
         className={
             isString(className) ?
                 className :
-                useCss(className)
+                (className ? useCss(className) : undefined)
         }
         key={key}
         wrapperClassName={
             isString(wrapperClassName) ?
                 wrapperClassName :
-                useCss(wrapperClassName)
+                (className ? useCss(wrapperClassName) : undefined)
         }
         style={style}
         spinning={showSpinning}

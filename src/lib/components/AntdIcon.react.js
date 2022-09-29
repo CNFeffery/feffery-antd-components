@@ -38,7 +38,7 @@ const AntdIcon = (props) => {
                 className={
                     isString(className) ?
                         className :
-                        useCss(className)
+                        (className ? useCss(className) : undefined)
                 }
                 style={
                     (

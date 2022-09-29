@@ -1,63 +1,49 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { Timeline } from 'antd';
-import AntdIcon from './AntdIcon.react';
 import 'antd/dist/antd.css';
 
 // 定义时间轴组件AntdTimeline，api参数参考https://ant.design/components/timeline-cn/
-export default class AntdTimeline extends Component {
-    render() {
-        // 取得必要属性或参数
-        let {
-            id,
-            className,
-            style,
-            key,
-            items,
-            mode,
-            pending,
-            reverse,
-            setProps,
-            loading_state
-        } = this.props;
+const AntdTimeline = (props) => {
+    // 取得必要属性或参数
+    let {
+        id,
+        className,
+        style,
+        key,
+        items,
+        mode,
+        pending,
+        pendingDot,
+        reverse,
+        setProps,
+        loading_state
+    } = props;
 
-        return (
-            <Timeline id={id}
-                className={className}
-                style={style}
-                key={key}
-                mode={mode}
-                pending={pending}
-                reverse={reverse}
-                data-dash-is-loading={
-                    (loading_state && loading_state.is_loading) || undefined
-                }
-            >{items.map(
-                item => (
-                    <Timeline.Item color={item.color ? item.color : 'blue'}
-                        dot={
-                            item.icon ?
-                                <span style={item.iconStyle}>
-                                    {<AntdIcon icon={item.icon} />}
-                                </span> : undefined
-                        }
-                        label={item.label}
-                        position={item.position}>
-                        {item.content ?
-                            item.content.split('\n').map(
-                                s => (
-                                    <p style={item.contentStyle}>
-                                        {s}
-                                    </p>
-                                )
-                            )
-                            : <p />}
-                    </Timeline.Item>
-                )
-            )}
-            </Timeline>
-        );
-    }
+    return (
+        <Timeline id={id}
+            className={className}
+            style={style}
+            key={key}
+            mode={mode}
+            pending={pending}
+            pendingDot={pendingDot}
+            reverse={reverse}
+            data-dash-is-loading={
+                (loading_state && loading_state.is_loading) || undefined
+            }
+        >{items.map(
+            item => (
+                <Timeline.Item color={item.color}
+                    dot={item.icon}
+                    label={item.label}
+                    position={item.position}>
+                    {item.content}
+                </Timeline.Item>
+            )
+        )}
+        </Timeline>
+    );
 }
 
 // 定义参数或属性
@@ -78,7 +64,7 @@ AntdTimeline.propTypes = {
     items: PropTypes.arrayOf(
         PropTypes.exact({
             // 设置该节点的主体文字内容
-            content: PropTypes.string,
+            content: PropTypes.node,
 
             // 设置圆圈颜色来表达对应节点的状态，供参考的状态色有：
             // blue：可表示正在进行或默认状态
@@ -87,20 +73,16 @@ AntdTimeline.propTypes = {
             // grey：可表示未完成或失效状态
             color: PropTypes.string,
 
-            // 设置时间轴点图标，不设置时则显示默认圆圈
-            // 与AntdIcon中的icon参数相通
-            icon: PropTypes.string,
+            // 用于自定义作为节点图标的元素
+            icon: PropTypes.node,
 
-            // 定义icon图标的css样式
-            iconStyle: PropTypes.object,
+            // 设置节点在单独另一侧显示的标签内容
+            label: PropTypes.node,
 
-            // 设置content文字的css样式
-            contentStyle: PropTypes.object,
-
-            // 可选，设置节点在单独另一侧显示的标签内容
-            label: PropTypes.string
+            // 用于设置节点位置，可选的有'left'、'right'
+            position: PropTypes.oneOf(['left', 'right'])
         })
-    ),
+    ).isRequired,
 
     // 设置时间轴在content的哪一侧，可选的有'left'、'alternate'及'right'
     // 默认为'right'
@@ -109,6 +91,9 @@ AntdTimeline.propTypes = {
     // 设置在时间轴尾部添加“加载中”幽灵节点对应的文字说明内容
     // 默认不设置则不会渲染该状态节点
     pending: PropTypes.string,
+
+    // 设自定义时间轴尾部“加载中”状态所展示的元素内容
+    pendingDot: PropTypes.node,
 
     // 设置是否对时间轴逆序排列（默认false顺序下，方向从上往下）
     reverse: PropTypes.bool,
@@ -139,3 +124,5 @@ AntdTimeline.propTypes = {
 AntdTimeline.defaultProps = {
     mode: 'left'
 }
+
+export default AntdTimeline;

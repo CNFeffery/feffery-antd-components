@@ -29,7 +29,7 @@ const AntdTabPane = (props) => {
             className={
                 isString(className) ?
                     className :
-                    useCss(className)
+                    (className ? useCss(className) : undefined)
             }
             style={style}
             tab={tab}

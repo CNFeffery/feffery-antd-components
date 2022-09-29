@@ -38,7 +38,7 @@ const AntdCol = (props) => {
             className={
                 isString(className) ?
                     className :
-                    useCss(className)
+                    (className ? useCss(className) : undefined)
             }
             style={{ height: '100%', ...style }}
             key={key}

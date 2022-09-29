@@ -1669,11 +1669,11 @@ AntdTable.propTypes = {
     // 配置行可展开内容，键名为对应行的key，键值为对应行的展开内容
     expandedRowKeyToContent: PropTypes.arrayOf(
         PropTypes.exact({
-            'key': PropTypes.oneOfType([
+            key: PropTypes.oneOfType([
                 PropTypes.string,
                 PropTypes.number
             ]).isRequired,
-            'content': PropTypes.node
+            content: PropTypes.node
         })
     ),
 

@@ -35,7 +35,7 @@ const AntdAvatar = (props) => {
                 className={
                     isString(className) ?
                         className :
-                        useCss(className)
+                        (className ? useCss(className) : undefined)
                 }
                 style={style}
                 key={key}
@@ -58,7 +58,7 @@ const AntdAvatar = (props) => {
                 className={
                     isString(className) ?
                         className :
-                        useCss(className)
+                        (className ? useCss(className) : undefined)
                 }
                 style={style}
                 key={key}
@@ -78,7 +78,7 @@ const AntdAvatar = (props) => {
                 className={
                     isString(className) ?
                         className :
-                        useCss(className)
+                        (className ? useCss(className) : undefined)
                 }
                 style={style}
                 key={key}

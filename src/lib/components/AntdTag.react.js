@@ -27,7 +27,7 @@ const AntdTag = (props) => {
             className={
                 isString(className) ?
                     className :
-                    useCss(className)
+                    (className ? useCss(className) : undefined)
             }
             style={style}
             color={color}

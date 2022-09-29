@@ -43,7 +43,7 @@ const AntdDrawer = (props) => {
                 className={
                     isString(className) ?
                         className :
-                        useCss(className)
+                        (className ? useCss(className) : undefined)
                 }
                 style={containerId ? { ...style, ...{ position: 'absolute' } } : style}
                 key={key}

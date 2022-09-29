@@ -38,7 +38,7 @@ const AntdImage = (props) => {
                         className={
                             isString(className) ?
                                 className :
-                                useCss(className)
+                                (className ? useCss(className) : undefined)
                         }
                         key={key}
                         preview={{ visible: false }}
@@ -65,7 +65,7 @@ const AntdImage = (props) => {
                         className={
                             isString(className) ?
                                 className :
-                                useCss(className)
+                                (className ? useCss(className) : undefined)
                         }
                         key={key}>
                         {src.map(
