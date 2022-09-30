@@ -1,4 +1,9 @@
 import {
+    ToolTwoTone,
+    NotificationTwoTone,
+    HourglassTwoTone,
+    CloudTwoTone,
+    ApiTwoTone,
     SlidersTwoTone,
     FundTwoTone,
     BoxPlotTwoTone,
@@ -226,9 +231,22 @@ import {
 } from "react-icons/bs";
 import {
     BiAnalyse,
-    BiTable
+    BiTable,
+    BiLayer,
+    BiLayerMinus,
+    BiLayerPlus
 } from "react-icons/bi";
-import { DiPython, DiLinux } from "react-icons/di";
+import {
+    DiPython,
+    DiLinux,
+    DiChrome,
+    DiDatabase,
+    DiFirefox,
+    DiMarkdown,
+    DiPostgresql,
+    DiTerminal,
+    DiWindows
+} from "react-icons/di";
 import {
     FcAdvertising,
     FcApproval,
@@ -448,7 +466,10 @@ import {
     MdStarBorder,
     MdStarHalf
 } from "react-icons/md";
-import { ImEarth } from "react-icons/im";
+import {
+    ImEarth,
+    ImSphere
+} from "react-icons/im";
 import { GiMeshNetwork } from "react-icons/gi";
 
 const str2Icon = new Map([
@@ -669,8 +690,18 @@ const str2Icon = new Map([
     ['fc-advertising', <FcAdvertising />],
     ['di-linux', <DiLinux />],
     ['di-python', <DiPython />],
+    ['di-chrome', <DiChrome />],
+    ['di-database', <DiDatabase />],
+    ['di-firefox', <DiFirefox />],
+    ['di-markdown', <DiMarkdown />],
+    ['di-postgresql', <DiPostgresql />],
+    ['di-terminal', <DiTerminal />],
+    ['di-windows', <DiWindows />],
     ['bi-table', <BiTable />],
     ['bi-analyse', <BiAnalyse />],
+    ['bi-layer', <BiLayer />],
+    ['bi-layer-minus', <BiLayerMinus />],
+    ['bi-layer-plus', <BiLayerPlus />],
     ['bs-list-task', <BsListTask />],
     ['bs-list-check', <BsListCheck />],
     ['bs-link', <BsLink />],
@@ -829,6 +860,7 @@ const str2Icon = new Map([
     ['antd-cloud-sync', <CloudSyncOutlined />],
     ['antd-swap', <SwapOutlined />],
     ['im-earth', <ImEarth />],
+    ['im-sphere', <ImSphere />],
     ['gi-mesh-network', <GiMeshNetwork style={{ zoom: 1.2 }} />],
     ['antd-rollback', <RollbackOutlined />],
     ['antd-login', <LoginOutlined />],
@@ -894,6 +926,11 @@ const str2Icon = new Map([
     ['antd-box-chart-two-tone', <BoxPlotTwoTone />],
     ['antd-fund-two-tone', <FundTwoTone />],
     ['antd-sliders-two-tone', <SlidersTwoTone />],
+    ['antd-api-two-tone', <ApiTwoTone />],
+    ['antd-cloud-two-tone', <CloudTwoTone />],
+    ['antd-hourglass-two-tone', <HourglassTwoTone />],
+    ['antd-notification-two-tone', <NotificationTwoTone />],
+    ['antd-tool-two-tone', <ToolTwoTone />]
 ])
 
 export { str2Icon }
