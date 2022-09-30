@@ -38,6 +38,7 @@ const AntdTreeSelect = (props) => {
         placement,
         status,
         treeNodeFilterProp,
+        autoClearSearchValue,
         setProps,
         persistence,
         persisted_props,
@@ -98,6 +99,7 @@ const AntdTreeSelect = (props) => {
                 placement={placement}
                 status={status}
                 treeNodeFilterProp={treeNodeFilterProp}
+                autoClearSearchValue={autoClearSearchValue}
                 persistence={persistence}
                 persisted_props={persisted_props}
                 persistence_type={persistence_type}
@@ -277,6 +279,9 @@ AntdTreeSelect.propTypes = {
 
     // 设置输入框中搜索时针对的字段，可选的有'title'、'value'，默认为'value'
     treeNodeFilterProp: PropTypes.oneOf(['title', 'value']),
+
+    // 设置当多选模式下值被选择，是否自动清空搜索框，默认为true
+    autoClearSearchValue: PropTypes.bool,
 
     loading_state: PropTypes.shape({
         /**

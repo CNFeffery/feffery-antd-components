@@ -10,6 +10,7 @@ An AntdSelect component.
 Keyword arguments:
 - `id` (String; optional)
 - `allowClear` (Bool; optional)
+- `autoClearSearchValue` (Bool; optional)
 - `autoSpin` (Bool; optional)
 - `className` (String; optional)
 - `colorsMode` (a value equal to: 'sequential', 'diverging'; optional)
@@ -64,7 +65,7 @@ session: window.sessionStorage, data is cleared once the browser quit.
 - `value` (String | Real | Array of String | Reals; optional)
 """
 function 'feffery'_antdselect(; kwargs...)
-        available_props = Symbol[:id, :allowClear, :autoSpin, :className, :colorsMode, :colorsNameWidth, :debounceWait, :defaultValue, :disabled, :key, :listHeight, :loading_state, :locale, :maxTagCount, :mode, :optionFilterProp, :options, :persisted_props, :persistence, :persistence_type, :placeholder, :placement, :searchValue, :size, :status, :style, :value]
+        available_props = Symbol[:id, :allowClear, :autoClearSearchValue, :autoSpin, :className, :colorsMode, :colorsNameWidth, :debounceWait, :defaultValue, :disabled, :key, :listHeight, :loading_state, :locale, :maxTagCount, :mode, :optionFilterProp, :options, :persisted_props, :persistence, :persistence_type, :placeholder, :placement, :searchValue, :size, :status, :style, :value]
         wild_props = Symbol[]
         return Component("'feffery'_antdselect", "AntdSelect", "feffery_antd_components", available_props, wild_props; kwargs...)
 end

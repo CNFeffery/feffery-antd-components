@@ -35,6 +35,7 @@ const AntdSelect = (props) => {
         optionFilterProp,
         autoSpin,
         debounceWait,
+        autoClearSearchValue,
         loading_state,
         persistence,
         persisted_props,
@@ -174,6 +175,7 @@ const AntdSelect = (props) => {
                 placement={placement}
                 status={status}
                 optionFilterProp={optionFilterProp}
+                autoClearSearchValue={autoClearSearchValue}
                 onSearch={onSearch}
                 loading={autoSpin && loading_state.is_loading}
                 persistence={persistence}
@@ -334,6 +336,9 @@ AntdSelect.propTypes = {
 
     // 用于配置debounceValue变化更新的防抖等待时长（单位：毫秒），默认为0
     debounceWait: PropTypes.number,
+
+    // 设置是否在选中项后清空搜索框，mode为'multiple'/'tags'时有效，默认为true
+    autoClearSearchValue: PropTypes.bool,
 
     loading_state: PropTypes.shape({
         /**

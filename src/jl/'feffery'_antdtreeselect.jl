@@ -10,6 +10,7 @@ An AntdTreeSelect component.
 Keyword arguments:
 - `id` (String; optional)
 - `allowClear` (Bool; optional)
+- `autoClearSearchValue` (Bool; optional)
 - `bordered` (Bool; optional)
 - `className` (String; optional)
 - `defaultValue` (String | Real | Array of String | Reals; optional)
@@ -55,7 +56,7 @@ session: window.sessionStorage, data is cleared once the browser quit.
 - `virtual` (Bool; optional)
 """
 function 'feffery'_antdtreeselect(; kwargs...)
-        available_props = Symbol[:id, :allowClear, :bordered, :className, :defaultValue, :disabled, :key, :listHeight, :loading_state, :locale, :maxTagCount, :multiple, :persisted_props, :persistence, :persistence_type, :placeholder, :placement, :size, :status, :style, :treeCheckStrictly, :treeCheckable, :treeData, :treeDataMode, :treeDefaultExpandAll, :treeDefaultExpandedKeys, :treeExpandedKeys, :treeLine, :treeNodeFilterProp, :value, :virtual]
+        available_props = Symbol[:id, :allowClear, :autoClearSearchValue, :bordered, :className, :defaultValue, :disabled, :key, :listHeight, :loading_state, :locale, :maxTagCount, :multiple, :persisted_props, :persistence, :persistence_type, :placeholder, :placement, :size, :status, :style, :treeCheckStrictly, :treeCheckable, :treeData, :treeDataMode, :treeDefaultExpandAll, :treeDefaultExpandedKeys, :treeExpandedKeys, :treeLine, :treeNodeFilterProp, :value, :virtual]
         wild_props = Symbol[]
         return Component("'feffery'_antdtreeselect", "AntdTreeSelect", "feffery_antd_components", available_props, wild_props; kwargs...)
 end
