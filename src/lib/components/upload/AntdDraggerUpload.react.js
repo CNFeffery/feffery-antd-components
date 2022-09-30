@@ -29,6 +29,8 @@ const AntdDraggerUpload = (props) => {
         id,
         className,
         style,
+        draggerClassName,
+        draggerStyle,
         key,
         locale,
         apiUrl,
@@ -245,15 +247,21 @@ const AntdDraggerUpload = (props) => {
                         (className ? useCss(className) : undefined)
                 }
                 style={style}
-                key={key}>
+                key={key}
+                data-dash-is-loading={
+                    (loading_state && loading_state.is_loading) || undefined
+                }>
                 <Dragger
+                    draggerStyle={draggerStyle}
+                    draggerClassName={
+                        isString(draggerClassName) ?
+                            draggerClassName :
+                            (draggerClassName ? useCss(draggerClassName) : undefined)
+                    }
                     fileList={fileList}
                     showUploadList={showUploadList}
                     multiple={multiple}
                     directory={directory}
-                    data-dash-is-loading={
-                        (loading_state && loading_state.is_loading) || undefined
-                    }
                     {...uploadProps}>
                     <p className="ant-upload-drag-icon">
                         {<AntdIcon icon={'antd-cloud-upload'} />}
@@ -281,6 +289,15 @@ AntdDraggerUpload.propTypes = {
 
     // 自定义css字典
     style: PropTypes.object,
+
+    // css类名
+    draggerClassName: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.object
+    ]),
+
+    // 自定义css字典
+    draggerStyle: PropTypes.object,
 
     // 辅助刷新用唯一标识key值
     key: PropTypes.string,
