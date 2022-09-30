@@ -136,7 +136,10 @@ const PropTreeNodeShape = {
     disableCheckbox: PropTypes.bool,
 
     // 可选，设置对应节点是否可选
-    selectable: PropTypes.bool
+    selectable: PropTypes.bool,
+
+    // 设置是否为叶节点，默认为false
+    isLeaf: PropTypes.bool
 };
 
 const PropTreeNode = PropTypes.shape(PropTreeNodeShape);
@@ -168,6 +171,9 @@ const PropFlatNodeShape = {
 
     // 可选，设置对应节点是否可选
     selectable: PropTypes.bool,
+
+    // 设置是否为叶节点，默认为false
+    isLeaf: PropTypes.bool,
 
     // 可选，设置对应节点的父节点key值
     parent: PropTypes.string
@@ -238,7 +244,10 @@ AntdTreeSelect.propTypes = {
     ]),
 
     // 设置最大显示的已选择选项，默认为5，超出部分会自动省略
-    maxTagCount: PropTypes.number,
+    maxTagCount: PropTypes.oneOfType([
+        PropTypes.number,
+        PropTypes.oneOf(['responsive'])
+    ]),
 
     // 设置下拉菜单的高度，默认256
     listHeight: PropTypes.number,

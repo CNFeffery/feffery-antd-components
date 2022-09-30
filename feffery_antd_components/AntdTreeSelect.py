@@ -42,7 +42,7 @@ Keyword arguments:
 
 - locale (a value equal to: 'zh-cn', 'en-us'; default 'zh-cn')
 
-- maxTagCount (number; optional)
+- maxTagCount (number | a value equal to: 'responsive'; optional)
 
 - multiple (boolean; optional)
 
