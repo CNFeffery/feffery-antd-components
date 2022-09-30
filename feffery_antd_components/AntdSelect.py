@@ -46,7 +46,7 @@ Keyword arguments:
 
 - locale (a value equal to: 'zh-cn', 'en-us'; default 'zh-cn')
 
-- maxTagCount (number; default 5)
+- maxTagCount (number | a value equal to: 'responsive'; default 5)
 
 - mode (a value equal to: 'multiple', 'tags'; optional)
 
@@ -62,7 +62,7 @@ Keyword arguments:
 
     - label (string
 
-      Or number; required)
+      Or number | a list of or a singular dash component, string or number; required)
 
     - value (string | number; required) | dict with keys:
 
@@ -76,7 +76,7 @@ Keyword arguments:
 
         - disabled (boolean; optional)
 
-        - label (string | number; required)
+        - label (string | number | a list of or a singular dash component, string or number; required)
 
         - value (string | number; required)
 
@@ -112,7 +112,7 @@ Keyword arguments:
 - style (dict; optional)
 
 - value (string | number | list of string | numbers; optional)"""
-    _children_props = []
+    _children_props = ['options[].label', 'options[].options[].label']
     _base_nodes = ['children']
     _namespace = 'feffery_antd_components'
     _type = 'AntdSelect'

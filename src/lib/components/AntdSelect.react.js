@@ -67,13 +67,13 @@ const AntdSelect = (props) => {
     options = options || []
 
     // 基于dash端传入的options参数，推导出对应的组件
-    var optionsJsx = [];
-    for (var i = 0; i < options.length; i++) {
+    let optionsJsx = [];
+    for (let i = 0; i < options.length; i++) {
         // 当存在分组时
         if (options[i].hasOwnProperty('group')) {
-            var groupOptions = [];
+            let groupOptions = [];
             // 构造OptGroup > Option结构
-            for (var j = 0; j < options[i].options.length; j++) {
+            for (let j = 0; j < options[i].options.length; j++) {
                 groupOptions.push(
                     <Option value={options[i].options[j].value} disabled={options[i].options[j].disabled}>
                         {
@@ -212,12 +212,17 @@ AntdSelect.propTypes = {
         PropTypes.oneOfType([
             PropTypes.exact({
                 // 选项对应显示的label
-                label: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
-                    .isRequired,
+                label: PropTypes.oneOfType([
+                    PropTypes.string,
+                    PropTypes.number,
+                    PropTypes.node
+                ]).isRequired,
 
                 // 选相对应的值
-                value: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
-                    .isRequired,
+                value: PropTypes.oneOfType([
+                    PropTypes.string,
+                    PropTypes.number
+                ]).isRequired,
 
                 // 控制选项的禁止点击状态
                 disabled: PropTypes.bool,
@@ -234,12 +239,17 @@ AntdSelect.propTypes = {
                 options: PropTypes.arrayOf(
                     PropTypes.exact({
                         // 选项对应显示的label
-                        label: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
-                            .isRequired,
+                        label: PropTypes.oneOfType([
+                            PropTypes.string,
+                            PropTypes.number,
+                            PropTypes.node
+                        ]).isRequired,
 
                         // 选相对应的值
-                        value: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
-                            .isRequired,
+                        value: PropTypes.oneOfType([
+                            PropTypes.string,
+                            PropTypes.number
+                        ]).isRequired,
 
                         // 控制选项的禁止点击状态
                         disabled: PropTypes.bool,
@@ -249,7 +259,6 @@ AntdSelect.propTypes = {
                         colors: PropTypes.arrayOf(PropTypes.string)
                     })
                 )
-
             })
         ])
     ),
@@ -295,7 +304,10 @@ AntdSelect.propTypes = {
     ]),
 
     // 设置最大显示的已选择选项，默认为5，超出部分会自动省略
-    maxTagCount: PropTypes.number,
+    maxTagCount: PropTypes.oneOfType([
+        PropTypes.number,
+        PropTypes.oneOf(['responsive'])
+    ]),
 
     // 设置下拉菜单的高度，默认256
     listHeight: PropTypes.number,

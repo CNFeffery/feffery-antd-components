@@ -25,12 +25,12 @@ Those elements have the following types:
   - `prop_name` (String; optional): Holds which property is loading
   - `component_name` (String; optional): Holds the name of the component that is loading
 - `locale` (a value equal to: 'zh-cn', 'en-us'; optional)
-- `maxTagCount` (Real; optional)
+- `maxTagCount` (Real | a value equal to: 'responsive'; optional)
 - `mode` (a value equal to: 'multiple', 'tags'; optional)
 - `optionFilterProp` (a value equal to: 'value', 'label'; optional)
 - `options` (optional): . options has the following type: Array of lists containing elements 'label', 'value', 'disabled', 'colors'.
 Those elements have the following types:
-  - `label` (String | Real; required)
+  - `label` (String | Real | a list of or a singular dash component, string or number; required)
   - `value` (String | Real; required)
   - `disabled` (Bool; optional)
   - `colors` (Array of Strings; optional) | lists containing elements 'group', 'options'.
@@ -38,7 +38,7 @@ Those elements have the following types:
   - `group` (String; required)
   - `options` (optional): . options has the following type: Array of lists containing elements 'label', 'value', 'disabled', 'colors'.
 Those elements have the following types:
-  - `label` (String | Real; required)
+  - `label` (String | Real | a list of or a singular dash component, string or number; required)
   - `value` (String | Real; required)
   - `disabled` (Bool; optional)
   - `colors` (Array of Strings; optional)ss
