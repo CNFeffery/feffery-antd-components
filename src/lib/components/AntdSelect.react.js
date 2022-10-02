@@ -36,6 +36,7 @@ const AntdSelect = (props) => {
         autoSpin,
         debounceWait,
         autoClearSearchValue,
+        emptyContent,
         loading_state,
         persistence,
         persisted_props,
@@ -178,6 +179,7 @@ const AntdSelect = (props) => {
                 autoClearSearchValue={autoClearSearchValue}
                 onSearch={onSearch}
                 loading={autoSpin && loading_state.is_loading}
+                notFoundContent={emptyContent}
                 persistence={persistence}
                 persisted_props={persisted_props}
                 persistence_type={persistence_type}
@@ -339,6 +341,9 @@ AntdSelect.propTypes = {
 
     // 设置是否在选中项后清空搜索框，mode为'multiple'/'tags'时有效，默认为true
     autoClearSearchValue: PropTypes.bool,
+
+    // 自定义空数据状态内容
+    emptyContent: PropTypes.node,
 
     loading_state: PropTypes.shape({
         /**
