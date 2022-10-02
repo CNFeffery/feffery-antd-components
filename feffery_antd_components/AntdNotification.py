@@ -36,7 +36,7 @@ Keyword arguments:
 
 - message (string; optional)
 
-- placement (a value equal to: 'topLeft', 'topRight', 'bottomLeft', 'bottomRight'; optional)
+- placement (a value equal to: 'top', 'topLeft', 'topRight', 'bottomLeft', 'bottomRight'; optional)
 
 - style (dict; optional)
 
