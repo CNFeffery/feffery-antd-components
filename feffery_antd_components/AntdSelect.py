@@ -29,6 +29,10 @@ Keyword arguments:
 
 - disabled (boolean; optional)
 
+- dropdownAfter (a list of or a singular dash component, string or number; optional)
+
+- dropdownBefore (a list of or a singular dash component, string or number; optional)
+
 - emptyContent (a list of or a singular dash component, string or number; optional)
 
 - key (string; optional)
@@ -116,15 +120,15 @@ Keyword arguments:
 - style (dict; optional)
 
 - value (string | number | list of string | numbers; optional)"""
-    _children_props = ['options[].label', 'options[].options[].label', 'emptyContent']
-    _base_nodes = ['emptyContent', 'children']
+    _children_props = ['options[].label', 'options[].options[].label', 'emptyContent', 'dropdownBefore', 'dropdownAfter']
+    _base_nodes = ['emptyContent', 'dropdownBefore', 'dropdownAfter', 'children']
     _namespace = 'feffery_antd_components'
     _type = 'AntdSelect'
     @_explicitize_args
-    def __init__(self, id=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, key=Component.UNDEFINED, locale=Component.UNDEFINED, options=Component.UNDEFINED, colorsNameWidth=Component.UNDEFINED, allowClear=Component.UNDEFINED, mode=Component.UNDEFINED, disabled=Component.UNDEFINED, placeholder=Component.UNDEFINED, size=Component.UNDEFINED, value=Component.UNDEFINED, defaultValue=Component.UNDEFINED, maxTagCount=Component.UNDEFINED, listHeight=Component.UNDEFINED, colorsMode=Component.UNDEFINED, placement=Component.UNDEFINED, status=Component.UNDEFINED, optionFilterProp=Component.UNDEFINED, searchValue=Component.UNDEFINED, autoSpin=Component.UNDEFINED, debounceWait=Component.UNDEFINED, autoClearSearchValue=Component.UNDEFINED, emptyContent=Component.UNDEFINED, loading_state=Component.UNDEFINED, persistence=Component.UNDEFINED, persisted_props=Component.UNDEFINED, persistence_type=Component.UNDEFINED, **kwargs):
-        self._prop_names = ['id', 'allowClear', 'autoClearSearchValue', 'autoSpin', 'className', 'colorsMode', 'colorsNameWidth', 'debounceWait', 'defaultValue', 'disabled', 'emptyContent', 'key', 'listHeight', 'loading_state', 'locale', 'maxTagCount', 'mode', 'optionFilterProp', 'options', 'persisted_props', 'persistence', 'persistence_type', 'placeholder', 'placement', 'searchValue', 'size', 'status', 'style', 'value']
+    def __init__(self, id=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, key=Component.UNDEFINED, locale=Component.UNDEFINED, options=Component.UNDEFINED, colorsNameWidth=Component.UNDEFINED, allowClear=Component.UNDEFINED, mode=Component.UNDEFINED, disabled=Component.UNDEFINED, placeholder=Component.UNDEFINED, size=Component.UNDEFINED, value=Component.UNDEFINED, defaultValue=Component.UNDEFINED, maxTagCount=Component.UNDEFINED, listHeight=Component.UNDEFINED, colorsMode=Component.UNDEFINED, placement=Component.UNDEFINED, status=Component.UNDEFINED, optionFilterProp=Component.UNDEFINED, searchValue=Component.UNDEFINED, autoSpin=Component.UNDEFINED, debounceWait=Component.UNDEFINED, autoClearSearchValue=Component.UNDEFINED, emptyContent=Component.UNDEFINED, dropdownBefore=Component.UNDEFINED, dropdownAfter=Component.UNDEFINED, loading_state=Component.UNDEFINED, persistence=Component.UNDEFINED, persisted_props=Component.UNDEFINED, persistence_type=Component.UNDEFINED, **kwargs):
+        self._prop_names = ['id', 'allowClear', 'autoClearSearchValue', 'autoSpin', 'className', 'colorsMode', 'colorsNameWidth', 'debounceWait', 'defaultValue', 'disabled', 'dropdownAfter', 'dropdownBefore', 'emptyContent', 'key', 'listHeight', 'loading_state', 'locale', 'maxTagCount', 'mode', 'optionFilterProp', 'options', 'persisted_props', 'persistence', 'persistence_type', 'placeholder', 'placement', 'searchValue', 'size', 'status', 'style', 'value']
         self._valid_wildcard_attributes =            []
-        self.available_properties = ['id', 'allowClear', 'autoClearSearchValue', 'autoSpin', 'className', 'colorsMode', 'colorsNameWidth', 'debounceWait', 'defaultValue', 'disabled', 'emptyContent', 'key', 'listHeight', 'loading_state', 'locale', 'maxTagCount', 'mode', 'optionFilterProp', 'options', 'persisted_props', 'persistence', 'persistence_type', 'placeholder', 'placement', 'searchValue', 'size', 'status', 'style', 'value']
+        self.available_properties = ['id', 'allowClear', 'autoClearSearchValue', 'autoSpin', 'className', 'colorsMode', 'colorsNameWidth', 'debounceWait', 'defaultValue', 'disabled', 'dropdownAfter', 'dropdownBefore', 'emptyContent', 'key', 'listHeight', 'loading_state', 'locale', 'maxTagCount', 'mode', 'optionFilterProp', 'options', 'persisted_props', 'persistence', 'persistence_type', 'placeholder', 'placement', 'searchValue', 'size', 'status', 'style', 'value']
         self.available_wildcard_properties =            []
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()

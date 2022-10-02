@@ -37,6 +37,8 @@ const AntdSelect = (props) => {
         debounceWait,
         autoClearSearchValue,
         emptyContent,
+        dropdownBefore,
+        dropdownAfter,
         loading_state,
         persistence,
         persisted_props,
@@ -180,6 +182,18 @@ const AntdSelect = (props) => {
                 onSearch={onSearch}
                 loading={autoSpin && loading_state.is_loading}
                 notFoundContent={emptyContent}
+                dropdownRender={
+                    (dropdownBefore || dropdownAfter) ?
+                        (menu) => {
+                            return (
+                                <>
+                                    {dropdownBefore}
+                                    {menu}
+                                    {dropdownAfter}
+                                </>
+                            );
+                        } : undefined
+                }
                 persistence={persistence}
                 persisted_props={persisted_props}
                 persistence_type={persistence_type}
@@ -344,6 +358,12 @@ AntdSelect.propTypes = {
 
     // 自定义空数据状态内容
     emptyContent: PropTypes.node,
+
+    // 可选，自定义悬浮层前缀内容
+    dropdownBefore: PropTypes.node,
+
+    // 可选，自定义悬浮层后缀内容
+    dropdownAfter: PropTypes.node,
 
     loading_state: PropTypes.shape({
         /**
