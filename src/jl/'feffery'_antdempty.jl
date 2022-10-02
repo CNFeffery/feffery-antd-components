@@ -15,7 +15,7 @@ Keyword arguments:
 - `id` (String; optional)
 - `className` (String; optional)
 - `description` (a list of or a singular dash component, string or number; optional)
-- `image` (String; optional)
+- `image` (String | a value equal to: 'default', 'simple'; optional)
 - `imageStyle` (Dict; optional)
 - `key` (String; optional)
 - `loading_state` (optional): . loading_state has the following type: lists containing elements 'is_loading', 'prop_name', 'component_name'.

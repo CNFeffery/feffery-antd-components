@@ -17,7 +17,7 @@ Keyword arguments:
 
 - description (a list of or a singular dash component, string or number; optional)
 
-- image (string; optional)
+- image (string | a value equal to: 'default', 'simple'; optional)
 
 - imageStyle (dict; optional)
 

@@ -4,6 +4,11 @@ import { Empty, ConfigProvider } from 'antd';
 import { str2Locale } from './locales.react';
 import 'antd/dist/antd.css';
 
+const builtinImage = new Map([
+    ['default', Empty.PRESENTED_IMAGE_DEFAULT],
+    ['simple', Empty.PRESENTED_IMAGE_SIMPLE]
+])
+
 // 定义空状态组件AntdEmpty，api参数参考https://ant.design/components/empty-cn/
 export default class AntdEmpty extends Component {
     render() {
@@ -29,7 +34,7 @@ export default class AntdEmpty extends Component {
                     style={style}
                     key={key}
                     description={description}
-                    image={image}
+                    image={builtinImage.get(image) || image}
                     imageStyle={imageStyle}
                     data-dash-is-loading={
                         (loading_state && loading_state.is_loading) || undefined
@@ -62,7 +67,12 @@ AntdEmpty.propTypes = {
     description: PropTypes.node,
 
     // 设置自定义图片的url地址，默认为内建图片
-    image: PropTypes.string,
+    image: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.oneOf([
+            'default', 'simple'
+        ])
+    ]),
 
     // 设置自定义图片的css样式
     imageStyle: PropTypes.object,
