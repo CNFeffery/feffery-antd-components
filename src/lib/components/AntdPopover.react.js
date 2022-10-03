@@ -26,6 +26,7 @@ export default class AntdPopover extends Component {
             overlayStyle,
             overlayInnerStyle,
             trigger,
+            zIndex,
             loading_state
         } = this.props;
 
@@ -50,6 +51,7 @@ export default class AntdPopover extends Component {
                 overlayStyle={overlayStyle}
                 overlayInnerStyle={overlayInnerStyle}
                 trigger={trigger}
+                zIndex={zIndex}
                 getPopupContainer={(triggerNode) => triggerNode.parentNode}
                 data-dash-is-loading={
                     (loading_state && loading_state.is_loading) || undefined
@@ -123,6 +125,9 @@ AntdPopover.propTypes = {
             PropTypes.arrayOf(PropTypes.oneOf(['hover', 'focus', 'click']))
         ]
     ),
+
+    // 设置悬浮层zIndex
+    zIndex: PropTypes.number,
 
     loading_state: PropTypes.shape({
         /**

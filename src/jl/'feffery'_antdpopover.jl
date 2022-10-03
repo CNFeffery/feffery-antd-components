@@ -33,9 +33,10 @@ Those elements have the following types:
   - `content` (String; optional)
   - `prefixIcon` (String; optional)
 - `trigger` (a value equal to: 'hover', 'focus', 'click' | Array of a value equal to: 'hover', 'focus', 'click's; optional)
+- `zIndex` (Real; optional)
 """
 function 'feffery'_antdpopover(; kwargs...)
-        available_props = Symbol[:children, :id, :className, :color, :content, :key, :loading_state, :mouseEnterDelay, :mouseLeaveDelay, :overlayInnerStyle, :overlayStyle, :placement, :style, :title, :trigger]
+        available_props = Symbol[:children, :id, :className, :color, :content, :key, :loading_state, :mouseEnterDelay, :mouseLeaveDelay, :overlayInnerStyle, :overlayStyle, :placement, :style, :title, :trigger, :zIndex]
         wild_props = Symbol[]
         return Component("'feffery'_antdpopover", "AntdPopover", "feffery_antd_components", available_props, wild_props; kwargs...)
 end
