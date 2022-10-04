@@ -1,67 +1,65 @@
 import json
 import dash
+from faker import Faker
 import pandas as pd
 from dash import html
 import feffery_antd_components as fac
 from dash.dependencies import Input, Output, State
 
+faker = Faker(locale='zh_CN')
+
 app = dash.Dash(__name__)
 
 app.layout = html.Div(
     [
-        fac.AntdWatermark(
-            html.Div(
-                fac.AntdForm(
-                    [
-                        fac.AntdFormItem(
-                            fac.AntdInput(
-                                autoComplete='off'
-                            ),
-                            label='用户名'
-                        ),
-                        fac.AntdFormItem(
-                            fac.AntdInput(
-                                mode='password'
-                            ),
-                            label='密码'
-                        ),
-                        fac.AntdFormItem(
-                            fac.AntdCheckbox(
-                                label='记住密码'
-                            ),
-                            wrapperCol={
-                                'offset': 4
-                            }
-                        ),
-                        fac.AntdFormItem(
-                            fac.AntdButton(
-                                '登录',
-                                type='primary'
-                            ),
-                            wrapperCol={
-                                'offset': 4
-                            }
-                        )
-                    ],
-                    labelCol={
-                        'span': 4
-                    },
-                    wrapperCol={
-                        'span': 8
-                    }
-                ),
-                style={
-                    'boxShadow': '0 6px 16px rgb(107 147 224 / 14%)',
-                    'padding': '25px',
-                    'position': 'relative',
-                    'zIndex': 10
+        fac.AntdTable(
+            columns=[
+                {
+                    'title': '国家名示例',
+                    'dataIndex': '国家名示例',
+                    'width': '20%'
+                },
+                {
+                    'title': '省份名示例',
+                    'dataIndex': '省份名示例',
+                    'width': '20%'
+                },
+                {
+                    'title': '城市名示例',
+                    'dataIndex': '城市名示例',
+                    'width': '20%'
+                },
+                {
+                    'title': '日期示例',
+                    'dataIndex': '日期示例',
+                    'width': '20%'
+                },
+                {
+                    'title': '邮编示例',
+                    'dataIndex': '邮编示例',
+                    'width': '20%'
                 }
-            ),
-            content='水印内容测试',
-            fontSize=14,
-            rotate=22,
-            gapX=10,
-            gapY=10
+            ],
+            data=[
+                {
+                    'key': i,
+                    '国家名示例': faker.country(),
+                    '省份名示例': faker.province(),
+                    '城市名示例': faker.city_name(),
+                    '日期示例': faker.date(pattern="%Y-%m-%d", end_datetime=None),
+                    '邮编示例': faker.postcode()
+                }
+                for i in range(100)
+            ],
+            bordered=True,
+            pagination={
+                'pageSize': 10,
+                'current': 5,
+                'pageSizeOptions': [5, 10, 15, 20, 25],
+                'showTotalPrefix': '本次共取得示例数据 ',
+                'showTotalSuffix': ' 条！😋',
+                'position': 'bottomCenter'
+            }
         )
     ],
     style={

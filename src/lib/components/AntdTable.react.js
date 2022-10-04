@@ -1137,7 +1137,13 @@ class AntdTable extends Component {
                     size={size2size.get(size)}
                     rowSelection={rowSelection}
                     sticky={sticky}
-                    pagination={{ ...pagination, ...{ showTotal: total => `${pagination.showTotalPrefix} ${total} ${pagination.showTotalSuffix}` } }}
+                    pagination={{
+                        ...pagination,
+                        ...{
+                            showTotal: total => `${pagination.showTotalPrefix} ${total} ${pagination.showTotalSuffix}`
+                        },
+                        position: pagination.position ? [pagination.position] : undefined
+                    }}
                     bordered={bordered}
                     scroll={{ x: maxWidth, y: maxHeight, scrollToFirstRowOnChange: true }}
                     onChange={this.onPageChange}
