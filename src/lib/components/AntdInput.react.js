@@ -36,6 +36,7 @@ const AntdInput = (props) => {
         status,
         autoSize,
         debounceWait,
+        readOnly,
         setProps,
         loading_state,
         persistence,
@@ -108,6 +109,7 @@ const AntdInput = (props) => {
                 disabled={disabled}
                 maxLength={maxLength}
                 status={status}
+                readOnly={readOnly}
                 onChange={(e) => {
                     onChange(e)
                     onDebounceChange(e.target.value)
@@ -136,6 +138,7 @@ const AntdInput = (props) => {
                 disabled={disabled}
                 maxLength={maxLength}
                 status={status}
+                readOnly={readOnly}
                 onSearch={onSearch}
                 onChange={(e) => {
                     onChange(e)
@@ -167,6 +170,7 @@ const AntdInput = (props) => {
                 showCount={showCount}
                 status={status}
                 autoSize={autoSize}
+                readOnly={readOnly}
                 onChange={(e) => {
                     onChange(e)
                     onDebounceChange(e.target.value)
@@ -196,6 +200,7 @@ const AntdInput = (props) => {
                 status={status}
                 prefix={prefix}
                 suffix={suffix}
+                readOnly={readOnly}
                 onChange={(e) => {
                     onChange(e)
                     onDebounceChange(e.target.value)
@@ -314,6 +319,9 @@ AntdInput.propTypes = {
             maxRows: PropTypes.number
         })
     ]),
+
+    // 设置是否以只读模式进行渲染，默认为false
+    readOnly: PropTypes.bool,
 
     /**
      * Dash-assigned callback that should be called to report property changes

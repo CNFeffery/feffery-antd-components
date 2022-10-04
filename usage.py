@@ -12,6 +12,12 @@ app = dash.Dash(__name__)
 
 app.layout = html.Div(
     [
+
+        fac.AntdInput(
+            value='测试测试',
+            readOnly=True
+        ),
+
         fac.AntdTable(
             columns=[
                 {
