@@ -24,7 +24,7 @@ Those elements have the following types:
   - `prop_name` (String; optional): Holds which property is loading
   - `component_name` (String; optional): Holds the name of the component that is loading
 - `mode` (a value equal to: 'left', 'alternate', 'right'; optional)
-- `pending` (String; optional)
+- `pending` (a list of or a singular dash component, string or number; optional)
 - `pendingDot` (a list of or a singular dash component, string or number; optional)
 - `reverse` (Bool; optional)
 - `style` (Dict; optional)

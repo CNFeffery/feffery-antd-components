@@ -44,15 +44,15 @@ Keyword arguments:
 
 - mode (a value equal to: 'left', 'alternate', 'right'; default 'left')
 
-- pending (string; optional)
+- pending (a list of or a singular dash component, string or number; optional)
 
 - pendingDot (a list of or a singular dash component, string or number; optional)
 
 - reverse (boolean; optional)
 
 - style (dict; optional)"""
-    _children_props = ['items[].content', 'items[].icon', 'items[].label', 'pendingDot']
-    _base_nodes = ['pendingDot', 'children']
+    _children_props = ['items[].content', 'items[].icon', 'items[].label', 'pending', 'pendingDot']
+    _base_nodes = ['pending', 'pendingDot', 'children']
     _namespace = 'feffery_antd_components'
     _type = 'AntdTimeline'
     @_explicitize_args

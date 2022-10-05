@@ -90,7 +90,7 @@ AntdTimeline.propTypes = {
 
     // 设置在时间轴尾部添加“加载中”幽灵节点对应的文字说明内容
     // 默认不设置则不会渲染该状态节点
-    pending: PropTypes.string,
+    pending: PropTypes.node,
 
     // 设自定义时间轴尾部“加载中”状态所展示的元素内容
     pendingDot: PropTypes.node,
