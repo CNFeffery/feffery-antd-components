@@ -20,6 +20,7 @@ export default class AntdNotification extends Component {
             top,
             bottom,
             duration,
+            closable,
             loading_state,
             setProps
         } = this.props;
@@ -32,7 +33,8 @@ export default class AntdNotification extends Component {
             placement: placement,
             top: top,
             bottom: bottom,
-            duration: duration
+            duration: duration,
+            closeIcon: closable ? undefined : <span style={{ visibility: "hidden" }} />
         }
 
         if (type === 'default') {
@@ -46,7 +48,6 @@ export default class AntdNotification extends Component {
         } else if (type === 'warning') {
             notification.warning(config)
         }
-
 
         return (
             <div
@@ -95,6 +96,9 @@ AntdNotification.propTypes = {
     // 设置通知从显示到自动消失的时长（秒），默认为4.5，当传入null时表示不会自动消失
     duration: PropTypes.number,
 
+    // 设置是否渲染关闭按钮，默认为true
+    closable: PropTypes.bool,
+
     loading_state: PropTypes.shape({
         /**
          * Determines if the component is loading or not
@@ -119,5 +123,6 @@ AntdNotification.propTypes = {
 
 // 设置默认参数
 AntdNotification.defaultProps = {
-    type: 'default'
+    type: 'default',
+    closable: true
 }

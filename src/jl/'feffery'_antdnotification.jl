@@ -11,6 +11,7 @@ Keyword arguments:
 - `id` (String; optional)
 - `bottom` (Real; optional)
 - `className` (String; optional)
+- `closable` (Bool; optional)
 - `description` (String; optional)
 - `duration` (Real; optional)
 - `key` (String; optional)
@@ -26,7 +27,7 @@ Those elements have the following types:
 - `type` (a value equal to: 'default', 'success', 'error', 'info', 'warning'; optional)
 """
 function 'feffery'_antdnotification(; kwargs...)
-        available_props = Symbol[:id, :bottom, :className, :description, :duration, :key, :loading_state, :message, :placement, :style, :top, :type]
+        available_props = Symbol[:id, :bottom, :className, :closable, :description, :duration, :key, :loading_state, :message, :placement, :style, :top, :type]
         wild_props = Symbol[]
         return Component("'feffery'_antdnotification", "AntdNotification", "feffery_antd_components", available_props, wild_props; kwargs...)
 end
