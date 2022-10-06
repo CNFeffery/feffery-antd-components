@@ -45,6 +45,7 @@ const AntdDraggerUpload = (props) => {
         directory,
         failedTooltipInfo,
         listUploadTaskRecord,
+        defaultFileList,
         loading_state,
         setProps
     } = props;
@@ -262,6 +263,7 @@ const AntdDraggerUpload = (props) => {
                     showUploadList={showUploadList}
                     multiple={multiple}
                     directory={directory}
+                    defaultFileList={defaultFileList}
                     {...uploadProps}>
                     <p className="ant-upload-drag-icon">
                         {<AntdIcon icon={'antd-cloud-upload'} />}
@@ -427,6 +429,14 @@ AntdDraggerUpload.propTypes = {
             })
         )
     ]),
+
+    // 仅作初始化展示用，用于定义组件初始化时已存在在上传列表中的附件信息
+    defaultFileList: PropTypes.arrayOf(
+        PropTypes.exact({
+            // 文件名称
+            name: PropTypes.string
+        })
+    ),
 
     loading_state: PropTypes.shape({
         /**

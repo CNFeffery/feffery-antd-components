@@ -38,6 +38,7 @@ const AntdUpload = (props) => {
         directory,
         failedTooltipInfo,
         listUploadTaskRecord,
+        defaultFileList,
         loading_state,
         setProps
     } = props;
@@ -238,6 +239,7 @@ const AntdUpload = (props) => {
                 multiple={multiple}
                 showUploadList={showUploadList}
                 directory={directory}
+                defaultFileList={defaultFileList}
                 data-dash-is-loading={
                     (loading_state && loading_state.is_loading) || undefined
                 }>
@@ -380,6 +382,14 @@ AntdUpload.propTypes = {
             })
         )
     ]),
+
+    // 仅作初始化展示用，用于定义组件初始化时已存在在上传列表中的附件信息
+    defaultFileList: PropTypes.arrayOf(
+        PropTypes.exact({
+            // 文件名称
+            name: PropTypes.string
+        })
+    ),
 
     loading_state: PropTypes.shape({
         /**
