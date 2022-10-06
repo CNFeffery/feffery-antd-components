@@ -12,9 +12,11 @@ Keyword arguments:
 - `apiUrl` (String; optional)
 - `buttonContent` (String; optional)
 - `className` (String; optional)
-- `defaultFileList` (optional): . defaultFileList has the following type: Array of lists containing elements 'name'.
+- `defaultFileList` (optional): . defaultFileList has the following type: Array of lists containing elements 'name', 'status', 'uid'.
 Those elements have the following types:
-  - `name` (String; optional)s
+  - `name` (String; optional)
+  - `status` (a value equal to: 'done', 'error', 'removed'; optional)
+  - `uid` (Bool | Real | String | Dict | Array; optional)s
 - `directory` (Bool; optional)
 - `failedTooltipInfo` (String; optional)
 - `fileListMaxLength` (Real; optional)

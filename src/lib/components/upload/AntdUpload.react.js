@@ -48,7 +48,7 @@ const AntdUpload = (props) => {
 
     uploadId = uploadId || uuid;
 
-    const [fileList, updateFileList] = useState([]);
+    const [fileList, updateFileList] = useState(defaultFileList);
 
     let uploadProps = {
         name: 'file',
@@ -239,7 +239,6 @@ const AntdUpload = (props) => {
                 multiple={multiple}
                 showUploadList={showUploadList}
                 directory={directory}
-                defaultFileList={defaultFileList}
                 data-dash-is-loading={
                     (loading_state && loading_state.is_loading) || undefined
                 }>
@@ -387,7 +386,12 @@ AntdUpload.propTypes = {
     defaultFileList: PropTypes.arrayOf(
         PropTypes.exact({
             // 文件名称
-            name: PropTypes.string
+            name: PropTypes.string,
+
+            // 文件状态，可选的有'done'、'error'、'removed'
+            status: PropTypes.oneOf(['done', 'error', 'removed']),
+
+            uid: PropTypes.any
         })
     ),
 
@@ -419,7 +423,8 @@ AntdUpload.defaultProps = {
     fileMaxSize: 500,
     lastUploadTaskRecord: null,
     listUploadTaskRecord: [],
-    locale: 'zh-cn'
+    locale: 'zh-cn',
+    defaultFileList: []
 }
 
 export default AntdUpload;

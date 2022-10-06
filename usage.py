@@ -8,6 +8,20 @@ app = dash.Dash(__name__)
 
 app.layout = html.Div(
     [
+
+        fac.AntdDraggerUpload(
+            apiUrl='/upload/',
+            fileMaxSize=1,
+            text='拖拽上传示例',
+            hint='点击或拖拽文件至此处进行上传',
+            defaultFileList=[
+                {
+                    'name': 'xx.png'
+                }
+            ]
+        ),
+
+
         fac.AntdTree(
             id='tree-demo',
             treeData=[

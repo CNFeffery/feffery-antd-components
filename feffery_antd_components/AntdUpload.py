@@ -23,6 +23,10 @@ Keyword arguments:
 
     - name (string; optional)
 
+    - status (a value equal to: 'done', 'error', 'removed'; optional)
+
+    - uid (boolean | number | string | dict | list; optional)
+
 - directory (boolean; optional)
 
 - failedTooltipInfo (string; optional)

@@ -55,7 +55,7 @@ const AntdDraggerUpload = (props) => {
 
     uploadId = uploadId || uuid;
 
-    const [fileList, updateFileList] = useState([]);
+    const [fileList, updateFileList] = useState(defaultFileList);
 
     let uploadProps = {
         name: 'file',
@@ -263,7 +263,6 @@ const AntdDraggerUpload = (props) => {
                     showUploadList={showUploadList}
                     multiple={multiple}
                     directory={directory}
-                    defaultFileList={defaultFileList}
                     {...uploadProps}>
                     <p className="ant-upload-drag-icon">
                         {<AntdIcon icon={'antd-cloud-upload'} />}
@@ -434,7 +433,12 @@ AntdDraggerUpload.propTypes = {
     defaultFileList: PropTypes.arrayOf(
         PropTypes.exact({
             // 文件名称
-            name: PropTypes.string
+            name: PropTypes.string,
+
+            // 文件状态，可选的有'done'、'error'、'removed'
+            status: PropTypes.oneOf(['done', 'error', 'removed']),
+
+            uid: PropTypes.any
         })
     ),
 
@@ -466,7 +470,8 @@ AntdDraggerUpload.defaultProps = {
     fileMaxSize: 500,
     lastUploadTaskRecord: null,
     listUploadTaskRecord: [],
-    locale: 'zh-cn'
+    locale: 'zh-cn',
+    defaultFileList: []
 }
 
 export default AntdDraggerUpload;

@@ -11,9 +11,11 @@ Keyword arguments:
 - `id` (String; optional)
 - `apiUrl` (String; optional)
 - `className` (String | Dict; optional)
-- `defaultFileList` (optional): . defaultFileList has the following type: Array of lists containing elements 'name'.
+- `defaultFileList` (optional): . defaultFileList has the following type: Array of lists containing elements 'name', 'status', 'uid'.
 Those elements have the following types:
-  - `name` (String; optional)s
+  - `name` (String; optional)
+  - `status` (a value equal to: 'done', 'error', 'removed'; optional)
+  - `uid` (Bool | Real | String | Dict | Array; optional)s
 - `directory` (Bool; optional)
 - `draggerClassName` (String | Dict; optional)
 - `draggerStyle` (Dict; optional)
