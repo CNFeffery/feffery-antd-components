@@ -73,7 +73,7 @@ Keyword arguments:
 
 - placement (a value equal to: 'bottomLeft', 'bottomRight', 'topLeft', 'topRight'; optional)
 
-- showCheckedStrategy (a value equal to: 'show-parent', 'show-children'; default 'show-parent')
+- showCheckedStrategy (a value equal to: 'show-parent', 'show-child'; default 'show-parent')
 
 - size (a value equal to: 'small', 'middle', 'large'; optional)
 

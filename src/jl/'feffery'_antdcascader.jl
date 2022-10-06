@@ -42,7 +42,7 @@ local: window.localStorage, data is kept after the browser quit.
 session: window.sessionStorage, data is cleared once the browser quit.
 - `placeholder` (String; optional)
 - `placement` (a value equal to: 'bottomLeft', 'bottomRight', 'topLeft', 'topRight'; optional)
-- `showCheckedStrategy` (a value equal to: 'show-parent', 'show-children'; optional)
+- `showCheckedStrategy` (a value equal to: 'show-parent', 'show-child'; optional)
 - `size` (a value equal to: 'small', 'middle', 'large'; optional)
 - `status` (a value equal to: 'error', 'warning'; optional)
 - `style` (Dict; optional)

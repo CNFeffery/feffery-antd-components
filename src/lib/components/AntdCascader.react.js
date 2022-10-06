@@ -222,9 +222,9 @@ AntdCascader.propTypes = {
     // 设置是否添加内容清除按钮，默认true
     allowClear: PropTypes.bool,
 
-    // 设置已选项回填策略，可选的有'show-parent'、'show-children'
+    // 设置已选项回填策略，可选的有'show-parent'、'show-child'
     // 默认为'show-parent'
-    showCheckedStrategy: PropTypes.oneOf(['show-parent', 'show-children']),
+    showCheckedStrategy: PropTypes.oneOf(['show-parent', 'show-child']),
 
     loading_state: PropTypes.shape({
         /**
