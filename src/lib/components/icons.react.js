@@ -941,4 +941,5 @@ const str2Icon = new Map([
     ['antd-right', <RightOutlined />]
 ])
 
+
 export { str2Icon }
