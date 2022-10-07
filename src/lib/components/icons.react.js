@@ -43,6 +43,10 @@ import {
     PlusOutlined,
     QuestionOutlined,
     FullscreenOutlined,
+    DownOutlined,
+    UpOutlined,
+    LeftOutlined,
+    RightOutlined,
     ArrowDownOutlined,
     ArrowUpOutlined,
     ArrowLeftOutlined,
@@ -930,7 +934,11 @@ const str2Icon = new Map([
     ['antd-cloud-two-tone', <CloudTwoTone />],
     ['antd-hourglass-two-tone', <HourglassTwoTone />],
     ['antd-notification-two-tone', <NotificationTwoTone />],
-    ['antd-tool-two-tone', <ToolTwoTone />]
+    ['antd-tool-two-tone', <ToolTwoTone />],
+    ['antd-down', <DownOutlined />],
+    ['antd-up', <UpOutlined />],
+    ['antd-left', <LeftOutlined />],
+    ['antd-right', <RightOutlined />]
 ])
 
 export { str2Icon }
