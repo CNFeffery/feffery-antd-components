@@ -35,12 +35,13 @@ Used in conjunction with `persistence_type`.
 memory: only kept in memory, reset on page refresh.
 local: window.localStorage, data is kept after the browser quit.
 session: window.sessionStorage, data is cleared once the browser quit.
+- `popupContainer` (a value equal to: 'parent', 'body'; optional)
 - `renderCollapsedButton` (Bool; optional)
 - `style` (Dict; optional)
 - `theme` (a value equal to: 'light', 'dark'; optional)
 """
 function 'feffery'_antdmenu(; kwargs...)
-        available_props = Symbol[:id, :className, :currentKey, :defaultOpenKeys, :defaultSelectedKey, :key, :loading_state, :menuItems, :mode, :openKeys, :persisted_props, :persistence, :persistence_type, :renderCollapsedButton, :style, :theme]
+        available_props = Symbol[:id, :className, :currentKey, :defaultOpenKeys, :defaultSelectedKey, :key, :loading_state, :menuItems, :mode, :openKeys, :persisted_props, :persistence, :persistence_type, :popupContainer, :renderCollapsedButton, :style, :theme]
         wild_props = Symbol[]
         return Component("'feffery'_antdmenu", "AntdMenu", "feffery_antd_components", available_props, wild_props; kwargs...)
 end

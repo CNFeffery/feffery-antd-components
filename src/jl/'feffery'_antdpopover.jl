@@ -27,6 +27,7 @@ Those elements have the following types:
 - `overlayInnerStyle` (Dict; optional)
 - `overlayStyle` (Dict; optional)
 - `placement` (a value equal to: 'top', 'left', 'right', 'bottom', 'topLeft', 'topRight', 'bottomLeft', 'bottomRight', 'leftTop', 'leftBottom', 'rightTop', 'rightBottom'; optional)
+- `popupContainer` (a value equal to: 'parent', 'body'; optional)
 - `style` (Dict; optional)
 - `title` (optional): . title has the following type: String | lists containing elements 'content', 'prefixIcon'.
 Those elements have the following types:
@@ -36,7 +37,7 @@ Those elements have the following types:
 - `zIndex` (Real; optional)
 """
 function 'feffery'_antdpopover(; kwargs...)
-        available_props = Symbol[:children, :id, :className, :color, :content, :key, :loading_state, :mouseEnterDelay, :mouseLeaveDelay, :overlayInnerStyle, :overlayStyle, :placement, :style, :title, :trigger, :zIndex]
+        available_props = Symbol[:children, :id, :className, :color, :content, :key, :loading_state, :mouseEnterDelay, :mouseLeaveDelay, :overlayInnerStyle, :overlayStyle, :placement, :popupContainer, :style, :title, :trigger, :zIndex]
         wild_props = Symbol[]
         return Component("'feffery'_antdpopover", "AntdPopover", "feffery_antd_components", available_props, wild_props; kwargs...)
 end

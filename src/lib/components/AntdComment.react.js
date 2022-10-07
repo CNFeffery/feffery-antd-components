@@ -35,6 +35,7 @@ const AntdComment = (props) => {
         action,
         defaultAction,
         avatarProps,
+        popupContainer,
         setProps,
         loading_state
     } = props;
@@ -94,7 +95,11 @@ const AntdComment = (props) => {
                 onConfirm={() => setProps({ deleteClicks: deleteClicks + 1 })}
                 okText={locale === 'zh-cn' ? "确认" : "Yes"}
                 cancelText={locale === 'zh-cn' ? "取消" : "No"}
-                getPopupContainer={(triggerNode) => triggerNode.parentNode}>
+                getPopupContainer={
+                    popupContainer === 'parent' ?
+                        (triggerNode) => triggerNode.parentNode :
+                        undefined
+                }>
                 <span key="comment-basic-delete">{locale === 'zh-cn' ? "删除" : "Delete"}</span>
             </Popconfirm> : undefined
     ];
@@ -199,6 +204,9 @@ AntdComment.propTypes = {
     // 定义头像参数，与AntdAvatar一致
     avatarProps: PropTypes.object,
 
+    // 设置悬浮层锚定策略，可选的有'parent'、'body'，默认为'body'
+    popupContainer: PropTypes.oneOf(['parent', 'body']),
+
     loading_state: PropTypes.shape({
         /**
          * Determines if the component is loading or not
@@ -230,7 +238,8 @@ AntdComment.defaultProps = {
     deleteClicks: 0,
     fromNow: false,
     replyClicks: 0,
-    locale: 'zh-cn'
+    locale: 'zh-cn',
+    popupContainer: 'body'
 }
 
 export default AntdComment;

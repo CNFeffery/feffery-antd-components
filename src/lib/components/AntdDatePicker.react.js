@@ -57,6 +57,7 @@ export default class AntdDatePicker extends Component {
             bordered,
             size,
             status,
+            popupContainer,
             persistence,
             persisted_props,
             persistence_type,
@@ -332,7 +333,11 @@ export default class AntdDatePicker extends Component {
                         data-dash-is-loading={
                             (loading_state && loading_state.is_loading) || undefined
                         }
-                        getPopupContainer={(triggerNode) => triggerNode.parentNode}
+                        getPopupContainer={
+                            popupContainer === 'parent' ?
+                                (triggerNode) => triggerNode.parentNode :
+                                undefined
+                        }
                     />
                 </ConfigProvider>
             </div>
@@ -416,6 +421,9 @@ AntdDatePicker.propTypes = {
     // 设置校验状态，可选的有'error'、'warning'
     status: PropTypes.oneOf(['error', 'warning']),
 
+    // 设置悬浮层锚定策略，可选的有'parent'、'body'，默认为'body'
+    popupContainer: PropTypes.oneOf(['parent', 'body']),
+
     /**
     * Object that holds the loading state object coming from dash-renderer
     */
@@ -481,5 +489,6 @@ AntdDatePicker.defaultProps = {
     locale: 'zh-cn',
     style: {
         width: 220
-    }
+    },
+    popupContainer: 'body'
 }

@@ -26,13 +26,14 @@ Those elements have the following types:
 - `overlayInnerStyle` (Dict; optional)
 - `overlayStyle` (Dict; optional)
 - `placement` (a value equal to: 'top', 'left', 'right', 'bottom', 'topLeft', 'topRight', 'bottomLeft', 'bottomRight', 'leftTop', 'leftBottom', 'rightTop', 'rightBottom'; optional)
+- `popupContainer` (a value equal to: 'parent', 'body'; optional)
 - `style` (Dict; optional)
 - `title` (a list of or a singular dash component, string or number; optional)
 - `trigger` (a value equal to: 'hover', 'focus', 'click' | Array of a value equal to: 'hover', 'focus', 'click's; optional)
 - `zIndex` (Real; optional)
 """
 function 'feffery'_antdtooltip(; kwargs...)
-        available_props = Symbol[:children, :id, :className, :color, :key, :loading_state, :mouseEnterDelay, :mouseLeaveDelay, :overlayInnerStyle, :overlayStyle, :placement, :style, :title, :trigger, :zIndex]
+        available_props = Symbol[:children, :id, :className, :color, :key, :loading_state, :mouseEnterDelay, :mouseLeaveDelay, :overlayInnerStyle, :overlayStyle, :placement, :popupContainer, :style, :title, :trigger, :zIndex]
         wild_props = Symbol[]
         return Component("'feffery'_antdtooltip", "AntdTooltip", "feffery_antd_components", available_props, wild_props; kwargs...)
 end

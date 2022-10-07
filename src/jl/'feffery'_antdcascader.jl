@@ -42,6 +42,7 @@ local: window.localStorage, data is kept after the browser quit.
 session: window.sessionStorage, data is cleared once the browser quit.
 - `placeholder` (String; optional)
 - `placement` (a value equal to: 'bottomLeft', 'bottomRight', 'topLeft', 'topRight'; optional)
+- `popupContainer` (a value equal to: 'parent', 'body'; optional)
 - `showCheckedStrategy` (a value equal to: 'show-parent', 'show-child'; optional)
 - `size` (a value equal to: 'small', 'middle', 'large'; optional)
 - `status` (a value equal to: 'error', 'warning'; optional)
@@ -49,7 +50,7 @@ session: window.sessionStorage, data is cleared once the browser quit.
 - `value` (Array of Strings | Array of Array of Stringss; optional)
 """
 function 'feffery'_antdcascader(; kwargs...)
-        available_props = Symbol[:id, :allowClear, :bordered, :changeOnSelect, :className, :defaultValue, :disabled, :expandTrigger, :key, :loading_state, :locale, :maxTagCount, :multiple, :options, :optionsMode, :persisted_props, :persistence, :persistence_type, :placeholder, :placement, :showCheckedStrategy, :size, :status, :style, :value]
+        available_props = Symbol[:id, :allowClear, :bordered, :changeOnSelect, :className, :defaultValue, :disabled, :expandTrigger, :key, :loading_state, :locale, :maxTagCount, :multiple, :options, :optionsMode, :persisted_props, :persistence, :persistence_type, :placeholder, :placement, :popupContainer, :showCheckedStrategy, :size, :status, :style, :value]
         wild_props = Symbol[]
         return Component("'feffery'_antdcascader", "AntdCascader", "feffery_antd_components", available_props, wild_props; kwargs...)
 end

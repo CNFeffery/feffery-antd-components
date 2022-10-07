@@ -23,6 +23,7 @@ export default class AntdMentions extends Component {
             options,
             disabled,
             status,
+            popupContainer,
             setProps,
             loading_state
         } = this.props;
@@ -72,7 +73,11 @@ export default class AntdMentions extends Component {
                 status={status}
                 onChange={onChange}
                 onSelect={onSelect}
-                getPopupContainer={(triggerNode) => triggerNode.parentNode.parentNode.parentNode}
+                getPopupContainer={
+                    popupContainer === 'parent' ?
+                        (triggerNode) => triggerNode.parentNode :
+                        undefined
+                }
                 data-dash-is-loading={
                     (loading_state && loading_state.is_loading) || undefined
                 }
@@ -146,6 +151,9 @@ AntdMentions.propTypes = {
     // 设置校验状态，可选的有'error'、'warning'
     status: PropTypes.oneOf(['error', 'warning']),
 
+    // 设置悬浮层锚定策略，可选的有'parent'、'body'，默认为'body'
+    popupContainer: PropTypes.oneOf(['parent', 'body']),
+
     loading_state: PropTypes.shape({
         /**
          * Determines if the component is loading or not
@@ -170,5 +178,6 @@ AntdMentions.propTypes = {
 
 // 设置默认参数
 AntdMentions.defaultProps = {
-    selectedOptions: []
+    selectedOptions: [],
+    popupContainer: 'body'
 }

@@ -43,6 +43,7 @@ local: window.localStorage, data is kept after the browser quit.
 session: window.sessionStorage, data is cleared once the browser quit.
 - `picker` (a value equal to: 'date', 'week', 'month', 'quarter', 'year'; optional)
 - `placeholder` (String; optional)
+- `popupContainer` (a value equal to: 'parent', 'body'; optional)
 - `showTime` (Bool; optional)
 - `size` (a value equal to: 'small', 'middle', 'large'; optional)
 - `status` (a value equal to: 'error', 'warning'; optional)
@@ -50,7 +51,7 @@ session: window.sessionStorage, data is cleared once the browser quit.
 - `value` (String; optional)
 """
 function 'feffery'_antddatepicker(; kwargs...)
-        available_props = Symbol[:id, :allowClear, :bordered, :className, :defaultPickerValue, :defaultValue, :disabled, :disabledDatesStrategy, :format, :key, :loading_state, :locale, :persisted_props, :persistence, :persistence_type, :picker, :placeholder, :showTime, :size, :status, :style, :value]
+        available_props = Symbol[:id, :allowClear, :bordered, :className, :defaultPickerValue, :defaultValue, :disabled, :disabledDatesStrategy, :format, :key, :loading_state, :locale, :persisted_props, :persistence, :persistence_type, :picker, :placeholder, :popupContainer, :showTime, :size, :status, :style, :value]
         wild_props = Symbol[]
         return Component("'feffery'_antddatepicker", "AntdDatePicker", "feffery_antd_components", available_props, wild_props; kwargs...)
 end

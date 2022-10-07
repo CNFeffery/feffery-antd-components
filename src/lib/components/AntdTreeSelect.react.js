@@ -39,6 +39,7 @@ const AntdTreeSelect = (props) => {
         status,
         treeNodeFilterProp,
         autoClearSearchValue,
+        popupContainer,
         setProps,
         persistence,
         persisted_props,
@@ -106,7 +107,11 @@ const AntdTreeSelect = (props) => {
                 data-dash-is-loading={
                     (loading_state && loading_state.is_loading) || undefined
                 }
-                getPopupContainer={(triggerNode) => triggerNode.parentNode}
+                getPopupContainer={
+                    popupContainer === 'parent' ?
+                        (triggerNode) => triggerNode.parentNode :
+                        undefined
+                }
             />
         </ConfigProvider>
     );
@@ -292,6 +297,9 @@ AntdTreeSelect.propTypes = {
     // 设置当多选模式下值被选择，是否自动清空搜索框，默认为true
     autoClearSearchValue: PropTypes.bool,
 
+    // 设置悬浮层锚定策略，可选的有'parent'、'body'，默认为'body'
+    popupContainer: PropTypes.oneOf(['parent', 'body']),
+
     loading_state: PropTypes.shape({
         /**
          * Determines if the component is loading or not
@@ -352,7 +360,8 @@ AntdTreeSelect.defaultProps = {
     persistence_type: 'local',
     locale: 'zh-cn',
     treeNodeFilterProp: 'value',
-    treeDataMode: 'tree'
+    treeDataMode: 'tree',
+    popupContainer: 'body'
 }
 
 export default AntdTreeSelect;

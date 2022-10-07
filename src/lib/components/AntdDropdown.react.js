@@ -25,6 +25,7 @@ export default class AntdDropdown extends Component {
             visible,
             menuItems,
             nClicks,
+            popupContainer,
             setProps,
             loading_state
         } = this.props;
@@ -70,7 +71,11 @@ export default class AntdDropdown extends Component {
                 onVisibleChange={(v) => setProps({
                     visible: v
                 })}
-                getPopupContainer={(triggerNode) => triggerNode.parentNode}
+                getPopupContainer={
+                    popupContainer === 'parent' ?
+                        (triggerNode) => triggerNode.parentNode :
+                        undefined
+                }
                 data-dash-is-loading={
                     (loading_state && loading_state.is_loading) || undefined
                 }>
@@ -167,6 +172,9 @@ AntdDropdown.propTypes = {
     // 对应下拉菜单是否显示，默认为false
     visible: PropTypes.bool,
 
+    // 设置悬浮层锚定策略，可选的有'parent'、'body'，默认为'body'
+    popupContainer: PropTypes.oneOf(['parent', 'body']),
+
     loading_state: PropTypes.shape({
         /**
          * Determines if the component is loading or not
@@ -194,5 +202,6 @@ AntdDropdown.defaultProps = {
     visible: false,
     buttonMode: false,
     trigger: 'hover',
-    nClicks: 0
+    nClicks: 0,
+    popupContainer: 'body'
 }

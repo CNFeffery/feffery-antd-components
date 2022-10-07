@@ -133,6 +133,7 @@ export default class AntdMenu extends Component {
             openKeys,
             defaultSelectedKey,
             renderCollapsedButton,
+            popupContainer,
             setProps,
             persistence,
             persisted_props,
@@ -235,7 +236,11 @@ export default class AntdMenu extends Component {
                         defaultSelectedKeys={defaultSelectedKey ? [defaultSelectedKey] : defaultSelectedKey}
                         onSelect={listenSelected}
                         onOpenChange={(e) => setProps({ openKeys: e })}
-                        getPopupContainer={triggerNode => triggerNode.parentNode}
+                        getPopupContainer={
+                            popupContainer === 'parent' ?
+                                (triggerNode) => triggerNode.parentNode :
+                                undefined
+                        }
                         inlineCollapsed={this.state.collapsed}
                         persistence={persistence}
                         persisted_props={persisted_props}
@@ -263,7 +268,11 @@ export default class AntdMenu extends Component {
                     defaultSelectedKeys={defaultSelectedKey ? [defaultSelectedKey] : defaultSelectedKey}
                     onSelect={listenSelected}
                     onOpenChange={(e) => setProps({ openKeys: e })}
-                    getPopupContainer={triggerNode => triggerNode.parentNode}
+                    getPopupContainer={
+                        popupContainer === 'parent' ?
+                            (triggerNode) => triggerNode.parentNode :
+                            undefined
+                    }
                     persistence={persistence}
                     persisted_props={persisted_props}
                     persistence_type={persistence_type}
@@ -320,6 +329,9 @@ AntdMenu.propTypes = {
 
     // 设置是否渲染菜单展开/收缩按钮
     renderCollapsedButton: PropTypes.bool,
+
+    // 设置悬浮层锚定策略，可选的有'parent'、'body'，默认为'body'
+    popupContainer: PropTypes.oneOf(['parent', 'body']),
 
     loading_state: PropTypes.shape({
         /**
@@ -378,5 +390,6 @@ AntdMenu.defaultProps = {
     theme: 'light',
     renderCollapsedButton: false,
     persisted_props: ['currentKey', 'openKeys'],
-    persistence_type: 'local'
+    persistence_type: 'local',
+    popupContainer: 'body'
 }

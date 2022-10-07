@@ -352,7 +352,11 @@ export default class AntdDateRangePicker extends Component {
                         data-dash-is-loading={
                             (loading_state && loading_state.is_loading) || undefined
                         }
-                        getPopupContainer={popupContainer === 'body' ? undefined : (triggerNode) => triggerNode.parentNode}
+                        getPopupContainer={
+                            popupContainer === 'parent' ?
+                                (triggerNode) => triggerNode.parentNode :
+                                undefined
+                        }
                     />
                 </ConfigProvider>
             </div>
@@ -500,5 +504,5 @@ AntdDateRangePicker.defaultProps = {
     persisted_props: ['value'],
     persistence_type: 'local',
     locale: 'zh-cn',
-    popupContainer: 'parent'
+    popupContainer: 'body'
 }

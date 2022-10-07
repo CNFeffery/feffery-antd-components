@@ -33,13 +33,14 @@ Those elements have the following types:
 - `overlayClassName` (String; optional)
 - `overlayStyle` (Dict; optional)
 - `placement` (a value equal to: 'bottomLeft', 'bottomCenter', 'bottomRight', 'topLeft', 'topCenter', 'topRight'; optional)
+- `popupContainer` (a value equal to: 'parent', 'body'; optional)
 - `style` (Dict; optional)
 - `title` (String; optional)
 - `trigger` (a value equal to: 'click', 'hover'; optional)
 - `visible` (Bool; optional)
 """
 function 'feffery'_antddropdown(; kwargs...)
-        available_props = Symbol[:id, :arrow, :buttonMode, :className, :clickedKey, :disabled, :key, :loading_state, :menuItems, :nClicks, :overlayClassName, :overlayStyle, :placement, :style, :title, :trigger, :visible]
+        available_props = Symbol[:id, :arrow, :buttonMode, :className, :clickedKey, :disabled, :key, :loading_state, :menuItems, :nClicks, :overlayClassName, :overlayStyle, :placement, :popupContainer, :style, :title, :trigger, :visible]
         wild_props = Symbol[]
         return Component("'feffery'_antddropdown", "AntdDropdown", "feffery_antd_components", available_props, wild_props; kwargs...)
 end

@@ -21,6 +21,7 @@ Those elements have the following types:
 - `marks` (Dict; optional)
 - `max` (Real; optional)
 - `min` (Real; optional)
+- `popupContainer` (a value equal to: 'parent', 'body'; optional)
 - `range` (Bool; optional)
 - `step` (Real; optional)
 - `style` (Dict; optional)
@@ -31,7 +32,7 @@ Those elements have the following types:
 - `vertical` (Bool; optional)
 """
 function 'feffery'_antdslider(; kwargs...)
-        available_props = Symbol[:id, :className, :defaultValue, :disabled, :key, :loading_state, :marks, :max, :min, :range, :step, :style, :tooltipPrefix, :tooltipSuffix, :tooltipVisible, :value, :vertical]
+        available_props = Symbol[:id, :className, :defaultValue, :disabled, :key, :loading_state, :marks, :max, :min, :popupContainer, :range, :step, :style, :tooltipPrefix, :tooltipSuffix, :tooltipVisible, :value, :vertical]
         wild_props = Symbol[]
         return Component("'feffery'_antdslider", "AntdSlider", "feffery_antd_components", available_props, wild_props; kwargs...)
 end

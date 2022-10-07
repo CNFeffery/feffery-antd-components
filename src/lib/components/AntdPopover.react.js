@@ -27,6 +27,7 @@ export default class AntdPopover extends Component {
             overlayInnerStyle,
             trigger,
             zIndex,
+            popupContainer,
             loading_state
         } = this.props;
 
@@ -52,7 +53,11 @@ export default class AntdPopover extends Component {
                 overlayInnerStyle={overlayInnerStyle}
                 trigger={trigger}
                 zIndex={zIndex}
-                getPopupContainer={(triggerNode) => triggerNode.parentNode}
+                getPopupContainer={
+                    popupContainer === 'parent' ?
+                        (triggerNode) => triggerNode.parentNode :
+                        undefined
+                }
                 data-dash-is-loading={
                     (loading_state && loading_state.is_loading) || undefined
                 }>{children}
@@ -129,6 +134,9 @@ AntdPopover.propTypes = {
     // 设置悬浮层zIndex
     zIndex: PropTypes.number,
 
+    // 设置悬浮层锚定策略，可选的有'parent'、'body'，默认为'body'
+    popupContainer: PropTypes.oneOf(['parent', 'body']),
+
     loading_state: PropTypes.shape({
         /**
          * Determines if the component is loading or not
@@ -153,4 +161,5 @@ AntdPopover.propTypes = {
 
 // 设置默认参数
 AntdPopover.defaultProps = {
+    popupContainer: 'body'
 }

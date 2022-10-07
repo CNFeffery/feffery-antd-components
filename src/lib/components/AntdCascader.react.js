@@ -37,6 +37,7 @@ const AntdCascader = (props) => {
         status,
         allowClear,
         showCheckedStrategy,
+        popupContainer,
         setProps,
         persistence,
         persisted_props,
@@ -98,7 +99,11 @@ const AntdCascader = (props) => {
                 data-dash-is-loading={
                     (loading_state && loading_state.is_loading) || undefined
                 }
-                getPopupContainer={(triggerNode) => triggerNode.parentNode}
+                getPopupContainer={
+                    popupContainer === 'parent' ?
+                        (triggerNode) => triggerNode.parentNode :
+                        undefined
+                }
             />
         </ConfigProvider>
     );
@@ -241,6 +246,9 @@ AntdCascader.propTypes = {
         component_name: PropTypes.string
     }),
 
+    // 设置悬浮层锚定策略，可选的有'parent'、'body'，默认为'body'
+    popupContainer: PropTypes.oneOf(['parent', 'body']),
+
     /**
      * Dash-assigned callback that should be called to report property changes
      * to Dash, to make them available for callbacks.
@@ -284,7 +292,8 @@ AntdCascader.defaultProps = {
     persistence_type: 'local',
     locale: 'zh-cn',
     optionsMode: 'tree',
-    showCheckedStrategy: 'show-parent'
+    showCheckedStrategy: 'show-parent',
+    popupContainer: 'body'
 }
 
 export default AntdCascader;

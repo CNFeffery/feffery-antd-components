@@ -43,6 +43,7 @@ export default class AntdSlider extends Component {
             tooltipVisible,
             tooltipPrefix,
             tooltipSuffix,
+            popupContainer,
             loading_state,
             setProps
         } = this.props;
@@ -76,7 +77,11 @@ export default class AntdSlider extends Component {
                 tooltipVisible={tooltipVisible}
                 onChange={onChange}
                 tipFormatter={formatter}
-                getTooltipPopupContainer={(triggerNode) => triggerNode.parentNode}
+                getTooltipPopupContainer={
+                    popupContainer === 'parent' ?
+                        (triggerNode) => triggerNode.parentNode :
+                        undefined
+                }
                 data-dash-is-loading={
                     (loading_state && loading_state.is_loading) || undefined
                 }
@@ -140,6 +145,9 @@ AntdSlider.propTypes = {
     // 设置tooltip显示内容后缀文字
     tooltipSuffix: PropTypes.string,
 
+    // 设置悬浮层锚定策略，可选的有'parent'、'body'，默认为'body'
+    popupContainer: PropTypes.oneOf(['parent', 'body']),
+
     loading_state: PropTypes.shape({
         /**
          * Determines if the component is loading or not
@@ -170,5 +178,6 @@ AntdSlider.defaultProps = {
     max: 100,
     step: 1,
     tooltipPrefix: '',
-    tooltipSuffix: ''
+    tooltipSuffix: '',
+    popupContainer: 'body'
 }

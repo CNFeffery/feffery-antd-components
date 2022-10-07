@@ -77,7 +77,7 @@ Keyword arguments:
 
 - placeholder (list of strings; optional)
 
-- popupContainer (a value equal to: 'parent', 'body'; default 'parent')
+- popupContainer (a value equal to: 'parent', 'body'; default 'body')
 
 - showTime (boolean; default False)
 
