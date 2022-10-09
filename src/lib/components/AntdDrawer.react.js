@@ -47,7 +47,7 @@ const AntdDrawer = (props) => {
                 }
                 style={containerId ? { ...style, ...{ position: 'absolute' } } : style}
                 key={key}
-                visible={visible}
+                open={visible}
                 title={title}
                 placement={placement}
                 closable={closable}

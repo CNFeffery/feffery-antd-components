@@ -8,55 +8,132 @@ app = dash.Dash(__name__)
 
 app.layout = html.Div(
     [
+        fac.AntdTabs(
+            [
+                fac.AntdTabPane(
+                    html.Div(
+                        '标签页1测试',
+                        style={
+                            'backgroundColor': 'rgba(241, 241, 241, 0.4)',
+                            'height': '200px',
+                            'display': 'flex',
+                            'justifyContent': 'center',
+                            'alignItems': 'center'
+                        }
+                    ),
+                    tab='标签页1',
+                    key='标签页1'
+                ),
+                fac.AntdTabPane(
+                    html.Div(
+                        fac.AntdButton('标签页2测试', type='primary'),
+                        style={
+                            'backgroundColor': 'rgba(241, 241, 241, 0.4)',
+                            'height': '200px',
+                            'display': 'flex',
+                            'justifyContent': 'center',
+                            'alignItems': 'center'
+                        }
+                    ),
+                    tab='标签页2',
+                    key='标签页2'
+                ),
+                fac.AntdTabPane(
+                    html.Div(
+                        fac.AntdButton('标签页3测试', type='dashed'),
+                        style={
+                            'backgroundColor': 'rgba(241, 241, 241, 0.4)',
+                            'height': '200px',
+                            'display': 'flex',
+                            'justifyContent': 'center',
+                            'alignItems': 'center'
+                        }
+                    ),
+                    tab='标签页3',
+                    key='标签页3'
+                )
+            ]
+        ),
 
-        fac.AntdDraggerUpload(
-            apiUrl='/upload/',
-            fileMaxSize=1,
-            text='拖拽上传示例',
-            hint='点击或拖拽文件至此处进行上传',
-            defaultFileList=[
+        fac.AntdDivider(),
+
+        fac.AntdTabs(
+            items=[
                 {
-                    'name': 'xx.png'
+                    'label': '标签页1',
+                    'key': '标签页1',
+                    'children': html.Div(
+                        '标签页1测试',
+                        style={
+                            'backgroundColor': 'rgba(241, 241, 241, 0.4)',
+                            'height': '200px',
+                            'display': 'flex',
+                            'justifyContent': 'center',
+                            'alignItems': 'center'
+                        }
+                    )
+                },
+                {
+                    'label': '标签页2',
+                    'key': '标签页2',
+                    'children': html.Div(
+                        fac.AntdButton('标签页2测试', type='primary'),
+                        style={
+                            'backgroundColor': 'rgba(241, 241, 241, 0.4)',
+                            'height': '200px',
+                            'display': 'flex',
+                            'justifyContent': 'center',
+                            'alignItems': 'center'
+                        }
+                    )
+                },
+                {
+                    'label': '标签页3',
+                    'key': '标签页3',
+                    'children': html.Div(
+                        fac.AntdButton('标签页3测试', type='dashed'),
+                        style={
+                            'backgroundColor': 'rgba(241, 241, 241, 0.4)',
+                            'height': '200px',
+                            'display': 'flex',
+                            'justifyContent': 'center',
+                            'alignItems': 'center'
+                        }
+                    )
                 }
             ]
         ),
 
-
-        fac.AntdTree(
-            id='tree-demo',
-            treeData=[
+        fac.AntdButton(
+            '新建标签页',
+            id='tabs-demo-add',
+            type='primary',
+            style={
+                'marginBottom': '5px'
+            }
+        ),
+        fac.AntdTabs(
+            items=[
                 {
-                    'title': 'A',
-                    'key': 'A',
-                    'children': [
-                        {
-                            'title': 'AA',
-                            'key': 'AA'
-                        },
-                        {
-                            'title': 'AB',
-                            'key': 'AB',
-                            'children': [
-                                {
-                                    'title': 'ABA',
-                                    'key': 'ABA'
-                                },
-                                {
-                                    'title': 'ABB',
-                                    'key': 'ABB'
-                                }
-                            ]
-                        }
-                    ]
+                    'children': '基础标签页',
+                    'label': '基础标签页',
+                    'key': '基础标签页',
+                    'closable': False
                 },
                 {
-                    'title': 'B',
-                    'key': 'B'
+                    'label': '禁用标签页',
+                    'key': '禁用标签页',
+                    'disabled': True
+                }
+            ] + [
+                {
+                    'children': '标签页1',
+                    'label': '标签页1',
+                    'key': '标签页1'
                 }
             ],
-            checkable=True,
-            defaultExpandAll=True,
-            checkStrictly=False
+            id='tabs-demo',
+            type='editable-card'
         )
     ],
     style={
@@ -66,27 +143,30 @@ app.layout = html.Div(
 
 
 @app.callback(
-    Output('tree-demo', 'treeData'),
-    Input('tree-demo', 'checkedKeys'),
-    State('tree-demo', 'treeData')
+    [Output('tabs-demo', 'items'),
+     Output('tabs-demo', 'activeKey')],
+    [Input('tabs-demo-add', 'nClicks'),
+     Input('tabs-demo', 'latestDeletePane')],
+    State('tabs-demo', 'items'),
+    prevent_initial_call=True
 )
-def demo(checkedKeys, treeData):
+def tabs_callback_demo(nClicks, latestDeletePane, items):
 
-    checkedKeys = checkedKeys or []
+    ctx = dash.callback_context
 
-    if 'ABB' in checkedKeys:
-        treeData[0]['children'][1]['children'][0]['disabled'] = True
-        treeData[0]['children'][1]['children'][1]['disabled'] = False
+    if ctx.triggered[0]['prop_id'] == 'tabs-demo-add.nClicks':
+        return items + [
+            {
+                'children': f'标签页{nClicks + 1}',
+                'label': f'标签页{nClicks + 1}',
+                'key': f'标签页{nClicks + 1}'
+            }
+        ], f'标签页{nClicks + 1}'
 
-    elif 'ABA' in checkedKeys:
-        treeData[0]['children'][1]['children'][0]['disabled'] = False
-        treeData[0]['children'][1]['children'][1]['disabled'] = True
+    elif ctx.triggered[0]['prop_id'] == 'tabs-demo.latestDeletePane':
+        return [item for item in items if item['key'] != latestDeletePane], '基础标签页'
 
-    else:
-        treeData[0]['children'][1]['children'][0]['disabled'] = False
-        treeData[0]['children'][1]['children'][1]['disabled'] = False
-
-    return treeData
+    return dash.no_update
 
 
 if __name__ == '__main__':

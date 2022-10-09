@@ -11,13 +11,21 @@ export 'feffery'_antdtabs
 An AntdTabs component.
 
 Keyword arguments:
-- `children` (a list of or a singular dash component, string or number; optional): The content of the tab - will only be displayed if this tab is selected
+- `children` (a list of or a singular dash component, string or number; optional)
 - `id` (String; optional)
 - `activeKey` (String; optional)
 - `centered` (Bool; optional)
 - `className` (String; optional)
 - `defaultActiveKey` (String; optional)
 - `inkBarAnimated` (Bool; optional)
+- `items` (optional): . items has the following type: Array of lists containing elements 'label', 'key', 'children', 'disabled', 'forceRender', 'closable'.
+Those elements have the following types:
+  - `label` (a list of or a singular dash component, string or number; optional)
+  - `key` (String; optional)
+  - `children` (a list of or a singular dash component, string or number; optional)
+  - `disabled` (Bool; optional)
+  - `forceRender` (Bool; optional)
+  - `closable` (Bool; optional)s
 - `key` (String; optional)
 - `latestDeletePane` (String; optional)
 - `loading_state` (optional): . loading_state has the following type: lists containing elements 'is_loading', 'prop_name', 'component_name'.
@@ -48,7 +56,7 @@ session: window.sessionStorage, data is cleared once the browser quit.
 - `type` (a value equal to: 'line', 'card', 'editable-card'; optional)
 """
 function 'feffery'_antdtabs(; kwargs...)
-        available_props = Symbol[:children, :id, :activeKey, :centered, :className, :defaultActiveKey, :inkBarAnimated, :key, :latestDeletePane, :loading_state, :persisted_props, :persistence, :persistence_type, :size, :style, :tabBarGutter, :tabBarLeftExtraContent, :tabBarRightExtraContent, :tabPaneAnimated, :tabPosition, :type]
+        available_props = Symbol[:children, :id, :activeKey, :centered, :className, :defaultActiveKey, :inkBarAnimated, :items, :key, :latestDeletePane, :loading_state, :persisted_props, :persistence, :persistence_type, :size, :style, :tabBarGutter, :tabBarLeftExtraContent, :tabBarRightExtraContent, :tabPaneAnimated, :tabPosition, :type]
         wild_props = Symbol[]
         return Component("'feffery'_antdtabs", "AntdTabs", "feffery_antd_components", available_props, wild_props; kwargs...)
 end

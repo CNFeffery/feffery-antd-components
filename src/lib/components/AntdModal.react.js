@@ -72,7 +72,7 @@ export default class AntdModal extends Component {
                     style={style}
                     key={key}
                     title={title}
-                    visible={visible}
+                    open={visible}
                     okText={confirmLoading ? (loadingOkText || okText) : okText}
                     cancelText={cancelText}
                     okButtonProps={okButtonProps}

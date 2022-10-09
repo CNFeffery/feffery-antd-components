@@ -74,14 +74,14 @@ export default class AntdSlider extends Component {
                 max={max}
                 step={step}
                 marks={marks}
-                tooltipVisible={tooltipVisible}
-                onChange={onChange}
-                tipFormatter={formatter}
-                getTooltipPopupContainer={
-                    popupContainer === 'parent' ?
+                tooltip={{
+                    open: tooltipVisible,
+                    getPopupContainer: popupContainer === 'parent' ?
                         (triggerNode) => triggerNode.parentNode :
-                        undefined
-                }
+                        undefined,
+                    formatter: formatter
+                }}
+                onChange={onChange}
                 data-dash-is-loading={
                     (loading_state && loading_state.is_loading) || undefined
                 }

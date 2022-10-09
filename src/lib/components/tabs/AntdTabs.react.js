@@ -25,6 +25,7 @@ export default class AntdTabs extends Component {
         let {
             id,
             children,
+            items,
             tabBarLeftExtraContent,
             tabBarRightExtraContent,
             className,
@@ -45,6 +46,50 @@ export default class AntdTabs extends Component {
             persistence_type,
             loading_state
         } = this.props;
+
+        const onChange = e => {
+            setProps({ activeKey: e })
+        }
+
+        const onEdit = (targetKey, action) => {
+
+            setProps({ latestDeletePane: targetKey })
+        }
+
+        // 构造标签页新方式
+        if (items) {
+            return (
+                <Tabs id={id}
+                    className={className}
+                    style={style}
+                    key={key}
+                    items={items}
+                    defaultActiveKey={defaultActiveKey}
+                    activeKey={activeKey}
+                    size={size}
+                    tabPosition={tabPosition}
+                    type={type}
+                    centered={centered}
+                    tabBarGutter={tabBarGutter}
+                    tabBarExtraContent={{
+                        left: tabBarLeftExtraContent,
+                        right: tabBarRightExtraContent
+                    }}
+                    animated={{
+                        inkBar: inkBarAnimated,
+                        tabPane: tabPaneAnimated
+                    }}
+                    hideAdd={true}
+                    onChange={onChange}
+                    onEdit={onEdit}
+                    persistence={persistence}
+                    persisted_props={persisted_props}
+                    persistence_type={persistence_type}
+                    data-dash-is-loading={
+                        (loading_state && loading_state.is_loading) || undefined
+                    } />
+            );
+        }
 
         children = parseChildrenToArray(children)
 
@@ -117,15 +162,6 @@ export default class AntdTabs extends Component {
             }
         )
 
-        const onChange = e => {
-            setProps({ activeKey: e })
-        }
-
-        const onEdit = (targetKey, action) => {
-
-            setProps({ latestDeletePane: targetKey })
-        }
-
         return (
             <Tabs id={id}
                 className={className}
@@ -166,10 +202,30 @@ AntdTabs.propTypes = {
     // 组件id
     id: PropTypes.string,
 
-    /**
-     * The content of the tab - will only be displayed if this tab is selected
-     */
     children: PropTypes.node,
+
+    // 用于定义标签页的新写法
+    items: PropTypes.arrayOf(
+        PropTypes.exact({
+            // 用于设置标签页标题内容
+            label: PropTypes.node,
+
+            // 用于设置标签页对应的唯一key
+            key: PropTypes.string,
+
+            // 用于设置标签页的子元素
+            children: PropTypes.node,
+
+            // 用于设置是否禁用当前标签页，默认为false
+            disabled: PropTypes.bool,
+
+            // 用于设置当标签页被隐藏时是否强制渲染子元素，默认为false
+            forceRender: PropTypes.bool,
+
+            // 设置在'editable-card'模式下，当前标签页是否可被关闭，默认为true
+            closable: PropTypes.bool
+        })
+    ),
 
     // 用于设置第一方位额外元素
     tabBarLeftExtraContent: PropTypes.node,
