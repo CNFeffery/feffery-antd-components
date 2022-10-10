@@ -39,7 +39,7 @@ class AntdTable extends Component {
             // 当本次事件由翻页操作引发时
             if (currentData.action === 'paginate') {
                 props.setProps({
-                    pagination: { ...pagination, ...{ pageSize: pagination?.pageSize, current: pagination.current } },
+                    pagination: { ...pagination, pageSize: pagination?.pageSize, current: pagination.current },
                     currentData: currentData.currentDataSource
                 })
             } else if (currentData.action === 'sort') {
@@ -360,10 +360,8 @@ class AntdTable extends Component {
         // 为pagination补充默认参数值
         pagination = {
             ...pagination,
-            ...{
-                showTotalPrefix: pagination?.showTotalPrefix ? pagination.showTotalPrefix : '共 ',
-                showTotalSuffix: pagination?.showTotalSuffix ? pagination.showTotalSuffix : ' 条记录',
-            }
+            showTotalPrefix: pagination?.showTotalPrefix ? pagination.showTotalPrefix : '共 ',
+            showTotalSuffix: pagination?.showTotalSuffix ? pagination.showTotalSuffix : ' 条记录'
         }
 
         // 当未设置行key时，自动以自增1的字符型结果作为key
@@ -1142,7 +1140,8 @@ class AntdTable extends Component {
                         ...{
                             showTotal: total => `${pagination.showTotalPrefix} ${total} ${pagination.showTotalSuffix}`
                         },
-                        position: pagination.position ? [pagination.position] : undefined
+                        position: (pagination.position && !Array.isArray(pagination.position))
+                            ? [pagination.position] : pagination.position
                     }}
                     bordered={bordered}
                     scroll={{ x: maxWidth, y: maxHeight, scrollToFirstRowOnChange: true }}
@@ -1554,6 +1553,7 @@ AntdTable.propTypes = {
 
     // 翻页相关参数，设置为false时不展示和进行分页
     pagination: PropTypes.oneOfType([
+        PropTypes.any,
         PropTypes.bool,
         PropTypes.exact({
 
