@@ -126,7 +126,7 @@ Those elements have the following types:
 - `mode` (a value equal to: 'client-side', 'server-side'; optional)
 - `nClicksButton` (Real; optional)
 - `nClicksCell` (Real; optional)
-- `pagination` (optional): . pagination has the following type: Bool | Real | String | Dict | Array | Bool | lists containing elements 'position', 'pageSize', 'current', 'showSizeChanger', 'pageSizeOptions', 'showTitle', 'showQuickJumper', 'showTotalPrefix', 'showTotalSuffix', 'total', 'hideOnSinglePage', 'simple', 'disabled', 'responsive', 'size'.
+- `pagination` (optional): . pagination has the following type: lists containing elements 'position', 'pageSize', 'current', 'showSizeChanger', 'pageSizeOptions', 'showTitle', 'showQuickJumper', 'showTotalPrefix', 'showTotalSuffix', 'total', 'hideOnSinglePage', 'simple', 'disabled', 'responsive', 'size'.
 Those elements have the following types:
   - `position` (a value equal to: 'topLeft', 'topCenter', 'topRight', 'bottomLeft', 'bottomCenter', 'bottomRight'; optional)
   - `pageSize` (Real; optional)

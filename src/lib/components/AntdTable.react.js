@@ -39,7 +39,16 @@ class AntdTable extends Component {
             // 当本次事件由翻页操作引发时
             if (currentData.action === 'paginate') {
                 props.setProps({
-                    pagination: { ...pagination, pageSize: pagination?.pageSize, current: pagination.current },
+                    pagination: {
+                        ...pagination,
+                        pageSize: pagination.pageSize,
+                        current: pagination.current,
+                        position: pagination.position ? (
+                            Array.isArray(pagination.position) ?
+                                pagination.position[0] :
+                                pagination.position
+                        ) : pagination.position
+                    },
                     currentData: currentData.currentDataSource
                 })
             } else if (currentData.action === 'sort') {
@@ -1552,59 +1561,55 @@ AntdTable.propTypes = {
     ),
 
     // 翻页相关参数，设置为false时不展示和进行分页
-    pagination: PropTypes.oneOfType([
-        PropTypes.any,
-        PropTypes.bool,
-        PropTypes.exact({
+    pagination: PropTypes.exact({
 
-            // 设置分页组件的位置，可选项有'topLeft'、'topCenter'、'topRight'、'bottomLeft'、'bottomCenter'以及'bottomRight'
-            position: PropTypes.oneOf([
-                'topLeft', 'topCenter', 'topRight', 'bottomLeft', 'bottomCenter', 'bottomRight'
-            ]),
+        // 设置分页组件的位置，可选项有'topLeft'、'topCenter'、'topRight'、'bottomLeft'、'bottomCenter'以及'bottomRight'
+        position: PropTypes.oneOf([
+            'topLeft', 'topCenter', 'topRight', 'bottomLeft', 'bottomCenter', 'bottomRight'
+        ]),
 
-            // 每页显示的记录行数
-            pageSize: PropTypes.number,
+        // 每页显示的记录行数
+        pageSize: PropTypes.number,
 
-            // 当前的页码
-            current: PropTypes.number,
+        // 当前的页码
+        current: PropTypes.number,
 
-            // 设置是否展示pageSize切换器，当total大于50时默认为true
-            showSizeChanger: PropTypes.bool,
+        // 设置是否展示pageSize切换器，当total大于50时默认为true
+        showSizeChanger: PropTypes.bool,
 
-            // 设定每页尺寸切换可选的范围
-            pageSizeOptions: PropTypes.arrayOf(PropTypes.number),
+        // 设定每页尺寸切换可选的范围
+        pageSizeOptions: PropTypes.arrayOf(PropTypes.number),
 
-            // 设置是否显示原生页面悬浮提示title信息，默认为true
-            showTitle: PropTypes.bool,
+        // 设置是否显示原生页面悬浮提示title信息，默认为true
+        showTitle: PropTypes.bool,
 
-            // 设置是否渲染快速跳转控件，默认为false
-            showQuickJumper: PropTypes.bool,
+        // 设置是否渲染快速跳转控件，默认为false
+        showQuickJumper: PropTypes.bool,
 
-            // 定义总记录行数显示部分的前缀文字，默认为"共 "
-            showTotalPrefix: PropTypes.string,
+        // 定义总记录行数显示部分的前缀文字，默认为"共 "
+        showTotalPrefix: PropTypes.string,
 
-            // 定义总记录行数显示部分的后缀文字，默认为" 条记录"
-            showTotalSuffix: PropTypes.string,
+        // 定义总记录行数显示部分的后缀文字，默认为" 条记录"
+        showTotalSuffix: PropTypes.string,
 
-            // 用于在后端分页时手动设置总数据记录数量
-            total: PropTypes.number,
+        // 用于在后端分页时手动设置总数据记录数量
+        total: PropTypes.number,
 
-            // 用于设置是否在数据记录只有一页时自动隐藏分页器，默认为false
-            hideOnSinglePage: PropTypes.bool,
+        // 用于设置是否在数据记录只有一页时自动隐藏分页器，默认为false
+        hideOnSinglePage: PropTypes.bool,
 
-            // 设置是否开启简洁模式
-            simple: PropTypes.bool,
+        // 设置是否开启简洁模式
+        simple: PropTypes.bool,
 
-            // 设置是否禁用分页，默认为false
-            disabled: PropTypes.bool,
+        // 设置是否禁用分页，默认为false
+        disabled: PropTypes.bool,
 
-            // 设置是否开启响应式，即分页尺寸会根据屏幕宽度自动进行调整
-            responsive: PropTypes.bool,
+        // 设置是否开启响应式，即分页尺寸会根据屏幕宽度自动进行调整
+        responsive: PropTypes.bool,
 
-            // 设置分页器尺寸，可选的有'default'和'small'，默认为'default'
-            size: PropTypes.oneOf(['default', 'small'])
-        })
-    ]),
+        // 设置分页器尺寸，可选的有'default'和'small'，默认为'default'
+        size: PropTypes.oneOf(['default', 'small'])
+    }),
 
     // 设置是否为单元格添加边框线，默认为False
     bordered: PropTypes.bool,

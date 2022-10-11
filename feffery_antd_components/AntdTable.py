@@ -237,8 +237,7 @@ Keyword arguments:
 
 - pagination (dict; optional)
 
-    `pagination` is a boolean | number | string | dict | list |
-    boolean | dict with keys:
+    `pagination` is a dict with keys:
 
     - current (number; optional)
 
