@@ -124,7 +124,7 @@ const AntdPopupCard = (props) => {
                 }
                 transitionName={transitionType === 'none' ? '' : `ant-${transitionType}`}
                 width={width}
-                visible={visible}
+                open={visible}
                 zIndex={zIndex}
                 bodyStyle={bodyStyle}
                 mask={false}
