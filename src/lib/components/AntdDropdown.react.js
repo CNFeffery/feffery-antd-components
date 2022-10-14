@@ -26,6 +26,7 @@ export default class AntdDropdown extends Component {
             menuItems,
             nClicks,
             popupContainer,
+            buttonProps,
             setProps,
             loading_state
         } = this.props;
@@ -81,7 +82,9 @@ export default class AntdDropdown extends Component {
                 }>
                 {
                     buttonMode ?
-                        <Button>
+                        <Button
+                            {...buttonProps}
+                        >
                             {title} <DownOutlined />
                         </Button>
                         :
@@ -114,6 +117,18 @@ AntdDropdown.propTypes = {
 
     // 设置下拉菜单触发节点是否渲染为“按钮模式”，默认为false
     buttonMode: PropTypes.bool,
+
+    // 配置按钮模式下，按钮的一些基本属性
+    buttonProps: PropTypes.exact({
+        // 设置按钮尺寸规格，可选的有'default'/'small'/'large'
+        size: PropTypes.oneOf(['default', 'small', 'large']),
+
+        // 设置按钮整体风格（可选项有primary、ghost、dashed、link、text、default）
+        type: PropTypes.oneOf(['primary', 'ghost', 'dashed', 'link', 'text', 'default']),
+
+        // 设置按钮是否显示为危险状态
+        danger: PropTypes.bool
+    }),
 
     // 记录最近一次被点击的下拉菜单选项对应key
     clickedKey: PropTypes.string,

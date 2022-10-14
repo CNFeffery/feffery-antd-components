@@ -9,6 +9,33 @@ app = dash.Dash(__name__)
 
 app.layout = html.Div(
     [
+
+        fac.AntdDropdown(
+            title='触发点',
+            buttonMode=True,
+            menuItems=[
+                {
+                    'title': '子页面1'
+                },
+                {
+                    'title': '子页面2'
+                },
+                {
+                    'isDivider': True
+                },
+                {
+                    'title': '子页面3-1'
+                },
+                {
+                    'title': '子页面3-2'
+                }
+            ],
+            buttonProps={
+                'type': 'primary'
+            },
+            disabled=True
+        ),
+
         fac.AntdTable(
             columns=[
                 {
@@ -22,14 +49,17 @@ app.layout = html.Div(
                     f'字段{j}': np.random.randint(1, 5)
                     for j in range(1, 6)
                 }
-                for i in range(300)
+                for i in range(3000)
             ],
             bordered=True,
             sortOptions={
                 'sortDataIndexes': ['字段1', '字段2', '字段4', '字段5']
             },
             pagination={
-                'position': 'topCenter'
+                'position': 'bottomCenter',
+                'showSizeChanger': False,
+                'current': 8,
+                'showQuickJumper': True
             }
         )
     ],

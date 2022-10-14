@@ -134,13 +134,31 @@ AntdModal.propTypes = {
     loadingOkText: PropTypes.string,
 
     // 配置确认按钮相关参数
-    okButtonProps: PropTypes.object,
+    okButtonProps: PropTypes.exact({
+        // 设置按钮尺寸规格，可选的有'default'/'small'/'large'
+        size: PropTypes.oneOf(['default', 'small', 'large']),
+
+        // 设置按钮整体风格（可选项有primary、ghost、dashed、link、text、default）
+        type: PropTypes.oneOf(['primary', 'ghost', 'dashed', 'link', 'text', 'default']),
+
+        // 设置按钮是否显示为危险状态
+        danger: PropTypes.bool
+    }),
 
     // 设置取消按钮文字
     cancelText: PropTypes.string,
 
     // 配置取消按钮相关参数
-    cancelButtonProps: PropTypes.object,
+    cancelButtonProps: PropTypes.exact({
+        // 设置按钮尺寸规格，可选的有'default'/'small'/'large'
+        size: PropTypes.oneOf(['default', 'small', 'large']),
+
+        // 设置按钮整体风格（可选项有primary、ghost、dashed、link、text、default）
+        type: PropTypes.oneOf(['primary', 'ghost', 'dashed', 'link', 'text', 'default']),
+
+        // 设置按钮是否显示为危险状态
+        danger: PropTypes.bool
+    }),
 
     // 设置是否渲染底部按钮区域
     renderFooter: PropTypes.bool,

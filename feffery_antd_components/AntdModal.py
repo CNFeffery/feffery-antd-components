@@ -17,6 +17,14 @@ Keyword arguments:
 
 - cancelButtonProps (dict; optional)
 
+    `cancelButtonProps` is a dict with keys:
+
+    - danger (boolean; optional)
+
+    - size (a value equal to: 'default', 'small', 'large'; optional)
+
+    - type (a value equal to: 'primary', 'ghost', 'dashed', 'link', 'text', 'default'; optional)
+
 - cancelCounts (number; default 0)
 
 - cancelText (string; optional)
@@ -61,6 +69,14 @@ Keyword arguments:
 - maskStyle (dict; optional)
 
 - okButtonProps (dict; optional)
+
+    `okButtonProps` is a dict with keys:
+
+    - danger (boolean; optional)
+
+    - size (a value equal to: 'default', 'small', 'large'; optional)
+
+    - type (a value equal to: 'primary', 'ghost', 'dashed', 'link', 'text', 'default'; optional)
 
 - okClickClose (boolean; default True)
 

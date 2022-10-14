@@ -14,7 +14,11 @@ Keyword arguments:
 - `children` (a list of or a singular dash component, string or number; optional)
 - `id` (String; optional)
 - `bodyStyle` (Dict; optional)
-- `cancelButtonProps` (Dict; optional)
+- `cancelButtonProps` (optional): . cancelButtonProps has the following type: lists containing elements 'size', 'type', 'danger'.
+Those elements have the following types:
+  - `size` (a value equal to: 'default', 'small', 'large'; optional)
+  - `type` (a value equal to: 'primary', 'ghost', 'dashed', 'link', 'text', 'default'; optional)
+  - `danger` (Bool; optional)
 - `cancelCounts` (Real; optional)
 - `cancelText` (String; optional)
 - `centered` (Bool; optional)
@@ -35,7 +39,11 @@ Those elements have the following types:
 - `mask` (Bool; optional)
 - `maskClosable` (Bool; optional)
 - `maskStyle` (Dict; optional)
-- `okButtonProps` (Dict; optional)
+- `okButtonProps` (optional): . okButtonProps has the following type: lists containing elements 'size', 'type', 'danger'.
+Those elements have the following types:
+  - `size` (a value equal to: 'default', 'small', 'large'; optional)
+  - `type` (a value equal to: 'primary', 'ghost', 'dashed', 'link', 'text', 'default'; optional)
+  - `danger` (Bool; optional)
 - `okClickClose` (Bool; optional)
 - `okCounts` (Real; optional)
 - `okText` (String; optional)
