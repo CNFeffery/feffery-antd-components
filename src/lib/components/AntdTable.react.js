@@ -1,9 +1,28 @@
 import React, { Component, useContext, useState, useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
-import { Table, Checkbox, Switch, Popover, Popconfirm, ConfigProvider, Typography, Input, Form, Tag, Button, Badge, Space, Image, message } from 'antd';
+import {
+    Table,
+    Checkbox,
+    Switch,
+    Popover,
+    Popconfirm,
+    ConfigProvider,
+    Typography,
+    Menu,
+    Dropdown,
+    Input,
+    Form,
+    Tag,
+    Button,
+    Badge,
+    Space,
+    Image,
+    message
+} from 'antd';
 import { TinyLine, TinyArea, TinyColumn, Progress, RingProgress } from '@ant-design/charts';
 import Highlighter from 'react-highlight-words';
-import { SearchOutlined, QuestionCircleOutlined } from '@ant-design/icons';
+import AntdIcon from './AntdIcon.react';
+import { SearchOutlined, QuestionCircleOutlined, DownOutlined } from '@ant-design/icons';
 import { isNumber, isEqual } from 'lodash';
 import { str2Locale } from './locales.react';
 import 'antd/dist/antd.css';
@@ -646,7 +665,6 @@ class AntdTable extends Component {
                                 {content.content ? content.content : columns[i]['renderOptions']['renderLinkText']}
                             </a>
                         )
-
                     } else {
                         columns[i]['render'] = content => (
                             <a href={content.disabled ? undefined : content.href}
@@ -663,6 +681,40 @@ class AntdTable extends Component {
                         <Text copyable={true}>
                             {content}
                         </Text>
+                    )
+                }
+                // dropdown-links模式
+                else if (columns[i]['renderOptions']['renderType'] === 'dropdown-links') {
+                    columns[i]['render'] = menuItems => (
+                        <Dropdown
+                            overlay={
+                                <Menu>
+                                    {
+                                        menuItems.map(
+                                            menuItem => (
+                                                menuItem ?
+                                                    // 判断isDivider参数是否不为false
+                                                    menuItem.isDivider ?
+                                                        <Menu.Divider /> :
+                                                        <Menu.Item icon={<AntdIcon icon={menuItem.icon} />}
+                                                            disabled={menuItem.disabled}
+                                                            key={menuItem.title}>
+                                                            <a href={menuItem.href}
+                                                                target={'_blank'}>
+                                                                {menuItem.title}
+                                                            </a>
+                                                        </Menu.Item> : null
+                                            )
+                                        )
+                                    }
+                                </Menu>
+                            }
+                            getPopupContainer={containerId ? () => (document.getElementById(containerId) ? document.getElementById(containerId) : document.body) : undefined}>
+                            <a className="ant-dropdown-link"
+                                onClick={e => e.preventDefault()}>
+                                {columns[i]['renderOptions'].dropdownLinksTitle} <DownOutlined />
+                            </a>
+                        </Dropdown>
                     )
                 }
                 // ellipsis-copyable模式
@@ -1226,12 +1278,12 @@ AntdTable.propTypes = {
 
                 // 设置渲染处理类型，可选项有'link'、'ellipsis'、'mini-line'、'mini-bar'、'mini-progress'、'mini-area'、'tags'、'button'
                 // 'copyable'、'status-badge'、'image'、'custom-format'、'ellipsis-copyable'、'corner-mark'、'checkbox'、'switch'
-                // 'row-merge'
+                // 'row-merge'、'dropdown-links'
                 renderType: PropTypes.oneOf([
                     'link', 'ellipsis', 'mini-line', 'mini-bar', 'mini-progress',
                     'mini-ring-progress', 'mini-area', 'tags', 'button', 'copyable',
                     'status-badge', 'image', 'custom-format', 'ellipsis-copyable',
-                    'corner-mark', 'checkbox', 'switch', 'row-merge'
+                    'corner-mark', 'checkbox', 'switch', 'row-merge', 'dropdown-links'
                 ]),
 
                 // 当renderType='link'时，此参数会将传入的字符串作为渲染link的显示文字内容
@@ -1259,7 +1311,10 @@ AntdTable.propTypes = {
 
                 // 若当前字段再渲染模式为mini-ring-progress时生效
                 // 用于设置百分比文字字体像素大小
-                ringProgressFontSize: PropTypes.number
+                ringProgressFontSize: PropTypes.number,
+
+                // 设置当前字段下拉菜单锚点文字标题内容
+                dropdownLinksTitle: PropTypes.string
             }),
 
             // 列固定对齐方式，可选项有'left'、'right'
@@ -1518,7 +1573,23 @@ AntdTable.propTypes = {
                     ]),
                     // 设置从当前单元格开始向后合并的单元格数量，0则代表不向后合并
                     rowSpan: PropTypes.number
-                })
+                }),
+
+                // dropdown-links模式
+                PropTypes.arrayOf(
+                    PropTypes.exact({
+                        // 设置当前链接显示的文字内容
+                        title: PropTypes.string,
+                        // 设置当前链接url
+                        href: PropTypes.string,
+                        // 设置是否禁用当前链接
+                        disabled: PropTypes.bool,
+                        // 设置当前链接的前缀图标，同AntdIcon的icon参数
+                        icon: PropTypes.string,
+                        // 设置当前节点是否充当分割线
+                        isDivider: PropTypes.bool
+                    })
+                )
             ])
         )
     ),

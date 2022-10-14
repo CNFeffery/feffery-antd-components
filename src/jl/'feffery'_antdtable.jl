@@ -17,9 +17,9 @@ Keyword arguments:
 Those elements have the following types:
   - `title` (String; required)
   - `dataIndex` (String; required)
-  - `renderOptions` (optional): . renderOptions has the following type: lists containing elements 'renderType', 'renderLinkText', 'renderButtonPopConfirmProps', 'tooltipCustomContent', 'progressOneHundredPercentColor', 'ringProgressFontSize'.
+  - `renderOptions` (optional): . renderOptions has the following type: lists containing elements 'renderType', 'renderLinkText', 'renderButtonPopConfirmProps', 'tooltipCustomContent', 'progressOneHundredPercentColor', 'ringProgressFontSize', 'dropdownLinksTitle'.
 Those elements have the following types:
-  - `renderType` (a value equal to: 'link', 'ellipsis', 'mini-line', 'mini-bar', 'mini-progress', 'mini-ring-progress', 'mini-area', 'tags', 'button', 'copyable', 'status-badge', 'image', 'custom-format', 'ellipsis-copyable', 'corner-mark', 'checkbox', 'switch', 'row-merge'; optional)
+  - `renderType` (a value equal to: 'link', 'ellipsis', 'mini-line', 'mini-bar', 'mini-progress', 'mini-ring-progress', 'mini-area', 'tags', 'button', 'copyable', 'status-badge', 'image', 'custom-format', 'ellipsis-copyable', 'corner-mark', 'checkbox', 'switch', 'row-merge', 'dropdown-links'; optional)
   - `renderLinkText` (String; optional)
   - `renderButtonPopConfirmProps` (optional): . renderButtonPopConfirmProps has the following type: lists containing elements 'title', 'okText', 'cancelText'.
 Those elements have the following types:
@@ -29,6 +29,7 @@ Those elements have the following types:
   - `tooltipCustomContent` (String; optional)
   - `progressOneHundredPercentColor` (String; optional)
   - `ringProgressFontSize` (Real; optional)
+  - `dropdownLinksTitle` (String; optional)
   - `fixed` (a value equal to: 'left', 'right'; optional)
   - `editable` (Bool; optional)
   - `align` (a value equal to: 'left', 'center', 'right'; optional)
@@ -95,7 +96,13 @@ Those elements have the following types:
   - `unCheckedChildren` (String; optional) | lists containing elements 'content', 'rowSpan'.
 Those elements have the following types:
   - `content` (Real | String; optional)
-  - `rowSpan` (Real; optional)s
+  - `rowSpan` (Real; optional) | Array of lists containing elements 'title', 'href', 'disabled', 'icon', 'isDivider'.
+Those elements have the following types:
+  - `title` (String; optional)
+  - `href` (String; optional)
+  - `disabled` (Bool; optional)
+  - `icon` (String; optional)
+  - `isDivider` (Bool; optional)ss
 - `emptyContent` (a list of or a singular dash component, string or number; optional)
 - `enableCellClickListenColumns` (Bool; optional)
 - `enableHoverListen` (Bool; optional)

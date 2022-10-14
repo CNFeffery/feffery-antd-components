@@ -41,6 +41,8 @@ Keyword arguments:
 
         `renderOptions` is a dict with keys:
 
+        - dropdownLinksTitle (string; optional)
+
         - progressOneHundredPercentColor (string; optional)
 
         - renderButtonPopConfirmProps (dict; optional)
@@ -55,7 +57,7 @@ Keyword arguments:
 
         - renderLinkText (string; optional)
 
-        - renderType (a value equal to: 'link', 'ellipsis', 'mini-line', 'mini-bar', 'mini-progress', 'mini-ring-progress', 'mini-area', 'tags', 'button', 'copyable', 'status-badge', 'image', 'custom-format', 'ellipsis-copyable', 'corner-mark', 'checkbox', 'switch', 'row-merge'; optional)
+        - renderType (a value equal to: 'link', 'ellipsis', 'mini-line', 'mini-bar', 'mini-progress', 'mini-ring-progress', 'mini-area', 'tags', 'button', 'copyable', 'status-badge', 'image', 'custom-format', 'ellipsis-copyable', 'corner-mark', 'checkbox', 'switch', 'row-merge', 'dropdown-links'; optional)
 
         - ringProgressFontSize (number; optional)
 
@@ -169,7 +171,17 @@ Keyword arguments:
 
     - content (number | string; optional)
 
-    - rowSpan (number; optional)
+    - rowSpan (number; optional) | list of dicts with keys:
+
+    - disabled (boolean; optional)
+
+    - href (string; optional)
+
+    - icon (string; optional)
+
+    - isDivider (boolean; optional)
+
+    - title (string; optional)
 
 - emptyContent (a list of or a singular dash component, string or number; optional)
 
