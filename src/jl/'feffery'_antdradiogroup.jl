@@ -23,7 +23,7 @@ Those elements have the following types:
 - `optionType` (a value equal to: 'default', 'button'; optional)
 - `options` (optional): . options has the following type: Array of lists containing elements 'label', 'value', 'disabled'.
 Those elements have the following types:
-  - `label` (String; optional)
+  - `label` (a list of or a singular dash component, string or number; optional)
   - `value` (String | Real; optional)
   - `disabled` (Bool; optional)s
 - `persisted_props` (Array of a value equal to: 'value's; optional): Properties whose user interactions will persist after refreshing the

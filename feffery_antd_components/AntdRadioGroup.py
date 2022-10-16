@@ -44,7 +44,7 @@ Keyword arguments:
 
     - disabled (boolean; optional)
 
-    - label (string; optional)
+    - label (a list of or a singular dash component, string or number; optional)
 
     - value (string | number; optional)
 
@@ -72,7 +72,7 @@ Keyword arguments:
 - style (dict; optional)
 
 - value (string | number; optional)"""
-    _children_props = []
+    _children_props = ['options[].label']
     _base_nodes = ['children']
     _namespace = 'feffery_antd_components'
     _type = 'AntdRadioGroup'

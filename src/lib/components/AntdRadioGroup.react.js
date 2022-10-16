@@ -8,7 +8,7 @@ export default class AntdRadioGroup extends Component {
 
     constructor(props) {
         super(props)
-        if (!props.value) {
+        if (!props.value && props.defaultValue) {
             props.setProps({ value: props.defaultValue })
         }
     }
@@ -120,7 +120,7 @@ AntdRadioGroup.propTypes = {
     options: PropTypes.arrayOf(
         PropTypes.exact({
             // 设置选项的标题内容
-            label: PropTypes.string,
+            label: PropTypes.node,
 
             // 设置选项的对应值
             value: PropTypes.oneOfType([

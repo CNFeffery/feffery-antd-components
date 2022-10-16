@@ -10,57 +10,25 @@ app = dash.Dash(__name__)
 app.layout = html.Div(
     [
 
-        fac.AntdDropdown(
-            title='触发点',
-            buttonMode=True,
-            menuItems=[
+        fac.AntdRadioGroup(
+            options=[
                 {
-                    'title': '子页面1'
-                },
-                {
-                    'title': '子页面2'
-                },
-                {
-                    'isDivider': True
-                },
-                {
-                    'title': '子页面3-1'
-                },
-                {
-                    'title': '子页面3-2'
+                    'label': fac.AntdText(
+                        [
+                            fac.AntdIcon(icon=icon),
+                            f'选项{i}'
+                        ]
+                    ),
+                    'value': f'选项{i}'
                 }
+                for i, icon in enumerate([
+                    'antd-carry-out',
+                    'antd-car',
+                    'antd-bulb',
+                    'antd-build'
+                ])
             ],
-            buttonProps={
-                'type': 'primary'
-            },
-            disabled=True
-        ),
-
-        fac.AntdTable(
-            columns=[
-                {
-                    'title': f'字段{i}',
-                    'dataIndex': f'字段{i}'
-                }
-                for i in range(1, 6)
-            ],
-            data=[
-                {
-                    f'字段{j}': np.random.randint(1, 5)
-                    for j in range(1, 6)
-                }
-                for i in range(3000)
-            ],
-            bordered=True,
-            sortOptions={
-                'sortDataIndexes': ['字段1', '字段2', '字段4', '字段5']
-            },
-            pagination={
-                'position': 'bottomCenter',
-                'showSizeChanger': False,
-                'current': 8,
-                'showQuickJumper': True
-            }
+            defaultValue='选项1'
         )
     ],
     style={
