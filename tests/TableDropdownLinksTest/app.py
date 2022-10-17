@@ -25,7 +25,11 @@ app.layout = html.Div(
                     'dataIndex': 'dropdown-links',
                     'renderOptions': {
                         'renderType': 'dropdown-links',
-                        'dropdownLinksTitle': '附件下载'
+                        'dropdownProps': {
+                            'title': '附件下载',
+                            'trigger': 'click',
+                            'placement': 'topCenter'
+                        }
                     }
                 }
             ],

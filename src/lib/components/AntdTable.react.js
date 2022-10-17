@@ -709,10 +709,19 @@ class AntdTable extends Component {
                                     }
                                 </Menu>
                             }
+                            arrow={columns[i]['renderOptions']?.dropdownProps?.arrow}
+                            disabled={columns[i]['renderOptions']?.dropdownProps?.disabled}
+                            overlayClassName={columns[i]['renderOptions']?.dropdownProps?.overlayClassName}
+                            overlayStyle={columns[i]['renderOptions']?.dropdownProps?.overlayStyle}
+                            placement={columns[i]['renderOptions']?.dropdownProps?.placement}
+                            trigger={
+                                columns[i]['renderOptions']?.dropdownProps?.trigger ?
+                                    [columns[i]['renderOptions'].dropdownProps.trigger] : ['hover']
+                            }
                             getPopupContainer={containerId ? () => (document.getElementById(containerId) ? document.getElementById(containerId) : document.body) : undefined}>
                             <a className="ant-dropdown-link"
                                 onClick={e => e.preventDefault()}>
-                                {columns[i]['renderOptions'].dropdownLinksTitle} <DownOutlined />
+                                {columns[i]['renderOptions']?.dropdownProps?.title} <DownOutlined />
                             </a>
                         </Dropdown>
                     )
@@ -1313,8 +1322,31 @@ AntdTable.propTypes = {
                 // 用于设置百分比文字字体像素大小
                 ringProgressFontSize: PropTypes.number,
 
-                // 设置当前字段下拉菜单锚点文字标题内容
-                dropdownLinksTitle: PropTypes.string
+                // 针对dropdown-links模式，设置当前字段内dropdown相关参数
+                dropdownProps: PropTypes.exact({
+                    // 设置下拉菜单锚点文字标题内容
+                    title: PropTypes.string,
+
+                    // 设置下拉框是否显示连接箭头，默认为false
+                    arrow: PropTypes.bool,
+
+                    // 是否禁用功能，默认为false
+                    disabled: PropTypes.bool,
+
+                    // 设置下拉菜单容器的类名
+                    overlayClassName: PropTypes.string,
+
+                    // 设置下拉菜单容器的样式
+                    overlayStyle: PropTypes.object,
+
+                    // 设置菜单弹出的方位，可选的有'bottomLeft'、'bottomCenter'、'bottomRight'、
+                    // 'topLeft'、'topCenter'与'topRight'
+                    placement: PropTypes.oneOf([
+                        'bottomLeft', 'bottomCenter', 'bottomRight',
+                        'topLeft', 'topCenter', 'topRight'
+                    ])
+                }),
+
             }),
 
             // 列固定对齐方式，可选项有'left'、'right'

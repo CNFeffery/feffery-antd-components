@@ -17,7 +17,7 @@ Keyword arguments:
 Those elements have the following types:
   - `title` (String; required)
   - `dataIndex` (String; required)
-  - `renderOptions` (optional): . renderOptions has the following type: lists containing elements 'renderType', 'renderLinkText', 'renderButtonPopConfirmProps', 'tooltipCustomContent', 'progressOneHundredPercentColor', 'ringProgressFontSize', 'dropdownLinksTitle'.
+  - `renderOptions` (optional): . renderOptions has the following type: lists containing elements 'renderType', 'renderLinkText', 'renderButtonPopConfirmProps', 'tooltipCustomContent', 'progressOneHundredPercentColor', 'ringProgressFontSize', 'dropdownProps'.
 Those elements have the following types:
   - `renderType` (a value equal to: 'link', 'ellipsis', 'mini-line', 'mini-bar', 'mini-progress', 'mini-ring-progress', 'mini-area', 'tags', 'button', 'copyable', 'status-badge', 'image', 'custom-format', 'ellipsis-copyable', 'corner-mark', 'checkbox', 'switch', 'row-merge', 'dropdown-links'; optional)
   - `renderLinkText` (String; optional)
@@ -29,7 +29,14 @@ Those elements have the following types:
   - `tooltipCustomContent` (String; optional)
   - `progressOneHundredPercentColor` (String; optional)
   - `ringProgressFontSize` (Real; optional)
-  - `dropdownLinksTitle` (String; optional)
+  - `dropdownProps` (optional): . dropdownProps has the following type: lists containing elements 'title', 'arrow', 'disabled', 'overlayClassName', 'overlayStyle', 'placement'.
+Those elements have the following types:
+  - `title` (String; optional)
+  - `arrow` (Bool; optional)
+  - `disabled` (Bool; optional)
+  - `overlayClassName` (String; optional)
+  - `overlayStyle` (Dict; optional)
+  - `placement` (a value equal to: 'bottomLeft', 'bottomCenter', 'bottomRight', 'topLeft', 'topCenter', 'topRight'; optional)
   - `fixed` (a value equal to: 'left', 'right'; optional)
   - `editable` (Bool; optional)
   - `align` (a value equal to: 'left', 'center', 'right'; optional)

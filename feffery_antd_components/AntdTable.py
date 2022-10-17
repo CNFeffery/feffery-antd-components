@@ -41,7 +41,21 @@ Keyword arguments:
 
         `renderOptions` is a dict with keys:
 
-        - dropdownLinksTitle (string; optional)
+        - dropdownProps (dict; optional)
+
+            `dropdownProps` is a dict with keys:
+
+            - arrow (boolean; optional)
+
+            - disabled (boolean; optional)
+
+            - overlayClassName (string; optional)
+
+            - overlayStyle (dict; optional)
+
+            - placement (a value equal to: 'bottomLeft', 'bottomCenter', 'bottomRight', 'topLeft', 'topCenter', 'topRight'; optional)
+
+            - title (string; optional)
 
         - progressOneHundredPercentColor (string; optional)
 
