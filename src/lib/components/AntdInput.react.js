@@ -46,11 +46,17 @@ const AntdInput = (props) => {
 
     useEffect(() => {
         // 初始化value
-        if (defaultValue) {
-            // 当defaultValue不为空时，为value初始化defaultValue对应的value值
+        if (defaultValue && !value) {
+            // 当defaultValue不为空且value为空时，为value初始化defaultValue对应的value值
             setProps({
                 value: defaultValue,
                 md5Value: md5(defaultValue)
+            })
+        }
+        // 在value存在时，初始化md5Value
+        if (value) {
+            setProps({
+                md5Value: md5(value)
             })
         }
     }, [])

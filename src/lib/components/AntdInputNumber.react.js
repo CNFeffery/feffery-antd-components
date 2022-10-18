@@ -1,102 +1,112 @@
-import React, { Component } from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { InputNumber } from 'antd';
+import { useRequest } from 'ahooks';
 import 'antd/dist/antd.css';
 
 // 定义数字输入框组件AntdInputNumber，api参数参考https://ant.design/components/input-number-cn/
-export default class AntdInputNumber extends Component {
+const AntdInputNumber = (props) => {
 
-    constructor(props) {
-        super(props)
+    // 取得必要属性或参数
+    let {
+        id,
+        className,
+        style,
+        key,
+        size,
+        addonBefore,
+        addonAfter,
+        prefix,
+        suffix,
+        bordered,
+        controls,
+        value,
+        defaultValue,
+        disabled,
+        placeholder,
+        keyboard,
+        min,
+        max,
+        step,
+        precision,
+        readOnly,
+        stringMode,
+        nSubmit,
+        status,
+        debounceWait,
+        setProps,
+        persistence,
+        persisted_props,
+        persistence_type,
+        loading_state
+    } = props;
+
+    useEffect(() => {
         // 初始化value
-        if (props.defaultValue && !props.value) {
-            // 当defaultValue不为空时，为value初始化defaultValue对应的value值
-            props.setProps({ value: props.defaultValue })
+        if (defaultValue && !value) {
+            // 当defaultValue不为空且value为空时，为value初始化defaultValue对应的value值
+            setProps({
+                value: defaultValue
+            })
         }
+    }, [])
+
+    // 监听输入内容变化事件
+    const onChange = e => {
+        setProps({ value: e })
     }
 
-    render() {
-        // 取得必要属性或参数
-        let {
-            id,
-            className,
-            style,
-            key,
-            size,
-            addonBefore,
-            addonAfter,
-            prefix,
-            suffix,
-            bordered,
-            controls,
-            value,
-            disabled,
-            placeholder,
-            keyboard,
-            min,
-            max,
-            step,
-            precision,
-            readOnly,
-            stringMode,
-            nSubmit,
-            status,
-            setProps,
-            persistence,
-            persisted_props,
-            persistence_type,
-            loading_state
-        } = this.props;
-
-        // 监听输入内容变化事件
-        const onChange = v => {
-            setProps({ value: v })
+    const { run: onDebounceChange } = useRequest(
+        (e) => {
+            setProps({ debounceValue: e })
+        },
+        {
+            debounceWait: debounceWait,
+            manual: true
         }
+    )
 
-        // 监听跳步按钮点击事件
-        const onStep = v => {
-            setProps({ value: v })
-        }
-
-        // 监听聚焦到输入框时enter键点按次数
-        const onPressEnter = e => {
-            setProps({ nSubmit: nSubmit + 1 })
-        }
-
-        return (
-            <InputNumber id={id}
-                className={className}
-                style={style}
-                key={key}
-                size={size}
-                addonBefore={addonBefore}
-                addonAfter={addonAfter}
-                prefix={prefix}
-                suffix={suffix}
-                placeholder={placeholder}
-                bordered={bordered}
-                controls={controls}
-                value={value}
-                disabled={disabled}
-                keyboard={keyboard}
-                min={min}
-                max={max}
-                step={step}
-                precision={precision}
-                readOnly={readOnly}
-                stringMode={stringMode}
-                status={status}
-                onChange={onChange}
-                onPressEnter={onPressEnter}
-                onStep={onStep}
-                persistence={persistence}
-                persisted_props={persisted_props}
-                persistence_type={persistence_type}
-                data-dash-is-loading={
-                    (loading_state && loading_state.is_loading) || undefined
-                } />
-        );
+    // 监听聚焦到输入框时enter键点按次数
+    const onPressEnter = e => {
+        setProps({ nSubmit: nSubmit + 1 })
     }
+
+    return (
+        <InputNumber id={id}
+            className={className}
+            style={style}
+            key={key}
+            size={size}
+            addonBefore={addonBefore}
+            addonAfter={addonAfter}
+            prefix={prefix}
+            suffix={suffix}
+            placeholder={placeholder}
+            bordered={bordered}
+            controls={controls}
+            value={value}
+            defaultValue={defaultValue}
+            disabled={disabled}
+            keyboard={keyboard}
+            min={min}
+            max={max}
+            step={step}
+            precision={precision}
+            readOnly={readOnly}
+            stringMode={stringMode}
+            status={status}
+            onChange={(e) => {
+                onChange(e)
+                onDebounceChange(e)
+            }}
+            onPressEnter={onPressEnter}
+            persistence={persistence}
+            persisted_props={persisted_props}
+            persistence_type={persistence_type}
+            data-dash-is-loading={
+                (loading_state && loading_state.is_loading) || undefined
+            } />
+    );
 }
 
 // 定义参数或属性
@@ -189,6 +199,15 @@ AntdInputNumber.propTypes = {
     // 设置校验状态，可选的有'error'、'warning'
     status: PropTypes.oneOf(['error', 'warning']),
 
+    // 记录防抖状态下的已输入内容
+    debounceValue: PropTypes.oneOfType([
+        PropTypes.number,
+        PropTypes.string
+    ]),
+
+    // 用于配置debounceValue变化更新的防抖等待时长（单位：毫秒），默认为0
+    debounceWait: PropTypes.number,
+
     loading_state: PropTypes.shape({
         /**
          * Determines if the component is loading or not
@@ -244,5 +263,8 @@ AntdInputNumber.propTypes = {
 AntdInputNumber.defaultProps = {
     nSubmit: 0,
     persisted_props: ['value'],
-    persistence_type: 'local'
+    persistence_type: 'local',
+    debounceWait: 300
 }
+
+export default AntdInputNumber;

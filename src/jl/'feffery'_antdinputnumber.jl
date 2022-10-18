@@ -14,6 +14,8 @@ Keyword arguments:
 - `bordered` (Bool; optional)
 - `className` (String; optional)
 - `controls` (Bool; optional)
+- `debounceValue` (Real | String; optional)
+- `debounceWait` (Real; optional)
 - `defaultValue` (Real | String; optional)
 - `disabled` (Bool; optional)
 - `key` (String; optional)
@@ -52,7 +54,7 @@ session: window.sessionStorage, data is cleared once the browser quit.
 - `value` (Real | String; optional)
 """
 function 'feffery'_antdinputnumber(; kwargs...)
-        available_props = Symbol[:id, :addonAfter, :addonBefore, :bordered, :className, :controls, :defaultValue, :disabled, :key, :keyboard, :loading_state, :max, :min, :nSubmit, :persisted_props, :persistence, :persistence_type, :placeholder, :precision, :prefix, :readOnly, :size, :status, :step, :stringMode, :style, :suffix, :value]
+        available_props = Symbol[:id, :addonAfter, :addonBefore, :bordered, :className, :controls, :debounceValue, :debounceWait, :defaultValue, :disabled, :key, :keyboard, :loading_state, :max, :min, :nSubmit, :persisted_props, :persistence, :persistence_type, :placeholder, :precision, :prefix, :readOnly, :size, :status, :step, :stringMode, :style, :suffix, :value]
         wild_props = Symbol[]
         return Component("'feffery'_antdinputnumber", "AntdInputNumber", "feffery_antd_components", available_props, wild_props; kwargs...)
 end

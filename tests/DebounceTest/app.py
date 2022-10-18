@@ -50,6 +50,16 @@ app.layout = html.Div(
             }
         ),
         fac.AntdText(id='input-debounce-test-output'),
+
+        fac.AntdParagraph('AntdInputNumber debounceValue测试'),
+        fac.AntdInputNumber(
+            id='input-number-debounce-test',
+            debounceWait=500,
+            style={
+                'width': '200px'
+            }
+        ),
+        fac.AntdText(id='input-number-debounce-test-output'),
     ],
     style={
         'width': '800px',
@@ -81,6 +91,15 @@ def icon_debounce_test(nClicks):
     Input('input-debounce-test', 'debounceValue')
 )
 def input_debounce_test(debounceValue):
+
+    return debounceValue
+
+
+@app.callback(
+    Output('input-number-debounce-test-output', 'children'),
+    Input('input-number-debounce-test', 'debounceValue')
+)
+def input_number_debounce_test(debounceValue):
 
     return debounceValue
 
