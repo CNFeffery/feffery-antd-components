@@ -1,12 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { v4 as uuidv4 } from 'uuid';
 import { Upload, message, Button, ConfigProvider } from 'antd';
 import { UploadOutlined } from '@ant-design/icons';
 import { str2Locale } from '../locales.react';
 import 'antd/dist/antd.css';
-
-const uuid = uuidv4();
 
 // 解析历史任务完成时间信息
 const parseHistoryTaskCompleteTime = (e) => {
@@ -46,7 +44,12 @@ const AntdUpload = (props) => {
     // 更新已上传文件 -> 上传完成时间映射字典
     const uploadedFile2CompleteTime = parseHistoryTaskCompleteTime(listUploadTaskRecord)
 
-    uploadId = uploadId || uuid;
+    useEffect(() => {
+        // 初始化uploadId
+        if (!uploadId) {
+            setProps({ uploadId: uuidv4() })
+        }
+    }, [])
 
     const [fileList, updateFileList] = useState(defaultFileList);
 

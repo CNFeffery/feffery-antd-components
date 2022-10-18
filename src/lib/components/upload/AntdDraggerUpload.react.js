@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { v4 as uuidv4 } from 'uuid';
 import { Upload, message, ConfigProvider } from 'antd';
@@ -7,8 +7,6 @@ import { useCss } from 'react-use';
 import { isString } from 'lodash';
 import { str2Locale } from '../locales.react';
 import 'antd/dist/antd.css';
-
-const uuid = uuidv4();
 
 const { Dragger } = Upload;
 
@@ -53,7 +51,12 @@ const AntdDraggerUpload = (props) => {
     // 更新已上传文件 -> 上传完成时间映射字典
     const uploadedFile2CompleteTime = parseHistoryTaskCompleteTime(listUploadTaskRecord)
 
-    uploadId = uploadId || uuid;
+    useEffect(() => {
+        // 初始化uploadId
+        if (!uploadId) {
+            setProps({ uploadId: uuidv4() })
+        }
+    }, [])
 
     const [fileList, updateFileList] = useState(defaultFileList);
 

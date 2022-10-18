@@ -9,32 +9,25 @@ app = dash.Dash(__name__)
 
 app.layout = html.Div(
     [
-
-        fac.AntdRadioGroup(
-            options=[
-                {
-                    'label': fac.AntdText(
-                        [
-                            fac.AntdIcon(icon=icon),
-                            f'选项{i}'
-                        ]
-                    ),
-                    'value': f'选项{i}'
-                }
-                for i, icon in enumerate([
-                    'antd-carry-out',
-                    'antd-car',
-                    'antd-bulb',
-                    'antd-build'
-                ])
-            ],
-            defaultValue='选项1'
-        )
+        fac.AntdUpload(id='input1'),
+        fac.AntdDraggerUpload(id='input2'),
+        fac.AntdPictureUpload(id='input3'),
+        html.Div(id='output')
     ],
     style={
         'padding': '50px'
     }
 )
+
+@app.callback(
+    Output('output', 'children'),
+    [Input('input1', 'uploadId'),
+    Input('input2', 'uploadId'),
+    Input('input3', 'uploadId')]
+)
+def demo(*args):
+
+    print(args)
 
 if __name__ == '__main__':
     app.run(debug=True)
