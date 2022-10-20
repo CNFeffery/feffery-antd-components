@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Collapse } from 'antd';
-import 'antd/dist/antd.css';
+
 import { omit } from 'ramda';
 import { parseChildrenToArray, resolveChildProps } from '../utils';
 

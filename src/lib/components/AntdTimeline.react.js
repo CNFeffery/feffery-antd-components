@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Timeline } from 'antd';
-import 'antd/dist/antd.css';
+
 
 // 定义时间轴组件AntdTimeline，api参数参考https://ant.design/components/timeline-cn/
 const AntdTimeline = (props) => {

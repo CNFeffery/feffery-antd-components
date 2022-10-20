@@ -1,66 +1,60 @@
-import React, { Component } from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { Layout } from 'antd';
-import { isString } from 'lodash';
-import { useCss } from 'react-use';
+import { ConfigProvider } from 'antd';
 
-import { parseChildrenToArray } from '../utils';
-
-const { Header } = Layout;
-
-// 定义页首组件AntdHeader，api参数参考https://ant.design/components/layout-cn/
-const AntdHeader = (props) => {
+// 定义全局参数配置组件AntdConfigProvider，api参数参考https://ant.design/components/tag-cn/
+const AntdConfigProvider = (props) => {
     // 取得必要属性或参数
     let {
         id,
         children,
-        className,
-        style,
         key,
+        primaryColor,
+        componentDisabled,
+        componentSize,
         setProps,
         loading_state
     } = props;
 
-    children = parseChildrenToArray(children)
+    useEffect(() => {
+        ConfigProvider.config({
+            theme: {
+                primaryColor: primaryColor
+            }
+        })
+    })
 
     return (
-        <Header id={id}
-            className={
-                isString(className) ?
-                    className :
-                    (className ? useCss(className) : undefined)
-            }
-            style={style}
+        <ConfigProvider id={id}
             key={key}
+            componentDisabled={componentDisabled}
+            componentSize={componentSize}
             data-dash-is-loading={
                 (loading_state && loading_state.is_loading) || undefined
             }>
             {children}
-        </Header>
+        </ConfigProvider>
     );
 }
 
 // 定义参数或属性
-AntdHeader.propTypes = {
+AntdConfigProvider.propTypes = {
     // 组件id
     id: PropTypes.string,
 
-    /**
-     * The content of the tab - will only be displayed if this tab is selected
-     */
     children: PropTypes.node,
-
-    // css类名
-    className: PropTypes.oneOfType([
-        PropTypes.string,
-        PropTypes.object
-    ]),
-
-    // 自定义css字典
-    style: PropTypes.object,
 
     // 辅助刷新用唯一标识key值
     key: PropTypes.string,
+
+    // 自定义主色
+    primaryColor: PropTypes.string,
+
+    // 设置是否针对子元素所有组件强制开启禁用状态
+    componentDisabled: PropTypes.bool,
+
+    // 总体设置子元素的尺寸规格，可选的有'small'、'default'、'large'
+    componentSize: PropTypes.oneOf(['small', 'default', 'large']),
 
     loading_state: PropTypes.shape({
         /**
@@ -85,7 +79,7 @@ AntdHeader.propTypes = {
 };
 
 // 设置默认参数
-AntdHeader.defaultProps = {
+AntdConfigProvider.defaultProps = {
 }
 
-export default AntdHeader;
+export default React.memo(AntdConfigProvider);

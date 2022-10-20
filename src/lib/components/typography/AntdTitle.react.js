@@ -4,7 +4,7 @@ import { Typography, ConfigProvider } from 'antd';
 import { useCss } from 'react-use';
 import { isString } from 'lodash';
 import { str2Locale } from '../locales.react';
-import 'antd/dist/antd.css';
+
 import { parseChildrenToArray } from '../utils';
 
 const { Title } = Typography;

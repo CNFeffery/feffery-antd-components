@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Carousel } from 'antd';
 import { useCss } from 'react-use';
 import { isString } from 'lodash';
-import 'antd/dist/antd.css';
+
 
 // 定义走马灯组件AntdCarousel，api参数参考https://ant.design/components/carousel-cn/
 const AntdCarousel = (props) => {

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Switch } from 'antd';
-import 'antd/dist/antd.css';
+
 
 // 定义开关组件AntdSwitch，api参数参考https://ant.design/components/switch-cn/
 export default class AntdSwitch extends Component {

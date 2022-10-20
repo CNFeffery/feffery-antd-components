@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Space, Divider } from 'antd';
 import { useCss } from 'react-use';
 import { isString } from 'lodash';
-import 'antd/dist/antd.css';
+
 import { parseChildrenToArray } from './utils';
 
 // 定义间距组件AntdSpace，api参数参考https://ant.design/components/space-cn/

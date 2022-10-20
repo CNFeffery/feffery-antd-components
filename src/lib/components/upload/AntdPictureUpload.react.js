@@ -5,7 +5,7 @@ import { Upload, message, Modal, ConfigProvider } from 'antd';
 import { PlusOutlined } from '@ant-design/icons';
 import { str2Locale } from '../locales.react';
 import ImgCrop from 'antd-img-crop';
-import 'antd/dist/antd.css';
+
 
 
 // 解析历史任务完成时间信息

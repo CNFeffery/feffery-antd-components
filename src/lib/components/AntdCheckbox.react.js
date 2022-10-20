@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Checkbox } from 'antd';
-import 'antd/dist/antd.css';
+
 
 // 定义选择框组件AntdCheckbox，api参数参考https://ant.design/components/checkbox-cn/
 export default class AntdCheckbox extends Component {

@@ -7,7 +7,7 @@ import {
     MenuUnfoldOutlined,
     MenuFoldOutlined,
 } from '@ant-design/icons';
-import 'antd/dist/antd.css';
+
 import './styles.css';
 
 const { SubMenu, Item, ItemGroup } = Menu;

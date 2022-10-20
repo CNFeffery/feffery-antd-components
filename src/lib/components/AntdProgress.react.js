@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Progress } from 'antd';
-import 'antd/dist/antd.css';
+
 
 // 定义进度条组件AntdProgress，api参数参考https://ant.design/components/progress-cn/
 export default class AntdProgress extends Component {

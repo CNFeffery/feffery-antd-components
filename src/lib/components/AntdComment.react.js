@@ -5,7 +5,7 @@ import { str2Locale } from './locales.react';
 import { Comment, Tooltip, Popconfirm, ConfigProvider } from 'antd';
 import { AntdAvatar } from '..';
 import { DislikeOutlined, LikeOutlined, DislikeFilled, LikeFilled } from '@ant-design/icons';
-import 'antd/dist/antd.css';
+
 import './styles.css'
 import { parseChildrenToArray } from './utils';
 

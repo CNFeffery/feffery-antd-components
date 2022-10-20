@@ -6,7 +6,7 @@ import AntdIcon from './AntdIcon.react';
 import { useCss } from 'react-use';
 import { isString } from 'lodash';
 import { QuestionCircleOutlined } from "@ant-design/icons";
-import 'antd/dist/antd.css';
+
 
 // 定义统计数值组件AntdStatistic，api参数参考https://ant.design/components/statistic-cn/
 const AntdStatistic = (props) => {

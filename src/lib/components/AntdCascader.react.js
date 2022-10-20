@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Cascader, ConfigProvider } from 'antd';
 import { str2Locale } from './locales.react';
 import { flatToTree } from './utils';
-import 'antd/dist/antd.css';
+
 
 const { SHOW_CHILD, SHOW_PARENT } = Cascader;
 

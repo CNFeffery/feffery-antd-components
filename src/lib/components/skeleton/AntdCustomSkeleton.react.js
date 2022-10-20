@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 import { isString } from 'lodash';
 import { useCss } from 'react-use';
-import 'antd/dist/antd.css';
+
 import { parseChildrenToArray } from '../utils';
 
 // 自定义骨架屏组件AntdCustomSkeleton

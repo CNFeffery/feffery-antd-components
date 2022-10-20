@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import 'antd/dist/antd.css';
+
 import { parseChildrenToArray } from '../utils';
 
 // 定义手风琴项组件AntdAccordionItem，api参数参考https://ant.design/components/collapse-cn/#Collapse.Panel

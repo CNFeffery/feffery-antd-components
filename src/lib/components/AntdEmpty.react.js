@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Empty, ConfigProvider } from 'antd';
 import { str2Locale } from './locales.react';
-import 'antd/dist/antd.css';
+
 
 const builtinImage = new Map([
     ['default', Empty.PRESENTED_IMAGE_DEFAULT],

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Form } from 'antd';
-import 'antd/dist/antd.css';
+
 
 // 定义表单组件AntdForm，api参数参考https://ant.design/components/form-cn/
 export default class AntdForm extends Component {

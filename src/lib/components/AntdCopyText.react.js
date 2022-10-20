@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Typography, ConfigProvider } from 'antd';
 import { str2Locale } from './locales.react';
-import 'antd/dist/antd.css';
+
 
 const { Text } = Typography;
 

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { TimePicker, ConfigProvider } from 'antd';
 import moment from 'moment';
 import { str2Locale } from './locales.react';
-import 'antd/dist/antd.css';
+
 
 const { RangePicker } = TimePicker
 

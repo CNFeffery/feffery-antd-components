@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { TreeSelect, ConfigProvider } from 'antd';
 import { str2Locale } from './locales.react';
 import { flatToTree } from './utils';
-import 'antd/dist/antd.css';
+
 
 const { SHOW_ALL } = TreeSelect;
 

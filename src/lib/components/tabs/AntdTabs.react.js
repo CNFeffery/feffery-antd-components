@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Tabs, Popover } from 'antd';
 import { InfoCircleOutlined } from "@ant-design/icons";
 import { omit } from 'ramda';
-import 'antd/dist/antd.css';
+
 import { parseChildrenToArray, resolveChildProps } from '../utils';
 
 const { TabPane } = Tabs;

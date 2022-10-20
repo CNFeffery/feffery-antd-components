@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Divider } from 'antd';
-import 'antd/dist/antd.css';
+
 
 // 定义分割线组件AntdDivider，api参数参考https://ant.design/components/divider-cn/
 export default class AntdDivider extends Component {

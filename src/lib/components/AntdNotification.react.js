@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { notification } from 'antd';
-import 'antd/dist/antd.css';
+
 
 // 定义通知提醒框组件AntdNotification，api参数参考https://ant.design/components/notification-cn/
 export default class AntdNotification extends Component {

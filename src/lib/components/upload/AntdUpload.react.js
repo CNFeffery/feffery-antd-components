@@ -4,7 +4,7 @@ import { v4 as uuidv4 } from 'uuid';
 import { Upload, message, Button, ConfigProvider } from 'antd';
 import { UploadOutlined } from '@ant-design/icons';
 import { str2Locale } from '../locales.react';
-import 'antd/dist/antd.css';
+
 
 // 解析历史任务完成时间信息
 const parseHistoryTaskCompleteTime = (e) => {

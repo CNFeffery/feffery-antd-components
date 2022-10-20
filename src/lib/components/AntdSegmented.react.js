@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Segmented } from 'antd';
-import 'antd/dist/antd.css';
+
 import AntdIcon from "./AntdIcon.react"
 import propTypes from 'prop-types';
 

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { CheckCard } from '@ant-design/pro-card';
-import 'antd/dist/antd.css';
+
 import { parseChildrenToArray } from '../utils';
 
 // 定义组合选择卡片组件AntdCheckCardGroup，api参数参考https://procomponents.ant.design/components/check-card

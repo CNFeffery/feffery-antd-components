@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { useCss } from 'react-use';
 import { isString } from 'lodash';
 import { Anchor } from 'antd';
-import 'antd/dist/antd.css';
+
 
 const { Link } = Anchor;
 

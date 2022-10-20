@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Transfer, ConfigProvider } from 'antd';
 import { str2Locale } from './locales.react';
-import 'antd/dist/antd.css';
+
 
 // 定义穿梭框组件AntdTransfer，api参数参考https://ant.design/components/transfer-cn/
 export default class AntdTransfer extends Component {

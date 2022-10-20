@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { useCss } from 'react-use';
 import { isString } from 'lodash';
-import 'antd/dist/antd.css';
+
 import { parseChildrenToArray } from '../utils';
 
 // 定义标签页面板组件AntdTabPane，api参数参考https://ant.design/components/tabs-cn/

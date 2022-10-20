@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Collapse } from 'antd';
-import 'antd/dist/antd.css';
+
 import { parseChildrenToArray } from './utils';
 
 const { Panel } = Collapse;

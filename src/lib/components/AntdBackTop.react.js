@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { useCss } from 'react-use';
 import { isString } from 'lodash';
 import { BackTop } from 'antd';
-import 'antd/dist/antd.css';
+
 
 // 定义回到顶部组件AntdBackTop，api参数参考https://ant.design/components/back-top-cn/
 const AntdBackTop = (props) => {

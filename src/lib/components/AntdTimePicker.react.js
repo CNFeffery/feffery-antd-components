@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { TimePicker, ConfigProvider } from 'antd';
 import moment from 'moment';
 import { str2Locale } from './locales.react';
-import 'antd/dist/antd.css';
+
 
 // 定义时间选择组件AntdTimePicker，api参数参考https://ant.design/components/time-picker-cn/
 export default class AntdTimePicker extends Component {

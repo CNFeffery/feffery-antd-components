@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Descriptions } from 'antd';
 import { isNil, omit } from 'ramda';
-import 'antd/dist/antd.css';
+
 import { parseChildrenToArray, resolveChildProps } from '../utils';
 
 // 定义描述列表组件AntdDescriptions，api参数参考https://ant.design/components/descriptions-cn/

@@ -3,7 +3,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { InputNumber, Space, message, Typography } from 'antd';
-import 'antd/dist/antd.css';
+
 
 const { Text } = Typography;
 

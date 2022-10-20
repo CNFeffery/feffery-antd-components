@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Input } from 'antd';
 import md5 from 'md5';
 import { useRequest } from 'ahooks';
-import 'antd/dist/antd.css';
+
 
 const { Search, TextArea } = Input;
 

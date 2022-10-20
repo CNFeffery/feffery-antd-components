@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { message } from 'antd';
 import AntdIcon from './AntdIcon.react';
-import 'antd/dist/antd.css';
+
 
 // 定义全局提示组件AntdMessage，api参数参考https://ant.design/components/message-cn/
 export default class AntdMessage extends Component {

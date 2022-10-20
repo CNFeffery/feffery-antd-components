@@ -3,7 +3,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Skeleton } from 'antd';
-import 'antd/dist/antd.css';
+
 
 // 定义骨骼屏输入框占位图组件AntdSkeletonInput
 const AntdSkeletonInput = (props) => {

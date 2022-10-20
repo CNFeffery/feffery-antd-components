@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Slider } from 'antd';
-import 'antd/dist/antd.css';
+
 
 // 定义滑动输入条组件AntdSlider，api参数参考https://ant.design/components/slider-cn/
 export default class AntdSlider extends Component {

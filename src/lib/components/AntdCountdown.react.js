@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Statistic } from 'antd';
 import moment from 'moment';
 import AntdIcon from './AntdIcon.react';
-import 'antd/dist/antd.css';
+
 
 const { Countdown } = Statistic;
 

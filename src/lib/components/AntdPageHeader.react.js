@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { PageHeader } from 'antd';
-import 'antd/dist/antd.css';
+
 import { parseChildrenToArray } from './utils';
 
 // 定义页头组件AntdPageHeader，api参数参考https://ant.design/components/page-header-cn/

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Row } from 'antd';
 import { useCss } from 'react-use';
 import { isString } from 'lodash';
-import 'antd/dist/antd.css';
+
 import { parseChildrenToArray } from '../utils';
 
 // 定义行组件AntdRow，api参数参考https://ant.design/components/grid-cn/

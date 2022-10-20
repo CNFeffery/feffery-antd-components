@@ -2,7 +2,7 @@ import { str2Icon } from './icons.react';
 import PropTypes from 'prop-types';
 import { useCss } from 'react-use';
 import { isString } from 'lodash';
-import 'antd/dist/antd.css';
+
 import { useRequest } from 'ahooks';
 
 // 定义图标组件AntdIcon

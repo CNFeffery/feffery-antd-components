@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Mentions } from 'antd';
-import 'antd/dist/antd.css';
+
 
 const { Option } = Mentions;
 

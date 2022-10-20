@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Layout } from 'antd';
 import { isString } from 'lodash';
 import { useCss } from 'react-use';
-import 'antd/dist/antd.css';
+
 import { parseChildrenToArray } from '../utils';
 
 // 定义布局组件AntdLayout，api参数参考https://ant.design/components/layout-cn/

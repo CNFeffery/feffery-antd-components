@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import 'antd/dist/antd.css';
+
 import { parseChildrenToArray } from '../utils';
 
 // 定义描述列表子项组件AntdDescriptionItem，api参数参考https://ant.design/components/descriptions-cn/

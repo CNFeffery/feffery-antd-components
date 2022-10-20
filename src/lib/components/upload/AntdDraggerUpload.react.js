@@ -6,7 +6,7 @@ import AntdIcon from '../AntdIcon.react';
 import { useCss } from 'react-use';
 import { isString } from 'lodash';
 import { str2Locale } from '../locales.react';
-import 'antd/dist/antd.css';
+
 
 const { Dragger } = Upload;
 

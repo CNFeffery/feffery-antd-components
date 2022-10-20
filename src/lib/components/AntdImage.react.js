@@ -4,7 +4,7 @@ import { useCss } from 'react-use';
 import { isString } from 'lodash';
 import { Image, ConfigProvider } from 'antd';
 import { str2Locale } from './locales.react';
-import 'antd/dist/antd.css';
+
 
 // 定义图片组件AntdImage，api参数参考https://ant.design/components/image-cn/
 const AntdImage = (props) => {

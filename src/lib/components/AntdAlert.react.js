@@ -5,7 +5,7 @@ import { Alert } from 'antd';
 import { useCss } from 'react-use';
 import { isString } from 'lodash';
 import Marquee from 'react-fast-marquee';
-import 'antd/dist/antd.css';
+
 
 // 定义警告提示组件AntdAlert，api参数参考https://ant.design/components/alert-cn/
 const AntdAlert = (props) => {

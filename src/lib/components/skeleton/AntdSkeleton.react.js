@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Skeleton } from 'antd';
 import { useCss } from 'react-use';
 import { isString } from 'lodash';
-import 'antd/dist/antd.css';
+
 import { parseChildrenToArray } from '../utils';
 
 // 定义骨架屏组件AntdSkeleton，api参数参考https://ant.design/components/skeleton-cn/

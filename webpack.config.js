@@ -89,7 +89,12 @@ module.exports = (env, argv) => {
                         },
                         {
                             loader: 'css-loader',
-                        },
+                        }
+                    ],
+                },
+                {
+                    test: /\.(less)$/,
+                    use: [
                         {
                             loader: 'less-loader',
                             options: {

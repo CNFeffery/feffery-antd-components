@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Tooltip } from 'antd';
-import 'antd/dist/antd.css';
+
 import { parseChildrenToArray } from './utils';
 
 // 定义布局组件Tooltip，api参数参考https://ant.design/components/tooltip-cn/

@@ -4,7 +4,7 @@ import { Avatar } from 'antd';
 import { useCss } from 'react-use';
 import { isString } from 'lodash';
 import AntdIcon from './AntdIcon.react';
-import 'antd/dist/antd.css';
+
 
 // 定义头像组件AntdAvatar，api参数参考https://ant.design/components/avatar-cn/
 const AntdAvatar = (props) => {

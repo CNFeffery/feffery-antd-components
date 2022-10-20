@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Radio, Space } from 'antd';
-import 'antd/dist/antd.css';
+
 
 // 定义单选框组件AntdRadioGroup，api参数参考https://ant.design/components/radio-cn/
 export default class AntdRadioGroup extends Component {

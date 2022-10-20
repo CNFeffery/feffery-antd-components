@@ -7,7 +7,7 @@ import { isString } from 'lodash';
 import { Gluejar } from '@charliewilco/gluejar'
 import { DeleteOutlined } from '@ant-design/icons';
 import './styles.css'
-import 'antd/dist/antd.css';
+
 
 const urlToBase64 = (url) => {
     return new Promise((resolve, reject) => {

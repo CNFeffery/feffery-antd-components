@@ -4,7 +4,7 @@ import { useCss } from 'react-use';
 import { isString } from 'lodash';
 import zhCN from 'antd/lib/locale/zh_CN';
 import { Drawer, ConfigProvider } from 'antd';
-import 'antd/dist/antd.css';
+
 
 // 定义抽屉组件AntdDrawer，api参数参考https://ant.design/components/drawer-cn/
 const AntdDrawer = (props) => {

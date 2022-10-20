@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import { Button } from 'antd';
 import { useCss } from 'react-use';
 import { isString } from 'lodash';
-import 'antd/dist/antd.css';
+
 import { useRequest } from 'ahooks';
 
 // 定义分割线组件AntdButton，api参数参考https://ant.design/components/button-cn/

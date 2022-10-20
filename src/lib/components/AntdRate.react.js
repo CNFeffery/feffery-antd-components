@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Rate } from 'antd';
-import 'antd/dist/antd.css';
+
 
 // 定义评分组件AntdRate，api参数参考https://ant.design/components/rate-cn/
 export default class AntdRate extends Component {

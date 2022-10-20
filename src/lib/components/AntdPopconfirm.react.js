@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Popconfirm, ConfigProvider } from 'antd';
-import 'antd/dist/antd.css';
+
 import { str2Locale } from './locales.react';
 import { parseChildrenToArray } from './utils';
 

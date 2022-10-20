@@ -4,7 +4,7 @@ import { Tree } from 'antd';
 import AntdIcon from './AntdIcon.react';
 import { omitBy, isUndefined } from 'lodash';
 import { flatToTree } from './utils';
-import 'antd/dist/antd.css';
+
 import './styles.css'
 
 

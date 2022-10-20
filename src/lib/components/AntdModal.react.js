@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { str2Locale } from './locales.react';
 import { Modal, ConfigProvider } from 'antd';
-import 'antd/dist/antd.css';
+
 
 // 定义对话框组件AntdModal，api参数参考https://ant.design/components/modal-cn/
 export default class AntdModal extends Component {

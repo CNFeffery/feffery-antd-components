@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Result } from 'antd';
 import { LoadingOutlined } from '@ant-design/icons';
-import 'antd/dist/antd.css';
+
 
 // 定义结果组件AntdResult，api参数参考https://ant.design/components/result-cn/
 export default class AntdResult extends Component {

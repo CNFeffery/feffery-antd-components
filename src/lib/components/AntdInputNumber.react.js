@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { InputNumber } from 'antd';
 import { useRequest } from 'ahooks';
-import 'antd/dist/antd.css';
+
 
 // 定义数字输入框组件AntdInputNumber，api参数参考https://ant.design/components/input-number-cn/
 const AntdInputNumber = (props) => {

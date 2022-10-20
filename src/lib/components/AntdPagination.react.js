@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Pagination, ConfigProvider } from 'antd';
 import { str2Locale } from './locales.react';
-import 'antd/dist/antd.css';
+
 
 // 定义分页部件AntdPagination，api参数参考https://ant.design/components/pagination-cn/
 export default class AntdPagination extends Component {

@@ -15,6 +15,7 @@ from .AntdCheckbox import AntdCheckbox
 from .AntdCheckboxGroup import AntdCheckboxGroup
 from .AntdCollapse import AntdCollapse
 from .AntdComment import AntdComment
+from .AntdConfigProvider import AntdConfigProvider
 from .AntdCopyText import AntdCopyText
 from .AntdCountdown import AntdCountdown
 from .AntdDatePicker import AntdDatePicker
@@ -110,6 +111,7 @@ __all__ = [
     "AntdCheckboxGroup",
     "AntdCollapse",
     "AntdComment",
+    "AntdConfigProvider",
     "AntdCopyText",
     "AntdCountdown",
     "AntdDatePicker",

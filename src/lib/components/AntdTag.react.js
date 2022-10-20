@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { useCss } from 'react-use';
 import { isString } from 'lodash';
 import { Tag } from 'antd';
-import 'antd/dist/antd.css';
+
 
 // 定义标签组件AntdTag，api参数参考https://ant.design/components/tag-cn/
 const AntdTag = (props) => {

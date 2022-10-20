@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Badge } from 'antd';
-import 'antd/dist/antd.css';
+
 
 // 定义徽标组件AntdBadge，api参数参考https://ant.design/components/badge-cn/
 export default class AntdBadge extends Component {

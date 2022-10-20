@@ -7,7 +7,7 @@ import {
     CloseCircleOutlined,
     CloseCircleTwoTone
 } from "@ant-design/icons";
-import 'antd/dist/antd.css';
+
 import Draggable from "react-draggable";
 
 // 定义弹出卡片组件AntdPopupCard，api参数参考https://ant.design/components/modal-cn/

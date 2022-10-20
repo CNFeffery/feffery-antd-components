@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Dropdown, Menu, Button } from 'antd';
 import AntdIcon from './AntdIcon.react';
 import { DownOutlined } from '@ant-design/icons';
-import 'antd/dist/antd.css';
+
 
 // 定义下拉菜单组件AntdDropdown，api参数参考https://ant.design/components/dropdown-cn/
 export default class AntdDropdown extends Component {

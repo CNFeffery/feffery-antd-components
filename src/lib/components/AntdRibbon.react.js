@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Badge } from 'antd';
-import 'antd/dist/antd.css';
+
 
 // 定义缎带组件AntdRibbon，api参数参考https://ant.design/components/badge-cn/#Badge.Ribbon-(4.5.0+)
 export default class AntdRibbon extends Component {

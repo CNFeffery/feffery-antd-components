@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { useRequest } from 'ahooks';
 import { Select, ConfigProvider } from 'antd';
 import { str2Locale } from './locales.react';
-import 'antd/dist/antd.css';
+
 
 const { Option, OptGroup } = Select;
 

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import moment from 'moment';
 import { Calendar, ConfigProvider } from 'antd';
 import { str2Locale } from './locales.react';
-import 'antd/dist/antd.css';
+
 
 // 定义日历组件AntdCalendar，api参数参考https://ant.design/components/calendar-cn/
 export default class AntdCalendar extends Component {

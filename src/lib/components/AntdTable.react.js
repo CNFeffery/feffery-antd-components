@@ -25,7 +25,7 @@ import AntdIcon from './AntdIcon.react';
 import { SearchOutlined, QuestionCircleOutlined, DownOutlined } from '@ant-design/icons';
 import { isNumber, isEqual } from 'lodash';
 import { str2Locale } from './locales.react';
-import 'antd/dist/antd.css';
+
 import './styles.css';
 
 const { Text } = Typography;

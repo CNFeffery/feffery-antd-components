@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Popover } from 'antd';
-import 'antd/dist/antd.css';
+
 import { omit } from "ramda";
 import AntdIcon from './AntdIcon.react';
 import { parseChildrenToArray } from './utils';
