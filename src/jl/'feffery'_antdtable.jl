@@ -59,7 +59,10 @@ Those elements have the following types:
   - `content` (String; optional)
   - `href` (String; optional)
   - `target` (String; optional)
-  - `disabled` (Bool; optional) | Array of Reals | Array of lists containing elements 'color', 'tag'.
+  - `disabled` (Bool; optional) | Array of Reals | lists containing elements 'color', 'tag'.
+Those elements have the following types:
+  - `color` (String; optional)
+  - `tag` (String | Real; optional) | Array of lists containing elements 'color', 'tag'.
 Those elements have the following types:
   - `color` (String; optional)
   - `tag` (String | Real; optional)s | lists containing elements 'disabled', 'type', 'danger', 'style', 'content', 'href', 'target'.
@@ -70,13 +73,15 @@ Those elements have the following types:
   - `style` (Dict; optional)
   - `content` (String | Real; optional)
   - `href` (String; optional)
-  - `target` (String; optional) | Array of lists containing elements 'disabled', 'type', 'danger', 'style', 'content'.
+  - `target` (String; optional) | Array of lists containing elements 'disabled', 'type', 'danger', 'style', 'content', 'href', 'target'.
 Those elements have the following types:
   - `disabled` (Bool; optional)
   - `type` (a value equal to: 'primary', 'ghost', 'dashed', 'link', 'text', 'default'; optional)
   - `danger` (Bool; optional)
   - `style` (Dict; optional)
-  - `content` (String | Real; optional)s | lists containing elements 'status', 'text'.
+  - `content` (String | Real; optional)
+  - `href` (String; optional)
+  - `target` (String; optional)s | lists containing elements 'status', 'text'.
 Those elements have the following types:
   - `status` (a value equal to: 'success', 'processing', 'default', 'error', 'warning'; optional)
   - `text` (String | Real; optional) | lists containing elements 'src', 'height', 'preview'.

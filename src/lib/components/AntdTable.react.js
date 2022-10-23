@@ -139,14 +139,23 @@ class AntdTable extends Component {
                 </div>
             ),
             filterIcon: filtered => <SearchOutlined style={{ color: filtered ? '#1890ff' : undefined }} />,
+            // 搜索筛选
             onFilter: (value, record) => {
                 if (props.mode === 'client-side') {
-                    if (record[dataIndex]) {
+                    // 仅支持非数组型合法输入值，对象型输入支持对content、text、label、tag属性进行搜索筛选
+                    if (record[dataIndex] && !Array.isArray(record[dataIndex])) {
                         // 判断当前记录是否有content属性
                         if (record[dataIndex]?.content) {
                             return record[dataIndex].content.toString().toLowerCase().includes(value?.toLowerCase())
+                        } else if (record[dataIndex]?.text) {
+                            return record[dataIndex].text.toString().toLowerCase().includes(value?.toLowerCase())
+                        } else if (record[dataIndex]?.label) {
+                            return record[dataIndex].label.toString().toLowerCase().includes(value?.toLowerCase())
+                        } else if (record[dataIndex]?.tag) {
+                            return record[dataIndex].tag.toString().toLowerCase().includes(value?.toLowerCase())
+                        } else if (record[dataIndex]?.toString) {
+                            return record[dataIndex].toString().toLowerCase().includes(value?.toLowerCase())
                         }
-                        return record[dataIndex].toString().toLowerCase().includes(value?.toLowerCase())
                     }
                     return false;
                 } else {
@@ -246,7 +255,7 @@ class AntdTable extends Component {
                 const rowColumns = Object.getOwnPropertyNames(row)
 
                 // 循环取出属性名，再判断属性值是否一致
-                for (var i = 0; i < rowColumns.length; i++) {
+                for (let i = 0; i < rowColumns.length; i++) {
                     // 找到发生值修改的字段
                     if (row[rowColumns[i]] !== item[rowColumns[i]] &&
                         columnsFormatConstraint &&
@@ -270,7 +279,6 @@ class AntdTable extends Component {
                     data: newData
                 })
             };
-
 
             const save = async () => {
                 try {
@@ -330,6 +338,31 @@ class AntdTable extends Component {
             } else {
                 return 0;
             }
+        }
+
+        // 多模式值筛选选项自动生成策略
+        const generateFilterOptions = (inputData, columnDataIndex) => {
+            let filterOptions = []
+            for (let item of inputData) {
+                if (item[columnDataIndex]?.content) {
+                    filterOptions.push(item[columnDataIndex].content)
+                } else if (item[columnDataIndex]?.text) {
+                    filterOptions.push(item[columnDataIndex].text)
+                } else if (item[columnDataIndex]?.label) {
+                    filterOptions.push(item[columnDataIndex].label)
+                } else if (item[columnDataIndex]?.tag) {
+                    filterOptions.push(item[columnDataIndex].tag)
+                } else if (item[columnDataIndex]?.toString) {
+                    filterOptions.push(item[columnDataIndex])
+                }
+            }
+
+            // 将提取到的合法筛选值去重结构化并排序
+            return Array.from(
+                new Set(filterOptions)
+            ).map(
+                value => ({ text: value ? value.toString() : '', value: value })
+            ).sort(compareNumeric)
         }
 
         // 取得必要属性或参数
@@ -430,40 +463,72 @@ class AntdTable extends Component {
 
         // 处理可筛选特性
         // 若为前端渲染模式，在filterOptions中每个字段filterCustomItems缺失的情况下
-        // 则会自动根据前端一次性灌入的数据推算出所有添加过滤器字段的唯一值集合作为待选菜单
+        // 则会自动根据前端一次性加载的数据推算出所有添加过滤器字段的唯一值集合作为待选菜单
         if (mode !== 'server-side') {
-
             // 为filterOptions.filterDataIndexes中定义的每个字段添加过滤功能
             for (let i = 0; i < columns.length; i++) {
                 // 若当前字段在filterOptions的keys()中
                 if (Object.keys(filterOptions).indexOf(columns[i].dataIndex) !== -1) {
-                    // 若当前字段对应filterOptions子元素有filterMode属性且filterMode属性为'keyword'
-                    if (filterOptions[columns[i].dataIndex].hasOwnProperty('filterMode') && filterOptions[columns[i].dataIndex].filterMode === 'keyword') {
+                    // 若当前字段对应filterOptions子元素有filterMode.filterMode为'keyword'
+                    if (filterOptions[columns[i].dataIndex].filterMode === 'keyword') {
                         columns[i] = {
                             ...columns[i],
                             ...this.getColumnSearchProps(columns[i].dataIndex, columns[i].title)
                         }
                     } else {
                         // 否则则一律视为'checkbox'模式
-
                         // 若当前字段对应filterOptions子元素下有filterCustomItems属性
                         // 则为其添加自定义选项
-                        if (filterOptions[columns[i].dataIndex].hasOwnProperty('filterCustomItems')) {
+                        if (filterOptions[columns[i].dataIndex].filterCustomItems) {
                             columns[i] = {
                                 ...columns[i],
                                 filters: filterOptions[columns[i].dataIndex].filterCustomItems
                                     .map(value => ({ text: value ? value.toString() : '', value: value })),
-                                onFilter: (value, record) => record[columns[i].dataIndex] === value,
-                                filterMultiple: filterOptions[columns[i].dataIndex]?.filterMultiple,
-                                filterSearch: filterOptions[columns[i].dataIndex]?.filterSearch
+                                // 针对不同再渲染模式设计值筛选逻辑
+                                onFilter: (value, record) => {
+                                    // 仅支持非数组型合法输入值，对象型输入支持对content、text、label、tag属性进行值筛选
+                                    if (record[columns[i].dataIndex] && !Array.isArray(record[columns[i].dataIndex])) {
+                                        // 判断当前记录是否有content属性
+                                        if (record[columns[i].dataIndex]?.content) {
+                                            return record[columns[i].dataIndex].content === value;
+                                        } else if (record[columns[i].dataIndex]?.text) {
+                                            return record[columns[i].dataIndex].text === value;
+                                        } else if (record[columns[i].dataIndex]?.label) {
+                                            return record[columns[i].dataIndex].label === value;
+                                        } else if (record[columns[i].dataIndex]?.tag) {
+                                            return record[columns[i].dataIndex].tag === value;
+                                        } else if (record[columns[i].dataIndex]?.toString) {
+                                            return record[columns[i].dataIndex].toString() === value;
+                                        }
+                                    }
+                                    return false;
+                                },
+                                filterMultiple: filterOptions[columns[i].dataIndex].filterMultiple,
+                                filterSearch: filterOptions[columns[i].dataIndex].filterSearch
                             }
                         } else {
+                            // 否则自动基于数据中的唯一值生成选项列表
                             columns[i] = {
                                 ...columns[i],
-                                filters: Array.from(new Set(data.map(item => item[columns[i].dataIndex]))).map(
-                                    value => ({ text: value ? value.toString() : '', value: value })
-                                ).sort(compareNumeric),
-                                onFilter: (value, record) => record[columns[i].dataIndex] === value,
+                                filters: generateFilterOptions(data, columns[i].dataIndex),
+                                // 针对不同再渲染模式设计值筛选逻辑
+                                onFilter: (value, record) => {
+                                    // 仅支持非数组型合法输入值，对象型输入支持对content、text、label、tag属性进行值筛选
+                                    if (record[columns[i].dataIndex] && !Array.isArray(record[columns[i].dataIndex])) {
+                                        if (record[columns[i].dataIndex]?.content) {
+                                            return record[columns[i].dataIndex].content === value;
+                                        } else if (record[columns[i].dataIndex]?.text) {
+                                            return record[columns[i].dataIndex].text === value;
+                                        } else if (record[columns[i].dataIndex]?.label) {
+                                            return record[columns[i].dataIndex].label === value;
+                                        } else if (record[columns[i].dataIndex]?.tag) {
+                                            return record[columns[i].dataIndex].tag === value;
+                                        } else if (record[columns[i].dataIndex]?.toString) {
+                                            return record[columns[i].dataIndex].toString() === value;
+                                        }
+                                    }
+                                    return false;
+                                },
                                 filterMultiple: filterOptions[columns[i].dataIndex]?.filterMultiple,
                                 filterSearch: filterOptions[columns[i].dataIndex]?.filterSearch
                             }
@@ -523,7 +588,6 @@ class AntdTable extends Component {
             for (let j = 0; j < columns.length; j++) {
                 // 若sortOptions与data中本轮迭代到的dataIndex一致
                 if (sortOptions.sortDataIndexes[i] === columns[j].dataIndex) {
-
                     if (sortOptions['multiple']) { // 若为组合排序模式
                         columns[j]['sorter'] = {
                             compare: (a, b) => {
@@ -940,8 +1004,9 @@ class AntdTable extends Component {
                 // tag模式
                 else if (columns[i]['renderOptions']['renderType'] === 'tags') {
                     columns[i]['render'] = tags => (
+                        // 兼容单标签/多标签输入
                         <>
-                            {tags.map(tag => {
+                            {(Array.isArray(tags) ? tags : [tags]).map(tag => {
                                 return (
                                     <Tag color={tag.color}>
                                         {tag.tag}
@@ -1472,7 +1537,8 @@ AntdTable.propTypes = {
                 PropTypes.arrayOf(PropTypes.number),
 
                 // tags模式
-                PropTypes.arrayOf(
+                PropTypes.oneOfType([
+                    // 单标签
                     PropTypes.exact({
                         // 标签颜色
                         color: PropTypes.string,
@@ -1481,12 +1547,24 @@ AntdTable.propTypes = {
                             PropTypes.string,
                             PropTypes.number
                         ])
-                    })
-                ),
+                    }),
+                    // 多标签
+                    PropTypes.arrayOf(
+                        PropTypes.exact({
+                            // 标签颜色
+                            color: PropTypes.string,
+                            // 标签内容
+                            tag: PropTypes.oneOfType([
+                                PropTypes.string,
+                                PropTypes.number
+                            ])
+                        })
+                    )
+                ]),
 
                 // button模式
                 PropTypes.oneOfType([
-                    // 单按钮模式
+                    // 单按钮
                     PropTypes.exact({
                         // 设置是否禁用按钮，默认为false
                         disabled: PropTypes.bool,
@@ -1507,7 +1585,7 @@ AntdTable.propTypes = {
                         target: PropTypes.string
                     }),
 
-                    // 多按钮模式
+                    // 多按钮
                     PropTypes.arrayOf(
                         PropTypes.exact({
                             // 设置是否禁用按钮，默认为false
@@ -1522,7 +1600,11 @@ AntdTable.propTypes = {
                             content: PropTypes.oneOfType([
                                 PropTypes.string,
                                 PropTypes.number
-                            ])
+                            ]),
+                            // link类型对应的href
+                            href: PropTypes.string,
+                            // link类型对应的target
+                            target: PropTypes.string
                         })
                     )
                 ]),

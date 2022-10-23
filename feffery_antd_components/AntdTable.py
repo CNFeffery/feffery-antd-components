@@ -115,7 +115,11 @@ Keyword arguments:
 
     - target (string; optional)
 
-      Or list of numbers | list of dicts with keys:
+      Or list of numbers | dict with keys:
+
+    - color (string; optional)
+
+    - tag (string | number; optional) | list of dicts with keys:
 
     - color (string; optional)
 
@@ -141,7 +145,11 @@ Keyword arguments:
 
     - disabled (boolean; optional)
 
+    - href (string; optional)
+
     - style (dict; optional)
+
+    - target (string; optional)
 
     - type (a value equal to: 'primary', 'ghost', 'dashed', 'link', 'text', 'default'; optional) | dict with keys:
 

@@ -4,9 +4,7 @@ import { Tree } from 'antd';
 import AntdIcon from './AntdIcon.react';
 import { omitBy, isUndefined } from 'lodash';
 import { flatToTree } from './utils';
-
 import './styles.css'
-
 
 // 定义树形控件AntdTree，api参数参考https://ant.design/components/tree-cn/
 const AntdTree = (props) => {
@@ -61,6 +59,8 @@ const AntdTree = (props) => {
     if (treeDataMode === 'flat') {
         treeData = flatToTreeData
     }
+
+    console.log({ flatToTreeData, treeData })
 
     // 用于以递归的方式将节点icon属性替换成相应的icon对象
     const add_leaf_node_icon = (inputTreeData) => {

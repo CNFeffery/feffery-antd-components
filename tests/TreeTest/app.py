@@ -6,27 +6,27 @@ if True:
     from dash import html
     import feffery_antd_components as fac
 
-paths = [path[0].replace('C:\\Conda\\', '')
-         for path in os.walk(r'C:\Conda\envs')]
+# paths = [path[0].replace('C:\\Conda\\', '')
+#          for path in os.walk(r'C:\Conda\envs')]
 
-pathTreeData = [
-    {
-        'title': path.split('\\')[-1],
-        'key': path,
-        'value': path,
-        'parent': '\\'.join(path.split('\\')[:-1])
-    }
-    for path in paths
-    if '\\' in path
-]
+# pathTreeData = [
+#     {
+#         'title': path.split('\\')[-1],
+#         'key': path,
+#         'value': path,
+#         'parent': '\\'.join(path.split('\\')[:-1])
+#     }
+#     for path in paths
+#     if '\\' in path
+# ]
 
-pathTreeData.append(
-    {
-        'title': 'envs',
-        'key': 'envs',
-        'value': 'envs',
-    }
-)
+# pathTreeData.append(
+#     {
+#         'title': 'envs',
+#         'key': 'envs',
+#         'value': 'envs',
+#     }
+# )
 
 app = dash.Dash(__name__)
 
@@ -59,8 +59,17 @@ app.layout = html.Div(
     html.Div(
         [
             fac.AntdTreeSelect(
-                # treeData=treeData,
-                treeData=pathTreeData,
+                treeData=[
+                    {
+                        **{
+                            key: value
+                            for key, value in item.items()
+                            if key not in ['label']
+                        },
+                        'title': item['label']
+                    }
+                    for item in treeData
+                ],
                 treeDataMode='flat',
                 treeDefaultExpandAll=True,
                 listHeight=600
@@ -69,10 +78,20 @@ app.layout = html.Div(
             fac.AntdDivider(),
 
             fac.AntdTree(
-                treeData=pathTreeData,
+                treeData=[
+                    {
+                        **{
+                            key: value
+                            for key, value in item.items()
+                            if key not in ['label', 'value']
+                        },
+                        'title': item['label']
+                    }
+                    for item in treeData
+                ],
                 treeDataMode='flat',
                 defaultExpandAll=True,
-                height=700
+                height=200
             ),
 
             fac.AntdDivider(),
