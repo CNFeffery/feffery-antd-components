@@ -58,12 +58,12 @@ const AntdTreeSelect = (props) => {
     }, [treeData])
 
     // 用于获取用户已选择值的回调函数
-    const updateSelectedValue = (value) => {
+    const updateSelectedValue = (e) => {
 
         if (treeCheckStrictly) {
-            setProps({ value: value.map(item => item.value) })
+            setProps({ value: e.map(item => item.value) })
         } else {
-            setProps({ value: value })
+            setProps({ value: e })
         }
 
     }

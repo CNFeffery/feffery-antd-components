@@ -46,7 +46,7 @@ const AntdCascader = (props) => {
     } = props;
 
     useEffect(() => {
-        if (!value) {
+        if (defaultValue && !value) {
             setProps({ value: defaultValue })
         }
     }, [])

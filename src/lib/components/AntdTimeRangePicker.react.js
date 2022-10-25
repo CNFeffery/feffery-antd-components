@@ -13,8 +13,8 @@ export default class AntdTimeRangePicker extends Component {
     constructor(props) {
         super(props)
         // 初始化value
-        if (props.defaultValue) {
-            // 当defaultValue不为空时，为value初始化defaultValue对应值
+        if (props.defaultValue && !props.value) {
+            // 当defaultValue不为空且value为空时，为value初始化defaultValue对应值
             props.setProps({ value: props.defaultValue })
         }
     }
@@ -52,7 +52,7 @@ export default class AntdTimeRangePicker extends Component {
             if (Array.isArray(timeString)) {
                 setProps({ value: [timeString[0], timeString[1]] })
             } else {
-                setProps({ value: undefined })
+                setProps({ value: null })
             }
         }
 

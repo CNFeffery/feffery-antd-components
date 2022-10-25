@@ -13,8 +13,8 @@ export default class AntdDateRangePicker extends Component {
     constructor(props) {
         super(props)
         // 初始化value
-        if (props.defaultValue) {
-            // 当defaultValue不为空时，为value初始化defaultValue对应值
+        if (props.defaultValue && !props.value) {
+            // 当defaultValue不为空且value为空时，为value初始化defaultValue对应值
             props.setProps({ value: props.defaultValue })
         }
 
@@ -71,7 +71,7 @@ export default class AntdDateRangePicker extends Component {
                 if (dateString[0] !== '' && dateString[1] !== '') {
                     setProps({ value: [dateString[0], dateString[1]] })
                 } else {
-                    setProps({ value: undefined })
+                    setProps({ value: null })
                 }
             }
         }

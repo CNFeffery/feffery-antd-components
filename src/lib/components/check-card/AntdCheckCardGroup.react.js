@@ -3,13 +3,14 @@ import PropTypes from 'prop-types';
 import { CheckCard } from '@ant-design/pro-card';
 
 import { parseChildrenToArray } from '../utils';
+import { prop } from 'ramda';
 
 // 定义组合选择卡片组件AntdCheckCardGroup，api参数参考https://procomponents.ant.design/components/check-card
 export default class AntdCheckCardGroup extends Component {
 
     constructor(props) {
         super(props)
-        if (props.defaultValue) {
+        if (props.defaultValue && !props.value) {
             props.setProps({ value: props.defaultValue })
         }
     }

@@ -48,8 +48,8 @@ const AntdSelect = (props) => {
 
     useEffect(() => {
         // 初始化value
-        if (defaultValue) {
-            // 当defaultValue不为空时，为value初始化defaultValue对应的value值
+        if (defaultValue && !value) {
+            // 当defaultValue不为空且value为空时，为value初始化defaultValue对应的value值
             setProps({ value: defaultValue })
         }
     }, [])
@@ -69,6 +69,7 @@ const AntdSelect = (props) => {
         }
     )
 
+    // 解决options为none时的问题
     options = options || []
 
     // 基于dash端传入的options参数，推导出对应的组件

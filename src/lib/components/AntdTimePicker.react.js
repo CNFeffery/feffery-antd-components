@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { TimePicker, ConfigProvider } from 'antd';
 import moment from 'moment';
+import { isString } from 'lodash';
 import { str2Locale } from './locales.react';
 
 
@@ -11,8 +12,8 @@ export default class AntdTimePicker extends Component {
     constructor(props) {
         super(props)
         // 初始化value
-        if (props.defaultValue) {
-            // 当defaultValue不为空时，为value初始化defaultValue对应值
+        if (props.defaultValue && !props.value) {
+            // 当defaultValue不为空且value为空时，为value初始化defaultValue对应值
             props.setProps({ value: props.defaultValue })
         }
     }
@@ -47,7 +48,7 @@ export default class AntdTimePicker extends Component {
         } = this.props;
 
         const onChange = (time, timeString) => {
-            if (typeof timeString === typeof '') {
+            if (isString(timeString)) {
                 setProps({ value: timeString })
             }
         }

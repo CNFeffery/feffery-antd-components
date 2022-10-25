@@ -8,9 +8,6 @@ export default class AntdCheckboxGroup extends Component {
 
     constructor(props) {
         super(props)
-        if (!props.value) {
-            props.setProps({ value: [] })
-        }
     }
 
     render() {
@@ -30,8 +27,8 @@ export default class AntdCheckboxGroup extends Component {
             loading_state
         } = this.props;
 
-        const onChange = target => {
-            setProps({ value: target })
+        const onChange = e => {
+            setProps({ value: e })
         }
 
         // 返回定制化的前端组件
