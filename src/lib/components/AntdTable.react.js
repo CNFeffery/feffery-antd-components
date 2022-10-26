@@ -588,97 +588,41 @@ class AntdTable extends Component {
             for (let j = 0; j < columns.length; j++) {
                 // 若sortOptions与data中本轮迭代到的dataIndex一致
                 if (sortOptions.sortDataIndexes[i] === columns[j].dataIndex) {
-                    if (sortOptions['multiple']) { // 若为组合排序模式
-                        columns[j]['sorter'] = {
-                            compare: (a, b) => {
-                                // 当渲染模式为server-side时，禁用前端排序操作
-                                if (mode === 'server-side') {
-                                    return 0
-                                } else {
-                                    // 处理corner-mark模式排序问题
-                                    if (columns.filter(item => item.dataIndex === columns[j].dataIndex)[0]?.renderOptions?.renderType === 'corner-mark') {
-                                        if (isNumber(a[columns[j].dataIndex].content) ||
-                                            isNumber(b[columns[j].dataIndex].content)) {
-                                            return a[columns[j].dataIndex].content - b[columns[j].dataIndex].content
-                                        } else {
-                                            let stringA = a[columns[j].dataIndex].content ? a[columns[j].dataIndex].content.toUpperCase() : ''
-
-                                            let stringB = b[columns[j].dataIndex].content ? b[columns[j].dataIndex].content.toUpperCase() : ''
-
-                                            if (stringA < stringB) {
-                                                return -1;
-                                            }
-
-                                            if (stringA > stringB) {
-                                                return 1;
-                                            }
-
-                                            return 0;
-                                        }
-                                    }
-
-                                    if (isNumber(a[columns[j].dataIndex]) ||
-                                        isNumber(b[columns[j].dataIndex])) {
-                                        return a[columns[j].dataIndex] - b[columns[j].dataIndex]
-                                    } else {
-
-                                        let stringA = a[columns[j].dataIndex] ? a[columns[j].dataIndex].toUpperCase() : ''
-
-                                        let stringB = b[columns[j].dataIndex] ? b[columns[j].dataIndex].toUpperCase() : ''
-
-                                        if (stringA < stringB) {
-                                            return -1;
-                                        }
-
-                                        if (stringA > stringB) {
-                                            return 1;
-                                        }
-
-                                        return 0;
-                                    }
-                                }
-
-                            },
-                            multiple: sortOptions['multiple'] === 'auto' ? 1 : sortOptions.sortDataIndexes.length - i,
-                        }
-                    } else {
-                        // 若非组合排序模式
-                        columns[j]['sorter'] = (a, b) => {
-
+                    // 根据是否组合排序模式来决定当前字段的排序参数设置
+                    columns[j]['sorter'] = {
+                        compare: (a, b) => {
                             // 当渲染模式为server-side时，禁用前端排序操作
                             if (mode === 'server-side') {
                                 return 0
                             } else {
-                                // 处理corner-mark模式排序问题
-                                if (columns.filter(item => item.dataIndex === columns[j].dataIndex)[0]?.renderOptions?.renderType === 'corner-mark') {
-                                    if (isNumber(a[columns[j].dataIndex].content) ||
-                                        isNumber(b[columns[j].dataIndex].content)) {
-                                        return a[columns[j].dataIndex].content - b[columns[j].dataIndex].content
-                                    } else {
-                                        let stringA = a[columns[j].dataIndex].content ? a[columns[j].dataIndex].content.toUpperCase() : ''
-
-                                        let stringB = b[columns[j].dataIndex].content ? b[columns[j].dataIndex].content.toUpperCase() : ''
-
-                                        if (stringA < stringB) {
-                                            return -1;
-                                        }
-
-                                        if (stringA > stringB) {
-                                            return 1;
-                                        }
-
-                                        return 0;
-                                    }
+                                // 初始化排序直接比较值
+                                let valueA = null
+                                let valueB = null
+                                // 兼容各种具有单个值的渲染模式，提取待比较的成对数据
+                                if (a[columns[j].dataIndex]?.content || b[columns[j].dataIndex]?.content) {
+                                    valueA = a[columns[j].dataIndex]?.content
+                                    valueB = b[columns[j].dataIndex]?.content
+                                } else if (a[columns[j].dataIndex]?.text || b[columns[j].dataIndex]?.text) {
+                                    valueA = a[columns[j].dataIndex]?.text
+                                    valueB = b[columns[j].dataIndex]?.text
+                                } else if (a[columns[j].dataIndex]?.label || b[columns[j].dataIndex]?.label) {
+                                    valueA = a[columns[j].dataIndex]?.label
+                                    valueB = b[columns[j].dataIndex]?.label
+                                } else if (a[columns[j].dataIndex]?.tag || b[columns[j].dataIndex]?.tag) {
+                                    valueA = a[columns[j].dataIndex]?.tag
+                                    valueB = b[columns[j].dataIndex]?.tag
+                                } else if (a[columns[j].dataIndex]?.toString || b[columns[j].dataIndex]?.toString) {
+                                    valueA = a[columns[j].dataIndex]
+                                    valueB = b[columns[j].dataIndex]
                                 }
-
-                                if (isNumber(a[columns[j].dataIndex]) ||
-                                    isNumber(b[columns[j].dataIndex])) {
-                                    return a[columns[j].dataIndex] - b[columns[j].dataIndex]
+                                // 根据valueA、valueB的数据类型返回不同逻辑的判断结果
+                                // 若valueA、valueB至少有1个为数值型，则视作数值型比较
+                                if (isNumber(valueA) || isNumber(valueB)) {
+                                    return valueA - valueB
                                 } else {
-                                    let stringA = a[columns[j].dataIndex] ? a[columns[j].dataIndex].toUpperCase() : ''
-
-                                    let stringB = b[columns[j].dataIndex] ? b[columns[j].dataIndex].toUpperCase() : ''
-
+                                    // 否则均视作字符型比较
+                                    let stringA = valueA?.toString().toUpperCase()
+                                    let stringB = valueB?.toString().toUpperCase()
                                     if (stringA < stringB) {
                                         return -1;
                                     }
@@ -688,7 +632,10 @@ class AntdTable extends Component {
                                     return 0;
                                 }
                             }
-                        }
+                        },
+                        multiple: sortOptions['multiple'] ?
+                            (sortOptions['multiple'] === 'auto' ? 1 : sortOptions.sortDataIndexes.length - i) :
+                            undefined
                     }
                 }
             }
