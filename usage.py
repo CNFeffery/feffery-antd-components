@@ -62,6 +62,57 @@ app.layout = html.Div(
                 }
             ],
             defaultExpandAll=True
+        ),
+
+
+        fac.AntdTabs(
+            items=[
+                dict(
+                    children=html.Div(
+                        '标签页1测试',
+                        style={
+                            'backgroundColor': 'rgba(241, 241, 241, 0.4)',
+                            'height': '200px',
+                            'display': 'flex',
+                            'justifyContent': 'center',
+                            'alignItems': 'center'
+                        }
+                    ),
+                    label='标签页1',
+                    key='标签页1'
+                ),
+                dict(
+                    children=html.Div(
+                        fac.AntdButton('标签页2测试', type='primary'),
+                        style={
+                            'backgroundColor': 'rgba(241, 241, 241, 0.4)',
+                            'height': '200px',
+                            'display': 'flex',
+                            'justifyContent': 'center',
+                            'alignItems': 'center'
+                        }
+                    ),
+                    label='标签页2',
+                    key='标签页2',
+                    disabled=True
+                ),
+                dict(
+                    children=html.Div(
+                        fac.AntdButton('标签页3测试', type='dashed'),
+                        style={
+                            'backgroundColor': 'rgba(241, 241, 241, 0.4)',
+                            'height': '200px',
+                            'display': 'flex',
+                            'justifyContent': 'center',
+                            'alignItems': 'center'
+                        }
+                    ),
+                    label='标签页3',
+                    key='标签页3',
+                    disabled=False
+                )
+            ],
+            disabledTabKeys=['标签页3']
         )
     ]
 )

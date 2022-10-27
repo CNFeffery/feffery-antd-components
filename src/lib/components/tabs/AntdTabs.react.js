@@ -26,6 +26,7 @@ export default class AntdTabs extends Component {
             id,
             children,
             items,
+            disabledTabKeys,
             tabBarLeftExtraContent,
             tabBarRightExtraContent,
             className,
@@ -58,6 +59,22 @@ export default class AntdTabs extends Component {
 
         // 构造标签页新方式
         if (items) {
+
+            // 根据disabledTabKeys进行指定标签页的禁用
+            if (disabledTabKeys) {
+                items = items.map(
+                    item => {
+                        if (disabledTabKeys.includes(item.key)) {
+                            return {
+                                ...item,
+                                disabled: true
+                            }
+                        }
+                        return item
+                    }
+                )
+            }
+
             return (
                 <Tabs id={id}
                     className={className}
@@ -227,6 +244,10 @@ AntdTabs.propTypes = {
         })
     ),
 
+    // 设置需要呈现禁用状态的标签页key值数组，优先级高于items[].disabled
+    // 即当items[].disabled设置为false但对应key在disabledTabKeys中时，仍然会禁用对应的标签页
+    disabledTabKeys: PropTypes.arrayOf(PropTypes.string),
+
     // 用于设置第一方位额外元素
     tabBarLeftExtraContent: PropTypes.node,
 
@@ -328,5 +349,6 @@ AntdTabs.defaultProps = {
     persisted_props: ['activeKey'],
     persistence_type: 'local',
     inkBarAnimated: true,
-    tabPaneAnimated: false
+    tabPaneAnimated: false,
+    disabledTabKeys: []
 }
