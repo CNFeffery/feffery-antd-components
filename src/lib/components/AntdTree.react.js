@@ -1,8 +1,8 @@
 import { useEffect, useMemo } from 'react';
 import PropTypes from 'prop-types';
-import { Tree } from 'antd';
+import { Tree, Tooltip } from 'antd';
 import AntdIcon from './AntdIcon.react';
-import { omitBy, isUndefined } from 'lodash';
+import { omitBy, isUndefined, isString, isObject, isArray } from 'lodash';
 import { flatToTree } from './utils';
 import './styles.css'
 
@@ -60,29 +60,33 @@ const AntdTree = (props) => {
         treeData = flatToTreeData
     }
 
-    console.log({ flatToTreeData, treeData })
-
     // 用于以递归的方式将节点icon属性替换成相应的icon对象
     const add_leaf_node_icon = (inputTreeData) => {
-        if (typeof inputTreeData === typeof {}) {
+        if (isObject(inputTreeData)) {
+            // 为节点添加tooltip相关参数
+            if (inputTreeData.tooltipProps) {
+                inputTreeData.title = (<Tooltip {...inputTreeData.tooltipProps}>
+                    {inputTreeData.title}
+                </Tooltip>)
+            }
 
-            if (inputTreeData.hasOwnProperty('children')) {
-                if (typeof inputTreeData.icon === typeof "") {
+            if (inputTreeData.children) {
+                if (isString(inputTreeData.icon)) {
                     inputTreeData.icon = <AntdIcon icon={inputTreeData.icon} />
                 }
 
-                for (var i = 0; i < inputTreeData.children.length; i++) {
+                for (let i = 0; i < inputTreeData.children.length; i++) {
                     inputTreeData.children[i] = add_leaf_node_icon(inputTreeData.children[i])
                 }
 
             } else {
-                if (typeof inputTreeData.icon === typeof "") {
+                if (isString(inputTreeData.icon)) {
                     inputTreeData.icon = <AntdIcon icon={inputTreeData.icon} />
                 }
             }
         }
 
-        if (typeof inputTreeData == typeof []) {
+        if (isArray(inputTreeData)) {
             for (var i = 0; i < inputTreeData.length; i++) {
                 inputTreeData[i] = add_leaf_node_icon(inputTreeData[i])
             }
@@ -90,8 +94,6 @@ const AntdTree = (props) => {
 
         return inputTreeData;
     }
-
-    treeData = add_leaf_node_icon(treeData)
 
     const listenSelect = (e) => {
         setProps({ selectedKeys: e })
@@ -189,7 +191,16 @@ const PropTreeNodeShape = {
     selectable: PropTypes.bool,
 
     // 设置当前节点css样式
-    style: PropTypes.object
+    style: PropTypes.object,
+
+    // 为当前节点设置tooltip额外参数
+    tooltipProps: PropTypes.exact({
+        title: PropTypes.string,
+        placement: PropTypes.oneOf([
+            'top', 'left', 'right', 'bottom', 'topLeft', 'topRight', 'bottomLeft',
+            'bottomRight', 'leftTop', 'leftBottom', 'rightTop', 'rightBottom'
+        ])
+    })
 };
 
 const PropTreeNode = PropTypes.shape(PropTreeNodeShape);
@@ -223,7 +234,16 @@ const PropFlatNodeShape = {
     parent: PropTypes.string,
 
     // 设置当前节点css样式
-    style: PropTypes.object
+    style: PropTypes.object,
+
+    // 为当前节点设置tooltip额外参数
+    tooltipProps: PropTypes.exact({
+        title: PropTypes.string,
+        placement: PropTypes.oneOf([
+            'top', 'left', 'right', 'bottom', 'topLeft', 'topRight', 'bottomLeft',
+            'bottomRight', 'leftTop', 'leftBottom', 'rightTop', 'rightBottom'
+        ])
+    })
 };
 
 // 定义参数或属性

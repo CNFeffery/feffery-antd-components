@@ -43,7 +43,7 @@ app.layout = html.Div(
             data=[
                 {
                     **{
-                        f'字段{j}': np.random.randint(1, 5)
+                        f'字段{j}': str(np.random.randint(1, 5))
                         for j in range(1, 6)
                     },
                     '按钮字段': {
