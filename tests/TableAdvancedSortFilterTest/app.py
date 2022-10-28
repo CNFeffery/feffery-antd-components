@@ -46,14 +46,26 @@ app.layout = html.Div(
                         f'字段{j}': str(np.random.randint(1, 5))
                         for j in range(1, 6)
                     },
-                    '按钮字段': {
-                        'content': f'按钮示例{i}',
-                        'type': 'primary'
-                    },
-                    '标签字段': {
-                        'tag': f'标签示例{i}',
-                        'color': '#d83b01'
-                    }
+                    '按钮字段': [
+                        {
+                            'content': f'按钮示例{i}-1',
+                            'type': 'primary'
+                        },
+                        {
+                            'content': f'按钮示例{i}-2',
+                            'type': 'primary'
+                        }
+                    ],
+                    '标签字段': [
+                        {
+                            'tag': f'标签示例{i}-1',
+                            'color': '#d83b01'
+                        },
+                        {
+                            'tag': f'标签示例{i}-2',
+                            'color': '#d83b01'
+                        }
+                    ]
                 }
                 for i in range(10)
             ],

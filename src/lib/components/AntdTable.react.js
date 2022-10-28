@@ -156,6 +156,24 @@ class AntdTable extends Component {
                         } else if (record[dataIndex]?.toString) {
                             return record[dataIndex].toString().toLowerCase().includes(value?.toLowerCase())
                         }
+                    } else if (Array.isArray(record[dataIndex])) {
+                        // 若当前记录为数组，分别检查数组元素对象是否具有content、tag、title属性
+                        if (record[dataIndex].some(item => item?.content)) {
+                            // 检查当前记录数组中是否至少有一个对象的content属性命中关键词
+                            return record[dataIndex].some(
+                                item => item?.content.toString().toLowerCase().includes(value?.toLowerCase())
+                            )
+                        } else if (record[dataIndex].some(item => item?.tag)) {
+                            // 检查当前记录数组中是否至少有一个对象的tag属性命中关键词
+                            return record[dataIndex].some(
+                                item => item?.tag.toString().toLowerCase().includes(value?.toLowerCase())
+                            )
+                        } else if (record[dataIndex].some(item => item?.title)) {
+                            // 检查当前记录数组中是否至少有一个对象的title属性命中关键词
+                            return record[dataIndex].some(
+                                item => item?.title.toString().toLowerCase().includes(value?.toLowerCase())
+                            )
+                        }
                     }
                     return false;
                 } else {
@@ -344,16 +362,34 @@ class AntdTable extends Component {
         const generateFilterOptions = (inputData, columnDataIndex) => {
             let filterOptions = []
             for (let item of inputData) {
-                if (item[columnDataIndex]?.content) {
-                    filterOptions.push(item[columnDataIndex].content)
-                } else if (item[columnDataIndex]?.text) {
-                    filterOptions.push(item[columnDataIndex].text)
-                } else if (item[columnDataIndex]?.label) {
-                    filterOptions.push(item[columnDataIndex].label)
-                } else if (item[columnDataIndex]?.tag) {
-                    filterOptions.push(item[columnDataIndex].tag)
-                } else if (item[columnDataIndex]?.toString) {
-                    filterOptions.push(item[columnDataIndex])
+                // 若当前记录不为数组
+                if (item[columnDataIndex] && !Array.isArray(item[columnDataIndex])) {
+                    if (item[columnDataIndex]?.content) {
+                        filterOptions.push(item[columnDataIndex].content)
+                    } else if (item[columnDataIndex]?.text) {
+                        filterOptions.push(item[columnDataIndex].text)
+                    } else if (item[columnDataIndex]?.label) {
+                        filterOptions.push(item[columnDataIndex].label)
+                    } else if (item[columnDataIndex]?.tag) {
+                        filterOptions.push(item[columnDataIndex].tag)
+                    } else if (item[columnDataIndex]?.toString) {
+                        filterOptions.push(item[columnDataIndex])
+                    }
+                } else if (Array.isArray(item[columnDataIndex])) {
+                    // 若当前记录为数组，提取数组元素对象中存在的content或tag属性
+                    if (item[columnDataIndex].some(_item => _item?.content)) {
+                        filterOptions = filterOptions.concat(
+                            item[columnDataIndex]
+                                .filter(_item => _item?.content)
+                                .map(_item => _item.content)
+                        )
+                    } else if (item[columnDataIndex].some(_item => _item?.tag)) {
+                        filterOptions = filterOptions.concat(
+                            item[columnDataIndex]
+                                .filter(_item => _item?.tag)
+                                .map(_item => _item.tag)
+                        )
+                    }
                 }
             }
 
@@ -500,6 +536,24 @@ class AntdTable extends Component {
                                         } else if (record[columns[i].dataIndex]?.toString) {
                                             return record[columns[i].dataIndex].toString() === value;
                                         }
+                                    } else if (Array.isArray(record[columns[i].dataIndex])) {
+                                        // 若当前记录为数组，分别检查数组元素对象是否具有content、tag、title属性
+                                        if (record[columns[i].dataIndex].some(item => item?.content)) {
+                                            // 检查当前记录数组中是否至少有一个对象的content属性等于筛选值value
+                                            return record[columns[i].dataIndex].some(
+                                                item => item?.content.toString().toLowerCase() === value?.toLowerCase()
+                                            )
+                                        } else if (record[columns[i].dataIndex].some(item => item?.tag)) {
+                                            // 检查当前记录数组中是否至少有一个对象的tag属性命中关键词
+                                            return record[columns[i].dataIndex].some(
+                                                item => item?.tag.toString().toLowerCase() === value?.toLowerCase()
+                                            )
+                                        } else if (record[columns[i].dataIndex].some(item => item?.title)) {
+                                            // 检查当前记录数组中是否至少有一个对象的title属性命中关键词
+                                            return record[columns[i].dataIndex].some(
+                                                item => item?.title.toString().toLowerCase() === value?.toLowerCase()
+                                            )
+                                        }
                                     }
                                     return false;
                                 },
@@ -525,6 +579,24 @@ class AntdTable extends Component {
                                             return record[columns[i].dataIndex].tag === value;
                                         } else if (record[columns[i].dataIndex]?.toString) {
                                             return record[columns[i].dataIndex].toString() === value;
+                                        }
+                                    } else if (Array.isArray(record[columns[i].dataIndex])) {
+                                        // 若当前记录为数组，分别检查数组元素对象是否具有content、tag、title属性
+                                        if (record[columns[i].dataIndex].some(item => item?.content)) {
+                                            // 检查当前记录数组中是否至少有一个对象的content属性等于筛选值value
+                                            return record[columns[i].dataIndex].some(
+                                                item => item?.content.toString().toLowerCase() === value?.toLowerCase()
+                                            )
+                                        } else if (record[columns[i].dataIndex].some(item => item?.tag)) {
+                                            // 检查当前记录数组中是否至少有一个对象的tag属性命中关键词
+                                            return record[columns[i].dataIndex].some(
+                                                item => item?.tag.toString().toLowerCase() === value?.toLowerCase()
+                                            )
+                                        } else if (record[columns[i].dataIndex].some(item => item?.title)) {
+                                            // 检查当前记录数组中是否至少有一个对象的title属性命中关键词
+                                            return record[columns[i].dataIndex].some(
+                                                item => item?.title.toString().toLowerCase() === value?.toLowerCase()
+                                            )
                                         }
                                     }
                                     return false;
