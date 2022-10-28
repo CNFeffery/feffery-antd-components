@@ -27,7 +27,7 @@ Keyword arguments:
 
 - key (string; optional)
 
-- label (string; optional)
+- label (a list of or a singular dash component, string or number; optional)
 
 - labelAlign (a value equal to: 'left', 'right'; optional)
 
@@ -67,8 +67,8 @@ Keyword arguments:
     - offset (number; optional)
 
     - span (number; optional)"""
-    _children_props = []
-    _base_nodes = ['children']
+    _children_props = ['label']
+    _base_nodes = ['label', 'children']
     _namespace = 'feffery_antd_components'
     _type = 'AntdFormItem'
     @_explicitize_args

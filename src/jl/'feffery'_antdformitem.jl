@@ -19,7 +19,7 @@ Keyword arguments:
 - `help` (String; optional)
 - `hidden` (Bool; optional)
 - `key` (String; optional)
-- `label` (String; optional)
+- `label` (a list of or a singular dash component, string or number; optional)
 - `labelAlign` (a value equal to: 'left', 'right'; optional)
 - `labelCol` (optional): . labelCol has the following type: lists containing elements 'span', 'offset'.
 Those elements have the following types:

@@ -97,8 +97,8 @@ AntdFormItem.propTypes = {
         offset: PropTypes.number,
     }),
 
-    // 设置标签文本内容
-    label: PropTypes.string,
+    // 设置表单项标签内容
+    label: PropTypes.node,
 
     // 设置表单项标签文本对齐方式，可选的为'left'与'right'，默认为'right'
     labelAlign: PropTypes.oneOf(['left', 'right']),
