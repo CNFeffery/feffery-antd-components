@@ -373,7 +373,17 @@ Keyword arguments:
 
 - swtichDataIndex (string; optional)
 
-- titlePopoverInfo (dict; optional)"""
+- titlePopoverInfo (dict; optional)
+
+    `titlePopoverInfo` is a dict with keys:
+
+    - content (string; optional)
+
+    - overlayStyle (dict; optional)
+
+    - placement (a value equal to: 'top', 'left', 'right', 'bottom', 'topLeft', 'topRight', 'bottomLeft', 'bottomRight', 'leftTop', 'leftBottom', 'rightTop', 'rightBottom'; optional)
+
+    - title (string; optional)"""
     _children_props = ['expandedRowKeyToContent[].content', 'emptyContent']
     _base_nodes = ['emptyContent', 'children']
     _namespace = 'feffery_antd_components'

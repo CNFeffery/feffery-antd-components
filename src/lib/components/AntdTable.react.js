@@ -1158,27 +1158,24 @@ class AntdTable extends Component {
         // 处理columns.title的增广功能设置
         if (titlePopoverInfo) {
             for (let i = 0; i < columns.length; i++) {
-                if (Object.keys(titlePopoverInfo).indexOf(columns[i].dataIndex) !== -1) {
+                if (Object.keys(titlePopoverInfo).includes(columns[i].dataIndex)) {
 
-                    if (!columns[i].hasOwnProperty('title_')) {
+                    if (!columns[i].title_) {
                         columns[i]['title_'] = columns[i]['title']
                     }
-                    let rawTitle = columns[i].title_
-                    let title = titlePopoverInfo[columns[i].dataIndex].title
-                    let content = titlePopoverInfo[columns[i].dataIndex].content
                     columns[i]['title'] = () => {
                         return <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                            {rawTitle}
+                            {columns[i].title_}
                             <Popover
-                                title={title}
+                                title={titlePopoverInfo[columns[i].dataIndex].title}
                                 content={<div style={{
                                     maxWidth: '250px',
                                     wordWrap: 'break-word',
                                     whiteSpace: 'normal',
                                     wordBreak: 'break-all'
-                                }}>{content}</div>}
-                                overlayStyle={{ maxWidth: '250px' }}
-                                placement={'bottom'}
+                                }}>{titlePopoverInfo[columns[i].dataIndex].content}</div>}
+                                overlayStyle={titlePopoverInfo[columns[i].dataIndex].overlayStyle}
+                                placement={titlePopoverInfo[columns[i].dataIndex].placement || 'bottom'}
                                 getPopupContainer={containerId ? () => (document.getElementById(containerId) ? document.getElementById(containerId) : document.body) : undefined}>
                                 <QuestionCircleOutlined
                                     style={{
@@ -1516,7 +1513,21 @@ AntdTable.propTypes = {
     ]),
 
     // 为每个title设置气泡卡片悬浮说明信息，格式如{字段1: {title: '标题内容', 'content': '说明内容巴拉巴拉巴拉'}}
-    titlePopoverInfo: PropTypes.object,
+    titlePopoverInfo: PropTypes.exact({
+        // 气泡卡片标题
+        title: PropTypes.string,
+        // 气泡卡片内容
+        content: PropTypes.string,
+        // 气泡卡片弹出方位，可选的有'top'、'left'、'right'、'bottom'、'topLeft'
+        // 、'topRight'、'bottomLeft'、'bottomRight'、'leftTop'、'leftBottom'
+        // 、'rightTop'、'rightBottom'，默认为'bottom'
+        placement: PropTypes.oneOf([
+            'top', 'left', 'right', 'bottom', 'topLeft', 'topRight', 'bottomLeft',
+            'bottomRight', 'leftTop', 'leftBottom', 'rightTop', 'rightBottom'
+        ]),
+        // 设置悬浮层css样式
+        overlayStyle: PropTypes.object
+    }),
 
     // 为每个字段设置基于【正则表达式】的格式约束，用于在“可编辑单元格”中约束新内容的写入
     columnsFormatConstraint: PropTypes.objectOf(

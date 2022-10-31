@@ -1,6 +1,6 @@
 {
   "name": "feffery_antd_components",
-  "version": "0.2.0-rc13",
+  "version": "0.2.0-rc14",
   "description": "Best implementation of Antd components in Plotly Dash.",
   "repository": {
     "type": "git",
@@ -31,6 +31,7 @@
     "ahooks": "^3.7.0",
     "antd": "^4.23.0",
     "antd-img-crop": "^4.2.3",
+    "color": "^4.2.3",
     "is-absolute-url": "4.0.1",
     "lodash": "^4.17.21",
     "md5": "2.3.0",

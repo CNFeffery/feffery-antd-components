@@ -197,7 +197,12 @@ Those elements have the following types:
   - `align` (a value equal to: 'left', 'center', 'right'; optional)s
 - `summaryRowFixed` (Bool; optional)
 - `swtichDataIndex` (String; optional)
-- `titlePopoverInfo` (Dict; optional)
+- `titlePopoverInfo` (optional): . titlePopoverInfo has the following type: lists containing elements 'title', 'content', 'placement', 'overlayStyle'.
+Those elements have the following types:
+  - `title` (String; optional)
+  - `content` (String; optional)
+  - `placement` (a value equal to: 'top', 'left', 'right', 'bottom', 'topLeft', 'topRight', 'bottomLeft', 'bottomRight', 'leftTop', 'leftBottom', 'rightTop', 'rightBottom'; optional)
+  - `overlayStyle` (Dict; optional)
 """
 function 'feffery'_antdtable(; kwargs...)
         available_props = Symbol[:id, :bordered, :checkedDataIndex, :className, :clickedContent, :columns, :columnsFormatConstraint, :conditionalStyleFuncs, :containerId, :currentData, :customFormatFuncs, :data, :emptyContent, :enableCellClickListenColumns, :enableHoverListen, :expandRowByClick, :expandedRowKeyToContent, :expandedRowWidth, :filter, :filterOptions, :key, :loading_state, :locale, :maxHeight, :maxWidth, :miniChartAnimation, :miniChartHeight, :mode, :nClicksButton, :nClicksCell, :pagination, :recentlyButtonClickedRow, :recentlyCellClickColumn, :recentlyCellClickRecord, :recentlyChangedRow, :recentlyCheckedLabel, :recentlyCheckedRow, :recentlyCheckedStatus, :recentlyMouseEnterColumn, :recentlyMouseEnterRow, :recentlySwtichRow, :recentlySwtichStatus, :rowSelectionType, :rowSelectionWidth, :selectedRowKeys, :selectedRows, :size, :sortOptions, :sorter, :sticky, :style, :summaryRowContents, :summaryRowFixed, :swtichDataIndex, :titlePopoverInfo]

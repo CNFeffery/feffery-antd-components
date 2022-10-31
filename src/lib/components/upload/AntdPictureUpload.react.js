@@ -6,8 +6,6 @@ import { PlusOutlined } from '@ant-design/icons';
 import { str2Locale } from '../locales.react';
 import ImgCrop from 'antd-img-crop';
 
-
-
 // 解析历史任务完成时间信息
 const parseHistoryTaskCompleteTime = (e) => {
     let uid2CompleteTime = new Map()
