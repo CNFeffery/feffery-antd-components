@@ -17,6 +17,8 @@ Keyword arguments:
 
 - collapsible (a value equal to: 'header', 'disabled'; optional)
 
+- extra (a list of or a singular dash component, string or number; optional)
+
 - forceRender (boolean; optional)
 
 - key (string | number; required)
@@ -38,16 +40,16 @@ Keyword arguments:
 
 - style (dict; optional)
 
-- title (string; default '')"""
-    _children_props = []
-    _base_nodes = ['children']
+- title (a list of or a singular dash component, string or number; optional)"""
+    _children_props = ['title', 'extra']
+    _base_nodes = ['title', 'extra', 'children']
     _namespace = 'feffery_antd_components'
     _type = 'AntdAccordionItem'
     @_explicitize_args
-    def __init__(self, children=None, id=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, key=Component.REQUIRED, collapsible=Component.UNDEFINED, title=Component.UNDEFINED, showArrow=Component.UNDEFINED, forceRender=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
-        self._prop_names = ['children', 'id', 'className', 'collapsible', 'forceRender', 'key', 'loading_state', 'showArrow', 'style', 'title']
+    def __init__(self, children=None, id=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, key=Component.REQUIRED, collapsible=Component.UNDEFINED, title=Component.UNDEFINED, extra=Component.UNDEFINED, showArrow=Component.UNDEFINED, forceRender=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
+        self._prop_names = ['children', 'id', 'className', 'collapsible', 'extra', 'forceRender', 'key', 'loading_state', 'showArrow', 'style', 'title']
         self._valid_wildcard_attributes =            []
-        self.available_properties = ['children', 'id', 'className', 'collapsible', 'forceRender', 'key', 'loading_state', 'showArrow', 'style', 'title']
+        self.available_properties = ['children', 'id', 'className', 'collapsible', 'extra', 'forceRender', 'key', 'loading_state', 'showArrow', 'style', 'title']
         self.available_wildcard_properties =            []
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()

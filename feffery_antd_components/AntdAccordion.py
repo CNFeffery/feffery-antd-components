@@ -29,6 +29,28 @@ Keyword arguments:
 
 - ghost (boolean; optional)
 
+- items (list of dicts; optional)
+
+    `items` is a list of dicts with keys:
+
+    - children (a list of or a singular dash component, string or number; optional)
+
+    - className (string; optional)
+
+    - collapsible (a value equal to: 'header', 'disabled'; optional)
+
+    - extra (a list of or a singular dash component, string or number; optional)
+
+    - forceRender (boolean; optional)
+
+    - key (string | number; required)
+
+    - showArrow (boolean; optional)
+
+    - style (dict; optional)
+
+    - title (a list of or a singular dash component, string or number; optional)
+
 - key (string; optional)
 
 - loading_state (dict; optional)
@@ -45,15 +67,15 @@ Keyword arguments:
         Holds which property is loading.
 
 - style (dict; optional)"""
-    _children_props = []
+    _children_props = ['items[].children', 'items[].title', 'items[].extra']
     _base_nodes = ['children']
     _namespace = 'feffery_antd_components'
     _type = 'AntdAccordion'
     @_explicitize_args
-    def __init__(self, children=None, id=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, key=Component.UNDEFINED, accordion=Component.UNDEFINED, activeKey=Component.UNDEFINED, defaultActiveKey=Component.UNDEFINED, bordered=Component.UNDEFINED, collapsible=Component.UNDEFINED, expandIconPosition=Component.UNDEFINED, ghost=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
-        self._prop_names = ['children', 'id', 'accordion', 'activeKey', 'bordered', 'className', 'collapsible', 'defaultActiveKey', 'expandIconPosition', 'ghost', 'key', 'loading_state', 'style']
+    def __init__(self, children=None, id=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, key=Component.UNDEFINED, items=Component.UNDEFINED, accordion=Component.UNDEFINED, activeKey=Component.UNDEFINED, defaultActiveKey=Component.UNDEFINED, bordered=Component.UNDEFINED, collapsible=Component.UNDEFINED, expandIconPosition=Component.UNDEFINED, ghost=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
+        self._prop_names = ['children', 'id', 'accordion', 'activeKey', 'bordered', 'className', 'collapsible', 'defaultActiveKey', 'expandIconPosition', 'ghost', 'items', 'key', 'loading_state', 'style']
         self._valid_wildcard_attributes =            []
-        self.available_properties = ['children', 'id', 'accordion', 'activeKey', 'bordered', 'className', 'collapsible', 'defaultActiveKey', 'expandIconPosition', 'ghost', 'key', 'loading_state', 'style']
+        self.available_properties = ['children', 'id', 'accordion', 'activeKey', 'bordered', 'className', 'collapsible', 'defaultActiveKey', 'expandIconPosition', 'ghost', 'items', 'key', 'loading_state', 'style']
         self.available_wildcard_properties =            []
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()

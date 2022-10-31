@@ -80,8 +80,7 @@ import AntdPasteImage from './components/AntdPasteImage.react';
 import AntdSegmented from './components/AntdSegmented.react';
 import AntdCheckCard from './components/check-card/AntdCheckCard.react';
 import AntdCheckCardGroup from './components/check-card/AntdCheckCardGroup.react';
-import AntdAccordionItem from './components/accordion/AntdAccordionItem.react';
-import AntdAccordion from './components/accordion/AntdAccordion.react';
+import AntdAccordion from './components/AntdAccordion.react';
 import AntdPictureUpload from './components/upload/AntdPictureUpload.react';
 import AntdDraggerUpload from './components/upload/AntdDraggerUpload.react';
 import AntdUpload from './components/upload/AntdUpload.react';
@@ -200,7 +199,6 @@ export {
     AntdSegmented,
     AntdCheckCard,
     AntdCheckCardGroup,
-    AntdAccordionItem,
     AntdAccordion,
     AntdPictureUpload,
     AntdCustomSkeleton,

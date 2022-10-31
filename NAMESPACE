@@ -1,7 +1,6 @@
 # AUTO GENERATED FILE - DO NOT EDIT
 
 export('feffery'AntdAccordion)
-export('feffery'AntdAccordionItem)
 export('feffery'AntdAffix)
 export('feffery'AntdAlert)
 export('feffery'AntdAnchor)
@@ -94,3 +93,4 @@ export('feffery'AntdTitle)
 export('feffery'AntdDraggerUpload)
 export('feffery'AntdPictureUpload)
 export('feffery'AntdUpload)
+export(AntdAccordionItem)

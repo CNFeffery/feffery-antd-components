@@ -1,5 +1,4 @@
 from .AntdAccordion import AntdAccordion
-from .AntdAccordionItem import AntdAccordionItem
 from .AntdAffix import AntdAffix
 from .AntdAlert import AntdAlert
 from .AntdAnchor import AntdAnchor
@@ -95,7 +94,6 @@ from .AntdUpload import AntdUpload
 
 __all__ = [
     "AntdAccordion",
-    "AntdAccordionItem",
     "AntdAffix",
     "AntdAlert",
     "AntdAnchor",

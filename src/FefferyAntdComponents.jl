@@ -6,7 +6,6 @@ const resources_path = realpath(joinpath( @__DIR__, "..", "deps"))
 const version = "0.2.0-rc14"
 
 include("jl/'feffery'_antdaccordion.jl")
-include("jl/'feffery'_antdaccordionitem.jl")
 include("jl/'feffery'_antdaffix.jl")
 include("jl/'feffery'_antdalert.jl")
 include("jl/'feffery'_antdanchor.jl")

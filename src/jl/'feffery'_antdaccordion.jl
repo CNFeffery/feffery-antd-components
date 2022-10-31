@@ -21,6 +21,17 @@ Keyword arguments:
 - `defaultActiveKey` (String | Array of Strings | Real | Array of Reals; optional)
 - `expandIconPosition` (a value equal to: 'left', 'right'; optional)
 - `ghost` (Bool; optional)
+- `items` (optional): . items has the following type: Array of lists containing elements 'children', 'className', 'style', 'key', 'collapsible', 'title', 'extra', 'showArrow', 'forceRender'.
+Those elements have the following types:
+  - `children` (a list of or a singular dash component, string or number; optional)
+  - `className` (String; optional)
+  - `style` (Dict; optional)
+  - `key` (String | Real; required)
+  - `collapsible` (a value equal to: 'header', 'disabled'; optional)
+  - `title` (a list of or a singular dash component, string or number; optional)
+  - `extra` (a list of or a singular dash component, string or number; optional)
+  - `showArrow` (Bool; optional)
+  - `forceRender` (Bool; optional)s
 - `key` (String; optional)
 - `loading_state` (optional): . loading_state has the following type: lists containing elements 'is_loading', 'prop_name', 'component_name'.
 Those elements have the following types:
@@ -30,7 +41,7 @@ Those elements have the following types:
 - `style` (Dict; optional)
 """
 function 'feffery'_antdaccordion(; kwargs...)
-        available_props = Symbol[:children, :id, :accordion, :activeKey, :bordered, :className, :collapsible, :defaultActiveKey, :expandIconPosition, :ghost, :key, :loading_state, :style]
+        available_props = Symbol[:children, :id, :accordion, :activeKey, :bordered, :className, :collapsible, :defaultActiveKey, :expandIconPosition, :ghost, :items, :key, :loading_state, :style]
         wild_props = Symbol[]
         return Component("'feffery'_antdaccordion", "AntdAccordion", "feffery_antd_components", available_props, wild_props; kwargs...)
 end

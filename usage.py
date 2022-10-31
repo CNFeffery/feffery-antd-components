@@ -6,43 +6,28 @@ app = dash.Dash(__name__)
 
 app.layout = html.Div(
     [
-
-        fac.AntdTable(
-            columns=[
+        fac.AntdAccordion(
+            items=[
                 {
-                    'title': '字段示例1',
-                    'dataIndex': '字段示例1'
-                },
-                {
-                    'title': '字段示例2',
-                    'dataIndex': '字段示例2'
-                },
-                {
-                    'title': '字段示例3',
-                    'dataIndex': '字段示例3'
-                }
-            ],
-            bordered=True,
-            data=[
-                {
-                    '字段示例1': i,
-                    '字段示例2': i,
-                    '字段示例3': i
+                    'children': fac.AntdTag(
+                        content=f'手风琴项{i}测试'
+                    ),
+                    'title': fac.AntdText(
+                        f'手风琴项{i}',
+                        strong=True,
+                        copyable=True
+                    ),
+                    'key': str(i),
+                    'extra': fac.AntdButton(
+                        f'手风琴项{i}测试',
+                        type='primary',
+                        size='small'
+                    )
                 }
                 for i in range(5)
             ],
-            titlePopoverInfo={
-                '字段示例1': {
-                    'title': '字段说明',
-                    'content': '这是字段示例1的字段说明',
-                    'placement': 'top'
-                },
-                '字段示例3': {
-                    'title': '字段说明',
-                    'content': '这是字段示例3的字段说明',
-                    'placement': 'left'
-                }
-            }
+            collapsible='header',
+            bordered=True
         )
     ],
     style={
