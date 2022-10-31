@@ -34,6 +34,7 @@ export default class AntdCard extends Component {
                 style={style}
                 key={key}
                 bodyStyle={{
+                    // 确保网格卡片排布正常
                     display: 'flex',
                     flexWrap: 'wrap',
                     ...bodyStyle
@@ -47,7 +48,11 @@ export default class AntdCard extends Component {
                         {extraLink?.content}
                     </a>
                 }
-                cover={<img alt={coverImg?.alt} src={coverImg?.src} style={coverImg?.style} />}
+                cover={
+                    <img alt={coverImg?.alt}
+                        src={coverImg?.src}
+                        style={coverImg?.style} />
+                }
                 bordered={bordered}
                 hoverable={hoverable}
                 size={size}
@@ -126,7 +131,7 @@ AntdCard.propTypes = {
     size: PropTypes.oneOf(['default', 'small']),
 
     // 设置卡片标题内容
-    title: PropTypes.string,
+    title: PropTypes.node,
 
     loading_state: PropTypes.shape({
         /**

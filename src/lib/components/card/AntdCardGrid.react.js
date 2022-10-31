@@ -1,39 +1,37 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { Card } from 'antd';
 
 import { parseChildrenToArray } from '../utils';
 
 // 定义卡片网格组件AntdCardGrid，api参数参考https://ant.design/components/card-cn/
-export default class AntdCardGrid extends Component {
-    render() {
-        // 取得必要属性或参数
-        let {
-            id,
-            children,
-            className,
-            style,
-            key,
-            hoverable,
-            setProps,
-            loading_state
-        } = this.props;
+const AntdCardGrid = (props) => {
+    // 取得必要属性或参数
+    let {
+        id,
+        children,
+        className,
+        style,
+        key,
+        hoverable,
+        setProps,
+        loading_state
+    } = props;
 
-        children = parseChildrenToArray(children)
+    children = parseChildrenToArray(children)
 
-        return (
-            <Card.Grid id={id}
-                className={className}
-                style={style}
-                key={key}
-                hoverable={hoverable}
-                data-dash-is-loading={
-                    (loading_state && loading_state.is_loading) || undefined
-                }>
-                {children}
-            </Card.Grid>
-        );
-    }
+    return (
+        <Card.Grid id={id}
+            className={className}
+            style={style}
+            key={key}
+            hoverable={hoverable}
+            data-dash-is-loading={
+                (loading_state && loading_state.is_loading) || undefined
+            }>
+            {children}
+        </Card.Grid>
+    );
 }
 
 // 定义参数或属性
@@ -83,3 +81,5 @@ AntdCardGrid.propTypes = {
 // 设置默认参数
 AntdCardGrid.defaultProps = {
 }
+
+export default React.memo(AntdCardGrid);

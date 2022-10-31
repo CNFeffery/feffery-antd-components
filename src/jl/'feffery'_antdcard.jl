@@ -38,7 +38,7 @@ Those elements have the following types:
   - `component_name` (String; optional): Holds the name of the component that is loading
 - `size` (a value equal to: 'default', 'small'; optional)
 - `style` (Dict; optional)
-- `title` (String; optional)
+- `title` (a list of or a singular dash component, string or number; optional)
 """
 function 'feffery'_antdcard(; kwargs...)
         available_props = Symbol[:children, :id, :bodyStyle, :bordered, :className, :coverImg, :extraLink, :headStyle, :hoverable, :key, :loading_state, :size, :style, :title]
