@@ -1,76 +1,77 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { Divider } from 'antd';
 
 
 // 定义分割线组件AntdDivider，api参数参考https://ant.design/components/divider-cn/
-export default class AntdDivider extends Component {
-    render() {
-        // 取得必要属性或参数
-        let {
-            id,
-            children,
-            className,
-            key,
-            direction,
-            innerTextOrientation,
-            isDashed,
-            lineColor,
-            fontSize,
-            fontStyle,
-            fontWeight,
-            fontFamily,
-            loading_state
-        } = this.props;
+const AntdDivider = (props) => {
+    // 取得必要属性或参数
+    let {
+        id,
+        children,
+        className,
+        key,
+        direction,
+        innerTextOrientation,
+        isDashed,
+        lineColor,
+        fontSize,
+        fontStyle,
+        fontWeight,
+        fontFamily,
+        fontColor,
+        loading_state
+    } = props;
 
-        if (direction == 'horizontal') {
+    if (direction == 'horizontal') {
 
-            // 返回定制化的前端组件
-            return (
-                <Divider
-                    id={id}
-                    style={{
-                        borderTopColor: lineColor,
-                        fontStyle: fontStyle,
-                        fontWeight: fontWeight,
-                        fontFamily: fontFamily,
-                        fontSize: fontSize
-                    }}
-                    className={className}
-                    key={key}
-                    dashed={isDashed}
-                    orientation={innerTextOrientation}
-                    type={'horizontal'}
-                    plain={true}
-                    data-dash-is-loading={
-                        (loading_state && loading_state.is_loading) || undefined
-                    }
-                >{children}</Divider>
-            );
-        } else if (direction == 'vertical') {
-            // 返回定制化的前端组件
-            return (
-                <Divider
-                    id={id}
-                    style={{
-                        borderLeftColor: lineColor,
-                        fontStyle: fontStyle,
-                        fontWeight: fontWeight,
-                        fontFamily: fontFamily,
-                        fontSize: fontSize
-                    }}
-                    className={className}
-                    key={key}
-                    dashed={isDashed}
-                    orientation={innerTextOrientation}
-                    type={'vertical'}
-                    plain={true}
-                    data-dash-is-loading={
-                        (loading_state && loading_state.is_loading) || undefined
-                    }
-                >{children}</Divider>
-            );
-        }
+        // 返回定制化的前端组件
+        return (
+            <Divider
+                id={id}
+                style={{
+                    borderTopColor: lineColor,
+                    fontStyle: fontStyle,
+                    fontWeight: fontWeight,
+                    fontFamily: fontFamily,
+                    fontSize: fontSize,
+                    color: fontColor
+                }}
+                className={className}
+                key={key}
+                dashed={isDashed}
+                orientation={innerTextOrientation}
+                type={'horizontal'}
+                plain={true}
+                data-dash-is-loading={
+                    (loading_state && loading_state.is_loading) || undefined
+                }
+            >{children}</Divider>
+        );
+    } else if (direction == 'vertical') {
+        // 返回定制化的前端组件
+        return (
+            <Divider
+                id={id}
+                style={{
+                    borderLeftColor: lineColor,
+                    fontStyle: fontStyle,
+                    fontWeight: fontWeight,
+                    fontFamily: fontFamily,
+                    fontSize: fontSize,
+                    color: fontColor
+                }}
+                className={className}
+                key={key}
+                dashed={isDashed}
+                orientation={innerTextOrientation}
+                type={'vertical'}
+                plain={true}
+                data-dash-is-loading={
+                    (loading_state && loading_state.is_loading) || undefined
+                }
+            >{children}</Divider>
+        );
     }
 }
 
@@ -112,6 +113,9 @@ AntdDivider.propTypes = {
     // 内嵌文字字体族，接受在css中合法的font-family值输入
     fontFamily: PropTypes.string,
 
+    // 内嵌文字色彩，接受在css中合法的color值输入
+    fontColor: PropTypes.string,
+
     loading_state: PropTypes.shape({
         /**
          * Determines if the component is loading or not
@@ -142,5 +146,8 @@ AntdDivider.defaultProps = {
     lineColor: 'lightgrey',
     fontStyle: 'initial',
     fontWeight: 'initial',
-    fontFamily: 'initial'
+    fontFamily: 'initial',
+    fontColor: '#000000'
 }
+
+export default React.memo(AntdDivider);

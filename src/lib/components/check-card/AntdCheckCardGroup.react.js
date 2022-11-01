@@ -1,59 +1,54 @@
-import React, { Component } from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { CheckCard } from '@ant-design/pro-card';
-
 import { parseChildrenToArray } from '../utils';
-import { prop } from 'ramda';
 
 // 定义组合选择卡片组件AntdCheckCardGroup，api参数参考https://procomponents.ant.design/components/check-card
-export default class AntdCheckCardGroup extends Component {
+const AntdCheckCardGroup = (props) => {
 
-    constructor(props) {
-        super(props)
-        if (props.defaultValue && !props.value) {
-            props.setProps({ value: props.defaultValue })
+    // 取得必要属性或参数
+    let {
+        id,
+        children,
+        className,
+        style,
+        key,
+        multiple,
+        bordered,
+        value,
+        defaultValue,
+        disabled,
+        size,
+        setProps,
+        loading_state
+    } = props;
+
+    useEffect(() => {
+        if (defaultValue && !value) {
+            setProps({ value: defaultValue })
         }
-    }
+    }, [])
 
-    render() {
-        // 取得必要属性或参数
-        let {
-            id,
-            children,
-            className,
-            style,
-            key,
-            multiple,
-            bordered,
-            value,
-            defaultValue,
-            disabled,
-            size,
-            setProps,
-            loading_state
-        } = this.props;
+    children = parseChildrenToArray(children)
 
-        children = parseChildrenToArray(children)
-
-        return (
-            <CheckCard.Group id={id}
-                className={className}
-                style={style}
-                key={key}
-                multiple={multiple}
-                bordered={bordered}
-                value={value}
-                defaultValue={defaultValue}
-                disabled={disabled}
-                size={size}
-                onChange={(e) => setProps({ value: e })}
-                data-dash-is-loading={
-                    (loading_state && loading_state.is_loading) || undefined
-                } >
-                {children}
-            </ CheckCard.Group>
-        );
-    }
+    return (
+        <CheckCard.Group id={id}
+            className={className}
+            style={style}
+            key={key}
+            multiple={multiple}
+            bordered={bordered}
+            value={value}
+            defaultValue={defaultValue}
+            disabled={disabled}
+            size={size}
+            onChange={(e) => setProps({ value: e })}
+            data-dash-is-loading={
+                (loading_state && loading_state.is_loading) || undefined
+            } >
+            {children}
+        </ CheckCard.Group>
+    );
 }
 
 // 定义参数或属性
@@ -123,3 +118,5 @@ AntdCheckCardGroup.propTypes = {
 // 设置默认参数
 AntdCheckCardGroup.defaultProps = {
 }
+
+export default React.memo(AntdCheckCardGroup);

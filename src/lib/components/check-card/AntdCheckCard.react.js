@@ -1,59 +1,53 @@
-import React, { Component } from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { CheckCard } from '@ant-design/pro-card';
-
+import { isUndefined } from 'lodash';
 import { parseChildrenToArray } from '../utils';
 
 // 定义选择卡片组件AntdCheckCard，api参数参考https://procomponents.ant.design/components/check-card
-export default class AntdCheckCard extends Component {
+const AntdCheckCard = (props) => {
+    // 取得必要属性或参数
+    let {
+        id,
+        children,
+        className,
+        style,
+        key,
+        checked,
+        bordered,
+        value,
+        defaultChecked,
+        disabled,
+        size,
+        setProps,
+        loading_state
+    } = props;
 
-    constructor(props) {
-        super(props)
-        if (props.defaultChecked) {
-            props.setProps({ checked: props.defaultChecked })
-        } else if (!props.checked) {
-            props.setProps({ checked: false })
+    useEffect(() => {
+        if (!isUndefined(defaultChecked) && isUndefined(checked)) {
+            setProps({ checked: defaultChecked })
         }
-    }
+    }, [])
 
-    render() {
-        // 取得必要属性或参数
-        let {
-            id,
-            children,
-            className,
-            style,
-            key,
-            checked,
-            bordered,
-            value,
-            defaultChecked,
-            disabled,
-            size,
-            setProps,
-            loading_state
-        } = this.props;
+    children = parseChildrenToArray(children)
 
-        children = parseChildrenToArray(children)
-
-        return (
-            <CheckCard id={id}
-                className={className}
-                style={style}
-                key={key}
-                description={children}
-                checked={checked}
-                bordered={bordered}
-                value={value}
-                defaultChecked={defaultChecked}
-                disabled={disabled}
-                size={size}
-                onChange={e => setProps({ checked: e })}
-                data-dash-is-loading={
-                    (loading_state && loading_state.is_loading) || undefined
-                } />
-        );
-    }
+    return (
+        <CheckCard id={id}
+            className={className}
+            style={style}
+            key={key}
+            description={children}
+            checked={checked}
+            bordered={bordered}
+            value={value}
+            defaultChecked={defaultChecked}
+            disabled={disabled}
+            size={size}
+            onChange={e => setProps({ checked: e })}
+            data-dash-is-loading={
+                (loading_state && loading_state.is_loading) || undefined
+            } />
+    );
 }
 
 // 定义参数或属性
@@ -116,3 +110,5 @@ AntdCheckCard.propTypes = {
 // 设置默认参数
 AntdCheckCard.defaultProps = {
 }
+
+export default React.memo(AntdCheckCard);

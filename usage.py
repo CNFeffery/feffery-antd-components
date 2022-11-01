@@ -7,6 +7,28 @@ app = dash.Dash(__name__)
 app.layout = html.Div(
     [
 
+
+        fac.AntdCheckCardGroup(
+            [
+                fac.AntdCheckCard(
+                    fac.AntdStatistic(
+                        title='统计数值示例',
+                        value=1332971
+                    ),
+                    value=f'option{i}'
+                )
+                for i in range(3)
+            ],
+            multiple=True
+        ),
+
+        fac.AntdCheckCard(
+            fac.AntdStatistic(
+                title='统计数值示例',
+                value=1332971
+            )
+        ),
+
         fac.AntdCard(
             [
                 fac.AntdCardGrid(
