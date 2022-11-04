@@ -13,6 +13,8 @@ Keyword arguments:
 
 - active (boolean; optional)
 
+- className (string; optional)
+
 - loading_state (dict; optional)
 
     `loading_state` is a dict with keys:
@@ -26,16 +28,18 @@ Keyword arguments:
     - prop_name (string; optional):
         Holds which property is loading.
 
-- size (a value equal to: 'large', 'small', 'default'; optional)"""
+- size (a value equal to: 'large', 'small', 'default'; optional)
+
+- style (dict; optional)"""
     _children_props = []
     _base_nodes = ['children']
     _namespace = 'feffery_antd_components'
     _type = 'AntdSkeletonInput'
     @_explicitize_args
-    def __init__(self, id=Component.UNDEFINED, active=Component.UNDEFINED, size=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
-        self._prop_names = ['id', 'active', 'loading_state', 'size']
+    def __init__(self, id=Component.UNDEFINED, style=Component.UNDEFINED, className=Component.UNDEFINED, active=Component.UNDEFINED, size=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
+        self._prop_names = ['id', 'active', 'className', 'loading_state', 'size', 'style']
         self._valid_wildcard_attributes =            []
-        self.available_properties = ['id', 'active', 'loading_state', 'size']
+        self.available_properties = ['id', 'active', 'className', 'loading_state', 'size', 'style']
         self.available_wildcard_properties =            []
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()

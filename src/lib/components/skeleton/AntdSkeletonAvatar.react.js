@@ -11,6 +11,8 @@ const AntdSkeletonAvatar = (props) => {
     // 取得必要属性或参数
     const {
         id,
+        style,
+        className,
         active,
         shape,
         size,
@@ -21,6 +23,8 @@ const AntdSkeletonAvatar = (props) => {
     // 返回定制化的前端组件
     return (
         <Skeleton.Avatar id={id}
+            style={style}
+            className={className}
             active={active}
             shape={shape}
             size={size}
@@ -35,6 +39,10 @@ const AntdSkeletonAvatar = (props) => {
 AntdSkeletonAvatar.propTypes = {
     // 组件id
     id: PropTypes.string,
+
+    style: PropTypes.object,
+
+    className: PropTypes.string,
 
     // 设置是否展示动画效果，默认为false
     active: PropTypes.bool,

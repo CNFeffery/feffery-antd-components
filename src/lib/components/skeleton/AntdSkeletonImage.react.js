@@ -11,6 +11,8 @@ const AntdSkeletonImage = (props) => {
     // 取得必要属性或参数
     const {
         id,
+        style,
+        className,
         loading_state,
         setProps
     } = props;
@@ -18,6 +20,8 @@ const AntdSkeletonImage = (props) => {
     // 返回定制化的前端组件
     return (
         <Skeleton.Image id={id}
+            style={style}
+            className={className}
             data-dash-is-loading={
                 (loading_state && loading_state.is_loading) || undefined
             }
@@ -29,6 +33,10 @@ const AntdSkeletonImage = (props) => {
 AntdSkeletonImage.propTypes = {
     // 组件id
     id: PropTypes.string,
+
+    style: PropTypes.object,
+
+    className: PropTypes.string,
 
     loading_state: PropTypes.shape({
         /**
