@@ -11,6 +11,8 @@ const AntdSkeletonButton = (props) => {
     // 取得必要属性或参数
     const {
         id,
+        style,
+        className,
         active,
         block,
         shape,
@@ -22,6 +24,8 @@ const AntdSkeletonButton = (props) => {
     // 返回定制化的前端组件
     return (
         <Skeleton.Button id={id}
+            style={style}
+            className={className}
             active={active}
             block={block}
             shape={shape}
@@ -37,6 +41,10 @@ const AntdSkeletonButton = (props) => {
 AntdSkeletonButton.propTypes = {
     // 组件id
     id: PropTypes.string,
+
+    style: PropTypes.object,
+
+    className: PropTypes.string,
 
     // 设置是否展示动画效果，默认为false
     active: PropTypes.bool,

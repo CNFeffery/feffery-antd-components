@@ -3,8 +3,6 @@ import PropTypes from 'prop-types';
 import { Spin } from 'antd';
 import { useCss } from 'react-use';
 import { isString } from 'lodash';
-
-import './styles.css'
 import { parseChildrenToArray } from './utils';
 
 // 定义加载动画组件AntdSpin，api参数参考https://ant.design/components/spin-cn/
