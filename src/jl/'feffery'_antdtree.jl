@@ -18,6 +18,7 @@ Keyword arguments:
 - `defaultExpandParent` (Bool; optional)
 - `defaultExpandedKeys` (Array of Strings; optional)
 - `defaultSelectedKeys` (Array of Strings; optional)
+- `draggable` (Bool; optional)
 - `expandedKeys` (Array of Strings; optional)
 - `halfCheckedKeys` (Array; optional)
 - `height` (Real; optional)
@@ -52,7 +53,7 @@ Those elements have the following types:
 - `treeDataMode` (a value equal to: 'tree', 'flat'; optional)
 """
 function 'feffery'_antdtree(; kwargs...)
-        available_props = Symbol[:id, :checkStrictly, :checkable, :checkedKeys, :className, :defaultCheckedKeys, :defaultExpandAll, :defaultExpandParent, :defaultExpandedKeys, :defaultSelectedKeys, :expandedKeys, :halfCheckedKeys, :height, :key, :loading_state, :multiple, :persisted_props, :persistence, :persistence_type, :selectable, :selectedKeys, :showIcon, :showLine, :style, :treeData, :treeDataMode]
+        available_props = Symbol[:id, :checkStrictly, :checkable, :checkedKeys, :className, :defaultCheckedKeys, :defaultExpandAll, :defaultExpandParent, :defaultExpandedKeys, :defaultSelectedKeys, :draggable, :expandedKeys, :halfCheckedKeys, :height, :key, :loading_state, :multiple, :persisted_props, :persistence, :persistence_type, :selectable, :selectedKeys, :showIcon, :showLine, :style, :treeData, :treeDataMode]
         wild_props = Symbol[]
         return Component("'feffery'_antdtree", "AntdTree", "feffery_antd_components", available_props, wild_props; kwargs...)
 end

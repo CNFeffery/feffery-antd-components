@@ -2,7 +2,7 @@ import { useEffect, useMemo } from 'react';
 import PropTypes from 'prop-types';
 import { Tree, Tooltip } from 'antd';
 import AntdIcon from './AntdIcon.react';
-import { omitBy, isUndefined, isString, isObject, isArray } from 'lodash';
+import { omitBy, isUndefined, isString, isObject, isArray, cloneDeep } from 'lodash';
 import { flatToTree } from './utils';
 import './styles.css'
 
@@ -16,6 +16,8 @@ const AntdTree = (props) => {
         setProps,
         style,
         key,
+        treeData,
+        treeDataMode,
         checkable,
         selectable,
         selectedKeys,
@@ -31,6 +33,7 @@ const AntdTree = (props) => {
         showLine,
         showIcon,
         height,
+        draggable,
         persistence,
         persisted_props,
         persistence_type,
@@ -40,8 +43,6 @@ const AntdTree = (props) => {
     if (showLine) {
         showLine = { 'showLeafIcon': false }
     }
-
-    let { treeData, treeDataMode } = props;
 
     useEffect(() => {
         setProps({
@@ -117,11 +118,72 @@ const AntdTree = (props) => {
         setProps({ expandedKeys: e })
     }
 
+    const onDragEnter = (info) => {
+        setProps({ expandedKeys: info.expandedKeys })
+    };
+
     let config = {
         expandedKeys
     }
 
     config = omitBy(config, isUndefined)
+
+    // 处理树节点拖拽事件，偏平结构模式下不可用
+    const onDrop = (info) => {
+        const dropKey = info.node.key;
+        const dragKey = info.dragNode.key;
+        const dropPos = info.node.pos.split('-');
+        const dropPosition = info.dropPosition - Number(dropPos[dropPos.length - 1]);
+        const loop = (data, _key, callback) => {
+            for (let i = 0; i < data.length; i++) {
+                if (data[i].key === _key) {
+                    return callback(data[i], i, data);
+                }
+                if (data[i].children) {
+                    loop(data[i].children, _key, callback);
+                }
+            }
+        };
+        const data = cloneDeep(treeData);
+
+        let dragObj;
+        loop(data, dragKey, (item, index, arr) => {
+            arr.splice(index, 1);
+            dragObj = item;
+        });
+        if (!info.dropToGap) {
+            loop(data, dropKey, (item) => {
+                item.children = item.children || [];
+
+                item.children.unshift(dragObj);
+            });
+        } else if (
+            (info.node.props.children || []).length > 0 &&
+            info.node.props.expanded &&
+            dropPosition === 1
+        ) {
+            loop(data, dropKey, (item) => {
+                item.children = item.children || [];
+                item.children.unshift(dragObj);
+            });
+        } else {
+            let ar = [];
+            let i;
+            loop(data, dropKey, (_item, index, arr) => {
+                ar = arr;
+                i = index;
+            });
+            if (dropPosition === -1) {
+                ar.splice(i, 0, dragObj);
+            } else {
+                ar.splice(i + 1, 0, dragObj);
+            }
+        }
+        // 更新拖拽完成后的树结构数据
+        setProps({
+            treeData: data
+        })
+    };
 
     return (
         <Tree
@@ -145,6 +207,7 @@ const AntdTree = (props) => {
             onSelect={listenSelect}
             onCheck={listenCheck}
             onExpand={listenExpand}
+            onDragEnter={onDragEnter}
             showIcon={showIcon}
             height={height}
             titleRender={(nodeData) => {
@@ -156,6 +219,10 @@ const AntdTree = (props) => {
                 );
             }}
             showLeafIcon={false}
+            // 处理树可拖拽特性
+            draggable={draggable && treeDataMode !== 'flat'}
+            blockNode={draggable && treeDataMode !== 'flat'}
+            onDrop={draggable && treeDataMode !== 'flat' ? onDrop : undefined}
             persistence={persistence}
             persisted_props={persisted_props}
             persistence_type={persistence_type}
@@ -318,6 +385,9 @@ AntdTree.propTypes = {
 
     // 设置虚拟滚动模式下的窗口像素高度，不设置时则不会启动虚拟滚动模式
     height: PropTypes.number,
+
+    // 设置是否开启树节点可拖拽模式，默认为false
+    draggable: PropTypes.bool,
 
     loading_state: PropTypes.shape({
         /**
