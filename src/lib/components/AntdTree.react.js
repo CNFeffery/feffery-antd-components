@@ -191,7 +191,7 @@ const AntdTree = (props) => {
             className={className}
             style={style}
             key={key}
-            treeData={add_leaf_node_icon(treeData)}
+            treeData={add_leaf_node_icon(cloneDeep(treeData))}
             selectedKeys={selectedKeys}
             checkedKeys={checkedKeys}
             selectable={selectable}
