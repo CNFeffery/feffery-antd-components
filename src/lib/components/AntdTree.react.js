@@ -181,7 +181,8 @@ const AntdTree = (props) => {
         }
         // 更新拖拽完成后的树结构数据
         setProps({
-            treeData: data
+            treeData: data,
+            draggedNodeKey: dragKey
         })
     };
 
@@ -388,6 +389,9 @@ AntdTree.propTypes = {
 
     // 设置是否开启树节点可拖拽模式，默认为false
     draggable: PropTypes.bool,
+
+    // 当节点被拖拽时，监听该节点的key值信息
+    draggedNodeKey: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
 
     loading_state: PropTypes.shape({
         /**
