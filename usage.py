@@ -8,65 +8,23 @@ app = dash.Dash(__name__)
 
 app.layout = html.Div(
     [
-        fac.AntdSpace(
-            [
-                fac.AntdTree(
-                    id='input',
-                    draggable=True,
-                    defaultExpandAll=True,
-                    treeData=[
-                        {
-                            'title': '重庆市',
-                            'key': '重庆市',
-                            'children': [
-                                {
-                                    'title': '渝北区',
-                                    'key': '渝北区'
-                                },
-                                {
-                                    'title': '江北区',
-                                    'key': '江北区',
-                                    'disabled': True
-                                }
-                            ]
-                        },
-                        {
-                            'title': '北京市',
-                            'key': '北京市',
-                            'children': [
-                                {
-                                    'title': '西城区',
-                                    'key': '西城区'
-                                },
-                                {
-                                    'title': '东城区',
-                                    'key': '东城区'
-                                }
-                            ]
-                        },
-                        {
-                            'title': '四川省',
-                            'key': '四川省',
-                            'children': [
-                                {
-                                    'title': '成都市',
-                                    'key': '成都市',
-                                    'children': [
-                                        {
-                                            'title': '天府新区',
-                                            'key': '天府新区'
-                                        }
-                                    ]
-                                }
-                            ]
-                        }
-                    ]
-                ),
+        fac.AntdButton(
+            '触发对话框',
+            type='primary',
+            id='modal-demo-trigger-1'
+        ),
 
-                html.Pre(
-                    id='output'
-                )
-            ]
+        fac.AntdModal(
+            fac.AntdText('对话框内容测试'),
+            id='modal-demo-1',
+            visible=False,
+            title=html.Span(
+                [
+                    fac.AntdIcon(icon='fc-search'),
+                    '标题测试'
+                ]
+            ),
+            renderFooter=True
         )
     ],
     style={
@@ -76,19 +34,12 @@ app.layout = html.Div(
 
 
 @app.callback(
-    Output('output', 'children'),
-    Input('input', 'treeData'),
-    State('input', 'draggedNodeKey')
+    Output('modal-demo-1', 'visible'),
+    Input('modal-demo-trigger-1', 'nClicks'),
+    prevent_initial_call=True
 )
-def demo(treeData, draggedNodeKey):
-
-    print(draggedNodeKey)
-
-    return json.dumps(
-        treeData,
-        ensure_ascii=False,
-        indent=4
-    )
+def modal_demo_callback1(nClicks):
+    return True
 
 
 if __name__ == '__main__':

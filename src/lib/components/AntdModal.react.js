@@ -39,6 +39,7 @@ export default class AntdModal extends Component {
             closeCounts,
             confirmLoading,
             confirmAutoSpin,
+            transitionType,
             loading_state
         } = this.props;
 
@@ -77,6 +78,7 @@ export default class AntdModal extends Component {
                     cancelText={cancelText}
                     okButtonProps={okButtonProps}
                     cancelButtonProps={cancelButtonProps}
+                    transitionName={transitionType === 'none' ? '' : `ant-${transitionType}`}
                     width={width}
                     centered={centered}
                     keyboard={keyboard}
@@ -213,6 +215,15 @@ AntdModal.propTypes = {
     // 默认为false
     confirmAutoSpin: PropTypes.bool,
 
+    // 设置卡片显隐动画类型，可选的有'fade'、'zoom'、'zoom-big'、'zoom-big-fast'、'zoom-up'、
+    // 'zoom-down'、'zoom-left'、'zoom-right'、'slide-up'、'slide-down'、'slide-left'、
+    // 'slide-right'、'move-up'、'move-down'、'move-left'、'move-right'
+    transitionType: PropTypes.oneOf([
+        'none', 'fade', 'zoom', 'zoom-big', 'zoom-big-fast', 'zoom-up',
+        'zoom-down', 'zoom-left', 'zoom-right', 'slide-up', 'slide-down', 'slide-left',
+        'slide-right', 'move-up', 'move-down', 'move-left', 'move-right'
+    ]),
+
     /**
      * Dash-assigned callback that should be called to report property changes
      * to Dash, to make them available for callbacks.
@@ -244,5 +255,6 @@ AntdModal.defaultProps = {
     locale: 'zh-cn',
     okClickClose: true,
     confirmLoading: false,
-    confirmAutoSpin: false
+    confirmAutoSpin: false,
+    transitionType: 'zoom'
 }

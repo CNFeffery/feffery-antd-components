@@ -50,12 +50,13 @@ Those elements have the following types:
 - `renderFooter` (Bool; optional)
 - `style` (Dict; optional)
 - `title` (a list of or a singular dash component, string or number; optional)
+- `transitionType` (a value equal to: 'none', 'fade', 'zoom', 'zoom-big', 'zoom-big-fast', 'zoom-up', 'zoom-down', 'zoom-left', 'zoom-right', 'slide-up', 'slide-down', 'slide-left', 'slide-right', 'move-up', 'move-down', 'move-left', 'move-right'; optional)
 - `visible` (Bool; optional)
 - `width` (Real | String; optional)
 - `zIndex` (Real; optional)
 """
 function 'feffery'_antdmodal(; kwargs...)
-        available_props = Symbol[:children, :id, :bodyStyle, :cancelButtonProps, :cancelCounts, :cancelText, :centered, :className, :closable, :closeCounts, :confirmAutoSpin, :confirmLoading, :key, :keyboard, :loadingOkText, :loading_state, :locale, :mask, :maskClosable, :maskStyle, :okButtonProps, :okClickClose, :okCounts, :okText, :renderFooter, :style, :title, :visible, :width, :zIndex]
+        available_props = Symbol[:children, :id, :bodyStyle, :cancelButtonProps, :cancelCounts, :cancelText, :centered, :className, :closable, :closeCounts, :confirmAutoSpin, :confirmLoading, :key, :keyboard, :loadingOkText, :loading_state, :locale, :mask, :maskClosable, :maskStyle, :okButtonProps, :okClickClose, :okCounts, :okText, :renderFooter, :style, :title, :transitionType, :visible, :width, :zIndex]
         wild_props = Symbol[]
         return Component("'feffery'_antdmodal", "AntdModal", "feffery_antd_components", available_props, wild_props; kwargs...)
 end
