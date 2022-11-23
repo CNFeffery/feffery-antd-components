@@ -4,7 +4,6 @@ import { DatePicker, ConfigProvider } from 'antd';
 import moment from 'moment';
 import { str2Locale } from './locales.react';
 
-
 const { RangePicker } = DatePicker;
 
 // 定义日期范围选择组件AntdDateRangePicker，api参数参考https://ant.design/components/date-picker-cn/

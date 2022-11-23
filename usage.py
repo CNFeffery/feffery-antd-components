@@ -8,8 +8,19 @@ app = dash.Dash(__name__)
 
 app.layout = html.Div(
     [
+        fac.AntdSpoiler(
+            fac.AntdParagraph(
+                '巴拉巴拉'*200
+            ),
+            maxHeight=50,
+            locale='en-us',
+            showLabel='展开',
+            hideLabel='折叠'
+        ),
+
+
         fac.AntdButton(
-            '触发对话框',
+            # '触发对话框',
             type='primary',
             id='modal-demo-trigger-1'
         ),

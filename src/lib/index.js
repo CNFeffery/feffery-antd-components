@@ -93,6 +93,7 @@ import AntdSegmentedColoring from './components/AntdSegmentedColoring.react';
 import AntdCopyText from './components/AntdCopyText.react';
 import AntdPopupCard from './components/AntdPopupCard.react';
 import AntdConfigProvider from './components/AntdConfigProvider';
+import AntdSpoiler from './components/AntdSpoiler.react';
 
 /* 
 忽略部分设计React中规范的console警告信息
@@ -209,5 +210,6 @@ export {
     AntdSegmentedColoring,
     AntdCopyText,
     AntdPopupCard,
-    AntdConfigProvider
+    AntdConfigProvider,
+    AntdSpoiler
 };

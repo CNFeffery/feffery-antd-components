@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { Typography, ConfigProvider } from 'antd';
 import { str2Locale } from '../locales.react';
@@ -141,4 +141,4 @@ AntdParagraph.defaultProps = {
     locale: 'zh-cn'
 }
 
-export default AntdParagraph;
+export default React.memo(AntdParagraph);

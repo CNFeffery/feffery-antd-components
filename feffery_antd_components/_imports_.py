@@ -49,6 +49,7 @@ from .AntdSelect import AntdSelect
 from .AntdSlider import AntdSlider
 from .AntdSpace import AntdSpace
 from .AntdSpin import AntdSpin
+from .AntdSpoiler import AntdSpoiler
 from .AntdStatistic import AntdStatistic
 from .AntdSteps import AntdSteps
 from .AntdSwitch import AntdSwitch
@@ -144,6 +145,7 @@ __all__ = [
     "AntdSlider",
     "AntdSpace",
     "AntdSpin",
+    "AntdSpoiler",
     "AntdStatistic",
     "AntdSteps",
     "AntdSwitch",

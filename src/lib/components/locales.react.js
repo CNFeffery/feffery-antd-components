@@ -6,4 +6,17 @@ const str2Locale = new Map([
     ['en-us', enUS]
 ])
 
-export { str2Locale }
+const locale2text = {
+    AntdSpoiler: {
+        'zh-cn': {
+            hideLabel: '收起',
+            showLabel: '查看更多'
+        },
+        'en-us': {
+            hideLabel: 'Hide',
+            showLabel: 'Show more'
+        }
+    }
+}
+
+export { str2Locale, locale2text }

@@ -5,7 +5,6 @@ import moment from 'moment';
 import { isString } from 'lodash';
 import { str2Locale } from './locales.react';
 
-
 // 定义日期选择组件AntdDatePicker，api参数参考https://ant.design/components/date-picker-cn/
 export default class AntdDatePicker extends Component {
 
