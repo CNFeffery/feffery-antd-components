@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { useRequest } from 'ahooks';
 import { Select, ConfigProvider } from 'antd';
+import { isUndefined } from 'lodash';
 import { str2Locale } from './locales.react';
 
 
@@ -40,6 +41,7 @@ const AntdSelect = (props) => {
         dropdownBefore,
         dropdownAfter,
         popupContainer,
+        readOnly,
         loading_state,
         persistence,
         persisted_props,
@@ -167,7 +169,7 @@ const AntdSelect = (props) => {
                 style={style}
                 key={key}
                 mode={mode}
-                allowClear={allowClear}
+                allowClear={isUndefined(readOnly) ? allowClear : !readOnly}
                 placeholder={placeholder}
                 size={size}
                 value={value}
@@ -207,6 +209,7 @@ const AntdSelect = (props) => {
                         (triggerNode) => triggerNode.parentNode :
                         undefined
                 }
+                open={isUndefined(readOnly) ? undefined : !readOnly}
             >
                 {optionsJsx}
             </Select>
@@ -373,6 +376,9 @@ AntdSelect.propTypes = {
 
     // 设置悬浮层锚定策略，可选的有'parent'、'body'，默认为'body'
     popupContainer: PropTypes.oneOf(['parent', 'body']),
+
+    // 设置是否以只读模式进行渲染，底层利用Select的open参数
+    readOnly: PropTypes.bool,
 
     loading_state: PropTypes.shape({
         /**

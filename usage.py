@@ -8,16 +8,31 @@ app = dash.Dash(__name__)
 
 app.layout = html.Div(
     [
+
+
+        fac.AntdSelect(
+            placeholder='请选择国家：',
+            options=[
+                {'label': '中国', 'value': '中国'},
+                {'label': '美国', 'value': '美国'},
+                {'label': '俄罗斯', 'value': '俄罗斯'},
+                {'label': '德国', 'value': '德国', 'disabled': True},
+                {'label': '加拿大', 'value': '加拿大'}
+            ],
+            # readOnly=True,
+            value='美国',
+            style={
+                # 使用css样式固定宽度
+                'width': '200px'
+            }
+        ),
+
         fac.AntdSpoiler(
             fac.AntdParagraph(
                 '巴拉巴拉'*200
             ),
-            maxHeight=50,
-            locale='en-us',
-            showLabel='展开',
-            hideLabel='折叠'
+            maxHeight=65
         ),
-
 
         fac.AntdButton(
             # '触发对话框',

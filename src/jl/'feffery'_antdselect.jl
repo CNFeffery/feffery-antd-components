@@ -62,6 +62,7 @@ session: window.sessionStorage, data is cleared once the browser quit.
 - `placeholder` (String; optional)
 - `placement` (a value equal to: 'bottomLeft', 'bottomRight', 'topLeft', 'topRight'; optional)
 - `popupContainer` (a value equal to: 'parent', 'body'; optional)
+- `readOnly` (Bool; optional)
 - `searchValue` (String; optional)
 - `size` (a value equal to: 'small', 'middle', 'large'; optional)
 - `status` (a value equal to: 'error', 'warning'; optional)
@@ -69,7 +70,7 @@ session: window.sessionStorage, data is cleared once the browser quit.
 - `value` (String | Real | Array of String | Reals; optional)
 """
 function 'feffery'_antdselect(; kwargs...)
-        available_props = Symbol[:id, :allowClear, :autoClearSearchValue, :autoSpin, :className, :colorsMode, :colorsNameWidth, :debounceWait, :defaultValue, :disabled, :dropdownAfter, :dropdownBefore, :emptyContent, :key, :listHeight, :loading_state, :locale, :maxTagCount, :mode, :optionFilterProp, :options, :persisted_props, :persistence, :persistence_type, :placeholder, :placement, :popupContainer, :searchValue, :size, :status, :style, :value]
+        available_props = Symbol[:id, :allowClear, :autoClearSearchValue, :autoSpin, :className, :colorsMode, :colorsNameWidth, :debounceWait, :defaultValue, :disabled, :dropdownAfter, :dropdownBefore, :emptyContent, :key, :listHeight, :loading_state, :locale, :maxTagCount, :mode, :optionFilterProp, :options, :persisted_props, :persistence, :persistence_type, :placeholder, :placement, :popupContainer, :readOnly, :searchValue, :size, :status, :style, :value]
         wild_props = Symbol[]
         return Component("'feffery'_antdselect", "AntdSelect", "feffery_antd_components", available_props, wild_props; kwargs...)
 end
