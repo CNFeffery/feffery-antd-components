@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { DatePicker, ConfigProvider } from 'antd';
 import moment from 'moment';
+import { isString, isUndefined } from 'lodash';
 import { str2Locale } from './locales.react';
 
 const { RangePicker } = DatePicker;
@@ -59,6 +60,7 @@ export default class AntdDateRangePicker extends Component {
             defaultPickerValue,
             status,
             popupContainer,
+            readOnly,
             persistence,
             persisted_props,
             persistence_type,
@@ -322,7 +324,7 @@ export default class AntdDateRangePicker extends Component {
                         size={size}
                         picker={picker}
                         showTime={showTime}
-                        allowClear={allowClear}
+                        allowClear={isUndefined(readOnly) ? allowClear : !readOnly}
                         disabled={(disabled && disabled.length === 2) ? disabled : undefined}
                         placeholder={(placeholder && placeholder.length === 2) ? placeholder : undefined}
                         onChange={onChange}
@@ -345,6 +347,7 @@ export default class AntdDateRangePicker extends Component {
                                 undefined
                         }
                         status={status}
+                        open={isUndefined(readOnly) ? undefined : !readOnly}
                         persistence={persistence}
                         persisted_props={persisted_props}
                         persistence_type={persistence_type}
@@ -441,6 +444,9 @@ AntdDateRangePicker.propTypes = {
 
     // 设置组件悬浮层参考容器类型，可选的有'parent'、'body'，默认为'parent'
     popupContainer: PropTypes.oneOf(['parent', 'body']),
+
+    // 设置是否以只读模式进行渲染，底层利用open参数
+    readOnly: PropTypes.bool,
 
     /**
     * Object that holds the loading state object coming from dash-renderer

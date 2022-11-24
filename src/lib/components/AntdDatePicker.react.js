@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { DatePicker, ConfigProvider } from 'antd';
 import moment from 'moment';
-import { isString } from 'lodash';
+import { isString, isUndefined } from 'lodash';
 import { str2Locale } from './locales.react';
 
 // 定义日期选择组件AntdDatePicker，api参数参考https://ant.design/components/date-picker-cn/
@@ -58,6 +58,7 @@ export default class AntdDatePicker extends Component {
             size,
             status,
             popupContainer,
+            readOnly,
             persistence,
             persisted_props,
             persistence_type,
@@ -325,8 +326,9 @@ export default class AntdDatePicker extends Component {
                         value={value ? moment(value, format) : undefined}
                         defaultValue={defaultValue ? moment(defaultValue, format) : undefined}
                         showTime={showTime}
-                        allowClear={allowClear}
+                        allowClear={isUndefined(readOnly) ? allowClear : !readOnly}
                         status={status}
+                        open={isUndefined(readOnly) ? undefined : !readOnly}
                         persistence={persistence}
                         persisted_props={persisted_props}
                         persistence_type={persistence_type}
@@ -423,6 +425,9 @@ AntdDatePicker.propTypes = {
 
     // 设置悬浮层锚定策略，可选的有'parent'、'body'，默认为'body'
     popupContainer: PropTypes.oneOf(['parent', 'body']),
+
+    // 设置是否以只读模式进行渲染，底层利用open参数
+    readOnly: PropTypes.bool,
 
     /**
     * Object that holds the loading state object coming from dash-renderer
