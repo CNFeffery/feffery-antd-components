@@ -2,6 +2,7 @@ import { useEffect, useMemo } from 'react';
 import PropTypes from 'prop-types';
 import { Cascader, ConfigProvider } from 'antd';
 import { str2Locale } from './locales.react';
+import { isUndefined } from 'lodash';
 import { flatToTree } from './utils';
 
 
@@ -38,6 +39,7 @@ const AntdCascader = (props) => {
         allowClear,
         showCheckedStrategy,
         popupContainer,
+        readOnly,
         setProps,
         persistence,
         persisted_props,
@@ -92,7 +94,7 @@ const AntdCascader = (props) => {
                 persistence_type={persistence_type}
                 expandTrigger={expandTrigger}
                 status={status}
-                allowClear={allowClear}
+                allowClear={isUndefined(readOnly) ? allowClear : !readOnly}
                 showCheckedStrategy={str2ShowCheckedStrategy.get(showCheckedStrategy)}
                 showSearch={filter}
                 onChange={onSelect}
@@ -104,6 +106,7 @@ const AntdCascader = (props) => {
                         (triggerNode) => triggerNode.parentNode :
                         undefined
                 }
+                open={isUndefined(readOnly) ? undefined : !readOnly}
             />
         </ConfigProvider>
     );
@@ -230,6 +233,9 @@ AntdCascader.propTypes = {
     // 设置已选项回填策略，可选的有'show-parent'、'show-child'
     // 默认为'show-parent'
     showCheckedStrategy: PropTypes.oneOf(['show-parent', 'show-child']),
+
+    // 设置是否以只读模式进行渲染，底层利用Select的open参数
+    readOnly: PropTypes.bool,
 
     loading_state: PropTypes.shape({
         /**

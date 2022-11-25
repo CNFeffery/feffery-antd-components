@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { TimePicker, ConfigProvider } from 'antd';
 import moment from 'moment';
+import { isUndefined } from 'lodash';
 import { str2Locale } from './locales.react';
 
 
@@ -42,6 +43,7 @@ export default class AntdTimeRangePicker extends Component {
             size,
             status,
             popupContainer,
+            readOnly,
             persistence,
             persisted_props,
             persistence_type,
@@ -75,7 +77,7 @@ export default class AntdTimeRangePicker extends Component {
                         secondStep={secondStep}
                         format={format}
                         use12Hours={use12Hours}
-                        allowClear={allowClear}
+                        allowClear={isUndefined(readOnly) ? allowClear : !readOnly}
                         defaultValue={
                             (defaultValue && defaultValue.length === 2) ?
                                 (
@@ -104,6 +106,7 @@ export default class AntdTimeRangePicker extends Component {
                                 (triggerNode) => triggerNode.parentNode :
                                 undefined
                         }
+                        open={isUndefined(readOnly) ? undefined : !readOnly}
                     />
                 </ConfigProvider>
             </div>
@@ -174,6 +177,9 @@ AntdTimeRangePicker.propTypes = {
 
     // 设置悬浮层锚定策略，可选的有'parent'、'body'，默认为'body'
     popupContainer: PropTypes.oneOf(['parent', 'body']),
+
+    // 设置是否以只读模式进行渲染，底层利用Select的open参数
+    readOnly: PropTypes.bool,
 
     /**
     * Object that holds the loading state object coming from dash-renderer

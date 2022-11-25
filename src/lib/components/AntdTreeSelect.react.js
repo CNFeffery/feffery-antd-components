@@ -2,6 +2,7 @@ import { useEffect, useMemo } from 'react';
 import PropTypes from 'prop-types';
 import { TreeSelect, ConfigProvider } from 'antd';
 import { str2Locale } from './locales.react';
+import { isUndefined } from 'lodash';
 import { flatToTree } from './utils';
 
 
@@ -41,6 +42,7 @@ const AntdTreeSelect = (props) => {
         autoClearSearchValue,
         popupContainer,
         setProps,
+        readOnly,
         persistence,
         persisted_props,
         persistence_type,
@@ -77,7 +79,7 @@ const AntdTreeSelect = (props) => {
                 style={{ ...{ width: '100%' }, ...style }}
                 key={key}
                 treeData={treeDataMode === 'flat' ? flatToTreeData : treeData}
-                allowClear={allowClear}
+                allowClear={isUndefined(readOnly) ? allowClear : !readOnly}
                 bordered={bordered}
                 treeLine={treeLine}
                 listHeight={listHeight}
@@ -112,6 +114,7 @@ const AntdTreeSelect = (props) => {
                         (triggerNode) => triggerNode.parentNode :
                         undefined
                 }
+                open={isUndefined(readOnly) ? undefined : !readOnly}
             />
         </ConfigProvider>
     );
@@ -299,6 +302,9 @@ AntdTreeSelect.propTypes = {
 
     // 设置悬浮层锚定策略，可选的有'parent'、'body'，默认为'body'
     popupContainer: PropTypes.oneOf(['parent', 'body']),
+
+    // 设置是否以只读模式进行渲染，底层利用Select的open参数
+    readOnly: PropTypes.bool,
 
     loading_state: PropTypes.shape({
         /**

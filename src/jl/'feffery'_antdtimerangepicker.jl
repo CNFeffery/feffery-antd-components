@@ -39,6 +39,7 @@ local: window.localStorage, data is kept after the browser quit.
 session: window.sessionStorage, data is cleared once the browser quit.
 - `placeholder` (Array of Strings; optional)
 - `popupContainer` (a value equal to: 'parent', 'body'; optional)
+- `readOnly` (Bool; optional)
 - `secondStep` (Real; optional)
 - `size` (a value equal to: 'small', 'middle', 'large'; optional)
 - `status` (a value equal to: 'error', 'warning'; optional)
@@ -47,7 +48,7 @@ session: window.sessionStorage, data is cleared once the browser quit.
 - `value` (Array of Strings; optional)
 """
 function 'feffery'_antdtimerangepicker(; kwargs...)
-        available_props = Symbol[:id, :allowClear, :bordered, :className, :defaultValue, :disabled, :format, :hourStep, :key, :loading_state, :locale, :minuteStep, :persisted_props, :persistence, :persistence_type, :placeholder, :popupContainer, :secondStep, :size, :status, :style, :use12Hours, :value]
+        available_props = Symbol[:id, :allowClear, :bordered, :className, :defaultValue, :disabled, :format, :hourStep, :key, :loading_state, :locale, :minuteStep, :persisted_props, :persistence, :persistence_type, :placeholder, :popupContainer, :readOnly, :secondStep, :size, :status, :style, :use12Hours, :value]
         wild_props = Symbol[]
         return Component("'feffery'_antdtimerangepicker", "AntdTimeRangePicker", "feffery_antd_components", available_props, wild_props; kwargs...)
 end
