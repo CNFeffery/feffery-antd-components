@@ -103,6 +103,10 @@ export default class AntdDatePicker extends Component {
                         if (current.isoWeekday() === strategy.value) {
                             return true;
                         }
+                    } else if (strategy.target === 'specific-date') {
+                        if (current.isSame(moment(strategy.value, 'YYYY-MM-DD'))) {
+                            return true;
+                        }
                     }
                 } else if (strategy.mode === 'ne') {
                     // 判断当前子策略约束目标
@@ -128,6 +132,10 @@ export default class AntdDatePicker extends Component {
                         }
                     } else if (strategy.target === 'dayOfWeek') {
                         if (current.isoWeekday() !== strategy.value) {
+                            return true;
+                        }
+                    } else if (strategy.target === 'specific-date') {
+                        if (!current.isSame(moment(strategy.value, 'YYYY-MM-DD'))) {
                             return true;
                         }
                     }
@@ -157,6 +165,10 @@ export default class AntdDatePicker extends Component {
                         if (current.isoWeekday() <= strategy.value) {
                             return true;
                         }
+                    } else if (strategy.target === 'specific-date') {
+                        if (current.isSameOrBefore(moment(strategy.value, 'YYYY-MM-DD'))) {
+                            return true;
+                        }
                     }
                 } else if (strategy.mode === 'lt') {
                     // 判断当前子策略约束目标
@@ -182,6 +194,10 @@ export default class AntdDatePicker extends Component {
                         }
                     } else if (strategy.target === 'dayOfWeek') {
                         if (current.isoWeekday() < strategy.value) {
+                            return true;
+                        }
+                    } else if (strategy.target === 'specific-date') {
+                        if (current.isBefore(moment(strategy.value, 'YYYY-MM-DD'))) {
                             return true;
                         }
                     }
@@ -211,6 +227,10 @@ export default class AntdDatePicker extends Component {
                         if (current.isoWeekday() >= strategy.value) {
                             return true;
                         }
+                    } else if (strategy.target === 'specific-date') {
+                        if (current.isSameOrAfter(moment(strategy.value, 'YYYY-MM-DD'))) {
+                            return true;
+                        }
                     }
                 } else if (strategy.mode === 'gt') {
                     // 判断当前子策略约束目标
@@ -236,6 +256,10 @@ export default class AntdDatePicker extends Component {
                         }
                     } else if (strategy.target === 'dayOfWeek') {
                         if (current.isoWeekday() > strategy.value) {
+                            return true;
+                        }
+                    } else if (strategy.target === 'specific-date') {
+                        if (current.isAfter(moment(strategy.value, 'YYYY-MM-DD'))) {
                             return true;
                         }
                     }
@@ -397,12 +421,14 @@ AntdDatePicker.propTypes = {
             mode: PropTypes.oneOf(['eq', 'ne', 'le', 'lt', 'ge', 'gt', 'in', 'not-in', 'in-enumerate-dates', 'not-in-enumerate-dates']),
 
             // 策略约束目标，可选的有'dayOfYear'（按年份天数）、'dayOfWeek'（按周天数）、
-            // 'day'（按日）、'month'（按月份）、'quarter'（按季度）、'year'（按年份）
-            target: PropTypes.oneOf(['day', 'month', 'quarter', 'year', 'dayOfYear', 'dayOfWeek']),
+            // 'day'（按日）、'month'（按月份）、'quarter'（按季度）、'year'（按年份）、'specific-date'（具体日期）
+            // 其中'specific-date'目标下，value值严格按照YYYY-MM-DD格式进行解析
+            target: PropTypes.oneOf(['day', 'month', 'quarter', 'year', 'dayOfYear', 'dayOfWeek', 'specific-date']),
 
             // 与策略方式和策略约束目标对应的约束值
             value: PropTypes.oneOfType([
                 PropTypes.number,
+                PropTypes.string,
                 PropTypes.arrayOf(PropTypes.number),
                 PropTypes.arrayOf(PropTypes.string)
             ])

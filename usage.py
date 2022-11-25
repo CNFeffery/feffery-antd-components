@@ -9,6 +9,37 @@ app = dash.Dash(__name__)
 app.layout = html.Div(
     [
 
+        fac.AntdDatePicker(
+            picker='month',
+            disabledDatesStrategy=[
+                {
+                    'mode': 'lt',
+                    'target': 'specific-date',
+                    'value': '2021-08-01'
+                },
+                {
+                    'mode': 'gt',
+                    'target': 'specific-date',
+                    'value': '2022-03-31'
+                }
+            ]
+        ),
+
+        fac.AntdDateRangePicker(
+            picker='month',
+            disabledDatesStrategy=[
+                {
+                    'mode': 'lt',
+                    'target': 'specific-date',
+                    'value': '2021-08-01'
+                },
+                {
+                    'mode': 'gt',
+                    'target': 'specific-date',
+                    'value': '2022-03-31'
+                }
+            ]
+        ),
 
         fac.AntdSelect(
             placeholder='请选择国家：',

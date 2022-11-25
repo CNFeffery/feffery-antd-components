@@ -29,9 +29,9 @@ Keyword arguments:
 
     - mode (a value equal to: 'eq', 'ne', 'le', 'lt', 'ge', 'gt', 'in', 'not-in', 'in-enumerate-dates', 'not-in-enumerate-dates'; optional)
 
-    - target (a value equal to: 'day', 'month', 'quarter', 'year', 'dayOfYear', 'dayOfWeek'; optional)
+    - target (a value equal to: 'day', 'month', 'quarter', 'year', 'dayOfYear', 'dayOfWeek', 'specific-date'; optional)
 
-    - value (number | list of numbers | list of strings; optional)
+    - value (number | string | list of numbers | list of strings; optional)
 
 - format (string; optional)
 
