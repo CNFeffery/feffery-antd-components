@@ -59,11 +59,12 @@ Those elements have the following types:
 - `locale` (a value equal to: 'zh-cn', 'en-us'; optional)
 - `multiple` (Bool; optional)
 - `showUploadList` (Bool; optional)
+- `status` (a value equal to: 'error', 'warning'; optional)
 - `style` (Dict; optional)
 - `uploadId` (String; optional)
 """
 function 'feffery'_antdupload(; kwargs...)
-        available_props = Symbol[:id, :apiUrl, :buttonContent, :className, :defaultFileList, :directory, :failedTooltipInfo, :fileListMaxLength, :fileMaxSize, :fileTypes, :key, :lastUploadTaskRecord, :listUploadTaskRecord, :loading_state, :locale, :multiple, :showUploadList, :style, :uploadId]
+        available_props = Symbol[:id, :apiUrl, :buttonContent, :className, :defaultFileList, :directory, :failedTooltipInfo, :fileListMaxLength, :fileMaxSize, :fileTypes, :key, :lastUploadTaskRecord, :listUploadTaskRecord, :loading_state, :locale, :multiple, :showUploadList, :status, :style, :uploadId]
         wild_props = Symbol[]
         return Component("'feffery'_antdupload", "AntdUpload", "feffery_antd_components", available_props, wild_props; kwargs...)
 end

@@ -114,6 +114,8 @@ Keyword arguments:
 
 - showUploadList (boolean; optional)
 
+- status (a value equal to: 'error', 'warning'; optional)
+
 - style (dict; optional)
 
 - text (string; optional)
@@ -124,10 +126,10 @@ Keyword arguments:
     _namespace = 'feffery_antd_components'
     _type = 'AntdDraggerUpload'
     @_explicitize_args
-    def __init__(self, id=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, draggerClassName=Component.UNDEFINED, draggerStyle=Component.UNDEFINED, key=Component.UNDEFINED, locale=Component.UNDEFINED, apiUrl=Component.UNDEFINED, text=Component.UNDEFINED, hint=Component.UNDEFINED, fileListMaxLength=Component.UNDEFINED, fileTypes=Component.UNDEFINED, uploadId=Component.UNDEFINED, fileMaxSize=Component.UNDEFINED, multiple=Component.UNDEFINED, directory=Component.UNDEFINED, failedTooltipInfo=Component.UNDEFINED, showUploadList=Component.UNDEFINED, lastUploadTaskRecord=Component.UNDEFINED, listUploadTaskRecord=Component.UNDEFINED, defaultFileList=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
-        self._prop_names = ['id', 'apiUrl', 'className', 'defaultFileList', 'directory', 'draggerClassName', 'draggerStyle', 'failedTooltipInfo', 'fileListMaxLength', 'fileMaxSize', 'fileTypes', 'hint', 'key', 'lastUploadTaskRecord', 'listUploadTaskRecord', 'loading_state', 'locale', 'multiple', 'showUploadList', 'style', 'text', 'uploadId']
+    def __init__(self, id=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, draggerClassName=Component.UNDEFINED, draggerStyle=Component.UNDEFINED, key=Component.UNDEFINED, locale=Component.UNDEFINED, apiUrl=Component.UNDEFINED, text=Component.UNDEFINED, hint=Component.UNDEFINED, fileListMaxLength=Component.UNDEFINED, fileTypes=Component.UNDEFINED, uploadId=Component.UNDEFINED, fileMaxSize=Component.UNDEFINED, multiple=Component.UNDEFINED, directory=Component.UNDEFINED, failedTooltipInfo=Component.UNDEFINED, showUploadList=Component.UNDEFINED, lastUploadTaskRecord=Component.UNDEFINED, listUploadTaskRecord=Component.UNDEFINED, defaultFileList=Component.UNDEFINED, status=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
+        self._prop_names = ['id', 'apiUrl', 'className', 'defaultFileList', 'directory', 'draggerClassName', 'draggerStyle', 'failedTooltipInfo', 'fileListMaxLength', 'fileMaxSize', 'fileTypes', 'hint', 'key', 'lastUploadTaskRecord', 'listUploadTaskRecord', 'loading_state', 'locale', 'multiple', 'showUploadList', 'status', 'style', 'text', 'uploadId']
         self._valid_wildcard_attributes =            []
-        self.available_properties = ['id', 'apiUrl', 'className', 'defaultFileList', 'directory', 'draggerClassName', 'draggerStyle', 'failedTooltipInfo', 'fileListMaxLength', 'fileMaxSize', 'fileTypes', 'hint', 'key', 'lastUploadTaskRecord', 'listUploadTaskRecord', 'loading_state', 'locale', 'multiple', 'showUploadList', 'style', 'text', 'uploadId']
+        self.available_properties = ['id', 'apiUrl', 'className', 'defaultFileList', 'directory', 'draggerClassName', 'draggerStyle', 'failedTooltipInfo', 'fileListMaxLength', 'fileMaxSize', 'fileTypes', 'hint', 'key', 'lastUploadTaskRecord', 'listUploadTaskRecord', 'loading_state', 'locale', 'multiple', 'showUploadList', 'status', 'style', 'text', 'uploadId']
         self.available_wildcard_properties =            []
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()

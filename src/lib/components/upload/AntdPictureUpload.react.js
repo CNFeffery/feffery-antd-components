@@ -24,6 +24,19 @@ const getBase64 = (file) => {
     });
 }
 
+const pictureUploadStatus2Style = new Map([
+    ['warning', {
+        border: "1px solid #faad14",
+        borderRadius: "2px",
+        padding: "6px 10px 0 10px"
+    }],
+    ['error', {
+        border: "1px solid #ff4d4f",
+        borderRadius: "2px",
+        padding: "6px 10px 0 10px"
+    }]
+])
+
 // 定义图片上传组件AntdPictureUpload，api参数参考https://ant.design/components/upload-cn/
 const AntdPictureUpload = (props) => {
 
@@ -44,6 +57,7 @@ const AntdPictureUpload = (props) => {
         fileMaxSize,
         failedTooltipInfo,
         listUploadTaskRecord,
+        status,
         loading_state,
         setProps
     } = props;
@@ -207,7 +221,10 @@ const AntdPictureUpload = (props) => {
             <ConfigProvider locale={str2Locale.get(locale)}>
                 <div id={id}
                     className={className}
-                    style={style}
+                    style={{
+                        ...pictureUploadStatus2Style.get(status),
+                        ...style
+                    }}
                     key={key}>
                     <ImgCrop {...editConfig}>
                         <Upload {...uploadProps}
@@ -238,7 +255,10 @@ const AntdPictureUpload = (props) => {
         <ConfigProvider locale={str2Locale.get(locale)}>
             <div id={id}
                 className={className}
-                style={style}
+                style={{
+                    ...pictureUploadStatus2Style.get(status),
+                    ...style
+                }}
                 key={key}>
                 <Upload {...uploadProps}
                     fileList={fileList}
@@ -419,6 +439,9 @@ AntdPictureUpload.propTypes = {
             })
         )
     ]),
+
+    // 设置校验状态，可选的有'error'、'warning'
+    status: PropTypes.oneOf(['error', 'warning']),
 
     loading_state: PropTypes.shape({
         /**

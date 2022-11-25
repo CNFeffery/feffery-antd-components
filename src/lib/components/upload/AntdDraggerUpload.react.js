@@ -19,6 +19,19 @@ const parseHistoryTaskCompleteTime = (e) => {
     return uid2CompleteTime
 }
 
+const draggerUploadStatus2Style = new Map([
+    ['warning', {
+        border: "1px solid #faad14",
+        borderRadius: "2px",
+        padding: "6px 10px"
+    }],
+    ['error', {
+        border: "1px solid #ff4d4f",
+        borderRadius: "2px",
+        padding: "6px 10px"
+    }]
+])
+
 // 定义文件拖拽上传组件AntdDraggerUpload，api参数参考https://ant.design/components/upload-cn/
 const AntdDraggerUpload = (props) => {
 
@@ -44,6 +57,7 @@ const AntdDraggerUpload = (props) => {
         failedTooltipInfo,
         listUploadTaskRecord,
         defaultFileList,
+        status,
         loading_state,
         setProps
     } = props;
@@ -250,7 +264,10 @@ const AntdDraggerUpload = (props) => {
                         className :
                         (className ? useCss(className) : undefined)
                 }
-                style={style}
+                style={{
+                    ...draggerUploadStatus2Style.get(status),
+                    ...style
+                }}
                 key={key}
                 data-dash-is-loading={
                     (loading_state && loading_state.is_loading) || undefined
@@ -444,6 +461,9 @@ AntdDraggerUpload.propTypes = {
             uid: PropTypes.any
         })
     ),
+
+    // 设置校验状态，可选的有'error'、'warning'
+    status: PropTypes.oneOf(['error', 'warning']),
 
     loading_state: PropTypes.shape({
         /**
