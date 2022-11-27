@@ -1,14 +1,12 @@
 import dash
-import json
 from dash import html
 import feffery_antd_components as fac
-from dash.dependencies import Input, Output, State
+from dash.dependencies import Input, Output
 
 app = dash.Dash(__name__)
 
 app.layout = html.Div(
     [
-
         fac.AntdUpload(
             apiUrl='/upload/',
             fileMaxSize=1,
