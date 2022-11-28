@@ -28,12 +28,14 @@ const pictureUploadStatus2Style = new Map([
     ['warning', {
         border: "1px solid #faad14",
         borderRadius: "2px",
-        padding: "6px 10px 0 10px"
+        padding: "6px 10px 0 10px",
+        transition: "border 0.3s"
     }],
     ['error', {
         border: "1px solid #ff4d4f",
         borderRadius: "2px",
-        padding: "6px 10px 0 10px"
+        padding: "6px 10px 0 10px",
+        transition: "border 0.3s"
     }]
 ])
 
@@ -222,6 +224,8 @@ const AntdPictureUpload = (props) => {
                 <div id={id}
                     className={className}
                     style={{
+                        border: "1px solid transparent",
+                        transition: "border 0.3s",
                         ...pictureUploadStatus2Style.get(status),
                         ...style
                     }}
@@ -256,6 +260,8 @@ const AntdPictureUpload = (props) => {
             <div id={id}
                 className={className}
                 style={{
+                    border: "1px solid transparent",
+                    transition: "border 0.3s",
                     ...pictureUploadStatus2Style.get(status),
                     ...style
                 }}

@@ -19,12 +19,14 @@ const uploadStatus2Style = new Map([
     ['warning', {
         border: "1px solid #faad14",
         borderRadius: "2px",
-        padding: "6px 10px"
+        padding: "6px 10px",
+        transition: "border 0.3s"
     }],
     ['error', {
         border: "1px solid #ff4d4f",
         borderRadius: "2px",
-        padding: "6px 10px"
+        padding: "6px 10px",
+        transition: "border 0.3s"
     }]
 ])
 
@@ -250,6 +252,8 @@ const AntdUpload = (props) => {
             <div id={id}
                 className={className}
                 style={{
+                    border: "1px solid transparent",
+                    transition: "border 0.3s",
                     ...uploadStatus2Style.get(status),
                     ...style
                 }}
