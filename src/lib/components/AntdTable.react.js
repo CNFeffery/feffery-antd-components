@@ -908,9 +908,9 @@ class AntdTable extends Component {
                                     setTimeout(function () {
                                         setProps({
                                             data: data,
-                                            recentlySwtichRow: record,
-                                            swtichDataIndex: columns[i]['dataIndex'],
-                                            recentlySwtichStatus: checked
+                                            recentlySwitchRow: record,
+                                            switchDataIndex: columns[i]['dataIndex'],
+                                            recentlySwitchStatus: checked
                                         })
                                     }, 200);
                                 }} />
@@ -1931,13 +1931,13 @@ AntdTable.propTypes = {
 
     // 处理switch再渲染模式
     // 用于监听最近发生开关切换事件的记录行
-    recentlySwtichRow: PropTypes.object,
+    recentlySwitchRow: PropTypes.object,
 
     // 用于监听最近发生开关切换事件的字段dataIndex信息
-    swtichDataIndex: PropTypes.string,
+    switchDataIndex: PropTypes.string,
 
     // 用于监听最近发生的开关切换行为对应的切换后状态
-    recentlySwtichStatus: PropTypes.bool,
+    recentlySwitchStatus: PropTypes.bool,
 
     // 设置启用单元格点击事件监听的字段dataIndex数组，开启后会干扰多种再渲染模式的交互，
     // 以及自定义条件单元格模式，请慎用
