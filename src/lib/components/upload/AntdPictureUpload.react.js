@@ -75,7 +75,14 @@ const AntdPictureUpload = (props) => {
         }
     }, [])
 
-    const [fileList, updateFileList] = useState(defaultFileList || listUploadTaskRecord);
+    const [fileList, updateFileList] = useState(defaultFileList || listUploadTaskRecord.map((item) => {
+        return {
+            name: item.fileName,
+            status: item.taskStatus,
+            uid: item.uid,
+            url: item.url
+        };
+    }));
     const [previewVisible, setPreviewVisible] = useState(false);
     const [previewImage, setPreviewImage] = useState('');
     const [previewTitle, setPreviewTitle] = useState('');
@@ -420,8 +427,9 @@ AntdPictureUpload.propTypes = {
             taskId: PropTypes.string,
 
             // 唯一标识当前任务的uuid信息，前端生成与后端无关
-            uid: PropTypes.string
+            uid: PropTypes.string,
 
+            url: PropTypes.string
         }),
         // 文件夹或多文件上传
         PropTypes.arrayOf(
@@ -442,7 +450,9 @@ AntdPictureUpload.propTypes = {
                 taskId: PropTypes.string,
 
                 // 唯一标识当前任务的uuid信息，前端生成与后端无关
-                uid: PropTypes.string
+                uid: PropTypes.string,
+
+                url: PropTypes.string
             })
         )
     ]),
@@ -497,8 +507,7 @@ AntdPictureUpload.defaultProps = {
     fileMaxSize: 10,
     lastUploadTaskRecord: null,
     listUploadTaskRecord: [],
-    locale: 'zh-cn',
-    defaultFileList: []
+    locale: 'zh-cn'
 }
 
 export default AntdPictureUpload;

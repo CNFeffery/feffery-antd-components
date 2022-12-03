@@ -11,14 +11,17 @@ app.layout = html.Div(
             apiUrl='/upload/',
             fileMaxSize=1,
             status='warning',
-            defaultFileList=[
-                {
-                    'name': '文件1.png',
-                    'status': 'done',
-                    'uid': 'xxxx',
-                    'url': 'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png'
-                }
-            ]
+            # defaultFileList=[
+            #     {
+            #         'name': '文件1.png',
+            #         'status': 'done',
+            #         'uid': 'xxxx',
+            #         'url': 'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png'
+            #     }
+            # ],
+            listUploadTaskRecord=[{'fileName': '图1.png', 'fileSize': 45964, 'completeTimestamp': 1670073446090,
+                                   'taskStatus': 'success', 'taskId': 'be71301f-2ce6-40de-a373-fced714c4072', 'uid': 'rc-upload-1670073422366-3',
+                                   'url': 'http://127.0.0.1:9200/assets/imgs/%E9%99%A2logo.svg'}]
         ),
 
         fac.AntdDraggerUpload(
@@ -27,28 +30,34 @@ app.layout = html.Div(
             text='拖拽上传示例',
             hint='点击或拖拽文件至此处进行上传',
             status='warning',
-            defaultFileList=[
-                {
-                    'name': '文件1.png',
-                    'status': 'done',
-                    'uid': 'xxxx',
-                    'url': 'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png'
-                }
-            ]
+            # defaultFileList=[
+            #     {
+            #         'name': '文件1.png',
+            #         'status': 'done',
+            #         'uid': 'xxxx',
+            #         'url': 'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png'
+            #     }
+            # ],
+            listUploadTaskRecord=[{'fileName': '图1.png', 'fileSize': 45964, 'completeTimestamp': 1670073446090,
+                                   'taskStatus': 'success', 'taskId': 'be71301f-2ce6-40de-a373-fced714c4072', 'uid': 'rc-upload-1670073422366-3',
+                                   'url': 'http://127.0.0.1:9200/assets/imgs/%E9%99%A2logo.svg'}]
         ),
 
         fac.AntdPictureUpload(
             apiUrl='/upload/',
             fileMaxSize=1,
             status='error',
-            defaultFileList=[
-                {
-                    'name': '文件1.png',
-                    'status': 'done',
-                    'uid': 'xxxx',
-                    'url': 'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png'
-                }
-            ]
+            # defaultFileList=[
+            #     {
+            #         'name': '文件1.png',
+            #         'status': 'done',
+            #         'uid': 'xxxx',
+            #         'url': 'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png'
+            #     }
+            # ],
+            listUploadTaskRecord=[{'fileName': '图1.png', 'fileSize': 45964, 'completeTimestamp': 1670073446090,
+                                   'taskStatus': 'success', 'taskId': 'be71301f-2ce6-40de-a373-fced714c4072', 'uid': 'rc-upload-1670073422366-3',
+                                   'url': 'http://127.0.0.1:9200/assets/imgs/%E9%99%A2logo.svg'}]
         ),
 
         fac.AntdDatePicker(

@@ -40,21 +40,23 @@ Those elements have the following types:
   - `completeTimestamp` (Real; optional)
   - `taskStatus` (String; optional)
   - `taskId` (String; optional)s
-- `listUploadTaskRecord` (optional): . listUploadTaskRecord has the following type: lists containing elements 'fileName', 'fileSize', 'completeTimestamp', 'taskStatus', 'taskId', 'uid'.
+- `listUploadTaskRecord` (optional): . listUploadTaskRecord has the following type: lists containing elements 'fileName', 'fileSize', 'completeTimestamp', 'taskStatus', 'taskId', 'uid', 'url'.
 Those elements have the following types:
   - `fileName` (String; optional)
   - `fileSize` (Real; optional)
   - `completeTimestamp` (Real; optional)
   - `taskStatus` (String; optional)
   - `taskId` (String; optional)
-  - `uid` (String; optional) | Array of lists containing elements 'fileName', 'fileSize', 'completeTimestamp', 'taskStatus', 'taskId', 'uid'.
+  - `uid` (String; optional)
+  - `url` (String; optional) | Array of lists containing elements 'fileName', 'fileSize', 'completeTimestamp', 'taskStatus', 'taskId', 'uid', 'url'.
 Those elements have the following types:
   - `fileName` (String; optional)
   - `fileSize` (Real; optional)
   - `completeTimestamp` (Real; optional)
   - `taskStatus` (String; optional)
   - `taskId` (String; optional)
-  - `uid` (String; optional)s
+  - `uid` (String; optional)
+  - `url` (String; optional)s
 - `loading_state` (optional): . loading_state has the following type: lists containing elements 'is_loading', 'prop_name', 'component_name'.
 Those elements have the following types:
   - `is_loading` (Bool; optional): Determines if the component is loading or not

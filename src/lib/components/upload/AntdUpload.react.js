@@ -68,7 +68,14 @@ const AntdUpload = (props) => {
         }
     }, [])
 
-    const [fileList, updateFileList] = useState(defaultFileList || listUploadTaskRecord);
+    const [fileList, updateFileList] = useState(defaultFileList || listUploadTaskRecord.map((item) => {
+        return {
+            name: item.fileName,
+            status: item.taskStatus,
+            uid: item.uid,
+            url: item.url
+        };
+    }));
 
     let uploadProps = {
         name: 'file',
@@ -405,7 +412,9 @@ AntdUpload.propTypes = {
             taskId: PropTypes.string,
 
             // 唯一标识当前任务的uuid信息，前端生成与后端无关
-            uid: PropTypes.string
+            uid: PropTypes.string,
+
+            url: PropTypes.string
         }),
         // 文件夹或多文件上传
         PropTypes.arrayOf(
@@ -426,7 +435,9 @@ AntdUpload.propTypes = {
                 taskId: PropTypes.string,
 
                 // 唯一标识当前任务的uuid信息，前端生成与后端无关
-                uid: PropTypes.string
+                uid: PropTypes.string,
+
+                url: PropTypes.string
             })
         )
     ]),
@@ -479,8 +490,7 @@ AntdUpload.defaultProps = {
     fileMaxSize: 500,
     lastUploadTaskRecord: null,
     listUploadTaskRecord: [],
-    locale: 'zh-cn',
-    defaultFileList: []
+    locale: 'zh-cn'
 }
 
 export default AntdUpload;
