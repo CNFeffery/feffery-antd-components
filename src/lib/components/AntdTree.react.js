@@ -4,7 +4,6 @@ import { Tree, Tooltip } from 'antd';
 import AntdIcon from './AntdIcon.react';
 import { omitBy, isUndefined, isString, isObject, isArray, cloneDeep } from 'lodash';
 import { flatToTree } from './utils';
-import './styles.css'
 
 // 定义树形控件AntdTree，api参数参考https://ant.design/components/tree-cn/
 const AntdTree = (props) => {

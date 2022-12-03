@@ -26,8 +26,6 @@ import { SearchOutlined, QuestionCircleOutlined, DownOutlined } from '@ant-desig
 import { isNumber, isEqual } from 'lodash';
 import { str2Locale } from './locales.react';
 
-import './styles.css';
-
 const { Text } = Typography;
 
 // 定义表格组件AntdTable，部分api参数参考https://ant.design/components/table-cn/

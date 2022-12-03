@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Breadcrumb, Menu } from 'antd';
 import AntdIcon from './AntdIcon.react';
-import './styles.css'
-
 
 // 定义面包屑组件AntdBreadcrumb，api参数参考https://ant.design/components/breadcrumb-cn/
 export default class AntdBreadcrumb extends Component {

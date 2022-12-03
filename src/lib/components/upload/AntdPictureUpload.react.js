@@ -59,6 +59,7 @@ const AntdPictureUpload = (props) => {
         fileMaxSize,
         failedTooltipInfo,
         listUploadTaskRecord,
+        defaultFileList,
         status,
         loading_state,
         setProps
@@ -74,7 +75,7 @@ const AntdPictureUpload = (props) => {
         }
     }, [])
 
-    const [fileList, updateFileList] = useState([]);
+    const [fileList, updateFileList] = useState(defaultFileList);
     const [previewVisible, setPreviewVisible] = useState(false);
     const [previewImage, setPreviewImage] = useState('');
     const [previewTitle, setPreviewTitle] = useState('');
@@ -446,6 +447,23 @@ AntdPictureUpload.propTypes = {
         )
     ]),
 
+    // 仅作初始化展示用，用于定义组件初始化时已存在在上传列表中的附件信息
+    defaultFileList: PropTypes.arrayOf(
+        PropTypes.exact({
+            // 文件名称
+            name: PropTypes.string,
+
+            // 文件状态，可选的有'done'、'error'、'removed'
+            status: PropTypes.oneOf(['done', 'error', 'removed']),
+
+            // 唯一标识当前任务的uuid信息
+            uid: PropTypes.any,
+
+            // 可选，用于渲染当前文件的下载链接
+            url: PropTypes.string
+        })
+    ),
+
     // 设置校验状态，可选的有'error'、'warning'
     status: PropTypes.oneOf(['error', 'warning']),
 
@@ -479,7 +497,8 @@ AntdPictureUpload.defaultProps = {
     fileMaxSize: 10,
     lastUploadTaskRecord: null,
     listUploadTaskRecord: [],
-    locale: 'zh-cn'
+    locale: 'zh-cn',
+    defaultFileList: []
 }
 
 export default AntdPictureUpload;

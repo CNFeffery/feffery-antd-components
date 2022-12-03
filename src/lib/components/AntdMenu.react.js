@@ -8,8 +8,6 @@ import {
     MenuFoldOutlined,
 } from '@ant-design/icons';
 
-import './styles.css';
-
 const { SubMenu, Item, ItemGroup } = Menu;
 
 // 自定义UtilsLink

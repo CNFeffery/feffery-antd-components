@@ -47,6 +47,7 @@ const AntdDraggerUpload = (props) => {
         key,
         locale,
         apiUrl,
+        downloadUrl,
         text,
         hint,
         uploadId,
@@ -117,13 +118,18 @@ const AntdDraggerUpload = (props) => {
                     setProps({
                         listUploadTaskRecord: info.fileList.map(
                             (file) => {
+                                // 配置已完成上传文件下载链接
+                                let urlInfo = downloadUrl && file.status === 'done' ? {
+                                    url: downloadUrl + `?uploadId=${uploadId}&filename=${file.name}`
+                                } : {}
                                 return {
                                     fileName: file.name,
                                     fileSize: file.size,
                                     completeTimestamp: uploadedFile2CompleteTime.get(file.uid) || new Date().getTime(),
                                     taskStatus: file.status === 'done' ? 'success' : 'failed',
                                     taskId: uploadId,
-                                    uid: file.uid
+                                    uid: file.uid,
+                                    ...urlInfo
                                 }
                             }
                         )
@@ -153,13 +159,18 @@ const AntdDraggerUpload = (props) => {
                                     ),
                                     listUploadTaskRecord: info.fileList.map(
                                         (file) => {
+                                            // 配置已完成上传文件下载链接
+                                            let urlInfo = downloadUrl && file.status === 'done' ? {
+                                                url: downloadUrl + `?uploadId=${uploadId}&filename=${file.name}`
+                                            } : {}
                                             return {
                                                 fileName: file.name,
                                                 fileSize: file.size,
                                                 completeTimestamp: uploadedFile2CompleteTime.get(file.uid) || new Date().getTime(),
                                                 taskStatus: file.status === 'done' ? 'success' : 'failed',
                                                 taskId: uploadId,
-                                                uid: file.uid
+                                                uid: file.uid,
+                                                ...urlInfo
                                             }
                                         }
                                     )
@@ -180,13 +191,18 @@ const AntdDraggerUpload = (props) => {
                     setProps({
                         listUploadTaskRecord: info.fileList.map(
                             (file) => {
+                                // 配置已完成上传文件下载链接
+                                let urlInfo = downloadUrl && file.status === 'done' ? {
+                                    url: downloadUrl + `?uploadId=${uploadId}&filename=${file.name}`
+                                } : {}
                                 return {
                                     fileName: file.name,
                                     fileSize: file.size,
                                     completeTimestamp: uploadedFile2CompleteTime.get(file.uid) || new Date().getTime(),
                                     taskStatus: file.status === 'done' ? 'success' : 'failed',
                                     taskId: uploadId,
-                                    uid: file.uid
+                                    uid: file.uid,
+                                    ...urlInfo
                                 }
                             }
                         )
@@ -202,13 +218,18 @@ const AntdDraggerUpload = (props) => {
                         },
                         listUploadTaskRecord: info.fileList.map(
                             (file) => {
+                                // 配置已完成上传文件下载链接
+                                let urlInfo = downloadUrl && file.status === 'done' ? {
+                                    url: downloadUrl + `?uploadId=${uploadId}&filename=${file.name}`
+                                } : {}
                                 return {
                                     fileName: file.name,
                                     fileSize: file.size,
                                     completeTimestamp: uploadedFile2CompleteTime.get(file.uid) || new Date().getTime(),
                                     taskStatus: file.status === 'done' ? 'success' : 'failed',
                                     taskId: uploadId,
-                                    uid: file.uid
+                                    uid: file.uid,
+                                    ...urlInfo
                                 }
                             }
                         )
@@ -333,6 +354,9 @@ AntdDraggerUpload.propTypes = {
     // 设置文件上传服务的接口url
     apiUrl: PropTypes.string,
 
+    // 可选，用于设置已上传完成文件的下载接口，get接口，具有参数uploadId、filename
+    downloadUrl: PropTypes.string,
+
     // 设置上传区域主要文字说明内容
     text: PropTypes.string,
 
@@ -400,7 +424,6 @@ AntdDraggerUpload.propTypes = {
 
                 // 记录本次任务的id信息，若最近一次任务状态为'failed'，则不会携带此信息
                 taskId: PropTypes.string
-
             })
         )
     ]),
@@ -448,7 +471,6 @@ AntdDraggerUpload.propTypes = {
 
                 // 唯一标识当前任务的uuid信息，前端生成与后端无关
                 uid: PropTypes.string
-
             })
         )
     ]),
@@ -462,7 +484,11 @@ AntdDraggerUpload.propTypes = {
             // 文件状态，可选的有'done'、'error'、'removed'
             status: PropTypes.oneOf(['done', 'error', 'removed']),
 
-            uid: PropTypes.any
+            // 唯一标识当前任务的uuid信息
+            uid: PropTypes.any,
+
+            // 可选，用于渲染当前文件的下载链接
+            url: PropTypes.string
         })
     ),
 

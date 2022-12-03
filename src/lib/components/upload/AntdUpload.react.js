@@ -41,6 +41,7 @@ const AntdUpload = (props) => {
         key,
         locale,
         apiUrl,
+        downloadUrl,
         uploadId,
         fileListMaxLength,
         buttonContent,
@@ -110,13 +111,18 @@ const AntdUpload = (props) => {
                     setProps({
                         listUploadTaskRecord: info.fileList.map(
                             (file) => {
+                                // 配置已完成上传文件下载链接
+                                let urlInfo = downloadUrl && file.status === 'done' ? {
+                                    url: downloadUrl + `?uploadId=${uploadId}&filename=${file.name}`
+                                } : {}
                                 return {
                                     fileName: file.name,
                                     fileSize: file.size,
                                     completeTimestamp: uploadedFile2CompleteTime.get(file.uid) || new Date().getTime(),
                                     taskStatus: file.status === 'done' ? 'success' : 'failed',
                                     taskId: uploadId,
-                                    uid: file.uid
+                                    uid: file.uid,
+                                    ...urlInfo
                                 }
                             }
                         )
@@ -145,13 +151,18 @@ const AntdUpload = (props) => {
                                     ),
                                     listUploadTaskRecord: info.fileList.map(
                                         (file) => {
+                                            // 配置已完成上传文件下载链接
+                                            let urlInfo = downloadUrl && file.status === 'done' ? {
+                                                url: downloadUrl + `?uploadId=${uploadId}&filename=${file.name}`
+                                            } : {}
                                             return {
                                                 fileName: file.name,
                                                 fileSize: file.size,
                                                 completeTimestamp: uploadedFile2CompleteTime.get(file.uid) || new Date().getTime(),
                                                 taskStatus: file.status === 'done' ? 'success' : 'failed',
                                                 taskId: uploadId,
-                                                uid: file.uid
+                                                uid: file.uid,
+                                                ...urlInfo
                                             }
                                         }
                                     )
@@ -169,13 +180,18 @@ const AntdUpload = (props) => {
                     setProps({
                         listUploadTaskRecord: info.fileList.map(
                             (file) => {
+                                // 配置已完成上传文件下载链接
+                                let urlInfo = downloadUrl && file.status === 'done' ? {
+                                    url: downloadUrl + `?uploadId=${uploadId}&filename=${file.name}`
+                                } : {}
                                 return {
                                     fileName: file.name,
                                     fileSize: file.size,
                                     completeTimestamp: uploadedFile2CompleteTime.get(file.uid) || new Date().getTime(),
                                     taskStatus: file.status === 'done' ? 'success' : 'failed',
                                     taskId: uploadId,
-                                    uid: file.uid
+                                    uid: file.uid,
+                                    ...urlInfo
                                 }
                             }
                         )
@@ -191,13 +207,18 @@ const AntdUpload = (props) => {
                         },
                         listUploadTaskRecord: info.fileList.map(
                             (file) => {
+                                // 配置已完成上传文件下载链接
+                                let urlInfo = downloadUrl && file.status === 'done' ? {
+                                    url: downloadUrl + `?uploadId=${uploadId}&filename=${file.name}`
+                                } : {}
                                 return {
                                     fileName: file.name,
                                     fileSize: file.size,
                                     completeTimestamp: uploadedFile2CompleteTime.get(file.uid) || new Date().getTime(),
                                     taskStatus: file.status === 'done' ? 'success' : 'failed',
                                     taskId: uploadId,
-                                    uid: file.uid
+                                    uid: file.uid,
+                                    ...urlInfo
                                 }
                             }
                         )
@@ -293,6 +314,9 @@ AntdUpload.propTypes = {
 
     // 设置文件上传服务的接口url
     apiUrl: PropTypes.string,
+
+    // 可选，用于设置已上传完成文件的下载接口，get接口，具有参数uploadId、filename
+    downloadUrl: PropTypes.string,
 
     // 设置已上传文件列表的最大显示长度，默认为3
     fileListMaxLength: PropTypes.number,
@@ -416,7 +440,11 @@ AntdUpload.propTypes = {
             // 文件状态，可选的有'done'、'error'、'removed'
             status: PropTypes.oneOf(['done', 'error', 'removed']),
 
-            uid: PropTypes.any
+            // 唯一标识当前任务的uuid信息
+            uid: PropTypes.any,
+
+            // 可选，用于渲染当前文件的下载链接
+            url: PropTypes.string
         })
     ),
 

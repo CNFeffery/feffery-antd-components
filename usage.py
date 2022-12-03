@@ -10,7 +10,15 @@ app.layout = html.Div(
         fac.AntdUpload(
             apiUrl='/upload/',
             fileMaxSize=1,
-            status='warning'
+            status='warning',
+            defaultFileList=[
+                {
+                    'name': '文件1.png',
+                    'status': 'done',
+                    'uid': 'xxxx',
+                    'url': 'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png'
+                }
+            ]
         ),
 
         fac.AntdDraggerUpload(
@@ -18,13 +26,29 @@ app.layout = html.Div(
             fileMaxSize=1,
             text='拖拽上传示例',
             hint='点击或拖拽文件至此处进行上传',
-            status='warning'
+            status='warning',
+            defaultFileList=[
+                {
+                    'name': '文件1.png',
+                    'status': 'done',
+                    'uid': 'xxxx',
+                    'url': 'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png'
+                }
+            ]
         ),
 
         fac.AntdPictureUpload(
             apiUrl='/upload/',
             fileMaxSize=1,
-            status='error'
+            status='error',
+            defaultFileList=[
+                {
+                    'name': '文件1.png',
+                    'status': 'done',
+                    'uid': 'xxxx',
+                    'url': 'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png'
+                }
+            ]
         ),
 
         fac.AntdDatePicker(

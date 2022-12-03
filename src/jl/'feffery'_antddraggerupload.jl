@@ -11,12 +11,14 @@ Keyword arguments:
 - `id` (String; optional)
 - `apiUrl` (String; optional)
 - `className` (String | Dict; optional)
-- `defaultFileList` (optional): . defaultFileList has the following type: Array of lists containing elements 'name', 'status', 'uid'.
+- `defaultFileList` (optional): . defaultFileList has the following type: Array of lists containing elements 'name', 'status', 'uid', 'url'.
 Those elements have the following types:
   - `name` (String; optional)
   - `status` (a value equal to: 'done', 'error', 'removed'; optional)
-  - `uid` (Bool | Real | String | Dict | Array; optional)s
+  - `uid` (Bool | Real | String | Dict | Array; optional)
+  - `url` (String; optional)s
 - `directory` (Bool; optional)
+- `downloadUrl` (String; optional)
 - `draggerClassName` (String | Dict; optional)
 - `draggerStyle` (Dict; optional)
 - `failedTooltipInfo` (String; optional)
@@ -67,7 +69,7 @@ Those elements have the following types:
 - `uploadId` (String; optional)
 """
 function 'feffery'_antddraggerupload(; kwargs...)
-        available_props = Symbol[:id, :apiUrl, :className, :defaultFileList, :directory, :draggerClassName, :draggerStyle, :failedTooltipInfo, :fileListMaxLength, :fileMaxSize, :fileTypes, :hint, :key, :lastUploadTaskRecord, :listUploadTaskRecord, :loading_state, :locale, :multiple, :showUploadList, :status, :style, :text, :uploadId]
+        available_props = Symbol[:id, :apiUrl, :className, :defaultFileList, :directory, :downloadUrl, :draggerClassName, :draggerStyle, :failedTooltipInfo, :fileListMaxLength, :fileMaxSize, :fileTypes, :hint, :key, :lastUploadTaskRecord, :listUploadTaskRecord, :loading_state, :locale, :multiple, :showUploadList, :status, :style, :text, :uploadId]
         wild_props = Symbol[]
         return Component("'feffery'_antddraggerupload", "AntdDraggerUpload", "feffery_antd_components", available_props, wild_props; kwargs...)
 end

@@ -5,8 +5,6 @@ import { str2Locale } from './locales.react';
 import { Comment, Tooltip, Popconfirm, ConfigProvider } from 'antd';
 import { AntdAvatar } from '..';
 import { DislikeOutlined, LikeOutlined, DislikeFilled, LikeFilled } from '@ant-design/icons';
-
-import './styles.css'
 import { parseChildrenToArray } from './utils';
 
 // 定义评论组件AntdComment，api参数参考https://ant.design/components/comment-cn/

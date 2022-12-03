@@ -6,8 +6,6 @@ import { useCss } from 'react-use';
 import { isString } from 'lodash';
 import { Gluejar } from '@charliewilco/gluejar'
 import { DeleteOutlined } from '@ant-design/icons';
-import './styles.css'
-
 
 const urlToBase64 = (url) => {
     return new Promise((resolve, reject) => {

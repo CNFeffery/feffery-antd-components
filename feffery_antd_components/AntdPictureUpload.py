@@ -17,6 +17,18 @@ Keyword arguments:
 
 - className (string; optional)
 
+- defaultFileList (list of dicts; optional)
+
+    `defaultFileList` is a list of dicts with keys:
+
+    - name (string; optional)
+
+    - status (a value equal to: 'done', 'error', 'removed'; optional)
+
+    - uid (boolean | number | string | dict | list; optional)
+
+    - url (string; optional)
+
 - editConfig (dict; optional)
 
     `editConfig` is a dict with keys:
@@ -134,10 +146,10 @@ Keyword arguments:
     _namespace = 'feffery_antd_components'
     _type = 'AntdPictureUpload'
     @_explicitize_args
-    def __init__(self, id=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, key=Component.UNDEFINED, locale=Component.UNDEFINED, apiUrl=Component.UNDEFINED, editable=Component.UNDEFINED, editConfig=Component.UNDEFINED, fileListMaxLength=Component.UNDEFINED, fileTypes=Component.UNDEFINED, buttonContent=Component.UNDEFINED, uploadId=Component.UNDEFINED, fileMaxSize=Component.UNDEFINED, failedTooltipInfo=Component.UNDEFINED, lastUploadTaskRecord=Component.UNDEFINED, listUploadTaskRecord=Component.UNDEFINED, status=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
-        self._prop_names = ['id', 'apiUrl', 'buttonContent', 'className', 'editConfig', 'editable', 'failedTooltipInfo', 'fileListMaxLength', 'fileMaxSize', 'fileTypes', 'key', 'lastUploadTaskRecord', 'listUploadTaskRecord', 'loading_state', 'locale', 'status', 'style', 'uploadId']
+    def __init__(self, id=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, key=Component.UNDEFINED, locale=Component.UNDEFINED, apiUrl=Component.UNDEFINED, editable=Component.UNDEFINED, editConfig=Component.UNDEFINED, fileListMaxLength=Component.UNDEFINED, fileTypes=Component.UNDEFINED, buttonContent=Component.UNDEFINED, uploadId=Component.UNDEFINED, fileMaxSize=Component.UNDEFINED, failedTooltipInfo=Component.UNDEFINED, lastUploadTaskRecord=Component.UNDEFINED, listUploadTaskRecord=Component.UNDEFINED, defaultFileList=Component.UNDEFINED, status=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
+        self._prop_names = ['id', 'apiUrl', 'buttonContent', 'className', 'defaultFileList', 'editConfig', 'editable', 'failedTooltipInfo', 'fileListMaxLength', 'fileMaxSize', 'fileTypes', 'key', 'lastUploadTaskRecord', 'listUploadTaskRecord', 'loading_state', 'locale', 'status', 'style', 'uploadId']
         self._valid_wildcard_attributes =            []
-        self.available_properties = ['id', 'apiUrl', 'buttonContent', 'className', 'editConfig', 'editable', 'failedTooltipInfo', 'fileListMaxLength', 'fileMaxSize', 'fileTypes', 'key', 'lastUploadTaskRecord', 'listUploadTaskRecord', 'loading_state', 'locale', 'status', 'style', 'uploadId']
+        self.available_properties = ['id', 'apiUrl', 'buttonContent', 'className', 'defaultFileList', 'editConfig', 'editable', 'failedTooltipInfo', 'fileListMaxLength', 'fileMaxSize', 'fileTypes', 'key', 'lastUploadTaskRecord', 'listUploadTaskRecord', 'loading_state', 'locale', 'status', 'style', 'uploadId']
         self.available_wildcard_properties =            []
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()
