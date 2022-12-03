@@ -68,7 +68,7 @@ const AntdUpload = (props) => {
         }
     }, [])
 
-    const [fileList, updateFileList] = useState(defaultFileList);
+    const [fileList, updateFileList] = useState(defaultFileList || listUploadTaskRecord);
 
     let uploadProps = {
         name: 'file',

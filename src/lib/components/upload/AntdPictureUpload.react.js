@@ -75,7 +75,7 @@ const AntdPictureUpload = (props) => {
         }
     }, [])
 
-    const [fileList, updateFileList] = useState(defaultFileList);
+    const [fileList, updateFileList] = useState(defaultFileList || listUploadTaskRecord);
     const [previewVisible, setPreviewVisible] = useState(false);
     const [previewImage, setPreviewImage] = useState('');
     const [previewTitle, setPreviewTitle] = useState('');
