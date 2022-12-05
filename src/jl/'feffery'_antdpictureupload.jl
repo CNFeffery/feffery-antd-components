@@ -18,6 +18,7 @@ Those elements have the following types:
   - `status` (a value equal to: 'done', 'error', 'removed'; optional)
   - `uid` (Bool | Real | String | Dict | Array; optional)
   - `url` (String; optional)s
+- `downloadUrl` (String; optional)
 - `editConfig` (optional): . editConfig has the following type: lists containing elements 'aspect', 'shape', 'grid', 'quality', 'zoom', 'rotate', 'minZoom', 'maxZoom', 'modalTitle', 'modalWidth', 'modalOk', 'modalCancel'.
 Those elements have the following types:
   - `aspect` (Real; optional)
@@ -79,7 +80,7 @@ Those elements have the following types:
 - `uploadId` (String; optional)
 """
 function 'feffery'_antdpictureupload(; kwargs...)
-        available_props = Symbol[:id, :apiUrl, :buttonContent, :className, :defaultFileList, :editConfig, :editable, :failedTooltipInfo, :fileListMaxLength, :fileMaxSize, :fileTypes, :key, :lastUploadTaskRecord, :listUploadTaskRecord, :loading_state, :locale, :status, :style, :uploadId]
+        available_props = Symbol[:id, :apiUrl, :buttonContent, :className, :defaultFileList, :downloadUrl, :editConfig, :editable, :failedTooltipInfo, :fileListMaxLength, :fileMaxSize, :fileTypes, :key, :lastUploadTaskRecord, :listUploadTaskRecord, :loading_state, :locale, :status, :style, :uploadId]
         wild_props = Symbol[]
         return Component("'feffery'_antdpictureupload", "AntdPictureUpload", "feffery_antd_components", available_props, wild_props; kwargs...)
 end

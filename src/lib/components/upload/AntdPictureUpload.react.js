@@ -50,6 +50,7 @@ const AntdPictureUpload = (props) => {
         key,
         locale,
         apiUrl,
+        downloadUrl,
         editable,
         editConfig,
         uploadId,
@@ -149,13 +150,18 @@ const AntdPictureUpload = (props) => {
                 setProps({
                     listUploadTaskRecord: info.fileList.map(
                         (file) => {
+                            // 配置已完成上传文件下载链接
+                            let urlInfo = downloadUrl && file.status === 'done' ? {
+                                url: downloadUrl + `?taskId=${uploadId}&filename=${file.name}`
+                            } : {}
                             return {
                                 fileName: file.name,
                                 fileSize: file.size,
                                 completeTimestamp: uploadedFile2CompleteTime.get(file.uid) || new Date().getTime(),
                                 taskStatus: file.status === 'done' ? 'success' : 'failed',
                                 taskId: uploadId,
-                                uid: file.uid
+                                uid: file.uid,
+                                ...urlInfo
                             }
                         }
                     )
@@ -171,13 +177,18 @@ const AntdPictureUpload = (props) => {
                     },
                     listUploadTaskRecord: info.fileList.map(
                         (file) => {
+                            // 配置已完成上传文件下载链接
+                            let urlInfo = downloadUrl && file.status === 'done' ? {
+                                url: downloadUrl + `?taskId=${uploadId}&filename=${file.name}`
+                            } : {}
                             return {
                                 fileName: file.name,
                                 fileSize: file.size,
                                 completeTimestamp: uploadedFile2CompleteTime.get(file.uid) || new Date().getTime(),
                                 taskStatus: file.status === 'done' ? 'success' : 'failed',
                                 taskId: uploadId,
-                                uid: file.uid
+                                uid: file.uid,
+                                ...urlInfo
                             }
                         }
                     )
@@ -315,6 +326,9 @@ AntdPictureUpload.propTypes = {
 
     // 设置文件上传服务的接口url
     apiUrl: PropTypes.string,
+
+    // 可选，用于设置已上传完成文件的下载接口，get接口，具有参数taskId、filename
+    downloadUrl: PropTypes.string,
 
     // 设置是否添加图片裁切、旋转预处理功能，默认为false
     editable: PropTypes.bool,

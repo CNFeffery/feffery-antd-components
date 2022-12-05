@@ -127,7 +127,7 @@ const AntdDraggerUpload = (props) => {
                             (file) => {
                                 // 配置已完成上传文件下载链接
                                 let urlInfo = downloadUrl && file.status === 'done' ? {
-                                    url: downloadUrl + `?uploadId=${uploadId}&filename=${file.name}`
+                                    url: downloadUrl + `?taskId=${uploadId}&filename=${file.name}`
                                 } : {}
                                 return {
                                     fileName: file.name,
@@ -168,7 +168,7 @@ const AntdDraggerUpload = (props) => {
                                         (file) => {
                                             // 配置已完成上传文件下载链接
                                             let urlInfo = downloadUrl && file.status === 'done' ? {
-                                                url: downloadUrl + `?uploadId=${uploadId}&filename=${file.name}`
+                                                url: downloadUrl + `?taskId=${uploadId}&filename=${file.name}`
                                             } : {}
                                             return {
                                                 fileName: file.name,
@@ -200,7 +200,7 @@ const AntdDraggerUpload = (props) => {
                             (file) => {
                                 // 配置已完成上传文件下载链接
                                 let urlInfo = downloadUrl && file.status === 'done' ? {
-                                    url: downloadUrl + `?uploadId=${uploadId}&filename=${file.name}`
+                                    url: downloadUrl + `?taskId=${uploadId}&filename=${file.name}`
                                 } : {}
                                 return {
                                     fileName: file.name,
@@ -227,7 +227,7 @@ const AntdDraggerUpload = (props) => {
                             (file) => {
                                 // 配置已完成上传文件下载链接
                                 let urlInfo = downloadUrl && file.status === 'done' ? {
-                                    url: downloadUrl + `?uploadId=${uploadId}&filename=${file.name}`
+                                    url: downloadUrl + `?taskId=${uploadId}&filename=${file.name}`
                                 } : {}
                                 return {
                                     fileName: file.name,
@@ -361,7 +361,7 @@ AntdDraggerUpload.propTypes = {
     // 设置文件上传服务的接口url
     apiUrl: PropTypes.string,
 
-    // 可选，用于设置已上传完成文件的下载接口，get接口，具有参数uploadId、filename
+    // 可选，用于设置已上传完成文件的下载接口，get接口，具有参数taskId、filename
     downloadUrl: PropTypes.string,
 
     // 设置上传区域主要文字说明内容
