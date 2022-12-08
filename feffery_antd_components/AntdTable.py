@@ -71,7 +71,7 @@ Keyword arguments:
 
         - renderLinkText (string; optional)
 
-        - renderType (a value equal to: 'link', 'ellipsis', 'mini-line', 'mini-bar', 'mini-progress', 'mini-ring-progress', 'mini-area', 'tags', 'button', 'copyable', 'status-badge', 'image', 'custom-format', 'ellipsis-copyable', 'corner-mark', 'checkbox', 'switch', 'row-merge', 'dropdown-links'; optional)
+        - renderType (a value equal to: 'link', 'ellipsis', 'mini-line', 'mini-bar', 'mini-progress', 'mini-ring-progress', 'mini-area', 'tags', 'button', 'copyable', 'status-badge', 'image', 'custom-format', 'ellipsis-copyable', 'corner-mark', 'checkbox', 'switch', 'row-merge', 'dropdown-links', 'image-avatar'; optional)
 
         - ringProgressFontSize (number; optional)
 
@@ -203,7 +203,28 @@ Keyword arguments:
 
     - isDivider (boolean; optional)
 
-    - title (string; optional)
+    - title (string; optional) | dict with keys:
+
+    - shape (a value equal to: 'circle', 'square'; optional)
+
+    - size (dict; optional)
+
+        `size` is a number | a value equal to: 'large', 'small',
+        'default' | dict with keys:
+
+        - lg (number; optional)
+
+        - md (number; optional)
+
+        - sm (number; optional)
+
+        - xl (number; optional)
+
+        - xs (number; optional)
+
+        - xxl (number; optional)
+
+    - src (string; optional)
 
 - emptyContent (a list of or a singular dash component, string or number; optional)
 

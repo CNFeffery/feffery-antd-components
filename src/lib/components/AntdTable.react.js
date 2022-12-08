@@ -17,6 +17,7 @@ import {
     Badge,
     Space,
     Image,
+    Avatar,
     message
 } from 'antd';
 import { TinyLine, TinyArea, TinyColumn, Progress, RingProgress } from '@ant-design/charts';
@@ -840,6 +841,16 @@ class AntdTable extends Component {
                         <Image src={content.src} height={content.height} preview={content.preview} />
                     )
                 }
+                // image-avatar模式
+                else if (columns[i]['renderOptions']['renderType'] === 'image-avatar') {
+                    columns[i]['render'] = content => (
+                        <Avatar
+                            src={content?.src}
+                            size={content?.size}
+                            shape={content?.shape}
+                        />
+                    )
+                }
                 // checkbox模式
                 else if (columns[i]['renderOptions']['renderType'] === 'checkbox') {
                     columns[i]['render'] = (content, record) => {
@@ -1366,12 +1377,13 @@ AntdTable.propTypes = {
 
                 // 设置渲染处理类型，可选项有'link'、'ellipsis'、'mini-line'、'mini-bar'、'mini-progress'、'mini-area'、'tags'、'button'
                 // 'copyable'、'status-badge'、'image'、'custom-format'、'ellipsis-copyable'、'corner-mark'、'checkbox'、'switch'
-                // 'row-merge'、'dropdown-links'
+                // 'row-merge'、'dropdown-links'、'image-avatar'
                 renderType: PropTypes.oneOf([
                     'link', 'ellipsis', 'mini-line', 'mini-bar', 'mini-progress',
                     'mini-ring-progress', 'mini-area', 'tags', 'button', 'copyable',
                     'status-badge', 'image', 'custom-format', 'ellipsis-copyable',
-                    'corner-mark', 'checkbox', 'switch', 'row-merge', 'dropdown-links'
+                    'corner-mark', 'checkbox', 'switch', 'row-merge', 'dropdown-links',
+                    'image-avatar'
                 ]),
 
                 // 当renderType='link'时，此参数会将传入的字符串作为渲染link的显示文字内容
@@ -1731,7 +1743,31 @@ AntdTable.propTypes = {
                         // 设置当前节点是否充当分割线
                         isDivider: PropTypes.bool
                     })
-                )
+                ),
+
+                // image-avatar模式
+                PropTypes.exact({
+                    // 设置当前图片类型的头像资源地址
+                    src: PropTypes.string,
+                    // 设置头像尺寸大小，默认为'default'
+                    size: PropTypes.oneOfType([
+                        // 头像像素边长
+                        PropTypes.number,
+                        // 固定的规格，可选的有'large'、'small'及'default'
+                        PropTypes.oneOf(['large', 'small', 'default']),
+                        // 响应式size
+                        PropTypes.exact({
+                            xs: PropTypes.number,
+                            sm: PropTypes.number,
+                            md: PropTypes.number,
+                            lg: PropTypes.number,
+                            xl: PropTypes.number,
+                            xxl: PropTypes.number
+                        })
+                    ]),
+                    // 设置头像的形状，可选的有'circle'、'square'，默认为'circle'
+                    shape: PropTypes.oneOf(['circle', 'square'])
+                })
             ])
         )
     ),

@@ -44,20 +44,9 @@ app.layout = html.Div(
         ),
 
         fac.AntdPictureUpload(
-            apiUrl='/upload/',
-            fileMaxSize=1,
-            status='error',
-            # defaultFileList=[
-            #     {
-            #         'name': '文件1.png',
-            #         'status': 'done',
-            #         'uid': 'xxxx',
-            #         'url': 'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png'
-            #     }
-            # ],
-            listUploadTaskRecord=[{'fileName': '图1.png', 'fileSize': 45964, 'completeTimestamp': 1670073446090,
-                                   'taskStatus': 'success', 'taskId': 'be71301f-2ce6-40de-a373-fced714c4072', 'uid': 'rc-upload-1670073422366-3',
-                                   'url': 'http://127.0.0.1:9200/assets/imgs/%E9%99%A2logo.svg'}]
+            **{
+                'apiUrl': 'http://127.0.0.1:8200/upload/attachments', 'buttonContent': '点击上传', 'downloadUrl': 'http://127.0.0.1:8200/download/attachments', 'fileListMaxLength': 1, 'fileTypes': ['jpg', 'png', 'jpeg'], 'uploadId': 'a306796b-9502-4be8-8f17-d710ebaaa76d', 'lastUploadTaskRecord': {'fileName': '图2.png', 'fileSize': 167612, 'completeTimestamp': 1670205277832, 'taskStatus': 'success', 'taskId': 'a306796b-9502-4be8-8f17-d710ebaaa76d'}, 'listUploadTaskRecord': [{'fileName': '图2.png', 'fileSize': 167612, 'completeTimestamp': 1670205277832, 'taskStatus': 'success', 'taskId': 'a306796b-9502-4be8-8f17-d710ebaaa76d', 'uid': 'rc-upload-1670205272687-2', 'url': 'http://127.0.0.1:8200/download/attachments?taskId=a306796b-9502-4be8-8f17-d710ebaaa76d&filename=图2.png'}]
+            }
         ),
 
         fac.AntdDatePicker(
@@ -141,7 +130,7 @@ app.layout = html.Div(
 )
 
 
-@app.callback(
+@ app.callback(
     Output('modal-demo-1', 'visible'),
     Input('modal-demo-trigger-1', 'nClicks'),
     prevent_initial_call=True

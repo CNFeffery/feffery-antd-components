@@ -19,7 +19,7 @@ Those elements have the following types:
   - `dataIndex` (String; required)
   - `renderOptions` (optional): . renderOptions has the following type: lists containing elements 'renderType', 'renderLinkText', 'renderButtonPopConfirmProps', 'tooltipCustomContent', 'progressOneHundredPercentColor', 'ringProgressFontSize', 'dropdownProps'.
 Those elements have the following types:
-  - `renderType` (a value equal to: 'link', 'ellipsis', 'mini-line', 'mini-bar', 'mini-progress', 'mini-ring-progress', 'mini-area', 'tags', 'button', 'copyable', 'status-badge', 'image', 'custom-format', 'ellipsis-copyable', 'corner-mark', 'checkbox', 'switch', 'row-merge', 'dropdown-links'; optional)
+  - `renderType` (a value equal to: 'link', 'ellipsis', 'mini-line', 'mini-bar', 'mini-progress', 'mini-ring-progress', 'mini-area', 'tags', 'button', 'copyable', 'status-badge', 'image', 'custom-format', 'ellipsis-copyable', 'corner-mark', 'checkbox', 'switch', 'row-merge', 'dropdown-links', 'image-avatar'; optional)
   - `renderLinkText` (String; optional)
   - `renderButtonPopConfirmProps` (optional): . renderButtonPopConfirmProps has the following type: lists containing elements 'title', 'okText', 'cancelText'.
 Those elements have the following types:
@@ -114,7 +114,18 @@ Those elements have the following types:
   - `href` (String; optional)
   - `disabled` (Bool; optional)
   - `icon` (String; optional)
-  - `isDivider` (Bool; optional)ss
+  - `isDivider` (Bool; optional)s | lists containing elements 'src', 'size', 'shape'.
+Those elements have the following types:
+  - `src` (String; optional)
+  - `size` (optional): . size has the following type: Real | a value equal to: 'large', 'small', 'default' | lists containing elements 'xs', 'sm', 'md', 'lg', 'xl', 'xxl'.
+Those elements have the following types:
+  - `xs` (Real; optional)
+  - `sm` (Real; optional)
+  - `md` (Real; optional)
+  - `lg` (Real; optional)
+  - `xl` (Real; optional)
+  - `xxl` (Real; optional)
+  - `shape` (a value equal to: 'circle', 'square'; optional)s
 - `emptyContent` (a list of or a singular dash component, string or number; optional)
 - `enableCellClickListenColumns` (Bool; optional)
 - `enableHoverListen` (Bool; optional)
