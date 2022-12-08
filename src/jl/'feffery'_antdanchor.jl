@@ -13,6 +13,7 @@ Keyword arguments:
 - `align` (a value equal to: 'left', 'right'; optional)
 - `bounds` (Real; optional)
 - `className` (String | Dict; optional)
+- `clickedLink` (Dict; optional)
 - `containerId` (String; optional)
 - `key` (String; optional)
 - `linkDict` (optional)
@@ -26,7 +27,7 @@ Those elements have the following types:
 - `targetOffset` (Real; optional)
 """
 function 'feffery'_antdanchor(; kwargs...)
-        available_props = Symbol[:id, :affix, :align, :bounds, :className, :containerId, :key, :linkDict, :loading_state, :offsetTop, :style, :targetOffset]
+        available_props = Symbol[:id, :affix, :align, :bounds, :className, :clickedLink, :containerId, :key, :linkDict, :loading_state, :offsetTop, :style, :targetOffset]
         wild_props = Symbol[]
         return Component("'feffery'_antdanchor", "AntdAnchor", "feffery_antd_components", available_props, wild_props; kwargs...)
 end

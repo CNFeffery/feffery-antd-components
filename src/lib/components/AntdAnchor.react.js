@@ -4,7 +4,6 @@ import { useCss } from 'react-use';
 import { isString } from 'lodash';
 import { Anchor } from 'antd';
 
-
 const { Link } = Anchor;
 
 // 定义锚点组件AntdAnchor，api参数参考https://ant.design/components/anchor-cn/
@@ -22,7 +21,8 @@ const AntdAnchor = (props) => {
         affix,
         bounds,
         offsetTop,
-        loading_state
+        loading_state,
+        setProps
     } = props;
 
     const renderAnchorTree = (obj) => {
@@ -55,6 +55,13 @@ const AntdAnchor = (props) => {
         return obj;
     }
 
+    // 监听锚点被点击情况
+    const onClick = (e, link) => {
+        setProps({
+            clickedLink: link
+        })
+    }
+
     return (
         <div
             style={{ float: align }}
@@ -72,6 +79,7 @@ const AntdAnchor = (props) => {
                     }
                     style={style}
                     key={key}
+                    onClick={onClick}
                     getContainer={containerId ? (
                         document.getElementById(containerId) ? () => document.getElementById(containerId) : undefined
                     ) : undefined}
@@ -137,6 +145,9 @@ AntdAnchor.propTypes = {
     // 设置距离窗口顶部触发锚定效果的指定像素偏移量
     offsetTop: PropTypes.number,
 
+    // 监听锚点被点击事件
+    clickedLink: PropTypes.object,
+
     loading_state: PropTypes.shape({
         /**
          * Determines if the component is loading or not
@@ -164,5 +175,4 @@ AntdAnchor.defaultProps = {
     align: 'right'
 }
 
-
-export default AntdAnchor;
+export default React.memo(AntdAnchor);
