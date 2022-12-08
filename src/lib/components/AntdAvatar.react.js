@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { Avatar } from 'antd';
 import { useCss } from 'react-use';
@@ -180,4 +180,4 @@ AntdAvatar.defaultProps = {
     mode: 'icon'
 }
 
-export default AntdAvatar;
+export default React.memo(AntdAvatar);

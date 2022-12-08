@@ -3,6 +3,7 @@ from .AntdAffix import AntdAffix
 from .AntdAlert import AntdAlert
 from .AntdAnchor import AntdAnchor
 from .AntdAvatar import AntdAvatar
+from .AntdAvatarGroup import AntdAvatarGroup
 from .AntdBackTop import AntdBackTop
 from .AntdBadge import AntdBadge
 from .AntdBreadcrumb import AntdBreadcrumb
@@ -99,6 +100,7 @@ __all__ = [
     "AntdAlert",
     "AntdAnchor",
     "AntdAvatar",
+    "AntdAvatarGroup",
     "AntdBackTop",
     "AntdBadge",
     "AntdBreadcrumb",

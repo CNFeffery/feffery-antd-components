@@ -7,6 +7,39 @@ app = dash.Dash(__name__)
 
 app.layout = html.Div(
     [
+        fac.AntdAvatarGroup(
+            [
+                fac.AntdAvatar(
+                    mode='image',
+                    src='https://fac.feffery.tech/assets/imgs/avatar-demo.jpg'
+                ),
+                fac.AntdAvatar(
+                    mode='image',
+                    shape='square',
+                    src='https://fac.feffery.tech/assets/imgs/avatar-demo.jpg'
+                ),
+                fac.AntdAvatar(
+                    mode='image',
+                    src='https://fac.feffery.tech/assets/imgs/avatar-demo.jpg'
+                ),
+                fac.AntdAvatar(
+                    mode='image',
+                    shape='square',
+                    src='https://fac.feffery.tech/assets/imgs/avatar-demo.jpg'
+                ),
+                fac.AntdAvatar(
+                    mode='image',
+                    src='https://fac.feffery.tech/assets/imgs/avatar-demo.jpg'
+                ),
+                fac.AntdAvatar(
+                    mode='image',
+                    shape='square',
+                    src='https://fac.feffery.tech/assets/imgs/avatar-demo.jpg'
+                )
+            ],
+            maxCount=3
+        ),
+
         fac.AntdUpload(
             apiUrl='/upload/',
             fileMaxSize=1,
@@ -125,7 +158,7 @@ app.layout = html.Div(
         )
     ],
     style={
-        'padding': '50px'
+        'padding': '100px'
     }
 )
 

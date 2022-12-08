@@ -60,6 +60,7 @@ import AntdCountdown from './components/AntdCountdown.react';
 import AntdTimeline from './components/AntdTimeline.react';
 import AntdProgress from './components/AntdProgress.react';
 import AntdAvatar from './components/AntdAvatar.react';
+import AntdAvatarGroup from './components/AntdAvatarGroup.react';
 import AntdBadge from './components/AntdBadge.react';
 import AntdRibbon from './components/AntdRibbon.react';
 import AntdTimePicker from './components/AntdTimePicker.react';
@@ -179,6 +180,7 @@ export {
     AntdTimeline,
     AntdProgress,
     AntdAvatar,
+    AntdAvatarGroup,
     AntdBadge,
     AntdRibbon,
     AntdTimePicker,
