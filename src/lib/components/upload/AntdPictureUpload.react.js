@@ -66,8 +66,10 @@ const AntdPictureUpload = (props) => {
         setProps
     } = props;
 
+    listUploadTaskRecord = listUploadTaskRecord || []
+
     // 更新已上传文件 -> 上传完成时间映射字典
-    const uploadedFile2CompleteTime = parseHistoryTaskCompleteTime(listUploadTaskRecord || [])
+    const uploadedFile2CompleteTime = parseHistoryTaskCompleteTime(listUploadTaskRecord)
 
     useEffect(() => {
         // 初始化uploadId
