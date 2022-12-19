@@ -8,7 +8,7 @@ import { str2Locale } from './locales.react';
 export default class AntdTransfer extends Component {
     render() {
         // 取得必要属性或参数
-        var {
+        let {
             id,
             className,
             style,
@@ -24,6 +24,7 @@ export default class AntdTransfer extends Component {
             titles,
             disabled,
             targetKeys,
+            status,
             persistence,
             persisted_props,
             persistence_type,
@@ -62,6 +63,7 @@ export default class AntdTransfer extends Component {
                     showSelectAll={showSelectAll}
                     titles={titles}
                     disabled={disabled}
+                    status={status}
                     persistence={persistence}
                     persisted_props={persisted_props}
                     persistence_type={persistence_type}
@@ -136,6 +138,9 @@ AntdTransfer.propTypes = {
 
     // 设置是否禁用整个组件
     disabled: PropTypes.bool,
+
+    // 设置校验状态，可选的有'error'、'warning'
+    status: PropTypes.oneOf(['error', 'warning']),
 
     /**
      * Dash-assigned callback that should be called to report property changes

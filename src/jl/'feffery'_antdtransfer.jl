@@ -44,12 +44,13 @@ local: window.localStorage, data is kept after the browser quit.
 session: window.sessionStorage, data is cleared once the browser quit.
 - `showSearch` (Bool; optional)
 - `showSelectAll` (Bool; optional)
+- `status` (a value equal to: 'error', 'warning'; optional)
 - `style` (Dict; optional)
 - `targetKeys` (Array; optional)
 - `titles` (Array; optional)
 """
 function 'feffery'_antdtransfer(; kwargs...)
-        available_props = Symbol[:id, :className, :dataSource, :disabled, :height, :key, :loading_state, :locale, :moveDirection, :moveKeys, :operations, :pagination, :persisted_props, :persistence, :persistence_type, :showSearch, :showSelectAll, :style, :targetKeys, :titles]
+        available_props = Symbol[:id, :className, :dataSource, :disabled, :height, :key, :loading_state, :locale, :moveDirection, :moveKeys, :operations, :pagination, :persisted_props, :persistence, :persistence_type, :showSearch, :showSelectAll, :status, :style, :targetKeys, :titles]
         wild_props = Symbol[]
         return Component("'feffery'_antdtransfer", "AntdTransfer", "feffery_antd_components", available_props, wild_props; kwargs...)
 end
