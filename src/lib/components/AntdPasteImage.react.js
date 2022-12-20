@@ -2,7 +2,7 @@ import React, { useCallback } from 'react';
 import PropTypes from 'prop-types';
 import { Card, Button, ConfigProvider, Image as Image_ } from 'antd';
 import zhCN from 'antd/lib/locale/zh_CN';
-import { useCss } from 'react-use';
+import useCss from '../hooks/useCss';
 import { isString } from 'lodash';
 import { Gluejar } from '@charliewilco/gluejar'
 import { DeleteOutlined } from '@ant-design/icons';

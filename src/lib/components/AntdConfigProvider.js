@@ -82,4 +82,4 @@ AntdConfigProvider.propTypes = {
 AntdConfigProvider.defaultProps = {
 }
 
-export default React.memo(AntdConfigProvider);
+export default AntdConfigProvider;

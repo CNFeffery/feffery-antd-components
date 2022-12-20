@@ -2036,4 +2036,4 @@ AntdTable.defaultProps = {
     conditionalStyleFuncs: {}
 }
 
-export default React.memo(AntdTable);
+export default AntdTable;

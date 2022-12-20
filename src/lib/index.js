@@ -103,21 +103,21 @@ import AntdSpoiler from './components/AntdSpoiler.react';
 1. 数组推导形成的组件，每个子组件需要唯一的key
 2. 在原生html元素中携带小驼峰命名法的props
 */
-try {
-    consoleErrorBackup
-} catch (e) {
-    const consoleErrorBackup = console.error;
-    console.error = (msg) => {
-        const supressedWarnings = [
-            'Each child in a list should have a unique',
-            'React does not recognize the'
-        ];
+// try {
+//     consoleErrorBackup
+// } catch (e) {
+//     const consoleErrorBackup = console.error;
+//     console.error = (msg) => {
+//         const supressedWarnings = [
+//             'Each child in a list should have a unique',
+//             'React does not recognize the'
+//         ];
 
-        if (!supressedWarnings.some(entry => msg.includes && msg.includes(entry))) {
-            consoleErrorBackup(msg);
-        }
-    };
-}
+//         if (!supressedWarnings.some(entry => msg.includes && msg.includes(entry))) {
+//             consoleErrorBackup(msg);
+//         }
+//     };
+// }
 
 export {
     AntdDatePicker,

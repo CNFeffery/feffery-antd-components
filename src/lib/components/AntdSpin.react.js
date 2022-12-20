@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 import { Spin } from 'antd';
-import { useCss } from 'react-use';
+import useCss from '../hooks/useCss'
 import { isString } from 'lodash';
 import { parseChildrenToArray } from './utils';
 
@@ -82,7 +82,7 @@ const AntdSpin = (props) => {
         wrapperClassName={
             isString(wrapperClassName) ?
                 wrapperClassName :
-                (className ? useCss(wrapperClassName) : undefined)
+                (wrapperClassName ? useCss(wrapperClassName) : undefined)
         }
         style={style}
         spinning={showSpinning}

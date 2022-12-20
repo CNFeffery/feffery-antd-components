@@ -19,16 +19,16 @@
   border: 1px solid #434343;
 }
 
-.ant-table-thead > tr > th,
-.ant-table-tbody > tr > td,
-.ant-table tfoot > tr > th,
-.ant-table tfoot > tr > td {
+.ant-table-thead>tr>th,
+.ant-table-tbody>tr>td,
+.ant-table tfoot>tr>th,
+.ant-table tfoot>tr>td {
   position: relative;
   padding: 5px 5px;
   overflow-wrap: break-word;
 }
 
-.ant-table-tbody > tr {
+.ant-table-tbody>tr {
   height: 36px;
 }
 
@@ -150,4 +150,9 @@
 
 .ant-tree-draggable-icon {
   cursor: grab;
+}
+
+/* 确保spin容器高度继承自wrapperClassName */
+.ant-spin-nested-loading>.ant-spin-container {
+  height: inherit;
 }

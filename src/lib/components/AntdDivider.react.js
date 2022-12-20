@@ -150,4 +150,4 @@ AntdDivider.defaultProps = {
     fontColor: '#000000'
 }
 
-export default React.memo(AntdDivider);
+export default AntdDivider;

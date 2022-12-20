@@ -84,4 +84,4 @@ AntdSkeletonButton.propTypes = {
 AntdSkeletonButton.defaultProps = {
 }
 
-export default React.memo(AntdSkeletonButton);
+export default AntdSkeletonButton;

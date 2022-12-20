@@ -281,4 +281,4 @@ AntdSegmentedColoring.defaultProps = {
     pureLegend: false
 }
 
-export default React.memo(AntdSegmentedColoring);
+export default AntdSegmentedColoring;

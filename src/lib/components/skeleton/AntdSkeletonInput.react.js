@@ -74,4 +74,4 @@ AntdSkeletonInput.propTypes = {
 AntdSkeletonInput.defaultProps = {
 }
 
-export default React.memo(AntdSkeletonInput);
+export default AntdSkeletonInput;

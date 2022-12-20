@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { Statistic, Space } from 'antd';
 import AntdTooltip from './AntdTooltip.react';
 import AntdIcon from './AntdIcon.react';
-import { useCss } from 'react-use';
+import useCss from '../hooks/useCss';
 import { isString } from 'lodash';
 import { QuestionCircleOutlined } from "@ant-design/icons";
 

@@ -119,4 +119,4 @@ AntdCheckCardGroup.propTypes = {
 AntdCheckCardGroup.defaultProps = {
 }
 
-export default React.memo(AntdCheckCardGroup);
+export default AntdCheckCardGroup;

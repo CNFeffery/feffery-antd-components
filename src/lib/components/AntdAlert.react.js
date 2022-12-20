@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import TextLoop from 'react-text-loop'
 import { Alert } from 'antd';
-import { useCss } from 'react-use';
+import useCss from '../hooks/useCss';
 import { isString } from 'lodash';
 import Marquee from 'react-fast-marquee';
 

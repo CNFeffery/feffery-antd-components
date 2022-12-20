@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Avatar } from 'antd';
-import { useCss } from 'react-use';
+import useCss from '../hooks/useCss';
 import { isString } from 'lodash';
 
 // 定义头像组合组件AntdAvatarGroup，api参数参考https://ant.design/components/avatar-cn/
@@ -123,4 +123,4 @@ AntdAvatarGroup.propTypes = {
 AntdAvatarGroup.defaultProps = {
 }
 
-export default React.memo(AntdAvatarGroup);
+export default AntdAvatarGroup;

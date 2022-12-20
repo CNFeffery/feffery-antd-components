@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
-import { useCss } from 'react-use';
+import useCss from '../../hooks/useCss';
 import { isString } from 'lodash';
 
 import { parseChildrenToArray } from '../utils';

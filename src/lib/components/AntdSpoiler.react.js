@@ -133,4 +133,4 @@ AntdSpoiler.defaultProps = {
     transitionDuration: '0.1s'
 }
 
-export default React.memo(AntdSpoiler);
+export default AntdSpoiler;

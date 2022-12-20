@@ -85,4 +85,4 @@ AntdSkeletonAvatar.propTypes = {
 AntdSkeletonAvatar.defaultProps = {
 }
 
-export default React.memo(AntdSkeletonAvatar);
+export default AntdSkeletonAvatar;

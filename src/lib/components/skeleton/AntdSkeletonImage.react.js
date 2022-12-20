@@ -64,4 +64,4 @@ AntdSkeletonImage.propTypes = {
 AntdSkeletonImage.defaultProps = {
 }
 
-export default React.memo(AntdSkeletonImage);
+export default AntdSkeletonImage;

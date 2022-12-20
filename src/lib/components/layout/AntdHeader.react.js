@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { Layout } from 'antd';
 import { isString } from 'lodash';
-import { useCss } from 'react-use';
+import useCss from '../../hooks/useCss';
 
 import { parseChildrenToArray } from '../utils';
 

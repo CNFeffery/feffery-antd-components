@@ -82,4 +82,4 @@ AntdCardGrid.propTypes = {
 AntdCardGrid.defaultProps = {
 }
 
-export default React.memo(AntdCardGrid);
+export default AntdCardGrid;

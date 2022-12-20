@@ -1,6 +1,6 @@
 import { str2Icon } from './icons.react';
 import PropTypes from 'prop-types';
-import { useCss } from 'react-use';
+import useCss from '../hooks/useCss';
 import { isString } from 'lodash';
 
 import { useRequest } from 'ahooks';

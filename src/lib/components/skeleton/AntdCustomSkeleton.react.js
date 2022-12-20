@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 import { isString } from 'lodash';
-import { useCss } from 'react-use';
+import useCss from '../../hooks/useCss';
 
 import { parseChildrenToArray } from '../utils';
 

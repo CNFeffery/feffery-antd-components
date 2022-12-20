@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { useCss } from 'react-use';
+import useCss from '../hooks/useCss';
 import { isString } from 'lodash';
 import { Anchor } from 'antd';
 
@@ -175,4 +175,4 @@ AntdAnchor.defaultProps = {
     align: 'right'
 }
 
-export default React.memo(AntdAnchor);
+export default AntdAnchor;

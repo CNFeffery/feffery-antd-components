@@ -111,4 +111,4 @@ AntdCheckCard.propTypes = {
 AntdCheckCard.defaultProps = {
 }
 
-export default React.memo(AntdCheckCard);
+export default AntdCheckCard;
