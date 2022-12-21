@@ -25,7 +25,7 @@ const AntdBadge = (props) => {
         nClicks,
         loading_state,
         setProps
-    } = this.props;
+    } = props;
 
     return (
         <Badge

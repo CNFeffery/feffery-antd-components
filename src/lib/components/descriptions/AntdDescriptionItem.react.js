@@ -18,7 +18,7 @@ const AntdDescriptionItem = (props) => {
         contentStyle,
         setProps,
         loading_state
-    } = this.props;
+    } = props;
 
     children = parseChildrenToArray(children)
 

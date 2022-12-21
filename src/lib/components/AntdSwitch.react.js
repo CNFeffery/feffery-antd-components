@@ -22,7 +22,7 @@ const AntdSwitch = (props) => {
         persisted_props,
         persistence_type,
         loading_state
-    } = this.props;
+    } = props;
 
     useEffect(() => {
         if (defaultChecked) {

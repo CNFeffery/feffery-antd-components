@@ -20,7 +20,7 @@ const AntdCopyText = (props) => {
         afterIcon,
         setProps,
         loading_state
-    } = this.props;
+    } = props;
 
     return (
         <ConfigProvider locale={str2Locale.get(locale)}>
