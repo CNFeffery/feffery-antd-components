@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import moment from 'moment';
 import { Calendar, ConfigProvider } from 'antd';
@@ -6,61 +6,57 @@ import { str2Locale } from './locales.react';
 
 
 // 定义日历组件AntdCalendar，api参数参考https://ant.design/components/calendar-cn/
-export default class AntdCalendar extends Component {
+const AntdCalendar = (props) => {
+    // 取得必要属性或参数
+    let {
+        id,
+        className,
+        style,
+        key,
+        locale,
+        defaultValue,
+        value,
+        format,
+        size,
+        setProps,
+        loading_state,
+        persistence,
+        persisted_props,
+        persistence_type
+    } = props;
 
-    constructor(props) {
-        super(props)
+    useEffect(() => {
         // 初始化value
-        if (props.defaultValue && !props.value) {
+        if (defaultValue && !value) {
             // 当defaultValue不为空且value为空时，为value初始化defaultValue对应的value值
-            props.setProps({ value: props.defaultValue })
+            setProps({ value: defaultValue })
         }
-    }
+    }, [])
 
-    render() {
-        // 取得必要属性或参数
-        let {
-            id,
-            className,
-            style,
-            key,
-            locale,
-            defaultValue,
-            value,
-            format,
-            size,
-            setProps,
-            loading_state,
-            persistence,
-            persisted_props,
-            persistence_type
-        } = this.props;
+    const onSelect = e => {
+        setProps({
+            value: e.format(format)
+        })
+    };
 
-        const onSelect = e => {
-            setProps({
-                value: e.format(format)
-            })
-        };
-
-        return (
-            <ConfigProvider locale={str2Locale.get(locale)}>
-                <Calendar id={id}
-                    className={className}
-                    style={style}
-                    key={key}
-                    defaultValue={defaultValue && moment(defaultValue, format)}
-                    value={value && moment(value, format)}
-                    onSelect={onSelect}
-                    fullscreen={size !== 'default'}
-                    persistence={persistence}
-                    persisted_props={persisted_props}
-                    persistence_type={persistence_type}
-                    data-dash-is-loading={
-                        (loading_state && loading_state.is_loading) || undefined
-                    } />
-            </ConfigProvider>
-        );
-    }
+    return (
+        <ConfigProvider locale={str2Locale.get(locale)}>
+            <Calendar id={id}
+                className={className}
+                style={style}
+                key={key}
+                defaultValue={defaultValue && moment(defaultValue, format)}
+                value={value && moment(value, format)}
+                onSelect={onSelect}
+                fullscreen={size !== 'default'}
+                persistence={persistence}
+                persisted_props={persisted_props}
+                persistence_type={persistence_type}
+                data-dash-is-loading={
+                    (loading_state && loading_state.is_loading) || undefined
+                } />
+        </ConfigProvider>
+    );
 }
 
 // 定义参数或属性
@@ -151,3 +147,5 @@ AntdCalendar.defaultProps = {
     persistence_type: 'local',
     locale: 'zh-cn'
 }
+
+export default AntdCalendar;

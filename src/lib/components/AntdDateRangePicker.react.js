@@ -1,393 +1,389 @@
-import React, { Component } from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { DatePicker, ConfigProvider } from 'antd';
 import moment from 'moment';
-import { isString, isUndefined } from 'lodash';
+import { isUndefined } from 'lodash';
 import { str2Locale } from './locales.react';
 
 const { RangePicker } = DatePicker;
 
 // 定义日期范围选择组件AntdDateRangePicker，api参数参考https://ant.design/components/date-picker-cn/
-export default class AntdDateRangePicker extends Component {
+const AntdDateRangePicker = (props) => {
+    // 取得必要属性或参数
+    let {
+        id,
+        className,
+        style,
+        key,
+        locale,
+        setProps,
+        picker,
+        format,
+        showTime,
+        allowClear,
+        value,
+        disabledDatesStrategy,
+        defaultValue,
+        placeholder,
+        disabled,
+        bordered,
+        size,
+        defaultPickerValue,
+        status,
+        popupContainer,
+        readOnly,
+        persistence,
+        persisted_props,
+        persistence_type,
+        loading_state
+    } = props;
 
-    constructor(props) {
-        super(props)
+    useEffect(() => {
         // 初始化value
-        if (props.defaultValue && !props.value) {
+        if (defaultValue && !value) {
             // 当defaultValue不为空且value为空时，为value初始化defaultValue对应值
-            props.setProps({ value: props.defaultValue })
+            setProps({ value: defaultValue })
         }
 
         // 调整不同showTime下的format缺省参数
-        if (props.showTime && !props.format) {
-            props.setProps({
+        if (showTime && !format) {
+            setProps({
                 format: 'YYYY-MM-DD HH:mm:ss'
             })
-        } else if (!props.showTime && !props.format) {
-            props.setProps({
+        } else if (!showTime && !format) {
+            setProps({
                 format: 'YYYY-MM-DD'
             })
         }
 
         // defaultPickerValue为空时默认定位到今日对应面板位置
-        if (!props.defaultPickerValue) {
-            props.setProps({
+        if (!defaultPickerValue) {
+            setProps({
                 defaultPickerValue: moment(new Date()).format('YYYY-MM-DD')
             })
         }
-    }
+    }, [])
 
-    render() {
-        // 取得必要属性或参数
-        let {
-            id,
-            className,
-            style,
-            key,
-            locale,
-            setProps,
-            picker,
-            format,
-            showTime,
-            allowClear,
-            value,
-            disabledDatesStrategy,
-            defaultValue,
-            placeholder,
-            disabled,
-            bordered,
-            size,
-            defaultPickerValue,
-            status,
-            popupContainer,
-            readOnly,
-            persistence,
-            persisted_props,
-            persistence_type,
-            loading_state
-        } = this.props;
-
-        const onChange = (date, dateString) => {
-            if (Array.isArray(dateString)) {
-                if (dateString[0] !== '' && dateString[1] !== '') {
-                    setProps({ value: [dateString[0], dateString[1]] })
-                } else {
-                    setProps({ value: null })
-                }
+    const onChange = (date, dateString) => {
+        if (Array.isArray(dateString)) {
+            if (dateString[0] !== '' && dateString[1] !== '') {
+                setProps({ value: [dateString[0], dateString[1]] })
+            } else {
+                setProps({ value: null })
             }
         }
+    }
 
-        const checkDisabledDate = current => {
+    const checkDisabledDate = current => {
 
-            // 根据disabledDatesStrategy设定的各个子条件进行是否禁用判断
-            for (let i = 0; i < disabledDatesStrategy.length; i++) {
-                let strategy = disabledDatesStrategy[i];
-                // 判断当前子策略方式
-                if (strategy.mode === 'eq') {
-                    // 判断当前子策略约束目标
-                    if (strategy.target === 'day') {
-                        if (current.date() === strategy.value) {
-                            return true;
-                        }
-                    } else if (strategy.target === 'month') {
-                        if (current.month() === strategy.value) {
-                            return true;
-                        }
-                    } else if (strategy.target === 'quarter') {
-                        if (current.quarter() === strategy.value) {
-                            return true;
-                        }
-                    } else if (strategy.target === 'year') {
-                        if (current.year() === strategy.value) {
-                            return true;
-                        }
-                    } else if (strategy.target === 'dayOfYear') {
-                        if (current.dayOfYear() === strategy.value) {
-                            return true;
-                        }
-                    } else if (strategy.target === 'dayOfWeek') {
-                        if (current.isoWeekday() === strategy.value) {
-                            return true;
-                        }
-                    } else if (strategy.target === 'specific-date') {
-                        if (current.isSame(moment(strategy.value, 'YYYY-MM-DD'))) {
-                            return true;
-                        }
-                    }
-                } else if (strategy.mode === 'ne') {
-                    // 判断当前子策略约束目标
-                    if (strategy.target === 'day') {
-                        if (current.date() !== strategy.value) {
-                            return true;
-                        }
-                    } else if (strategy.target === 'month') {
-                        if (current.month() !== strategy.value) {
-                            return true;
-                        }
-                    } else if (strategy.target === 'quarter') {
-                        if (current.quarter() !== strategy.value) {
-                            return true;
-                        }
-                    } else if (strategy.target === 'year') {
-                        if (current.year() !== strategy.value) {
-                            return true;
-                        }
-                    } else if (strategy.target === 'dayOfYear') {
-                        if (current.dayOfYear() !== strategy.value) {
-                            return true;
-                        }
-                    } else if (strategy.target === 'dayOfWeek') {
-                        if (current.isoWeekday() !== strategy.value) {
-                            return true;
-                        }
-                    } else if (strategy.target === 'specific-date') {
-                        if (!current.isSame(moment(strategy.value, 'YYYY-MM-DD'))) {
-                            return true;
-                        }
-                    }
-                } else if (strategy.mode === 'le') {
-                    // 判断当前子策略约束目标
-                    if (strategy.target === 'day') {
-                        if (current.date() <= strategy.value) {
-                            return true;
-                        }
-                    } else if (strategy.target === 'month') {
-                        if (current.month() <= strategy.value) {
-                            return true;
-                        }
-                    } else if (strategy.target === 'quarter') {
-                        if (current.quarter() <= strategy.value) {
-                            return true;
-                        }
-                    } else if (strategy.target === 'year') {
-                        if (current.year() <= strategy.value) {
-                            return true;
-                        }
-                    } else if (strategy.target === 'dayOfYear') {
-                        if (current.dayOfYear() <= strategy.value) {
-                            return true;
-                        }
-                    } else if (strategy.target === 'dayOfWeek') {
-                        if (current.isoWeekday() <= strategy.value) {
-                            return true;
-                        }
-                    } else if (strategy.target === 'specific-date') {
-                        if (current.isSameOrBefore(moment(strategy.value, 'YYYY-MM-DD'))) {
-                            return true;
-                        }
-                    }
-                } else if (strategy.mode === 'lt') {
-                    // 判断当前子策略约束目标
-                    if (strategy.target === 'day') {
-                        if (current.date() < strategy.value) {
-                            return true;
-                        }
-                    } else if (strategy.target === 'month') {
-                        if (current.month() < strategy.value) {
-                            return true;
-                        }
-                    } else if (strategy.target === 'quarter') {
-                        if (current.quarter() < strategy.value) {
-                            return true;
-                        }
-                    } else if (strategy.target === 'year') {
-                        if (current.year() < strategy.value) {
-                            return true;
-                        }
-                    } else if (strategy.target === 'dayOfYear') {
-                        if (current.dayOfYear() < strategy.value) {
-                            return true;
-                        }
-                    } else if (strategy.target === 'dayOfWeek') {
-                        if (current.isoWeekday() < strategy.value) {
-                            return true;
-                        }
-                    } else if (strategy.target === 'specific-date') {
-                        if (current.isBefore(moment(strategy.value, 'YYYY-MM-DD'))) {
-                            return true;
-                        }
-                    }
-                } else if (strategy.mode === 'ge') {
-                    // 判断当前子策略约束目标
-                    if (strategy.target === 'day') {
-                        if (current.date() >= strategy.value) {
-                            return true;
-                        }
-                    } else if (strategy.target === 'month') {
-                        if (current.month() >= strategy.value) {
-                            return true;
-                        }
-                    } else if (strategy.target === 'quarter') {
-                        if (current.quarter() >= strategy.value) {
-                            return true;
-                        }
-                    } else if (strategy.target === 'year') {
-                        if (current.year() >= strategy.value) {
-                            return true;
-                        }
-                    } else if (strategy.target === 'dayOfYear') {
-                        if (current.dayOfYear() >= strategy.value) {
-                            return true;
-                        }
-                    } else if (strategy.target === 'dayOfWeek') {
-                        if (current.isoWeekday() >= strategy.value) {
-                            return true;
-                        }
-                    } else if (strategy.target === 'specific-date') {
-                        if (current.isSameOrAfter(moment(strategy.value, 'YYYY-MM-DD'))) {
-                            return true;
-                        }
-                    }
-                } else if (strategy.mode === 'gt') {
-                    // 判断当前子策略约束目标
-                    if (strategy.target === 'day') {
-                        if (current.date() > strategy.value) {
-                            return true;
-                        }
-                    } else if (strategy.target === 'month') {
-                        if (current.month() > strategy.value) {
-                            return true;
-                        }
-                    } else if (strategy.target === 'quarter') {
-                        if (current.quarter() > strategy.value) {
-                            return true;
-                        }
-                    } else if (strategy.target === 'year') {
-                        if (current.year() > strategy.value) {
-                            return true;
-                        }
-                    } else if (strategy.target === 'dayOfYear') {
-                        if (current.dayOfYear() > strategy.value) {
-                            return true;
-                        }
-                    } else if (strategy.target === 'dayOfWeek') {
-                        if (current.isoWeekday() > strategy.value) {
-                            return true;
-                        }
-                    } else if (strategy.target === 'specific-date') {
-                        if (current.isAfter(moment(strategy.value, 'YYYY-MM-DD'))) {
-                            return true;
-                        }
-                    }
-                } else if (strategy.mode === 'in') {
-                    // 判断当前子策略约束目标
-                    if (strategy.target === 'day') {
-                        if (strategy.value.includes(current.date())) {
-                            return true;
-                        }
-                    } else if (strategy.target === 'month') {
-                        if (strategy.value.includes(current.month())) {
-                            return true;
-                        }
-                    } else if (strategy.target === 'quarter') {
-                        if (strategy.value.includes(current.quarter())) {
-                            return true;
-                        }
-                    } else if (strategy.target === 'year') {
-                        if (strategy.value.includes(current.year())) {
-                            return true;
-                        }
-                    } else if (strategy.target === 'dayOfYear') {
-                        if (strategy.value.includes(current.dayOfYear())) {
-                            return true;
-                        }
-                    } else if (strategy.target === 'dayOfWeek') {
-                        if (strategy.value.includes(current.isoWeekday())) {
-                            return true;
-                        }
-                    }
-                } else if (strategy.mode === 'not-in') {
-                    // 判断当前子策略约束目标
-                    if (strategy.target === 'day') {
-                        if (!strategy.value.includes(current.date())) {
-                            return true;
-                        }
-                    } else if (strategy.target === 'month') {
-                        if (!strategy.value.includes(current.month())) {
-                            return true;
-                        }
-                    } else if (strategy.target === 'quarter') {
-                        if (!strategy.value.includes(current.quarter())) {
-                            return true;
-                        }
-                    } else if (strategy.target === 'year') {
-                        if (!strategy.value.includes(current.year())) {
-                            return true;
-                        }
-                    } else if (strategy.target === 'dayOfYear') {
-                        if (!strategy.value.includes(current.dayOfYear())) {
-                            return true;
-                        }
-                    } else if (strategy.target === 'dayOfWeek') {
-                        if (!strategy.value.includes(current.isoWeekday())) {
-                            return true;
-                        }
-                    }
-                } else if (strategy.mode === 'in-enumerate-dates') {
-                    if (strategy.value.includes(current.format(format))) {
+        // 根据disabledDatesStrategy设定的各个子条件进行是否禁用判断
+        for (let i = 0; i < disabledDatesStrategy.length; i++) {
+            let strategy = disabledDatesStrategy[i];
+            // 判断当前子策略方式
+            if (strategy.mode === 'eq') {
+                // 判断当前子策略约束目标
+                if (strategy.target === 'day') {
+                    if (current.date() === strategy.value) {
                         return true;
                     }
-                } else if (strategy.mode === 'not-in-enumerate-dates') {
-                    if (!strategy.value.includes(current.format(format))) {
+                } else if (strategy.target === 'month') {
+                    if (current.month() === strategy.value) {
+                        return true;
+                    }
+                } else if (strategy.target === 'quarter') {
+                    if (current.quarter() === strategy.value) {
+                        return true;
+                    }
+                } else if (strategy.target === 'year') {
+                    if (current.year() === strategy.value) {
+                        return true;
+                    }
+                } else if (strategy.target === 'dayOfYear') {
+                    if (current.dayOfYear() === strategy.value) {
+                        return true;
+                    }
+                } else if (strategy.target === 'dayOfWeek') {
+                    if (current.isoWeekday() === strategy.value) {
+                        return true;
+                    }
+                } else if (strategy.target === 'specific-date') {
+                    if (current.isSame(moment(strategy.value, 'YYYY-MM-DD'))) {
                         return true;
                     }
                 }
+            } else if (strategy.mode === 'ne') {
+                // 判断当前子策略约束目标
+                if (strategy.target === 'day') {
+                    if (current.date() !== strategy.value) {
+                        return true;
+                    }
+                } else if (strategy.target === 'month') {
+                    if (current.month() !== strategy.value) {
+                        return true;
+                    }
+                } else if (strategy.target === 'quarter') {
+                    if (current.quarter() !== strategy.value) {
+                        return true;
+                    }
+                } else if (strategy.target === 'year') {
+                    if (current.year() !== strategy.value) {
+                        return true;
+                    }
+                } else if (strategy.target === 'dayOfYear') {
+                    if (current.dayOfYear() !== strategy.value) {
+                        return true;
+                    }
+                } else if (strategy.target === 'dayOfWeek') {
+                    if (current.isoWeekday() !== strategy.value) {
+                        return true;
+                    }
+                } else if (strategy.target === 'specific-date') {
+                    if (!current.isSame(moment(strategy.value, 'YYYY-MM-DD'))) {
+                        return true;
+                    }
+                }
+            } else if (strategy.mode === 'le') {
+                // 判断当前子策略约束目标
+                if (strategy.target === 'day') {
+                    if (current.date() <= strategy.value) {
+                        return true;
+                    }
+                } else if (strategy.target === 'month') {
+                    if (current.month() <= strategy.value) {
+                        return true;
+                    }
+                } else if (strategy.target === 'quarter') {
+                    if (current.quarter() <= strategy.value) {
+                        return true;
+                    }
+                } else if (strategy.target === 'year') {
+                    if (current.year() <= strategy.value) {
+                        return true;
+                    }
+                } else if (strategy.target === 'dayOfYear') {
+                    if (current.dayOfYear() <= strategy.value) {
+                        return true;
+                    }
+                } else if (strategy.target === 'dayOfWeek') {
+                    if (current.isoWeekday() <= strategy.value) {
+                        return true;
+                    }
+                } else if (strategy.target === 'specific-date') {
+                    if (current.isSameOrBefore(moment(strategy.value, 'YYYY-MM-DD'))) {
+                        return true;
+                    }
+                }
+            } else if (strategy.mode === 'lt') {
+                // 判断当前子策略约束目标
+                if (strategy.target === 'day') {
+                    if (current.date() < strategy.value) {
+                        return true;
+                    }
+                } else if (strategy.target === 'month') {
+                    if (current.month() < strategy.value) {
+                        return true;
+                    }
+                } else if (strategy.target === 'quarter') {
+                    if (current.quarter() < strategy.value) {
+                        return true;
+                    }
+                } else if (strategy.target === 'year') {
+                    if (current.year() < strategy.value) {
+                        return true;
+                    }
+                } else if (strategy.target === 'dayOfYear') {
+                    if (current.dayOfYear() < strategy.value) {
+                        return true;
+                    }
+                } else if (strategy.target === 'dayOfWeek') {
+                    if (current.isoWeekday() < strategy.value) {
+                        return true;
+                    }
+                } else if (strategy.target === 'specific-date') {
+                    if (current.isBefore(moment(strategy.value, 'YYYY-MM-DD'))) {
+                        return true;
+                    }
+                }
+            } else if (strategy.mode === 'ge') {
+                // 判断当前子策略约束目标
+                if (strategy.target === 'day') {
+                    if (current.date() >= strategy.value) {
+                        return true;
+                    }
+                } else if (strategy.target === 'month') {
+                    if (current.month() >= strategy.value) {
+                        return true;
+                    }
+                } else if (strategy.target === 'quarter') {
+                    if (current.quarter() >= strategy.value) {
+                        return true;
+                    }
+                } else if (strategy.target === 'year') {
+                    if (current.year() >= strategy.value) {
+                        return true;
+                    }
+                } else if (strategy.target === 'dayOfYear') {
+                    if (current.dayOfYear() >= strategy.value) {
+                        return true;
+                    }
+                } else if (strategy.target === 'dayOfWeek') {
+                    if (current.isoWeekday() >= strategy.value) {
+                        return true;
+                    }
+                } else if (strategy.target === 'specific-date') {
+                    if (current.isSameOrAfter(moment(strategy.value, 'YYYY-MM-DD'))) {
+                        return true;
+                    }
+                }
+            } else if (strategy.mode === 'gt') {
+                // 判断当前子策略约束目标
+                if (strategy.target === 'day') {
+                    if (current.date() > strategy.value) {
+                        return true;
+                    }
+                } else if (strategy.target === 'month') {
+                    if (current.month() > strategy.value) {
+                        return true;
+                    }
+                } else if (strategy.target === 'quarter') {
+                    if (current.quarter() > strategy.value) {
+                        return true;
+                    }
+                } else if (strategy.target === 'year') {
+                    if (current.year() > strategy.value) {
+                        return true;
+                    }
+                } else if (strategy.target === 'dayOfYear') {
+                    if (current.dayOfYear() > strategy.value) {
+                        return true;
+                    }
+                } else if (strategy.target === 'dayOfWeek') {
+                    if (current.isoWeekday() > strategy.value) {
+                        return true;
+                    }
+                } else if (strategy.target === 'specific-date') {
+                    if (current.isAfter(moment(strategy.value, 'YYYY-MM-DD'))) {
+                        return true;
+                    }
+                }
+            } else if (strategy.mode === 'in') {
+                // 判断当前子策略约束目标
+                if (strategy.target === 'day') {
+                    if (strategy.value.includes(current.date())) {
+                        return true;
+                    }
+                } else if (strategy.target === 'month') {
+                    if (strategy.value.includes(current.month())) {
+                        return true;
+                    }
+                } else if (strategy.target === 'quarter') {
+                    if (strategy.value.includes(current.quarter())) {
+                        return true;
+                    }
+                } else if (strategy.target === 'year') {
+                    if (strategy.value.includes(current.year())) {
+                        return true;
+                    }
+                } else if (strategy.target === 'dayOfYear') {
+                    if (strategy.value.includes(current.dayOfYear())) {
+                        return true;
+                    }
+                } else if (strategy.target === 'dayOfWeek') {
+                    if (strategy.value.includes(current.isoWeekday())) {
+                        return true;
+                    }
+                }
+            } else if (strategy.mode === 'not-in') {
+                // 判断当前子策略约束目标
+                if (strategy.target === 'day') {
+                    if (!strategy.value.includes(current.date())) {
+                        return true;
+                    }
+                } else if (strategy.target === 'month') {
+                    if (!strategy.value.includes(current.month())) {
+                        return true;
+                    }
+                } else if (strategy.target === 'quarter') {
+                    if (!strategy.value.includes(current.quarter())) {
+                        return true;
+                    }
+                } else if (strategy.target === 'year') {
+                    if (!strategy.value.includes(current.year())) {
+                        return true;
+                    }
+                } else if (strategy.target === 'dayOfYear') {
+                    if (!strategy.value.includes(current.dayOfYear())) {
+                        return true;
+                    }
+                } else if (strategy.target === 'dayOfWeek') {
+                    if (!strategy.value.includes(current.isoWeekday())) {
+                        return true;
+                    }
+                }
+            } else if (strategy.mode === 'in-enumerate-dates') {
+                if (strategy.value.includes(current.format(format))) {
+                    return true;
+                }
+            } else if (strategy.mode === 'not-in-enumerate-dates') {
+                if (!strategy.value.includes(current.format(format))) {
+                    return true;
+                }
             }
         }
-
-        // 返回定制化的前端组件
-        return (
-            <div>
-                <ConfigProvider locale={str2Locale.get(locale)}>
-                    <RangePicker
-                        id={id}
-                        className={className}
-                        style={style}
-                        key={key}
-                        format={format}
-                        size={size}
-                        picker={picker}
-                        showTime={showTime}
-                        allowClear={isUndefined(readOnly) ? allowClear : !readOnly}
-                        disabled={(disabled && disabled.length === 2) ? disabled : undefined}
-                        placeholder={(placeholder && placeholder.length === 2) ? placeholder : undefined}
-                        onChange={onChange}
-                        bordered={bordered}
-                        disabledDate={disabledDatesStrategy ? checkDisabledDate : undefined}
-                        defaultPickerValue={
-                            defaultPickerValue ?
-                                moment(defaultPickerValue, format) :
-                                undefined}
-                        value={
-                            (value && value.length === 2) ?
-                                [value[0] ? moment(value[0], format) : undefined,
-                                value[1] ? moment(value[1], format) : undefined] :
-                                undefined
-                        }
-                        defaultValue={
-                            (defaultValue && defaultValue.length === 2) ?
-                                [defaultValue[0] ? moment(defaultValue[0], format) : undefined,
-                                defaultValue[1] ? moment(defaultValue[1], format) : undefined] :
-                                undefined
-                        }
-                        status={status}
-                        open={isUndefined(readOnly) ? undefined : !readOnly}
-                        persistence={persistence}
-                        persisted_props={persisted_props}
-                        persistence_type={persistence_type}
-                        data-dash-is-loading={
-                            (loading_state && loading_state.is_loading) || undefined
-                        }
-                        getPopupContainer={
-                            popupContainer === 'parent' ?
-                                (triggerNode) => triggerNode.parentNode :
-                                undefined
-                        }
-                    />
-                </ConfigProvider>
-            </div>
-        );
     }
+
+    // 返回定制化的前端组件
+    return (
+        <div>
+            <ConfigProvider locale={str2Locale.get(locale)}>
+                <RangePicker
+                    id={id}
+                    className={className}
+                    style={style}
+                    key={key}
+                    format={format}
+                    size={size}
+                    picker={picker}
+                    showTime={showTime}
+                    allowClear={isUndefined(readOnly) ? allowClear : !readOnly}
+                    disabled={(disabled && disabled.length === 2) ? disabled : undefined}
+                    placeholder={(placeholder && placeholder.length === 2) ? placeholder : undefined}
+                    onChange={onChange}
+                    bordered={bordered}
+                    disabledDate={disabledDatesStrategy ? checkDisabledDate : undefined}
+                    defaultPickerValue={
+                        defaultPickerValue ?
+                            moment(defaultPickerValue, format) :
+                            undefined}
+                    value={
+                        (value && value.length === 2) ?
+                            [value[0] ? moment(value[0], format) : undefined,
+                            value[1] ? moment(value[1], format) : undefined] :
+                            undefined
+                    }
+                    defaultValue={
+                        (defaultValue && defaultValue.length === 2) ?
+                            [defaultValue[0] ? moment(defaultValue[0], format) : undefined,
+                            defaultValue[1] ? moment(defaultValue[1], format) : undefined] :
+                            undefined
+                    }
+                    status={status}
+                    open={isUndefined(readOnly) ? undefined : !readOnly}
+                    persistence={persistence}
+                    persisted_props={persisted_props}
+                    persistence_type={persistence_type}
+                    data-dash-is-loading={
+                        (loading_state && loading_state.is_loading) || undefined
+                    }
+                    getPopupContainer={
+                        popupContainer === 'parent' ?
+                            (triggerNode) => triggerNode.parentNode :
+                            undefined
+                    }
+                />
+            </ConfigProvider>
+        </div>
+    );
 }
 
 // 定义参数或属性
@@ -540,3 +536,5 @@ AntdDateRangePicker.defaultProps = {
     locale: 'zh-cn',
     popupContainer: 'body'
 }
+
+export default AntdDateRangePicker;

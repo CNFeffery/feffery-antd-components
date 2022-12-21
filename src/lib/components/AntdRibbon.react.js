@@ -1,41 +1,38 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { Badge } from 'antd';
 
 
 // 定义缎带组件AntdRibbon，api参数参考https://ant.design/components/badge-cn/#Badge.Ribbon-(4.5.0+)
-export default class AntdRibbon extends Component {
-    render() {
-        // 取得必要属性或参数
-        let {
-            id,
-            children,
-            className,
-            style,
-            key,
-            color,
-            placement,
-            text,
-            loading_state,
-            setProps
-        } = this.props;
+const AntdRibbon = (props) => {
+    // 取得必要属性或参数
+    let {
+        id,
+        children,
+        className,
+        style,
+        key,
+        color,
+        placement,
+        text,
+        loading_state,
+        setProps
+    } = props;
 
-        // icon图标模式
-        return (
-            <Badge.Ribbon
-                id={id}
-                className={className}
-                style={style}
-                key={key}
-                color={color}
-                placement={placement}
-                text={text}
-                data-dash-is-loading={
-                    (loading_state && loading_state.is_loading) || undefined
-                }
-            >{children}</Badge.Ribbon>
-        );
-    }
+    return (
+        <Badge.Ribbon
+            id={id}
+            className={className}
+            style={style}
+            key={key}
+            color={color}
+            placement={placement}
+            text={text}
+            data-dash-is-loading={
+                (loading_state && loading_state.is_loading) || undefined
+            }
+        >{children}</Badge.Ribbon>
+    );
 }
 
 // 定义参数或属性
@@ -89,3 +86,5 @@ AntdRibbon.propTypes = {
 // 设置默认参数
 AntdRibbon.defaultProps = {
 }
+
+export default AntdRibbon;

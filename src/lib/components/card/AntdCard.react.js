@@ -1,69 +1,67 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { Card } from 'antd';
 
 import { parseChildrenToArray } from '../utils';
 
 // 定义卡片组件AntdCard，api参数参考https://ant.design/components/card-cn/
-export default class AntdCard extends Component {
-    render() {
-        // 取得必要属性或参数
-        let {
-            id,
-            children,
-            className,
-            style,
-            key,
-            extraLink,
-            coverImg,
-            bodyStyle,
-            headStyle,
-            bordered,
-            hoverable,
-            size,
-            title,
-            setProps,
-            loading_state
-        } = this.props;
+const AntdCard = (props) => {
+    // 取得必要属性或参数
+    let {
+        id,
+        children,
+        className,
+        style,
+        key,
+        extraLink,
+        coverImg,
+        bodyStyle,
+        headStyle,
+        bordered,
+        hoverable,
+        size,
+        title,
+        setProps,
+        loading_state
+    } = props;
 
-        children = parseChildrenToArray(children)
+    children = parseChildrenToArray(children)
 
-        return (
-            <Card id={id}
-                className={className}
-                style={style}
-                key={key}
-                bodyStyle={{
-                    // 确保网格卡片排布正常
-                    display: 'flex',
-                    flexWrap: 'wrap',
-                    ...bodyStyle
-                }}
-                headStyle={headStyle}
-                extra={
-                    <a className={extraLink?.className}
-                        style={extraLink?.style}
-                        href={extraLink?.href}
-                        target={extraLink?.target || '_blank'}>
-                        {extraLink?.content}
-                    </a>
-                }
-                cover={
-                    <img alt={coverImg?.alt}
-                        src={coverImg?.src}
-                        style={coverImg?.style} />
-                }
-                bordered={bordered}
-                hoverable={hoverable}
-                size={size}
-                title={title}
-                data-dash-is-loading={
-                    (loading_state && loading_state.is_loading) || undefined
-                }>
-                {children}
-            </Card>
-        );
-    }
+    return (
+        <Card id={id}
+            className={className}
+            style={style}
+            key={key}
+            bodyStyle={{
+                // 确保网格卡片排布正常
+                display: 'flex',
+                flexWrap: 'wrap',
+                ...bodyStyle
+            }}
+            headStyle={headStyle}
+            extra={
+                <a className={extraLink?.className}
+                    style={extraLink?.style}
+                    href={extraLink?.href}
+                    target={extraLink?.target || '_blank'}>
+                    {extraLink?.content}
+                </a>
+            }
+            cover={
+                <img alt={coverImg?.alt}
+                    src={coverImg?.src}
+                    style={coverImg?.style} />
+            }
+            bordered={bordered}
+            hoverable={hoverable}
+            size={size}
+            title={title}
+            data-dash-is-loading={
+                (loading_state && loading_state.is_loading) || undefined
+            }>
+            {children}
+        </Card>
+    );
 }
 
 // 定义参数或属性
@@ -158,3 +156,5 @@ AntdCard.propTypes = {
 // 设置默认参数
 AntdCard.defaultProps = {
 }
+
+export default AntdCard;

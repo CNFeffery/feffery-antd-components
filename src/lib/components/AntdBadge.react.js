@@ -1,61 +1,57 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { Badge } from 'antd';
 
 
 // 定义徽标组件AntdBadge，api参数参考https://ant.design/components/badge-cn/
-export default class AntdBadge extends Component {
-    render() {
-        // 取得必要属性或参数
-        let {
-            id,
-            children,
-            className,
-            style,
-            key,
-            color,
-            count,
-            dot,
-            offset,
-            overflowCount,
-            showZero,
-            status,
-            text,
-            title,
-            size,
-            nClicks,
-            loading_state,
-            setProps
-        } = this.props;
+const AntdBadge = (props) => {
+    // 取得必要属性或参数
+    let {
+        id,
+        children,
+        className,
+        style,
+        key,
+        color,
+        count,
+        dot,
+        offset,
+        overflowCount,
+        showZero,
+        status,
+        text,
+        title,
+        size,
+        nClicks,
+        loading_state,
+        setProps
+    } = this.props;
 
-        // icon图标模式
-        return (
-            <Badge
-                id={id}
-                className={className}
-                style={style}
-                key={key}
-                color={color}
-                count={count}
-                dot={dot}
-                offset={offset?.length === 2 ? offset : undefined}
-                overflowCount={overflowCount}
-                showZero={showZero}
-                status={status}
-                text={text}
-                title={title}
-                size={size}
-                onClick={() => {
-                    nClicks++;
-                    setProps({ nClicks: nClicks })
-                }}
-                data-dash-is-loading={
-                    (loading_state && loading_state.is_loading) || undefined
-                }
-            >{children}</Badge>
-        );
-
-    }
+    return (
+        <Badge
+            id={id}
+            className={className}
+            style={style}
+            key={key}
+            color={color}
+            count={count}
+            dot={dot}
+            offset={offset?.length === 2 ? offset : undefined}
+            overflowCount={overflowCount}
+            showZero={showZero}
+            status={status}
+            text={text}
+            title={title}
+            size={size}
+            onClick={() => {
+                nClicks++;
+                setProps({ nClicks: nClicks })
+            }}
+            data-dash-is-loading={
+                (loading_state && loading_state.is_loading) || undefined
+            }
+        >{children}</Badge>
+    );
 }
 
 // 定义参数或属性
@@ -136,3 +132,5 @@ AntdBadge.propTypes = {
 AntdBadge.defaultProps = {
     nClicks: 0
 }
+
+export default AntdBadge;

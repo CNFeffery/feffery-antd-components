@@ -1,64 +1,61 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { notification } from 'antd';
 
 
 // 定义通知提醒框组件AntdNotification，api参数参考https://ant.design/components/notification-cn/
-export default class AntdNotification extends Component {
+const AntdNotification = (props) => {
+    // 取得必要属性或参数
+    let {
+        id,
+        className,
+        style,
+        key,
+        message,
+        description,
+        type,
+        placement,
+        top,
+        bottom,
+        duration,
+        closable,
+        loading_state,
+        setProps
+    } = props;
 
-    render() {
-        // 取得必要属性或参数
-        let {
-            id,
-            className,
-            style,
-            key,
-            message,
-            description,
-            type,
-            placement,
-            top,
-            bottom,
-            duration,
-            closable,
-            loading_state,
-            setProps
-        } = this.props;
-
-        let config = {
-            className: className,
-            style: style,
-            message: message,
-            description: description,
-            placement: placement,
-            top: top,
-            bottom: bottom,
-            duration: duration,
-            closeIcon: closable ? undefined : <span style={{ visibility: "hidden" }} />
-        }
-
-        if (type === 'default') {
-            notification.open(config)
-        } else if (type === 'success') {
-            notification.success(config)
-        } else if (type === 'error') {
-            notification.error(config)
-        } else if (type === 'info') {
-            notification.info(config)
-        } else if (type === 'warning') {
-            notification.warning(config)
-        }
-
-        return (
-            <div
-                id={id}
-                key={key}
-                data-dash-is-loading={
-                    (loading_state && loading_state.is_loading) || undefined
-                }
-            ></div>
-        );
+    let config = {
+        className: className,
+        style: style,
+        message: message,
+        description: description,
+        placement: placement,
+        top: top,
+        bottom: bottom,
+        duration: duration,
+        closeIcon: closable ? undefined : <span style={{ visibility: "hidden" }} />
     }
+
+    if (type === 'default') {
+        notification.open(config)
+    } else if (type === 'success') {
+        notification.success(config)
+    } else if (type === 'error') {
+        notification.error(config)
+    } else if (type === 'info') {
+        notification.info(config)
+    } else if (type === 'warning') {
+        notification.warning(config)
+    }
+
+    return (
+        <div
+            id={id}
+            key={key}
+            data-dash-is-loading={
+                (loading_state && loading_state.is_loading) || undefined
+            }
+        ></div>
+    );
 }
 
 // 定义参数或属性
@@ -126,3 +123,5 @@ AntdNotification.defaultProps = {
     type: 'default',
     closable: true
 }
+
+export default AntdNotification;

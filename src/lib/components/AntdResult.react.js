@@ -1,42 +1,39 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { Result } from 'antd';
 import { LoadingOutlined } from '@ant-design/icons';
 
 
 // 定义结果组件AntdResult，api参数参考https://ant.design/components/result-cn/
-export default class AntdResult extends Component {
-    render() {
-        // 取得必要属性或参数
-        let {
-            id,
-            className,
-            style,
-            key,
-            status,
-            title,
-            subTitle,
-            icon,
-            loading_state,
-            setProps
-        } = this.props;
+const AntdResult = (props) => {
+    // 取得必要属性或参数
+    let {
+        id,
+        className,
+        style,
+        key,
+        status,
+        title,
+        subTitle,
+        icon,
+        loading_state,
+        setProps
+    } = props;
 
-
-        return (
-            <Result id={id}
-                className={className}
-                style={style}
-                key={key}
-                icon={icon || (status === 'loading' ? <LoadingOutlined style={{ color: '#1890ff' }} /> : undefined)}
-                status={status}
-                title={title}
-                subTitle={subTitle}
-                data-dash-is-loading={
-                    (loading_state && loading_state.is_loading) || undefined
-                }>
-            </Result>
-        );
-    }
+    return (
+        <Result id={id}
+            className={className}
+            style={style}
+            key={key}
+            icon={icon || (status === 'loading' ? <LoadingOutlined style={{ color: '#1890ff' }} /> : undefined)}
+            status={status}
+            title={title}
+            subTitle={subTitle}
+            data-dash-is-loading={
+                (loading_state && loading_state.is_loading) || undefined
+            }>
+        </Result>
+    );
 }
 
 // 定义参数或属性
@@ -90,3 +87,5 @@ AntdResult.propTypes = {
 
 // 设置默认参数
 AntdResult.defaultProps = {}
+
+export default AntdResult;

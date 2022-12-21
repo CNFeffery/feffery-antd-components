@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { Empty, ConfigProvider } from 'antd';
 import { str2Locale } from './locales.react';
@@ -10,38 +10,36 @@ const builtinImage = new Map([
 ])
 
 // 定义空状态组件AntdEmpty，api参数参考https://ant.design/components/empty-cn/
-export default class AntdEmpty extends Component {
-    render() {
-        // 取得必要属性或参数
-        let {
-            id,
-            children,
-            className,
-            style,
-            key,
-            locale,
-            description,
-            image,
-            imageStyle,
-            setProps,
-            loading_state
-        } = this.props;
+const AntdEmpty = (props) => {
+    // 取得必要属性或参数
+    let {
+        id,
+        children,
+        className,
+        style,
+        key,
+        locale,
+        description,
+        image,
+        imageStyle,
+        setProps,
+        loading_state
+    } = props;
 
-        return (
-            <ConfigProvider locale={str2Locale.get(locale)}>
-                <Empty id={id}
-                    className={className}
-                    style={style}
-                    key={key}
-                    description={description}
-                    image={builtinImage.get(image) || image}
-                    imageStyle={imageStyle}
-                    data-dash-is-loading={
-                        (loading_state && loading_state.is_loading) || undefined
-                    } >{children}</Empty>
-            </ConfigProvider>
-        );
-    }
+    return (
+        <ConfigProvider locale={str2Locale.get(locale)}>
+            <Empty id={id}
+                className={className}
+                style={style}
+                key={key}
+                description={description} m
+                image={builtinImage.get(image) || image}
+                imageStyle={imageStyle}
+                data-dash-is-loading={
+                    (loading_state && loading_state.is_loading) || undefined
+                } >{children}</Empty>
+        </ConfigProvider>
+    );
 }
 
 // 定义参数或属性
@@ -103,3 +101,5 @@ AntdEmpty.propTypes = {
 AntdEmpty.defaultProps = {
     locale: 'zh-cn'
 }
+
+export default AntdEmpty;

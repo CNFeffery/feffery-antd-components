@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { Dropdown, Menu, Button } from 'antd';
 import AntdIcon from './AntdIcon.react';
@@ -6,96 +6,94 @@ import { DownOutlined } from '@ant-design/icons';
 
 
 // 定义下拉菜单组件AntdDropdown，api参数参考https://ant.design/components/dropdown-cn/
-export default class AntdDropdown extends Component {
-    render() {
-        // 取得必要属性或参数
-        let {
-            id,
-            className,
-            style,
-            key,
-            title,
-            buttonMode,
-            arrow,
-            disabled,
-            overlayClassName,
-            overlayStyle,
-            placement,
-            trigger,
-            visible,
-            menuItems,
-            nClicks,
-            popupContainer,
-            buttonProps,
-            setProps,
-            loading_state
-        } = this.props;
+const AntdDropdown = (props) => {
+    // 取得必要属性或参数
+    let {
+        id,
+        className,
+        style,
+        key,
+        title,
+        buttonMode,
+        arrow,
+        disabled,
+        overlayClassName,
+        overlayStyle,
+        placement,
+        trigger,
+        visible,
+        menuItems,
+        nClicks,
+        popupContainer,
+        buttonProps,
+        setProps,
+        loading_state
+    } = props;
 
-        return (
-            <Dropdown id={id}
-                className={className}
-                style={style}
-                key={key}
-                overlay={
-                    <Menu onClick={(item, key, keyPath, domEvent) => (
-                        setProps({
-                            clickedKey: item.key,
-                            nClicks: nClicks + 1
-                        })
-                    )}>
-                        {
-                            menuItems.map(
-                                menuItem => (
-                                    // 判断isDivider参数是否不为false
-                                    menuItem.isDivider ?
-                                        <Menu.Divider /> :
-                                        <Menu.Item icon={<AntdIcon icon={menuItem.icon} />}
-                                            disabled={menuItem.disabled}
-                                            key={menuItem.key ? menuItem.key : menuItem.title}>
-                                            <a href={menuItem.href}
-                                                target={menuItem.target}>
-                                                {menuItem.title}
-                                            </a>
-                                        </Menu.Item>
-                                )
+    return (
+        <Dropdown id={id}
+            className={className}
+            style={style}
+            key={key}
+            overlay={
+                <Menu onClick={(item, key, keyPath, domEvent) => (
+                    setProps({
+                        clickedKey: item.key,
+                        nClicks: nClicks + 1
+                    })
+                )}>
+                    {
+                        menuItems.map(
+                            menuItem => (
+                                // 判断isDivider参数是否不为false
+                                menuItem.isDivider ?
+                                    <Menu.Divider /> :
+                                    <Menu.Item icon={<AntdIcon icon={menuItem.icon} />}
+                                        disabled={menuItem.disabled}
+                                        key={menuItem.key ? menuItem.key : menuItem.title}>
+                                        <a href={menuItem.href}
+                                            target={menuItem.target}>
+                                            {menuItem.title}
+                                        </a>
+                                    </Menu.Item>
                             )
-                        }
-                    </Menu>
-                }
-                arrow={arrow}
-                disabled={disabled}
-                overlayClassName={overlayClassName}
-                overlayStyle={overlayStyle}
-                placement={placement}
-                trigger={[trigger]}
-                visible={visible}
-                onVisibleChange={(v) => setProps({
-                    visible: v
-                })}
-                getPopupContainer={
-                    popupContainer === 'parent' ?
-                        (triggerNode) => triggerNode.parentNode :
-                        undefined
-                }
-                data-dash-is-loading={
-                    (loading_state && loading_state.is_loading) || undefined
-                }>
-                {
-                    buttonMode ?
-                        <Button
-                            {...buttonProps}
-                        >
-                            {title} <DownOutlined />
-                        </Button>
-                        :
-                        <a className="ant-dropdown-link"
-                            onClick={e => e.preventDefault()}>
-                            {title} <DownOutlined />
-                        </a>
-                }
-            </Dropdown>
-        );
-    }
+                        )
+                    }
+                </Menu>
+            }
+            arrow={arrow}
+            disabled={disabled}
+            overlayClassName={overlayClassName}
+            overlayStyle={overlayStyle}
+            placement={placement}
+            trigger={[trigger]}
+            visible={visible}
+            onVisibleChange={(v) => setProps({
+                visible: v
+            })}
+            getPopupContainer={
+                popupContainer === 'parent' ?
+                    (triggerNode) => triggerNode.parentNode :
+                    undefined
+            }
+            data-dash-is-loading={
+                (loading_state && loading_state.is_loading) || undefined
+            }>
+            {
+                buttonMode ?
+                    <Button
+                        {...buttonProps}
+                    >
+                        {title} <DownOutlined />
+                    </Button>
+                    :
+                    <a className="ant-dropdown-link"
+                        onClick={e => e.preventDefault()}>
+                        {title} <DownOutlined />
+                    </a>
+            }
+        </Dropdown>
+    );
 }
 
 // 定义参数或属性
@@ -220,3 +218,5 @@ AntdDropdown.defaultProps = {
     nClicks: 0,
     popupContainer: 'body'
 }
+
+export default AntdDropdown;

@@ -1,44 +1,42 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 
 import { parseChildrenToArray } from '../utils';
 
 // 定义描述列表子项组件AntdDescriptionItem，api参数参考https://ant.design/components/descriptions-cn/
-export default class AntdDescriptionItem extends Component {
-    render() {
-        // 取得必要属性或参数
-        let {
-            id,
-            children,
-            className,
-            style,
-            key,
-            label,
-            span,
-            labelStyle,
-            contentStyle,
-            setProps,
-            loading_state
-        } = this.props;
+const AntdDescriptionItem = (props) => {
+    // 取得必要属性或参数
+    let {
+        id,
+        children,
+        className,
+        style,
+        key,
+        label,
+        span,
+        labelStyle,
+        contentStyle,
+        setProps,
+        loading_state
+    } = this.props;
 
-        children = parseChildrenToArray(children)
+    children = parseChildrenToArray(children)
 
-        return (
-            <div id={id}
-                className={className}
-                style={style}
-                key={key}
-                label={label}
-                span={span}
-                labelStyle={labelStyle}
-                contentStyle={contentStyle}
-                data-dash-is-loading={
-                    (loading_state && loading_state.is_loading) || undefined
-                }>
-                {children}
-            </div>
-        );
-    }
+    return (
+        <div id={id}
+            className={className}
+            style={style}
+            key={key}
+            label={label}
+            span={span}
+            labelStyle={labelStyle}
+            contentStyle={contentStyle}
+            data-dash-is-loading={
+                (loading_state && loading_state.is_loading) || undefined
+            }>
+            {children}
+        </div>
+    );
 }
 
 // 定义参数或属性
@@ -97,3 +95,5 @@ AntdDescriptionItem.propTypes = {
 // 设置默认参数
 AntdDescriptionItem.defaultProps = {
 }
+
+export default AntdDescriptionItem;

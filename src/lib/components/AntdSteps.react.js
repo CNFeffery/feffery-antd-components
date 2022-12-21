@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { Steps } from 'antd';
 
@@ -6,55 +6,53 @@ import { Steps } from 'antd';
 const { Step } = Steps;
 
 // 定义步骤条组件AntdSteps，api参数参考https://ant.design/components/steps-cn/
-export default class AntdSteps extends Component {
-    render() {
-        // 取得必要属性或参数
-        let {
-            id,
-            className,
-            style,
-            key,
-            current,
-            direction,
-            labelPlacement,
-            progressDot,
-            size,
-            status,
-            type,
-            steps,
-            allowClick,
-            setProps,
-            loading_state
-        } = this.props;
+const AntdSteps = (props) => {
+    // 取得必要属性或参数
+    let {
+        id,
+        className,
+        style,
+        key,
+        current,
+        direction,
+        labelPlacement,
+        progressDot,
+        size,
+        status,
+        type,
+        steps,
+        allowClick,
+        setProps,
+        loading_state
+    } = props;
 
-        // 限制current上限
-        setProps({ current: current < steps.length ? current : steps.length })
+    // 限制current上限
+    setProps({ current: current < steps.length ? current : steps.length })
 
-        // 限制current下限
-        setProps({ current: current >= 0 ? current : 0 })
+    // 限制current下限
+    setProps({ current: current >= 0 ? current : 0 })
 
-        return (
-            <Steps
-                id={id}
-                className={className}
-                style={style}
-                key={key}
-                data-dash-is-loading={
-                    (loading_state && loading_state.is_loading) || undefined
-                }
-                current={current}
-                direction={direction}
-                labelPlacement={labelPlacement}
-                progressDot={progressDot}
-                size={size}
-                status={status}
-                type={type}
-                onChange={allowClick ? (current) => setProps({ current: current }) : undefined}
-            >
-                {steps.map(item => <Step title={item.title} subTitle={item.subTitle} description={item.description}></Step>)}
-            </Steps>
-        );
-    }
+    return (
+        <Steps
+            id={id}
+            className={className}
+            style={style}
+            key={key}
+            data-dash-is-loading={
+                (loading_state && loading_state.is_loading) || undefined
+            }
+            current={current}
+            direction={direction}
+            labelPlacement={labelPlacement}
+            progressDot={progressDot}
+            size={size}
+            status={status}
+            type={type}
+            onChange={allowClick ? (current) => setProps({ current: current }) : undefined}
+        >
+            {steps.map(item => <Step title={item.title} subTitle={item.subTitle} description={item.description}></Step>)}
+        </Steps>
+    );
 }
 
 // 定义参数或属性
@@ -140,3 +138,5 @@ AntdSteps.defaultProps = {
     status: 'process',
     allowClick: false
 }
+
+export default AntdSteps;

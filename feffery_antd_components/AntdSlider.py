@@ -15,7 +15,7 @@ Keyword arguments:
 
 - defaultValue (number | list of numbers; optional)
 
-- disabled (boolean; default False)
+- disabled (boolean; optional)
 
 - key (string; optional)
 

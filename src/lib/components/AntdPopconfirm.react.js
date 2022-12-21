@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { Popconfirm, ConfigProvider } from 'antd';
 
@@ -6,82 +6,80 @@ import { str2Locale } from './locales.react';
 import { parseChildrenToArray } from './utils';
 
 // 定义气泡确认框组件AntdPopconfirm，api参数参考https://ant.design/components/popconfirm-cn/
-export default class AntdPopconfirm extends Component {
-    render() {
-        // 取得必要属性或参数
-        let {
-            id,
-            children,
-            className,
-            style,
-            key,
-            locale,
-            title,
-            disabled,
-            placement,
-            mouseEnterDelay,
-            mouseLeaveDelay,
-            overlayClassName,
-            overlayStyle,
-            overlayInnerStyle,
-            okText,
-            okButtonProps,
-            cancelText,
-            cancelButtonProps,
-            confirmCounts,
-            cancelCounts,
-            trigger,
-            popupContainer,
-            setProps,
-            loading_state
-        } = this.props;
+const AntdPopconfirm = (props) => {
+    // 取得必要属性或参数
+    let {
+        id,
+        children,
+        className,
+        style,
+        key,
+        locale,
+        title,
+        disabled,
+        placement,
+        mouseEnterDelay,
+        mouseLeaveDelay,
+        overlayClassName,
+        overlayStyle,
+        overlayInnerStyle,
+        okText,
+        okButtonProps,
+        cancelText,
+        cancelButtonProps,
+        confirmCounts,
+        cancelCounts,
+        trigger,
+        popupContainer,
+        setProps,
+        loading_state
+    } = props;
 
-        children = parseChildrenToArray(children)
+    children = parseChildrenToArray(children)
 
-        // 监听确认按钮点击事件
-        const listenConfirm = () => {
-            setProps({ confirmCounts: confirmCounts + 1 })
-        };
+    // 监听确认按钮点击事件
+    const listenConfirm = () => {
+        setProps({ confirmCounts: confirmCounts + 1 })
+    };
 
-        // 监听取消按钮点击事件
-        const listenCancel = () => {
-            setProps({ cancelCounts: cancelCounts + 1 })
-        };
+    // 监听取消按钮点击事件
+    const listenCancel = () => {
+        setProps({ cancelCounts: cancelCounts + 1 })
+    };
 
-        return (
-            <ConfigProvider locale={str2Locale.get(locale)}>
-                <Popconfirm id={id}
-                    className={className}
-                    style={style}
-                    key={key}
-                    title={title}
-                    disabled={disabled}
-                    placement={placement}
-                    mouseEnterDelay={mouseEnterDelay}
-                    mouseLeaveDelay={mouseLeaveDelay}
-                    overlayClassName={overlayClassName}
-                    overlayStyle={overlayStyle}
-                    overlayInnerStyle={overlayInnerStyle}
-                    trigger={trigger}
-                    okText={okText}
-                    okButtonProps={okButtonProps}
-                    cancelText={cancelText}
-                    cancelButtonProps={cancelButtonProps}
-                    getPopupContainer={
-                        popupContainer === 'parent' ?
-                            (triggerNode) => triggerNode.parentNode :
-                            undefined
-                    }
-                    onCancel={listenCancel}
-                    onConfirm={listenConfirm}
-                    data-dash-is-loading={
-                        (loading_state && loading_state.is_loading) || undefined
-                    }>
-                    {children}
-                </Popconfirm>
-            </ConfigProvider>
-        );
-    }
+    return (
+        <ConfigProvider locale={str2Locale.get(locale)}>
+            <Popconfirm id={id}
+                className={className}
+                style={style}
+                key={key}
+                title={title}
+                disabled={disabled}
+                placement={placement}
+                mouseEnterDelay={mouseEnterDelay}
+                mouseLeaveDelay={mouseLeaveDelay}
+                overlayClassName={overlayClassName}
+                overlayStyle={overlayStyle}
+                overlayInnerStyle={overlayInnerStyle}
+                trigger={trigger}
+                okText={okText}
+                okButtonProps={okButtonProps}
+                cancelText={cancelText}
+                cancelButtonProps={cancelButtonProps}
+                getPopupContainer={
+                    popupContainer === 'parent' ?
+                        (triggerNode) => triggerNode.parentNode :
+                        undefined
+                }
+                onCancel={listenCancel}
+                onConfirm={listenConfirm}
+                data-dash-is-loading={
+                    (loading_state && loading_state.is_loading) || undefined
+                }>
+                {children}
+            </Popconfirm>
+        </ConfigProvider>
+    );
 }
 
 // 定义参数或属性
@@ -190,3 +188,5 @@ AntdPopconfirm.defaultProps = {
     locale: 'zh-cn',
     popupContainer: 'body'
 }
+
+export default AntdPopconfirm;

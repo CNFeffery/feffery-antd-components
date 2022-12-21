@@ -1,53 +1,51 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { PageHeader } from 'antd';
 
 import { parseChildrenToArray } from './utils';
 
 // 定义页头组件AntdPageHeader，api参数参考https://ant.design/components/page-header-cn/
-export default class AntdPageHeader extends Component {
-    render() {
-        // 取得必要属性或参数
-        let {
-            id,
-            children,
-            className,
-            style,
-            key,
-            title,
-            subTitle,
-            showBackIcon,
-            historyBackDisabled,
-            backClicks,
-            ghost,
-            setProps,
-            loading_state
-        } = this.props;
+const AntdPageHeader = (props) => {
+    // 取得必要属性或参数
+    let {
+        id,
+        children,
+        className,
+        style,
+        key,
+        title,
+        subTitle,
+        showBackIcon,
+        historyBackDisabled,
+        backClicks,
+        ghost,
+        setProps,
+        loading_state
+    } = props;
 
-        children = parseChildrenToArray(children)
+    children = parseChildrenToArray(children)
 
-        return (
-            <PageHeader id={id}
-                className={className}
-                style={style}
-                key={key}
-                title={title}
-                subTitle={subTitle}
-                backIcon={showBackIcon ? undefined : false}
-                ghost={ghost}
-                onBack={historyBackDisabled ? () => {
-                    let backClicks_ = backClicks
-                    backClicks_++
-                    setProps({ backClicks: backClicks_ })
-                } : () => window.history.back()
-                }
-                data-dash-is-loading={
-                    (loading_state && loading_state.is_loading) || undefined
-                }>
-                {children}
-            </PageHeader>
-        );
-    }
+    return (
+        <PageHeader id={id}
+            className={className}
+            style={style}
+            key={key}
+            title={title}
+            subTitle={subTitle}
+            backIcon={showBackIcon ? undefined : false}
+            ghost={ghost}
+            onBack={historyBackDisabled ? () => {
+                let backClicks_ = backClicks
+                backClicks_++
+                setProps({ backClicks: backClicks_ })
+            } : () => window.history.back()
+            }
+            data-dash-is-loading={
+                (loading_state && loading_state.is_loading) || undefined
+            }>
+            {children}
+        </PageHeader>
+    );
 }
 
 // 定义参数或属性
@@ -115,3 +113,5 @@ AntdPageHeader.defaultProps = {
     showBackIcon: true,
     historyBackDisabled: false
 }
+
+export default AntdPageHeader;

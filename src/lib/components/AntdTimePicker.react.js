@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { TimePicker, ConfigProvider } from 'antd';
 import moment from 'moment';
@@ -7,93 +7,89 @@ import { str2Locale } from './locales.react';
 
 
 // 定义时间选择组件AntdTimePicker，api参数参考https://ant.design/components/time-picker-cn/
-export default class AntdTimePicker extends Component {
+const AntdTimePicker = (props) => {
+    // 取得必要属性或参数
+    let {
+        id,
+        className,
+        style,
+        key,
+        locale,
+        setProps,
+        disabled,
+        hourStep,
+        minuteStep,
+        secondStep,
+        format,
+        value,
+        defaultValue,
+        use12Hours,
+        allowClear,
+        placeholder,
+        bordered,
+        size,
+        status,
+        popupContainer,
+        readOnly,
+        persistence,
+        persisted_props,
+        persistence_type,
+        loading_state
+    } = props;
 
-    constructor(props) {
-        super(props)
+    useEffect(() => {
         // 初始化value
-        if (props.defaultValue && !props.value) {
+        if (defaultValue && !value) {
             // 当defaultValue不为空且value为空时，为value初始化defaultValue对应值
-            props.setProps({ value: props.defaultValue })
+            setProps({ value: defaultValue })
+        }
+    }, [])
+
+    const onChange = (time, timeString) => {
+        if (isString(timeString)) {
+            setProps({ value: timeString })
         }
     }
 
-    render() {
-        // 取得必要属性或参数
-        let {
-            id,
-            className,
-            style,
-            key,
-            locale,
-            setProps,
-            disabled,
-            hourStep,
-            minuteStep,
-            secondStep,
-            format,
-            value,
-            defaultValue,
-            use12Hours,
-            allowClear,
-            placeholder,
-            bordered,
-            size,
-            status,
-            popupContainer,
-            readOnly,
-            persistence,
-            persisted_props,
-            persistence_type,
-            loading_state
-        } = this.props;
-
-        const onChange = (time, timeString) => {
-            if (isString(timeString)) {
-                setProps({ value: timeString })
-            }
-        }
-
-        // 返回定制化的前端组件
-        return (
-            <div>
-                <ConfigProvider locale={str2Locale.get(locale)}>
-                    <TimePicker
-                        id={id}
-                        className={className}
-                        style={style}
-                        key={key}
-                        onChange={onChange}
-                        placeholder={placeholder}
-                        bordered={bordered}
-                        size={size}
-                        disabled={disabled}
-                        hourStep={hourStep}
-                        minuteStep={minuteStep}
-                        secondStep={secondStep}
-                        format={format}
-                        value={value ? moment(value, format) : undefined}
-                        defaultValue={defaultValue ? moment(defaultValue, format) : undefined}
-                        use12Hours={use12Hours}
-                        allowClear={isUndefined(readOnly) ? allowClear : !readOnly}
-                        status={status}
-                        persistence={persistence}
-                        persisted_props={persisted_props}
-                        persistence_type={persistence_type}
-                        data-dash-is-loading={
-                            (loading_state && loading_state.is_loading) || undefined
-                        }
-                        getPopupContainer={
-                            popupContainer === 'parent' ?
-                                (triggerNode) => triggerNode.parentNode :
-                                undefined
-                        }
-                        open={isUndefined(readOnly) ? undefined : !readOnly}
-                    />
-                </ConfigProvider>
-            </div>
-        );
-    }
+    // 返回定制化的前端组件
+    return (
+        <div>
+            <ConfigProvider locale={str2Locale.get(locale)}>
+                <TimePicker
+                    id={id}
+                    className={className}
+                    style={style}
+                    key={key}
+                    onChange={onChange}
+                    placeholder={placeholder}
+                    bordered={bordered}
+                    size={size}
+                    disabled={disabled}
+                    hourStep={hourStep}
+                    minuteStep={minuteStep}
+                    secondStep={secondStep}
+                    format={format}
+                    value={value ? moment(value, format) : undefined}
+                    defaultValue={defaultValue ? moment(defaultValue, format) : undefined}
+                    use12Hours={use12Hours}
+                    allowClear={isUndefined(readOnly) ? allowClear : !readOnly}
+                    status={status}
+                    persistence={persistence}
+                    persisted_props={persisted_props}
+                    persistence_type={persistence_type}
+                    data-dash-is-loading={
+                        (loading_state && loading_state.is_loading) || undefined
+                    }
+                    getPopupContainer={
+                        popupContainer === 'parent' ?
+                            (triggerNode) => triggerNode.parentNode :
+                            undefined
+                    }
+                    open={isUndefined(readOnly) ? undefined : !readOnly}
+                />
+            </ConfigProvider>
+        </div>
+    );
 }
 
 // 定义参数或属性
@@ -225,3 +221,5 @@ AntdTimePicker.defaultProps = {
     locale: 'zh-cn',
     popupContainer: 'body'
 }
+
+export default AntdTimePicker;

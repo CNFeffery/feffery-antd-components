@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { Typography, ConfigProvider } from 'antd';
 import { str2Locale } from './locales.react';
@@ -7,38 +7,36 @@ import { str2Locale } from './locales.react';
 const { Text } = Typography;
 
 // 定义文字复制组件AntdCopyText，api参数参考https://ant.design/components/typography-cn/
-export default class AntdCopyText extends Component {
-    render() {
-        // 取得必要属性或参数
-        let {
-            id,
-            className,
-            style,
-            key,
-            locale,
-            text,
-            beforeIcon,
-            afterIcon,
-            setProps,
-            loading_state
-        } = this.props;
+const AntdCopyText = (props) => {
+    // 取得必要属性或参数
+    let {
+        id,
+        className,
+        style,
+        key,
+        locale,
+        text,
+        beforeIcon,
+        afterIcon,
+        setProps,
+        loading_state
+    } = this.props;
 
-        return (
-            <ConfigProvider locale={str2Locale.get(locale)}>
-                <Text id={id}
-                    className={className}
-                    style={style}
-                    key={key}
-                    copyable={{
-                        text: text,
-                        icon: [beforeIcon, afterIcon]
-                    }}
-                    data-dash-is-loading={
-                        (loading_state && loading_state.is_loading) || undefined
-                    } />
-            </ConfigProvider>
-        );
-    }
+    return (
+        <ConfigProvider locale={str2Locale.get(locale)}>
+            <Text id={id}
+                className={className}
+                style={style}
+                key={key}
+                copyable={{
+                    text: text,
+                    icon: [beforeIcon, afterIcon]
+                }}
+                data-dash-is-loading={
+                    (loading_state && loading_state.is_loading) || undefined
+                } />
+        </ConfigProvider>
+    );
 }
 
 // 定义参数或属性
@@ -94,3 +92,5 @@ AntdCopyText.defaultProps = {
     locale: 'zh-cn',
     text: ''
 }
+
+export default AntdCopyText;

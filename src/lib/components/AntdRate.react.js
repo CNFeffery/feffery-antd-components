@@ -1,54 +1,50 @@
-import React, { Component } from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { Rate } from 'antd';
 
 
 // 定义评分组件AntdRate，api参数参考https://ant.design/components/rate-cn/
-export default class AntdRate extends Component {
+const AntdRate = (props) => {
+    // 取得必要属性或参数
+    let {
+        id,
+        className,
+        style,
+        key,
+        allowClear,
+        allowHalf,
+        count,
+        disabled,
+        tooltips,
+        value,
+        setProps,
+        loading_state
+    } = props;
 
-    constructor(props) {
-        super(props)
+    useEffect(() => {
         // 初始化value
-        if (props.defaultValue && !props.value) {
+        if (defaultValue && !value) {
             // 当defaultValue不为空时，为value初始化defaultValue对应的value值
-            props.setProps({ value: props.defaultValue })
+            setProps({ value: defaultValue })
         }
-    }
+    }, [])
 
-    render() {
-        // 取得必要属性或参数
-        let {
-            id,
-            className,
-            style,
-            key,
-            allowClear,
-            allowHalf,
-            count,
-            disabled,
-            tooltips,
-            value,
-            setProps,
-            loading_state
-        } = this.props;
-
-        return (
-            <Rate id={id}
-                className={className}
-                style={style}
-                key={key}
-                allowClear={allowClear}
-                allowHalf={allowHalf}
-                count={count}
-                disabled={disabled}
-                tooltips={tooltips}
-                value={value}
-                onChange={v => setProps({ value: v })}
-                data-dash-is-loading={
-                    (loading_state && loading_state.is_loading) || undefined
-                } />
-        );
-    }
+    return (
+        <Rate id={id}
+            className={className}
+            style={style}
+            key={key}
+            allowClear={allowClear}
+            allowHalf={allowHalf}
+            count={count}
+            disabled={disabled}
+            tooltips={tooltips}
+            value={value}
+            onChange={v => setProps({ value: v })}
+            data-dash-is-loading={
+                (loading_state && loading_state.is_loading) || undefined
+            } />
+    );
 }
 
 // 定义参数或属性
@@ -113,3 +109,5 @@ AntdRate.propTypes = {
 // 设置默认参数
 AntdRate.defaultProps = {
 }
+
+export default AntdRate;

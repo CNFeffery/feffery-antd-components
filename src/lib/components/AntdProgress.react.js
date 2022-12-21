@@ -1,74 +1,72 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { Progress } from 'antd';
 
 
 // 定义进度条组件AntdProgress，api参数参考https://ant.design/components/progress-cn/
-export default class AntdProgress extends Component {
-    render() {
-        // 取得必要属性或参数
-        let {
-            id,
-            className,
-            style,
-            key,
-            type,
-            size,
-            percent,
-            format,
-            status,
-            showInfo,
-            strokeColor,
-            strokeLinecap,
-            strokeWidth,
-            trailColor,
-            width,
-            gapDegree,
-            gapPosition,
-            steps,
-            loading_state,
-            setProps
-        } = this.props;
+const AntdProgress = (props) => {
+    // 取得必要属性或参数
+    let {
+        id,
+        className,
+        style,
+        key,
+        type,
+        size,
+        percent,
+        format,
+        status,
+        showInfo,
+        strokeColor,
+        strokeLinecap,
+        strokeWidth,
+        trailColor,
+        width,
+        gapDegree,
+        gapPosition,
+        steps,
+        loading_state,
+        setProps
+    } = props;
 
-        return (
-            <Progress
-                id={id}
-                className={className}
-                style={style}
-                key={key}
-                type={type}
-                size={size}
-                percent={percent}
-                format={format ? p => format?.content ?
-                    format.content : (
-                        (format?.prefix ? format.prefix : '') +
-                        `${p}` +
-                        (format?.suffix ? format.suffix : '%')
-                    ) : undefined}
-                status={status}
-                showInfo={showInfo}
-                strokeColor={strokeColor ?
-                    (
-                        strokeColor.from && strokeColor.to ?
-                            {
-                                '0%': strokeColor.from,
-                                '100%': strokeColor.to
-                            } : strokeColor
-                    ) : undefined
-                }
-                strokeLinecap={strokeLinecap}
-                strokeWidth={strokeWidth}
-                trailColor={trailColor}
-                width={width}
-                gapDegree={gapDegree}
-                gapPosition={gapPosition}
-                steps={steps}
-                data-dash-is-loading={
-                    (loading_state && loading_state.is_loading) || undefined
-                }
-            ></Progress>
-        );
-    }
+    return (
+        <Progress
+            id={id}
+            className={className}
+            style={style}
+            key={key}
+            type={type}
+            size={size}
+            percent={percent}
+            format={format ? p => format?.content ?
+                format.content : (
+                    (format?.prefix ? format.prefix : '') +
+                    `${p}` +
+                    (format?.suffix ? format.suffix : '%')
+                ) : undefined}
+            status={status}
+            showInfo={showInfo}
+            strokeColor={strokeColor ?
+                (
+                    strokeColor.from && strokeColor.to ?
+                        {
+                            '0%': strokeColor.from,
+                            '100%': strokeColor.to
+                        } : strokeColor
+                ) : undefined
+            }
+            strokeLinecap={strokeLinecap}
+            strokeWidth={strokeWidth}
+            trailColor={trailColor}
+            width={width}
+            gapDegree={gapDegree}
+            gapPosition={gapPosition}
+            steps={steps}
+            data-dash-is-loading={
+                (loading_state && loading_state.is_loading) || undefined
+            }
+        ></Progress>
+    );
 }
 
 // 定义参数或属性
@@ -172,3 +170,5 @@ AntdProgress.propTypes = {
 // 设置默认参数
 AntdProgress.defaultProps = {
 }
+
+export default AntdProgress;

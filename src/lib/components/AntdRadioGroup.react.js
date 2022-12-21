@@ -1,76 +1,42 @@
-import React, { Component } from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { Radio, Space } from 'antd';
 
 
 // 定义单选框组件AntdRadioGroup，api参数参考https://ant.design/components/radio-cn/
-export default class AntdRadioGroup extends Component {
+const AntdRadioGroup = (props) => {
+    // 取得必要属性或参数
+    let {
+        id,
+        style,
+        className,
+        key,
+        options,
+        defaultValue,
+        value,
+        direction,
+        optionType,
+        buttonStyle,
+        disabled,
+        size,
+        setProps,
+        persistence,
+        persisted_props,
+        persistence_type,
+        loading_state
+    } = props;
 
-    constructor(props) {
-        super(props)
-        if (!props.value && props.defaultValue) {
-            props.setProps({ value: props.defaultValue })
+    useEffect(() => {
+        if (!value && defaultValue) {
+            setProps({ value: defaultValue })
         }
+    }, [])
+
+    const onSelect = (e) => {
+        setProps({ value: e.target.value })
     }
 
-    render() {
-        // 取得必要属性或参数
-        let {
-            id,
-            style,
-            className,
-            key,
-            options,
-            defaultValue,
-            value,
-            direction,
-            optionType,
-            buttonStyle,
-            disabled,
-            size,
-            setProps,
-            persistence,
-            persisted_props,
-            persistence_type,
-            loading_state
-        } = this.props;
-
-        const onSelect = (e) => {
-            setProps({ value: e.target.value })
-        }
-
-        if (direction === 'vertical') {
-
-            // 返回定制化的前端组件
-            return (
-                <Radio.Group
-                    id={id}
-                    className={className}
-                    style={style}
-                    key={key}
-                    defaultValue={defaultValue}
-                    value={value}
-                    buttonStyle={buttonStyle}
-                    disabled={disabled}
-                    size={size}
-                    persistence={persistence}
-                    persisted_props={persisted_props}
-                    persistence_type={persistence_type}
-                    onChange={onSelect}
-                    data-dash-is-loading={
-                        (loading_state && loading_state.is_loading) || undefined
-                    }
-                >
-                    <Space direction='vertical'>
-                        {options.map(item => {
-                            return optionType !== 'button' ?
-                                <Radio value={item.value} disabled={item.disabled}>{item.label}</Radio> :
-                                <Radio.Button value={item.value} disabled={item.disabled}>{item.label}</Radio.Button>
-                        })}
-                    </Space>
-                </Radio.Group>
-            );
-        }
+    if (direction === 'vertical') {
 
         // 返回定制化的前端组件
         return (
@@ -79,10 +45,8 @@ export default class AntdRadioGroup extends Component {
                 className={className}
                 style={style}
                 key={key}
-                options={options}
                 defaultValue={defaultValue}
                 value={value}
-                optionType={optionType}
                 buttonStyle={buttonStyle}
                 disabled={disabled}
                 size={size}
@@ -93,10 +57,41 @@ export default class AntdRadioGroup extends Component {
                 data-dash-is-loading={
                     (loading_state && loading_state.is_loading) || undefined
                 }
-            />
+            >
+                <Space direction='vertical'>
+                    {options.map(item => {
+                        return optionType !== 'button' ?
+                            <Radio value={item.value} disabled={item.disabled}>{item.label}</Radio> :
+                            <Radio.Button value={item.value} disabled={item.disabled}>{item.label}</Radio.Button>
+                    })}
+                </Space>
+            </Radio.Group>
         );
-
     }
+
+    // 返回定制化的前端组件
+    return (
+        <Radio.Group
+            id={id}
+            className={className}
+            style={style}
+            key={key}
+            options={options}
+            defaultValue={defaultValue}
+            value={value}
+            optionType={optionType}
+            buttonStyle={buttonStyle}
+            disabled={disabled}
+            size={size}
+            persistence={persistence}
+            persisted_props={persisted_props}
+            persistence_type={persistence_type}
+            onChange={onSelect}
+            data-dash-is-loading={
+                (loading_state && loading_state.is_loading) || undefined
+            }
+        />
+    );
 }
 
 // 定义参数或属性
@@ -216,3 +211,5 @@ AntdRadioGroup.defaultProps = {
     persisted_props: ['value'],
     persistence_type: 'local'
 }
+
+export default AntdRadioGroup;

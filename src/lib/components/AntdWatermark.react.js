@@ -1,50 +1,48 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { WaterMark } from '@ant-design/pro-layout';
 import '@ant-design/pro-layout/dist/layout.css';
 import { parseChildrenToArray } from './utils';
 
 // 定义水印组件AntdWatermark，api参数参考https://procomponents.ant.design/components/water-mark
-export default class AntdWatermark extends Component {
-    render() {
-        // 取得必要属性或参数
-        let {
-            id,
-            children,
-            className,
-            style,
-            key,
-            content,
-            rotate,
-            zIndex,
-            fontColor,
-            fontSize,
-            gapX,
-            gapY,
-            loading_state
-        } = this.props;
+const AntdWatermark = (props) => {
+    // 取得必要属性或参数
+    let {
+        id,
+        children,
+        className,
+        style,
+        key,
+        content,
+        rotate,
+        zIndex,
+        fontColor,
+        fontSize,
+        gapX,
+        gapY,
+        loading_state
+    } = props;
 
-        children = parseChildrenToArray(children)
+    children = parseChildrenToArray(children)
 
-        return (
-            <WaterMark id={id}
-                className={className}
-                style={style}
-                key={key}
-                content={content}
-                rotate={rotate}
-                zIndex={zIndex}
-                fontColor={fontColor}
-                fontSize={fontSize}
-                gapX={gapX}
-                gapY={gapY}
-                data-dash-is-loading={
-                    (loading_state && loading_state.is_loading) || undefined
-                }>
-                {children}
-            </WaterMark>
-        );
-    }
+    return (
+        <WaterMark id={id}
+            className={className}
+            style={style}
+            key={key}
+            content={content}
+            rotate={rotate}
+            zIndex={zIndex}
+            fontColor={fontColor}
+            fontSize={fontSize}
+            gapX={gapX}
+            gapY={gapY}
+            data-dash-is-loading={
+                (loading_state && loading_state.is_loading) || undefined
+            }>
+            {children}
+        </WaterMark>
+    );
 }
 
 // 定义参数或属性
@@ -112,3 +110,5 @@ AntdWatermark.propTypes = {
 // 设置默认参数
 AntdWatermark.defaultProps = {
 }
+
+export default AntdWatermark;

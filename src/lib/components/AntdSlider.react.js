@@ -1,93 +1,89 @@
-import React, { Component } from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { Slider } from 'antd';
 
 
 // 定义滑动输入条组件AntdSlider，api参数参考https://ant.design/components/slider-cn/
-export default class AntdSlider extends Component {
+const AntdSlider = (props) => {
+    // 取得必要属性或参数
+    let {
+        id,
+        className,
+        style,
+        key,
+        value,
+        defaultValue,
+        disabled,
+        vertical,
+        range,
+        min,
+        max,
+        step,
+        marks,
+        tooltipVisible,
+        tooltipPrefix,
+        tooltipSuffix,
+        popupContainer,
+        loading_state,
+        setProps
+    } = props;
 
-    constructor(props) {
-        super(props)
+    useEffect(() => {
         // 初始化value
-        if (props.range) {
+        if (range) {
             // 范围选择模式时
-            let defaultValue = props.defaultValue ? props.defaultValue : [props.min, props.max]
-            if (!props.value) {
-                props.setProps({ value: defaultValue })
+            let defaultValue = defaultValue ? defaultValue : [min, max]
+            if (!value) {
+                setProps({ value: defaultValue })
             }
         } else {
             // 单值选择模式时
-            let defaultValue = (props.defaultValue || props.defaultValue === 0) ? props.defaultValue : props.max
-            if (!props.value && props.value !== 0) {
-                props.setProps({ value: defaultValue })
+            let defaultValue = (defaultValue || defaultValue === 0) ? defaultValue : max
+            if (!value && value !== 0) {
+                setProps({ value: defaultValue })
             }
         }
+    }, [])
+
+    // 设置tipFormatter格式化函数
+    const formatter = (e) => {
+        return tooltipPrefix + `${e}` + tooltipSuffix
     }
 
-    render() {
-        // 取得必要属性或参数
-        let {
-            id,
-            className,
-            style,
-            key,
-            value,
-            defaultValue,
-            disabled,
-            vertical,
-            range,
-            min,
-            max,
-            step,
-            marks,
-            tooltipVisible,
-            tooltipPrefix,
-            tooltipSuffix,
-            popupContainer,
-            loading_state,
-            setProps
-        } = this.props;
-
-        // 设置tipFormatter格式化函数
-        const formatter = (e) => {
-            return tooltipPrefix + `${e}` + tooltipSuffix
-        }
-
-        // 监听用户完成拖拽的动作
-        const onChange = (e) => {
-            setProps({ value: e })
-        }
-
-        // 返回定制化的前端组件
-        return (
-            <Slider
-                id={id}
-                className={className}
-                style={style}
-                key={key}
-                value={value}
-                defaultValue={defaultValue}
-                disabled={disabled}
-                vertical={vertical}
-                range={range}
-                min={min}
-                max={max}
-                step={step}
-                marks={marks}
-                tooltip={{
-                    open: tooltipVisible,
-                    getPopupContainer: popupContainer === 'parent' ?
-                        (triggerNode) => triggerNode.parentNode :
-                        undefined,
-                    formatter: formatter
-                }}
-                onChange={onChange}
-                data-dash-is-loading={
-                    (loading_state && loading_state.is_loading) || undefined
-                }
-            />
-        );
+    // 监听用户完成拖拽的动作
+    const onChange = (e) => {
+        setProps({ value: e })
     }
+
+    // 返回定制化的前端组件
+    return (
+        <Slider
+            id={id}
+            className={className}
+            style={style}
+            key={key}
+            value={value}
+            defaultValue={defaultValue}
+            disabled={disabled}
+            vertical={vertical}
+            range={range}
+            min={min}
+            max={max}
+            step={step}
+            marks={marks}
+            tooltip={{
+                open: tooltipVisible,
+                getPopupContainer: popupContainer === 'parent' ?
+                    (triggerNode) => triggerNode.parentNode :
+                    undefined,
+                formatter: formatter
+            }}
+            onChange={onChange}
+            data-dash-is-loading={
+                (loading_state && loading_state.is_loading) || undefined
+            }
+        />
+    );
 }
 
 // 定义参数或属性
@@ -172,7 +168,6 @@ AntdSlider.propTypes = {
 
 // 设置默认参数
 AntdSlider.defaultProps = {
-    disabled: false,
     range: false,
     min: 0,
     max: 100,
@@ -181,3 +176,5 @@ AntdSlider.defaultProps = {
     tooltipSuffix: '',
     popupContainer: 'body'
 }
+
+export default AntdSlider;

@@ -1,93 +1,89 @@
-import React, { Component } from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { Pagination, ConfigProvider } from 'antd';
 import { str2Locale } from './locales.react';
 
 
 // 定义分页部件AntdPagination，api参数参考https://ant.design/components/pagination-cn/
-export default class AntdPagination extends Component {
+const AntdPagination = (props) => {
+    // 取得必要属性或参数
+    let {
+        id,
+        style,
+        className,
+        key,
+        locale,
+        defaultCurrent,
+        defaultPageSize,
+        current,
+        pageSize,
+        disabled,
+        hideOnSinglePage,
+        pageSizeOptions,
+        showQuickJumper,
+        showSizeChanger,
+        showTotalPrefix,
+        showTotalSuffix,
+        simple,
+        size,
+        total,
+        setProps,
+        loading_state,
+        persistence,
+        persisted_props,
+        persistence_type
+    } = props;
 
-    constructor(props) {
-        super(props)
-        if (!props.current) {
-            props.setProps({ current: props.defaultCurrent })
+    useEffect(() => {
+        if (!current) {
+            setProps({ current: defaultCurrent })
         }
 
-        if (!props.pageSize) {
-            props.setProps({ pageSize: props.defaultPageSize })
+        if (!pageSize) {
+            setProps({ pageSize: defaultPageSize })
         }
+    }, [])
+
+    const onChange = (page, pageSize) => {
+
+        setProps({ current: page, pageSize: pageSize })
     }
 
-    render() {
-        // 取得必要属性或参数
-        let {
-            id,
-            style,
-            className,
-            key,
-            locale,
-            defaultCurrent,
-            defaultPageSize,
-            current,
-            pageSize,
-            disabled,
-            hideOnSinglePage,
-            pageSizeOptions,
-            showQuickJumper,
-            showSizeChanger,
-            showTotalPrefix,
-            showTotalSuffix,
-            simple,
-            size,
-            total,
-            setProps,
-            loading_state,
-            persistence,
-            persisted_props,
-            persistence_type
-        } = this.props;
-
-        const onChange = (page, pageSize) => {
-
-            setProps({ current: page, pageSize: pageSize })
-        }
-
-        const renderShowTotal = (e) => {
-            return (showTotalPrefix ? showTotalPrefix : "共有记录") + ' ' + e.toString() + ' ' + (showTotalSuffix ? showTotalSuffix : "条")
-        }
-
-        // 返回定制化的前端部件
-        return (
-            <ConfigProvider locale={str2Locale.get(locale)}>
-                <Pagination
-                    id={id}
-                    className={className}
-                    style={style}
-                    key={key}
-                    pageSize={pageSize || defaultPageSize}
-                    defaultCurrent={defaultCurrent}
-                    defaultPageSize={defaultPageSize}
-                    current={current}
-                    disabled={disabled}
-                    hideOnSinglePage={hideOnSinglePage}
-                    pageSizeOptions={pageSizeOptions}
-                    showQuickJumper={showQuickJumper}
-                    showSizeChanger={showSizeChanger}
-                    showTotal={renderShowTotal}
-                    simple={simple}
-                    size={size}
-                    total={total}
-                    onChange={onChange}
-                    persistence={persistence}
-                    persisted_props={persisted_props}
-                    persistence_type={persistence_type}
-                    data-dash-is-loading={
-                        (loading_state && loading_state.is_loading) || undefined
-                    }
-                />
-            </ConfigProvider>
-        );
+    const renderShowTotal = (e) => {
+        return (showTotalPrefix ? showTotalPrefix : "共有记录") + ' ' + e.toString() + ' ' + (showTotalSuffix ? showTotalSuffix : "条")
     }
+
+    // 返回定制化的前端部件
+    return (
+        <ConfigProvider locale={str2Locale.get(locale)}>
+            <Pagination
+                id={id}
+                className={className}
+                style={style}
+                key={key}
+                pageSize={pageSize || defaultPageSize}
+                defaultCurrent={defaultCurrent}
+                defaultPageSize={defaultPageSize}
+                current={current}
+                disabled={disabled}
+                hideOnSinglePage={hideOnSinglePage}
+                pageSizeOptions={pageSizeOptions}
+                showQuickJumper={showQuickJumper}
+                showSizeChanger={showSizeChanger}
+                showTotal={renderShowTotal}
+                simple={simple}
+                size={size}
+                total={total}
+                onChange={onChange}
+                persistence={persistence}
+                persisted_props={persisted_props}
+                persistence_type={persistence_type}
+                data-dash-is-loading={
+                    (loading_state && loading_state.is_loading) || undefined
+                }
+            />
+        </ConfigProvider>
+    );
 }
 
 // 定义参数或属性
@@ -208,3 +204,5 @@ AntdPagination.defaultProps = {
     persistence_type: 'local',
     locale: 'zh-cn'
 }
+
+export default AntdPagination;

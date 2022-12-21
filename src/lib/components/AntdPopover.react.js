@@ -1,69 +1,66 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { Popover } from 'antd';
 
-import { omit } from "ramda";
 import AntdIcon from './AntdIcon.react';
 import { parseChildrenToArray } from './utils';
 
 // 定义气泡卡片组件Popover，api参数参考https://ant.design/components/popover-cn/
-export default class AntdPopover extends Component {
-    render() {
-        // 取得必要属性或参数
-        let {
-            id,
-            children,
-            className,
-            style,
-            key,
-            title,
-            content,
-            placement,
-            color,
-            mouseEnterDelay,
-            mouseLeaveDelay,
-            overlayClassName,
-            overlayStyle,
-            overlayInnerStyle,
-            trigger,
-            zIndex,
-            popupContainer,
-            loading_state
-        } = this.props;
+const AntdPopover = (props) => {
+    // 取得必要属性或参数
+    let {
+        id,
+        children,
+        className,
+        style,
+        key,
+        title,
+        content,
+        placement,
+        color,
+        mouseEnterDelay,
+        mouseLeaveDelay,
+        overlayClassName,
+        overlayStyle,
+        overlayInnerStyle,
+        trigger,
+        zIndex,
+        popupContainer,
+        loading_state
+    } = props;
 
-        children = parseChildrenToArray(children)
+    children = parseChildrenToArray(children)
 
-        return (
-            <Popover id={id}
-                className={className}
-                style={style}
-                key={key}
-                title={title?.content ?
-                    <div>
-                        {<AntdIcon icon={title.prefixIcon} />}
-                        {<span style={{ marginLeft: '5px' }}>{title.content}</span>}
-                    </div> : title}
-                content={content}
-                placement={placement}
-                color={color}
-                mouseEnterDelay={mouseEnterDelay}
-                mouseLeaveDelay={mouseLeaveDelay}
-                overlayClassName={overlayClassName}
-                overlayStyle={overlayStyle}
-                overlayInnerStyle={overlayInnerStyle}
-                trigger={trigger}
-                zIndex={zIndex}
-                getPopupContainer={
-                    popupContainer === 'parent' ?
-                        (triggerNode) => triggerNode.parentNode :
-                        undefined
-                }
-                data-dash-is-loading={
-                    (loading_state && loading_state.is_loading) || undefined
-                }>{children}
-            </Popover>
-        );
-    }
+    return (
+        <Popover id={id}
+            className={className}
+            style={style}
+            key={key}
+            title={title?.content ?
+                <div>
+                    {<AntdIcon icon={title.prefixIcon} />}
+                    {<span style={{ marginLeft: '5px' }}>{title.content}</span>}
+                </div> : title}
+            content={content}
+            placement={placement}
+            color={color}
+            mouseEnterDelay={mouseEnterDelay}
+            mouseLeaveDelay={mouseLeaveDelay}
+            overlayClassName={overlayClassName}
+            overlayStyle={overlayStyle}
+            overlayInnerStyle={overlayInnerStyle}
+            trigger={trigger}
+            zIndex={zIndex}
+            getPopupContainer={
+                popupContainer === 'parent' ?
+                    (triggerNode) => triggerNode.parentNode :
+                    undefined
+            }
+            data-dash-is-loading={
+                (loading_state && loading_state.is_loading) || undefined
+            }>{children}
+        </Popover>
+    );
 }
 
 // 定义参数或属性
@@ -163,3 +160,5 @@ AntdPopover.propTypes = {
 AntdPopover.defaultProps = {
     popupContainer: 'body'
 }
+
+export default AntdPopover;

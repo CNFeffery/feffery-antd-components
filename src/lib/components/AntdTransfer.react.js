@@ -1,84 +1,81 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { Transfer, ConfigProvider } from 'antd';
 import { str2Locale } from './locales.react';
 
 
 // 定义穿梭框组件AntdTransfer，api参数参考https://ant.design/components/transfer-cn/
-export default class AntdTransfer extends Component {
-    render() {
-        // 取得必要属性或参数
-        let {
-            id,
-            className,
-            style,
-            key,
-            locale,
-            setProps,
-            dataSource,
-            height,
-            pagination,
-            operations,
-            showSearch,
-            showSelectAll,
-            titles,
-            disabled,
-            targetKeys,
-            status,
-            persistence,
-            persisted_props,
-            persistence_type,
-            loading_state
-        } = this.props;
+const AntdTransfer = (props) => {
+    // 取得必要属性或参数
+    let {
+        id,
+        className,
+        style,
+        key,
+        locale,
+        setProps,
+        dataSource,
+        height,
+        pagination,
+        operations,
+        showSearch,
+        showSelectAll,
+        titles,
+        disabled,
+        targetKeys,
+        status,
+        persistence,
+        persisted_props,
+        persistence_type,
+        loading_state
+    } = props;
 
-        if (!titles) {
-            titles = [locale === 'zh-cn' ? '待选区' : 'Source', locale === 'zh-cn' ? '选定区' : 'Target']
-        }
-
-        // 构造监听函数，其中：
-        // nextTargetKeys：
-        // moveDirection：
-        // moveKeys：
-        function listenMove(nextTargetKeys, moveDirection, moveKeys) {
-            setProps({ targetKeys: nextTargetKeys })
-            setProps({ moveDirection: moveDirection })
-            setProps({ moveKeys: moveKeys })
-        }
-
-        // 返回定制化的前端组件
-        return (
-            <ConfigProvider locale={str2Locale.get(locale)}>
-                <Transfer
-                    id={id}
-                    style={style}
-                    className={className}
-                    key={key}
-                    dataSource={dataSource}
-                    targetKeys={targetKeys}
-                    onChange={listenMove}
-                    render={item => item.title}
-                    pagination={pagination}
-                    operations={operations}
-                    showSearch={showSearch}
-                    showSelectAll={showSelectAll}
-                    titles={titles}
-                    disabled={disabled}
-                    status={status}
-                    persistence={persistence}
-                    persisted_props={persisted_props}
-                    persistence_type={persistence_type}
-                    listStyle={{
-                        overflowX: 'auto',
-                        height: height,
-                        width: '100%'
-                    }}
-                    data-dash-is-loading={
-                        (loading_state && loading_state.is_loading) || undefined
-                    }
-                />
-            </ConfigProvider>
-        );
+    if (!titles) {
+        titles = [locale === 'zh-cn' ? '待选区' : 'Source', locale === 'zh-cn' ? '选定区' : 'Target']
     }
+
+    // 监听选项移动事件
+    const listenMove = (nextTargetKeys, moveDirection, moveKeys) => {
+        setProps({
+            targetKeys: nextTargetKeys,
+            moveDirection: moveDirection,
+            moveKeys: moveKeys
+        })
+    }
+
+    // 返回定制化的前端组件
+    return (
+        <ConfigProvider locale={str2Locale.get(locale)}>
+            <Transfer
+                id={id}
+                style={style}
+                className={className}
+                key={key}
+                dataSource={dataSource}
+                targetKeys={targetKeys}
+                onChange={listenMove}
+                render={item => item.title}
+                pagination={pagination}
+                operations={operations}
+                showSearch={showSearch}
+                showSelectAll={showSelectAll}
+                titles={titles}
+                disabled={disabled}
+                status={status}
+                persistence={persistence}
+                persisted_props={persisted_props}
+                persistence_type={persistence_type}
+                listStyle={{
+                    overflowX: 'auto',
+                    height: height,
+                    width: '100%'
+                }}
+                data-dash-is-loading={
+                    (loading_state && loading_state.is_loading) || undefined
+                }
+            />
+        </ConfigProvider>
+    );
 }
 
 // 定义参数或属性
@@ -203,3 +200,5 @@ AntdTransfer.defaultProps = {
     persistence_type: 'local',
     locale: 'zh-cn'
 }
+
+export default AntdTransfer;

@@ -1,68 +1,64 @@
-import React, { Component } from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { Switch } from 'antd';
 
 
 // 定义开关组件AntdSwitch，api参数参考https://ant.design/components/switch-cn/
-export default class AntdSwitch extends Component {
+const AntdSwitch = (props) => {
+    // 取得必要属性或参数
+    let {
+        id,
+        style,
+        className,
+        key,
+        disabled,
+        checked,
+        checkedChildren,
+        unCheckedChildren,
+        size,
+        loading,
+        setProps,
+        persistence,
+        persisted_props,
+        persistence_type,
+        loading_state
+    } = this.props;
 
-    constructor(props) {
-        super(props)
-        if (props.defaultChecked) {
-            props.setProps({ checked: props.defaultChecked })
-        } else if (!props.checked) {
-            props.setProps({ checked: false })
+    useEffect(() => {
+        if (defaultChecked) {
+            setProps({ checked: defaultChecked })
+        } else if (!checked) {
+            setProps({ checked: false })
         }
+    }, [])
+
+    const onChange = checked => {
+        setProps({ checked: checked })
     }
 
-    render() {
-        // 取得必要属性或参数
-        let {
-            id,
-            style,
-            className,
-            key,
-            disabled,
-            checked,
-            checkedChildren,
-            unCheckedChildren,
-            size,
-            loading,
-            setProps,
-            persistence,
-            persisted_props,
-            persistence_type,
-            loading_state
-        } = this.props;
-
-        const onChange = checked => {
-            setProps({ checked: checked })
-        }
-
-        // 返回定制化的前端组件
-        return (
-            <Switch
-                id={id}
-                className={className}
-                style={style}
-                key={key}
-                disabled={disabled}
-                defaultChecked={checked}
-                checkedChildren={checkedChildren}
-                checked={checked}
-                unCheckedChildren={unCheckedChildren}
-                size={size}
-                loading={loading}
-                onChange={onChange}
-                persistence={persistence}
-                persisted_props={persisted_props}
-                persistence_type={persistence_type}
-                data-dash-is-loading={
-                    (loading_state && loading_state.is_loading) || undefined
-                }
-            />
-        );
-    }
+    // 返回定制化的前端组件
+    return (
+        <Switch
+            id={id}
+            className={className}
+            style={style}
+            key={key}
+            disabled={disabled}
+            defaultChecked={checked}
+            checkedChildren={checkedChildren}
+            checked={checked}
+            unCheckedChildren={unCheckedChildren}
+            size={size}
+            loading={loading}
+            onChange={onChange}
+            persistence={persistence}
+            persisted_props={persisted_props}
+            persistence_type={persistence_type}
+            data-dash-is-loading={
+                (loading_state && loading_state.is_loading) || undefined
+            }
+        />
+    );
 }
 
 // 定义参数或属性
@@ -153,3 +149,5 @@ AntdSwitch.defaultProps = {
     persisted_props: ['checked'],
     persistence_type: 'local'
 }
+
+export default AntdSwitch;

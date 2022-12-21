@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { Tabs, Popover } from 'antd';
 import { InfoCircleOutlined } from "@ant-design/icons";
@@ -9,181 +9,74 @@ import { parseChildrenToArray, resolveChildProps } from '../utils';
 const { TabPane } = Tabs;
 
 // 定义标签页组件AntdTabs，api参数参考https://ant.design/components/tabs-cn/
-export default class AntdTabs extends Component {
+const AntdTabs = (props) => {
+    // 取得必要属性或参数
+    let {
+        id,
+        children,
+        items,
+        disabledTabKeys,
+        tabBarLeftExtraContent,
+        tabBarRightExtraContent,
+        className,
+        style,
+        key,
+        defaultActiveKey,
+        activeKey,
+        size,
+        tabPosition,
+        type,
+        centered,
+        tabBarGutter,
+        inkBarAnimated,
+        tabPaneAnimated,
+        setProps,
+        persistence,
+        persisted_props,
+        persistence_type,
+        loading_state
+    } = props;
 
-    constructor(props) {
-        super(props)
+    useEffect(() => {
         // 初始化value
-        if (props.defaultActiveKey) {
+        if (defaultActiveKey) {
             // 当defaultValue不为空时，为value初始化defaultValue对应的value值
-            props.setProps({ activeKey: props.defaultActiveKey })
+            setProps({ activeKey: defaultActiveKey })
         }
+    }, [])
+
+    const onChange = e => {
+        setProps({ activeKey: e })
     }
 
-    render() {
-        // 取得必要属性或参数
-        let {
-            id,
-            children,
-            items,
-            disabledTabKeys,
-            tabBarLeftExtraContent,
-            tabBarRightExtraContent,
-            className,
-            style,
-            key,
-            defaultActiveKey,
-            activeKey,
-            size,
-            tabPosition,
-            type,
-            centered,
-            tabBarGutter,
-            inkBarAnimated,
-            tabPaneAnimated,
-            setProps,
-            persistence,
-            persisted_props,
-            persistence_type,
-            loading_state
-        } = this.props;
+    const onEdit = (targetKey, action) => {
+        setProps({ latestDeletePane: targetKey })
+    }
 
-        const onChange = e => {
-            setProps({ activeKey: e })
-        }
+    // 构造标签页新方式
+    if (items) {
 
-        const onEdit = (targetKey, action) => {
-
-            setProps({ latestDeletePane: targetKey })
-        }
-
-        // 构造标签页新方式
-        if (items) {
-
-            // 根据disabledTabKeys进行指定标签页的禁用
-            if (disabledTabKeys) {
-                items = items.map(
-                    item => {
-                        if (disabledTabKeys.includes(item.key)) {
-                            return {
-                                ...item,
-                                disabled: true
-                            }
+        // 根据disabledTabKeys进行指定标签页的禁用
+        if (disabledTabKeys) {
+            items = items.map(
+                item => {
+                    if (disabledTabKeys.includes(item.key)) {
+                        return {
+                            ...item,
+                            disabled: true
                         }
-                        return item
                     }
-                )
-            }
-
-            return (
-                <Tabs id={id}
-                    className={className}
-                    style={style}
-                    key={key}
-                    items={items}
-                    defaultActiveKey={defaultActiveKey}
-                    activeKey={activeKey}
-                    size={size}
-                    tabPosition={tabPosition}
-                    type={type}
-                    centered={centered}
-                    tabBarGutter={tabBarGutter}
-                    tabBarExtraContent={{
-                        left: tabBarLeftExtraContent,
-                        right: tabBarRightExtraContent
-                    }}
-                    animated={{
-                        inkBar: inkBarAnimated,
-                        tabPane: tabPaneAnimated
-                    }}
-                    hideAdd={true}
-                    onChange={onChange}
-                    onEdit={onEdit}
-                    persistence={persistence}
-                    persisted_props={persisted_props}
-                    persistence_type={persistence_type}
-                    data-dash-is-loading={
-                        (loading_state && loading_state.is_loading) || undefined
-                    } />
-            );
+                    return item
+                }
+            )
         }
-
-        children = parseChildrenToArray(children)
-
-        const tabPanes = children.map(
-            (child) => {
-                let childProps = resolveChildProps(child)
-
-                const {
-                    id,
-                    className,
-                    style,
-                    tab,
-                    key,
-                    disabled,
-                    closable,
-                    titleSideInfoPopover,
-                    loading_state,
-                    ...otherProps
-                } = childProps;
-
-                return (
-                    <TabPane
-                        id={id}
-                        className={className}
-                        style={style}
-                        tab={
-                            titleSideInfoPopover?.content ? <>
-                                <span>{tab}</span>
-                                <Popover
-                                    title={titleSideInfoPopover.title}
-                                    content={
-                                        <div
-                                            style={{
-                                                maxWidth: "250px",
-                                                wordWrap: "break-word",
-                                                whiteSpace: "normal",
-                                                wordBreak: "break-all"
-                                            }}
-                                        >
-                                            {titleSideInfoPopover.content}
-                                        </div>
-                                    }
-                                    overlayStyle={{ maxWidth: "250px" }}
-                                    placement={"right"}
-                                    getPopupContainer={(triggerNode) => {
-                                        return triggerNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode;
-                                    }}
-                                >
-                                    <InfoCircleOutlined
-                                        style={{
-                                            color: "#8c8c8c",
-                                            paddingLeft: "4px",
-                                            cursor: "pointer"
-                                        }}
-                                    />
-                                </Popover>
-                            </> : tab
-                        }
-                        key={key}
-                        disabled={disabled}
-                        closable={closable}
-                        loading_state={loading_state}
-                        {...omit(
-                            ['setProps', 'persistence', 'persistence_type', 'persisted_props'],
-                            otherProps
-                        )}>
-                        {child}
-                    </TabPane>
-                );
-            }
-        )
 
         return (
             <Tabs id={id}
                 className={className}
                 style={style}
                 key={key}
+                items={items}
                 defaultActiveKey={defaultActiveKey}
                 activeKey={activeKey}
                 size={size}
@@ -207,11 +100,113 @@ export default class AntdTabs extends Component {
                 persistence_type={persistence_type}
                 data-dash-is-loading={
                     (loading_state && loading_state.is_loading) || undefined
-                }>
-                {tabPanes}
-            </Tabs>
+                } />
         );
     }
+
+    children = parseChildrenToArray(children)
+
+    const tabPanes = children.map(
+        (child) => {
+            let childProps = resolveChildProps(child)
+
+            const {
+                id,
+                className,
+                style,
+                tab,
+                key,
+                disabled,
+                closable,
+                titleSideInfoPopover,
+                loading_state,
+                ...otherProps
+            } = childProps;
+
+            return (
+                <TabPane
+                    id={id}
+                    className={className}
+                    style={style}
+                    tab={
+                        titleSideInfoPopover?.content ? <>
+                            <span>{tab}</span>
+                            <Popover
+                                title={titleSideInfoPopover.title}
+                                content={
+                                    <div
+                                        style={{
+                                            maxWidth: "250px",
+                                            wordWrap: "break-word",
+                                            whiteSpace: "normal",
+                                            wordBreak: "break-all"
+                                        }}
+                                    >
+                                        {titleSideInfoPopover.content}
+                                    </div>
+                                }
+                                overlayStyle={{ maxWidth: "250px" }}
+                                placement={"right"}
+                                getPopupContainer={(triggerNode) => {
+                                    return triggerNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode;
+                                }}
+                            >
+                                <InfoCircleOutlined
+                                    style={{
+                                        color: "#8c8c8c",
+                                        paddingLeft: "4px",
+                                        cursor: "pointer"
+                                    }}
+                                />
+                            </Popover>
+                        </> : tab
+                    }
+                    key={key}
+                    disabled={disabled}
+                    closable={closable}
+                    loading_state={loading_state}
+                    {...omit(
+                        ['setProps', 'persistence', 'persistence_type', 'persisted_props'],
+                        otherProps
+                    )}>
+                    {child}
+                </TabPane>
+            );
+        }
+    )
+
+    return (
+        <Tabs id={id}
+            className={className}
+            style={style}
+            key={key}
+            defaultActiveKey={defaultActiveKey}
+            activeKey={activeKey}
+            size={size}
+            tabPosition={tabPosition}
+            type={type}
+            centered={centered}
+            tabBarGutter={tabBarGutter}
+            tabBarExtraContent={{
+                left: tabBarLeftExtraContent,
+                right: tabBarRightExtraContent
+            }}
+            animated={{
+                inkBar: inkBarAnimated,
+                tabPane: tabPaneAnimated
+            }}
+            hideAdd={true}
+            onChange={onChange}
+            onEdit={onEdit}
+            persistence={persistence}
+            persisted_props={persisted_props}
+            persistence_type={persistence_type}
+            data-dash-is-loading={
+                (loading_state && loading_state.is_loading) || undefined
+            }>
+            {tabPanes}
+        </Tabs>
+    );
 }
 
 // 定义参数或属性
@@ -352,3 +347,5 @@ AntdTabs.defaultProps = {
     tabPaneAnimated: false,
     disabledTabKeys: []
 }
+
+export default AntdTabs;

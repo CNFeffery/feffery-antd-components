@@ -1,95 +1,92 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { Descriptions } from 'antd';
-import { isNil, omit } from 'ramda';
+import { omit } from 'ramda';
 
 import { parseChildrenToArray, resolveChildProps } from '../utils';
 
 // 定义描述列表组件AntdDescriptions，api参数参考https://ant.design/components/descriptions-cn/
-export default class AntdDescriptions extends Component {
+const AntdDescriptions = (props) => {
+    // 取得必要属性或参数
+    let {
+        id,
+        children,
+        className,
+        style,
+        key,
+        title,
+        column,
+        bordered,
+        size,
+        layout,
+        labelStyle,
+        contentStyle,
+        setProps,
+        loading_state
+    } = props;
 
-    render() {
-        // 取得必要属性或参数
-        let {
-            id,
-            children,
-            className,
-            style,
-            key,
-            title,
-            column,
-            bordered,
-            size,
-            layout,
-            labelStyle,
-            contentStyle,
-            setProps,
-            loading_state
-        } = this.props;
+    children = parseChildrenToArray(children)
 
-        children = parseChildrenToArray(children)
+    let size2size = new Map([
+        ['small', 'small'],
+        ['default', 'middle'],
+        ['large', 'default']
+    ])
 
-        let size2size = new Map([
-            ['small', 'small'],
-            ['default', 'middle'],
-            ['large', 'default']
-        ])
+    const descriptionItems = children.map(
+        (child) => {
+            let childProps = resolveChildProps(child)
 
-        const descriptionItems = children.map(
-            (child) => {
-                let childProps = resolveChildProps(child)
+            const {
+                id,
+                className,
+                style,
+                label,
+                span,
+                labelStyle,
+                contentStyle,
+                loading_state,
+                ...otherProps
+            } = childProps;
 
-                const {
-                    id,
-                    className,
-                    style,
-                    label,
-                    span,
-                    labelStyle,
-                    contentStyle,
-                    loading_state,
-                    ...otherProps
-                } = childProps;
+            return (
+                <Descriptions.Item
+                    id={id}
+                    className={className}
+                    style={style}
+                    label={label}
+                    span={span}
+                    labelStyle={labelStyle}
+                    contentStyle={contentStyle}
+                    loading_state={loading_state}
+                    {...omit(
+                        ['setProps', 'persistence', 'persistence_type', 'persisted_props'],
+                        otherProps
+                    )}>
+                    {child}
+                </Descriptions.Item>
+            );
+        }
+    )
 
-                return (
-                    <Descriptions.Item
-                        id={id}
-                        className={className}
-                        style={style}
-                        label={label}
-                        span={span}
-                        labelStyle={labelStyle}
-                        contentStyle={contentStyle}
-                        loading_state={loading_state}
-                        {...omit(
-                            ['setProps', 'persistence', 'persistence_type', 'persisted_props'],
-                            otherProps
-                        )}>
-                        {child}
-                    </Descriptions.Item>
-                );
-            }
-        )
-
-        return (
-            <Descriptions id={id}
-                className={className}
-                style={style}
-                key={key}
-                title={title}
-                column={column}
-                bordered={bordered}
-                size={size2size.get(size)}
-                layout={layout}
-                labelStyle={labelStyle}
-                contentStyle={contentStyle}
-                data-dash-is-loading={
-                    (loading_state && loading_state.is_loading) || undefined
-                }>
-                {descriptionItems}
-            </Descriptions>
-        );
-    }
+    return (
+        <Descriptions id={id}
+            className={className}
+            style={style}
+            key={key}
+            title={title}
+            column={column}
+            bordered={bordered}
+            size={size2size.get(size)}
+            layout={layout}
+            labelStyle={labelStyle}
+            contentStyle={contentStyle}
+            data-dash-is-loading={
+                (loading_state && loading_state.is_loading) || undefined
+            }>
+            {descriptionItems}
+        </Descriptions>
+    );
 }
 
 // 定义参数或属性
@@ -166,3 +163,5 @@ AntdDescriptions.propTypes = {
 AntdDescriptions.defaultProps = {
     size: 'default'
 }
+
+export default AntdDescriptions;

@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { Statistic } from 'antd';
 import moment from 'moment';
@@ -8,54 +8,52 @@ import AntdIcon from './AntdIcon.react';
 const { Countdown } = Statistic;
 
 // 定义倒计时组件AntdCountdown，api参数参考https://ant.design/components/statistic-cn/
-export default class AntdCountdown extends Component {
-    render() {
-        // 取得必要属性或参数
-        let {
-            id,
-            className,
-            style,
-            key,
-            value,
-            format,
-            valueFormat,
-            prefix,
-            suffix,
-            title,
-            valueStyle,
-            setProps,
-            loading_state
-        } = this.props;
+const AntdCountdown = (props) => {
+    // 取得必要属性或参数
+    let {
+        id,
+        className,
+        style,
+        key,
+        value,
+        format,
+        valueFormat,
+        prefix,
+        suffix,
+        title,
+        valueStyle,
+        setProps,
+        loading_state
+    } = props;
 
-        return (
-            <Countdown id={id}
-                className={className}
-                style={style}
-                key={key}
-                value={moment(value, valueFormat)}
-                format={format}
-                prefix={
-                    prefix ? (
-                        prefix.mode === 'icon' ?
-                            <AntdIcon icon={prefix.content} /> :
-                            prefix.content
-                    ) : null
-                }
-                suffix={
-                    suffix ? (
-                        suffix.mode === 'icon' ?
-                            <AntdIcon icon={suffix.content} /> :
-                            suffix.content
-                    ) : null
-                }
-                title={title}
-                valueStyle={valueStyle}
-                data-dash-is-loading={
-                    (loading_state && loading_state.is_loading) || undefined
-                }
-            />
-        );
-    }
+    return (
+        <Countdown id={id}
+            className={className}
+            style={style}
+            key={key}
+            value={moment(value, valueFormat)}
+            format={format}
+            prefix={
+                prefix ? (
+                    prefix.mode === 'icon' ?
+                        <AntdIcon icon={prefix.content} /> :
+                        prefix.content
+                ) : null
+            }
+            suffix={
+                suffix ? (
+                    suffix.mode === 'icon' ?
+                        <AntdIcon icon={suffix.content} /> :
+                        suffix.content
+                ) : null
+            }
+            title={title}
+            valueStyle={valueStyle}
+            data-dash-is-loading={
+                (loading_state && loading_state.is_loading) || undefined
+            }
+        />
+    );
 }
 
 // 定义参数或属性
@@ -143,3 +141,5 @@ AntdCountdown.propTypes = {
 AntdCountdown.defaultProps = {
     valueFormat: 'YYYY-MM-DD hh:mm:ss'
 }
+
+export default AntdCountdown;

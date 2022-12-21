@@ -1,57 +1,49 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { Checkbox } from 'antd';
 
 
 // 定义组合选择框组件AntdCheckboxGroup，api参数参考https://ant.design/components/checkbox-cn/
-export default class AntdCheckboxGroup extends Component {
+const AntdCheckboxGroup = (props) => {
+    // 取得必要属性或参数
+    let {
+        id,
+        style,
+        className,
+        key,
+        options,
+        value,
+        disabled,
+        setProps,
+        persistence,
+        persisted_props,
+        persistence_type,
+        loading_state
+    } = props;
 
-    constructor(props) {
-        super(props)
+    const onChange = e => {
+        setProps({ value: e })
     }
 
-    render() {
-        // 取得必要属性或参数
-        let {
-            id,
-            style,
-            className,
-            key,
-            options,
-            value,
-            disabled,
-            setProps,
-            persistence,
-            persisted_props,
-            persistence_type,
-            loading_state
-        } = this.props;
-
-        const onChange = e => {
-            setProps({ value: e })
-        }
-
-        // 返回定制化的前端组件
-        return (
-            <Checkbox.Group
-                id={id}
-                className={className}
-                style={style}
-                key={key}
-                options={options}
-                value={value}
-                disabled={disabled}
-                onChange={onChange}
-                persistence={persistence}
-                persisted_props={persisted_props}
-                persistence_type={persistence_type}
-                data-dash-is-loading={
-                    (loading_state && loading_state.is_loading) || undefined
-                }
-            />
-        );
-
-    }
+    // 返回定制化的前端组件
+    return (
+        <Checkbox.Group
+            id={id}
+            className={className}
+            style={style}
+            key={key}
+            options={options}
+            value={value}
+            disabled={disabled}
+            onChange={onChange}
+            persistence={persistence}
+            persisted_props={persisted_props}
+            persistence_type={persistence_type}
+            data-dash-is-loading={
+                (loading_state && loading_state.is_loading) || undefined
+            }
+        />
+    );
 }
 
 // 定义参数或属性
@@ -144,3 +136,5 @@ AntdCheckboxGroup.defaultProps = {
     persisted_props: ['value'],
     persistence_type: 'local'
 }
+
+export default AntdCheckboxGroup;

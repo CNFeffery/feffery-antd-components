@@ -1,61 +1,56 @@
-import React, { Component } from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { Checkbox } from 'antd';
 
 
 // 定义选择框组件AntdCheckbox，api参数参考https://ant.design/components/checkbox-cn/
-export default class AntdCheckbox extends Component {
+const AntdCheckbox = (props) => {
+    // 取得必要属性或参数
+    let {
+        id,
+        style,
+        className,
+        key,
+        label,
+        disabled,
+        checked,
+        setProps,
+        persistence,
+        persisted_props,
+        persistence_type,
+        loading_state
+    } = props;
 
-    constructor(props) {
-        super(props)
-        if (!props.checked) {
-            props.setProps({ checked: false })
+    useEffect(() => {
+        if (!checked) {
+            setProps({ checked: false })
         }
+    }, [])
+
+    const onChange = e => {
+        setProps({ checked: e.target.checked })
     }
 
-    render() {
-        // 取得必要属性或参数
-        let {
-            id,
-            style,
-            className,
-            key,
-            label,
-            disabled,
-            checked,
-            setProps,
-            persistence,
-            persisted_props,
-            persistence_type,
-            loading_state
-        } = this.props;
-
-        const onChange = e => {
-            setProps({ checked: e.target.checked })
-        }
-
-        // 返回定制化的前端组件
-        return (
-            <Checkbox
-                id={id}
-                className={className}
-                style={style}
-                key={key}
-                onChange={onChange}
-                disabled={disabled}
-                checked={checked}
-                persistence={persistence}
-                persisted_props={persisted_props}
-                persistence_type={persistence_type}
-                data-dash-is-loading={
-                    (loading_state && loading_state.is_loading) || undefined
-                }
-            >
-                {label}
-            </Checkbox>
-        );
-
-    }
+    // 返回定制化的前端组件
+    return (
+        <Checkbox
+            id={id}
+            className={className}
+            style={style}
+            key={key}
+            onChange={onChange}
+            disabled={disabled}
+            checked={checked}
+            persistence={persistence}
+            persisted_props={persisted_props}
+            persistence_type={persistence_type}
+            data-dash-is-loading={
+                (loading_state && loading_state.is_loading) || undefined
+            }
+        >
+            {label}
+        </Checkbox>
+    );
 }
 
 // 定义参数或属性
@@ -137,3 +132,5 @@ AntdCheckbox.defaultProps = {
     persisted_props: ['checked'],
     persistence_type: 'local'
 }
+
+export default AntdCheckbox;

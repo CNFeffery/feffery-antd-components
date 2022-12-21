@@ -1,44 +1,42 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { Affix } from 'antd';
 
 import { parseChildrenToArray } from './utils';
 
 // 定义固钉组件AntdAffix，api参数参考https://ant.design/components/affix-cn/
-export default class AntdAffix extends Component {
-    render() {
-        // 取得必要属性或参数
-        let {
-            id,
-            className,
-            style,
-            key,
-            children,
-            offsetBottom,
-            offsetTop,
-            target,
-            setProps,
-            loading_state
-        } = this.props;
+const AntdAffix = (props) => {
+    // 取得必要属性或参数
+    let {
+        id,
+        className,
+        style,
+        key,
+        children,
+        offsetBottom,
+        offsetTop,
+        target,
+        setProps,
+        loading_state
+    } = props;
 
-        children = parseChildrenToArray(children)
+    children = parseChildrenToArray(children)
 
-        return (
-            <Affix id={id}
-                className={className}
-                style={style}
-                key={key}
-                offsetBottom={offsetBottom}
-                offsetTop={offsetTop}
-                target={() => target ? document.getElementById(target) : window}
-                data-dash-is-loading={
-                    (loading_state && loading_state.is_loading) || undefined
-                }
-            >
-                {children}
-            </Affix>
-        );
-    }
+    return (
+        <Affix id={id}
+            className={className}
+            style={style}
+            key={key}
+            offsetBottom={offsetBottom}
+            offsetTop={offsetTop}
+            target={() => target ? document.getElementById(target) : window}
+            data-dash-is-loading={
+                (loading_state && loading_state.is_loading) || undefined
+            }
+        >
+            {children}
+        </Affix>
+    );
 }
 
 // 定义参数或属性
@@ -93,3 +91,5 @@ AntdAffix.propTypes = {
 // 设置默认参数
 AntdAffix.defaultProps = {
 }
+
+export default AntdAffix;

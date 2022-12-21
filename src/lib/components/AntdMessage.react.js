@@ -1,65 +1,60 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { message } from 'antd';
 import AntdIcon from './AntdIcon.react';
 
-
 // 定义全局提示组件AntdMessage，api参数参考https://ant.design/components/message-cn/
-export default class AntdMessage extends Component {
+const AntdMessage = (props) => {
+    // 取得必要属性或参数
+    let {
+        id,
+        className,
+        style,
+        key,
+        content,
+        type,
+        duration,
+        icon,
+        top,
+        loading_state,
+        setProps
+    } = props;
 
-    render() {
-        // 取得必要属性或参数
-        let {
-            id,
-            className,
-            style,
-            key,
-            content,
-            type,
-            duration,
-            icon,
-            top,
-            loading_state,
-            setProps
-        } = this.props;
-
-        let config = {
-            className: className,
-            style: style,
-            content: content,
-            duration: duration,
-            top: top
-        }
-
-        if (icon) {
-            config.icon = <AntdIcon icon={icon} style={{ marginRight: 3 }} />
-        }
-
-        message.config(config)
-
-        if (type === 'default') {
-            message.open(config)
-        } else if (type === 'success') {
-            message.success(config)
-        } else if (type === 'error') {
-            message.error(config)
-        } else if (type === 'info') {
-            message.info(config)
-        } else if (type === 'warning') {
-            message.warning(config)
-        }
-
-
-        return (
-            <div
-                id={id}
-                key={key}
-                data-dash-is-loading={
-                    (loading_state && loading_state.is_loading) || undefined
-                }
-            ></div>
-        );
+    let config = {
+        className: className,
+        style: style,
+        content: content,
+        duration: duration,
+        top: top
     }
+
+    if (icon) {
+        config.icon = <AntdIcon icon={icon} style={{ marginRight: 3 }} />
+    }
+
+    message.config(config)
+
+    if (type === 'default') {
+        message.open(config)
+    } else if (type === 'success') {
+        message.success(config)
+    } else if (type === 'error') {
+        message.error(config)
+    } else if (type === 'info') {
+        message.info(config)
+    } else if (type === 'warning') {
+        message.warning(config)
+    }
+
+    return (
+        <div
+            id={id}
+            key={key}
+            data-dash-is-loading={
+                (loading_state && loading_state.is_loading) || undefined
+            }
+        ></div>
+    );
 }
 
 // 定义参数或属性
@@ -117,3 +112,5 @@ AntdMessage.propTypes = {
 AntdMessage.defaultProps = {
     type: 'default'
 }
+
+export default AntdMessage;

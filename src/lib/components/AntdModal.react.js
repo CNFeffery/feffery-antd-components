@@ -1,106 +1,105 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { str2Locale } from './locales.react';
 import { Modal, ConfigProvider } from 'antd';
 
 
 // 定义对话框组件AntdModal，api参数参考https://ant.design/components/modal-cn/
-export default class AntdModal extends Component {
-    render() {
-        // 取得必要属性或参数
-        const {
-            id,
-            children,
-            className,
-            key,
-            style,
-            locale,
-            setProps,
-            title,
-            visible,
-            renderFooter,
-            okButtonProps,
-            cancelButtonProps,
-            okText,
-            loadingOkText,
-            cancelText,
-            width,
-            centered,
-            keyboard,
-            closable,
-            mask,
-            maskClosable,
-            okClickClose,
-            zIndex,
-            maskStyle,
-            bodyStyle,
-            okCounts,
-            cancelCounts,
-            closeCounts,
-            confirmLoading,
-            confirmAutoSpin,
-            transitionType,
-            loading_state
-        } = this.props;
+const AntdModal = (props) => {
 
-        // 监听确认按钮点击事件
-        const listenOk = () => {
-            if (okClickClose) {
-                setProps({ visible: false, okCounts: okCounts + 1 })
-            } else if (confirmAutoSpin) {
-                setProps({ okCounts: okCounts + 1, confirmLoading: true })
-            } else {
-                setProps({ okCounts: okCounts + 1 })
-            }
-        };
+    // 取得必要属性或参数
+    const {
+        id,
+        children,
+        className,
+        key,
+        style,
+        locale,
+        setProps,
+        title,
+        visible,
+        renderFooter,
+        okButtonProps,
+        cancelButtonProps,
+        okText,
+        loadingOkText,
+        cancelText,
+        width,
+        centered,
+        keyboard,
+        closable,
+        mask,
+        maskClosable,
+        okClickClose,
+        zIndex,
+        maskStyle,
+        bodyStyle,
+        okCounts,
+        cancelCounts,
+        closeCounts,
+        confirmLoading,
+        confirmAutoSpin,
+        transitionType,
+        loading_state
+    } = props;
 
-        // 监听取消按钮点击事件
-        const listenCancel = () => {
-            setProps({ visible: false, cancelCounts: cancelCounts + 1 })
-        };
+    // 监听确认按钮点击事件
+    const listenOk = () => {
+        if (okClickClose) {
+            setProps({ visible: false, okCounts: okCounts + 1 })
+        } else if (confirmAutoSpin) {
+            setProps({ okCounts: okCounts + 1, confirmLoading: true })
+        } else {
+            setProps({ okCounts: okCounts + 1 })
+        }
+    };
 
-        // 监听关闭按钮点击事件
-        const listenClose = () => {
-            setProps({ closeCounts: closeCounts + 1 })
-        };
+    // 监听取消按钮点击事件
+    const listenCancel = () => {
+        setProps({ visible: false, cancelCounts: cancelCounts + 1 })
+    };
 
-        // 返回定制化的前端组件
-        return (
-            <ConfigProvider locale={str2Locale.get(locale)}>
-                <Modal
-                    id={id}
-                    className={className}
-                    style={style}
-                    key={key}
-                    title={title}
-                    open={visible}
-                    okText={confirmLoading ? (loadingOkText || okText) : okText}
-                    cancelText={cancelText}
-                    okButtonProps={okButtonProps}
-                    cancelButtonProps={cancelButtonProps}
-                    transitionName={transitionType === 'none' ? '' : `ant-${transitionType}`}
-                    width={width}
-                    centered={centered}
-                    keyboard={keyboard}
-                    closable={closable}
-                    mask={mask}
-                    maskClosable={maskClosable}
-                    zIndex={zIndex}
-                    maskStyle={maskStyle}
-                    bodyStyle={bodyStyle}
-                    onOk={listenOk}
-                    onCancel={listenCancel}
-                    afterClose={listenClose}
-                    footer={renderFooter ? undefined : null}
-                    confirmLoading={confirmLoading}
-                    destroyOnClose={true}
-                    data-dash-is-loading={
-                        (loading_state && loading_state.is_loading) || undefined
-                    }
-                >{children}</Modal>
-            </ConfigProvider>
-        );
-    }
+    // 监听关闭按钮点击事件
+    const listenClose = () => {
+        setProps({ closeCounts: closeCounts + 1 })
+    };
+
+    // 返回定制化的前端组件
+    return (
+        <ConfigProvider locale={str2Locale.get(locale)}>
+            <Modal
+                id={id}
+                className={className}
+                style={style}
+                key={key}
+                title={title}
+                open={visible}
+                okText={confirmLoading ? (loadingOkText || okText) : okText}
+                cancelText={cancelText}
+                okButtonProps={okButtonProps}
+                cancelButtonProps={cancelButtonProps}
+                transitionName={transitionType === 'none' ? '' : `ant-${transitionType}`}
+                width={width}
+                centered={centered}
+                keyboard={keyboard}
+                closable={closable}
+                mask={mask}
+                maskClosable={maskClosable}
+                zIndex={zIndex}
+                maskStyle={maskStyle}
+                bodyStyle={bodyStyle}
+                onOk={listenOk}
+                onCancel={listenCancel}
+                afterClose={listenClose}
+                footer={renderFooter ? undefined : null}
+                confirmLoading={confirmLoading}
+                destroyOnClose={true}
+                data-dash-is-loading={
+                    (loading_state && loading_state.is_loading) || undefined
+                }
+            >{children}</Modal>
+        </ConfigProvider>
+    );
 }
 
 // 定义参数或属性
@@ -258,3 +257,5 @@ AntdModal.defaultProps = {
     confirmAutoSpin: false,
     transitionType: 'zoom'
 }
+
+export default AntdModal;

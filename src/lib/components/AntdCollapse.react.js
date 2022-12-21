@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { Collapse } from 'antd';
 
@@ -7,69 +7,67 @@ import { parseChildrenToArray } from './utils';
 const { Panel } = Collapse;
 
 // 定义折叠面板组件AntdCollapse，api参数参考https://ant.design/components/steps-cn/
-export default class AntdCollapse extends Component {
-    render() {
-        // 取得必要属性或参数
-        let {
-            id,
-            children,
-            className,
-            style,
-            key,
-            title,
-            is_open,
-            bordered,
-            showArrow,
-            collapsible,
-            ghost,
-            forceRender,
-            setProps,
-            persistence,
-            persisted_props,
-            persistence_type,
-            loading_state
-        } = this.props;
+const AntdCollapse = (props) => {
+    // 取得必要属性或参数
+    let {
+        id,
+        children,
+        className,
+        style,
+        key,
+        title,
+        is_open,
+        bordered,
+        showArrow,
+        collapsible,
+        ghost,
+        forceRender,
+        setProps,
+        persistence,
+        persisted_props,
+        persistence_type,
+        loading_state
+    } = props;
 
-        children = parseChildrenToArray(children)
+    children = parseChildrenToArray(children)
 
-        return (
-            <Collapse
-                id={id}
-                className={className}
-                activeKey={is_open ? ['1'] : []}
-                style={style}
-                key={key}
-                bordered={bordered}
-                ghost={ghost}
-                collapsible={collapsible}
-                onChange={(e) => {
-                    if (e.length === 1) {
-                        setProps({
-                            is_open: true
-                        })
-                    } else {
-                        setProps({
-                            is_open: false
-                        })
-                    }
-                }}
-                persistence={persistence}
-                persisted_props={persisted_props}
-                persistence_type={persistence_type}
-                data-dash-is-loading={
-                    (loading_state && loading_state.is_loading) || undefined
-                }>
-                <Panel
-                    key='1'
-                    header={title}
-                    showArrow={showArrow}
-                    forceRender={forceRender}
-                >
-                    {children}
-                </Panel>
-            </Collapse>
-        );
-    }
+    return (
+        <Collapse
+            id={id}
+            className={className}
+            activeKey={is_open ? ['1'] : []}
+            style={style}
+            key={key}
+            bordered={bordered}
+            ghost={ghost}
+            collapsible={collapsible}
+            onChange={(e) => {
+                if (e.length === 1) {
+                    setProps({
+                        is_open: true
+                    })
+                } else {
+                    setProps({
+                        is_open: false
+                    })
+                }
+            }}
+            persistence={persistence}
+            persisted_props={persisted_props}
+            persistence_type={persistence_type}
+            data-dash-is-loading={
+                (loading_state && loading_state.is_loading) || undefined
+            }>
+            <Panel
+                key='1'
+                header={title}
+                showArrow={showArrow}
+                forceRender={forceRender}
+            >
+                {children}
+            </Panel>
+        </Collapse>
+    );
 }
 
 // 定义参数或属性
@@ -167,3 +165,5 @@ AntdCollapse.defaultProps = {
     persisted_props: ['is_open'],
     persistence_type: 'local'
 }
+
+export default AntdCollapse;

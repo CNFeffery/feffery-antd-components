@@ -1,44 +1,42 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { Form } from 'antd';
 
 
 // 定义表单组件AntdForm，api参数参考https://ant.design/components/form-cn/
-export default class AntdForm extends Component {
-    render() {
-        // 取得必要属性或参数
-        let {
-            id,
-            children,
-            className,
-            style,
-            key,
-            labelCol,
-            wrapperCol,
-            colon,
-            labelAlign,
-            layout,
-            setProps,
-            loading_state
-        } = this.props;
+const AntdForm = (props) => {
+    // 取得必要属性或参数
+    let {
+        id,
+        children,
+        className,
+        style,
+        key,
+        labelCol,
+        wrapperCol,
+        colon,
+        labelAlign,
+        layout,
+        setProps,
+        loading_state
+    } = props;
 
-        return (
-            <Form id={id}
-                className={className}
-                style={style}
-                key={key}
-                labelCol={labelCol}
-                wrapperCol={wrapperCol}
-                colon={colon}
-                labelAlign={labelAlign}
-                layout={layout}
-                data-dash-is-loading={
-                    (loading_state && loading_state.is_loading) || undefined
-                }>
-                {children}
-            </Form>
-        );
-    }
+    return (
+        <Form id={id}
+            className={className}
+            style={style}
+            key={key}
+            labelCol={labelCol}
+            wrapperCol={wrapperCol}
+            colon={colon}
+            labelAlign={labelAlign}
+            layout={layout}
+            data-dash-is-loading={
+                (loading_state && loading_state.is_loading) || undefined
+            }>
+            {children}
+        </Form>
+    );
 }
 
 // 定义参数或属性
@@ -112,3 +110,5 @@ AntdForm.propTypes = {
 // 设置默认参数
 AntdForm.defaultProps = {
 }
+
+export default AntdForm;

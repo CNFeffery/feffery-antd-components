@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { TimePicker, ConfigProvider } from 'antd';
 import moment from 'moment';
@@ -9,109 +9,105 @@ import { str2Locale } from './locales.react';
 const { RangePicker } = TimePicker
 
 // 定义时间范围选择组件AntdTimeRangePicker，api参数参考https://ant.design/components/time-picker-cn/
-export default class AntdTimeRangePicker extends Component {
+const AntdTimeRangePicker = (props) => {
+    // 取得必要属性或参数
+    let {
+        id,
+        className,
+        style,
+        key,
+        locale,
+        setProps,
+        value,
+        defaultValue,
+        placeholder,
+        disabled,
+        hourStep,
+        minuteStep,
+        secondStep,
+        format,
+        use12Hours,
+        allowClear,
+        bordered,
+        size,
+        status,
+        popupContainer,
+        readOnly,
+        persistence,
+        persisted_props,
+        persistence_type,
+        loading_state
+    } = props;
 
-    constructor(props) {
-        super(props)
+    useEffect(() => {
         // 初始化value
-        if (props.defaultValue && !props.value) {
+        if (defaultValue && !value) {
             // 当defaultValue不为空且value为空时，为value初始化defaultValue对应值
-            props.setProps({ value: props.defaultValue })
+            setProps({ value: defaultValue })
+        }
+    }, [])
+
+    const onChange = (time, timeString) => {
+        if (Array.isArray(timeString)) {
+            setProps({ value: [timeString[0], timeString[1]] })
+        } else {
+            setProps({ value: null })
         }
     }
 
-    render() {
-        // 取得必要属性或参数
-        let {
-            id,
-            className,
-            style,
-            key,
-            locale,
-            setProps,
-            value,
-            defaultValue,
-            placeholder,
-            disabled,
-            hourStep,
-            minuteStep,
-            secondStep,
-            format,
-            use12Hours,
-            allowClear,
-            bordered,
-            size,
-            status,
-            popupContainer,
-            readOnly,
-            persistence,
-            persisted_props,
-            persistence_type,
-            loading_state
-        } = this.props;
-
-        const onChange = (time, timeString) => {
-            if (Array.isArray(timeString)) {
-                setProps({ value: [timeString[0], timeString[1]] })
-            } else {
-                setProps({ value: null })
-            }
-        }
-
-        // 返回定制化的前端组件
-        return (
-            <div>
-                <ConfigProvider locale={str2Locale.get(locale)}>
-                    <RangePicker
-                        id={id}
-                        className={className}
-                        style={style}
-                        key={key}
-                        onChange={onChange}
-                        disabled={(disabled && disabled.length === 2) ? disabled : undefined}
-                        placeholder={(placeholder && placeholder.length === 2) ? placeholder : undefined}
-                        bordered={bordered}
-                        size={size}
-                        hourStep={hourStep}
-                        minuteStep={minuteStep}
-                        secondStep={secondStep}
-                        format={format}
-                        use12Hours={use12Hours}
-                        allowClear={isUndefined(readOnly) ? allowClear : !readOnly}
-                        defaultValue={
-                            (defaultValue && defaultValue.length === 2) ?
-                                (
-                                    defaultValue[0] !== '' && defaultValue[1] !== '' ?
-                                        [moment(defaultValue[0], format), moment(defaultValue[1], format)] : undefined
-                                ) :
-                                undefined
-                        }
-                        value={
-                            (value && value.length === 2) ?
-                                (
-                                    value[0] !== '' && value[1] !== '' ?
-                                        [moment(value[0], format), moment(value[1], format)] : undefined
-                                ) :
-                                undefined
-                        }
-                        status={status}
-                        persistence={persistence}
-                        persisted_props={persisted_props}
-                        persistence_type={persistence_type}
-                        data-dash-is-loading={
-                            (loading_state && loading_state.is_loading) || undefined
-                        }
-                        getPopupContainer={
-                            popupContainer === 'parent' ?
-                                (triggerNode) => triggerNode.parentNode :
-                                undefined
-                        }
-                        open={isUndefined(readOnly) ? undefined : !readOnly}
-                    />
-                </ConfigProvider>
-            </div>
-        );
-    }
+    // 返回定制化的前端组件
+    return (
+        <div>
+            <ConfigProvider locale={str2Locale.get(locale)}>
+                <RangePicker
+                    id={id}
+                    className={className}
+                    style={style}
+                    key={key}
+                    onChange={onChange}
+                    disabled={(disabled && disabled.length === 2) ? disabled : undefined}
+                    placeholder={(placeholder && placeholder.length === 2) ? placeholder : undefined}
+                    bordered={bordered}
+                    size={size}
+                    hourStep={hourStep}
+                    minuteStep={minuteStep}
+                    secondStep={secondStep}
+                    format={format}
+                    use12Hours={use12Hours}
+                    allowClear={isUndefined(readOnly) ? allowClear : !readOnly}
+                    defaultValue={
+                        (defaultValue && defaultValue.length === 2) ?
+                            (
+                                defaultValue[0] !== '' && defaultValue[1] !== '' ?
+                                    [moment(defaultValue[0], format), moment(defaultValue[1], format)] : undefined
+                            ) :
+                            undefined
+                    }
+                    value={
+                        (value && value.length === 2) ?
+                            (
+                                value[0] !== '' && value[1] !== '' ?
+                                    [moment(value[0], format), moment(value[1], format)] : undefined
+                            ) :
+                            undefined
+                    }
+                    status={status}
+                    persistence={persistence}
+                    persisted_props={persisted_props}
+                    persistence_type={persistence_type}
+                    data-dash-is-loading={
+                        (loading_state && loading_state.is_loading) || undefined
+                    }
+                    getPopupContainer={
+                        popupContainer === 'parent' ?
+                            (triggerNode) => triggerNode.parentNode :
+                            undefined
+                    }
+                    open={isUndefined(readOnly) ? undefined : !readOnly}
+                />
+            </ConfigProvider>
+        </div>
+    );
 }
 
 // 定义参数或属性
@@ -246,3 +242,5 @@ AntdTimeRangePicker.defaultProps = {
     locale: 'zh-cn',
     popupContainer: 'body'
 }
+
+export default AntdTimeRangePicker;
