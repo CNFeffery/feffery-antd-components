@@ -22,6 +22,7 @@ const AntdAlert = (props) => {
         messageRenderMode,
         description,
         action,
+        banner,
         setProps,
         loading_state
     } = props;
@@ -46,10 +47,10 @@ const AntdAlert = (props) => {
                 showIcon={showIcon}
                 closable={closable}
                 action={action}
+                banner={banner}
                 data-dash-is-loading={
                     (loading_state && loading_state.is_loading) || undefined
-                }>
-            </Alert>
+                } />
         );
     }
 
@@ -73,8 +74,8 @@ const AntdAlert = (props) => {
             description={description}
             showIcon={showIcon}
             closable={closable}
-            action={action}>
-        </Alert>
+            action={action}
+            banner={banner} />
     );
 }
 
@@ -103,6 +104,7 @@ AntdAlert.propTypes = {
     message: PropTypes.node,
 
     // 设置提示类型，可选的有'success'、'info'、'warning'和'error'四种
+    // banner=true时默认type为'warning'
     type: PropTypes.oneOf(['success', 'info', 'warning', 'error']),
 
     // 设置是否显示辅助图标，默认为false
@@ -117,6 +119,9 @@ AntdAlert.propTypes = {
 
     // 设置右上角操作区额外元素
     action: PropTypes.node,
+
+    // 设置是否用作顶部公告，默认为false
+    banner: PropTypes.bool,
 
     /**
      * Dash-assigned callback that should be called to report property changes

@@ -10,6 +10,7 @@ An AntdAlert component.
 Keyword arguments:
 - `id` (String; optional)
 - `action` (a list of or a singular dash component, string or number; optional)
+- `banner` (Bool; optional)
 - `className` (String | Dict; optional)
 - `closable` (Bool; optional)
 - `description` (a list of or a singular dash component, string or number; optional)
@@ -26,7 +27,7 @@ Those elements have the following types:
 - `type` (a value equal to: 'success', 'info', 'warning', 'error'; optional)
 """
 function 'feffery'_antdalert(; kwargs...)
-        available_props = Symbol[:id, :action, :className, :closable, :description, :key, :loading_state, :message, :messageRenderMode, :showIcon, :style, :type]
+        available_props = Symbol[:id, :action, :banner, :className, :closable, :description, :key, :loading_state, :message, :messageRenderMode, :showIcon, :style, :type]
         wild_props = Symbol[]
         return Component("'feffery'_antdalert", "AntdAlert", "feffery_antd_components", available_props, wild_props; kwargs...)
 end
