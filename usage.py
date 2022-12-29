@@ -1,13 +1,14 @@
 import dash
 from dash import html
 import feffery_antd_components as fac
-import feffery_utils_components as fuc
 from dash.dependencies import Input, Output
 
 app = dash.Dash(__name__)
 
 app.layout = html.Div(
     [
+        fac.AntdCard(),
+
         fac.AntdRow(
             [
                 fac.AntdCol(
@@ -41,6 +42,12 @@ app.layout = html.Div(
                 'height': '200px',
                 'background': 'lightgrey'
             }
+        ),
+
+        fac.AntdAlert(
+            message='测试',
+            description='测试',
+            banner=True
         ),
 
         fac.AntdAvatarGroup(

@@ -61,6 +61,7 @@ from .AntdTransfer import AntdTransfer
 from .AntdTree import AntdTree
 from .AntdTreeSelect import AntdTreeSelect
 from .AntdWatermark import AntdWatermark
+from .AntdCard import AntdCard
 from .AntdCardGrid import AntdCardGrid
 from .AntdCheckCard import AntdCheckCard
 from .AntdCheckCardGroup import AntdCheckCardGroup
@@ -153,6 +154,7 @@ __all__ = [
     "AntdTree",
     "AntdTreeSelect",
     "AntdWatermark",
+    "AntdCard",
     "AntdCardGrid",
     "AntdCheckCard",
     "AntdCheckCardGroup",

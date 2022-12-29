@@ -40,17 +40,17 @@ const AntdCard = (props) => {
             }}
             headStyle={headStyle}
             extra={
-                <a className={extraLink?.className}
-                    style={extraLink?.style}
-                    href={extraLink?.href}
-                    target={extraLink?.target || '_blank'}>
-                    {extraLink?.content}
+                <a className={extraLink && extraLink.className}
+                    style={extraLink && extraLink.style}
+                    href={extraLink && extraLink.href}
+                    target={extraLink && extraLink.target || '_blank'}>
+                    {extraLink && extraLink.content}
                 </a>
             }
             cover={
-                <img alt={coverImg?.alt}
-                    src={coverImg?.src}
-                    style={coverImg?.style} />
+                <img alt={coverImg && coverImg.alt}
+                    src={coverImg && coverImg.src}
+                    style={coverImg && coverImg.style} />
             }
             bordered={bordered}
             hoverable={hoverable}
