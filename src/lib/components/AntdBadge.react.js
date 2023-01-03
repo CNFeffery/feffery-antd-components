@@ -36,7 +36,7 @@ const AntdBadge = (props) => {
             color={color}
             count={count}
             dot={dot}
-            offset={offset?.length === 2 ? offset : undefined}
+            offset={(offset && offset.length === 2) ? offset : undefined}
             overflowCount={overflowCount}
             showZero={showZero}
             status={status}

@@ -129,7 +129,7 @@ const AntdTabs = (props) => {
                     className={className}
                     style={style}
                     tab={
-                        titleSideInfoPopover?.content ? <>
+                        (titleSideInfoPopover && titleSideInfoPopover.content) ? <>
                             <span>{tab}</span>
                             <Popover
                                 title={titleSideInfoPopover.title}

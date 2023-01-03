@@ -5,6 +5,7 @@ from .AntdAnchor import AntdAnchor
 from .AntdAvatar import AntdAvatar
 from .AntdAvatarGroup import AntdAvatarGroup
 from .AntdBackTop import AntdBackTop
+from .AntdBadge import AntdBadge
 from .AntdBreadcrumb import AntdBreadcrumb
 from .AntdButton import AntdButton
 from .AntdCalendar import AntdCalendar
@@ -36,7 +37,9 @@ from .AntdPageHeader import AntdPageHeader
 from .AntdPagination import AntdPagination
 from .AntdPasteImage import AntdPasteImage
 from .AntdPopconfirm import AntdPopconfirm
+from .AntdPopover import AntdPopover
 from .AntdPopupCard import AntdPopupCard
+from .AntdProgress import AntdProgress
 from .AntdRadioGroup import AntdRadioGroup
 from .AntdRate import AntdRate
 from .AntdResult import AntdResult
@@ -83,6 +86,7 @@ from .AntdSkeletonButton import AntdSkeletonButton
 from .AntdSkeletonImage import AntdSkeletonImage
 from .AntdSkeletonInput import AntdSkeletonInput
 from .AntdTabPane import AntdTabPane
+from .AntdTabs import AntdTabs
 from .AntdParagraph import AntdParagraph
 from .AntdText import AntdText
 from .AntdTitle import AntdTitle
@@ -98,6 +102,7 @@ __all__ = [
     "AntdAvatar",
     "AntdAvatarGroup",
     "AntdBackTop",
+    "AntdBadge",
     "AntdBreadcrumb",
     "AntdButton",
     "AntdCalendar",
@@ -129,7 +134,9 @@ __all__ = [
     "AntdPagination",
     "AntdPasteImage",
     "AntdPopconfirm",
+    "AntdPopover",
     "AntdPopupCard",
+    "AntdProgress",
     "AntdRadioGroup",
     "AntdRate",
     "AntdResult",
@@ -176,6 +183,7 @@ __all__ = [
     "AntdSkeletonImage",
     "AntdSkeletonInput",
     "AntdTabPane",
+    "AntdTabs",
     "AntdParagraph",
     "AntdText",
     "AntdTitle",

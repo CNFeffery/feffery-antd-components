@@ -38,11 +38,11 @@ const AntdProgress = (props) => {
             type={type}
             size={size}
             percent={percent}
-            format={format ? p => format?.content ?
+            format={format ? p => (format && format.content) ?
                 format.content : (
-                    (format?.prefix ? format.prefix : '') +
+                    ((format && format.prefix) ? format.prefix : '') +
                     `${p}` +
-                    (format?.suffix ? format.suffix : '%')
+                    ((format && format.suffix) ? format.suffix : '%')
                 ) : undefined}
             status={status}
             showInfo={showInfo}

@@ -36,7 +36,7 @@ const AntdPopover = (props) => {
             className={className}
             style={style}
             key={key}
-            title={title?.content ?
+            title={(title && title.content) ?
                 <div>
                     {<AntdIcon icon={title.prefixIcon} />}
                     {<span style={{ marginLeft: '5px' }}>{title.content}</span>}

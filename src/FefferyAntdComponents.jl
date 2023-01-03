@@ -3,7 +3,7 @@ module FefferyAntdComponents
 using Dash
 
 const resources_path = realpath(joinpath( @__DIR__, "..", "deps"))
-const version = "0.2.0-rc20"
+const version = "0.2.0-rc21"
 
 include("jl/'feffery'_antdaccordion.jl")
 include("jl/'feffery'_antdaffix.jl")
@@ -12,6 +12,7 @@ include("jl/'feffery'_antdanchor.jl")
 include("jl/'feffery'_antdavatar.jl")
 include("jl/'feffery'_antdavatargroup.jl")
 include("jl/'feffery'_antdbacktop.jl")
+include("jl/'feffery'_antdbadge.jl")
 include("jl/'feffery'_antdbreadcrumb.jl")
 include("jl/'feffery'_antdbutton.jl")
 include("jl/'feffery'_antdcalendar.jl")
@@ -43,7 +44,9 @@ include("jl/'feffery'_antdpageheader.jl")
 include("jl/'feffery'_antdpagination.jl")
 include("jl/'feffery'_antdpasteimage.jl")
 include("jl/'feffery'_antdpopconfirm.jl")
+include("jl/'feffery'_antdpopover.jl")
 include("jl/'feffery'_antdpopupcard.jl")
+include("jl/'feffery'_antdprogress.jl")
 include("jl/'feffery'_antdradiogroup.jl")
 include("jl/'feffery'_antdrate.jl")
 include("jl/'feffery'_antdresult.jl")
@@ -90,6 +93,7 @@ include("jl/'feffery'_antdskeletonbutton.jl")
 include("jl/'feffery'_antdskeletonimage.jl")
 include("jl/'feffery'_antdskeletoninput.jl")
 include("jl/'feffery'_antdtabpane.jl")
+include("jl/'feffery'_antdtabs.jl")
 include("jl/'feffery'_antdparagraph.jl")
 include("jl/'feffery'_antdtext.jl")
 include("jl/'feffery'_antdtitle.jl")
@@ -106,14 +110,14 @@ function __init__()
             [
                 DashBase.Resource(
     relative_package_path = "feffery_antd_components.min.js",
-    external_url = "https://unpkg.com/feffery_antd_components@0.2.0-rc20/feffery_antd_components/feffery_antd_components.min.js",
+    external_url = "https://unpkg.com/feffery_antd_components@0.2.0-rc21/feffery_antd_components/feffery_antd_components.min.js",
     dynamic = nothing,
     async = nothing,
     type = :js
 ),
 DashBase.Resource(
     relative_package_path = "feffery_antd_components.min.js.map",
-    external_url = "https://unpkg.com/feffery_antd_components@0.2.0-rc20/feffery_antd_components/feffery_antd_components.min.js.map",
+    external_url = "https://unpkg.com/feffery_antd_components@0.2.0-rc21/feffery_antd_components/feffery_antd_components.min.js.map",
     dynamic = true,
     async = nothing,
     type = :js
