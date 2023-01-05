@@ -1,91 +1,193 @@
+import json
 import dash
 from dash import html
 import feffery_antd_components as fac
-from dash.dependencies import Input, Output
+from dash.dependencies import Input, Output, State
 
 app = dash.Dash(__name__)
 
 app.layout = html.Div(
     [
-
-        fac.AntdRow(
+        fac.AntdSpin(
             [
-                fac.AntdCol(
-                    [
-                        fac.AntdSpin(
-                            html.Div(
-                                '测试',
-                                style={
-                                    'height': '100%',
-                                    'textAlign': 'center',
-                                    'background': 'red'
-                                }
-                            ),
-                            wrapperClassName={
-                                'height': '100%'
-                            }
-                        )
+                fac.AntdTable(
+                    id='table-mouse-event-demo',
+                    enableHoverListen=True,
+                    bordered=True,
+                    columns=[
+                        {
+                            'title': '字段1',
+                            'dataIndex': '字段1'
+                        },
+                        {
+                            'title': '字段2',
+                            'dataIndex': '字段2'
+                        },
+                        {
+                            'title': '字段3',
+                            'dataIndex': '字段3'
+                        }
                     ],
-                    flex=1
+                    data=[
+                        {
+                            'key': str(i),
+                            '字段1': i,
+                            '字段2': i,
+                            '字段3': i
+                        }
+                        for i in range(5)
+                    ]
                 ),
 
-                fac.AntdCol(
-                    flex=1,
+                fac.AntdSpace(
+                    id='table-mouse-event-demo-output',
+                    direction='vertical',
                     style={
-                        'background': 'green'
+                        'width': '100%'
                     }
                 )
             ],
-            style={
-                'width': '400px',
-                'height': '200px',
-                'background': 'lightgrey'
-            }
+            text='回调中'
         ),
 
-        fac.AntdAlert(
-            message='测试',
-            description='测试',
-            banner=True
-        ),
-
-        fac.AntdAvatarGroup(
+        fac.AntdSpin(
             [
-                fac.AntdAvatar(
-                    mode='image',
-                    src='https://fac.feffery.tech/assets/imgs/avatar-demo.jpg'
+                fac.AntdTable(
+                    id='table-button-click-demo',
+                    columns=[
+                        {
+                            'title': '单按钮示例',
+                            'dataIndex': '单按钮示例',
+                            'renderOptions': {'renderType': 'button'},
+                            'width': '25%'
+                        },
+                        {
+                            'title': '多按钮示例',
+                            'dataIndex': '多按钮示例',
+                            'renderOptions': {'renderType': 'button'},
+                            'width': '50%'
+                        },
+                        {
+                            'title': '气泡确认按钮示例',
+                            'dataIndex': '气泡确认按钮示例',
+                            'renderOptions': {
+                                'renderType': 'button',
+                                'renderButtonPopConfirmProps': {
+                                    'title': '确认操作',
+                                    'okText': '继续',
+                                    'cancelText': '再想想'
+                                }
+                            },
+                            'width': '25%'
+                        }
+                    ],
+                    data=[
+                        {
+                            'key': i,
+                            '单按钮示例': {
+                                'content': '按钮示例',
+                                'type': 'primary'
+                            },
+                            '多按钮示例': [
+                                {
+                                    'content': '按钮示例1',
+                                    'type': 'primary'
+                                },
+                                {
+                                    'content': '按钮示例2',
+                                    'danger': True
+                                }
+                            ],
+                            '气泡确认按钮示例': {
+                                'content': '气泡确认按钮示例',
+                                'type': 'primary'
+                            }
+                        }
+                        for i in range(5)
+                    ],
+                    bordered=True
                 ),
-                fac.AntdAvatar(
-                    mode='image',
-                    shape='square',
-                    src='https://fac.feffery.tech/assets/imgs/avatar-demo.jpg'
-                ),
-                fac.AntdAvatar(
-                    mode='image',
-                    src='https://fac.feffery.tech/assets/imgs/avatar-demo.jpg'
-                ),
-                fac.AntdAvatar(
-                    mode='image',
-                    shape='square',
-                    src='https://fac.feffery.tech/assets/imgs/avatar-demo.jpg'
-                ),
-                fac.AntdAvatar(
-                    mode='image',
-                    src='https://fac.feffery.tech/assets/imgs/avatar-demo.jpg'
-                ),
-                fac.AntdAvatar(
-                    mode='image',
-                    shape='square',
-                    src='https://fac.feffery.tech/assets/imgs/avatar-demo.jpg'
+
+                fac.AntdSpace(
+                    [
+                        html.Div(
+                            [
+                                fac.AntdText('nClicksButton：', strong=True),
+                                fac.AntdText(
+                                    id='table-button-click-demo-recentlyButtonClickedRow-output')
+                            ]
+                        ),
+                        html.Div(
+                            [
+                                fac.AntdText(
+                                    'recentlyButtonClickedRow：', strong=True),
+                                html.Pre(
+                                    id='table-button-click-demo-nClicksButton-output',
+                                    style={
+                                        'backgroundColor': 'rgb(250, 250, 250)'
+                                    }
+                                )
+                            ]
+                        ),
+                        html.Div(
+                            [
+                                fac.AntdText('clickedContent：', strong=True),
+                                fac.AntdText(
+                                    id='table-button-click-demo-clickedContent-output')
+                            ]
+                        )
+                    ],
+                    direction='vertical',
+                    style={
+                        'width': '100%'
+                    }
                 )
             ],
-            maxCount=3
+            text='回调中'
         )
     ],
     style={
         'padding': '100px'
     }
 )
+
+
+@app.callback(
+    [Output('table-button-click-demo-recentlyButtonClickedRow-output', 'children'),
+     Output('table-button-click-demo-nClicksButton-output', 'children'),
+     Output('table-button-click-demo-clickedContent-output', 'children')],
+    Input('table-button-click-demo', 'nClicksButton'),
+    [State('table-button-click-demo', 'recentlyButtonClickedRow'),
+     State('table-button-click-demo', 'clickedContent')],
+    prevent_initial_call=True
+)
+def table_button_click_demo_callback(nClicksButton, recentlyButtonClickedRow, clickedContent):
+    return str(nClicksButton), json.dumps(recentlyButtonClickedRow, ensure_ascii=False, indent=4), str(clickedContent)
+
+
+@app.callback(
+    Output('table-mouse-event-demo-output', 'children'),
+    [Input('table-mouse-event-demo', 'recentlyMouseEnterColumn'),
+     Input('table-mouse-event-demo', 'recentlyMouseEnterRow')],
+    prevent_initial_call=True
+)
+def table_mouse_event_demo_callback(recentlyMouseEnterColumn,
+                                    recentlyMouseEnterRow):
+    return [
+        html.Div(
+            [
+                fac.AntdText('recentlyMouseEnterColumn：', strong=True),
+                fac.AntdText(recentlyMouseEnterColumn)
+            ]
+        ),
+        html.Div(
+            [
+                fac.AntdText('recentlyMouseEnterRow：', strong=True),
+                fac.AntdText(recentlyMouseEnterRow)
+            ]
+        )
+    ]
+
 
 if __name__ == '__main__':
     app.run(debug=True)

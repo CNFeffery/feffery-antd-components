@@ -29,6 +29,12 @@ import { str2Locale } from './locales.react';
 
 const { Text } = Typography;
 
+// 定义不触发重绘的参数数组
+const preventUpdateProps = [
+    'recentlyMouseEnterColumn',
+    'recentlyMouseEnterRow'
+];
+
 // 定义表格组件AntdTable，部分api参数参考https://ant.design/components/table-cn/
 class AntdTable extends Component {
 
@@ -217,7 +223,14 @@ class AntdTable extends Component {
         const changedProps = Object.keys(nextProps)
             .filter(key => !isEqual(this.props[key], nextProps[key]))
 
-        return true;
+        // // 判断当前轮次变更的prop是否均在preventUpdateProps中
+        // console.log({ changedProps })
+        // console.log(
+        //     '免重绘props：',
+        //     changedProps.every(propName => preventUpdateProps.includes(propName))
+        // )
+
+        return !changedProps.every(propName => preventUpdateProps.includes(propName));
     }
 
     render() {
@@ -1515,7 +1528,6 @@ AntdTable.propTypes = {
     recentlyMouseEnterColumn: PropTypes.string,
 
     // 记录表格数据行事件
-
     // 记录表格数据行鼠标移入事件
     recentlyMouseEnterRow: PropTypes.oneOfType([
         PropTypes.string,
