@@ -78,7 +78,6 @@ import AntdComment from './components/AntdComment.react';
 import AntdDescriptions from './components/descriptions/AntdDescriptions.react';
 import AntdDescriptionItem from './components/descriptions/AntdDescriptionItem.react';
 import AntdWatermark from './components/AntdWatermark.react';
-import AntdPasteImage from './components/AntdPasteImage.react';
 import AntdSegmented from './components/AntdSegmented.react';
 import AntdCheckCard from './components/check-card/AntdCheckCard.react';
 import AntdCheckCardGroup from './components/check-card/AntdCheckCardGroup.react';
@@ -199,7 +198,6 @@ export {
     AntdDescriptions,
     AntdDescriptionItem,
     AntdWatermark,
-    AntdPasteImage,
     AntdSegmented,
     AntdCheckCard,
     AntdCheckCardGroup,

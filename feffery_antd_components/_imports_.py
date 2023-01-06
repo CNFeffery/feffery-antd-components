@@ -35,7 +35,6 @@ from .AntdModal import AntdModal
 from .AntdNotification import AntdNotification
 from .AntdPageHeader import AntdPageHeader
 from .AntdPagination import AntdPagination
-from .AntdPasteImage import AntdPasteImage
 from .AntdPopconfirm import AntdPopconfirm
 from .AntdPopover import AntdPopover
 from .AntdPopupCard import AntdPopupCard
@@ -132,7 +131,6 @@ __all__ = [
     "AntdNotification",
     "AntdPageHeader",
     "AntdPagination",
-    "AntdPasteImage",
     "AntdPopconfirm",
     "AntdPopover",
     "AntdPopupCard",

@@ -52,7 +52,6 @@
     "@babel/plugin-proposal-optional-chaining": "^7.20.7",
     "@babel/preset-env": "^7.5.4",
     "@babel/preset-react": "^7.0.0",
-    "@charliewilco/gluejar": "^1.0.0",
     "babel-eslint": "^10.0.2",
     "babel-loader": "^8.0.6",
     "copyfiles": "^2.1.1",
