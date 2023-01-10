@@ -34,6 +34,7 @@ const AntdAnchor = (props) => {
                 obj = <Link
                     href={obj.href}
                     title={obj.title}
+                    target={obj.target}
                 >
                     {renderAnchorTree(obj.children)}
                 </Link>
@@ -43,6 +44,7 @@ const AntdAnchor = (props) => {
                 obj = <Link
                     href={obj.href}
                     title={obj.title}
+                    target={obj.target}
                 />
             }
 
@@ -100,7 +102,10 @@ const PropLinkNodeShape = {
     title: PropTypes.string.isRequired,
 
     // 对应所绑定页面内锚点的id
-    href: PropTypes.string.isRequired
+    href: PropTypes.string.isRequired,
+
+    // 设置点击行为
+    target: PropTypes.string
 };
 
 const PropLinkNode = PropTypes.shape(PropLinkNodeShape);
