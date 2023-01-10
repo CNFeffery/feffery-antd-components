@@ -30,37 +30,20 @@ const AntdAnchor = (props) => {
         if (obj.hasOwnProperty('href')) {
             //当anchorObj具有children属性时
             if (obj.hasOwnProperty('children')) {
-                if (obj.target) {
-                    obj = <Link
-                        href={obj.href}
-                        title={obj.title}
-                        target={obj.target}
-                    >
-                        {renderAnchorTree(obj.children)}
-                    </Link>
-                } else {
-                    obj = <Link
-                        href={obj.href}
-                        title={obj.title}
-                    >
-                        {renderAnchorTree(obj.children)}
-                    </Link>
-                }
+
+                obj = <Link
+                    href={obj.href}
+                    title={obj.title}
+                >
+                    {renderAnchorTree(obj.children)}
+                </Link>
 
             } else {
-                if (obj.target) {
-                    obj = <Link
-                        href={obj.href}
-                        title={obj.title}
-                        target={obj.target}
-                    />
-                } else {
-                    obj = <Link
-                        href={obj.href}
-                        title={obj.title}
-                    />
-                }
 
+                obj = <Link
+                    href={obj.href}
+                    title={obj.title}
+                />
             }
 
         } else {
@@ -114,10 +97,10 @@ const AntdAnchor = (props) => {
 // 定义递归PropTypes
 const PropLinkNodeShape = {
     // 标题
-    title: PropTypes.string.isRequired,
+    title: PropTypes.string,
 
     // 对应所绑定页面内锚点的id
-    href: PropTypes.string.isRequired,
+    href: PropTypes.string,
 
     // 设置点击行为
     target: PropTypes.string
