@@ -34,6 +34,7 @@ const AntdAnchor = (props) => {
                 obj = <Link
                     href={obj.href}
                     title={obj.title}
+                    target={obj.target}
                 >
                     {renderAnchorTree(obj.children)}
                 </Link>
@@ -43,6 +44,7 @@ const AntdAnchor = (props) => {
                 obj = <Link
                     href={obj.href}
                     title={obj.title}
+                    target={obj.target}
                 />
             }
 

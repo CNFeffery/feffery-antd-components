@@ -13,7 +13,7 @@ app.layout = html.Div(
                 {'title': '示例2-1', 'href': '#示例2-1'},
                 {'title': '示例2-1-1', 'href': '#示例2-1-1'},
                 {'title': '示例2-1-2', 'href': '#示例2-1-2'},
-                {'title': '示例2-2', 'href': '#示例2-2'},
+                {'title': '示例2-2', 'href': '#示例2-2', 'target': '_blank'},
             ],
             align='right',
             targetOffset=100
