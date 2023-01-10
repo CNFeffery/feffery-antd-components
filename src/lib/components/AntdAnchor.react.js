@@ -30,22 +30,37 @@ const AntdAnchor = (props) => {
         if (obj.hasOwnProperty('href')) {
             //当anchorObj具有children属性时
             if (obj.hasOwnProperty('children')) {
-
-                obj = <Link
-                    href={obj.href}
-                    title={obj.title}
-                    target={obj.target}
-                >
-                    {renderAnchorTree(obj.children)}
-                </Link>
+                if (obj.target) {
+                    obj = <Link
+                        href={obj.href}
+                        title={obj.title}
+                        target={obj.target}
+                    >
+                        {renderAnchorTree(obj.children)}
+                    </Link>
+                } else {
+                    obj = <Link
+                        href={obj.href}
+                        title={obj.title}
+                    >
+                        {renderAnchorTree(obj.children)}
+                    </Link>
+                }
 
             } else {
+                if (obj.target) {
+                    obj = <Link
+                        href={obj.href}
+                        title={obj.title}
+                        target={obj.target}
+                    />
+                } else {
+                    obj = <Link
+                        href={obj.href}
+                        title={obj.title}
+                    />
+                }
 
-                obj = <Link
-                    href={obj.href}
-                    title={obj.title}
-                    target={obj.target}
-                />
             }
 
         } else {
