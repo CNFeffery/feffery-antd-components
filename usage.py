@@ -8,27 +8,41 @@ app = dash.Dash(__name__)
 
 app.layout = html.Div(
     [
-        fac.AntdAnchor(
-            linkDict=[
-                {'title': '示例2-1', 'href': '#示例2-1'},
-                {'title': '示例2-1-1', 'href': '#示例2-1-1'},
-                {'title': '示例2-1-2', 'href': '#示例2-1-2'},
-                {'title': '示例2-2', 'href': '#示例2-2', 'target': '_blank'},
+
+        fac.AntdTable(
+            columns=[
+                {
+                    'title': '字段示例1',
+                    'dataIndex': '字段示例1'
+                },
+                {
+                    'title': '字段示例2',
+                    'dataIndex': '字段示例2'
+                },
+                {
+                    'title': '字段示例3',
+                    'dataIndex': '字段示例3'
+                }
             ],
-            align='right',
-            targetOffset=100
-        ),
-        html.Div(
-            [
-                html.H5('示例2-1', id='示例2-1',
-                        style={'marginBottom': '800px'}),
-                html.H5('示例2-1-1', id='示例2-1-1',
-                        style={'marginBottom': '800px'}),
-                html.H5('示例2-1-2', id='示例2-1-2',
-                        style={'marginBottom': '800px'}),
-                html.H5('示例2-2', id='示例2-2',
-                        style={'marginBottom': '800px'}),
-            ]
+            bordered=True,
+            data=[
+                {
+                    '字段示例1': i,
+                    '字段示例2': i,
+                    '字段示例3': i
+                }
+                for i in range(5)
+            ],
+            titlePopoverInfo={
+                '字段示例1': {
+                    'title': '字段说明',
+                    'content': '这是字段示例1的字段说明'
+                },
+                '字段示例3': {
+                    'title': '字段说明',
+                    'content': '这是字段示例3的字段说明'
+                }
+            }
         ),
 
         fac.AntdSpin(

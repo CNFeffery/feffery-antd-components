@@ -208,7 +208,7 @@ Those elements have the following types:
   - `align` (a value equal to: 'left', 'center', 'right'; optional)s
 - `summaryRowFixed` (Bool; optional)
 - `switchDataIndex` (String; optional)
-- `titlePopoverInfo` (optional): . titlePopoverInfo has the following type: lists containing elements 'title', 'content', 'placement', 'overlayStyle'.
+- `titlePopoverInfo` (optional): . titlePopoverInfo has the following type: Dict with Strings as keys and values of type lists containing elements 'title', 'content', 'placement', 'overlayStyle'.
 Those elements have the following types:
   - `title` (String; optional)
   - `content` (String; optional)

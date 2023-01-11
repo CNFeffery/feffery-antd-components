@@ -1535,21 +1535,23 @@ AntdTable.propTypes = {
     ]),
 
     // 为每个title设置气泡卡片悬浮说明信息，格式如{字段1: {title: '标题内容', 'content': '说明内容巴拉巴拉巴拉'}}
-    titlePopoverInfo: PropTypes.exact({
-        // 气泡卡片标题
-        title: PropTypes.string,
-        // 气泡卡片内容
-        content: PropTypes.string,
-        // 气泡卡片弹出方位，可选的有'top'、'left'、'right'、'bottom'、'topLeft'
-        // 、'topRight'、'bottomLeft'、'bottomRight'、'leftTop'、'leftBottom'
-        // 、'rightTop'、'rightBottom'，默认为'bottom'
-        placement: PropTypes.oneOf([
-            'top', 'left', 'right', 'bottom', 'topLeft', 'topRight', 'bottomLeft',
-            'bottomRight', 'leftTop', 'leftBottom', 'rightTop', 'rightBottom'
-        ]),
-        // 设置悬浮层css样式
-        overlayStyle: PropTypes.object
-    }),
+    titlePopoverInfo: PropTypes.objectOf(
+        PropTypes.exact({
+            // 气泡卡片标题
+            title: PropTypes.string,
+            // 气泡卡片内容
+            content: PropTypes.string,
+            // 气泡卡片弹出方位，可选的有'top'、'left'、'right'、'bottom'、'topLeft'
+            // 、'topRight'、'bottomLeft'、'bottomRight'、'leftTop'、'leftBottom'
+            // 、'rightTop'、'rightBottom'，默认为'bottom'
+            placement: PropTypes.oneOf([
+                'top', 'left', 'right', 'bottom', 'topLeft', 'topRight', 'bottomLeft',
+                'bottomRight', 'leftTop', 'leftBottom', 'rightTop', 'rightBottom'
+            ]),
+            // 设置悬浮层css样式
+            overlayStyle: PropTypes.object
+        })
+    ),
 
     // 为每个字段设置基于【正则表达式】的格式约束，用于在“可编辑单元格”中约束新内容的写入
     columnsFormatConstraint: PropTypes.objectOf(

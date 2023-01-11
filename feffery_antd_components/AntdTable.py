@@ -396,7 +396,8 @@ Keyword arguments:
 
 - titlePopoverInfo (dict; optional)
 
-    `titlePopoverInfo` is a dict with keys:
+    `titlePopoverInfo` is a dict with strings as keys and values of
+    type dict with keys:
 
     - content (string; optional)
 
