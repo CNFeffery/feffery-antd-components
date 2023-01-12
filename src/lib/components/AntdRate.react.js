@@ -16,6 +16,7 @@ const AntdRate = (props) => {
         count,
         disabled,
         tooltips,
+        defaultValue,
         value,
         setProps,
         loading_state

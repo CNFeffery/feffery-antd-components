@@ -8,6 +8,8 @@ app = dash.Dash(__name__)
 
 app.layout = html.Div(
     [
+        fac.AntdRate(count=10),
+        fac.AntdSwitch(),
 
         fac.AntdTable(
             columns=[

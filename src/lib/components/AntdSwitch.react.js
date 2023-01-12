@@ -12,6 +12,7 @@ const AntdSwitch = (props) => {
         className,
         key,
         disabled,
+        defaultChecked,
         checked,
         checkedChildren,
         unCheckedChildren,
