@@ -12,6 +12,8 @@
 
 </div>
 
+> Version `0.2.0` will be released soon, so stay tuned
+
 [简体中文](./README.md) | English
 
 Subproject of `feffery-components` projects, third-party components library of `Plotly Dash`, based on the [Antd](https://github.com/ant-design/ant-design), brings many common and powerful components into `Dash`🥳, latest version: `0.1.16`

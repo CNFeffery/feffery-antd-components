@@ -2,13 +2,14 @@ import React, { Component } from 'react';
 import isAbsoluteUrl from 'is-absolute-url';
 import PropTypes from 'prop-types';
 import AntdIcon from "./AntdIcon.react"
+import { isString, isUndefined, isNull } from 'lodash';
 import { Menu, Button } from 'antd';
 import {
     MenuUnfoldOutlined,
     MenuFoldOutlined,
 } from '@ant-design/icons';
 
-const { SubMenu, Item, ItemGroup } = Menu;
+const { SubMenu, Item, ItemGroup, Divider } = Menu;
 
 // 自定义UtilsLink
 function CustomEvent(event, params) {
@@ -24,7 +25,7 @@ function CustomEvent(event, params) {
 CustomEvent.prototype = window.Event.prototype;
 
 function isExternalLink(external_link, href) {
-    if (typeof external_link === 'undefined' || external_link === null) {
+    if (isUndefined(external_link) || isNull(external_link)) {
         return isAbsoluteUrl(href);
     }
     return external_link;
@@ -144,7 +145,12 @@ export default class AntdMenu extends Component {
         }
 
         // 定义字符串-> 组件 Map对象
-        let str2Jsx = new Map([['SubMenu', SubMenu], ['Item', Item], ['ItemGroup', ItemGroup]])
+        let str2Jsx = new Map([
+            ['SubMenu', SubMenu],
+            ['Item', Item],
+            ['ItemGroup', ItemGroup],
+            ['Divider', Divider]
+        ])
 
         // 递归推导多层菜单结构
         const raw2Jsx = (obj, str2Jsx) => {
@@ -176,9 +182,11 @@ export default class AntdMenu extends Component {
                         </ItemGroup>
                     }
                 } else {
-
-                    // 生成Item对应的jsx
-                    if (obj.props.href) {
+                    // 检查obj.component是否为Divider
+                    if (obj.component === 'Divider') {
+                        obj = <Divider dashed={obj.props && obj.props.dashed} />
+                    } else if (obj.props.href) {
+                        // 生成Item对应的jsx
                         obj = <Item
                             key={obj.props.key}
                             title={obj.props.title}
@@ -205,7 +213,7 @@ export default class AntdMenu extends Component {
         }
 
         // 避免非初始化情况下的递归处理
-        if (typeof menuItems[0].component == 'string') {
+        if (isString(menuItems[0].component)) {
             menuItems = raw2Jsx(menuItems, str2Jsx)
         }
 
