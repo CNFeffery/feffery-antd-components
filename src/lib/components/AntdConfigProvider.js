@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { ConfigProvider } from 'antd';
 
-// 定义全局参数配置组件AntdConfigProvider，api参数参考https://ant.design/components/tag-cn/
+// 定义参数配置组件AntdConfigProvider，api参数参考https://ant.design/components/tag-cn/
 const AntdConfigProvider = (props) => {
     // 取得必要属性或参数
     let {

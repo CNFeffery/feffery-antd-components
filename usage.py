@@ -8,6 +8,12 @@ app = dash.Dash(__name__)
 
 app.layout = html.Div(
     [
+        fac.AntdDatePicker(
+            id='input',
+            picker='quarter',
+            format='YYYY-第Q季度'
+        ),
+
         fac.AntdRate(count=10),
         fac.AntdSwitch(),
 

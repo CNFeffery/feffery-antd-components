@@ -59,7 +59,7 @@ const AntdDateRangePicker = (props) => {
         // defaultPickerValue为空时默认定位到今日对应面板位置
         if (!defaultPickerValue) {
             setProps({
-                defaultPickerValue: moment(new Date()).format('YYYY-MM-DD')
+                defaultPickerValue: moment(new Date()).format(format || 'YYYY-MM-DD')
             })
         }
     }, [])
