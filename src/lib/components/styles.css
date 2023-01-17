@@ -156,3 +156,8 @@
 .ant-spin-nested-loading>.ant-spin-container {
   height: inherit;
 }
+
+/* 为AntdButton内嵌元素设置间距 */
+.ant-btn>*:not(:last-child) {
+  margin-right: 0.25em;
+}
