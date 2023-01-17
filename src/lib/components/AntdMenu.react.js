@@ -192,7 +192,9 @@ export default class AntdMenu extends Component {
                             title={obj.props.title}
                             disabled={obj.props.disabled}
                             danger={obj.props.danger}
-                            icon={<AntdIcon icon={obj.props.icon} />}
+                            icon={<AntdIcon icon={obj.props.icon}
+                            />}
+                            name={obj.props && obj.props.name}
                         >
                             <UtilsLink href={obj.props.href} target={obj.props.target}>{obj.props.title}</UtilsLink>
                         </Item>
@@ -203,6 +205,7 @@ export default class AntdMenu extends Component {
                             disabled={obj.props.disabled}
                             danger={obj.props.danger}
                             icon={<AntdIcon icon={obj.props.icon} />}
+                            name={obj.props && obj.props.name}
                         >
                             {obj.props.title}
                         </Item>
@@ -212,10 +215,8 @@ export default class AntdMenu extends Component {
             return obj;
         }
 
-        // 避免非初始化情况下的递归处理
-        if (isString(menuItems[0].component)) {
-            menuItems = raw2Jsx(menuItems, str2Jsx)
-        }
+        // 基于menuItems推导jsx数据结构
+        let _menuItems = raw2Jsx(menuItems, str2Jsx)
 
         // 监听Item的点击事件
         const listenSelected = (item) => {
@@ -255,7 +256,7 @@ export default class AntdMenu extends Component {
                             (loading_state && loading_state.is_loading) || undefined
                         }
                     >
-                        {menuItems}
+                        {_menuItems}
                     </Menu>
                 </div>
             );
@@ -286,7 +287,7 @@ export default class AntdMenu extends Component {
                         (loading_state && loading_state.is_loading) || undefined
                     }
                 >
-                    {menuItems}
+                    {_menuItems}
                 </Menu>
             );
         }
