@@ -31,3 +31,9 @@ feffery_antd_components.min.js.map
 package-lock.json
 
 /.build_cache
+
+/jl
+
+FefferyAntdComponents.jl
+
+.Rbuildignore

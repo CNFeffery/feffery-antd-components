@@ -8,6 +8,39 @@ app = dash.Dash(__name__)
 
 app.layout = html.Div(
     [
+        fac.AntdSpace(
+            [
+                fac.AntdButton(
+                    'antd-reload',
+                    type='dashed',
+                    icon=fac.AntdIcon(
+                        icon='antd-reload'
+                    )
+                ),
+                fac.AntdButton(
+                    'md-power-settings-new',
+                    icon=fac.AntdIcon(
+                        icon='md-power-settings-new'
+                    )
+                ),
+                fac.AntdButton(
+                    'md-layers',
+                    type='primary',
+                    icon=fac.AntdIcon(
+                        icon='md-layers'
+                    )
+                ),
+                fac.AntdButton(
+                    'fc-repair',
+                    type='dashed',
+                    icon=fac.AntdIcon(
+                        icon='fc-repair'
+                    )
+                )
+            ],
+            size='small'
+        ),
+
         fac.AntdDatePicker(
             id='input',
             picker='quarter',
