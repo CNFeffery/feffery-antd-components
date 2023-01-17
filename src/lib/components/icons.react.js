@@ -223,7 +223,6 @@ import {
     UnlockOutlined,
     UserOutlined
 } from '@ant-design/icons';
-
 import {
     BsAlarm,
     BsEnvelope,
@@ -232,14 +231,14 @@ import {
     BsLink45Deg,
     BsListCheck,
     BsListTask
-} from "react-icons/bs";
+} from "react-icons/bs/index.esm";
 import {
     BiAnalyse,
     BiTable,
     BiLayer,
     BiLayerMinus,
     BiLayerPlus
-} from "react-icons/bi";
+} from "react-icons/bi/index.esm";
 import {
     DiPython,
     DiLinux,
@@ -250,7 +249,7 @@ import {
     DiPostgresql,
     DiTerminal,
     DiWindows
-} from "react-icons/di";
+} from "react-icons/di/index.esm";
 import {
     FcAdvertising,
     FcApproval,
@@ -348,7 +347,7 @@ import {
     FcUpload,
     FcViewDetails,
     FcVlc
-} from "react-icons/fc";
+} from "react-icons/fc/index.esm";
 import {
     MdAccountCircle,
     MdAlarm,
@@ -469,12 +468,12 @@ import {
     MdStar,
     MdStarBorder,
     MdStarHalf
-} from "react-icons/md";
+} from "react-icons/md/index.esm";
 import {
     ImEarth,
     ImSphere
-} from "react-icons/im";
-import { GiMeshNetwork } from "react-icons/gi";
+} from "react-icons/im/index.esm";
+import { GiMeshNetwork } from "react-icons/gi/index.esm";
 
 const str2Icon = new Map([
     ['md-star-half', <MdStarHalf />],
@@ -865,7 +864,7 @@ const str2Icon = new Map([
     ['antd-swap', <SwapOutlined />],
     ['im-earth', <ImEarth />],
     ['im-sphere', <ImSphere />],
-    ['gi-mesh-network', <GiMeshNetwork style={{ zoom: 1.2 }} />],
+    ['gi-mesh-network', <GiMeshNetwork style={{ transform: 'scale(1.2)' }} />],
     ['antd-rollback', <RollbackOutlined />],
     ['antd-login', <LoginOutlined />],
     ['antd-logout', <LogoutOutlined />],

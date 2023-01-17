@@ -130,7 +130,7 @@ AntdButton.propTypes = {
     // 记录按钮从渲染后开始被点击的次数，默认为0
     nClicks: PropTypes.number,
 
-    // 用于配置value变化更新的防抖等待时长（单位：毫秒），默认为0
+    // 用于设置nClicks监听更新的防抖等待时长（单位：毫秒），默认为0
     debounceWait: PropTypes.number,
 
     // 组件型参数，设置按钮前缀图标元素

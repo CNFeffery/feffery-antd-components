@@ -49,8 +49,8 @@ const AntdIcon = (props) => {
                         icon.startsWith('bs-') ||
                         icon.startsWith('gi-')
                     ) ?
-                        { ...{ verticalAlign: 'middle' }, ...style } :
-                        style
+                        { ...{ verticalAlign: 'middle', userSelect: 'none' }, ...style } :
+                        { ...{ userSelect: 'none' }, ...style }
                 }
                 key={key}
                 onClick={onClick}
