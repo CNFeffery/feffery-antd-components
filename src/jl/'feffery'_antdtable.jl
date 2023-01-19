@@ -13,7 +13,7 @@ Keyword arguments:
 - `checkedDataIndex` (String; optional)
 - `className` (String; optional)
 - `clickedContent` (String; optional)
-- `columns` (optional): . columns has the following type: Array of lists containing elements 'title', 'dataIndex', 'renderOptions', 'fixed', 'editable', 'align', 'width', 'ellipsis', 'sorter', 'render', 'onCell', 'title_'.
+- `columns` (optional): . columns has the following type: Array of lists containing elements 'title', 'dataIndex', 'renderOptions', 'fixed', 'editable', 'align', 'width', 'hidden', 'ellipsis', 'sorter', 'render', 'onCell', 'title_'.
 Those elements have the following types:
   - `title` (String; required)
   - `dataIndex` (String; required)
@@ -41,6 +41,7 @@ Those elements have the following types:
   - `editable` (Bool; optional)
   - `align` (a value equal to: 'left', 'center', 'right'; optional)
   - `width` (Real | String; optional)
+  - `hidden` (Bool; optional)
   - `ellipsis` (Bool | Real | String | Dict | Array; optional)
   - `sorter` (Bool | Real | String | Dict | Array; optional)
   - `render` (Bool | Real | String | Dict | Array; optional)

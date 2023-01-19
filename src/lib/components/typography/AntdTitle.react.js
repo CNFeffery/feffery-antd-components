@@ -92,6 +92,7 @@ AntdTitle.propTypes = {
     locale: PropTypes.oneOf(['zh-cn', 'en-us']),
 
     // 设置标题级别，可选的有1到5之间的整数，对应h1到h5
+    // 默认为1
     level: PropTypes.number,
 
     // 设置是否以code模式渲染内容
@@ -148,7 +149,8 @@ AntdTitle.propTypes = {
 
 // 设置默认参数
 AntdTitle.defaultProps = {
-    locale: 'zh-cn'
+    locale: 'zh-cn',
+    level: 1
 }
 
 export default AntdTitle;

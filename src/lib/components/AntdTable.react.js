@@ -480,6 +480,9 @@ class AntdTable extends Component {
             }
         }
 
+        // 根据columns中的hidden属性控制是否忽略对应字段
+        columns = columns.filter(item => item.hidden)
+
         // 为columns配置默认align、conditionalStyleFuncs参数
         for (let i in columns) {
             columns[i] = {
@@ -1464,6 +1467,9 @@ AntdTable.propTypes = {
 
             // 自定义列宽度
             width: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+
+            // 控制是否隐藏当前字段，设置为true时进行隐藏
+            hidden: PropTypes.bool,
 
             // 防止状态更新报错占位用，无实际意义
             ellipsis: PropTypes.any,
