@@ -33,6 +33,8 @@ Keyword arguments:
 
     - fixed (a value equal to: 'left', 'right'; optional)
 
+    - hidden (boolean; optional)
+
     - onCell (boolean | number | string | dict | list; optional)
 
     - render (boolean | number | string | dict | list; optional)

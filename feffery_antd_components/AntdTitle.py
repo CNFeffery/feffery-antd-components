@@ -29,7 +29,7 @@ Keyword arguments:
 
 - keyboard (boolean; optional)
 
-- level (number; optional)
+- level (number; default 1)
 
 - loading_state (dict; optional)
 
