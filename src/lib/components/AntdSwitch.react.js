@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { Switch } from 'antd';
+import { isUndefined } from 'lodash';
 
 
 // 定义开关组件AntdSwitch，api参数参考https://ant.design/components/switch-cn/
@@ -12,7 +13,6 @@ const AntdSwitch = (props) => {
         className,
         key,
         disabled,
-        defaultChecked,
         checked,
         checkedChildren,
         unCheckedChildren,
@@ -26,9 +26,7 @@ const AntdSwitch = (props) => {
     } = props;
 
     useEffect(() => {
-        if (defaultChecked) {
-            setProps({ checked: defaultChecked })
-        } else if (!checked) {
+        if (isUndefined(checked)) {
             setProps({ checked: false })
         }
     }, [])
