@@ -481,7 +481,7 @@ class AntdTable extends Component {
         }
 
         // 根据columns中的hidden属性控制是否忽略对应字段
-        columns = columns.filter(item => item.hidden)
+        columns = columns.filter(item => !item.hidden)
 
         // 为columns配置默认align、conditionalStyleFuncs参数
         for (let i in columns) {

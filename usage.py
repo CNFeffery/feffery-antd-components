@@ -1,13 +1,53 @@
 import json
 import dash
 from dash import html
+from faker import Faker
 import feffery_antd_components as fac
 from dash.dependencies import Input, Output, State
+
+faker = Faker(locale='zh_CN')
 
 app = dash.Dash(__name__)
 
 app.layout = html.Div(
     [
+        fac.AntdTable(
+            columns=[
+                {
+                    'title': '国家名示例',
+                    'dataIndex': '国家名示例'
+                },
+                {
+                    'title': '省份名示例',
+                    'dataIndex': '省份名示例'
+                },
+                {
+                    'title': '城市名示例',
+                    'dataIndex': '城市名示例'
+                },
+                {
+                    'title': '日期示例',
+                    'dataIndex': '日期示例'
+                },
+                {
+                    'title': '邮编示例',
+                    'dataIndex': '邮编示例'
+                }
+            ],
+            bordered=True,
+            data=[
+                {
+                    'key': i,
+                    '国家名示例': faker.country(),
+                    '省份名示例': faker.province(),
+                    '城市名示例': faker.city_name(),
+                    '日期示例': faker.date(pattern="%Y-%m-%d", end_datetime=None),
+                    '邮编示例': faker.postcode()
+                }
+                for i in range(3)
+            ]
+        ),
+
         fac.AntdSpace(
             [
                 fac.AntdButton(
