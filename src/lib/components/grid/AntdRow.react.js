@@ -68,21 +68,6 @@ AntdRow.propTypes = {
     // 辅助刷新用唯一标识key值
     key: PropTypes.string,
 
-    loading_state: PropTypes.shape({
-        /**
-         * Determines if the component is loading or not
-         */
-        is_loading: PropTypes.bool,
-        /**
-         * Holds which property is loading
-         */
-        prop_name: PropTypes.string,
-        /**
-         * Holds the name of the component that is loading
-         */
-        component_name: PropTypes.string
-    }),
-
     // 设置垂直对齐方式，可选的有'top'、'middle'和'bottom'，默认为'top'
     align: PropTypes.oneOf(['top', 'middle', 'bottom']),
 
@@ -109,6 +94,21 @@ AntdRow.propTypes = {
     // 设置每行宽度超过24时是否自动换行，默认为true
     wrap: PropTypes.bool,
 
+    loading_state: PropTypes.shape({
+        /**
+         * Determines if the component is loading or not
+         */
+        is_loading: PropTypes.bool,
+        /**
+         * Holds which property is loading
+         */
+        prop_name: PropTypes.string,
+        /**
+         * Holds the name of the component that is loading
+         */
+        component_name: PropTypes.string
+    }),
+
     /**
      * Dash-assigned callback that should be called to report property changes
      * to Dash, to make them available for callbacks.
@@ -118,6 +118,10 @@ AntdRow.propTypes = {
 
 // 设置默认参数
 AntdRow.defaultProps = {
+    align: 'top',
+    gutter: 0,
+    justify: 'start',
+    wrap: true
 }
 
 export default AntdRow;

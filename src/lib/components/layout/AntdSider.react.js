@@ -85,8 +85,11 @@ AntdSider.propTypes = {
     // 辅助刷新用唯一标识key值
     key: PropTypes.string,
 
-    // 对应当前侧边栏是否收起
+    // 设置当前侧边栏区域是否收起，默认为false
     collapsed: PropTypes.bool,
+
+    // 设置是否默认状态即收起，默认为false
+    defaultCollapsed: PropTypes.bool,
 
     // 设置收缩的像素宽度，默认为80即80px，设置为0时会渲染特殊触发组件
     collapsedWidth: PropTypes.number,
@@ -94,10 +97,7 @@ AntdSider.propTypes = {
     // 设置是否可收起，默认为false
     collapsible: PropTypes.bool,
 
-    // 设置是否默认状态即收起，默认为false
-    defaultCollapsed: PropTypes.bool,
-
-    // 设置是否折叠提示箭头的方向，通常在Sider位于右侧时使用，默认为false
+    // 设置是否水平翻转折叠提示箭头的方向，通常在Sider位于右侧时使用，默认为false
     reverseArrow: PropTypes.bool,
 
     // 设置主题颜色，默认为'dark'
@@ -136,7 +136,13 @@ AntdSider.propTypes = {
 
 // 设置默认参数
 AntdSider.defaultProps = {
-    collapsed: false
+    collapsed: false,
+    defaultCollapsed: false,
+    collapsedWidth: 80,
+    collapsible: false,
+    reverseArrow: false,
+    theme: 'dark',
+    width: 200
 }
 
 export default AntdSider;

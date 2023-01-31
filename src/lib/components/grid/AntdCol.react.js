@@ -84,21 +84,6 @@ AntdCol.propTypes = {
     // 辅助刷新用唯一标识key值
     key: PropTypes.string,
 
-    loading_state: PropTypes.shape({
-        /**
-         * Determines if the component is loading or not
-         */
-        is_loading: PropTypes.bool,
-        /**
-         * Holds which property is loading
-         */
-        prop_name: PropTypes.string,
-        /**
-         * Holds the name of the component that is loading
-         */
-        component_name: PropTypes.string
-    }),
-
     // 设置栅格占位格数，为0时相当于display: none
     span: PropTypes.number,
 
@@ -114,8 +99,11 @@ AntdCol.propTypes = {
     // 设置栅格向右移动格数，默认为0
     push: PropTypes.number,
 
-    // 额外的flex属性辅助
-    flex: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+    // 同css中的flex属性
+    flex: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.number
+    ]),
 
     // 响应式参数
     xs: PropTypes.oneOfType([
@@ -238,6 +226,21 @@ AntdCol.propTypes = {
         })
     ]),
 
+    loading_state: PropTypes.shape({
+        /**
+         * Determines if the component is loading or not
+         */
+        is_loading: PropTypes.bool,
+        /**
+         * Holds which property is loading
+         */
+        prop_name: PropTypes.string,
+        /**
+         * Holds the name of the component that is loading
+         */
+        component_name: PropTypes.string
+    }),
+
     /**
      * Dash-assigned callback that should be called to report property changes
      * to Dash, to make them available for callbacks.
@@ -247,6 +250,11 @@ AntdCol.propTypes = {
 
 // 设置默认参数
 AntdCol.defaultProps = {
+    offset: 0,
+    offset: 0,
+    order: 0,
+    pull: 0,
+    push: 0,
 }
 
 export default AntdCol;

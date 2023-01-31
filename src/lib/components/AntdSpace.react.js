@@ -158,8 +158,11 @@ AntdSpace.propTypes = {
 
 // 设置默认参数
 AntdSpace.defaultProps = {
+    align: 'start',
     addSplitLine: false,
-    direction: 'horizontal'
+    direction: 'horizontal',
+    size: 'small',
+    wrap: false
 }
 
 export default AntdSpace;
