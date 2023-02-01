@@ -29,7 +29,7 @@ Those elements have the following types:
   - `is_loading` (Bool; optional): Determines if the component is loading or not
   - `prop_name` (String; optional): Holds which property is loading
   - `component_name` (String; optional): Holds the name of the component that is loading
-- `separator` (String; optional)
+- `separator` (a list of or a singular dash component, string or number; optional)
 - `style` (Dict; optional)
 """
 function 'feffery'_antdbreadcrumb(; kwargs...)

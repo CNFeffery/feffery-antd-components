@@ -107,8 +107,8 @@ AntdBreadcrumb.propTypes = {
         })
     ),
 
-    // 自定义分隔符
-    separator: PropTypes.string,
+    // 自定义分隔符，默认为'/'
+    separator: PropTypes.node,
 
     loading_state: PropTypes.shape({
         /**
@@ -134,6 +134,7 @@ AntdBreadcrumb.propTypes = {
 
 // 设置默认参数
 AntdBreadcrumb.defaultProps = {
+    separator: '/'
 }
 
 export default AntdBreadcrumb;

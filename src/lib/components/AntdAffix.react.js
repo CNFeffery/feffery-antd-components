@@ -61,6 +61,7 @@ AntdAffix.propTypes = {
 
     // 设置固钉在用户滚动页面后距离窗口顶部的阈值
     // 到达这个阈值后会触发固钉的锚定页面功能
+    // 默认为0
     offsetTop: PropTypes.number,
 
     // 设置固钉监听滚动事件对应的容器元素id信息
@@ -90,6 +91,7 @@ AntdAffix.propTypes = {
 
 // 设置默认参数
 AntdAffix.defaultProps = {
+    offsetTop: 0
 }
 
 export default AntdAffix;
