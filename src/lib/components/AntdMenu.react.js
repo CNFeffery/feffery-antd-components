@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import isAbsoluteUrl from 'is-absolute-url';
 import PropTypes from 'prop-types';
 import AntdIcon from "./AntdIcon.react"
-import { isString, isUndefined, isNull } from 'lodash';
+import { isUndefined, isNull } from 'lodash';
 import { Menu, Button } from 'antd';
 import {
     MenuUnfoldOutlined,
@@ -227,7 +227,7 @@ export default class AntdMenu extends Component {
         if (renderCollapsedButton) {
             return (
                 <div style={{ width: '100%' }}>
-                    <Button type="primary" onClick={this.toggleCollapsed} style={{ marginBottom: 16 }}>
+                    <Button type="primary" onClick={this.toggleCollapsed}>
                         {React.createElement(this.state.collapsed ? MenuUnfoldOutlined : MenuFoldOutlined)}
                     </Button>
                     <Menu

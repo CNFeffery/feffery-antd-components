@@ -5,8 +5,16 @@ import { str2Locale } from './locales.react';
 import { isUndefined } from 'lodash';
 import { flatToTree } from './utils';
 
+const { SHOW_ALL, SHOW_CHILD, SHOW_PARENT } = TreeSelect;
 
-const { SHOW_ALL } = TreeSelect;
+// 定义勾选项回填策略映射字典
+const str2ShowCheckedStrategy = new Map(
+    [
+        ['show-all', SHOW_ALL],
+        ['show-child', SHOW_CHILD],
+        ['show-parent', SHOW_PARENT]
+    ]
+)
 
 // 定义树选择组件AntdTreeSelect，api参数参考https://ant.design/components/tree-select-cn/
 const AntdTreeSelect = (props) => {
@@ -43,6 +51,7 @@ const AntdTreeSelect = (props) => {
         popupContainer,
         setProps,
         readOnly,
+        showCheckedStrategy,
         persistence,
         persisted_props,
         persistence_type,
@@ -90,7 +99,7 @@ const AntdTreeSelect = (props) => {
                 multiple={multiple}
                 size={size}
                 treeCheckable={treeCheckable}
-                showCheckedStrategy={SHOW_ALL}
+                showCheckedStrategy={str2ShowCheckedStrategy.get(showCheckedStrategy)}
                 treeCheckStrictly={treeCheckStrictly}
                 treeDefaultExpandAll={treeDefaultExpandAll}
                 treeDefaultExpandedKeys={treeDefaultExpandedKeys}
@@ -306,6 +315,10 @@ AntdTreeSelect.propTypes = {
     // 设置是否以只读模式进行渲染，底层利用Select的open参数
     readOnly: PropTypes.bool,
 
+    // 用于设置已勾选项回填策略，可选的有'show-all'、'show-parent'、'show-child'
+    // 默认为'show-all'
+    showCheckedStrategy: PropTypes.oneOf(['show-all', 'show-parent', 'show-child']),
+
     loading_state: PropTypes.shape({
         /**
          * Determines if the component is loading or not
@@ -367,7 +380,8 @@ AntdTreeSelect.defaultProps = {
     locale: 'zh-cn',
     treeNodeFilterProp: 'value',
     treeDataMode: 'tree',
-    popupContainer: 'body'
+    popupContainer: 'body',
+    showCheckedStrategy: 'show-all'
 }
 
 export default AntdTreeSelect;
