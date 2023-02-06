@@ -42,6 +42,7 @@ session: window.sessionStorage, data is cleared once the browser quit.
 - `placement` (a value equal to: 'bottomLeft', 'bottomRight', 'topLeft', 'topRight'; optional)
 - `popupContainer` (a value equal to: 'parent', 'body'; optional)
 - `readOnly` (Bool; optional)
+- `showCheckedStrategy` (a value equal to: 'show-all', 'show-parent', 'show-child'; optional)
 - `size` (a value equal to: 'small', 'middle', 'large'; optional)
 - `status` (a value equal to: 'error', 'warning'; optional)
 - `style` (Dict; optional)
@@ -58,7 +59,7 @@ session: window.sessionStorage, data is cleared once the browser quit.
 - `virtual` (Bool; optional)
 """
 function 'feffery'_antdtreeselect(; kwargs...)
-        available_props = Symbol[:id, :allowClear, :autoClearSearchValue, :bordered, :className, :defaultValue, :disabled, :key, :listHeight, :loading_state, :locale, :maxTagCount, :multiple, :persisted_props, :persistence, :persistence_type, :placeholder, :placement, :popupContainer, :readOnly, :size, :status, :style, :treeCheckStrictly, :treeCheckable, :treeData, :treeDataMode, :treeDefaultExpandAll, :treeDefaultExpandedKeys, :treeExpandedKeys, :treeLine, :treeNodeFilterProp, :value, :virtual]
+        available_props = Symbol[:id, :allowClear, :autoClearSearchValue, :bordered, :className, :defaultValue, :disabled, :key, :listHeight, :loading_state, :locale, :maxTagCount, :multiple, :persisted_props, :persistence, :persistence_type, :placeholder, :placement, :popupContainer, :readOnly, :showCheckedStrategy, :size, :status, :style, :treeCheckStrictly, :treeCheckable, :treeData, :treeDataMode, :treeDefaultExpandAll, :treeDefaultExpandedKeys, :treeExpandedKeys, :treeLine, :treeNodeFilterProp, :value, :virtual]
         wild_props = Symbol[]
         return Component("'feffery'_antdtreeselect", "AntdTreeSelect", "feffery_antd_components", available_props, wild_props; kwargs...)
 end

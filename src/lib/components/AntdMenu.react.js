@@ -1,13 +1,14 @@
-import React, { Component } from 'react';
+import React, { Component, useState, useEffect } from 'react';
 import isAbsoluteUrl from 'is-absolute-url';
 import PropTypes from 'prop-types';
 import AntdIcon from "./AntdIcon.react"
-import { isUndefined, isNull } from 'lodash';
+import { isUndefined, isNull, isString } from 'lodash';
 import { Menu, Button } from 'antd';
 import {
     MenuUnfoldOutlined,
     MenuFoldOutlined,
 } from '@ant-design/icons';
+import useCss from '../hooks/useCss';
 
 const { SubMenu, Item, ItemGroup, Divider } = Menu;
 
@@ -88,183 +89,140 @@ class UtilsLink extends Component {
     }
 }
 
-// 定义导航菜单组件AntdMenu，api参数参考https://ant.design/components/menu-cn/
-export default class AntdMenu extends Component {
+// 定义字符串-> 组件 Map对象
+const str2Jsx = new Map([
+    ['SubMenu', SubMenu],
+    ['Item', Item],
+    ['ItemGroup', ItemGroup],
+    ['Divider', Divider]
+])
 
-    constructor(props) {
-        super(props)
+// 递归推导多层菜单结构
+const raw2Jsx = (obj, str2Jsx) => {
+    // 若obj为数组
+    if (Array.isArray(obj)) {
+        // 若obj为数组，则针对数组中每个对象向下递归
+        obj = obj.map(obj_ => raw2Jsx(obj_, str2Jsx))
+
+    } else if (obj.hasOwnProperty('component')) {
+        // 若obj包含children属性，则向下递归处理
+        if (obj.hasOwnProperty('children')) {
+            Object.assign(obj, { children: obj.children.map(obj_ => raw2Jsx(obj_, str2Jsx)) })
+
+            if (obj.component === 'SubMenu') {
+                obj = <SubMenu
+                    key={obj.props.key}
+                    title={obj.props.title}
+                    disabled={obj.props.disabled}
+                    icon={<AntdIcon icon={obj.props.icon} />}>
+                    {obj.children}
+                </SubMenu>
+            } else {
+                obj = <ItemGroup
+                    key={obj.props.key}
+                    title={obj.props.title}
+                    disabled={obj.props.disabled}
+                    icon={<AntdIcon icon={obj.props.icon} />}>
+                    {obj.children}
+                </ItemGroup>
+            }
+        } else {
+            // 检查obj.component是否为Divider
+            if (obj.component === 'Divider') {
+                obj = <Divider dashed={obj.props && obj.props.dashed} />
+            } else if (obj.props.href) {
+                // 生成Item对应的jsx
+                obj = <Item
+                    key={obj.props.key}
+                    title={obj.props.title}
+                    disabled={obj.props.disabled}
+                    danger={obj.props.danger}
+                    icon={<AntdIcon icon={obj.props.icon}
+                    />}
+                    name={obj.props && obj.props.name}
+                >
+                    <UtilsLink href={obj.props.href} target={obj.props.target}>{obj.props.title}</UtilsLink>
+                </Item>
+            } else {
+                obj = <Item
+                    key={obj.props.key}
+                    title={obj.props.title}
+                    disabled={obj.props.disabled}
+                    danger={obj.props.danger}
+                    icon={<AntdIcon icon={obj.props.icon} />}
+                    name={obj.props && obj.props.name}
+                >
+                    {obj.props.title}
+                </Item>
+            }
+        }
+    }
+    return obj;
+}
+
+// 定义导航菜单组件AntdMenu，api参数参考https://ant.design/components/menu-cn/
+const AntdMenu = (props) => {
+    // 取得必要属性或参数
+    let {
+        id,
+        className,
+        style,
+        key,
+        menuItems,
+        mode,
+        theme,
+        defaultOpenKeys,
+        currentKey,
+        openKeys,
+        defaultSelectedKey,
+        renderCollapsedButton,
+        popupContainer,
+        inlineCollapsed,
+        setProps,
+        persistence,
+        persisted_props,
+        persistence_type,
+        loading_state
+    } = props;
+
+    useEffect(() => {
         // 初始化currentKey
-        if (props.defaultSelectedKey) {
-            // 当defaultSelectedKey不为空时，为currentKey初始化defaultSelectedKey对应的key值
-            props.setProps({ currentKey: props.defaultSelectedKey })
+        if (defaultSelectedKey && !currentKey) {
+            // 当defaultSelectedKey不为空且currentKey为空时
+            // 为currentKey初始化defaultSelectedKey对应的key值
+            setProps({ currentKey: defaultSelectedKey })
         }
 
         // 初始化openKeys
-        if (props.defaultOpenKeys) {
-            // 当defaultOpenKeys不为空时，为openKeys初始化defaultOpenKeys对应的key值
-            props.setProps({ openKeys: props.defaultOpenKeys })
+        if (defaultOpenKeys) {
+            // 当defaultOpenKeys不为空且openKeys为空时
+            // 为openKeys初始化defaultOpenKeys对应的key值
+            setProps({ openKeys: defaultOpenKeys })
         }
+    }, [])
 
+    // 基于menuItems推导jsx数据结构
+    let _menuItems = raw2Jsx(menuItems, str2Jsx)
+
+    // 监听Item的点击事件
+    const listenSelected = (item) => {
+        // 将当前选中的key值赋给currentKey
+        setProps({ currentKey: item.key })
     }
 
-    state = {
-        collapsed: false,
-    };
-
-    toggleCollapsed = () => {
-        this.setState({
-            collapsed: !this.state.collapsed,
-        });
-    };
-
-    render() {
-        // 取得必要属性或参数
-        let {
-            id,
-            className,
-            style,
-            key,
-            menuItems,
-            mode,
-            theme,
-            defaultOpenKeys,
-            currentKey,
-            openKeys,
-            defaultSelectedKey,
-            renderCollapsedButton,
-            popupContainer,
-            setProps,
-            persistence,
-            persisted_props,
-            persistence_type,
-            loading_state
-        } = this.props;
-
-        if (!currentKey && defaultSelectedKey) {
-            currentKey = defaultSelectedKey
-        }
-
-        // 定义字符串-> 组件 Map对象
-        let str2Jsx = new Map([
-            ['SubMenu', SubMenu],
-            ['Item', Item],
-            ['ItemGroup', ItemGroup],
-            ['Divider', Divider]
-        ])
-
-        // 递归推导多层菜单结构
-        const raw2Jsx = (obj, str2Jsx) => {
-            // 若obj为数组
-            if (Array.isArray(obj)) {
-                // 若obj为数组，则针对数组中每个对象向下递归
-                obj = obj.map(obj_ => raw2Jsx(obj_, str2Jsx))
-
-            } else if (obj.hasOwnProperty('component')) {
-                // 若obj包含children属性，则向下递归处理
-                if (obj.hasOwnProperty('children')) {
-                    Object.assign(obj, { children: obj.children.map(obj_ => raw2Jsx(obj_, str2Jsx)) })
-
-                    if (obj.component === 'SubMenu') {
-                        obj = <SubMenu
-                            key={obj.props.key}
-                            title={obj.props.title}
-                            disabled={obj.props.disabled}
-                            icon={<AntdIcon icon={obj.props.icon} />}>
-                            {obj.children}
-                        </SubMenu>
-                    } else {
-                        obj = <ItemGroup
-                            key={obj.props.key}
-                            title={obj.props.title}
-                            disabled={obj.props.disabled}
-                            icon={<AntdIcon icon={obj.props.icon} />}>
-                            {obj.children}
-                        </ItemGroup>
-                    }
-                } else {
-                    // 检查obj.component是否为Divider
-                    if (obj.component === 'Divider') {
-                        obj = <Divider dashed={obj.props && obj.props.dashed} />
-                    } else if (obj.props.href) {
-                        // 生成Item对应的jsx
-                        obj = <Item
-                            key={obj.props.key}
-                            title={obj.props.title}
-                            disabled={obj.props.disabled}
-                            danger={obj.props.danger}
-                            icon={<AntdIcon icon={obj.props.icon}
-                            />}
-                            name={obj.props && obj.props.name}
-                        >
-                            <UtilsLink href={obj.props.href} target={obj.props.target}>{obj.props.title}</UtilsLink>
-                        </Item>
-                    } else {
-                        obj = <Item
-                            key={obj.props.key}
-                            title={obj.props.title}
-                            disabled={obj.props.disabled}
-                            danger={obj.props.danger}
-                            icon={<AntdIcon icon={obj.props.icon} />}
-                            name={obj.props && obj.props.name}
-                        >
-                            {obj.props.title}
-                        </Item>
-                    }
-                }
-            }
-            return obj;
-        }
-
-        // 基于menuItems推导jsx数据结构
-        let _menuItems = raw2Jsx(menuItems, str2Jsx)
-
-        // 监听Item的点击事件
-        const listenSelected = (item) => {
-            // 将当前选中的key值赋给currentKey
-            setProps({ currentKey: item.key })
-        }
-
-        if (renderCollapsedButton) {
-            return (
-                <div style={{ width: '100%' }}>
-                    <Button type="primary" onClick={this.toggleCollapsed}>
-                        {React.createElement(this.state.collapsed ? MenuUnfoldOutlined : MenuFoldOutlined)}
-                    </Button>
-                    <Menu
-                        id={id}
-                        className={className}
-                        style={style}
-                        key={key}
-                        mode={mode}
-                        theme={theme}
-                        selectedKeys={[currentKey]}
-                        openKeys={openKeys}
-                        defaultOpenKeys={defaultOpenKeys}
-                        defaultSelectedKeys={defaultSelectedKey ? [defaultSelectedKey] : defaultSelectedKey}
-                        onSelect={listenSelected}
-                        onOpenChange={(e) => setProps({ openKeys: e })}
-                        getPopupContainer={
-                            popupContainer === 'parent' ?
-                                (triggerNode) => triggerNode.parentNode :
-                                undefined
-                        }
-                        inlineCollapsed={this.state.collapsed}
-                        persistence={persistence}
-                        persisted_props={persisted_props}
-                        persistence_type={persistence_type}
-                        data-dash-is-loading={
-                            (loading_state && loading_state.is_loading) || undefined
-                        }
-                    >
-                        {_menuItems}
-                    </Menu>
-                </div>
-            );
-        } else {
-            return (
+    if (renderCollapsedButton) {
+        return (
+            <div style={{ width: '100%' }}>
+                <Button type="primary" onClick={() => setProps({ inlineCollapsed: !inlineCollapsed })}>
+                    {React.createElement(inlineCollapsed ? MenuUnfoldOutlined : MenuFoldOutlined)}
+                </Button>
                 <Menu
                     id={id}
-                    className={className}
+                    className={
+                        isString(className) ?
+                            className :
+                            (className ? useCss(className) : undefined)
+                    }
                     style={style}
                     key={key}
                     mode={mode}
@@ -280,6 +238,7 @@ export default class AntdMenu extends Component {
                             (triggerNode) => triggerNode.parentNode :
                             undefined
                     }
+                    inlineCollapsed={inlineCollapsed}
                     persistence={persistence}
                     persisted_props={persisted_props}
                     persistence_type={persistence_type}
@@ -289,8 +248,42 @@ export default class AntdMenu extends Component {
                 >
                     {_menuItems}
                 </Menu>
-            );
-        }
+            </div>
+        );
+    } else {
+        return (
+            <Menu
+                id={id}
+                className={
+                    isString(className) ?
+                        className :
+                        (className ? useCss(className) : undefined)
+                }
+                style={style}
+                key={key}
+                mode={mode}
+                theme={theme}
+                selectedKeys={[currentKey]}
+                openKeys={openKeys}
+                defaultOpenKeys={defaultOpenKeys}
+                defaultSelectedKeys={defaultSelectedKey ? [defaultSelectedKey] : defaultSelectedKey}
+                onSelect={listenSelected}
+                onOpenChange={(e) => setProps({ openKeys: e })}
+                getPopupContainer={
+                    popupContainer === 'parent' ?
+                        (triggerNode) => triggerNode.parentNode :
+                        undefined
+                }
+                persistence={persistence}
+                persisted_props={persisted_props}
+                persistence_type={persistence_type}
+                data-dash-is-loading={
+                    (loading_state && loading_state.is_loading) || undefined
+                }
+            >
+                {_menuItems}
+            </Menu>
+        );
     }
 }
 
@@ -300,7 +293,10 @@ AntdMenu.propTypes = {
     id: PropTypes.string,
 
     // css类名
-    className: PropTypes.string,
+    className: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.object
+    ]),
 
     // 自定义css字典
     style: PropTypes.object,
@@ -339,6 +335,9 @@ AntdMenu.propTypes = {
 
     // 设置悬浮层锚定策略，可选的有'parent'、'body'，默认为'body'
     popupContainer: PropTypes.oneOf(['parent', 'body']),
+
+    // 设置当前菜单是否处于折叠状态（进inline模式下有效），默认为false
+    inlineCollapsed: PropTypes.bool,
 
     loading_state: PropTypes.shape({
         /**
@@ -398,5 +397,8 @@ AntdMenu.defaultProps = {
     renderCollapsedButton: false,
     persisted_props: ['currentKey', 'openKeys'],
     persistence_type: 'local',
-    popupContainer: 'body'
+    popupContainer: 'body',
+    inlineCollapsed: false
 }
+
+export default AntdMenu;

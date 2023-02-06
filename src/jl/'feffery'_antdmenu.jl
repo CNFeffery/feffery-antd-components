@@ -9,10 +9,11 @@ An AntdMenu component.
 
 Keyword arguments:
 - `id` (String; optional)
-- `className` (String; optional)
+- `className` (String | Dict; optional)
 - `currentKey` (String; optional)
 - `defaultOpenKeys` (Array of Strings; optional)
 - `defaultSelectedKey` (String; optional)
+- `inlineCollapsed` (Bool; optional)
 - `key` (String; optional)
 - `loading_state` (optional): . loading_state has the following type: lists containing elements 'is_loading', 'prop_name', 'component_name'.
 Those elements have the following types:
@@ -41,7 +42,7 @@ session: window.sessionStorage, data is cleared once the browser quit.
 - `theme` (a value equal to: 'light', 'dark'; optional)
 """
 function 'feffery'_antdmenu(; kwargs...)
-        available_props = Symbol[:id, :className, :currentKey, :defaultOpenKeys, :defaultSelectedKey, :key, :loading_state, :menuItems, :mode, :openKeys, :persisted_props, :persistence, :persistence_type, :popupContainer, :renderCollapsedButton, :style, :theme]
+        available_props = Symbol[:id, :className, :currentKey, :defaultOpenKeys, :defaultSelectedKey, :inlineCollapsed, :key, :loading_state, :menuItems, :mode, :openKeys, :persisted_props, :persistence, :persistence_type, :popupContainer, :renderCollapsedButton, :style, :theme]
         wild_props = Symbol[]
         return Component("'feffery'_antdmenu", "AntdMenu", "feffery_antd_components", available_props, wild_props; kwargs...)
 end
