@@ -14,7 +14,7 @@ Keyword arguments:
 - `children` (a list of or a singular dash component, string or number; optional): The content of the tab - will only be displayed if this tab is selected
 - `id` (String; optional)
 - `backClicks` (Real; optional)
-- `className` (String; optional)
+- `className` (String | Dict; optional)
 - `ghost` (Bool; optional)
 - `historyBackDisabled` (Bool; optional)
 - `key` (String; optional)

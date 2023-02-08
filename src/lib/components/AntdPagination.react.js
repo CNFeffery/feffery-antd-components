@@ -2,6 +2,8 @@ import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { Pagination, ConfigProvider } from 'antd';
 import { str2Locale } from './locales.react';
+import { isString } from 'lodash';
+import useCss from '../hooks/useCss';
 
 
 // 定义分页部件AntdPagination，api参数参考https://ant.design/components/pagination-cn/
@@ -27,6 +29,7 @@ const AntdPagination = (props) => {
         simple,
         size,
         total,
+        showTotal,
         setProps,
         loading_state,
         persistence,
@@ -35,11 +38,11 @@ const AntdPagination = (props) => {
     } = props;
 
     useEffect(() => {
-        if (!current) {
+        if (defaultCurrent && !current) {
             setProps({ current: defaultCurrent })
         }
 
-        if (!pageSize) {
+        if (defaultPageSize && !pageSize) {
             setProps({ pageSize: defaultPageSize })
         }
     }, [])
@@ -50,7 +53,7 @@ const AntdPagination = (props) => {
     }
 
     const renderShowTotal = (e) => {
-        return (showTotalPrefix ? showTotalPrefix : "共有记录") + ' ' + e.toString() + ' ' + (showTotalSuffix ? showTotalSuffix : "条")
+        return `${showTotalPrefix || "共有记录"} ${e.toString()} ${showTotalSuffix || "条"}`
     }
 
     // 返回定制化的前端部件
@@ -58,7 +61,11 @@ const AntdPagination = (props) => {
         <ConfigProvider locale={str2Locale.get(locale)}>
             <Pagination
                 id={id}
-                className={className}
+                className={
+                    isString(className) ?
+                        className :
+                        (className ? useCss(className) : undefined)
+                }
                 style={style}
                 key={key}
                 pageSize={pageSize || defaultPageSize}
@@ -70,7 +77,7 @@ const AntdPagination = (props) => {
                 pageSizeOptions={pageSizeOptions}
                 showQuickJumper={showQuickJumper}
                 showSizeChanger={showSizeChanger}
-                showTotal={renderShowTotal}
+                showTotal={showTotal ? renderShowTotal : undefined}
                 simple={simple}
                 size={size}
                 total={total}
@@ -92,7 +99,10 @@ AntdPagination.propTypes = {
     id: PropTypes.string,
 
     // css类名
-    className: PropTypes.string,
+    className: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.object
+    ]),
 
     // 自定义css字典
     style: PropTypes.object,
@@ -115,7 +125,7 @@ AntdPagination.propTypes = {
     // 设置是否禁用分页组件
     disabled: PropTypes.bool,
 
-    // 只有一页时是否隐藏分页器
+    // 只有一页时是否隐藏分页器，默认为false
     hideOnSinglePage: PropTypes.bool,
 
     // 对应当前的每页记录条数
@@ -124,11 +134,11 @@ AntdPagination.propTypes = {
     // 设置可选的每页条数列表
     pageSizeOptions: PropTypes.arrayOf(PropTypes.number),
 
-    // 设置是否渲染快速页面跳转输入框
-    showQuickJumper: PropTypes.bool,
-
-    // 设置是否渲染【每页记录数】调节组件，当total大于50时默认为true，否则默认为false
+    // 设置是否渲染每页记录数选择器，默认为false
     showSizeChanger: PropTypes.bool,
+
+    // 设置是否开启快速跳页功能，默认为false
+    showQuickJumper: PropTypes.bool,
 
     // 定义总记录行数显示部分的前缀文字，默认为"共 "
     showTotalPrefix: PropTypes.string,
@@ -144,6 +154,9 @@ AntdPagination.propTypes = {
 
     // 设置总记录条数
     total: PropTypes.number,
+
+    // 设置是否展示总记录描述文案，默认为true
+    showTotal: PropTypes.bool,
 
     loading_state: PropTypes.shape({
         /**
@@ -200,9 +213,15 @@ AntdPagination.propTypes = {
 AntdPagination.defaultProps = {
     defaultCurrent: 1,
     defaultPageSize: 10,
+    hideOnSinglePage: false,
+    showSizeChanger: false,
+    showQuickJumper: false,
+    simple: false,
+    size: 'default',
     persisted_props: ['current', 'pageSize'],
     persistence_type: 'local',
-    locale: 'zh-cn'
+    locale: 'zh-cn',
+    showTotal: true
 }
 
 export default AntdPagination;

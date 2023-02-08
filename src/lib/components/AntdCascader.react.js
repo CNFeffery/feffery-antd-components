@@ -2,8 +2,9 @@ import { useEffect, useMemo } from 'react';
 import PropTypes from 'prop-types';
 import { Cascader, ConfigProvider } from 'antd';
 import { str2Locale } from './locales.react';
-import { isUndefined } from 'lodash';
+import { isUndefined, isString } from 'lodash';
 import { flatToTree } from './utils';
+import useCss from '../hooks/useCss';
 
 
 const { SHOW_CHILD, SHOW_PARENT } = Cascader;
@@ -75,8 +76,12 @@ const AntdCascader = (props) => {
         <ConfigProvider locale={str2Locale.get(locale)}>
             <Cascader
                 id={id}
-                className={className}
-                style={{ ...{ width: '100%' }, ...style }}
+                className={
+                    isString(className) ?
+                        className :
+                        (className ? useCss(className) : undefined)
+                }
+                style={style}
                 key={key}
                 options={options}
                 changeOnSelect={changeOnSelect}
@@ -152,7 +157,10 @@ AntdCascader.propTypes = {
     id: PropTypes.string,
 
     // css类名
-    className: PropTypes.string,
+    className: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.object
+    ]),
 
     // 自定义css字典
     style: PropTypes.object,
@@ -163,20 +171,20 @@ AntdCascader.propTypes = {
     // 设置语言环境，可选的有'zh-cn'、'en-us'
     locale: PropTypes.oneOf(['zh-cn', 'en-us']),
 
+    // 设置options模式，可选的有'tree'、'flat'，默认为'tree'
+    optionsMode: PropTypes.oneOf(['tree', 'flat']),
+
     // 组织选项层级结构对应的json数据
     options: PropTypes.oneOfType([
         optionDataPropTypes,
         PropTypes.arrayOf(PropFlatOptionNodeShape)
     ]).isRequired,
 
-    // 设置options模式，可选的有'tree'、'flat'，默认为'tree'
-    optionsMode: PropTypes.oneOf(['tree', 'flat']),
-
     // 设置是否禁用组件
     disabled: PropTypes.bool,
 
     // 设置是否任意节点被选择都会被触发选值改变回调
-    // 而不一定非要选中末端叶节点
+    // 而不一定非要选中末端叶节点，默认为false
     changeOnSelect: PropTypes.bool,
 
     // 设置组件尺寸大小，可选的有'small'、'middle'及'large'，默认为'middle'
@@ -189,11 +197,20 @@ AntdCascader.propTypes = {
     placeholder: PropTypes.string,
 
     // 设置展开浮层的位置，可选的有'bottomLeft'、'bottomRight'、'topLeft'、'topRight'
+    // 默认为'bottomLeft'
     placement: PropTypes.oneOf([
         'bottomLeft',
         'bottomRight',
         'topLeft',
         'topRight'
+    ]),
+
+    // 对应回调中用户已选择的值
+    value: PropTypes.oneOfType([
+        PropTypes.arrayOf(PropTypes.string),
+        PropTypes.arrayOf(
+            PropTypes.arrayOf(PropTypes.string)
+        )
     ]),
 
     // 设置默认的选中项
@@ -213,14 +230,6 @@ AntdCascader.propTypes = {
     // 设置是否允许多选
     multiple: PropTypes.bool,
 
-    // 对应回调中用户已选择的值
-    value: PropTypes.oneOfType([
-        PropTypes.arrayOf(PropTypes.string),
-        PropTypes.arrayOf(
-            PropTypes.arrayOf(PropTypes.string)
-        )
-    ]),
-
     // 设置子菜单展开交互方式，可选的有'click'和'hover'，默认为'click'
     expandTrigger: PropTypes.oneOf(['click', 'hover']),
 
@@ -235,7 +244,11 @@ AntdCascader.propTypes = {
     showCheckedStrategy: PropTypes.oneOf(['show-parent', 'show-child']),
 
     // 设置是否以只读模式进行渲染，底层利用Select的open参数
+    // 默认为false
     readOnly: PropTypes.bool,
+
+    // 设置悬浮层锚定策略，可选的有'parent'、'body'，默认为'body'
+    popupContainer: PropTypes.oneOf(['parent', 'body']),
 
     loading_state: PropTypes.shape({
         /**
@@ -251,9 +264,6 @@ AntdCascader.propTypes = {
          */
         component_name: PropTypes.string
     }),
-
-    // 设置悬浮层锚定策略，可选的有'parent'、'body'，默认为'body'
-    popupContainer: PropTypes.oneOf(['parent', 'body']),
 
     /**
      * Dash-assigned callback that should be called to report property changes
@@ -294,6 +304,10 @@ AntdCascader.propTypes = {
 // 设置默认参数
 AntdCascader.defaultProps = {
     changeOnSelect: false,
+    placement: 'bottomLeft',
+    multiple: false,
+    expandTrigger: 'click',
+    allowClear: true,
     persisted_props: ['value'],
     persistence_type: 'local',
     locale: 'zh-cn',

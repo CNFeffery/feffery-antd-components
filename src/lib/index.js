@@ -1,6 +1,6 @@
 /* eslint-disable import/prefer-default-export */
 import 'antd/dist/antd.variable.min.css';
-import './components/styles.css'
+import './components/styles.css';
 import AntdDatePicker from './components/AntdDatePicker.react';
 import AntdDateRangePicker from './components/AntdDateRangePicker.react';
 import AntdDivider from './components/AntdDivider.react';

@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { PageHeader } from 'antd';
+import { isString } from 'lodash';
+import useCss from '../hooks/useCss';
 
 import { parseChildrenToArray } from './utils';
 
@@ -27,18 +29,21 @@ const AntdPageHeader = (props) => {
 
     return (
         <PageHeader id={id}
-            className={className}
+            className={
+                isString(className) ?
+                    className :
+                    (className ? useCss(className) : undefined)
+            }
             style={style}
             key={key}
             title={title}
             subTitle={subTitle}
             backIcon={showBackIcon ? undefined : false}
             ghost={ghost}
-            onBack={historyBackDisabled ? () => {
-                let backClicks_ = backClicks
-                backClicks_++
-                setProps({ backClicks: backClicks_ })
-            } : () => window.history.back()
+            onBack={
+                historyBackDisabled ?
+                    () => setProps({ backClicks: backClicks + 1 }) :
+                    () => window.history.back()
             }
             data-dash-is-loading={
                 (loading_state && loading_state.is_loading) || undefined
@@ -59,7 +64,10 @@ AntdPageHeader.propTypes = {
     children: PropTypes.node,
 
     // css类名
-    className: PropTypes.string,
+    className: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.object
+    ]),
 
     // 自定义css字典
     style: PropTypes.object,

@@ -10,7 +10,7 @@ An AntdSteps component.
 Keyword arguments:
 - `id` (String; optional)
 - `allowClick` (Bool; optional)
-- `className` (String; optional)
+- `className` (String | Dict; optional)
 - `current` (Real; optional)
 - `direction` (a value equal to: 'horizontal', 'vertical'; optional)
 - `key` (String; optional)
@@ -23,11 +23,11 @@ Those elements have the following types:
 - `progressDot` (Bool; optional)
 - `size` (a value equal to: 'default', 'small'; optional)
 - `status` (a value equal to: 'wait', 'process', 'finish', 'error'; optional)
-- `steps` (optional): . steps has the following type: Array of lists containing elements 'title', 'subTitle', 'description'.
+- `steps` (required): . steps has the following type: Array of lists containing elements 'title', 'subTitle', 'description'.
 Those elements have the following types:
-  - `title` (String; required)
-  - `subTitle` (String; optional)
-  - `description` (String; optional)s
+  - `title` (a list of or a singular dash component, string or number; required)
+  - `subTitle` (a list of or a singular dash component, string or number; optional)
+  - `description` (a list of or a singular dash component, string or number; optional)s
 - `style` (Dict; optional)
 - `type` (a value equal to: 'default', 'navigation'; optional)
 """

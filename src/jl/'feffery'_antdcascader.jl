@@ -12,7 +12,7 @@ Keyword arguments:
 - `allowClear` (Bool; optional)
 - `bordered` (Bool; optional)
 - `changeOnSelect` (Bool; optional)
-- `className` (String; optional)
+- `className` (String | Dict; optional)
 - `defaultValue` (Array of Strings | Array of Array of Stringss; optional)
 - `disabled` (Bool; optional)
 - `expandTrigger` (a value equal to: 'click', 'hover'; optional)

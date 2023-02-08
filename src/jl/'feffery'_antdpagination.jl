@@ -9,7 +9,7 @@ An AntdPagination component.
 
 Keyword arguments:
 - `id` (String; optional)
-- `className` (String; optional)
+- `className` (String | Dict; optional)
 - `current` (Real; optional)
 - `defaultCurrent` (Real; optional)
 - `defaultPageSize` (Real; optional)
@@ -39,6 +39,7 @@ local: window.localStorage, data is kept after the browser quit.
 session: window.sessionStorage, data is cleared once the browser quit.
 - `showQuickJumper` (Bool; optional)
 - `showSizeChanger` (Bool; optional)
+- `showTotal` (Bool; optional)
 - `showTotalPrefix` (String; optional)
 - `showTotalSuffix` (String; optional)
 - `simple` (Bool; optional)
@@ -47,7 +48,7 @@ session: window.sessionStorage, data is cleared once the browser quit.
 - `total` (Real; optional)
 """
 function 'feffery'_antdpagination(; kwargs...)
-        available_props = Symbol[:id, :className, :current, :defaultCurrent, :defaultPageSize, :disabled, :hideOnSinglePage, :key, :loading_state, :locale, :pageSize, :pageSizeOptions, :persisted_props, :persistence, :persistence_type, :showQuickJumper, :showSizeChanger, :showTotalPrefix, :showTotalSuffix, :simple, :size, :style, :total]
+        available_props = Symbol[:id, :className, :current, :defaultCurrent, :defaultPageSize, :disabled, :hideOnSinglePage, :key, :loading_state, :locale, :pageSize, :pageSizeOptions, :persisted_props, :persistence, :persistence_type, :showQuickJumper, :showSizeChanger, :showTotal, :showTotalPrefix, :showTotalSuffix, :simple, :size, :style, :total]
         wild_props = Symbol[]
         return Component("'feffery'_antdpagination", "AntdPagination", "feffery_antd_components", available_props, wild_props; kwargs...)
 end

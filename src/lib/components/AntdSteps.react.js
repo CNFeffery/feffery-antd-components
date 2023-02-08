@@ -1,7 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Steps } from 'antd';
-
+import useCss from '../hooks/useCss';
+import { isString } from 'lodash';
 
 const { Step } = Steps;
 
@@ -35,7 +36,11 @@ const AntdSteps = (props) => {
     return (
         <Steps
             id={id}
-            className={className}
+            className={
+                isString(className) ?
+                    className :
+                    (className ? useCss(className) : undefined)
+            }
             style={style}
             key={key}
             data-dash-is-loading={
@@ -50,7 +55,15 @@ const AntdSteps = (props) => {
             type={type}
             onChange={allowClick ? (current) => setProps({ current: current }) : undefined}
         >
-            {steps.map(item => <Step title={item.title} subTitle={item.subTitle} description={item.description}></Step>)}
+            {
+                steps.map(
+                    item => (
+                        <Step title={item.title}
+                            subTitle={item.subTitle}
+                            description={item.description} />
+                    )
+                )
+            }
         </Steps>
     );
 }
@@ -61,7 +74,10 @@ AntdSteps.propTypes = {
     id: PropTypes.string,
 
     // css类名
-    className: PropTypes.string,
+    className: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.object
+    ]),
 
     // 自定义css字典
     style: PropTypes.object,
@@ -69,20 +85,19 @@ AntdSteps.propTypes = {
     // 辅助刷新用唯一标识key值
     key: PropTypes.string,
 
-    loading_state: PropTypes.shape({
-        /**
-         * Determines if the component is loading or not
-         */
-        is_loading: PropTypes.bool,
-        /**
-         * Holds which property is loading
-         */
-        prop_name: PropTypes.string,
-        /**
-         * Holds the name of the component that is loading
-         */
-        component_name: PropTypes.string
-    }),
+    // 定义各步骤参数信息，必填
+    steps: PropTypes.arrayOf(
+        PropTypes.exact({
+            // 步骤对应的标题内容
+            title: PropTypes.node.isRequired,
+
+            // 步骤对应的子标题内容
+            subTitle: PropTypes.node,
+
+            // 步骤对应的描述内容
+            description: PropTypes.node
+        })
+    ).isRequired,
 
     // 指定当前处于的步骤序号，默认为0
     current: PropTypes.number,
@@ -108,19 +123,20 @@ AntdSteps.propTypes = {
     // 设置是否允许点击进行步骤切换，默认为false
     allowClick: PropTypes.bool,
 
-    // 定义各步骤参数信息
-    steps: PropTypes.arrayOf(
-        PropTypes.exact({
-            // 步骤对应的标题内容
-            title: PropTypes.string.isRequired,
-
-            // 步骤对应的子标题内容
-            subTitle: PropTypes.string,
-
-            // 步骤对应的描述文字
-            description: PropTypes.string
-        })
-    ),
+    loading_state: PropTypes.shape({
+        /**
+         * Determines if the component is loading or not
+         */
+        is_loading: PropTypes.bool,
+        /**
+         * Holds which property is loading
+         */
+        prop_name: PropTypes.string,
+        /**
+         * Holds the name of the component that is loading
+         */
+        component_name: PropTypes.string
+    }),
 
     /**
      * Dash-assigned callback that should be called to report property changes
@@ -136,6 +152,7 @@ AntdSteps.defaultProps = {
     progressDot: false,
     size: 'default',
     status: 'process',
+    type: 'default',
     allowClick: false
 }
 
