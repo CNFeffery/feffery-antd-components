@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Checkbox } from 'antd';
+import { isString } from 'lodash';
+import useCss from '../hooks/useCss';
 
 
 // 定义组合选择框组件AntdCheckboxGroup，api参数参考https://ant.design/components/checkbox-cn/
@@ -29,7 +31,11 @@ const AntdCheckboxGroup = (props) => {
     return (
         <Checkbox.Group
             id={id}
-            className={className}
+            className={
+                isString(className) ?
+                    className :
+                    (className ? useCss(className) : undefined)
+            }
             style={style}
             key={key}
             options={options}
@@ -52,7 +58,10 @@ AntdCheckboxGroup.propTypes = {
     id: PropTypes.string,
 
     // css类名
-    className: PropTypes.string,
+    className: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.object
+    ]),
 
     // 自定义css字典
     style: PropTypes.object,
@@ -67,7 +76,7 @@ AntdCheckboxGroup.propTypes = {
     options: PropTypes.arrayOf(
         PropTypes.exact({
             // 设置选项显示的文字内容
-            label: PropTypes.string,
+            label: PropTypes.node,
 
             // 设置选项对应的值
             value: PropTypes.string,
@@ -134,7 +143,8 @@ AntdCheckboxGroup.propTypes = {
 // 设置默认参数
 AntdCheckboxGroup.defaultProps = {
     persisted_props: ['value'],
-    persistence_type: 'local'
+    persistence_type: 'local',
+    disabled: false
 }
 
 export default AntdCheckboxGroup;

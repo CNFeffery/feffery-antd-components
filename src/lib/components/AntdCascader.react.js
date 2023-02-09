@@ -313,7 +313,9 @@ AntdCascader.defaultProps = {
     locale: 'zh-cn',
     optionsMode: 'tree',
     showCheckedStrategy: 'show-parent',
-    popupContainer: 'body'
+    popupContainer: 'body',
+    bordered: true,
+    disabled: false
 }
 
 export default AntdCascader;

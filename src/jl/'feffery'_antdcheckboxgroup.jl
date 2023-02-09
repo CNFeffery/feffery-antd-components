@@ -9,7 +9,7 @@ An AntdCheckboxGroup component.
 
 Keyword arguments:
 - `id` (String; optional)
-- `className` (String; optional)
+- `className` (String | Dict; optional)
 - `disabled` (Bool; optional)
 - `key` (String; optional)
 - `loading_state` (optional): . loading_state has the following type: lists containing elements 'is_loading', 'prop_name', 'component_name'.
@@ -19,7 +19,7 @@ Those elements have the following types:
   - `component_name` (String; optional): Holds the name of the component that is loading
 - `options` (optional): . options has the following type: Array of lists containing elements 'label', 'value', 'disabled'.
 Those elements have the following types:
-  - `label` (String; optional)
+  - `label` (a list of or a singular dash component, string or number; optional)
   - `value` (String; optional)
   - `disabled` (Bool; optional)s
 - `persisted_props` (Array of a value equal to: 'value's; optional): Properties whose user interactions will persist after refreshing the

@@ -1,6 +1,8 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { Checkbox } from 'antd';
+import { isString } from 'lodash';
+import useCss from '../hooks/useCss';
 
 
 // 定义选择框组件AntdCheckbox，api参数参考https://ant.design/components/checkbox-cn/
@@ -14,18 +16,13 @@ const AntdCheckbox = (props) => {
         label,
         disabled,
         checked,
+        indeterminate,
         setProps,
         persistence,
         persisted_props,
         persistence_type,
         loading_state
     } = props;
-
-    useEffect(() => {
-        if (!checked) {
-            setProps({ checked: false })
-        }
-    }, [])
 
     const onChange = e => {
         setProps({ checked: e.target.checked })
@@ -35,12 +32,17 @@ const AntdCheckbox = (props) => {
     return (
         <Checkbox
             id={id}
-            className={className}
+            className={
+                isString(className) ?
+                    className :
+                    (className ? useCss(className) : undefined)
+            }
             style={style}
             key={key}
             onChange={onChange}
             disabled={disabled}
             checked={checked}
+            indeterminate={indeterminate}
             persistence={persistence}
             persisted_props={persisted_props}
             persistence_type={persistence_type}
@@ -59,7 +61,10 @@ AntdCheckbox.propTypes = {
     id: PropTypes.string,
 
     // css类名
-    className: PropTypes.string,
+    className: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.object
+    ]),
 
     // 自定义css字典
     style: PropTypes.object,
@@ -71,10 +76,14 @@ AntdCheckbox.propTypes = {
     disabled: PropTypes.bool,
 
     // 用于设置选项对应显示的文字内容
-    label: PropTypes.string,
+    label: PropTypes.node,
 
-    // 对应选择框当前是否被选择
+    // 对应选择框当前是否被选择，默认为false
     checked: PropTypes.bool,
+
+    // 设置当前选择框是否样式强制为半选状态，默认为false
+    // 此参数仅与样式有关，与勾选状态无关
+    indeterminate: PropTypes.bool,
 
     loading_state: PropTypes.shape({
         /**
@@ -130,7 +139,10 @@ AntdCheckbox.propTypes = {
 // 设置默认参数
 AntdCheckbox.defaultProps = {
     persisted_props: ['checked'],
-    persistence_type: 'local'
+    persistence_type: 'local',
+    disabled: false,
+    checked: false,
+    indeterminate: false
 }
 
 export default AntdCheckbox;

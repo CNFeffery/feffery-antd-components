@@ -10,10 +10,11 @@ An AntdCheckbox component.
 Keyword arguments:
 - `id` (String; optional)
 - `checked` (Bool; optional)
-- `className` (String; optional)
+- `className` (String | Dict; optional)
 - `disabled` (Bool; optional)
+- `indeterminate` (Bool; optional)
 - `key` (String; optional)
-- `label` (String; optional)
+- `label` (a list of or a singular dash component, string or number; optional)
 - `loading_state` (optional): . loading_state has the following type: lists containing elements 'is_loading', 'prop_name', 'component_name'.
 Those elements have the following types:
   - `is_loading` (Bool; optional): Determines if the component is loading or not
@@ -35,7 +36,7 @@ session: window.sessionStorage, data is cleared once the browser quit.
 - `style` (Dict; optional)
 """
 function 'feffery'_antdcheckbox(; kwargs...)
-        available_props = Symbol[:id, :checked, :className, :disabled, :key, :label, :loading_state, :persisted_props, :persistence, :persistence_type, :style]
+        available_props = Symbol[:id, :checked, :className, :disabled, :indeterminate, :key, :label, :loading_state, :persisted_props, :persistence, :persistence_type, :style]
         wild_props = Symbol[]
         return Component("'feffery'_antdcheckbox", "AntdCheckbox", "feffery_antd_components", available_props, wild_props; kwargs...)
 end
