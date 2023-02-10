@@ -4,6 +4,7 @@ import { DatePicker, ConfigProvider } from 'antd';
 import moment from 'moment';
 import { isString, isUndefined } from 'lodash';
 import { str2Locale } from './locales.react';
+import useCss from '../hooks/useCss';
 
 // 定义日期选择组件AntdDatePicker，api参数参考https://ant.design/components/date-picker-cn/
 const AntdDatePicker = (props) => {
@@ -30,6 +31,7 @@ const AntdDatePicker = (props) => {
         status,
         popupContainer,
         readOnly,
+        placement,
         persistence,
         persisted_props,
         persistence_type,
@@ -332,7 +334,11 @@ const AntdDatePicker = (props) => {
             <ConfigProvider locale={str2Locale.get(locale)}>
                 <DatePicker
                     id={id}
-                    className={className}
+                    className={
+                        isString(className) ?
+                            className :
+                            (className ? useCss(className) : undefined)
+                    }
                     style={style}
                     key={key}
                     format={format}
@@ -349,7 +355,9 @@ const AntdDatePicker = (props) => {
                     showTime={showTime}
                     allowClear={isUndefined(readOnly) ? allowClear : !readOnly}
                     status={status}
-                    open={isUndefined(readOnly) ? undefined : !readOnly}
+                    placement={placement}
+                    open={isUndefined(readOnly) || !readOnly ? undefined : false}
+                    inputReadOnly={readOnly}
                     persistence={persistence}
                     persisted_props={persisted_props}
                     persistence_type={persistence_type}
@@ -373,7 +381,10 @@ AntdDatePicker.propTypes = {
     id: PropTypes.string,
 
     // css类名
-    className: PropTypes.string,
+    className: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.object
+    ]),
 
     // 自定义css字典
     style: PropTypes.object,
@@ -393,20 +404,31 @@ AntdDatePicker.propTypes = {
     // 设置是否禁用组件，默认为false
     disabled: PropTypes.bool,
 
-    // 对应用户选中的日期字符串
-    value: PropTypes.string,
-
     // 设置是否显示时间选择界面，默认为false即不显示
     showTime: PropTypes.bool,
 
-    // 设置是否显示输入框内容清除按钮，默认为true即显示
-    allowClear: PropTypes.bool,
+    // 设置尺寸大小，可选的有'small'、'middle'及'large'
+    // 默认为'middle'
+    size: PropTypes.oneOf(['small', 'middle', 'large']),
 
-    // 设置日期面板默认的时间位置
-    defaultPickerValue: PropTypes.string,
+    // 用于设置是否显示边框，默认为true即显示边框
+    bordered: PropTypes.bool,
+
+    // 空白输入下的填充说明文字
+    placeholder: PropTypes.string,
+
+    // 设置日期选择面板的展开方向，可选的有'bottomLeft'、'bottomRight'、'topLeft'、'topRight'
+    // 默认为'bottomLeft'
+    placement: PropTypes.oneOf(['bottomLeft', 'bottomRight', 'topLeft', 'topRight']),
+
+    // 对应用户选中的日期字符串
+    value: PropTypes.string,
 
     // 设置默认选中的日期值
     defaultValue: PropTypes.string,
+
+    // 设置日期面板默认的时间位置
+    defaultPickerValue: PropTypes.string,
 
     // 设置日期禁用项策略数组，满足数组中任意策略条件即会被禁用
     disabledDatesStrategy: PropTypes.arrayOf(
@@ -431,25 +453,18 @@ AntdDatePicker.propTypes = {
         })
     ),
 
-    // 空白输入下的填充说明文字
-    placeholder: PropTypes.string,
-
-    // 用于设置是否显示边框，默认为true即显示边框
-    bordered: PropTypes.bool,
-
-    // 设置尺寸大小，可选的有'small'、'middle'及'large'
-    size: PropTypes.oneOf([
-        'small', 'middle', 'large'
-    ]),
-
     // 设置校验状态，可选的有'error'、'warning'
     status: PropTypes.oneOf(['error', 'warning']),
 
-    // 设置悬浮层锚定策略，可选的有'parent'、'body'，默认为'body'
-    popupContainer: PropTypes.oneOf(['parent', 'body']),
+    // 设置是否显示输入框内容清除按钮，默认为true即显示
+    allowClear: PropTypes.bool,
 
     // 设置是否以只读模式进行渲染，底层利用open参数
+    // 默认为false
     readOnly: PropTypes.bool,
+
+    // 设置悬浮层锚定策略，可选的有'parent'、'body'，默认为'body'
+    popupContainer: PropTypes.oneOf(['parent', 'body']),
 
     /**
     * Object that holds the loading state object coming from dash-renderer
@@ -508,15 +523,16 @@ AntdDatePicker.propTypes = {
 // 设置默认参数
 AntdDatePicker.defaultProps = {
     picker: 'date',
+    disabled: false,
     showTime: false,
-    allowClear: true,
+    size: 'middle',
     bordered: true,
+    allowClear: true,
+    readOnly: false,
     persisted_props: ['value'],
     persistence_type: 'local',
     locale: 'zh-cn',
-    style: {
-        width: 220
-    },
+    placement: 'bottomLeft',
     popupContainer: 'body'
 }
 

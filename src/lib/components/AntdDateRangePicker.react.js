@@ -2,8 +2,9 @@ import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { DatePicker, ConfigProvider } from 'antd';
 import moment from 'moment';
-import { isUndefined } from 'lodash';
+import { isString, isUndefined } from 'lodash';
 import { str2Locale } from './locales.react';
+import useCss from '../hooks/useCss';
 
 const { RangePicker } = DatePicker;
 
@@ -32,6 +33,7 @@ const AntdDateRangePicker = (props) => {
         status,
         popupContainer,
         readOnly,
+        placement,
         persistence,
         persisted_props,
         persistence_type,
@@ -338,7 +340,11 @@ const AntdDateRangePicker = (props) => {
             <ConfigProvider locale={str2Locale.get(locale)}>
                 <RangePicker
                     id={id}
-                    className={className}
+                    className={
+                        isString(className) ?
+                            className :
+                            (className ? useCss(className) : undefined)
+                    }
                     style={style}
                     key={key}
                     format={format}
@@ -347,6 +353,7 @@ const AntdDateRangePicker = (props) => {
                     showTime={showTime}
                     allowClear={isUndefined(readOnly) ? allowClear : !readOnly}
                     disabled={(disabled && disabled.length === 2) ? disabled : undefined}
+                    allowEmpty={(disabled && disabled.length === 2) ? disabled : undefined}
                     placeholder={(placeholder && placeholder.length === 2) ? placeholder : undefined}
                     onChange={onChange}
                     bordered={bordered}
@@ -368,7 +375,9 @@ const AntdDateRangePicker = (props) => {
                             undefined
                     }
                     status={status}
-                    open={isUndefined(readOnly) ? undefined : !readOnly}
+                    placement={placement}
+                    open={isUndefined(readOnly) || !readOnly ? undefined : false}
+                    inputReadOnly={readOnly}
                     persistence={persistence}
                     persisted_props={persisted_props}
                     persistence_type={persistence_type}
@@ -392,7 +401,10 @@ AntdDateRangePicker.propTypes = {
     id: PropTypes.string,
 
     // css类名
-    className: PropTypes.string,
+    className: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.object
+    ]),
 
     // 自定义css字典
     style: PropTypes.object,
@@ -403,37 +415,38 @@ AntdDateRangePicker.propTypes = {
     // 设置语言环境，可选的有'zh-cn'、'en-us'
     locale: PropTypes.oneOf(['zh-cn', 'en-us']),
 
+    // 设置日期格式format，默认为'YYYY-MM-DD'
+    format: PropTypes.string,
+
     // 设置日期选择的粒度（date：精确到天，week：精确到周，month：精确到月，quarter：精确到季度，year：精确到年。默认为date）
     picker: PropTypes.oneOf(['date', 'week', 'month', 'quarter', 'year']),
 
-    // 设置日期格式format，默认为'YYYY-MM-DD'
-    format: PropTypes.string,
+    // 分别设置开始日期与结束日期的输入框是否禁用
+    disabled: PropTypes.arrayOf(PropTypes.bool),
 
     // 设置是否显示时间选择界面，默认为false即不显示
     showTime: PropTypes.bool,
 
-    // 设置是否显示输入框内容清除按钮，默认为true即显示
-    allowClear: PropTypes.bool,
+    // 设置尺寸大小，可选的有'small'、'middle'及'large'
+    size: PropTypes.oneOf([
+        'small', 'middle', 'large'
+    ]),
+
+    // 用于设置是否显示边框，默认为true即显示边框
+    bordered: PropTypes.bool,
 
     // 空白输入下输入框的填充说明文字
     placeholder: PropTypes.arrayOf(PropTypes.string),
 
-    // 设置开始输入框是否被禁用
-    disabled: PropTypes.arrayOf(PropTypes.bool),
+    // 设置日期选择面板的展开方向，可选的有'bottomLeft'、'bottomRight'、'topLeft'、'topRight'
+    // 默认为'bottomLeft'
+    placement: PropTypes.oneOf(['bottomLeft', 'bottomRight', 'topLeft', 'topRight']),
 
     // 已选择的日期范围
     value: PropTypes.arrayOf(PropTypes.string),
 
     // 设置默认选择的日期范围
     defaultValue: PropTypes.arrayOf(PropTypes.string),
-
-    // 用于设置是否显示边框，默认为true即显示边框
-    bordered: PropTypes.bool,
-
-    // 设置尺寸大小，可选的有'small'、'middle'及'large'
-    size: PropTypes.oneOf([
-        'small', 'middle', 'large'
-    ]),
 
     // 设置日期面板默认的时间位置
     defaultPickerValue: PropTypes.string,
@@ -467,11 +480,14 @@ AntdDateRangePicker.propTypes = {
     // 设置校验状态，可选的有'error'、'warning'
     status: PropTypes.oneOf(['error', 'warning']),
 
-    // 设置组件悬浮层参考容器类型，可选的有'parent'、'body'，默认为'parent'
-    popupContainer: PropTypes.oneOf(['parent', 'body']),
+    // 设置是否显示输入框内容清除按钮，默认为true即显示
+    allowClear: PropTypes.bool,
 
     // 设置是否以只读模式进行渲染，底层利用open参数
     readOnly: PropTypes.bool,
+
+    // 设置组件悬浮层参考容器类型，可选的有'parent'、'body'，默认为'parent'
+    popupContainer: PropTypes.oneOf(['parent', 'body']),
 
     /**
     * Object that holds the loading state object coming from dash-renderer
@@ -529,11 +545,17 @@ AntdDateRangePicker.propTypes = {
 
 // 设置默认参数
 AntdDateRangePicker.defaultProps = {
+    picker: 'date',
+    disabled: [false, false],
     showTime: false,
+    size: 'middle',
+    bordered: true,
     allowClear: true,
+    readOnly: false,
     persisted_props: ['value'],
     persistence_type: 'local',
     locale: 'zh-cn',
+    placement: 'bottomLeft',
     popupContainer: 'body'
 }
 

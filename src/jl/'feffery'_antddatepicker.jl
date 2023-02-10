@@ -11,7 +11,7 @@ Keyword arguments:
 - `id` (String; optional)
 - `allowClear` (Bool; optional)
 - `bordered` (Bool; optional)
-- `className` (String; optional)
+- `className` (String | Dict; optional)
 - `defaultPickerValue` (String; optional)
 - `defaultValue` (String; optional)
 - `disabled` (Bool; optional)
@@ -43,6 +43,7 @@ local: window.localStorage, data is kept after the browser quit.
 session: window.sessionStorage, data is cleared once the browser quit.
 - `picker` (a value equal to: 'date', 'week', 'month', 'quarter', 'year'; optional)
 - `placeholder` (String; optional)
+- `placement` (a value equal to: 'bottomLeft', 'bottomRight', 'topLeft', 'topRight'; optional)
 - `popupContainer` (a value equal to: 'parent', 'body'; optional)
 - `readOnly` (Bool; optional)
 - `showTime` (Bool; optional)
@@ -52,7 +53,7 @@ session: window.sessionStorage, data is cleared once the browser quit.
 - `value` (String; optional)
 """
 function 'feffery'_antddatepicker(; kwargs...)
-        available_props = Symbol[:id, :allowClear, :bordered, :className, :defaultPickerValue, :defaultValue, :disabled, :disabledDatesStrategy, :format, :key, :loading_state, :locale, :persisted_props, :persistence, :persistence_type, :picker, :placeholder, :popupContainer, :readOnly, :showTime, :size, :status, :style, :value]
+        available_props = Symbol[:id, :allowClear, :bordered, :className, :defaultPickerValue, :defaultValue, :disabled, :disabledDatesStrategy, :format, :key, :loading_state, :locale, :persisted_props, :persistence, :persistence_type, :picker, :placeholder, :placement, :popupContainer, :readOnly, :showTime, :size, :status, :style, :value]
         wild_props = Symbol[]
         return Component("'feffery'_antddatepicker", "AntdDatePicker", "feffery_antd_components", available_props, wild_props; kwargs...)
 end

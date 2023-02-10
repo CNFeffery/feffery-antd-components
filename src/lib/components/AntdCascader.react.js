@@ -111,7 +111,7 @@ const AntdCascader = (props) => {
                         (triggerNode) => triggerNode.parentNode :
                         undefined
                 }
-                open={isUndefined(readOnly) ? undefined : !readOnly}
+                open={isUndefined(readOnly) || !readOnly ? undefined : false}
             />
         </ConfigProvider>
     );
@@ -315,7 +315,8 @@ AntdCascader.defaultProps = {
     showCheckedStrategy: 'show-parent',
     popupContainer: 'body',
     bordered: true,
-    disabled: false
+    disabled: false,
+    readOnly: false
 }
 
 export default AntdCascader;
