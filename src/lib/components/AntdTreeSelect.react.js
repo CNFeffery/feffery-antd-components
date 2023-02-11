@@ -52,6 +52,8 @@ const AntdTreeSelect = (props) => {
         setProps,
         readOnly,
         showCheckedStrategy,
+        dropdownBefore,
+        dropdownAfter,
         persistence,
         persisted_props,
         persistence_type,
@@ -112,6 +114,18 @@ const AntdTreeSelect = (props) => {
                 status={status}
                 treeNodeFilterProp={treeNodeFilterProp}
                 autoClearSearchValue={autoClearSearchValue}
+                dropdownRender={
+                    (dropdownBefore || dropdownAfter) ?
+                        (menu) => {
+                            return (
+                                <>
+                                    {dropdownBefore}
+                                    {menu}
+                                    {dropdownAfter}
+                                </>
+                            );
+                        } : undefined
+                }
                 persistence={persistence}
                 persisted_props={persisted_props}
                 persistence_type={persistence_type}
@@ -309,15 +323,21 @@ AntdTreeSelect.propTypes = {
     // 设置当多选模式下值被选择，是否自动清空搜索框，默认为true
     autoClearSearchValue: PropTypes.bool,
 
-    // 设置悬浮层锚定策略，可选的有'parent'、'body'，默认为'body'
-    popupContainer: PropTypes.oneOf(['parent', 'body']),
-
     // 设置是否以只读模式进行渲染，底层利用Select的open参数
     readOnly: PropTypes.bool,
 
     // 用于设置已勾选项回填策略，可选的有'show-all'、'show-parent'、'show-child'
     // 默认为'show-all'
     showCheckedStrategy: PropTypes.oneOf(['show-all', 'show-parent', 'show-child']),
+
+    // 可选，自定义悬浮层前缀内容
+    dropdownBefore: PropTypes.node,
+
+    // 可选，自定义悬浮层后缀内容
+    dropdownAfter: PropTypes.node,
+
+    // 设置悬浮层锚定策略，可选的有'parent'、'body'，默认为'body'
+    popupContainer: PropTypes.oneOf(['parent', 'body']),
 
     loading_state: PropTypes.shape({
         /**

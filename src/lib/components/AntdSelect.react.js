@@ -171,7 +171,7 @@ const AntdSelect = (props) => {
                 mode={mode}
                 allowClear={isUndefined(readOnly) ? allowClear : !readOnly}
                 placeholder={placeholder}
-                size={size} 
+                size={size}
                 value={value}
                 defaultValue={defaultValue}
                 onChange={updateSelectedValue}
