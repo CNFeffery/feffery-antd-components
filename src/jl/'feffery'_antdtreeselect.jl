@@ -15,6 +15,8 @@ Keyword arguments:
 - `className` (String; optional)
 - `defaultValue` (String | Real | Array of String | Reals; optional)
 - `disabled` (Bool; optional)
+- `dropdownAfter` (a list of or a singular dash component, string or number; optional)
+- `dropdownBefore` (a list of or a singular dash component, string or number; optional)
 - `key` (String; optional)
 - `listHeight` (Real; optional)
 - `loading_state` (optional): . loading_state has the following type: lists containing elements 'is_loading', 'prop_name', 'component_name'.
@@ -59,7 +61,7 @@ session: window.sessionStorage, data is cleared once the browser quit.
 - `virtual` (Bool; optional)
 """
 function 'feffery'_antdtreeselect(; kwargs...)
-        available_props = Symbol[:id, :allowClear, :autoClearSearchValue, :bordered, :className, :defaultValue, :disabled, :key, :listHeight, :loading_state, :locale, :maxTagCount, :multiple, :persisted_props, :persistence, :persistence_type, :placeholder, :placement, :popupContainer, :readOnly, :showCheckedStrategy, :size, :status, :style, :treeCheckStrictly, :treeCheckable, :treeData, :treeDataMode, :treeDefaultExpandAll, :treeDefaultExpandedKeys, :treeExpandedKeys, :treeLine, :treeNodeFilterProp, :value, :virtual]
+        available_props = Symbol[:id, :allowClear, :autoClearSearchValue, :bordered, :className, :defaultValue, :disabled, :dropdownAfter, :dropdownBefore, :key, :listHeight, :loading_state, :locale, :maxTagCount, :multiple, :persisted_props, :persistence, :persistence_type, :placeholder, :placement, :popupContainer, :readOnly, :showCheckedStrategy, :size, :status, :style, :treeCheckStrictly, :treeCheckable, :treeData, :treeDataMode, :treeDefaultExpandAll, :treeDefaultExpandedKeys, :treeExpandedKeys, :treeLine, :treeNodeFilterProp, :value, :virtual]
         wild_props = Symbol[]
         return Component("'feffery'_antdtreeselect", "AntdTreeSelect", "feffery_antd_components", available_props, wild_props; kwargs...)
 end

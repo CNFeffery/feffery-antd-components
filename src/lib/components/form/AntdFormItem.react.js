@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Form } from 'antd';
+import { isString } from 'lodash';
+import useCss from '../../hooks/useCss';
 
 // 定义表单项组件AntdFormItem，api参数参考https://ant.design/components/form-cn/
 const AntdFormItem = (props) => {
@@ -28,7 +30,11 @@ const AntdFormItem = (props) => {
 
     return (
         <Form.Item id={id}
-            className={className}
+            className={
+                isString(className) ?
+                    className :
+                    (className ? useCss(className) : undefined)
+            }
             style={style}
             key={key}
             labelCol={labelCol}
@@ -62,7 +68,10 @@ AntdFormItem.propTypes = {
     children: PropTypes.node,
 
     // css类名
-    className: PropTypes.string,
+    className: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.object
+    ]),
 
     // 自定义css字典
     style: PropTypes.object,
@@ -101,21 +110,21 @@ AntdFormItem.propTypes = {
     labelAlign: PropTypes.oneOf(['left', 'right']),
 
     // 在label后添加额外tooltip鼠标悬浮提示信息
-    tooltip: PropTypes.string,
+    tooltip: PropTypes.node,
 
     // 设置表单项额外的提示信息
-    extra: PropTypes.string,
-
-    // 设置与validateStatus状态一致的校验提示信息
-    help: PropTypes.string,
-
-    // 设置是否隐藏字段，隐藏后仍然会收集和校验字段，默认为false
-    hidden: PropTypes.bool,
+    extra: PropTypes.node,
 
     // 设置校验状态，不设置时会根据设置的校验规则自动生成
     validateStatus: PropTypes.oneOf([
         'success', 'warning', 'error', 'validating'
     ]),
+
+    // 设置与validateStatus状态一致的校验提示信息
+    help: PropTypes.node,
+
+    // 设置是否隐藏字段，隐藏后仍然会收集和校验字段，默认为false
+    hidden: PropTypes.bool,
 
     loading_state: PropTypes.shape({
         /**
@@ -141,6 +150,10 @@ AntdFormItem.propTypes = {
 
 // 设置默认参数
 AntdFormItem.defaultProps = {
+    labelAlign: 'right',
+    required: false,
+    colon: true,
+    hidden: false
 }
 
 export default AntdFormItem;

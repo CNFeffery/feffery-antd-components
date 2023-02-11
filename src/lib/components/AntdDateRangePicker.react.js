@@ -360,8 +360,9 @@ const AntdDateRangePicker = (props) => {
                     disabledDate={disabledDatesStrategy ? checkDisabledDate : undefined}
                     defaultPickerValue={
                         defaultPickerValue ?
-                            moment(defaultPickerValue, format) :
-                            undefined}
+                            [moment(defaultPickerValue, format), moment(defaultPickerValue, format)] :
+                            undefined
+                    }
                     value={
                         (value && value.length === 2) ?
                             [value[0] ? moment(value[0], format) : undefined,

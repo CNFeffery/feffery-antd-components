@@ -129,10 +129,10 @@ AntdModal.propTypes = {
     visible: PropTypes.bool,
 
     // 设置确认按钮文字
-    okText: PropTypes.string,
+    okText: PropTypes.node,
 
     // 设置confirmLoading状态下按钮的文字内容
-    loadingOkText: PropTypes.string,
+    loadingOkText: PropTypes.node,
 
     // 配置确认按钮相关参数
     okButtonProps: PropTypes.exact({
@@ -147,7 +147,7 @@ AntdModal.propTypes = {
     }),
 
     // 设置取消按钮文字
-    cancelText: PropTypes.string,
+    cancelText: PropTypes.node,
 
     // 配置取消按钮相关参数
     cancelButtonProps: PropTypes.exact({
