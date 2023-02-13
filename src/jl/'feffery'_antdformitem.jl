@@ -13,10 +13,10 @@ An AntdFormItem component.
 Keyword arguments:
 - `children` (a list of or a singular dash component, string or number; optional): The content of the tab - will only be displayed if this tab is selected
 - `id` (String; optional)
-- `className` (String; optional)
+- `className` (String | Dict; optional)
 - `colon` (Bool; optional)
-- `extra` (String; optional)
-- `help` (String; optional)
+- `extra` (a list of or a singular dash component, string or number; optional)
+- `help` (a list of or a singular dash component, string or number; optional)
 - `hidden` (Bool; optional)
 - `key` (String; optional)
 - `label` (a list of or a singular dash component, string or number; optional)
@@ -32,7 +32,7 @@ Those elements have the following types:
   - `component_name` (String; optional): Holds the name of the component that is loading
 - `required` (Bool; optional)
 - `style` (Dict; optional)
-- `tooltip` (String; optional)
+- `tooltip` (a list of or a singular dash component, string or number; optional)
 - `validateStatus` (a value equal to: 'success', 'warning', 'error', 'validating'; optional)
 - `wrapperCol` (optional): . wrapperCol has the following type: lists containing elements 'span', 'offset'.
 Those elements have the following types:

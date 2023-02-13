@@ -2,6 +2,8 @@ import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { InputNumber } from 'antd';
 import { useRequest } from 'ahooks';
+import { isString } from 'lodash';
+import useCss from '../hooks/useCss';
 
 
 // 定义数字输入框组件AntdInputNumber，api参数参考https://ant.design/components/input-number-cn/
@@ -17,7 +19,6 @@ const AntdInputNumber = (props) => {
         addonBefore,
         addonAfter,
         prefix,
-        suffix,
         bordered,
         controls,
         value,
@@ -46,7 +47,8 @@ const AntdInputNumber = (props) => {
         if (defaultValue && !value) {
             // 当defaultValue不为空且value为空时，为value初始化defaultValue对应的value值
             setProps({
-                value: defaultValue
+                value: defaultValue,
+                debounceValue: defaultValue
             })
         }
     }, [])
@@ -73,14 +75,17 @@ const AntdInputNumber = (props) => {
 
     return (
         <InputNumber id={id}
-            className={className}
+            className={
+                isString(className) ?
+                    className :
+                    (className ? useCss(className) : undefined)
+            }
             style={style}
             key={key}
             size={size}
             addonBefore={addonBefore}
             addonAfter={addonAfter}
             prefix={prefix}
-            suffix={suffix}
             placeholder={placeholder}
             bordered={bordered}
             controls={controls}
@@ -115,16 +120,16 @@ AntdInputNumber.propTypes = {
     id: PropTypes.string,
 
     // css类名
-    className: PropTypes.string,
+    className: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.object
+    ]),
 
     // 自定义css字典
     style: PropTypes.object,
 
     // 辅助刷新用唯一标识key值
     key: PropTypes.string,
-
-    // 用于设置输入框尺寸，可选的有'small'、'middle'与'large'，默认不填则为'middle'
-    size: PropTypes.oneOf(['small', 'middle', 'large']),
 
     // 设置前置标签内容
     addonBefore: PropTypes.node,
@@ -135,35 +140,11 @@ AntdInputNumber.propTypes = {
     // 设置框内嵌前缀内容
     prefix: PropTypes.node,
 
-    // 设置框内嵌后缀内容
-    suffix: PropTypes.node,
-
-    // 设置是否有边框，默认为true
-    bordered: PropTypes.bool,
-
     // 设置是否显示增减辅助按钮，默认为true
     controls: PropTypes.bool,
 
-    // 设置默认值
-    defaultValue: PropTypes.oneOfType([
-        PropTypes.number,
-        PropTypes.string
-    ]),
-
-    // 对应当前输入值
-    value: PropTypes.oneOfType([
-        PropTypes.number,
-        PropTypes.string
-    ]),
-
-    // 设置是否禁用，默认为false
-    disabled: PropTypes.bool,
-
     // 设置是否启用键盘快捷行为，默认为true
     keyboard: PropTypes.bool,
-
-    // 用于设置占位提示内容
-    placeholder: PropTypes.string,
 
     // 设置允许输入的最小值，默认不限制
     min: PropTypes.oneOfType([
@@ -186,18 +167,33 @@ AntdInputNumber.propTypes = {
     // 设置数值精度，即小数位数
     precision: PropTypes.number,
 
-    // 设置是否以只读模式渲染，默认为false
-    readOnly: PropTypes.bool,
-
     // 设置是否开启字符值模式，可用于输入高精度小数时不丢失精度
     // 开启此模式后，min、max、step、value与defaultValue都应当为字符型，默认为false
     stringMode: PropTypes.bool,
 
-    // 记录聚焦于输入框内部时，enter键被点按的次数
-    nSubmit: PropTypes.number,
+    // 设置是否禁用，默认为false
+    disabled: PropTypes.bool,
 
-    // 设置校验状态，可选的有'error'、'warning'
-    status: PropTypes.oneOf(['error', 'warning']),
+    // 用于设置输入框尺寸，可选的有'small'、'middle'与'large'，默认不填则为'middle'
+    size: PropTypes.oneOf(['small', 'middle', 'large']),
+
+    // 设置是否有边框，默认为true
+    bordered: PropTypes.bool,
+
+    // 用于设置占位提示内容
+    placeholder: PropTypes.string,
+
+    // 对应当前输入值
+    value: PropTypes.oneOfType([
+        PropTypes.number,
+        PropTypes.string
+    ]),
+
+    // 设置默认值
+    defaultValue: PropTypes.oneOfType([
+        PropTypes.number,
+        PropTypes.string
+    ]),
 
     // 记录防抖状态下的已输入内容
     debounceValue: PropTypes.oneOfType([
@@ -207,6 +203,15 @@ AntdInputNumber.propTypes = {
 
     // 用于配置debounceValue变化更新的防抖等待时长（单位：毫秒），默认为0
     debounceWait: PropTypes.number,
+
+    // 记录聚焦于输入框内部时，enter键被点按的次数
+    nSubmit: PropTypes.number,
+
+    // 设置校验状态，可选的有'error'、'warning'
+    status: PropTypes.oneOf(['error', 'warning']),
+
+    // 设置是否以只读模式渲染，默认为false
+    readOnly: PropTypes.bool,
 
     loading_state: PropTypes.shape({
         /**
@@ -261,10 +266,17 @@ AntdInputNumber.propTypes = {
 
 // 设置默认参数
 AntdInputNumber.defaultProps = {
+    controls: true,
+    keyboard: true,
+    stringMode: false,
+    disabled: false,
+    size: 'middle',
+    bordered: true,
     nSubmit: 0,
+    readOnly: false,
     persisted_props: ['value'],
     persistence_type: 'local',
-    debounceWait: 300
+    debounceWait: 0
 }
 
 export default AntdInputNumber;

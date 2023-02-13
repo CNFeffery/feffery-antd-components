@@ -20,7 +20,7 @@ Those elements have the following types:
   - `type` (a value equal to: 'primary', 'ghost', 'dashed', 'link', 'text', 'default'; optional)
   - `danger` (Bool; optional)
 - `cancelCounts` (Real; optional)
-- `cancelText` (String; optional)
+- `cancelText` (a list of or a singular dash component, string or number; optional)
 - `centered` (Bool; optional)
 - `className` (String; optional)
 - `closable` (Bool; optional)
@@ -29,7 +29,7 @@ Those elements have the following types:
 - `confirmLoading` (Bool; optional)
 - `key` (String; optional)
 - `keyboard` (Bool; optional)
-- `loadingOkText` (String; optional)
+- `loadingOkText` (a list of or a singular dash component, string or number; optional)
 - `loading_state` (optional): . loading_state has the following type: lists containing elements 'is_loading', 'prop_name', 'component_name'.
 Those elements have the following types:
   - `is_loading` (Bool; optional): Determines if the component is loading or not
@@ -46,7 +46,7 @@ Those elements have the following types:
   - `danger` (Bool; optional)
 - `okClickClose` (Bool; optional)
 - `okCounts` (Real; optional)
-- `okText` (String; optional)
+- `okText` (a list of or a singular dash component, string or number; optional)
 - `renderFooter` (Bool; optional)
 - `style` (Dict; optional)
 - `title` (a list of or a singular dash component, string or number; optional)

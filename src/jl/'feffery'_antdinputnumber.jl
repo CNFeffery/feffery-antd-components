@@ -12,7 +12,7 @@ Keyword arguments:
 - `addonAfter` (a list of or a singular dash component, string or number; optional)
 - `addonBefore` (a list of or a singular dash component, string or number; optional)
 - `bordered` (Bool; optional)
-- `className` (String; optional)
+- `className` (String | Dict; optional)
 - `controls` (Bool; optional)
 - `debounceValue` (Real | String; optional)
 - `debounceWait` (Real; optional)
@@ -50,11 +50,10 @@ session: window.sessionStorage, data is cleared once the browser quit.
 - `step` (Real | String; optional)
 - `stringMode` (Bool; optional)
 - `style` (Dict; optional)
-- `suffix` (a list of or a singular dash component, string or number; optional)
 - `value` (Real | String; optional)
 """
 function 'feffery'_antdinputnumber(; kwargs...)
-        available_props = Symbol[:id, :addonAfter, :addonBefore, :bordered, :className, :controls, :debounceValue, :debounceWait, :defaultValue, :disabled, :key, :keyboard, :loading_state, :max, :min, :nSubmit, :persisted_props, :persistence, :persistence_type, :placeholder, :precision, :prefix, :readOnly, :size, :status, :step, :stringMode, :style, :suffix, :value]
+        available_props = Symbol[:id, :addonAfter, :addonBefore, :bordered, :className, :controls, :debounceValue, :debounceWait, :defaultValue, :disabled, :key, :keyboard, :loading_state, :max, :min, :nSubmit, :persisted_props, :persistence, :persistence_type, :placeholder, :precision, :prefix, :readOnly, :size, :status, :step, :stringMode, :style, :value]
         wild_props = Symbol[]
         return Component("'feffery'_antdinputnumber", "AntdInputNumber", "feffery_antd_components", available_props, wild_props; kwargs...)
 end

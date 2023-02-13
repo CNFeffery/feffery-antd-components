@@ -13,7 +13,7 @@ An AntdForm component.
 Keyword arguments:
 - `children` (a list of or a singular dash component, string or number; optional): The content of the tab - will only be displayed if this tab is selected
 - `id` (String; optional)
-- `className` (String; optional)
+- `className` (String | Dict; optional)
 - `colon` (Bool; optional)
 - `key` (String; optional)
 - `labelAlign` (a value equal to: 'left', 'right'; optional)

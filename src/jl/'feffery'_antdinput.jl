@@ -18,7 +18,7 @@ Those elements have the following types:
   - `minRows` (Real; optional)
   - `maxRows` (Real; optional)
 - `bordered` (Bool; optional)
-- `className` (String; optional)
+- `className` (String | Dict; optional)
 - `debounceValue` (String; optional)
 - `debounceWait` (Real; optional)
 - `defaultValue` (String; optional)
