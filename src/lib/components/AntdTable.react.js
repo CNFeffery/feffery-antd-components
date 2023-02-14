@@ -1294,6 +1294,9 @@ class AntdTable extends Component {
             )
         }
 
+        // 检查当前是否至少有一个字段是可编辑的
+        let atLeastOneColumnEditable = columns.some(item => item.editable)
+
         return (
             <ConfigProvider
                 locale={str2Locale.get(locale)}
@@ -1304,10 +1307,25 @@ class AntdTable extends Component {
                     className={className}
                     style={style}
                     key={key}
-                    components={components}
-                    rowClassName={() => 'editable-row'}
+                    components={atLeastOneColumnEditable ? components : undefined}
+                    rowClassName={atLeastOneColumnEditable ? () => 'editable-row' : undefined}
                     dataSource={data}
-                    columns={columns}
+                    columns={
+                        columns.map(
+                            item => {
+                                return {
+                                    ...item,
+                                    // 减少不必要的单元格重绘
+                                    shouldCellUpdate: (record, prevRecord) => {
+                                        if (isEqual(record, prevRecord)) {
+                                            return false;
+                                        }
+                                        return true;
+                                    }
+                                };
+                            }
+                        )
+                    }
                     size={size2size.get(size)}
                     rowSelection={rowSelection}
                     sticky={sticky}
