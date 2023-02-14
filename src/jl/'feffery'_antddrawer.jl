@@ -30,7 +30,7 @@ Those elements have the following types:
 - `maskClosable` (Bool; optional)
 - `placement` (a value equal to: 'left', 'right', 'top', 'bottom'; optional)
 - `style` (Dict; optional)
-- `title` (String; optional)
+- `title` (a list of or a singular dash component, string or number; optional)
 - `visible` (Bool; optional)
 - `width` (Real | String; optional)
 - `zIndex` (Real; optional)
