@@ -92,8 +92,8 @@ AntdDrawer.propTypes = {
     // 设置抽屉是否弹出，默认为false
     visible: PropTypes.bool,
 
-    // 设置抽屉的标题文字内容
-    title: PropTypes.string,
+    // 设置抽屉的标题内容
+    title: PropTypes.node,
 
     // 设置抽屉的弹出位置，可选的有'left'、'right'、'top'和'bottom'，默认为'right'
     placement: PropTypes.oneOf(['left', 'right', 'top', 'bottom']),
