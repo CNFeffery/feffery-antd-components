@@ -12,6 +12,7 @@ Keyword arguments:
 - `apiUrl` (String; optional)
 - `buttonContent` (String; optional)
 - `className` (String; optional)
+- `confirmBeforeDelete` (Bool; optional)
 - `defaultFileList` (optional): . defaultFileList has the following type: Array of lists containing elements 'name', 'status', 'uid', 'url'.
 Those elements have the following types:
   - `name` (String; optional)
@@ -75,12 +76,14 @@ Those elements have the following types:
   - `prop_name` (String; optional): Holds which property is loading
   - `component_name` (String; optional): Holds the name of the component that is loading
 - `locale` (a value equal to: 'zh-cn', 'en-us'; optional)
+- `showPreviewIcon` (Bool; optional)
+- `showRemoveIcon` (Bool; optional)
 - `status` (a value equal to: 'error', 'warning'; optional)
 - `style` (Dict; optional)
 - `uploadId` (String; optional)
 """
 function 'feffery'_antdpictureupload(; kwargs...)
-        available_props = Symbol[:id, :apiUrl, :buttonContent, :className, :defaultFileList, :downloadUrl, :editConfig, :editable, :failedTooltipInfo, :fileListMaxLength, :fileMaxSize, :fileTypes, :key, :lastUploadTaskRecord, :listUploadTaskRecord, :loading_state, :locale, :status, :style, :uploadId]
+        available_props = Symbol[:id, :apiUrl, :buttonContent, :className, :confirmBeforeDelete, :defaultFileList, :downloadUrl, :editConfig, :editable, :failedTooltipInfo, :fileListMaxLength, :fileMaxSize, :fileTypes, :key, :lastUploadTaskRecord, :listUploadTaskRecord, :loading_state, :locale, :showPreviewIcon, :showRemoveIcon, :status, :style, :uploadId]
         wild_props = Symbol[]
         return Component("'feffery'_antdpictureupload", "AntdPictureUpload", "feffery_antd_components", available_props, wild_props; kwargs...)
 end

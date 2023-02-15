@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { v4 as uuidv4 } from 'uuid';
 import { Upload, message, Button, ConfigProvider } from 'antd';
 import { UploadOutlined } from '@ant-design/icons';
-import { str2Locale } from '../locales.react';
+import { str2Locale, locale2text } from '../locales.react';
 
 
 // 解析历史任务完成时间信息
@@ -51,6 +51,7 @@ const AntdUpload = (props) => {
         multiple,
         directory,
         failedTooltipInfo,
+        confirmBeforeDelete,
         listUploadTaskRecord,
         defaultFileList,
         status,
@@ -241,7 +242,6 @@ const AntdUpload = (props) => {
                 message.error(`${info.file.name} 上传失败！`);
             }
 
-
             // 获取当前上传文件列表
             let _fileList = [...info.fileList];
 
@@ -293,6 +293,23 @@ const AntdUpload = (props) => {
                     multiple={multiple}
                     showUploadList={showUploadList}
                     directory={directory}
+                    onRemove={
+                        confirmBeforeDelete ?
+                            () => {
+                                return new Promise((resolve, reject) => {
+                                    Modal.confirm({
+                                        title: locale2text.AntdPictureUpload[locale].confirmBeforeDeleteTitle,
+                                        okText: locale2text.AntdPictureUpload[locale].confirmBeforeDeleteOkText,
+                                        cancelText: locale2text.AntdPictureUpload[locale].confirmBeforeDeleteCancelText,
+                                        onOk: () => {
+                                            resolve(true);
+                                        },
+
+                                    });
+                                });
+                            } :
+                            undefined
+                    }
                     data-dash-is-loading={
                         (loading_state && loading_state.is_loading) || undefined
                     }>
@@ -300,7 +317,6 @@ const AntdUpload = (props) => {
                 </Upload>
             </div>
         </ConfigProvider>
-
     );
 }
 
@@ -353,6 +369,9 @@ AntdUpload.propTypes = {
 
     // 设置是否显示已上传文件列表，默认为true
     showUploadList: PropTypes.bool,
+
+    // 设置是否为删除操作添加二次确认模态框，默认为false
+    confirmBeforeDelete: PropTypes.bool,
 
     // 用于在每次文件上传动作完成后，记录相关的信息
     lastUploadTaskRecord: PropTypes.oneOfType([
@@ -490,6 +509,7 @@ AntdUpload.propTypes = {
 AntdUpload.defaultProps = {
     fileListMaxLength: null,
     fileMaxSize: 500,
+    confirmBeforeDelete: false,
     lastUploadTaskRecord: null,
     listUploadTaskRecord: [],
     locale: 'zh-cn'

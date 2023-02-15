@@ -16,6 +16,18 @@ const locale2text = {
             hideLabel: 'Hide',
             showLabel: 'Show more'
         }
+    },
+    AntdPictureUpload: {
+        'zh-cn': {
+            confirmBeforeDeleteTitle: '确认删除',
+            confirmBeforeDeleteOkText: '确认',
+            confirmBeforeDeleteCancelText: '取消'
+        },
+        'en-us': {
+            confirmBeforeDeleteTitle: 'Confirm Delete',
+            confirmBeforeDeleteOkText: 'Ok',
+            confirmBeforeDeleteCancelText: 'Cancel'
+        }
     }
 }
 

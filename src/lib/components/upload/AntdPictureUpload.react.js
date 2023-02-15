@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { v4 as uuidv4 } from 'uuid';
 import { Upload, message, Modal, ConfigProvider } from 'antd';
 import { PlusOutlined } from '@ant-design/icons';
-import { str2Locale } from '../locales.react';
+import { str2Locale, locale2text } from '../locales.react';
 import ImgCrop from 'antd-img-crop';
 
 // 解析历史任务完成时间信息
@@ -59,6 +59,9 @@ const AntdPictureUpload = (props) => {
         fileTypes,
         fileMaxSize,
         failedTooltipInfo,
+        showRemoveIcon,
+        showPreviewIcon,
+        confirmBeforeDelete,
         listUploadTaskRecord,
         defaultFileList,
         status,
@@ -255,7 +258,28 @@ const AntdPictureUpload = (props) => {
                         <Upload {...uploadProps}
                             fileList={fileList}
                             listType="picture-card"
+                            showUploadList={{
+                                showRemoveIcon,
+                                showPreviewIcon
+                            }}
                             onPreview={handlePreview}
+                            onRemove={
+                                confirmBeforeDelete ?
+                                    () => {
+                                        return new Promise((resolve, reject) => {
+                                            Modal.confirm({
+                                                title: locale2text.AntdPictureUpload[locale].confirmBeforeDeleteTitle,
+                                                okText: locale2text.AntdPictureUpload[locale].confirmBeforeDeleteOkText,
+                                                cancelText: locale2text.AntdPictureUpload[locale].confirmBeforeDeleteCancelText,
+                                                onOk: () => {
+                                                    resolve(true);
+                                                },
+
+                                            });
+                                        });
+                                    } :
+                                    undefined
+                            }
                             data-dash-is-loading={
                                 (loading_state && loading_state.is_loading) || undefined
                             }>
@@ -291,6 +315,23 @@ const AntdPictureUpload = (props) => {
                     fileList={fileList}
                     listType="picture-card"
                     onPreview={handlePreview}
+                    onRemove={
+                        confirmBeforeDelete ?
+                            () => {
+                                return new Promise((resolve, reject) => {
+                                    Modal.confirm({
+                                        title: locale2text.AntdPictureUpload[locale].confirmBeforeDeleteTitle,
+                                        okText: locale2text.AntdPictureUpload[locale].confirmBeforeDeleteOkText,
+                                        cancelText: locale2text.AntdPictureUpload[locale].confirmBeforeDeleteCancelText,
+                                        onOk: () => {
+                                            resolve(true);
+                                        },
+
+                                    });
+                                });
+                            } :
+                            undefined
+                    }
                     data-dash-is-loading={
                         (loading_state && loading_state.is_loading) || undefined
                     }>
@@ -380,6 +421,15 @@ AntdPictureUpload.propTypes = {
 
     // 自定义上传失败文件鼠标悬浮tooltip文字内容，默认为'上传失败'
     failedTooltipInfo: PropTypes.string,
+
+    // 设置已上传图片是否显示删除按钮，默认为true
+    showRemoveIcon: PropTypes.bool,
+
+    // 设置已上传图片是否显示预览图标，默认为true
+    showPreviewIcon: PropTypes.bool,
+
+    // 设置是否为删除操作添加二次确认模态框，默认为false
+    confirmBeforeDelete: PropTypes.bool,
 
     // 用于在每次文件上传动作完成后，记录相关的信息
     lastUploadTaskRecord: PropTypes.oneOfType([
@@ -521,6 +571,9 @@ AntdPictureUpload.defaultProps = {
     fileTypes: ['tiff', 'bmp', 'gif', 'png', 'jpeg', 'jpg', 'webp', 'ico', 'tif'],
     fileListMaxLength: null,
     fileMaxSize: 10,
+    showRemoveIcon: true,
+    showPreviewIcon: true,
+    confirmBeforeDelete: false,
     lastUploadTaskRecord: null,
     listUploadTaskRecord: [],
     locale: 'zh-cn'

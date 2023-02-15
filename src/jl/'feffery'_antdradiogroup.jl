@@ -10,8 +10,8 @@ An AntdRadioGroup component.
 Keyword arguments:
 - `id` (String; optional)
 - `buttonStyle` (a value equal to: 'outline', 'solid'; optional)
-- `className` (String; optional)
-- `defaultValue` (String | Real; optional)
+- `className` (String | Dict; optional)
+- `defaultValue` (String; optional)
 - `direction` (a value equal to: 'horizontal', 'vertical'; optional)
 - `disabled` (Bool; optional)
 - `key` (String; optional)
@@ -24,7 +24,7 @@ Those elements have the following types:
 - `options` (optional): . options has the following type: Array of lists containing elements 'label', 'value', 'disabled'.
 Those elements have the following types:
   - `label` (a list of or a singular dash component, string or number; optional)
-  - `value` (String | Real; optional)
+  - `value` (String; optional)
   - `disabled` (Bool; optional)s
 - `persisted_props` (Array of a value equal to: 'value's; optional): Properties whose user interactions will persist after refreshing the
 component or the page. Since only `value` is allowed this prop can
@@ -41,7 +41,7 @@ local: window.localStorage, data is kept after the browser quit.
 session: window.sessionStorage, data is cleared once the browser quit.
 - `size` (a value equal to: 'large', 'middle', 'small'; optional)
 - `style` (Dict; optional)
-- `value` (String | Real; optional)
+- `value` (String; optional)
 """
 function 'feffery'_antdradiogroup(; kwargs...)
         available_props = Symbol[:id, :buttonStyle, :className, :defaultValue, :direction, :disabled, :key, :loading_state, :optionType, :options, :persisted_props, :persistence, :persistence_type, :size, :style, :value]

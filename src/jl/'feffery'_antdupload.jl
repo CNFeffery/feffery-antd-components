@@ -12,6 +12,7 @@ Keyword arguments:
 - `apiUrl` (String; optional)
 - `buttonContent` (String; optional)
 - `className` (String; optional)
+- `confirmBeforeDelete` (Bool; optional)
 - `defaultFileList` (optional): . defaultFileList has the following type: Array of lists containing elements 'name', 'status', 'uid', 'url'.
 Those elements have the following types:
   - `name` (String; optional)
@@ -68,7 +69,7 @@ Those elements have the following types:
 - `uploadId` (String; optional)
 """
 function 'feffery'_antdupload(; kwargs...)
-        available_props = Symbol[:id, :apiUrl, :buttonContent, :className, :defaultFileList, :directory, :downloadUrl, :failedTooltipInfo, :fileListMaxLength, :fileMaxSize, :fileTypes, :key, :lastUploadTaskRecord, :listUploadTaskRecord, :loading_state, :locale, :multiple, :showUploadList, :status, :style, :uploadId]
+        available_props = Symbol[:id, :apiUrl, :buttonContent, :className, :confirmBeforeDelete, :defaultFileList, :directory, :downloadUrl, :failedTooltipInfo, :fileListMaxLength, :fileMaxSize, :fileTypes, :key, :lastUploadTaskRecord, :listUploadTaskRecord, :loading_state, :locale, :multiple, :showUploadList, :status, :style, :uploadId]
         wild_props = Symbol[]
         return Component("'feffery'_antdupload", "AntdUpload", "feffery_antd_components", available_props, wild_props; kwargs...)
 end

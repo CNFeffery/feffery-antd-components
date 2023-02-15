@@ -11,7 +11,7 @@ Keyword arguments:
 - `id` (String; optional)
 - `allowClear` (Bool; optional)
 - `allowHalf` (Bool; optional)
-- `className` (String; optional)
+- `className` (String | Dict; optional)
 - `count` (Real; optional)
 - `defaultValue` (Real; optional)
 - `disabled` (Bool; optional)

@@ -1,6 +1,8 @@
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { Rate } from 'antd';
+import { isString } from 'lodash';
+import useCss from '../hooks/useCss';
 
 
 // 定义评分组件AntdRate，api参数参考https://ant.design/components/rate-cn/
@@ -32,7 +34,11 @@ const AntdRate = (props) => {
 
     return (
         <Rate id={id}
-            className={className}
+            className={
+                isString(className) ?
+                    className :
+                    (className ? useCss(className) : undefined)
+            }
             style={style}
             key={key}
             allowClear={allowClear}
@@ -54,7 +60,10 @@ AntdRate.propTypes = {
     id: PropTypes.string,
 
     // css类名
-    className: PropTypes.string,
+    className: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.object
+    ]),
 
     // 自定义css字典
     style: PropTypes.object,
@@ -71,19 +80,19 @@ AntdRate.propTypes = {
     // 设置星星数量，默认为5
     count: PropTypes.number,
 
-    // 设置默认已选星数量，默认为0
-    defaultValue: PropTypes.number,
-
-    // 设置是否以只读方式进行展示，默认为false
-    disabled: PropTypes.bool,
-
     // 自定义每个等级的提示文字
     tooltips: PropTypes.arrayOf(
         PropTypes.string
     ),
 
+    // 设置是否以只读方式进行展示，默认为false
+    disabled: PropTypes.bool,
+
     // 对应当前的星星数量
     value: PropTypes.number,
+
+    // 设置默认已选星数量，默认为0
+    defaultValue: PropTypes.number,
 
     loading_state: PropTypes.shape({
         /**
@@ -109,6 +118,11 @@ AntdRate.propTypes = {
 
 // 设置默认参数
 AntdRate.defaultProps = {
+    allowClear: true,
+    allowHalf: false,
+    count: 5,
+    defaultValue: 0,
+    disabled: false
 }
 
 export default AntdRate;

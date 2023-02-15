@@ -1,7 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Mentions } from 'antd';
-
+import { isString } from 'lodash';
+import useCss from '../hooks/useCss';
 
 const { Option } = Mentions;
 
@@ -15,9 +16,9 @@ const AntdMentions = (props) => {
         key,
         autoSize,
         prefix,
+        value,
         defaultValue,
         placement,
-        value,
         options,
         disabled,
         status,
@@ -60,7 +61,11 @@ const AntdMentions = (props) => {
 
     return (
         <Mentions id={id}
-            className={className}
+            className={
+                isString(className) ?
+                    className :
+                    (className ? useCss(className) : undefined)
+            }
             style={style}
             key={key}
             autoSize={autoSize}
@@ -95,7 +100,10 @@ AntdMentions.propTypes = {
     id: PropTypes.string,
 
     // css类名
-    className: PropTypes.string,
+    className: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.object
+    ]),
 
     // 自定义css字典
     style: PropTypes.object,
@@ -119,31 +127,31 @@ AntdMentions.propTypes = {
     // 设置触发子项展开的关键字，默认为'@'
     prefix: PropTypes.string,
 
+    // 对应当前输入框中文本内容
+    value: PropTypes.string,
+
     // 设置默认子项值
     defaultValue: PropTypes.string,
-
-    // 设置子项弹出层的展示位置，可选的有'top'与'bottom'，默认为'bottom'
-    placement: PropTypes.oneOf(['top', 'bottom']),
 
     // 设置待提及的子项名称
     options: PropTypes.arrayOf(
         PropTypes.exact({
             // 子项标签文字
-            label: PropTypes.string,
+            label: PropTypes.node,
 
             // 子项值
             value: PropTypes.string
         })
-    ),
+    ).isRequired,
 
     // 监听已选择子项value值数组
     selectedOptions: PropTypes.arrayOf(PropTypes.string),
 
-    // 对应当前输入框中文本内容
-    value: PropTypes.string,
-
     // 设置是否禁用，默认为false
     disabled: PropTypes.bool,
+
+    // 设置子项弹出层的展示位置，可选的有'top'与'bottom'，默认为'bottom'
+    placement: PropTypes.oneOf(['top', 'bottom']),
 
     // 设置校验状态，可选的有'error'、'warning'
     status: PropTypes.oneOf(['error', 'warning']),
@@ -175,6 +183,10 @@ AntdMentions.propTypes = {
 
 // 设置默认参数
 AntdMentions.defaultProps = {
+    autoSize: false,
+    prefix: '@',
+    placement: 'bottom',
+    disabled: false,
     selectedOptions: [],
     popupContainer: 'body'
 }

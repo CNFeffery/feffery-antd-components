@@ -3,13 +3,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { InputNumber, Space, message, Typography } from 'antd';
+import { isString } from 'lodash';
+import useCss from '../hooks/useCss';
 
 
 const { Text } = Typography;
 
 const size2size = new Map([
     ["small", "24px"],
-    ["default", "32px"],
+    ["middle", "32px"],
     ["large", "40px"]
 ]);
 
@@ -53,7 +55,11 @@ const AntdSegmentedColoring = (props) => {
                 padding: "12px 20px",
                 ...style
             }}
-            className={className}
+            className={
+                isString(className) ?
+                    className :
+                    (className ? useCss(className) : undefined)
+            }
             direction={"vertical"}
             data-dash-is-loading={
                 (loading_state && loading_state.is_loading) || undefined
@@ -184,30 +190,27 @@ AntdSegmentedColoring.propTypes = {
     id: PropTypes.string,
 
     // css类
-    className: PropTypes.string,
+    className: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.object
+    ]),
 
     // 自定义css样式
     style: PropTypes.object,
 
     key: PropTypes.string,
 
-    // 设置组件整体尺寸规格，可选的有'large'、'small'及'default'
-    size: PropTypes.oneOf(['large', 'small', 'default']),
+    // 设置&更新分段断点数组
+    breakpoints: PropTypes.arrayOf(PropTypes.number).isRequired,
 
-    // 设置是否渲染外边框，默认为true
-    bordered: PropTypes.bool,
+    // 设置分段css颜色数组，长度应为breakpoints长度-1
+    colors: PropTypes.arrayOf(PropTypes.string).isRequired,
 
     // 设置是否为数字输入框添加增减按钮，默认为true
     controls: PropTypes.bool,
 
-    // 设置整体禁用数字输入框，默认为false
-    disabled: PropTypes.bool,
-
     // 设置是否为数字输入框启用键盘上下键改变数值功能，默认为true
     keyboard: PropTypes.bool,
-
-    // 为数字输入框设置统一的placeholder信息
-    placeholder: PropTypes.string,
 
     // 设置数字输入框允许输入的合法数值下限，默认无限制
     min: PropTypes.number,
@@ -221,17 +224,23 @@ AntdSegmentedColoring.propTypes = {
     // 设置数字输入框数值精度即小数位数，默认为2
     precision: PropTypes.number,
 
+    // 设置整体禁用数字输入框，默认为false
+    disabled: PropTypes.bool,
+
+    // 设置组件整体尺寸规格，可选的有'large'、'small'及'middle'
+    size: PropTypes.oneOf(['large', 'small', 'middle']),
+
+    // 设置是否渲染外边框，默认为true
+    bordered: PropTypes.bool,
+
+    // 为数字输入框设置统一的placeholder信息
+    placeholder: PropTypes.string,
+
     // 设置是否开启只读模式，默认为false
     readOnly: PropTypes.bool,
 
     // 设置是否开启纯图例模式，默认为false
     pureLegend: PropTypes.bool,
-
-    // 设置&更新分段断点数组
-    breakpoints: PropTypes.arrayOf(PropTypes.number).isRequired,
-
-    // 设置分段css颜色数组，长度应为breakpoints长度-1
-    colors: PropTypes.arrayOf(PropTypes.string).isRequired,
 
     // 为数字输入框设置统一的css样式
     inputNumberStyle: PropTypes.object,
@@ -269,7 +278,7 @@ AntdSegmentedColoring.propTypes = {
 
 // 设置默认参数
 AntdSegmentedColoring.defaultProps = {
-    size: 'default',
+    size: 'middle',
     bordered: true,
     controls: true,
     disabled: false,

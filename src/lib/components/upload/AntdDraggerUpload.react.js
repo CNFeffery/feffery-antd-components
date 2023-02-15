@@ -5,7 +5,7 @@ import { Upload, message, ConfigProvider } from 'antd';
 import AntdIcon from '../AntdIcon.react';
 import useCss from '../../hooks/useCss';
 import { isString } from 'lodash';
-import { str2Locale } from '../locales.react';
+import { str2Locale, locale2text } from '../locales.react';
 
 
 const { Dragger } = Upload;
@@ -58,6 +58,7 @@ const AntdDraggerUpload = (props) => {
         multiple,
         directory,
         failedTooltipInfo,
+        locale2text,
         listUploadTaskRecord,
         defaultFileList,
         status,
@@ -317,6 +318,23 @@ const AntdDraggerUpload = (props) => {
                     showUploadList={showUploadList}
                     multiple={multiple}
                     directory={directory}
+                    onRemove={
+                        confirmBeforeDelete ?
+                            () => {
+                                return new Promise((resolve, reject) => {
+                                    Modal.confirm({
+                                        title: locale2text.AntdPictureUpload[locale].confirmBeforeDeleteTitle,
+                                        okText: locale2text.AntdPictureUpload[locale].confirmBeforeDeleteOkText,
+                                        cancelText: locale2text.AntdPictureUpload[locale].confirmBeforeDeleteCancelText,
+                                        onOk: () => {
+                                            resolve(true);
+                                        },
+
+                                    });
+                                });
+                            } :
+                            undefined
+                    }
                     {...uploadProps}>
                     <p className="ant-upload-drag-icon">
                         {<AntdIcon icon={'antd-cloud-upload'} />}
@@ -395,6 +413,9 @@ AntdDraggerUpload.propTypes = {
 
     // 设置是否显示已上传文件列表，默认为true
     showUploadList: PropTypes.bool,
+
+    // 设置是否为删除操作添加二次确认模态框，默认为false
+    confirmBeforeDelete: PropTypes.bool,
 
     // 用于在每次文件上传动作完成后，记录相关的信息
     lastUploadTaskRecord: PropTypes.oneOfType([
@@ -533,6 +554,7 @@ AntdDraggerUpload.propTypes = {
 AntdDraggerUpload.defaultProps = {
     fileListMaxLength: null,
     fileMaxSize: 500,
+    confirmBeforeDelete: false,
     lastUploadTaskRecord: null,
     listUploadTaskRecord: [],
     locale: 'zh-cn'

@@ -11,7 +11,7 @@ Keyword arguments:
 - `id` (String; optional)
 - `bordered` (Bool; optional)
 - `breakpoints` (Array of Reals; required)
-- `className` (String; optional)
+- `className` (String | Dict; optional)
 - `colorBlockPosition` (a value equal to: 'left', 'right'; optional)
 - `colorBlockStyle` (Dict; optional)
 - `colors` (Array of Strings; required)
@@ -32,7 +32,7 @@ Those elements have the following types:
 - `pureLegend` (Bool; optional)
 - `pureLegendLabelStyle` (Dict; optional)
 - `readOnly` (Bool; optional)
-- `size` (a value equal to: 'large', 'small', 'default'; optional)
+- `size` (a value equal to: 'large', 'small', 'middle'; optional)
 - `step` (Real; optional)
 - `style` (Dict; optional)
 """

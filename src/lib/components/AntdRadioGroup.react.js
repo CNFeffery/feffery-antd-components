@@ -1,6 +1,8 @@
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { Radio, Space } from 'antd';
+import { isString } from 'lodash';
+import useCss from '../hooks/useCss';
 
 
 // 定义单选框组件AntdRadioGroup，api参数参考https://ant.design/components/radio-cn/
@@ -42,7 +44,11 @@ const AntdRadioGroup = (props) => {
         return (
             <Radio.Group
                 id={id}
-                className={className}
+                className={
+                    isString(className) ?
+                        className :
+                        (className ? useCss(className) : undefined)
+                }
                 style={style}
                 key={key}
                 defaultValue={defaultValue}
@@ -73,7 +79,11 @@ const AntdRadioGroup = (props) => {
     return (
         <Radio.Group
             id={id}
-            className={className}
+            className={
+                isString(className) ?
+                    className :
+                    (className ? useCss(className) : undefined)
+            }
             style={style}
             key={key}
             options={options}
@@ -100,7 +110,10 @@ AntdRadioGroup.propTypes = {
     id: PropTypes.string,
 
     // css类名
-    className: PropTypes.string,
+    className: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.object
+    ]),
 
     // 自定义css字典
     style: PropTypes.object,
@@ -109,6 +122,7 @@ AntdRadioGroup.propTypes = {
     key: PropTypes.string,
 
     // 设置单选框组方向，可选的有'horizontal'、'vertical'
+    // 默认为'horizontal'
     direction: PropTypes.oneOf(['horizontal', 'vertical']),
 
     // 设置选项参数数组
@@ -118,34 +132,12 @@ AntdRadioGroup.propTypes = {
             label: PropTypes.node,
 
             // 设置选项的对应值
-            value: PropTypes.oneOfType([
-                PropTypes.string,
-                PropTypes.number
-            ]),
+            value: PropTypes.string,
 
-            // 设置是否禁用当前选项
+            // 设置是否禁用当前选项，默认为false
             disabled: PropTypes.bool
         })
     ),
-
-    // 对应当前已选中的值
-    value: PropTypes.oneOfType([
-        PropTypes.string,
-        PropTypes.number
-    ]),
-
-    // 设置初始化状态下被选中的值
-    defaultValue: PropTypes.oneOfType([
-        PropTypes.string,
-        PropTypes.number
-    ]),
-
-    // 设置选项的渲染方式，可选的有'default'和'button'，默认为'default'
-    optionType: PropTypes.oneOf(['default', 'button']),
-
-    // 当optionType为'button'时，用于设置按钮的显示样式，
-    // 可选的有'outline'和'solid'，默认为'outline'
-    buttonStyle: PropTypes.oneOf(['outline', 'solid']),
 
     // 设置是否禁用整体组件
     disabled: PropTypes.bool,
@@ -153,6 +145,19 @@ AntdRadioGroup.propTypes = {
     // 当optionType为'button'时，用于设置按钮的大小规格
     // 可选的有'large'、'middle'和'small'，默认为'middle'
     size: PropTypes.oneOf(['large', 'middle', 'small']),
+
+    // 对应当前已选中的值
+    value: PropTypes.string,
+
+    // 设置初始化状态下被选中的值
+    defaultValue: PropTypes.string,
+
+    // 设置选项的渲染方式，可选的有'default'和'button'，默认为'default'
+    optionType: PropTypes.oneOf(['default', 'button']),
+
+    // 当optionType为'button'时，用于设置按钮的显示样式，
+    // 可选的有'outline'和'solid'，默认为'outline'
+    buttonStyle: PropTypes.oneOf(['outline', 'solid']),
 
     loading_state: PropTypes.shape({
         /**
@@ -208,6 +213,10 @@ AntdRadioGroup.propTypes = {
 // 设置默认参数
 AntdRadioGroup.defaultProps = {
     direction: 'horizontal',
+    optionType: 'default',
+    buttonStyle: 'outline',
+    disabled: false,
+    size: 'middle',
     persisted_props: ['value'],
     persistence_type: 'local'
 }

@@ -13,7 +13,7 @@ Keyword arguments:
 Those elements have the following types:
   - `minRows` (Real; optional)
   - `maxRows` (Real; optional)
-- `className` (String; optional)
+- `className` (String | Dict; optional)
 - `defaultValue` (String; optional)
 - `disabled` (Bool; optional)
 - `key` (String; optional)
@@ -22,9 +22,9 @@ Those elements have the following types:
   - `is_loading` (Bool; optional): Determines if the component is loading or not
   - `prop_name` (String; optional): Holds which property is loading
   - `component_name` (String; optional): Holds the name of the component that is loading
-- `options` (optional): . options has the following type: Array of lists containing elements 'label', 'value'.
+- `options` (required): . options has the following type: Array of lists containing elements 'label', 'value'.
 Those elements have the following types:
-  - `label` (String; optional)
+  - `label` (a list of or a singular dash component, string or number; optional)
   - `value` (String; optional)s
 - `placement` (a value equal to: 'top', 'bottom'; optional)
 - `popupContainer` (a value equal to: 'parent', 'body'; optional)
