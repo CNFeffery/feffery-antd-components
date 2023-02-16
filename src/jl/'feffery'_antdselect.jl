@@ -12,17 +12,20 @@ Keyword arguments:
 - `allowClear` (Bool; optional)
 - `autoClearSearchValue` (Bool; optional)
 - `autoSpin` (Bool; optional)
-- `className` (String; optional)
+- `bordered` (Bool; optional)
+- `className` (String | Dict; optional)
 - `colorsMode` (a value equal to: 'sequential', 'diverging'; optional)
 - `colorsNameWidth` (Real; optional)
+- `debounceSearchValue` (String; optional)
 - `debounceWait` (Real; optional)
-- `defaultValue` (String | Real | Array of String | Reals; optional)
+- `defaultValue` (String | Array of Strings; optional)
 - `disabled` (Bool; optional)
 - `dropdownAfter` (a list of or a singular dash component, string or number; optional)
 - `dropdownBefore` (a list of or a singular dash component, string or number; optional)
 - `emptyContent` (a list of or a singular dash component, string or number; optional)
 - `key` (String; optional)
 - `listHeight` (Real; optional)
+- `loadingEmptyContent` (a list of or a singular dash component, string or number; optional)
 - `loading_state` (optional): . loading_state has the following type: lists containing elements 'is_loading', 'prop_name', 'component_name'.
 Those elements have the following types:
   - `is_loading` (Bool; optional): Determines if the component is loading or not
@@ -34,16 +37,16 @@ Those elements have the following types:
 - `optionFilterProp` (a value equal to: 'value', 'label'; optional)
 - `options` (optional): . options has the following type: Array of lists containing elements 'label', 'value', 'disabled', 'colors'.
 Those elements have the following types:
-  - `label` (String | Real | a list of or a singular dash component, string or number; required)
-  - `value` (String | Real; required)
+  - `label` (a list of or a singular dash component, string or number; required)
+  - `value` (String; required)
   - `disabled` (Bool; optional)
   - `colors` (Array of Strings; optional) | lists containing elements 'group', 'options'.
 Those elements have the following types:
-  - `group` (String; required)
+  - `group` (String; optional)
   - `options` (optional): . options has the following type: Array of lists containing elements 'label', 'value', 'disabled', 'colors'.
 Those elements have the following types:
-  - `label` (String | Real | a list of or a singular dash component, string or number; required)
-  - `value` (String | Real; required)
+  - `label` (a list of or a singular dash component, string or number; required)
+  - `value` (String; required)
   - `disabled` (Bool; optional)
   - `colors` (Array of Strings; optional)ss
 - `persisted_props` (Array of a value equal to: 'value's; optional): Properties whose user interactions will persist after refreshing the
@@ -67,10 +70,10 @@ session: window.sessionStorage, data is cleared once the browser quit.
 - `size` (a value equal to: 'small', 'middle', 'large'; optional)
 - `status` (a value equal to: 'error', 'warning'; optional)
 - `style` (Dict; optional)
-- `value` (String | Real | Array of String | Reals; optional)
+- `value` (String | Array of Strings; optional)
 """
 function 'feffery'_antdselect(; kwargs...)
-        available_props = Symbol[:id, :allowClear, :autoClearSearchValue, :autoSpin, :className, :colorsMode, :colorsNameWidth, :debounceWait, :defaultValue, :disabled, :dropdownAfter, :dropdownBefore, :emptyContent, :key, :listHeight, :loading_state, :locale, :maxTagCount, :mode, :optionFilterProp, :options, :persisted_props, :persistence, :persistence_type, :placeholder, :placement, :popupContainer, :readOnly, :searchValue, :size, :status, :style, :value]
+        available_props = Symbol[:id, :allowClear, :autoClearSearchValue, :autoSpin, :bordered, :className, :colorsMode, :colorsNameWidth, :debounceSearchValue, :debounceWait, :defaultValue, :disabled, :dropdownAfter, :dropdownBefore, :emptyContent, :key, :listHeight, :loadingEmptyContent, :loading_state, :locale, :maxTagCount, :mode, :optionFilterProp, :options, :persisted_props, :persistence, :persistence_type, :placeholder, :placement, :popupContainer, :readOnly, :searchValue, :size, :status, :style, :value]
         wild_props = Symbol[]
         return Component("'feffery'_antdselect", "AntdSelect", "feffery_antd_components", available_props, wild_props; kwargs...)
 end

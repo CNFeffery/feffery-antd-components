@@ -1,8 +1,9 @@
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { useRequest } from 'ahooks';
-import { Select, ConfigProvider } from 'antd';
-import { isUndefined } from 'lodash';
+import { Select, Spin, ConfigProvider } from 'antd';
+import { isUndefined, isString } from 'lodash';
+import useCss from '../hooks/useCss';
 import { str2Locale } from './locales.react';
 
 
@@ -21,6 +22,7 @@ const AntdSelect = (props) => {
         setProps,
         placeholder,
         size,
+        bordered,
         options,
         colorsNameWidth,
         allowClear,
@@ -38,6 +40,7 @@ const AntdSelect = (props) => {
         debounceWait,
         autoClearSearchValue,
         emptyContent,
+        loadingEmptyContent,
         dropdownBefore,
         dropdownAfter,
         popupContainer,
@@ -61,15 +64,21 @@ const AntdSelect = (props) => {
         setProps({ value: value })
     }
 
-    const { run: onSearch } = useRequest(
+    const { run: onDebounceSearch } = useRequest(
         (e) => {
-            setProps({ searchValue: e })
+            setProps({ debounceSearchValue: e })
         },
         {
             debounceWait: debounceWait,
             manual: true
         }
     )
+
+    const onSearch = e => {
+        setProps({
+            searchValue: e
+        })
+    }
 
     // 解决options为none时的问题
     options = options || []
@@ -165,13 +174,18 @@ const AntdSelect = (props) => {
         <ConfigProvider locale={str2Locale.get(locale)}>
             <Select
                 id={id}
-                className={className}
+                className={
+                    isString(className) ?
+                        className :
+                        (className ? useCss(className) : undefined)
+                }
                 style={style}
                 key={key}
                 mode={mode}
                 allowClear={isUndefined(readOnly) ? allowClear : !readOnly}
                 placeholder={placeholder}
                 size={size}
+                bordered={bordered}
                 value={value}
                 defaultValue={defaultValue}
                 onChange={updateSelectedValue}
@@ -183,9 +197,12 @@ const AntdSelect = (props) => {
                 status={status}
                 optionFilterProp={optionFilterProp}
                 autoClearSearchValue={autoClearSearchValue}
-                onSearch={onSearch}
+                onSearch={(e) => {
+                    onSearch(e)
+                    onDebounceSearch(e)
+                }}
                 loading={autoSpin && loading_state.is_loading}
-                notFoundContent={emptyContent}
+                notFoundContent={autoSpin && loading_state.is_loading ? loadingEmptyContent : emptyContent}
                 dropdownRender={
                     (dropdownBefore || dropdownAfter) ?
                         (menu) => {
@@ -209,7 +226,7 @@ const AntdSelect = (props) => {
                         (triggerNode) => triggerNode.parentNode :
                         undefined
                 }
-                open={isUndefined(readOnly) ? undefined : !readOnly}
+                open={isUndefined(readOnly) || !readOnly ? undefined : false}
             >
                 {optionsJsx}
             </Select>
@@ -223,7 +240,10 @@ AntdSelect.propTypes = {
     id: PropTypes.string,
 
     // css类名
-    className: PropTypes.string,
+    className: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.object
+    ]),
 
     // 自定义css字典
     style: PropTypes.object,
@@ -239,17 +259,10 @@ AntdSelect.propTypes = {
         PropTypes.oneOfType([
             PropTypes.exact({
                 // 选项对应显示的label
-                label: PropTypes.oneOfType([
-                    PropTypes.string,
-                    PropTypes.number,
-                    PropTypes.node
-                ]).isRequired,
+                label: PropTypes.node.isRequired,
 
                 // 选相对应的值
-                value: PropTypes.oneOfType([
-                    PropTypes.string,
-                    PropTypes.number
-                ]).isRequired,
+                value: PropTypes.string.isRequired,
 
                 // 控制选项的禁止点击状态
                 disabled: PropTypes.bool,
@@ -260,23 +273,16 @@ AntdSelect.propTypes = {
             }),
             PropTypes.exact({
                 // 分组对应组标签
-                group: PropTypes.string.isRequired,
+                group: PropTypes.string,
 
                 // 组内选项集合
                 options: PropTypes.arrayOf(
                     PropTypes.exact({
                         // 选项对应显示的label
-                        label: PropTypes.oneOfType([
-                            PropTypes.string,
-                            PropTypes.number,
-                            PropTypes.node
-                        ]).isRequired,
+                        label: PropTypes.node.isRequired,
 
                         // 选相对应的值
-                        value: PropTypes.oneOfType([
-                            PropTypes.string,
-                            PropTypes.number
-                        ]).isRequired,
+                        value: PropTypes.string.isRequired,
 
                         // 控制选项的禁止点击状态
                         disabled: PropTypes.bool,
@@ -290,44 +296,49 @@ AntdSelect.propTypes = {
         ])
     ),
 
+    // 设置下拉菜单的高度，默认256
+    listHeight: PropTypes.number,
+
+    // 色带模式下用于设置连续色带还是离散色带，可选的有'sequential'、'diverging'
+    colorsMode: PropTypes.oneOf(['sequential', 'diverging']),
+
     // 手动设置colors模式下，颜色名称的像素宽度，默认为40
     colorsNameWidth: PropTypes.number,
 
-    // 设置是否渲染内容清空按钮，默认为true
-    allowClear: PropTypes.bool,
-
-    // 设置选择模式（multiple：多选，tags：无则新增模式。默认为单选）
+    // 设置选择模式（multiple：多选，tags：自由新增模式。默认为单选）
     mode: PropTypes.oneOf(['multiple', 'tags']),
 
     // 设置是否禁用整个组件
     disabled: PropTypes.bool,
 
-    // 选择框默认文本
-    placeholder: PropTypes.string,
-
     // 设置组件尺寸规格，可选的有'small'、'middle'及'large'
+    // 默认为'middle'
     size: PropTypes.oneOf([
         'small',
         'middle',
         'large'
     ]),
 
+    // 设置当前下拉选择组件是否渲染边框，默认为true
+    bordered: PropTypes.bool,
+
+    // 选择框默认文本
+    placeholder: PropTypes.string,
+
+    // 用于设置悬浮展开层的方位，可选的有'bottomLeft'、'bottomRight'、'topLeft'、'topRight'
+    // 默认为'bottomLeft'
+    placement: PropTypes.oneOf(['bottomLeft', 'bottomRight', 'topLeft', 'topRight']),
+
     // 对应已被选中的选项值或选项值数组
     value: PropTypes.oneOfType([
         PropTypes.string,
-        PropTypes.number,
-        PropTypes.arrayOf(
-            PropTypes.oneOfType([PropTypes.string, PropTypes.number])
-        ),
+        PropTypes.arrayOf(PropTypes.string),
     ]),
 
     // 设置默认被选中的选项，默认为空数组
     defaultValue: PropTypes.oneOfType([
         PropTypes.string,
-        PropTypes.number,
-        PropTypes.arrayOf(
-            PropTypes.oneOfType([PropTypes.string, PropTypes.number])
-        ),
+        PropTypes.arrayOf(PropTypes.string),
     ]),
 
     // 设置最大显示的已选择选项，默认为5，超出部分会自动省略
@@ -335,16 +346,6 @@ AntdSelect.propTypes = {
         PropTypes.number,
         PropTypes.oneOf(['responsive'])
     ]),
-
-    // 设置下拉菜单的高度，默认256
-    listHeight: PropTypes.number,
-
-    // 色带模式下用于设置连续色带还是离散色带，可选的有'sequential'、'diverging'
-    colorsMode: PropTypes.oneOf(['sequential', 'diverging']),
-
-    // 用于设置悬浮展开层的方位，可选的有'bottomLeft'、'bottomRight'、'topLeft'、'topRight'
-    // 默认为'bottomLeft'
-    placement: PropTypes.oneOf(['bottomLeft', 'bottomRight', 'topLeft', 'topRight']),
 
     // 设置校验状态，可选的有'error'、'warning'
     status: PropTypes.oneOf(['error', 'warning']),
@@ -355,18 +356,24 @@ AntdSelect.propTypes = {
     // 监听搜索框中的已输入搜索文字内容
     searchValue: PropTypes.string,
 
-    // 设置当组件内的prop正处于回调加载中状态时，是否渲染后缀加载图标
-    // 默认为false
-    autoSpin: PropTypes.bool,
+    // 防抖模式下用于监听搜索框中的已输入搜索文字内容
+    debounceSearchValue: PropTypes.string,
 
     // 用于配置debounceValue变化更新的防抖等待时长（单位：毫秒），默认为0
     debounceWait: PropTypes.number,
 
-    // 设置是否在选中项后清空搜索框，mode为'multiple'/'tags'时有效，默认为true
+    // 设置当组件内的prop正处于回调加载中状态时，是否渲染后缀加载图标
+    // 默认为false
+    autoSpin: PropTypes.bool,
+
+    // 设置是否在选中项后清空搜索框中的搜索文字内容，mode为'multiple'/'tags'时有效，默认为true
     autoClearSearchValue: PropTypes.bool,
 
     // 自定义空数据状态内容
     emptyContent: PropTypes.node,
+
+    // 自定义loading激活状态下的emptyContent，默认为加载动画
+    loadingEmptyContent: PropTypes.node,
 
     // 可选，自定义悬浮层前缀内容
     dropdownBefore: PropTypes.node,
@@ -374,11 +381,15 @@ AntdSelect.propTypes = {
     // 可选，自定义悬浮层后缀内容
     dropdownAfter: PropTypes.node,
 
-    // 设置悬浮层锚定策略，可选的有'parent'、'body'，默认为'body'
-    popupContainer: PropTypes.oneOf(['parent', 'body']),
+    // 设置是否渲染内容清空按钮，默认为true
+    allowClear: PropTypes.bool,
 
     // 设置是否以只读模式进行渲染，底层利用Select的open参数
+    // 默认为false
     readOnly: PropTypes.bool,
+
+    // 设置悬浮层锚定策略，可选的有'parent'、'body'，默认为'body'
+    popupContainer: PropTypes.oneOf(['parent', 'body']),
 
     loading_state: PropTypes.shape({
         /**
@@ -434,18 +445,29 @@ AntdSelect.propTypes = {
 // 设置默认参数
 AntdSelect.defaultProps = {
     allowClear: true,
+    disabled: false,
+    size: 'middle',
+    bordered: true,
     maxTagCount: 5,
     listHeight: 256,
+    placement: 'bottomLeft',
     options: [],
     colorsNameWidth: 40,
     colorsMode: 'sequential',
+    autoClearSearchValue: true,
     persisted_props: ['value'],
     persistence_type: 'local',
     locale: 'zh-cn',
     optionFilterProp: 'value',
     autoSpin: false,
-    debounceWait: 300,
-    popupContainer: 'body'
+    debounceWait: 0,
+    popupContainer: 'body',
+    readOnly: false,
+    loadingEmptyContent: (
+        <div style={{ display: 'flex', 'justifyContent': 'center' }}>
+            <Spin />
+        </div>
+    )
 }
 
 export default AntdSelect;
