@@ -44,7 +44,7 @@ const AntdButton = (props) => {
             }
         },
         {
-            debounceWait: debounceWait,
+            debounceWait: Math.max(debounceWait, 200),
             debounceLeading: true,
             manual: true
         }
@@ -173,7 +173,7 @@ AntdButton.defaultProps = {
     danger: false,
     disabled: false,
     nClicks: 0,
-    debounceWait: 0,
+    debounceWait: 200,
     autoSpin: false
 }
 

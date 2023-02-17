@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { v4 as uuidv4 } from 'uuid';
-import { Upload, message, ConfigProvider } from 'antd';
+import { Upload, message, Modal, ConfigProvider } from 'antd';
 import AntdIcon from '../AntdIcon.react';
 import useCss from '../../hooks/useCss';
 import { isString } from 'lodash';
@@ -58,9 +58,9 @@ const AntdDraggerUpload = (props) => {
         multiple,
         directory,
         failedTooltipInfo,
-        locale2text,
         listUploadTaskRecord,
         defaultFileList,
+        disabled,
         status,
         loading_state,
         setProps
@@ -278,7 +278,20 @@ const AntdDraggerUpload = (props) => {
                     )
             }
 
-            updateFileList(_fileList)
+            if (downloadUrl) {
+                updateFileList(
+                    _fileList.map(
+                        item => {
+                            return {
+                                ...item,
+                                url: downloadUrl + `?taskId=${uploadId}&filename=${item.name}`
+                            }
+                        }
+                    )
+                )
+            } else {
+                updateFileList(_fileList)
+            }
         }
     };
 
@@ -318,6 +331,7 @@ const AntdDraggerUpload = (props) => {
                     showUploadList={showUploadList}
                     multiple={multiple}
                     directory={directory}
+                    disabled={disabled}
                     onRemove={
                         confirmBeforeDelete ?
                             () => {
@@ -363,6 +377,9 @@ AntdDraggerUpload.propTypes = {
     // 自定义css字典
     style: PropTypes.object,
 
+    // 辅助刷新用唯一标识key值
+    key: PropTypes.string,
+
     // css类名
     draggerClassName: PropTypes.oneOfType([
         PropTypes.string,
@@ -371,9 +388,6 @@ AntdDraggerUpload.propTypes = {
 
     // 自定义css字典
     draggerStyle: PropTypes.object,
-
-    // 辅助刷新用唯一标识key值
-    key: PropTypes.string,
 
     // 设置语言环境，可选的有'zh-cn'、'en-us'
     locale: PropTypes.oneOf(['zh-cn', 'en-us']),
@@ -385,10 +399,10 @@ AntdDraggerUpload.propTypes = {
     downloadUrl: PropTypes.string,
 
     // 设置上传区域主要文字说明内容
-    text: PropTypes.string,
+    text: PropTypes.node,
 
     // 设置上传区域次要文字说明内容
-    hint: PropTypes.string,
+    hint: PropTypes.node,
 
     // 设置已上传文件列表的最大显示长度，默认为3
     fileListMaxLength: PropTypes.number,
@@ -525,6 +539,9 @@ AntdDraggerUpload.propTypes = {
         })
     ),
 
+    // 设置是否禁用当前组件，默认为false
+    disabled: PropTypes.bool,
+
     // 设置校验状态，可选的有'error'、'warning'
     status: PropTypes.oneOf(['error', 'warning']),
 
@@ -552,6 +569,10 @@ AntdDraggerUpload.propTypes = {
 
 // 设置默认参数
 AntdDraggerUpload.defaultProps = {
+    disabled: false,
+    multiple: false,
+    directory: false,
+    showUploadList: true,
     fileListMaxLength: null,
     fileMaxSize: 500,
     confirmBeforeDelete: false,

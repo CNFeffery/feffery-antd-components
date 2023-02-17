@@ -63,7 +63,7 @@ const AntdInputNumber = (props) => {
             setProps({ debounceValue: e })
         },
         {
-            debounceWait: debounceWait,
+            debounceWait: Math.max(debounceWait, 200),
             manual: true
         }
     )
@@ -276,7 +276,7 @@ AntdInputNumber.defaultProps = {
     readOnly: false,
     persisted_props: ['value'],
     persistence_type: 'local',
-    debounceWait: 0
+    debounceWait: 200
 }
 
 export default AntdInputNumber;

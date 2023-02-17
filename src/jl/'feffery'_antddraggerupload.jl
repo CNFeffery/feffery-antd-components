@@ -19,6 +19,7 @@ Those elements have the following types:
   - `uid` (Bool | Real | String | Dict | Array; optional)
   - `url` (String; optional)s
 - `directory` (Bool; optional)
+- `disabled` (Bool; optional)
 - `downloadUrl` (String; optional)
 - `draggerClassName` (String | Dict; optional)
 - `draggerStyle` (Dict; optional)
@@ -26,7 +27,7 @@ Those elements have the following types:
 - `fileListMaxLength` (Real; optional)
 - `fileMaxSize` (Real; optional)
 - `fileTypes` (Array of Strings; optional)
-- `hint` (String; optional)
+- `hint` (a list of or a singular dash component, string or number; optional)
 - `key` (String; optional)
 - `lastUploadTaskRecord` (optional): . lastUploadTaskRecord has the following type: lists containing elements 'fileName', 'fileSize', 'completeTimestamp', 'taskStatus', 'taskId'.
 Those elements have the following types:
@@ -68,11 +69,11 @@ Those elements have the following types:
 - `showUploadList` (Bool; optional)
 - `status` (a value equal to: 'error', 'warning'; optional)
 - `style` (Dict; optional)
-- `text` (String; optional)
+- `text` (a list of or a singular dash component, string or number; optional)
 - `uploadId` (String; optional)
 """
 function 'feffery'_antddraggerupload(; kwargs...)
-        available_props = Symbol[:id, :apiUrl, :className, :confirmBeforeDelete, :defaultFileList, :directory, :downloadUrl, :draggerClassName, :draggerStyle, :failedTooltipInfo, :fileListMaxLength, :fileMaxSize, :fileTypes, :hint, :key, :lastUploadTaskRecord, :listUploadTaskRecord, :loading_state, :locale, :multiple, :showUploadList, :status, :style, :text, :uploadId]
+        available_props = Symbol[:id, :apiUrl, :className, :confirmBeforeDelete, :defaultFileList, :directory, :disabled, :downloadUrl, :draggerClassName, :draggerStyle, :failedTooltipInfo, :fileListMaxLength, :fileMaxSize, :fileTypes, :hint, :key, :lastUploadTaskRecord, :listUploadTaskRecord, :loading_state, :locale, :multiple, :showUploadList, :status, :style, :text, :uploadId]
         wild_props = Symbol[]
         return Component("'feffery'_antddraggerupload", "AntdDraggerUpload", "feffery_antd_components", available_props, wild_props; kwargs...)
 end

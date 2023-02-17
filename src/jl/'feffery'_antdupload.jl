@@ -10,8 +10,8 @@ An AntdUpload component.
 Keyword arguments:
 - `id` (String; optional)
 - `apiUrl` (String; optional)
-- `buttonContent` (String; optional)
-- `className` (String; optional)
+- `buttonContent` (a list of or a singular dash component, string or number; optional)
+- `className` (String | Dict; optional)
 - `confirmBeforeDelete` (Bool; optional)
 - `defaultFileList` (optional): . defaultFileList has the following type: Array of lists containing elements 'name', 'status', 'uid', 'url'.
 Those elements have the following types:
@@ -20,6 +20,7 @@ Those elements have the following types:
   - `uid` (Bool | Real | String | Dict | Array; optional)
   - `url` (String; optional)s
 - `directory` (Bool; optional)
+- `disabled` (Bool; optional)
 - `downloadUrl` (String; optional)
 - `failedTooltipInfo` (String; optional)
 - `fileListMaxLength` (Real; optional)
@@ -39,15 +40,7 @@ Those elements have the following types:
   - `completeTimestamp` (Real; optional)
   - `taskStatus` (String; optional)
   - `taskId` (String; optional)s
-- `listUploadTaskRecord` (optional): . listUploadTaskRecord has the following type: lists containing elements 'fileName', 'fileSize', 'completeTimestamp', 'taskStatus', 'taskId', 'uid', 'url'.
-Those elements have the following types:
-  - `fileName` (String; optional)
-  - `fileSize` (Real; optional)
-  - `completeTimestamp` (Real; optional)
-  - `taskStatus` (String; optional)
-  - `taskId` (String; optional)
-  - `uid` (String; optional)
-  - `url` (String; optional) | Array of lists containing elements 'fileName', 'fileSize', 'completeTimestamp', 'taskStatus', 'taskId', 'uid', 'url'.
+- `listUploadTaskRecord` (optional): . listUploadTaskRecord has the following type: Array of lists containing elements 'fileName', 'fileSize', 'completeTimestamp', 'taskStatus', 'taskId', 'uid', 'url'.
 Those elements have the following types:
   - `fileName` (String; optional)
   - `fileSize` (Real; optional)
@@ -69,7 +62,7 @@ Those elements have the following types:
 - `uploadId` (String; optional)
 """
 function 'feffery'_antdupload(; kwargs...)
-        available_props = Symbol[:id, :apiUrl, :buttonContent, :className, :confirmBeforeDelete, :defaultFileList, :directory, :downloadUrl, :failedTooltipInfo, :fileListMaxLength, :fileMaxSize, :fileTypes, :key, :lastUploadTaskRecord, :listUploadTaskRecord, :loading_state, :locale, :multiple, :showUploadList, :status, :style, :uploadId]
+        available_props = Symbol[:id, :apiUrl, :buttonContent, :className, :confirmBeforeDelete, :defaultFileList, :directory, :disabled, :downloadUrl, :failedTooltipInfo, :fileListMaxLength, :fileMaxSize, :fileTypes, :key, :lastUploadTaskRecord, :listUploadTaskRecord, :loading_state, :locale, :multiple, :showUploadList, :status, :style, :uploadId]
         wild_props = Symbol[]
         return Component("'feffery'_antdupload", "AntdUpload", "feffery_antd_components", available_props, wild_props; kwargs...)
 end

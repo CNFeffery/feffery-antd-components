@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { v4 as uuidv4 } from 'uuid';
-import { Upload, message, Button, ConfigProvider } from 'antd';
+import { Upload, message, Button, Modal, ConfigProvider } from 'antd';
 import { UploadOutlined } from '@ant-design/icons';
 import { str2Locale, locale2text } from '../locales.react';
+import { isString } from 'lodash';
+import useCss from '../../hooks/useCss';
 
 
 // 解析历史任务完成时间信息
@@ -54,6 +56,7 @@ const AntdUpload = (props) => {
         confirmBeforeDelete,
         listUploadTaskRecord,
         defaultFileList,
+        disabled,
         status,
         loading_state,
         setProps
@@ -266,7 +269,20 @@ const AntdUpload = (props) => {
                     )
             }
 
-            updateFileList(_fileList)
+            if (downloadUrl) {
+                updateFileList(
+                    _fileList.map(
+                        item => {
+                            return {
+                                ...item,
+                                url: downloadUrl + `?taskId=${uploadId}&filename=${item.name}`
+                            }
+                        }
+                    )
+                )
+            } else {
+                updateFileList(_fileList)
+            }
         }
     };
 
@@ -280,7 +296,11 @@ const AntdUpload = (props) => {
     return (
         <ConfigProvider locale={str2Locale.get(locale)}>
             <div id={id}
-                className={className}
+                className={
+                    isString(className) ?
+                        className :
+                        (className ? useCss(className) : undefined)
+                }
                 style={{
                     border: "1px solid transparent",
                     transition: "border 0.3s",
@@ -293,6 +313,7 @@ const AntdUpload = (props) => {
                     multiple={multiple}
                     showUploadList={showUploadList}
                     directory={directory}
+                    disabled={disabled}
                     onRemove={
                         confirmBeforeDelete ?
                             () => {
@@ -313,7 +334,9 @@ const AntdUpload = (props) => {
                     data-dash-is-loading={
                         (loading_state && loading_state.is_loading) || undefined
                     }>
-                    <Button icon={<UploadOutlined />}>{buttonContent ? buttonContent : "点击上传文件"}</Button>
+                    <Button icon={<UploadOutlined />} disabled={disabled}>
+                        {buttonContent ? buttonContent : "点击上传文件"}
+                    </Button>
                 </Upload>
             </div>
         </ConfigProvider>
@@ -326,7 +349,10 @@ AntdUpload.propTypes = {
     id: PropTypes.string,
 
     // css类名
-    className: PropTypes.string,
+    className: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.object
+    ]),
 
     // 自定义css字典
     style: PropTypes.object,
@@ -346,11 +372,11 @@ AntdUpload.propTypes = {
     // 设置已上传文件列表的最大显示长度，默认为3
     fileListMaxLength: PropTypes.number,
 
-    // 设置允许上传的文件后缀名数组，默认为[]即不限制
+    // 设置允许上传的文件后缀名数组
     fileTypes: PropTypes.arrayOf(PropTypes.string),
 
     // 按钮模式下设置按钮内的文字内容
-    buttonContent: PropTypes.string,
+    buttonContent: PropTypes.node,
 
     // 设置当前组件生命周期内的上传路径id信息，若未传入则会自动生成uuid
     uploadId: PropTypes.string,
@@ -414,8 +440,7 @@ AntdUpload.propTypes = {
     ]),
 
     // 用于在每次的上传任务完成后，更新当前文件列表中全部文件的上传信息
-    listUploadTaskRecord: PropTypes.oneOfType([
-        // 单文件
+    listUploadTaskRecord: PropTypes.arrayOf(
         PropTypes.exact({
             // 记录文件名称
             fileName: PropTypes.string,
@@ -436,32 +461,8 @@ AntdUpload.propTypes = {
             uid: PropTypes.string,
 
             url: PropTypes.string
-        }),
-        // 文件夹或多文件上传
-        PropTypes.arrayOf(
-            PropTypes.exact({
-                // 记录文件名称
-                fileName: PropTypes.string,
-
-                // 记录文件大小
-                fileSize: PropTypes.number,
-
-                // 记录完成时间戳信息
-                completeTimestamp: PropTypes.number,
-
-                // 记录此次上传任务的状态信息，'success'表示成功，'failed'表示失败
-                taskStatus: PropTypes.string,
-
-                // 记录本次任务的id信息，若最近一次任务状态为'failed'，则不会携带此信息
-                taskId: PropTypes.string,
-
-                // 唯一标识当前任务的uuid信息，前端生成与后端无关
-                uid: PropTypes.string,
-
-                url: PropTypes.string
-            })
-        )
-    ]),
+        })
+    ),
 
     // 仅作初始化展示用，用于定义组件初始化时已存在在上传列表中的附件信息
     defaultFileList: PropTypes.arrayOf(
@@ -479,6 +480,9 @@ AntdUpload.propTypes = {
             url: PropTypes.string
         })
     ),
+
+    // 设置是否禁用当前组件，默认为false
+    disabled: PropTypes.bool,
 
     // 设置校验状态，可选的有'error'、'warning'
     status: PropTypes.oneOf(['error', 'warning']),
@@ -507,6 +511,10 @@ AntdUpload.propTypes = {
 
 // 设置默认参数
 AntdUpload.defaultProps = {
+    disabled: false,
+    multiple: false,
+    directory: false,
+    showUploadList: true,
     fileListMaxLength: null,
     fileMaxSize: 500,
     confirmBeforeDelete: false,

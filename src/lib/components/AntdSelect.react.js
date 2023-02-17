@@ -69,7 +69,7 @@ const AntdSelect = (props) => {
             setProps({ debounceSearchValue: e })
         },
         {
-            debounceWait: debounceWait,
+            debounceWait: Math.max(debounceWait, 200),
             manual: true
         }
     )
@@ -460,7 +460,7 @@ AntdSelect.defaultProps = {
     locale: 'zh-cn',
     optionFilterProp: 'value',
     autoSpin: false,
-    debounceWait: 0,
+    debounceWait: 200,
     popupContainer: 'body',
     readOnly: false,
     loadingEmptyContent: (

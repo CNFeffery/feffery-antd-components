@@ -64,6 +64,7 @@ const AntdPictureUpload = (props) => {
         confirmBeforeDelete,
         listUploadTaskRecord,
         defaultFileList,
+        disabled,
         status,
         loading_state,
         setProps
@@ -231,7 +232,20 @@ const AntdPictureUpload = (props) => {
                     )
             }
 
-            updateFileList(_fileList)
+            if (downloadUrl) {
+                updateFileList(
+                    _fileList.map(
+                        item => {
+                            return {
+                                ...item,
+                                url: downloadUrl + `?taskId=${uploadId}&filename=${item.name}`
+                            }
+                        }
+                    )
+                )
+            } else {
+                updateFileList(_fileList)
+            }
         }
     };
 
@@ -314,6 +328,7 @@ const AntdPictureUpload = (props) => {
                 <Upload {...uploadProps}
                     fileList={fileList}
                     listType="picture-card"
+                    disabled={disabled}
                     onPreview={handlePreview}
                     onRemove={
                         confirmBeforeDelete ?
@@ -540,6 +555,9 @@ AntdPictureUpload.propTypes = {
         })
     ),
 
+    // 设置是否禁用当前组件，默认为false
+    disabled: PropTypes.bool,
+
     // 设置校验状态，可选的有'error'、'warning'
     status: PropTypes.oneOf(['error', 'warning']),
 
@@ -567,6 +585,7 @@ AntdPictureUpload.propTypes = {
 
 // 设置默认参数
 AntdPictureUpload.defaultProps = {
+    disabled: false,
     editable: false,
     fileTypes: ['tiff', 'bmp', 'gif', 'png', 'jpeg', 'jpg', 'webp', 'ico', 'tif'],
     fileListMaxLength: null,

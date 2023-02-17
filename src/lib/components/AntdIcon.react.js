@@ -26,7 +26,7 @@ const AntdIcon = (props) => {
             setProps({ nClicks: nClicks + 1 })
         },
         {
-            debounceWait: debounceWait,
+            debounceWait: Math.max(debounceWait, 200),
             debounceLeading: true,
             manual: true
         }
@@ -115,7 +115,7 @@ AntdIcon.propTypes = {
 // 设置默认参数
 AntdIcon.defaultProps = {
     nClicks: 0,
-    debounceWait: 0
+    debounceWait: 200
 }
 
 export default AntdIcon;
