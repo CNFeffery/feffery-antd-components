@@ -10,7 +10,7 @@ An AntdPictureUpload component.
 Keyword arguments:
 - `id` (String; optional)
 - `apiUrl` (String; optional)
-- `buttonContent` (String; optional)
+- `buttonContent` (a list of or a singular dash component, string or number; optional)
 - `className` (String; optional)
 - `confirmBeforeDelete` (Bool; optional)
 - `defaultFileList` (optional): . defaultFileList has the following type: Array of lists containing elements 'name', 'status', 'uid', 'url'.
@@ -54,15 +54,7 @@ Those elements have the following types:
   - `completeTimestamp` (Real; optional)
   - `taskStatus` (String; optional)
   - `taskId` (String; optional)s
-- `listUploadTaskRecord` (optional): . listUploadTaskRecord has the following type: lists containing elements 'fileName', 'fileSize', 'completeTimestamp', 'taskStatus', 'taskId', 'uid', 'url'.
-Those elements have the following types:
-  - `fileName` (String; optional)
-  - `fileSize` (Real; optional)
-  - `completeTimestamp` (Real; optional)
-  - `taskStatus` (String; optional)
-  - `taskId` (String; optional)
-  - `uid` (String; optional)
-  - `url` (String; optional) | Array of lists containing elements 'fileName', 'fileSize', 'completeTimestamp', 'taskStatus', 'taskId', 'uid', 'url'.
+- `listUploadTaskRecord` (optional): . listUploadTaskRecord has the following type: Array of lists containing elements 'fileName', 'fileSize', 'completeTimestamp', 'taskStatus', 'taskId', 'uid', 'url'.
 Those elements have the following types:
   - `fileName` (String; optional)
   - `fileSize` (Real; optional)

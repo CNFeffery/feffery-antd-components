@@ -58,6 +58,7 @@ const AntdDraggerUpload = (props) => {
         multiple,
         directory,
         failedTooltipInfo,
+        confirmBeforeDelete,
         listUploadTaskRecord,
         defaultFileList,
         disabled,

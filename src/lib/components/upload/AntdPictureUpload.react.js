@@ -268,7 +268,9 @@ const AntdPictureUpload = (props) => {
                         ...style
                     }}
                     key={key}>
-                    <ImgCrop {...editConfig}>
+                    <ImgCrop modalOk={locale === 'zh-cn' ? '确定' : 'OK'}
+                        modalCancel={locale === 'zh-cn' ? '取消' : 'Cancel'}
+                        {...editConfig}>
                         <Upload {...uploadProps}
                             fileList={fileList}
                             listType="picture-card"
@@ -329,6 +331,10 @@ const AntdPictureUpload = (props) => {
                     fileList={fileList}
                     listType="picture-card"
                     disabled={disabled}
+                    showUploadList={{
+                        showRemoveIcon,
+                        showPreviewIcon
+                    }}
                     onPreview={handlePreview}
                     onRemove={
                         confirmBeforeDelete ?
@@ -426,7 +432,7 @@ AntdPictureUpload.propTypes = {
     fileTypes: PropTypes.arrayOf(PropTypes.string),
 
     // 按钮模式下设置按钮内的文字内容
-    buttonContent: PropTypes.string,
+    buttonContent: PropTypes.node,
 
     // 设置当前组件生命周期内的上传路径id信息，若未传入则会自动生成uuid
     uploadId: PropTypes.string,
@@ -489,8 +495,7 @@ AntdPictureUpload.propTypes = {
     ]),
 
     // 用于在每次的上传任务完成后，更新当前文件列表中全部文件的上传信息
-    listUploadTaskRecord: PropTypes.oneOfType([
-        // 单文件
+    listUploadTaskRecord: PropTypes.arrayOf(
         PropTypes.exact({
             // 记录文件名称
             fileName: PropTypes.string,
@@ -511,32 +516,8 @@ AntdPictureUpload.propTypes = {
             uid: PropTypes.string,
 
             url: PropTypes.string
-        }),
-        // 文件夹或多文件上传
-        PropTypes.arrayOf(
-            PropTypes.exact({
-                // 记录文件名称
-                fileName: PropTypes.string,
-
-                // 记录文件大小
-                fileSize: PropTypes.number,
-
-                // 记录完成时间戳信息
-                completeTimestamp: PropTypes.number,
-
-                // 记录此次上传任务的状态信息，'success'表示成功，'failed'表示失败
-                taskStatus: PropTypes.string,
-
-                // 记录本次任务的id信息，若最近一次任务状态为'failed'，则不会携带此信息
-                taskId: PropTypes.string,
-
-                // 唯一标识当前任务的uuid信息，前端生成与后端无关
-                uid: PropTypes.string,
-
-                url: PropTypes.string
-            })
-        )
-    ]),
+        })
+    ),
 
     // 仅作初始化展示用，用于定义组件初始化时已存在在上传列表中的附件信息
     defaultFileList: PropTypes.arrayOf(
