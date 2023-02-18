@@ -964,7 +964,8 @@ class AntdTable extends Component {
                                                     onConfirm={() => setProps({
                                                         recentlyButtonClickedRow: record,
                                                         nClicksButton: nClicksButton + 1,
-                                                        clickedContent: content_.content
+                                                        clickedContent: content_.content,
+                                                        buttonClickedDataIndex: columns[i].dataIndex
                                                     })}>
                                                     <Button
                                                         size={'small'}
@@ -988,7 +989,8 @@ class AntdTable extends Component {
                                 onConfirm={() => setProps({
                                     recentlyButtonClickedRow: record,
                                     nClicksButton: nClicksButton + 1,
-                                    clickedContent: content.content
+                                    clickedContent: content.content,
+                                    buttonClickedDataIndex: columns[i].dataIndex
                                 })}>
                                 <Button
                                     size={'small'}
@@ -1013,7 +1015,8 @@ class AntdTable extends Component {
                                                     onClick={() => setProps({
                                                         recentlyButtonClickedRow: record,
                                                         nClicksButton: nClicksButton + 1,
-                                                        clickedContent: content_.content
+                                                        clickedContent: content_.content,
+                                                        buttonClickedDataIndex: columns[i].dataIndex
                                                     })}
                                                     size={'small'}
                                                     type={content_.type}
@@ -1031,7 +1034,8 @@ class AntdTable extends Component {
                                 onClick={() => setProps({
                                     recentlyButtonClickedRow: record,
                                     nClicksButton: nClicksButton + 1,
-                                    clickedContent: content.content
+                                    clickedContent: content.content,
+                                    buttonClickedDataIndex: columns[i].dataIndex
                                 })}
                                 size={'small'}
                                 type={content.type}
@@ -1921,6 +1925,9 @@ AntdTable.propTypes = {
 
     // 对应最近一次按钮模式下被点击的按钮文字内容
     clickedContent: PropTypes.string,
+
+    // 对应最近一次按钮模式下被点击的按钮对应列dataIndex
+    buttonClickedDataIndex: PropTypes.string,
 
     // 经过最近一次排序操作后，对应的字段及排序方式信息
     sorter: PropTypes.exact({
