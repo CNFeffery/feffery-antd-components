@@ -12,7 +12,7 @@
 
 </div>
 
-> Version `0.2.0` will be released soon, so stay tuned
+> Version `0.2.0` will be released soon, so stay tuned, [preview version document](https://github.com/CNFeffery/feffery-antd-components)
 
 [简体中文](./README.md) | English
 

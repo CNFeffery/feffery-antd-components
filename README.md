@@ -12,7 +12,7 @@
 
 </div>
 
-> `0.2.0`全新版本即将发布，敬请期待
+> `0.2.0`全新版本即将发布，敬请期待，[预览版本文档](https://github.com/CNFeffery/feffery-antd-components)
 
 简体中文 | [English](./README-en_US.md)
 
