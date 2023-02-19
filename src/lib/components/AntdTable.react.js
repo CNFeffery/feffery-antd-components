@@ -452,6 +452,7 @@ class AntdTable extends Component {
             enableCellClickListenColumns,
             nClicksCell,
             emptyContent,
+            cellUpdateOptimize,
             loading_state
         } = this.props;
 
@@ -1315,20 +1316,22 @@ class AntdTable extends Component {
                     rowClassName={atLeastOneColumnEditable ? () => 'editable-row' : undefined}
                     dataSource={data}
                     columns={
-                        columns.map(
-                            item => {
-                                return {
-                                    ...item,
-                                    // 减少不必要的单元格重绘
-                                    shouldCellUpdate: (record, prevRecord) => {
-                                        if (isEqual(record, prevRecord)) {
-                                            return false;
+                        cellUpdateOptimize ?
+                            columns.map(
+                                item => {
+                                    return {
+                                        ...item,
+                                        // 减少不必要的单元格重绘
+                                        shouldCellUpdate: (record, prevRecord) => {
+                                            if (isEqual(record, prevRecord)) {
+                                                return false;
+                                            }
+                                            return true;
                                         }
-                                        return true;
-                                    }
-                                };
-                            }
-                        )
+                                    };
+                                }
+                            ) :
+                            columns
                     }
                     size={size2size.get(size)}
                     rowSelection={rowSelection}
@@ -2038,6 +2041,9 @@ AntdTable.propTypes = {
     // 自定义空数据状态内容
     emptyContent: PropTypes.node,
 
+    // 设置是否开启单元格渲染优化，默认为true
+    cellUpdateOptimize: PropTypes.bool,
+
     loading_state: PropTypes.shape({
         /**
          * Determines if the component is loading or not
@@ -2078,7 +2084,8 @@ AntdTable.defaultProps = {
     nClicksCell: 0,
     size: 'default',
     locale: 'zh-cn',
-    conditionalStyleFuncs: {}
+    conditionalStyleFuncs: {},
+    cellUpdateOptimize: true
 }
 
 export default AntdTable;
