@@ -9,11 +9,11 @@ An AntdTransfer component.
 
 Keyword arguments:
 - `id` (String; optional)
-- `className` (String; optional)
+- `className` (String | Dict; optional)
 - `dataSource` (optional): . dataSource has the following type: Array of lists containing elements 'key', 'title'.
 Those elements have the following types:
   - `key` (String | Real; optional)
-  - `title` (String; optional)s
+  - `title` (a list of or a singular dash component, string or number; optional)s
 - `disabled` (Bool; optional)
 - `height` (String; optional)
 - `key` (String; optional)
@@ -23,9 +23,9 @@ Those elements have the following types:
   - `prop_name` (String; optional): Holds which property is loading
   - `component_name` (String; optional): Holds the name of the component that is loading
 - `locale` (a value equal to: 'zh-cn', 'en-us'; optional)
-- `moveDirection` (String; optional)
-- `moveKeys` (Array; optional)
-- `operations` (Array; optional)
+- `moveDirection` (a value equal to: 'left', 'right'; optional)
+- `moveKeys` (Array of Real | Strings; optional)
+- `operations` (Array of Strings; optional)
 - `pagination` (optional): . pagination has the following type: Bool | lists containing elements 'pageSize'.
 Those elements have the following types:
   - `pageSize` (Real; optional)
@@ -46,8 +46,8 @@ session: window.sessionStorage, data is cleared once the browser quit.
 - `showSelectAll` (Bool; optional)
 - `status` (a value equal to: 'error', 'warning'; optional)
 - `style` (Dict; optional)
-- `targetKeys` (Array; optional)
-- `titles` (Array; optional)
+- `targetKeys` (Array of Real | Strings; optional)
+- `titles` (Array of a list of or a singular dash component, string or numbers; optional)
 """
 function 'feffery'_antdtransfer(; kwargs...)
         available_props = Symbol[:id, :className, :dataSource, :disabled, :height, :key, :loading_state, :locale, :moveDirection, :moveKeys, :operations, :pagination, :persisted_props, :persistence, :persistence_type, :showSearch, :showSelectAll, :status, :style, :targetKeys, :titles]

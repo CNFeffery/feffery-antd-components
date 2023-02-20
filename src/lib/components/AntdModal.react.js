@@ -143,7 +143,16 @@ AntdModal.propTypes = {
         type: PropTypes.oneOf(['primary', 'ghost', 'dashed', 'link', 'text', 'default']),
 
         // 设置按钮是否显示为危险状态
-        danger: PropTypes.bool
+        danger: PropTypes.bool,
+
+        // 设置按钮是否以失效状态渲染，默认为false
+        disabled: PropTypes.bool,
+
+        // 设置按钮形状（circle：圆形，round：圆角矩形，默认不设置，即正常矩形）
+        shape: PropTypes.oneOf(['circle', 'round']),
+
+        // 设置按钮大小尺寸，可选的有'small'、'middle'和'large'，默认为'middle'
+        size: PropTypes.oneOf(['small', 'middle', 'large'])
     }),
 
     // 设置取消按钮文字
@@ -158,7 +167,16 @@ AntdModal.propTypes = {
         type: PropTypes.oneOf(['primary', 'ghost', 'dashed', 'link', 'text', 'default']),
 
         // 设置按钮是否显示为危险状态
-        danger: PropTypes.bool
+        danger: PropTypes.bool,
+
+        // 设置按钮是否以失效状态渲染，默认为false
+        disabled: PropTypes.bool,
+
+        // 设置按钮形状（circle：圆形，round：圆角矩形，默认不设置，即正常矩形）
+        shape: PropTypes.oneOf(['circle', 'round']),
+
+        // 设置按钮大小尺寸，可选的有'small'、'middle'和'large'，默认为'middle'
+        size: PropTypes.oneOf(['small', 'middle', 'large'])
     }),
 
     // 设置是否渲染底部按钮区域

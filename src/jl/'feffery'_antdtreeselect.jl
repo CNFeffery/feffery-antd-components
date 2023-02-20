@@ -12,7 +12,7 @@ Keyword arguments:
 - `allowClear` (Bool; optional)
 - `autoClearSearchValue` (Bool; optional)
 - `bordered` (Bool; optional)
-- `className` (String; optional)
+- `className` (String | Dict; optional)
 - `defaultValue` (String | Real | Array of String | Reals; optional)
 - `disabled` (Bool; optional)
 - `dropdownAfter` (a list of or a singular dash component, string or number; optional)

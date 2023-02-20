@@ -9,7 +9,7 @@ An AntdSlider component.
 
 Keyword arguments:
 - `id` (String; optional)
-- `className` (String; optional)
+- `className` (String | Dict; optional)
 - `defaultValue` (Real | Array of Reals; optional)
 - `disabled` (Bool; optional)
 - `key` (String; optional)
@@ -18,7 +18,7 @@ Those elements have the following types:
   - `is_loading` (Bool; optional): Determines if the component is loading or not
   - `prop_name` (String; optional): Holds which property is loading
   - `component_name` (String; optional): Holds the name of the component that is loading
-- `marks` (Dict; optional)
+- `marks` (Dict with Strings as keys and values of type String; optional)
 - `max` (Real; optional)
 - `min` (Real; optional)
 - `popupContainer` (a value equal to: 'parent', 'body'; optional)

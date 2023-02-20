@@ -2,6 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Transfer, ConfigProvider } from 'antd';
 import { str2Locale } from './locales.react';
+import { isString } from 'lodash';
+import useCss from '../hooks/useCss';
 
 
 // 定义穿梭框组件AntdTransfer，api参数参考https://ant.design/components/transfer-cn/
@@ -49,7 +51,11 @@ const AntdTransfer = (props) => {
             <Transfer
                 id={id}
                 style={style}
-                className={className}
+                className={
+                    isString(className) ?
+                        className :
+                        (className ? useCss(className) : undefined)
+                }
                 key={key}
                 dataSource={dataSource}
                 targetKeys={targetKeys}
@@ -84,7 +90,10 @@ AntdTransfer.propTypes = {
     id: PropTypes.string,
 
     // css类名
-    className: PropTypes.string,
+    className: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.object
+    ]),
 
     // 自定义css
     style: PropTypes.object,
@@ -96,24 +105,34 @@ AntdTransfer.propTypes = {
     locale: PropTypes.oneOf(['zh-cn', 'en-us']),
 
     // 用于定义穿梭框中的每个选项信息
-    dataSource: PropTypes.arrayOf(PropTypes.exact(
-        {
-            // 选项对应的唯一id
-            key: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+    dataSource: PropTypes.arrayOf(
+        PropTypes.exact(
+            {
+                // 选项对应的唯一id
+                key: PropTypes.oneOfType([
+                    PropTypes.string,
+                    PropTypes.number
+                ]),
 
-            // 选项对应显示的文字标签内容
-            title: PropTypes.string
-        }
-    )),
+                // 选项对应显示的文字标签内容
+                title: PropTypes.node
+            }
+        )
+    ),
 
     // 自定义组件高度，接受css中合法的高度单位
     height: PropTypes.string,
 
     // 用于设置是否以分页模式展示左右区域内部超长的项目集合，默认为false
-    pagination: PropTypes.oneOfType([PropTypes.bool, PropTypes.exact({ pageSize: PropTypes.number })]),
+    pagination: PropTypes.oneOfType([
+        PropTypes.bool,
+        PropTypes.exact({
+            pageSize: PropTypes.number
+        })
+    ]),
 
     // 用于设置左右移动操作按钮的文本内容，默认为['', '']
-    operations: PropTypes.array,
+    operations: PropTypes.arrayOf(PropTypes.string),
 
     // 用于设置是否渲染搜索框，默认为false
     showSearch: PropTypes.bool,
@@ -121,17 +140,28 @@ AntdTransfer.propTypes = {
     // 用于设置是否展示全选勾选框，默认为true
     showSelectAll: PropTypes.bool,
 
-    // 用于设置左右半边的标题内容，默认为['待选区', '选定区']
-    titles: PropTypes.array,
+    // 用于设置左右半边的标题内容，如['待选区', '选定区']
+    // 默认无标题
+    titles: PropTypes.arrayOf(PropTypes.node),
 
     // 对应右半边区域内已选择的项目的key值数组，默认为空数组
-    targetKeys: PropTypes.array,
+    targetKeys: PropTypes.arrayOf(
+        PropTypes.oneOfType([
+            PropTypes.number,
+            PropTypes.string
+        ])
+    ),
 
     // 对应每次发生项目转换时的转换方向
-    moveDirection: PropTypes.string,
+    moveDirection: PropTypes.oneOf(['left', 'right']),
 
     // 对应每次发生项目转换时涉及的项目对应key值数组
-    moveKeys: PropTypes.array,
+    moveKeys: PropTypes.arrayOf(
+        PropTypes.oneOfType([
+            PropTypes.number,
+            PropTypes.string
+        ])
+    ),
 
     // 设置是否禁用整个组件
     disabled: PropTypes.bool,
@@ -194,8 +224,10 @@ AntdTransfer.propTypes = {
 AntdTransfer.defaultProps = {
     targetKeys: [],
     pagination: false,
+    operations: ['', ''],
     showSearch: false,
     showSelectAll: true,
+    disabled: false,
     persisted_props: ['targetKeys'],
     persistence_type: 'local',
     locale: 'zh-cn'

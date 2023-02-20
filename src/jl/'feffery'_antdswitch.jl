@@ -10,8 +10,8 @@ An AntdSwitch component.
 Keyword arguments:
 - `id` (String; optional)
 - `checked` (Bool; optional)
-- `checkedChildren` (String; optional)
-- `className` (String; optional)
+- `checkedChildren` (a list of or a singular dash component, string or number; optional)
+- `className` (String | Dict; optional)
 - `disabled` (Bool; optional)
 - `key` (String; optional)
 - `loading` (Bool; optional)
@@ -35,7 +35,7 @@ local: window.localStorage, data is kept after the browser quit.
 session: window.sessionStorage, data is cleared once the browser quit.
 - `size` (a value equal to: 'default', 'small'; optional)
 - `style` (Dict; optional)
-- `unCheckedChildren` (String; optional)
+- `unCheckedChildren` (a list of or a singular dash component, string or number; optional)
 """
 function 'feffery'_antdswitch(; kwargs...)
         available_props = Symbol[:id, :checked, :checkedChildren, :className, :disabled, :key, :loading, :loading_state, :persisted_props, :persistence, :persistence_type, :size, :style, :unCheckedChildren]

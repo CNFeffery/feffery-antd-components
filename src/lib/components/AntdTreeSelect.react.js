@@ -2,8 +2,9 @@ import { useEffect, useMemo } from 'react';
 import PropTypes from 'prop-types';
 import { TreeSelect, ConfigProvider } from 'antd';
 import { str2Locale } from './locales.react';
-import { isUndefined } from 'lodash';
+import { isUndefined, isString } from 'lodash';
 import { flatToTree } from './utils';
+import useCss from '../hooks/useCss';
 
 const { SHOW_ALL, SHOW_CHILD, SHOW_PARENT } = TreeSelect;
 
@@ -64,6 +65,9 @@ const AntdTreeSelect = (props) => {
         if (!value && defaultValue) {
             setProps({ value: defaultValue })
         }
+        if (!treeExpandedKeys && treeDefaultExpandedKeys) {
+            setProps({ treeExpandedKeys: treeDefaultExpandedKeys })
+        }
     }, [])
 
     const flatToTreeData = useMemo(() => {
@@ -86,8 +90,15 @@ const AntdTreeSelect = (props) => {
         <ConfigProvider locale={str2Locale.get(locale)}>
             <TreeSelect
                 id={id}
-                className={className}
-                style={{ ...{ width: '100%' }, ...style }}
+                className={
+                    isString(className) ?
+                        className :
+                        (className ? useCss(className) : undefined)
+                }
+                style={{
+                    width: '100%',
+                    ...style
+                }}
                 key={key}
                 treeData={treeDataMode === 'flat' ? flatToTreeData : treeData}
                 allowClear={isUndefined(readOnly) ? allowClear : !readOnly}
@@ -126,6 +137,7 @@ const AntdTreeSelect = (props) => {
                             );
                         } : undefined
                 }
+                onTreeExpand={(e) => setProps({ treeExpandedKeys: e })}
                 persistence={persistence}
                 persisted_props={persisted_props}
                 persistence_type={persistence_type}
@@ -137,7 +149,7 @@ const AntdTreeSelect = (props) => {
                         (triggerNode) => triggerNode.parentNode :
                         undefined
                 }
-                open={isUndefined(readOnly) ? undefined : !readOnly}
+                open={isUndefined(readOnly) || !readOnly ? undefined : false}
             />
         </ConfigProvider>
     );
@@ -216,7 +228,10 @@ AntdTreeSelect.propTypes = {
     id: PropTypes.string,
 
     // css类名
-    className: PropTypes.string,
+    className: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.object
+    ]),
 
     // 自定义css字典
     style: PropTypes.object,
@@ -227,6 +242,9 @@ AntdTreeSelect.propTypes = {
     // 设置语言环境，可选的有'zh-cn'、'en-us'
     locale: PropTypes.oneOf(['zh-cn', 'en-us']),
 
+    // 设置treeData模式，可选的有'tree'、'flat'，默认为'tree'
+    treeDataMode: PropTypes.oneOf(['tree', 'flat']),
+
     // 组织树形结构的json结构数据
     treeData: PropTypes.oneOfType([
         // 树形结构
@@ -235,20 +253,24 @@ AntdTreeSelect.propTypes = {
         PropTypes.arrayOf(PropFlatNodeShape)
     ]).isRequired,
 
-    // 设置treeData模式，可选的有'tree'、'flat'，默认为'tree'
-    treeDataMode: PropTypes.oneOf(['tree', 'flat']),
+    // 设置是否禁用整个组件
+    disabled: PropTypes.bool,
 
-    // 设置是否渲染内容清空按钮，默认为true
-    allowClear: PropTypes.bool,
+    // 设置选择框大小，可选的有'small'、'middle'及'large'，默认为'middle'
+    size: PropTypes.oneOf(['small', 'middle', 'large']),
 
     // 设置是否显示边框，默认为true
     bordered: PropTypes.bool,
 
-    // 设置是否展示连接线，默认为false
-    treeLine: PropTypes.bool,
-
     // 选择框默认文本
     placeholder: PropTypes.string,
+
+    // 设置悬浮展开层的方位，可选的有'bottomLeft'、'bottomRight'、'topLeft'、'topRight'
+    // 默认为'bottomLeft'
+    placement: PropTypes.oneOf(['bottomLeft', 'bottomRight', 'topLeft', 'topRight']),
+
+    // 设置是否展示连接线，默认为false
+    treeLine: PropTypes.bool,
 
     // 对应已被选中的选项值或选项值数组
     value: PropTypes.oneOfType([
@@ -274,20 +296,17 @@ AntdTreeSelect.propTypes = {
         ),
     ]),
 
-    // 设置最大显示的已选择选项，默认为5，超出部分会自动省略
+    // 设置最大显示的已选择选项，超出部分会自动省略
     maxTagCount: PropTypes.oneOfType([
         PropTypes.number,
         PropTypes.oneOf(['responsive'])
     ]),
 
-    // 设置下拉菜单的高度，默认256
+    // 设置下拉菜单的像素高度，默认256
     listHeight: PropTypes.number,
 
     // 设置是否支持多选，默认为false
     multiple: PropTypes.bool,
-
-    // 设置选择框大小，可选的有'small'、'middle'及'large'，默认为'middle'
-    size: PropTypes.oneOf(['small', 'middle', 'large']),
 
     // 设置是否以选择框模式渲染每个节点，默认为false
     treeCheckable: PropTypes.bool,
@@ -307,24 +326,17 @@ AntdTreeSelect.propTypes = {
     // 设置是否开启虚拟滚动，默认为true
     virtual: PropTypes.bool,
 
-    // 设置是否禁用整个组件
-    disabled: PropTypes.bool,
-
-    // 设置悬浮展开层的方位，可选的有'bottomLeft'、'bottomRight'、'topLeft'、'topRight'
-    // 默认为'bottomLeft'
-    placement: PropTypes.oneOf(['bottomLeft', 'bottomRight', 'topLeft', 'topRight']),
-
     // 设置校验状态，可选的有'error'、'warning'
     status: PropTypes.oneOf(['error', 'warning']),
+
+    // 设置是否渲染内容清空按钮，默认为true
+    allowClear: PropTypes.bool,
 
     // 设置输入框中搜索时针对的字段，可选的有'title'、'value'，默认为'value'
     treeNodeFilterProp: PropTypes.oneOf(['title', 'value']),
 
     // 设置当多选模式下值被选择，是否自动清空搜索框，默认为true
     autoClearSearchValue: PropTypes.bool,
-
-    // 设置是否以只读模式进行渲染，底层利用Select的open参数
-    readOnly: PropTypes.bool,
 
     // 用于设置已勾选项回填策略，可选的有'show-all'、'show-parent'、'show-child'
     // 默认为'show-all'
@@ -335,6 +347,9 @@ AntdTreeSelect.propTypes = {
 
     // 可选，自定义悬浮层后缀内容
     dropdownAfter: PropTypes.node,
+
+    // 设置是否以只读模式进行渲染，底层利用Select的open参数
+    readOnly: PropTypes.bool,
 
     // 设置悬浮层锚定策略，可选的有'parent'、'body'，默认为'body'
     popupContainer: PropTypes.oneOf(['parent', 'body']),
@@ -395,6 +410,17 @@ AntdTreeSelect.defaultProps = {
     listHeight: 256,
     virtual: true,
     allowClear: true,
+    disabled: false,
+    bordered: true,
+    placement: 'bottomLeft',
+    treeLine: false,
+    multiple: false,
+    size: 'middle',
+    treeCheckable: false,
+    treeCheckStrictly: false,
+    treeDefaultExpandAll: false,
+    autoClearSearchValue: true,
+    readOnly: false,
     persisted_props: ['value'],
     persistence_type: 'local',
     locale: 'zh-cn',

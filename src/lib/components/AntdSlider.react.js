@@ -1,6 +1,8 @@
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { Slider } from 'antd';
+import { isString } from 'lodash';
+import useCss from '../hooks/useCss';
 
 
 // 定义滑动输入条组件AntdSlider，api参数参考https://ant.design/components/slider-cn/
@@ -32,15 +34,19 @@ const AntdSlider = (props) => {
         // 初始化value
         if (range) {
             // 范围选择模式时
-            let defaultValue = defaultValue ? defaultValue : [min, max]
             if (!value) {
-                setProps({ value: defaultValue })
+                setProps({
+                    value: defaultValue || [min, max],
+                    defaultValue: defaultValue || [min, max]
+                })
             }
         } else {
             // 单值选择模式时
-            let defaultValue = (defaultValue || defaultValue === 0) ? defaultValue : max
             if (!value && value !== 0) {
-                setProps({ value: defaultValue })
+                setProps({
+                    value: (defaultValue || defaultValue === 0) ? defaultValue : max,
+                    defaultValue: (defaultValue || defaultValue === 0) ? defaultValue : max
+                })
             }
         }
     }, [])
@@ -59,7 +65,11 @@ const AntdSlider = (props) => {
     return (
         <Slider
             id={id}
-            className={className}
+            className={
+                isString(className) ?
+                    className :
+                    (className ? useCss(className) : undefined)
+            }
             style={style}
             key={key}
             value={value}
@@ -92,21 +102,16 @@ AntdSlider.propTypes = {
     id: PropTypes.string,
 
     // css类名
-    className: PropTypes.string,
+    className: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.object
+    ]),
 
     // 自定义css字典
     style: PropTypes.object,
 
     // 辅助刷新用唯一标识key值
     key: PropTypes.string,
-
-    // 设置默认值或默认范围
-    defaultValue: PropTypes.oneOfType([
-        PropTypes.number, PropTypes.arrayOf(PropTypes.number)
-    ]),
-
-    // 设置是否禁用整个组件
-    disabled: PropTypes.bool,
 
     // 设置是否以垂直模式显示滑动输入条，默认为false
     vertical: PropTypes.bool,
@@ -115,21 +120,16 @@ AntdSlider.propTypes = {
     range: PropTypes.bool,
 
     // 设置范围最小值
-    min: PropTypes.number,
+    min: PropTypes.number.isRequired,
 
     // 设置范围最大值
-    max: PropTypes.number,
+    max: PropTypes.number.isRequired,
 
     // 设置步长
     step: PropTypes.number,
 
-    // 记录用户输入的值或范围
-    value: PropTypes.oneOfType([
-        PropTypes.number, PropTypes.arrayOf(PropTypes.number)
-    ]),
-
     // 定义特定刻度参数
-    marks: PropTypes.object,
+    marks: PropTypes.objectOf(PropTypes.string),
 
     // 用于设置刻度对应的tooltip的显示策略，true代表一直保持显示
     // false表示即使鼠标悬浮也不显示，默认不设置则只有鼠标悬浮时才会显示
@@ -140,6 +140,21 @@ AntdSlider.propTypes = {
 
     // 设置tooltip显示内容后缀文字
     tooltipSuffix: PropTypes.string,
+
+    // 设置是否禁用整个组件
+    disabled: PropTypes.bool,
+
+    // 记录用户输入的值或范围
+    value: PropTypes.oneOfType([
+        PropTypes.number,
+        PropTypes.arrayOf(PropTypes.number)
+    ]),
+
+    // 设置默认值或默认范围
+    defaultValue: PropTypes.oneOfType([
+        PropTypes.number,
+        PropTypes.arrayOf(PropTypes.number)
+    ]),
 
     // 设置悬浮层锚定策略，可选的有'parent'、'body'，默认为'body'
     popupContainer: PropTypes.oneOf(['parent', 'body']),
@@ -168,12 +183,14 @@ AntdSlider.propTypes = {
 
 // 设置默认参数
 AntdSlider.defaultProps = {
+    vertical: false,
     range: false,
     min: 0,
     max: 100,
     step: 1,
     tooltipPrefix: '',
     tooltipSuffix: '',
+    disabled: false,
     popupContainer: 'body'
 }
 

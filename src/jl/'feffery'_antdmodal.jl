@@ -14,11 +14,13 @@ Keyword arguments:
 - `children` (a list of or a singular dash component, string or number; optional)
 - `id` (String; optional)
 - `bodyStyle` (Dict; optional)
-- `cancelButtonProps` (optional): . cancelButtonProps has the following type: lists containing elements 'size', 'type', 'danger'.
+- `cancelButtonProps` (optional): . cancelButtonProps has the following type: lists containing elements 'size', 'type', 'danger', 'disabled', 'shape'.
 Those elements have the following types:
-  - `size` (a value equal to: 'default', 'small', 'large'; optional)
+  - `size` (a value equal to: 'small', 'middle', 'large'; optional)
   - `type` (a value equal to: 'primary', 'ghost', 'dashed', 'link', 'text', 'default'; optional)
   - `danger` (Bool; optional)
+  - `disabled` (Bool; optional)
+  - `shape` (a value equal to: 'circle', 'round'; optional)
 - `cancelCounts` (Real; optional)
 - `cancelText` (a list of or a singular dash component, string or number; optional)
 - `centered` (Bool; optional)
@@ -39,11 +41,13 @@ Those elements have the following types:
 - `mask` (Bool; optional)
 - `maskClosable` (Bool; optional)
 - `maskStyle` (Dict; optional)
-- `okButtonProps` (optional): . okButtonProps has the following type: lists containing elements 'size', 'type', 'danger'.
+- `okButtonProps` (optional): . okButtonProps has the following type: lists containing elements 'size', 'type', 'danger', 'disabled', 'shape'.
 Those elements have the following types:
-  - `size` (a value equal to: 'default', 'small', 'large'; optional)
+  - `size` (a value equal to: 'small', 'middle', 'large'; optional)
   - `type` (a value equal to: 'primary', 'ghost', 'dashed', 'link', 'text', 'default'; optional)
   - `danger` (Bool; optional)
+  - `disabled` (Bool; optional)
+  - `shape` (a value equal to: 'circle', 'round'; optional)
 - `okClickClose` (Bool; optional)
 - `okCounts` (Real; optional)
 - `okText` (a list of or a singular dash component, string or number; optional)

@@ -1,7 +1,8 @@
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { Switch } from 'antd';
-import { isUndefined } from 'lodash';
+import { isUndefined, isString } from 'lodash';
+import useCss from '../hooks/useCss';
 
 
 // 定义开关组件AntdSwitch，api参数参考https://ant.design/components/switch-cn/
@@ -39,7 +40,11 @@ const AntdSwitch = (props) => {
     return (
         <Switch
             id={id}
-            className={className}
+            className={
+                isString(className) ?
+                    className :
+                    (className ? useCss(className) : undefined)
+            }
             style={style}
             key={key}
             disabled={disabled}
@@ -66,7 +71,10 @@ AntdSwitch.propTypes = {
     id: PropTypes.string,
 
     // css类名
-    className: PropTypes.string,
+    className: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.object
+    ]),
 
     // 自定义css
     style: PropTypes.object,
@@ -80,11 +88,11 @@ AntdSwitch.propTypes = {
     // 对应选择框当前是否被选择
     checked: PropTypes.bool,
 
-    // 设置开启状态显示的文字内容，默认为''
-    checkedChildren: PropTypes.string,
+    // 设置开启状态显示的文字内容
+    checkedChildren: PropTypes.node,
 
-    // 设置关闭状态显示的文字内容，默认为''
-    unCheckedChildren: PropTypes.string,
+    // 设置关闭状态显示的文字内容
+    unCheckedChildren: PropTypes.node,
 
     // 设置开关大小，可选的有'default'与'small'，默认为'default'
     size: PropTypes.oneOf(['default', 'small']),
@@ -145,6 +153,9 @@ AntdSwitch.propTypes = {
 
 // 设置默认参数
 AntdSwitch.defaultProps = {
+    disabled: false,
+    size: 'default',
+    loading: false,
     persisted_props: ['checked'],
     persistence_type: 'local'
 }

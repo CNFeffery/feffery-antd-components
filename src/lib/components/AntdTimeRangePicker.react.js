@@ -2,8 +2,9 @@ import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { TimePicker, ConfigProvider } from 'antd';
 import moment from 'moment';
-import { isUndefined } from 'lodash';
+import { isUndefined, isString } from 'lodash';
 import { str2Locale } from './locales.react';
+import useCss from '../hooks/useCss';
 
 
 const { RangePicker } = TimePicker
@@ -21,6 +22,7 @@ const AntdTimeRangePicker = (props) => {
         value,
         defaultValue,
         placeholder,
+        placement,
         disabled,
         hourStep,
         minuteStep,
@@ -61,12 +63,18 @@ const AntdTimeRangePicker = (props) => {
             <ConfigProvider locale={str2Locale.get(locale)}>
                 <RangePicker
                     id={id}
-                    className={className}
+                    className={
+                        isString(className) ?
+                            className :
+                            (className ? useCss(className) : undefined)
+                    }
                     style={style}
                     key={key}
                     onChange={onChange}
                     disabled={(disabled && disabled.length === 2) ? disabled : undefined}
+                    allowEmpty={(disabled && disabled.length === 2) ? disabled : undefined}
                     placeholder={(placeholder && placeholder.length === 2) ? placeholder : undefined}
+                    placement={placement}
                     bordered={bordered}
                     size={size}
                     hourStep={hourStep}
@@ -77,18 +85,14 @@ const AntdTimeRangePicker = (props) => {
                     allowClear={isUndefined(readOnly) ? allowClear : !readOnly}
                     defaultValue={
                         (defaultValue && defaultValue.length === 2) ?
-                            (
-                                defaultValue[0] !== '' && defaultValue[1] !== '' ?
-                                    [moment(defaultValue[0], format), moment(defaultValue[1], format)] : undefined
-                            ) :
+                            [defaultValue[0] !== '' ? moment(defaultValue[0], format) : undefined,
+                            defaultValue[1] !== '' ? moment(defaultValue[1], format) : undefined] :
                             undefined
                     }
                     value={
                         (value && value.length === 2) ?
-                            (
-                                value[0] !== '' && value[1] !== '' ?
-                                    [moment(value[0], format), moment(value[1], format)] : undefined
-                            ) :
+                            [value[0] !== '' ? moment(value[0], format) : undefined,
+                            value[1] !== '' ? moment(value[1], format) : undefined] :
                             undefined
                     }
                     status={status}
@@ -103,7 +107,8 @@ const AntdTimeRangePicker = (props) => {
                             (triggerNode) => triggerNode.parentNode :
                             undefined
                     }
-                    open={isUndefined(readOnly) ? undefined : !readOnly}
+                    open={isUndefined(readOnly) || !readOnly ? undefined : false}
+                    inputReadOnly={readOnly}
                 />
             </ConfigProvider>
         </div>
@@ -116,7 +121,10 @@ AntdTimeRangePicker.propTypes = {
     id: PropTypes.string,
 
     // css类名
-    className: PropTypes.string,
+    className: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.object
+    ]),
 
     // 自定义css字典
     style: PropTypes.object,
@@ -126,9 +134,6 @@ AntdTimeRangePicker.propTypes = {
 
     // 设置语言环境，可选的有'zh-cn'、'en-us'
     locale: PropTypes.oneOf(['zh-cn', 'en-us']),
-
-    // 设置是否禁用组件，默认为false
-    disabled: PropTypes.bool,
 
     // 设置小时选项间隔，默认为1
     hourStep: PropTypes.number,
@@ -151,6 +156,10 @@ AntdTimeRangePicker.propTypes = {
     // 空白输入下输入框的填充说明文字
     placeholder: PropTypes.arrayOf(PropTypes.string),
 
+    // 设置时间选择面板的展开方向，可选的有'bottomLeft'、'bottomRight'、'topLeft'、'topRight'
+    // 默认为'bottomLeft'
+    placement: PropTypes.oneOf(['bottomLeft', 'bottomRight', 'topLeft', 'topRight']),
+
     // 设置输入框是否被禁用
     disabled: PropTypes.arrayOf(PropTypes.bool),
 
@@ -171,11 +180,11 @@ AntdTimeRangePicker.propTypes = {
     // 设置校验状态，可选的有'error'、'warning'
     status: PropTypes.oneOf(['error', 'warning']),
 
-    // 设置悬浮层锚定策略，可选的有'parent'、'body'，默认为'body'
-    popupContainer: PropTypes.oneOf(['parent', 'body']),
-
     // 设置是否以只读模式进行渲染，底层利用Select的open参数
     readOnly: PropTypes.bool,
+
+    // 设置悬浮层锚定策略，可选的有'parent'、'body'，默认为'body'
+    popupContainer: PropTypes.oneOf(['parent', 'body']),
 
     /**
     * Object that holds the loading state object coming from dash-renderer
@@ -233,13 +242,20 @@ AntdTimeRangePicker.propTypes = {
 
 // 设置默认参数
 AntdTimeRangePicker.defaultProps = {
-    style: {
-        width: 220
-    },
+    disabled: [false, false],
+    hourStep: 1,
+    minuteStep: 1,
+    secondStep: 1,
+    use12Hours: false,
+    allowClear: true,
+    bordered: true,
+    size: 'middle',
     format: 'HH:mm:ss',
     persisted_props: ['value'],
     persistence_type: 'local',
     locale: 'zh-cn',
+    placement: 'bottomLeft',
+    readOnly: false,
     popupContainer: 'body'
 }
 
