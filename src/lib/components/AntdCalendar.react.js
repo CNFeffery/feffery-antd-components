@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import moment from 'moment';
 import { Calendar, ConfigProvider } from 'antd';
 import { str2Locale } from './locales.react';
+import { isString } from 'lodash';
+import useCss from '../hooks/useCss';
 
 
 // 定义日历组件AntdCalendar，api参数参考https://ant.design/components/calendar-cn/
@@ -42,7 +44,11 @@ const AntdCalendar = (props) => {
     return (
         <ConfigProvider locale={str2Locale.get(locale)}>
             <Calendar id={id}
-                className={className}
+                className={
+                    isString(className) ?
+                        className :
+                        (className ? useCss(className) : undefined)
+                }
                 style={style}
                 key={key}
                 defaultValue={defaultValue && moment(defaultValue, format)}
@@ -65,7 +71,10 @@ AntdCalendar.propTypes = {
     id: PropTypes.string,
 
     // css类名
-    className: PropTypes.string,
+    className: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.object
+    ]),
 
     // 自定义css字典
     style: PropTypes.object,
@@ -76,17 +85,17 @@ AntdCalendar.propTypes = {
     // 设置语言环境，可选的有'zh-cn'、'en-us'
     locale: PropTypes.oneOf(['zh-cn', 'en-us']),
 
-    // 设置面板默认日期
-    defaultValue: PropTypes.string,
-
-    // 对应当前面板已选中值
-    value: PropTypes.string,
-
     // 设置全局日期格式format，优先级低于单个设置的format参数，默认为'YYYY-MM-DD'
     format: PropTypes.string,
 
     // 设置日历尺寸规格，可选的有'default'与'large'，默认为default
     size: PropTypes.oneOf(['default', 'large']),
+
+    // 对应当前面板已选中值
+    value: PropTypes.string,
+
+    // 设置面板默认日期
+    defaultValue: PropTypes.string,
 
     loading_state: PropTypes.shape({
         /**

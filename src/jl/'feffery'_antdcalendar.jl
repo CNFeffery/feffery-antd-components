@@ -9,7 +9,7 @@ An AntdCalendar component.
 
 Keyword arguments:
 - `id` (String; optional)
-- `className` (String; optional)
+- `className` (String | Dict; optional)
 - `defaultValue` (String; optional)
 - `format` (String; optional)
 - `key` (String; optional)

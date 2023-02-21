@@ -18,6 +18,9 @@ const AntdCarousel = (props) => {
         dotPosition,
         easing,
         effect,
+        autoplaySpeed,
+        speed,
+        pauseOnHover,
         loading_state,
         setProps
     } = props;
@@ -36,6 +39,9 @@ const AntdCarousel = (props) => {
             dotPosition={dotPosition}
             easing={easing}
             effect={effect}
+            autoplaySpeed={autoplaySpeed}
+            speed={speed}
+            pauseOnHover={pauseOnHover}
             data-dash-is-loading={
                 (loading_state && loading_state.is_loading) || undefined
             }
@@ -75,6 +81,15 @@ AntdCarousel.propTypes = {
     // 设置动画效果，可选的有'scrollx'与'fade'，默认为'scrollx'
     effect: PropTypes.oneOf(['scrollx', 'fade']),
 
+    // 设置轮播时间间隔，单位：毫秒，默认为3000
+    autoplaySpeed: PropTypes.number,
+
+    // 设置每次轮播动画的耗时，单位：毫秒，默认为500
+    speed: PropTypes.number,
+
+    // 设置是否在鼠标悬停时暂停轮播，默认为false
+    pauseOnHover: PropTypes.bool,
+
     loading_state: PropTypes.shape({
         /**
          * Determines if the component is loading or not
@@ -99,6 +114,13 @@ AntdCarousel.propTypes = {
 
 // 设置默认参数
 AntdCarousel.defaultProps = {
+    autoplay: false,
+    dotPosition: 'bottom',
+    easing: 'linear',
+    effect: 'scrollx',
+    autoplaySpeed: 3000,
+    speed: 500,
+    pauseOnHover: false
 }
 
 export default AntdCarousel;

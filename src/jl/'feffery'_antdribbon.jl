@@ -13,7 +13,7 @@ An AntdRibbon component.
 Keyword arguments:
 - `children` (a list of or a singular dash component, string or number; optional)
 - `id` (String; optional)
-- `className` (String; optional)
+- `className` (String | Dict; optional)
 - `color` (String; optional)
 - `key` (String; optional)
 - `loading_state` (optional): . loading_state has the following type: lists containing elements 'is_loading', 'prop_name', 'component_name'.

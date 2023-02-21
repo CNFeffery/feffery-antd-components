@@ -121,6 +121,9 @@ AntdAvatarGroup.propTypes = {
 
 // 设置默认参数
 AntdAvatarGroup.defaultProps = {
+    maxPopoverPlacement: 'top',
+    maxPopoverTrigger: 'hover',
+    size: 'default'
 }
 
 export default AntdAvatarGroup;

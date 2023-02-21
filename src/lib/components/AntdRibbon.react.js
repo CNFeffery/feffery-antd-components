@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Badge } from 'antd';
+import { isString } from 'lodash';
+import useCss from '../hooks/useCss';
 
 
 // 定义缎带组件AntdRibbon，api参数参考https://ant.design/components/badge-cn/#Badge.Ribbon-(4.5.0+)
@@ -22,7 +24,11 @@ const AntdRibbon = (props) => {
     return (
         <Badge.Ribbon
             id={id}
-            className={className}
+            className={
+                isString(className) ?
+                    className :
+                    (className ? useCss(className) : undefined)
+            }
             style={style}
             key={key}
             color={color}
@@ -44,7 +50,10 @@ AntdRibbon.propTypes = {
     children: PropTypes.node,
 
     // css类名
-    className: PropTypes.string,
+    className: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.object
+    ]),
 
     // 自定义css字典
     style: PropTypes.object,
@@ -85,6 +94,7 @@ AntdRibbon.propTypes = {
 
 // 设置默认参数
 AntdRibbon.defaultProps = {
+    placement: 'end'
 }
 
 export default AntdRibbon;

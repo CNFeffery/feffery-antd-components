@@ -161,8 +161,3 @@
 .ant-btn>*:not(:last-child) {
     margin-right: 0.25em;
 }
-
-/* 为AntdSpace垂直模式下的子元素容器设置默认宽度100% */
-.ant-space-vertical>.ant-space-item {
-    width: 100%;
-}

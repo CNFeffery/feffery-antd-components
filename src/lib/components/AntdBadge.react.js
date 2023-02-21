@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Badge } from 'antd';
+import { isString } from 'lodash';
+import useCss from '../hooks/useCss';
 
 
 // 定义徽标组件AntdBadge，api参数参考https://ant.design/components/badge-cn/
@@ -30,7 +32,11 @@ const AntdBadge = (props) => {
     return (
         <Badge
             id={id}
-            className={className}
+            className={
+                isString(className) ?
+                    className :
+                    (className ? useCss(className) : undefined)
+            }
             style={style}
             key={key}
             color={color}
@@ -63,7 +69,10 @@ AntdBadge.propTypes = {
     children: PropTypes.node,
 
     // css类名
-    className: PropTypes.string,
+    className: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.object
+    ]),
 
     // 自定义css字典
     style: PropTypes.object,
@@ -82,14 +91,14 @@ AntdBadge.propTypes = {
     // 设置是否不展示数字，只显示一个小红点，默认为false
     dot: PropTypes.bool,
 
-    // 设置徽标的位置像素偏移，格式为[x方向偏移, y方向偏移]
-    offset: PropTypes.arrayOf(PropTypes.number),
+    // 设置当count=0时，是否仍然显示0数值，默认为false
+    showZero: PropTypes.bool,
 
     // 设置数字值封顶大小，默认为99
     overflowCount: PropTypes.number,
 
-    // 设置当count=0时，是否仍然显示0数值，默认为false
-    showZero: PropTypes.bool,
+    // 设置徽标的位置像素偏移，格式为[x方向偏移, y方向偏移]
+    offset: PropTypes.arrayOf(PropTypes.number),
 
     // 设置徽标状态，可选的有'success'、'processing'、'default'、'error'及'warning'
     status: PropTypes.oneOf(['success', 'processing', 'default', 'error', 'warning']),
@@ -130,7 +139,11 @@ AntdBadge.propTypes = {
 
 // 设置默认参数
 AntdBadge.defaultProps = {
-    nClicks: 0
+    nClicks: 0,
+    dot: false,
+    showZero: false,
+    overflowCount: 99,
+    size: 'default'
 }
 
 export default AntdBadge;

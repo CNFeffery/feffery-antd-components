@@ -15,11 +15,12 @@ Keyword arguments:
 - `id` (String; optional)
 - `bodyStyle` (Dict; optional)
 - `bordered` (Bool; optional)
-- `className` (String; optional)
-- `coverImg` (optional): . coverImg has the following type: lists containing elements 'src', 'alt', 'style'.
+- `className` (String | Dict; optional)
+- `coverImg` (optional): . coverImg has the following type: lists containing elements 'src', 'alt', 'className', 'style'.
 Those elements have the following types:
   - `src` (String; optional)
   - `alt` (String; optional)
+  - `className` (String; optional)
   - `style` (Dict; optional)
 - `extraLink` (optional): . extraLink has the following type: lists containing elements 'content', 'href', 'target', 'className', 'style'.
 Those elements have the following types:

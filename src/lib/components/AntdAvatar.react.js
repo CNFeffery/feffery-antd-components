@@ -110,11 +110,11 @@ AntdAvatar.propTypes = {
     // 辅助刷新用唯一标识key值
     key: PropTypes.string,
 
-    // 对于字符型头像，设置字符距离左右两侧边界的像素距离，默认为4
-    gap: PropTypes.number,
-
     // 设置头像模式，可选的有'text'、'icon'及'image'，默认为'icon'
     mode: PropTypes.oneOf(['text', 'icon', 'image']),
+
+    // 对于字符型头像，设置字符距离左右两侧边界的像素距离，默认为4
+    gap: PropTypes.number,
 
     // 对应文字类型头像的文字内容
     text: PropTypes.string,
@@ -177,7 +177,10 @@ AntdAvatar.propTypes = {
 
 // 设置默认参数
 AntdAvatar.defaultProps = {
-    mode: 'icon'
+    mode: 'icon',
+    gap: 4,
+    size: 'default',
+    shape: 'circle'
 }
 
 export default AntdAvatar;

@@ -14,6 +14,7 @@ Keyword arguments:
 - `children` (a list of or a singular dash component, string or number; optional)
 - `id` (String; optional)
 - `autoplay` (Bool; optional)
+- `autoplaySpeed` (Real; optional)
 - `className` (String | Dict; optional)
 - `dotPosition` (a value equal to: 'top', 'bottom', 'left', 'right'; optional)
 - `easing` (String; optional)
@@ -24,10 +25,12 @@ Those elements have the following types:
   - `is_loading` (Bool; optional): Determines if the component is loading or not
   - `prop_name` (String; optional): Holds which property is loading
   - `component_name` (String; optional): Holds the name of the component that is loading
+- `pauseOnHover` (Bool; optional)
+- `speed` (Real; optional)
 - `style` (Dict; optional)
 """
 function 'feffery'_antdcarousel(; kwargs...)
-        available_props = Symbol[:children, :id, :autoplay, :className, :dotPosition, :easing, :effect, :key, :loading_state, :style]
+        available_props = Symbol[:children, :id, :autoplay, :autoplaySpeed, :className, :dotPosition, :easing, :effect, :key, :loading_state, :pauseOnHover, :speed, :style]
         wild_props = Symbol[]
         return Component("'feffery'_antdcarousel", "AntdCarousel", "feffery_antd_components", available_props, wild_props; kwargs...)
 end

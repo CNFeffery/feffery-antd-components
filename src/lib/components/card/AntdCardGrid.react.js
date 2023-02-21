@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Card } from 'antd';
+import { isString } from 'lodash';
+import useCss from '../../hooks/useCss';
 
 import { parseChildrenToArray } from '../utils';
 
@@ -22,7 +24,11 @@ const AntdCardGrid = (props) => {
 
     return (
         <Card.Grid id={id}
-            className={className}
+            className={
+                isString(className) ?
+                    className :
+                    (className ? useCss(className) : undefined)
+            }
             style={style}
             key={key}
             hoverable={hoverable}
@@ -45,7 +51,10 @@ AntdCardGrid.propTypes = {
     children: PropTypes.node,
 
     // css类名
-    className: PropTypes.string,
+    className: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.object
+    ]),
 
     // 自定义css字典
     style: PropTypes.object,
@@ -80,6 +89,7 @@ AntdCardGrid.propTypes = {
 
 // 设置默认参数
 AntdCardGrid.defaultProps = {
+    hoverable: true
 }
 
 export default AntdCardGrid;

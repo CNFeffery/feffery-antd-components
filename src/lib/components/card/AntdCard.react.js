@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Card } from 'antd';
+import { isString } from 'lodash';
+import useCss from '../../hooks/useCss';
 
 import { parseChildrenToArray } from '../utils';
 
@@ -29,7 +31,11 @@ const AntdCard = (props) => {
 
     return (
         <Card id={id}
-            className={className}
+            className={
+                isString(className) ?
+                    className :
+                    (className ? useCss(className) : undefined)
+            }
             style={style}
             key={key}
             bodyStyle={{
@@ -50,7 +56,8 @@ const AntdCard = (props) => {
             cover={
                 <img alt={coverImg && coverImg.alt}
                     src={coverImg && coverImg.src}
-                    style={coverImg && coverImg.style} />
+                    style={coverImg && coverImg.style}
+                    className={coverImg && coverImg.className} />
             }
             bordered={bordered}
             hoverable={hoverable}
@@ -75,13 +82,19 @@ AntdCard.propTypes = {
     children: PropTypes.node,
 
     // css类名
-    className: PropTypes.string,
+    className: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.object
+    ]),
 
     // 自定义css字典
     style: PropTypes.object,
 
     // 辅助刷新用唯一标识key值
     key: PropTypes.string,
+
+    // 设置卡片标题内容
+    title: PropTypes.node,
 
     // 设置卡片右上角额外链接功能
     extraLink: PropTypes.exact({
@@ -109,6 +122,9 @@ AntdCard.propTypes = {
         // 设置alt属性
         alt: PropTypes.string,
 
+        // css类名
+        className: PropTypes.string,
+
         // 设置css样式表
         style: PropTypes.object
     }),
@@ -127,9 +143,6 @@ AntdCard.propTypes = {
 
     // 设置卡片的尺寸，可选的有'default'与'small'，默认为'default'
     size: PropTypes.oneOf(['default', 'small']),
-
-    // 设置卡片标题内容
-    title: PropTypes.node,
 
     loading_state: PropTypes.shape({
         /**
@@ -155,6 +168,9 @@ AntdCard.propTypes = {
 
 // 设置默认参数
 AntdCard.defaultProps = {
+    bordered: true,
+    hoverable: false,
+    size: 'default'
 }
 
 export default AntdCard;
