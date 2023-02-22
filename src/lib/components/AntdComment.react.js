@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import moment from 'moment';
 import { str2Locale } from './locales.react';
@@ -6,6 +6,8 @@ import { Comment, Tooltip, Popconfirm, ConfigProvider } from 'antd';
 import { AntdAvatar } from '..';
 import { DislikeOutlined, LikeOutlined, DislikeFilled, LikeFilled } from '@ant-design/icons';
 import { parseChildrenToArray } from './utils';
+import { isString } from 'lodash';
+import useCss from '../hooks/useCss';
 
 // 定义评论组件AntdComment，api参数参考https://ant.design/components/comment-cn/
 const AntdComment = (props) => {
@@ -46,11 +48,13 @@ const AntdComment = (props) => {
 
     children = parseChildrenToArray(children)
 
-    if (!action && defaultAction) {
-        setProps({
-            action: defaultAction
-        })
-    }
+    useEffect(() => {
+        if (!action && defaultAction) {
+            setProps({
+                action: defaultAction
+            })
+        }
+    }, [])
 
     const like = () => {
         setProps({
@@ -106,7 +110,11 @@ const AntdComment = (props) => {
         <ConfigProvider locale={str2Locale.get(locale)}>
             <Comment
                 id={id}
-                className={className}
+                className={
+                    isString(className) ?
+                        className :
+                        (className ? useCss(className) : undefined)
+                }
                 style={style}
                 key={commentId}
                 actions={actions}
@@ -140,7 +148,10 @@ AntdComment.propTypes = {
     children: PropTypes.node,
 
     // css类名
-    className: PropTypes.string,
+    className: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.object
+    ]),
 
     // 自定义css字典
     style: PropTypes.object,
@@ -185,7 +196,7 @@ AntdComment.propTypes = {
     deleteClicks: PropTypes.number,
 
     // 设置评论正文内容
-    commentContent: PropTypes.string,
+    commentContent: PropTypes.node,
 
     // 设置评论对应点赞次数
     likesCount: PropTypes.number,

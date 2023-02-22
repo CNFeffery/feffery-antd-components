@@ -116,7 +116,7 @@ AntdSpace.propTypes = {
     // 辅助刷新用唯一标识key值
     key: PropTypes.string,
 
-    // 自定义对齐方式，可选的有'start'、'end'、'center'、'baseline'，默认为'start'
+    // 自定义对齐方式，可选的有'start'、'end'、'center'、'baseline'
     align: PropTypes.oneOf(['start', 'end', 'center', 'baseline']),
 
     // 设置间距方向，可选的有'vertical'、'horizontal'，默认为'horizontal'
@@ -158,7 +158,6 @@ AntdSpace.propTypes = {
 
 // 设置默认参数
 AntdSpace.defaultProps = {
-    align: 'start',
     addSplitLine: false,
     direction: 'horizontal',
     size: 'small',
