@@ -1,8 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Collapse } from 'antd';
-
 import { parseChildrenToArray } from './utils';
+import { isString } from 'lodash';
+import useCss from '../hooks/useCss';
 
 const { Panel } = Collapse;
 
@@ -16,7 +17,7 @@ const AntdCollapse = (props) => {
         style,
         key,
         title,
-        is_open,
+        isOpen,
         bordered,
         showArrow,
         collapsible,
@@ -34,8 +35,12 @@ const AntdCollapse = (props) => {
     return (
         <Collapse
             id={id}
-            className={className}
-            activeKey={is_open ? ['1'] : []}
+            className={
+                isString(className) ?
+                    className :
+                    (className ? useCss(className) : undefined)
+            }
+            activeKey={isOpen ? ['1'] : []}
             style={style}
             key={key}
             bordered={bordered}
@@ -44,11 +49,11 @@ const AntdCollapse = (props) => {
             onChange={(e) => {
                 if (e.length === 1) {
                     setProps({
-                        is_open: true
+                        isOpen: true
                     })
                 } else {
                     setProps({
-                        is_open: false
+                        isOpen: false
                     })
                 }
             }}
@@ -78,7 +83,10 @@ AntdCollapse.propTypes = {
     children: PropTypes.node,
 
     // css类名
-    className: PropTypes.string,
+    className: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.object
+    ]),
 
     // 自定义css字典
     style: PropTypes.object,
@@ -86,11 +94,11 @@ AntdCollapse.propTypes = {
     // 辅助刷新用唯一标识key值
     key: PropTypes.string,
 
-    // 设置折叠控件所显示的标题文字
-    title: PropTypes.string,
+    // 设置折叠控件所显示的标题内容
+    title: PropTypes.node,
 
     // 设置是否打开，默认为true
-    is_open: PropTypes.bool,
+    isOpen: PropTypes.bool,
 
     // 设置是否渲染边框
     bordered: PropTypes.bool,
@@ -147,7 +155,7 @@ AntdCollapse.propTypes = {
      * component or the page. Since only `value` is allowed this prop can
      * normally be ignored.
      */
-    persisted_props: PropTypes.arrayOf(PropTypes.oneOf(['is_open'])),
+    persisted_props: PropTypes.arrayOf(PropTypes.oneOf(['isOpen'])),
 
     /**
      * Where persisted user changes will be stored:
@@ -160,9 +168,12 @@ AntdCollapse.propTypes = {
 
 // 设置默认参数
 AntdCollapse.defaultProps = {
-    title: '',
-    is_open: true,
-    persisted_props: ['is_open'],
+    isOpen: true,
+    bordered: true,
+    showArrow: true,
+    ghost: false,
+    forceRender: false,
+    persisted_props: ['isOpen'],
     persistence_type: 'local'
 }
 
