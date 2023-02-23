@@ -552,7 +552,6 @@ AntdDateRangePicker.defaultProps = {
     size: 'middle',
     bordered: true,
     allowClear: true,
-    readOnly: false,
     persisted_props: ['value'],
     persistence_type: 'local',
     locale: 'zh-cn',

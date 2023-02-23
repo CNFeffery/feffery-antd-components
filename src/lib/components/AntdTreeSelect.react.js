@@ -420,7 +420,6 @@ AntdTreeSelect.defaultProps = {
     treeCheckStrictly: false,
     treeDefaultExpandAll: false,
     autoClearSearchValue: true,
-    readOnly: false,
     persisted_props: ['value'],
     persistence_type: 'local',
     locale: 'zh-cn',

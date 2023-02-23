@@ -255,7 +255,6 @@ AntdTimeRangePicker.defaultProps = {
     persistence_type: 'local',
     locale: 'zh-cn',
     placement: 'bottomLeft',
-    readOnly: false,
     popupContainer: 'body'
 }
 

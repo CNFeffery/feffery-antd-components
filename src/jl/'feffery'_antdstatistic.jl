@@ -17,17 +17,11 @@ Those elements have the following types:
   - `prop_name` (String; optional): Holds which property is loading
   - `component_name` (String; optional): Holds the name of the component that is loading
 - `precision` (Real; optional)
-- `prefix` (optional): . prefix has the following type: lists containing elements 'mode', 'content'.
-Those elements have the following types:
-  - `mode` (a value equal to: 'text', 'icon'; optional)
-  - `content` (String; optional)
+- `prefix` (a list of or a singular dash component, string or number; optional)
 - `showGroupSeparator` (Bool; optional)
 - `style` (Dict; optional)
-- `suffix` (optional): . suffix has the following type: lists containing elements 'mode', 'content'.
-Those elements have the following types:
-  - `mode` (a value equal to: 'text', 'icon'; optional)
-  - `content` (String; optional)
-- `title` (String; optional)
+- `suffix` (a list of or a singular dash component, string or number; optional)
+- `title` (a list of or a singular dash component, string or number; optional)
 - `titleTooltip` (String; optional)
 - `value` (Real | String; optional)
 - `valueStyle` (Dict; optional)

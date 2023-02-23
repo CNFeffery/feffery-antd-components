@@ -285,7 +285,6 @@ AntdSegmentedColoring.defaultProps = {
     keyboard: true,
     step: 0.01,
     precision: 2,
-    readOnly: false,
     colorBlockPosition: 'right',
     pureLegend: false
 }

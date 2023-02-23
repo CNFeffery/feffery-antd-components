@@ -7,8 +7,9 @@ import {
     CloseCircleOutlined,
     CloseCircleTwoTone
 } from "@ant-design/icons";
-
 import Draggable from "react-draggable";
+import { isString } from 'lodash';
+import useCss from '../hooks/useCss';
 
 // 定义弹出卡片组件AntdPopupCard，api参数参考https://ant.design/components/modal-cn/
 const AntdPopupCard = (props) => {
@@ -63,7 +64,11 @@ const AntdPopupCard = (props) => {
         <ConfigProvider locale={str2Locale.get(locale)}>
             <Modal
                 id={id}
-                className={className}
+                className={
+                    isString(className) ?
+                        className :
+                        (className ? useCss(className) : undefined)
+                }
                 style={style}
                 key={key}
                 title={
@@ -159,7 +164,10 @@ AntdPopupCard.propTypes = {
     children: PropTypes.node,
 
     // css类名
-    className: PropTypes.string,
+    className: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.object
+    ]),
 
     // 自定义css字典
     style: PropTypes.object,
@@ -186,9 +194,9 @@ AntdPopupCard.propTypes = {
     // 'zoom-down'、'zoom-left'、'zoom-right'、'slide-up'、'slide-down'、'slide-left'、
     // 'slide-right'、'move-up'、'move-down'、'move-left'、'move-right'
     transitionType: PropTypes.oneOf([
-        'none', 'fade', 'zoom', 'zoom-big', 'zoom-big-fast', 'zoom-up',
-        'zoom-down', 'zoom-left', 'zoom-right', 'slide-up', 'slide-down', 'slide-left',
-        'slide-right', 'move-up', 'move-down', 'move-left', 'move-right'
+        'none', 'fade', 'zoom', 'zoom-big', 'zoom-big-fast', 'slide-up',
+        'slide-down', 'slide-left', 'slide-right', 'move-up', 'move-down',
+        'move-left', 'move-right'
     ]),
 
     // 设置是否渲染关闭按钮，默认为true
@@ -225,7 +233,7 @@ AntdPopupCard.propTypes = {
          * Holds the name of the component that is loading
          */
         component_name: PropTypes.string
-    }),
+    })
 };
 
 // 设置默认参数
@@ -235,7 +243,8 @@ AntdPopupCard.defaultProps = {
     closeIconType: 'default',
     draggable: false,
     visible: true,
-    closable: true
+    closable: true,
+    zIndex: 1000
 }
 
 export default AntdPopupCard;

@@ -315,8 +315,7 @@ AntdCascader.defaultProps = {
     showCheckedStrategy: 'show-parent',
     popupContainer: 'body',
     bordered: true,
-    disabled: false,
-    readOnly: false
+    disabled: false
 }
 
 export default AntdCascader;

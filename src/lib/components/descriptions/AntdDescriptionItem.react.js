@@ -1,5 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { isString } from 'lodash';
+import useCss from '../../hooks/useCss';
 
 import { parseChildrenToArray } from '../utils';
 
@@ -24,7 +26,11 @@ const AntdDescriptionItem = (props) => {
 
     return (
         <div id={id}
-            className={className}
+            className={
+                isString(className) ?
+                    className :
+                    (className ? useCss(className) : undefined)
+            }
             style={style}
             key={key}
             label={label}
@@ -50,7 +56,10 @@ AntdDescriptionItem.propTypes = {
     children: PropTypes.node,
 
     // css类名
-    className: PropTypes.string,
+    className: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.object
+    ]),
 
     // 自定义css字典
     style: PropTypes.object,
@@ -59,7 +68,7 @@ AntdDescriptionItem.propTypes = {
     key: PropTypes.string,
 
     // 设置内容描述标题内容
-    label: PropTypes.string,
+    label: PropTypes.node,
 
     // 设置当前列表占位份数，默认为1
     span: PropTypes.number,
@@ -94,6 +103,7 @@ AntdDescriptionItem.propTypes = {
 
 // 设置默认参数
 AntdDescriptionItem.defaultProps = {
+    span: 1
 }
 
 export default AntdDescriptionItem;

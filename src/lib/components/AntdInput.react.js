@@ -399,7 +399,6 @@ AntdInput.defaultProps = {
     nClicksSearch: 0,
     nSubmit: 0,
     allowClear: false,
-    readOnly: false,
     persisted_props: ['value'],
     persistence_type: 'local',
     debounceWait: 200

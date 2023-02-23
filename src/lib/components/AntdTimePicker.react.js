@@ -241,7 +241,6 @@ AntdTimePicker.defaultProps = {
     persisted_props: ['value'],
     persistence_type: 'local',
     locale: 'zh-cn',
-    readOnly: false,
     popupContainer: 'body'
 }
 

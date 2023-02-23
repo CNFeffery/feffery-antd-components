@@ -10,7 +10,7 @@ An AntdSegmented component.
 Keyword arguments:
 - `id` (String; optional)
 - `block` (Bool; optional)
-- `className` (String; optional)
+- `className` (String | Dict; optional)
 - `defaultValue` (String | Real; optional)
 - `disabled` (Bool; optional)
 - `key` (String; optional)

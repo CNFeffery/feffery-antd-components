@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Statistic, Space } from 'antd';
 import AntdTooltip from './AntdTooltip.react';
-import AntdIcon from './AntdIcon.react';
 import useCss from '../hooks/useCss';
 import { isString } from 'lodash';
 import { QuestionCircleOutlined } from "@ant-design/icons";
@@ -40,20 +39,8 @@ const AntdStatistic = (props) => {
             value={value}
             groupSeparator={showGroupSeparator ? ',' : ''}
             precision={precision}
-            prefix={
-                prefix ? (
-                    prefix.mode === 'icon' ?
-                        <AntdIcon icon={prefix.content} /> :
-                        prefix.content
-                ) : null
-            }
-            suffix={
-                suffix ? (
-                    suffix.mode === 'icon' ?
-                        <AntdIcon icon={suffix.content} /> :
-                        suffix.content
-                ) : null
-            }
+            prefix={prefix}
+            suffix={suffix}
             title={titleTooltip ?
                 <Space size={5}>
                     {title}
@@ -99,36 +86,14 @@ AntdStatistic.propTypes = {
     // 设置数值精度，即小数点后位数
     precision: PropTypes.number,
 
-    // 设置数值前缀内容，可选文字模式或图标模式
-    prefix: PropTypes.exact({
-        // 设置内容模式，'text'或不设置时代表文字模式
-        // 'icon'时代表图标模式
-        mode: PropTypes.oneOf([
-            'text', 'icon'
-        ]),
-
-        // 当mode='text'时传入前缀文本内容
-        // 当mode='icon'时传入前缀图标对应的icon别名
-        // 同AntdIcon的icon参数
-        content: PropTypes.string
-    }),
+    // 设置数值前缀内容
+    prefix: PropTypes.node,
 
     // 设置数值后缀内容，可选文字模式或图标模式
-    suffix: PropTypes.exact({
-        // 设置内容模式，'text'或不设置时代表文字模式
-        // 'icon'时代表图标模式
-        mode: PropTypes.oneOf([
-            'text', 'icon'
-        ]),
-
-        // 当mode='text'时传入后缀文本内容
-        // 当mode='icon'时传入后缀图标对应的icon别名
-        // 同AntdIcon的icon参数
-        content: PropTypes.string
-    }),
+    suffix: PropTypes.node,
 
     // 设置标题文字内容
-    title: PropTypes.string,
+    title: PropTypes.node,
 
     // 为title设置后缀的鼠标悬浮提示框内容，默认不设置则不渲染
     titleTooltip: PropTypes.string,

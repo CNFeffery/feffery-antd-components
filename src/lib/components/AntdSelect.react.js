@@ -462,7 +462,6 @@ AntdSelect.defaultProps = {
     autoSpin: false,
     debounceWait: 200,
     popupContainer: 'body',
-    readOnly: false,
     loadingEmptyContent: (
         <div style={{ display: 'flex', 'justifyContent': 'center' }}>
             <Spin />

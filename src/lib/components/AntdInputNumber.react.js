@@ -273,7 +273,6 @@ AntdInputNumber.defaultProps = {
     size: 'middle',
     bordered: true,
     nSubmit: 0,
-    readOnly: false,
     persisted_props: ['value'],
     persistence_type: 'local',
     debounceWait: 200

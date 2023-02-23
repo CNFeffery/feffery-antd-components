@@ -1,9 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Popover } from 'antd';
-
 import AntdIcon from './AntdIcon.react';
 import { parseChildrenToArray } from './utils';
+import { isString } from 'lodash';
+import useCss from '../hooks/useCss';
 
 // 定义气泡卡片组件Popover，api参数参考https://ant.design/components/popover-cn/
 const AntdPopover = (props) => {
@@ -33,7 +34,11 @@ const AntdPopover = (props) => {
 
     return (
         <Popover id={id}
-            className={className}
+            className={
+                isString(className) ?
+                    className :
+                    (className ? useCss(className) : undefined)
+            }
             style={style}
             key={key}
             title={(title && title.content) ?
@@ -74,7 +79,10 @@ AntdPopover.propTypes = {
     children: PropTypes.node,
 
     // css类名
-    className: PropTypes.string,
+    className: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.object
+    ]),
 
     // 自定义css字典
     style: PropTypes.object,
@@ -83,16 +91,7 @@ AntdPopover.propTypes = {
     key: PropTypes.string,
 
     // 设置显示的气泡卡片标题内容
-    title: PropTypes.oneOfType([
-        PropTypes.string,
-        PropTypes.exact({
-            // 设置标题文字内容
-            content: PropTypes.string,
-
-            // 设置标题前缀icon
-            prefixIcon: PropTypes.string
-        })
-    ]),
+    title: PropTypes.node,
 
     // 设置显示的气泡卡片内容
     content: PropTypes.node,
@@ -121,15 +120,16 @@ AntdPopover.propTypes = {
     overlayInnerStyle: PropTypes.object,
 
     // 设置触发行为，可选的有'hover'、'focus'、'click'，或是以上多个组成的数组，默认为'hover'
-    trigger: PropTypes.oneOfType(
-        [
-            PropTypes.oneOf(['hover', 'focus', 'click']),
-            PropTypes.arrayOf(PropTypes.oneOf(['hover', 'focus', 'click']))
-        ]
-    ),
+    trigger: PropTypes.oneOfType([
+        PropTypes.oneOf(['hover', 'focus', 'click']),
+        PropTypes.arrayOf(PropTypes.oneOf(['hover', 'focus', 'click']))
+    ]),
 
     // 设置悬浮层zIndex
     zIndex: PropTypes.number,
+
+    // 设置箭头是否指向锚点元素中心，默认为false
+    arrowPointAtCenter: PropTypes.bool,
 
     // 设置悬浮层锚定策略，可选的有'parent'、'body'，默认为'body'
     popupContainer: PropTypes.oneOf(['parent', 'body']),
@@ -158,6 +158,11 @@ AntdPopover.propTypes = {
 
 // 设置默认参数
 AntdPopover.defaultProps = {
+    mouseEnterDelay: 0.1,
+    mouseLeaveDelay: 0.1,
+    placement: 'top',
+    trigger: 'hover',
+    arrowPointAtCenter: false,
     popupContainer: 'body'
 }
 

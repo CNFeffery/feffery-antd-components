@@ -2,8 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Descriptions } from 'antd';
 import { omit } from 'ramda';
-
 import { parseChildrenToArray, resolveChildProps } from '../utils';
+import { isString } from 'lodash';
+import useCss from '../../hooks/useCss';
 
 // 定义描述列表组件AntdDescriptions，api参数参考https://ant.design/components/descriptions-cn/
 const AntdDescriptions = (props) => {
@@ -71,7 +72,11 @@ const AntdDescriptions = (props) => {
 
     return (
         <Descriptions id={id}
-            className={className}
+            className={
+                isString(className) ?
+                    className :
+                    (className ? useCss(className) : undefined)
+            }
             style={style}
             key={key}
             title={title}
@@ -97,7 +102,10 @@ AntdDescriptions.propTypes = {
     children: PropTypes.node,
 
     // css类名
-    className: PropTypes.string,
+    className: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.object
+    ]),
 
     // 自定义css字典
     style: PropTypes.object,
@@ -106,7 +114,7 @@ AntdDescriptions.propTypes = {
     key: PropTypes.string,
 
     // 设置标题内容
-    title: PropTypes.string,
+    title: PropTypes.node,
 
     // 设置同一行允许放置的字段项数量，默认为3
     column: PropTypes.oneOfType([
@@ -129,6 +137,7 @@ AntdDescriptions.propTypes = {
     size: PropTypes.oneOf(['small', 'default', 'large']),
 
     // 设置字段标签与字段内容的布局方式，可选的有'horizontal'和'vertical'
+    // 默认为'horizontal'
     layout: PropTypes.oneOf(['horizontal', 'vertical']),
 
     // 设置字段标签的css样式
@@ -161,6 +170,9 @@ AntdDescriptions.propTypes = {
 
 // 设置默认参数
 AntdDescriptions.defaultProps = {
+    column: 3,
+    bordered: false,
+    layout: 'horizontal',
     size: 'default'
 }
 

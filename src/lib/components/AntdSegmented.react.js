@@ -1,9 +1,10 @@
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { Segmented } from 'antd';
-
 import AntdIcon from "./AntdIcon.react"
 import propTypes from 'prop-types';
+import { isString } from 'lodash';
+import useCss from '../hooks/useCss';
 
 // 定义分段控制器组件AntdSegmented，api参数参考https://ant.design/components/segmented-cn/
 const AntdSegmented = (props) => {
@@ -27,6 +28,8 @@ const AntdSegmented = (props) => {
         loading_state
     } = props;
 
+    options = options || []
+
     useEffect(() => {
         if (!value && defaultValue) {
             // 当defaultValue不为空时，为value初始化defaultValue对应的value值
@@ -42,7 +45,11 @@ const AntdSegmented = (props) => {
     return (
         <Segmented
             id={id}
-            className={className}
+            className={
+                isString(className) ?
+                    className :
+                    (className ? useCss(className) : undefined)
+            }
             style={style}
             key={key}
             options={
@@ -75,7 +82,10 @@ AntdSegmented.propTypes = {
     id: PropTypes.string,
 
     // css类名
-    className: PropTypes.string,
+    className: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.object
+    ]),
 
     // 自定义css字典
     style: PropTypes.object,
@@ -181,6 +191,9 @@ AntdSegmented.propTypes = {
 
 // 设置默认参数
 AntdSegmented.defaultProps = {
+    block: false,
+    disabled: false,
+    size: 'middle',
     persisted_props: ['value'],
     persistence_type: 'local'
 }

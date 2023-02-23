@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import { Typography } from 'antd';
 import { useSize } from 'ahooks';
 import { locale2text } from './locales.react';
+import { isString } from 'lodash';
+import useCss from '../hooks/useCss';
 
 const { Link } = Typography;
 
@@ -20,6 +22,7 @@ const AntdSpoiler = (props) => {
         contentStyle,
         hideLabel,
         showLabel,
+        labelPosition,
         open,
         maxHeight,
         transitionDuration,
@@ -33,7 +36,11 @@ const AntdSpoiler = (props) => {
     return (
         <div id={id}
             key={key}
-            className={className}
+            className={
+                isString(className) ?
+                    className :
+                    (className ? useCss(className) : undefined)
+            }
             style={style}
             data-dash-is-loading={
                 (loading_state && loading_state.is_loading) || undefined
@@ -44,7 +51,7 @@ const AntdSpoiler = (props) => {
                         transitionTimingFunction: 'ease',
                         ...contentStyle,
                         maxHeight: open ? (size && size.height) : maxHeight,
-                        transitionDuration: transitionDuration,
+                        transitionDuration: `${transitionDuration}s`,
                         transitionProperty: 'max-height',
                         overflow: 'hidden'
                     }
@@ -53,15 +60,19 @@ const AntdSpoiler = (props) => {
                     {children}
                 </div>
             </div>
-            <Link onClick={() => {
-                setProps({
-                    open: !open
-                })
+            <div style={{
+                textAlign: labelPosition
             }}>
-                {
-                    open ? hideLabel || locale2text.AntdSpoiler[locale].hideLabel : showLabel || locale2text.AntdSpoiler[locale].showLabel
-                }
-            </Link>
+                <Link onClick={() => {
+                    setProps({
+                        open: !open
+                    })
+                }}>
+                    {
+                        open ? hideLabel || locale2text.AntdSpoiler[locale].hideLabel : showLabel || locale2text.AntdSpoiler[locale].showLabel
+                    }
+                </Link>
+            </div>
         </div>
     );
 }
@@ -72,7 +83,10 @@ AntdSpoiler.propTypes = {
 
     children: PropTypes.node,
 
-    className: PropTypes.string,
+    className: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.object
+    ]),
 
     style: PropTypes.object,
 
@@ -89,19 +103,22 @@ AntdSpoiler.propTypes = {
     locale: PropTypes.oneOf(['zh-cn', 'en-us']),
 
     // 设置展开状态下，收起按钮的文案
-    hideLabel: PropTypes.string,
+    hideLabel: PropTypes.node,
 
     // 设置收起状态下，展开按钮的文案
-    showLabel: PropTypes.string,
+    showLabel: PropTypes.node,
+
+    // 设置展开/收起按钮的位置，默认为'left'
+    labelPosition: PropTypes.oneOf(['left', 'right']),
 
     // 设置或监听当前是否处于展开状态，默认为false
     open: PropTypes.bool,
 
-    // 设置收起状态下的内容区域最大像素高度，默认为100
+    // 设置收起状态下的内容区域最大像素高度，默认为50
     maxHeight: PropTypes.number,
 
-    // 设置展开收起过渡动画的时长，默认为'0.2s'
-    transitionDuration: PropTypes.string,
+    // 设置展开收起过渡动画的时长，单位：秒，默认为0.1
+    transitionDuration: PropTypes.number,
 
     loading_state: PropTypes.shape({
         /**
@@ -130,7 +147,8 @@ AntdSpoiler.defaultProps = {
     locale: 'zh-cn',
     open: false,
     maxHeight: 50,
-    transitionDuration: '0.1s'
+    transitionDuration: 0.1,
+    labelPosition: 'left'
 }
 
 export default AntdSpoiler;

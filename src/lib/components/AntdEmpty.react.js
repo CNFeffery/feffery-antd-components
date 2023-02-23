@@ -2,6 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Empty, ConfigProvider } from 'antd';
 import { str2Locale } from './locales.react';
+import { isString } from 'lodash';
+import useCss from '../hooks/useCss';
 
 
 const builtinImage = new Map([
@@ -29,15 +31,21 @@ const AntdEmpty = (props) => {
     return (
         <ConfigProvider locale={str2Locale.get(locale)}>
             <Empty id={id}
-                className={className}
+                className={
+                    isString(className) ?
+                        className :
+                        (className ? useCss(className) : undefined)
+                }
                 style={style}
                 key={key}
-                description={description} m
+                description={description}
                 image={builtinImage.get(image) || image}
                 imageStyle={imageStyle}
                 data-dash-is-loading={
                     (loading_state && loading_state.is_loading) || undefined
-                } >{children}</Empty>
+                } >
+                {children}
+            </Empty>
         </ConfigProvider>
     );
 }
@@ -50,7 +58,10 @@ AntdEmpty.propTypes = {
     children: PropTypes.node,
 
     // css类名
-    className: PropTypes.string,
+    className: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.object
+    ]),
 
     // 自定义css字典
     style: PropTypes.object,
@@ -62,7 +73,10 @@ AntdEmpty.propTypes = {
     locale: PropTypes.oneOf(['zh-cn', 'en-us']),
 
     // 设置描述信息内容
-    description: PropTypes.node,
+    description: PropTypes.oneOfType([
+        PropTypes.node,
+        PropTypes.bool
+    ]),
 
     // 设置自定义图片的url地址，默认为内建图片
     image: PropTypes.oneOfType([
@@ -99,7 +113,8 @@ AntdEmpty.propTypes = {
 
 // 设置默认参数
 AntdEmpty.defaultProps = {
-    locale: 'zh-cn'
+    locale: 'zh-cn',
+    image: 'default'
 }
 
 export default AntdEmpty;

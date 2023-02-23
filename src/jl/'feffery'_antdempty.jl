@@ -13,8 +13,8 @@ An AntdEmpty component.
 Keyword arguments:
 - `children` (a list of or a singular dash component, string or number; optional)
 - `id` (String; optional)
-- `className` (String; optional)
-- `description` (a list of or a singular dash component, string or number; optional)
+- `className` (String | Dict; optional)
+- `description` (a list of or a singular dash component, string or number | Bool; optional)
 - `image` (String | a value equal to: 'default', 'simple'; optional)
 - `imageStyle` (Dict; optional)
 - `key` (String; optional)

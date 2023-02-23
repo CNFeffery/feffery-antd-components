@@ -2,7 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Statistic } from 'antd';
 import moment from 'moment';
-import AntdIcon from './AntdIcon.react';
+import { isString } from 'lodash';
+import useCss from '../hooks/useCss';
 
 
 const { Countdown } = Statistic;
@@ -16,11 +17,12 @@ const AntdCountdown = (props) => {
         style,
         key,
         value,
-        format,
         valueFormat,
+        format,
         prefix,
         suffix,
         title,
+        titleTooltip,
         valueStyle,
         setProps,
         loading_state
@@ -28,26 +30,25 @@ const AntdCountdown = (props) => {
 
     return (
         <Countdown id={id}
-            className={className}
+            className={
+                isString(className) ?
+                    className :
+                    (className ? useCss(className) : undefined)
+            }
             style={style}
             key={key}
             value={moment(value, valueFormat)}
             format={format}
-            prefix={
-                prefix ? (
-                    prefix.mode === 'icon' ?
-                        <AntdIcon icon={prefix.content} /> :
-                        prefix.content
-                ) : null
-            }
-            suffix={
-                suffix ? (
-                    suffix.mode === 'icon' ?
-                        <AntdIcon icon={suffix.content} /> :
-                        suffix.content
-                ) : null
-            }
-            title={title}
+            prefix={prefix}
+            suffix={suffix}
+            title={titleTooltip ?
+                <Space size={5}>
+                    {title}
+                    <AntdTooltip title={titleTooltip} >
+                        <QuestionCircleOutlined />
+                    </AntdTooltip>
+                </Space>
+                : title}
             valueStyle={valueStyle}
             data-dash-is-loading={
                 (loading_state && loading_state.is_loading) || undefined
@@ -62,7 +63,10 @@ AntdCountdown.propTypes = {
     id: PropTypes.string,
 
     // css类名
-    className: PropTypes.string,
+    className: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.object
+    ]),
 
     // 自定义css字典
     style: PropTypes.object,
@@ -77,40 +81,20 @@ AntdCountdown.propTypes = {
     // 设定截止日期时间字符串
     value: PropTypes.string,
 
-    // 设定与截止日期时间字符串对应的格式化参数
-    // 格式参考：https://momentjs.com/，如HH:mm:ss代表 时:分:秒
+    // 用于设置针对value进行格式化渲染的格式
     valueFormat: PropTypes.string,
 
     // 设置数值前缀内容，可选文字模式或图标模式
-    prefix: PropTypes.exact({
-        // 设置内容模式，'text'或不设置时代表文字模式
-        // 'icon'时代表图标模式
-        mode: PropTypes.oneOf([
-            'text', 'icon'
-        ]),
-
-        // 当mode='text'时传入前缀文本内容
-        // 当mode='icon'时传入前缀图标对应的icon别名
-        // 同AntdIcon的icon参数
-        content: PropTypes.string
-    }),
+    prefix: PropTypes.node,
 
     // 设置数值后缀内容，可选文字模式或图标模式
-    suffix: PropTypes.exact({
-        // 设置内容模式，'text'或不设置时代表文字模式
-        // 'icon'时代表图标模式
-        mode: PropTypes.oneOf([
-            'text', 'icon'
-        ]),
+    suffix: PropTypes.node,
 
-        // 当mode='text'时传入后缀文本内容
-        // 当mode='icon'时传入后缀图标对应的icon别名
-        // 同AntdIcon的icon参数
-        content: PropTypes.string
-    }),
+    // 设置标题内容
+    title: PropTypes.node,
 
-    // 设置标题文字内容
-    title: PropTypes.string,
+    // 为title设置后缀的鼠标悬浮提示框内容，默认不设置则不渲染
+    titleTooltip: PropTypes.string,
 
     // 设置数值的css样式
     valueStyle: PropTypes.object,

@@ -14,7 +14,7 @@ Keyword arguments:
 - `children` (a list of or a singular dash component, string or number; optional)
 - `id` (String; optional)
 - `bordered` (Bool; optional)
-- `className` (String; optional)
+- `className` (String | Dict; optional)
 - `column` (optional): . column has the following type: Real | lists containing elements 'xxl', 'xl', 'lg', 'md', 'sm', 'xs'.
 Those elements have the following types:
   - `xxl` (Real; optional)
@@ -34,7 +34,7 @@ Those elements have the following types:
   - `component_name` (String; optional): Holds the name of the component that is loading
 - `size` (a value equal to: 'small', 'default', 'large'; optional)
 - `style` (Dict; optional)
-- `title` (String; optional)
+- `title` (a list of or a singular dash component, string or number; optional)
 """
 function 'feffery'_antddescriptions(; kwargs...)
         available_props = Symbol[:children, :id, :bordered, :className, :column, :contentStyle, :key, :labelStyle, :layout, :loading_state, :size, :style, :title]
