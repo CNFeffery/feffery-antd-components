@@ -24,8 +24,9 @@ import { TinyLine, TinyArea, TinyColumn, Progress, RingProgress } from '@ant-des
 import Highlighter from 'react-highlight-words';
 import AntdIcon from './AntdIcon.react';
 import { SearchOutlined, QuestionCircleOutlined, DownOutlined } from '@ant-design/icons';
-import { isNumber, isEqual } from 'lodash';
+import { isNumber, isEqual, isString } from 'lodash';
 import { str2Locale } from './locales.react';
+import useCss from '../hooks/useCss';
 
 const { Text } = Typography;
 
@@ -1309,7 +1310,11 @@ class AntdTable extends Component {
             >
                 <Table
                     id={id}
-                    className={className}
+                    className={
+                        isString(className) ?
+                            className :
+                            (className ? useCss(className) : undefined)
+                    }
                     style={style}
                     key={key}
                     components={atLeastOneColumnEditable ? components : undefined}

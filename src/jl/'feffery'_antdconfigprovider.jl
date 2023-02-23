@@ -21,10 +21,11 @@ Those elements have the following types:
   - `is_loading` (Bool; optional): Determines if the component is loading or not
   - `prop_name` (String; optional): Holds which property is loading
   - `component_name` (String; optional): Holds the name of the component that is loading
+- `locale` (a value equal to: 'zh-cn', 'en-us'; optional)
 - `primaryColor` (String; optional)
 """
 function 'feffery'_antdconfigprovider(; kwargs...)
-        available_props = Symbol[:children, :id, :componentDisabled, :componentSize, :key, :loading_state, :primaryColor]
+        available_props = Symbol[:children, :id, :componentDisabled, :componentSize, :key, :loading_state, :locale, :primaryColor]
         wild_props = Symbol[]
         return Component("'feffery'_antdconfigprovider", "AntdConfigProvider", "feffery_antd_components", available_props, wild_props; kwargs...)
 end

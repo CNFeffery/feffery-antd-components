@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { ConfigProvider } from 'antd';
+import PropsContext from '../contexts/PropsContext';
 
 // 定义参数配置组件AntdConfigProvider，api参数参考https://ant.design/components/tag-cn/
 const AntdConfigProvider = (props) => {
@@ -12,6 +13,7 @@ const AntdConfigProvider = (props) => {
         primaryColor,
         componentDisabled,
         componentSize,
+        locale,
         setProps,
         loading_state
     } = props;
@@ -22,18 +24,26 @@ const AntdConfigProvider = (props) => {
                 primaryColor: primaryColor
             }
         })
-    })
+    }, [primaryColor])
 
     return (
-        <ConfigProvider id={id}
-            key={key}
-            componentDisabled={componentDisabled}
-            componentSize={componentSize}
-            data-dash-is-loading={
-                (loading_state && loading_state.is_loading) || undefined
-            }>
-            {children}
-        </ConfigProvider>
+        <PropsContext.Provider
+            value={
+                {
+                    locale
+                }
+            }
+        >
+            <ConfigProvider id={id}
+                key={key}
+                componentDisabled={componentDisabled}
+                componentSize={componentSize}
+                data-dash-is-loading={
+                    (loading_state && loading_state.is_loading) || undefined
+                }>
+                {children}
+            </ConfigProvider>
+        </PropsContext.Provider>
     );
 }
 
@@ -55,6 +65,9 @@ AntdConfigProvider.propTypes = {
 
     // 总体设置子元素的尺寸规格，可选的有'small'、'default'、'large'
     componentSize: PropTypes.oneOf(['small', 'default', 'large']),
+
+    // 设置语言环境，可选的有'zh-cn'、'en-us'
+    locale: PropTypes.oneOf(['zh-cn', 'en-us']),
 
     loading_state: PropTypes.shape({
         /**

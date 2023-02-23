@@ -1,10 +1,11 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useContext } from 'react';
 import PropTypes from 'prop-types';
 import { DatePicker, ConfigProvider } from 'antd';
 import moment from 'moment';
 import { isString, isUndefined } from 'lodash';
 import { str2Locale } from './locales.react';
 import useCss from '../hooks/useCss';
+import PropsContext from '../contexts/PropsContext';
 
 // 定义日期选择组件AntdDatePicker，api参数参考https://ant.design/components/date-picker-cn/
 const AntdDatePicker = (props) => {
@@ -37,6 +38,8 @@ const AntdDatePicker = (props) => {
         persistence_type,
         loading_state
     } = props;
+
+    const context = useContext(PropsContext)
 
     useEffect(() => {
         // 初始化value
@@ -331,7 +334,9 @@ const AntdDatePicker = (props) => {
     // 返回定制化的前端组件
     return (
         <div>
-            <ConfigProvider locale={str2Locale.get(locale)}>
+            <ConfigProvider
+                locale={context.locale ? str2Locale.get(context.locale) : str2Locale.get(locale)}
+            >
                 <DatePicker
                     id={id}
                     className={
