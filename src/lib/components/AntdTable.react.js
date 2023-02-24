@@ -474,6 +474,7 @@ class AntdTable extends Component {
             nClicksCell,
             emptyContent,
             cellUpdateOptimize,
+            nClicksDropdownItem,
             loading_state
         } = this.props;
 
@@ -801,6 +802,57 @@ class AntdTable extends Component {
                         <Text copyable={true}>
                             {content}
                         </Text>
+                    )
+                }
+                // dropdown模式
+                else if (columns[i]['renderOptions']['renderType'] === 'dropdown') {
+                    columns[i]['render'] = menuItems => (
+                        <Dropdown
+                            overlay={
+                                <Menu onClick={(item, key, keyPath, domEvent) => {
+                                    setTimeout(function () {
+                                        setProps({
+                                            nClicksDropdownItem: nClicksDropdownItem + 1,
+                                            clickedDropdownItemTitle: item.key,
+                                            dropdownItemClickedDataIndex: columns[i].dataIndex
+                                        })
+                                    }, 200);
+                                }}>
+                                    {
+                                        menuItems.map(
+                                            menuItem => (
+                                                menuItem ?
+                                                    // 判断isDivider参数是否不为false
+                                                    (
+                                                        menuItem.isDivider ?
+                                                            <Menu.Divider /> :
+                                                            <Menu.Item icon={<AntdIcon icon={menuItem.icon} />}
+                                                                disabled={menuItem.disabled}
+                                                                key={menuItem.title}>
+                                                                <a >{menuItem.title}</a>
+                                                            </Menu.Item>
+                                                    ) :
+                                                    null
+                                            )
+                                        )
+                                    }
+                                </Menu>
+                            }
+                            arrow={columns[i]['renderOptions']?.dropdownProps?.arrow}
+                            disabled={columns[i]['renderOptions']?.dropdownProps?.disabled}
+                            overlayClassName={columns[i]['renderOptions']?.dropdownProps?.overlayClassName}
+                            overlayStyle={columns[i]['renderOptions']?.dropdownProps?.overlayStyle}
+                            placement={columns[i]['renderOptions']?.dropdownProps?.placement}
+                            trigger={
+                                columns[i]['renderOptions']?.dropdownProps?.trigger ?
+                                    [columns[i]['renderOptions'].dropdownProps.trigger] : ['hover']
+                            }
+                            getPopupContainer={containerId ? () => (document.getElementById(containerId) ? document.getElementById(containerId) : document.body) : undefined}>
+                            <a className="ant-dropdown-link"
+                                onClick={e => e.preventDefault()}>
+                                {columns[i]['renderOptions']?.dropdownProps?.title} <DownOutlined />
+                            </a>
+                        </Dropdown>
                     )
                 }
                 // dropdown-links模式
@@ -1463,12 +1515,12 @@ AntdTable.propTypes = {
 
                 // 设置渲染处理类型，可选项有'link'、'ellipsis'、'mini-line'、'mini-bar'、'mini-progress'、'mini-area'、'tags'、'button'
                 // 'copyable'、'status-badge'、'image'、'custom-format'、'ellipsis-copyable'、'corner-mark'、'checkbox'、'switch'
-                // 'row-merge'、'dropdown-links'、'image-avatar'
+                // 'row-merge'、'dropdown'、'dropdown-links'、'image-avatar'
                 renderType: PropTypes.oneOf([
                     // 内容展示类
                     'link', 'ellipsis', 'copyable', 'ellipsis-copyable', 'tags',
-                    'status-badge', 'image', 'custom-format',
-                    'corner-mark', 'row-merge', 'dropdown-links', 'image-avatar',
+                    'status-badge', 'image', 'custom-format', 'corner-mark',
+                    'row-merge', 'dropdown', 'dropdown-links', 'image-avatar',
                     // 迷你图类
                     'mini-line', 'mini-bar', 'mini-progress', 'mini-ring-progress', 'mini-area',
                     // 监听交互类
@@ -1502,7 +1554,7 @@ AntdTable.propTypes = {
                 // 用于设置百分比文字字体像素大小
                 ringProgressFontSize: PropTypes.number,
 
-                // 针对dropdown-links模式，设置当前字段内dropdown相关参数
+                // 针对dropdown、dropdown-links模式，设置当前字段内dropdown相关参数
                 dropdownProps: PropTypes.exact({
                     // 设置下拉菜单锚点文字标题内容
                     title: PropTypes.string,
@@ -1525,8 +1577,7 @@ AntdTable.propTypes = {
                         'bottomLeft', 'bottomCenter', 'bottomRight',
                         'topLeft', 'topCenter', 'topRight'
                     ])
-                }),
-
+                })
             }),
 
             // 列固定对齐方式，可选项有'left'、'right'
@@ -1735,6 +1786,20 @@ AntdTable.propTypes = {
                     // 设置从当前单元格开始向后合并的单元格数量，0则代表不向后合并
                     rowSpan: PropTypes.number
                 }),
+
+                // dropdown模式
+                PropTypes.arrayOf(
+                    PropTypes.exact({
+                        // 设置当前链接显示的文字内容
+                        title: PropTypes.string,
+                        // 设置是否禁用当前链接
+                        disabled: PropTypes.bool,
+                        // 设置当前链接的前缀图标，同AntdIcon的icon参数
+                        icon: PropTypes.string,
+                        // 设置当前节点是否充当分割线
+                        isDivider: PropTypes.bool
+                    })
+                ),
 
                 // dropdown-links模式
                 PropTypes.arrayOf(
@@ -2095,6 +2160,16 @@ AntdTable.propTypes = {
     // 用于监听最近发生的开关切换行为对应的切换后状态
     recentlySwitchStatus: PropTypes.bool,
 
+    // dropdown再渲染模式
+    // 用于监听表格中dropdown相关累计点击次数
+    nClicksDropdownItem: PropTypes.number,
+
+    // 用于监听最近一次被点击的dropdown选项title值
+    clickedDropdownItemTitle: PropTypes.string,
+
+    // 用于监听最近一次被点击的dropdown对应的字段dataIndex
+    dropdownItemClickedDataIndex: PropTypes.string,
+
     loading_state: PropTypes.shape({
         /**
          * Determines if the component is loading or not
@@ -2145,6 +2220,8 @@ AntdTable.defaultProps = {
     // 迷你图相关
     miniChartHeight: 30,
     miniChartAnimation: false,
+    // dropdown模式相关
+    nClicksDropdownItem: 0
 };
 
 export default AntdTable;

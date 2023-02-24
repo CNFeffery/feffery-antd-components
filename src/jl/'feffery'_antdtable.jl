@@ -15,13 +15,14 @@ Keyword arguments:
 - `checkedDataIndex` (String; optional)
 - `className` (String | Dict; optional)
 - `clickedContent` (String; optional)
+- `clickedDropdownItemTitle` (String; optional)
 - `columns` (optional): . columns has the following type: Array of lists containing elements 'title', 'dataIndex', 'renderOptions', 'fixed', 'editable', 'align', 'width', 'hidden', 'ellipsis', 'sorter', 'render', 'onCell', 'title_'.
 Those elements have the following types:
   - `title` (a list of or a singular dash component, string or number; required)
   - `dataIndex` (String; required)
   - `renderOptions` (optional): . renderOptions has the following type: lists containing elements 'renderType', 'renderLinkText', 'renderButtonPopConfirmProps', 'tooltipCustomContent', 'progressOneHundredPercentColor', 'ringProgressFontSize', 'dropdownProps'.
 Those elements have the following types:
-  - `renderType` (a value equal to: "link", 'ellipsis', 'copyable', 'ellipsis-copyable', 'tags', 'status-badge', 'image', 'custom-format', 'corner-mark', 'row-merge', 'dropdown-links', 'image-avatar', "mini-line", 'mini-bar', 'mini-progress', 'mini-ring-progress', 'mini-area', "button", 'checkbox', 'switch'; optional)
+  - `renderType` (a value equal to: "link", 'ellipsis', 'copyable', 'ellipsis-copyable', 'tags', 'status-badge', 'image', 'custom-format', 'corner-mark', 'row-merge', 'dropdown', 'dropdown-links', 'image-avatar', "mini-line", 'mini-bar', 'mini-progress', 'mini-ring-progress', 'mini-area', "button", 'checkbox', 'switch'; optional)
   - `renderLinkText` (String; optional)
   - `renderButtonPopConfirmProps` (optional): . renderButtonPopConfirmProps has the following type: lists containing elements 'title', 'okText', 'cancelText'.
 Those elements have the following types:
@@ -112,7 +113,12 @@ Those elements have the following types:
   - `unCheckedChildren` (String; optional) | lists containing elements 'content', 'rowSpan'.
 Those elements have the following types:
   - `content` (Real | String; optional)
-  - `rowSpan` (Real; optional) | Array of lists containing elements 'title', 'href', 'disabled', 'icon', 'isDivider'.
+  - `rowSpan` (Real; optional) | Array of lists containing elements 'title', 'disabled', 'icon', 'isDivider'.
+Those elements have the following types:
+  - `title` (String; optional)
+  - `disabled` (Bool; optional)
+  - `icon` (String; optional)
+  - `isDivider` (Bool; optional)s | Array of lists containing elements 'title', 'href', 'disabled', 'icon', 'isDivider'.
 Those elements have the following types:
   - `title` (String; optional)
   - `href` (String; optional)
@@ -130,6 +136,7 @@ Those elements have the following types:
   - `xl` (Real; optional)
   - `xxl` (Real; optional)
   - `shape` (a value equal to: 'circle', 'square'; optional)s
+- `dropdownItemClickedDataIndex` (String; optional)
 - `emptyContent` (a list of or a singular dash component, string or number; optional)
 - `enableCellClickListenColumns` (Bool; optional)
 - `enableHoverListen` (Bool; optional)
@@ -160,6 +167,7 @@ Those elements have the following types:
 - `mode` (a value equal to: 'client-side', 'server-side'; optional)
 - `nClicksButton` (Real; optional)
 - `nClicksCell` (Real; optional)
+- `nClicksDropdownItem` (Real; optional)
 - `pagination` (optional): . pagination has the following type: lists containing elements 'position', 'pageSize', 'current', 'showSizeChanger', 'pageSizeOptions', 'showTitle', 'showQuickJumper', 'showTotalPrefix', 'showTotalSuffix', 'total', 'hideOnSinglePage', 'simple', 'disabled', 'responsive', 'size'.
 Those elements have the following types:
   - `position` (a value equal to: 'topLeft', 'topCenter', 'topRight', 'bottomLeft', 'bottomCenter', 'bottomRight'; optional)
@@ -220,7 +228,7 @@ Those elements have the following types:
   - `overlayStyle` (Dict; optional)
 """
 function 'feffery'_antdtable(; kwargs...)
-        available_props = Symbol[:id, :bordered, :buttonClickedDataIndex, :cellUpdateOptimize, :checkedDataIndex, :className, :clickedContent, :columns, :columnsFormatConstraint, :conditionalStyleFuncs, :containerId, :currentData, :customFormatFuncs, :data, :emptyContent, :enableCellClickListenColumns, :enableHoverListen, :expandRowByClick, :expandedRowKeyToContent, :expandedRowWidth, :filter, :filterOptions, :key, :loading_state, :locale, :maxHeight, :maxWidth, :miniChartAnimation, :miniChartHeight, :mode, :nClicksButton, :nClicksCell, :pagination, :recentlyButtonClickedRow, :recentlyCellClickColumn, :recentlyCellClickRecord, :recentlyChangedRow, :recentlyCheckedLabel, :recentlyCheckedRow, :recentlyCheckedStatus, :recentlyMouseEnterColumn, :recentlyMouseEnterRow, :recentlySwitchRow, :recentlySwitchStatus, :rowSelectionType, :rowSelectionWidth, :selectedRowKeys, :selectedRows, :size, :sortOptions, :sorter, :sticky, :style, :summaryRowContents, :summaryRowFixed, :switchDataIndex, :titlePopoverInfo]
+        available_props = Symbol[:id, :bordered, :buttonClickedDataIndex, :cellUpdateOptimize, :checkedDataIndex, :className, :clickedContent, :clickedDropdownItemTitle, :columns, :columnsFormatConstraint, :conditionalStyleFuncs, :containerId, :currentData, :customFormatFuncs, :data, :dropdownItemClickedDataIndex, :emptyContent, :enableCellClickListenColumns, :enableHoverListen, :expandRowByClick, :expandedRowKeyToContent, :expandedRowWidth, :filter, :filterOptions, :key, :loading_state, :locale, :maxHeight, :maxWidth, :miniChartAnimation, :miniChartHeight, :mode, :nClicksButton, :nClicksCell, :nClicksDropdownItem, :pagination, :recentlyButtonClickedRow, :recentlyCellClickColumn, :recentlyCellClickRecord, :recentlyChangedRow, :recentlyCheckedLabel, :recentlyCheckedRow, :recentlyCheckedStatus, :recentlyMouseEnterColumn, :recentlyMouseEnterRow, :recentlySwitchRow, :recentlySwitchStatus, :rowSelectionType, :rowSelectionWidth, :selectedRowKeys, :selectedRows, :size, :sortOptions, :sorter, :sticky, :style, :summaryRowContents, :summaryRowFixed, :switchDataIndex, :titlePopoverInfo]
         wild_props = Symbol[]
         return Component("'feffery'_antdtable", "AntdTable", "feffery_antd_components", available_props, wild_props; kwargs...)
 end
