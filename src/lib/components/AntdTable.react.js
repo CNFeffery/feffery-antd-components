@@ -806,7 +806,7 @@ class AntdTable extends Component {
                 }
                 // dropdown模式
                 else if (columns[i]['renderOptions']['renderType'] === 'dropdown') {
-                    columns[i]['render'] = menuItems => (
+                    columns[i]['render'] = (menuItems, record) => (
                         <Dropdown
                             overlay={
                                 <Menu onClick={(item, key, keyPath, domEvent) => {
@@ -814,7 +814,8 @@ class AntdTable extends Component {
                                         setProps({
                                             nClicksDropdownItem: nClicksDropdownItem + 1,
                                             clickedDropdownItemTitle: item.key,
-                                            dropdownItemClickedDataIndex: columns[i].dataIndex
+                                            dropdownItemClickedDataIndex: columns[i].dataIndex,
+                                            recentlyDropdownItemClickedRow: record
                                         })
                                     }, 200);
                                 }}>
@@ -2169,6 +2170,9 @@ AntdTable.propTypes = {
 
     // 用于监听最近一次被点击的dropdown对应的字段dataIndex
     dropdownItemClickedDataIndex: PropTypes.string,
+
+    // 用于监听最近一次被点击的dropdown对应的行记录
+    recentlyDropdownItemClickedRow: PropTypes.object,
 
     loading_state: PropTypes.shape({
         /**
