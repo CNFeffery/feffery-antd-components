@@ -1,4 +1,10 @@
-import React, { Component, useContext, useState, useEffect, useRef } from 'react';
+import React, {
+    Component,
+    useContext,
+    useState,
+    useEffect,
+    useRef
+} from 'react';
 import PropTypes from 'prop-types';
 import {
     Table,
@@ -20,10 +26,20 @@ import {
     Avatar,
     message
 } from 'antd';
-import { TinyLine, TinyArea, TinyColumn, Progress, RingProgress } from '@ant-design/charts';
+import {
+    TinyLine,
+    TinyArea,
+    TinyColumn,
+    Progress,
+    RingProgress
+} from '@ant-design/charts';
 import Highlighter from 'react-highlight-words';
 import AntdIcon from './AntdIcon.react';
-import { SearchOutlined, QuestionCircleOutlined, DownOutlined } from '@ant-design/icons';
+import {
+    SearchOutlined,
+    QuestionCircleOutlined,
+    DownOutlined
+} from '@ant-design/icons';
 import { isNumber, isEqual, isString } from 'lodash';
 import { str2Locale } from './locales.react';
 import useCss from '../hooks/useCss';
@@ -46,11 +62,9 @@ class AntdTable extends Component {
         props.setProps({
             pagination: {
                 ...props.pagination,
-                ...{
-                    current: props.pagination?.current ? props.pagination?.current : 1,
-                    showTotalPrefix: props.pagination?.showTotalPrefix ? props.pagination?.showTotalPrefix : '共 ',
-                    showTotalSuffix: props.pagination?.showTotalSuffix ? props.pagination?.showTotalSuffix : ' 条记录',
-                }
+                current: props.pagination?.current ? props.pagination?.current : 1,
+                showTotalPrefix: props.pagination?.showTotalPrefix ? props.pagination?.showTotalPrefix : '共 ',
+                showTotalSuffix: props.pagination?.showTotalSuffix ? props.pagination?.showTotalSuffix : ' 条记录'
             }
         })
 
@@ -68,11 +82,13 @@ class AntdTable extends Component {
                         ...pagination,
                         pageSize: pagination.pageSize,
                         current: pagination.current,
-                        position: pagination.position ? (
-                            Array.isArray(pagination.position) ?
-                                pagination.position[0] :
-                                pagination.position
-                        ) : pagination.position
+                        position: pagination.position ?
+                            (
+                                Array.isArray(pagination.position) ?
+                                    pagination.position[0] :
+                                    pagination.position
+                            ) :
+                            pagination.position
                     },
                     currentData: currentData.currentDataSource
                 })
@@ -231,6 +247,8 @@ class AntdTable extends Component {
         //     changedProps.every(propName => preventUpdateProps.includes(propName))
         // )
 
+        // changedProps中全部变化的prop都在preventUpdateProps中声明时
+        // 阻止本次重绘
         return !changedProps.every(propName => preventUpdateProps.includes(propName));
     }
 
@@ -295,7 +313,8 @@ class AntdTable extends Component {
                         // 检查是否满足预设的正则表达式规则
                         if (!eval(`/${columnsFormatConstraint[rowColumns[i]].rule}/`).test(row[rowColumns[i]])) {
                             message.error(`编辑失败，${row[rowColumns[i]]} 输入${columnsFormatConstraint[rowColumns[i]]?.content || '不符合对应字段格式要求！'}`);
-                            return;
+                            // 提前终止函数
+                            return
                         }
                     }
                 }
@@ -304,6 +323,7 @@ class AntdTable extends Component {
 
                 setDataSource(newData);
 
+                // 更新数据
                 setProps({
                     currentData: newData,
                     recentlyChangedRow: row,
@@ -794,16 +814,19 @@ class AntdTable extends Component {
                                             menuItem => (
                                                 menuItem ?
                                                     // 判断isDivider参数是否不为false
-                                                    menuItem.isDivider ?
-                                                        <Menu.Divider /> :
-                                                        <Menu.Item icon={<AntdIcon icon={menuItem.icon} />}
-                                                            disabled={menuItem.disabled}
-                                                            key={menuItem.title}>
-                                                            <a href={menuItem.href}
-                                                                target={'_blank'}>
-                                                                {menuItem.title}
-                                                            </a>
-                                                        </Menu.Item> : null
+                                                    (
+                                                        menuItem.isDivider ?
+                                                            <Menu.Divider /> :
+                                                            <Menu.Item icon={<AntdIcon icon={menuItem.icon} />}
+                                                                disabled={menuItem.disabled}
+                                                                key={menuItem.title}>
+                                                                <a href={menuItem.href}
+                                                                    target={'_blank'}>
+                                                                    {menuItem.title}
+                                                                </a>
+                                                            </Menu.Item>
+                                                    ) :
+                                                    null
                                             )
                                         )
                                     }
@@ -840,7 +863,7 @@ class AntdTable extends Component {
                     columns[i]['render'] = content => (
                         <div className={content.placement ? 'ant-corner-mark-' + content.placement : 'ant-corner-mark-top-right'}
                             style={{
-                                '--ant-corner-mark-color': content.hide ? 'transparent' : (content.color ? content.color : 'rgb(24, 144, 255)'),
+                                '--ant-corner-mark-color': content.hide ? 'transparent' : (content.color ? content.color : '#1890ff'),
                                 '--ant-corner-mark-transform': `translate(${content.offsetX ? content.offsetX : 0}px, ${content.offsetY ? content.offsetY : 0}px)`
                             }}>
                             {content.content}
@@ -974,7 +997,8 @@ class AntdTable extends Component {
                                                         type={content_.type}
                                                         danger={content_.danger}
                                                         disabled={content_.disabled}
-                                                        style={content_.style}>
+                                                        style={content_.style}
+                                                        icon={<AntdIcon icon={content_.icon} />}>
                                                         {content_.content}
                                                     </Button>
                                                 </Popconfirm>
@@ -999,7 +1023,8 @@ class AntdTable extends Component {
                                     type={content.type}
                                     danger={content.danger}
                                     disabled={content.disabled}
-                                    style={content.style}>
+                                    style={content.style}
+                                    icon={<AntdIcon icon={content.icon} />}>
                                     {content.content}
                                 </Button>
                             </Popconfirm>
@@ -1026,7 +1051,8 @@ class AntdTable extends Component {
                                                     disabled={content_.disabled}
                                                     href={content_.href}
                                                     target={content_.target}
-                                                    style={content_.style}>
+                                                    style={content_.style}
+                                                    icon={<AntdIcon icon={content_.icon} />}>
                                                     {content_.content}
                                                 </Button>
                                             )
@@ -1045,7 +1071,8 @@ class AntdTable extends Component {
                                 disabled={content.disabled}
                                 href={content.href}
                                 target={content.target}
-                                style={content.style}>
+                                style={content.style}
+                                icon={<AntdIcon icon={content.icon} />}>
                                 {content.content}
                             </Button>
                         }
@@ -1382,7 +1409,14 @@ class AntdTable extends Component {
                     data-dash-is-loading={
                         (loading_state && loading_state.is_loading) || undefined
                     }
-                    getPopupContainer={containerId ? () => (document.getElementById(containerId) ? document.getElementById(containerId) : document.body) : undefined}
+                    getPopupContainer={
+                        containerId ?
+                            () => (
+                                document.getElementById(containerId) ?
+                                    document.getElementById(containerId) :
+                                    document.body
+                            ) :
+                            undefined}
                 />
             </ConfigProvider>
         );
@@ -1395,7 +1429,10 @@ AntdTable.propTypes = {
     id: PropTypes.string,
 
     // css类名
-    className: PropTypes.string,
+    className: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.object
+    ]),
 
     // 自定义css字典
     style: PropTypes.object,
@@ -1413,7 +1450,10 @@ AntdTable.propTypes = {
     columns: PropTypes.arrayOf(
         PropTypes.exact({
             // 字段对应表头显示的文字内容
-            title: PropTypes.oneOfType([PropTypes.func, PropTypes.string]).isRequired,
+            title: PropTypes.oneOfType([
+                PropTypes.func,
+                PropTypes.node
+            ]).isRequired,
 
             // 字段id信息
             dataIndex: PropTypes.string.isRequired,
@@ -1425,11 +1465,14 @@ AntdTable.propTypes = {
                 // 'copyable'、'status-badge'、'image'、'custom-format'、'ellipsis-copyable'、'corner-mark'、'checkbox'、'switch'
                 // 'row-merge'、'dropdown-links'、'image-avatar'
                 renderType: PropTypes.oneOf([
-                    'link', 'ellipsis', 'mini-line', 'mini-bar', 'mini-progress',
-                    'mini-ring-progress', 'mini-area', 'tags', 'button', 'copyable',
-                    'status-badge', 'image', 'custom-format', 'ellipsis-copyable',
-                    'corner-mark', 'checkbox', 'switch', 'row-merge', 'dropdown-links',
-                    'image-avatar'
+                    // 内容展示类
+                    'link', 'ellipsis', 'copyable', 'ellipsis-copyable', 'tags',
+                    'status-badge', 'image', 'custom-format',
+                    'corner-mark', 'row-merge', 'dropdown-links', 'image-avatar',
+                    // 迷你图类
+                    'mini-line', 'mini-bar', 'mini-progress', 'mini-ring-progress', 'mini-area',
+                    // 监听交互类
+                    'button', 'checkbox', 'switch'
                 ]),
 
                 // 当renderType='link'时，此参数会将传入的字符串作为渲染link的显示文字内容
@@ -1438,7 +1481,7 @@ AntdTable.propTypes = {
                 // 当renderType='button'时，此参数用于传入与气泡确认卡片相关的参数设置内容
                 renderButtonPopConfirmProps: PropTypes.exact({
                     // 设置气泡卡片的标题内容
-                    title: PropTypes.string.isRequired,
+                    title: PropTypes.string,
 
                     // 设置气泡卡片的okText内容
                     okText: PropTypes.string,
@@ -1467,7 +1510,7 @@ AntdTable.propTypes = {
                     // 设置下拉框是否显示连接箭头，默认为false
                     arrow: PropTypes.bool,
 
-                    // 是否禁用功能，默认为false
+                    // 是否禁用功能，优先级低于每条记录值内部的设定
                     disabled: PropTypes.bool,
 
                     // 设置下拉菜单容器的类名
@@ -1489,7 +1532,7 @@ AntdTable.propTypes = {
             // 列固定对齐方式，可选项有'left'、'right'
             fixed: PropTypes.oneOf(['left', 'right']),
 
-            // 设置是否可编辑
+            // 设置是否可编辑，默认为false
             editable: PropTypes.bool,
 
             // 设置列对齐方式，可选项有'left'、'center'、'right'
@@ -1498,7 +1541,7 @@ AntdTable.propTypes = {
             // 自定义列宽度
             width: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
 
-            // 控制是否隐藏当前字段，设置为true时进行隐藏
+            // 控制是否隐藏当前字段，设置为true时进行隐藏，默认为false
             hidden: PropTypes.bool,
 
             // 防止状态更新报错占位用，无实际意义
@@ -1510,93 +1553,11 @@ AntdTable.propTypes = {
             // 防止状态更新报错占位用，无实际意义
             render: PropTypes.any,
 
-            // 确保onCell属性类型检查通过
+            // 确保onCell属性类型检查通过，无实际意义
             onCell: PropTypes.any,
 
-            // 备份title信息
-            title_: PropTypes.string
-        })
-    ),
-
-    // 为迷你图模式单元格设置像素高度，默认为30
-    miniChartHeight: PropTypes.number,
-
-    // 设置迷你图模式是否启用出现动画，默认为false
-    miniChartAnimation: PropTypes.bool,
-
-    // 设置表格单元格尺寸规格，可选的有'small'、'default'和'large'
-    size: PropTypes.oneOf(['small', 'default', 'large']),
-
-    // 设置行选择模式，默认不开启，可选的有'checkbox'、'radio'
-    rowSelectionType: PropTypes.oneOf(['checkbox', 'radio']),
-
-    // 记录已被选择的行key值数组
-    selectedRowKeys: PropTypes.arrayOf(
-        PropTypes.oneOfType([
-            PropTypes.string,
-            PropTypes.number
-        ])
-    ),
-
-    // 设置行选择框宽度，默认为'32px'
-    rowSelectionWidth: PropTypes.oneOfType([
-        PropTypes.string,
-        PropTypes.number
-    ]),
-
-    // 记录已被选择的行记录值列表
-    selectedRows: PropTypes.array,
-
-    // 设置粘性表头属性，默认为false
-    sticky: PropTypes.oneOfType([
-        PropTypes.bool,
-        PropTypes.exact({
-            offsetHeader: PropTypes.number
-        })
-    ]),
-
-    // 设置是否启用行悬浮事件监听（此功能可能会干扰其他正常表格功能，慎用），默认为false
-    enableHoverListen: PropTypes.bool,
-
-    // 记录表头各字段事件
-
-    // 记录表头各字段鼠标移入事件
-    recentlyMouseEnterColumn: PropTypes.string,
-
-    // 记录表格数据行事件
-    // 记录表格数据行鼠标移入事件
-    recentlyMouseEnterRow: PropTypes.oneOfType([
-        PropTypes.string,
-        PropTypes.number
-    ]),
-
-    // 为每个title设置气泡卡片悬浮说明信息，格式如{字段1: {title: '标题内容', 'content': '说明内容巴拉巴拉巴拉'}}
-    titlePopoverInfo: PropTypes.objectOf(
-        PropTypes.exact({
-            // 气泡卡片标题
-            title: PropTypes.string,
-            // 气泡卡片内容
-            content: PropTypes.string,
-            // 气泡卡片弹出方位，可选的有'top'、'left'、'right'、'bottom'、'topLeft'
-            // 、'topRight'、'bottomLeft'、'bottomRight'、'leftTop'、'leftBottom'
-            // 、'rightTop'、'rightBottom'，默认为'bottom'
-            placement: PropTypes.oneOf([
-                'top', 'left', 'right', 'bottom', 'topLeft', 'topRight', 'bottomLeft',
-                'bottomRight', 'leftTop', 'leftBottom', 'rightTop', 'rightBottom'
-            ]),
-            // 设置悬浮层css样式
-            overlayStyle: PropTypes.object
-        })
-    ),
-
-    // 为每个字段设置基于【正则表达式】的格式约束，用于在“可编辑单元格”中约束新内容的写入
-    columnsFormatConstraint: PropTypes.objectOf(
-        PropTypes.exact({
-            // 设置对应字段的正则表达式规则
-            rule: PropTypes.string,
-
-            // 设置自定义错误提示内容，默认为'不符合纯汉字输入要求！'
-            content: PropTypes.string
+            // 备份title信息，无实际意义
+            title_: PropTypes.any
         })
     ),
 
@@ -1665,14 +1626,13 @@ AntdTable.propTypes = {
                         // 设置按钮的css样式
                         style: PropTypes.object,
                         // 设置按钮的文本内容
-                        content: PropTypes.oneOfType([
-                            PropTypes.string,
-                            PropTypes.number
-                        ]),
+                        content: PropTypes.string,
                         // link类型对应的href
                         href: PropTypes.string,
                         // link类型对应的target
-                        target: PropTypes.string
+                        target: PropTypes.string,
+                        // 为当前按钮设置前缀图标，同AntdIcon中的同名参数
+                        icon: PropTypes.string
                     }),
 
                     // 多按钮
@@ -1687,14 +1647,13 @@ AntdTable.propTypes = {
                             // 设置按钮的css样式
                             style: PropTypes.object,
                             // 设置按钮的文本内容
-                            content: PropTypes.oneOfType([
-                                PropTypes.string,
-                                PropTypes.number
-                            ]),
+                            content: PropTypes.string,
                             // link类型对应的href
                             href: PropTypes.string,
                             // link类型对应的target
-                            target: PropTypes.string
+                            target: PropTypes.string,
+                            // 为当前按钮设置前缀图标，同AntdIcon中的同名参数
+                            icon: PropTypes.string
                         })
                     )
                 ]),
@@ -1729,7 +1688,7 @@ AntdTable.propTypes = {
                 PropTypes.exact({
                     // 设置角标的方位，可选的有'top-left'、'top-right'、'bottom-left'、'bottom-right'
                     placement: PropTypes.oneOf(['top-left', 'top-right', 'bottom-left', 'bottom-right']),
-                    // 设置角标的颜色，默认为'rgb(24, 144, 255)'
+                    // 设置角标的颜色，默认为'#1890ff'
                     color: PropTypes.string,
                     // 设置单元格数值内容
                     content: PropTypes.oneOfType([
@@ -1760,8 +1719,6 @@ AntdTable.propTypes = {
                     checked: PropTypes.bool,
                     // 设置是否禁用当前开关
                     disabled: PropTypes.bool,
-                    // 设置勾选框文本标签信息
-                    label: PropTypes.string,
                     // 设置“开”状态下标签信息
                     checkedChildren: PropTypes.string,
                     // 设置“关”状态下标签信息
@@ -1822,6 +1779,93 @@ AntdTable.propTypes = {
         )
     ),
 
+    // 设置是否为单元格添加边框线，默认为False
+    bordered: PropTypes.bool,
+
+    // 设置组件最大高度，每页超出部分将自动转换为竖向滑动浏览方式
+    maxHeight: PropTypes.number,
+
+    // 设置组件最大宽度，每页超出部分将自动转换为横向滑动浏览方式
+    maxWidth: PropTypes.number,
+
+    // 设置表格单元格尺寸规格，可选的有'small'、'default'和'large'
+    size: PropTypes.oneOf(['small', 'default', 'large']),
+
+
+    // 进阶通用参数
+    // 行选择相关参数
+    // 设置行选择模式，默认不开启，可选的有'checkbox'、'radio'
+    rowSelectionType: PropTypes.oneOf(['checkbox', 'radio']),
+
+    // 监听已被选择的行key值数组
+    selectedRowKeys: PropTypes.arrayOf(
+        PropTypes.oneOfType([
+            PropTypes.string,
+            PropTypes.number
+        ])
+    ),
+
+    // 设置行选择框对应的列宽度，默认为32
+    rowSelectionWidth: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.number
+    ]),
+
+    // 记录已被选择的行记录值列表
+    selectedRows: PropTypes.array,
+
+    // 设置粘性表头属性，默认为false
+    sticky: PropTypes.oneOfType([
+        PropTypes.bool,
+        PropTypes.exact({
+            offsetHeader: PropTypes.number
+        })
+    ]),
+
+    // 设置是否启用行悬浮事件监听（此功能可能会干扰其他正常表格功能，慎用），默认为false
+    enableHoverListen: PropTypes.bool,
+
+    // 记录表头各字段事件
+    // 记录表头各字段鼠标移入事件
+    recentlyMouseEnterColumn: PropTypes.string,
+
+    // 记录表格数据行事件
+    // 记录表格数据行鼠标移入事件
+    recentlyMouseEnterRow: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.number
+    ]),
+
+    // 为每个title设置气泡卡片悬浮说明信息，格式如{字段1: {title: '标题内容', 'content': '说明内容巴拉巴拉巴拉'}}
+    titlePopoverInfo: PropTypes.objectOf(
+        PropTypes.exact({
+            // 气泡卡片标题
+            title: PropTypes.node,
+            // 气泡卡片内容
+            content: PropTypes.node,
+            // 气泡卡片弹出方位，可选的有'top'、'left'、'right'、'bottom'、'topLeft'
+            // 、'topRight'、'bottomLeft'、'bottomRight'、'leftTop'、'leftBottom'
+            // 、'rightTop'、'rightBottom'，默认为'bottom'
+            placement: PropTypes.oneOf([
+                'top', 'left', 'right', 'bottom', 'topLeft', 'topRight', 'bottomLeft',
+                'bottomRight', 'leftTop', 'leftBottom', 'rightTop', 'rightBottom'
+            ]),
+            // 设置悬浮层css样式
+            overlayStyle: PropTypes.object
+        })
+    ),
+
+    // 为每个字段设置基于【正则表达式】的格式约束，用于在“可编辑单元格”中约束新内容的写入
+    columnsFormatConstraint: PropTypes.objectOf(
+        PropTypes.exact({
+            // 设置对应字段的正则表达式规则
+            rule: PropTypes.string,
+
+            // 设置自定义错误提示内容，默认为'不符合纯汉字输入要求！'
+            content: PropTypes.string
+        })
+    ),
+
     // 定义排序参数
     sortOptions: PropTypes.exact({
 
@@ -1833,7 +1877,6 @@ AntdTable.propTypes = {
             PropTypes.bool,
             PropTypes.oneOf(['auto'])
         ])
-
     }),
 
     // 定义筛选参数
@@ -1860,82 +1903,63 @@ AntdTable.propTypes = {
     ),
 
     // 翻页相关参数，设置为false时不展示和进行分页
-    pagination: PropTypes.exact({
+    pagination: PropTypes.oneOfType([
+        PropTypes.exact({
+            // 设置分页组件的位置，可选项有'topLeft'、'topCenter'、'topRight'、'bottomLeft'、'bottomCenter'以及'bottomRight'
+            position: PropTypes.oneOf([
+                'topLeft', 'topCenter', 'topRight', 'bottomLeft', 'bottomCenter', 'bottomRight'
+            ]),
 
-        // 设置分页组件的位置，可选项有'topLeft'、'topCenter'、'topRight'、'bottomLeft'、'bottomCenter'以及'bottomRight'
-        position: PropTypes.oneOf([
-            'topLeft', 'topCenter', 'topRight', 'bottomLeft', 'bottomCenter', 'bottomRight'
-        ]),
+            // 每页显示的记录行数
+            pageSize: PropTypes.number,
 
-        // 每页显示的记录行数
-        pageSize: PropTypes.number,
+            // 当前的页码
+            current: PropTypes.number,
 
-        // 当前的页码
-        current: PropTypes.number,
+            // 设置是否展示pageSize切换器，当total大于50时默认为true
+            showSizeChanger: PropTypes.bool,
 
-        // 设置是否展示pageSize切换器，当total大于50时默认为true
-        showSizeChanger: PropTypes.bool,
+            // 设定每页尺寸切换可选的范围
+            pageSizeOptions: PropTypes.arrayOf(PropTypes.number),
 
-        // 设定每页尺寸切换可选的范围
-        pageSizeOptions: PropTypes.arrayOf(PropTypes.number),
+            // 设置是否显示原生页面悬浮提示title信息，默认为true
+            showTitle: PropTypes.bool,
 
-        // 设置是否显示原生页面悬浮提示title信息，默认为true
-        showTitle: PropTypes.bool,
+            // 设置是否渲染快速跳转控件，默认为false
+            showQuickJumper: PropTypes.bool,
 
-        // 设置是否渲染快速跳转控件，默认为false
-        showQuickJumper: PropTypes.bool,
+            // 定义总记录行数显示部分的前缀文字，默认为"共 "
+            showTotalPrefix: PropTypes.string,
 
-        // 定义总记录行数显示部分的前缀文字，默认为"共 "
-        showTotalPrefix: PropTypes.string,
+            // 定义总记录行数显示部分的后缀文字，默认为" 条记录"
+            showTotalSuffix: PropTypes.string,
 
-        // 定义总记录行数显示部分的后缀文字，默认为" 条记录"
-        showTotalSuffix: PropTypes.string,
+            // 用于在后端分页时手动设置总数据记录数量
+            total: PropTypes.number,
 
-        // 用于在后端分页时手动设置总数据记录数量
-        total: PropTypes.number,
+            // 用于设置是否在数据记录只有一页时自动隐藏分页器，默认为false
+            hideOnSinglePage: PropTypes.bool,
 
-        // 用于设置是否在数据记录只有一页时自动隐藏分页器，默认为false
-        hideOnSinglePage: PropTypes.bool,
+            // 设置是否开启简洁模式
+            simple: PropTypes.bool,
 
-        // 设置是否开启简洁模式
-        simple: PropTypes.bool,
+            // 设置是否禁用分页，默认为false
+            disabled: PropTypes.bool,
 
-        // 设置是否禁用分页，默认为false
-        disabled: PropTypes.bool,
+            // 设置是否开启响应式，即分页尺寸会根据屏幕宽度自动进行调整
+            responsive: PropTypes.bool,
 
-        // 设置是否开启响应式，即分页尺寸会根据屏幕宽度自动进行调整
-        responsive: PropTypes.bool,
-
-        // 设置分页器尺寸，可选的有'default'和'small'，默认为'default'
-        size: PropTypes.oneOf(['default', 'small'])
-    }),
-
-    // 设置是否为单元格添加边框线，默认为False
-    bordered: PropTypes.bool,
-
-    // 设置组件最大高度，每页超出部分将自动转换为竖向滑动浏览方式
-    maxHeight: PropTypes.number,
-
-    // 设置组件最大宽度，每页超出部分将自动转换为横向滑动浏览方式
-    maxWidth: PropTypes.number,
+            // 设置分页器尺寸，可选的有'default'和'small'，默认为'default'
+            size: PropTypes.oneOf(['default', 'small'])
+        }),
+        PropTypes.bool
+    ]),
 
     // 经过修改操作后，当前状态下最新的dataSource数据
     currentData: PropTypes.array,
 
     // 经过最近一次修改操作后，被修改的行所对应dataSource中的json字典
     recentlyChangedRow: PropTypes.object,
-
-    // button模式下，最近一次点击事件发生的行对应record信息
-    recentlyButtonClickedRow: PropTypes.object,
-
-    // 当前生命周期下，button模式对应字段中按钮被点击过的总次数
-    nClicksButton: PropTypes.number,
-
-    // 对应最近一次按钮模式下被点击的按钮文字内容
-    clickedContent: PropTypes.string,
-
-    // 对应最近一次按钮模式下被点击的按钮对应列dataIndex
-    buttonClickedDataIndex: PropTypes.string,
 
     // 经过最近一次排序操作后，对应的字段及排序方式信息
     sorter: PropTypes.exact({
@@ -1972,12 +1996,6 @@ AntdTable.propTypes = {
     // 设置总结栏是否启用fixed功能，默认为false
     summaryRowFixed: PropTypes.bool,
 
-    // 针对custom-format自定义格式化对应的字段，设置针对对应列每个值从原始数值到格式化结果的js函数字符串
-    // 键名为对应字段的dataIndex
-    customFormatFuncs: PropTypes.objectOf(
-        PropTypes.string
-    ),
-
     // 以对应字段的dataIndex为键，传入js函数字符串，用于自定义逻辑改变每个单元格的style样式
     conditionalStyleFuncs: PropTypes.objectOf(
         PropTypes.string
@@ -2003,29 +2021,6 @@ AntdTable.propTypes = {
     // 设置是否允许直接点击行进行展开，默认为false
     expandRowByClick: PropTypes.bool,
 
-    // 处理checkbox再渲染模式
-    // 用于监听最近发生勾选事件的记录行
-    recentlyCheckedRow: PropTypes.object,
-
-    // 用于监听最近发生勾选事件的勾选框标签内容
-    recentlyCheckedLabel: PropTypes.string,
-
-    // 用于监听最近发生勾选事件的字段dataIndex信息
-    checkedDataIndex: PropTypes.string,
-
-    // 用于监听最近发生的勾选行为对应的勾选状态
-    recentlyCheckedStatus: PropTypes.bool,
-
-    // 处理switch再渲染模式
-    // 用于监听最近发生开关切换事件的记录行
-    recentlySwitchRow: PropTypes.object,
-
-    // 用于监听最近发生开关切换事件的字段dataIndex信息
-    switchDataIndex: PropTypes.string,
-
-    // 用于监听最近发生的开关切换行为对应的切换后状态
-    recentlySwitchStatus: PropTypes.bool,
-
     // 设置启用单元格点击事件监听的字段dataIndex数组，开启后会干扰多种再渲染模式的交互，
     // 以及自定义条件单元格模式，请慎用
     enableCellClickListenColumns: PropTypes.bool,
@@ -2048,6 +2043,57 @@ AntdTable.propTypes = {
 
     // 设置是否开启单元格渲染优化，默认为true
     cellUpdateOptimize: PropTypes.bool,
+
+    // 再渲染模式
+    // 迷你图模式相关参数
+    // 为迷你图模式单元格设置像素高度，默认为30
+    miniChartHeight: PropTypes.number,
+
+    // 设置迷你图模式是否启用出现动画，默认为false
+    miniChartAnimation: PropTypes.bool,
+
+    // 按钮模式相关参数
+    // button模式下，最近一次点击事件发生的行对应record信息
+    recentlyButtonClickedRow: PropTypes.object,
+
+    // 当前生命周期下，button模式对应字段中按钮被点击过的总次数
+    nClicksButton: PropTypes.number,
+
+    // 对应最近一次按钮模式下被点击的按钮文字内容
+    clickedContent: PropTypes.string,
+
+    // 对应最近一次按钮模式下被点击的按钮对应列dataIndex
+    buttonClickedDataIndex: PropTypes.string,
+
+    // 自定义格式模式
+    // 针对custom-format自定义格式化对应的字段，设置针对对应列每个值从原始数值到格式化结果的js函数字符串
+    // 键名为对应字段的dataIndex
+    customFormatFuncs: PropTypes.objectOf(
+        PropTypes.string
+    ),
+
+    // 勾选框模式相关参数
+    // 用于监听最近发生勾选事件的记录行
+    recentlyCheckedRow: PropTypes.object,
+
+    // 用于监听最近发生勾选事件的勾选框标签内容
+    recentlyCheckedLabel: PropTypes.string,
+
+    // 用于监听最近发生勾选事件的字段dataIndex信息
+    checkedDataIndex: PropTypes.string,
+
+    // 用于监听最近发生的勾选行为对应的勾选状态
+    recentlyCheckedStatus: PropTypes.bool,
+
+    // 开关模式相关参数
+    // 用于监听最近发生开关切换事件的记录行
+    recentlySwitchRow: PropTypes.object,
+
+    // 用于监听最近发生开关切换事件的字段dataIndex信息
+    switchDataIndex: PropTypes.string,
+
+    // 用于监听最近发生的开关切换行为对应的切换后状态
+    recentlySwitchStatus: PropTypes.bool,
 
     loading_state: PropTypes.shape({
         /**
@@ -2073,24 +2119,32 @@ AntdTable.propTypes = {
 
 // 设置默认参数
 AntdTable.defaultProps = {
-    summaryRowFixed: false,
-    miniChartHeight: 30,
-    miniChartAnimation: false,
-    enableHoverListen: false,
-    bordered: false,
+    // 通用参数
+    locale: 'zh-cn',
     data: [],
     columns: [],
+    size: 'default',
+    bordered: false,
+    // 进阶通用参数
     sortOptions: {
         sortDataIndexes: []
     },
     filterOptions: {},
     mode: 'client-side',
-    nClicksButton: 0,
+    sticky: false,
+    enableHoverListen: false,
+    expandRowByClick: false,
+    enableCellClickListenColumns: false,
     nClicksCell: 0,
-    size: 'default',
-    locale: 'zh-cn',
+    cellUpdateOptimize: true,
+    summaryRowFixed: false,
     conditionalStyleFuncs: {},
-    cellUpdateOptimize: true
-}
+    rowSelectionWidth: 32,
+    // 按钮模式相关
+    nClicksButton: 0,
+    // 迷你图相关
+    miniChartHeight: 30,
+    miniChartAnimation: false,
+};
 
 export default AntdTable;

@@ -13,19 +13,19 @@ Keyword arguments:
 - `buttonClickedDataIndex` (String; optional)
 - `cellUpdateOptimize` (Bool; optional)
 - `checkedDataIndex` (String; optional)
-- `className` (String; optional)
+- `className` (String | Dict; optional)
 - `clickedContent` (String; optional)
 - `columns` (optional): . columns has the following type: Array of lists containing elements 'title', 'dataIndex', 'renderOptions', 'fixed', 'editable', 'align', 'width', 'hidden', 'ellipsis', 'sorter', 'render', 'onCell', 'title_'.
 Those elements have the following types:
-  - `title` (String; required)
+  - `title` (a list of or a singular dash component, string or number; required)
   - `dataIndex` (String; required)
   - `renderOptions` (optional): . renderOptions has the following type: lists containing elements 'renderType', 'renderLinkText', 'renderButtonPopConfirmProps', 'tooltipCustomContent', 'progressOneHundredPercentColor', 'ringProgressFontSize', 'dropdownProps'.
 Those elements have the following types:
-  - `renderType` (a value equal to: 'link', 'ellipsis', 'mini-line', 'mini-bar', 'mini-progress', 'mini-ring-progress', 'mini-area', 'tags', 'button', 'copyable', 'status-badge', 'image', 'custom-format', 'ellipsis-copyable', 'corner-mark', 'checkbox', 'switch', 'row-merge', 'dropdown-links', 'image-avatar'; optional)
+  - `renderType` (a value equal to: "link", 'ellipsis', 'copyable', 'ellipsis-copyable', 'tags', 'status-badge', 'image', 'custom-format', 'corner-mark', 'row-merge', 'dropdown-links', 'image-avatar', "mini-line", 'mini-bar', 'mini-progress', 'mini-ring-progress', 'mini-area', "button", 'checkbox', 'switch'; optional)
   - `renderLinkText` (String; optional)
   - `renderButtonPopConfirmProps` (optional): . renderButtonPopConfirmProps has the following type: lists containing elements 'title', 'okText', 'cancelText'.
 Those elements have the following types:
-  - `title` (String; required)
+  - `title` (String; optional)
   - `okText` (String; optional)
   - `cancelText` (String; optional)
   - `tooltipCustomContent` (String; optional)
@@ -48,7 +48,7 @@ Those elements have the following types:
   - `sorter` (Bool | Real | String | Dict | Array; optional)
   - `render` (Bool | Real | String | Dict | Array; optional)
   - `onCell` (Bool | Real | String | Dict | Array; optional)
-  - `title_` (String; optional)s
+  - `title_` (Bool | Real | String | Dict | Array; optional)s
 - `columnsFormatConstraint` (optional): . columnsFormatConstraint has the following type: Dict with Strings as keys and values of type lists containing elements 'rule', 'content'.
 Those elements have the following types:
   - `rule` (String; optional)
@@ -68,23 +68,25 @@ Those elements have the following types:
   - `tag` (String | Real; optional) | Array of lists containing elements 'color', 'tag'.
 Those elements have the following types:
   - `color` (String; optional)
-  - `tag` (String | Real; optional)s | lists containing elements 'disabled', 'type', 'danger', 'style', 'content', 'href', 'target'.
+  - `tag` (String | Real; optional)s | lists containing elements 'disabled', 'type', 'danger', 'style', 'content', 'href', 'target', 'icon'.
 Those elements have the following types:
   - `disabled` (Bool; optional)
   - `type` (a value equal to: 'primary', 'ghost', 'dashed', 'link', 'text', 'default'; optional)
   - `danger` (Bool; optional)
   - `style` (Dict; optional)
-  - `content` (String | Real; optional)
+  - `content` (String; optional)
   - `href` (String; optional)
-  - `target` (String; optional) | Array of lists containing elements 'disabled', 'type', 'danger', 'style', 'content', 'href', 'target'.
+  - `target` (String; optional)
+  - `icon` (String; optional) | Array of lists containing elements 'disabled', 'type', 'danger', 'style', 'content', 'href', 'target', 'icon'.
 Those elements have the following types:
   - `disabled` (Bool; optional)
   - `type` (a value equal to: 'primary', 'ghost', 'dashed', 'link', 'text', 'default'; optional)
   - `danger` (Bool; optional)
   - `style` (Dict; optional)
-  - `content` (String | Real; optional)
+  - `content` (String; optional)
   - `href` (String; optional)
-  - `target` (String; optional)s | lists containing elements 'status', 'text'.
+  - `target` (String; optional)
+  - `icon` (String; optional)s | lists containing elements 'status', 'text'.
 Those elements have the following types:
   - `status` (a value equal to: 'success', 'processing', 'default', 'error', 'warning'; optional)
   - `text` (String | Real; optional) | lists containing elements 'src', 'height', 'preview'.
@@ -102,11 +104,10 @@ Those elements have the following types:
 Those elements have the following types:
   - `checked` (Bool; optional)
   - `disabled` (Bool; optional)
-  - `label` (String; optional) | lists containing elements 'checked', 'disabled', 'label', 'checkedChildren', 'unCheckedChildren'.
+  - `label` (String; optional) | lists containing elements 'checked', 'disabled', 'checkedChildren', 'unCheckedChildren'.
 Those elements have the following types:
   - `checked` (Bool; optional)
   - `disabled` (Bool; optional)
-  - `label` (String; optional)
   - `checkedChildren` (String; optional)
   - `unCheckedChildren` (String; optional) | lists containing elements 'content', 'rowSpan'.
 Those elements have the following types:
@@ -175,7 +176,7 @@ Those elements have the following types:
   - `simple` (Bool; optional)
   - `disabled` (Bool; optional)
   - `responsive` (Bool; optional)
-  - `size` (a value equal to: 'default', 'small'; optional)
+  - `size` (a value equal to: 'default', 'small'; optional) | Bool
 - `recentlyButtonClickedRow` (Dict; optional)
 - `recentlyCellClickColumn` (String; optional)
 - `recentlyCellClickRecord` (String | Real; optional)
@@ -213,8 +214,8 @@ Those elements have the following types:
 - `switchDataIndex` (String; optional)
 - `titlePopoverInfo` (optional): . titlePopoverInfo has the following type: Dict with Strings as keys and values of type lists containing elements 'title', 'content', 'placement', 'overlayStyle'.
 Those elements have the following types:
-  - `title` (String; optional)
-  - `content` (String; optional)
+  - `title` (a list of or a singular dash component, string or number; optional)
+  - `content` (a list of or a singular dash component, string or number; optional)
   - `placement` (a value equal to: 'top', 'left', 'right', 'bottom', 'topLeft', 'topRight', 'bottomLeft', 'bottomRight', 'leftTop', 'leftBottom', 'rightTop', 'rightBottom'; optional)
   - `overlayStyle` (Dict; optional)
 """
