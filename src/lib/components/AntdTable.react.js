@@ -48,7 +48,8 @@ const { Text } = Typography;
 
 // 定义不触发重绘的参数数组
 const preventUpdateProps = [
-    'recentlyMouseEnterColumn',
+    'recentlyMouseEnterColumnDataIndex',
+    'recentlyMouseEnterRowKey',
     'recentlyMouseEnterRow'
 ];
 
@@ -1310,7 +1311,7 @@ class AntdTable extends Component {
                         ...{
                             onHeaderCell: (e) => {
                                 return {
-                                    onMouseEnter: event => { setProps({ recentlyMouseEnterColumn: e.dataIndex }) }, // 鼠标移入字段名
+                                    onMouseEnter: event => { setProps({ recentlyMouseEnterColumnDataIndex: e.dataIndex }) }, // 鼠标移入字段名
                                 };
                             }
                         }
@@ -1436,7 +1437,12 @@ class AntdTable extends Component {
                         enableHoverListen ?
                             (record, index) => {
                                 return {
-                                    onMouseEnter: event => { setProps({ recentlyMouseEnterRow: record.key }) }, // 鼠标移入行
+                                    onMouseEnter: event => {
+                                        setProps({
+                                            recentlyMouseEnterRowKey: record.key,
+                                            recentlyMouseEnterRow: record
+                                        })
+                                    }, // 鼠标移入行
                                 };
                             } : undefined
                     }
@@ -1893,14 +1899,17 @@ AntdTable.propTypes = {
 
     // 记录表头各字段事件
     // 记录表头各字段鼠标移入事件
-    recentlyMouseEnterColumn: PropTypes.string,
+    recentlyMouseEnterColumnDataIndex: PropTypes.string,
 
     // 记录表格数据行事件
-    // 记录表格数据行鼠标移入事件
-    recentlyMouseEnterRow: PropTypes.oneOfType([
+    // 记录最近一次鼠标移入行事件对应行的key
+    recentlyMouseEnterRowKey: PropTypes.oneOfType([
         PropTypes.string,
         PropTypes.number
     ]),
+
+    // 监听最近一次鼠标移入行事件对应行的记录
+    recentlyMouseEnterRow: PropTypes.object,
 
     // 为每个title设置气泡卡片悬浮说明信息，格式如{字段1: {title: '标题内容', 'content': '说明内容巴拉巴拉巴拉'}}
     titlePopoverInfo: PropTypes.objectOf(
