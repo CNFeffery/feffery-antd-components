@@ -10,12 +10,9 @@ An AntdTable component.
 Keyword arguments:
 - `id` (String; optional)
 - `bordered` (Bool; optional)
-- `buttonClickedDataIndex` (String; optional)
 - `cellUpdateOptimize` (Bool; optional)
-- `checkedDataIndex` (String; optional)
 - `className` (String | Dict; optional)
 - `clickedContent` (String; optional)
-- `clickedDropdownItemTitle` (String; optional)
 - `columns` (optional): . columns has the following type: Array of lists containing elements 'title', 'dataIndex', 'renderOptions', 'fixed', 'editable', 'align', 'width', 'hidden', 'ellipsis', 'sorter', 'render', 'onCell', 'title_'.
 Those elements have the following types:
   - `title` (a list of or a singular dash component, string or number; required)
@@ -136,9 +133,8 @@ Those elements have the following types:
   - `xl` (Real; optional)
   - `xxl` (Real; optional)
   - `shape` (a value equal to: 'circle', 'square'; optional)s
-- `dropdownItemClickedDataIndex` (String; optional)
 - `emptyContent` (a list of or a singular dash component, string or number; optional)
-- `enableCellClickListenColumns` (Bool; optional)
+- `enableCellClickListenColumns` (Array of Strings; optional)
 - `enableHoverListen` (Bool; optional)
 - `expandRowByClick` (Bool; optional)
 - `expandedRowKeyToContent` (optional): . expandedRowKeyToContent has the following type: Array of lists containing elements 'key', 'content'.
@@ -168,7 +164,7 @@ Those elements have the following types:
 - `nClicksButton` (Real; optional)
 - `nClicksCell` (Real; optional)
 - `nClicksDropdownItem` (Real; optional)
-- `pagination` (optional): . pagination has the following type: lists containing elements 'position', 'pageSize', 'current', 'showSizeChanger', 'pageSizeOptions', 'showTitle', 'showQuickJumper', 'showTotalPrefix', 'showTotalSuffix', 'total', 'hideOnSinglePage', 'simple', 'disabled', 'responsive', 'size'.
+- `pagination` (optional): . pagination has the following type: lists containing elements 'position', 'pageSize', 'current', 'showSizeChanger', 'pageSizeOptions', 'showTitle', 'showQuickJumper', 'showTotalPrefix', 'showTotalSuffix', 'hideOnSinglePage', 'simple', 'disabled', 'size', 'total'.
 Those elements have the following types:
   - `position` (a value equal to: 'topLeft', 'topCenter', 'topRight', 'bottomLeft', 'bottomCenter', 'bottomRight'; optional)
   - `pageSize` (Real; optional)
@@ -179,23 +175,27 @@ Those elements have the following types:
   - `showQuickJumper` (Bool; optional)
   - `showTotalPrefix` (String; optional)
   - `showTotalSuffix` (String; optional)
-  - `total` (Real; optional)
   - `hideOnSinglePage` (Bool; optional)
   - `simple` (Bool; optional)
   - `disabled` (Bool; optional)
-  - `responsive` (Bool; optional)
-  - `size` (a value equal to: 'default', 'small'; optional) | Bool
+  - `size` (a value equal to: 'default', 'small'; optional)
+  - `total` (Real; optional) | Bool
+- `recentlyButtonClickedDataIndex` (String; optional)
 - `recentlyButtonClickedRow` (Dict; optional)
 - `recentlyCellClickColumn` (String; optional)
-- `recentlyCellClickRecord` (String | Real; optional)
+- `recentlyCellClickRecord` (Dict; optional)
 - `recentlyChangedRow` (Dict; optional)
+- `recentlyCheckedDataIndex` (String; optional)
 - `recentlyCheckedLabel` (String; optional)
 - `recentlyCheckedRow` (Dict; optional)
 - `recentlyCheckedStatus` (Bool; optional)
+- `recentlyClickedDropdownItemTitle` (String; optional)
+- `recentlyDropdownItemClickedDataIndex` (String; optional)
 - `recentlyDropdownItemClickedRow` (Dict; optional)
 - `recentlyMouseEnterColumnDataIndex` (String; optional)
 - `recentlyMouseEnterRow` (Dict; optional)
 - `recentlyMouseEnterRowKey` (String | Real; optional)
+- `recentlySwitchDataIndex` (String; optional)
 - `recentlySwitchRow` (Dict; optional)
 - `recentlySwitchStatus` (Bool; optional)
 - `rowSelectionType` (a value equal to: 'checkbox', 'radio'; optional)
@@ -217,11 +217,10 @@ Those elements have the following types:
 - `style` (Dict; optional)
 - `summaryRowContents` (optional): . summaryRowContents has the following type: Array of lists containing elements 'content', 'colSpan', 'align'.
 Those elements have the following types:
-  - `content` (String | Real; optional)
+  - `content` (a list of or a singular dash component, string or number; optional)
   - `colSpan` (Real; optional)
   - `align` (a value equal to: 'left', 'center', 'right'; optional)s
 - `summaryRowFixed` (Bool; optional)
-- `switchDataIndex` (String; optional)
 - `titlePopoverInfo` (optional): . titlePopoverInfo has the following type: Dict with Strings as keys and values of type lists containing elements 'title', 'content', 'placement', 'overlayStyle'.
 Those elements have the following types:
   - `title` (a list of or a singular dash component, string or number; optional)
@@ -230,7 +229,7 @@ Those elements have the following types:
   - `overlayStyle` (Dict; optional)
 """
 function 'feffery'_antdtable(; kwargs...)
-        available_props = Symbol[:id, :bordered, :buttonClickedDataIndex, :cellUpdateOptimize, :checkedDataIndex, :className, :clickedContent, :clickedDropdownItemTitle, :columns, :columnsFormatConstraint, :conditionalStyleFuncs, :containerId, :currentData, :customFormatFuncs, :data, :dropdownItemClickedDataIndex, :emptyContent, :enableCellClickListenColumns, :enableHoverListen, :expandRowByClick, :expandedRowKeyToContent, :expandedRowWidth, :filter, :filterOptions, :key, :loading_state, :locale, :maxHeight, :maxWidth, :miniChartAnimation, :miniChartHeight, :mode, :nClicksButton, :nClicksCell, :nClicksDropdownItem, :pagination, :recentlyButtonClickedRow, :recentlyCellClickColumn, :recentlyCellClickRecord, :recentlyChangedRow, :recentlyCheckedLabel, :recentlyCheckedRow, :recentlyCheckedStatus, :recentlyDropdownItemClickedRow, :recentlyMouseEnterColumnDataIndex, :recentlyMouseEnterRow, :recentlyMouseEnterRowKey, :recentlySwitchRow, :recentlySwitchStatus, :rowSelectionType, :rowSelectionWidth, :selectedRowKeys, :selectedRows, :size, :sortOptions, :sorter, :sticky, :style, :summaryRowContents, :summaryRowFixed, :switchDataIndex, :titlePopoverInfo]
+        available_props = Symbol[:id, :bordered, :cellUpdateOptimize, :className, :clickedContent, :columns, :columnsFormatConstraint, :conditionalStyleFuncs, :containerId, :currentData, :customFormatFuncs, :data, :emptyContent, :enableCellClickListenColumns, :enableHoverListen, :expandRowByClick, :expandedRowKeyToContent, :expandedRowWidth, :filter, :filterOptions, :key, :loading_state, :locale, :maxHeight, :maxWidth, :miniChartAnimation, :miniChartHeight, :mode, :nClicksButton, :nClicksCell, :nClicksDropdownItem, :pagination, :recentlyButtonClickedDataIndex, :recentlyButtonClickedRow, :recentlyCellClickColumn, :recentlyCellClickRecord, :recentlyChangedRow, :recentlyCheckedDataIndex, :recentlyCheckedLabel, :recentlyCheckedRow, :recentlyCheckedStatus, :recentlyClickedDropdownItemTitle, :recentlyDropdownItemClickedDataIndex, :recentlyDropdownItemClickedRow, :recentlyMouseEnterColumnDataIndex, :recentlyMouseEnterRow, :recentlyMouseEnterRowKey, :recentlySwitchDataIndex, :recentlySwitchRow, :recentlySwitchStatus, :rowSelectionType, :rowSelectionWidth, :selectedRowKeys, :selectedRows, :size, :sortOptions, :sorter, :sticky, :style, :summaryRowContents, :summaryRowFixed, :titlePopoverInfo]
         wild_props = Symbol[]
         return Component("'feffery'_antdtable", "AntdTable", "feffery_antd_components", available_props, wild_props; kwargs...)
 end

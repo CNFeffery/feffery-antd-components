@@ -814,8 +814,8 @@ class AntdTable extends Component {
                                     setTimeout(function () {
                                         setProps({
                                             nClicksDropdownItem: nClicksDropdownItem + 1,
-                                            clickedDropdownItemTitle: item.key,
-                                            dropdownItemClickedDataIndex: columns[i].dataIndex,
+                                            recentlyClickedDropdownItemTitle: item.key,
+                                            recentlyDropdownItemClickedDataIndex: columns[i].dataIndex,
                                             recentlyDropdownItemClickedRow: record
                                         })
                                     }, 200);
@@ -974,7 +974,7 @@ class AntdTable extends Component {
                                             data: data,
                                             recentlyCheckedRow: record,
                                             recentlyCheckedLabel: content.label,
-                                            checkedDataIndex: columns[i]['dataIndex'],
+                                            recentlyCheckedDataIndex: columns[i]['dataIndex'],
                                             recentlyCheckedStatus: e.target.checked
                                         })
                                     }, 200);
@@ -1013,7 +1013,7 @@ class AntdTable extends Component {
                                         setProps({
                                             data: data,
                                             recentlySwitchRow: record,
-                                            switchDataIndex: columns[i]['dataIndex'],
+                                            recentlySwitchDataIndex: columns[i]['dataIndex'],
                                             recentlySwitchStatus: checked
                                         })
                                     }, 200);
@@ -1044,7 +1044,7 @@ class AntdTable extends Component {
                                                         recentlyButtonClickedRow: record,
                                                         nClicksButton: nClicksButton + 1,
                                                         clickedContent: content_.content,
-                                                        buttonClickedDataIndex: columns[i].dataIndex
+                                                        recentlyButtonClickedDataIndex: columns[i].dataIndex
                                                     })}>
                                                     <Button
                                                         size={'small'}
@@ -1070,7 +1070,7 @@ class AntdTable extends Component {
                                     recentlyButtonClickedRow: record,
                                     nClicksButton: nClicksButton + 1,
                                     clickedContent: content.content,
-                                    buttonClickedDataIndex: columns[i].dataIndex
+                                    recentlyButtonClickedDataIndex: columns[i].dataIndex
                                 })}>
                                 <Button
                                     size={'small'}
@@ -1097,7 +1097,7 @@ class AntdTable extends Component {
                                                         recentlyButtonClickedRow: record,
                                                         nClicksButton: nClicksButton + 1,
                                                         clickedContent: content_.content,
-                                                        buttonClickedDataIndex: columns[i].dataIndex
+                                                        recentlyButtonClickedDataIndex: columns[i].dataIndex
                                                     })}
                                                     size={'small'}
                                                     type={content_.type}
@@ -1117,7 +1117,7 @@ class AntdTable extends Component {
                                     recentlyButtonClickedRow: record,
                                     nClicksButton: nClicksButton + 1,
                                     clickedContent: content.content,
-                                    buttonClickedDataIndex: columns[i].dataIndex
+                                    recentlyButtonClickedDataIndex: columns[i].dataIndex
                                 })}
                                 size={'small'}
                                 type={content.type}
@@ -1982,7 +1982,8 @@ AntdTable.propTypes = {
         PropTypes.exact({
             // 设置分页组件的位置，可选项有'topLeft'、'topCenter'、'topRight'、'bottomLeft'、'bottomCenter'以及'bottomRight'
             position: PropTypes.oneOf([
-                'topLeft', 'topCenter', 'topRight', 'bottomLeft', 'bottomCenter', 'bottomRight'
+                'topLeft', 'topCenter', 'topRight',
+                'bottomLeft', 'bottomCenter', 'bottomRight'
             ]),
 
             // 每页显示的记录行数
@@ -2009,9 +2010,6 @@ AntdTable.propTypes = {
             // 定义总记录行数显示部分的后缀文字，默认为" 条记录"
             showTotalSuffix: PropTypes.string,
 
-            // 用于在后端分页时手动设置总数据记录数量
-            total: PropTypes.number,
-
             // 用于设置是否在数据记录只有一页时自动隐藏分页器，默认为false
             hideOnSinglePage: PropTypes.bool,
 
@@ -2021,11 +2019,11 @@ AntdTable.propTypes = {
             // 设置是否禁用分页，默认为false
             disabled: PropTypes.bool,
 
-            // 设置是否开启响应式，即分页尺寸会根据屏幕宽度自动进行调整
-            responsive: PropTypes.bool,
-
             // 设置分页器尺寸，可选的有'default'和'small'，默认为'default'
-            size: PropTypes.oneOf(['default', 'small'])
+            size: PropTypes.oneOf(['default', 'small']),
+
+            // 用于在后端分页时手动设置总数据记录数量
+            total: PropTypes.number
         }),
         PropTypes.bool
     ]),
@@ -2055,10 +2053,7 @@ AntdTable.propTypes = {
     summaryRowContents: PropTypes.arrayOf(
         PropTypes.exact({
             // 总结栏单元格内容
-            content: PropTypes.oneOfType([
-                PropTypes.string,
-                PropTypes.number
-            ]),
+            content: PropTypes.node,
 
             // 设置当前值横跨的字段数量，默认为1
             colSpan: PropTypes.number,
@@ -2098,17 +2093,16 @@ AntdTable.propTypes = {
 
     // 设置启用单元格点击事件监听的字段dataIndex数组，开启后会干扰多种再渲染模式的交互，
     // 以及自定义条件单元格模式，请慎用
-    enableCellClickListenColumns: PropTypes.bool,
+    enableCellClickListenColumns: PropTypes.arrayOf(
+        PropTypes.string
+    ),
 
     // 记录单元格点击事件
     // 记录单元格点击事件对应的字段dataIndex信息
     recentlyCellClickColumn: PropTypes.string,
 
-    // 记录单元格点击事件对应的行key信息
-    recentlyCellClickRecord: PropTypes.oneOfType([
-        PropTypes.string,
-        PropTypes.number
-    ]),
+    // 记录单元格点击事件对应的行记录信息
+    recentlyCellClickRecord: PropTypes.object,
 
     // 记录单元格单击事件发生的总次数
     nClicksCell: PropTypes.number,
@@ -2138,7 +2132,7 @@ AntdTable.propTypes = {
     clickedContent: PropTypes.string,
 
     // 对应最近一次按钮模式下被点击的按钮对应列dataIndex
-    buttonClickedDataIndex: PropTypes.string,
+    recentlyButtonClickedDataIndex: PropTypes.string,
 
     // 自定义格式模式
     // 针对custom-format自定义格式化对应的字段，设置针对对应列每个值从原始数值到格式化结果的js函数字符串
@@ -2155,7 +2149,7 @@ AntdTable.propTypes = {
     recentlyCheckedLabel: PropTypes.string,
 
     // 用于监听最近发生勾选事件的字段dataIndex信息
-    checkedDataIndex: PropTypes.string,
+    recentlyCheckedDataIndex: PropTypes.string,
 
     // 用于监听最近发生的勾选行为对应的勾选状态
     recentlyCheckedStatus: PropTypes.bool,
@@ -2165,7 +2159,7 @@ AntdTable.propTypes = {
     recentlySwitchRow: PropTypes.object,
 
     // 用于监听最近发生开关切换事件的字段dataIndex信息
-    switchDataIndex: PropTypes.string,
+    recentlySwitchDataIndex: PropTypes.string,
 
     // 用于监听最近发生的开关切换行为对应的切换后状态
     recentlySwitchStatus: PropTypes.bool,
@@ -2175,10 +2169,10 @@ AntdTable.propTypes = {
     nClicksDropdownItem: PropTypes.number,
 
     // 用于监听最近一次被点击的dropdown选项title值
-    clickedDropdownItemTitle: PropTypes.string,
+    recentlyClickedDropdownItemTitle: PropTypes.string,
 
     // 用于监听最近一次被点击的dropdown对应的字段dataIndex
-    dropdownItemClickedDataIndex: PropTypes.string,
+    recentlyDropdownItemClickedDataIndex: PropTypes.string,
 
     // 用于监听最近一次被点击的dropdown对应的行记录
     recentlyDropdownItemClickedRow: PropTypes.object,
