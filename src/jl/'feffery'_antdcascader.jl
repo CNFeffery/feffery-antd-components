@@ -13,7 +13,7 @@ Keyword arguments:
 - `bordered` (Bool; optional)
 - `changeOnSelect` (Bool; optional)
 - `className` (String | Dict; optional)
-- `defaultValue` (Array of Strings | Array of Array of Stringss; optional)
+- `defaultValue` (Array of String | Reals | Array of Array of String | Realss; optional)
 - `disabled` (Bool; optional)
 - `expandTrigger` (a value equal to: 'click', 'hover'; optional)
 - `key` (String; optional)
@@ -48,7 +48,7 @@ session: window.sessionStorage, data is cleared once the browser quit.
 - `size` (a value equal to: 'small', 'middle', 'large'; optional)
 - `status` (a value equal to: 'error', 'warning'; optional)
 - `style` (Dict; optional)
-- `value` (Array of Strings | Array of Array of Stringss; optional)
+- `value` (Array of String | Reals | Array of Array of String | Realss; optional)
 """
 function 'feffery'_antdcascader(; kwargs...)
         available_props = Symbol[:id, :allowClear, :bordered, :changeOnSelect, :className, :defaultValue, :disabled, :expandTrigger, :key, :loading_state, :locale, :maxTagCount, :multiple, :options, :optionsMode, :persisted_props, :persistence, :persistence_type, :placeholder, :placement, :popupContainer, :readOnly, :showCheckedStrategy, :size, :status, :style, :value]

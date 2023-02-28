@@ -335,7 +335,7 @@ const AntdDatePicker = (props) => {
     return (
         <div>
             <ConfigProvider
-                locale={context.locale ? str2Locale.get(context.locale) : str2Locale.get(locale)}
+                locale={context && context.locale ? str2Locale.get(context.locale) : str2Locale.get(locale)}
             >
                 <DatePicker
                     id={id}

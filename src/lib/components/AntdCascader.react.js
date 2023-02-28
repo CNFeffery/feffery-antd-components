@@ -120,7 +120,10 @@ const AntdCascader = (props) => {
 // 定义递归PropTypes
 const PropOptionNodeShape = {
     // 选项对应的值
-    value: PropTypes.string.isRequired,
+    value: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.number
+    ]).isRequired,
 
     // 选项对应显示的文字标题
     label: PropTypes.string.isRequired,
@@ -136,7 +139,10 @@ const optionDataPropTypes = PropTypes.arrayOf(PropOptionNode);
 // 定义扁平节点PropTypes
 const PropFlatOptionNodeShape = {
     // 选项对应的值
-    value: PropTypes.string.isRequired,
+    value: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.number
+    ]).isRequired,
 
     // 选项对应显示的文字标题
     label: PropTypes.string.isRequired,
@@ -207,17 +213,37 @@ AntdCascader.propTypes = {
 
     // 对应回调中用户已选择的值
     value: PropTypes.oneOfType([
-        PropTypes.arrayOf(PropTypes.string),
         PropTypes.arrayOf(
-            PropTypes.arrayOf(PropTypes.string)
+            PropTypes.oneOfType([
+                PropTypes.string,
+                PropTypes.number
+            ])
+        ),
+        PropTypes.arrayOf(
+            PropTypes.arrayOf(
+                PropTypes.oneOfType([
+                    PropTypes.string,
+                    PropTypes.number
+                ])
+            )
         )
     ]),
 
     // 设置默认的选中项
     defaultValue: PropTypes.oneOfType([
-        PropTypes.arrayOf(PropTypes.string),
         PropTypes.arrayOf(
-            PropTypes.arrayOf(PropTypes.string)
+            PropTypes.oneOfType([
+                PropTypes.string,
+                PropTypes.number
+            ])
+        ),
+        PropTypes.arrayOf(
+            PropTypes.arrayOf(
+                PropTypes.oneOfType([
+                    PropTypes.string,
+                    PropTypes.number
+                ])
+            )
         )
     ]),
 

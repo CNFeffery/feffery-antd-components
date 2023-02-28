@@ -262,7 +262,10 @@ AntdSelect.propTypes = {
                 label: PropTypes.node.isRequired,
 
                 // 选相对应的值
-                value: PropTypes.string.isRequired,
+                value: PropTypes.oneOfType([
+                    PropTypes.string,
+                    PropTypes.number
+                ]).isRequired,
 
                 // 控制选项的禁止点击状态
                 disabled: PropTypes.bool,
@@ -282,7 +285,10 @@ AntdSelect.propTypes = {
                         label: PropTypes.node.isRequired,
 
                         // 选相对应的值
-                        value: PropTypes.string.isRequired,
+                        value: PropTypes.oneOfType([
+                            PropTypes.string,
+                            PropTypes.number
+                        ]).isRequired,
 
                         // 控制选项的禁止点击状态
                         disabled: PropTypes.bool,
@@ -331,14 +337,30 @@ AntdSelect.propTypes = {
 
     // 对应已被选中的选项值或选项值数组
     value: PropTypes.oneOfType([
-        PropTypes.string,
-        PropTypes.arrayOf(PropTypes.string),
+        PropTypes.oneOfType([
+            PropTypes.string,
+            PropTypes.number
+        ]),
+        PropTypes.arrayOf(
+            PropTypes.oneOfType([
+                PropTypes.string,
+                PropTypes.number
+            ])
+        ),
     ]),
 
     // 设置默认被选中的选项，默认为空数组
     defaultValue: PropTypes.oneOfType([
-        PropTypes.string,
-        PropTypes.arrayOf(PropTypes.string),
+        PropTypes.oneOfType([
+            PropTypes.string,
+            PropTypes.number
+        ]),
+        PropTypes.arrayOf(
+            PropTypes.oneOfType([
+                PropTypes.string,
+                PropTypes.number
+            ])
+        ),
     ]),
 
     // 设置最大显示的已选择选项，默认为5，超出部分会自动省略

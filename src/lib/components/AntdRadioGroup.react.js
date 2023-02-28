@@ -132,7 +132,10 @@ AntdRadioGroup.propTypes = {
             label: PropTypes.node,
 
             // 设置选项的对应值
-            value: PropTypes.string,
+            value: PropTypes.oneOfType([
+                PropTypes.string,
+                PropTypes.number
+            ]),
 
             // 设置是否禁用当前选项，默认为false
             disabled: PropTypes.bool
@@ -147,10 +150,16 @@ AntdRadioGroup.propTypes = {
     size: PropTypes.oneOf(['large', 'middle', 'small']),
 
     // 对应当前已选中的值
-    value: PropTypes.string,
+    value: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.number
+    ]),
 
     // 设置初始化状态下被选中的值
-    defaultValue: PropTypes.string,
+    defaultValue: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.number
+    ]),
 
     // 设置选项的渲染方式，可选的有'default'和'button'，默认为'default'
     optionType: PropTypes.oneOf(['default', 'button']),

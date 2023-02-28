@@ -79,7 +79,10 @@ AntdCheckboxGroup.propTypes = {
             label: PropTypes.node,
 
             // 设置选项对应的值
-            value: PropTypes.string,
+            value: PropTypes.oneOfType([
+                PropTypes.string,
+                PropTypes.number
+            ]),
 
             // 设置是否禁用当前选项
             disabled: PropTypes.bool
@@ -87,7 +90,12 @@ AntdCheckboxGroup.propTypes = {
     ),
 
     // 对应组合选择框当前被选中的选项的value数组
-    value: PropTypes.arrayOf(PropTypes.string),
+    value: PropTypes.arrayOf(
+        PropTypes.oneOfType([
+            PropTypes.string,
+            PropTypes.number
+        ])
+    ),
 
     loading_state: PropTypes.shape({
         /**

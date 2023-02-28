@@ -20,7 +20,7 @@ Those elements have the following types:
 - `options` (optional): . options has the following type: Array of lists containing elements 'label', 'value', 'disabled'.
 Those elements have the following types:
   - `label` (a list of or a singular dash component, string or number; optional)
-  - `value` (String; optional)
+  - `value` (String | Real; optional)
   - `disabled` (Bool; optional)s
 - `persisted_props` (Array of a value equal to: 'value's; optional): Properties whose user interactions will persist after refreshing the
 component or the page. Since only `value` is allowed this prop can
@@ -36,7 +36,7 @@ memory: only kept in memory, reset on page refresh.
 local: window.localStorage, data is kept after the browser quit.
 session: window.sessionStorage, data is cleared once the browser quit.
 - `style` (Dict; optional)
-- `value` (Array of Strings; optional)
+- `value` (Array of String | Reals; optional)
 """
 function 'feffery'_antdcheckboxgroup(; kwargs...)
         available_props = Symbol[:id, :className, :disabled, :key, :loading_state, :options, :persisted_props, :persistence, :persistence_type, :style, :value]
