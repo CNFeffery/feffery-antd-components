@@ -2218,7 +2218,7 @@ AntdTable.defaultProps = {
     expandRowByClick: false,
     enableCellClickListenColumns: false,
     nClicksCell: 0,
-    cellUpdateOptimize: true,
+    cellUpdateOptimize: false,
     summaryRowFixed: false,
     conditionalStyleFuncs: {},
     rowSelectionWidth: 32,

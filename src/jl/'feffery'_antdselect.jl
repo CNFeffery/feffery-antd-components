@@ -18,7 +18,7 @@ Keyword arguments:
 - `colorsNameWidth` (Real; optional)
 - `debounceSearchValue` (String; optional)
 - `debounceWait` (Real; optional)
-- `defaultValue` (String | Array of Strings; optional)
+- `defaultValue` (String | Real | Array of String | Reals; optional)
 - `disabled` (Bool; optional)
 - `dropdownAfter` (a list of or a singular dash component, string or number; optional)
 - `dropdownBefore` (a list of or a singular dash component, string or number; optional)
@@ -38,7 +38,7 @@ Those elements have the following types:
 - `options` (optional): . options has the following type: Array of lists containing elements 'label', 'value', 'disabled', 'colors'.
 Those elements have the following types:
   - `label` (a list of or a singular dash component, string or number; required)
-  - `value` (String; required)
+  - `value` (String | Real; required)
   - `disabled` (Bool; optional)
   - `colors` (Array of Strings; optional) | lists containing elements 'group', 'options'.
 Those elements have the following types:
@@ -46,7 +46,7 @@ Those elements have the following types:
   - `options` (optional): . options has the following type: Array of lists containing elements 'label', 'value', 'disabled', 'colors'.
 Those elements have the following types:
   - `label` (a list of or a singular dash component, string or number; required)
-  - `value` (String; required)
+  - `value` (String | Real; required)
   - `disabled` (Bool; optional)
   - `colors` (Array of Strings; optional)ss
 - `persisted_props` (Array of a value equal to: 'value's; optional): Properties whose user interactions will persist after refreshing the
@@ -70,7 +70,7 @@ session: window.sessionStorage, data is cleared once the browser quit.
 - `size` (a value equal to: 'small', 'middle', 'large'; optional)
 - `status` (a value equal to: 'error', 'warning'; optional)
 - `style` (Dict; optional)
-- `value` (String | Array of Strings; optional)
+- `value` (String | Real | Array of String | Reals; optional)
 """
 function 'feffery'_antdselect(; kwargs...)
         available_props = Symbol[:id, :allowClear, :autoClearSearchValue, :autoSpin, :bordered, :className, :colorsMode, :colorsNameWidth, :debounceSearchValue, :debounceWait, :defaultValue, :disabled, :dropdownAfter, :dropdownBefore, :emptyContent, :key, :listHeight, :loadingEmptyContent, :loading_state, :locale, :maxTagCount, :mode, :optionFilterProp, :options, :persisted_props, :persistence, :persistence_type, :placeholder, :placement, :popupContainer, :readOnly, :searchValue, :size, :status, :style, :value]
