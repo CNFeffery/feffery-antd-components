@@ -66,7 +66,7 @@ Those elements have the following types:
   - `tag` (String | Real; optional) | Array of lists containing elements 'color', 'tag'.
 Those elements have the following types:
   - `color` (String; optional)
-  - `tag` (String | Real; optional)s | lists containing elements 'disabled', 'type', 'danger', 'style', 'content', 'href', 'target', 'icon'.
+  - `tag` (String | Real; optional)s | lists containing elements 'disabled', 'type', 'danger', 'style', 'content', 'href', 'target', 'icon', 'custom'.
 Those elements have the following types:
   - `disabled` (Bool; optional)
   - `type` (a value equal to: 'primary', 'ghost', 'dashed', 'link', 'text', 'default'; optional)
@@ -75,7 +75,8 @@ Those elements have the following types:
   - `content` (String; optional)
   - `href` (String; optional)
   - `target` (String; optional)
-  - `icon` (String; optional) | Array of lists containing elements 'disabled', 'type', 'danger', 'style', 'content', 'href', 'target', 'icon'.
+  - `icon` (String; optional)
+  - `custom` (Bool | Real | String | Dict | Array; optional) | Array of lists containing elements 'disabled', 'type', 'danger', 'style', 'content', 'href', 'target', 'icon', 'custom'.
 Those elements have the following types:
   - `disabled` (Bool; optional)
   - `type` (a value equal to: 'primary', 'ghost', 'dashed', 'link', 'text', 'default'; optional)
@@ -84,7 +85,8 @@ Those elements have the following types:
   - `content` (String; optional)
   - `href` (String; optional)
   - `target` (String; optional)
-  - `icon` (String; optional)s | lists containing elements 'status', 'text'.
+  - `icon` (String; optional)
+  - `custom` (Bool | Real | String | Dict | Array; optional)s | lists containing elements 'status', 'text'.
 Those elements have the following types:
   - `status` (a value equal to: 'success', 'processing', 'default', 'error', 'warning'; optional)
   - `text` (String | Real; optional) | lists containing elements 'src', 'height', 'preview'.
@@ -98,24 +100,27 @@ Those elements have the following types:
   - `content` (Real | String; optional)
   - `offsetX` (Real; optional)
   - `offsetY` (Real; optional)
-  - `hide` (Bool; optional) | lists containing elements 'checked', 'disabled', 'label'.
+  - `hide` (Bool; optional) | lists containing elements 'checked', 'disabled', 'label', 'custom'.
 Those elements have the following types:
   - `checked` (Bool; optional)
   - `disabled` (Bool; optional)
-  - `label` (String; optional) | lists containing elements 'checked', 'disabled', 'checkedChildren', 'unCheckedChildren'.
+  - `label` (String; optional)
+  - `custom` (Bool | Real | String | Dict | Array; optional) | lists containing elements 'checked', 'disabled', 'checkedChildren', 'unCheckedChildren', 'custom'.
 Those elements have the following types:
   - `checked` (Bool; optional)
   - `disabled` (Bool; optional)
   - `checkedChildren` (String; optional)
-  - `unCheckedChildren` (String; optional) | lists containing elements 'content', 'rowSpan'.
+  - `unCheckedChildren` (String; optional)
+  - `custom` (Bool | Real | String | Dict | Array; optional) | lists containing elements 'content', 'rowSpan'.
 Those elements have the following types:
   - `content` (Real | String; optional)
-  - `rowSpan` (Real; optional) | Array of lists containing elements 'title', 'disabled', 'icon', 'isDivider'.
+  - `rowSpan` (Real; optional) | Array of lists containing elements 'title', 'disabled', 'icon', 'isDivider', 'custom'.
 Those elements have the following types:
   - `title` (String; optional)
   - `disabled` (Bool; optional)
   - `icon` (String; optional)
-  - `isDivider` (Bool; optional)s | Array of lists containing elements 'title', 'href', 'disabled', 'icon', 'isDivider'.
+  - `isDivider` (Bool; optional)
+  - `custom` (Bool | Real | String | Dict | Array; optional)s | Array of lists containing elements 'title', 'href', 'disabled', 'icon', 'isDivider'.
 Those elements have the following types:
   - `title` (String; optional)
   - `href` (String; optional)

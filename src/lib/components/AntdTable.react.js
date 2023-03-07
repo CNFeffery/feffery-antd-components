@@ -758,7 +758,9 @@ class AntdTable extends Component {
             if (columns[i]['renderOptions'] && columns[i]['renderOptions']['renderType']) {
                 // ellipsis模式
                 if (columns[i]['renderOptions']['renderType'] === 'ellipsis') {
-                    columns[i]['ellipsis'] = true
+                    columns[i]['ellipsis'] = {
+                        showTitle: false
+                    }
                     columns[i]['render'] = content => (
                         <Text ellipsis={{ tooltip: content }}>
                             {content}
@@ -905,7 +907,9 @@ class AntdTable extends Component {
                 }
                 // ellipsis-copyable模式
                 else if (columns[i]['renderOptions']['renderType'] === 'ellipsis-copyable') {
-                    columns[i]['ellipsis'] = true
+                    columns[i]['ellipsis'] = {
+                        showTitle: false
+                    }
                     columns[i]['render'] = content => (
                         <Text copyable={true} ellipsis={{ tooltip: content }}>
                             {content}
@@ -1690,7 +1694,9 @@ AntdTable.propTypes = {
                         // link类型对应的target
                         target: PropTypes.string,
                         // 为当前按钮设置前缀图标，同AntdIcon中的同名参数
-                        icon: PropTypes.string
+                        icon: PropTypes.string,
+                        // 用于存放任意结构的自定义辅助信息
+                        custom: PropTypes.any
                     }),
 
                     // 多按钮
@@ -1711,7 +1717,9 @@ AntdTable.propTypes = {
                             // link类型对应的target
                             target: PropTypes.string,
                             // 为当前按钮设置前缀图标，同AntdIcon中的同名参数
-                            icon: PropTypes.string
+                            icon: PropTypes.string,
+                            // 用于存放任意结构的自定义辅助信息
+                            custom: PropTypes.any
                         })
                     )
                 ]),
@@ -1768,7 +1776,9 @@ AntdTable.propTypes = {
                     // 设置是否禁用当前checkbox
                     disabled: PropTypes.bool,
                     // 设置勾选框文本标签信息
-                    label: PropTypes.string
+                    label: PropTypes.string,
+                    // 用于存放任意结构的自定义辅助信息
+                    custom: PropTypes.any
                 }),
 
                 // switch模式
@@ -1780,7 +1790,9 @@ AntdTable.propTypes = {
                     // 设置“开”状态下标签信息
                     checkedChildren: PropTypes.string,
                     // 设置“关”状态下标签信息
-                    unCheckedChildren: PropTypes.string
+                    unCheckedChildren: PropTypes.string,
+                    // 用于存放任意结构的自定义辅助信息
+                    custom: PropTypes.any
                 }),
 
                 // row-merge模式
@@ -1804,7 +1816,9 @@ AntdTable.propTypes = {
                         // 设置当前链接的前缀图标，同AntdIcon的icon参数
                         icon: PropTypes.string,
                         // 设置当前节点是否充当分割线
-                        isDivider: PropTypes.bool
+                        isDivider: PropTypes.bool,
+                        // 用于存放任意结构的自定义辅助信息
+                        custom: PropTypes.any
                     })
                 ),
 
