@@ -57,7 +57,7 @@ AntdTag.propTypes = {
     key: PropTypes.string,
 
     // 自定义标签内部文字内容
-    content: PropTypes.string,
+    content: PropTypes.node,
 
     // 直接设置标签颜色风格，除了内置的若干色彩主题之外，还可自行传入16进制格式的色彩值
     color: PropTypes.string,
@@ -92,7 +92,6 @@ AntdTag.propTypes = {
 
 // 设置默认参数
 AntdTag.defaultProps = {
-    content: '',
     target: '_blank'
 }
 

@@ -9,7 +9,7 @@ An AntdTimeline component.
 
 Keyword arguments:
 - `id` (String; optional)
-- `className` (String; optional)
+- `className` (String | Dict; optional)
 - `items` (required): . items has the following type: Array of lists containing elements 'content', 'color', 'icon', 'label', 'position'.
 Those elements have the following types:
   - `content` (a list of or a singular dash component, string or number; optional)

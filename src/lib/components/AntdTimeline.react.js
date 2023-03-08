@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Timeline } from 'antd';
+import { isString } from 'lodash';
+import useCss from '../hooks/useCss';
 
 
 // 定义时间轴组件AntdTimeline，api参数参考https://ant.design/components/timeline-cn/
@@ -22,7 +24,11 @@ const AntdTimeline = (props) => {
 
     return (
         <Timeline id={id}
-            className={className}
+            className={
+                isString(className) ?
+                    className :
+                    (className ? useCss(className) : undefined)
+            }
             style={style}
             key={key}
             mode={mode}
@@ -36,8 +42,7 @@ const AntdTimeline = (props) => {
             item => (
                 <Timeline.Item color={item.color}
                     dot={item.icon}
-                    label={item.label}
-                    position={item.position}>
+                    label={item.label}>
                     {item.content}
                 </Timeline.Item>
             )
@@ -52,7 +57,10 @@ AntdTimeline.propTypes = {
     id: PropTypes.string,
 
     // css类名
-    className: PropTypes.string,
+    className: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.object
+    ]),
 
     // 自定义css字典
     style: PropTypes.object,
@@ -77,10 +85,7 @@ AntdTimeline.propTypes = {
             icon: PropTypes.node,
 
             // 设置节点在单独另一侧显示的标签内容
-            label: PropTypes.node,
-
-            // 用于设置节点位置，可选的有'left'、'right'
-            position: PropTypes.oneOf(['left', 'right'])
+            label: PropTypes.node
         })
     ).isRequired,
 
@@ -89,13 +94,14 @@ AntdTimeline.propTypes = {
     mode: PropTypes.oneOf(['left', 'alternate', 'right']),
 
     // 设置在时间轴尾部添加“加载中”幽灵节点对应的文字说明内容
-    // 默认不设置则不会渲染该状态节点
+    // 默认不设置则不会添加
     pending: PropTypes.node,
 
     // 设自定义时间轴尾部“加载中”状态所展示的元素内容
     pendingDot: PropTypes.node,
 
     // 设置是否对时间轴逆序排列（默认false顺序下，方向从上往下）
+    // 默认为false
     reverse: PropTypes.bool,
 
     loading_state: PropTypes.shape({
@@ -122,7 +128,8 @@ AntdTimeline.propTypes = {
 
 // 设置默认参数
 AntdTimeline.defaultProps = {
-    mode: 'left'
+    mode: 'left',
+    reverse: false
 }
 
 export default AntdTimeline;
