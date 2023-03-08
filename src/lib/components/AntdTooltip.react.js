@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Tooltip } from 'antd';
+import { isString } from 'lodash';
+import useCss from '../hooks/useCss';
 
 import { parseChildrenToArray } from './utils';
 
@@ -32,7 +34,11 @@ const AntdTooltip = (props) => {
 
     return (
         <Tooltip id={id}
-            className={className}
+            className={
+                isString(className) ?
+                    className :
+                    (className ? useCss(className) : undefined)
+            }
             style={style}
             key={key}
             title={title}
@@ -66,7 +72,10 @@ AntdTooltip.propTypes = {
     children: PropTypes.node,
 
     // css类名
-    className: PropTypes.string,
+    className: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.object
+    ]),
 
     // 自定义css字典
     style: PropTypes.object,
@@ -82,7 +91,7 @@ AntdTooltip.propTypes = {
     // 、'rightTop'、'rightBottom'，默认为'top'
     placement: PropTypes.oneOf([
         'top', 'left', 'right', 'bottom', 'topLeft', 'topRight', 'bottomLeft',
-        'bottomRight', 'leftTop', 'leftBottom', 'rightTop', 'rightBottom'
+        'bottomRight'
     ]),
 
     // 设置背景颜色
@@ -111,6 +120,9 @@ AntdTooltip.propTypes = {
     // 设置悬浮层zIndex
     zIndex: PropTypes.number,
 
+    // 设置箭头是否指向锚点元素中心，默认为false
+    arrowPointAtCenter: PropTypes.bool,
+
     // 设置悬浮层锚定策略，可选的有'parent'、'body'，默认为'body'
     popupContainer: PropTypes.oneOf(['parent', 'body']),
 
@@ -138,7 +150,12 @@ AntdTooltip.propTypes = {
 
 // 设置默认参数
 AntdTooltip.defaultProps = {
-    popupContainer: 'body'
+    mouseEnterDelay: 0.1,
+    mouseLeaveDelay: 0.1,
+    placement: 'top',
+    trigger: 'hover',
+    popupContainer: 'body',
+    arrowPointAtCenter: false
 }
 
 export default AntdTooltip;

@@ -13,7 +13,8 @@ An AntdTooltip component.
 Keyword arguments:
 - `children` (a list of or a singular dash component, string or number; optional)
 - `id` (String; optional)
-- `className` (String; optional)
+- `arrowPointAtCenter` (Bool; optional)
+- `className` (String | Dict; optional)
 - `color` (String; optional)
 - `key` (String; optional)
 - `loading_state` (optional): . loading_state has the following type: lists containing elements 'is_loading', 'prop_name', 'component_name'.
@@ -33,7 +34,7 @@ Those elements have the following types:
 - `zIndex` (Real; optional)
 """
 function 'feffery'_antdtooltip(; kwargs...)
-        available_props = Symbol[:children, :id, :className, :color, :key, :loading_state, :mouseEnterDelay, :mouseLeaveDelay, :overlayInnerStyle, :overlayStyle, :placement, :popupContainer, :style, :title, :trigger, :zIndex]
+        available_props = Symbol[:children, :id, :arrowPointAtCenter, :className, :color, :key, :loading_state, :mouseEnterDelay, :mouseLeaveDelay, :overlayInnerStyle, :overlayStyle, :placement, :popupContainer, :style, :title, :trigger, :zIndex]
         wild_props = Symbol[]
         return Component("'feffery'_antdtooltip", "AntdTooltip", "feffery_antd_components", available_props, wild_props; kwargs...)
 end
