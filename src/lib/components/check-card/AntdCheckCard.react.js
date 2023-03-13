@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { CheckCard } from '@ant-design/pro-card';
-import { isUndefined } from 'lodash';
-import { parseChildrenToArray } from '../utils';
+import { isUndefined, isString } from 'lodash';
+import useCss from '../../hooks/useCss';
 
 // 定义选择卡片组件AntdCheckCard，api参数参考https://procomponents.ant.design/components/check-card
 const AntdCheckCard = (props) => {
@@ -29,11 +29,13 @@ const AntdCheckCard = (props) => {
         }
     }, [])
 
-    children = parseChildrenToArray(children)
-
     return (
         <CheckCard id={id}
-            className={className}
+            className={
+                isString(className) ?
+                    className :
+                    (className ? useCss(className) : undefined)
+            }
             style={style}
             key={key}
             description={children}
@@ -58,7 +60,10 @@ AntdCheckCard.propTypes = {
     children: PropTypes.node,
 
     // css类名
-    className: PropTypes.string,
+    className: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.object
+    ]),
 
     // 自定义css字典
     style: PropTypes.object,
@@ -66,17 +71,14 @@ AntdCheckCard.propTypes = {
     // 辅助刷新用唯一标识key值
     key: PropTypes.string,
 
-    // 设置当前选择卡片是否处于选择状态，默认为false
+    // 设置当前选择卡片是否处于选择状态
     checked: PropTypes.bool,
+
+    // 设置当前选择卡片是否默认已选择
+    defaultChecked: PropTypes.bool,
 
     // 设置是否显示边框，默认为true
     bordered: PropTypes.bool,
-
-    // 设置当前选项的选项值
-    value: PropTypes.string,
-
-    // 设置当前选择卡片是否默认已选择，默认为false
-    defaultChecked: PropTypes.bool,
 
     // 是否禁用当前选择卡片，默认为false
     disabled: PropTypes.bool,
@@ -84,6 +86,12 @@ AntdCheckCard.propTypes = {
     // 设置尺寸规格，可选的有'small'、'default'及'large'
     // 默认为'default'
     size: PropTypes.oneOf(['small', 'default', 'large']),
+
+    // 设置当前选项的选项值
+    value: PropTypes.oneOfType([
+        PropTypes.number,
+        PropTypes.string
+    ]),
 
     loading_state: PropTypes.shape({
         /**
@@ -109,6 +117,9 @@ AntdCheckCard.propTypes = {
 
 // 设置默认参数
 AntdCheckCard.defaultProps = {
+    bordered: true,
+    disabled: false,
+    size: 'default'
 }
 
 export default AntdCheckCard;

@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import { Tabs, Popover } from 'antd';
 import { InfoCircleOutlined } from "@ant-design/icons";
 import { omit } from 'ramda';
+import { isString } from 'lodash';
+import useCss from '../../hooks/useCss';
 
 import { parseChildrenToArray, resolveChildProps } from '../utils';
 
@@ -14,13 +16,13 @@ const AntdTabs = (props) => {
     let {
         id,
         children,
+        className,
+        style,
+        key,
         items,
         disabledTabKeys,
         tabBarLeftExtraContent,
         tabBarRightExtraContent,
-        className,
-        style,
-        key,
         defaultActiveKey,
         activeKey,
         size,
@@ -53,9 +55,8 @@ const AntdTabs = (props) => {
         setProps({ latestDeletePane: targetKey })
     }
 
-    // 构造标签页新方式
+    // 0.2.x构造标签页新方式
     if (items) {
-
         // 根据disabledTabKeys进行指定标签页的禁用
         if (disabledTabKeys) {
             items = items.map(
@@ -73,7 +74,11 @@ const AntdTabs = (props) => {
 
         return (
             <Tabs id={id}
-                className={className}
+                className={
+                    isString(className) ?
+                        className :
+                        (className ? useCss(className) : undefined)
+                }
                 style={style}
                 key={key}
                 items={items}
@@ -104,6 +109,7 @@ const AntdTabs = (props) => {
         );
     }
 
+    // Deprecated，将在0.3.x版本中进行移除
     children = parseChildrenToArray(children)
 
     const tabPanes = children.map(
@@ -177,7 +183,11 @@ const AntdTabs = (props) => {
 
     return (
         <Tabs id={id}
-            className={className}
+            className={
+                isString(className) ?
+                    className :
+                    (className ? useCss(className) : undefined)
+            }
             style={style}
             key={key}
             defaultActiveKey={defaultActiveKey}
@@ -216,6 +226,18 @@ AntdTabs.propTypes = {
 
     children: PropTypes.node,
 
+    // css类名
+    className: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.object
+    ]),
+
+    // 自定义css字典
+    style: PropTypes.object,
+
+    // 辅助刷新用唯一标识key值
+    key: PropTypes.string,
+
     // 用于定义标签页的新写法
     items: PropTypes.arrayOf(
         PropTypes.exact({
@@ -239,32 +261,22 @@ AntdTabs.propTypes = {
         })
     ),
 
-    // 设置需要呈现禁用状态的标签页key值数组，优先级高于items[].disabled
-    // 即当items[].disabled设置为false但对应key在disabledTabKeys中时，仍然会禁用对应的标签页
-    disabledTabKeys: PropTypes.arrayOf(PropTypes.string),
-
-    // 用于设置第一方位额外元素
-    tabBarLeftExtraContent: PropTypes.node,
-
-    // 用于设置第二方位额外元素
-    tabBarRightExtraContent: PropTypes.node,
-
-    // css类名
-    className: PropTypes.string,
-
-    // 自定义css字典
-    style: PropTypes.object,
-
-    // 辅助刷新用唯一标识key值
-    key: PropTypes.string,
+    // 对应当前被选中的标签页面板对应key
+    activeKey: PropTypes.string,
 
     // 设置默认激活的标签页面板对应key
     defaultActiveKey: PropTypes.string,
 
+    // 设置需要呈现禁用状态的标签页key值数组，优先级高于items[].disabled
+    // 即当items[].disabled设置为false但对应key在disabledTabKeys中时，仍然会禁用对应的标签页
+    disabledTabKeys: PropTypes.arrayOf(PropTypes.string),
+
     // 设置标签页放置位置，可选的有'top'、'left'、'right'和'bottom'
+    // 默认为'top'
     tabPosition: PropTypes.oneOf(['top', 'left', 'right', 'bottom']),
 
     // 设置组件大小尺寸，可选的有'small'、'default'和'large'
+    // 默认为'default'
     size: PropTypes.oneOf(['small', 'default', 'large']),
 
     // 设置标签页渲染类型，可选的有'line'、'card'和'editable-card'，默认为'line'
@@ -282,11 +294,14 @@ AntdTabs.propTypes = {
     // 设置标签内容切换是否渲染动画效果，默认为false
     tabPaneAnimated: PropTypes.bool,
 
-    // 对应当前被选中的标签页面板对应key
-    activeKey: PropTypes.string,
-
     // 对应最近一次进行删除操作的标签页面板对应key
     latestDeletePane: PropTypes.string,
+
+    // 用于设置第一方位额外元素
+    tabBarLeftExtraContent: PropTypes.node,
+
+    // 用于设置第二方位额外元素
+    tabBarRightExtraContent: PropTypes.node,
 
     loading_state: PropTypes.shape({
         /**
@@ -341,11 +356,15 @@ AntdTabs.propTypes = {
 
 // 设置默认参数
 AntdTabs.defaultProps = {
-    persisted_props: ['activeKey'],
-    persistence_type: 'local',
+    disabledTabKeys: [],
+    tabPosition: 'top',
+    size: 'default',
+    type: 'line',
+    centered: false,
     inkBarAnimated: true,
     tabPaneAnimated: false,
-    disabledTabKeys: []
+    persisted_props: ['activeKey'],
+    persistence_type: 'local'
 }
 
 export default AntdTabs;

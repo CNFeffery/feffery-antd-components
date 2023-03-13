@@ -2,6 +2,8 @@ import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { CheckCard } from '@ant-design/pro-card';
 import { parseChildrenToArray } from '../utils';
+import { isString } from 'lodash';
+import useCss from '../../hooks/useCss';
 
 // 定义组合选择卡片组件AntdCheckCardGroup，api参数参考https://procomponents.ant.design/components/check-card
 const AntdCheckCardGroup = (props) => {
@@ -33,7 +35,11 @@ const AntdCheckCardGroup = (props) => {
 
     return (
         <CheckCard.Group id={id}
-            className={className}
+            className={
+                isString(className) ?
+                    className :
+                    (className ? useCss(className) : undefined)
+            }
             style={style}
             key={key}
             multiple={multiple}
@@ -60,7 +66,10 @@ AntdCheckCardGroup.propTypes = {
     children: PropTypes.node,
 
     // css类名
-    className: PropTypes.string,
+    className: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.object
+    ]),
 
     // 自定义css字典
     style: PropTypes.object,
@@ -76,14 +85,30 @@ AntdCheckCardGroup.propTypes = {
 
     // 设置/记录当前选项的选项值
     value: PropTypes.oneOfType([
-        PropTypes.string,
-        PropTypes.arrayOf(PropTypes.string)
+        PropTypes.oneOfType([
+            PropTypes.number,
+            PropTypes.string
+        ]),
+        PropTypes.arrayOf(
+            PropTypes.oneOfType([
+                PropTypes.number,
+                PropTypes.string
+            ])
+        )
     ]),
 
     // 设置默认选中的选项值
     defaultValue: PropTypes.oneOfType([
-        PropTypes.string,
-        PropTypes.arrayOf(PropTypes.string)
+        PropTypes.oneOfType([
+            PropTypes.number,
+            PropTypes.string
+        ]),
+        PropTypes.arrayOf(
+            PropTypes.oneOfType([
+                PropTypes.number,
+                PropTypes.string
+            ])
+        )
     ]),
 
     // 是否禁用当前整组选择卡片，默认为false
@@ -117,6 +142,10 @@ AntdCheckCardGroup.propTypes = {
 
 // 设置默认参数
 AntdCheckCardGroup.defaultProps = {
+    multiple: false,
+    bordered: true,
+    disabled: false,
+    size: 'default'
 }
 
 export default AntdCheckCardGroup;

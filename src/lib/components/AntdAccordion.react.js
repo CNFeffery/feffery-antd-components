@@ -1,6 +1,8 @@
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { Collapse } from 'antd';
+import { isString } from 'lodash';
+import useCss from '../hooks/useCss';
 
 const { Panel } = Collapse;
 
@@ -34,7 +36,11 @@ const AntdAccordion = (props) => {
     return (
         <Collapse
             id={id}
-            className={className}
+            className={
+                isString(className) ?
+                    className :
+                    (className ? useCss(className) : undefined)
+            }
             style={style}
             key={key}
             accordion={accordion}
@@ -78,7 +84,10 @@ AntdAccordion.propTypes = {
     children: PropTypes.node,
 
     // css类名
-    className: PropTypes.string,
+    className: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.object
+    ]),
 
     // 自定义css字典
     style: PropTypes.object,
@@ -168,7 +177,10 @@ AntdAccordion.propTypes = {
 
 // 设置默认参数
 AntdAccordion.defaultProps = {
-    accordion: true
+    accordion: true,
+    bordered: true,
+    expandIconPosition: 'left',
+    ghost: false
 }
 
 export default AntdAccordion;

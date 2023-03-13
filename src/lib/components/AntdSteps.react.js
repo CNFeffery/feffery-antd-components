@@ -23,6 +23,7 @@ const AntdSteps = (props) => {
         type,
         steps,
         allowClick,
+        responsive,
         setProps,
         loading_state
     } = props;
@@ -53,6 +54,7 @@ const AntdSteps = (props) => {
             size={size}
             status={status}
             type={type}
+            responsive={responsive}
             onChange={allowClick ? (current) => setProps({ current: current }) : undefined}
         >
             {
@@ -123,6 +125,9 @@ AntdSteps.propTypes = {
     // 设置是否允许点击进行步骤切换，默认为false
     allowClick: PropTypes.bool,
 
+    // 设置是否在屏幕宽度小于532px时自动强制垂直渲染，默认为True
+    responsive: PropTypes.bool,
+
     loading_state: PropTypes.shape({
         /**
          * Determines if the component is loading or not
@@ -153,7 +158,8 @@ AntdSteps.defaultProps = {
     size: 'default',
     status: 'process',
     type: 'default',
-    allowClick: false
+    allowClick: false,
+    responsive: true
 }
 
 export default AntdSteps;

@@ -16,7 +16,7 @@ Keyword arguments:
 - `accordion` (Bool; optional)
 - `activeKey` (String | Array of Strings | Real | Array of Reals; optional)
 - `bordered` (Bool; optional)
-- `className` (String; optional)
+- `className` (String | Dict; optional)
 - `collapsible` (a value equal to: 'header', 'disabled'; optional)
 - `defaultActiveKey` (String | Array of Strings | Real | Array of Reals; optional)
 - `expandIconPosition` (a value equal to: 'left', 'right'; optional)

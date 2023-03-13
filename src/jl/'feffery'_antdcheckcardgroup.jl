@@ -14,8 +14,8 @@ Keyword arguments:
 - `children` (a list of or a singular dash component, string or number; optional)
 - `id` (String; optional)
 - `bordered` (Bool; optional)
-- `className` (String; optional)
-- `defaultValue` (String | Array of Strings; optional)
+- `className` (String | Dict; optional)
+- `defaultValue` (Real | String | Array of Real | Strings; optional)
 - `disabled` (Bool; optional)
 - `key` (String; optional)
 - `loading_state` (optional): . loading_state has the following type: lists containing elements 'is_loading', 'prop_name', 'component_name'.
@@ -26,7 +26,7 @@ Those elements have the following types:
 - `multiple` (Bool; optional)
 - `size` (a value equal to: 'small', 'default', 'large'; optional)
 - `style` (Dict; optional)
-- `value` (String | Array of Strings; optional)
+- `value` (Real | String | Array of Real | Strings; optional)
 """
 function 'feffery'_antdcheckcardgroup(; kwargs...)
         available_props = Symbol[:children, :id, :bordered, :className, :defaultValue, :disabled, :key, :loading_state, :multiple, :size, :style, :value]

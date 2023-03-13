@@ -15,7 +15,7 @@ Keyword arguments:
 - `id` (String; optional)
 - `bordered` (Bool; optional)
 - `checked` (Bool; optional)
-- `className` (String; optional)
+- `className` (String | Dict; optional)
 - `defaultChecked` (Bool; optional)
 - `disabled` (Bool; optional)
 - `key` (String; optional)
@@ -26,7 +26,7 @@ Those elements have the following types:
   - `component_name` (String; optional): Holds the name of the component that is loading
 - `size` (a value equal to: 'small', 'default', 'large'; optional)
 - `style` (Dict; optional)
-- `value` (String; optional)
+- `value` (Real | String; optional)
 """
 function 'feffery'_antdcheckcard(; kwargs...)
         available_props = Symbol[:children, :id, :bordered, :checked, :className, :defaultChecked, :disabled, :key, :loading_state, :size, :style, :value]

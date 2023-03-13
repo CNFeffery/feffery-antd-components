@@ -11,17 +11,17 @@ Keyword arguments:
 - `id` (String; optional)
 - `checkStrictly` (Bool; optional)
 - `checkable` (Bool; optional)
-- `checkedKeys` (Array; optional)
-- `className` (String; optional)
+- `checkedKeys` (Array of Strings; optional)
+- `className` (String | Real; optional)
 - `defaultCheckedKeys` (Array of Strings; optional)
 - `defaultExpandAll` (Bool; optional)
 - `defaultExpandParent` (Bool; optional)
 - `defaultExpandedKeys` (Array of Strings; optional)
 - `defaultSelectedKeys` (Array of Strings; optional)
 - `draggable` (Bool; optional)
-- `draggedNodeKey` (String | Real; optional)
+- `draggedNodeKey` (String; optional)
 - `expandedKeys` (Array of Strings; optional)
-- `halfCheckedKeys` (Array; optional)
+- `halfCheckedKeys` (Array of Strings; optional)
 - `height` (Real; optional)
 - `key` (String; optional)
 - `loading_state` (optional): . loading_state has the following type: lists containing elements 'is_loading', 'prop_name', 'component_name'.
@@ -44,7 +44,7 @@ memory: only kept in memory, reset on page refresh.
 local: window.localStorage, data is kept after the browser quit.
 session: window.sessionStorage, data is cleared once the browser quit.
 - `selectable` (Bool; optional)
-- `selectedKeys` (Array; optional)
+- `selectedKeys` (Array of Strings; optional)
 - `showIcon` (Bool; optional)
 - `showLine` (optional): . showLine has the following type: Bool | lists containing elements 'showLeafIcon'.
 Those elements have the following types:

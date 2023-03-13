@@ -26,7 +26,7 @@ Those elements have the following types:
 - `mouseLeaveDelay` (Real; optional)
 - `overlayInnerStyle` (Dict; optional)
 - `overlayStyle` (Dict; optional)
-- `placement` (a value equal to: 'top', 'left', 'right', 'bottom', 'topLeft', 'topRight', 'bottomLeft', 'bottomRight', 'leftTop', 'leftBottom', 'rightTop', 'rightBottom'; optional)
+- `placement` (a value equal to: 'top', 'left', 'right', 'bottom', 'topLeft', 'topRight', 'bottomLeft', 'bottomRight'; optional)
 - `popupContainer` (a value equal to: 'parent', 'body'; optional)
 - `style` (Dict; optional)
 - `title` (a list of or a singular dash component, string or number; optional)

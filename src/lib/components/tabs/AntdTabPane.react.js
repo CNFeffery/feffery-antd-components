@@ -1,7 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import useCss from '../../hooks/useCss';
-import { isString } from 'lodash';
 
 import { parseChildrenToArray } from '../utils';
 
@@ -26,11 +24,7 @@ const AntdTabPane = (props) => {
 
     return (
         <div id={id}
-            className={
-                isString(className) ?
-                    className :
-                    (className ? useCss(className) : undefined)
-            }
+            className={className}
             style={style}
             tab={tab}
             key={key}
@@ -56,10 +50,7 @@ AntdTabPane.propTypes = {
     children: PropTypes.node,
 
     // css类名
-    className: PropTypes.oneOfType([
-        PropTypes.string,
-        PropTypes.object
-    ]),
+    className: PropTypes.string,
 
     // 自定义css字典
     style: PropTypes.object,

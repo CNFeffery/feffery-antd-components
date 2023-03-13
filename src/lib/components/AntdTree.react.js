@@ -4,6 +4,7 @@ import { Tree, Tooltip } from 'antd';
 import AntdIcon from './AntdIcon.react';
 import { omitBy, isUndefined, isString, isObject, isArray, cloneDeep } from 'lodash';
 import { flatToTree } from './utils';
+import useCss from '../hooks/useCss';
 
 // 定义树形控件AntdTree，api参数参考https://ant.design/components/tree-cn/
 const AntdTree = (props) => {
@@ -188,7 +189,11 @@ const AntdTree = (props) => {
     return (
         <Tree
             id={id}
-            className={className}
+            className={
+                isString(className) ?
+                    className :
+                    (className ? useCss(className) : undefined)
+            }
             style={style}
             key={key}
             treeData={add_leaf_node_icon(cloneDeep(treeData))}
@@ -212,7 +217,7 @@ const AntdTree = (props) => {
             height={height}
             titleRender={(nodeData) => {
                 return (
-                    <span className={"ant-tree-title"}
+                    <span className={nodeData.className ? `ant-tree-title ${nodeData.className}` : "ant-tree-title"}
                         style={nodeData.style}>
                         {nodeData.title}
                     </span>
@@ -240,7 +245,7 @@ const PropTreeNodeShape = {
     title: PropTypes.string.isRequired,
 
     // 唯一识别id
-    key: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+    key: PropTypes.string.isRequired,
 
     // 可选，设置是否禁用
     disabled: PropTypes.bool,
@@ -260,12 +265,18 @@ const PropTreeNodeShape = {
     // 设置当前节点css样式
     style: PropTypes.object,
 
+    // 设置当前节点css类
+    className: PropTypes.string,
+
     // 为当前节点设置tooltip额外参数
     tooltipProps: PropTypes.exact({
+        // 设置当前节点对应的tooltip内容
         title: PropTypes.string,
+
+        // 设置当前节点对应的tooltip展开方位
         placement: PropTypes.oneOf([
-            'top', 'left', 'right', 'bottom', 'topLeft', 'topRight', 'bottomLeft',
-            'bottomRight', 'leftTop', 'leftBottom', 'rightTop', 'rightBottom'
+            'top', 'left', 'right', 'bottom', 'topLeft',
+            'topRight', 'bottomLeft', 'bottomRight'
         ])
     })
 };
@@ -280,7 +291,7 @@ const PropFlatNodeShape = {
     title: PropTypes.string.isRequired,
 
     // 唯一识别id
-    key: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+    key: PropTypes.string.isRequired,
 
     // 可选，设置是否禁用
     disabled: PropTypes.bool,
@@ -303,12 +314,17 @@ const PropFlatNodeShape = {
     // 设置当前节点css样式
     style: PropTypes.object,
 
+    // 设置当前节点css类
+    className: PropTypes.string,
+
     // 为当前节点设置tooltip额外参数
     tooltipProps: PropTypes.exact({
+
         title: PropTypes.string,
+
         placement: PropTypes.oneOf([
-            'top', 'left', 'right', 'bottom', 'topLeft', 'topRight', 'bottomLeft',
-            'bottomRight', 'leftTop', 'leftBottom', 'rightTop', 'rightBottom'
+            'top', 'left', 'right', 'bottom', 'topLeft',
+            'topRight', 'bottomLeft', 'bottomRight'
         ])
     })
 };
@@ -319,13 +335,19 @@ AntdTree.propTypes = {
     id: PropTypes.string,
 
     // css类名
-    className: PropTypes.string,
+    className: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.number
+    ]),
 
     // 自定义css字典
     style: PropTypes.object,
 
     // 辅助刷新用唯一标识key值
     key: PropTypes.string,
+
+    // 设置treeData模式，可选的有'tree'、'flat'，默认为'tree'
+    treeDataMode: PropTypes.oneOf(['tree', 'flat']),
 
     // 组织树形结构的json结构数据
     treeData: PropTypes.oneOfType([
@@ -335,11 +357,14 @@ AntdTree.propTypes = {
         PropTypes.arrayOf(PropFlatNodeShape)
     ]),
 
-    // 设置treeData模式，可选的有'tree'、'flat'，默认为'tree'
-    treeDataMode: PropTypes.oneOf(['tree', 'flat']),
-
-    // 设置是否渲染icon，默认为true
+    // 设置是否渲染icon，默认为false
     showIcon: PropTypes.bool,
+
+    // 设置是否允许对节点进行选择，默认为true
+    selectable: PropTypes.bool,
+
+    // 设置是否允许对节点进行多选，默认为false
+    multiple: PropTypes.bool,
 
     // 设置是否在节点前添加选择框，默认为false
     checkable: PropTypes.bool,
@@ -347,41 +372,40 @@ AntdTree.propTypes = {
     // 设置是否默认展开全部节点，默认为false
     defaultExpandAll: PropTypes.bool,
 
+    // 对应当前已展开节点的key值数组
+    expandedKeys: PropTypes.arrayOf(PropTypes.string),
+
     // 设置初始状态下被展开的节点key数组
     defaultExpandedKeys: PropTypes.arrayOf(PropTypes.string),
 
     // 设置是否默认展开父节点，默认为false
     defaultExpandParent: PropTypes.bool,
 
-    // 设置先辈节点与后代节点之间是否独立选择，默认false
-    checkStrictly: PropTypes.bool,
-
-    // 设置默认被勾选的节点
-    defaultCheckedKeys: PropTypes.arrayOf(PropTypes.string),
+    // 用于存储当前已被选中的节点key数组
+    selectedKeys: PropTypes.arrayOf(PropTypes.string),
 
     // 设置默认被选择的节点
     defaultSelectedKeys: PropTypes.arrayOf(PropTypes.string),
 
-    // 设置是否允许对节点进行多选，默认为false
-    multiple: PropTypes.bool,
-
-    // 设置是否允许对节点进行选择，默认为true
-    selectable: PropTypes.bool,
-
-    // 设置是否显示连接线，默认为true
-    showLine: PropTypes.oneOfType([PropTypes.bool, PropTypes.exact({ showLeafIcon: PropTypes.bool })]),
-
-    // 用于存储当前已被选中的节点key数组
-    selectedKeys: PropTypes.array,
-
     // 用于存储当前已被勾选的节点key数组
-    checkedKeys: PropTypes.array,
+    checkedKeys: PropTypes.arrayOf(PropTypes.string),
 
-    // 不可控属性，用于记录当前状态下处于半勾选状态下的节点key数组
-    halfCheckedKeys: PropTypes.array,
+    // 设置默认被勾选的节点
+    defaultCheckedKeys: PropTypes.arrayOf(PropTypes.string),
 
-    // 对应当前已展开节点的key值数组
-    expandedKeys: PropTypes.arrayOf(PropTypes.string),
+    // 用于监听当前状态下处于半勾选状态下的节点key数组
+    halfCheckedKeys: PropTypes.arrayOf(PropTypes.string),
+
+    // 设置先辈节点与后代节点之间是否独立选择，默认false
+    checkStrictly: PropTypes.bool,
+
+    // 设置是否显示连接线，默认为{ 'showLeafIcon': false }
+    showLine: PropTypes.oneOfType([
+        PropTypes.bool,
+        PropTypes.exact({
+            showLeafIcon: PropTypes.bool
+        })
+    ]),
 
     // 设置虚拟滚动模式下的窗口像素高度，不设置时则不会启动虚拟滚动模式
     height: PropTypes.number,
@@ -390,7 +414,7 @@ AntdTree.propTypes = {
     draggable: PropTypes.bool,
 
     // 当节点被拖拽时，监听该节点的key值信息
-    draggedNodeKey: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+    draggedNodeKey: PropTypes.string,
 
     loading_state: PropTypes.shape({
         /**
@@ -445,11 +469,18 @@ AntdTree.propTypes = {
 
 // 设置默认参数
 AntdTree.defaultProps = {
+    showIcon: false,
+    treeDataMode: 'tree',
+    checkable: false,
+    defaultExpandAll: false,
+    defaultExpandParent: false,
+    checkStrictly: false,
+    multiple: false,
+    selectable: true,
     showLine: { 'showLeafIcon': false },
-    showIcon: true,
+    draggable: false,
     persisted_props: ['selectedKeys', 'checkedKeys', 'expandedKeys'],
-    persistence_type: 'local',
-    treeDataMode: 'tree'
+    persistence_type: 'local'
 }
 
 export default AntdTree;

@@ -15,7 +15,7 @@ Keyword arguments:
 - `id` (String; optional)
 - `activeKey` (String; optional)
 - `centered` (Bool; optional)
-- `className` (String; optional)
+- `className` (String | Dict; optional)
 - `defaultActiveKey` (String; optional)
 - `disabledTabKeys` (Array of Strings; optional)
 - `inkBarAnimated` (Bool; optional)
