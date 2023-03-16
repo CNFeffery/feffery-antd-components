@@ -72,8 +72,8 @@ AntdAvatarGroup.propTypes = {
     maxPopoverPlacement: PropTypes.oneOf(['top', 'bottom']),
 
     // 设置超出maxCount部分的头像气泡卡片弹出触发方式
-    // 可选的有'hover'、'focus'、'click'，默认为'hover'
-    maxPopoverTrigger: PropTypes.oneOf(['hover', 'focus', 'click']),
+    // 可选的有'hover'、'click'，默认为'hover'
+    maxPopoverTrigger: PropTypes.oneOf(['hover', 'click']),
 
     // 为省略头像部分设置css样式
     maxStyle: PropTypes.object,
