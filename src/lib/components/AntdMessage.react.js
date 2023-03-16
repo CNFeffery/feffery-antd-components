@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { message } from 'antd';
 import AntdIcon from './AntdIcon.react';
+import { isString } from 'lodash';
+import useCss from '../hooks/useCss';
 
 // 定义全局提示组件AntdMessage，api参数参考https://ant.design/components/message-cn/
 const AntdMessage = (props) => {
@@ -16,35 +18,47 @@ const AntdMessage = (props) => {
         duration,
         icon,
         top,
+        maxCount,
         loading_state,
         setProps
     } = props;
 
+    // 令全局参数初始化时生效
+    useEffect(() => {
+        message.config({
+            top: top,
+            maxCount: maxCount
+        });
+    }, []);
+
     let config = {
-        className: className,
+        className: (
+            isString(className) ?
+                className :
+                (className ? useCss(className) : undefined)
+        ),
         style: style,
         content: content,
-        duration: duration,
-        top: top
+        duration: duration
     }
 
     if (icon) {
         config.icon = <AntdIcon icon={icon} style={{ marginRight: 3 }} />
     }
 
-    message.config(config)
-
-    if (type === 'default') {
-        message.open(config)
-    } else if (type === 'success') {
-        message.success(config)
-    } else if (type === 'error') {
-        message.error(config)
-    } else if (type === 'info') {
-        message.info(config)
-    } else if (type === 'warning') {
-        message.warning(config)
-    }
+    useEffect(() => {
+        if (type === 'default') {
+            message.open(config)
+        } else if (type === 'success') {
+            message.success(config)
+        } else if (type === 'error') {
+            message.error(config)
+        } else if (type === 'info') {
+            message.info(config)
+        } else if (type === 'warning') {
+            message.warning(config)
+        }
+    })
 
     return (
         <div
@@ -71,6 +85,24 @@ AntdMessage.propTypes = {
     // 辅助刷新用唯一标识key值
     key: PropTypes.string,
 
+    // 设置文字内容，必填
+    content: PropTypes.string,
+
+    // 设置通知类型，可选项有'default'、'success'、'error'、'info'、'warning'，默认为'default'
+    type: PropTypes.oneOf(['default', 'success', 'error', 'info', 'warning']),
+
+    // 设置通知从显示到自动消失的时长（秒），默认为3，当传入0时表示不会自动消失
+    duration: PropTypes.number,
+
+    // 设置消息距离顶端的像素距离，默认为8
+    top: PropTypes.number,
+
+    // 设置全局最多允许同时存在的提示数量，默认不限制
+    maxCount: PropTypes.number,
+
+    // 设置自定义icon，与AntdIcon中支持的图标相对应
+    icon: PropTypes.string,
+
     loading_state: PropTypes.shape({
         /**
          * Determines if the component is loading or not
@@ -86,21 +118,6 @@ AntdMessage.propTypes = {
         component_name: PropTypes.string
     }),
 
-    // 设置文字内容，必填
-    content: PropTypes.string,
-
-    // 设置通知类型，可选项有'default'、'success'、'error'、'info'、'warning'，默认为'default'
-    type: PropTypes.oneOf(['default', 'success', 'error', 'info', 'warning']),
-
-    // 设置通知从显示到自动消失的时长（秒），默认为3，当传入0时表示不会自动消失
-    duration: PropTypes.number,
-
-    // 设置消息距离顶端的像素距离，默认为8
-    top: PropTypes.number,
-
-    // 设置自定义icon，与AntdIcon中支持的图标相对应
-    icon: PropTypes.string,
-
     /**
      * Dash-assigned callback that should be called to report property changes
      * to Dash, to make them available for callbacks.
@@ -110,7 +127,9 @@ AntdMessage.propTypes = {
 
 // 设置默认参数
 AntdMessage.defaultProps = {
-    type: 'default'
+    type: 'default',
+    duration: 3,
+    top: 8
 }
 
 export default AntdMessage;

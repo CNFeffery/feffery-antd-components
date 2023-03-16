@@ -2,8 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import useCss from '../hooks/useCss';
 import { isString } from 'lodash';
-import zhCN from 'antd/lib/locale/zh_CN';
-import { Drawer, ConfigProvider } from 'antd';
+import { Drawer } from 'antd';
 
 
 // 定义抽屉组件AntdDrawer，api参数参考https://ant.design/components/drawer-cn/
@@ -37,36 +36,47 @@ const AntdDrawer = (props) => {
     }
 
     return (
-        <ConfigProvider locale={zhCN}>
-            <Drawer
-                id={id}
-                className={
-                    isString(className) ?
-                        className :
-                        (className ? useCss(className) : undefined)
-                }
-                style={containerId ? { ...style, ...{ position: 'absolute' } } : style}
-                key={key}
-                open={visible}
-                title={title}
-                placement={placement}
-                closable={closable}
-                forceRender={forceRender}
-                destroyOnClose={destroyOnClose}
-                getContainer={containerId ? () => document.getElementById(containerId) : containerId}
-                height={height}
-                mask={mask}
-                maskClosable={maskClosable}
-                width={width}
-                zIndex={zIndex}
-                extra={extra}
-                onClose={onClose}
-                data-dash-is-loading={
-                    (loading_state && loading_state.is_loading) || undefined
-                }
-            >{children}
-            </Drawer>
-        </ConfigProvider>
+        <Drawer
+            id={id}
+            className={
+                isString(className) ?
+                    className :
+                    (className ? useCss(className) : undefined)
+            }
+            style={
+                containerId ?
+                    {
+                        ...style,
+                        ...{ position: 'absolute' }
+                    } :
+                    style}
+            key={key}
+            open={visible}
+            title={title}
+            placement={placement}
+            closable={closable}
+            forceRender={forceRender}
+            destroyOnClose={destroyOnClose}
+            getContainer={
+                containerId ?
+                    () => (
+                        document.getElementById(containerId) ?
+                            document.getElementById(containerId) :
+                            document.body
+                    ) :
+                    undefined}
+            height={height}
+            mask={mask}
+            maskClosable={maskClosable}
+            width={width}
+            zIndex={zIndex}
+            extra={extra}
+            onClose={onClose}
+            data-dash-is-loading={
+                (loading_state && loading_state.is_loading) || undefined
+            }
+        >{children}
+        </Drawer>
     );
 }
 
@@ -104,11 +114,14 @@ AntdDrawer.propTypes = {
     // 设置是否对抽屉内的子元素进行预渲染，默认为false
     forceRender: PropTypes.bool,
 
-    // 设置是否在关闭时销毁抽屉内的子元素，默认为true
+    // 设置是否在关闭时销毁抽屉内的子元素，默认为false
     destroyOnClose: PropTypes.bool,
 
-    // 当想要对抽屉进行局部渲染时，用于设置position为relative的容器id
-    containerId: PropTypes.string,
+    // 设置抽屉的像素宽度，默认为256
+    width: PropTypes.oneOfType([
+        PropTypes.number,
+        PropTypes.string
+    ]),
 
     // 当placement为'top'或'bottom'时，用于设置抽屉的像素高度，默认为256
     height: PropTypes.oneOfType([
@@ -122,17 +135,14 @@ AntdDrawer.propTypes = {
     // 设置点击蒙版区域时是否可以直接关闭抽屉，默认为true
     maskClosable: PropTypes.bool,
 
-    // 设置抽屉的像素宽度，默认为256
-    width: PropTypes.oneOfType([
-        PropTypes.number,
-        PropTypes.string
-    ]),
-
     // 快捷设置抽屉整体的z-index，默认为1000
     zIndex: PropTypes.number,
 
     // 设置额外操作区元素
     extra: PropTypes.node,
+
+    // 当想要对抽屉进行局部渲染时，用于设置position为relative的容器id
+    containerId: PropTypes.string,
 
     loading_state: PropTypes.shape({
         /**
@@ -158,8 +168,16 @@ AntdDrawer.propTypes = {
 
 // 设置默认参数
 AntdDrawer.defaultProps = {
+    visible: false,
+    placement: 'right',
+    closable: true,
     forceRender: false,
-    destroyOnClose: true
+    destroyOnClose: false,
+    width: 256,
+    height: 256,
+    mask: true,
+    maskClosable: true,
+    zIndex: 1000
 }
 
 export default AntdDrawer;

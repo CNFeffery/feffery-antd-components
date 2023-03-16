@@ -97,11 +97,11 @@ AntdAlert.propTypes = {
     // 辅助刷新用唯一标识key值
     key: PropTypes.string,
 
-    // 设置警告组件内的额外信息元素
-    description: PropTypes.node,
-
     // 设置显示的文字信息
     message: PropTypes.node,
+
+    // 设置警告组件内的额外信息元素
+    description: PropTypes.node,
 
     // 设置提示类型，可选的有'success'、'info'、'warning'和'error'四种
     // banner=true时默认type为'warning'
@@ -147,8 +147,11 @@ AntdAlert.propTypes = {
 
 // 设置默认参数
 AntdAlert.defaultProps = {
+    type: 'info',
+    showIcon: false,
     closable: false,
-    messageRenderMode: 'default'
+    messageRenderMode: 'default',
+    banner: false
 }
 
 

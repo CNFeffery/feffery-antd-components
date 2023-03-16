@@ -2,6 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Result } from 'antd';
 import { LoadingOutlined } from '@ant-design/icons';
+import { isString } from 'lodash';
+import useCss from '../hooks/useCss';
 
 
 // 定义结果组件AntdResult，api参数参考https://ant.design/components/result-cn/
@@ -22,10 +24,20 @@ const AntdResult = (props) => {
 
     return (
         <Result id={id}
-            className={className}
+            className={
+                isString(className) ?
+                    className :
+                    (className ? useCss(className) : undefined)
+            }
             style={style}
             key={key}
-            icon={icon || (status === 'loading' ? <LoadingOutlined style={{ color: '#1890ff' }} /> : undefined)}
+            icon={
+                icon ||
+                (
+                    status === 'loading' ?
+                        <LoadingOutlined style={{ color: '#1890ff' }} /> :
+                        undefined)
+            }
             status={status}
             title={title}
             subTitle={subTitle}
@@ -42,7 +54,10 @@ AntdResult.propTypes = {
     id: PropTypes.string,
 
     // css类名
-    className: PropTypes.string,
+    className: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.object
+    ]),
 
     // 自定义css字典
     style: PropTypes.object,
@@ -86,6 +101,8 @@ AntdResult.propTypes = {
 };
 
 // 设置默认参数
-AntdResult.defaultProps = {}
+AntdResult.defaultProps = {
+    status: 'info'
+}
 
 export default AntdResult;

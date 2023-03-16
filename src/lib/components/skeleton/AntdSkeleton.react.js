@@ -4,7 +4,6 @@ import { Skeleton } from 'antd';
 import useCss from '../../hooks/useCss';
 import { isString } from 'lodash';
 
-import { parseChildrenToArray } from '../utils';
 
 // 定义骨架屏组件AntdSkeleton，api参数参考https://ant.design/components/skeleton-cn/
 const AntdSkeleton = (props) => {
@@ -28,8 +27,6 @@ const AntdSkeleton = (props) => {
         loading_state,
         setProps
     } = props;
-
-    children = parseChildrenToArray(children)
 
     const [showLoading, setShowLoading] = useState(loading);
     const timer = useRef();
@@ -224,10 +221,15 @@ AntdSkeleton.propTypes = {
 // 设置默认参数
 AntdSkeleton.defaultProps = {
     loading: false,
+    active: false,
+    avatar: false,
+    paragraph: true,
+    title: true,
+    round: false,
+    debug: false,
     listenPropsMode: 'default',
     excludeProps: [],
-    includeProps: [],
-    debug: false
+    includeProps: []
 }
 
 export default AntdSkeleton;

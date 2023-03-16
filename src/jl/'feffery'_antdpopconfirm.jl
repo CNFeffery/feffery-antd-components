@@ -13,10 +13,16 @@ An AntdPopconfirm component.
 Keyword arguments:
 - `children` (a list of or a singular dash component, string or number; optional): The content of the tab - will only be displayed if this tab is selected
 - `id` (String; optional)
-- `cancelButtonProps` (Dict; optional)
+- `cancelButtonProps` (optional): . cancelButtonProps has the following type: lists containing elements 'size', 'type', 'danger', 'disabled', 'shape'.
+Those elements have the following types:
+  - `size` (a value equal to: 'small', 'middle', 'large'; optional)
+  - `type` (a value equal to: 'primary', 'ghost', 'dashed', 'link', 'text', 'default'; optional)
+  - `danger` (Bool; optional)
+  - `disabled` (Bool; optional)
+  - `shape` (a value equal to: 'circle', 'round'; optional)
 - `cancelCounts` (Real; optional)
-- `cancelText` (String; optional)
-- `className` (String; optional)
+- `cancelText` (a list of or a singular dash component, string or number; optional)
+- `className` (String | Dict; optional)
 - `confirmCounts` (Real; optional)
 - `disabled` (Bool; optional)
 - `key` (String; optional)
@@ -28,8 +34,14 @@ Those elements have the following types:
 - `locale` (a value equal to: 'zh-cn', 'en-us'; optional)
 - `mouseEnterDelay` (Real; optional)
 - `mouseLeaveDelay` (Real; optional)
-- `okButtonProps` (Dict; optional)
-- `okText` (String; optional)
+- `okButtonProps` (optional): . okButtonProps has the following type: lists containing elements 'size', 'type', 'danger', 'disabled', 'shape'.
+Those elements have the following types:
+  - `size` (a value equal to: 'small', 'middle', 'large'; optional)
+  - `type` (a value equal to: 'primary', 'ghost', 'dashed', 'link', 'text', 'default'; optional)
+  - `danger` (Bool; optional)
+  - `disabled` (Bool; optional)
+  - `shape` (a value equal to: 'circle', 'round'; optional)
+- `okText` (a list of or a singular dash component, string or number; optional)
 - `overlayInnerStyle` (Dict; optional)
 - `overlayStyle` (Dict; optional)
 - `placement` (a value equal to: 'top', 'left', 'right', 'bottom', 'topLeft', 'topRight', 'bottomLeft', 'bottomRight', 'leftTop', 'leftBottom', 'rightTop', 'rightBottom'; optional)

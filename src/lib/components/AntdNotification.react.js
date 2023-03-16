@@ -1,6 +1,8 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { notification } from 'antd';
+import { isString } from 'lodash';
+import useCss from '../hooks/useCss';
 
 
 // 定义通知提醒框组件AntdNotification，api参数参考https://ant.design/components/notification-cn/
@@ -24,7 +26,11 @@ const AntdNotification = (props) => {
     } = props;
 
     let config = {
-        className: className,
+        className: (
+            isString(className) ?
+                className :
+                (className ? useCss(className) : undefined)
+        ),
         style: style,
         message: message,
         description: description,
@@ -32,20 +38,26 @@ const AntdNotification = (props) => {
         top: top,
         bottom: bottom,
         duration: duration,
-        closeIcon: closable ? undefined : <span style={{ visibility: "hidden" }} />
+        closeIcon: (
+            closable ?
+                undefined :
+                <span style={{ visibility: "hidden" }} />
+        )
     }
 
-    if (type === 'default') {
-        notification.open(config)
-    } else if (type === 'success') {
-        notification.success(config)
-    } else if (type === 'error') {
-        notification.error(config)
-    } else if (type === 'info') {
-        notification.info(config)
-    } else if (type === 'warning') {
-        notification.warning(config)
-    }
+    useEffect(() => {
+        if (type === 'default') {
+            notification.open(config)
+        } else if (type === 'success') {
+            notification.success(config)
+        } else if (type === 'error') {
+            notification.error(config)
+        } else if (type === 'info') {
+            notification.info(config)
+        } else if (type === 'warning') {
+            notification.warning(config)
+        }
+    })
 
     return (
         <div
@@ -64,7 +76,10 @@ AntdNotification.propTypes = {
     id: PropTypes.string,
 
     // css类名
-    className: PropTypes.string,
+    className: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.object
+    ]),
 
     // 自定义css字典
     style: PropTypes.object,
@@ -82,12 +97,14 @@ AntdNotification.propTypes = {
     type: PropTypes.oneOf(['default', 'success', 'error', 'info', 'warning']),
 
     // 设置通知在屏幕中的弹出位置，可选的有'topLeft'、'topRight'、'bottomLeft'和'bottomRight'，默认为'topRight'
-    placement: PropTypes.oneOf(['top', 'topLeft', 'topRight', 'bottomLeft', 'bottomRight']),
+    placement: PropTypes.oneOf(['topLeft', 'topRight', 'bottomLeft', 'bottomRight']),
 
     // 当通知从顶部弹出时，设置距离顶部的像素距离
+    // 默认为24
     top: PropTypes.number,
 
     // 当通知从底部弹出时，设置距离底部的像素距离
+    // 默认为24
     bottom: PropTypes.number,
 
     // 设置通知从显示到自动消失的时长（秒），默认为4.5，当传入null时表示不会自动消失
@@ -121,6 +138,10 @@ AntdNotification.propTypes = {
 // 设置默认参数
 AntdNotification.defaultProps = {
     type: 'default',
+    placement: 'topRight',
+    top: 24,
+    bottom: 24,
+    duration: 4.5,
     closable: true
 }
 

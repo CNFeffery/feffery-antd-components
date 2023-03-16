@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Progress } from 'antd';
+import { isString } from 'lodash';
+import useCss from '../hooks/useCss';
 
 
 // 定义进度条组件AntdProgress，api参数参考https://ant.design/components/progress-cn/
@@ -32,7 +34,11 @@ const AntdProgress = (props) => {
     return (
         <Progress
             id={id}
-            className={className}
+            className={
+                isString(className) ?
+                    className :
+                    (className ? useCss(className) : undefined)
+            }
             style={style}
             key={key}
             type={type}
@@ -75,7 +81,10 @@ AntdProgress.propTypes = {
     id: PropTypes.string,
 
     // css类名
-    className: PropTypes.string,
+    className: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.object
+    ]),
 
     // 自定义css字典
     style: PropTypes.object,
@@ -84,6 +93,7 @@ AntdProgress.propTypes = {
     key: PropTypes.string,
 
     // 设置进度条类型，可选的有'line'（条形）、'circle'（环形）与'dashboard'（仪表盘型）
+    // 默认为'line'
     type: PropTypes.oneOf(['line', 'circle', 'dashboard']),
 
     // 设置进度条尺寸规格，可选的有'default'与'small'，默认为'default'
@@ -101,7 +111,7 @@ AntdProgress.propTypes = {
         suffix: PropTypes.string,
 
         // 设置直接显示的全部内容，此参数设置时会屏蔽实际的百分比数值及prefix、suffix参数
-        content: PropTypes.string
+        content: PropTypes.node
     }),
 
     // 设置进度条状态，可选的有'success'、'exception'、'normal'与'active'（仅限type='line'时生效）
@@ -123,8 +133,10 @@ AntdProgress.propTypes = {
         })
     ]),
 
-    // 设置进度条的线型样式，可选的有'round'与'square'
-    strokeLinecap: PropTypes.oneOf(['round', 'square']),
+    // 设置进度条的线型样式，可选的有'round'、'butt'和'square'
+    // 同css中的stroke-linecap属性
+    // 默认为'round'
+    strokeLinecap: PropTypes.oneOf(['round', 'butt', 'square']),
 
     // 配置进度条线像素宽度
     strokeWidth: PropTypes.number,
@@ -133,6 +145,7 @@ AntdProgress.propTypes = {
     trailColor: PropTypes.string,
 
     // 针对circle与dashboard模式，设置画布像素宽度
+    // 默认为132
     width: PropTypes.number,
 
     // 针对dashboard模式，设置仪表盘进度条缺口角度，可取值在0到295之间，默认为75
@@ -169,6 +182,12 @@ AntdProgress.propTypes = {
 
 // 设置默认参数
 AntdProgress.defaultProps = {
+    type: 'line',
+    size: 'default',
+    percent: 0,
+    showInfo: true,
+    width: 132,
+    gapPosition: 'bottom'
 }
 
 export default AntdProgress;

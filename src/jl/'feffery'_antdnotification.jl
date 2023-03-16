@@ -10,7 +10,7 @@ An AntdNotification component.
 Keyword arguments:
 - `id` (String; optional)
 - `bottom` (Real; optional)
-- `className` (String; optional)
+- `className` (String | Dict; optional)
 - `closable` (Bool; optional)
 - `description` (String; optional)
 - `duration` (Real; optional)
@@ -21,7 +21,7 @@ Those elements have the following types:
   - `prop_name` (String; optional): Holds which property is loading
   - `component_name` (String; optional): Holds the name of the component that is loading
 - `message` (String; optional)
-- `placement` (a value equal to: 'top', 'topLeft', 'topRight', 'bottomLeft', 'bottomRight'; optional)
+- `placement` (a value equal to: 'topLeft', 'topRight', 'bottomLeft', 'bottomRight'; optional)
 - `style` (Dict; optional)
 - `top` (Real; optional)
 - `type` (a value equal to: 'default', 'success', 'error', 'info', 'warning'; optional)

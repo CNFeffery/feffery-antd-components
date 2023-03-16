@@ -3,6 +3,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Skeleton } from 'antd';
+import useCss from '../../hooks/useCss';
+import { isString } from 'lodash';
 
 
 // 定义骨骼屏头像占位图组件AntdSkeletonAvatar
@@ -24,7 +26,11 @@ const AntdSkeletonAvatar = (props) => {
     return (
         <Skeleton.Avatar id={id}
             style={style}
-            className={className}
+            className={
+                isString(className) ?
+                    className :
+                    (className ? useCss(className) : undefined)
+            }
             active={active}
             shape={shape}
             size={size}
@@ -42,7 +48,10 @@ AntdSkeletonAvatar.propTypes = {
 
     style: PropTypes.object,
 
-    className: PropTypes.string,
+    className: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.object
+    ]),
 
     // 设置是否展示动画效果，默认为false
     active: PropTypes.bool,
@@ -50,7 +59,7 @@ AntdSkeletonAvatar.propTypes = {
     // 设置头像占位图的形状，可选的有'circle'、'square'，默认为'circle'
     shape: PropTypes.oneOf(['circle', 'square']),
 
-    // 设置头像占位图的大小
+    // 设置头像占位图的大小，默认为'default'
     size: PropTypes.oneOfType([
         // 头像像素边长
         PropTypes.number,
@@ -83,6 +92,9 @@ AntdSkeletonAvatar.propTypes = {
 
 // 设置默认参数
 AntdSkeletonAvatar.defaultProps = {
+    active: false,
+    shape: 'circle',
+    size: 'default'
 }
 
 export default AntdSkeletonAvatar;

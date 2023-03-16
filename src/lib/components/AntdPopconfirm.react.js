@@ -1,9 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Popconfirm, ConfigProvider } from 'antd';
-
 import { str2Locale } from './locales.react';
 import { parseChildrenToArray } from './utils';
+import { isString } from 'lodash';
+import useCss from '../hooks/useCss';
 
 // 定义气泡确认框组件AntdPopconfirm，api参数参考https://ant.design/components/popconfirm-cn/
 const AntdPopconfirm = (props) => {
@@ -50,7 +51,11 @@ const AntdPopconfirm = (props) => {
     return (
         <ConfigProvider locale={str2Locale.get(locale)}>
             <Popconfirm id={id}
-                className={className}
+                className={
+                    isString(className) ?
+                        className :
+                        (className ? useCss(className) : undefined)
+                }
                 style={style}
                 key={key}
                 title={title}
@@ -93,7 +98,10 @@ AntdPopconfirm.propTypes = {
     children: PropTypes.node,
 
     // css类名
-    className: PropTypes.string,
+    className: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.object
+    ]),
 
     // 自定义css字典
     style: PropTypes.object,
@@ -108,6 +116,7 @@ AntdPopconfirm.propTypes = {
     title: PropTypes.node,
 
     // 设置是否禁用点击子元素唤起气泡卡片的交互行为
+    // 默认为false
     disabled: PropTypes.bool,
 
     // 设置气泡框的位置，可选的有'top'、'left'、'right'、'bottom'、'topLeft'
@@ -131,25 +140,52 @@ AntdPopconfirm.propTypes = {
     overlayInnerStyle: PropTypes.object,
 
     // 设置确认按钮文字
-    okText: PropTypes.string,
+    okText: PropTypes.node,
 
     // 配置确认按钮相关参数
-    okButtonProps: PropTypes.object,
+    okButtonProps: PropTypes.exact({
+        // 设置按钮尺寸尺寸，可选的有'small'、'middle'和'large'，默认为'middle'
+        size: PropTypes.oneOf(['small', 'middle', 'large']),
+
+        // 设置按钮整体风格（可选项有primary、ghost、dashed、link、text、default）
+        type: PropTypes.oneOf(['primary', 'ghost', 'dashed', 'link', 'text', 'default']),
+
+        // 设置按钮是否显示为危险状态
+        danger: PropTypes.bool,
+
+        // 设置按钮是否以失效状态渲染，默认为false
+        disabled: PropTypes.bool,
+
+        // 设置按钮形状（circle：圆形，round：圆角矩形，默认不设置，即正常矩形）
+        shape: PropTypes.oneOf(['circle', 'round'])
+    }),
 
     // 设置取消按钮文字
-    cancelText: PropTypes.string,
+    cancelText: PropTypes.node,
 
     // 配置取消按钮相关参数
-    cancelButtonProps: PropTypes.object,
+    cancelButtonProps: PropTypes.exact({
+        // 设置按钮尺寸尺寸，可选的有'small'、'middle'和'large'，默认为'middle'
+        size: PropTypes.oneOf(['small', 'middle', 'large']),
+
+        // 设置按钮整体风格（可选项有primary、ghost、dashed、link、text、default）
+        type: PropTypes.oneOf(['primary', 'ghost', 'dashed', 'link', 'text', 'default']),
+
+        // 设置按钮是否显示为危险状态
+        danger: PropTypes.bool,
+
+        // 设置按钮是否以失效状态渲染，默认为false
+        disabled: PropTypes.bool,
+
+        // 设置按钮形状（circle：圆形，round：圆角矩形，默认不设置，即正常矩形）
+        shape: PropTypes.oneOf(['circle', 'round'])
+    }),
 
     // 记录确认按钮被点击的次数
     confirmCounts: PropTypes.number,
 
     // 记录取消按钮被点击的次数
     cancelCounts: PropTypes.number,
-
-    // 设置悬浮层锚定策略，可选的有'parent'、'body'，默认为'body'
-    popupContainer: PropTypes.oneOf(['parent', 'body']),
 
     // 设置触发行为，可选的有'hover'、'focus'、'click'，或是以上多个组成的数组，默认为'hover'
     trigger: PropTypes.oneOfType(
@@ -158,6 +194,9 @@ AntdPopconfirm.propTypes = {
             PropTypes.arrayOf(PropTypes.oneOf(['hover', 'focus', 'click']))
         ]
     ),
+
+    // 设置悬浮层锚定策略，可选的有'parent'、'body'，默认为'body'
+    popupContainer: PropTypes.oneOf(['parent', 'body']),
 
     loading_state: PropTypes.shape({
         /**
@@ -183,8 +222,13 @@ AntdPopconfirm.propTypes = {
 
 // 设置默认参数
 AntdPopconfirm.defaultProps = {
+    disabled: false,
+    placement: 'top',
+    mouseEnterDelay: 0.1,
+    mouseLeaveDelay: 0.1,
     confirmCounts: 0,
     cancelCounts: 0,
+    trigger: 'hover',
     locale: 'zh-cn',
     popupContainer: 'body'
 }

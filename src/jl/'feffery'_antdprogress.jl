@@ -9,12 +9,12 @@ An AntdProgress component.
 
 Keyword arguments:
 - `id` (String; optional)
-- `className` (String; optional)
+- `className` (String | Dict; optional)
 - `format` (optional): . format has the following type: lists containing elements 'prefix', 'suffix', 'content'.
 Those elements have the following types:
   - `prefix` (String; optional)
   - `suffix` (String; optional)
-  - `content` (String; optional)
+  - `content` (a list of or a singular dash component, string or number; optional)
 - `gapDegree` (Real; optional)
 - `gapPosition` (a value equal to: 'top', 'bottom', 'left', 'right'; optional)
 - `key` (String; optional)
@@ -32,7 +32,7 @@ Those elements have the following types:
 Those elements have the following types:
   - `from` (String; optional)
   - `to` (String; optional)
-- `strokeLinecap` (a value equal to: 'round', 'square'; optional)
+- `strokeLinecap` (a value equal to: 'round', 'butt', 'square'; optional)
 - `strokeWidth` (Real; optional)
 - `style` (Dict; optional)
 - `trailColor` (String; optional)

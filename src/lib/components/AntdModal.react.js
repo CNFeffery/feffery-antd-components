@@ -2,6 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { str2Locale } from './locales.react';
 import { Modal, ConfigProvider } from 'antd';
+import { isString } from 'lodash';
+import useCss from '../hooks/useCss';
 
 
 // 定义对话框组件AntdModal，api参数参考https://ant.design/components/modal-cn/
@@ -69,7 +71,11 @@ const AntdModal = (props) => {
         <ConfigProvider locale={str2Locale.get(locale)}>
             <Modal
                 id={id}
-                className={className}
+                className={
+                    isString(className) ?
+                        className :
+                        (className ? useCss(className) : undefined)
+                }
                 style={style}
                 key={key}
                 title={title}
@@ -111,7 +117,10 @@ AntdModal.propTypes = {
     children: PropTypes.node,
 
     // css类名
-    className: PropTypes.string,
+    className: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.object
+    ]),
 
     // 自定义css字典
     style: PropTypes.object,
@@ -122,22 +131,22 @@ AntdModal.propTypes = {
     // 设置语言环境，可选的有'zh-cn'、'en-us'
     locale: PropTypes.oneOf(['zh-cn', 'en-us']),
 
+    // 设置对话框是否可见，默认为false
+    visible: PropTypes.bool,
+
     // 设置标题内容
     title: PropTypes.node,
 
-    // 设置对话框是否可见
-    visible: PropTypes.bool,
+    // 设置是否渲染底部按钮区域，默认为false
+    renderFooter: PropTypes.bool,
 
     // 设置确认按钮文字
     okText: PropTypes.node,
 
-    // 设置confirmLoading状态下按钮的文字内容
-    loadingOkText: PropTypes.node,
-
     // 配置确认按钮相关参数
     okButtonProps: PropTypes.exact({
-        // 设置按钮尺寸规格，可选的有'default'/'small'/'large'
-        size: PropTypes.oneOf(['default', 'small', 'large']),
+        // 设置按钮尺寸尺寸，可选的有'small'、'middle'和'large'，默认为'middle'
+        size: PropTypes.oneOf(['small', 'middle', 'large']),
 
         // 设置按钮整体风格（可选项有primary、ghost、dashed、link、text、default）
         type: PropTypes.oneOf(['primary', 'ghost', 'dashed', 'link', 'text', 'default']),
@@ -149,10 +158,7 @@ AntdModal.propTypes = {
         disabled: PropTypes.bool,
 
         // 设置按钮形状（circle：圆形，round：圆角矩形，默认不设置，即正常矩形）
-        shape: PropTypes.oneOf(['circle', 'round']),
-
-        // 设置按钮大小尺寸，可选的有'small'、'middle'和'large'，默认为'middle'
-        size: PropTypes.oneOf(['small', 'middle', 'large'])
+        shape: PropTypes.oneOf(['circle', 'round'])
     }),
 
     // 设置取消按钮文字
@@ -160,8 +166,8 @@ AntdModal.propTypes = {
 
     // 配置取消按钮相关参数
     cancelButtonProps: PropTypes.exact({
-        // 设置按钮尺寸规格，可选的有'default'/'small'/'large'
-        size: PropTypes.oneOf(['default', 'small', 'large']),
+        // 设置按钮尺寸尺寸，可选的有'small'、'middle'和'large'，默认为'middle'
+        size: PropTypes.oneOf(['small', 'middle', 'large']),
 
         // 设置按钮整体风格（可选项有primary、ghost、dashed、link、text、default）
         type: PropTypes.oneOf(['primary', 'ghost', 'dashed', 'link', 'text', 'default']),
@@ -173,31 +179,25 @@ AntdModal.propTypes = {
         disabled: PropTypes.bool,
 
         // 设置按钮形状（circle：圆形，round：圆角矩形，默认不设置，即正常矩形）
-        shape: PropTypes.oneOf(['circle', 'round']),
-
-        // 设置按钮大小尺寸，可选的有'small'、'middle'和'large'，默认为'middle'
-        size: PropTypes.oneOf(['small', 'middle', 'large'])
+        shape: PropTypes.oneOf(['circle', 'round'])
     }),
 
-    // 设置是否渲染底部按钮区域
-    renderFooter: PropTypes.bool,
-
-    // 自定义对话框的像素宽度
+    // 自定义对话框的像素宽度，默认为520
     width: PropTypes.oneOfType([
         PropTypes.number,
         PropTypes.string
     ]),
 
-    // 设置是否垂直居中显示对话框
+    // 设置是否垂直居中显示对话框，默认为false
     centered: PropTypes.bool,
 
-    // 是否支持键盘esc关闭
+    // 是否支持键盘esc关闭，默认为true
     keyboard: PropTypes.bool,
 
-    // 是否显示右上角的关闭按钮
+    // 是否显示右上角的关闭按钮，默认为true
     closable: PropTypes.bool,
 
-    // 是否显示背景蒙版
+    // 是否显示背景蒙版，默认为true
     mask: PropTypes.bool,
 
     // 点击背景蒙版是否可以关闭对话框
@@ -224,21 +224,24 @@ AntdModal.propTypes = {
     // 记录关闭按钮被点击的次数
     closeCounts: PropTypes.number,
 
-    // 设置页脚中确认按钮是否处于加载中状态，默认为false
-    confirmLoading: PropTypes.bool,
-
     // 设置是否在每次确认按钮点击之后，是否自动更新confirmLoading=true，从而配合回调
     // 实现回调运作中按钮无可点击的效果
     // 默认为false
     confirmAutoSpin: PropTypes.bool,
 
+    // 设置confirmLoading状态下按钮的文字内容
+    loadingOkText: PropTypes.node,
+
+    // 设置页脚中确认按钮是否处于加载中状态，默认为false
+    confirmLoading: PropTypes.bool,
+
     // 设置卡片显隐动画类型，可选的有'fade'、'zoom'、'zoom-big'、'zoom-big-fast'、'zoom-up'、
     // 'zoom-down'、'zoom-left'、'zoom-right'、'slide-up'、'slide-down'、'slide-left'、
     // 'slide-right'、'move-up'、'move-down'、'move-left'、'move-right'
     transitionType: PropTypes.oneOf([
-        'none', 'fade', 'zoom', 'zoom-big', 'zoom-big-fast', 'zoom-up',
-        'zoom-down', 'zoom-left', 'zoom-right', 'slide-up', 'slide-down', 'slide-left',
-        'slide-right', 'move-up', 'move-down', 'move-left', 'move-right'
+        'none', 'fade', 'zoom', 'zoom-big', 'zoom-big-fast', 'slide-up',
+        'slide-down', 'slide-left', 'slide-right', 'move-up', 'move-down',
+        'move-left', 'move-right'
     ]),
 
     /**
@@ -266,14 +269,22 @@ AntdModal.propTypes = {
 // 设置默认参数
 AntdModal.defaultProps = {
     visible: false,
+    renderFooter: false,
+    width: 520,
+    centered: false,
+    keyboard: true,
+    closable: true,
+    mask: true,
+    maskClosable: true,
+    okClickClose: true,
+    zIndex: 1000,
     okCounts: 0,
     cancelCounts: 0,
     closeCounts: 0,
-    locale: 'zh-cn',
-    okClickClose: true,
     confirmLoading: false,
     confirmAutoSpin: false,
-    transitionType: 'zoom'
+    transitionType: 'zoom',
+    locale: 'zh-cn'
 }
 
 export default AntdModal;
