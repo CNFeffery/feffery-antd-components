@@ -54,6 +54,8 @@ const AntdUpload = (props) => {
         directory,
         failedTooltipInfo,
         confirmBeforeDelete,
+        showPercent,
+        progressProps,
         listUploadTaskRecord,
         defaultFileList,
         disabled,
@@ -314,6 +316,20 @@ const AntdUpload = (props) => {
                     showUploadList={showUploadList}
                     directory={directory}
                     disabled={disabled}
+                    progress={
+                        progressProps || showPercent ?
+                            {
+                                strokeColor: progressProps && progressProps.strokeColor,
+                                strokeWidth: (progressProps && progressProps.strokeWidth) || 2,
+                                format: (
+                                    showPercent ? (
+                                        (percent) => percent && `${(progressProps && progressProps.prefix) || ''}${parseFloat(percent.toFixed(1))}${(progressProps && progressProps.suffix) || '%'}`
+                                    ) :
+                                        undefined
+                                )
+                            } :
+                            undefined
+                    }
                     onRemove={
                         confirmBeforeDelete ?
                             () => {
@@ -398,6 +414,38 @@ AntdUpload.propTypes = {
 
     // 设置是否为删除操作添加二次确认模态框，默认为false
     confirmBeforeDelete: PropTypes.bool,
+
+    // 用于设置是否启用进度百分比显示，配合progressProps.format实现更多配置功能
+    // 默认为false
+    showPercent: PropTypes.bool,
+
+    // 用于配置进度条相关参数
+    progressProps: PropTypes.exact({
+        // 设置进度条的颜色，与css接受的颜色值格式相同
+        strokeColor: PropTypes.oneOfType([
+            PropTypes.string,
+            // 配置渐变色
+            PropTypes.exact({
+                // 配置开始颜色
+                from: PropTypes.string,
+
+                // 配置结束颜色
+                to: PropTypes.string
+            })
+        ]),
+
+        // 配置进度条线像素宽度
+        strokeWidth: PropTypes.number,
+
+        // 自定义提示格式
+        format: PropTypes.exact({
+            // 设置前缀文字，默认为''
+            prefix: PropTypes.string,
+
+            // 设置后缀文字，默认为'%'
+            suffix: PropTypes.string
+        })
+    }),
 
     // 用于在每次文件上传动作完成后，记录相关的信息
     lastUploadTaskRecord: PropTypes.oneOfType([
@@ -518,6 +566,7 @@ AntdUpload.defaultProps = {
     fileListMaxLength: null,
     fileMaxSize: 500,
     confirmBeforeDelete: false,
+    showPercent: false,
     lastUploadTaskRecord: null,
     listUploadTaskRecord: [],
     locale: 'zh-cn'

@@ -10,7 +10,7 @@ An AntdSkeletonAvatar component.
 Keyword arguments:
 - `id` (String; optional)
 - `active` (Bool; optional)
-- `className` (String; optional)
+- `className` (String | Dict; optional)
 - `loading_state` (optional): . loading_state has the following type: lists containing elements 'is_loading', 'prop_name', 'component_name'.
 Those elements have the following types:
   - `is_loading` (Bool; optional): Determines if the component is loading or not

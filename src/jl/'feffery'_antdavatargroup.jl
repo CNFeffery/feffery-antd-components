@@ -22,7 +22,7 @@ Those elements have the following types:
   - `component_name` (String; optional): Holds the name of the component that is loading
 - `maxCount` (Real; optional)
 - `maxPopoverPlacement` (a value equal to: 'top', 'bottom'; optional)
-- `maxPopoverTrigger` (a value equal to: 'hover', 'focus', 'click'; optional)
+- `maxPopoverTrigger` (a value equal to: 'hover', 'click'; optional)
 - `maxStyle` (Dict; optional)
 - `size` (optional): . size has the following type: Real | a value equal to: 'large', 'small', 'default' | lists containing elements 'xs', 'sm', 'md', 'lg', 'xl', 'xxl'.
 Those elements have the following types:
