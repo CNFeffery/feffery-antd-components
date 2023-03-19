@@ -56,13 +56,27 @@ Those elements have the following types:
   - `component_name` (String; optional): Holds the name of the component that is loading
 - `locale` (a value equal to: 'zh-cn', 'en-us'; optional)
 - `multiple` (Bool; optional)
+- `progressProps` (optional): . progressProps has the following type: lists containing elements 'strokeColor', 'strokeWidth', 'format'.
+Those elements have the following types:
+  - `strokeColor` (optional): . strokeColor has the following type: String | lists containing elements 'from', 'to'.
+Those elements have the following types:
+  - `from` (String; optional)
+  - `to` (String; optional)
+  - `strokeWidth` (Real; optional)
+  - `format` (optional): . format has the following type: lists containing elements 'prefix', 'suffix'.
+Those elements have the following types:
+  - `prefix` (String; optional)
+  - `suffix` (String; optional)
+- `showErrorMessage` (Bool; optional)
+- `showPercent` (Bool; optional)
+- `showSuccessMessage` (Bool; optional)
 - `showUploadList` (Bool; optional)
 - `status` (a value equal to: 'error', 'warning'; optional)
 - `style` (Dict; optional)
 - `uploadId` (String; optional)
 """
 function 'feffery'_antdupload(; kwargs...)
-        available_props = Symbol[:id, :apiUrl, :buttonContent, :className, :confirmBeforeDelete, :defaultFileList, :directory, :disabled, :downloadUrl, :failedTooltipInfo, :fileListMaxLength, :fileMaxSize, :fileTypes, :key, :lastUploadTaskRecord, :listUploadTaskRecord, :loading_state, :locale, :multiple, :showUploadList, :status, :style, :uploadId]
+        available_props = Symbol[:id, :apiUrl, :buttonContent, :className, :confirmBeforeDelete, :defaultFileList, :directory, :disabled, :downloadUrl, :failedTooltipInfo, :fileListMaxLength, :fileMaxSize, :fileTypes, :key, :lastUploadTaskRecord, :listUploadTaskRecord, :loading_state, :locale, :multiple, :progressProps, :showErrorMessage, :showPercent, :showSuccessMessage, :showUploadList, :status, :style, :uploadId]
         wild_props = Symbol[]
         return Component("'feffery'_antdupload", "AntdUpload", "feffery_antd_components", available_props, wild_props; kwargs...)
 end

@@ -77,7 +77,9 @@ Those elements have the following types:
 Those elements have the following types:
   - `prefix` (String; optional)
   - `suffix` (String; optional)
+- `showErrorMessage` (Bool; optional)
 - `showPercent` (Bool; optional)
+- `showSuccessMessage` (Bool; optional)
 - `showUploadList` (Bool; optional)
 - `status` (a value equal to: 'error', 'warning'; optional)
 - `style` (Dict; optional)
@@ -85,7 +87,7 @@ Those elements have the following types:
 - `uploadId` (String; optional)
 """
 function 'feffery'_antddraggerupload(; kwargs...)
-        available_props = Symbol[:id, :apiUrl, :className, :confirmBeforeDelete, :defaultFileList, :directory, :disabled, :downloadUrl, :draggerClassName, :draggerStyle, :failedTooltipInfo, :fileListMaxLength, :fileMaxSize, :fileTypes, :hint, :key, :lastUploadTaskRecord, :listUploadTaskRecord, :loading_state, :locale, :multiple, :progressProps, :showPercent, :showUploadList, :status, :style, :text, :uploadId]
+        available_props = Symbol[:id, :apiUrl, :className, :confirmBeforeDelete, :defaultFileList, :directory, :disabled, :downloadUrl, :draggerClassName, :draggerStyle, :failedTooltipInfo, :fileListMaxLength, :fileMaxSize, :fileTypes, :hint, :key, :lastUploadTaskRecord, :listUploadTaskRecord, :loading_state, :locale, :multiple, :progressProps, :showErrorMessage, :showPercent, :showSuccessMessage, :showUploadList, :status, :style, :text, :uploadId]
         wild_props = Symbol[]
         return Component("'feffery'_antddraggerupload", "AntdDraggerUpload", "feffery_antd_components", available_props, wild_props; kwargs...)
 end

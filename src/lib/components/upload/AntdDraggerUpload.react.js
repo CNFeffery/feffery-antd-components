@@ -61,6 +61,8 @@ const AntdDraggerUpload = (props) => {
         confirmBeforeDelete,
         showPercent,
         progressProps,
+        showSuccessMessage,
+        showErrorMessage,
         listUploadTaskRecord,
         defaultFileList,
         disabled,
@@ -250,9 +252,9 @@ const AntdDraggerUpload = (props) => {
                 }
             }
 
-            if (info.file.status === 'done') {
+            if (info.file.status === 'done' && showSuccessMessage) {
                 message.success(`${info.file.name} 上传成功！`);
-            } else if (info.file.status === 'error') {
+            } else if (info.file.status === 'error' && showErrorMessage) {
                 message.error(`${info.file.name} 上传失败！`);
             }
 
@@ -480,6 +482,12 @@ AntdDraggerUpload.propTypes = {
         })
     }),
 
+    // 设置是否在每次文件上传成功后，弹出提示消息，默认为true
+    showSuccessMessage: PropTypes.bool,
+
+    // 设置是否在每次文件上传失败后，弹出提示消息，默认为true
+    showErrorMessage: PropTypes.bool,
+
     // 用于在每次文件上传动作完成后，记录相关的信息
     lastUploadTaskRecord: PropTypes.oneOfType([
         // 单文件
@@ -626,6 +634,8 @@ AntdDraggerUpload.defaultProps = {
     fileMaxSize: 500,
     confirmBeforeDelete: false,
     showPercent: false,
+    showSuccessMessage: true,
+    showErrorMessage: true,
     lastUploadTaskRecord: null,
     listUploadTaskRecord: [],
     locale: 'zh-cn'

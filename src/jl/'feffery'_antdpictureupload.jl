@@ -69,14 +69,28 @@ Those elements have the following types:
   - `prop_name` (String; optional): Holds which property is loading
   - `component_name` (String; optional): Holds the name of the component that is loading
 - `locale` (a value equal to: 'zh-cn', 'en-us'; optional)
+- `progressProps` (optional): . progressProps has the following type: lists containing elements 'strokeColor', 'strokeWidth', 'format'.
+Those elements have the following types:
+  - `strokeColor` (optional): . strokeColor has the following type: String | lists containing elements 'from', 'to'.
+Those elements have the following types:
+  - `from` (String; optional)
+  - `to` (String; optional)
+  - `strokeWidth` (Real; optional)
+  - `format` (optional): . format has the following type: lists containing elements 'prefix', 'suffix'.
+Those elements have the following types:
+  - `prefix` (String; optional)
+  - `suffix` (String; optional)
+- `showErrorMessage` (Bool; optional)
+- `showPercent` (Bool; optional)
 - `showPreviewIcon` (Bool; optional)
 - `showRemoveIcon` (Bool; optional)
+- `showSuccessMessage` (Bool; optional)
 - `status` (a value equal to: 'error', 'warning'; optional)
 - `style` (Dict; optional)
 - `uploadId` (String; optional)
 """
 function 'feffery'_antdpictureupload(; kwargs...)
-        available_props = Symbol[:id, :apiUrl, :buttonContent, :className, :confirmBeforeDelete, :defaultFileList, :disabled, :downloadUrl, :editConfig, :editable, :failedTooltipInfo, :fileListMaxLength, :fileMaxSize, :fileTypes, :key, :lastUploadTaskRecord, :listUploadTaskRecord, :loading_state, :locale, :showPreviewIcon, :showRemoveIcon, :status, :style, :uploadId]
+        available_props = Symbol[:id, :apiUrl, :buttonContent, :className, :confirmBeforeDelete, :defaultFileList, :disabled, :downloadUrl, :editConfig, :editable, :failedTooltipInfo, :fileListMaxLength, :fileMaxSize, :fileTypes, :key, :lastUploadTaskRecord, :listUploadTaskRecord, :loading_state, :locale, :progressProps, :showErrorMessage, :showPercent, :showPreviewIcon, :showRemoveIcon, :showSuccessMessage, :status, :style, :uploadId]
         wild_props = Symbol[]
         return Component("'feffery'_antdpictureupload", "AntdPictureUpload", "feffery_antd_components", available_props, wild_props; kwargs...)
 end
