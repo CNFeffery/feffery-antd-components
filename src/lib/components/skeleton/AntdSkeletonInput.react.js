@@ -3,6 +3,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Skeleton } from 'antd';
+import useCss from '../../hooks/useCss';
+import { isString } from 'lodash';
 
 
 // 定义骨骼屏输入框占位图组件AntdSkeletonInput
@@ -13,6 +15,7 @@ const AntdSkeletonInput = (props) => {
         id,
         style,
         className,
+        key,
         active,
         size,
         loading_state,
@@ -23,7 +26,12 @@ const AntdSkeletonInput = (props) => {
     return (
         <Skeleton.Input id={id}
             style={style}
-            className={className}
+            className={
+                isString(className) ?
+                    className :
+                    (className ? useCss(className) : undefined)
+            }
+            key={key}
             active={active}
             size={size}
             data-dash-is-loading={
@@ -40,7 +48,12 @@ AntdSkeletonInput.propTypes = {
 
     style: PropTypes.object,
 
-    className: PropTypes.string,
+    className: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.object
+    ]),
+
+    key: PropTypes.string,
 
     // 设置是否展示动画效果，默认为false
     active: PropTypes.bool,

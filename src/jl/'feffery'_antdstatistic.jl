@@ -23,7 +23,7 @@ Those elements have the following types:
 - `suffix` (a list of or a singular dash component, string or number; optional)
 - `title` (a list of or a singular dash component, string or number; optional)
 - `titleTooltip` (String; optional)
-- `value` (Real | String; optional)
+- `value` (Real | String | a list of or a singular dash component, string or number; optional)
 - `valueStyle` (Dict; optional)
 """
 function 'feffery'_antdstatistic(; kwargs...)

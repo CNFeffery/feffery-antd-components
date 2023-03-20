@@ -3,6 +3,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Skeleton } from 'antd';
+import useCss from '../../hooks/useCss';
+import { isString } from 'lodash';
 
 
 // 定义骨骼屏图片占位图组件AntdSkeletonImage
@@ -13,6 +15,7 @@ const AntdSkeletonImage = (props) => {
         id,
         style,
         className,
+        key,
         loading_state,
         setProps
     } = props;
@@ -21,7 +24,12 @@ const AntdSkeletonImage = (props) => {
     return (
         <Skeleton.Image id={id}
             style={style}
-            className={className}
+            className={
+                isString(className) ?
+                    className :
+                    (className ? useCss(className) : undefined)
+            }
+            key={key}
             data-dash-is-loading={
                 (loading_state && loading_state.is_loading) || undefined
             }
@@ -36,7 +44,12 @@ AntdSkeletonImage.propTypes = {
 
     style: PropTypes.object,
 
-    className: PropTypes.string,
+    className: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.object
+    ]),
+
+    key: PropTypes.string,
 
     loading_state: PropTypes.shape({
         /**

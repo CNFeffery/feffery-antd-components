@@ -3,8 +3,6 @@ import PropTypes from 'prop-types';
 import { isString } from 'lodash';
 import useCss from '../../hooks/useCss';
 
-import { parseChildrenToArray } from '../utils';
-
 // 自定义骨架屏组件AntdCustomSkeleton
 const AntdCustomSkeleton = (props) => {
     // 取得必要属性或参数
@@ -23,8 +21,6 @@ const AntdCustomSkeleton = (props) => {
         loading_state,
         setProps
     } = props;
-
-    children = parseChildrenToArray(children)
 
     const [showLoading, setShowLoading] = useState(loading);
     const timer = useRef();

@@ -15,6 +15,7 @@ const AntdSkeletonAvatar = (props) => {
         id,
         style,
         className,
+        key,
         active,
         shape,
         size,
@@ -31,6 +32,7 @@ const AntdSkeletonAvatar = (props) => {
                     className :
                     (className ? useCss(className) : undefined)
             }
+            key={key}
             active={active}
             shape={shape}
             size={size}
@@ -52,6 +54,8 @@ AntdSkeletonAvatar.propTypes = {
         PropTypes.string,
         PropTypes.object
     ]),
+
+    key: PropTypes.string,
 
     // 设置是否展示动画效果，默认为false
     active: PropTypes.bool,

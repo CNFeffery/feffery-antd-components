@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Statistic, Space } from 'antd';
 import AntdTooltip from './AntdTooltip.react';
 import useCss from '../hooks/useCss';
-import { isString } from 'lodash';
+import { isString, isNumber } from 'lodash';
 import { QuestionCircleOutlined } from "@ant-design/icons";
 
 
@@ -36,7 +36,10 @@ const AntdStatistic = (props) => {
             }
             style={style}
             key={key}
-            value={value}
+            value={isString(value) || isNumber(value) ? value : undefined}
+            formatter={
+                !(isString(value) || isNumber(value)) ? () => value : undefined
+            }
             groupSeparator={showGroupSeparator ? ',' : ''}
             precision={precision}
             prefix={prefix}
@@ -77,7 +80,8 @@ AntdStatistic.propTypes = {
     // 设定要显示的数值
     value: PropTypes.oneOfType([
         PropTypes.number,
-        PropTypes.string
+        PropTypes.string,
+        PropTypes.node
     ]),
 
     // 设置是否为数值渲染千分位逗号标识符，默认为true

@@ -3,6 +3,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Skeleton } from 'antd';
+import { isString } from 'lodash';
+import useCss from '../../hooks/useCss';
 
 
 // 定义骨骼屏按钮占位图组件AntdSkeletonButton
@@ -25,7 +27,12 @@ const AntdSkeletonButton = (props) => {
     return (
         <Skeleton.Button id={id}
             style={style}
-            className={className}
+            className={
+                isString(className) ?
+                    className :
+                    (className ? useCss(className) : undefined)
+            }
+            key={key}
             active={active}
             block={block}
             shape={shape}
@@ -44,7 +51,12 @@ AntdSkeletonButton.propTypes = {
 
     style: PropTypes.object,
 
-    className: PropTypes.string,
+    className: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.object
+    ]),
+
+    key: PropTypes.string,
 
     // 设置是否展示动画效果，默认为false
     active: PropTypes.bool,
