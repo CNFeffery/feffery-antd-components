@@ -110,6 +110,7 @@ AntdCustomSkeleton.propTypes = {
     loading: PropTypes.bool,
 
     // 设置是否开启debug模式，开启后，每次动画加载都会在开发者工具的控制台打印prop信息
+    // 默认为false
     debug: PropTypes.bool,
 
     // 设置自定义监听组件的模式，可选的有'default'、'exclude'、'include'，默认为'default'

@@ -85,6 +85,8 @@ AntdSkeletonInput.propTypes = {
 
 // 设置默认参数
 AntdSkeletonInput.defaultProps = {
+    active: false,
+    size: 'default'
 }
 
 export default AntdSkeletonInput;

@@ -19,6 +19,7 @@ Keyword arguments:
 - `excludeProps` (Array of Strings; optional)
 - `includeProps` (Array of Strings; optional)
 - `indicator` (a list of or a singular dash component, string or number; optional)
+- `key` (String; optional)
 - `listenPropsMode` (a value equal to: 'default', 'exclude', 'include'; optional)
 - `loading_state` (optional): . loading_state has the following type: lists containing elements 'is_loading', 'prop_name', 'component_name'.
 Those elements have the following types:
@@ -32,7 +33,7 @@ Those elements have the following types:
 - `wrapperClassName` (String | Dict; optional)
 """
 function 'feffery'_antdspin(; kwargs...)
-        available_props = Symbol[:children, :id, :className, :debug, :delay, :excludeProps, :includeProps, :indicator, :listenPropsMode, :loading_state, :size, :spinning, :style, :text, :wrapperClassName]
+        available_props = Symbol[:children, :id, :className, :debug, :delay, :excludeProps, :includeProps, :indicator, :key, :listenPropsMode, :loading_state, :size, :spinning, :style, :text, :wrapperClassName]
         wild_props = Symbol[]
         return Component("'feffery'_antdspin", "AntdSpin", "feffery_antd_components", available_props, wild_props; kwargs...)
 end

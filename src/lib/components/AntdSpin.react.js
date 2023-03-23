@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { Spin } from 'antd';
 import useCss from '../hooks/useCss'
 import { isString } from 'lodash';
-import { parseChildrenToArray } from './utils';
 
 // 定义加载动画组件AntdSpin，api参数参考https://ant.design/components/spin-cn/
 const AntdSpin = (props) => {
@@ -27,8 +26,6 @@ const AntdSpin = (props) => {
         indicator,
         setProps
     } = props;
-
-    children = parseChildrenToArray(children)
 
     const [showSpinning, setShowSpinning] = useState(spinning);
     const timer = useRef();
@@ -123,6 +120,8 @@ AntdSpin.propTypes = {
     // 自定义css字典
     style: PropTypes.object,
 
+    key: PropTypes.string,
+
     // 设置是否处于加载中状态
     spinning: PropTypes.bool,
 
@@ -176,6 +175,7 @@ AntdSpin.propTypes = {
 
 // 设置默认参数
 AntdSpin.defaultProps = {
+    size: 'middle',
     spinning: false,
     listenPropsMode: 'default',
     excludeProps: [],

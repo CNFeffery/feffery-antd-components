@@ -15,6 +15,7 @@ const AntdSkeletonButton = (props) => {
         id,
         style,
         className,
+        key,
         active,
         block,
         shape,
@@ -94,6 +95,10 @@ AntdSkeletonButton.propTypes = {
 
 // 设置默认参数
 AntdSkeletonButton.defaultProps = {
+    active: false,
+    block: false,
+    shape: 'default',
+    size: 'default'
 }
 
 export default AntdSkeletonButton;
