@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import { Transfer, ConfigProvider } from 'antd';
 import { str2Locale } from './locales.react';
-import { isString } from 'lodash';
+import { isString, isUndefined } from 'lodash';
 import useCss from '../hooks/useCss';
+import PropsContext from '../contexts/PropsContext';
 
 
 // 定义穿梭框组件AntdTransfer，api参数参考https://ant.design/components/transfer-cn/
@@ -31,6 +32,8 @@ const AntdTransfer = (props) => {
         persistence_type,
         loading_state
     } = props;
+
+    const context = useContext(PropsContext)
 
     if (!titles) {
         titles = [locale === 'zh-cn' ? '待选区' : 'Source', locale === 'zh-cn' ? '选定区' : 'Target']
@@ -66,7 +69,11 @@ const AntdTransfer = (props) => {
                 showSearch={showSearch}
                 showSelectAll={showSelectAll}
                 titles={titles}
-                disabled={disabled}
+                disabled={
+                    context && !isUndefined(context.componentDisabled) ?
+                        context.componentDisabled :
+                        disabled
+                }
                 status={status}
                 persistence={persistence}
                 persisted_props={persisted_props}

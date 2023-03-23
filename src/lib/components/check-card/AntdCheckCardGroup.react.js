@@ -1,9 +1,10 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useContext } from 'react';
 import PropTypes from 'prop-types';
 import { CheckCard } from '@ant-design/pro-card';
 import { parseChildrenToArray } from '../utils';
-import { isString } from 'lodash';
+import { isString, isUndefined } from 'lodash';
 import useCss from '../../hooks/useCss';
+import PropsContext from '../../contexts/PropsContext';
 
 // 定义组合选择卡片组件AntdCheckCardGroup，api参数参考https://procomponents.ant.design/components/check-card
 const AntdCheckCardGroup = (props) => {
@@ -24,6 +25,8 @@ const AntdCheckCardGroup = (props) => {
         setProps,
         loading_state
     } = props;
+
+    const context = useContext(PropsContext)
 
     useEffect(() => {
         if (defaultValue && !value) {
@@ -46,7 +49,11 @@ const AntdCheckCardGroup = (props) => {
             bordered={bordered}
             value={value}
             defaultValue={defaultValue}
-            disabled={disabled}
+            disabled={
+                context && !isUndefined(context.componentDisabled) ?
+                    context.componentDisabled :
+                    disabled
+            }
             size={size}
             onChange={(e) => setProps({ value: e })}
             data-dash-is-loading={

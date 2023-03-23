@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import { Popconfirm, ConfigProvider } from 'antd';
 import { str2Locale } from './locales.react';
 import { parseChildrenToArray } from './utils';
-import { isString } from 'lodash';
+import { isString, isUndefined } from 'lodash';
 import useCss from '../hooks/useCss';
+import PropsContext from '../contexts/PropsContext';
 
 // 定义气泡确认框组件AntdPopconfirm，api参数参考https://ant.design/components/popconfirm-cn/
 const AntdPopconfirm = (props) => {
@@ -36,6 +37,8 @@ const AntdPopconfirm = (props) => {
         loading_state
     } = props;
 
+    const context = useContext(PropsContext)
+
     children = parseChildrenToArray(children)
 
     // 监听确认按钮点击事件
@@ -59,7 +62,11 @@ const AntdPopconfirm = (props) => {
                 style={style}
                 key={key}
                 title={title}
-                disabled={disabled}
+                disabled={
+                    context && !isUndefined(context.componentDisabled) ?
+                        context.componentDisabled :
+                        disabled
+                }
                 placement={placement}
                 mouseEnterDelay={mouseEnterDelay}
                 mouseLeaveDelay={mouseLeaveDelay}

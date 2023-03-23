@@ -1,8 +1,9 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useContext } from 'react';
 import PropTypes from 'prop-types';
 import { Rate } from 'antd';
-import { isString } from 'lodash';
+import { isString, isUndefined } from 'lodash';
 import useCss from '../hooks/useCss';
+import PropsContext from '../contexts/PropsContext';
 
 
 // 定义评分组件AntdRate，api参数参考https://ant.design/components/rate-cn/
@@ -24,6 +25,8 @@ const AntdRate = (props) => {
         loading_state
     } = props;
 
+    const context = useContext(PropsContext)
+
     useEffect(() => {
         // 初始化value
         if (defaultValue && !value) {
@@ -44,7 +47,11 @@ const AntdRate = (props) => {
             allowClear={allowClear}
             allowHalf={allowHalf}
             count={count}
-            disabled={disabled}
+            disabled={
+                context && !isUndefined(context.componentDisabled) ?
+                    context.componentDisabled :
+                    disabled
+            }
             tooltips={tooltips}
             value={value}
             onChange={v => setProps({ value: v })}

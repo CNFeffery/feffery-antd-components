@@ -1,10 +1,11 @@
-import React, { useEffect } from 'react';
+import { useEffect, useContext } from 'react';
 import PropTypes from 'prop-types';
 import { useRequest } from 'ahooks';
 import { Select, Spin, ConfigProvider } from 'antd';
 import { isUndefined, isString } from 'lodash';
 import useCss from '../hooks/useCss';
 import { str2Locale } from './locales.react';
+import PropsContext from '../contexts/PropsContext';
 
 
 const { Option, OptGroup } = Select;
@@ -50,6 +51,8 @@ const AntdSelect = (props) => {
         persisted_props,
         persistence_type
     } = props;
+
+    const context = useContext(PropsContext)
 
     useEffect(() => {
         // 初始化value
@@ -191,7 +194,11 @@ const AntdSelect = (props) => {
                 onChange={updateSelectedValue}
                 maxTagCount={maxTagCount}
                 listHeight={listHeight}
-                disabled={disabled}
+                disabled={
+                    context && !isUndefined(context.componentDisabled) ?
+                        context.componentDisabled :
+                        disabled
+                }
                 showSearch={true}
                 placement={placement}
                 status={status}

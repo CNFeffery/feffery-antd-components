@@ -30,7 +30,6 @@ const AntdAnchor = (props) => {
         if (obj.hasOwnProperty('href')) {
             //当anchorObj具有children属性时
             if (obj.hasOwnProperty('children')) {
-
                 obj = <Link
                     href={obj.href}
                     title={obj.title}
@@ -38,22 +37,18 @@ const AntdAnchor = (props) => {
                 >
                     {renderAnchorTree(obj.children)}
                 </Link>
-
             } else {
-
                 obj = <Link
                     href={obj.href}
                     title={obj.title}
                     target={obj.target}
                 />
             }
-
         } else {
             for (let i = 0; i < obj.length; i++) {
                 obj[i] = renderAnchorTree(obj[i])
             }
         }
-
         return obj;
     }
 
@@ -82,9 +77,14 @@ const AntdAnchor = (props) => {
                     style={style}
                     key={key}
                     onClick={onClick}
-                    getContainer={containerId ? (
-                        document.getElementById(containerId) ? () => document.getElementById(containerId) : undefined
-                    ) : undefined}
+                    getContainer={
+                        containerId ? (
+                            document.getElementById(containerId) ?
+                                () => document.getElementById(containerId) :
+                                undefined
+                        ) :
+                            undefined
+                    }
                     targetOffset={targetOffset}
                     affix={affix}
                     bounds={bounds}
@@ -177,7 +177,9 @@ AntdAnchor.propTypes = {
 
 // 设置默认参数
 AntdAnchor.defaultProps = {
-    align: 'right'
+    align: 'right',
+    affix: true,
+    bounds: 5
 }
 
 export default AntdAnchor;

@@ -1,11 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import PropTypes from 'prop-types';
 import { v4 as uuidv4 } from 'uuid';
 import { Upload, message, Button, Modal, ConfigProvider } from 'antd';
 import { UploadOutlined } from '@ant-design/icons';
 import { str2Locale, locale2text } from '../locales.react';
-import { isString } from 'lodash';
+import { isString, isUndefined } from 'lodash';
 import useCss from '../../hooks/useCss';
+import PropsContext from '../../contexts/PropsContext';
 
 
 // 解析历史任务完成时间信息
@@ -65,6 +66,8 @@ const AntdUpload = (props) => {
         loading_state,
         setProps
     } = props;
+
+    const context = useContext(PropsContext)
 
     listUploadTaskRecord = listUploadTaskRecord || []
 
@@ -317,7 +320,11 @@ const AntdUpload = (props) => {
                     multiple={multiple}
                     showUploadList={showUploadList}
                     directory={directory}
-                    disabled={disabled}
+                    disabled={
+                        context && !isUndefined(context.componentDisabled) ?
+                            context.componentDisabled :
+                            disabled
+                    }
                     progress={
                         progressProps || showPercent ?
                             {
@@ -352,7 +359,13 @@ const AntdUpload = (props) => {
                     data-dash-is-loading={
                         (loading_state && loading_state.is_loading) || undefined
                     }>
-                    <Button icon={<UploadOutlined />} disabled={disabled}>
+                    <Button icon={<UploadOutlined />}
+                        disabled={
+                            context && !isUndefined(context.componentDisabled) ?
+                                context.componentDisabled :
+                                disabled
+                        }
+                    >
                         {buttonContent ? buttonContent : "点击上传文件"}
                     </Button>
                 </Upload>

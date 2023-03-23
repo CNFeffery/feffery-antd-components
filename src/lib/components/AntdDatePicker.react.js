@@ -40,6 +40,7 @@ const AntdDatePicker = (props) => {
     } = props;
 
     const context = useContext(PropsContext)
+    locale = (context && context.locale) || locale
 
     useEffect(() => {
         // 初始化value
@@ -335,7 +336,7 @@ const AntdDatePicker = (props) => {
     return (
         <div>
             <ConfigProvider
-                locale={context && context.locale ? str2Locale.get(context.locale) : str2Locale.get(locale)}
+                locale={str2Locale.get(locale)}
             >
                 <DatePicker
                     id={id}
@@ -349,7 +350,11 @@ const AntdDatePicker = (props) => {
                     format={format}
                     onChange={onChange}
                     picker={picker}
-                    disabled={disabled}
+                    disabled={
+                        context && !isUndefined(context.componentDisabled) ?
+                            context.componentDisabled :
+                            disabled
+                    }
                     placeholder={placeholder}
                     bordered={bordered}
                     size={size}

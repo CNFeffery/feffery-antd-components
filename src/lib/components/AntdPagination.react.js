@@ -1,9 +1,10 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useContext } from 'react';
 import PropTypes from 'prop-types';
 import { Pagination, ConfigProvider } from 'antd';
 import { str2Locale } from './locales.react';
-import { isString } from 'lodash';
+import { isString, isUndefined } from 'lodash';
 import useCss from '../hooks/useCss';
+import PropsContext from '../contexts/PropsContext';
 
 
 // 定义分页部件AntdPagination，api参数参考https://ant.design/components/pagination-cn/
@@ -36,6 +37,8 @@ const AntdPagination = (props) => {
         persisted_props,
         persistence_type
     } = props;
+
+    const context = useContext(PropsContext)
 
     useEffect(() => {
         if (defaultCurrent && !current) {
@@ -72,7 +75,11 @@ const AntdPagination = (props) => {
                 defaultCurrent={defaultCurrent}
                 defaultPageSize={defaultPageSize}
                 current={current}
-                disabled={disabled}
+                disabled={
+                    context && !isUndefined(context.componentDisabled) ?
+                        context.componentDisabled :
+                        disabled
+                }
                 hideOnSinglePage={hideOnSinglePage}
                 pageSizeOptions={pageSizeOptions}
                 showQuickJumper={showQuickJumper}
@@ -221,7 +228,8 @@ AntdPagination.defaultProps = {
     persisted_props: ['current', 'pageSize'],
     persistence_type: 'local',
     locale: 'zh-cn',
-    showTotal: true
+    showTotal: true,
+    disabled: false
 }
 
 export default AntdPagination;

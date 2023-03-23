@@ -1,10 +1,11 @@
-import { useEffect, useMemo } from 'react';
+import { useEffect, useMemo, useContext } from 'react';
 import PropTypes from 'prop-types';
 import { TreeSelect, ConfigProvider } from 'antd';
 import { str2Locale } from './locales.react';
 import { isUndefined, isString } from 'lodash';
 import { flatToTree } from './utils';
 import useCss from '../hooks/useCss';
+import PropsContext from '../contexts/PropsContext';
 
 const { SHOW_ALL, SHOW_CHILD, SHOW_PARENT } = TreeSelect;
 
@@ -60,6 +61,8 @@ const AntdTreeSelect = (props) => {
         persistence_type,
         loading_state
     } = props;
+
+    const context = useContext(PropsContext)
 
     useEffect(() => {
         if (!value && defaultValue) {
@@ -120,7 +123,11 @@ const AntdTreeSelect = (props) => {
                 onChange={updateSelectedValue}
                 showSearch={true}
                 virtual={virtual}
-                disabled={disabled}
+                disabled={
+                    context && !isUndefined(context.componentDisabled) ?
+                        context.componentDisabled :
+                        disabled
+                }
                 placement={placement}
                 status={status}
                 treeNodeFilterProp={treeNodeFilterProp}

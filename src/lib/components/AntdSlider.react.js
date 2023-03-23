@@ -1,8 +1,9 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useContext } from 'react';
 import PropTypes from 'prop-types';
 import { Slider } from 'antd';
-import { isString } from 'lodash';
+import { isString, isUndefined } from 'lodash';
 import useCss from '../hooks/useCss';
+import PropsContext from '../contexts/PropsContext';
 
 
 // 定义滑动输入条组件AntdSlider，api参数参考https://ant.design/components/slider-cn/
@@ -29,6 +30,8 @@ const AntdSlider = (props) => {
         loading_state,
         setProps
     } = props;
+
+    const context = useContext(PropsContext)
 
     useEffect(() => {
         // 初始化value
@@ -74,7 +77,11 @@ const AntdSlider = (props) => {
             key={key}
             value={value}
             defaultValue={defaultValue}
-            disabled={disabled}
+            disabled={
+                context && !isUndefined(context.componentDisabled) ?
+                    context.componentDisabled :
+                    disabled
+            }
             vertical={vertical}
             range={range}
             min={min}

@@ -1,10 +1,11 @@
-import { useEffect, useMemo } from 'react';
+import { useEffect, useMemo, useContext } from 'react';
 import PropTypes from 'prop-types';
 import { Cascader, ConfigProvider } from 'antd';
 import { str2Locale } from './locales.react';
 import { isUndefined, isString } from 'lodash';
 import { flatToTree } from './utils';
 import useCss from '../hooks/useCss';
+import PropsContext from '../contexts/PropsContext';
 
 
 const { SHOW_CHILD, SHOW_PARENT } = Cascader;
@@ -48,6 +49,8 @@ const AntdCascader = (props) => {
         loading_state
     } = props;
 
+    const context = useContext(PropsContext)
+
     useEffect(() => {
         if (defaultValue && !value) {
             setProps({ value: defaultValue })
@@ -87,7 +90,11 @@ const AntdCascader = (props) => {
                 changeOnSelect={changeOnSelect}
                 size={size}
                 bordered={bordered}
-                disabled={disabled}
+                disabled={
+                    context && !isUndefined(context.componentDisabled) ?
+                        context.componentDisabled :
+                        disabled
+                }
                 placeholder={placeholder}
                 defaultValue={defaultValue}
                 value={value}

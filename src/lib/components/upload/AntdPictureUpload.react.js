@@ -1,10 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import PropTypes from 'prop-types';
 import { v4 as uuidv4 } from 'uuid';
 import { Upload, message, Modal, ConfigProvider } from 'antd';
 import { PlusOutlined } from '@ant-design/icons';
 import { str2Locale, locale2text } from '../locales.react';
+import { isUndefined } from 'lodash';
 import ImgCrop from 'antd-img-crop';
+import PropsContext from '../../contexts/PropsContext';
 
 // 解析历史任务完成时间信息
 const parseHistoryTaskCompleteTime = (e) => {
@@ -73,6 +75,8 @@ const AntdPictureUpload = (props) => {
         loading_state,
         setProps
     } = props;
+
+    const context = useContext(PropsContext)
 
     listUploadTaskRecord = listUploadTaskRecord || []
 
@@ -278,6 +282,25 @@ const AntdPictureUpload = (props) => {
                         <Upload {...uploadProps}
                             fileList={fileList}
                             listType="picture-card"
+                            disabled={
+                                context && !isUndefined(context.componentDisabled) ?
+                                    context.componentDisabled :
+                                    disabled
+                            }
+                            progress={
+                                progressProps || showPercent ?
+                                    {
+                                        strokeColor: progressProps && progressProps.strokeColor,
+                                        strokeWidth: (progressProps && progressProps.strokeWidth) || 2,
+                                        format: (
+                                            showPercent ? (
+                                                (percent) => percent && `${(progressProps && progressProps.prefix) || ''}${parseFloat(percent.toFixed(1))}${(progressProps && progressProps.suffix) || '%'}`
+                                            ) :
+                                                undefined
+                                        )
+                                    } :
+                                    undefined
+                            }
                             showUploadList={{
                                 showRemoveIcon,
                                 showPreviewIcon
@@ -334,7 +357,11 @@ const AntdPictureUpload = (props) => {
                 <Upload {...uploadProps}
                     fileList={fileList}
                     listType="picture-card"
-                    disabled={disabled}
+                    disabled={
+                        context && !isUndefined(context.componentDisabled) ?
+                            context.componentDisabled :
+                            disabled
+                    }
                     progress={
                         progressProps || showPercent ?
                             {

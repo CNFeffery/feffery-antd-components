@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import { Mentions } from 'antd';
-import { isString } from 'lodash';
+import { isString, isUndefined } from 'lodash';
 import useCss from '../hooks/useCss';
+import PropsContext from '../contexts/PropsContext';
 
 const { Option } = Mentions;
 
@@ -26,6 +27,8 @@ const AntdMentions = (props) => {
         setProps,
         loading_state
     } = props;
+
+    const context = useContext(PropsContext)
 
     const onChange = (e) => {
         setProps({ value: e })
@@ -72,7 +75,11 @@ const AntdMentions = (props) => {
             prefix={prefix}
             defaultValue={defaultValue}
             placement={placement}
-            disabled={disabled}
+            disabled={
+                context && !isUndefined(context.componentDisabled) ?
+                    context.componentDisabled :
+                    disabled
+            }
             status={status}
             onChange={onChange}
             onSelect={onSelect}

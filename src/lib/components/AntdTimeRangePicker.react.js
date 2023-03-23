@@ -1,10 +1,11 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useContext } from 'react';
 import PropTypes from 'prop-types';
 import { TimePicker, ConfigProvider } from 'antd';
 import moment from 'moment';
 import { isUndefined, isString } from 'lodash';
 import { str2Locale } from './locales.react';
 import useCss from '../hooks/useCss';
+import PropsContext from '../contexts/PropsContext';
 
 
 const { RangePicker } = TimePicker
@@ -41,6 +42,8 @@ const AntdTimeRangePicker = (props) => {
         loading_state
     } = props;
 
+    const context = useContext(PropsContext)
+
     useEffect(() => {
         // 初始化value
         if (defaultValue && !value) {
@@ -71,7 +74,13 @@ const AntdTimeRangePicker = (props) => {
                     style={style}
                     key={key}
                     onChange={onChange}
-                    disabled={(disabled && disabled.length === 2) ? disabled : undefined}
+                    disabled={
+                        context && !isUndefined(context.componentDisabled) ?
+                            [context.componentDisabled, context.componentDisabled] :
+                            (
+                                (disabled && disabled.length === 2) ? disabled : undefined
+                            )
+                    }
                     allowEmpty={(disabled && disabled.length === 2) ? disabled : undefined}
                     placeholder={(placeholder && placeholder.length === 2) ? placeholder : undefined}
                     placement={placement}

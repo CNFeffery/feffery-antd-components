@@ -1,9 +1,10 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useContext } from 'react';
 import PropTypes from 'prop-types';
 import { InputNumber } from 'antd';
 import { useRequest } from 'ahooks';
-import { isString } from 'lodash';
+import { isString, isUndefined } from 'lodash';
 import useCss from '../hooks/useCss';
+import PropsContext from '../contexts/PropsContext';
 
 
 // 定义数字输入框组件AntdInputNumber，api参数参考https://ant.design/components/input-number-cn/
@@ -41,6 +42,8 @@ const AntdInputNumber = (props) => {
         persistence_type,
         loading_state
     } = props;
+
+    const context = useContext(PropsContext)
 
     useEffect(() => {
         // 初始化value
@@ -91,7 +94,11 @@ const AntdInputNumber = (props) => {
             controls={controls}
             value={value}
             defaultValue={defaultValue}
-            disabled={disabled}
+            disabled={
+                context && !isUndefined(context.componentDisabled) ?
+                    context.componentDisabled :
+                    disabled
+            }
             keyboard={keyboard}
             min={min}
             max={max}

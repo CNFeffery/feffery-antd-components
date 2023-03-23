@@ -1,8 +1,9 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useContext } from 'react';
 import PropTypes from 'prop-types';
 import { Radio, Space } from 'antd';
-import { isString } from 'lodash';
+import { isString, isUndefined } from 'lodash';
 import useCss from '../hooks/useCss';
+import PropsContext from '../contexts/PropsContext';
 
 
 // 定义单选框组件AntdRadioGroup，api参数参考https://ant.design/components/radio-cn/
@@ -27,6 +28,8 @@ const AntdRadioGroup = (props) => {
         persistence_type,
         loading_state
     } = props;
+
+    const context = useContext(PropsContext)
 
     useEffect(() => {
         if (!value && defaultValue) {
@@ -54,7 +57,11 @@ const AntdRadioGroup = (props) => {
                 defaultValue={defaultValue}
                 value={value}
                 buttonStyle={buttonStyle}
-                disabled={disabled}
+                disabled={
+                    context && !isUndefined(context.componentDisabled) ?
+                        context.componentDisabled :
+                        disabled
+                }
                 size={size}
                 persistence={persistence}
                 persisted_props={persisted_props}
@@ -91,7 +98,11 @@ const AntdRadioGroup = (props) => {
             value={value}
             optionType={optionType}
             buttonStyle={buttonStyle}
-            disabled={disabled}
+            disabled={
+                context && !isUndefined(context.componentDisabled) ?
+                    context.componentDisabled :
+                    disabled
+            }
             size={size}
             persistence={persistence}
             persisted_props={persisted_props}

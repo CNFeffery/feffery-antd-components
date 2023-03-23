@@ -1,11 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import PropTypes from 'prop-types';
 import { v4 as uuidv4 } from 'uuid';
 import { Upload, message, Modal, ConfigProvider } from 'antd';
 import AntdIcon from '../AntdIcon.react';
 import useCss from '../../hooks/useCss';
-import { isString } from 'lodash';
+import { isString, isUndefined } from 'lodash';
 import { str2Locale, locale2text } from '../locales.react';
+import PropsContext from '../../contexts/PropsContext';
 
 
 const { Dragger } = Upload;
@@ -70,6 +71,8 @@ const AntdDraggerUpload = (props) => {
         loading_state,
         setProps
     } = props;
+
+    const context = useContext(PropsContext)
 
     listUploadTaskRecord = listUploadTaskRecord || []
 
@@ -336,7 +339,11 @@ const AntdDraggerUpload = (props) => {
                     showUploadList={showUploadList}
                     multiple={multiple}
                     directory={directory}
-                    disabled={disabled}
+                    disabled={
+                        context && !isUndefined(context.componentDisabled) ?
+                            context.componentDisabled :
+                            disabled
+                    }
                     progress={
                         progressProps || showPercent ?
                             {

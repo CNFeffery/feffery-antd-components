@@ -30,13 +30,13 @@ const AntdConfigProvider = (props) => {
         <PropsContext.Provider
             value={
                 {
-                    locale
+                    locale,
+                    componentDisabled
                 }
             }
         >
             <ConfigProvider id={id}
                 key={key}
-                componentDisabled={componentDisabled}
                 componentSize={componentSize}
                 data-dash-is-loading={
                     (loading_state && loading_state.is_loading) || undefined
@@ -60,13 +60,14 @@ AntdConfigProvider.propTypes = {
     // 自定义主色
     primaryColor: PropTypes.string,
 
-    // 设置是否针对子元素所有组件强制开启禁用状态
+    // 强制设置是否针对后台元素中的所有组件设置禁用状态
     componentDisabled: PropTypes.bool,
 
-    // 总体设置子元素的尺寸规格，可选的有'small'、'default'、'large'
+    // 强制设置后代元素的尺寸规格，可选的有'small'、'default'、'large'
+    // 其中'default'兼容'middle'
     componentSize: PropTypes.oneOf(['small', 'default', 'large']),
 
-    // 设置语言环境，可选的有'zh-cn'、'en-us'
+    // 强制设置后代元素的语言，可选的有'zh-cn'、'en-us'
     locale: PropTypes.oneOf(['zh-cn', 'en-us']),
 
     loading_state: PropTypes.shape({

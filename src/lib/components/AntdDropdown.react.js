@@ -1,8 +1,11 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import { Dropdown, Menu, Button } from 'antd';
 import AntdIcon from './AntdIcon.react';
 import { DownOutlined } from '@ant-design/icons';
+import { isString, isUndefined } from 'lodash';
+import useCss from '../hooks/useCss';
+import PropsContext from '../contexts/PropsContext';
 
 
 // 定义下拉菜单组件AntdDropdown，api参数参考https://ant.design/components/dropdown-cn/
@@ -30,9 +33,15 @@ const AntdDropdown = (props) => {
         loading_state
     } = props;
 
+    const context = useContext(PropsContext)
+
     return (
         <Dropdown id={id}
-            className={className}
+            className={
+                isString(className) ?
+                    className :
+                    (className ? useCss(className) : undefined)
+            }
             style={style}
             key={key}
             overlay={
@@ -62,7 +71,11 @@ const AntdDropdown = (props) => {
                 </Menu>
             }
             arrow={arrow}
-            disabled={disabled}
+            disabled={
+                context && !isUndefined(context.componentDisabled) ?
+                    context.componentDisabled :
+                    disabled
+            }
             overlayClassName={overlayClassName}
             overlayStyle={overlayStyle}
             placement={placement}
@@ -102,7 +115,10 @@ AntdDropdown.propTypes = {
     id: PropTypes.string,
 
     // css类名
-    className: PropTypes.string,
+    className: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.object
+    ]),
 
     // 自定义css字典
     style: PropTypes.object,
@@ -212,6 +228,8 @@ AntdDropdown.propTypes = {
 
 // 设置默认参数
 AntdDropdown.defaultProps = {
+    arrow: false,
+    disabled: false,
     visible: false,
     buttonMode: false,
     trigger: 'hover',

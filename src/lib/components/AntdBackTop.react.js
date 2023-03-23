@@ -29,7 +29,11 @@ const AntdBackTop = (props) => {
             }
             style={style}
             key={key}
-            target={containerId ? () => document.getElementById(containerId) : () => window}
+            target={
+                containerId ?
+                    () => document.getElementById(containerId) :
+                    () => window
+            }
             duration={duration * 1000}
             visibilityHeight={visibilityHeight}
             data-dash-is-loading={
@@ -88,6 +92,8 @@ AntdBackTop.propTypes = {
 
 // 设置默认参数
 AntdBackTop.defaultProps = {
+    duration: 0.45,
+    visibilityHeight: 400
 }
 
 export default AntdBackTop;

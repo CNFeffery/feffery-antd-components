@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import { Checkbox } from 'antd';
-import { isString } from 'lodash';
+import { isString, isUndefined } from 'lodash';
 import useCss from '../hooks/useCss';
+import PropsContext from '../contexts/PropsContext';
 
 
 // 定义组合选择框组件AntdCheckboxGroup，api参数参考https://ant.design/components/checkbox-cn/
@@ -23,6 +24,8 @@ const AntdCheckboxGroup = (props) => {
         loading_state
     } = props;
 
+    const context = useContext(PropsContext)
+
     const onChange = e => {
         setProps({ value: e })
     }
@@ -40,7 +43,11 @@ const AntdCheckboxGroup = (props) => {
             key={key}
             options={options}
             value={value}
-            disabled={disabled}
+            disabled={
+                context && !isUndefined(context.componentDisabled) ?
+                    context.componentDisabled :
+                    disabled
+            }
             onChange={onChange}
             persistence={persistence}
             persisted_props={persisted_props}

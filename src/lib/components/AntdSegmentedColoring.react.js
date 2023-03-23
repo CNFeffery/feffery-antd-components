@@ -1,10 +1,11 @@
 /* eslint-disable no-undefined */
 /* eslint-disable no-unused-vars */
-import React from 'react';
+import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import { InputNumber, Space, message, Typography } from 'antd';
-import { isString } from 'lodash';
+import { isString, isUndefined } from 'lodash';
 import useCss from '../hooks/useCss';
+import PropsContext from '../contexts/PropsContext';
 
 
 const { Text } = Typography;
@@ -19,7 +20,7 @@ const size2size = new Map([
 const AntdSegmentedColoring = (props) => {
 
     // 取得必要属性或参数
-    const {
+    let {
         id,
         key,
         className,
@@ -45,6 +46,14 @@ const AntdSegmentedColoring = (props) => {
         loading_state,
         setProps
     } = props;
+
+    const context = useContext(PropsContext)
+
+    disabled = (
+        context && !isUndefined(context.componentDisabled) ?
+            context.componentDisabled :
+            disabled
+    )
 
     return (
         <Space

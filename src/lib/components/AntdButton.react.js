@@ -1,9 +1,10 @@
+import { useContext } from 'react';
 import PropTypes from 'prop-types';
 import { Button } from 'antd';
 import useCss from '../hooks/useCss';
-import { isString } from 'lodash';
-
+import { isString, isUndefined } from 'lodash';
 import { useRequest } from 'ahooks';
+import PropsContext from '../contexts/PropsContext';
 
 // 定义分割线组件AntdButton，api参数参考https://ant.design/components/button-cn/
 const AntdButton = (props) => {
@@ -31,6 +32,8 @@ const AntdButton = (props) => {
         autoSpin,
         loading_state
     } = props;
+
+    const context = useContext(PropsContext)
 
     const { run: onClick } = useRequest(
         () => {
@@ -66,7 +69,11 @@ const AntdButton = (props) => {
             target={target}
             block={block}
             danger={danger}
-            disabled={disabled}
+            disabled={
+                context && !isUndefined(context.componentDisabled) ?
+                    context.componentDisabled :
+                    disabled
+            }
             shape={shape}
             size={size}
             icon={icon}

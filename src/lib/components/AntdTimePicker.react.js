@@ -1,10 +1,11 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useContext } from 'react';
 import PropTypes from 'prop-types';
 import { TimePicker, ConfigProvider } from 'antd';
 import moment from 'moment';
 import { isString, isUndefined } from 'lodash';
 import { str2Locale } from './locales.react';
 import useCss from '../hooks/useCss';
+import PropsContext from '../contexts/PropsContext';
 
 
 // 定义时间选择组件AntdTimePicker，api参数参考https://ant.design/components/time-picker-cn/
@@ -39,6 +40,8 @@ const AntdTimePicker = (props) => {
         loading_state
     } = props;
 
+    const context = useContext(PropsContext)
+
     useEffect(() => {
         // 初始化value
         if (defaultValue && !value) {
@@ -71,7 +74,11 @@ const AntdTimePicker = (props) => {
                     placement={placement}
                     bordered={bordered}
                     size={size}
-                    disabled={disabled}
+                    disabled={
+                        context && !isUndefined(context.componentDisabled) ?
+                            context.componentDisabled :
+                            disabled
+                    }
                     hourStep={hourStep}
                     minuteStep={minuteStep}
                     secondStep={secondStep}

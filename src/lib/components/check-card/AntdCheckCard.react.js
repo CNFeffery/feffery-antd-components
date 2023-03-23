@@ -1,8 +1,9 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useContext } from 'react';
 import PropTypes from 'prop-types';
 import { CheckCard } from '@ant-design/pro-card';
 import { isUndefined, isString } from 'lodash';
 import useCss from '../../hooks/useCss';
+import PropsContext from '../../contexts/PropsContext';
 
 // 定义选择卡片组件AntdCheckCard，api参数参考https://procomponents.ant.design/components/check-card
 const AntdCheckCard = (props) => {
@@ -22,6 +23,8 @@ const AntdCheckCard = (props) => {
         setProps,
         loading_state
     } = props;
+
+    const context = useContext(PropsContext)
 
     useEffect(() => {
         if (!isUndefined(defaultChecked) && isUndefined(checked)) {
@@ -43,7 +46,11 @@ const AntdCheckCard = (props) => {
             bordered={bordered}
             value={value}
             defaultChecked={defaultChecked}
-            disabled={disabled}
+            disabled={
+                context && !isUndefined(context.componentDisabled) ?
+                    context.componentDisabled :
+                    disabled
+            }
             size={size}
             onChange={e => setProps({ checked: e })}
             data-dash-is-loading={

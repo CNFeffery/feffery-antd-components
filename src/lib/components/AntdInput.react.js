@@ -1,10 +1,11 @@
-import { useEffect } from 'react';
+import { useEffect, useContext } from 'react';
 import PropTypes from 'prop-types';
 import { Input } from 'antd';
 import md5 from 'md5';
 import { useRequest } from 'ahooks';
-import { isString } from 'lodash';
+import { isString, isUndefined } from 'lodash';
 import useCss from '../hooks/useCss';
+import PropsContext from '../contexts/PropsContext';
 
 
 const { Search, TextArea } = Input;
@@ -45,6 +46,8 @@ const AntdInput = (props) => {
         persisted_props,
         persistence_type
     } = props;
+
+    const context = useContext(PropsContext)
 
     useEffect(() => {
         // 初始化value
@@ -118,7 +121,11 @@ const AntdInput = (props) => {
                 allowClear={allowClear}
                 bordered={bordered}
                 defaultValue={defaultValue}
-                disabled={disabled}
+                disabled={
+                    context && !isUndefined(context.componentDisabled) ?
+                        context.componentDisabled :
+                        disabled
+                }
                 maxLength={maxLength}
                 status={status}
                 readOnly={readOnly}
@@ -151,7 +158,11 @@ const AntdInput = (props) => {
                 bordered={bordered}
                 value={value}
                 defaultValue={defaultValue}
-                disabled={disabled}
+                disabled={
+                    context && !isUndefined(context.componentDisabled) ?
+                        context.componentDisabled :
+                        disabled
+                }
                 maxLength={maxLength}
                 status={status}
                 readOnly={readOnly}
@@ -185,7 +196,11 @@ const AntdInput = (props) => {
                 bordered={bordered}
                 value={value}
                 defaultValue={defaultValue}
-                disabled={disabled}
+                disabled={
+                    context && !isUndefined(context.componentDisabled) ?
+                        context.componentDisabled :
+                        disabled
+                }
                 maxLength={maxLength}
                 showCount={showCount}
                 status={status}
@@ -217,7 +232,11 @@ const AntdInput = (props) => {
                 autoComplete={autoComplete}
                 size={size}
                 bordered={bordered}
-                disabled={disabled}
+                disabled={
+                    context && !isUndefined(context.componentDisabled) ?
+                        context.componentDisabled :
+                        disabled
+                }
                 value={value}
                 defaultValue={defaultValue}
                 maxLength={maxLength}

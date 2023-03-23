@@ -1,10 +1,11 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useContext } from 'react';
 import PropTypes from 'prop-types';
 import { Segmented } from 'antd';
 import AntdIcon from "./AntdIcon.react"
 import propTypes from 'prop-types';
-import { isString } from 'lodash';
+import { isString, isUndefined } from 'lodash';
 import useCss from '../hooks/useCss';
+import PropsContext from '../contexts/PropsContext';
 
 // 定义分段控制器组件AntdSegmented，api参数参考https://ant.design/components/segmented-cn/
 const AntdSegmented = (props) => {
@@ -27,6 +28,8 @@ const AntdSegmented = (props) => {
         persistence_type,
         loading_state
     } = props;
+
+    const context = useContext(PropsContext)
 
     options = options || []
 
@@ -63,7 +66,11 @@ const AntdSegmented = (props) => {
             defaultValue={defaultValue}
             value={value}
             block={block}
-            disabled={disabled}
+            disabled={
+                context && !isUndefined(context.componentDisabled) ?
+                    context.componentDisabled :
+                    disabled
+            }
             size={size}
             persistence={persistence}
             persisted_props={persisted_props}

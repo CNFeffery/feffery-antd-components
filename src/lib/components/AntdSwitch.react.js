@@ -1,8 +1,9 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useContext } from 'react';
 import PropTypes from 'prop-types';
 import { Switch } from 'antd';
 import { isUndefined, isString } from 'lodash';
 import useCss from '../hooks/useCss';
+import PropsContext from '../contexts/PropsContext';
 
 
 // 定义开关组件AntdSwitch，api参数参考https://ant.design/components/switch-cn/
@@ -26,6 +27,8 @@ const AntdSwitch = (props) => {
         loading_state
     } = props;
 
+    const context = useContext(PropsContext)
+
     useEffect(() => {
         if (isUndefined(checked)) {
             setProps({ checked: false })
@@ -47,7 +50,11 @@ const AntdSwitch = (props) => {
             }
             style={style}
             key={key}
-            disabled={disabled}
+            disabled={
+                context && !isUndefined(context.componentDisabled) ?
+                    context.componentDisabled :
+                    disabled
+            }
             defaultChecked={checked}
             checkedChildren={checkedChildren}
             checked={checked}
