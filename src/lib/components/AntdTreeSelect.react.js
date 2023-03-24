@@ -63,6 +63,7 @@ const AntdTreeSelect = (props) => {
     } = props;
 
     const context = useContext(PropsContext)
+    locale = (context && context.locale) || locale
 
     useEffect(() => {
         if (!value && defaultValue) {

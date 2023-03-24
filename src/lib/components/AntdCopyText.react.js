@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import { Typography, ConfigProvider } from 'antd';
 import { str2Locale } from './locales.react';
+import PropsContext from '../contexts/PropsContext';
 
 
 const { Text } = Typography;
@@ -21,6 +22,9 @@ const AntdCopyText = (props) => {
         setProps,
         loading_state
     } = props;
+
+    const context = useContext(PropsContext)
+    locale = (context && context.locale) || locale
 
     return (
         <ConfigProvider locale={str2Locale.get(locale)}>

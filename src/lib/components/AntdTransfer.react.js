@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import { Transfer, ConfigProvider } from 'antd';
-import { str2Locale } from './locales.react';
+import { str2Locale, locale2text } from './locales.react';
 import { isString, isUndefined } from 'lodash';
 import useCss from '../hooks/useCss';
 import PropsContext from '../contexts/PropsContext';
@@ -34,9 +34,10 @@ const AntdTransfer = (props) => {
     } = props;
 
     const context = useContext(PropsContext)
+    locale = (context && context.locale) || locale
 
     if (!titles) {
-        titles = [locale === 'zh-cn' ? '待选区' : 'Source', locale === 'zh-cn' ? '选定区' : 'Target']
+        titles = locale2text.AntdTransfer[locale].titles
     }
 
     // 监听选项移动事件

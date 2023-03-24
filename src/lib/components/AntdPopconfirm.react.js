@@ -38,6 +38,7 @@ const AntdPopconfirm = (props) => {
     } = props;
 
     const context = useContext(PropsContext)
+    locale = (context && context.locale) || locale
 
     children = parseChildrenToArray(children)
 

@@ -43,6 +43,7 @@ const AntdTimeRangePicker = (props) => {
     } = props;
 
     const context = useContext(PropsContext)
+    locale = (context && context.locale) || locale
 
     useEffect(() => {
         // 初始化value

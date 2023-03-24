@@ -41,8 +41,9 @@ import {
     DownOutlined
 } from '@ant-design/icons';
 import { isNumber, isEqual, isString } from 'lodash';
-import { str2Locale } from './locales.react';
+import { str2Locale, locale2text } from './locales.react';
 import useCss from '../hooks/useCss';
+import PropsContext from '../contexts/PropsContext';
 
 const { Text } = Typography;
 
@@ -63,9 +64,7 @@ class AntdTable extends Component {
         props.setProps({
             pagination: {
                 ...props.pagination,
-                current: props.pagination?.current ? props.pagination?.current : 1,
-                showTotalPrefix: props.pagination?.showTotalPrefix ? props.pagination?.showTotalPrefix : '共 ',
-                showTotalSuffix: props.pagination?.showTotalSuffix ? props.pagination?.showTotalSuffix : ' 条记录'
+                current: props.pagination?.current ? props.pagination?.current : 1
             }
         })
 
@@ -252,6 +251,8 @@ class AntdTable extends Component {
         // 阻止本次重绘
         return !changedProps.every(propName => preventUpdateProps.includes(propName));
     }
+
+    static contextType = PropsContext;
 
     render() {
 
@@ -478,6 +479,13 @@ class AntdTable extends Component {
             nClicksDropdownItem,
             loading_state
         } = this.props;
+
+        locale = (this.context && this.context.locale) || locale
+
+        pagination = {
+            showTotalPrefix: pagination?.showTotalPrefix || locale2text.AntdTable[locale].showTotalPrefix,
+            showTotalSuffix: pagination?.showTotalSuffix || locale2text.AntdTable[locale].showTotalSuffix
+        }
 
         if (!data) {
             data = []

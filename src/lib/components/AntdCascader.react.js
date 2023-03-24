@@ -50,6 +50,7 @@ const AntdCascader = (props) => {
     } = props;
 
     const context = useContext(PropsContext)
+    locale = (context && context.locale) || locale
 
     useEffect(() => {
         if (defaultValue && !value) {

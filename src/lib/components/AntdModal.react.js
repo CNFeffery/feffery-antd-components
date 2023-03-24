@@ -1,16 +1,17 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import { str2Locale } from './locales.react';
 import { Modal, ConfigProvider } from 'antd';
 import { isString } from 'lodash';
 import useCss from '../hooks/useCss';
+import PropsContext from '../contexts/PropsContext';
 
 
 // 定义对话框组件AntdModal，api参数参考https://ant.design/components/modal-cn/
 const AntdModal = (props) => {
 
     // 取得必要属性或参数
-    const {
+    let {
         id,
         children,
         className,
@@ -44,6 +45,9 @@ const AntdModal = (props) => {
         transitionType,
         loading_state
     } = props;
+
+    const context = useContext(PropsContext)
+    locale = (context && context.locale) || locale
 
     // 监听确认按钮点击事件
     const listenOk = () => {

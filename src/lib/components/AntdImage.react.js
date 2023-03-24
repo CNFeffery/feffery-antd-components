@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import PropTypes from 'prop-types';
 import useCss from '../hooks/useCss';
 import { isString } from 'lodash';
 import { Image, ConfigProvider } from 'antd';
 import { str2Locale } from './locales.react';
+import PropsContext from '../contexts/PropsContext';
 
 
 // 定义图片组件AntdImage，api参数参考https://ant.design/components/image-cn/
@@ -23,6 +24,9 @@ const AntdImage = (props) => {
         setProps,
         loading_state
     } = props;
+
+    const context = useContext(PropsContext)
+    locale = (context && context.locale) || locale
 
     const [visible, setVisible] = useState(false);
 

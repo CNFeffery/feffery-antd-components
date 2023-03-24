@@ -77,6 +77,7 @@ const AntdPictureUpload = (props) => {
     } = props;
 
     const context = useContext(PropsContext)
+    locale = (context && context.locale) || locale
 
     listUploadTaskRecord = listUploadTaskRecord || []
 
@@ -133,12 +134,12 @@ const AntdPictureUpload = (props) => {
         beforeUpload: (file) => {
             const sizeCheck = file.size / 1024 / 1024 < fileMaxSize;
             if (!sizeCheck) {
-                message.error(`${file.name} 文件大小超出${fileMaxSize}MB限制！`);
+                message.error(`${file.name}${locale2text.Upload[locale].sizeError[0]}${fileMaxSize}${locale2text.Upload[locale].sizeError[1]}`);
             }
 
             if (fileTypes) {
                 if (fileTypes.indexOf(file.name.split('.')[file.name.split('.').length - 1]) === -1) {
-                    message.error(`上传失败，${file.name} 文件格式不符合要求！`);
+                    message.error(`${locale2text.Upload[locale].typeError[0]}${file.name}${locale2text.Upload[locale].typeError[1]}`);
                 }
 
                 return sizeCheck && fileTypes.indexOf(file.name.split('.')[file.name.split('.').length - 1]) !== -1;

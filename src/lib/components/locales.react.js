@@ -28,6 +28,44 @@ const locale2text = {
             confirmBeforeDeleteOkText: 'Ok',
             confirmBeforeDeleteCancelText: 'Cancel'
         }
+    },
+    AntdPagination: {
+        'zh-cn': {
+            showTotalPrefix: '共 ',
+            showTotalSuffix: ' 条记录'
+        },
+        'en-us': {
+            showTotalPrefix: 'Total ',
+            showTotalSuffix: ' items'
+        }
+    },
+    AntdTable: {
+        'zh-cn': {
+            showTotalPrefix: '共 ',
+            showTotalSuffix: ' 条记录'
+        },
+        'en-us': {
+            showTotalPrefix: 'Total ',
+            showTotalSuffix: ' items'
+        }
+    },
+    AntdTransfer: {
+        'zh-cn': {
+            titles: ['待选区', '选定区']
+        },
+        'en-us': {
+            titles: ['Source', 'Target']
+        }
+    },
+    Upload: {
+        'zh-cn': {
+            sizeError: ['文件大小超出', 'MB限制！'],
+            typeError: ['上传失败，', '文件格式不符合要求！']
+        },
+        'en-us': {
+            sizeError: ['File size exceeds the ', 'MB limit!'],
+            typeError: ['Uploading failed, The format of ', ' does not meet requirements!']
+        }
     }
 }
 

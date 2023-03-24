@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useContext } from 'react';
 import PropTypes from 'prop-types';
 import moment from 'moment';
 import { str2Locale } from './locales.react';
@@ -8,6 +8,7 @@ import { DislikeOutlined, LikeOutlined, DislikeFilled, LikeFilled } from '@ant-d
 import { parseChildrenToArray } from './utils';
 import { isString } from 'lodash';
 import useCss from '../hooks/useCss';
+import PropsContext from '../contexts/PropsContext';
 
 // 定义评论组件AntdComment，api参数参考https://ant.design/components/comment-cn/
 const AntdComment = (props) => {
@@ -39,6 +40,9 @@ const AntdComment = (props) => {
         setProps,
         loading_state
     } = props;
+
+    const context = useContext(PropsContext)
+    locale = (context && context.locale) || locale
 
     if (locale === 'zh-cn') {
         moment.locale('zh-cn');

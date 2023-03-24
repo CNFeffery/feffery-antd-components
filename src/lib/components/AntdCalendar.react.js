@@ -1,10 +1,11 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useContext } from 'react';
 import PropTypes from 'prop-types';
 import moment from 'moment';
 import { Calendar, ConfigProvider } from 'antd';
 import { str2Locale } from './locales.react';
 import { isString } from 'lodash';
 import useCss from '../hooks/useCss';
+import PropsContext from '../contexts/PropsContext';
 
 
 // 定义日历组件AntdCalendar，api参数参考https://ant.design/components/calendar-cn/
@@ -26,6 +27,9 @@ const AntdCalendar = (props) => {
         persisted_props,
         persistence_type
     } = props;
+
+    const context = useContext(PropsContext)
+    locale = (context && context.locale) || locale
 
     useEffect(() => {
         // 初始化value

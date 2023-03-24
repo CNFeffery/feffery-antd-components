@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import { Empty, ConfigProvider } from 'antd';
 import { str2Locale } from './locales.react';
 import { isString } from 'lodash';
 import useCss from '../hooks/useCss';
+import PropsContext from '../contexts/PropsContext';
 
 
 const builtinImage = new Map([
@@ -27,6 +28,9 @@ const AntdEmpty = (props) => {
         setProps,
         loading_state
     } = props;
+
+    const context = useContext(PropsContext)
+    locale = (context && context.locale) || locale
 
     return (
         <ConfigProvider locale={str2Locale.get(locale)}>

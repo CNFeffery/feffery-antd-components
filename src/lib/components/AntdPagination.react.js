@@ -1,7 +1,7 @@
 import React, { useEffect, useContext } from 'react';
 import PropTypes from 'prop-types';
 import { Pagination, ConfigProvider } from 'antd';
-import { str2Locale } from './locales.react';
+import { str2Locale, locale2text } from './locales.react';
 import { isString, isUndefined } from 'lodash';
 import useCss from '../hooks/useCss';
 import PropsContext from '../contexts/PropsContext';
@@ -39,6 +39,7 @@ const AntdPagination = (props) => {
     } = props;
 
     const context = useContext(PropsContext)
+    locale = (context && context.locale) || locale
 
     useEffect(() => {
         if (defaultCurrent && !current) {
@@ -56,7 +57,7 @@ const AntdPagination = (props) => {
     }
 
     const renderShowTotal = (e) => {
-        return `${showTotalPrefix || "共有记录"} ${e.toString()} ${showTotalSuffix || "条"}`
+        return `${showTotalPrefix || locale2text.AntdPagination[locale].showTotalPrefix} ${e.toString()} ${showTotalSuffix || locale2text.AntdPagination[locale].showTotalSuffix}`
     }
 
     // 返回定制化的前端部件

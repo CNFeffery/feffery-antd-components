@@ -1,6 +1,5 @@
 import React, { useRef, useState } from 'react';
 import PropTypes from 'prop-types';
-import { str2Locale } from './locales.react';
 import { Modal, ConfigProvider } from 'antd';
 import {
     CloseCircleFilled,
@@ -20,7 +19,6 @@ const AntdPopupCard = (props) => {
         className,
         key,
         style,
-        locale,
         visible,
         title,
         width,
@@ -61,97 +59,95 @@ const AntdPopupCard = (props) => {
 
     // 返回定制化的前端组件
     return (
-        <ConfigProvider locale={str2Locale.get(locale)}>
-            <Modal
-                id={id}
-                className={
-                    isString(className) ?
-                        className :
-                        (className ? useCss(className) : undefined)
-                }
-                style={style}
-                key={key}
-                title={
-                    <div
-                        style={{
-                            width: "100%",
-                            cursor: draggable ? "move" : 'inherit'
-                        }}
-                        onMouseOver={() => {
-                            if (disabled) {
-                                setDisabled(false);
-                            }
-                        }}
-                        onMouseOut={() => {
-                            setDisabled(true);
-                        }}
-                    >
-                        {title}
-                        {
-                            closable ?
-                                closeIconType === "outlined" ?
-                                    (<CloseCircleOutlined
-                                        style={{
-                                            position: "absolute",
-                                            top: -12,
-                                            right: -12,
-                                            fontSize: 24,
-                                            cursor: "pointer"
-                                        }}
-                                        onClick={() => setProps({ visible: false })}
-                                    />) :
-                                    (
-                                        closeIconType == 'two-tone' ?
-                                            ((<CloseCircleTwoTone
-                                                style={{
-                                                    position: "absolute",
-                                                    top: -12,
-                                                    right: -12,
-                                                    fontSize: 24,
-                                                    cursor: "pointer"
-                                                }}
-                                                onClick={() => setProps({ visible: false })}
-                                            />)) :
-                                            (<CloseCircleFilled
-                                                style={{
-                                                    position: "absolute",
-                                                    top: -12,
-                                                    right: -12,
-                                                    fontSize: 24,
-                                                    cursor: "pointer"
-                                                }}
-                                                onClick={() => setProps({ visible: false })}
-                                            />)
-                                    ) :
-                                null
+        <Modal
+            id={id}
+            className={
+                isString(className) ?
+                    className :
+                    (className ? useCss(className) : undefined)
+            }
+            style={style}
+            key={key}
+            title={
+                <div
+                    style={{
+                        width: "100%",
+                        cursor: draggable ? "move" : 'inherit'
+                    }}
+                    onMouseOver={() => {
+                        if (disabled) {
+                            setDisabled(false);
                         }
-                    </div>
-                }
-                transitionName={transitionType === 'none' ? '' : `ant-${transitionType}`}
-                width={width}
-                open={visible}
-                zIndex={zIndex}
-                bodyStyle={bodyStyle}
-                mask={false}
-                maskClosable={false}
-                closable={false}
-                footer={false}
-                wrapClassName={'ant-modal-wrap-overwrite'}
-                modalRender={
-                    draggable ? (modal) => (
-                        <Draggable
-                            disabled={disabled}
-                            bounds={bounds}
-                            onStart={(event, uiData) => onStart(event, uiData)}
-                        >
-                            <div ref={draggleRef}>{modal}</div>
-                        </Draggable>
-                    ) : undefined}
-                data-dash-is-loading={
-                    (loading_state && loading_state.is_loading) || undefined
-                }
-            >{children}</Modal>
-        </ConfigProvider>
+                    }}
+                    onMouseOut={() => {
+                        setDisabled(true);
+                    }}
+                >
+                    {title}
+                    {
+                        closable ?
+                            closeIconType === "outlined" ?
+                                (<CloseCircleOutlined
+                                    style={{
+                                        position: "absolute",
+                                        top: -12,
+                                        right: -12,
+                                        fontSize: 24,
+                                        cursor: "pointer"
+                                    }}
+                                    onClick={() => setProps({ visible: false })}
+                                />) :
+                                (
+                                    closeIconType == 'two-tone' ?
+                                        ((<CloseCircleTwoTone
+                                            style={{
+                                                position: "absolute",
+                                                top: -12,
+                                                right: -12,
+                                                fontSize: 24,
+                                                cursor: "pointer"
+                                            }}
+                                            onClick={() => setProps({ visible: false })}
+                                        />)) :
+                                        (<CloseCircleFilled
+                                            style={{
+                                                position: "absolute",
+                                                top: -12,
+                                                right: -12,
+                                                fontSize: 24,
+                                                cursor: "pointer"
+                                            }}
+                                            onClick={() => setProps({ visible: false })}
+                                        />)
+                                ) :
+                            null
+                    }
+                </div>
+            }
+            transitionName={transitionType === 'none' ? '' : `ant-${transitionType}`}
+            width={width}
+            open={visible}
+            zIndex={zIndex}
+            bodyStyle={bodyStyle}
+            mask={false}
+            maskClosable={false}
+            closable={false}
+            footer={false}
+            wrapClassName={'ant-modal-wrap-overwrite'}
+            modalRender={
+                draggable ? (modal) => (
+                    <Draggable
+                        disabled={disabled}
+                        bounds={bounds}
+                        onStart={(event, uiData) => onStart(event, uiData)}
+                    >
+                        <div ref={draggleRef}>{modal}</div>
+                    </Draggable>
+                ) : undefined}
+            data-dash-is-loading={
+                (loading_state && loading_state.is_loading) || undefined
+            }
+        >{children}</Modal>
     );
 }
 
@@ -174,9 +170,6 @@ AntdPopupCard.propTypes = {
 
     // 辅助刷新用唯一标识key值
     key: PropTypes.string,
-
-    // 设置语言环境，可选的有'zh-cn'、'en-us'
-    locale: PropTypes.oneOf(['zh-cn', 'en-us']),
 
     // 设置标题内容
     title: PropTypes.node,
@@ -238,7 +231,6 @@ AntdPopupCard.propTypes = {
 
 // 设置默认参数
 AntdPopupCard.defaultProps = {
-    locale: 'zh-cn',
     transitionType: 'fade',
     closeIconType: 'default',
     draggable: false,

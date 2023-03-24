@@ -1,11 +1,11 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import { Typography, ConfigProvider } from 'antd';
 import useCss from '../../hooks/useCss';
 import { isString } from 'lodash';
 import { str2Locale } from '../locales.react';
-
 import { parseChildrenToArray } from '../utils';
+import PropsContext from '../../contexts/PropsContext';
 
 const { Title } = Typography;
 
@@ -33,6 +33,9 @@ const AntdTitle = (props) => {
         setProps,
         loading_state
     } = props;
+
+    const context = useContext(PropsContext)
+    locale = (context && context.locale) || locale
 
     children = parseChildrenToArray(children)
 

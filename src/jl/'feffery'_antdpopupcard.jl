@@ -24,7 +24,6 @@ Those elements have the following types:
   - `is_loading` (Bool; optional): Determines if the component is loading or not
   - `prop_name` (String; optional): Holds which property is loading
   - `component_name` (String; optional): Holds the name of the component that is loading
-- `locale` (a value equal to: 'zh-cn', 'en-us'; optional)
 - `style` (Dict; optional)
 - `title` (a list of or a singular dash component, string or number; optional)
 - `transitionType` (a value equal to: 'none', 'fade', 'zoom', 'zoom-big', 'zoom-big-fast', 'slide-up', 'slide-down', 'slide-left', 'slide-right', 'move-up', 'move-down', 'move-left', 'move-right'; optional)
@@ -33,7 +32,7 @@ Those elements have the following types:
 - `zIndex` (Real; optional)
 """
 function 'feffery'_antdpopupcard(; kwargs...)
-        available_props = Symbol[:children, :id, :bodyStyle, :className, :closable, :closeIconType, :draggable, :key, :loading_state, :locale, :style, :title, :transitionType, :visible, :width, :zIndex]
+        available_props = Symbol[:children, :id, :bodyStyle, :className, :closable, :closeIconType, :draggable, :key, :loading_state, :style, :title, :transitionType, :visible, :width, :zIndex]
         wild_props = Symbol[]
         return Component("'feffery'_antdpopupcard", "AntdPopupCard", "feffery_antd_components", available_props, wild_props; kwargs...)
 end
