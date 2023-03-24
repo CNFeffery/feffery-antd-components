@@ -55,6 +55,12 @@ const AntdSegmentedColoring = (props) => {
             disabled
     )
 
+    size = (
+        context && !isUndefined(context.componentSize) ?
+            context.componentSize :
+            size
+    )
+
     return (
         <Space
             id={id}

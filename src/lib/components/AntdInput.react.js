@@ -113,7 +113,11 @@ const AntdInput = (props) => {
                 placeholder={placeholder}
                 autoComplete={autoComplete}
                 value={value}
-                size={size}
+                size={
+                    context && !isUndefined(context.componentSize) ?
+                        context.componentSize :
+                        size
+                }
                 addonBefore={addonBefore}
                 addonAfter={addonAfter}
                 prefix={prefix}
@@ -153,7 +157,11 @@ const AntdInput = (props) => {
                 key={key}
                 placeholder={placeholder}
                 autoComplete={autoComplete}
-                size={size}
+                size={
+                    context && !isUndefined(context.componentSize) ?
+                        context.componentSize :
+                        size
+                }
                 allowClear={allowClear}
                 bordered={bordered}
                 value={value}
@@ -191,7 +199,11 @@ const AntdInput = (props) => {
                 key={key}
                 placeholder={placeholder}
                 autoComplete={autoComplete}
-                size={size}
+                size={
+                    context && !isUndefined(context.componentSize) ?
+                        context.componentSize :
+                        size
+                }
                 allowClear={allowClear}
                 bordered={bordered}
                 value={value}
@@ -230,7 +242,11 @@ const AntdInput = (props) => {
                 key={key}
                 placeholder={placeholder}
                 autoComplete={autoComplete}
-                size={size}
+                size={
+                    context && !isUndefined(context.componentSize) ?
+                        context.componentSize :
+                        size
+                }
                 bordered={bordered}
                 disabled={
                     context && !isUndefined(context.componentDisabled) ?

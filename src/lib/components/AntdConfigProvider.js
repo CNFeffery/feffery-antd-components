@@ -31,13 +31,13 @@ const AntdConfigProvider = (props) => {
             value={
                 {
                     locale,
-                    componentDisabled
+                    componentDisabled,
+                    componentSize
                 }
             }
         >
             <ConfigProvider id={id}
                 key={key}
-                componentSize={componentSize}
                 data-dash-is-loading={
                     (loading_state && loading_state.is_loading) || undefined
                 }>
@@ -63,9 +63,9 @@ AntdConfigProvider.propTypes = {
     // 强制设置是否针对后台元素中的所有组件设置禁用状态
     componentDisabled: PropTypes.bool,
 
-    // 强制设置后代元素的尺寸规格，可选的有'small'、'default'、'large'
+    // 强制设置后代元素的尺寸规格，可选的有'small'、'middle'、'large'
     // 其中'default'兼容'middle'
-    componentSize: PropTypes.oneOf(['small', 'default', 'large']),
+    componentSize: PropTypes.oneOf(['small', 'middle', 'large']),
 
     // 强制设置后代元素的语言，可选的有'zh-cn'、'en-us'
     locale: PropTypes.oneOf(['zh-cn', 'en-us']),

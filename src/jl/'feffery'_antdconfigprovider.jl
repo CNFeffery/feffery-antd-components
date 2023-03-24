@@ -14,7 +14,7 @@ Keyword arguments:
 - `children` (a list of or a singular dash component, string or number; optional)
 - `id` (String; optional)
 - `componentDisabled` (Bool; optional)
-- `componentSize` (a value equal to: 'small', 'default', 'large'; optional)
+- `componentSize` (a value equal to: 'small', 'middle', 'large'; optional)
 - `key` (String; optional)
 - `loading_state` (optional): . loading_state has the following type: lists containing elements 'is_loading', 'prop_name', 'component_name'.
 Those elements have the following types:

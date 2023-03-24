@@ -187,7 +187,11 @@ const AntdSelect = (props) => {
                 mode={mode}
                 allowClear={isUndefined(readOnly) ? allowClear : !readOnly}
                 placeholder={placeholder}
-                size={size}
+                size={
+                    context && !isUndefined(context.componentSize) ?
+                        context.componentSize :
+                        size
+                }
                 bordered={bordered}
                 value={value}
                 defaultValue={defaultValue}

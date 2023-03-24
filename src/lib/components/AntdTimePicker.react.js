@@ -73,7 +73,11 @@ const AntdTimePicker = (props) => {
                     placeholder={placeholder}
                     placement={placement}
                     bordered={bordered}
-                    size={size}
+                    size={
+                        context && !isUndefined(context.componentSize) ?
+                            context.componentSize :
+                            size
+                    }
                     disabled={
                         context && !isUndefined(context.componentDisabled) ?
                             context.componentDisabled :

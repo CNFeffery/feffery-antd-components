@@ -351,7 +351,11 @@ const AntdDateRangePicker = (props) => {
                     style={style}
                     key={key}
                     format={format}
-                    size={size}
+                    size={
+                        context && !isUndefined(context.componentSize) ?
+                            context.componentSize :
+                            size
+                    }
                     picker={picker}
                     showTime={showTime}
                     allowClear={isUndefined(readOnly) ? allowClear : !readOnly}

@@ -75,7 +75,11 @@ const AntdButton = (props) => {
                     disabled
             }
             shape={shape}
-            size={size}
+            size={
+                context && !isUndefined(context.componentSize) ?
+                    context.componentSize :
+                    size
+            }
             icon={icon}
             onClick={onClick}
             loading={loading}
@@ -175,6 +179,7 @@ AntdButton.propTypes = {
 
 // 设置默认参数
 AntdButton.defaultProps = {
+    size: 'middle',
     type: 'default',
     block: false,
     danger: false,

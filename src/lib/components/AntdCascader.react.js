@@ -88,7 +88,11 @@ const AntdCascader = (props) => {
                 key={key}
                 options={options}
                 changeOnSelect={changeOnSelect}
-                size={size}
+                size={
+                    context && !isUndefined(context.componentSize) ?
+                        context.componentSize :
+                        size
+                }
                 bordered={bordered}
                 disabled={
                     context && !isUndefined(context.componentDisabled) ?

@@ -113,7 +113,11 @@ const AntdTreeSelect = (props) => {
                 defaultValue={defaultValue}
                 maxTagCount={maxTagCount}
                 multiple={multiple}
-                size={size}
+                size={
+                    context && !isUndefined(context.componentSize) ?
+                        context.componentSize :
+                        size
+                }
                 treeCheckable={treeCheckable}
                 showCheckedStrategy={str2ShowCheckedStrategy.get(showCheckedStrategy)}
                 treeCheckStrictly={treeCheckStrictly}

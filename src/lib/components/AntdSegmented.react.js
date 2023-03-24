@@ -71,7 +71,11 @@ const AntdSegmented = (props) => {
                     context.componentDisabled :
                     disabled
             }
-            size={size}
+            size={
+                context && !isUndefined(context.componentSize) ?
+                    context.componentSize :
+                    size
+            }
             persistence={persistence}
             persisted_props={persisted_props}
             persistence_type={persistence_type}

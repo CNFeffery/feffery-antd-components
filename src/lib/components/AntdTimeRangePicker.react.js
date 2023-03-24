@@ -85,7 +85,11 @@ const AntdTimeRangePicker = (props) => {
                     placeholder={(placeholder && placeholder.length === 2) ? placeholder : undefined}
                     placement={placement}
                     bordered={bordered}
-                    size={size}
+                    size={
+                        context && !isUndefined(context.componentSize) ?
+                            context.componentSize :
+                            size
+                    }
                     hourStep={hourStep}
                     minuteStep={minuteStep}
                     secondStep={secondStep}

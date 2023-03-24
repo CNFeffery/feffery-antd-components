@@ -357,7 +357,11 @@ const AntdDatePicker = (props) => {
                     }
                     placeholder={placeholder}
                     bordered={bordered}
-                    size={size}
+                    size={
+                        context && !isUndefined(context.componentSize) ?
+                            context.componentSize :
+                            size
+                    }
                     disabledDate={disabledDatesStrategy ? checkDisabledDate : undefined}
                     defaultPickerValue={moment(defaultPickerValue, format)}
                     value={value ? moment(value, format) : undefined}

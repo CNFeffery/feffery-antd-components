@@ -85,7 +85,11 @@ const AntdInputNumber = (props) => {
             }
             style={style}
             key={key}
-            size={size}
+            size={
+                context && !isUndefined(context.componentSize) ?
+                    context.componentSize :
+                    size
+            }
             addonBefore={addonBefore}
             addonAfter={addonAfter}
             prefix={prefix}

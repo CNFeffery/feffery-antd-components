@@ -1877,7 +1877,6 @@ AntdTable.propTypes = {
     // 设置表格单元格尺寸规格，可选的有'small'、'default'和'large'
     size: PropTypes.oneOf(['small', 'default', 'large']),
 
-
     // 进阶通用参数
     // 行选择相关参数
     // 设置行选择模式，默认不开启，可选的有'checkbox'、'radio'
