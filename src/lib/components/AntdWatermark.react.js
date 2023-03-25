@@ -109,6 +109,10 @@ AntdWatermark.propTypes = {
 
 // 设置默认参数
 AntdWatermark.defaultProps = {
+    rotate: -22,
+    fontSize: 16,
+    gapX: 212,
+    gapY: 222
 }
 
 export default AntdWatermark;
