@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Affix } from 'antd';
+import { isString } from 'lodash';
+import useCss from '../hooks/useCss';
 
 import { parseChildrenToArray } from './utils';
 
@@ -24,7 +26,11 @@ const AntdAffix = (props) => {
 
     return (
         <Affix id={id}
-            className={className}
+            className={
+                isString(className) ?
+                    className :
+                    (className ? useCss(className) : undefined)
+            }
             style={style}
             key={key}
             offsetBottom={offsetBottom}
@@ -47,7 +53,10 @@ AntdAffix.propTypes = {
     children: PropTypes.node,
 
     // css类名
-    className: PropTypes.string,
+    className: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.object
+    ]),
 
     // 自定义css字典
     style: PropTypes.object,

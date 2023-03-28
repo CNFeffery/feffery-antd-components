@@ -34,7 +34,7 @@ Those elements have the following types:
   - `title` (String; optional)
   - `arrow` (Bool; optional)
   - `disabled` (Bool; optional)
-  - `overlayClassName` (String; optional)
+  - `overlayClassName` (String | Dict; optional)
   - `overlayStyle` (Dict; optional)
   - `placement` (a value equal to: 'bottomLeft', 'bottomCenter', 'bottomRight', 'topLeft', 'topCenter', 'topRight'; optional)
   - `fixed` (a value equal to: 'left', 'right'; optional)

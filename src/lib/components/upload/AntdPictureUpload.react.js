@@ -4,9 +4,10 @@ import { v4 as uuidv4 } from 'uuid';
 import { Upload, message, Modal, ConfigProvider } from 'antd';
 import { PlusOutlined } from '@ant-design/icons';
 import { str2Locale, locale2text } from '../locales.react';
-import { isUndefined } from 'lodash';
+import { isUndefined, isString } from 'lodash';
 import ImgCrop from 'antd-img-crop';
 import PropsContext from '../../contexts/PropsContext';
+import useCss from '../../hooks/useCss';
 
 // 解析历史任务完成时间信息
 const parseHistoryTaskCompleteTime = (e) => {
@@ -269,7 +270,11 @@ const AntdPictureUpload = (props) => {
         return (
             <ConfigProvider locale={str2Locale.get(locale)}>
                 <div id={id}
-                    className={className}
+                    className={
+                        isString(className) ?
+                            className :
+                            (className ? useCss(className) : undefined)
+                    }
                     style={{
                         border: "1px solid transparent",
                         transition: "border 0.3s",
@@ -347,7 +352,11 @@ const AntdPictureUpload = (props) => {
     return (
         <ConfigProvider locale={str2Locale.get(locale)}>
             <div id={id}
-                className={className}
+                className={
+                    isString(className) ?
+                        className :
+                        (className ? useCss(className) : undefined)
+                }
                 style={{
                     border: "1px solid transparent",
                     transition: "border 0.3s",
@@ -423,7 +432,10 @@ AntdPictureUpload.propTypes = {
     id: PropTypes.string,
 
     // css类名
-    className: PropTypes.string,
+    className: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.object
+    ]),
 
     // 自定义css字典
     style: PropTypes.object,

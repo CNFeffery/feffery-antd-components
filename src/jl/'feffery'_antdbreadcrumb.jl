@@ -9,7 +9,7 @@ An AntdBreadcrumb component.
 
 Keyword arguments:
 - `id` (String; optional)
-- `className` (String; optional)
+- `className` (String | Dict; optional)
 - `items` (optional): . items has the following type: Array of lists containing elements 'title', 'href', 'target', 'icon', 'menuItems'.
 Those elements have the following types:
   - `title` (String; optional)

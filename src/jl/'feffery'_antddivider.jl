@@ -13,7 +13,7 @@ An AntdDivider component.
 Keyword arguments:
 - `children` (a list of or a singular dash component, string or number; optional)
 - `id` (String; optional)
-- `className` (String; optional)
+- `className` (String | Dict; optional)
 - `direction` (a value equal to: 'horizontal', 'vertical'; optional)
 - `fontColor` (String; optional)
 - `fontFamily` (String; optional)

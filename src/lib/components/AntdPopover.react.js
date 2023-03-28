@@ -51,7 +51,11 @@ const AntdPopover = (props) => {
             color={color}
             mouseEnterDelay={mouseEnterDelay}
             mouseLeaveDelay={mouseLeaveDelay}
-            overlayClassName={overlayClassName}
+            overlayClassName={
+                isString(overlayClassName) ?
+                    overlayClassName :
+                    (overlayClassName ? useCss(overlayClassName) : undefined)
+            }
             overlayStyle={overlayStyle}
             overlayInnerStyle={overlayInnerStyle}
             trigger={trigger}
@@ -112,6 +116,12 @@ AntdPopover.propTypes = {
 
     // 设置鼠标移出后延时多少才隐藏 Tooltip，单位：秒，默认为0.1
     mouseLeaveDelay: PropTypes.number,
+
+    // 设置卡片css类
+    overlayClassName: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.object
+    ]),
 
     // 设置卡片样式
     overlayStyle: PropTypes.object,

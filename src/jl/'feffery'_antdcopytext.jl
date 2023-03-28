@@ -11,7 +11,7 @@ Keyword arguments:
 - `id` (String; optional)
 - `afterIcon` (a list of or a singular dash component, string or number; optional)
 - `beforeIcon` (a list of or a singular dash component, string or number; optional)
-- `className` (String; optional)
+- `className` (String | Dict; optional)
 - `key` (String; optional)
 - `loading_state` (optional): . loading_state has the following type: lists containing elements 'is_loading', 'prop_name', 'component_name'.
 Those elements have the following types:

@@ -11,7 +11,7 @@ Keyword arguments:
 - `id` (String; optional)
 - `apiUrl` (String; optional)
 - `buttonContent` (a list of or a singular dash component, string or number; optional)
-- `className` (String; optional)
+- `className` (String | Dict; optional)
 - `confirmBeforeDelete` (Bool; optional)
 - `defaultFileList` (optional): . defaultFileList has the following type: Array of lists containing elements 'name', 'status', 'uid', 'url'.
 Those elements have the following types:

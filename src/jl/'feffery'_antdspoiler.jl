@@ -14,7 +14,7 @@ Keyword arguments:
 - `children` (a list of or a singular dash component, string or number; optional)
 - `id` (String; optional)
 - `className` (String | Dict; optional)
-- `contentClassName` (String; optional)
+- `contentClassName` (String | Dict; optional)
 - `contentStyle` (Dict; optional)
 - `hideLabel` (a list of or a singular dash component, string or number; optional)
 - `key` (String; optional)

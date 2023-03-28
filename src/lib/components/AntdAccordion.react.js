@@ -58,7 +58,12 @@ const AntdAccordion = (props) => {
                 items ? (
                     items.map(
                         item => (
-                            <Panel className={item.className}
+                            <Panel
+                                className={
+                                    isString(item.className) ?
+                                        item.className :
+                                        (item.className ? useCss(item.className) : undefined)
+                                }
                                 style={item.style}
                                 key={item.key}
                                 collapsible={item.collapsible}
@@ -101,7 +106,10 @@ AntdAccordion.propTypes = {
             // 设置当前手风琴项的子元素内容
             children: PropTypes.node,
             // 设置当前手风琴项的css类
-            className: PropTypes.string,
+            className: PropTypes.oneOfType([
+                PropTypes.string,
+                PropTypes.object
+            ]),
             // 设置当前手风琴项的css样式
             style: PropTypes.object,
             // 设置当前手风琴项的key值，用于唯一标识当前手风琴项，必填

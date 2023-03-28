@@ -35,7 +35,7 @@ Those elements have the following types:
   - `key` (String; optional)
   - `isDivider` (Bool; optional)s
 - `nClicks` (Real; optional)
-- `overlayClassName` (String; optional)
+- `overlayClassName` (String | Dict; optional)
 - `overlayStyle` (Dict; optional)
 - `placement` (a value equal to: 'bottomLeft', 'bottomCenter', 'bottomRight', 'topLeft', 'topCenter', 'topRight'; optional)
 - `popupContainer` (a value equal to: 'parent', 'body'; optional)

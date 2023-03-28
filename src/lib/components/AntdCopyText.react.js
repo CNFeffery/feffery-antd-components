@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import { Typography, ConfigProvider } from 'antd';
 import { str2Locale } from './locales.react';
 import PropsContext from '../contexts/PropsContext';
+import { isString } from 'lodash';
+import useCss from '../hooks/useCss';
 
 
 const { Text } = Typography;
@@ -29,7 +31,11 @@ const AntdCopyText = (props) => {
     return (
         <ConfigProvider locale={str2Locale.get(locale)}>
             <Text id={id}
-                className={className}
+                className={
+                    isString(className) ?
+                        className :
+                        (className ? useCss(className) : undefined)
+                }
                 style={style}
                 key={key}
                 copyable={{
@@ -49,7 +55,10 @@ AntdCopyText.propTypes = {
     id: PropTypes.string,
 
     // css类名
-    className: PropTypes.string,
+    className: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.object
+    ]),
 
     // 自定义css字典
     style: PropTypes.object,

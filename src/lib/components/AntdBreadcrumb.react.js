@@ -2,6 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Breadcrumb, Menu } from 'antd';
 import AntdIcon from './AntdIcon.react';
+import { isString } from 'lodash';
+import useCss from '../hooks/useCss';
 
 // 定义面包屑组件AntdBreadcrumb，api参数参考https://ant.design/components/breadcrumb-cn/
 const AntdBreadcrumb = (props) => {
@@ -19,7 +21,11 @@ const AntdBreadcrumb = (props) => {
 
     return (
         <Breadcrumb id={id}
-            className={className}
+            className={
+                isString(className) ?
+                    className :
+                    (className ? useCss(className) : undefined)
+            }
             style={style}
             key={key}
             separator={separator}
@@ -62,7 +68,10 @@ AntdBreadcrumb.propTypes = {
     id: PropTypes.string,
 
     // css类名
-    className: PropTypes.string,
+    className: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.object
+    ]),
 
     // 自定义css字典
     style: PropTypes.object,

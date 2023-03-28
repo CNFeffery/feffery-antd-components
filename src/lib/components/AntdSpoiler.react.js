@@ -45,7 +45,12 @@ const AntdSpoiler = (props) => {
             data-dash-is-loading={
                 (loading_state && loading_state.is_loading) || undefined
             }>
-            <div className={contentClassName}
+            <div
+                className={
+                    isString(contentClassName) ?
+                        contentClassName :
+                        (contentClassName ? useCss(contentClassName) : undefined)
+                }
                 style={
                     {
                         transitionTimingFunction: 'ease',
@@ -91,7 +96,10 @@ AntdSpoiler.propTypes = {
     style: PropTypes.object,
 
     // 内容区css类
-    contentClassName: PropTypes.string,
+    contentClassName: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.object
+    ]),
 
     // 内容区css样式
     contentStyle: PropTypes.object,

@@ -24,7 +24,7 @@ Keyword arguments:
 - `items` (optional): . items has the following type: Array of lists containing elements 'children', 'className', 'style', 'key', 'collapsible', 'title', 'extra', 'showArrow', 'forceRender'.
 Those elements have the following types:
   - `children` (a list of or a singular dash component, string or number; optional)
-  - `className` (String; optional)
+  - `className` (String | Dict; optional)
   - `style` (Dict; optional)
   - `key` (String | Real; required)
   - `collapsible` (a value equal to: 'header', 'disabled'; optional)

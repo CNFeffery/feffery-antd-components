@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Divider } from 'antd';
+import { isString } from 'lodash';
+import useCss from '../hooks/useCss';
 
 
 // 定义分割线组件AntdDivider，api参数参考https://ant.design/components/divider-cn/
@@ -37,7 +39,11 @@ const AntdDivider = (props) => {
                     fontSize: fontSize,
                     color: fontColor
                 }}
-                className={className}
+                className={
+                    isString(className) ?
+                        className :
+                        (className ? useCss(className) : undefined)
+                }
                 key={key}
                 dashed={isDashed}
                 orientation={innerTextOrientation}
@@ -61,7 +67,11 @@ const AntdDivider = (props) => {
                     fontSize: fontSize,
                     color: fontColor
                 }}
-                className={className}
+                className={
+                    isString(className) ?
+                        className :
+                        (className ? useCss(className) : undefined)
+                }
                 key={key}
                 dashed={isDashed}
                 orientation={innerTextOrientation}
@@ -84,7 +94,10 @@ AntdDivider.propTypes = {
     children: PropTypes.node,
 
     // css类名
-    className: PropTypes.string,
+    className: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.object
+    ]),
 
     // 辅助刷新用唯一标识key值
     key: PropTypes.string,

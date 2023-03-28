@@ -69,27 +69,28 @@ const AntdSpin = (props) => {
     }, [loading_state]);
 
     // 返回定制化的前端组件
-    return (<Spin id={id}
-        className={
-            isString(className) ?
-                className :
-                (className ? useCss(className) : undefined)
-        }
-        key={key}
-        wrapperClassName={
-            isString(wrapperClassName) ?
-                wrapperClassName :
-                (wrapperClassName ? useCss(wrapperClassName) : undefined)
-        }
-        style={style}
-        spinning={showSpinning}
-        size={size}
-        delay={delay}
-        tip={text}
-        indicator={indicator}
-        data-dash-is-loading={
-            (loading_state && loading_state.is_loading) || undefined
-        } > {children} </Spin>
+    return (
+        <Spin id={id}
+            className={
+                isString(className) ?
+                    className :
+                    (className ? useCss(className) : undefined)
+            }
+            key={key}
+            wrapperClassName={
+                isString(wrapperClassName) ?
+                    wrapperClassName :
+                    (wrapperClassName ? useCss(wrapperClassName) : undefined)
+            }
+            style={style}
+            spinning={showSpinning}
+            size={size}
+            delay={delay}
+            tip={text}
+            indicator={indicator}
+            data-dash-is-loading={
+                (loading_state && loading_state.is_loading) || undefined
+            } > {children} </Spin>
     );
 }
 

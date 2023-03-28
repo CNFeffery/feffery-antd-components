@@ -852,7 +852,11 @@ class AntdTable extends Component {
                             }
                             arrow={columns[i]['renderOptions']?.dropdownProps?.arrow}
                             disabled={columns[i]['renderOptions']?.dropdownProps?.disabled}
-                            overlayClassName={columns[i]['renderOptions']?.dropdownProps?.overlayClassName}
+                            overlayClassName={
+                                isString(columns[i]['renderOptions']?.dropdownProps?.overlayClassName) ?
+                                    columns[i]['renderOptions']?.dropdownProps?.overlayClassName :
+                                    (columns[i]['renderOptions']?.dropdownProps?.overlayClassName ? useCss(columns[i]['renderOptions']?.dropdownProps?.overlayClassName) : undefined)
+                            }
                             overlayStyle={columns[i]['renderOptions']?.dropdownProps?.overlayStyle}
                             placement={columns[i]['renderOptions']?.dropdownProps?.placement}
                             trigger={
@@ -898,7 +902,11 @@ class AntdTable extends Component {
                             }
                             arrow={columns[i]['renderOptions']?.dropdownProps?.arrow}
                             disabled={columns[i]['renderOptions']?.dropdownProps?.disabled}
-                            overlayClassName={columns[i]['renderOptions']?.dropdownProps?.overlayClassName}
+                            overlayClassName={
+                                isString(columns[i]['renderOptions']?.dropdownProps?.overlayClassName) ?
+                                    columns[i]['renderOptions']?.dropdownProps?.overlayClassName :
+                                    (columns[i]['renderOptions']?.dropdownProps?.overlayClassName ? useCss(columns[i]['renderOptions']?.dropdownProps?.overlayClassName) : undefined)
+                            }
                             overlayStyle={columns[i]['renderOptions']?.dropdownProps?.overlayStyle}
                             placement={columns[i]['renderOptions']?.dropdownProps?.placement}
                             trigger={
@@ -1585,7 +1593,10 @@ AntdTable.propTypes = {
                     disabled: PropTypes.bool,
 
                     // 设置下拉菜单容器的类名
-                    overlayClassName: PropTypes.string,
+                    overlayClassName: PropTypes.oneOfType([
+                        PropTypes.string,
+                        PropTypes.object
+                    ]),
 
                     // 设置下拉菜单容器的样式
                     overlayStyle: PropTypes.object,
