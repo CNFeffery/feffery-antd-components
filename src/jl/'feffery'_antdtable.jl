@@ -11,7 +11,7 @@ Keyword arguments:
 - `id` (String; optional)
 - `bordered` (Bool; optional)
 - `cellUpdateOptimize` (Bool; optional)
-- `className` (String | Dict; optional)
+- `className` (String; optional)
 - `clickedContent` (String; optional)
 - `columns` (optional): . columns has the following type: Array of lists containing elements 'title', 'dataIndex', 'renderOptions', 'fixed', 'editable', 'align', 'width', 'hidden', 'ellipsis', 'sorter', 'render', 'onCell', 'title_'.
 Those elements have the following types:
@@ -34,7 +34,7 @@ Those elements have the following types:
   - `title` (String; optional)
   - `arrow` (Bool; optional)
   - `disabled` (Bool; optional)
-  - `overlayClassName` (String | Dict; optional)
+  - `overlayClassName` (String; optional)
   - `overlayStyle` (Dict; optional)
   - `placement` (a value equal to: 'bottomLeft', 'bottomCenter', 'bottomRight', 'topLeft', 'topCenter', 'topRight'; optional)
   - `fixed` (a value equal to: 'left', 'right'; optional)

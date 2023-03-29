@@ -40,9 +40,8 @@ import {
     QuestionCircleOutlined,
     DownOutlined
 } from '@ant-design/icons';
-import { isNumber, isEqual, isString } from 'lodash';
+import { isNumber, isEqual } from 'lodash';
 import { str2Locale, locale2text } from './locales.react';
-import useCss from '../hooks/useCss';
 import PropsContext from '../contexts/PropsContext';
 
 const { Text } = Typography;
@@ -853,11 +852,7 @@ class AntdTable extends Component {
                             }
                             arrow={columns[i]['renderOptions']?.dropdownProps?.arrow}
                             disabled={columns[i]['renderOptions']?.dropdownProps?.disabled}
-                            overlayClassName={
-                                isString(columns[i]['renderOptions']?.dropdownProps?.overlayClassName) ?
-                                    columns[i]['renderOptions']?.dropdownProps?.overlayClassName :
-                                    (columns[i]['renderOptions']?.dropdownProps?.overlayClassName ? useCss(columns[i]['renderOptions']?.dropdownProps?.overlayClassName) : undefined)
-                            }
+                            overlayClassName={columns[i]['renderOptions']?.dropdownProps?.overlayClassName}
                             overlayStyle={columns[i]['renderOptions']?.dropdownProps?.overlayStyle}
                             placement={columns[i]['renderOptions']?.dropdownProps?.placement}
                             trigger={
@@ -903,11 +898,7 @@ class AntdTable extends Component {
                             }
                             arrow={columns[i]['renderOptions']?.dropdownProps?.arrow}
                             disabled={columns[i]['renderOptions']?.dropdownProps?.disabled}
-                            overlayClassName={
-                                isString(columns[i]['renderOptions']?.dropdownProps?.overlayClassName) ?
-                                    columns[i]['renderOptions']?.dropdownProps?.overlayClassName :
-                                    (columns[i]['renderOptions']?.dropdownProps?.overlayClassName ? useCss(columns[i]['renderOptions']?.dropdownProps?.overlayClassName) : undefined)
-                            }
+                            overlayClassName={columns[i]['renderOptions']?.dropdownProps?.overlayClassName}
                             overlayStyle={columns[i]['renderOptions']?.dropdownProps?.overlayStyle}
                             placement={columns[i]['renderOptions']?.dropdownProps?.placement}
                             trigger={
@@ -1412,11 +1403,7 @@ class AntdTable extends Component {
             >
                 <Table
                     id={id}
-                    className={
-                        isString(className) ?
-                            className :
-                            (className ? useCss(className) : undefined)
-                    }
+                    className={className}
                     style={style}
                     key={key}
                     components={atLeastOneColumnEditable ? components : undefined}
@@ -1509,10 +1496,7 @@ AntdTable.propTypes = {
     id: PropTypes.string,
 
     // css类名
-    className: PropTypes.oneOfType([
-        PropTypes.string,
-        PropTypes.object
-    ]),
+    className: PropTypes.string,
 
     // 自定义css字典
     style: PropTypes.object,
@@ -1594,10 +1578,7 @@ AntdTable.propTypes = {
                     disabled: PropTypes.bool,
 
                     // 设置下拉菜单容器的类名
-                    overlayClassName: PropTypes.oneOfType([
-                        PropTypes.string,
-                        PropTypes.object
-                    ]),
+                    overlayClassName: PropTypes.string,
 
                     // 设置下拉菜单容器的样式
                     overlayStyle: PropTypes.object,
