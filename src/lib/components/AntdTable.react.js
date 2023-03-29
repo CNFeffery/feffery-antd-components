@@ -483,6 +483,7 @@ class AntdTable extends Component {
         locale = (this.context && this.context.locale) || locale
 
         pagination = {
+            ...pagination,
             showTotalPrefix: pagination?.showTotalPrefix || locale2text.AntdTable[locale].showTotalPrefix,
             showTotalSuffix: pagination?.showTotalSuffix || locale2text.AntdTable[locale].showTotalSuffix
         }
