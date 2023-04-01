@@ -25,6 +25,9 @@ const AntdTooltip = (props) => {
         overlayInnerStyle,
         trigger,
         zIndex,
+        arrowPointAtCenter,
+        open,
+        permanent,
         popupContainer,
         setProps,
         loading_state
@@ -55,6 +58,11 @@ const AntdTooltip = (props) => {
             overlayInnerStyle={overlayInnerStyle}
             trigger={trigger}
             zIndex={zIndex}
+            arrowPointAtCenter={arrowPointAtCenter}
+            open={open}
+            onOpenChange={
+                permanent ? undefined : (e) => setProps({ open: e })
+            }
             getPopupContainer={
                 popupContainer === 'parent' ?
                     (triggerNode) => triggerNode.parentNode :
@@ -133,6 +141,13 @@ AntdTooltip.propTypes = {
     // 设置箭头是否指向锚点元素中心，默认为false
     arrowPointAtCenter: PropTypes.bool,
 
+    // 用于监听或控制当前tooltip的显隐，默认为false
+    open: PropTypes.bool,
+
+    // 用于设置是否保持tooltip显示，需配合open=true
+    // 默认为false
+    permanent: PropTypes.bool,
+
     // 设置悬浮层锚定策略，可选的有'parent'、'body'，默认为'body'
     popupContainer: PropTypes.oneOf(['parent', 'body']),
 
@@ -165,7 +180,9 @@ AntdTooltip.defaultProps = {
     placement: 'top',
     trigger: 'hover',
     popupContainer: 'body',
-    arrowPointAtCenter: false
+    arrowPointAtCenter: false,
+    open: false,
+    permanent: false
 }
 
 export default AntdTooltip;

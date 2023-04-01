@@ -24,9 +24,11 @@ Those elements have the following types:
   - `component_name` (String; optional): Holds the name of the component that is loading
 - `mouseEnterDelay` (Real; optional)
 - `mouseLeaveDelay` (Real; optional)
+- `open` (Bool; optional)
 - `overlayClassName` (String | Dict; optional)
 - `overlayInnerStyle` (Dict; optional)
 - `overlayStyle` (Dict; optional)
+- `permanent` (Bool; optional)
 - `placement` (a value equal to: 'top', 'left', 'right', 'bottom', 'topLeft', 'topRight', 'bottomLeft', 'bottomRight'; optional)
 - `popupContainer` (a value equal to: 'parent', 'body'; optional)
 - `style` (Dict; optional)
@@ -35,7 +37,7 @@ Those elements have the following types:
 - `zIndex` (Real; optional)
 """
 function 'feffery'_antdtooltip(; kwargs...)
-        available_props = Symbol[:children, :id, :arrowPointAtCenter, :className, :color, :key, :loading_state, :mouseEnterDelay, :mouseLeaveDelay, :overlayClassName, :overlayInnerStyle, :overlayStyle, :placement, :popupContainer, :style, :title, :trigger, :zIndex]
+        available_props = Symbol[:children, :id, :arrowPointAtCenter, :className, :color, :key, :loading_state, :mouseEnterDelay, :mouseLeaveDelay, :open, :overlayClassName, :overlayInnerStyle, :overlayStyle, :permanent, :placement, :popupContainer, :style, :title, :trigger, :zIndex]
         wild_props = Symbol[]
         return Component("'feffery'_antdtooltip", "AntdTooltip", "feffery_antd_components", available_props, wild_props; kwargs...)
 end
