@@ -471,6 +471,7 @@ class AntdTable extends Component {
             expandedRowKeyToContent,
             expandedRowWidth,
             expandRowByClick,
+            defaultExpandedRowKeys,
             enableCellClickListenColumns,
             nClicksCell,
             emptyContent,
@@ -1468,9 +1469,17 @@ class AntdTable extends Component {
                     expandable={
                         rowExpandedRowRender ? {
                             expandedRowRender: (record) => rowExpandedRowRender.get(record.key),
-                            rowExpandable: (record) => Boolean(rowExpandedRowRender.get(record.key)),
+                            rowExpandable: (record) => rowExpandedRowRender.has(record.key),
                             columnWidth: expandedRowWidth,
-                            expandRowByClick: expandRowByClick
+                            expandRowByClick: expandRowByClick,
+                            defaultExpandedRowKeys: defaultExpandedRowKeys,
+                            // expandedRowKeys: expandedRowKeys,
+                            // onExpandedRowsChange: (e) => {
+                            //     console.log(e)
+                            //     setProps({
+                            //         expandedRowKeys: e
+                            //     })
+                            // }
                         } : undefined
                     }
                     data-dash-is-loading={
@@ -2105,6 +2114,9 @@ AntdTable.propTypes = {
     // 设置是否允许直接点击行进行展开，默认为false
     expandRowByClick: PropTypes.bool,
 
+    // 设置初始化时处于展开状态的行key值数组
+    defaultExpandedRowKeys: PropTypes.arrayOf(PropTypes.string),
+
     // 设置启用单元格点击事件监听的字段dataIndex数组，开启后会干扰多种再渲染模式的交互，
     // 以及自定义条件单元格模式，请慎用
     enableCellClickListenColumns: PropTypes.arrayOf(
@@ -2230,7 +2242,7 @@ AntdTable.defaultProps = {
     sticky: false,
     enableHoverListen: false,
     expandRowByClick: false,
-    enableCellClickListenColumns: false,
+    enableCellClickListenColumns: [],
     nClicksCell: 0,
     cellUpdateOptimize: false,
     summaryRowFixed: false,

@@ -144,7 +144,7 @@ AntdTooltip.propTypes = {
     // 用于监听或控制当前tooltip的显隐，默认为false
     open: PropTypes.bool,
 
-    // 用于设置是否保持tooltip显示，需配合open=true
+    // 用于设置是否保持tooltip显示/隐藏
     // 默认为false
     permanent: PropTypes.bool,
 
