@@ -41,7 +41,7 @@ const AntdTabs = (props) => {
 
     useEffect(() => {
         // 初始化value
-        if (defaultActiveKey) {
+        if (defaultActiveKey && !activeKey) {
             // 当defaultValue不为空时，为value初始化defaultValue对应的value值
             setProps({ activeKey: defaultActiveKey })
         }
