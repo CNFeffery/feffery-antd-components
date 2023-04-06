@@ -34,7 +34,7 @@ const AntdSegmented = (props) => {
     options = options || []
 
     useEffect(() => {
-        if (!value && defaultValue) {
+        if (defaultValue && !value) {
             // 当defaultValue不为空时，为value初始化defaultValue对应的value值
             setProps({ value: defaultValue })
         }

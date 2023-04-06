@@ -30,7 +30,7 @@ Those elements have the following types:
   - `prop_name` (String; optional): Holds which property is loading
   - `component_name` (String; optional): Holds the name of the component that is loading
 - `multiple` (Bool; optional)
-- `persisted_props` (Array of a value equal to: 'selectedKeys', 'checkedKeys', 'expandedKeys's; optional): Properties whose user interactions will persist after refreshing the
+- `persisted_props` (Array of a value equal to: 'selectedKeys', 'checkedKeys', 'expandedKeys', 'halfCheckedKeys's; optional): Properties whose user interactions will persist after refreshing the
 component or the page. Since only `value` is allowed this prop can
 normally be ignored.
 - `persistence` (Bool | String | Real; optional): Used to allow user interactions in this component to be persisted when

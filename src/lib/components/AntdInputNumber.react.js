@@ -284,9 +284,9 @@ AntdInputNumber.defaultProps = {
     size: 'middle',
     bordered: true,
     nSubmit: 0,
+    debounceWait: 200,
     persisted_props: ['value'],
-    persistence_type: 'local',
-    debounceWait: 200
+    persistence_type: 'local'
 }
 
 export default AntdInputNumber;

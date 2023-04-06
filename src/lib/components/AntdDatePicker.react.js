@@ -542,11 +542,11 @@ AntdDatePicker.defaultProps = {
     size: 'middle',
     bordered: true,
     allowClear: true,
-    persisted_props: ['value'],
-    persistence_type: 'local',
     locale: 'zh-cn',
     placement: 'bottomLeft',
-    popupContainer: 'body'
+    popupContainer: 'body',
+    persisted_props: ['value'],
+    persistence_type: 'local'
 }
 
 export default AntdDatePicker;

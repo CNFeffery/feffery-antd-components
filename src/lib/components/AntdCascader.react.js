@@ -346,14 +346,14 @@ AntdCascader.defaultProps = {
     multiple: false,
     expandTrigger: 'click',
     allowClear: true,
-    persisted_props: ['value'],
-    persistence_type: 'local',
     locale: 'zh-cn',
     optionsMode: 'tree',
     showCheckedStrategy: 'show-parent',
     popupContainer: 'body',
     bordered: true,
-    disabled: false
+    disabled: false,
+    persisted_props: ['value'],
+    persistence_type: 'local',
 }
 
 export default AntdCascader;

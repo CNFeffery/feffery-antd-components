@@ -456,7 +456,7 @@ AntdTree.propTypes = {
      * component or the page. Since only `value` is allowed this prop can
      * normally be ignored.
      */
-    persisted_props: PropTypes.arrayOf(PropTypes.oneOf(['selectedKeys', 'checkedKeys', 'expandedKeys'])),
+    persisted_props: PropTypes.arrayOf(PropTypes.oneOf(['selectedKeys', 'checkedKeys', 'expandedKeys', 'halfCheckedKeys'])),
 
     /**
      * Where persisted user changes will be stored:
@@ -479,7 +479,7 @@ AntdTree.defaultProps = {
     selectable: true,
     showLine: { 'showLeafIcon': false },
     draggable: false,
-    persisted_props: ['selectedKeys', 'checkedKeys', 'expandedKeys'],
+    persisted_props: ['selectedKeys', 'checkedKeys', 'expandedKeys', 'halfCheckedKeys'],
     persistence_type: 'local'
 }
 

@@ -226,11 +226,11 @@ AntdPagination.defaultProps = {
     showQuickJumper: false,
     simple: false,
     size: 'default',
-    persisted_props: ['current', 'pageSize'],
-    persistence_type: 'local',
     locale: 'zh-cn',
     showTotal: true,
-    disabled: false
+    disabled: false,
+    persisted_props: ['current', 'pageSize'],
+    persistence_type: 'local'
 }
 
 export default AntdPagination;

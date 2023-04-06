@@ -434,9 +434,9 @@ AntdInput.defaultProps = {
     nClicksSearch: 0,
     nSubmit: 0,
     allowClear: false,
-    persisted_props: ['value'],
-    persistence_type: 'local',
-    debounceWait: 200
+    debounceWait: 200,
+    persisted_props: ['value', 'md5Value'],
+    persistence_type: 'local'
 }
 
 export default AntdInput;

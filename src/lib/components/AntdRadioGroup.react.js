@@ -32,7 +32,7 @@ const AntdRadioGroup = (props) => {
     const context = useContext(PropsContext)
 
     useEffect(() => {
-        if (!value && defaultValue) {
+        if (defaultValue && !value) {
             setProps({ value: defaultValue })
         }
     }, [])

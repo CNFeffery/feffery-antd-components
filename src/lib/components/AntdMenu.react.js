@@ -395,10 +395,10 @@ AntdMenu.defaultProps = {
     mode: 'vertical',
     theme: 'light',
     renderCollapsedButton: false,
-    persisted_props: ['currentKey', 'openKeys'],
-    persistence_type: 'local',
     popupContainer: 'body',
-    inlineCollapsed: false
+    inlineCollapsed: false,
+    persisted_props: ['currentKey', 'openKeys'],
+    persistence_type: 'local'
 }
 
 export default AntdMenu;
