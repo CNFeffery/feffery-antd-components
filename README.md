@@ -24,16 +24,10 @@
 pip install feffery-antd-components -U
 ```
 
-## 2 最新开发版本安装方式
+## 2 最新预发布版本安装方式
 
 ```bash
-pip install git+https://github.com/CNFeffery/feffery-antd-components.git
-```
-
-国内镜像加速安装方式：
-
-```bash
-pip install git+https://github.91chi.fun/https://github.com/CNFeffery/feffery-antd-components.git
+pip install feffery-antd-components --pre -U
 ```
 
 ## 3 静态资源 CDN 加速方法

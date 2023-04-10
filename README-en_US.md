@@ -24,11 +24,10 @@ Subproject of `feffery-components` projects, third-party components library of `
 pip install feffery-antd-components -U
 ```
 
-## 2 Install from GitHub
+## 2 Install the latest preview release version
 
 ```bash
-
-pip install git+https://github.com/CNFeffery/feffery-antd-components.git
+pip install feffery-antd-components --pre -U
 ```
 
 ## 3 Use CDN
