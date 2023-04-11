@@ -1398,6 +1398,48 @@ class AntdTable extends Component {
         // 检查当前是否至少有一个字段是可编辑的
         let atLeastOneColumnEditable = columns.some(item => item.editable)
 
+        // 减少不必要的单元格重绘
+        if (cellUpdateOptimize) {
+            columns = columns.map(
+                item => {
+                    return {
+                        ...item,
+                        // 减少不必要的单元格重绘
+                        shouldCellUpdate: (record, prevRecord) => {
+                            if (isEqual(record, prevRecord)) {
+                                return false;
+                            }
+                            return true;
+                        }
+                    };
+                }
+            )
+        }
+
+        // 若存在至少一个字段有group参数，则对columns进行重构
+        // 以支持双层表头
+        if (columns.some(e => e.group)) {
+            let tempColumns = []
+            for (let column of columns) {
+                if (column.group) {
+                    if (tempColumns.length > 0 && tempColumns[tempColumns.length - 1].dataIndex === column.group) {
+                        tempColumns[tempColumns.length - 1].children.push(column)
+                    } else {
+                        tempColumns.push(
+                            {
+                                dataIndex: column.group,
+                                title: column.group,
+                                children: [column]
+                            }
+                        )
+                    }
+                } else {
+                    tempColumns.push(column)
+                }
+            }
+            columns = tempColumns
+        }
+
         return (
             <ConfigProvider
                 locale={str2Locale.get(locale)}
@@ -1414,24 +1456,7 @@ class AntdTable extends Component {
                         // 根据hiddenRowKeys参数情况进行指定行记录的隐藏
                         data.filter(e => !hiddenRowKeys.includes(e.key))
                     }
-                    columns={
-                        cellUpdateOptimize ?
-                            columns.map(
-                                item => {
-                                    return {
-                                        ...item,
-                                        // 减少不必要的单元格重绘
-                                        shouldCellUpdate: (record, prevRecord) => {
-                                            if (isEqual(record, prevRecord)) {
-                                                return false;
-                                            }
-                                            return true;
-                                        }
-                                    };
-                                }
-                            ) :
-                            columns
-                    }
+                    columns={columns}
                     size={size2size.get(size)}
                     rowSelection={rowSelection}
                     sticky={sticky}
@@ -1534,6 +1559,9 @@ AntdTable.propTypes = {
 
             // 字段id信息
             dataIndex: PropTypes.string.isRequired,
+
+            // 为当前字段设置所属字段组
+            group: PropTypes.string,
 
             // 预处理方式
             renderOptions: PropTypes.exact({

@@ -13,10 +13,11 @@ Keyword arguments:
 - `cellUpdateOptimize` (Bool; optional)
 - `className` (String; optional)
 - `clickedContent` (String; optional)
-- `columns` (optional): . columns has the following type: Array of lists containing elements 'title', 'dataIndex', 'renderOptions', 'fixed', 'editable', 'align', 'width', 'hidden', 'ellipsis', 'sorter', 'render', 'onCell', 'title_'.
+- `columns` (optional): . columns has the following type: Array of lists containing elements 'title', 'dataIndex', 'group', 'renderOptions', 'fixed', 'editable', 'align', 'width', 'hidden', 'ellipsis', 'sorter', 'render', 'onCell', 'title_'.
 Those elements have the following types:
   - `title` (a list of or a singular dash component, string or number; required)
   - `dataIndex` (String; required)
+  - `group` (String; optional)
   - `renderOptions` (optional): . renderOptions has the following type: lists containing elements 'renderType', 'renderLinkText', 'renderButtonPopConfirmProps', 'tooltipCustomContent', 'progressOneHundredPercentColor', 'ringProgressFontSize', 'dropdownProps'.
 Those elements have the following types:
   - `renderType` (a value equal to: "link", 'ellipsis', 'copyable', 'ellipsis-copyable', 'tags', 'status-badge', 'image', 'custom-format', 'corner-mark', 'row-merge', 'dropdown', 'dropdown-links', 'image-avatar', "mini-line", 'mini-bar', 'mini-progress', 'mini-ring-progress', 'mini-area', "button", 'checkbox', 'switch'; optional)
