@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { DatePicker, ConfigProvider } from 'antd';
 import moment from 'moment';
 import { isString, isUndefined } from 'lodash';
+import "moment/locale/zh-cn";
 import { str2Locale } from './locales.react';
 import useCss from '../hooks/useCss';
 import PropsContext from '../contexts/PropsContext';
@@ -19,6 +20,7 @@ const AntdDatePicker = (props) => {
         setProps,
         picker,
         format,
+        firstDayOfWeek,
         disabled,
         showTime,
         allowClear,
@@ -67,6 +69,19 @@ const AntdDatePicker = (props) => {
             })
         }
     }, [])
+
+    useEffect(() => {
+        if (!isUndefined(firstDayOfWeek)) {
+            moment.locale(
+                locale === 'en-us' ? 'en' : locale,
+                {
+                    week: {
+                        dow: firstDayOfWeek
+                    }
+                }
+            )
+        }
+    }, [firstDayOfWeek])
 
     const onChange = (date, dateString) => {
         if (isString(dateString)) {
@@ -350,6 +365,7 @@ const AntdDatePicker = (props) => {
                     format={format}
                     onChange={onChange}
                     picker={picker}
+                    calendarStartDay={firstDayOfWeek}
                     disabled={
                         context && !isUndefined(context.componentDisabled) ?
                             context.componentDisabled :
@@ -414,6 +430,9 @@ AntdDatePicker.propTypes = {
 
     // 设置日期选择的粒度（date：精确到天，week：精确到周，month：精确到月，quarter：精确到季度，year：精确到年。默认为date）
     picker: PropTypes.oneOf(['date', 'week', 'month', 'quarter', 'year']),
+
+    // 设置每一周的起始日
+    firstDayOfWeek: PropTypes.number,
 
     // 设置是否禁用组件，默认为false
     disabled: PropTypes.bool,

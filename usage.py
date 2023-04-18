@@ -1,45 +1,37 @@
-import dash
-from dash import html
-import feffery_antd_components as fac
+#!/usr/bin/python
+# -*- coding: UTF-8 -*-
+"""
+-------------------------------------------------
+日期： 2023/4/17
+作者： Yxian
+简介 :
+-------------------------------------------------
+"""
+from datetime import datetime
 
-app = dash.Dash(__name__)
+import dash
+import feffery_antd_components as fac
+from dash import Input, Output, html
+
+app = dash.Dash(__name__, suppress_callback_exceptions=True)
 
 app.layout = html.Div(
     [
-        fac.AntdTable(
-            columns=[
-                {
-                    'dataIndex': '字段1-1',
-                    'title': '字段1-1',
-                    'group': '字段1',
-                    'width': 'calc(100% / 3)'
-                },
-                {
-                    'dataIndex': '字段1-2',
-                    'title': '字段1-2',
-                    'group': '字段1',
-                    'width': 'calc(100% / 3)',
-                },
-                {
-                    'dataIndex': '字段2',
-                    'title': '字段2',
-                    'width': 'calc(100% / 3)',
-                }
-            ],
-            data=[
-                {
-                    '字段1-1': 1,
-                    '字段1-2': 1,
-                    '字段2': 999
-                }
-            ] * 10,
-            bordered=True
+        fac.AntdDatePicker(
+            firstDayOfWeek=3,
+            style={
+                'width': 256
+            }
+        ),
+        fac.AntdDateRangePicker(
+            firstDayOfWeek=3,
+            style={
+                'width': 256
+            }
         )
-    ],
-    style={
-        'padding': 50
-    }
+    ]
 )
+
 
 if __name__ == '__main__':
     app.run(debug=True)

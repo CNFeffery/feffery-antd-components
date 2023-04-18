@@ -2,6 +2,7 @@ import React, { useEffect, useContext } from 'react';
 import PropTypes from 'prop-types';
 import { DatePicker, ConfigProvider } from 'antd';
 import moment from 'moment';
+import "moment/locale/zh-cn";
 import { isString, isUndefined } from 'lodash';
 import { str2Locale } from './locales.react';
 import useCss from '../hooks/useCss';
@@ -20,6 +21,7 @@ const AntdDateRangePicker = (props) => {
         locale,
         setProps,
         picker,
+        firstDayOfWeek,
         format,
         showTime,
         allowClear,
@@ -69,6 +71,19 @@ const AntdDateRangePicker = (props) => {
             })
         }
     }, [])
+
+    useEffect(() => {
+        if (!isUndefined(firstDayOfWeek)) {
+            moment.locale(
+                locale === 'en-us' ? 'en' : locale,
+                {
+                    week: {
+                        dow: firstDayOfWeek
+                    }
+                }
+            )
+        }
+    }, [firstDayOfWeek])
 
     const onChange = (date, dateString) => {
         if (Array.isArray(dateString)) {
@@ -434,6 +449,9 @@ AntdDateRangePicker.propTypes = {
 
     // 设置日期选择的粒度（date：精确到天，week：精确到周，month：精确到月，quarter：精确到季度，year：精确到年。默认为date）
     picker: PropTypes.oneOf(['date', 'week', 'month', 'quarter', 'year']),
+
+    // 设置每一周的起始日
+    firstDayOfWeek: PropTypes.number,
 
     // 分别设置开始日期与结束日期的输入框是否禁用
     disabled: PropTypes.arrayOf(PropTypes.bool),
