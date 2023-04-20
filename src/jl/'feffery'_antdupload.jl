@@ -26,6 +26,7 @@ Those elements have the following types:
 - `fileListMaxLength` (Real; optional)
 - `fileMaxSize` (Real; optional)
 - `fileTypes` (Array of Strings; optional)
+- `headers` (Dict; optional)
 - `key` (String; optional)
 - `lastUploadTaskRecord` (optional): . lastUploadTaskRecord has the following type: lists containing elements 'fileName', 'fileSize', 'completeTimestamp', 'taskStatus', 'taskId'.
 Those elements have the following types:
@@ -76,7 +77,7 @@ Those elements have the following types:
 - `uploadId` (String; optional)
 """
 function 'feffery'_antdupload(; kwargs...)
-        available_props = Symbol[:id, :apiUrl, :buttonContent, :className, :confirmBeforeDelete, :defaultFileList, :directory, :disabled, :downloadUrl, :failedTooltipInfo, :fileListMaxLength, :fileMaxSize, :fileTypes, :key, :lastUploadTaskRecord, :listUploadTaskRecord, :loading_state, :locale, :multiple, :progressProps, :showErrorMessage, :showPercent, :showSuccessMessage, :showUploadList, :status, :style, :uploadId]
+        available_props = Symbol[:id, :apiUrl, :buttonContent, :className, :confirmBeforeDelete, :defaultFileList, :directory, :disabled, :downloadUrl, :failedTooltipInfo, :fileListMaxLength, :fileMaxSize, :fileTypes, :headers, :key, :lastUploadTaskRecord, :listUploadTaskRecord, :loading_state, :locale, :multiple, :progressProps, :showErrorMessage, :showPercent, :showSuccessMessage, :showUploadList, :status, :style, :uploadId]
         wild_props = Symbol[]
         return Component("'feffery'_antdupload", "AntdUpload", "feffery_antd_components", available_props, wild_props; kwargs...)
 end

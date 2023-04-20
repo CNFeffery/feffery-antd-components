@@ -44,6 +44,7 @@ const AntdUpload = (props) => {
         key,
         locale,
         apiUrl,
+        headers,
         downloadUrl,
         uploadId,
         fileListMaxLength,
@@ -94,6 +95,7 @@ const AntdUpload = (props) => {
     let uploadProps = {
         name: 'file',
         action: apiUrl + `?uploadId=${uploadId}`,
+        headers: headers,
         data: {
             uploadId: uploadId
         },
@@ -397,6 +399,9 @@ AntdUpload.propTypes = {
 
     // 设置文件上传服务的接口url
     apiUrl: PropTypes.string,
+
+    // 设置文件上传服务额外的headers信息
+    headers: PropTypes.object,
 
     // 可选，用于设置已上传完成文件的下载接口，get接口，具有参数taskId、filename
     downloadUrl: PropTypes.string,
