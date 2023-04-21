@@ -190,6 +190,7 @@ Those elements have the following types:
 - `nClicksButton` (Real; optional)
 - `nClicksCell` (Real; optional)
 - `nClicksDropdownItem` (Real; optional)
+- `nDoubleClicksCell` (Real; optional)
 - `pagination` (optional): . pagination has the following type: lists containing elements 'position', 'pageSize', 'current', 'showSizeChanger', 'pageSizeOptions', 'showTitle', 'showQuickJumper', 'showTotalPrefix', 'showTotalSuffix', 'hideOnSinglePage', 'simple', 'disabled', 'size', 'total'.
 Those elements have the following types:
   - `position` (a value equal to: 'topLeft', 'topCenter', 'topRight', 'bottomLeft', 'bottomCenter', 'bottomRight'; optional)
@@ -210,6 +211,8 @@ Those elements have the following types:
 - `recentlyButtonClickedRow` (Dict; optional)
 - `recentlyCellClickColumn` (String; optional)
 - `recentlyCellClickRecord` (Dict; optional)
+- `recentlyCellDoubleClickColumn` (String; optional)
+- `recentlyCellDoubleClickRecord` (Dict; optional)
 - `recentlyChangedRow` (Dict; optional)
 - `recentlyCheckedDataIndex` (String; optional)
 - `recentlyCheckedLabel` (String; optional)
@@ -258,7 +261,7 @@ Those elements have the following types:
   - `overlayStyle` (Dict; optional)
 """
 function 'feffery'_antdtable(; kwargs...)
-        available_props = Symbol[:id, :bordered, :cellUpdateOptimize, :className, :clickedContent, :columns, :columnsFormatConstraint, :conditionalStyleFuncs, :containerId, :currentData, :customFormatFuncs, :data, :defaultExpandedRowKeys, :emptyContent, :enableCellClickListenColumns, :enableHoverListen, :expandRowByClick, :expandedRowKeyToContent, :expandedRowWidth, :filter, :filterOptions, :hiddenRowKeys, :key, :loading_state, :locale, :maxHeight, :maxWidth, :miniChartAnimation, :miniChartHeight, :mode, :nClicksButton, :nClicksCell, :nClicksDropdownItem, :pagination, :recentlyButtonClickedDataIndex, :recentlyButtonClickedRow, :recentlyCellClickColumn, :recentlyCellClickRecord, :recentlyChangedRow, :recentlyCheckedDataIndex, :recentlyCheckedLabel, :recentlyCheckedRow, :recentlyCheckedStatus, :recentlyClickedDropdownItemTitle, :recentlyDropdownItemClickedDataIndex, :recentlyDropdownItemClickedRow, :recentlyMouseEnterColumnDataIndex, :recentlyMouseEnterRow, :recentlyMouseEnterRowKey, :recentlySelectDataIndex, :recentlySelectRow, :recentlySelectValue, :recentlySwitchDataIndex, :recentlySwitchRow, :recentlySwitchStatus, :rowSelectionType, :rowSelectionWidth, :selectedRowKeys, :selectedRows, :size, :sortOptions, :sorter, :sticky, :style, :summaryRowContents, :summaryRowFixed, :titlePopoverInfo]
+        available_props = Symbol[:id, :bordered, :cellUpdateOptimize, :className, :clickedContent, :columns, :columnsFormatConstraint, :conditionalStyleFuncs, :containerId, :currentData, :customFormatFuncs, :data, :defaultExpandedRowKeys, :emptyContent, :enableCellClickListenColumns, :enableHoverListen, :expandRowByClick, :expandedRowKeyToContent, :expandedRowWidth, :filter, :filterOptions, :hiddenRowKeys, :key, :loading_state, :locale, :maxHeight, :maxWidth, :miniChartAnimation, :miniChartHeight, :mode, :nClicksButton, :nClicksCell, :nClicksDropdownItem, :nDoubleClicksCell, :pagination, :recentlyButtonClickedDataIndex, :recentlyButtonClickedRow, :recentlyCellClickColumn, :recentlyCellClickRecord, :recentlyCellDoubleClickColumn, :recentlyCellDoubleClickRecord, :recentlyChangedRow, :recentlyCheckedDataIndex, :recentlyCheckedLabel, :recentlyCheckedRow, :recentlyCheckedStatus, :recentlyClickedDropdownItemTitle, :recentlyDropdownItemClickedDataIndex, :recentlyDropdownItemClickedRow, :recentlyMouseEnterColumnDataIndex, :recentlyMouseEnterRow, :recentlyMouseEnterRowKey, :recentlySelectDataIndex, :recentlySelectRow, :recentlySelectValue, :recentlySwitchDataIndex, :recentlySwitchRow, :recentlySwitchStatus, :rowSelectionType, :rowSelectionWidth, :selectedRowKeys, :selectedRows, :size, :sortOptions, :sorter, :sticky, :style, :summaryRowContents, :summaryRowFixed, :titlePopoverInfo]
         wild_props = Symbol[]
         return Component("'feffery'_antdtable", "AntdTable", "feffery_antd_components", available_props, wild_props; kwargs...)
 end

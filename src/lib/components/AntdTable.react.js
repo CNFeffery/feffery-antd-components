@@ -465,6 +465,7 @@ class AntdTable extends Component {
             size,
             mode,
             nClicksButton,
+            nDoubleClicksCell,
             summaryRowContents,
             summaryRowFixed,
             customFormatFuncs,
@@ -1047,6 +1048,7 @@ class AntdTable extends Component {
                                 className={content.className}
                                 style={{
                                     width: '100%',
+                                    textAlign: 'left',
                                     ...content.style
                                 }}
                                 options={content.options}
@@ -1403,6 +1405,13 @@ class AntdTable extends Component {
                                                 recentlyCellClickColumn: currentDataIndex,
                                                 recentlyCellClickRecord: e,
                                                 nClicksCell: nClicksCell + 1
+                                            })
+                                        },
+                                        onDoubleClick: event => {
+                                            setProps({
+                                                recentlyCellDoubleClickColumn: currentDataIndex,
+                                                recentlyCellDoubleClickRecord: e,
+                                                nDoubleClicksCell: nDoubleClicksCell + 1
                                             })
                                         }
                                     };
@@ -2268,6 +2277,7 @@ AntdTable.propTypes = {
     ),
 
     // 记录单元格点击事件
+    // 单击事件
     // 记录单元格点击事件对应的字段dataIndex信息
     recentlyCellClickColumn: PropTypes.string,
 
@@ -2276,6 +2286,16 @@ AntdTable.propTypes = {
 
     // 记录单元格单击事件发生的总次数
     nClicksCell: PropTypes.number,
+
+    // 双击事件
+    // 记录单元格点击事件对应的字段dataIndex信息
+    recentlyCellDoubleClickColumn: PropTypes.string,
+
+    // 记录单元格点击事件对应的行记录信息
+    recentlyCellDoubleClickRecord: PropTypes.object,
+
+    // 记录单元格单击事件发生的总次数
+    nDoubleClicksCell: PropTypes.number,
 
     // 自定义空数据状态内容
     emptyContent: PropTypes.node,
@@ -2412,6 +2432,7 @@ AntdTable.defaultProps = {
     expandRowByClick: false,
     enableCellClickListenColumns: [],
     nClicksCell: 0,
+    nDoubleClicksCell: 0,
     cellUpdateOptimize: false,
     summaryRowFixed: false,
     conditionalStyleFuncs: {},
