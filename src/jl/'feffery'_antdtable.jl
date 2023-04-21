@@ -20,7 +20,7 @@ Those elements have the following types:
   - `group` (String; optional)
   - `renderOptions` (optional): . renderOptions has the following type: lists containing elements 'renderType', 'renderLinkText', 'renderButtonPopConfirmProps', 'tooltipCustomContent', 'progressOneHundredPercentColor', 'ringProgressFontSize', 'dropdownProps'.
 Those elements have the following types:
-  - `renderType` (a value equal to: "link", 'ellipsis', 'copyable', 'ellipsis-copyable', 'tags', 'status-badge', 'image', 'custom-format', 'corner-mark', 'row-merge', 'dropdown', 'dropdown-links', 'image-avatar', "mini-line", 'mini-bar', 'mini-progress', 'mini-ring-progress', 'mini-area', "button", 'checkbox', 'switch'; optional)
+  - `renderType` (a value equal to: "link", 'ellipsis', 'copyable', 'ellipsis-copyable', 'tags', 'status-badge', 'image', 'custom-format', 'corner-mark', 'row-merge', 'dropdown', 'dropdown-links', 'image-avatar', "mini-line", 'mini-bar', 'mini-progress', 'mini-ring-progress', 'mini-area', "button", 'checkbox', 'switch', 'select'; optional)
   - `renderLinkText` (String; optional)
   - `renderButtonPopConfirmProps` (optional): . renderButtonPopConfirmProps has the following type: lists containing elements 'title', 'okText', 'cancelText'.
 Those elements have the following types:
@@ -138,7 +138,25 @@ Those elements have the following types:
   - `lg` (Real; optional)
   - `xl` (Real; optional)
   - `xxl` (Real; optional)
-  - `shape` (a value equal to: 'circle', 'square'; optional)s
+  - `shape` (a value equal to: 'circle', 'square'; optional) | lists containing elements 'className', 'style', 'options', 'listHeight', 'mode', 'disabled', 'size', 'bordered', 'placeholder', 'placement', 'value', 'maxTagCount', 'optionFilterProp', 'allowClear'.
+Those elements have the following types:
+  - `className` (String; optional)
+  - `style` (Dict; optional)
+  - `options` (optional): . options has the following type: Array of lists containing elements 'label', 'value'.
+Those elements have the following types:
+  - `label` (String; optional)
+  - `value` (String; optional)s
+  - `listHeight` (Real; optional)
+  - `mode` (a value equal to: 'multiple', 'tags'; optional)
+  - `disabled` (Bool; optional)
+  - `size` (a value equal to: 'small', 'middle', 'large'; optional)
+  - `bordered` (Bool; optional)
+  - `placeholder` (String; optional)
+  - `placement` (a value equal to: 'bottomLeft', 'bottomRight', 'topLeft', 'topRight'; optional)
+  - `value` (String | Real | Array of String | Reals; optional)
+  - `maxTagCount` (Real | a value equal to: 'responsive'; optional)
+  - `optionFilterProp` (a value equal to: 'value', 'label'; optional)
+  - `allowClear` (Bool; optional)s
 - `defaultExpandedRowKeys` (Array of Strings; optional)
 - `emptyContent` (a list of or a singular dash component, string or number; optional)
 - `enableCellClickListenColumns` (Array of Strings; optional)
@@ -203,6 +221,9 @@ Those elements have the following types:
 - `recentlyMouseEnterColumnDataIndex` (String; optional)
 - `recentlyMouseEnterRow` (Dict; optional)
 - `recentlyMouseEnterRowKey` (String | Real; optional)
+- `recentlySelectDataIndex` (String; optional)
+- `recentlySelectRow` (Dict; optional)
+- `recentlySelectValue` (Real | String | Array of Real | Strings; optional)
 - `recentlySwitchDataIndex` (String; optional)
 - `recentlySwitchRow` (Dict; optional)
 - `recentlySwitchStatus` (Bool; optional)
@@ -237,7 +258,7 @@ Those elements have the following types:
   - `overlayStyle` (Dict; optional)
 """
 function 'feffery'_antdtable(; kwargs...)
-        available_props = Symbol[:id, :bordered, :cellUpdateOptimize, :className, :clickedContent, :columns, :columnsFormatConstraint, :conditionalStyleFuncs, :containerId, :currentData, :customFormatFuncs, :data, :defaultExpandedRowKeys, :emptyContent, :enableCellClickListenColumns, :enableHoverListen, :expandRowByClick, :expandedRowKeyToContent, :expandedRowWidth, :filter, :filterOptions, :hiddenRowKeys, :key, :loading_state, :locale, :maxHeight, :maxWidth, :miniChartAnimation, :miniChartHeight, :mode, :nClicksButton, :nClicksCell, :nClicksDropdownItem, :pagination, :recentlyButtonClickedDataIndex, :recentlyButtonClickedRow, :recentlyCellClickColumn, :recentlyCellClickRecord, :recentlyChangedRow, :recentlyCheckedDataIndex, :recentlyCheckedLabel, :recentlyCheckedRow, :recentlyCheckedStatus, :recentlyClickedDropdownItemTitle, :recentlyDropdownItemClickedDataIndex, :recentlyDropdownItemClickedRow, :recentlyMouseEnterColumnDataIndex, :recentlyMouseEnterRow, :recentlyMouseEnterRowKey, :recentlySwitchDataIndex, :recentlySwitchRow, :recentlySwitchStatus, :rowSelectionType, :rowSelectionWidth, :selectedRowKeys, :selectedRows, :size, :sortOptions, :sorter, :sticky, :style, :summaryRowContents, :summaryRowFixed, :titlePopoverInfo]
+        available_props = Symbol[:id, :bordered, :cellUpdateOptimize, :className, :clickedContent, :columns, :columnsFormatConstraint, :conditionalStyleFuncs, :containerId, :currentData, :customFormatFuncs, :data, :defaultExpandedRowKeys, :emptyContent, :enableCellClickListenColumns, :enableHoverListen, :expandRowByClick, :expandedRowKeyToContent, :expandedRowWidth, :filter, :filterOptions, :hiddenRowKeys, :key, :loading_state, :locale, :maxHeight, :maxWidth, :miniChartAnimation, :miniChartHeight, :mode, :nClicksButton, :nClicksCell, :nClicksDropdownItem, :pagination, :recentlyButtonClickedDataIndex, :recentlyButtonClickedRow, :recentlyCellClickColumn, :recentlyCellClickRecord, :recentlyChangedRow, :recentlyCheckedDataIndex, :recentlyCheckedLabel, :recentlyCheckedRow, :recentlyCheckedStatus, :recentlyClickedDropdownItemTitle, :recentlyDropdownItemClickedDataIndex, :recentlyDropdownItemClickedRow, :recentlyMouseEnterColumnDataIndex, :recentlyMouseEnterRow, :recentlyMouseEnterRowKey, :recentlySelectDataIndex, :recentlySelectRow, :recentlySelectValue, :recentlySwitchDataIndex, :recentlySwitchRow, :recentlySwitchStatus, :rowSelectionType, :rowSelectionWidth, :selectedRowKeys, :selectedRows, :size, :sortOptions, :sorter, :sticky, :style, :summaryRowContents, :summaryRowFixed, :titlePopoverInfo]
         wild_props = Symbol[]
         return Component("'feffery'_antdtable", "AntdTable", "feffery_antd_components", available_props, wild_props; kwargs...)
 end

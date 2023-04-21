@@ -35,6 +35,7 @@ memory: only kept in memory, reset on page refresh.
 local: window.localStorage, data is kept after the browser quit.
 session: window.sessionStorage, data is cleared once the browser quit.
 - `popupContainer` (a value equal to: 'parent', 'body'; optional)
+- `railStyle` (Dict; optional)
 - `range` (Bool; optional)
 - `step` (Real; optional)
 - `style` (Dict; optional)
@@ -45,7 +46,7 @@ session: window.sessionStorage, data is cleared once the browser quit.
 - `vertical` (Bool; optional)
 """
 function 'feffery'_antdslider(; kwargs...)
-        available_props = Symbol[:id, :className, :defaultValue, :disabled, :key, :loading_state, :marks, :max, :min, :persisted_props, :persistence, :persistence_type, :popupContainer, :range, :step, :style, :tooltipPrefix, :tooltipSuffix, :tooltipVisible, :value, :vertical]
+        available_props = Symbol[:id, :className, :defaultValue, :disabled, :key, :loading_state, :marks, :max, :min, :persisted_props, :persistence, :persistence_type, :popupContainer, :railStyle, :range, :step, :style, :tooltipPrefix, :tooltipSuffix, :tooltipVisible, :value, :vertical]
         wild_props = Symbol[]
         return Component("'feffery'_antdslider", "AntdSlider", "feffery_antd_components", available_props, wild_props; kwargs...)
 end

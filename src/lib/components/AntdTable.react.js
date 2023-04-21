@@ -24,7 +24,8 @@ import {
     Space,
     Image,
     Avatar,
-    message
+    message,
+    Select
 } from 'antd';
 import {
     TinyLine,
@@ -1035,6 +1036,58 @@ class AntdTable extends Component {
                         );
                     }
                 }
+                // select模式
+                else if (columns[i]['renderOptions']['renderType'] === 'select') {
+                    columns[i]['render'] = (content, record) => {
+                        const currentDataIndex = columns[i]['dataIndex']
+                        // 防止未定义错误
+                        content = content || {}
+                        return (
+                            <Select
+                                className={content.className}
+                                style={{
+                                    width: '100%',
+                                    ...content.style
+                                }}
+                                options={content.options}
+                                listHeight={content.listHeight}
+                                mode={content.mode}
+                                disabled={content.disabled}
+                                size={content.size}
+                                bordered={content.bordered}
+                                placeholder={content.placeholder}
+                                placement={content.placement}
+                                value={content.value}
+                                maxTagCount={content.maxTagCount}
+                                optionFilterProp={content.optionFilterProp}
+                                allowClear={content.allowClear}
+                                onChange={(value) => {
+                                    // 修改对应行对应字段item.value值
+                                    try {
+                                        data.forEach(function (item, i) {
+                                            // 命中后，修改值并利用错误抛出来跳出循环
+                                            if (item.key === record.key) {
+                                                data[i][currentDataIndex] = {
+                                                    ...record[currentDataIndex],
+                                                    value: value
+                                                }
+                                                // 提前打断循环过程
+                                                throw new Error("目标已修改");
+                                            }
+                                        });
+                                    } catch (e) {
+                                    };
+
+                                    setProps({
+                                        data: data,
+                                        recentlySelectRow: record,
+                                        recentlySelectDataIndex: columns[i]['dataIndex'],
+                                        recentlySelectValue: value
+                                    });
+                                }} />
+                        );
+                    }
+                }
                 // button模式
                 else if (columns[i]['renderOptions']['renderType'] === 'button') {
 
@@ -1577,7 +1630,7 @@ AntdTable.propTypes = {
                     // 迷你图类
                     'mini-line', 'mini-bar', 'mini-progress', 'mini-ring-progress', 'mini-area',
                     // 监听交互类
-                    'button', 'checkbox', 'switch'
+                    'button', 'checkbox', 'switch', 'select'
                 ]),
 
                 // 当renderType='link'时，此参数会将传入的字符串作为渲染link的显示文字内容
@@ -1902,6 +1955,65 @@ AntdTable.propTypes = {
                     ]),
                     // 设置头像的形状，可选的有'circle'、'square'，默认为'circle'
                     shape: PropTypes.oneOf(['circle', 'square'])
+                }),
+
+                // select模式
+                PropTypes.exact({
+                    // 设置下拉选择的css类
+                    className: PropTypes.string,
+                    // 设置下拉选择的css样式，其中宽度默认为'100%'
+                    style: PropTypes.object,
+                    // 设置下拉选择选项内容
+                    options: PropTypes.arrayOf(
+                        PropTypes.exact({
+                            // 设置选项内容
+                            label: PropTypes.string,
+                            // 设置选项内容的值
+                            value: PropTypes.string
+                        })
+                    ),
+                    // 设置下拉选择菜单像素高度，默认为256
+                    listHeight: PropTypes.number,
+                    // 设置选择模式（multiple：多选，tags：自由新增模式。默认为单选）
+                    mode: PropTypes.oneOf(['multiple', 'tags']),
+                    // 设置是否禁用当前下拉选择
+                    disabled: PropTypes.bool,
+                    // 设置下拉选择尺寸规格，可选的有'small'、'middle'及'large'
+                    // 默认为'middle'
+                    size: PropTypes.oneOf([
+                        'small',
+                        'middle',
+                        'large'
+                    ]),
+                    // 设置当前下拉选择组件是否渲染边框，默认为true
+                    bordered: PropTypes.bool,
+                    // 选择框默认文本
+                    placeholder: PropTypes.string,
+                    // 用于设置悬浮展开层的方位，可选的有'bottomLeft'、'bottomRight'、'topLeft'、'topRight'
+                    // 默认为'bottomLeft'
+                    placement: PropTypes.oneOf(['bottomLeft', 'bottomRight', 'topLeft', 'topRight']),
+                    // 对应已被选中的选项值或选项值数组
+                    value: PropTypes.oneOfType([
+                        PropTypes.oneOfType([
+                            PropTypes.string,
+                            PropTypes.number
+                        ]),
+                        PropTypes.arrayOf(
+                            PropTypes.oneOfType([
+                                PropTypes.string,
+                                PropTypes.number
+                            ])
+                        ),
+                    ]),
+                    // 设置最大显示的已选择选项，默认为5，超出部分会自动省略
+                    maxTagCount: PropTypes.oneOfType([
+                        PropTypes.number,
+                        PropTypes.oneOf(['responsive'])
+                    ]),
+                    // 设置输入框下输入内容进行搜索的字段，可选的有'value'、'label'，默认为'value'
+                    optionFilterProp: PropTypes.oneOf(['value', 'label']),
+                    // 设置是否渲染内容清空按钮，默认为true
+                    allowClear: PropTypes.bool
                 })
             ])
         )
@@ -2234,6 +2346,27 @@ AntdTable.propTypes = {
 
     // 用于监听最近一次被点击的dropdown对应的行记录
     recentlyDropdownItemClickedRow: PropTypes.object,
+
+    // select再渲染模式
+    // 用于监听最近发生select选值变更对应的记录行
+    recentlySelectRow: PropTypes.object,
+
+    // 用于监听最近发生select选值变更的字段dataIndex信息
+    recentlySelectDataIndex: PropTypes.string,
+
+    // 用于监听最近发生select选值变更对应的最新value状态
+    recentlySelectValue: PropTypes.oneOfType([
+        PropTypes.oneOfType([
+            PropTypes.number,
+            PropTypes.string
+        ]),
+        PropTypes.arrayOf(
+            PropTypes.oneOfType([
+                PropTypes.number,
+                PropTypes.string
+            ])
+        )
+    ]),
 
     // 用于设置需要进行隐藏的行对应key值数组，默认为[]
     hiddenRowKeys: PropTypes.arrayOf(PropTypes.string),
