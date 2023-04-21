@@ -13,6 +13,7 @@ const AntdSlider = (props) => {
         id,
         className,
         style,
+        railStyle,
         key,
         value,
         defaultValue,
@@ -77,6 +78,7 @@ const AntdSlider = (props) => {
                     (className ? useCss(className) : undefined)
             }
             style={style}
+            railStyle={railStyle}
             key={key}
             value={value}
             defaultValue={defaultValue}
@@ -122,6 +124,9 @@ AntdSlider.propTypes = {
 
     // 自定义css字典
     style: PropTypes.object,
+
+    // 用于设置slider滑轨的css样式
+    railStyle: PropTypes.object,
 
     // 辅助刷新用唯一标识key值
     key: PropTypes.string,
