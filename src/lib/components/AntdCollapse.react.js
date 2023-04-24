@@ -109,8 +109,8 @@ AntdCollapse.propTypes = {
     // 设置是否开启透明面板模式
     ghost: PropTypes.bool,
 
-    // 设置可折叠点击触发区域，'header'表示仅限标题文字区域，'disabled'表示禁用折叠
-    collapsible: PropTypes.oneOf(['header', 'disabled']),
+    // 设置可折叠点击触发区域，'header'表示仅限标题文字区域，'disabled'表示禁用折叠，'icon'表示仅点击图标
+    collapsible: PropTypes.oneOf(['header', 'disabled', 'icon']),
 
     // 设置当折叠面板默认未展开时强制渲染内部元素，默认为false
     forceRender: PropTypes.bool,

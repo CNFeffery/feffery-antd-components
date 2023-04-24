@@ -117,8 +117,8 @@ AntdAccordion.propTypes = {
                 PropTypes.string,
                 PropTypes.number
             ]).isRequired,
-            // 设置当前手风琴项的折叠触发行为，可选的有'header'、'disabled'
-            collapsible: PropTypes.oneOf(['header', 'disabled']),
+            // 设置当前手风琴项的折叠触发行为，可选的有'header'、'disabled'、'icon'
+            collapsible: PropTypes.oneOf(['header', 'disabled', 'icon']),
             // 设置当前手风琴项的标题内容
             title: PropTypes.node,
             // 设置手风琴项右上角的额外区域内容
@@ -152,8 +152,8 @@ AntdAccordion.propTypes = {
     // 设置是否渲染边框，默认为true
     bordered: PropTypes.bool,
 
-    // 统一设置所有手风琴项的折叠触发行为，可选的有'header'、'disabled'
-    collapsible: PropTypes.oneOf(['header', 'disabled']),
+    // 统一设置所有手风琴项的折叠触发行为，可选的有'header'、'disabled'、'icon'
+    collapsible: PropTypes.oneOf(['header', 'disabled', 'icon']),
 
     // 自定义折叠图标位置，可选的有'left'、'right'
     expandIconPosition: PropTypes.oneOf(['left', 'right']),
