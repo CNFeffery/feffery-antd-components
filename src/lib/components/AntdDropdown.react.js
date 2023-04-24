@@ -24,6 +24,7 @@ const AntdDropdown = (props) => {
         overlayStyle,
         placement,
         trigger,
+        autoAdjustOverflow,
         visible,
         menuItems,
         nClicks,
@@ -84,6 +85,7 @@ const AntdDropdown = (props) => {
             overlayStyle={overlayStyle}
             placement={placement}
             trigger={[trigger]}
+            autoAdjustOverflow={autoAdjustOverflow}
             visible={visible}
             onVisibleChange={(v) => setProps({
                 visible: v
@@ -205,6 +207,9 @@ AntdDropdown.propTypes = {
     // 设置触发下拉菜单显示的行为，'click'表示点击，'hover'表示鼠标悬浮
     trigger: PropTypes.oneOf(['click', 'hover']),
 
+    // 用于设置是否在下拉菜单被遮挡时自动调整位置，默认为true
+    autoAdjustOverflow: PropTypes.bool,
+
     // 对应下拉菜单是否显示，默认为false
     visible: PropTypes.bool,
 
@@ -241,7 +246,8 @@ AntdDropdown.defaultProps = {
     buttonMode: false,
     trigger: 'hover',
     nClicks: 0,
-    popupContainer: 'body'
+    popupContainer: 'body',
+    autoAdjustOverflow: true
 }
 
 export default AntdDropdown;
