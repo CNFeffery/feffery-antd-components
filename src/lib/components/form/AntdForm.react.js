@@ -19,6 +19,8 @@ const AntdForm = (props) => {
         colon,
         labelAlign,
         layout,
+        disabled,
+        size,
         setProps,
         loading_state
     } = props;
@@ -37,6 +39,8 @@ const AntdForm = (props) => {
             colon={colon}
             labelAlign={labelAlign}
             layout={layout}
+            disabled={disabled}
+            size={size}
             data-dash-is-loading={
                 (loading_state && loading_state.is_loading) || undefined
             }>
@@ -94,6 +98,12 @@ AntdForm.propTypes = {
     // 设置表单项标签的文本对齐方式，可选的有'left'与'right'，默认为'right'
     labelAlign: PropTypes.oneOf(['left', 'right']),
 
+    // 设置是否禁用当前表单内的组件，仅针对fac内部组件有效，默认为false
+    disabled: PropTypes.bool,
+
+    // 针对表单内的组件设置尺寸规格，仅针对fac内部组件有效
+    size: PropTypes.oneOf(['small', 'middle', 'large']),
+
     loading_state: PropTypes.shape({
         /**
          * Determines if the component is loading or not
@@ -120,7 +130,8 @@ AntdForm.propTypes = {
 AntdForm.defaultProps = {
     layout: 'horizontal',
     colon: true,
-    labelAlign: 'right'
+    labelAlign: 'right',
+    disabled: false
 }
 
 export default AntdForm;
