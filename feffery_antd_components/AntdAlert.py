@@ -13,7 +13,7 @@ Keyword arguments:
 
 - action (a list of or a singular dash component, string or number; optional)
 
-- banner (boolean; optional)
+- banner (boolean; default False)
 
 - className (string | dict; optional)
 
@@ -40,17 +40,17 @@ Keyword arguments:
 
 - messageRenderMode (a value equal to: 'default', 'loop-text', 'marquee'; default 'default')
 
-- showIcon (boolean; optional)
+- showIcon (boolean; default False)
 
 - style (dict; optional)
 
-- type (a value equal to: 'success', 'info', 'warning', 'error'; optional)"""
-    _children_props = ['description', 'message', 'action']
-    _base_nodes = ['description', 'message', 'action', 'children']
+- type (a value equal to: 'success', 'info', 'warning', 'error'; default 'info')"""
+    _children_props = ['message', 'description', 'action']
+    _base_nodes = ['message', 'description', 'action', 'children']
     _namespace = 'feffery_antd_components'
     _type = 'AntdAlert'
     @_explicitize_args
-    def __init__(self, id=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, key=Component.UNDEFINED, description=Component.UNDEFINED, message=Component.UNDEFINED, type=Component.UNDEFINED, showIcon=Component.UNDEFINED, closable=Component.UNDEFINED, messageRenderMode=Component.UNDEFINED, action=Component.UNDEFINED, banner=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
+    def __init__(self, id=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, key=Component.UNDEFINED, message=Component.UNDEFINED, description=Component.UNDEFINED, type=Component.UNDEFINED, showIcon=Component.UNDEFINED, closable=Component.UNDEFINED, messageRenderMode=Component.UNDEFINED, action=Component.UNDEFINED, banner=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
         self._prop_names = ['id', 'action', 'banner', 'className', 'closable', 'description', 'key', 'loading_state', 'message', 'messageRenderMode', 'showIcon', 'style', 'type']
         self._valid_wildcard_attributes =            []
         self.available_properties = ['id', 'action', 'banner', 'className', 'closable', 'description', 'key', 'loading_state', 'message', 'messageRenderMode', 'showIcon', 'style', 'type']

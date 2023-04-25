@@ -15,13 +15,13 @@ Keyword arguments:
 
 - bordered (boolean; default True)
 
-- className (string; optional)
+- className (string | dict; optional)
 
 - defaultPickerValue (string; optional)
 
 - defaultValue (string; optional)
 
-- disabled (boolean; optional)
+- disabled (boolean; default False)
 
 - disabledDatesStrategy (list of dicts; optional)
 
@@ -32,6 +32,8 @@ Keyword arguments:
     - target (a value equal to: 'day', 'month', 'quarter', 'year', 'dayOfYear', 'dayOfWeek', 'specific-date'; optional)
 
     - value (number | string | list of numbers | list of strings; optional)
+
+- firstDayOfWeek (number; optional)
 
 - format (string; optional)
 
@@ -77,17 +79,19 @@ Keyword arguments:
 
 - placeholder (string; optional)
 
+- placement (a value equal to: 'bottomLeft', 'bottomRight', 'topLeft', 'topRight'; default 'bottomLeft')
+
 - popupContainer (a value equal to: 'parent', 'body'; default 'body')
 
 - readOnly (boolean; optional)
 
 - showTime (boolean; default False)
 
-- size (a value equal to: 'small', 'middle', 'large'; optional)
+- size (a value equal to: 'small', 'middle', 'large'; default 'middle')
 
 - status (a value equal to: 'error', 'warning'; optional)
 
-- style (dict; default {    width: 220})
+- style (dict; optional)
 
 - value (string; optional)"""
     _children_props = []
@@ -95,10 +99,10 @@ Keyword arguments:
     _namespace = 'feffery_antd_components'
     _type = 'AntdDatePicker'
     @_explicitize_args
-    def __init__(self, id=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, key=Component.UNDEFINED, locale=Component.UNDEFINED, format=Component.UNDEFINED, picker=Component.UNDEFINED, disabled=Component.UNDEFINED, value=Component.UNDEFINED, showTime=Component.UNDEFINED, allowClear=Component.UNDEFINED, defaultPickerValue=Component.UNDEFINED, defaultValue=Component.UNDEFINED, disabledDatesStrategy=Component.UNDEFINED, placeholder=Component.UNDEFINED, bordered=Component.UNDEFINED, size=Component.UNDEFINED, status=Component.UNDEFINED, popupContainer=Component.UNDEFINED, readOnly=Component.UNDEFINED, loading_state=Component.UNDEFINED, persistence=Component.UNDEFINED, persisted_props=Component.UNDEFINED, persistence_type=Component.UNDEFINED, **kwargs):
-        self._prop_names = ['id', 'allowClear', 'bordered', 'className', 'defaultPickerValue', 'defaultValue', 'disabled', 'disabledDatesStrategy', 'format', 'key', 'loading_state', 'locale', 'persisted_props', 'persistence', 'persistence_type', 'picker', 'placeholder', 'popupContainer', 'readOnly', 'showTime', 'size', 'status', 'style', 'value']
+    def __init__(self, id=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, key=Component.UNDEFINED, locale=Component.UNDEFINED, format=Component.UNDEFINED, picker=Component.UNDEFINED, firstDayOfWeek=Component.UNDEFINED, disabled=Component.UNDEFINED, showTime=Component.UNDEFINED, size=Component.UNDEFINED, bordered=Component.UNDEFINED, placeholder=Component.UNDEFINED, placement=Component.UNDEFINED, value=Component.UNDEFINED, defaultValue=Component.UNDEFINED, defaultPickerValue=Component.UNDEFINED, disabledDatesStrategy=Component.UNDEFINED, status=Component.UNDEFINED, allowClear=Component.UNDEFINED, readOnly=Component.UNDEFINED, popupContainer=Component.UNDEFINED, loading_state=Component.UNDEFINED, persistence=Component.UNDEFINED, persisted_props=Component.UNDEFINED, persistence_type=Component.UNDEFINED, **kwargs):
+        self._prop_names = ['id', 'allowClear', 'bordered', 'className', 'defaultPickerValue', 'defaultValue', 'disabled', 'disabledDatesStrategy', 'firstDayOfWeek', 'format', 'key', 'loading_state', 'locale', 'persisted_props', 'persistence', 'persistence_type', 'picker', 'placeholder', 'placement', 'popupContainer', 'readOnly', 'showTime', 'size', 'status', 'style', 'value']
         self._valid_wildcard_attributes =            []
-        self.available_properties = ['id', 'allowClear', 'bordered', 'className', 'defaultPickerValue', 'defaultValue', 'disabled', 'disabledDatesStrategy', 'format', 'key', 'loading_state', 'locale', 'persisted_props', 'persistence', 'persistence_type', 'picker', 'placeholder', 'popupContainer', 'readOnly', 'showTime', 'size', 'status', 'style', 'value']
+        self.available_properties = ['id', 'allowClear', 'bordered', 'className', 'defaultPickerValue', 'defaultValue', 'disabled', 'disabledDatesStrategy', 'firstDayOfWeek', 'format', 'key', 'loading_state', 'locale', 'persisted_props', 'persistence', 'persistence_type', 'picker', 'placeholder', 'placement', 'popupContainer', 'readOnly', 'showTime', 'size', 'status', 'style', 'value']
         self.available_wildcard_properties =            []
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()

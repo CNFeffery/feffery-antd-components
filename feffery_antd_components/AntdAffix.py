@@ -13,7 +13,7 @@ Keyword arguments:
 
 - id (string; optional)
 
-- className (string; optional)
+- className (string | dict; optional)
 
 - key (string; optional)
 
@@ -32,7 +32,7 @@ Keyword arguments:
 
 - offsetBottom (number; optional)
 
-- offsetTop (number; optional)
+- offsetTop (number; default 0)
 
 - style (dict; optional)
 

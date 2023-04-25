@@ -21,7 +21,7 @@ Keyword arguments:
 
 - danger (boolean; default False)
 
-- debounceWait (number; default 0)
+- debounceWait (number; default 200)
 
 - disabled (boolean; default False)
 
@@ -52,7 +52,7 @@ Keyword arguments:
 
 - shape (a value equal to: 'circle', 'round'; optional)
 
-- size (a value equal to: 'small', 'middle', 'large'; optional)
+- size (a value equal to: 'small', 'middle', 'large'; default 'middle')
 
 - style (dict; optional)
 

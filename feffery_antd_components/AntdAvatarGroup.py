@@ -32,13 +32,13 @@ Keyword arguments:
 
 - maxCount (number; optional)
 
-- maxPopoverPlacement (a value equal to: 'top', 'bottom'; optional)
+- maxPopoverPlacement (a value equal to: 'top', 'bottom'; default 'top')
 
-- maxPopoverTrigger (a value equal to: 'hover', 'focus', 'click'; optional)
+- maxPopoverTrigger (a value equal to: 'hover', 'click'; default 'hover')
 
 - maxStyle (dict; optional)
 
-- size (dict; optional)
+- size (dict; default 'default')
 
     `size` is a number | a value equal to: 'large', 'small', 'default'
     | dict with keys:

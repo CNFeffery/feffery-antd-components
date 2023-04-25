@@ -11,15 +11,15 @@ Keyword arguments:
 
 - id (string; optional)
 
-- bottom (number; optional)
+- bottom (number; default 24)
 
-- className (string; optional)
+- className (string | dict; optional)
 
 - closable (boolean; default True)
 
 - description (string; optional)
 
-- duration (number; optional)
+- duration (number; default 4.5)
 
 - key (string; optional)
 
@@ -38,11 +38,11 @@ Keyword arguments:
 
 - message (string; optional)
 
-- placement (a value equal to: 'top', 'topLeft', 'topRight', 'bottomLeft', 'bottomRight'; optional)
+- placement (a value equal to: 'topLeft', 'topRight', 'bottomLeft', 'bottomRight'; default 'topRight')
 
 - style (dict; optional)
 
-- top (number; optional)
+- top (number; default 24)
 
 - type (a value equal to: 'default', 'success', 'error', 'info', 'warning'; default 'default')"""
     _children_props = []

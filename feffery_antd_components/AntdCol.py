@@ -62,13 +62,13 @@ Keyword arguments:
 
     - span (number; optional)
 
-- offset (number; optional)
+- offset (number; default 0)
 
-- order (number; optional)
+- order (number; default 0)
 
-- pull (number; optional)
+- pull (number; default 0)
 
-- push (number; optional)
+- push (number; default 0)
 
 - sm (dict; optional)
 
@@ -134,7 +134,7 @@ Keyword arguments:
     _namespace = 'feffery_antd_components'
     _type = 'AntdCol'
     @_explicitize_args
-    def __init__(self, children=None, id=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, key=Component.UNDEFINED, loading_state=Component.UNDEFINED, span=Component.UNDEFINED, offset=Component.UNDEFINED, order=Component.UNDEFINED, pull=Component.UNDEFINED, push=Component.UNDEFINED, flex=Component.UNDEFINED, xs=Component.UNDEFINED, sm=Component.UNDEFINED, md=Component.UNDEFINED, lg=Component.UNDEFINED, xl=Component.UNDEFINED, xxl=Component.UNDEFINED, **kwargs):
+    def __init__(self, children=None, id=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, key=Component.UNDEFINED, span=Component.UNDEFINED, offset=Component.UNDEFINED, order=Component.UNDEFINED, pull=Component.UNDEFINED, push=Component.UNDEFINED, flex=Component.UNDEFINED, xs=Component.UNDEFINED, sm=Component.UNDEFINED, md=Component.UNDEFINED, lg=Component.UNDEFINED, xl=Component.UNDEFINED, xxl=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
         self._prop_names = ['children', 'id', 'className', 'flex', 'key', 'lg', 'loading_state', 'md', 'offset', 'order', 'pull', 'push', 'sm', 'span', 'style', 'xl', 'xs', 'xxl']
         self._valid_wildcard_attributes =            []
         self.available_properties = ['children', 'id', 'className', 'flex', 'key', 'lg', 'loading_state', 'md', 'offset', 'order', 'pull', 'push', 'sm', 'span', 'style', 'xl', 'xs', 'xxl']

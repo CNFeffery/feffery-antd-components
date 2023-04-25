@@ -15,11 +15,11 @@ Keyword arguments:
 
 - id (string; optional)
 
-- align (a value equal to: 'top', 'middle', 'bottom'; optional)
+- align (a value equal to: 'top', 'middle', 'bottom'; default 'top')
 
 - className (string | dict; optional)
 
-- gutter (dict; optional)
+- gutter (dict; default 0)
 
     `gutter` is a number | list of numbers | dict with keys:
 
@@ -35,7 +35,7 @@ Keyword arguments:
 
     - xxl (number; optional)
 
-- justify (a value equal to: 'start', 'end', 'center', 'space-around', 'space-between'; optional)
+- justify (a value equal to: 'start', 'end', 'center', 'space-around', 'space-between'; default 'start')
 
 - key (string; optional)
 
@@ -54,13 +54,13 @@ Keyword arguments:
 
 - style (dict; optional)
 
-- wrap (boolean; optional)"""
+- wrap (boolean; default True)"""
     _children_props = []
     _base_nodes = ['children']
     _namespace = 'feffery_antd_components'
     _type = 'AntdRow'
     @_explicitize_args
-    def __init__(self, children=None, id=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, key=Component.UNDEFINED, loading_state=Component.UNDEFINED, align=Component.UNDEFINED, gutter=Component.UNDEFINED, justify=Component.UNDEFINED, wrap=Component.UNDEFINED, **kwargs):
+    def __init__(self, children=None, id=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, key=Component.UNDEFINED, align=Component.UNDEFINED, gutter=Component.UNDEFINED, justify=Component.UNDEFINED, wrap=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
         self._prop_names = ['children', 'id', 'align', 'className', 'gutter', 'justify', 'key', 'loading_state', 'style', 'wrap']
         self._valid_wildcard_attributes =            []
         self.available_properties = ['children', 'id', 'align', 'className', 'gutter', 'justify', 'key', 'loading_state', 'style', 'wrap']

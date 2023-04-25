@@ -11,19 +11,19 @@ Keyword arguments:
 
 - id (string; optional)
 
-- allowClear (boolean; optional)
+- allowClear (boolean; default True)
 
-- bordered (boolean; optional)
+- bordered (boolean; default True)
 
-- className (string; optional)
+- className (string | dict; optional)
 
 - defaultValue (list of strings; optional)
 
-- disabled (list of booleans; optional)
+- disabled (list of booleans; default [False, False])
 
 - format (string; default 'HH:mm:ss')
 
-- hourStep (number; optional)
+- hourStep (number; default 1)
 
 - key (string; optional)
 
@@ -44,7 +44,7 @@ Keyword arguments:
 
 - locale (a value equal to: 'zh-cn', 'en-us'; default 'zh-cn')
 
-- minuteStep (number; optional)
+- minuteStep (number; default 1)
 
 - persisted_props (list of a value equal to: 'value's; default ['value']):
     Properties whose user interactions will persist after refreshing
@@ -67,19 +67,21 @@ Keyword arguments:
 
 - placeholder (list of strings; optional)
 
+- placement (a value equal to: 'bottomLeft', 'bottomRight', 'topLeft', 'topRight'; default 'bottomLeft')
+
 - popupContainer (a value equal to: 'parent', 'body'; default 'body')
 
 - readOnly (boolean; optional)
 
-- secondStep (number; optional)
+- secondStep (number; default 1)
 
-- size (a value equal to: 'small', 'middle', 'large'; optional)
+- size (a value equal to: 'small', 'middle', 'large'; default 'middle')
 
 - status (a value equal to: 'error', 'warning'; optional)
 
-- style (dict; default {    width: 220})
+- style (dict; optional)
 
-- use12Hours (boolean; optional)
+- use12Hours (boolean; default False)
 
 - value (list of strings; optional)"""
     _children_props = []
@@ -87,10 +89,10 @@ Keyword arguments:
     _namespace = 'feffery_antd_components'
     _type = 'AntdTimeRangePicker'
     @_explicitize_args
-    def __init__(self, id=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, key=Component.UNDEFINED, locale=Component.UNDEFINED, disabled=Component.UNDEFINED, hourStep=Component.UNDEFINED, minuteStep=Component.UNDEFINED, secondStep=Component.UNDEFINED, format=Component.UNDEFINED, use12Hours=Component.UNDEFINED, allowClear=Component.UNDEFINED, placeholder=Component.UNDEFINED, value=Component.UNDEFINED, defaultValue=Component.UNDEFINED, bordered=Component.UNDEFINED, size=Component.UNDEFINED, status=Component.UNDEFINED, popupContainer=Component.UNDEFINED, readOnly=Component.UNDEFINED, loading_state=Component.UNDEFINED, persistence=Component.UNDEFINED, persisted_props=Component.UNDEFINED, persistence_type=Component.UNDEFINED, **kwargs):
-        self._prop_names = ['id', 'allowClear', 'bordered', 'className', 'defaultValue', 'disabled', 'format', 'hourStep', 'key', 'loading_state', 'locale', 'minuteStep', 'persisted_props', 'persistence', 'persistence_type', 'placeholder', 'popupContainer', 'readOnly', 'secondStep', 'size', 'status', 'style', 'use12Hours', 'value']
+    def __init__(self, id=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, key=Component.UNDEFINED, locale=Component.UNDEFINED, hourStep=Component.UNDEFINED, minuteStep=Component.UNDEFINED, secondStep=Component.UNDEFINED, format=Component.UNDEFINED, use12Hours=Component.UNDEFINED, allowClear=Component.UNDEFINED, placeholder=Component.UNDEFINED, placement=Component.UNDEFINED, disabled=Component.UNDEFINED, value=Component.UNDEFINED, defaultValue=Component.UNDEFINED, bordered=Component.UNDEFINED, size=Component.UNDEFINED, status=Component.UNDEFINED, readOnly=Component.UNDEFINED, popupContainer=Component.UNDEFINED, loading_state=Component.UNDEFINED, persistence=Component.UNDEFINED, persisted_props=Component.UNDEFINED, persistence_type=Component.UNDEFINED, **kwargs):
+        self._prop_names = ['id', 'allowClear', 'bordered', 'className', 'defaultValue', 'disabled', 'format', 'hourStep', 'key', 'loading_state', 'locale', 'minuteStep', 'persisted_props', 'persistence', 'persistence_type', 'placeholder', 'placement', 'popupContainer', 'readOnly', 'secondStep', 'size', 'status', 'style', 'use12Hours', 'value']
         self._valid_wildcard_attributes =            []
-        self.available_properties = ['id', 'allowClear', 'bordered', 'className', 'defaultValue', 'disabled', 'format', 'hourStep', 'key', 'loading_state', 'locale', 'minuteStep', 'persisted_props', 'persistence', 'persistence_type', 'placeholder', 'popupContainer', 'readOnly', 'secondStep', 'size', 'status', 'style', 'use12Hours', 'value']
+        self.available_properties = ['id', 'allowClear', 'bordered', 'className', 'defaultValue', 'disabled', 'format', 'hourStep', 'key', 'loading_state', 'locale', 'minuteStep', 'persisted_props', 'persistence', 'persistence_type', 'placeholder', 'placement', 'popupContainer', 'readOnly', 'secondStep', 'size', 'status', 'style', 'use12Hours', 'value']
         self.available_wildcard_properties =            []
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()

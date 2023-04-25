@@ -17,17 +17,17 @@ Keyword arguments:
 
 - activeKey (string | list of strings | number | list of numbers; optional)
 
-- bordered (boolean; optional)
+- bordered (boolean; default True)
 
-- className (string; optional)
+- className (string | dict; optional)
 
-- collapsible (a value equal to: 'header', 'disabled'; optional)
+- collapsible (a value equal to: 'header', 'disabled', 'icon'; optional)
 
 - defaultActiveKey (string | list of strings | number | list of numbers; optional)
 
-- expandIconPosition (a value equal to: 'left', 'right'; optional)
+- expandIconPosition (a value equal to: 'left', 'right'; default 'left')
 
-- ghost (boolean; optional)
+- ghost (boolean; default False)
 
 - items (list of dicts; optional)
 
@@ -35,9 +35,9 @@ Keyword arguments:
 
     - children (a list of or a singular dash component, string or number; optional)
 
-    - className (string; optional)
+    - className (string | dict; optional)
 
-    - collapsible (a value equal to: 'header', 'disabled'; optional)
+    - collapsible (a value equal to: 'header', 'disabled', 'icon'; optional)
 
     - extra (a list of or a singular dash component, string or number; optional)
 

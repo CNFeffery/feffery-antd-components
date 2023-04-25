@@ -13,7 +13,7 @@ Keyword arguments:
 
 - className (string | dict; optional)
 
-- debounceWait (number; default 0)
+- debounceWait (number; default 200)
 
 - icon (string; optional)
 

@@ -15,17 +15,17 @@ Keyword arguments:
 
 - className (string | dict; optional)
 
-- closable (boolean; optional)
+- closable (boolean; default True)
 
 - containerId (string; optional)
 
-- destroyOnClose (boolean; default True)
+- destroyOnClose (boolean; default False)
 
 - extra (a list of or a singular dash component, string or number; optional)
 
 - forceRender (boolean; default False)
 
-- height (number | string; optional)
+- height (number | string; default 256)
 
 - key (string; optional)
 
@@ -42,27 +42,27 @@ Keyword arguments:
     - prop_name (string; optional):
         Holds which property is loading.
 
-- mask (boolean; optional)
+- mask (boolean; default True)
 
-- maskClosable (boolean; optional)
+- maskClosable (boolean; default True)
 
-- placement (a value equal to: 'left', 'right', 'top', 'bottom'; optional)
+- placement (a value equal to: 'left', 'right', 'top', 'bottom'; default 'right')
 
 - style (dict; optional)
 
-- title (string; optional)
+- title (a list of or a singular dash component, string or number; optional)
 
-- visible (boolean; optional)
+- visible (boolean; default False)
 
-- width (number | string; optional)
+- width (number | string; default 256)
 
-- zIndex (number; optional)"""
-    _children_props = ['extra']
-    _base_nodes = ['extra', 'children']
+- zIndex (number; default 1000)"""
+    _children_props = ['title', 'extra']
+    _base_nodes = ['title', 'extra', 'children']
     _namespace = 'feffery_antd_components'
     _type = 'AntdDrawer'
     @_explicitize_args
-    def __init__(self, children=None, id=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, key=Component.UNDEFINED, visible=Component.UNDEFINED, title=Component.UNDEFINED, placement=Component.UNDEFINED, closable=Component.UNDEFINED, forceRender=Component.UNDEFINED, destroyOnClose=Component.UNDEFINED, containerId=Component.UNDEFINED, height=Component.UNDEFINED, mask=Component.UNDEFINED, maskClosable=Component.UNDEFINED, width=Component.UNDEFINED, zIndex=Component.UNDEFINED, extra=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
+    def __init__(self, children=None, id=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, key=Component.UNDEFINED, visible=Component.UNDEFINED, title=Component.UNDEFINED, placement=Component.UNDEFINED, closable=Component.UNDEFINED, forceRender=Component.UNDEFINED, destroyOnClose=Component.UNDEFINED, width=Component.UNDEFINED, height=Component.UNDEFINED, mask=Component.UNDEFINED, maskClosable=Component.UNDEFINED, zIndex=Component.UNDEFINED, extra=Component.UNDEFINED, containerId=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
         self._prop_names = ['children', 'id', 'className', 'closable', 'containerId', 'destroyOnClose', 'extra', 'forceRender', 'height', 'key', 'loading_state', 'mask', 'maskClosable', 'placement', 'style', 'title', 'visible', 'width', 'zIndex']
         self._valid_wildcard_attributes =            []
         self.available_properties = ['children', 'id', 'className', 'closable', 'containerId', 'destroyOnClose', 'extra', 'forceRender', 'height', 'key', 'loading_state', 'mask', 'maskClosable', 'placement', 'style', 'title', 'visible', 'width', 'zIndex']

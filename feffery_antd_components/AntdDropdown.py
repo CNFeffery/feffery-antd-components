@@ -11,7 +11,9 @@ Keyword arguments:
 
 - id (string; optional)
 
-- arrow (boolean; optional)
+- arrow (boolean; default False)
+
+- autoAdjustOverflow (boolean; default True)
 
 - buttonMode (boolean; default False)
 
@@ -25,11 +27,11 @@ Keyword arguments:
 
     - type (a value equal to: 'primary', 'ghost', 'dashed', 'link', 'text', 'default'; optional)
 
-- className (string; optional)
+- className (string | dict; optional)
 
 - clickedKey (string; optional)
 
-- disabled (boolean; optional)
+- disabled (boolean; default False)
 
 - key (string; optional)
 
@@ -66,7 +68,7 @@ Keyword arguments:
 
 - nClicks (number; default 0)
 
-- overlayClassName (string; optional)
+- overlayClassName (string | dict; optional)
 
 - overlayStyle (dict; optional)
 
@@ -86,10 +88,10 @@ Keyword arguments:
     _namespace = 'feffery_antd_components'
     _type = 'AntdDropdown'
     @_explicitize_args
-    def __init__(self, id=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, key=Component.UNDEFINED, title=Component.UNDEFINED, buttonMode=Component.UNDEFINED, buttonProps=Component.UNDEFINED, clickedKey=Component.UNDEFINED, nClicks=Component.UNDEFINED, menuItems=Component.UNDEFINED, arrow=Component.UNDEFINED, disabled=Component.UNDEFINED, overlayClassName=Component.UNDEFINED, overlayStyle=Component.UNDEFINED, placement=Component.UNDEFINED, trigger=Component.UNDEFINED, visible=Component.UNDEFINED, popupContainer=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
-        self._prop_names = ['id', 'arrow', 'buttonMode', 'buttonProps', 'className', 'clickedKey', 'disabled', 'key', 'loading_state', 'menuItems', 'nClicks', 'overlayClassName', 'overlayStyle', 'placement', 'popupContainer', 'style', 'title', 'trigger', 'visible']
+    def __init__(self, id=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, key=Component.UNDEFINED, title=Component.UNDEFINED, buttonMode=Component.UNDEFINED, buttonProps=Component.UNDEFINED, clickedKey=Component.UNDEFINED, nClicks=Component.UNDEFINED, menuItems=Component.UNDEFINED, arrow=Component.UNDEFINED, disabled=Component.UNDEFINED, overlayClassName=Component.UNDEFINED, overlayStyle=Component.UNDEFINED, placement=Component.UNDEFINED, trigger=Component.UNDEFINED, autoAdjustOverflow=Component.UNDEFINED, visible=Component.UNDEFINED, popupContainer=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
+        self._prop_names = ['id', 'arrow', 'autoAdjustOverflow', 'buttonMode', 'buttonProps', 'className', 'clickedKey', 'disabled', 'key', 'loading_state', 'menuItems', 'nClicks', 'overlayClassName', 'overlayStyle', 'placement', 'popupContainer', 'style', 'title', 'trigger', 'visible']
         self._valid_wildcard_attributes =            []
-        self.available_properties = ['id', 'arrow', 'buttonMode', 'buttonProps', 'className', 'clickedKey', 'disabled', 'key', 'loading_state', 'menuItems', 'nClicks', 'overlayClassName', 'overlayStyle', 'placement', 'popupContainer', 'style', 'title', 'trigger', 'visible']
+        self.available_properties = ['id', 'arrow', 'autoAdjustOverflow', 'buttonMode', 'buttonProps', 'className', 'clickedKey', 'disabled', 'key', 'loading_state', 'menuItems', 'nClicks', 'overlayClassName', 'overlayStyle', 'placement', 'popupContainer', 'style', 'title', 'trigger', 'visible']
         self.available_wildcard_properties =            []
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()

@@ -11,7 +11,9 @@ Keyword arguments:
 
 - id (string; optional)
 
-- className (string; optional)
+- className (string | dict; optional)
+
+- key (string; optional)
 
 - loading_state (dict; optional)
 
@@ -32,10 +34,10 @@ Keyword arguments:
     _namespace = 'feffery_antd_components'
     _type = 'AntdSkeletonImage'
     @_explicitize_args
-    def __init__(self, id=Component.UNDEFINED, style=Component.UNDEFINED, className=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
-        self._prop_names = ['id', 'className', 'loading_state', 'style']
+    def __init__(self, id=Component.UNDEFINED, style=Component.UNDEFINED, className=Component.UNDEFINED, key=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
+        self._prop_names = ['id', 'className', 'key', 'loading_state', 'style']
         self._valid_wildcard_attributes =            []
-        self.available_properties = ['id', 'className', 'loading_state', 'style']
+        self.available_properties = ['id', 'className', 'key', 'loading_state', 'style']
         self.available_wildcard_properties =            []
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()

@@ -11,7 +11,7 @@ Keyword arguments:
 
 - id (string; optional)
 
-- className (string; optional)
+- className (string | dict; optional)
 
 - dataSource (list of dicts; optional)
 
@@ -19,9 +19,9 @@ Keyword arguments:
 
     - key (string | number; optional)
 
-    - title (string; optional)
+    - title (a list of or a singular dash component, string or number; optional)
 
-- disabled (boolean; optional)
+- disabled (boolean; default False)
 
 - height (string; optional)
 
@@ -42,11 +42,11 @@ Keyword arguments:
 
 - locale (a value equal to: 'zh-cn', 'en-us'; default 'zh-cn')
 
-- moveDirection (string; optional)
+- moveDirection (a value equal to: 'left', 'right'; optional)
 
-- moveKeys (list; optional)
+- moveKeys (list of number | strings; optional)
 
-- operations (list; optional)
+- operations (list of strings; default ['', ''])
 
 - pagination (dict; default False)
 
@@ -81,11 +81,11 @@ Keyword arguments:
 
 - style (dict; optional)
 
-- targetKeys (list; optional)
+- targetKeys (list of number | strings; optional)
 
-- titles (list; optional)"""
-    _children_props = []
-    _base_nodes = ['children']
+- titles (list of a list of or a singular dash component, string or numbers; optional)"""
+    _children_props = ['dataSource[].title', 'titles']
+    _base_nodes = ['titles', 'children']
     _namespace = 'feffery_antd_components'
     _type = 'AntdTransfer'
     @_explicitize_args

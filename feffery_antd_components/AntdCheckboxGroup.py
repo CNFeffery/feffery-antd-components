@@ -11,9 +11,9 @@ Keyword arguments:
 
 - id (string; optional)
 
-- className (string; optional)
+- className (string | dict; optional)
 
-- disabled (boolean; optional)
+- disabled (boolean; default False)
 
 - key (string; optional)
 
@@ -36,9 +36,9 @@ Keyword arguments:
 
     - disabled (boolean; optional)
 
-    - label (string; optional)
+    - label (a list of or a singular dash component, string or number; optional)
 
-    - value (string; optional)
+    - value (string | number; optional)
 
 - persisted_props (list of a value equal to: 'value's; default ['value']):
     Properties whose user interactions will persist after refreshing
@@ -61,8 +61,8 @@ Keyword arguments:
 
 - style (dict; optional)
 
-- value (list of strings; optional)"""
-    _children_props = []
+- value (list of string | numbers; optional)"""
+    _children_props = ['options[].label']
     _base_nodes = ['children']
     _namespace = 'feffery_antd_components'
     _type = 'AntdCheckboxGroup'

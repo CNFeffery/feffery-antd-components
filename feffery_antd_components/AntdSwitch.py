@@ -13,15 +13,15 @@ Keyword arguments:
 
 - checked (boolean; optional)
 
-- checkedChildren (string; optional)
+- checkedChildren (a list of or a singular dash component, string or number; optional)
 
-- className (string; optional)
+- className (string | dict; optional)
 
-- disabled (boolean; optional)
+- disabled (boolean; default False)
 
 - key (string; optional)
 
-- loading (boolean; optional)
+- loading (boolean; default False)
 
 - loading_state (dict; optional)
 
@@ -55,13 +55,13 @@ Keyword arguments:
     is kept after the browser quit.  session: window.sessionStorage,
     data is cleared once the browser quit.
 
-- size (a value equal to: 'default', 'small'; optional)
+- size (a value equal to: 'default', 'small'; default 'default')
 
 - style (dict; optional)
 
-- unCheckedChildren (string; optional)"""
-    _children_props = []
-    _base_nodes = ['children']
+- unCheckedChildren (a list of or a singular dash component, string or number; optional)"""
+    _children_props = ['checkedChildren', 'unCheckedChildren']
+    _base_nodes = ['checkedChildren', 'unCheckedChildren', 'children']
     _namespace = 'feffery_antd_components'
     _type = 'AntdSwitch'
     @_explicitize_args

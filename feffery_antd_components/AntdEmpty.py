@@ -13,11 +13,11 @@ Keyword arguments:
 
 - id (string; optional)
 
-- className (string; optional)
+- className (string | dict; optional)
 
-- description (a list of or a singular dash component, string or number; optional)
+- description (a list of or a singular dash component, string or number | boolean; optional)
 
-- image (string | a value equal to: 'default', 'simple'; optional)
+- image (string | a value equal to: 'default', 'simple'; default 'default')
 
 - imageStyle (dict; optional)
 

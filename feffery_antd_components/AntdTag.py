@@ -15,7 +15,7 @@ Keyword arguments:
 
 - color (string; optional)
 
-- content (string; default '')
+- content (a list of or a singular dash component, string or number; optional)
 
 - href (string; optional)
 
@@ -37,8 +37,8 @@ Keyword arguments:
 - style (dict; optional)
 
 - target (string; default '_blank')"""
-    _children_props = []
-    _base_nodes = ['children']
+    _children_props = ['content']
+    _base_nodes = ['content', 'children']
     _namespace = 'feffery_antd_components'
     _type = 'AntdTag'
     @_explicitize_args

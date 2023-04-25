@@ -13,7 +13,7 @@ Keyword arguments:
 
 - allowClick (boolean; default False)
 
-- className (string; optional)
+- className (string | dict; optional)
 
 - current (number; default 0)
 
@@ -38,36 +38,43 @@ Keyword arguments:
 
 - progressDot (boolean; default False)
 
+- responsive (boolean; default True)
+
 - size (a value equal to: 'default', 'small'; default 'default')
 
 - status (a value equal to: 'wait', 'process', 'finish', 'error'; default 'process')
 
-- steps (list of dicts; optional)
+- steps (list of dicts; required)
 
     `steps` is a list of dicts with keys:
 
-    - description (string; optional)
+    - description (a list of or a singular dash component, string or number; optional)
 
-    - subTitle (string; optional)
+    - subTitle (a list of or a singular dash component, string or number; optional)
 
-    - title (string; required)
+    - title (a list of or a singular dash component, string or number; required)
 
 - style (dict; optional)
 
-- type (a value equal to: 'default', 'navigation'; optional)"""
-    _children_props = []
+- type (a value equal to: 'default', 'navigation'; default 'default')"""
+    _children_props = ['steps[].title', 'steps[].subTitle', 'steps[].description']
     _base_nodes = ['children']
     _namespace = 'feffery_antd_components'
     _type = 'AntdSteps'
     @_explicitize_args
-    def __init__(self, id=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, key=Component.UNDEFINED, loading_state=Component.UNDEFINED, current=Component.UNDEFINED, direction=Component.UNDEFINED, labelPlacement=Component.UNDEFINED, progressDot=Component.UNDEFINED, size=Component.UNDEFINED, status=Component.UNDEFINED, type=Component.UNDEFINED, allowClick=Component.UNDEFINED, steps=Component.UNDEFINED, **kwargs):
-        self._prop_names = ['id', 'allowClick', 'className', 'current', 'direction', 'key', 'labelPlacement', 'loading_state', 'progressDot', 'size', 'status', 'steps', 'style', 'type']
+    def __init__(self, id=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, key=Component.UNDEFINED, steps=Component.REQUIRED, current=Component.UNDEFINED, direction=Component.UNDEFINED, labelPlacement=Component.UNDEFINED, progressDot=Component.UNDEFINED, size=Component.UNDEFINED, status=Component.UNDEFINED, type=Component.UNDEFINED, allowClick=Component.UNDEFINED, responsive=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
+        self._prop_names = ['id', 'allowClick', 'className', 'current', 'direction', 'key', 'labelPlacement', 'loading_state', 'progressDot', 'responsive', 'size', 'status', 'steps', 'style', 'type']
         self._valid_wildcard_attributes =            []
-        self.available_properties = ['id', 'allowClick', 'className', 'current', 'direction', 'key', 'labelPlacement', 'loading_state', 'progressDot', 'size', 'status', 'steps', 'style', 'type']
+        self.available_properties = ['id', 'allowClick', 'className', 'current', 'direction', 'key', 'labelPlacement', 'loading_state', 'progressDot', 'responsive', 'size', 'status', 'steps', 'style', 'type']
         self.available_wildcard_properties =            []
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()
         _locals.update(kwargs)  # For wildcard attrs and excess named props
         args = {k: _locals[k] for k in _explicit_args}
+
+        for k in ['steps']:
+            if k not in args:
+                raise TypeError(
+                    'Required argument `' + k + '` was not specified.')
 
         super(AntdSteps, self).__init__(**args)

@@ -17,15 +17,27 @@ Keyword arguments:
 
 - cancelButtonProps (dict; optional)
 
+    `cancelButtonProps` is a dict with keys:
+
+    - danger (boolean; optional)
+
+    - disabled (boolean; optional)
+
+    - shape (a value equal to: 'circle', 'round'; optional)
+
+    - size (a value equal to: 'small', 'middle', 'large'; optional)
+
+    - type (a value equal to: 'primary', 'ghost', 'dashed', 'link', 'text', 'default'; optional)
+
 - cancelCounts (number; default 0)
 
-- cancelText (string; optional)
+- cancelText (a list of or a singular dash component, string or number; optional)
 
-- className (string; optional)
+- className (string | dict; optional)
 
 - confirmCounts (number; default 0)
 
-- disabled (boolean; optional)
+- disabled (boolean; default False)
 
 - key (string; optional)
 
@@ -44,19 +56,33 @@ Keyword arguments:
 
 - locale (a value equal to: 'zh-cn', 'en-us'; default 'zh-cn')
 
-- mouseEnterDelay (number; optional)
+- mouseEnterDelay (number; default 0.1)
 
-- mouseLeaveDelay (number; optional)
+- mouseLeaveDelay (number; default 0.1)
 
 - okButtonProps (dict; optional)
 
-- okText (string; optional)
+    `okButtonProps` is a dict with keys:
+
+    - danger (boolean; optional)
+
+    - disabled (boolean; optional)
+
+    - shape (a value equal to: 'circle', 'round'; optional)
+
+    - size (a value equal to: 'small', 'middle', 'large'; optional)
+
+    - type (a value equal to: 'primary', 'ghost', 'dashed', 'link', 'text', 'default'; optional)
+
+- okText (a list of or a singular dash component, string or number; optional)
+
+- overlayClassName (string | dict; optional)
 
 - overlayInnerStyle (dict; optional)
 
 - overlayStyle (dict; optional)
 
-- placement (a value equal to: 'top', 'left', 'right', 'bottom', 'topLeft', 'topRight', 'bottomLeft', 'bottomRight', 'leftTop', 'leftBottom', 'rightTop', 'rightBottom'; optional)
+- placement (a value equal to: 'top', 'left', 'right', 'bottom', 'topLeft', 'topRight', 'bottomLeft', 'bottomRight', 'leftTop', 'leftBottom', 'rightTop', 'rightBottom'; default 'top')
 
 - popupContainer (a value equal to: 'parent', 'body'; default 'body')
 
@@ -64,16 +90,16 @@ Keyword arguments:
 
 - title (a list of or a singular dash component, string or number; optional)
 
-- trigger (a value equal to: 'hover', 'focus', 'click' | list of a value equal to: 'hover', 'focus', 'click's; optional)"""
-    _children_props = ['title']
-    _base_nodes = ['title', 'children']
+- trigger (a value equal to: 'hover', 'focus', 'click' | list of a value equal to: 'hover', 'focus', 'click's; default 'hover')"""
+    _children_props = ['title', 'okText', 'cancelText']
+    _base_nodes = ['title', 'okText', 'cancelText', 'children']
     _namespace = 'feffery_antd_components'
     _type = 'AntdPopconfirm'
     @_explicitize_args
-    def __init__(self, children=None, id=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, key=Component.UNDEFINED, locale=Component.UNDEFINED, title=Component.UNDEFINED, disabled=Component.UNDEFINED, placement=Component.UNDEFINED, mouseEnterDelay=Component.UNDEFINED, mouseLeaveDelay=Component.UNDEFINED, overlayStyle=Component.UNDEFINED, overlayInnerStyle=Component.UNDEFINED, okText=Component.UNDEFINED, okButtonProps=Component.UNDEFINED, cancelText=Component.UNDEFINED, cancelButtonProps=Component.UNDEFINED, confirmCounts=Component.UNDEFINED, cancelCounts=Component.UNDEFINED, popupContainer=Component.UNDEFINED, trigger=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
-        self._prop_names = ['children', 'id', 'cancelButtonProps', 'cancelCounts', 'cancelText', 'className', 'confirmCounts', 'disabled', 'key', 'loading_state', 'locale', 'mouseEnterDelay', 'mouseLeaveDelay', 'okButtonProps', 'okText', 'overlayInnerStyle', 'overlayStyle', 'placement', 'popupContainer', 'style', 'title', 'trigger']
+    def __init__(self, children=None, id=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, key=Component.UNDEFINED, locale=Component.UNDEFINED, title=Component.UNDEFINED, disabled=Component.UNDEFINED, placement=Component.UNDEFINED, mouseEnterDelay=Component.UNDEFINED, mouseLeaveDelay=Component.UNDEFINED, overlayClassName=Component.UNDEFINED, overlayStyle=Component.UNDEFINED, overlayInnerStyle=Component.UNDEFINED, okText=Component.UNDEFINED, okButtonProps=Component.UNDEFINED, cancelText=Component.UNDEFINED, cancelButtonProps=Component.UNDEFINED, confirmCounts=Component.UNDEFINED, cancelCounts=Component.UNDEFINED, trigger=Component.UNDEFINED, popupContainer=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
+        self._prop_names = ['children', 'id', 'cancelButtonProps', 'cancelCounts', 'cancelText', 'className', 'confirmCounts', 'disabled', 'key', 'loading_state', 'locale', 'mouseEnterDelay', 'mouseLeaveDelay', 'okButtonProps', 'okText', 'overlayClassName', 'overlayInnerStyle', 'overlayStyle', 'placement', 'popupContainer', 'style', 'title', 'trigger']
         self._valid_wildcard_attributes =            []
-        self.available_properties = ['children', 'id', 'cancelButtonProps', 'cancelCounts', 'cancelText', 'className', 'confirmCounts', 'disabled', 'key', 'loading_state', 'locale', 'mouseEnterDelay', 'mouseLeaveDelay', 'okButtonProps', 'okText', 'overlayInnerStyle', 'overlayStyle', 'placement', 'popupContainer', 'style', 'title', 'trigger']
+        self.available_properties = ['children', 'id', 'cancelButtonProps', 'cancelCounts', 'cancelText', 'className', 'confirmCounts', 'disabled', 'key', 'loading_state', 'locale', 'mouseEnterDelay', 'mouseLeaveDelay', 'okButtonProps', 'okText', 'overlayClassName', 'overlayInnerStyle', 'overlayStyle', 'placement', 'popupContainer', 'style', 'title', 'trigger']
         self.available_wildcard_properties =            []
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()

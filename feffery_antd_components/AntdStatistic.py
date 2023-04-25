@@ -30,35 +30,23 @@ Keyword arguments:
 
 - precision (number; optional)
 
-- prefix (dict; optional)
-
-    `prefix` is a dict with keys:
-
-    - content (string; optional)
-
-    - mode (a value equal to: 'text', 'icon'; optional)
+- prefix (a list of or a singular dash component, string or number; optional)
 
 - showGroupSeparator (boolean; default True)
 
 - style (dict; optional)
 
-- suffix (dict; optional)
+- suffix (a list of or a singular dash component, string or number; optional)
 
-    `suffix` is a dict with keys:
-
-    - content (string; optional)
-
-    - mode (a value equal to: 'text', 'icon'; optional)
-
-- title (string; optional)
+- title (a list of or a singular dash component, string or number; optional)
 
 - titleTooltip (string; optional)
 
-- value (number | string; optional)
+- value (number | string | a list of or a singular dash component, string or number; optional)
 
 - valueStyle (dict; optional)"""
-    _children_props = []
-    _base_nodes = ['children']
+    _children_props = ['value', 'prefix', 'suffix', 'title']
+    _base_nodes = ['value', 'prefix', 'suffix', 'title', 'children']
     _namespace = 'feffery_antd_components'
     _type = 'AntdStatistic'
     @_explicitize_args

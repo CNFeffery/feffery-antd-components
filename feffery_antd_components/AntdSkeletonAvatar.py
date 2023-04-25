@@ -11,9 +11,11 @@ Keyword arguments:
 
 - id (string; optional)
 
-- active (boolean; optional)
+- active (boolean; default False)
 
-- className (string; optional)
+- className (string | dict; optional)
+
+- key (string; optional)
 
 - loading_state (dict; optional)
 
@@ -28,9 +30,9 @@ Keyword arguments:
     - prop_name (string; optional):
         Holds which property is loading.
 
-- shape (a value equal to: 'circle', 'square'; optional)
+- shape (a value equal to: 'circle', 'square'; default 'circle')
 
-- size (number | a value equal to: 'large', 'small', 'default'; optional)
+- size (number | a value equal to: 'large', 'small', 'default'; default 'default')
 
 - style (dict; optional)"""
     _children_props = []
@@ -38,10 +40,10 @@ Keyword arguments:
     _namespace = 'feffery_antd_components'
     _type = 'AntdSkeletonAvatar'
     @_explicitize_args
-    def __init__(self, id=Component.UNDEFINED, style=Component.UNDEFINED, className=Component.UNDEFINED, active=Component.UNDEFINED, shape=Component.UNDEFINED, size=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
-        self._prop_names = ['id', 'active', 'className', 'loading_state', 'shape', 'size', 'style']
+    def __init__(self, id=Component.UNDEFINED, style=Component.UNDEFINED, className=Component.UNDEFINED, key=Component.UNDEFINED, active=Component.UNDEFINED, shape=Component.UNDEFINED, size=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
+        self._prop_names = ['id', 'active', 'className', 'key', 'loading_state', 'shape', 'size', 'style']
         self._valid_wildcard_attributes =            []
-        self.available_properties = ['id', 'active', 'className', 'loading_state', 'shape', 'size', 'style']
+        self.available_properties = ['id', 'active', 'className', 'key', 'loading_state', 'shape', 'size', 'style']
         self.available_wildcard_properties =            []
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()

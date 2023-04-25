@@ -13,7 +13,7 @@ Keyword arguments:
 
 - id (string; optional)
 
-- className (string; optional)
+- className (string | dict; optional)
 
 - direction (a value equal to: 'horizontal', 'vertical'; default 'horizontal')
 

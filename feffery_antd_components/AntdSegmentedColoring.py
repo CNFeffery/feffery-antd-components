@@ -15,7 +15,7 @@ Keyword arguments:
 
 - breakpoints (list of numbers; required)
 
-- className (string; optional)
+- className (string | dict; optional)
 
 - colorBlockPosition (a value equal to: 'left', 'right'; default 'right')
 
@@ -58,9 +58,9 @@ Keyword arguments:
 
 - pureLegendLabelStyle (dict; optional)
 
-- readOnly (boolean; default False)
+- readOnly (boolean; optional)
 
-- size (a value equal to: 'large', 'small', 'default'; default 'default')
+- size (a value equal to: 'large', 'small', 'middle'; default 'middle')
 
 - step (number; default 0.01)
 
@@ -70,7 +70,7 @@ Keyword arguments:
     _namespace = 'feffery_antd_components'
     _type = 'AntdSegmentedColoring'
     @_explicitize_args
-    def __init__(self, id=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, key=Component.UNDEFINED, size=Component.UNDEFINED, bordered=Component.UNDEFINED, controls=Component.UNDEFINED, disabled=Component.UNDEFINED, keyboard=Component.UNDEFINED, placeholder=Component.UNDEFINED, min=Component.UNDEFINED, max=Component.UNDEFINED, step=Component.UNDEFINED, precision=Component.UNDEFINED, readOnly=Component.UNDEFINED, pureLegend=Component.UNDEFINED, breakpoints=Component.REQUIRED, colors=Component.REQUIRED, inputNumberStyle=Component.UNDEFINED, colorBlockStyle=Component.UNDEFINED, colorBlockPosition=Component.UNDEFINED, pureLegendLabelStyle=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
+    def __init__(self, id=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, key=Component.UNDEFINED, breakpoints=Component.REQUIRED, colors=Component.REQUIRED, controls=Component.UNDEFINED, keyboard=Component.UNDEFINED, min=Component.UNDEFINED, max=Component.UNDEFINED, step=Component.UNDEFINED, precision=Component.UNDEFINED, disabled=Component.UNDEFINED, size=Component.UNDEFINED, bordered=Component.UNDEFINED, placeholder=Component.UNDEFINED, readOnly=Component.UNDEFINED, pureLegend=Component.UNDEFINED, inputNumberStyle=Component.UNDEFINED, colorBlockStyle=Component.UNDEFINED, colorBlockPosition=Component.UNDEFINED, pureLegendLabelStyle=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
         self._prop_names = ['id', 'bordered', 'breakpoints', 'className', 'colorBlockPosition', 'colorBlockStyle', 'colors', 'controls', 'disabled', 'inputNumberStyle', 'key', 'keyboard', 'loading_state', 'max', 'min', 'placeholder', 'precision', 'pureLegend', 'pureLegendLabelStyle', 'readOnly', 'size', 'step', 'style']
         self._valid_wildcard_attributes =            []
         self.available_properties = ['id', 'bordered', 'breakpoints', 'className', 'colorBlockPosition', 'colorBlockStyle', 'colors', 'controls', 'disabled', 'inputNumberStyle', 'key', 'keyboard', 'loading_state', 'max', 'min', 'placeholder', 'precision', 'pureLegend', 'pureLegendLabelStyle', 'readOnly', 'size', 'step', 'style']

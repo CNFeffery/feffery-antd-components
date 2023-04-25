@@ -11,7 +11,7 @@ Keyword arguments:
 
 - id (string; optional)
 
-- className (string; optional)
+- className (string | dict; optional)
 
 - items (list of dicts; optional)
 
@@ -54,11 +54,11 @@ Keyword arguments:
     - prop_name (string; optional):
         Holds which property is loading.
 
-- separator (string; optional)
+- separator (a list of or a singular dash component, string or number; default '/')
 
 - style (dict; optional)"""
-    _children_props = []
-    _base_nodes = ['children']
+    _children_props = ['separator']
+    _base_nodes = ['separator', 'children']
     _namespace = 'feffery_antd_components'
     _type = 'AntdBreadcrumb'
     @_explicitize_args

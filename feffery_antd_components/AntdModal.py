@@ -21,19 +21,23 @@ Keyword arguments:
 
     - danger (boolean; optional)
 
-    - size (a value equal to: 'default', 'small', 'large'; optional)
+    - disabled (boolean; optional)
+
+    - shape (a value equal to: 'circle', 'round'; optional)
+
+    - size (a value equal to: 'small', 'middle', 'large'; optional)
 
     - type (a value equal to: 'primary', 'ghost', 'dashed', 'link', 'text', 'default'; optional)
 
 - cancelCounts (number; default 0)
 
-- cancelText (string; optional)
+- cancelText (a list of or a singular dash component, string or number; optional)
 
-- centered (boolean; optional)
+- centered (boolean; default False)
 
-- className (string; optional)
+- className (string | dict; optional)
 
-- closable (boolean; optional)
+- closable (boolean; default True)
 
 - closeCounts (number; default 0)
 
@@ -43,9 +47,9 @@ Keyword arguments:
 
 - key (string; optional)
 
-- keyboard (boolean; optional)
+- keyboard (boolean; default True)
 
-- loadingOkText (string; optional)
+- loadingOkText (a list of or a singular dash component, string or number; optional)
 
 - loading_state (dict; optional)
 
@@ -62,9 +66,9 @@ Keyword arguments:
 
 - locale (a value equal to: 'zh-cn', 'en-us'; default 'zh-cn')
 
-- mask (boolean; optional)
+- mask (boolean; default True)
 
-- maskClosable (boolean; optional)
+- maskClosable (boolean; default True)
 
 - maskStyle (dict; optional)
 
@@ -74,7 +78,11 @@ Keyword arguments:
 
     - danger (boolean; optional)
 
-    - size (a value equal to: 'default', 'small', 'large'; optional)
+    - disabled (boolean; optional)
+
+    - shape (a value equal to: 'circle', 'round'; optional)
+
+    - size (a value equal to: 'small', 'middle', 'large'; optional)
 
     - type (a value equal to: 'primary', 'ghost', 'dashed', 'link', 'text', 'default'; optional)
 
@@ -82,27 +90,27 @@ Keyword arguments:
 
 - okCounts (number; default 0)
 
-- okText (string; optional)
+- okText (a list of or a singular dash component, string or number; optional)
 
-- renderFooter (boolean; optional)
+- renderFooter (boolean; default False)
 
 - style (dict; optional)
 
 - title (a list of or a singular dash component, string or number; optional)
 
-- transitionType (a value equal to: 'none', 'fade', 'zoom', 'zoom-big', 'zoom-big-fast', 'zoom-up', 'zoom-down', 'zoom-left', 'zoom-right', 'slide-up', 'slide-down', 'slide-left', 'slide-right', 'move-up', 'move-down', 'move-left', 'move-right'; default 'zoom')
+- transitionType (a value equal to: 'none', 'fade', 'zoom', 'zoom-big', 'zoom-big-fast', 'slide-up', 'slide-down', 'slide-left', 'slide-right', 'move-up', 'move-down', 'move-left', 'move-right'; default 'zoom')
 
 - visible (boolean; default False)
 
-- width (number | string; optional)
+- width (number | string; default 520)
 
-- zIndex (number; optional)"""
-    _children_props = ['title']
-    _base_nodes = ['title', 'children']
+- zIndex (number; default 1000)"""
+    _children_props = ['title', 'okText', 'cancelText', 'loadingOkText']
+    _base_nodes = ['title', 'okText', 'cancelText', 'loadingOkText', 'children']
     _namespace = 'feffery_antd_components'
     _type = 'AntdModal'
     @_explicitize_args
-    def __init__(self, children=None, id=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, key=Component.UNDEFINED, locale=Component.UNDEFINED, title=Component.UNDEFINED, visible=Component.UNDEFINED, okText=Component.UNDEFINED, loadingOkText=Component.UNDEFINED, okButtonProps=Component.UNDEFINED, cancelText=Component.UNDEFINED, cancelButtonProps=Component.UNDEFINED, renderFooter=Component.UNDEFINED, width=Component.UNDEFINED, centered=Component.UNDEFINED, keyboard=Component.UNDEFINED, closable=Component.UNDEFINED, mask=Component.UNDEFINED, maskClosable=Component.UNDEFINED, okClickClose=Component.UNDEFINED, zIndex=Component.UNDEFINED, maskStyle=Component.UNDEFINED, bodyStyle=Component.UNDEFINED, okCounts=Component.UNDEFINED, cancelCounts=Component.UNDEFINED, closeCounts=Component.UNDEFINED, confirmLoading=Component.UNDEFINED, confirmAutoSpin=Component.UNDEFINED, transitionType=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
+    def __init__(self, children=None, id=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, key=Component.UNDEFINED, locale=Component.UNDEFINED, visible=Component.UNDEFINED, title=Component.UNDEFINED, renderFooter=Component.UNDEFINED, okText=Component.UNDEFINED, okButtonProps=Component.UNDEFINED, cancelText=Component.UNDEFINED, cancelButtonProps=Component.UNDEFINED, width=Component.UNDEFINED, centered=Component.UNDEFINED, keyboard=Component.UNDEFINED, closable=Component.UNDEFINED, mask=Component.UNDEFINED, maskClosable=Component.UNDEFINED, okClickClose=Component.UNDEFINED, zIndex=Component.UNDEFINED, maskStyle=Component.UNDEFINED, bodyStyle=Component.UNDEFINED, okCounts=Component.UNDEFINED, cancelCounts=Component.UNDEFINED, closeCounts=Component.UNDEFINED, confirmAutoSpin=Component.UNDEFINED, loadingOkText=Component.UNDEFINED, confirmLoading=Component.UNDEFINED, transitionType=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
         self._prop_names = ['children', 'id', 'bodyStyle', 'cancelButtonProps', 'cancelCounts', 'cancelText', 'centered', 'className', 'closable', 'closeCounts', 'confirmAutoSpin', 'confirmLoading', 'key', 'keyboard', 'loadingOkText', 'loading_state', 'locale', 'mask', 'maskClosable', 'maskStyle', 'okButtonProps', 'okClickClose', 'okCounts', 'okText', 'renderFooter', 'style', 'title', 'transitionType', 'visible', 'width', 'zIndex']
         self._valid_wildcard_attributes =            []
         self.available_properties = ['children', 'id', 'bodyStyle', 'cancelButtonProps', 'cancelCounts', 'cancelText', 'centered', 'className', 'closable', 'closeCounts', 'confirmAutoSpin', 'confirmLoading', 'key', 'keyboard', 'loadingOkText', 'loading_state', 'locale', 'mask', 'maskClosable', 'maskStyle', 'okButtonProps', 'okClickClose', 'okCounts', 'okText', 'renderFooter', 'style', 'title', 'transitionType', 'visible', 'width', 'zIndex']

@@ -15,21 +15,21 @@ Keyword arguments:
 
 - id (string; optional)
 
-- className (string; optional)
+- className (string | dict; optional)
 
-- colon (boolean; optional)
+- colon (boolean; default True)
 
-- extra (string; optional)
+- extra (a list of or a singular dash component, string or number; optional)
 
-- help (string; optional)
+- help (a list of or a singular dash component, string or number; optional)
 
-- hidden (boolean; optional)
+- hidden (boolean; default False)
 
 - key (string; optional)
 
 - label (a list of or a singular dash component, string or number; optional)
 
-- labelAlign (a value equal to: 'left', 'right'; optional)
+- labelAlign (a value equal to: 'left', 'right'; default 'right')
 
 - labelCol (dict; optional)
 
@@ -52,11 +52,11 @@ Keyword arguments:
     - prop_name (string; optional):
         Holds which property is loading.
 
-- required (boolean; optional)
+- required (boolean; default False)
 
 - style (dict; optional)
 
-- tooltip (string; optional)
+- tooltip (a list of or a singular dash component, string or number; optional)
 
 - validateStatus (a value equal to: 'success', 'warning', 'error', 'validating'; optional)
 
@@ -67,12 +67,12 @@ Keyword arguments:
     - offset (number; optional)
 
     - span (number; optional)"""
-    _children_props = ['label']
-    _base_nodes = ['label', 'children']
+    _children_props = ['label', 'tooltip', 'extra', 'help']
+    _base_nodes = ['label', 'tooltip', 'extra', 'help', 'children']
     _namespace = 'feffery_antd_components'
     _type = 'AntdFormItem'
     @_explicitize_args
-    def __init__(self, children=None, id=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, key=Component.UNDEFINED, required=Component.UNDEFINED, labelCol=Component.UNDEFINED, colon=Component.UNDEFINED, wrapperCol=Component.UNDEFINED, label=Component.UNDEFINED, labelAlign=Component.UNDEFINED, tooltip=Component.UNDEFINED, extra=Component.UNDEFINED, help=Component.UNDEFINED, hidden=Component.UNDEFINED, validateStatus=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
+    def __init__(self, children=None, id=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, key=Component.UNDEFINED, required=Component.UNDEFINED, labelCol=Component.UNDEFINED, colon=Component.UNDEFINED, wrapperCol=Component.UNDEFINED, label=Component.UNDEFINED, labelAlign=Component.UNDEFINED, tooltip=Component.UNDEFINED, extra=Component.UNDEFINED, validateStatus=Component.UNDEFINED, help=Component.UNDEFINED, hidden=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
         self._prop_names = ['children', 'id', 'className', 'colon', 'extra', 'help', 'hidden', 'key', 'label', 'labelAlign', 'labelCol', 'loading_state', 'required', 'style', 'tooltip', 'validateStatus', 'wrapperCol']
         self._valid_wildcard_attributes =            []
         self.available_properties = ['children', 'id', 'className', 'colon', 'extra', 'help', 'hidden', 'key', 'label', 'labelAlign', 'labelCol', 'loading_state', 'required', 'style', 'tooltip', 'validateStatus', 'wrapperCol']

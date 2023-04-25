@@ -11,19 +11,19 @@ Keyword arguments:
 
 - id (string; optional)
 
-- allowClear (boolean; optional)
+- allowClear (boolean; default True)
 
-- bordered (boolean; optional)
+- bordered (boolean; default True)
 
 - changeOnSelect (boolean; default False)
 
-- className (string; optional)
+- className (string | dict; optional)
 
-- defaultValue (list of strings | list of list of stringss; optional)
+- defaultValue (list of string | numbers | list of list of string | numberss; optional)
 
-- disabled (boolean; optional)
+- disabled (boolean; default False)
 
-- expandTrigger (a value equal to: 'click', 'hover'; optional)
+- expandTrigger (a value equal to: 'click', 'hover'; default 'click')
 
 - key (string; optional)
 
@@ -44,7 +44,7 @@ Keyword arguments:
 
 - maxTagCount (number | a value equal to: 'responsive'; optional)
 
-- multiple (boolean; optional)
+- multiple (boolean; default False)
 
 - options (list; required)
 
@@ -71,7 +71,7 @@ Keyword arguments:
 
 - placeholder (string; optional)
 
-- placement (a value equal to: 'bottomLeft', 'bottomRight', 'topLeft', 'topRight'; optional)
+- placement (a value equal to: 'bottomLeft', 'bottomRight', 'topLeft', 'topRight'; default 'bottomLeft')
 
 - popupContainer (a value equal to: 'parent', 'body'; default 'body')
 
@@ -85,13 +85,13 @@ Keyword arguments:
 
 - style (dict; optional)
 
-- value (list of strings | list of list of stringss; optional)"""
+- value (list of string | numbers | list of list of string | numberss; optional)"""
     _children_props = []
     _base_nodes = ['children']
     _namespace = 'feffery_antd_components'
     _type = 'AntdCascader'
     @_explicitize_args
-    def __init__(self, id=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, key=Component.UNDEFINED, locale=Component.UNDEFINED, options=Component.REQUIRED, optionsMode=Component.UNDEFINED, disabled=Component.UNDEFINED, changeOnSelect=Component.UNDEFINED, size=Component.UNDEFINED, bordered=Component.UNDEFINED, placeholder=Component.UNDEFINED, placement=Component.UNDEFINED, defaultValue=Component.UNDEFINED, maxTagCount=Component.UNDEFINED, multiple=Component.UNDEFINED, value=Component.UNDEFINED, expandTrigger=Component.UNDEFINED, status=Component.UNDEFINED, allowClear=Component.UNDEFINED, showCheckedStrategy=Component.UNDEFINED, readOnly=Component.UNDEFINED, loading_state=Component.UNDEFINED, popupContainer=Component.UNDEFINED, persistence=Component.UNDEFINED, persisted_props=Component.UNDEFINED, persistence_type=Component.UNDEFINED, **kwargs):
+    def __init__(self, id=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, key=Component.UNDEFINED, locale=Component.UNDEFINED, optionsMode=Component.UNDEFINED, options=Component.REQUIRED, disabled=Component.UNDEFINED, changeOnSelect=Component.UNDEFINED, size=Component.UNDEFINED, bordered=Component.UNDEFINED, placeholder=Component.UNDEFINED, placement=Component.UNDEFINED, value=Component.UNDEFINED, defaultValue=Component.UNDEFINED, maxTagCount=Component.UNDEFINED, multiple=Component.UNDEFINED, expandTrigger=Component.UNDEFINED, status=Component.UNDEFINED, allowClear=Component.UNDEFINED, showCheckedStrategy=Component.UNDEFINED, readOnly=Component.UNDEFINED, popupContainer=Component.UNDEFINED, loading_state=Component.UNDEFINED, persistence=Component.UNDEFINED, persisted_props=Component.UNDEFINED, persistence_type=Component.UNDEFINED, **kwargs):
         self._prop_names = ['id', 'allowClear', 'bordered', 'changeOnSelect', 'className', 'defaultValue', 'disabled', 'expandTrigger', 'key', 'loading_state', 'locale', 'maxTagCount', 'multiple', 'options', 'optionsMode', 'persisted_props', 'persistence', 'persistence_type', 'placeholder', 'placement', 'popupContainer', 'readOnly', 'showCheckedStrategy', 'size', 'status', 'style', 'value']
         self._valid_wildcard_attributes =            []
         self.available_properties = ['id', 'allowClear', 'bordered', 'changeOnSelect', 'className', 'defaultValue', 'disabled', 'expandTrigger', 'key', 'loading_state', 'locale', 'maxTagCount', 'multiple', 'options', 'optionsMode', 'persisted_props', 'persistence', 'persistence_type', 'placeholder', 'placement', 'popupContainer', 'readOnly', 'showCheckedStrategy', 'size', 'status', 'style', 'value']

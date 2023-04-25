@@ -17,15 +17,17 @@ Keyword arguments:
 
 - bodyStyle (dict; optional)
 
-- bordered (boolean; optional)
+- bordered (boolean; default True)
 
-- className (string; optional)
+- className (string | dict; optional)
 
 - coverImg (dict; optional)
 
     `coverImg` is a dict with keys:
 
     - alt (string; optional)
+
+    - className (string; optional)
 
     - src (string; optional)
 
@@ -47,7 +49,7 @@ Keyword arguments:
 
 - headStyle (dict; optional)
 
-- hoverable (boolean; optional)
+- hoverable (boolean; default False)
 
 - key (string; optional)
 
@@ -64,7 +66,7 @@ Keyword arguments:
     - prop_name (string; optional):
         Holds which property is loading.
 
-- size (a value equal to: 'default', 'small'; optional)
+- size (a value equal to: 'default', 'small'; default 'default')
 
 - style (dict; optional)
 
@@ -74,7 +76,7 @@ Keyword arguments:
     _namespace = 'feffery_antd_components'
     _type = 'AntdCard'
     @_explicitize_args
-    def __init__(self, children=None, id=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, key=Component.UNDEFINED, extraLink=Component.UNDEFINED, coverImg=Component.UNDEFINED, bodyStyle=Component.UNDEFINED, headStyle=Component.UNDEFINED, bordered=Component.UNDEFINED, hoverable=Component.UNDEFINED, size=Component.UNDEFINED, title=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
+    def __init__(self, children=None, id=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, key=Component.UNDEFINED, title=Component.UNDEFINED, extraLink=Component.UNDEFINED, coverImg=Component.UNDEFINED, bodyStyle=Component.UNDEFINED, headStyle=Component.UNDEFINED, bordered=Component.UNDEFINED, hoverable=Component.UNDEFINED, size=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
         self._prop_names = ['children', 'id', 'bodyStyle', 'bordered', 'className', 'coverImg', 'extraLink', 'headStyle', 'hoverable', 'key', 'loading_state', 'size', 'style', 'title']
         self._valid_wildcard_attributes =            []
         self.available_properties = ['children', 'id', 'bodyStyle', 'bordered', 'className', 'coverImg', 'extraLink', 'headStyle', 'hoverable', 'key', 'loading_state', 'size', 'style', 'title']

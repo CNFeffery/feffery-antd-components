@@ -13,21 +13,25 @@ Keyword arguments:
 
 - allowClear (boolean; default True)
 
-- autoClearSearchValue (boolean; optional)
+- autoClearSearchValue (boolean; default True)
 
 - autoSpin (boolean; default False)
 
-- className (string; optional)
+- bordered (boolean; default True)
+
+- className (string | dict; optional)
 
 - colorsMode (a value equal to: 'sequential', 'diverging'; default 'sequential')
 
 - colorsNameWidth (number; default 40)
 
-- debounceWait (number; default 300)
+- debounceSearchValue (string; optional)
+
+- debounceWait (number; default 200)
 
 - defaultValue (string | number | list of string | numbers; optional)
 
-- disabled (boolean; optional)
+- disabled (boolean; default False)
 
 - dropdownAfter (a list of or a singular dash component, string or number; optional)
 
@@ -38,6 +42,8 @@ Keyword arguments:
 - key (string; optional)
 
 - listHeight (number; default 256)
+
+- loadingEmptyContent (a list of or a singular dash component, string or number; default <div style={{ display: 'flex', 'justifyContent': 'center' }}>    <Spin /></div>)
 
 - loading_state (dict; optional)
 
@@ -68,13 +74,13 @@ Keyword arguments:
 
     - disabled (boolean; optional)
 
-    - label (string
+    - label (a list of or a singular dash component, string or number; required)
 
-      Or number | a list of or a singular dash component, string or number; required)
+    - value (string
 
-    - value (string | number; required) | dict with keys:
+      Or number; required) | dict with keys:
 
-    - group (string; required)
+    - group (string; optional)
 
     - options (list of dicts; optional)
 
@@ -84,7 +90,7 @@ Keyword arguments:
 
         - disabled (boolean; optional)
 
-        - label (string | number | a list of or a singular dash component, string or number; required)
+        - label (a list of or a singular dash component, string or number; required)
 
         - value (string | number; required)
 
@@ -109,7 +115,7 @@ Keyword arguments:
 
 - placeholder (string; optional)
 
-- placement (a value equal to: 'bottomLeft', 'bottomRight', 'topLeft', 'topRight'; optional)
+- placement (a value equal to: 'bottomLeft', 'bottomRight', 'topLeft', 'topRight'; default 'bottomLeft')
 
 - popupContainer (a value equal to: 'parent', 'body'; default 'body')
 
@@ -117,22 +123,22 @@ Keyword arguments:
 
 - searchValue (string; optional)
 
-- size (a value equal to: 'small', 'middle', 'large'; optional)
+- size (a value equal to: 'small', 'middle', 'large'; default 'middle')
 
 - status (a value equal to: 'error', 'warning'; optional)
 
 - style (dict; optional)
 
 - value (string | number | list of string | numbers; optional)"""
-    _children_props = ['options[].label', 'options[].options[].label', 'emptyContent', 'dropdownBefore', 'dropdownAfter']
-    _base_nodes = ['emptyContent', 'dropdownBefore', 'dropdownAfter', 'children']
+    _children_props = ['options[].label', 'options[].options[].label', 'emptyContent', 'loadingEmptyContent', 'dropdownBefore', 'dropdownAfter']
+    _base_nodes = ['emptyContent', 'loadingEmptyContent', 'dropdownBefore', 'dropdownAfter', 'children']
     _namespace = 'feffery_antd_components'
     _type = 'AntdSelect'
     @_explicitize_args
-    def __init__(self, id=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, key=Component.UNDEFINED, locale=Component.UNDEFINED, options=Component.UNDEFINED, colorsNameWidth=Component.UNDEFINED, allowClear=Component.UNDEFINED, mode=Component.UNDEFINED, disabled=Component.UNDEFINED, placeholder=Component.UNDEFINED, size=Component.UNDEFINED, value=Component.UNDEFINED, defaultValue=Component.UNDEFINED, maxTagCount=Component.UNDEFINED, listHeight=Component.UNDEFINED, colorsMode=Component.UNDEFINED, placement=Component.UNDEFINED, status=Component.UNDEFINED, optionFilterProp=Component.UNDEFINED, searchValue=Component.UNDEFINED, autoSpin=Component.UNDEFINED, debounceWait=Component.UNDEFINED, autoClearSearchValue=Component.UNDEFINED, emptyContent=Component.UNDEFINED, dropdownBefore=Component.UNDEFINED, dropdownAfter=Component.UNDEFINED, popupContainer=Component.UNDEFINED, readOnly=Component.UNDEFINED, loading_state=Component.UNDEFINED, persistence=Component.UNDEFINED, persisted_props=Component.UNDEFINED, persistence_type=Component.UNDEFINED, **kwargs):
-        self._prop_names = ['id', 'allowClear', 'autoClearSearchValue', 'autoSpin', 'className', 'colorsMode', 'colorsNameWidth', 'debounceWait', 'defaultValue', 'disabled', 'dropdownAfter', 'dropdownBefore', 'emptyContent', 'key', 'listHeight', 'loading_state', 'locale', 'maxTagCount', 'mode', 'optionFilterProp', 'options', 'persisted_props', 'persistence', 'persistence_type', 'placeholder', 'placement', 'popupContainer', 'readOnly', 'searchValue', 'size', 'status', 'style', 'value']
+    def __init__(self, id=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, key=Component.UNDEFINED, locale=Component.UNDEFINED, options=Component.UNDEFINED, listHeight=Component.UNDEFINED, colorsMode=Component.UNDEFINED, colorsNameWidth=Component.UNDEFINED, mode=Component.UNDEFINED, disabled=Component.UNDEFINED, size=Component.UNDEFINED, bordered=Component.UNDEFINED, placeholder=Component.UNDEFINED, placement=Component.UNDEFINED, value=Component.UNDEFINED, defaultValue=Component.UNDEFINED, maxTagCount=Component.UNDEFINED, status=Component.UNDEFINED, optionFilterProp=Component.UNDEFINED, searchValue=Component.UNDEFINED, debounceSearchValue=Component.UNDEFINED, debounceWait=Component.UNDEFINED, autoSpin=Component.UNDEFINED, autoClearSearchValue=Component.UNDEFINED, emptyContent=Component.UNDEFINED, loadingEmptyContent=Component.UNDEFINED, dropdownBefore=Component.UNDEFINED, dropdownAfter=Component.UNDEFINED, allowClear=Component.UNDEFINED, readOnly=Component.UNDEFINED, popupContainer=Component.UNDEFINED, loading_state=Component.UNDEFINED, persistence=Component.UNDEFINED, persisted_props=Component.UNDEFINED, persistence_type=Component.UNDEFINED, **kwargs):
+        self._prop_names = ['id', 'allowClear', 'autoClearSearchValue', 'autoSpin', 'bordered', 'className', 'colorsMode', 'colorsNameWidth', 'debounceSearchValue', 'debounceWait', 'defaultValue', 'disabled', 'dropdownAfter', 'dropdownBefore', 'emptyContent', 'key', 'listHeight', 'loadingEmptyContent', 'loading_state', 'locale', 'maxTagCount', 'mode', 'optionFilterProp', 'options', 'persisted_props', 'persistence', 'persistence_type', 'placeholder', 'placement', 'popupContainer', 'readOnly', 'searchValue', 'size', 'status', 'style', 'value']
         self._valid_wildcard_attributes =            []
-        self.available_properties = ['id', 'allowClear', 'autoClearSearchValue', 'autoSpin', 'className', 'colorsMode', 'colorsNameWidth', 'debounceWait', 'defaultValue', 'disabled', 'dropdownAfter', 'dropdownBefore', 'emptyContent', 'key', 'listHeight', 'loading_state', 'locale', 'maxTagCount', 'mode', 'optionFilterProp', 'options', 'persisted_props', 'persistence', 'persistence_type', 'placeholder', 'placement', 'popupContainer', 'readOnly', 'searchValue', 'size', 'status', 'style', 'value']
+        self.available_properties = ['id', 'allowClear', 'autoClearSearchValue', 'autoSpin', 'bordered', 'className', 'colorsMode', 'colorsNameWidth', 'debounceSearchValue', 'debounceWait', 'defaultValue', 'disabled', 'dropdownAfter', 'dropdownBefore', 'emptyContent', 'key', 'listHeight', 'loadingEmptyContent', 'loading_state', 'locale', 'maxTagCount', 'mode', 'optionFilterProp', 'options', 'persisted_props', 'persistence', 'persistence_type', 'placeholder', 'placement', 'popupContainer', 'readOnly', 'searchValue', 'size', 'status', 'style', 'value']
         self.available_wildcard_properties =            []
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()

@@ -13,9 +13,11 @@ Keyword arguments:
 
 - apiUrl (string; optional)
 
-- buttonContent (string; optional)
+- buttonContent (a list of or a singular dash component, string or number; optional)
 
-- className (string; optional)
+- className (string | dict; optional)
+
+- confirmBeforeDelete (boolean; default False)
 
 - defaultFileList (list of dicts; optional)
 
@@ -25,11 +27,15 @@ Keyword arguments:
 
     - status (a value equal to: 'done', 'error', 'removed'; optional)
 
+    - taskId (string; optional)
+
     - uid (boolean | number | string | dict | list; optional)
 
     - url (string; optional)
 
-- directory (boolean; optional)
+- directory (boolean; default False)
+
+- disabled (boolean; default False)
 
 - downloadUrl (string; optional)
 
@@ -40,6 +46,8 @@ Keyword arguments:
 - fileMaxSize (number; default 500)
 
 - fileTypes (list of strings; optional)
+
+- headers (dict; optional)
 
 - key (string; optional)
 
@@ -67,23 +75,9 @@ Keyword arguments:
 
     - taskStatus (string; optional)
 
-- listUploadTaskRecord (dict; optional)
+- listUploadTaskRecord (list of dicts; optional)
 
-    `listUploadTaskRecord` is a dict with keys:
-
-    - completeTimestamp (number; optional)
-
-    - fileName (string; optional)
-
-    - fileSize (number; optional)
-
-    - taskId (string; optional)
-
-    - taskStatus (string; optional)
-
-    - uid (string; optional)
-
-    - url (string; optional) | list of dicts with keys:
+    `listUploadTaskRecord` is a list of dicts with keys:
 
     - completeTimestamp (number; optional)
 
@@ -114,24 +108,54 @@ Keyword arguments:
 
 - locale (a value equal to: 'zh-cn', 'en-us'; default 'zh-cn')
 
-- multiple (boolean; optional)
+- multiple (boolean; default False)
 
-- showUploadList (boolean; optional)
+- progressProps (dict; optional)
+
+    `progressProps` is a dict with keys:
+
+    - format (dict; optional)
+
+        `format` is a dict with keys:
+
+        - prefix (string; optional)
+
+        - suffix (string; optional)
+
+    - strokeColor (dict; optional)
+
+        `strokeColor` is a string
+
+      Or dict with keys:
+
+        - from (string; optional)
+
+        - to (string; optional)
+
+    - strokeWidth (number; optional)
+
+- showErrorMessage (boolean; default True)
+
+- showPercent (boolean; default False)
+
+- showSuccessMessage (boolean; default True)
+
+- showUploadList (boolean; default True)
 
 - status (a value equal to: 'error', 'warning'; optional)
 
 - style (dict; optional)
 
 - uploadId (string; optional)"""
-    _children_props = []
-    _base_nodes = ['children']
+    _children_props = ['buttonContent']
+    _base_nodes = ['buttonContent', 'children']
     _namespace = 'feffery_antd_components'
     _type = 'AntdUpload'
     @_explicitize_args
-    def __init__(self, id=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, key=Component.UNDEFINED, locale=Component.UNDEFINED, apiUrl=Component.UNDEFINED, downloadUrl=Component.UNDEFINED, fileListMaxLength=Component.UNDEFINED, fileTypes=Component.UNDEFINED, buttonContent=Component.UNDEFINED, uploadId=Component.UNDEFINED, fileMaxSize=Component.UNDEFINED, multiple=Component.UNDEFINED, directory=Component.UNDEFINED, failedTooltipInfo=Component.UNDEFINED, showUploadList=Component.UNDEFINED, lastUploadTaskRecord=Component.UNDEFINED, listUploadTaskRecord=Component.UNDEFINED, defaultFileList=Component.UNDEFINED, status=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
-        self._prop_names = ['id', 'apiUrl', 'buttonContent', 'className', 'defaultFileList', 'directory', 'downloadUrl', 'failedTooltipInfo', 'fileListMaxLength', 'fileMaxSize', 'fileTypes', 'key', 'lastUploadTaskRecord', 'listUploadTaskRecord', 'loading_state', 'locale', 'multiple', 'showUploadList', 'status', 'style', 'uploadId']
+    def __init__(self, id=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, key=Component.UNDEFINED, locale=Component.UNDEFINED, apiUrl=Component.UNDEFINED, headers=Component.UNDEFINED, downloadUrl=Component.UNDEFINED, fileListMaxLength=Component.UNDEFINED, fileTypes=Component.UNDEFINED, buttonContent=Component.UNDEFINED, uploadId=Component.UNDEFINED, fileMaxSize=Component.UNDEFINED, multiple=Component.UNDEFINED, directory=Component.UNDEFINED, failedTooltipInfo=Component.UNDEFINED, showUploadList=Component.UNDEFINED, confirmBeforeDelete=Component.UNDEFINED, showPercent=Component.UNDEFINED, progressProps=Component.UNDEFINED, showSuccessMessage=Component.UNDEFINED, showErrorMessage=Component.UNDEFINED, lastUploadTaskRecord=Component.UNDEFINED, listUploadTaskRecord=Component.UNDEFINED, defaultFileList=Component.UNDEFINED, disabled=Component.UNDEFINED, status=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
+        self._prop_names = ['id', 'apiUrl', 'buttonContent', 'className', 'confirmBeforeDelete', 'defaultFileList', 'directory', 'disabled', 'downloadUrl', 'failedTooltipInfo', 'fileListMaxLength', 'fileMaxSize', 'fileTypes', 'headers', 'key', 'lastUploadTaskRecord', 'listUploadTaskRecord', 'loading_state', 'locale', 'multiple', 'progressProps', 'showErrorMessage', 'showPercent', 'showSuccessMessage', 'showUploadList', 'status', 'style', 'uploadId']
         self._valid_wildcard_attributes =            []
-        self.available_properties = ['id', 'apiUrl', 'buttonContent', 'className', 'defaultFileList', 'directory', 'downloadUrl', 'failedTooltipInfo', 'fileListMaxLength', 'fileMaxSize', 'fileTypes', 'key', 'lastUploadTaskRecord', 'listUploadTaskRecord', 'loading_state', 'locale', 'multiple', 'showUploadList', 'status', 'style', 'uploadId']
+        self.available_properties = ['id', 'apiUrl', 'buttonContent', 'className', 'confirmBeforeDelete', 'defaultFileList', 'directory', 'disabled', 'downloadUrl', 'failedTooltipInfo', 'fileListMaxLength', 'fileMaxSize', 'fileTypes', 'headers', 'key', 'lastUploadTaskRecord', 'listUploadTaskRecord', 'loading_state', 'locale', 'multiple', 'progressProps', 'showErrorMessage', 'showPercent', 'showSuccessMessage', 'showUploadList', 'status', 'style', 'uploadId']
         self.available_wildcard_properties =            []
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()

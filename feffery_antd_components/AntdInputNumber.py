@@ -15,23 +15,23 @@ Keyword arguments:
 
 - addonBefore (a list of or a singular dash component, string or number; optional)
 
-- bordered (boolean; optional)
+- bordered (boolean; default True)
 
-- className (string; optional)
+- className (string | dict; optional)
 
-- controls (boolean; optional)
+- controls (boolean; default True)
 
 - debounceValue (number | string; optional)
 
-- debounceWait (number; default 300)
+- debounceWait (number; default 200)
 
 - defaultValue (number | string; optional)
 
-- disabled (boolean; optional)
+- disabled (boolean; default False)
 
 - key (string; optional)
 
-- keyboard (boolean; optional)
+- keyboard (boolean; default True)
 
 - loading_state (dict; optional)
 
@@ -79,28 +79,26 @@ Keyword arguments:
 
 - readOnly (boolean; optional)
 
-- size (a value equal to: 'small', 'middle', 'large'; optional)
+- size (a value equal to: 'small', 'middle', 'large'; default 'middle')
 
 - status (a value equal to: 'error', 'warning'; optional)
 
 - step (number | string; optional)
 
-- stringMode (boolean; optional)
+- stringMode (boolean; default False)
 
 - style (dict; optional)
 
-- suffix (a list of or a singular dash component, string or number; optional)
-
 - value (number | string; optional)"""
-    _children_props = ['addonBefore', 'addonAfter', 'prefix', 'suffix']
-    _base_nodes = ['addonBefore', 'addonAfter', 'prefix', 'suffix', 'children']
+    _children_props = ['addonBefore', 'addonAfter', 'prefix']
+    _base_nodes = ['addonBefore', 'addonAfter', 'prefix', 'children']
     _namespace = 'feffery_antd_components'
     _type = 'AntdInputNumber'
     @_explicitize_args
-    def __init__(self, id=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, key=Component.UNDEFINED, size=Component.UNDEFINED, addonBefore=Component.UNDEFINED, addonAfter=Component.UNDEFINED, prefix=Component.UNDEFINED, suffix=Component.UNDEFINED, bordered=Component.UNDEFINED, controls=Component.UNDEFINED, defaultValue=Component.UNDEFINED, value=Component.UNDEFINED, disabled=Component.UNDEFINED, keyboard=Component.UNDEFINED, placeholder=Component.UNDEFINED, min=Component.UNDEFINED, max=Component.UNDEFINED, step=Component.UNDEFINED, precision=Component.UNDEFINED, readOnly=Component.UNDEFINED, stringMode=Component.UNDEFINED, nSubmit=Component.UNDEFINED, status=Component.UNDEFINED, debounceValue=Component.UNDEFINED, debounceWait=Component.UNDEFINED, loading_state=Component.UNDEFINED, persistence=Component.UNDEFINED, persisted_props=Component.UNDEFINED, persistence_type=Component.UNDEFINED, **kwargs):
-        self._prop_names = ['id', 'addonAfter', 'addonBefore', 'bordered', 'className', 'controls', 'debounceValue', 'debounceWait', 'defaultValue', 'disabled', 'key', 'keyboard', 'loading_state', 'max', 'min', 'nSubmit', 'persisted_props', 'persistence', 'persistence_type', 'placeholder', 'precision', 'prefix', 'readOnly', 'size', 'status', 'step', 'stringMode', 'style', 'suffix', 'value']
+    def __init__(self, id=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, key=Component.UNDEFINED, addonBefore=Component.UNDEFINED, addonAfter=Component.UNDEFINED, prefix=Component.UNDEFINED, controls=Component.UNDEFINED, keyboard=Component.UNDEFINED, min=Component.UNDEFINED, max=Component.UNDEFINED, step=Component.UNDEFINED, precision=Component.UNDEFINED, stringMode=Component.UNDEFINED, disabled=Component.UNDEFINED, size=Component.UNDEFINED, bordered=Component.UNDEFINED, placeholder=Component.UNDEFINED, value=Component.UNDEFINED, defaultValue=Component.UNDEFINED, debounceValue=Component.UNDEFINED, debounceWait=Component.UNDEFINED, nSubmit=Component.UNDEFINED, status=Component.UNDEFINED, readOnly=Component.UNDEFINED, loading_state=Component.UNDEFINED, persistence=Component.UNDEFINED, persisted_props=Component.UNDEFINED, persistence_type=Component.UNDEFINED, **kwargs):
+        self._prop_names = ['id', 'addonAfter', 'addonBefore', 'bordered', 'className', 'controls', 'debounceValue', 'debounceWait', 'defaultValue', 'disabled', 'key', 'keyboard', 'loading_state', 'max', 'min', 'nSubmit', 'persisted_props', 'persistence', 'persistence_type', 'placeholder', 'precision', 'prefix', 'readOnly', 'size', 'status', 'step', 'stringMode', 'style', 'value']
         self._valid_wildcard_attributes =            []
-        self.available_properties = ['id', 'addonAfter', 'addonBefore', 'bordered', 'className', 'controls', 'debounceValue', 'debounceWait', 'defaultValue', 'disabled', 'key', 'keyboard', 'loading_state', 'max', 'min', 'nSubmit', 'persisted_props', 'persistence', 'persistence_type', 'placeholder', 'precision', 'prefix', 'readOnly', 'size', 'status', 'step', 'stringMode', 'style', 'suffix', 'value']
+        self.available_properties = ['id', 'addonAfter', 'addonBefore', 'bordered', 'className', 'controls', 'debounceValue', 'debounceWait', 'defaultValue', 'disabled', 'key', 'keyboard', 'loading_state', 'max', 'min', 'nSubmit', 'persisted_props', 'persistence', 'persistence_type', 'placeholder', 'precision', 'prefix', 'readOnly', 'size', 'status', 'step', 'stringMode', 'style', 'value']
         self.available_wildcard_properties =            []
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()

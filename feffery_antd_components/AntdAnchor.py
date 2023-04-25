@@ -11,11 +11,11 @@ Keyword arguments:
 
 - id (string; optional)
 
-- affix (boolean; optional)
+- affix (boolean; default True)
 
 - align (a value equal to: 'left', 'right'; default 'right')
 
-- bounds (number; optional)
+- bounds (number; default 5)
 
 - className (string | dict; optional)
 

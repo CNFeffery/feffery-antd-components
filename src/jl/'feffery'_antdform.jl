@@ -15,7 +15,6 @@ Keyword arguments:
 - `id` (String; optional)
 - `className` (String | Dict; optional)
 - `colon` (Bool; optional)
-- `disabled` (Bool; optional)
 - `key` (String; optional)
 - `labelAlign` (a value equal to: 'left', 'right'; optional)
 - `labelCol` (optional): . labelCol has the following type: lists containing elements 'span', 'offset'.
@@ -28,7 +27,6 @@ Those elements have the following types:
   - `is_loading` (Bool; optional): Determines if the component is loading or not
   - `prop_name` (String; optional): Holds which property is loading
   - `component_name` (String; optional): Holds the name of the component that is loading
-- `size` (a value equal to: 'small', 'middle', 'large'; optional)
 - `style` (Dict; optional)
 - `wrapperCol` (optional): . wrapperCol has the following type: lists containing elements 'span', 'offset'.
 Those elements have the following types:
@@ -36,7 +34,7 @@ Those elements have the following types:
   - `offset` (Real; optional)
 """
 function 'feffery'_antdform(; kwargs...)
-        available_props = Symbol[:children, :id, :className, :colon, :disabled, :key, :labelAlign, :labelCol, :layout, :loading_state, :size, :style, :wrapperCol]
+        available_props = Symbol[:children, :id, :className, :colon, :key, :labelAlign, :labelCol, :layout, :loading_state, :style, :wrapperCol]
         wild_props = Symbol[]
         return Component("'feffery'_antdform", "AntdForm", "feffery_antd_components", available_props, wild_props; kwargs...)
 end

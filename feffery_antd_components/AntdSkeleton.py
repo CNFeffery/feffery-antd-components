@@ -13,9 +13,9 @@ Keyword arguments:
 
 - id (string; optional)
 
-- active (boolean; optional)
+- active (boolean; default False)
 
-- avatar (dict; optional)
+- avatar (dict; default False)
 
     `avatar` is a boolean | dict with keys:
 
@@ -52,7 +52,7 @@ Keyword arguments:
     - prop_name (string; optional):
         Holds which property is loading.
 
-- paragraph (dict; optional)
+- paragraph (dict; default True)
 
     `paragraph` is a boolean | dict with keys:
 
@@ -60,11 +60,11 @@ Keyword arguments:
 
     - width (number | string | list of number | strings; optional)
 
-- round (boolean; optional)
+- round (boolean; default False)
 
 - style (dict; optional)
 
-- title (dict; optional)
+- title (dict; default True)
 
     `title` is a boolean | dict with keys:
 

@@ -11,7 +11,7 @@ Keyword arguments:
 
 - id (string; optional)
 
-- className (string; optional)
+- className (string | dict; optional)
 
 - current (number; optional)
 
@@ -19,9 +19,9 @@ Keyword arguments:
 
 - defaultPageSize (number; default 10)
 
-- disabled (boolean; optional)
+- disabled (boolean; default False)
 
-- hideOnSinglePage (boolean; optional)
+- hideOnSinglePage (boolean; default False)
 
 - key (string; optional)
 
@@ -63,17 +63,19 @@ Keyword arguments:
     is kept after the browser quit.  session: window.sessionStorage,
     data is cleared once the browser quit.
 
-- showQuickJumper (boolean; optional)
+- showQuickJumper (boolean; default False)
 
-- showSizeChanger (boolean; optional)
+- showSizeChanger (boolean; default False)
+
+- showTotal (boolean; default True)
 
 - showTotalPrefix (string; optional)
 
 - showTotalSuffix (string; optional)
 
-- simple (boolean; optional)
+- simple (boolean; default False)
 
-- size (a value equal to: 'default', 'small'; optional)
+- size (a value equal to: 'default', 'small'; default 'default')
 
 - style (dict; optional)
 
@@ -83,10 +85,10 @@ Keyword arguments:
     _namespace = 'feffery_antd_components'
     _type = 'AntdPagination'
     @_explicitize_args
-    def __init__(self, id=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, key=Component.UNDEFINED, locale=Component.UNDEFINED, defaultCurrent=Component.UNDEFINED, defaultPageSize=Component.UNDEFINED, current=Component.UNDEFINED, disabled=Component.UNDEFINED, hideOnSinglePage=Component.UNDEFINED, pageSize=Component.UNDEFINED, pageSizeOptions=Component.UNDEFINED, showQuickJumper=Component.UNDEFINED, showSizeChanger=Component.UNDEFINED, showTotalPrefix=Component.UNDEFINED, showTotalSuffix=Component.UNDEFINED, simple=Component.UNDEFINED, size=Component.UNDEFINED, total=Component.UNDEFINED, loading_state=Component.UNDEFINED, persistence=Component.UNDEFINED, persisted_props=Component.UNDEFINED, persistence_type=Component.UNDEFINED, **kwargs):
-        self._prop_names = ['id', 'className', 'current', 'defaultCurrent', 'defaultPageSize', 'disabled', 'hideOnSinglePage', 'key', 'loading_state', 'locale', 'pageSize', 'pageSizeOptions', 'persisted_props', 'persistence', 'persistence_type', 'showQuickJumper', 'showSizeChanger', 'showTotalPrefix', 'showTotalSuffix', 'simple', 'size', 'style', 'total']
+    def __init__(self, id=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, key=Component.UNDEFINED, locale=Component.UNDEFINED, defaultCurrent=Component.UNDEFINED, defaultPageSize=Component.UNDEFINED, current=Component.UNDEFINED, disabled=Component.UNDEFINED, hideOnSinglePage=Component.UNDEFINED, pageSize=Component.UNDEFINED, pageSizeOptions=Component.UNDEFINED, showSizeChanger=Component.UNDEFINED, showQuickJumper=Component.UNDEFINED, showTotalPrefix=Component.UNDEFINED, showTotalSuffix=Component.UNDEFINED, simple=Component.UNDEFINED, size=Component.UNDEFINED, total=Component.UNDEFINED, showTotal=Component.UNDEFINED, loading_state=Component.UNDEFINED, persistence=Component.UNDEFINED, persisted_props=Component.UNDEFINED, persistence_type=Component.UNDEFINED, **kwargs):
+        self._prop_names = ['id', 'className', 'current', 'defaultCurrent', 'defaultPageSize', 'disabled', 'hideOnSinglePage', 'key', 'loading_state', 'locale', 'pageSize', 'pageSizeOptions', 'persisted_props', 'persistence', 'persistence_type', 'showQuickJumper', 'showSizeChanger', 'showTotal', 'showTotalPrefix', 'showTotalSuffix', 'simple', 'size', 'style', 'total']
         self._valid_wildcard_attributes =            []
-        self.available_properties = ['id', 'className', 'current', 'defaultCurrent', 'defaultPageSize', 'disabled', 'hideOnSinglePage', 'key', 'loading_state', 'locale', 'pageSize', 'pageSizeOptions', 'persisted_props', 'persistence', 'persistence_type', 'showQuickJumper', 'showSizeChanger', 'showTotalPrefix', 'showTotalSuffix', 'simple', 'size', 'style', 'total']
+        self.available_properties = ['id', 'className', 'current', 'defaultCurrent', 'defaultPageSize', 'disabled', 'hideOnSinglePage', 'key', 'loading_state', 'locale', 'pageSize', 'pageSizeOptions', 'persisted_props', 'persistence', 'persistence_type', 'showQuickJumper', 'showSizeChanger', 'showTotal', 'showTotalPrefix', 'showTotalSuffix', 'simple', 'size', 'style', 'total']
         self.available_wildcard_properties =            []
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()

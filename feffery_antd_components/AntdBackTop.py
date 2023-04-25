@@ -15,7 +15,7 @@ Keyword arguments:
 
 - containerId (string; optional)
 
-- duration (number; optional)
+- duration (number; default 0.45)
 
 - key (string; optional)
 
@@ -34,7 +34,7 @@ Keyword arguments:
 
 - style (dict; optional)
 
-- visibilityHeight (number; optional)"""
+- visibilityHeight (number; default 400)"""
     _children_props = []
     _base_nodes = ['children']
     _namespace = 'feffery_antd_components'

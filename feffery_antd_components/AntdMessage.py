@@ -15,7 +15,7 @@ Keyword arguments:
 
 - content (string; optional)
 
-- duration (number; optional)
+- duration (number; default 3)
 
 - icon (string; optional)
 
@@ -34,9 +34,11 @@ Keyword arguments:
     - prop_name (string; optional):
         Holds which property is loading.
 
+- maxCount (number; optional)
+
 - style (dict; optional)
 
-- top (number; optional)
+- top (number; default 8)
 
 - type (a value equal to: 'default', 'success', 'error', 'info', 'warning'; default 'default')"""
     _children_props = []
@@ -44,10 +46,10 @@ Keyword arguments:
     _namespace = 'feffery_antd_components'
     _type = 'AntdMessage'
     @_explicitize_args
-    def __init__(self, id=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, key=Component.UNDEFINED, loading_state=Component.UNDEFINED, content=Component.UNDEFINED, type=Component.UNDEFINED, duration=Component.UNDEFINED, top=Component.UNDEFINED, icon=Component.UNDEFINED, **kwargs):
-        self._prop_names = ['id', 'className', 'content', 'duration', 'icon', 'key', 'loading_state', 'style', 'top', 'type']
+    def __init__(self, id=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, key=Component.UNDEFINED, content=Component.UNDEFINED, type=Component.UNDEFINED, duration=Component.UNDEFINED, top=Component.UNDEFINED, maxCount=Component.UNDEFINED, icon=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
+        self._prop_names = ['id', 'className', 'content', 'duration', 'icon', 'key', 'loading_state', 'maxCount', 'style', 'top', 'type']
         self._valid_wildcard_attributes =            []
-        self.available_properties = ['id', 'className', 'content', 'duration', 'icon', 'key', 'loading_state', 'style', 'top', 'type']
+        self.available_properties = ['id', 'className', 'content', 'duration', 'icon', 'key', 'loading_state', 'maxCount', 'style', 'top', 'type']
         self.available_wildcard_properties =            []
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()

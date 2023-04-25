@@ -21,11 +21,11 @@ Keyword arguments:
 
 - fontColor (string; optional)
 
-- fontSize (number; optional)
+- fontSize (number; default 16)
 
-- gapX (number; optional)
+- gapX (number; default 212)
 
-- gapY (number; optional)
+- gapY (number; default 222)
 
 - key (string; optional)
 
@@ -42,7 +42,7 @@ Keyword arguments:
     - prop_name (string; optional):
         Holds which property is loading.
 
-- rotate (number; optional)
+- rotate (number; default -22)
 
 - style (dict; optional)
 

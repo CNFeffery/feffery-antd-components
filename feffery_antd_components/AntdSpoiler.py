@@ -13,15 +13,17 @@ Keyword arguments:
 
 - id (string; optional)
 
-- className (string; optional)
+- className (string | dict; optional)
 
-- contentClassName (string; optional)
+- contentClassName (string | dict; optional)
 
 - contentStyle (dict; optional)
 
-- hideLabel (string; optional)
+- hideLabel (a list of or a singular dash component, string or number; optional)
 
 - key (string; optional)
+
+- labelPosition (a value equal to: 'left', 'right'; default 'left')
 
 - loading_state (dict; optional)
 
@@ -42,20 +44,20 @@ Keyword arguments:
 
 - open (boolean; default False)
 
-- showLabel (string; optional)
+- showLabel (a list of or a singular dash component, string or number; optional)
 
 - style (dict; optional)
 
-- transitionDuration (string; default '0.1s')"""
-    _children_props = []
-    _base_nodes = ['children']
+- transitionDuration (number; default 0.1)"""
+    _children_props = ['hideLabel', 'showLabel']
+    _base_nodes = ['hideLabel', 'showLabel', 'children']
     _namespace = 'feffery_antd_components'
     _type = 'AntdSpoiler'
     @_explicitize_args
-    def __init__(self, children=None, id=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, contentClassName=Component.UNDEFINED, contentStyle=Component.UNDEFINED, key=Component.UNDEFINED, locale=Component.UNDEFINED, hideLabel=Component.UNDEFINED, showLabel=Component.UNDEFINED, open=Component.UNDEFINED, maxHeight=Component.UNDEFINED, transitionDuration=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
-        self._prop_names = ['children', 'id', 'className', 'contentClassName', 'contentStyle', 'hideLabel', 'key', 'loading_state', 'locale', 'maxHeight', 'open', 'showLabel', 'style', 'transitionDuration']
+    def __init__(self, children=None, id=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, contentClassName=Component.UNDEFINED, contentStyle=Component.UNDEFINED, key=Component.UNDEFINED, locale=Component.UNDEFINED, hideLabel=Component.UNDEFINED, showLabel=Component.UNDEFINED, labelPosition=Component.UNDEFINED, open=Component.UNDEFINED, maxHeight=Component.UNDEFINED, transitionDuration=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
+        self._prop_names = ['children', 'id', 'className', 'contentClassName', 'contentStyle', 'hideLabel', 'key', 'labelPosition', 'loading_state', 'locale', 'maxHeight', 'open', 'showLabel', 'style', 'transitionDuration']
         self._valid_wildcard_attributes =            []
-        self.available_properties = ['children', 'id', 'className', 'contentClassName', 'contentStyle', 'hideLabel', 'key', 'loading_state', 'locale', 'maxHeight', 'open', 'showLabel', 'style', 'transitionDuration']
+        self.available_properties = ['children', 'id', 'className', 'contentClassName', 'contentStyle', 'hideLabel', 'key', 'labelPosition', 'loading_state', 'locale', 'maxHeight', 'open', 'showLabel', 'style', 'transitionDuration']
         self.available_wildcard_properties =            []
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()

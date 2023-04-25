@@ -38,7 +38,7 @@ Keyword arguments:
 
 - multiImageMode (a value equal to: 'fold', 'unfold'; default 'fold')
 
-- preview (boolean; optional)
+- preview (boolean; default True)
 
 - src (string | list of strings; optional)
 

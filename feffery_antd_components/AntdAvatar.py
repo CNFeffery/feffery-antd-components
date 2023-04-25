@@ -15,7 +15,7 @@ Keyword arguments:
 
 - className (string | dict; optional)
 
-- gap (number; optional)
+- gap (number; default 4)
 
 - icon (string; optional)
 
@@ -36,9 +36,9 @@ Keyword arguments:
 
 - mode (a value equal to: 'text', 'icon', 'image'; default 'icon')
 
-- shape (a value equal to: 'circle', 'square'; optional)
+- shape (a value equal to: 'circle', 'square'; default 'circle')
 
-- size (dict; optional)
+- size (dict; default 'default')
 
     `size` is a number | a value equal to: 'large', 'small', 'default'
     | dict with keys:
@@ -67,7 +67,7 @@ Keyword arguments:
     _namespace = 'feffery_antd_components'
     _type = 'AntdAvatar'
     @_explicitize_args
-    def __init__(self, id=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, key=Component.UNDEFINED, gap=Component.UNDEFINED, mode=Component.UNDEFINED, text=Component.UNDEFINED, icon=Component.UNDEFINED, alt=Component.UNDEFINED, src=Component.UNDEFINED, srcSet=Component.UNDEFINED, size=Component.UNDEFINED, shape=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
+    def __init__(self, id=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, key=Component.UNDEFINED, mode=Component.UNDEFINED, gap=Component.UNDEFINED, text=Component.UNDEFINED, icon=Component.UNDEFINED, alt=Component.UNDEFINED, src=Component.UNDEFINED, srcSet=Component.UNDEFINED, size=Component.UNDEFINED, shape=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
         self._prop_names = ['id', 'alt', 'className', 'gap', 'icon', 'key', 'loading_state', 'mode', 'shape', 'size', 'src', 'srcSet', 'style', 'text']
         self._valid_wildcard_attributes =            []
         self.available_properties = ['id', 'alt', 'className', 'gap', 'icon', 'key', 'loading_state', 'mode', 'shape', 'size', 'src', 'srcSet', 'style', 'text']

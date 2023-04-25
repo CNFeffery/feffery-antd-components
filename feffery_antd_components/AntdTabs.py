@@ -15,9 +15,9 @@ Keyword arguments:
 
 - activeKey (string; optional)
 
-- centered (boolean; optional)
+- centered (boolean; default False)
 
-- className (string; optional)
+- className (string | dict; optional)
 
 - defaultActiveKey (string; optional)
 
@@ -77,7 +77,7 @@ Keyword arguments:
     is kept after the browser quit.  session: window.sessionStorage,
     data is cleared once the browser quit.
 
-- size (a value equal to: 'small', 'default', 'large'; optional)
+- size (a value equal to: 'small', 'default', 'large'; default 'default')
 
 - style (dict; optional)
 
@@ -89,15 +89,15 @@ Keyword arguments:
 
 - tabPaneAnimated (boolean; default False)
 
-- tabPosition (a value equal to: 'top', 'left', 'right', 'bottom'; optional)
+- tabPosition (a value equal to: 'top', 'left', 'right', 'bottom'; default 'top')
 
-- type (a value equal to: 'line', 'card', 'editable-card'; optional)"""
+- type (a value equal to: 'line', 'card', 'editable-card'; default 'line')"""
     _children_props = ['items[].label', 'items[].children', 'tabBarLeftExtraContent', 'tabBarRightExtraContent']
     _base_nodes = ['tabBarLeftExtraContent', 'tabBarRightExtraContent', 'children']
     _namespace = 'feffery_antd_components'
     _type = 'AntdTabs'
     @_explicitize_args
-    def __init__(self, children=None, id=Component.UNDEFINED, items=Component.UNDEFINED, disabledTabKeys=Component.UNDEFINED, tabBarLeftExtraContent=Component.UNDEFINED, tabBarRightExtraContent=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, key=Component.UNDEFINED, defaultActiveKey=Component.UNDEFINED, tabPosition=Component.UNDEFINED, size=Component.UNDEFINED, type=Component.UNDEFINED, centered=Component.UNDEFINED, tabBarGutter=Component.UNDEFINED, inkBarAnimated=Component.UNDEFINED, tabPaneAnimated=Component.UNDEFINED, activeKey=Component.UNDEFINED, latestDeletePane=Component.UNDEFINED, loading_state=Component.UNDEFINED, persistence=Component.UNDEFINED, persisted_props=Component.UNDEFINED, persistence_type=Component.UNDEFINED, **kwargs):
+    def __init__(self, children=None, id=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, key=Component.UNDEFINED, items=Component.UNDEFINED, activeKey=Component.UNDEFINED, defaultActiveKey=Component.UNDEFINED, disabledTabKeys=Component.UNDEFINED, tabPosition=Component.UNDEFINED, size=Component.UNDEFINED, type=Component.UNDEFINED, centered=Component.UNDEFINED, tabBarGutter=Component.UNDEFINED, inkBarAnimated=Component.UNDEFINED, tabPaneAnimated=Component.UNDEFINED, latestDeletePane=Component.UNDEFINED, tabBarLeftExtraContent=Component.UNDEFINED, tabBarRightExtraContent=Component.UNDEFINED, loading_state=Component.UNDEFINED, persistence=Component.UNDEFINED, persisted_props=Component.UNDEFINED, persistence_type=Component.UNDEFINED, **kwargs):
         self._prop_names = ['children', 'id', 'activeKey', 'centered', 'className', 'defaultActiveKey', 'disabledTabKeys', 'inkBarAnimated', 'items', 'key', 'latestDeletePane', 'loading_state', 'persisted_props', 'persistence', 'persistence_type', 'size', 'style', 'tabBarGutter', 'tabBarLeftExtraContent', 'tabBarRightExtraContent', 'tabPaneAnimated', 'tabPosition', 'type']
         self._valid_wildcard_attributes =            []
         self.available_properties = ['children', 'id', 'activeKey', 'centered', 'className', 'defaultActiveKey', 'disabledTabKeys', 'inkBarAnimated', 'items', 'key', 'latestDeletePane', 'loading_state', 'persisted_props', 'persistence', 'persistence_type', 'size', 'style', 'tabBarGutter', 'tabBarLeftExtraContent', 'tabBarRightExtraContent', 'tabPaneAnimated', 'tabPosition', 'type']

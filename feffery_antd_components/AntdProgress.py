@@ -11,13 +11,13 @@ Keyword arguments:
 
 - id (string; optional)
 
-- className (string; optional)
+- className (string | dict; optional)
 
 - format (dict; optional)
 
     `format` is a dict with keys:
 
-    - content (string; optional)
+    - content (a list of or a singular dash component, string or number; optional)
 
     - prefix (string; optional)
 
@@ -25,7 +25,7 @@ Keyword arguments:
 
 - gapDegree (number; optional)
 
-- gapPosition (a value equal to: 'top', 'bottom', 'left', 'right'; optional)
+- gapPosition (a value equal to: 'top', 'bottom', 'left', 'right'; default 'bottom')
 
 - key (string; optional)
 
@@ -42,11 +42,11 @@ Keyword arguments:
     - prop_name (string; optional):
         Holds which property is loading.
 
-- percent (number; optional)
+- percent (number; default 0)
 
-- showInfo (boolean; optional)
+- showInfo (boolean; default True)
 
-- size (a value equal to: 'default', 'small'; optional)
+- size (a value equal to: 'default', 'small'; default 'default')
 
 - status (a value equal to: 'success', 'exception', 'normal', 'active'; optional)
 
@@ -60,7 +60,7 @@ Keyword arguments:
 
     - to (string; optional)
 
-- strokeLinecap (a value equal to: 'round', 'square'; optional)
+- strokeLinecap (a value equal to: 'round', 'butt', 'square'; optional)
 
 - strokeWidth (number; optional)
 
@@ -68,10 +68,10 @@ Keyword arguments:
 
 - trailColor (string; optional)
 
-- type (a value equal to: 'line', 'circle', 'dashboard'; optional)
+- type (a value equal to: 'line', 'circle', 'dashboard'; default 'line')
 
-- width (number; optional)"""
-    _children_props = []
+- width (number; default 132)"""
+    _children_props = ['format.content']
     _base_nodes = ['children']
     _namespace = 'feffery_antd_components'
     _type = 'AntdProgress'

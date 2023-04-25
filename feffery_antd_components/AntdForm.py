@@ -15,13 +15,13 @@ Keyword arguments:
 
 - id (string; optional)
 
-- className (string; optional)
+- className (string | dict; optional)
 
-- colon (boolean; optional)
+- colon (boolean; default True)
 
 - key (string; optional)
 
-- labelAlign (a value equal to: 'left', 'right'; optional)
+- labelAlign (a value equal to: 'left', 'right'; default 'right')
 
 - labelCol (dict; optional)
 
@@ -31,7 +31,7 @@ Keyword arguments:
 
     - span (number; optional)
 
-- layout (a value equal to: 'horizontal', 'vertical', 'inline'; optional)
+- layout (a value equal to: 'horizontal', 'vertical', 'inline'; default 'horizontal')
 
 - loading_state (dict; optional)
 
@@ -60,7 +60,7 @@ Keyword arguments:
     _namespace = 'feffery_antd_components'
     _type = 'AntdForm'
     @_explicitize_args
-    def __init__(self, children=None, id=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, key=Component.UNDEFINED, labelCol=Component.UNDEFINED, wrapperCol=Component.UNDEFINED, colon=Component.UNDEFINED, labelAlign=Component.UNDEFINED, layout=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
+    def __init__(self, children=None, id=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, key=Component.UNDEFINED, layout=Component.UNDEFINED, labelCol=Component.UNDEFINED, wrapperCol=Component.UNDEFINED, colon=Component.UNDEFINED, labelAlign=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
         self._prop_names = ['children', 'id', 'className', 'colon', 'key', 'labelAlign', 'labelCol', 'layout', 'loading_state', 'style', 'wrapperCol']
         self._valid_wildcard_attributes =            []
         self.available_properties = ['children', 'id', 'className', 'colon', 'key', 'labelAlign', 'labelCol', 'layout', 'loading_state', 'style', 'wrapperCol']

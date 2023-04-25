@@ -13,13 +13,13 @@ Keyword arguments:
 
 - id (string; optional)
 
-- className (string; optional)
+- className (string | dict; optional)
 
 - color (string; optional)
 
 - count (number; optional)
 
-- dot (boolean; optional)
+- dot (boolean; default False)
 
 - key (string; optional)
 
@@ -40,11 +40,11 @@ Keyword arguments:
 
 - offset (list of numbers; optional)
 
-- overflowCount (number; optional)
+- overflowCount (number; default 99)
 
-- showZero (boolean; optional)
+- showZero (boolean; default False)
 
-- size (a value equal to: 'default', 'small'; optional)
+- size (a value equal to: 'default', 'small'; default 'default')
 
 - status (a value equal to: 'success', 'processing', 'default', 'error', 'warning'; optional)
 
@@ -58,7 +58,7 @@ Keyword arguments:
     _namespace = 'feffery_antd_components'
     _type = 'AntdBadge'
     @_explicitize_args
-    def __init__(self, children=None, id=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, key=Component.UNDEFINED, color=Component.UNDEFINED, count=Component.UNDEFINED, dot=Component.UNDEFINED, offset=Component.UNDEFINED, overflowCount=Component.UNDEFINED, showZero=Component.UNDEFINED, status=Component.UNDEFINED, text=Component.UNDEFINED, title=Component.UNDEFINED, size=Component.UNDEFINED, nClicks=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
+    def __init__(self, children=None, id=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, key=Component.UNDEFINED, color=Component.UNDEFINED, count=Component.UNDEFINED, dot=Component.UNDEFINED, showZero=Component.UNDEFINED, overflowCount=Component.UNDEFINED, offset=Component.UNDEFINED, status=Component.UNDEFINED, text=Component.UNDEFINED, title=Component.UNDEFINED, size=Component.UNDEFINED, nClicks=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
         self._prop_names = ['children', 'id', 'className', 'color', 'count', 'dot', 'key', 'loading_state', 'nClicks', 'offset', 'overflowCount', 'showZero', 'size', 'status', 'style', 'text', 'title']
         self._valid_wildcard_attributes =            []
         self.available_properties = ['children', 'id', 'className', 'color', 'count', 'dot', 'key', 'loading_state', 'nClicks', 'offset', 'overflowCount', 'showZero', 'size', 'status', 'style', 'text', 'title']

@@ -15,11 +15,11 @@ Keyword arguments:
 
 - addonBefore (a list of or a singular dash component, string or number; optional)
 
-- allowClear (boolean; optional)
+- allowClear (boolean; default False)
 
-- autoComplete (a value equal to: 'off', 'on'; optional)
+- autoComplete (a value equal to: 'off', 'on'; default 'on')
 
-- autoSize (dict; optional)
+- autoSize (dict; default False)
 
     `autoSize` is a boolean | dict with keys:
 
@@ -27,17 +27,17 @@ Keyword arguments:
 
     - minRows (number; optional)
 
-- bordered (boolean; optional)
+- bordered (boolean; default True)
 
-- className (string; optional)
+- className (string | dict; optional)
 
 - debounceValue (string; optional)
 
-- debounceWait (number; default 300)
+- debounceWait (number; default 200)
 
 - defaultValue (string; optional)
 
-- disabled (boolean; optional)
+- disabled (boolean; default False)
 
 - key (string; optional)
 
@@ -66,7 +66,7 @@ Keyword arguments:
 
 - passwordUseMd5 (boolean; default False)
 
-- persisted_props (list of a value equal to: 'value', 'md5Value's; default ['value']):
+- persisted_props (list of a value equal to: 'value', 'md5Value's; default ['value', 'md5Value']):
     Properties whose user interactions will persist after refreshing
     the  component or the page. Since only `value` is allowed this
     prop can  normally be ignored.
@@ -91,9 +91,9 @@ Keyword arguments:
 
 - readOnly (boolean; optional)
 
-- showCount (boolean; optional)
+- showCount (boolean; default False)
 
-- size (a value equal to: 'small', 'middle', 'large'; optional)
+- size (a value equal to: 'small', 'middle', 'large'; default 'middle')
 
 - status (a value equal to: 'error', 'warning'; optional)
 
@@ -107,7 +107,7 @@ Keyword arguments:
     _namespace = 'feffery_antd_components'
     _type = 'AntdInput'
     @_explicitize_args
-    def __init__(self, id=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, key=Component.UNDEFINED, loading_state=Component.UNDEFINED, mode=Component.UNDEFINED, autoComplete=Component.UNDEFINED, placeholder=Component.UNDEFINED, size=Component.UNDEFINED, addonBefore=Component.UNDEFINED, addonAfter=Component.UNDEFINED, prefix=Component.UNDEFINED, suffix=Component.UNDEFINED, allowClear=Component.UNDEFINED, bordered=Component.UNDEFINED, defaultValue=Component.UNDEFINED, disabled=Component.UNDEFINED, maxLength=Component.UNDEFINED, value=Component.UNDEFINED, md5Value=Component.UNDEFINED, debounceValue=Component.UNDEFINED, debounceWait=Component.UNDEFINED, showCount=Component.UNDEFINED, passwordUseMd5=Component.UNDEFINED, nSubmit=Component.UNDEFINED, nClicksSearch=Component.UNDEFINED, status=Component.UNDEFINED, autoSize=Component.UNDEFINED, readOnly=Component.UNDEFINED, persistence=Component.UNDEFINED, persisted_props=Component.UNDEFINED, persistence_type=Component.UNDEFINED, **kwargs):
+    def __init__(self, id=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, key=Component.UNDEFINED, mode=Component.UNDEFINED, autoComplete=Component.UNDEFINED, disabled=Component.UNDEFINED, size=Component.UNDEFINED, bordered=Component.UNDEFINED, placeholder=Component.UNDEFINED, value=Component.UNDEFINED, defaultValue=Component.UNDEFINED, md5Value=Component.UNDEFINED, debounceValue=Component.UNDEFINED, passwordUseMd5=Component.UNDEFINED, debounceWait=Component.UNDEFINED, addonBefore=Component.UNDEFINED, addonAfter=Component.UNDEFINED, prefix=Component.UNDEFINED, suffix=Component.UNDEFINED, maxLength=Component.UNDEFINED, showCount=Component.UNDEFINED, autoSize=Component.UNDEFINED, nSubmit=Component.UNDEFINED, nClicksSearch=Component.UNDEFINED, status=Component.UNDEFINED, allowClear=Component.UNDEFINED, readOnly=Component.UNDEFINED, loading_state=Component.UNDEFINED, persistence=Component.UNDEFINED, persisted_props=Component.UNDEFINED, persistence_type=Component.UNDEFINED, **kwargs):
         self._prop_names = ['id', 'addonAfter', 'addonBefore', 'allowClear', 'autoComplete', 'autoSize', 'bordered', 'className', 'debounceValue', 'debounceWait', 'defaultValue', 'disabled', 'key', 'loading_state', 'maxLength', 'md5Value', 'mode', 'nClicksSearch', 'nSubmit', 'passwordUseMd5', 'persisted_props', 'persistence', 'persistence_type', 'placeholder', 'prefix', 'readOnly', 'showCount', 'size', 'status', 'style', 'suffix', 'value']
         self._valid_wildcard_attributes =            []
         self.available_properties = ['id', 'addonAfter', 'addonBefore', 'allowClear', 'autoComplete', 'autoSize', 'bordered', 'className', 'debounceValue', 'debounceWait', 'defaultValue', 'disabled', 'key', 'loading_state', 'maxLength', 'md5Value', 'mode', 'nClicksSearch', 'nSubmit', 'passwordUseMd5', 'persisted_props', 'persistence', 'persistence_type', 'placeholder', 'prefix', 'readOnly', 'showCount', 'size', 'status', 'style', 'suffix', 'value']

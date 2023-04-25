@@ -1,12 +1,9 @@
-from datetime import datetime
-
 import dash
-import json
 from dash import html
 import feffery_antd_components as fac
-from dash.dependencies import Input, Output
+from dash.dependencies import Input, Output, State
 
-app = dash.Dash(__name__, suppress_callback_exceptions=True)
+app = dash.Dash(__name__)
 
 app.layout = html.Div(
     [
@@ -14,66 +11,56 @@ app.layout = html.Div(
             id='table-demo',
             columns=[
                 {
-                    'title': 'select模式测试',
-                    'dataIndex': 'select模式测试',
-                    'renderOptions': {
-                        'renderType': 'select'
-                    },
-                    'align': 'left'
+                    'title': f'字段{i}',
+                    'dataIndex': f'字段{i}'
                 }
+                for i in range(1, 11)
             ],
             data=[
                 {
-                    'select模式测试': {
-                        'options': [
-                            {
-                                'label': f'选项{i}',
-                                'value': f'选项{i}'
-                            }
-                            for i in range(1, 6)
-                        ],
-                        'value': '选项3',
-                        # 'mode': 'multiple',
-                        'placeholder': '请选择',
-                        # 'bordered': False,
-                        'maxTagCount': 'responsive'
+                    'key': f'row-{row}',
+                    **{
+                        f'字段{i}': 999
+                        for i in range(1, 11)
                     }
                 }
+                for row in range(10)
             ],
+            rowSelectionType='checkbox',
             bordered=True,
-            style={
-                'width': 250
-            }
-        ),
-        html.Pre(
-            id='output'
+            enableCellClickListenColumns=[
+                f'字段{i}' for i in range(1, 11)
+            ]
         )
-    ]
+    ],
+    style={
+        'padding': '50px 100px'
+    }
 )
 
 
 @app.callback(
-    Output('output', 'children'),
-    [Input('table-demo', 'data'),
-     Input('table-demo', 'recentlySelectRow'),
-     Input('table-demo', 'recentlySelectDataIndex'),
-     Input('table-demo', 'recentlySelectValue')]
+    Output('table-demo', 'selectedRowKeys'),
+    Input('table-demo', 'nDoubleClicksCell'),
+    [State('table-demo', 'recentlyCellDoubleClickRecord'),
+     State('table-demo', 'selectedRowKeys')],
+    prevent_initial_call=True
 )
-def demo(data,
-         recentlySelectRow,
-         recentlySelectDataIndex,
-         recentlySelectValue):
+def update_selected_row_keys(nDoubleClicksCell,
+                             recentlyCellDoubleClickRecord,
+                             selectedRowKeys):
 
-    return json.dumps(
-        dict(
-            data=data,
-            recentlySelectRow=recentlySelectRow,
-            recentlySelectDataIndex=recentlySelectDataIndex,
-            recentlySelectValue=recentlySelectValue
-        ),
-        indent=4,
-        ensure_ascii=False
-    )
+    selectedRowKeys = selectedRowKeys or []
+    if recentlyCellDoubleClickRecord['key'] not in selectedRowKeys:
+        return [
+            *selectedRowKeys,
+            recentlyCellDoubleClickRecord['key']
+        ]
+
+    return [
+        key for key in selectedRowKeys
+        if key != recentlyCellDoubleClickRecord['key']
+    ]
 
 
 if __name__ == '__main__':

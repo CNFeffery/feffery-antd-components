@@ -13,7 +13,7 @@ Keyword arguments:
 
 - id (string; optional)
 
-- className (string; optional)
+- className (string | dict; optional)
 
 - color (string; optional)
 
@@ -32,7 +32,7 @@ Keyword arguments:
     - prop_name (string; optional):
         Holds which property is loading.
 
-- placement (a value equal to: 'start', 'end'; optional)
+- placement (a value equal to: 'start', 'end'; default 'end')
 
 - style (dict; optional)
 

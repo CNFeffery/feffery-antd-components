@@ -11,13 +11,13 @@ Keyword arguments:
 
 - id (string; optional)
 
-- block (boolean; optional)
+- block (boolean; default False)
 
-- className (string; optional)
+- className (string | dict; optional)
 
 - defaultValue (string | number; optional)
 
-- disabled (boolean; optional)
+- disabled (boolean; default False)
 
 - key (string; optional)
 
@@ -65,7 +65,7 @@ Keyword arguments:
     is kept after the browser quit.  session: window.sessionStorage,
     data is cleared once the browser quit.
 
-- size (a value equal to: 'large', 'middle', 'small'; optional)
+- size (a value equal to: 'large', 'middle', 'small'; default 'middle')
 
 - style (dict; optional)
 

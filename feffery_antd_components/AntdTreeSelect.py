@@ -13,15 +13,19 @@ Keyword arguments:
 
 - allowClear (boolean; default True)
 
-- autoClearSearchValue (boolean; optional)
+- autoClearSearchValue (boolean; default True)
 
-- bordered (boolean; optional)
+- bordered (boolean; default True)
 
-- className (string; optional)
+- className (string | dict; optional)
 
 - defaultValue (string | number | list of string | numbers; optional)
 
-- disabled (boolean; optional)
+- disabled (boolean; default False)
+
+- dropdownAfter (a list of or a singular dash component, string or number; optional)
+
+- dropdownBefore (a list of or a singular dash component, string or number; optional)
 
 - key (string; optional)
 
@@ -44,7 +48,7 @@ Keyword arguments:
 
 - maxTagCount (number | a value equal to: 'responsive'; optional)
 
-- multiple (boolean; optional)
+- multiple (boolean; default False)
 
 - persisted_props (list of a value equal to: 'value's; default ['value']):
     Properties whose user interactions will persist after refreshing
@@ -67,48 +71,50 @@ Keyword arguments:
 
 - placeholder (string; optional)
 
-- placement (a value equal to: 'bottomLeft', 'bottomRight', 'topLeft', 'topRight'; optional)
+- placement (a value equal to: 'bottomLeft', 'bottomRight', 'topLeft', 'topRight'; default 'bottomLeft')
 
 - popupContainer (a value equal to: 'parent', 'body'; default 'body')
 
 - readOnly (boolean; optional)
 
-- size (a value equal to: 'small', 'middle', 'large'; optional)
+- showCheckedStrategy (a value equal to: 'show-all', 'show-parent', 'show-child'; default 'show-all')
+
+- size (a value equal to: 'small', 'middle', 'large'; default 'middle')
 
 - status (a value equal to: 'error', 'warning'; optional)
 
 - style (dict; optional)
 
-- treeCheckStrictly (boolean; optional)
+- treeCheckStrictly (boolean; default False)
 
-- treeCheckable (boolean; optional)
+- treeCheckable (boolean; default False)
 
 - treeData (list; required)
 
 - treeDataMode (a value equal to: 'tree', 'flat'; default 'tree')
 
-- treeDefaultExpandAll (boolean; optional)
+- treeDefaultExpandAll (boolean; default False)
 
 - treeDefaultExpandedKeys (list of strings; optional)
 
 - treeExpandedKeys (list of strings; optional)
 
-- treeLine (boolean; optional)
+- treeLine (boolean; default False)
 
 - treeNodeFilterProp (a value equal to: 'title', 'value'; default 'value')
 
 - value (string | number | list of string | numbers; optional)
 
 - virtual (boolean; default True)"""
-    _children_props = []
-    _base_nodes = ['children']
+    _children_props = ['dropdownBefore', 'dropdownAfter']
+    _base_nodes = ['dropdownBefore', 'dropdownAfter', 'children']
     _namespace = 'feffery_antd_components'
     _type = 'AntdTreeSelect'
     @_explicitize_args
-    def __init__(self, id=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, key=Component.UNDEFINED, locale=Component.UNDEFINED, treeData=Component.REQUIRED, treeDataMode=Component.UNDEFINED, allowClear=Component.UNDEFINED, bordered=Component.UNDEFINED, treeLine=Component.UNDEFINED, placeholder=Component.UNDEFINED, value=Component.UNDEFINED, defaultValue=Component.UNDEFINED, maxTagCount=Component.UNDEFINED, listHeight=Component.UNDEFINED, multiple=Component.UNDEFINED, size=Component.UNDEFINED, treeCheckable=Component.UNDEFINED, treeCheckStrictly=Component.UNDEFINED, treeDefaultExpandAll=Component.UNDEFINED, treeDefaultExpandedKeys=Component.UNDEFINED, treeExpandedKeys=Component.UNDEFINED, virtual=Component.UNDEFINED, disabled=Component.UNDEFINED, placement=Component.UNDEFINED, status=Component.UNDEFINED, treeNodeFilterProp=Component.UNDEFINED, autoClearSearchValue=Component.UNDEFINED, popupContainer=Component.UNDEFINED, readOnly=Component.UNDEFINED, loading_state=Component.UNDEFINED, persistence=Component.UNDEFINED, persisted_props=Component.UNDEFINED, persistence_type=Component.UNDEFINED, **kwargs):
-        self._prop_names = ['id', 'allowClear', 'autoClearSearchValue', 'bordered', 'className', 'defaultValue', 'disabled', 'key', 'listHeight', 'loading_state', 'locale', 'maxTagCount', 'multiple', 'persisted_props', 'persistence', 'persistence_type', 'placeholder', 'placement', 'popupContainer', 'readOnly', 'size', 'status', 'style', 'treeCheckStrictly', 'treeCheckable', 'treeData', 'treeDataMode', 'treeDefaultExpandAll', 'treeDefaultExpandedKeys', 'treeExpandedKeys', 'treeLine', 'treeNodeFilterProp', 'value', 'virtual']
+    def __init__(self, id=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, key=Component.UNDEFINED, locale=Component.UNDEFINED, treeDataMode=Component.UNDEFINED, treeData=Component.REQUIRED, disabled=Component.UNDEFINED, size=Component.UNDEFINED, bordered=Component.UNDEFINED, placeholder=Component.UNDEFINED, placement=Component.UNDEFINED, treeLine=Component.UNDEFINED, value=Component.UNDEFINED, defaultValue=Component.UNDEFINED, maxTagCount=Component.UNDEFINED, listHeight=Component.UNDEFINED, multiple=Component.UNDEFINED, treeCheckable=Component.UNDEFINED, treeCheckStrictly=Component.UNDEFINED, treeDefaultExpandAll=Component.UNDEFINED, treeDefaultExpandedKeys=Component.UNDEFINED, treeExpandedKeys=Component.UNDEFINED, virtual=Component.UNDEFINED, status=Component.UNDEFINED, allowClear=Component.UNDEFINED, treeNodeFilterProp=Component.UNDEFINED, autoClearSearchValue=Component.UNDEFINED, showCheckedStrategy=Component.UNDEFINED, dropdownBefore=Component.UNDEFINED, dropdownAfter=Component.UNDEFINED, readOnly=Component.UNDEFINED, popupContainer=Component.UNDEFINED, loading_state=Component.UNDEFINED, persistence=Component.UNDEFINED, persisted_props=Component.UNDEFINED, persistence_type=Component.UNDEFINED, **kwargs):
+        self._prop_names = ['id', 'allowClear', 'autoClearSearchValue', 'bordered', 'className', 'defaultValue', 'disabled', 'dropdownAfter', 'dropdownBefore', 'key', 'listHeight', 'loading_state', 'locale', 'maxTagCount', 'multiple', 'persisted_props', 'persistence', 'persistence_type', 'placeholder', 'placement', 'popupContainer', 'readOnly', 'showCheckedStrategy', 'size', 'status', 'style', 'treeCheckStrictly', 'treeCheckable', 'treeData', 'treeDataMode', 'treeDefaultExpandAll', 'treeDefaultExpandedKeys', 'treeExpandedKeys', 'treeLine', 'treeNodeFilterProp', 'value', 'virtual']
         self._valid_wildcard_attributes =            []
-        self.available_properties = ['id', 'allowClear', 'autoClearSearchValue', 'bordered', 'className', 'defaultValue', 'disabled', 'key', 'listHeight', 'loading_state', 'locale', 'maxTagCount', 'multiple', 'persisted_props', 'persistence', 'persistence_type', 'placeholder', 'placement', 'popupContainer', 'readOnly', 'size', 'status', 'style', 'treeCheckStrictly', 'treeCheckable', 'treeData', 'treeDataMode', 'treeDefaultExpandAll', 'treeDefaultExpandedKeys', 'treeExpandedKeys', 'treeLine', 'treeNodeFilterProp', 'value', 'virtual']
+        self.available_properties = ['id', 'allowClear', 'autoClearSearchValue', 'bordered', 'className', 'defaultValue', 'disabled', 'dropdownAfter', 'dropdownBefore', 'key', 'listHeight', 'loading_state', 'locale', 'maxTagCount', 'multiple', 'persisted_props', 'persistence', 'persistence_type', 'placeholder', 'placement', 'popupContainer', 'readOnly', 'showCheckedStrategy', 'size', 'status', 'style', 'treeCheckStrictly', 'treeCheckable', 'treeData', 'treeDataMode', 'treeDefaultExpandAll', 'treeDefaultExpandedKeys', 'treeExpandedKeys', 'treeLine', 'treeNodeFilterProp', 'value', 'virtual']
         self.available_wildcard_properties =            []
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()

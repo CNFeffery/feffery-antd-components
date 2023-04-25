@@ -15,9 +15,9 @@ Keyword arguments:
 
 - id (string; optional)
 
-- className (string; optional)
+- className (string | dict; optional)
 
-- hoverable (boolean; optional)
+- hoverable (boolean; default True)
 
 - key (string; optional)
 

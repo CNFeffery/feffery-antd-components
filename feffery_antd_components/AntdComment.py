@@ -21,9 +21,9 @@ Keyword arguments:
 
 - avatarProps (dict; optional)
 
-- className (string; optional)
+- className (string | dict; optional)
 
-- commentContent (string; optional)
+- commentContent (a list of or a singular dash component, string or number; optional)
 
 - commentId (string; optional)
 
@@ -71,8 +71,8 @@ Keyword arguments:
 - showReply (boolean; default True)
 
 - style (dict; optional)"""
-    _children_props = []
-    _base_nodes = ['children']
+    _children_props = ['commentContent']
+    _base_nodes = ['commentContent', 'children']
     _namespace = 'feffery_antd_components'
     _type = 'AntdComment'
     @_explicitize_args

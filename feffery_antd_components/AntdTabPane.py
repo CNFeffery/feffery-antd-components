@@ -15,7 +15,7 @@ Keyword arguments:
 
 - id (string; optional)
 
-- className (string | dict; optional)
+- className (string; optional)
 
 - closable (boolean; optional)
 

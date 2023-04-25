@@ -21,11 +21,11 @@ Keyword arguments:
 
 - collapsed (boolean; default False)
 
-- collapsedWidth (number; optional)
+- collapsedWidth (number; default 80)
 
-- collapsible (boolean; optional)
+- collapsible (boolean; default False)
 
-- defaultCollapsed (boolean; optional)
+- defaultCollapsed (boolean; default False)
 
 - key (string; optional)
 
@@ -42,21 +42,21 @@ Keyword arguments:
     - prop_name (string; optional):
         Holds which property is loading.
 
-- reverseArrow (boolean; optional)
+- reverseArrow (boolean; default False)
 
 - style (dict; optional)
 
-- theme (a value equal to: 'light', 'dark'; optional)
+- theme (a value equal to: 'light', 'dark'; default 'dark')
 
 - trigger (a list of or a singular dash component, string or number; optional)
 
-- width (number; optional)"""
+- width (number; default 200)"""
     _children_props = ['trigger']
     _base_nodes = ['trigger', 'children']
     _namespace = 'feffery_antd_components'
     _type = 'AntdSider'
     @_explicitize_args
-    def __init__(self, children=None, id=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, key=Component.UNDEFINED, collapsed=Component.UNDEFINED, collapsedWidth=Component.UNDEFINED, collapsible=Component.UNDEFINED, defaultCollapsed=Component.UNDEFINED, reverseArrow=Component.UNDEFINED, theme=Component.UNDEFINED, width=Component.UNDEFINED, trigger=Component.UNDEFINED, breakpoint=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
+    def __init__(self, children=None, id=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, key=Component.UNDEFINED, collapsed=Component.UNDEFINED, defaultCollapsed=Component.UNDEFINED, collapsedWidth=Component.UNDEFINED, collapsible=Component.UNDEFINED, reverseArrow=Component.UNDEFINED, theme=Component.UNDEFINED, width=Component.UNDEFINED, trigger=Component.UNDEFINED, breakpoint=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
         self._prop_names = ['children', 'id', 'breakpoint', 'className', 'collapsed', 'collapsedWidth', 'collapsible', 'defaultCollapsed', 'key', 'loading_state', 'reverseArrow', 'style', 'theme', 'trigger', 'width']
         self._valid_wildcard_attributes =            []
         self.available_properties = ['children', 'id', 'breakpoint', 'className', 'collapsed', 'collapsedWidth', 'collapsible', 'defaultCollapsed', 'key', 'loading_state', 'reverseArrow', 'style', 'theme', 'trigger', 'width']

@@ -17,7 +17,7 @@ Keyword arguments:
 
 - backClicks (number; default 0)
 
-- className (string; optional)
+- className (string | dict; optional)
 
 - ghost (boolean; optional)
 

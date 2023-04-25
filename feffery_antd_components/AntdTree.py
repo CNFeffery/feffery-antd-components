@@ -11,31 +11,31 @@ Keyword arguments:
 
 - id (string; optional)
 
-- checkStrictly (boolean; optional)
+- checkStrictly (boolean; default False)
 
-- checkable (boolean; optional)
+- checkable (boolean; default False)
 
-- checkedKeys (list; optional)
+- checkedKeys (list of strings; optional)
 
-- className (string; optional)
+- className (string | number; optional)
 
 - defaultCheckedKeys (list of strings; optional)
 
-- defaultExpandAll (boolean; optional)
+- defaultExpandAll (boolean; default False)
 
-- defaultExpandParent (boolean; optional)
+- defaultExpandParent (boolean; default False)
 
 - defaultExpandedKeys (list of strings; optional)
 
 - defaultSelectedKeys (list of strings; optional)
 
-- draggable (boolean; optional)
+- draggable (boolean; default False)
 
-- draggedNodeKey (string | number; optional)
+- draggedNodeKey (string; optional)
 
 - expandedKeys (list of strings; optional)
 
-- halfCheckedKeys (list; optional)
+- halfCheckedKeys (list of strings; optional)
 
 - height (number; optional)
 
@@ -54,9 +54,9 @@ Keyword arguments:
     - prop_name (string; optional):
         Holds which property is loading.
 
-- multiple (boolean; optional)
+- multiple (boolean; default False)
 
-- persisted_props (list of a value equal to: 'selectedKeys', 'checkedKeys', 'expandedKeys's; default ['selectedKeys', 'checkedKeys', 'expandedKeys']):
+- persisted_props (list of a value equal to: 'selectedKeys', 'checkedKeys', 'expandedKeys', 'halfCheckedKeys's; default ['selectedKeys', 'checkedKeys', 'expandedKeys', 'halfCheckedKeys']):
     Properties whose user interactions will persist after refreshing
     the  component or the page. Since only `value` is allowed this
     prop can  normally be ignored.
@@ -75,11 +75,11 @@ Keyword arguments:
     is kept after the browser quit.  session: window.sessionStorage,
     data is cleared once the browser quit.
 
-- selectable (boolean; optional)
+- selectable (boolean; default True)
 
-- selectedKeys (list; optional)
+- selectedKeys (list of strings; optional)
 
-- showIcon (boolean; default True)
+- showIcon (boolean; default False)
 
 - showLine (dict; default { 'showLeafIcon': False })
 
@@ -97,7 +97,7 @@ Keyword arguments:
     _namespace = 'feffery_antd_components'
     _type = 'AntdTree'
     @_explicitize_args
-    def __init__(self, id=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, key=Component.UNDEFINED, treeData=Component.UNDEFINED, treeDataMode=Component.UNDEFINED, showIcon=Component.UNDEFINED, checkable=Component.UNDEFINED, defaultExpandAll=Component.UNDEFINED, defaultExpandedKeys=Component.UNDEFINED, defaultExpandParent=Component.UNDEFINED, checkStrictly=Component.UNDEFINED, defaultCheckedKeys=Component.UNDEFINED, defaultSelectedKeys=Component.UNDEFINED, multiple=Component.UNDEFINED, selectable=Component.UNDEFINED, showLine=Component.UNDEFINED, selectedKeys=Component.UNDEFINED, checkedKeys=Component.UNDEFINED, halfCheckedKeys=Component.UNDEFINED, expandedKeys=Component.UNDEFINED, height=Component.UNDEFINED, draggable=Component.UNDEFINED, draggedNodeKey=Component.UNDEFINED, loading_state=Component.UNDEFINED, persistence=Component.UNDEFINED, persisted_props=Component.UNDEFINED, persistence_type=Component.UNDEFINED, **kwargs):
+    def __init__(self, id=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, key=Component.UNDEFINED, treeDataMode=Component.UNDEFINED, treeData=Component.UNDEFINED, showIcon=Component.UNDEFINED, selectable=Component.UNDEFINED, multiple=Component.UNDEFINED, checkable=Component.UNDEFINED, defaultExpandAll=Component.UNDEFINED, expandedKeys=Component.UNDEFINED, defaultExpandedKeys=Component.UNDEFINED, defaultExpandParent=Component.UNDEFINED, selectedKeys=Component.UNDEFINED, defaultSelectedKeys=Component.UNDEFINED, checkedKeys=Component.UNDEFINED, defaultCheckedKeys=Component.UNDEFINED, halfCheckedKeys=Component.UNDEFINED, checkStrictly=Component.UNDEFINED, showLine=Component.UNDEFINED, height=Component.UNDEFINED, draggable=Component.UNDEFINED, draggedNodeKey=Component.UNDEFINED, loading_state=Component.UNDEFINED, persistence=Component.UNDEFINED, persisted_props=Component.UNDEFINED, persistence_type=Component.UNDEFINED, **kwargs):
         self._prop_names = ['id', 'checkStrictly', 'checkable', 'checkedKeys', 'className', 'defaultCheckedKeys', 'defaultExpandAll', 'defaultExpandParent', 'defaultExpandedKeys', 'defaultSelectedKeys', 'draggable', 'draggedNodeKey', 'expandedKeys', 'halfCheckedKeys', 'height', 'key', 'loading_state', 'multiple', 'persisted_props', 'persistence', 'persistence_type', 'selectable', 'selectedKeys', 'showIcon', 'showLine', 'style', 'treeData', 'treeDataMode']
         self._valid_wildcard_attributes =            []
         self.available_properties = ['id', 'checkStrictly', 'checkable', 'checkedKeys', 'className', 'defaultCheckedKeys', 'defaultExpandAll', 'defaultExpandParent', 'defaultExpandedKeys', 'defaultSelectedKeys', 'draggable', 'draggedNodeKey', 'expandedKeys', 'halfCheckedKeys', 'height', 'key', 'loading_state', 'multiple', 'persisted_props', 'persistence', 'persistence_type', 'selectable', 'selectedKeys', 'showIcon', 'showLine', 'style', 'treeData', 'treeDataMode']

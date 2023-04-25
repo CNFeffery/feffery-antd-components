@@ -15,7 +15,7 @@ Keyword arguments:
 
 - beforeIcon (a list of or a singular dash component, string or number; optional)
 
-- className (string; optional)
+- className (string | dict; optional)
 
 - key (string; optional)
 

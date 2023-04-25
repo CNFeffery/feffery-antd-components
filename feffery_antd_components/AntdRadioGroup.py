@@ -11,15 +11,15 @@ Keyword arguments:
 
 - id (string; optional)
 
-- buttonStyle (a value equal to: 'outline', 'solid'; optional)
+- buttonStyle (a value equal to: 'outline', 'solid'; default 'outline')
 
-- className (string; optional)
+- className (string | dict; optional)
 
 - defaultValue (string | number; optional)
 
 - direction (a value equal to: 'horizontal', 'vertical'; default 'horizontal')
 
-- disabled (boolean; optional)
+- disabled (boolean; default False)
 
 - key (string; optional)
 
@@ -36,7 +36,7 @@ Keyword arguments:
     - prop_name (string; optional):
         Holds which property is loading.
 
-- optionType (a value equal to: 'default', 'button'; optional)
+- optionType (a value equal to: 'default', 'button'; default 'default')
 
 - options (list of dicts; optional)
 
@@ -67,7 +67,7 @@ Keyword arguments:
     is kept after the browser quit.  session: window.sessionStorage,
     data is cleared once the browser quit.
 
-- size (a value equal to: 'large', 'middle', 'small'; optional)
+- size (a value equal to: 'large', 'middle', 'small'; default 'middle')
 
 - style (dict; optional)
 
@@ -77,7 +77,7 @@ Keyword arguments:
     _namespace = 'feffery_antd_components'
     _type = 'AntdRadioGroup'
     @_explicitize_args
-    def __init__(self, id=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, key=Component.UNDEFINED, direction=Component.UNDEFINED, options=Component.UNDEFINED, value=Component.UNDEFINED, defaultValue=Component.UNDEFINED, optionType=Component.UNDEFINED, buttonStyle=Component.UNDEFINED, disabled=Component.UNDEFINED, size=Component.UNDEFINED, loading_state=Component.UNDEFINED, persistence=Component.UNDEFINED, persisted_props=Component.UNDEFINED, persistence_type=Component.UNDEFINED, **kwargs):
+    def __init__(self, id=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, key=Component.UNDEFINED, direction=Component.UNDEFINED, options=Component.UNDEFINED, disabled=Component.UNDEFINED, size=Component.UNDEFINED, value=Component.UNDEFINED, defaultValue=Component.UNDEFINED, optionType=Component.UNDEFINED, buttonStyle=Component.UNDEFINED, loading_state=Component.UNDEFINED, persistence=Component.UNDEFINED, persisted_props=Component.UNDEFINED, persistence_type=Component.UNDEFINED, **kwargs):
         self._prop_names = ['id', 'buttonStyle', 'className', 'defaultValue', 'direction', 'disabled', 'key', 'loading_state', 'optionType', 'options', 'persisted_props', 'persistence', 'persistence_type', 'size', 'style', 'value']
         self._valid_wildcard_attributes =            []
         self.available_properties = ['id', 'buttonStyle', 'className', 'defaultValue', 'direction', 'disabled', 'key', 'loading_state', 'optionType', 'options', 'persisted_props', 'persistence', 'persistence_type', 'size', 'style', 'value']

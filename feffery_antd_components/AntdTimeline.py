@@ -11,7 +11,7 @@ Keyword arguments:
 
 - id (string; optional)
 
-- className (string; optional)
+- className (string | dict; optional)
 
 - items (list of dicts; required)
 
@@ -24,8 +24,6 @@ Keyword arguments:
     - icon (a list of or a singular dash component, string or number; optional)
 
     - label (a list of or a singular dash component, string or number; optional)
-
-    - position (a value equal to: 'left', 'right'; optional)
 
 - key (string; optional)
 
@@ -48,7 +46,7 @@ Keyword arguments:
 
 - pendingDot (a list of or a singular dash component, string or number; optional)
 
-- reverse (boolean; optional)
+- reverse (boolean; default False)
 
 - style (dict; optional)"""
     _children_props = ['items[].content', 'items[].icon', 'items[].label', 'pending', 'pendingDot']

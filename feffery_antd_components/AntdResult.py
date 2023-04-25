@@ -11,7 +11,7 @@ Keyword arguments:
 
 - id (string; optional)
 
-- className (string; optional)
+- className (string | dict; optional)
 
 - icon (a list of or a singular dash component, string or number; optional)
 
@@ -30,7 +30,7 @@ Keyword arguments:
     - prop_name (string; optional):
         Holds which property is loading.
 
-- status (a value equal to: 'success', 'error', 'info', 'warning', '404', '403', '500', 'loading'; optional)
+- status (a value equal to: 'success', 'error', 'info', 'warning', '404', '403', '500', 'loading'; default 'info')
 
 - style (dict; optional)
 

@@ -15,13 +15,13 @@ Keyword arguments:
 
 - id (string; optional)
 
-- className (string; optional)
+- className (string | dict; optional)
 
 - contentStyle (dict; optional)
 
 - key (string; optional)
 
-- label (string; optional)
+- label (a list of or a singular dash component, string or number; optional)
 
 - labelStyle (dict; optional)
 
@@ -38,11 +38,11 @@ Keyword arguments:
     - prop_name (string; optional):
         Holds which property is loading.
 
-- span (number; optional)
+- span (number; default 1)
 
 - style (dict; optional)"""
-    _children_props = []
-    _base_nodes = ['children']
+    _children_props = ['label']
+    _base_nodes = ['label', 'children']
     _namespace = 'feffery_antd_components'
     _type = 'AntdDescriptionItem'
     @_explicitize_args

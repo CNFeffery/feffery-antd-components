@@ -11,7 +11,7 @@ Keyword arguments:
 
 - id (string; optional)
 
-- autoSize (dict; optional)
+- autoSize (dict; default False)
 
     `autoSize` is a boolean | dict with keys:
 
@@ -19,11 +19,11 @@ Keyword arguments:
 
     - minRows (number; optional)
 
-- className (string; optional)
+- className (string | dict; optional)
 
 - defaultValue (string; optional)
 
-- disabled (boolean; optional)
+- disabled (boolean; default False)
 
 - key (string; optional)
 
@@ -40,19 +40,19 @@ Keyword arguments:
     - prop_name (string; optional):
         Holds which property is loading.
 
-- options (list of dicts; optional)
+- options (list of dicts; required)
 
     `options` is a list of dicts with keys:
 
-    - label (string; optional)
+    - label (a list of or a singular dash component, string or number; optional)
 
     - value (string; optional)
 
-- placement (a value equal to: 'top', 'bottom'; optional)
+- placement (a value equal to: 'top', 'bottom'; default 'bottom')
 
 - popupContainer (a value equal to: 'parent', 'body'; default 'body')
 
-- prefix (string; optional)
+- prefix (string; default '@')
 
 - selectedOptions (list of strings; optional)
 
@@ -61,12 +61,12 @@ Keyword arguments:
 - style (dict; optional)
 
 - value (string; optional)"""
-    _children_props = []
+    _children_props = ['options[].label']
     _base_nodes = ['children']
     _namespace = 'feffery_antd_components'
     _type = 'AntdMentions'
     @_explicitize_args
-    def __init__(self, id=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, key=Component.UNDEFINED, autoSize=Component.UNDEFINED, prefix=Component.UNDEFINED, defaultValue=Component.UNDEFINED, placement=Component.UNDEFINED, options=Component.UNDEFINED, selectedOptions=Component.UNDEFINED, value=Component.UNDEFINED, disabled=Component.UNDEFINED, status=Component.UNDEFINED, popupContainer=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
+    def __init__(self, id=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, key=Component.UNDEFINED, autoSize=Component.UNDEFINED, prefix=Component.UNDEFINED, value=Component.UNDEFINED, defaultValue=Component.UNDEFINED, options=Component.REQUIRED, selectedOptions=Component.UNDEFINED, disabled=Component.UNDEFINED, placement=Component.UNDEFINED, status=Component.UNDEFINED, popupContainer=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
         self._prop_names = ['id', 'autoSize', 'className', 'defaultValue', 'disabled', 'key', 'loading_state', 'options', 'placement', 'popupContainer', 'prefix', 'selectedOptions', 'status', 'style', 'value']
         self._valid_wildcard_attributes =            []
         self.available_properties = ['id', 'autoSize', 'className', 'defaultValue', 'disabled', 'key', 'loading_state', 'options', 'placement', 'popupContainer', 'prefix', 'selectedOptions', 'status', 'style', 'value']
@@ -75,5 +75,10 @@ Keyword arguments:
         _locals = locals()
         _locals.update(kwargs)  # For wildcard attrs and excess named props
         args = {k: _locals[k] for k in _explicit_args}
+
+        for k in ['options']:
+            if k not in args:
+                raise TypeError(
+                    'Required argument `' + k + '` was not specified.')
 
         super(AntdMentions, self).__init__(**args)

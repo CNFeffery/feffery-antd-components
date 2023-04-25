@@ -38,11 +38,11 @@ Keyword arguments:
     - prop_name (string; optional):
         Holds which property is loading.
 
-- size (a value equal to: 'small', 'middle', 'large' | number; optional)
+- size (a value equal to: 'small', 'middle', 'large' | number; default 'small')
 
 - style (dict; optional)
 
-- wrap (boolean; optional)"""
+- wrap (boolean; default False)"""
     _children_props = []
     _base_nodes = ['children']
     _namespace = 'feffery_antd_components'
