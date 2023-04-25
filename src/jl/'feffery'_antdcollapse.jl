@@ -15,7 +15,7 @@ Keyword arguments:
 - `id` (String; optional)
 - `bordered` (Bool; optional)
 - `className` (String | Dict; optional)
-- `collapsible` (a value equal to: 'header', 'disabled'; optional)
+- `collapsible` (a value equal to: 'header', 'disabled', 'icon'; optional)
 - `forceRender` (Bool; optional)
 - `ghost` (Bool; optional)
 - `isOpen` (Bool; optional)

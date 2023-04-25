@@ -84,7 +84,11 @@ const AntdDraggerUpload = (props) => {
     useEffect(() => {
         // 初始化uploadId
         if (!uploadId) {
-            setProps({ uploadId: uuidv4() })
+            if (defaultFileList && defaultFileList.length > 0) {
+                setProps({ uploadId: defaultFileList[0].taskId })
+            } else {
+                setProps({ uploadId: uuidv4() })
+            }
         }
     }, [])
 
@@ -605,7 +609,10 @@ AntdDraggerUpload.propTypes = {
             uid: PropTypes.any,
 
             // 可选，用于渲染当前文件的下载链接
-            url: PropTypes.string
+            url: PropTypes.string,
+
+            // 标识当前任务的taskId，若设置，则默认会被作为当前组件的uploadId使用
+            taskId: PropTypes.string
         })
     ),
 

@@ -10,6 +10,7 @@ An AntdDropdown component.
 Keyword arguments:
 - `id` (String; optional)
 - `arrow` (Bool; optional)
+- `autoAdjustOverflow` (Bool; optional)
 - `buttonMode` (Bool; optional)
 - `buttonProps` (optional): . buttonProps has the following type: lists containing elements 'size', 'type', 'danger'.
 Those elements have the following types:
@@ -45,7 +46,7 @@ Those elements have the following types:
 - `visible` (Bool; optional)
 """
 function 'feffery'_antddropdown(; kwargs...)
-        available_props = Symbol[:id, :arrow, :buttonMode, :buttonProps, :className, :clickedKey, :disabled, :key, :loading_state, :menuItems, :nClicks, :overlayClassName, :overlayStyle, :placement, :popupContainer, :style, :title, :trigger, :visible]
+        available_props = Symbol[:id, :arrow, :autoAdjustOverflow, :buttonMode, :buttonProps, :className, :clickedKey, :disabled, :key, :loading_state, :menuItems, :nClicks, :overlayClassName, :overlayStyle, :placement, :popupContainer, :style, :title, :trigger, :visible]
         wild_props = Symbol[]
         return Component("'feffery'_antddropdown", "AntdDropdown", "feffery_antd_components", available_props, wild_props; kwargs...)
 end

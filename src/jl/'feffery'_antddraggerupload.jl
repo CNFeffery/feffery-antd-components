@@ -12,12 +12,13 @@ Keyword arguments:
 - `apiUrl` (String; optional)
 - `className` (String | Dict; optional)
 - `confirmBeforeDelete` (Bool; optional)
-- `defaultFileList` (optional): . defaultFileList has the following type: Array of lists containing elements 'name', 'status', 'uid', 'url'.
+- `defaultFileList` (optional): . defaultFileList has the following type: Array of lists containing elements 'name', 'status', 'uid', 'url', 'taskId'.
 Those elements have the following types:
   - `name` (String; optional)
   - `status` (a value equal to: 'done', 'error', 'removed'; optional)
   - `uid` (Bool | Real | String | Dict | Array; optional)
-  - `url` (String; optional)s
+  - `url` (String; optional)
+  - `taskId` (String; optional)s
 - `directory` (Bool; optional)
 - `disabled` (Bool; optional)
 - `downloadUrl` (String; optional)
