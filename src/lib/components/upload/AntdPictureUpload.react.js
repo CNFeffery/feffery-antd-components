@@ -90,7 +90,7 @@ const AntdPictureUpload = (props) => {
         // 初始化uploadId
         if (!uploadId) {
             if (defaultFileList && defaultFileList.length > 0) {
-                setProps({ uploadId: defaultFileList[0].taskId })
+                setProps({ uploadId: defaultFileList[0].taskId || uuidv4() })
             } else {
                 setProps({ uploadId: uuidv4() })
             }
