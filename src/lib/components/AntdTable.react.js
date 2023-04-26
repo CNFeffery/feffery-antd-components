@@ -822,99 +822,103 @@ class AntdTable extends Component {
                 // dropdown模式
                 else if (columns[i]['renderOptions']['renderType'] === 'dropdown') {
                     columns[i]['render'] = (menuItems, record) => (
-                        <Dropdown
-                            overlay={
-                                <Menu onClick={(item, key, keyPath, domEvent) => {
-                                    setTimeout(function () {
-                                        setProps({
-                                            nClicksDropdownItem: nClicksDropdownItem + 1,
-                                            recentlyClickedDropdownItemTitle: item.key,
-                                            recentlyDropdownItemClickedDataIndex: columns[i].dataIndex,
-                                            recentlyDropdownItemClickedRow: record
-                                        })
-                                    }, 200);
-                                }}>
-                                    {
-                                        menuItems.map(
-                                            menuItem => (
-                                                menuItem ?
-                                                    // 判断isDivider参数是否不为false
-                                                    (
-                                                        menuItem.isDivider ?
-                                                            <Menu.Divider /> :
-                                                            <Menu.Item icon={<AntdIcon icon={menuItem.icon} />}
-                                                                disabled={menuItem.disabled}
-                                                                key={menuItem.title}>
-                                                                <a >{menuItem.title}</a>
-                                                            </Menu.Item>
-                                                    ) :
-                                                    null
+                        Array.isArray(menuItems) && menuItems.length > 0 ?
+                            <Dropdown
+                                overlay={
+                                    <Menu onClick={(item, key, keyPath, domEvent) => {
+                                        setTimeout(function () {
+                                            setProps({
+                                                nClicksDropdownItem: nClicksDropdownItem + 1,
+                                                recentlyClickedDropdownItemTitle: item.key,
+                                                recentlyDropdownItemClickedDataIndex: columns[i].dataIndex,
+                                                recentlyDropdownItemClickedRow: record
+                                            })
+                                        }, 200);
+                                    }}>
+                                        {
+                                            menuItems.map(
+                                                menuItem => (
+                                                    menuItem ?
+                                                        // 判断isDivider参数是否不为false
+                                                        (
+                                                            menuItem.isDivider ?
+                                                                <Menu.Divider /> :
+                                                                <Menu.Item icon={<AntdIcon icon={menuItem.icon} />}
+                                                                    disabled={menuItem.disabled}
+                                                                    key={menuItem.title}>
+                                                                    <a >{menuItem.title}</a>
+                                                                </Menu.Item>
+                                                        ) :
+                                                        null
+                                                )
                                             )
-                                        )
-                                    }
-                                </Menu>
-                            }
-                            arrow={columns[i]['renderOptions']?.dropdownProps?.arrow}
-                            disabled={columns[i]['renderOptions']?.dropdownProps?.disabled}
-                            overlayClassName={columns[i]['renderOptions']?.dropdownProps?.overlayClassName}
-                            overlayStyle={columns[i]['renderOptions']?.dropdownProps?.overlayStyle}
-                            placement={columns[i]['renderOptions']?.dropdownProps?.placement}
-                            trigger={
-                                columns[i]['renderOptions']?.dropdownProps?.trigger ?
-                                    [columns[i]['renderOptions'].dropdownProps.trigger] : ['hover']
-                            }
-                            getPopupContainer={containerId ? () => (document.getElementById(containerId) ? document.getElementById(containerId) : document.body) : undefined}>
-                            <a className="ant-dropdown-link"
-                                onClick={e => e.preventDefault()}>
-                                {columns[i]['renderOptions']?.dropdownProps?.title} <DownOutlined />
-                            </a>
-                        </Dropdown>
+                                        }
+                                    </Menu>
+                                }
+                                arrow={columns[i]['renderOptions']?.dropdownProps?.arrow}
+                                disabled={columns[i]['renderOptions']?.dropdownProps?.disabled}
+                                overlayClassName={columns[i]['renderOptions']?.dropdownProps?.overlayClassName}
+                                overlayStyle={columns[i]['renderOptions']?.dropdownProps?.overlayStyle}
+                                placement={columns[i]['renderOptions']?.dropdownProps?.placement}
+                                trigger={
+                                    columns[i]['renderOptions']?.dropdownProps?.trigger ?
+                                        [columns[i]['renderOptions'].dropdownProps.trigger] : ['hover']
+                                }
+                                getPopupContainer={containerId ? () => (document.getElementById(containerId) ? document.getElementById(containerId) : document.body) : undefined}>
+                                <a className="ant-dropdown-link"
+                                    onClick={e => e.preventDefault()}>
+                                    {columns[i]['renderOptions']?.dropdownProps?.title} <DownOutlined />
+                                </a>
+                            </Dropdown> :
+                            null
                     )
                 }
                 // dropdown-links模式
                 else if (columns[i]['renderOptions']['renderType'] === 'dropdown-links') {
                     columns[i]['render'] = menuItems => (
-                        <Dropdown
-                            overlay={
-                                <Menu>
-                                    {
-                                        menuItems.map(
-                                            menuItem => (
-                                                menuItem ?
-                                                    // 判断isDivider参数是否不为false
-                                                    (
-                                                        menuItem.isDivider ?
-                                                            <Menu.Divider /> :
-                                                            <Menu.Item icon={<AntdIcon icon={menuItem.icon} />}
-                                                                disabled={menuItem.disabled}
-                                                                key={menuItem.title}>
-                                                                <a href={menuItem.href}
-                                                                    target={'_blank'}>
-                                                                    {menuItem.title}
-                                                                </a>
-                                                            </Menu.Item>
-                                                    ) :
-                                                    null
+                        Array.isArray(menuItems) && menuItems.length > 0 ?
+                            <Dropdown
+                                overlay={
+                                    <Menu>
+                                        {
+                                            menuItems.map(
+                                                menuItem => (
+                                                    menuItem ?
+                                                        // 判断isDivider参数是否不为false
+                                                        (
+                                                            menuItem.isDivider ?
+                                                                <Menu.Divider /> :
+                                                                <Menu.Item icon={<AntdIcon icon={menuItem.icon} />}
+                                                                    disabled={menuItem.disabled}
+                                                                    key={menuItem.title}>
+                                                                    <a href={menuItem.href}
+                                                                        target={'_blank'}>
+                                                                        {menuItem.title}
+                                                                    </a>
+                                                                </Menu.Item>
+                                                        ) :
+                                                        null
+                                                )
                                             )
-                                        )
-                                    }
-                                </Menu>
-                            }
-                            arrow={columns[i]['renderOptions']?.dropdownProps?.arrow}
-                            disabled={columns[i]['renderOptions']?.dropdownProps?.disabled}
-                            overlayClassName={columns[i]['renderOptions']?.dropdownProps?.overlayClassName}
-                            overlayStyle={columns[i]['renderOptions']?.dropdownProps?.overlayStyle}
-                            placement={columns[i]['renderOptions']?.dropdownProps?.placement}
-                            trigger={
-                                columns[i]['renderOptions']?.dropdownProps?.trigger ?
-                                    [columns[i]['renderOptions'].dropdownProps.trigger] : ['hover']
-                            }
-                            getPopupContainer={containerId ? () => (document.getElementById(containerId) ? document.getElementById(containerId) : document.body) : undefined}>
-                            <a className="ant-dropdown-link"
-                                onClick={e => e.preventDefault()}>
-                                {columns[i]['renderOptions']?.dropdownProps?.title} <DownOutlined />
-                            </a>
-                        </Dropdown>
+                                        }
+                                    </Menu>
+                                }
+                                arrow={columns[i]['renderOptions']?.dropdownProps?.arrow}
+                                disabled={columns[i]['renderOptions']?.dropdownProps?.disabled}
+                                overlayClassName={columns[i]['renderOptions']?.dropdownProps?.overlayClassName}
+                                overlayStyle={columns[i]['renderOptions']?.dropdownProps?.overlayStyle}
+                                placement={columns[i]['renderOptions']?.dropdownProps?.placement}
+                                trigger={
+                                    columns[i]['renderOptions']?.dropdownProps?.trigger ?
+                                        [columns[i]['renderOptions'].dropdownProps.trigger] : ['hover']
+                                }
+                                getPopupContainer={containerId ? () => (document.getElementById(containerId) ? document.getElementById(containerId) : document.body) : undefined}>
+                                <a className="ant-dropdown-link"
+                                    onClick={e => e.preventDefault()}>
+                                    {columns[i]['renderOptions']?.dropdownProps?.title} <DownOutlined />
+                                </a>
+                            </Dropdown> :
+                            null
                     )
                 }
                 // ellipsis-copyable模式
@@ -1041,52 +1045,52 @@ class AntdTable extends Component {
                 else if (columns[i]['renderOptions']['renderType'] === 'select') {
                     columns[i]['render'] = (content, record) => {
                         const currentDataIndex = columns[i]['dataIndex']
-                        // 防止未定义错误
-                        content = content || {}
                         return (
-                            <Select
-                                className={content.className}
-                                style={{
-                                    width: '100%',
-                                    textAlign: 'left',
-                                    ...content.style
-                                }}
-                                options={content.options}
-                                listHeight={content.listHeight}
-                                mode={content.mode}
-                                disabled={content.disabled}
-                                size={content.size}
-                                bordered={content.bordered}
-                                placeholder={content.placeholder}
-                                placement={content.placement}
-                                value={content.value}
-                                maxTagCount={content.maxTagCount}
-                                optionFilterProp={content.optionFilterProp}
-                                allowClear={content.allowClear}
-                                onChange={(value) => {
-                                    // 修改对应行对应字段item.value值
-                                    try {
-                                        data.forEach(function (item, i) {
-                                            // 命中后，修改值并利用错误抛出来跳出循环
-                                            if (item.key === record.key) {
-                                                data[i][currentDataIndex] = {
-                                                    ...record[currentDataIndex],
-                                                    value: value
+                            content ?
+                                <Select
+                                    className={content.className}
+                                    style={{
+                                        width: '100%',
+                                        textAlign: 'left',
+                                        ...content.style
+                                    }}
+                                    options={content.options}
+                                    listHeight={content.listHeight}
+                                    mode={content.mode}
+                                    disabled={content.disabled}
+                                    size={content.size}
+                                    bordered={content.bordered}
+                                    placeholder={content.placeholder}
+                                    placement={content.placement}
+                                    value={content.value}
+                                    maxTagCount={content.maxTagCount}
+                                    optionFilterProp={content.optionFilterProp}
+                                    allowClear={content.allowClear}
+                                    onChange={(value) => {
+                                        // 修改对应行对应字段item.value值
+                                        try {
+                                            data.forEach(function (item, i) {
+                                                // 命中后，修改值并利用错误抛出来跳出循环
+                                                if (item.key === record.key) {
+                                                    data[i][currentDataIndex] = {
+                                                        ...record[currentDataIndex],
+                                                        value: value
+                                                    }
+                                                    // 提前打断循环过程
+                                                    throw new Error("目标已修改");
                                                 }
-                                                // 提前打断循环过程
-                                                throw new Error("目标已修改");
-                                            }
-                                        });
-                                    } catch (e) {
-                                    };
+                                            });
+                                        } catch (e) {
+                                        };
 
-                                    setProps({
-                                        data: data,
-                                        recentlySelectRow: record,
-                                        recentlySelectDataIndex: columns[i]['dataIndex'],
-                                        recentlySelectValue: value
-                                    });
-                                }} />
+                                        setProps({
+                                            data: data,
+                                            recentlySelectRow: record,
+                                            recentlySelectDataIndex: columns[i]['dataIndex'],
+                                            recentlySelectValue: value
+                                        });
+                                    }} /> :
+                                null
                         );
                     }
                 }
