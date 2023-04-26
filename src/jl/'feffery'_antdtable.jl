@@ -145,7 +145,7 @@ Those elements have the following types:
   - `options` (optional): . options has the following type: Array of lists containing elements 'label', 'value'.
 Those elements have the following types:
   - `label` (String; optional)
-  - `value` (String; optional)s
+  - `value` (String | Real; optional)s
   - `listHeight` (Real; optional)
   - `mode` (a value equal to: 'multiple', 'tags'; optional)
   - `disabled` (Bool; optional)

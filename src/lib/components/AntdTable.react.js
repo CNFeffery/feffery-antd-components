@@ -821,8 +821,10 @@ class AntdTable extends Component {
                 }
                 // dropdown模式
                 else if (columns[i]['renderOptions']['renderType'] === 'dropdown') {
-                    columns[i]['render'] = (menuItems, record) => (
-                        Array.isArray(menuItems) && menuItems.length > 0 ?
+                    columns[i]['render'] = (menuItems, record) => {
+                        // 针对空值进行错误处理
+                        menuItems = menuItems || []
+                        return (
                             <Dropdown
                                 overlay={
                                     <Menu onClick={(item, key, keyPath, domEvent) => {
@@ -856,7 +858,7 @@ class AntdTable extends Component {
                                     </Menu>
                                 }
                                 arrow={columns[i]['renderOptions']?.dropdownProps?.arrow}
-                                disabled={columns[i]['renderOptions']?.dropdownProps?.disabled}
+                                disabled={columns[i]['renderOptions']?.dropdownProps?.disabled || menuItems.length === 0}
                                 overlayClassName={columns[i]['renderOptions']?.dropdownProps?.overlayClassName}
                                 overlayStyle={columns[i]['renderOptions']?.dropdownProps?.overlayStyle}
                                 placement={columns[i]['renderOptions']?.dropdownProps?.placement}
@@ -869,14 +871,16 @@ class AntdTable extends Component {
                                     onClick={e => e.preventDefault()}>
                                     {columns[i]['renderOptions']?.dropdownProps?.title} <DownOutlined />
                                 </a>
-                            </Dropdown> :
-                            null
-                    )
+                            </Dropdown>
+                        );
+                    }
                 }
                 // dropdown-links模式
                 else if (columns[i]['renderOptions']['renderType'] === 'dropdown-links') {
-                    columns[i]['render'] = menuItems => (
-                        Array.isArray(menuItems) && menuItems.length > 0 ?
+                    columns[i]['render'] = menuItems => {
+                        // 针对空值进行错误处理
+                        menuItems = menuItems || []
+                        return (
                             <Dropdown
                                 overlay={
                                     <Menu>
@@ -904,7 +908,7 @@ class AntdTable extends Component {
                                     </Menu>
                                 }
                                 arrow={columns[i]['renderOptions']?.dropdownProps?.arrow}
-                                disabled={columns[i]['renderOptions']?.dropdownProps?.disabled}
+                                disabled={columns[i]['renderOptions']?.dropdownProps?.disabled || menuItems.length === 0}
                                 overlayClassName={columns[i]['renderOptions']?.dropdownProps?.overlayClassName}
                                 overlayStyle={columns[i]['renderOptions']?.dropdownProps?.overlayStyle}
                                 placement={columns[i]['renderOptions']?.dropdownProps?.placement}
@@ -917,9 +921,9 @@ class AntdTable extends Component {
                                     onClick={e => e.preventDefault()}>
                                     {columns[i]['renderOptions']?.dropdownProps?.title} <DownOutlined />
                                 </a>
-                            </Dropdown> :
-                            null
-                    )
+                            </Dropdown>
+                        );
+                    }
                 }
                 // ellipsis-copyable模式
                 else if (columns[i]['renderOptions']['renderType'] === 'ellipsis-copyable') {
@@ -1045,52 +1049,52 @@ class AntdTable extends Component {
                 else if (columns[i]['renderOptions']['renderType'] === 'select') {
                     columns[i]['render'] = (content, record) => {
                         const currentDataIndex = columns[i]['dataIndex']
+                        // 针对空值进行错误处理
+                        content = content || {}
                         return (
-                            content ?
-                                <Select
-                                    className={content.className}
-                                    style={{
-                                        width: '100%',
-                                        textAlign: 'left',
-                                        ...content.style
-                                    }}
-                                    options={content.options}
-                                    listHeight={content.listHeight}
-                                    mode={content.mode}
-                                    disabled={content.disabled}
-                                    size={content.size}
-                                    bordered={content.bordered}
-                                    placeholder={content.placeholder}
-                                    placement={content.placement}
-                                    value={content.value}
-                                    maxTagCount={content.maxTagCount}
-                                    optionFilterProp={content.optionFilterProp}
-                                    allowClear={content.allowClear}
-                                    onChange={(value) => {
-                                        // 修改对应行对应字段item.value值
-                                        try {
-                                            data.forEach(function (item, i) {
-                                                // 命中后，修改值并利用错误抛出来跳出循环
-                                                if (item.key === record.key) {
-                                                    data[i][currentDataIndex] = {
-                                                        ...record[currentDataIndex],
-                                                        value: value
-                                                    }
-                                                    // 提前打断循环过程
-                                                    throw new Error("目标已修改");
+                            <Select
+                                className={content.className}
+                                style={{
+                                    width: '100%',
+                                    textAlign: 'left',
+                                    ...content.style
+                                }}
+                                options={content.options}
+                                listHeight={content.listHeight}
+                                mode={content.mode}
+                                disabled={content.disabled}
+                                size={content.size}
+                                bordered={content.bordered}
+                                placeholder={content.placeholder}
+                                placement={content.placement}
+                                value={content.value}
+                                maxTagCount={content.maxTagCount}
+                                optionFilterProp={content.optionFilterProp}
+                                allowClear={content.allowClear}
+                                onChange={(value) => {
+                                    // 修改对应行对应字段item.value值
+                                    try {
+                                        data.forEach(function (item, i) {
+                                            // 命中后，修改值并利用错误抛出来跳出循环
+                                            if (item.key === record.key) {
+                                                data[i][currentDataIndex] = {
+                                                    ...record[currentDataIndex],
+                                                    value: value
                                                 }
-                                            });
-                                        } catch (e) {
-                                        };
-
-                                        setProps({
-                                            data: data,
-                                            recentlySelectRow: record,
-                                            recentlySelectDataIndex: columns[i]['dataIndex'],
-                                            recentlySelectValue: value
+                                                // 提前打断循环过程
+                                                throw new Error("目标已修改");
+                                            }
                                         });
-                                    }} /> :
-                                null
+                                    } catch (e) {
+                                    };
+
+                                    setProps({
+                                        data: data,
+                                        recentlySelectRow: record,
+                                        recentlySelectDataIndex: columns[i]['dataIndex'],
+                                        recentlySelectValue: value
+                                    });
+                                }} />
                         );
                     }
                 }
@@ -1982,7 +1986,10 @@ AntdTable.propTypes = {
                             // 设置选项内容
                             label: PropTypes.string,
                             // 设置选项内容的值
-                            value: PropTypes.string
+                            value: PropTypes.oneOfType([
+                                PropTypes.string,
+                                PropTypes.number
+                            ])
                         })
                     ),
                     // 设置下拉选择菜单像素高度，默认为256
