@@ -56,7 +56,7 @@ Those elements have the following types:
 - `containerId` (String; optional)
 - `currentData` (Array; optional)
 - `customFormatFuncs` (Dict with Strings as keys and values of type String; optional)
-- `data` (optional): . data has the following type: Array of Dict with Strings as keys and values of type String | Real | lists containing elements 'content', 'href', 'target', 'disabled'.
+- `data` (optional): . data has the following type: Array of Dict with Strings as keys and values of type Array of Bool | Real | String | Dict | Arrays | String | Real | lists containing elements 'content', 'href', 'target', 'disabled'.
 Those elements have the following types:
   - `content` (String; optional)
   - `href` (String; optional)

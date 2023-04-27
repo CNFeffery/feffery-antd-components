@@ -1739,6 +1739,9 @@ AntdTable.propTypes = {
     data: PropTypes.arrayOf(
         PropTypes.objectOf(
             PropTypes.oneOfType([
+                // 针对向下嵌套children的兼容处理
+                PropTypes.arrayOf(PropTypes.any),
+
                 // 常规模式、ellipsis模式、copyable模式、custom-format模式、ellipsis-copyable模式
                 PropTypes.string,
 
