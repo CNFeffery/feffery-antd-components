@@ -102,7 +102,8 @@ const AntdPictureUpload = (props) => {
             name: item.fileName,
             status: item.taskStatus,
             uid: item.uid,
-            url: item.url
+            url: item.url,
+            fileSize: item.fileSize
         };
     }));
     const [previewVisible, setPreviewVisible] = useState(false);
@@ -640,7 +641,10 @@ AntdPictureUpload.propTypes = {
             url: PropTypes.string,
 
             // 标识当前任务的taskId，若设置，则默认会被作为当前组件的uploadId使用
-            taskId: PropTypes.string
+            taskId: PropTypes.string,
+
+            // 可选，记录文件大小
+            fileSize: PropTypes.number
         })
     ),
 
