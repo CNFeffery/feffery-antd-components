@@ -13,6 +13,10 @@ Keyword arguments:
 - `checkable` (Bool; optional)
 - `checkedKeys` (Array of Strings; optional)
 - `className` (String | Real; optional)
+- `clickedContextMenu` (optional): . clickedContextMenu has the following type: lists containing elements 'nodeKey', 'menuKey'.
+Those elements have the following types:
+  - `nodeKey` (String; optional)
+  - `menuKey` (String; optional)
 - `defaultCheckedKeys` (Array of Strings; optional)
 - `defaultExpandAll` (Bool; optional)
 - `defaultExpandParent` (Bool; optional)
@@ -54,7 +58,7 @@ Those elements have the following types:
 - `treeDataMode` (a value equal to: 'tree', 'flat'; optional)
 """
 function 'feffery'_antdtree(; kwargs...)
-        available_props = Symbol[:id, :checkStrictly, :checkable, :checkedKeys, :className, :defaultCheckedKeys, :defaultExpandAll, :defaultExpandParent, :defaultExpandedKeys, :defaultSelectedKeys, :draggable, :draggedNodeKey, :expandedKeys, :halfCheckedKeys, :height, :key, :loading_state, :multiple, :persisted_props, :persistence, :persistence_type, :selectable, :selectedKeys, :showIcon, :showLine, :style, :treeData, :treeDataMode]
+        available_props = Symbol[:id, :checkStrictly, :checkable, :checkedKeys, :className, :clickedContextMenu, :defaultCheckedKeys, :defaultExpandAll, :defaultExpandParent, :defaultExpandedKeys, :defaultSelectedKeys, :draggable, :draggedNodeKey, :expandedKeys, :halfCheckedKeys, :height, :key, :loading_state, :multiple, :persisted_props, :persistence, :persistence_type, :selectable, :selectedKeys, :showIcon, :showLine, :style, :treeData, :treeDataMode]
         wild_props = Symbol[]
         return Component("'feffery'_antdtree", "AntdTree", "feffery_antd_components", available_props, wild_props; kwargs...)
 end

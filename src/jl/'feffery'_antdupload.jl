@@ -13,13 +13,14 @@ Keyword arguments:
 - `buttonContent` (a list of or a singular dash component, string or number; optional)
 - `className` (String | Dict; optional)
 - `confirmBeforeDelete` (Bool; optional)
-- `defaultFileList` (optional): . defaultFileList has the following type: Array of lists containing elements 'name', 'status', 'uid', 'url', 'taskId'.
+- `defaultFileList` (optional): . defaultFileList has the following type: Array of lists containing elements 'name', 'status', 'uid', 'url', 'taskId', 'fileSize'.
 Those elements have the following types:
   - `name` (String; optional)
   - `status` (a value equal to: 'done', 'error', 'removed'; optional)
   - `uid` (Bool | Real | String | Dict | Array; optional)
   - `url` (String; optional)
-  - `taskId` (String; optional)s
+  - `taskId` (String; optional)
+  - `fileSize` (Real; optional)s
 - `directory` (Bool; optional)
 - `disabled` (Bool; optional)
 - `downloadUrl` (String; optional)

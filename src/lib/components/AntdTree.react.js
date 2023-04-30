@@ -1,6 +1,6 @@
 import { useEffect, useMemo } from 'react';
 import PropTypes from 'prop-types';
-import { Tree, Tooltip } from 'antd';
+import { Tree, Tooltip, Dropdown } from 'antd';
 import AntdIcon from './AntdIcon.react';
 import { omitBy, isUndefined, isString, isObject, isArray, cloneDeep } from 'lodash';
 import { flatToTree } from './utils';
@@ -65,21 +65,18 @@ const AntdTree = (props) => {
     const add_leaf_node_icon = (inputTreeData) => {
         if (isObject(inputTreeData)) {
             // 为节点添加tooltip相关参数
-            if (inputTreeData.tooltipProps) {
+            if (inputTreeData.tooltipProps && isString(inputTreeData.title)) {
                 inputTreeData.title = (<Tooltip {...inputTreeData.tooltipProps}>
                     {inputTreeData.title}
                 </Tooltip>)
             }
-
             if (inputTreeData.children) {
                 if (isString(inputTreeData.icon)) {
                     inputTreeData.icon = <AntdIcon icon={inputTreeData.icon} />
                 }
-
                 for (let i = 0; i < inputTreeData.children.length; i++) {
                     inputTreeData.children[i] = add_leaf_node_icon(inputTreeData.children[i])
                 }
-
             } else {
                 if (isString(inputTreeData.icon)) {
                     inputTreeData.icon = <AntdIcon icon={inputTreeData.icon} />
@@ -97,6 +94,7 @@ const AntdTree = (props) => {
     }
 
     const listenSelect = (e) => {
+        console.log('节点选择发生', e)
         setProps({ selectedKeys: e })
     }
 
@@ -217,10 +215,41 @@ const AntdTree = (props) => {
             height={height}
             titleRender={(nodeData) => {
                 return (
-                    <span className={nodeData.className ? `ant-tree-title ${nodeData.className}` : "ant-tree-title"}
-                        style={nodeData.style}>
-                        {nodeData.title}
-                    </span>
+                    nodeData.contextMenu ?
+                        <Dropdown
+                            menu={{
+                                items: nodeData.contextMenu.map(
+                                    itemProps => {
+                                        return {
+                                            ...itemProps,
+                                            icon: <AntdIcon icon={itemProps.icon} />
+                                        }
+                                    }
+                                ),
+                                // 右键菜单事件监听
+                                onClick: (e) => {
+                                    // 阻止事件蔓延
+                                    e.domEvent.stopPropagation()
+                                    // 更新相关事件信息
+                                    setProps({
+                                        clickedContextMenu: {
+                                            nodeKey: nodeData.key,
+                                            menuKey: e.key
+                                        }
+                                    })
+                                }
+                            }}
+                            trigger={['contextMenu']}
+                        >
+                            <span className={nodeData.className ? `ant-tree-title ${nodeData.className}` : "ant-tree-title"}
+                                style={nodeData.style}>
+                                {nodeData.title}
+                            </span>
+                        </Dropdown> :
+                        <span className={nodeData.className ? `ant-tree-title ${nodeData.className}` : "ant-tree-title"}
+                            style={nodeData.style}>
+                            {nodeData.title}
+                        </span>
                 );
             }}
             showLeafIcon={false}
@@ -278,7 +307,21 @@ const PropTreeNodeShape = {
             'top', 'left', 'right', 'bottom', 'topLeft',
             'topRight', 'bottomLeft', 'bottomRight'
         ])
-    })
+    }),
+
+    // 为当前节点设置右键菜单相关参数
+    contextMenu: PropTypes.arrayOf(
+        PropTypes.exact({
+            // 为当前右键菜单选项设置唯一key值
+            key: PropTypes.string,
+            // 为当前右键菜单项设置标题内容
+            label: PropTypes.string,
+            // 设置是否禁用当前右键菜单选项
+            disabled: PropTypes.bool,
+            // 为当前选项设置前缀图标，同AntdIcon中的icon参数
+            icon: PropTypes.string
+        })
+    )
 };
 
 const PropTreeNode = PropTypes.shape(PropTreeNodeShape);
@@ -326,7 +369,21 @@ const PropFlatNodeShape = {
             'top', 'left', 'right', 'bottom', 'topLeft',
             'topRight', 'bottomLeft', 'bottomRight'
         ])
-    })
+    }),
+
+    // 为当前节点设置右键菜单相关参数
+    contextMenu: PropTypes.arrayOf(
+        PropTypes.exact({
+            // 为当前右键菜单选项设置唯一key值
+            key: PropTypes.string,
+            // 为当前右键菜单项设置标题内容
+            label: PropTypes.string,
+            // 设置是否禁用当前右键菜单选项
+            disabled: PropTypes.bool,
+            // 为当前选项设置前缀图标，同AntdIcon中的icon参数
+            icon: PropTypes.string
+        })
+    )
 };
 
 // 定义参数或属性
@@ -415,6 +472,14 @@ AntdTree.propTypes = {
 
     // 当节点被拖拽时，监听该节点的key值信息
     draggedNodeKey: PropTypes.string,
+
+    // 当有节点的右键菜单选项被点击时，监听相关的事件信息
+    clickedContextMenu: PropTypes.exact({
+        // 记录对应的树节点key值
+        nodeKey: PropTypes.string,
+        // 记录对应的右键菜单选项key值
+        menuKey: PropTypes.string
+    }),
 
     loading_state: PropTypes.shape({
         /**
