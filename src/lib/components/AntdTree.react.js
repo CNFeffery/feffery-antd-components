@@ -316,8 +316,6 @@ const PropTreeNodeShape = {
             key: PropTypes.string,
             // 为当前右键菜单项设置标题内容
             label: PropTypes.string,
-            // 设置是否禁用当前右键菜单选项
-            disabled: PropTypes.bool,
             // 为当前选项设置前缀图标，同AntdIcon中的icon参数
             icon: PropTypes.string
         })
@@ -378,8 +376,6 @@ const PropFlatNodeShape = {
             key: PropTypes.string,
             // 为当前右键菜单项设置标题内容
             label: PropTypes.string,
-            // 设置是否禁用当前右键菜单选项
-            disabled: PropTypes.bool,
             // 为当前选项设置前缀图标，同AntdIcon中的icon参数
             icon: PropTypes.string
         })
