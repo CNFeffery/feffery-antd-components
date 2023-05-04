@@ -30,6 +30,9 @@ const AntdDropdown = (props) => {
         nClicks,
         popupContainer,
         buttonProps,
+        freePosition,
+        freePositionStyle,
+        freePositionClassName,
         setProps,
         loading_state
     } = props;
@@ -49,7 +52,14 @@ const AntdDropdown = (props) => {
                 <Menu onClick={(item, key, keyPath, domEvent) => (
                     setProps({
                         clickedKey: item.key,
-                        nClicks: nClicks + 1
+                        nClicks: nClicks + 1,
+                        ...(
+                            freePosition ?
+                                {
+                                    visible: false
+                                } :
+                                {}
+                        )
                     })
                 )}>
                     {
@@ -86,8 +96,8 @@ const AntdDropdown = (props) => {
             placement={placement}
             trigger={[trigger]}
             autoAdjustOverflow={autoAdjustOverflow}
-            visible={visible}
-            onVisibleChange={(v) => setProps({
+            open={visible}
+            onOpenChange={(v) => setProps({
                 visible: v
             })}
             getPopupContainer={
@@ -99,17 +109,33 @@ const AntdDropdown = (props) => {
                 (loading_state && loading_state.is_loading) || undefined
             }>
             {
-                buttonMode ?
-                    <Button
-                        {...buttonProps}
-                    >
-                        {title} <DownOutlined />
-                    </Button>
-                    :
-                    <a className="ant-dropdown-link"
-                        onClick={e => e.preventDefault()}>
-                        {title} <DownOutlined />
-                    </a>
+                // 开启自由位置模式
+                freePosition ?
+                    (
+                        <div
+                            style={{
+                                width: 1,
+                                height: 1,
+                                position: 'fixed',
+                                background: 'transparent',
+                                ...freePositionStyle
+                            }}
+                            className={freePositionClassName}
+                        />
+                    ) :
+                    (
+                        buttonMode ?
+                            <Button
+                                {...buttonProps}
+                            >
+                                {title} <DownOutlined />
+                            </Button>
+                            :
+                            <a className="ant-dropdown-link"
+                                onClick={e => e.preventDefault()}>
+                                {title} <DownOutlined />
+                            </a>
+                    )
             }
         </Dropdown>
     );
@@ -149,6 +175,15 @@ AntdDropdown.propTypes = {
         // 设置按钮是否显示为危险状态
         danger: PropTypes.bool
     }),
+
+    // 设置是否开启自由位置模式，默认为false，此项开启后会覆盖buttonMode参数
+    freePosition: PropTypes.bool,
+
+    // 当freePosition=true时，用于为自由位置挂载位置设置css样式
+    freePositionStyle: PropTypes.object,
+
+    // 当freePosition=true时，用于为自由位置挂载位置设置css类
+    freePositionClassName: PropTypes.string,
 
     // 记录最近一次被点击的下拉菜单选项对应key
     clickedKey: PropTypes.string,
@@ -247,7 +282,8 @@ AntdDropdown.defaultProps = {
     trigger: 'hover',
     nClicks: 0,
     popupContainer: 'body',
-    autoAdjustOverflow: true
+    autoAdjustOverflow: true,
+    freePosition: false
 }
 
 export default AntdDropdown;

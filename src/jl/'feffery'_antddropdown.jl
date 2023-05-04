@@ -20,6 +20,9 @@ Those elements have the following types:
 - `className` (String | Dict; optional)
 - `clickedKey` (String; optional)
 - `disabled` (Bool; optional)
+- `freePosition` (Bool; optional)
+- `freePositionClassName` (String; optional)
+- `freePositionStyle` (Dict; optional)
 - `key` (String; optional)
 - `loading_state` (optional): . loading_state has the following type: lists containing elements 'is_loading', 'prop_name', 'component_name'.
 Those elements have the following types:
@@ -46,7 +49,7 @@ Those elements have the following types:
 - `visible` (Bool; optional)
 """
 function 'feffery'_antddropdown(; kwargs...)
-        available_props = Symbol[:id, :arrow, :autoAdjustOverflow, :buttonMode, :buttonProps, :className, :clickedKey, :disabled, :key, :loading_state, :menuItems, :nClicks, :overlayClassName, :overlayStyle, :placement, :popupContainer, :style, :title, :trigger, :visible]
+        available_props = Symbol[:id, :arrow, :autoAdjustOverflow, :buttonMode, :buttonProps, :className, :clickedKey, :disabled, :freePosition, :freePositionClassName, :freePositionStyle, :key, :loading_state, :menuItems, :nClicks, :overlayClassName, :overlayStyle, :placement, :popupContainer, :style, :title, :trigger, :visible]
         wild_props = Symbol[]
         return Component("'feffery'_antddropdown", "AntdDropdown", "feffery_antd_components", available_props, wild_props; kwargs...)
 end
