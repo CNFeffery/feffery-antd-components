@@ -234,7 +234,8 @@ const AntdTree = (props) => {
                                     setProps({
                                         clickedContextMenu: {
                                             nodeKey: nodeData.key,
-                                            menuKey: e.key
+                                            menuKey: e.key,
+                                            timestamp: Date.now()
                                         }
                                     })
                                 }
@@ -474,7 +475,9 @@ AntdTree.propTypes = {
         // 记录对应的树节点key值
         nodeKey: PropTypes.string,
         // 记录对应的右键菜单选项key值
-        menuKey: PropTypes.string
+        menuKey: PropTypes.string,
+        // 记录事件发生时的时间戳信息
+        timestamp: PropTypes.number
     }),
 
     loading_state: PropTypes.shape({
