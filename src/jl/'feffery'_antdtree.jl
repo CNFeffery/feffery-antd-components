@@ -13,10 +13,11 @@ Keyword arguments:
 - `checkable` (Bool; optional)
 - `checkedKeys` (Array of Strings; optional)
 - `className` (String | Real; optional)
-- `clickedContextMenu` (optional): . clickedContextMenu has the following type: lists containing elements 'nodeKey', 'menuKey'.
+- `clickedContextMenu` (optional): . clickedContextMenu has the following type: lists containing elements 'nodeKey', 'menuKey', 'timestamp'.
 Those elements have the following types:
   - `nodeKey` (String; optional)
   - `menuKey` (String; optional)
+  - `timestamp` (Real; optional)
 - `defaultCheckedKeys` (Array of Strings; optional)
 - `defaultExpandAll` (Bool; optional)
 - `defaultExpandParent` (Bool; optional)

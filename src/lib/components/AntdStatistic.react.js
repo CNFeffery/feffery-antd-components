@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Statistic, Space } from 'antd';
-import AntdTooltip from './AntdTooltip.react';
+import { Statistic, Space, Tooltip } from 'antd';
 import useCss from '../hooks/useCss';
 import { isString, isNumber } from 'lodash';
 import { QuestionCircleOutlined } from "@ant-design/icons";
@@ -47,9 +46,9 @@ const AntdStatistic = (props) => {
             title={titleTooltip ?
                 <Space size={5}>
                     {title}
-                    <AntdTooltip title={titleTooltip} >
+                    <Tooltip title={titleTooltip} >
                         <QuestionCircleOutlined />
-                    </AntdTooltip>
+                    </Tooltip>
                 </Space>
                 : title}
             valueStyle={valueStyle}
