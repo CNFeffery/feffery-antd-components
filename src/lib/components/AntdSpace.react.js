@@ -18,7 +18,7 @@ const AntdSpace = (props) => {
         align,
         direction,
         size,
-        split,
+        customSplit,
         wrap,
         addSplitLine,
         setProps,
@@ -84,7 +84,7 @@ const AntdSpace = (props) => {
             align={align}
             direction={direction}
             size={size}
-            split={split}
+            split={customSplit}
             wrap={wrap}
             data-dash-is-loading={
                 (loading_state && loading_state.is_loading) || undefined
@@ -130,6 +130,9 @@ AntdSpace.propTypes = {
 
     // 是否添加分隔线，默认为false
     addSplitLine: PropTypes.bool,
+
+    // 设置自定义分隔元素
+    customSplit: PropTypes.node,
 
     // 设置超出长度是否自动换行，仅在direction='horizontal'模式下可用
     wrap: PropTypes.bool,
