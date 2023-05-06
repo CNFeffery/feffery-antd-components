@@ -150,7 +150,6 @@ AntdFormItem.propTypes = {
 
 // 设置默认参数
 AntdFormItem.defaultProps = {
-    labelAlign: 'right',
     required: false,
     colon: true,
     hidden: false
