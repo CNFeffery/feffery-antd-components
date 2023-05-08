@@ -29,7 +29,7 @@ Keyword arguments:
 
 - label (a list of or a singular dash component, string or number; optional)
 
-- labelAlign (a value equal to: 'left', 'right'; default 'right')
+- labelAlign (a value equal to: 'left', 'right'; optional)
 
 - labelCol (dict; optional)
 

@@ -21,6 +21,8 @@ Keyword arguments:
 
     `defaultFileList` is a list of dicts with keys:
 
+    - fileSize (number; optional)
+
     - name (string; optional)
 
     - status (a value equal to: 'done', 'error', 'removed'; optional)

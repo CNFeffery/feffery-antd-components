@@ -109,7 +109,8 @@ Keyword arguments:
 - data (list of dicts; optional)
 
     `data` is a list of dicts with strings as keys and values of type
-    string | number | dict with keys:
+    list of boolean | number | string | dict | lists | string | number
+    | dict with keys:
 
     - content (string; optional)
 
@@ -272,7 +273,7 @@ Keyword arguments:
 
         - label (string; optional)
 
-        - value (string; optional)
+        - value (string | number; optional)
 
     - placeholder (string; optional)
 
