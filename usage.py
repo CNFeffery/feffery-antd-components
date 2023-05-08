@@ -7,41 +7,38 @@ app = dash.Dash(__name__)
 
 app.layout = html.Div(
     [
-        html.Div(
-            fac.AntdForm(
-                [
-                    fac.AntdFormItem(
-                        fac.AntdInput(),
-                        label='用户名'
-                    ),
-                    fac.AntdFormItem(
-                        fac.AntdInput(
-                            mode='password'
-                        ),
-                        label='密码'
-                    ),
-                    fac.AntdFormItem(
-                        fac.AntdButton(
-                            '登录',
-                            type='primary'
-                        ),
-                        wrapperCol={
-                            'offset': 4
-                        }
+        fac.AntdSpace(
+            [
+                fac.AntdButton(
+                    '按钮测试',
+                    type='primary'
+                )
+            ] * 3,
+            customSplit='😎',
+            style={
+                'display': 'block',
+                'marginBottom': 20
+            }
+        ),
+
+        fac.AntdCompact(
+            [
+                *[
+                    fac.AntdButton(
+                        '按钮测试'
                     )
-                ],
-                labelCol={
-                    'span': 4
-                },
-                wrapperCol={
-                    'span': 20
-                },
-                labelAlign='left',
-                style={
-                    'width': 300,
-                    'margin': '0 auto'
-                }
-            )
+                ] * 3,
+                fac.AntdSelect(
+                    placeholder='下拉选择测试',
+                    options=[
+                        {
+                            'label': f'选项{i}',
+                            'value': f'选项{i}'
+                        }
+                        for i in range(5)
+                    ]
+                )
+            ]
         )
     ],
     style={

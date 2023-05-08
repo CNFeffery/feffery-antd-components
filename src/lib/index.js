@@ -95,6 +95,7 @@ import AntdCopyText from './components/AntdCopyText.react';
 import AntdPopupCard from './components/AntdPopupCard.react';
 import AntdConfigProvider from './components/AntdConfigProvider';
 import AntdSpoiler from './components/AntdSpoiler.react';
+import AntdCompact from './components/AntdCompact.react';
 
 /* 
 忽略部分设计React中规范的console警告信息
@@ -212,5 +213,6 @@ export {
     AntdCopyText,
     AntdPopupCard,
     AntdConfigProvider,
-    AntdSpoiler
+    AntdSpoiler,
+    AntdCompact
 };
