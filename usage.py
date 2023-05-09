@@ -39,6 +39,16 @@ app.layout = html.Div(
                     'width': 200
                 }
             }
+        ),
+        fac.AntdDatePicker(
+            showTime={
+                'defaultValue': '12:00:00'
+            }
+        ),
+        fac.AntdDateRangePicker(
+            showTime={
+                'defaultValue': ['08:00:00', '16:30:00']
+            }
         )
     ],
     style={

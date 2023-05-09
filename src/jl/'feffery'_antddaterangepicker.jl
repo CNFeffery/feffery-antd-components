@@ -47,7 +47,10 @@ session: window.sessionStorage, data is cleared once the browser quit.
 - `placement` (a value equal to: 'bottomLeft', 'bottomRight', 'topLeft', 'topRight'; optional)
 - `popupContainer` (a value equal to: 'parent', 'body'; optional)
 - `readOnly` (Bool; optional)
-- `showTime` (Bool; optional)
+- `showTime` (optional): . showTime has the following type: Bool | lists containing elements 'defaultValue', 'format'.
+Those elements have the following types:
+  - `defaultValue` (Array of Strings; optional)
+  - `format` (String; optional)
 - `size` (a value equal to: 'small', 'middle', 'large'; optional)
 - `status` (a value equal to: 'error', 'warning'; optional)
 - `style` (Dict; optional)

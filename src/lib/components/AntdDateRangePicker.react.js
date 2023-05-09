@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { DatePicker, ConfigProvider } from 'antd';
 import moment from 'moment';
 import "moment/locale/zh-cn";
-import { isString, isUndefined } from 'lodash';
+import { isString, isUndefined, isObject } from 'lodash';
 import { str2Locale } from './locales.react';
 import useCss from '../hooks/useCss';
 import PropsContext from '../contexts/PropsContext';
@@ -373,7 +373,17 @@ const AntdDateRangePicker = (props) => {
                             size
                     }
                     picker={picker}
-                    showTime={showTime}
+                    showTime={
+                        // 处理时间选择面板在日期选定后的默认选中值
+                        isObject(showTime) && showTime.defaultValue ?
+                            {
+                                defaultValue: [
+                                    moment(showTime.defaultValue[0], showTime.format || 'HH:mm:ss'),
+                                    moment(showTime.defaultValue[1], showTime.format || 'HH:mm:ss')
+                                ]
+                            } :
+                            showTime
+                    }
                     allowClear={isUndefined(readOnly) ? allowClear : !readOnly}
                     disabled={
                         context && !isUndefined(context.componentDisabled) ?
@@ -457,7 +467,15 @@ AntdDateRangePicker.propTypes = {
     disabled: PropTypes.arrayOf(PropTypes.bool),
 
     // 设置是否显示时间选择界面，默认为false即不显示
-    showTime: PropTypes.bool,
+    showTime: PropTypes.oneOfType([
+        PropTypes.bool,
+        PropTypes.exact({
+            // 用于设置时间选择面板默认停留位置对应时间字符串数组
+            defaultValue: PropTypes.arrayOf(PropTypes.string),
+            // 用于设置对应defaultValue的格式字符串，默认为'HH:mm:ss'
+            format: PropTypes.string
+        })
+    ]),
 
     // 设置尺寸大小，可选的有'small'、'middle'及'large'
     size: PropTypes.oneOf([

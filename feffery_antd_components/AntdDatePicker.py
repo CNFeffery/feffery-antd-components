@@ -85,7 +85,13 @@ Keyword arguments:
 
 - readOnly (boolean; optional)
 
-- showTime (boolean; default False)
+- showTime (dict; default False)
+
+    `showTime` is a boolean | dict with keys:
+
+    - defaultValue (string; optional)
+
+    - format (string; optional)
 
 - size (a value equal to: 'small', 'middle', 'large'; default 'middle')
 
