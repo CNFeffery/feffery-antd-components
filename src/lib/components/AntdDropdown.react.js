@@ -173,7 +173,13 @@ AntdDropdown.propTypes = {
         type: PropTypes.oneOf(['primary', 'ghost', 'dashed', 'link', 'text', 'default']),
 
         // 设置按钮是否显示为危险状态
-        danger: PropTypes.bool
+        danger: PropTypes.bool,
+
+        // 设置按钮的css样式
+        style: PropTypes.object,
+
+        // 设置按钮的css类名
+        className: PropTypes.string
     }),
 
     // 设置是否开启自由位置模式，默认为false，此项开启后会覆盖buttonMode参数

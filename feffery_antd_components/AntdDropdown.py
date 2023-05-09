@@ -21,9 +21,13 @@ Keyword arguments:
 
     `buttonProps` is a dict with keys:
 
+    - className (string; optional)
+
     - danger (boolean; optional)
 
     - size (a value equal to: 'default', 'small', 'large'; optional)
+
+    - style (dict; optional)
 
     - type (a value equal to: 'primary', 'ghost', 'dashed', 'link', 'text', 'default'; optional)
 

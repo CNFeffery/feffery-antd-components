@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Space, Divider } from 'antd';
+import { Space } from 'antd';
 import useCss from '../hooks/useCss';
 import { isString } from 'lodash';
 

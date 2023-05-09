@@ -49,6 +49,7 @@ const AntdUpload = (props) => {
         uploadId,
         fileListMaxLength,
         buttonContent,
+        buttonProps,
         fileTypes,
         fileMaxSize,
         showUploadList,
@@ -373,8 +374,9 @@ const AntdUpload = (props) => {
                                 context.componentDisabled :
                                 disabled
                         }
+                        {...buttonProps}
                     >
-                        {buttonContent ? buttonContent : "点击上传文件"}
+                        {buttonContent || "点击上传文件"}
                     </Button>
                 </Upload>
             </div>
@@ -419,6 +421,24 @@ AntdUpload.propTypes = {
 
     // 按钮模式下设置按钮内的文字内容
     buttonContent: PropTypes.node,
+
+    // 配置上传按钮常用参数
+    buttonProps: PropTypes.exact({
+        // 设置按钮尺寸规格，可选的有'default'/'small'/'large'
+        size: PropTypes.oneOf(['default', 'small', 'large']),
+
+        // 设置按钮整体风格（可选项有primary、ghost、dashed、link、text、default）
+        type: PropTypes.oneOf(['primary', 'ghost', 'dashed', 'link', 'text', 'default']),
+
+        // 设置按钮是否显示为危险状态
+        danger: PropTypes.bool,
+
+        // 设置按钮的css样式
+        style: PropTypes.object,
+
+        // 设置按钮的css类名
+        className: PropTypes.string
+    }),
 
     // 设置当前组件生命周期内的上传路径id信息，若未传入则会自动生成uuid
     uploadId: PropTypes.string,

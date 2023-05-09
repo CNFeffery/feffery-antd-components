@@ -12,11 +12,13 @@ Keyword arguments:
 - `arrow` (Bool; optional)
 - `autoAdjustOverflow` (Bool; optional)
 - `buttonMode` (Bool; optional)
-- `buttonProps` (optional): . buttonProps has the following type: lists containing elements 'size', 'type', 'danger'.
+- `buttonProps` (optional): . buttonProps has the following type: lists containing elements 'size', 'type', 'danger', 'style', 'className'.
 Those elements have the following types:
   - `size` (a value equal to: 'default', 'small', 'large'; optional)
   - `type` (a value equal to: 'primary', 'ghost', 'dashed', 'link', 'text', 'default'; optional)
   - `danger` (Bool; optional)
+  - `style` (Dict; optional)
+  - `className` (String; optional)
 - `className` (String | Dict; optional)
 - `clickedKey` (String; optional)
 - `disabled` (Bool; optional)

@@ -7,38 +7,38 @@ app = dash.Dash(__name__)
 
 app.layout = html.Div(
     [
-        fac.AntdSpace(
-            [
-                fac.AntdButton(
-                    '按钮测试',
-                    type='primary'
-                )
-            ] * 3,
-            customSplit='😎',
-            style={
-                'display': 'block',
-                'marginBottom': 20
+        fac.AntdDropdown(
+            title='触发点',
+            buttonMode=True,
+            menuItems=[
+                {
+                    'title': '子页面1'
+                },
+                {
+                    'title': '子页面2'
+                },
+                {
+                    'isDivider': True
+                },
+                {
+                    'title': '子页面3-1'
+                },
+                {
+                    'title': '子页面3-2'
+                }
+            ],
+            buttonProps={
+                'style': {
+                    'width': 150
+                }
             }
         ),
-
-        fac.AntdCompact(
-            [
-                *[
-                    fac.AntdButton(
-                        '按钮测试'
-                    )
-                ] * 3,
-                fac.AntdSelect(
-                    placeholder='下拉选择测试',
-                    options=[
-                        {
-                            'label': f'选项{i}',
-                            'value': f'选项{i}'
-                        }
-                        for i in range(5)
-                    ]
-                )
-            ]
+        fac.AntdUpload(
+            buttonProps={
+                'style': {
+                    'width': 200
+                }
+            }
         )
     ],
     style={
