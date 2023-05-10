@@ -23,6 +23,7 @@ Those elements have the following types:
 - `debounceWait` (Real; optional)
 - `defaultValue` (String; optional)
 - `disabled` (Bool; optional)
+- `emptyAsNone` (Bool; optional)
 - `key` (String; optional)
 - `loading_state` (optional): . loading_state has the following type: lists containing elements 'is_loading', 'prop_name', 'component_name'.
 Those elements have the following types:
@@ -59,7 +60,7 @@ session: window.sessionStorage, data is cleared once the browser quit.
 - `value` (String; optional)
 """
 function 'feffery'_antdinput(; kwargs...)
-        available_props = Symbol[:id, :addonAfter, :addonBefore, :allowClear, :autoComplete, :autoSize, :bordered, :className, :debounceValue, :debounceWait, :defaultValue, :disabled, :key, :loading_state, :maxLength, :md5Value, :mode, :nClicksSearch, :nSubmit, :passwordUseMd5, :persisted_props, :persistence, :persistence_type, :placeholder, :prefix, :readOnly, :showCount, :size, :status, :style, :suffix, :value]
+        available_props = Symbol[:id, :addonAfter, :addonBefore, :allowClear, :autoComplete, :autoSize, :bordered, :className, :debounceValue, :debounceWait, :defaultValue, :disabled, :emptyAsNone, :key, :loading_state, :maxLength, :md5Value, :mode, :nClicksSearch, :nSubmit, :passwordUseMd5, :persisted_props, :persistence, :persistence_type, :placeholder, :prefix, :readOnly, :showCount, :size, :status, :style, :suffix, :value]
         wild_props = Symbol[]
         return Component("'feffery'_antdinput", "AntdInput", "feffery_antd_components", available_props, wild_props; kwargs...)
 end

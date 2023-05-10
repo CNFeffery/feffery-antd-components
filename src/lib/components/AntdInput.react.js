@@ -40,6 +40,7 @@ const AntdInput = (props) => {
         autoSize,
         debounceWait,
         readOnly,
+        emptyAsNone,
         setProps,
         loading_state,
         persistence,
@@ -72,16 +73,44 @@ const AntdInput = (props) => {
         if (passwordUseMd5 && mode === 'password') {
             setProps({
                 md5Value: md5(e.target.value),
-                value: e.target.value
+                value: (
+                    emptyAsNone ?
+                        (
+                            e.target.value === '' ?
+                                null :
+                                e.target.value
+                        ) :
+                        e.target.value
+                )
             })
         } else {
-            setProps({ value: e.target.value })
+            setProps({
+                value: (
+                    emptyAsNone ?
+                        (
+                            e.target.value === '' ?
+                                null :
+                                e.target.value
+                        ) :
+                        e.target.value
+                )
+            })
         }
     }
 
     const { run: onDebounceChange } = useRequest(
         (e) => {
-            setProps({ debounceValue: e })
+            setProps({
+                debounceValue: (
+                    emptyAsNone ?
+                        (
+                            e === '' ?
+                                null :
+                                e
+                        ) :
+                        e
+                )
+            })
         },
         {
             debounceWait: Math.max(debounceWait, 200),
@@ -370,6 +399,10 @@ AntdInput.propTypes = {
     // 设置是否以只读模式进行渲染，默认为false
     readOnly: PropTypes.bool,
 
+    // 设置当输入框内无内容时，强制更新value为null，从而统一''和null混合的情况
+    // 默认为false
+    emptyAsNone: PropTypes.bool,
+
     loading_state: PropTypes.shape({
         /**
          * Determines if the component is loading or not
@@ -434,6 +467,7 @@ AntdInput.defaultProps = {
     nClicksSearch: 0,
     nSubmit: 0,
     allowClear: false,
+    emptyAsNone: false,
     debounceWait: 200,
     persisted_props: ['value', 'md5Value'],
     persistence_type: 'local'
