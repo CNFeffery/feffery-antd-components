@@ -34,6 +34,7 @@ Those elements have the following types:
 - `locale` (a value equal to: 'zh-cn', 'en-us'; optional)
 - `maxTagCount` (Real | a value equal to: 'responsive'; optional)
 - `mode` (a value equal to: 'multiple', 'tags'; optional)
+- `optionFilterMode` (a value equal to: 'case-insensitive', 'case-sensitive', 'regex'; optional)
 - `optionFilterProp` (a value equal to: 'value', 'label'; optional)
 - `options` (optional): . options has the following type: Array of lists containing elements 'label', 'value', 'disabled', 'colors'.
 Those elements have the following types:
@@ -73,7 +74,7 @@ session: window.sessionStorage, data is cleared once the browser quit.
 - `value` (String | Real | Array of String | Reals; optional)
 """
 function 'feffery'_antdselect(; kwargs...)
-        available_props = Symbol[:id, :allowClear, :autoClearSearchValue, :autoSpin, :bordered, :className, :colorsMode, :colorsNameWidth, :debounceSearchValue, :debounceWait, :defaultValue, :disabled, :dropdownAfter, :dropdownBefore, :emptyContent, :key, :listHeight, :loadingEmptyContent, :loading_state, :locale, :maxTagCount, :mode, :optionFilterProp, :options, :persisted_props, :persistence, :persistence_type, :placeholder, :placement, :popupContainer, :readOnly, :searchValue, :size, :status, :style, :value]
+        available_props = Symbol[:id, :allowClear, :autoClearSearchValue, :autoSpin, :bordered, :className, :colorsMode, :colorsNameWidth, :debounceSearchValue, :debounceWait, :defaultValue, :disabled, :dropdownAfter, :dropdownBefore, :emptyContent, :key, :listHeight, :loadingEmptyContent, :loading_state, :locale, :maxTagCount, :mode, :optionFilterMode, :optionFilterProp, :options, :persisted_props, :persistence, :persistence_type, :placeholder, :placement, :popupContainer, :readOnly, :searchValue, :size, :status, :style, :value]
         wild_props = Symbol[]
         return Component("'feffery'_antdselect", "AntdSelect", "feffery_antd_components", available_props, wild_props; kwargs...)
 end

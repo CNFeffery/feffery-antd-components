@@ -7,32 +7,51 @@ app = dash.Dash(__name__)
 
 app.layout = html.Div(
     [
-        fac.AntdInput(
-            id='input-demo',
-            emptyAsNone=True,
-            allowClear=True,
-            style={
-                'width': 200
-            }
+        # 功能测试：带搜索框的主要组件不同的搜索模式
+        # AntdSelect、AntdTransfer
+        fac.AntdTransfer(
+            dataSource=[
+                {
+                    'key': i,
+                    'title': f'选项{i}'
+                }
+                for i in list('AbCdEf')
+            ],
+            showSearch=True,
+            height=600
         ),
 
-        fac.AntdText(
-            id='input-demo-output'
+        fac.AntdForm(
+            [
+                fac.AntdFormItem(
+                    fac.AntdSelect(
+                        options=[
+                            {
+                                'label': f'选项{i}',
+                                'value': f'选项{i}',
+                            }
+                            for i in list('AbCdEf')
+                        ],
+                        optionFilterMode=mode,
+                        style={
+                            'width': 300
+                        }
+                    ),
+                    label=mode
+                )
+                for mode in [
+                    'case-insensitive',
+                    'case-sensitive',
+                    'regex'
+                ]
+            ],
+            layout='vertical'
         )
     ],
     style={
-        'padding': '50px 100px'
+        'padding': 200
     }
 )
-
-
-@app.callback(
-    Output('input-demo-output', 'children'),
-    Input('input-demo', 'value')
-)
-def input_demo(value):
-
-    return str(value)
 
 
 if __name__ == '__main__':

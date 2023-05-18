@@ -37,6 +37,7 @@ const AntdSelect = (props) => {
         placement,
         status,
         optionFilterProp,
+        optionFilterMode,
         autoSpin,
         debounceWait,
         autoClearSearchValue,
@@ -208,6 +209,32 @@ const AntdSelect = (props) => {
                 placement={placement}
                 status={status}
                 optionFilterProp={optionFilterProp}
+                filterOption={
+                    (inputValue, option) => {
+                        // 处理''特殊情况
+                        inputValue = inputValue || ''
+                        if (inputValue !== '') {
+                            if (optionFilterMode === 'case-insensitive') {
+                                // 进行大小写不敏感筛选
+                                return (option[optionFilterProp] || '').toLowerCase()
+                                    .includes(inputValue.toLowerCase())
+                            } else if (optionFilterMode === 'case-sensitive') {
+                                // 判断输入的内容是否是当前选项筛选依据字段值的子串
+                                return option[optionFilterProp].includes(inputValue)
+                            } else if (optionFilterMode === 'regex') {
+                                // 判断输入的正则规则是否匹配当前选项筛选依据字段值
+                                try {
+                                    // 尝试进行正则匹配
+                                    return eval(`/${inputValue}/`).test(option[optionFilterProp])
+                                } catch {
+                                    // 忽略非法的正则表达式
+                                    return false
+                                }
+                            }
+                        }
+                        return false
+                    }
+                }
                 autoClearSearchValue={autoClearSearchValue}
                 onSearch={(e) => {
                     onSearch(e)
@@ -390,10 +417,14 @@ AntdSelect.propTypes = {
     // 监听搜索框中的已输入搜索文字内容
     searchValue: PropTypes.string,
 
+    // 用于设置搜索框内容与选项目标值的匹配方式，可选的有'case-insensitive'、'case-sensitive'、'regex'
+    // 默认为'case-insensitive'
+    optionFilterMode: PropTypes.oneOf(['case-insensitive', 'case-sensitive', 'regex']),
+
     // 防抖模式下用于监听搜索框中的已输入搜索文字内容
     debounceSearchValue: PropTypes.string,
 
-    // 用于配置debounceValue变化更新的防抖等待时长（单位：毫秒），默认为0
+    // 用于配置debounceValue变化更新的防抖等待时长（-单位：毫秒），默认为0
     debounceWait: PropTypes.number,
 
     // 设置当组件内的prop正处于回调加载中状态时，是否渲染后缀加载图标
@@ -493,6 +524,7 @@ AntdSelect.defaultProps = {
     persistence_type: 'local',
     locale: 'zh-cn',
     optionFilterProp: 'value',
+    optionFilterMode: 'case-insensitive',
     autoSpin: false,
     debounceWait: 200,
     popupContainer: 'body',

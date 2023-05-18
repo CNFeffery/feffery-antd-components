@@ -10,12 +10,13 @@ An AntdTransfer component.
 Keyword arguments:
 - `id` (String; optional)
 - `className` (String | Dict; optional)
-- `dataSource` (optional): . dataSource has the following type: Array of lists containing elements 'key', 'title'.
+- `dataSource` (optional): . dataSource has the following type: Array of lists containing elements 'key', 'title', 'disabled'.
 Those elements have the following types:
   - `key` (String | Real; optional)
-  - `title` (a list of or a singular dash component, string or number; optional)s
+  - `title` (a list of or a singular dash component, string or number; optional)
+  - `disabled` (Bool; optional)s
 - `disabled` (Bool; optional)
-- `height` (String; optional)
+- `height` (String | Real; optional)
 - `key` (String; optional)
 - `loading_state` (optional): . loading_state has the following type: lists containing elements 'is_loading', 'prop_name', 'component_name'.
 Those elements have the following types:
@@ -26,6 +27,7 @@ Those elements have the following types:
 - `moveDirection` (a value equal to: 'left', 'right'; optional)
 - `moveKeys` (Array of Real | Strings; optional)
 - `operations` (Array of Strings; optional)
+- `optionFilterMode` (a value equal to: 'case-insensitive', 'case-sensitive', 'regex'; optional)
 - `pagination` (optional): . pagination has the following type: Bool | lists containing elements 'pageSize'.
 Those elements have the following types:
   - `pageSize` (Real; optional)
@@ -50,7 +52,7 @@ session: window.sessionStorage, data is cleared once the browser quit.
 - `titles` (Array of a list of or a singular dash component, string or numbers; optional)
 """
 function 'feffery'_antdtransfer(; kwargs...)
-        available_props = Symbol[:id, :className, :dataSource, :disabled, :height, :key, :loading_state, :locale, :moveDirection, :moveKeys, :operations, :pagination, :persisted_props, :persistence, :persistence_type, :showSearch, :showSelectAll, :status, :style, :targetKeys, :titles]
+        available_props = Symbol[:id, :className, :dataSource, :disabled, :height, :key, :loading_state, :locale, :moveDirection, :moveKeys, :operations, :optionFilterMode, :pagination, :persisted_props, :persistence, :persistence_type, :showSearch, :showSelectAll, :status, :style, :targetKeys, :titles]
         wild_props = Symbol[]
         return Component("'feffery'_antdtransfer", "AntdTransfer", "feffery_antd_components", available_props, wild_props; kwargs...)
 end
