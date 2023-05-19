@@ -43,7 +43,6 @@ import {
 } from '@ant-design/icons';
 import { isNumber, isEqual } from 'lodash';
 import { str2Locale, locale2text } from './locales.react';
-import PropsContext from '../contexts/PropsContext';
 
 const { Text } = Typography;
 
@@ -251,8 +250,6 @@ class AntdTable extends Component {
         // 阻止本次重绘
         return !changedProps.every(propName => preventUpdateProps.includes(propName));
     }
-
-    static contextType = PropsContext;
 
     render() {
 
@@ -482,8 +479,6 @@ class AntdTable extends Component {
             hiddenRowKeys,
             loading_state
         } = this.props;
-
-        locale = (this.context && this.context.locale) || locale
 
         pagination = {
             ...pagination,
