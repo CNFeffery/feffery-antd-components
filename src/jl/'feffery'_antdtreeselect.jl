@@ -56,12 +56,13 @@ session: window.sessionStorage, data is cleared once the browser quit.
 - `treeDefaultExpandedKeys` (Array of Strings; optional)
 - `treeExpandedKeys` (Array of Strings; optional)
 - `treeLine` (Bool; optional)
+- `treeNodeFilterMode` (a value equal to: 'case-insensitive', 'case-sensitive', 'regex'; optional)
 - `treeNodeFilterProp` (a value equal to: 'title', 'value'; optional)
 - `value` (String | Real | Array of String | Reals; optional)
 - `virtual` (Bool; optional)
 """
 function 'feffery'_antdtreeselect(; kwargs...)
-        available_props = Symbol[:id, :allowClear, :autoClearSearchValue, :bordered, :className, :defaultValue, :disabled, :dropdownAfter, :dropdownBefore, :key, :listHeight, :loading_state, :locale, :maxTagCount, :multiple, :persisted_props, :persistence, :persistence_type, :placeholder, :placement, :popupContainer, :readOnly, :showCheckedStrategy, :size, :status, :style, :treeCheckStrictly, :treeCheckable, :treeData, :treeDataMode, :treeDefaultExpandAll, :treeDefaultExpandedKeys, :treeExpandedKeys, :treeLine, :treeNodeFilterProp, :value, :virtual]
+        available_props = Symbol[:id, :allowClear, :autoClearSearchValue, :bordered, :className, :defaultValue, :disabled, :dropdownAfter, :dropdownBefore, :key, :listHeight, :loading_state, :locale, :maxTagCount, :multiple, :persisted_props, :persistence, :persistence_type, :placeholder, :placement, :popupContainer, :readOnly, :showCheckedStrategy, :size, :status, :style, :treeCheckStrictly, :treeCheckable, :treeData, :treeDataMode, :treeDefaultExpandAll, :treeDefaultExpandedKeys, :treeExpandedKeys, :treeLine, :treeNodeFilterMode, :treeNodeFilterProp, :value, :virtual]
         wild_props = Symbol[]
         return Component("'feffery'_antdtreeselect", "AntdTreeSelect", "feffery_antd_components", available_props, wild_props; kwargs...)
 end

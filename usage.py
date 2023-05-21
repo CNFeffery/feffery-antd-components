@@ -46,6 +46,34 @@ app.layout = html.Div(
                 ]
             ],
             layout='vertical'
+        ),
+
+        fac.AntdForm(
+            [
+                fac.AntdFormItem(
+                    fac.AntdTreeSelect(
+                        treeData=[
+                            {
+                                'title': f'选项{i}',
+                                'value': f'选项{i}',
+                                'key': f'选项{i}',
+                            }
+                            for i in list('AbCdEf')
+                        ],
+                        treeNodeFilterMode=mode,
+                        style={
+                            'width': 300
+                        }
+                    ),
+                    label=mode
+                )
+                for mode in [
+                    'case-insensitive',
+                    'case-sensitive',
+                    'regex'
+                ]
+            ],
+            layout='vertical'
         )
     ],
     style={

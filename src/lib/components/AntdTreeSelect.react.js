@@ -49,6 +49,7 @@ const AntdTreeSelect = (props) => {
         placement,
         status,
         treeNodeFilterProp,
+        treeNodeFilterMode,
         autoClearSearchValue,
         popupContainer,
         setProps,
@@ -136,6 +137,32 @@ const AntdTreeSelect = (props) => {
                 placement={placement}
                 status={status}
                 treeNodeFilterProp={treeNodeFilterProp}
+                filterTreeNode={
+                    (inputValue, treeNode) => {
+                        // 处理''特殊情况
+                        inputValue = inputValue || ''
+                        if (inputValue !== '') {
+                            if (treeNodeFilterMode === 'case-insensitive') {
+                                // 进行大小写不敏感筛选
+                                return (treeNode[treeNodeFilterProp] || '').toLowerCase()
+                                    .includes(inputValue.toLowerCase())
+                            } else if (treeNodeFilterMode === 'case-sensitive') {
+                                // 判断输入的内容是否是当前选项筛选依据字段值的子串
+                                return treeNode[treeNodeFilterProp].includes(inputValue)
+                            } else if (treeNodeFilterMode === 'regex') {
+                                // 判断输入的正则规则是否匹配当前选项筛选依据字段值
+                                try {
+                                    // 尝试进行正则匹配
+                                    return eval(`/${inputValue}/`).test(treeNode[treeNodeFilterProp])
+                                } catch {
+                                    // 忽略非法的正则表达式
+                                    return false
+                                }
+                            }
+                        }
+                        return false
+                    }
+                }
                 autoClearSearchValue={autoClearSearchValue}
                 dropdownRender={
                     (dropdownBefore || dropdownAfter) ?
@@ -347,6 +374,10 @@ AntdTreeSelect.propTypes = {
     // 设置输入框中搜索时针对的字段，可选的有'title'、'value'，默认为'value'
     treeNodeFilterProp: PropTypes.oneOf(['title', 'value']),
 
+    // 用于设置搜索框内容与节点目标值的匹配方式，可选的有'case-insensitive'、'case-sensitive'、'regex'
+    // 默认为'case-insensitive'
+    treeNodeFilterMode: PropTypes.oneOf(['case-insensitive', 'case-sensitive', 'regex']),
+
     // 设置当多选模式下值被选择，是否自动清空搜索框，默认为true
     autoClearSearchValue: PropTypes.bool,
 
@@ -438,7 +469,8 @@ AntdTreeSelect.defaultProps = {
     treeNodeFilterProp: 'value',
     treeDataMode: 'tree',
     popupContainer: 'body',
-    showCheckedStrategy: 'show-all'
+    showCheckedStrategy: 'show-all',
+    treeNodeFilterMode: 'case-insensitive'
 }
 
 export default AntdTreeSelect;
