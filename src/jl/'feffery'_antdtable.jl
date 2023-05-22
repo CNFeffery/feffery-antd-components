@@ -13,7 +13,7 @@ Keyword arguments:
 - `cellUpdateOptimize` (Bool; optional)
 - `className` (String; optional)
 - `clickedContent` (String; optional)
-- `columns` (optional): . columns has the following type: Array of lists containing elements 'title', 'dataIndex', 'group', 'renderOptions', 'fixed', 'editable', 'align', 'width', 'hidden', 'ellipsis', 'sorter', 'render', 'onCell', 'title_'.
+- `columns` (optional): . columns has the following type: Array of lists containing elements 'title', 'dataIndex', 'group', 'renderOptions', 'fixed', 'editable', 'editOptions', 'align', 'width', 'hidden', 'ellipsis', 'sorter', 'render', 'onCell', 'title_'.
 Those elements have the following types:
   - `title` (a list of or a singular dash component, string or number; required)
   - `dataIndex` (String; required)
@@ -40,6 +40,13 @@ Those elements have the following types:
   - `placement` (a value equal to: 'bottomLeft', 'bottomCenter', 'bottomRight', 'topLeft', 'topCenter', 'topRight'; optional)
   - `fixed` (a value equal to: 'left', 'right'; optional)
   - `editable` (Bool; optional)
+  - `editOptions` (optional): . editOptions has the following type: lists containing elements 'mode', 'autoSize'.
+Those elements have the following types:
+  - `mode` (a value equal to: 'default', 'textarea'; optional)
+  - `autoSize` (optional): . autoSize has the following type: Bool | lists containing elements 'minRows', 'maxRows'.
+Those elements have the following types:
+  - `minRows` (Real; optional)
+  - `maxRows` (Real; optional)
   - `align` (a value equal to: 'left', 'center', 'right'; optional)
   - `width` (Real | String; optional)
   - `hidden` (Bool; optional)

@@ -253,6 +253,53 @@ class AntdTable extends Component {
 
     render() {
 
+        // 取得必要属性或参数
+        let {
+            id,
+            className,
+            style,
+            key,
+            locale,
+            containerId,
+            setProps,
+            columns,
+            miniChartHeight,
+            miniChartAnimation,
+            rowSelectionType,
+            selectedRowKeys,
+            rowSelectionWidth,
+            sticky,
+            titlePopoverInfo,
+            columnsFormatConstraint,
+            enableHoverListen,
+            data,
+            sortOptions,
+            filterOptions,
+            pagination,
+            bordered,
+            maxHeight,
+            maxWidth,
+            size,
+            mode,
+            nClicksButton,
+            nDoubleClicksCell,
+            summaryRowContents,
+            summaryRowFixed,
+            customFormatFuncs,
+            conditionalStyleFuncs,
+            expandedRowKeyToContent,
+            expandedRowWidth,
+            expandRowByClick,
+            defaultExpandedRowKeys,
+            enableCellClickListenColumns,
+            nClicksCell,
+            emptyContent,
+            cellUpdateOptimize,
+            nClicksDropdownItem,
+            hiddenRowKeys,
+            loading_state
+        } = this.props;
+
         // 自定义可编辑单元格
         const EditableContext = React.createContext(null);
 
@@ -356,11 +403,28 @@ class AntdTable extends Component {
                             },
                         ]}
                     >
-                        <Input ref={inputRef} onPressEnter={save} onBlur={save} />
+                        {
+                            columns.filter(e => e.dataIndex === dataIndex)[0].editOptions?.mode === 'textarea' ?
+                                <Input.TextArea
+                                    autoSize={columns.filter(e => e.dataIndex === dataIndex)[0].editOptions?.autoSize}
+                                    ref={inputRef}
+                                    onBlur={save}
+                                    onFocus={() => {
+                                        // 移动光标至内容末尾
+                                        inputRef.current.focus({
+                                            cursor: 'end',
+                                        })
+                                    }}
+                                /> :
+                                <Input ref={inputRef} onPressEnter={save} onBlur={save} />
+                        }
                     </Form.Item>
                 ) : (
                     <div
                         className="editable-cell-value-wrap"
+                        style={{
+                            whiteSpace: 'break-spaces'
+                        }}
                         onClick={toggleEdit}
                     >
                         {children}
@@ -432,53 +496,6 @@ class AntdTable extends Component {
                 value => ({ text: value ? value.toString() : '', value: value })
             ).sort(compareNumeric)
         }
-
-        // 取得必要属性或参数
-        let {
-            id,
-            className,
-            style,
-            key,
-            locale,
-            containerId,
-            setProps,
-            columns,
-            miniChartHeight,
-            miniChartAnimation,
-            rowSelectionType,
-            selectedRowKeys,
-            rowSelectionWidth,
-            sticky,
-            titlePopoverInfo,
-            columnsFormatConstraint,
-            enableHoverListen,
-            data,
-            sortOptions,
-            filterOptions,
-            pagination,
-            bordered,
-            maxHeight,
-            maxWidth,
-            size,
-            mode,
-            nClicksButton,
-            nDoubleClicksCell,
-            summaryRowContents,
-            summaryRowFixed,
-            customFormatFuncs,
-            conditionalStyleFuncs,
-            expandedRowKeyToContent,
-            expandedRowWidth,
-            expandRowByClick,
-            defaultExpandedRowKeys,
-            enableCellClickListenColumns,
-            nClicksCell,
-            emptyContent,
-            cellUpdateOptimize,
-            nClicksDropdownItem,
-            hiddenRowKeys,
-            loading_state
-        } = this.props;
 
         pagination = {
             ...pagination,
@@ -1704,6 +1721,20 @@ AntdTable.propTypes = {
 
             // 设置是否可编辑，默认为false
             editable: PropTypes.bool,
+
+            // 配置编辑输入框相关参数
+            editOptions: PropTypes.exact({
+                // 设置编辑框模式，默认为'default'，其他可选项有'textarea'
+                mode: PropTypes.oneOf(['default', 'textarea']),
+                // 当mode='textarea'时，用于配置自适应高度相关功能，默认为false
+                autoSize: PropTypes.oneOfType([
+                    PropTypes.bool,
+                    PropTypes.exact({
+                        minRows: PropTypes.number,
+                        maxRows: PropTypes.number
+                    })
+                ])
+            }),
 
             // 设置列对齐方式，可选项有'left'、'center'、'right'
             align: PropTypes.oneOf(['left', 'center', 'right']),
