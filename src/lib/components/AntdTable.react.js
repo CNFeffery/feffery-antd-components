@@ -1566,7 +1566,7 @@ class AntdTable extends Component {
                             rowExpandable: (record) => rowExpandedRowRender.has(record.key),
                             columnWidth: expandedRowWidth,
                             expandRowByClick: expandRowByClick,
-                            defaultExpandedRowKeys: defaultExpandedRowKeys,
+                            // defaultExpandedRowKeys: defaultExpandedRowKeys,
                             // expandedRowKeys: expandedRowKeys,
                             // onExpandedRowsChange: (e) => {
                             //     console.log(e)
@@ -1576,6 +1576,7 @@ class AntdTable extends Component {
                             // }
                         } : undefined
                     }
+                    defaultExpandedRowKeys={defaultExpandedRowKeys}
                     data-dash-is-loading={
                         (loading_state && loading_state.is_loading) || undefined
                     }
