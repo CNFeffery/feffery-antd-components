@@ -1129,19 +1129,31 @@ class AntdTable extends Component {
                                                     cancelText={columns[i]['renderOptions']['renderButtonPopConfirmProps'].cancelText}
                                                     disabled={content_.disabled}
                                                     getPopupContainer={containerId ? () => (document.getElementById(containerId) ? document.getElementById(containerId) : document.body) : undefined}
-                                                    onConfirm={() => setProps({
-                                                        recentlyButtonClickedRow: record,
-                                                        nClicksButton: nClicksButton + 1,
-                                                        clickedContent: content_.content,
-                                                        recentlyButtonClickedDataIndex: columns[i].dataIndex
-                                                    })}>
+                                                    onConfirm={(e) => {
+                                                        // 阻止事件冒泡
+                                                        e.stopPropagation();
+                                                        setProps({
+                                                            recentlyButtonClickedRow: record,
+                                                            nClicksButton: nClicksButton + 1,
+                                                            clickedContent: content_.content,
+                                                            recentlyButtonClickedDataIndex: columns[i].dataIndex
+                                                        })
+                                                    }}
+                                                    onCancel={(e) => {
+                                                        // 阻止事件冒泡
+                                                        e.stopPropagation();
+                                                    }}>
                                                     <Button
                                                         size={'small'}
                                                         type={content_.type}
                                                         danger={content_.danger}
                                                         disabled={content_.disabled}
                                                         style={content_.style}
-                                                        icon={<AntdIcon icon={content_.icon} />}>
+                                                        icon={<AntdIcon icon={content_.icon} />}
+                                                        onClick={(e) => {
+                                                            // 阻止事件冒泡
+                                                            e.stopPropagation();
+                                                        }}>
                                                         {content_.content}
                                                     </Button>
                                                 </Popconfirm>
@@ -1155,19 +1167,31 @@ class AntdTable extends Component {
                                 cancelText={columns[i]['renderOptions']['renderButtonPopConfirmProps'].cancelText}
                                 disabled={content.disabled}
                                 getPopupContainer={containerId ? () => (document.getElementById(containerId) ? document.getElementById(containerId) : document.body) : undefined}
-                                onConfirm={() => setProps({
-                                    recentlyButtonClickedRow: record,
-                                    nClicksButton: nClicksButton + 1,
-                                    clickedContent: content.content,
-                                    recentlyButtonClickedDataIndex: columns[i].dataIndex
-                                })}>
+                                onConfirm={(e) => {
+                                    // 阻止事件冒泡
+                                    e.stopPropagation();
+                                    setProps({
+                                        recentlyButtonClickedRow: record,
+                                        nClicksButton: nClicksButton + 1,
+                                        clickedContent: content.content,
+                                        recentlyButtonClickedDataIndex: columns[i].dataIndex
+                                    })
+                                }}
+                                onCancel={(e) => {
+                                    // 阻止事件冒泡
+                                    e.stopPropagation();
+                                }}>
                                 <Button
                                     size={'small'}
                                     type={content.type}
                                     danger={content.danger}
                                     disabled={content.disabled}
                                     style={content.style}
-                                    icon={<AntdIcon icon={content.icon} />}>
+                                    icon={<AntdIcon icon={content.icon} />}
+                                    onClick={(e) => {
+                                        // 阻止事件冒泡
+                                        e.stopPropagation();
+                                    }}>
                                     {content.content}
                                 </Button>
                             </Popconfirm>
@@ -1182,12 +1206,16 @@ class AntdTable extends Component {
                                         content.map(
                                             content_ => (
                                                 <Button
-                                                    onClick={() => setProps({
-                                                        recentlyButtonClickedRow: record,
-                                                        nClicksButton: nClicksButton + 1,
-                                                        clickedContent: content_.content,
-                                                        recentlyButtonClickedDataIndex: columns[i].dataIndex
-                                                    })}
+                                                    onClick={(e) => {
+                                                        // 阻止事件冒泡
+                                                        e.stopPropagation();
+                                                        setProps({
+                                                            recentlyButtonClickedRow: record,
+                                                            nClicksButton: nClicksButton + 1,
+                                                            clickedContent: content_.content,
+                                                            recentlyButtonClickedDataIndex: columns[i].dataIndex
+                                                        })
+                                                    }}
                                                     size={'small'}
                                                     type={content_.type}
                                                     danger={content_.danger}
@@ -1202,12 +1230,16 @@ class AntdTable extends Component {
                                         )
                                     }</Space>
                             ) : <Button
-                                onClick={() => setProps({
-                                    recentlyButtonClickedRow: record,
-                                    nClicksButton: nClicksButton + 1,
-                                    clickedContent: content.content,
-                                    recentlyButtonClickedDataIndex: columns[i].dataIndex
-                                })}
+                                onClick={(e) => {
+                                    // 阻止事件冒泡
+                                    e.stopPropagation();
+                                    setProps({
+                                        recentlyButtonClickedRow: record,
+                                        nClicksButton: nClicksButton + 1,
+                                        clickedContent: content.content,
+                                        recentlyButtonClickedDataIndex: columns[i].dataIndex
+                                    })
+                                }}
                                 size={'small'}
                                 type={content.type}
                                 danger={content.danger}

@@ -1,85 +1,147 @@
 import dash
+import json
+from datetime import datetime
 from dash import html
 import feffery_antd_components as fac
-from dash.dependencies import Input, Output
+from dash.dependencies import Input, Output, State
 
 app = dash.Dash(__name__)
 
+
 app.layout = html.Div(
     [
-        # 功能测试：带搜索框的主要组件不同的搜索模式
-        # AntdSelect、AntdTransfer
-        fac.AntdTransfer(
-            dataSource=[
+        html.Pre(
+            id='table-click-event-demo-output'
+        ),
+        fac.AntdTable(
+            id='table-rerender-button-demo',
+            columns=[
                 {
-                    'key': i,
-                    'title': f'选项{i}'
+                    'title': 'button示例1',
+                    'dataIndex': 'button示例1',
+                    'renderOptions': {
+                        'renderType': 'button'
+                    }
+                },
+                {
+                    'title': 'button示例2',
+                    'dataIndex': 'button示例2',
+                    'renderOptions': {
+                        'renderType': 'button'
+                    }
+                },
+                {
+                    'title': 'button示例3',
+                    'dataIndex': 'button示例3',
+                    'renderOptions': {
+                        'renderType': 'button',
+                        'renderButtonPopConfirmProps': {
+                            'title': '确认执行？',
+                            'okText': '确认',
+                            'cancelText': '取消'
+                        }
+                    }
                 }
-                for i in list('AbCdEf')
             ],
-            showSearch=True,
-            height=600
+            data=[
+                {
+                    'button示例1': {
+                        'content': f'按钮1-{i}',
+                        'type': 'link',
+                        'custom': 'balabalabalabala'
+                    },
+                    'button示例2': [
+                        {
+                            'content': f'按钮2-{i}-{j}',
+                            'type': 'primary',
+                            'custom': 'balabalabalabala'
+                        }
+                        for j in range(1, 3)
+                    ],
+                    'button示例3': [
+                        {
+                            'content': f'按钮3-{i}-{j}',
+                            'type': 'dashed',
+                            'danger': True,
+                            'custom': 'balabalabalabala'
+                        }
+                        for j in range(1, 3)
+                    ]
+                }
+                for i in range(1, 4)
+            ],
+            bordered=True,
+            enableCellClickListenColumns=[
+                'button示例1', 'button示例2', 'button示例3']
         ),
 
-        fac.AntdForm(
-            [
-                fac.AntdFormItem(
-                    fac.AntdSelect(
-                        options=[
-                            {
-                                'label': f'选项{i}',
-                                'value': f'选项{i}',
-                            }
-                            for i in list('AbCdEf')
-                        ],
-                        optionFilterMode=mode,
-                        style={
-                            'width': 300
-                        }
-                    ),
-                    label=mode
-                )
-                for mode in [
-                    'case-insensitive',
-                    'case-sensitive',
-                    'regex'
-                ]
-            ],
-            layout='vertical'
-        ),
-
-        fac.AntdForm(
-            [
-                fac.AntdFormItem(
-                    fac.AntdTreeSelect(
-                        treeData=[
-                            {
-                                'title': f'选项{i}',
-                                'value': f'选项{i}',
-                                'key': f'选项{i}',
-                            }
-                            for i in list('AbCdEf')
-                        ],
-                        treeNodeFilterMode=mode,
-                        style={
-                            'width': 300
-                        }
-                    ),
-                    label=mode
-                )
-                for mode in [
-                    'case-insensitive',
-                    'case-sensitive',
-                    'regex'
-                ]
-            ],
-            layout='vertical'
+        html.Pre(
+            id='table-rerender-button-demo-output'
         )
     ],
     style={
-        'padding': 200
+        'padding': '50px 100px'
     }
 )
+
+
+@app.callback(
+    Output('table-rerender-button-demo-output', 'children'),
+    Input('table-rerender-button-demo', 'nClicksButton'),
+    [State('table-rerender-button-demo', 'clickedContent'),
+     State('table-rerender-button-demo', 'recentlyButtonClickedDataIndex'),
+     State('table-rerender-button-demo', 'recentlyButtonClickedRow')],
+    prevent_initial_call=True
+)
+def table_rerender_button_demo(nClicksButton,
+                               clickedContent,
+                               recentlyButtonClickedDataIndex,
+                               recentlyButtonClickedRow):
+
+    return json.dumps(
+        dict(
+            nClicksButton=nClicksButton,
+            clickedContent=clickedContent,
+            recentlyButtonClickedDataIndex=recentlyButtonClickedDataIndex,
+            recentlyButtonClickedRow=recentlyButtonClickedRow
+        ),
+        indent=4,
+        ensure_ascii=False
+    )
+
+
+@app.callback(
+    Output('table-click-event-demo-output', 'children'),
+    [Input('table-rerender-button-demo', 'nClicksCell'),
+     Input('table-rerender-button-demo', 'nDoubleClicksCell')],
+    [State('table-rerender-button-demo', 'enableCellClickListenColumns'),
+     State('table-rerender-button-demo', 'recentlyCellClickColumn'),
+     State('table-rerender-button-demo', 'recentlyCellClickRecord'),
+     State('table-rerender-button-demo', 'recentlyCellDoubleClickColumn'),
+     State('table-rerender-button-demo', 'recentlyCellDoubleClickRecord')],
+    prevent_initial_call=True
+)
+def table_click_event_demo(nClicksCell,
+                           nDoubleClicksCell,
+                           enableCellClickListenColumns,
+                           recentlyCellClickColumn,
+                           recentlyCellClickRecord,
+                           recentlyCellDoubleClickColumn,
+                           recentlyCellDoubleClickRecord):
+
+    return json.dumps(
+        dict(
+            enableCellClickListenColumns=enableCellClickListenColumns,
+            nClicksCell=nClicksCell,
+            recentlyCellClickColumn=recentlyCellClickColumn,
+            recentlyCellClickRecord=recentlyCellClickRecord,
+            nDoubleClicksCell=nDoubleClicksCell,
+            recentlyCellDoubleClickColumn=recentlyCellDoubleClickColumn,
+            recentlyCellDoubleClickRecord=recentlyCellDoubleClickRecord
+        ),
+        indent=4,
+        ensure_ascii=False
+    )
 
 
 if __name__ == '__main__':
