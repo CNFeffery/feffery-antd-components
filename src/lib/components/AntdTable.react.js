@@ -1396,7 +1396,10 @@ class AntdTable extends Component {
 
         // 处理columns.title的增广功能设置
         if (titlePopoverInfo) {
+            console.log('=====================================')
+            console.log('titlePopoverInfo:', titlePopoverInfo)
             for (let i = 0; i < columns.length; i++) {
+                console.log('columns[i]:', columns[i])
                 if (Object.keys(titlePopoverInfo).includes(columns[i].dataIndex)) {
 
                     if (!columns[i].title_) {
@@ -2175,9 +2178,9 @@ AntdTable.propTypes = {
     titlePopoverInfo: PropTypes.objectOf(
         PropTypes.exact({
             // 气泡卡片标题
-            title: PropTypes.node,
+            title: PropTypes.string,
             // 气泡卡片内容
-            content: PropTypes.node,
+            content: PropTypes.string,
             // 气泡卡片弹出方位，可选的有'top'、'left'、'right'、'bottom'、'topLeft'
             // 、'topRight'、'bottomLeft'、'bottomRight'、'leftTop'、'leftBottom'
             // 、'rightTop'、'rightBottom'，默认为'bottom'

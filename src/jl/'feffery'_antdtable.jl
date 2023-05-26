@@ -263,8 +263,8 @@ Those elements have the following types:
 - `summaryRowFixed` (Bool; optional)
 - `titlePopoverInfo` (optional): . titlePopoverInfo has the following type: Dict with Strings as keys and values of type lists containing elements 'title', 'content', 'placement', 'overlayStyle'.
 Those elements have the following types:
-  - `title` (a list of or a singular dash component, string or number; optional)
-  - `content` (a list of or a singular dash component, string or number; optional)
+  - `title` (String; optional)
+  - `content` (String; optional)
   - `placement` (a value equal to: 'top', 'left', 'right', 'bottom', 'topLeft', 'topRight', 'bottomLeft', 'bottomRight', 'leftTop', 'leftBottom', 'rightTop', 'rightBottom'; optional)
   - `overlayStyle` (Dict; optional)
 """
