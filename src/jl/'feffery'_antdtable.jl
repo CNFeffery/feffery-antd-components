@@ -42,7 +42,7 @@ Those elements have the following types:
   - `editable` (Bool; optional)
   - `editOptions` (optional): . editOptions has the following type: lists containing elements 'mode', 'autoSize', 'maxLength'.
 Those elements have the following types:
-  - `mode` (a value equal to: 'default', 'textarea'; optional)
+  - `mode` (a value equal to: 'default', 'text-area'; optional)
   - `autoSize` (optional): . autoSize has the following type: Bool | lists containing elements 'minRows', 'maxRows'.
 Those elements have the following types:
   - `minRows` (Real; optional)

@@ -404,7 +404,7 @@ class AntdTable extends Component {
                         ]}
                     >
                         {
-                            columns.filter(e => e.dataIndex === dataIndex)[0].editOptions?.mode === 'textarea' ?
+                            columns.filter(e => e.dataIndex === dataIndex)[0].editOptions?.mode === 'text-area' ?
                                 <Input.TextArea
                                     autoSize={columns.filter(e => e.dataIndex === dataIndex)[0].editOptions?.autoSize}
                                     maxLength={columns.filter(e => e.dataIndex === dataIndex)[0].editOptions?.maxLength}
