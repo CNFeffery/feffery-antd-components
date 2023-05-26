@@ -327,7 +327,7 @@ class AntdTable extends Component {
             const form = useContext(EditableContext);
             useEffect(() => {
                 if (editing) {
-                    inputRef.current.focus();
+                    inputRef.current?.focus();
                 }
             }, [editing]);
 
@@ -412,7 +412,7 @@ class AntdTable extends Component {
                                     onBlur={save}
                                     onFocus={() => {
                                         // 移动光标至内容末尾
-                                        inputRef.current.focus({
+                                        inputRef.current?.focus({
                                             cursor: 'end',
                                         })
                                     }}
@@ -1765,8 +1765,8 @@ AntdTable.propTypes = {
 
             // 配置编辑输入框相关参数
             editOptions: PropTypes.exact({
-                // 设置编辑框模式，默认为'default'，其他可选项有'textarea'
-                mode: PropTypes.oneOf(['default', 'textarea']),
+                // 设置编辑框模式，默认为'default'，其他可选项有'text-area'
+                mode: PropTypes.oneOf(['default', 'text-area']),
                 // 当mode='textarea'时，用于配置自适应高度相关功能，默认为false
                 autoSize: PropTypes.oneOfType([
                     PropTypes.bool,
