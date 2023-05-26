@@ -40,13 +40,14 @@ Those elements have the following types:
   - `placement` (a value equal to: 'bottomLeft', 'bottomCenter', 'bottomRight', 'topLeft', 'topCenter', 'topRight'; optional)
   - `fixed` (a value equal to: 'left', 'right'; optional)
   - `editable` (Bool; optional)
-  - `editOptions` (optional): . editOptions has the following type: lists containing elements 'mode', 'autoSize'.
+  - `editOptions` (optional): . editOptions has the following type: lists containing elements 'mode', 'autoSize', 'maxLength'.
 Those elements have the following types:
   - `mode` (a value equal to: 'default', 'textarea'; optional)
   - `autoSize` (optional): . autoSize has the following type: Bool | lists containing elements 'minRows', 'maxRows'.
 Those elements have the following types:
   - `minRows` (Real; optional)
   - `maxRows` (Real; optional)
+  - `maxLength` (Real; optional)
   - `align` (a value equal to: 'left', 'center', 'right'; optional)
   - `width` (Real | String; optional)
   - `hidden` (Bool; optional)
@@ -63,7 +64,7 @@ Those elements have the following types:
 - `containerId` (String; optional)
 - `currentData` (Array; optional)
 - `customFormatFuncs` (Dict with Strings as keys and values of type String; optional)
-- `data` (optional): . data has the following type: Array of Dict with Strings as keys and values of type Array of Bool | Real | String | Dict | Arrays | String | Real | lists containing elements 'content', 'href', 'target', 'disabled'.
+- `data` (optional): . data has the following type: Array of Dict with Strings as keys and values of type Array of Bool | Real | String | Dict | Arrays | a list of or a singular dash component, string or number | String | Real | lists containing elements 'content', 'href', 'target', 'disabled'.
 Those elements have the following types:
   - `content` (String; optional)
   - `href` (String; optional)

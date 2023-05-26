@@ -407,6 +407,7 @@ class AntdTable extends Component {
                             columns.filter(e => e.dataIndex === dataIndex)[0].editOptions?.mode === 'textarea' ?
                                 <Input.TextArea
                                     autoSize={columns.filter(e => e.dataIndex === dataIndex)[0].editOptions?.autoSize}
+                                    maxLength={columns.filter(e => e.dataIndex === dataIndex)[0].editOptions?.maxLength}
                                     ref={inputRef}
                                     onBlur={save}
                                     onFocus={() => {
@@ -416,7 +417,12 @@ class AntdTable extends Component {
                                         })
                                     }}
                                 /> :
-                                <Input ref={inputRef} onPressEnter={save} onBlur={save} />
+                                <Input
+                                    maxLength={columns.filter(e => e.dataIndex === dataIndex)[0].editOptions?.maxLength}
+                                    ref={inputRef}
+                                    onPressEnter={save}
+                                    onBlur={save}
+                                />
                         }
                     </Form.Item>
                 ) : (
@@ -1765,7 +1771,9 @@ AntdTable.propTypes = {
                         minRows: PropTypes.number,
                         maxRows: PropTypes.number
                     })
-                ])
+                ]),
+                // 可选，限制当前字段下编辑模式输入框的最大输入字符数，默认无限制
+                maxLength: PropTypes.number
             }),
 
             // 设置列对齐方式，可选项有'left'、'center'、'right'
@@ -1800,6 +1808,9 @@ AntdTable.propTypes = {
             PropTypes.oneOfType([
                 // 针对向下嵌套children的兼容处理
                 PropTypes.arrayOf(PropTypes.any),
+
+                // 支持自由组件模式
+                PropTypes.node,
 
                 // 常规模式、ellipsis模式、copyable模式、custom-format模式、ellipsis-copyable模式
                 PropTypes.string,
