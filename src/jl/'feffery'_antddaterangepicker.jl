@@ -29,6 +29,7 @@ Those elements have the following types:
   - `prop_name` (String; optional): Holds which property is loading
   - `component_name` (String; optional): Holds the name of the component that is loading
 - `locale` (a value equal to: 'zh-cn', 'en-us'; optional)
+- `open` (Bool; optional)
 - `persisted_props` (Array of a value equal to: 'value's; optional): Properties whose user interactions will persist after refreshing the
 component or the page. Since only `value` is allowed this prop can
 normally be ignored.
@@ -57,7 +58,7 @@ Those elements have the following types:
 - `value` (Array of Strings; optional)
 """
 function 'feffery'_antddaterangepicker(; kwargs...)
-        available_props = Symbol[:id, :allowClear, :bordered, :className, :defaultPickerValue, :defaultValue, :disabled, :disabledDatesStrategy, :firstDayOfWeek, :format, :key, :loading_state, :locale, :persisted_props, :persistence, :persistence_type, :picker, :placeholder, :placement, :popupContainer, :readOnly, :showTime, :size, :status, :style, :value]
+        available_props = Symbol[:id, :allowClear, :bordered, :className, :defaultPickerValue, :defaultValue, :disabled, :disabledDatesStrategy, :firstDayOfWeek, :format, :key, :loading_state, :locale, :open, :persisted_props, :persistence, :persistence_type, :picker, :placeholder, :placement, :popupContainer, :readOnly, :showTime, :size, :status, :style, :value]
         wild_props = Symbol[]
         return Component("'feffery'_antddaterangepicker", "AntdDateRangePicker", "feffery_antd_components", available_props, wild_props; kwargs...)
 end

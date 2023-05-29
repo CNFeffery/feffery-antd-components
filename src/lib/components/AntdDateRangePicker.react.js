@@ -27,6 +27,7 @@ const AntdDateRangePicker = (props) => {
         allowClear,
         value,
         disabledDatesStrategy,
+        open,
         defaultValue,
         placeholder,
         disabled,
@@ -415,7 +416,8 @@ const AntdDateRangePicker = (props) => {
                     }
                     status={status}
                     placement={placement}
-                    open={isUndefined(readOnly) || !readOnly ? undefined : false}
+                    open={isUndefined(readOnly) || !readOnly ? open : false}
+                    onOpenChange={(e) => setProps({ open: e })}
                     inputReadOnly={readOnly}
                     persistence={persistence}
                     persisted_props={persisted_props}
@@ -526,6 +528,9 @@ AntdDateRangePicker.propTypes = {
             ])
         })
     ),
+
+    // 用于设置或监听当前日期范围选择面板是否展开
+    open: PropTypes.bool,
 
     // 设置校验状态，可选的有'error'、'warning'
     status: PropTypes.oneOf(['error', 'warning']),

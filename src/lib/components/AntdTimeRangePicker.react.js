@@ -7,7 +7,6 @@ import { str2Locale } from './locales.react';
 import useCss from '../hooks/useCss';
 import PropsContext from '../contexts/PropsContext';
 
-
 const { RangePicker } = TimePicker
 
 // 定义时间范围选择组件AntdTimeRangePicker，api参数参考https://ant.design/components/time-picker-cn/
@@ -33,6 +32,7 @@ const AntdTimeRangePicker = (props) => {
         allowClear,
         bordered,
         size,
+        open,
         status,
         popupContainer,
         readOnly,
@@ -121,7 +121,8 @@ const AntdTimeRangePicker = (props) => {
                             (triggerNode) => triggerNode.parentNode :
                             undefined
                     }
-                    open={isUndefined(readOnly) || !readOnly ? undefined : false}
+                    open={isUndefined(readOnly) || !readOnly ? open : false}
+                    onOpenChange={(e) => setProps({ open: e })}
                     inputReadOnly={readOnly}
                 />
             </ConfigProvider>
@@ -190,6 +191,9 @@ AntdTimeRangePicker.propTypes = {
     size: PropTypes.oneOf([
         'small', 'middle', 'large'
     ]),
+
+    // 用于设置或监听当前时间范围选择面板是否展开
+    open: PropTypes.bool,
 
     // 设置校验状态，可选的有'error'、'warning'
     status: PropTypes.oneOf(['error', 'warning']),
