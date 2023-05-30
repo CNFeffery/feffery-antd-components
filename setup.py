@@ -21,7 +21,7 @@ setup(
     long_description=io.open("README.md", encoding="utf-8").read(),
     long_description_content_type="text/markdown",
     install_requires=[
-        'dash>=2.10.0'
+        'dash>=2.10.1'
     ],
     classifiers=[
         'Framework :: Dash',
