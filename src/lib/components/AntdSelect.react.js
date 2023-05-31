@@ -56,6 +56,12 @@ const AntdSelect = (props) => {
     const context = useContext(PropsContext)
     locale = (context && context.locale) || locale
 
+    // 处理multiple模式下，defaultValue或value为None的显示异常问题 #78
+    if (mode === 'multiple') {
+        defaultValue = defaultValue || []
+        value = value || []
+    }
+
     useEffect(() => {
         // 初始化value
         if (defaultValue && !value) {
