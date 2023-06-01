@@ -94,7 +94,6 @@ const AntdTree = (props) => {
     }
 
     const listenSelect = (e) => {
-        console.log('节点选择发生', e)
         setProps({ selectedKeys: e })
     }
 

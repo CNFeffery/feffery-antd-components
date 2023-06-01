@@ -27,6 +27,24 @@ Keyword arguments:
 
     - dataIndex (string; required)
 
+    - editOptions (dict; optional)
+
+        `editOptions` is a dict with keys:
+
+        - autoSize (dict; optional)
+
+            `autoSize` is a boolean
+
+          Or dict with keys:
+
+    - maxRows (number; optional)
+
+    - minRows (number; optional)
+
+        - maxLength (number; optional)
+
+        - mode (a value equal to: 'default', 'text-area'; optional)
+
     - editable (boolean; optional)
 
     - ellipsis (boolean | number | string | dict | list; optional)
@@ -109,8 +127,9 @@ Keyword arguments:
 - data (list of dicts; optional)
 
     `data` is a list of dicts with strings as keys and values of type
-    list of boolean | number | string | dict | lists | string | number
-    | dict with keys:
+    list of boolean | number | string | dict | lists | a list of or a
+    singular dash component, string or number | string | number | dict
+    with keys:
 
     - content (string; optional)
 
@@ -443,6 +462,8 @@ Keyword arguments:
 
 - selectedRows (list; optional)
 
+- selectedRowsSyncWithData (boolean; default False)
+
 - size (a value equal to: 'small', 'default', 'large'; default 'default')
 
 - sortOptions (dict; default {    sortDataIndexes: []})
@@ -486,22 +507,22 @@ Keyword arguments:
     `titlePopoverInfo` is a dict with strings as keys and values of
     type dict with keys:
 
-    - content (a list of or a singular dash component, string or number; optional)
+    - content (string; optional)
 
     - overlayStyle (dict; optional)
 
     - placement (a value equal to: 'top', 'left', 'right', 'bottom', 'topLeft', 'topRight', 'bottomLeft', 'bottomRight', 'leftTop', 'leftBottom', 'rightTop', 'rightBottom'; optional)
 
-    - title (a list of or a singular dash component, string or number; optional)"""
-    _children_props = ['columns[].title', 'summaryRowContents[].content', 'expandedRowKeyToContent[].content', 'emptyContent']
+    - title (string; optional)"""
+    _children_props = ['columns[].title', 'data[]{}', 'summaryRowContents[].content', 'expandedRowKeyToContent[].content', 'emptyContent']
     _base_nodes = ['emptyContent', 'children']
     _namespace = 'feffery_antd_components'
     _type = 'AntdTable'
     @_explicitize_args
-    def __init__(self, id=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, key=Component.UNDEFINED, locale=Component.UNDEFINED, containerId=Component.UNDEFINED, columns=Component.UNDEFINED, data=Component.UNDEFINED, bordered=Component.UNDEFINED, maxHeight=Component.UNDEFINED, maxWidth=Component.UNDEFINED, size=Component.UNDEFINED, rowSelectionType=Component.UNDEFINED, selectedRowKeys=Component.UNDEFINED, rowSelectionWidth=Component.UNDEFINED, selectedRows=Component.UNDEFINED, sticky=Component.UNDEFINED, enableHoverListen=Component.UNDEFINED, recentlyMouseEnterColumnDataIndex=Component.UNDEFINED, recentlyMouseEnterRowKey=Component.UNDEFINED, recentlyMouseEnterRow=Component.UNDEFINED, titlePopoverInfo=Component.UNDEFINED, columnsFormatConstraint=Component.UNDEFINED, sortOptions=Component.UNDEFINED, filterOptions=Component.UNDEFINED, pagination=Component.UNDEFINED, currentData=Component.UNDEFINED, recentlyChangedRow=Component.UNDEFINED, sorter=Component.UNDEFINED, filter=Component.UNDEFINED, mode=Component.UNDEFINED, summaryRowContents=Component.UNDEFINED, summaryRowFixed=Component.UNDEFINED, conditionalStyleFuncs=Component.UNDEFINED, expandedRowKeyToContent=Component.UNDEFINED, expandedRowWidth=Component.UNDEFINED, expandRowByClick=Component.UNDEFINED, defaultExpandedRowKeys=Component.UNDEFINED, enableCellClickListenColumns=Component.UNDEFINED, recentlyCellClickColumn=Component.UNDEFINED, recentlyCellClickRecord=Component.UNDEFINED, nClicksCell=Component.UNDEFINED, recentlyCellDoubleClickColumn=Component.UNDEFINED, recentlyCellDoubleClickRecord=Component.UNDEFINED, nDoubleClicksCell=Component.UNDEFINED, emptyContent=Component.UNDEFINED, cellUpdateOptimize=Component.UNDEFINED, miniChartHeight=Component.UNDEFINED, miniChartAnimation=Component.UNDEFINED, recentlyButtonClickedRow=Component.UNDEFINED, nClicksButton=Component.UNDEFINED, clickedContent=Component.UNDEFINED, recentlyButtonClickedDataIndex=Component.UNDEFINED, customFormatFuncs=Component.UNDEFINED, recentlyCheckedRow=Component.UNDEFINED, recentlyCheckedLabel=Component.UNDEFINED, recentlyCheckedDataIndex=Component.UNDEFINED, recentlyCheckedStatus=Component.UNDEFINED, recentlySwitchRow=Component.UNDEFINED, recentlySwitchDataIndex=Component.UNDEFINED, recentlySwitchStatus=Component.UNDEFINED, nClicksDropdownItem=Component.UNDEFINED, recentlyClickedDropdownItemTitle=Component.UNDEFINED, recentlyDropdownItemClickedDataIndex=Component.UNDEFINED, recentlyDropdownItemClickedRow=Component.UNDEFINED, recentlySelectRow=Component.UNDEFINED, recentlySelectDataIndex=Component.UNDEFINED, recentlySelectValue=Component.UNDEFINED, hiddenRowKeys=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
-        self._prop_names = ['id', 'bordered', 'cellUpdateOptimize', 'className', 'clickedContent', 'columns', 'columnsFormatConstraint', 'conditionalStyleFuncs', 'containerId', 'currentData', 'customFormatFuncs', 'data', 'defaultExpandedRowKeys', 'emptyContent', 'enableCellClickListenColumns', 'enableHoverListen', 'expandRowByClick', 'expandedRowKeyToContent', 'expandedRowWidth', 'filter', 'filterOptions', 'hiddenRowKeys', 'key', 'loading_state', 'locale', 'maxHeight', 'maxWidth', 'miniChartAnimation', 'miniChartHeight', 'mode', 'nClicksButton', 'nClicksCell', 'nClicksDropdownItem', 'nDoubleClicksCell', 'pagination', 'recentlyButtonClickedDataIndex', 'recentlyButtonClickedRow', 'recentlyCellClickColumn', 'recentlyCellClickRecord', 'recentlyCellDoubleClickColumn', 'recentlyCellDoubleClickRecord', 'recentlyChangedRow', 'recentlyCheckedDataIndex', 'recentlyCheckedLabel', 'recentlyCheckedRow', 'recentlyCheckedStatus', 'recentlyClickedDropdownItemTitle', 'recentlyDropdownItemClickedDataIndex', 'recentlyDropdownItemClickedRow', 'recentlyMouseEnterColumnDataIndex', 'recentlyMouseEnterRow', 'recentlyMouseEnterRowKey', 'recentlySelectDataIndex', 'recentlySelectRow', 'recentlySelectValue', 'recentlySwitchDataIndex', 'recentlySwitchRow', 'recentlySwitchStatus', 'rowSelectionType', 'rowSelectionWidth', 'selectedRowKeys', 'selectedRows', 'size', 'sortOptions', 'sorter', 'sticky', 'style', 'summaryRowContents', 'summaryRowFixed', 'titlePopoverInfo']
+    def __init__(self, id=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, key=Component.UNDEFINED, locale=Component.UNDEFINED, containerId=Component.UNDEFINED, columns=Component.UNDEFINED, data=Component.UNDEFINED, bordered=Component.UNDEFINED, maxHeight=Component.UNDEFINED, maxWidth=Component.UNDEFINED, size=Component.UNDEFINED, rowSelectionType=Component.UNDEFINED, selectedRowKeys=Component.UNDEFINED, rowSelectionWidth=Component.UNDEFINED, selectedRows=Component.UNDEFINED, selectedRowsSyncWithData=Component.UNDEFINED, sticky=Component.UNDEFINED, enableHoverListen=Component.UNDEFINED, recentlyMouseEnterColumnDataIndex=Component.UNDEFINED, recentlyMouseEnterRowKey=Component.UNDEFINED, recentlyMouseEnterRow=Component.UNDEFINED, titlePopoverInfo=Component.UNDEFINED, columnsFormatConstraint=Component.UNDEFINED, sortOptions=Component.UNDEFINED, filterOptions=Component.UNDEFINED, pagination=Component.UNDEFINED, currentData=Component.UNDEFINED, recentlyChangedRow=Component.UNDEFINED, sorter=Component.UNDEFINED, filter=Component.UNDEFINED, mode=Component.UNDEFINED, summaryRowContents=Component.UNDEFINED, summaryRowFixed=Component.UNDEFINED, conditionalStyleFuncs=Component.UNDEFINED, expandedRowKeyToContent=Component.UNDEFINED, expandedRowWidth=Component.UNDEFINED, expandRowByClick=Component.UNDEFINED, defaultExpandedRowKeys=Component.UNDEFINED, enableCellClickListenColumns=Component.UNDEFINED, recentlyCellClickColumn=Component.UNDEFINED, recentlyCellClickRecord=Component.UNDEFINED, nClicksCell=Component.UNDEFINED, recentlyCellDoubleClickColumn=Component.UNDEFINED, recentlyCellDoubleClickRecord=Component.UNDEFINED, nDoubleClicksCell=Component.UNDEFINED, emptyContent=Component.UNDEFINED, cellUpdateOptimize=Component.UNDEFINED, miniChartHeight=Component.UNDEFINED, miniChartAnimation=Component.UNDEFINED, recentlyButtonClickedRow=Component.UNDEFINED, nClicksButton=Component.UNDEFINED, clickedContent=Component.UNDEFINED, recentlyButtonClickedDataIndex=Component.UNDEFINED, customFormatFuncs=Component.UNDEFINED, recentlyCheckedRow=Component.UNDEFINED, recentlyCheckedLabel=Component.UNDEFINED, recentlyCheckedDataIndex=Component.UNDEFINED, recentlyCheckedStatus=Component.UNDEFINED, recentlySwitchRow=Component.UNDEFINED, recentlySwitchDataIndex=Component.UNDEFINED, recentlySwitchStatus=Component.UNDEFINED, nClicksDropdownItem=Component.UNDEFINED, recentlyClickedDropdownItemTitle=Component.UNDEFINED, recentlyDropdownItemClickedDataIndex=Component.UNDEFINED, recentlyDropdownItemClickedRow=Component.UNDEFINED, recentlySelectRow=Component.UNDEFINED, recentlySelectDataIndex=Component.UNDEFINED, recentlySelectValue=Component.UNDEFINED, hiddenRowKeys=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
+        self._prop_names = ['id', 'bordered', 'cellUpdateOptimize', 'className', 'clickedContent', 'columns', 'columnsFormatConstraint', 'conditionalStyleFuncs', 'containerId', 'currentData', 'customFormatFuncs', 'data', 'defaultExpandedRowKeys', 'emptyContent', 'enableCellClickListenColumns', 'enableHoverListen', 'expandRowByClick', 'expandedRowKeyToContent', 'expandedRowWidth', 'filter', 'filterOptions', 'hiddenRowKeys', 'key', 'loading_state', 'locale', 'maxHeight', 'maxWidth', 'miniChartAnimation', 'miniChartHeight', 'mode', 'nClicksButton', 'nClicksCell', 'nClicksDropdownItem', 'nDoubleClicksCell', 'pagination', 'recentlyButtonClickedDataIndex', 'recentlyButtonClickedRow', 'recentlyCellClickColumn', 'recentlyCellClickRecord', 'recentlyCellDoubleClickColumn', 'recentlyCellDoubleClickRecord', 'recentlyChangedRow', 'recentlyCheckedDataIndex', 'recentlyCheckedLabel', 'recentlyCheckedRow', 'recentlyCheckedStatus', 'recentlyClickedDropdownItemTitle', 'recentlyDropdownItemClickedDataIndex', 'recentlyDropdownItemClickedRow', 'recentlyMouseEnterColumnDataIndex', 'recentlyMouseEnterRow', 'recentlyMouseEnterRowKey', 'recentlySelectDataIndex', 'recentlySelectRow', 'recentlySelectValue', 'recentlySwitchDataIndex', 'recentlySwitchRow', 'recentlySwitchStatus', 'rowSelectionType', 'rowSelectionWidth', 'selectedRowKeys', 'selectedRows', 'selectedRowsSyncWithData', 'size', 'sortOptions', 'sorter', 'sticky', 'style', 'summaryRowContents', 'summaryRowFixed', 'titlePopoverInfo']
         self._valid_wildcard_attributes =            []
-        self.available_properties = ['id', 'bordered', 'cellUpdateOptimize', 'className', 'clickedContent', 'columns', 'columnsFormatConstraint', 'conditionalStyleFuncs', 'containerId', 'currentData', 'customFormatFuncs', 'data', 'defaultExpandedRowKeys', 'emptyContent', 'enableCellClickListenColumns', 'enableHoverListen', 'expandRowByClick', 'expandedRowKeyToContent', 'expandedRowWidth', 'filter', 'filterOptions', 'hiddenRowKeys', 'key', 'loading_state', 'locale', 'maxHeight', 'maxWidth', 'miniChartAnimation', 'miniChartHeight', 'mode', 'nClicksButton', 'nClicksCell', 'nClicksDropdownItem', 'nDoubleClicksCell', 'pagination', 'recentlyButtonClickedDataIndex', 'recentlyButtonClickedRow', 'recentlyCellClickColumn', 'recentlyCellClickRecord', 'recentlyCellDoubleClickColumn', 'recentlyCellDoubleClickRecord', 'recentlyChangedRow', 'recentlyCheckedDataIndex', 'recentlyCheckedLabel', 'recentlyCheckedRow', 'recentlyCheckedStatus', 'recentlyClickedDropdownItemTitle', 'recentlyDropdownItemClickedDataIndex', 'recentlyDropdownItemClickedRow', 'recentlyMouseEnterColumnDataIndex', 'recentlyMouseEnterRow', 'recentlyMouseEnterRowKey', 'recentlySelectDataIndex', 'recentlySelectRow', 'recentlySelectValue', 'recentlySwitchDataIndex', 'recentlySwitchRow', 'recentlySwitchStatus', 'rowSelectionType', 'rowSelectionWidth', 'selectedRowKeys', 'selectedRows', 'size', 'sortOptions', 'sorter', 'sticky', 'style', 'summaryRowContents', 'summaryRowFixed', 'titlePopoverInfo']
+        self.available_properties = ['id', 'bordered', 'cellUpdateOptimize', 'className', 'clickedContent', 'columns', 'columnsFormatConstraint', 'conditionalStyleFuncs', 'containerId', 'currentData', 'customFormatFuncs', 'data', 'defaultExpandedRowKeys', 'emptyContent', 'enableCellClickListenColumns', 'enableHoverListen', 'expandRowByClick', 'expandedRowKeyToContent', 'expandedRowWidth', 'filter', 'filterOptions', 'hiddenRowKeys', 'key', 'loading_state', 'locale', 'maxHeight', 'maxWidth', 'miniChartAnimation', 'miniChartHeight', 'mode', 'nClicksButton', 'nClicksCell', 'nClicksDropdownItem', 'nDoubleClicksCell', 'pagination', 'recentlyButtonClickedDataIndex', 'recentlyButtonClickedRow', 'recentlyCellClickColumn', 'recentlyCellClickRecord', 'recentlyCellDoubleClickColumn', 'recentlyCellDoubleClickRecord', 'recentlyChangedRow', 'recentlyCheckedDataIndex', 'recentlyCheckedLabel', 'recentlyCheckedRow', 'recentlyCheckedStatus', 'recentlyClickedDropdownItemTitle', 'recentlyDropdownItemClickedDataIndex', 'recentlyDropdownItemClickedRow', 'recentlyMouseEnterColumnDataIndex', 'recentlyMouseEnterRow', 'recentlyMouseEnterRowKey', 'recentlySelectDataIndex', 'recentlySelectRow', 'recentlySelectValue', 'recentlySwitchDataIndex', 'recentlySwitchRow', 'recentlySwitchStatus', 'rowSelectionType', 'rowSelectionWidth', 'selectedRowKeys', 'selectedRows', 'selectedRowsSyncWithData', 'size', 'sortOptions', 'sorter', 'sticky', 'style', 'summaryRowContents', 'summaryRowFixed', 'titlePopoverInfo']
         self.available_wildcard_properties =            []
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()

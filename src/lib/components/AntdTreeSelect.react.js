@@ -177,8 +177,6 @@ const AntdTreeSelect = (props) => {
                         } : undefined
                 }
                 onTreeExpand={(e) => {
-                    console.log('===========================')
-                    console.log(e)
                     setProps({ treeExpandedKeys: e })
                 }}
                 persistence={persistence}
