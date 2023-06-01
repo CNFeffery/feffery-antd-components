@@ -25,7 +25,7 @@ const AntdIcon = (props) => {
             setProps({ nClicks: nClicks + 1 })
         },
         {
-            debounceWait: Math.max(debounceWait, 200),
+            debounceWait: debounceWait,
             debounceLeading: true,
             manual: true
         }

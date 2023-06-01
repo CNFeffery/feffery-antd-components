@@ -47,7 +47,7 @@ const AntdButton = (props) => {
             }
         },
         {
-            debounceWait: Math.max(debounceWait, 200),
+            debounceWait: debounceWait,
             debounceLeading: true,
             manual: true
         }
