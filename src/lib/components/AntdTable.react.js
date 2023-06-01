@@ -239,6 +239,19 @@ class AntdTable extends Component {
         const changedProps = Object.keys(nextProps)
             .filter(key => !isEqual(this.props[key], nextProps[key]))
 
+        // #80
+        // selectedRowsSyncWithData=true时，当data发生更新，在selectedRowKeys有效时，对selectedRows进行同步更新
+        if (
+            nextProps['selectedRowsSyncWithData'] &&
+            nextProps['selectedRowKeys'] &&
+            changedProps.includes('data')
+        ) {
+            // 同步更新selectedRows的值
+            nextProps.setProps({
+                selectedRows: nextProps['data'].filter(item => nextProps['selectedRowKeys'].includes(item.key))
+            })
+        }
+
         // // 判断当前轮次变更的prop是否均在preventUpdateProps中
         // console.log({ changedProps })
         // console.log(
@@ -1396,10 +1409,7 @@ class AntdTable extends Component {
 
         // 处理columns.title的增广功能设置
         if (titlePopoverInfo) {
-            console.log('=====================================')
-            console.log('titlePopoverInfo:', titlePopoverInfo)
             for (let i = 0; i < columns.length; i++) {
-                console.log('columns[i]:', columns[i])
                 if (Object.keys(titlePopoverInfo).includes(columns[i].dataIndex)) {
 
                     if (!columns[i].title_) {
@@ -2149,6 +2159,10 @@ AntdTable.propTypes = {
     // 记录已被选择的行记录值列表
     selectedRows: PropTypes.array,
 
+    // 设置是否当data更新时，根据当前有效的selectedRowKeys参数对selectedRows进行同步更新
+    // 默认为false
+    selectedRowsSyncWithData: PropTypes.bool,
+
     // 设置粘性表头属性，默认为false
     sticky: PropTypes.oneOfType([
         PropTypes.bool,
@@ -2524,6 +2538,7 @@ AntdTable.defaultProps = {
     summaryRowFixed: false,
     conditionalStyleFuncs: {},
     rowSelectionWidth: 32,
+    selectedRowsSyncWithData: false,
     hiddenRowKeys: [],
     // 按钮模式相关
     nClicksButton: 0,
