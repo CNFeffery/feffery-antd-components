@@ -35,6 +35,7 @@ import {
     RingProgress
 } from '@ant-design/charts';
 import Highlighter from 'react-highlight-words';
+import { Resizable } from 're-resizable';
 import AntdIcon from './AntdIcon.react';
 import {
     SearchOutlined,
@@ -45,6 +46,35 @@ import { isNumber, isEqual } from 'lodash';
 import { str2Locale, locale2text } from './locales.react';
 
 const { Text } = Typography;
+
+const ResizeableTitle = props => {
+
+    const { children, style, ...restProps } = props;
+
+    return (
+        <Resizable style={style}
+            enable={{
+                left: false,
+                right: true,
+                top: false,
+                bottom: false,
+                topRight: false,
+                topLeft: false,
+                bottomRight: false,
+                bottomLeft: false
+            }}
+            handleStyles={{
+                right: {
+                    cursor: "ew-resize"
+                }
+            }}
+            as={'th'}
+            {...restProps}
+        >
+            {children}
+        </Resizable>
+    );
+}
 
 // 定义不触发重绘的参数数组
 const preventUpdateProps = [
@@ -274,7 +304,6 @@ class AntdTable extends Component {
             key,
             locale,
             containerId,
-            setProps,
             columns,
             miniChartHeight,
             miniChartAnimation,
@@ -310,6 +339,8 @@ class AntdTable extends Component {
             cellUpdateOptimize,
             nClicksDropdownItem,
             hiddenRowKeys,
+            columnsWidthResizable,
+            setProps,
             loading_state
         } = this.props;
 
@@ -452,14 +483,6 @@ class AntdTable extends Component {
             }
 
             return <td {...restProps}>{childNode}</td>;
-        };
-
-        // 配置自定义组件
-        const components = {
-            body: {
-                row: EditableRow,
-                cell: EditableCell,
-            },
         };
 
         // 数值比较函数
@@ -1573,6 +1596,24 @@ class AntdTable extends Component {
             columns = tempColumns
         }
 
+        // 配置自定义组件
+        const components = {}
+
+        // 若至少有一个字段开启编辑功能
+        if (atLeastOneColumnEditable) {
+            components.body = {
+                row: EditableRow,
+                cell: EditableCell,
+            }
+        }
+
+        // 若允许字段开启列宽可调整
+        if (columnsWidthResizable) {
+            components.header = {
+                cell: ResizeableTitle,
+            }
+        }
+
         return (
             <ConfigProvider
                 locale={str2Locale.get(locale)}
@@ -1583,7 +1624,7 @@ class AntdTable extends Component {
                     className={className}
                     style={style}
                     key={key}
-                    components={atLeastOneColumnEditable ? components : undefined}
+                    components={components}
                     rowClassName={atLeastOneColumnEditable ? () => 'editable-row' : undefined}
                     dataSource={
                         // 根据hiddenRowKeys参数情况进行指定行记录的隐藏
@@ -2492,6 +2533,10 @@ AntdTable.propTypes = {
     // 用于设置需要进行隐藏的行对应key值数组，默认为[]
     hiddenRowKeys: PropTypes.arrayOf(PropTypes.string),
 
+    // 设置是否开启列宽拖拽调整宽度功能
+    // 默认为false
+    columnsWidthResizable: PropTypes.bool,
+
     loading_state: PropTypes.shape({
         /**
          * Determines if the component is loading or not
@@ -2540,6 +2585,7 @@ AntdTable.defaultProps = {
     rowSelectionWidth: 32,
     selectedRowsSyncWithData: false,
     hiddenRowKeys: [],
+    columnsWidthResizable: false,
     // 按钮模式相关
     nClicksButton: 0,
     // 迷你图相关
