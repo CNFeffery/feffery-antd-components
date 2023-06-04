@@ -344,6 +344,69 @@ class AntdTable extends Component {
             loading_state
         } = this.props;
 
+        pagination = {
+            ...pagination,
+            showTotalPrefix: pagination?.showTotalPrefix || locale2text.AntdTable[locale].showTotalPrefix,
+            showTotalSuffix: pagination?.showTotalSuffix || locale2text.AntdTable[locale].showTotalSuffix
+        }
+
+        if (!data) {
+            data = []
+        }
+
+        // 当未设置行key时，自动以自增1的字符型结果作为key
+        for (let i in data) {
+            if (!data[i].hasOwnProperty('key')) {
+                data[i]['key'] = i.toString()
+            }
+        }
+
+        // 重新映射size到符合常识的顺序
+        let size2size = new Map([
+            ['small', 'default'],
+            ['default', 'small'],
+            ['large', 'middle']
+        ])
+
+        // 为pagination补充默认参数值
+        pagination = {
+            ...pagination,
+            showTotalPrefix: pagination?.showTotalPrefix ? pagination.showTotalPrefix : '共 ',
+            showTotalSuffix: pagination?.showTotalSuffix ? pagination.showTotalSuffix : ' 条记录'
+        }
+
+        // 根据columns中的hidden属性控制是否忽略对应字段
+        columns = columns.filter(item => !item.hidden)
+
+        // 为columns配置默认align、conditionalStyleFuncs参数
+        for (let i in columns) {
+            columns[i] = {
+                align: 'center',
+                ...columns[i],
+                ...{
+                    onCell: conditionalStyleFuncs[columns[i].dataIndex] ?
+                        eval(conditionalStyleFuncs[columns[i].dataIndex]) : undefined
+                }
+            }
+        }
+
+        // 处理可编辑特性
+        columns = columns.map((col) => {
+            if (!col.editable) {
+                return col;
+            }
+
+            return {
+                ...col,
+                onCell: (record) => ({
+                    record,
+                    editable: col.editable,
+                    dataIndex: col.dataIndex,
+                    title: col.title
+                }),
+            };
+        });
+
         // 自定义可编辑单元格
         const EditableContext = React.createContext(null);
 
@@ -538,69 +601,6 @@ class AntdTable extends Component {
                 value => ({ text: value ? value.toString() : '', value: value })
             ).sort(compareNumeric)
         }
-
-        pagination = {
-            ...pagination,
-            showTotalPrefix: pagination?.showTotalPrefix || locale2text.AntdTable[locale].showTotalPrefix,
-            showTotalSuffix: pagination?.showTotalSuffix || locale2text.AntdTable[locale].showTotalSuffix
-        }
-
-        if (!data) {
-            data = []
-        }
-
-        // 重新映射size到符合常识的顺序
-        let size2size = new Map([
-            ['small', 'default'],
-            ['default', 'small'],
-            ['large', 'middle']
-        ])
-
-        // 为pagination补充默认参数值
-        pagination = {
-            ...pagination,
-            showTotalPrefix: pagination?.showTotalPrefix ? pagination.showTotalPrefix : '共 ',
-            showTotalSuffix: pagination?.showTotalSuffix ? pagination.showTotalSuffix : ' 条记录'
-        }
-
-        // 当未设置行key时，自动以自增1的字符型结果作为key
-        for (let i in data) {
-            if (!data[i].hasOwnProperty('key')) {
-                data[i]['key'] = i.toString()
-            }
-        }
-
-        // 根据columns中的hidden属性控制是否忽略对应字段
-        columns = columns.filter(item => !item.hidden)
-
-        // 为columns配置默认align、conditionalStyleFuncs参数
-        for (let i in columns) {
-            columns[i] = {
-                align: 'center',
-                ...columns[i],
-                ...{
-                    onCell: conditionalStyleFuncs[columns[i].dataIndex] ?
-                        eval(conditionalStyleFuncs[columns[i].dataIndex]) : undefined
-                }
-            }
-        }
-
-        // 处理可编辑特性
-        columns = columns.map((col) => {
-            if (!col.editable) {
-                return col;
-            }
-
-            return {
-                ...col,
-                onCell: (record) => ({
-                    record,
-                    editable: col.editable,
-                    dataIndex: col.dataIndex,
-                    title: col.title
-                }),
-            };
-        });
 
         // 处理可筛选特性
         // 若为前端渲染模式，在filterOptions中每个字段filterCustomItems缺失的情况下
