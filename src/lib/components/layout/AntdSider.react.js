@@ -103,8 +103,11 @@ AntdSider.propTypes = {
     // 设置主题颜色，默认为'dark'
     theme: PropTypes.oneOf(['light', 'dark']),
 
-    // 设置侧边栏像素宽度，默认为200px
-    width: PropTypes.number,
+    // 设置侧边栏像素宽度，默认为200
+    width: PropTypes.oneOfType([
+        PropTypes.number,
+        PropTypes.string
+    ]),
 
     // 自定义触发器，自定义时需要设置为null
     trigger: PropTypes.node,

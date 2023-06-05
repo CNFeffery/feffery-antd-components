@@ -29,7 +29,7 @@ Those elements have the following types:
 - `style` (Dict; optional)
 - `theme` (a value equal to: 'light', 'dark'; optional)
 - `trigger` (a list of or a singular dash component, string or number; optional)
-- `width` (Real; optional)
+- `width` (Real | String; optional)
 """
 function 'feffery'_antdsider(; kwargs...)
         available_props = Symbol[:children, :id, :breakpoint, :className, :collapsed, :collapsedWidth, :collapsible, :defaultCollapsed, :key, :loading_state, :reverseArrow, :style, :theme, :trigger, :width]
