@@ -50,7 +50,7 @@ Keyword arguments:
 
 - trigger (a list of or a singular dash component, string or number; optional)
 
-- width (number; default 200)"""
+- width (number | string; default 200)"""
     _children_props = ['trigger']
     _base_nodes = ['trigger', 'children']
     _namespace = 'feffery_antd_components'

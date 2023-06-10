@@ -13,7 +13,7 @@ Keyword arguments:
 - `cellUpdateOptimize` (Bool; optional)
 - `className` (String; optional)
 - `clickedContent` (String; optional)
-- `columns` (optional): . columns has the following type: Array of lists containing elements 'title', 'dataIndex', 'group', 'renderOptions', 'fixed', 'editable', 'editOptions', 'align', 'width', 'hidden', 'ellipsis', 'sorter', 'render', 'onCell', 'title_'.
+- `columns` (optional): . columns has the following type: Array of lists containing elements 'title', 'dataIndex', 'group', 'renderOptions', 'fixed', 'editable', 'editOptions', 'align', 'width', 'hidden', 'filterResetToDefaultFilteredValue', 'ellipsis', 'sorter', 'render', 'onCell', 'title_'.
 Those elements have the following types:
   - `title` (a list of or a singular dash component, string or number; required)
   - `dataIndex` (String; required)
@@ -51,6 +51,9 @@ Those elements have the following types:
   - `align` (a value equal to: 'left', 'center', 'right'; optional)
   - `width` (Real | String; optional)
   - `hidden` (Bool; optional)
+  - `filterResetToDefaultFilteredValue` (Bool; optional): 若当前字段通过defaultFilteredValues设置了初始化默认选中筛选值，
+用于设置是否在用户点击重置按钮后恢复默认选中筛选项
+默认：false
   - `ellipsis` (Bool | Real | String | Dict | Array; optional)
   - `sorter` (Bool | Real | String | Dict | Array; optional)
   - `render` (Bool | Real | String | Dict | Array; optional)
@@ -167,6 +170,7 @@ Those elements have the following types:
   - `optionFilterProp` (a value equal to: 'value', 'label'; optional)
   - `allowClear` (Bool; optional)s
 - `defaultExpandedRowKeys` (Array of Strings; optional)
+- `defaultFilteredValues` (Dict with Strings as keys and values of type Array; optional): 监听或设置各字段筛选功能初始化时已选中值
 - `emptyContent` (a list of or a singular dash component, string or number; optional)
 - `enableCellClickListenColumns` (Array of Strings; optional)
 - `enableHoverListen` (Bool; optional)
@@ -271,7 +275,7 @@ Those elements have the following types:
   - `overlayStyle` (Dict; optional)
 """
 function 'feffery'_antdtable(; kwargs...)
-        available_props = Symbol[:id, :bordered, :cellUpdateOptimize, :className, :clickedContent, :columns, :columnsFormatConstraint, :columnsWidthResizable, :conditionalStyleFuncs, :containerId, :currentData, :customFormatFuncs, :data, :defaultExpandedRowKeys, :emptyContent, :enableCellClickListenColumns, :enableHoverListen, :expandRowByClick, :expandedRowKeyToContent, :expandedRowWidth, :filter, :filterOptions, :hiddenRowKeys, :key, :loading_state, :locale, :maxHeight, :maxWidth, :miniChartAnimation, :miniChartHeight, :mode, :nClicksButton, :nClicksCell, :nClicksDropdownItem, :nDoubleClicksCell, :pagination, :recentlyButtonClickedDataIndex, :recentlyButtonClickedRow, :recentlyCellClickColumn, :recentlyCellClickRecord, :recentlyCellDoubleClickColumn, :recentlyCellDoubleClickRecord, :recentlyChangedRow, :recentlyCheckedDataIndex, :recentlyCheckedLabel, :recentlyCheckedRow, :recentlyCheckedStatus, :recentlyClickedDropdownItemTitle, :recentlyDropdownItemClickedDataIndex, :recentlyDropdownItemClickedRow, :recentlyMouseEnterColumnDataIndex, :recentlyMouseEnterRow, :recentlyMouseEnterRowKey, :recentlySelectDataIndex, :recentlySelectRow, :recentlySelectValue, :recentlySwitchDataIndex, :recentlySwitchRow, :recentlySwitchStatus, :rowSelectionType, :rowSelectionWidth, :selectedRowKeys, :selectedRows, :selectedRowsSyncWithData, :size, :sortOptions, :sorter, :sticky, :style, :summaryRowContents, :summaryRowFixed, :titlePopoverInfo]
+        available_props = Symbol[:id, :bordered, :cellUpdateOptimize, :className, :clickedContent, :columns, :columnsFormatConstraint, :columnsWidthResizable, :conditionalStyleFuncs, :containerId, :currentData, :customFormatFuncs, :data, :defaultExpandedRowKeys, :defaultFilteredValues, :emptyContent, :enableCellClickListenColumns, :enableHoverListen, :expandRowByClick, :expandedRowKeyToContent, :expandedRowWidth, :filter, :filterOptions, :hiddenRowKeys, :key, :loading_state, :locale, :maxHeight, :maxWidth, :miniChartAnimation, :miniChartHeight, :mode, :nClicksButton, :nClicksCell, :nClicksDropdownItem, :nDoubleClicksCell, :pagination, :recentlyButtonClickedDataIndex, :recentlyButtonClickedRow, :recentlyCellClickColumn, :recentlyCellClickRecord, :recentlyCellDoubleClickColumn, :recentlyCellDoubleClickRecord, :recentlyChangedRow, :recentlyCheckedDataIndex, :recentlyCheckedLabel, :recentlyCheckedRow, :recentlyCheckedStatus, :recentlyClickedDropdownItemTitle, :recentlyDropdownItemClickedDataIndex, :recentlyDropdownItemClickedRow, :recentlyMouseEnterColumnDataIndex, :recentlyMouseEnterRow, :recentlyMouseEnterRowKey, :recentlySelectDataIndex, :recentlySelectRow, :recentlySelectValue, :recentlySwitchDataIndex, :recentlySwitchRow, :recentlySwitchStatus, :rowSelectionType, :rowSelectionWidth, :selectedRowKeys, :selectedRows, :selectedRowsSyncWithData, :size, :sortOptions, :sorter, :sticky, :style, :summaryRowContents, :summaryRowFixed, :titlePopoverInfo]
         wild_props = Symbol[]
         return Component("'feffery'_antdtable", "AntdTable", "feffery_antd_components", available_props, wild_props; kwargs...)
 end

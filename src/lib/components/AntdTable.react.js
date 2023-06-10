@@ -317,6 +317,7 @@ class AntdTable extends Component {
             data,
             sortOptions,
             filterOptions,
+            defaultFilteredValues,
             pagination,
             bordered,
             maxHeight,
@@ -623,6 +624,7 @@ class AntdTable extends Component {
                         if (filterOptions[columns[i].dataIndex].filterCustomItems) {
                             columns[i] = {
                                 ...columns[i],
+                                defaultFilteredValue: defaultFilteredValues[columns[i].dataIndex],
                                 filters: filterOptions[columns[i].dataIndex].filterCustomItems
                                     .map(value => ({ text: value ? value.toString() : '', value: value })),
                                 // 针对不同再渲染模式设计值筛选逻辑
@@ -669,6 +671,7 @@ class AntdTable extends Component {
                             // 否则自动基于数据中的唯一值生成选项列表
                             columns[i] = {
                                 ...columns[i],
+                                defaultFilteredValue: defaultFilteredValues[columns[i].dataIndex],
                                 filters: generateFilterOptions(data, columns[i].dataIndex),
                                 // 针对不同再渲染模式设计值筛选逻辑
                                 onFilter: (value, record) => {
@@ -736,6 +739,7 @@ class AntdTable extends Component {
                         if (filterOptions[columns[i].dataIndex].hasOwnProperty('filterCustomItems')) {
                             columns[i] = {
                                 ...columns[i],
+                                defaultFilteredValue: defaultFilteredValues[columns[i].dataIndex],
                                 filters: filterOptions[columns[i].dataIndex].filterCustomItems
                                     .map(value => ({ text: value ? value.toString() : '', value: value })),
                                 onFilter: (value, record) => true // 契合后端刷新模式
@@ -1839,6 +1843,13 @@ AntdTable.propTypes = {
             // 控制是否隐藏当前字段，设置为true时进行隐藏，默认为false
             hidden: PropTypes.bool,
 
+            /**
+             * 若当前字段通过defaultFilteredValues设置了初始化默认选中筛选值，
+             * 用于设置是否在用户点击重置按钮后恢复默认选中筛选项
+             * 默认：false
+             */
+            filterResetToDefaultFilteredValue: PropTypes.bool,
+
             // 防止状态更新报错占位用，无实际意义
             ellipsis: PropTypes.any,
 
@@ -2295,6 +2306,11 @@ AntdTable.propTypes = {
         })
     ),
 
+    /**
+     * 监听或设置各字段筛选功能初始化时已选中值
+     */
+    defaultFilteredValues: PropTypes.objectOf(PropTypes.array),
+
     // 翻页相关参数，设置为false时不展示和进行分页
     pagination: PropTypes.oneOfType([
         PropTypes.exact({
@@ -2572,6 +2588,7 @@ AntdTable.defaultProps = {
         sortDataIndexes: []
     },
     filterOptions: {},
+    defaultFilteredValues: {},
     mode: 'client-side',
     sticky: false,
     enableHoverListen: false,

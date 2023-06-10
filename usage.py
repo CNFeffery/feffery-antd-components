@@ -14,22 +14,51 @@ app.layout = html.Div(
         fac.AntdTable(
             columns=[
                 {
-                    'dataIndex': f'字段{i}',
-                    'title': f'字段{i}'
+                    'title': '基础示例',
+                    'dataIndex': '基础示例',
+                    'width': '25%',
+                    'filterResetToDefaultFilteredValue': True
+                },
+                {
+                    'title': '自定义选项',
+                    'dataIndex': '自定义选项',
+                    'width': '25%'
+                },
+                {
+                    'title': '单选模式',
+                    'dataIndex': '单选模式',
+                    'width': '25%'
+                },
+                {
+                    'title': '启用搜索框',
+                    'dataIndex': '启用搜索框',
+                    'width': '25%'
                 }
-                for i in range(1, 6)
             ],
-            bordered=True,
-            columnsWidthResizable=True,
             data=[
                 {
-                    f'字段{i}': 999
-                    for i in range(1, 6)
+                    '基础示例': s,
+                    '自定义选项': s,
+                    '单选模式': s,
+                    '启用搜索框': s,
                 }
-            ] * 5,
-            # style={
-            #     'width': 'fit-content'
-            # }
+                for s in list('abced')
+            ],
+            filterOptions={
+                '基础示例': {},
+                '自定义选项': {
+                    'filterCustomItems': list('abcdefghijk')
+                },
+                '单选模式': {
+                    'filterMultiple': False
+                },
+                '启用搜索框': {
+                    'filterSearch': True
+                }
+            },
+            defaultFilteredValues={
+                '基础示例': ['a', 'c']
+            }
         )
     ],
     style={
