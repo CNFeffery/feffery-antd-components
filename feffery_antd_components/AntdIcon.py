@@ -9,15 +9,21 @@ class AntdIcon(Component):
 
 Keyword arguments:
 
-- id (string; optional)
+- id (string; optional):
+    Component id.
 
-- className (string | dict; optional)
+- className (string | dict; optional):
+    CSS class name.
 
-- debounceWait (number; default 200)
+- debounceWait (number; default 200):
+    Configures the debounce wait time (in milliseconds) for value
+    change updates, default is 0.
 
-- icon (string; optional)
+- icon (string; optional):
+    Specifies the icon type.
 
-- key (string; optional)
+- key (string; optional):
+    A unique identifier key used for refreshing assistance.
 
 - loading_state (dict; optional)
 
@@ -32,9 +38,12 @@ Keyword arguments:
     - prop_name (string; optional):
         Holds which property is loading.
 
-- nClicks (number; default 0)
+- nClicks (number; default 0):
+    Records the number of times the button has been clicked since
+    rendering, default is 0.
 
-- style (dict; optional)"""
+- style (dict; optional):
+    Custom CSS styles."""
     _children_props = []
     _base_nodes = ['children']
     _namespace = 'feffery_antd_components'

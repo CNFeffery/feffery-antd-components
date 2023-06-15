@@ -10,22 +10,28 @@ class AntdParagraph(Component):
 Keyword arguments:
 
 - children (a list of or a singular dash component, string or number; optional):
-    The content of the tab - will only be displayed if this tab is
-    selected.
+    The content of the paragraph.
 
-- id (string; optional)
+- id (string; optional):
+    Component id.
 
-- className (string | dict; optional)
+- className (string | dict; optional):
+    CSS class name.
 
-- code (boolean; optional)
+- code (boolean; optional):
+    Sets whether to render the content in code mode.
 
-- copyable (boolean; optional)
+- copyable (boolean; optional):
+    Sets whether the content can be quickly copied.
 
-- disabled (boolean; optional)
+- disabled (boolean; optional):
+    Sets whether the content is disabled.
 
-- italic (boolean; optional)
+- italic (boolean; optional):
+    Sets whether the content should be italic.
 
-- key (string; optional)
+- key (string; optional):
+    A unique identifier key used for refreshing assistance.
 
 - loading_state (dict; optional)
 
@@ -40,19 +46,29 @@ Keyword arguments:
     - prop_name (string; optional):
         Holds which property is loading.
 
-- locale (a value equal to: 'zh-cn', 'en-us'; default 'zh-cn')
+- locale (a value equal to: 'zh-cn', 'en-us'; default 'zh-cn'):
+    Sets the language environment. Possible options are 'zh-cn' and
+    'en-us'.
 
-- mark (boolean; optional)
+- mark (boolean; optional):
+    Sets whether to add mark style.
 
-- strikethrough (boolean; optional)
+- strikethrough (boolean; optional):
+    Sets whether to render the content with strikethrough mode.
 
-- strong (boolean; optional)
+- strong (boolean; optional):
+    Sets whether the content should be bold.
 
-- style (dict; optional)
+- style (dict; optional):
+    Custom CSS styles.
 
-- type (a value equal to: 'secondary', 'success', 'warning', 'danger'; optional)
+- type (a value equal to: 'secondary', 'success', 'warning', 'danger'; optional):
+    Sets the text status type for rendering. Possible options are
+    'secondary', 'success', 'warning', and 'danger'. Default is no
+    status.
 
-- underline (boolean; optional)"""
+- underline (boolean; optional):
+    Sets whether to add underline."""
     _children_props = []
     _base_nodes = ['children']
     _namespace = 'feffery_antd_components'

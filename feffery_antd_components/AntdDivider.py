@@ -9,31 +9,51 @@ class AntdDivider(Component):
 
 Keyword arguments:
 
-- children (a list of or a singular dash component, string or number; optional)
+- children (a list of or a singular dash component, string or number; optional):
+    Text content of the inline text.
 
-- id (string; optional)
+- id (string; optional):
+    Component id.
 
-- className (string | dict; optional)
+- className (string | dict; optional):
+    CSS class name.
 
-- direction (a value equal to: 'horizontal', 'vertical'; default 'horizontal')
+- direction (a value equal to: "horizontal", "vertical"; default "horizontal"):
+    Direction of the divider. Possible values are 'horizontal' and
+    'vertical'. Default is 'horizontal'.
 
-- fontColor (string; default '#000000')
+- fontColor (string; default "#000000"):
+    Color of the inline text. Accepts valid color values in CSS.
 
-- fontFamily (string; default 'initial')
+- fontFamily (string; default "initial"):
+    Font family of the inline text. Accepts valid font-family values
+    in CSS.
 
-- fontSize (string; optional)
+- fontSize (string; optional):
+    Font size of the inline text. Accepts valid font-size values in
+    CSS.
 
-- fontStyle (string; default 'initial')
+- fontStyle (string; default "initial"):
+    Font style of the inline text. Accepts valid font-style values in
+    CSS.
 
-- fontWeight (string; default 'initial')
+- fontWeight (string; default "initial"):
+    Font weight of the inline text. Accepts valid font-weight values
+    in CSS.
 
-- innerTextOrientation (a value equal to: 'left', 'center', 'right'; default 'center')
+- innerTextOrientation (a value equal to: "left", "center", "right"; default "center"):
+    Text alignment of the inline text. Possible values are 'left',
+    'center', and 'right'. Default is 'center'.
 
-- isDashed (boolean; default False)
+- isDashed (boolean; default False):
+    Whether to render the divider as dashed line. True for dashed
+    line, False for solid line. Default is False.
 
-- key (string; optional)
+- key (string; optional):
+    A unique identifier key used for refreshing assistance.
 
-- lineColor (string; default 'lightgrey')
+- lineColor (string; default "lightgrey"):
+    Color of the divider. Accepts valid color values in CSS.
 
 - loading_state (dict; optional)
 
