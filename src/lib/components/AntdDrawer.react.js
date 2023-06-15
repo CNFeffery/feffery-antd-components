@@ -13,6 +13,7 @@ const AntdDrawer = (props) => {
         children,
         className,
         style,
+        drawerStyle,
         bodyStyle,
         headerStyle,
         maskStyle,
@@ -49,10 +50,12 @@ const AntdDrawer = (props) => {
             style={
                 containerId ?
                     {
-                        ...style,
-                        ...{ position: 'absolute' }
+                        ...{ position: 'absolute' },
+                        ...style
                     } :
-                    style}
+                    style
+            }
+            drawerStyle={drawerStyle}
             bodyStyle={bodyStyle}
             headerStyle={headerStyle}
             maskStyle={maskStyle}
@@ -101,6 +104,9 @@ AntdDrawer.propTypes = {
 
     // 自定义css字典
     style: PropTypes.object,
+
+    // 设置抽屉弹出层的css样式
+    drawerStyle: PropTypes.object,
 
     // 设置抽屉内容部分的css样式
     bodyStyle: PropTypes.object,
