@@ -13,6 +13,9 @@ const AntdDrawer = (props) => {
         children,
         className,
         style,
+        bodyStyle,
+        headerStyle,
+        maskStyle,
         key,
         visible,
         title,
@@ -50,6 +53,9 @@ const AntdDrawer = (props) => {
                         ...{ position: 'absolute' }
                     } :
                     style}
+            bodyStyle={bodyStyle}
+            headerStyle={headerStyle}
+            maskStyle={maskStyle}
             key={key}
             open={visible}
             title={title}
@@ -95,6 +101,15 @@ AntdDrawer.propTypes = {
 
     // 自定义css字典
     style: PropTypes.object,
+
+    // 设置抽屉内容部分的css样式
+    bodyStyle: PropTypes.object,
+
+    // 设置抽屉头部的css样式
+    headerStyle: PropTypes.object,
+
+    // 设置抽屉遮罩部分的css样式
+    maskStyle: PropTypes.object,
 
     // 辅助刷新用唯一标识key值
     key: PropTypes.string,

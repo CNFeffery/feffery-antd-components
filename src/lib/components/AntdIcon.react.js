@@ -66,27 +66,48 @@ const AntdIcon = (props) => {
 // 定义参数或属性
 AntdIcon.propTypes = {
     // 组件id
+    /**
+     * Component id.
+     */
     id: PropTypes.string,
 
     // css类名
+    /**
+     * CSS class name.
+     */
     className: PropTypes.oneOfType([
         PropTypes.string,
         PropTypes.object
     ]),
 
-    // 用于指定icon类型,
+    // 用于指定icon类型
+    /**
+     * Specifies the icon type.
+     */
     icon: PropTypes.string,
 
     // 自定义css字典
+    /**
+     * Custom CSS styles.
+     */
     style: PropTypes.object,
 
     // 辅助刷新用唯一标识key值
+    /**
+     * A unique identifier key used for refreshing assistance.
+     */
     key: PropTypes.string,
 
     // 记录按钮从渲染后开始被点击的次数，默认为0
+    /**
+     * Records the number of times the button has been clicked since rendering, default is 0.
+     */
     nClicks: PropTypes.number,
 
     // 用于配置value变化更新的防抖等待时长（单位：毫秒），默认为0
+    /**
+     * Configures the debounce wait time (in milliseconds) for value change updates, default is 0.
+     */
     debounceWait: PropTypes.number,
 
     loading_state: PropTypes.shape({

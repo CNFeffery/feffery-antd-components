@@ -11,53 +11,19 @@ demo_value = None
 
 app.layout = html.Div(
     [
-        fac.AntdTable(
-            columns=[
-                {
-                    'title': '基础示例',
-                    'dataIndex': '基础示例',
-                    'width': '25%',
-                    'filterResetToDefaultFilteredValue': True
-                },
-                {
-                    'title': '自定义选项',
-                    'dataIndex': '自定义选项',
-                    'width': '25%'
-                },
-                {
-                    'title': '单选模式',
-                    'dataIndex': '单选模式',
-                    'width': '25%'
-                },
-                {
-                    'title': '启用搜索框',
-                    'dataIndex': '启用搜索框',
-                    'width': '25%'
-                }
-            ],
-            data=[
-                {
-                    '基础示例': s,
-                    '自定义选项': s,
-                    '单选模式': s,
-                    '启用搜索框': s,
-                }
-                for s in list('abced')
-            ],
-            filterOptions={
-                '基础示例': {},
-                '自定义选项': {
-                    'filterCustomItems': list('abcdefghijk')
-                },
-                '单选模式': {
-                    'filterMultiple': False
-                },
-                '启用搜索框': {
-                    'filterSearch': True
-                }
-            },
-            defaultFilteredValues={
-                '基础示例': ['a', 'c']
+        fac.AntdButton(
+            '打开示例抽屉',
+            id='drawer-basic-demo-open',
+            type='primary'
+        ),
+
+        fac.AntdDrawer(
+            '示例内容',
+            title='基础抽屉示例',
+            id='drawer-basic-demo',
+            maskStyle={
+                # 'background': 'white',
+                'background': 'transparent'
             }
         )
     ],
@@ -65,6 +31,16 @@ app.layout = html.Div(
         'padding': 50
     }
 )
+
+
+@app.callback(
+    Output('drawer-basic-demo', 'visible'),
+    Input('drawer-basic-demo-open', 'nClicks'),
+    prevent_initial_call=True
+)
+def drawer_basic_demo(nCLicks):
+
+    return True
 
 
 if __name__ == '__main__':
