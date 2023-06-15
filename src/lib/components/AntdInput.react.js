@@ -34,6 +34,7 @@ const AntdInput = (props) => {
         disabled,
         maxLength,
         showCount,
+        countFormat,
         nClicksSearch,
         nSubmit,
         status,
@@ -243,7 +244,16 @@ const AntdInput = (props) => {
                         disabled
                 }
                 maxLength={maxLength}
-                showCount={showCount}
+                showCount={
+                    showCount && countFormat && !maxLength ?
+                        {
+                            // 基于countFormat所定义的正则规则来自定义计算字符数
+                            formatter: ({ value }) => {
+                                return value.match(eval(`/${countFormat}/g`))?.length || 0;
+                            }
+                        } :
+                        showCount
+                }
                 status={status}
                 autoSize={autoSize}
                 readOnly={readOnly}
@@ -374,6 +384,9 @@ AntdInput.propTypes = {
 
     // 设置是否展示字数，默认为false
     showCount: PropTypes.bool,
+
+    // 当showCount为true时，用于传入正则表达式来自定义字数计算规则
+    countFormat: PropTypes.string,
 
     // 针对文本域配置自适应高度相关功能，默认为false
     autoSize: PropTypes.oneOfType([
