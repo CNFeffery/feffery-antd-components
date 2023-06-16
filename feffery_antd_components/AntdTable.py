@@ -55,7 +55,7 @@ Keyword arguments:
 
     - fixed (a value equal to: 'left', 'right'; optional)
 
-    - group (string; optional)
+    - group (string | list of strings; optional)
 
     - hidden (boolean; optional)
 

@@ -42,7 +42,7 @@ import {
     QuestionCircleOutlined,
     DownOutlined
 } from '@ant-design/icons';
-import { isNumber, isEqual } from 'lodash';
+import { isNumber, isEqual, isString } from 'lodash';
 import { str2Locale, locale2text } from './locales.react';
 
 const { Text } = Typography;
@@ -74,6 +74,32 @@ const ResizeableTitle = props => {
             {children}
         </Resizable>
     );
+}
+
+const insertNewColumnNode = (column, group, currentLevel, currentNode) => {
+    // 若当前递归到的层级小于group数组长度
+    if (currentLevel < group.length) {
+        // 尝试在currentNode中搜索dataIndex等于当前group层级的元素
+        let matchColumnIdx = currentNode.findIndex(item => item.dataIndex === group[currentLevel])
+        // 若未在currentNode中搜索到当前group层级对应元素
+        if (matchColumnIdx === -1) {
+            // 向currentNode中push当前group层级对应元素
+            currentNode.push({
+                dataIndex: group[currentLevel],
+                title: group[currentLevel],
+                children: []
+            })
+            // 继续向下一层级递归
+            insertNewColumnNode(column, group, currentLevel + 1, currentNode[currentNode.length - 1].children)
+        } else {
+            // 若在currentNode中搜索到当前group层级对应元素
+            // 继续向下一层级递归
+            insertNewColumnNode(column, group, currentLevel + 1, currentNode[matchColumnIdx].children)
+        }
+    } else {
+        // 否则则视作到达最深层
+        currentNode.push({ ...column })
+    }
 }
 
 // 定义不触发重绘的参数数组
@@ -1580,23 +1606,36 @@ class AntdTable extends Component {
         // 以支持双层表头
         if (columns.some(e => e.group)) {
             let tempColumns = []
+            // 新逻辑
             for (let column of columns) {
                 if (column.group) {
-                    if (tempColumns.length > 0 && tempColumns[tempColumns.length - 1].dataIndex === column.group) {
-                        tempColumns[tempColumns.length - 1].children.push(column)
+                    if (isString(column.group)) {
+                        insertNewColumnNode(column, [column.group], 0, tempColumns)
                     } else {
-                        tempColumns.push(
-                            {
-                                dataIndex: column.group,
-                                title: column.group,
-                                children: [column]
-                            }
-                        )
+                        insertNewColumnNode(column, column.group, 0, tempColumns)
                     }
                 } else {
                     tempColumns.push(column)
                 }
             }
+            // // 旧逻辑
+            // for (let column of columns) {
+            //     if (column.group) {
+            //         if (tempColumns.length > 0 && tempColumns[tempColumns.length - 1].dataIndex === column.group) {
+            //             tempColumns[tempColumns.length - 1].children.push(column)
+            //         } else {
+            //             tempColumns.push(
+            //                 {
+            //                     dataIndex: column.group,
+            //                     title: column.group,
+            //                     children: [column]
+            //                 }
+            //             )
+            //         }
+            //     } else {
+            //         tempColumns.push(column)
+            //     }
+            // }
             columns = tempColumns
         }
 
@@ -1740,7 +1779,10 @@ AntdTable.propTypes = {
             dataIndex: PropTypes.string.isRequired,
 
             // 为当前字段设置所属字段组
-            group: PropTypes.string,
+            group: PropTypes.oneOfType([
+                PropTypes.string,
+                PropTypes.arrayOf(PropTypes.string)
+            ]),
 
             // 预处理方式
             renderOptions: PropTypes.exact({
