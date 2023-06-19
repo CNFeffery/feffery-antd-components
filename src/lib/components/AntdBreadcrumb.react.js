@@ -39,7 +39,25 @@ const AntdBreadcrumb = (props) => {
                             item.menuItems ? <Menu>
                                 {item.menuItems.map(
                                     menuItem => (
-                                        <Menu.Item icon={<AntdIcon icon={menuItem.icon} style={{ marginRight: 3 }} />}
+                                        <Menu.Item
+                                            icon={
+                                                menuItem.icon ?
+                                                    (
+                                                        menuItem.iconRenderer === 'fontawesome' ?
+                                                            (
+                                                                React.createElement(
+                                                                    'i',
+                                                                    {
+                                                                        className: menuItem.icon,
+                                                                        style: { marginRight: 3 }
+                                                                    }
+                                                                )
+                                                            ) :
+                                                            (
+                                                                <AntdIcon icon={menuItem.icon} style={{ marginRight: 3 }} />
+                                                            )
+                                                    ) : null
+                                            }
                                             disabled={menuItem.disabled}>
                                             <a href={menuItem.href}
                                                 target={menuItem.target}>
@@ -50,7 +68,23 @@ const AntdBreadcrumb = (props) => {
                                 )}
                             </Menu> : null
                         }>
-                        {<AntdIcon icon={item.icon} style={{ marginRight: 3 }} />}
+                        {
+                            item.icon ? (
+                                item.iconRenderer === 'fontawesome' ?
+                                    (
+                                        React.createElement(
+                                            'i',
+                                            {
+                                                className: item.icon,
+                                                style: { marginRight: 3 }
+                                            }
+                                        )
+                                    ) :
+                                    (
+                                        <AntdIcon icon={item.icon} style={{ marginRight: 3 }} />
+                                    )
+                            ) : null
+                        }
                         <a href={item.href}
                             target={item.target}>
                             {item.title}
@@ -94,6 +128,10 @@ AntdBreadcrumb.propTypes = {
             // 自定义前缀图标，与AntdIcon相通
             icon: PropTypes.string,
 
+            // 针对当前项对应icon参数值设置渲染方式，默认为'AntdIcon'即icon等价于AntdIcon的icon参数
+            // 当设置为'fontawesome'时，icon参数对应fontawesome图标的css类名
+            iconRenderer: PropTypes.oneOf(['AntdIcon', 'fontawesome']),
+
             // 可选，用于设置在当前节点下生成下拉菜单的数据结构
             menuItems: PropTypes.arrayOf(
                 PropTypes.exact({
@@ -110,7 +148,11 @@ AntdBreadcrumb.propTypes = {
                     disabled: PropTypes.bool,
 
                     // 自定义前缀图标，与AntdIcon相通
-                    icon: PropTypes.string
+                    icon: PropTypes.string,
+
+                    // 针对当前项对应icon参数值设置渲染方式，默认为'AntdIcon'即icon等价于AntdIcon的icon参数
+                    // 当设置为'fontawesome'时，icon参数对应fontawesome图标的css类名
+                    iconRenderer: PropTypes.oneOf(['AntdIcon', 'fontawesome'])
                 })
             )
         })

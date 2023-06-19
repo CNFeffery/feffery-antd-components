@@ -11,53 +11,79 @@ demo_value = None
 
 app.layout = html.Div(
     [
-        fac.AntdAvatar(
-            icon='fa-solid fa-user-secret',
-            iconRenderer='fontawesome',
-            style={
-                'color': '#4551f5'
-            }
-        ),
+        fac.AntdSpace(
+            [
+                fac.AntdBreadcrumb(
+                    items=[
+                        {
+                            'title': 'feffery-components仓库主页',
+                            'href': 'https://github.com/CNFeffery/feffery-dash-components',
+                            'target': '_blank',
+                            'icon': 'fa-solid fa-cubes',
+                            'iconRenderer': 'fontawesome',
+                            'menuItems': [
+                                {
+                                    'title': 'feffery-utils-components',
+                                    'href': 'https://github.com/CNFeffery/feffery-utils-components',
+                                    'target': '_blank',
+                                    'icon': 'fa-solid fa-cube',
+                                    'iconRenderer': 'fontawesome',
+                                }
+                            ]
+                        }
+                    ]
+                ),
 
-        html.Div(
-            fac.AntdMenu(
-                menuItems=[
-                    {
-                        'component': 'SubMenu',
-                        'props': {
-                            'key': f'{sub_menu}',
-                            'title': f'子菜单{sub_menu}'
-                        },
-                        'children': [
+                fac.AntdAvatar(
+                    icon='fa-solid fa-user-secret',
+                    iconRenderer='fontawesome',
+                    style={
+                        'background': '#4551f5'
+                    }
+                ),
+
+                html.Div(
+                    fac.AntdMenu(
+                        menuItems=[
                             {
-                                'component': 'ItemGroup',
+                                'component': 'SubMenu',
                                 'props': {
-                                    'key': f'{sub_menu}-{item_group}',
-                                    'title': f'菜单项分组{sub_menu}-{item_group}'
+                                    'key': f'{sub_menu}',
+                                    'title': f'子菜单{sub_menu}'
                                 },
                                 'children': [
                                     {
-                                        'component': 'Item',
+                                        'component': 'ItemGroup',
                                         'props': {
-                                            'key': f'{sub_menu}-{item_group}-{item}',
-                                            'title': f'菜单项{sub_menu}-{item_group}-{item}',
-                                            'icon': 'fa-solid fa-address-card',
-                                            'iconRenderer': 'fontawesome'
-                                        }
+                                            'key': f'{sub_menu}-{item_group}',
+                                            'title': f'菜单项分组{sub_menu}-{item_group}'
+                                        },
+                                        'children': [
+                                            {
+                                                'component': 'Item',
+                                                'props': {
+                                                    'key': f'{sub_menu}-{item_group}-{item}',
+                                                    'title': f'菜单项{sub_menu}-{item_group}-{item}',
+                                                    'icon': 'fa-solid fa-address-card',
+                                                    'iconRenderer': 'fontawesome'
+                                                }
+                                            }
+                                            for item in range(1, 3)
+                                        ]
                                     }
-                                    for item in range(1, 3)
+                                    for item_group in range(1, 3)
                                 ]
                             }
-                            for item_group in range(1, 3)
-                        ]
+                            for sub_menu in range(1, 5)
+                        ],
+                        mode='inline'
+                    ),
+                    style={
+                        'width': '250px'
                     }
-                    for sub_menu in range(1, 5)
-                ],
-                mode='inline'
-            ),
-            style={
-                'width': '250px'
-            }
+                )
+            ],
+            direction='vertical'
         )
     ],
     style={

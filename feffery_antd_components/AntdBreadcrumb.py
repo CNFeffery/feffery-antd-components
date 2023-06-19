@@ -21,6 +21,8 @@ Keyword arguments:
 
     - icon (string; optional)
 
+    - iconRenderer (a value equal to: 'AntdIcon', 'fontawesome'; optional)
+
     - menuItems (list of dicts; optional)
 
         `menuItems` is a list of dicts with keys:
@@ -30,6 +32,8 @@ Keyword arguments:
         - href (string; optional)
 
         - icon (string; optional)
+
+        - iconRenderer (a value equal to: 'AntdIcon', 'fontawesome'; optional)
 
         - target (string; optional)
 
