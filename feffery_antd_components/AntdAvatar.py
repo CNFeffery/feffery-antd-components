@@ -19,6 +19,8 @@ Keyword arguments:
 
 - icon (string; optional)
 
+- iconRenderer (a value equal to: 'AntdIcon', 'fontawesome'; default 'AntdIcon')
+
 - key (string; optional)
 
 - loading_state (dict; optional)
@@ -67,10 +69,10 @@ Keyword arguments:
     _namespace = 'feffery_antd_components'
     _type = 'AntdAvatar'
     @_explicitize_args
-    def __init__(self, id=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, key=Component.UNDEFINED, mode=Component.UNDEFINED, gap=Component.UNDEFINED, text=Component.UNDEFINED, icon=Component.UNDEFINED, alt=Component.UNDEFINED, src=Component.UNDEFINED, srcSet=Component.UNDEFINED, size=Component.UNDEFINED, shape=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
-        self._prop_names = ['id', 'alt', 'className', 'gap', 'icon', 'key', 'loading_state', 'mode', 'shape', 'size', 'src', 'srcSet', 'style', 'text']
+    def __init__(self, id=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, key=Component.UNDEFINED, mode=Component.UNDEFINED, gap=Component.UNDEFINED, text=Component.UNDEFINED, icon=Component.UNDEFINED, iconRenderer=Component.UNDEFINED, alt=Component.UNDEFINED, src=Component.UNDEFINED, srcSet=Component.UNDEFINED, size=Component.UNDEFINED, shape=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
+        self._prop_names = ['id', 'alt', 'className', 'gap', 'icon', 'iconRenderer', 'key', 'loading_state', 'mode', 'shape', 'size', 'src', 'srcSet', 'style', 'text']
         self._valid_wildcard_attributes =            []
-        self.available_properties = ['id', 'alt', 'className', 'gap', 'icon', 'key', 'loading_state', 'mode', 'shape', 'size', 'src', 'srcSet', 'style', 'text']
+        self.available_properties = ['id', 'alt', 'className', 'gap', 'icon', 'iconRenderer', 'key', 'loading_state', 'mode', 'shape', 'size', 'src', 'srcSet', 'style', 'text']
         self.available_wildcard_properties =            []
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()

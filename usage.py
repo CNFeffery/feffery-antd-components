@@ -11,45 +11,53 @@ demo_value = None
 
 app.layout = html.Div(
     [
+        fac.AntdAvatar(
+            icon='fa-solid fa-user-secret',
+            iconRenderer='fontawesome',
+            style={
+                'color': '#4551f5'
+            }
+        ),
 
-        fac.AntdTable(
-            columns=[
-                {
-                    'title': '字段1-1',
-                    'dataIndex': '字段1-1',
-                    'group': ['根节点', '字段1']
-                },
-                {
-                    'title': '字段1-2-1',
-                    'dataIndex': '字段1-2-1',
-                    'group': ['根节点', '字段1', '字段1-2']
-                },
-                {
-                    'title': '字段1-2-2',
-                    'dataIndex': '字段1-2-2',
-                    'group': ['根节点', '字段1', '字段1-2']
-                },
-                {
-                    'title': '字段2',
-                    'dataIndex': '字段2',
-                    'group': ['根节点']
-                },
-                {
-                    'title': '字段xx',
-                    'dataIndex': '字段xx'
-                }
-            ],
-            columnsWidthResizable=True,
-            data=[
-                {
-                    '字段1-1': 1,
-                    '字段1-2-1': 1,
-                    '字段1-2-2': 1,
-                    '字段2': 1,
-                    '字段xx': 1
-                }
-            ] * 100,
-            bordered=True
+        html.Div(
+            fac.AntdMenu(
+                menuItems=[
+                    {
+                        'component': 'SubMenu',
+                        'props': {
+                            'key': f'{sub_menu}',
+                            'title': f'子菜单{sub_menu}'
+                        },
+                        'children': [
+                            {
+                                'component': 'ItemGroup',
+                                'props': {
+                                    'key': f'{sub_menu}-{item_group}',
+                                    'title': f'菜单项分组{sub_menu}-{item_group}'
+                                },
+                                'children': [
+                                    {
+                                        'component': 'Item',
+                                        'props': {
+                                            'key': f'{sub_menu}-{item_group}-{item}',
+                                            'title': f'菜单项{sub_menu}-{item_group}-{item}',
+                                            'icon': 'fa-solid fa-address-card',
+                                            'iconRenderer': 'fontawesome'
+                                        }
+                                    }
+                                    for item in range(1, 3)
+                                ]
+                            }
+                            for item_group in range(1, 3)
+                        ]
+                    }
+                    for sub_menu in range(1, 5)
+                ],
+                mode='inline'
+            ),
+            style={
+                'width': '250px'
+            }
         )
     ],
     style={

@@ -19,6 +19,7 @@ const AntdAvatar = (props) => {
         src,
         srcSet,
         icon,
+        iconRenderer,
         alt,
         gap,
         size,
@@ -82,7 +83,24 @@ const AntdAvatar = (props) => {
                 }
                 style={style}
                 key={key}
-                icon={icon ? <AntdIcon icon={icon} /> : <AntdIcon icon={'antd-user'} />}
+                icon={
+                    icon ?
+                        (
+                            iconRenderer === 'fontawesome' ?
+                                (
+                                    React.createElement(
+                                        'i',
+                                        {
+                                            className: icon
+                                        }
+                                    )
+                                ) :
+                                (
+                                    <AntdIcon icon={icon} />
+                                )
+                        ) :
+                        <AntdIcon icon={'antd-user'} />
+                }
                 size={size}
                 shape={shape}
                 data-dash-is-loading={
@@ -121,6 +139,10 @@ AntdAvatar.propTypes = {
 
     // 设置头像的自定义icon，与AntdIcon通用，默认无icon
     icon: PropTypes.string,
+
+    // 针对icon参数值设置渲染方式，默认为'AntdIcon'即icon等价于AntdIcon的icon参数
+    // 当设置为'fontawesome'时，icon参数对应fontawesome图标的css类名
+    iconRenderer: PropTypes.oneOf(['AntdIcon', 'fontawesome']),
 
     // 设置图像无法显示时的替代文本
     alt: PropTypes.string,
@@ -180,7 +202,8 @@ AntdAvatar.defaultProps = {
     mode: 'icon',
     gap: 4,
     size: 'default',
-    shape: 'circle'
+    shape: 'circle',
+    iconRenderer: 'AntdIcon'
 }
 
 export default AntdAvatar;

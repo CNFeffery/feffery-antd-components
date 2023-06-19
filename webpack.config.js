@@ -4,7 +4,7 @@ const webpack = require('webpack');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const WebpackDashDynamicImport = require('@plotly/webpack-dash-dynamic-import');
 const packagejson = require('./package.json');
-// const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 const dashLibraryName = packagejson.name.replace(/-/g, '_');
 
@@ -43,7 +43,7 @@ module.exports = (env, argv) => {
         react: 'React',
         'react-dom': 'ReactDOM',
         'plotly.js': 'Plotly',
-        'prop-types': 'PropTypes',
+        'prop-types': 'PropTypes'
     });
 
     return {
