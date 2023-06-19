@@ -33,7 +33,7 @@ import {
     TinyColumn,
     Progress,
     RingProgress
-} from '@ant-design/charts';
+} from '@ant-design/plots';
 import Highlighter from 'react-highlight-words';
 import { Resizable } from 're-resizable';
 import AntdIcon from './AntdIcon.react';
@@ -49,13 +49,13 @@ const { Text } = Typography;
 
 const ResizeableTitle = props => {
 
-    const { children, style, ...restProps } = props;
+    const { isLast, children, style, ...restProps } = props;
 
     return (
         <Resizable style={style}
             enable={{
-                left: false,
-                right: true,
+                left: isLast,
+                right: !isLast,
                 top: false,
                 bottom: false,
                 topRight: false,
@@ -64,6 +64,9 @@ const ResizeableTitle = props => {
                 bottomLeft: false
             }}
             handleStyles={{
+                left: {
+                    cursor: "ew-resize"
+                },
                 right: {
                     cursor: "ew-resize"
                 }
@@ -1496,22 +1499,27 @@ class AntdTable extends Component {
         }
 
         // 添加表头单元格监听事件
-        if (enableHoverListen) {
-            columns = columns.map(
-                item => (
-                    {
-                        ...item,
-                        ...{
-                            onHeaderCell: (e) => {
-                                return {
-                                    onMouseEnter: event => { setProps({ recentlyMouseEnterColumnDataIndex: e.dataIndex }) }, // 鼠标移入字段名
-                                };
-                            }
+        columns = columns.map(
+            (item, idx) => (
+                {
+                    ...item,
+                    ...{
+                        onHeaderCell: (e) => {
+                            return {
+                                isLast: idx === columns.length - 1,
+                                ...(
+                                    enableHoverListen ?
+                                        {
+                                            onMouseEnter: event => { setProps({ recentlyMouseEnterColumnDataIndex: e.dataIndex }) }
+                                        } :
+                                        {}
+                                )
+                            };
                         }
                     }
-                )
+                }
             )
-        }
+        )
 
         // 添加单元格监听事件
         if (enableCellClickListenColumns) {
@@ -1618,24 +1626,6 @@ class AntdTable extends Component {
                     tempColumns.push(column)
                 }
             }
-            // // 旧逻辑
-            // for (let column of columns) {
-            //     if (column.group) {
-            //         if (tempColumns.length > 0 && tempColumns[tempColumns.length - 1].dataIndex === column.group) {
-            //             tempColumns[tempColumns.length - 1].children.push(column)
-            //         } else {
-            //             tempColumns.push(
-            //                 {
-            //                     dataIndex: column.group,
-            //                     title: column.group,
-            //                     children: [column]
-            //                 }
-            //             )
-            //         }
-            //     } else {
-            //         tempColumns.push(column)
-            //     }
-            // }
             columns = tempColumns
         }
 
@@ -1717,15 +1707,7 @@ class AntdTable extends Component {
                             expandedRowRender: (record) => rowExpandedRowRender.get(record.key),
                             rowExpandable: (record) => rowExpandedRowRender.has(record.key),
                             columnWidth: expandedRowWidth,
-                            expandRowByClick: expandRowByClick,
-                            // defaultExpandedRowKeys: defaultExpandedRowKeys,
-                            // expandedRowKeys: expandedRowKeys,
-                            // onExpandedRowsChange: (e) => {
-                            //     console.log(e)
-                            //     setProps({
-                            //         expandedRowKeys: e
-                            //     })
-                            // }
+                            expandRowByClick: expandRowByClick
                         } : undefined
                     }
                     defaultExpandedRowKeys={defaultExpandedRowKeys}

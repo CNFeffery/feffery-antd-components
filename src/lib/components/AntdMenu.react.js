@@ -114,7 +114,20 @@ const raw2Jsx = (obj, str2Jsx) => {
                     key={obj.props.key}
                     title={obj.props.title}
                     disabled={obj.props.disabled}
-                    icon={<AntdIcon icon={obj.props.icon} />}>
+                    icon={
+                        obj.props.iconRenderer === 'fontawesome' ?
+                            (
+                                React.createElement(
+                                    'i',
+                                    {
+                                        className: obj.props.icon
+                                    }
+                                )
+                            ) :
+                            (
+                                <AntdIcon icon={obj.props.icon} />
+                            )
+                    }>
                     {obj.children}
                 </SubMenu>
             } else {
@@ -122,7 +135,20 @@ const raw2Jsx = (obj, str2Jsx) => {
                     key={obj.props.key}
                     title={obj.props.title}
                     disabled={obj.props.disabled}
-                    icon={<AntdIcon icon={obj.props.icon} />}>
+                    icon={
+                        obj.props.iconRenderer === 'fontawesome' ?
+                            (
+                                React.createElement(
+                                    'i',
+                                    {
+                                        className: obj.props.icon
+                                    }
+                                )
+                            ) :
+                            (
+                                <AntdIcon icon={obj.props.icon} />
+                            )
+                    }>
                     {obj.children}
                 </ItemGroup>
             }
@@ -137,8 +163,20 @@ const raw2Jsx = (obj, str2Jsx) => {
                     title={obj.props.title}
                     disabled={obj.props.disabled}
                     danger={obj.props.danger}
-                    icon={<AntdIcon icon={obj.props.icon}
-                    />}
+                    icon={
+                        obj.props.iconRenderer === 'fontawesome' ?
+                            (
+                                React.createElement(
+                                    'i',
+                                    {
+                                        className: obj.props.icon
+                                    }
+                                )
+                            ) :
+                            (
+                                <AntdIcon icon={obj.props.icon} />
+                            )
+                    }
                     name={obj.props && obj.props.name}
                 >
                     <UtilsLink href={obj.props.href} target={obj.props.target}>{obj.props.title}</UtilsLink>
@@ -149,7 +187,20 @@ const raw2Jsx = (obj, str2Jsx) => {
                     title={obj.props.title}
                     disabled={obj.props.disabled}
                     danger={obj.props.danger}
-                    icon={<AntdIcon icon={obj.props.icon} />}
+                    icon={
+                        obj.props.iconRenderer === 'fontawesome' ?
+                            (
+                                React.createElement(
+                                    'i',
+                                    {
+                                        className: obj.props.icon
+                                    }
+                                )
+                            ) :
+                            (
+                                <AntdIcon icon={obj.props.icon} />
+                            )
+                    }
                     name={obj.props && obj.props.name}
                 >
                     {obj.props.title}
