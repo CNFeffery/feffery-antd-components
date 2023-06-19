@@ -42,6 +42,8 @@ Keyword arguments:
 
     - icon (string; optional)
 
+    - iconRenderer (a value equal to: 'AntdIcon', 'fontawesome'; optional)
+
     - label (string | a list of or a singular dash component, string or number; required)
 
     - value (string | number; required)

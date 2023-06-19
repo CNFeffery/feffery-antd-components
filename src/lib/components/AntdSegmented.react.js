@@ -59,7 +59,20 @@ const AntdSegmented = (props) => {
                 options.map(item => {
                     return {
                         ...item,
-                        icon: item.icon && <AntdIcon icon={item.icon} />
+                        icon: item.icon && (
+                            item.iconRenderer === 'fontawesome' ?
+                                (
+                                    React.createElement(
+                                        'i',
+                                        {
+                                            className: item.icon
+                                        }
+                                    )
+                                ) :
+                                (
+                                    <AntdIcon icon={item.icon} />
+                                )
+                        )
                     }
                 })
             }
@@ -122,8 +135,12 @@ AntdSegmented.propTypes = {
             // 设置是否禁用当前选项
             disabled: PropTypes.bool,
 
-            // 传入与AntdIcon相通的icon代号
-            icon: PropTypes.string
+            // 传入与AntdIcon相通的icon参数
+            icon: PropTypes.string,
+
+            // 针对icon参数值设置渲染方式，默认为'AntdIcon'即icon等价于AntdIcon的icon参数
+            // 当设置为'fontawesome'时，icon参数对应fontawesome图标的css类名
+            iconRenderer: PropTypes.oneOf(['AntdIcon', 'fontawesome']),
         })
     ),
 

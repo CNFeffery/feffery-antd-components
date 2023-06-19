@@ -11,15 +11,34 @@ demo_value = None
 
 app.layout = html.Div(
     [
-        fac.AntdMessage(
-            content='全局提示示例',
-            icon='fa-solid fa-gears',
-            iconRenderer='fontawesome',
-            duration=999
-        ),
-
         fac.AntdSpace(
             [
+                fac.AntdSegmented(
+                    options=[
+                        {
+                            'label': f'选项{i}',
+                            'value': i,
+                            'icon': icon,
+                            'iconRenderer': 'fontawesome'
+                        }
+                        for i, icon in enumerate(
+                            [
+                                'fa-solid fa-font-awesome',
+                                'fa-solid fa-laptop-code',
+                                'fa-solid fa-file-lines',
+                            ]
+                        )
+                    ],
+                    defaultValue=0
+                ),
+
+                # fac.AntdMessage(
+                #     content='全局提示示例',
+                #     icon='fa-solid fa-gears',
+                #     iconRenderer='fontawesome',
+                #     duration=999
+                # ),
+
                 fac.AntdDropdown(
                     title='触发点',
                     menuItems=[
