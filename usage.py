@@ -11,6 +11,13 @@ demo_value = None
 
 app.layout = html.Div(
     [
+        fac.AntdMessage(
+            content='全局提示示例',
+            icon='fa-solid fa-gears',
+            iconRenderer='fontawesome',
+            duration=999
+        ),
+
         fac.AntdSpace(
             [
                 fac.AntdDropdown(

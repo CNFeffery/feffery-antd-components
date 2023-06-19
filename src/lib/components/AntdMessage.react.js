@@ -17,6 +17,7 @@ const AntdMessage = (props) => {
         type,
         duration,
         icon,
+        iconRenderer,
         top,
         maxCount,
         loading_state,
@@ -43,7 +44,21 @@ const AntdMessage = (props) => {
     }
 
     if (icon) {
-        config.icon = <AntdIcon icon={icon} style={{ marginRight: 3 }} />
+        config.icon = (
+            iconRenderer === 'fontawesome' ?
+                (
+                    React.createElement(
+                        'i',
+                        {
+                            className: icon,
+                            style: { marginRight: 3 }
+                        }
+                    )
+                ) :
+                (
+                    <AntdIcon icon={icon} style={{ marginRight: 3 }} />
+                )
+        )
     }
 
     useEffect(() => {
@@ -103,6 +118,10 @@ AntdMessage.propTypes = {
     // 设置自定义icon，与AntdIcon中支持的图标相对应
     icon: PropTypes.string,
 
+    // 针对icon参数值设置渲染方式，默认为'AntdIcon'即icon等价于AntdIcon的icon参数
+    // 当设置为'fontawesome'时，icon参数对应fontawesome图标的css类名
+    iconRenderer: PropTypes.oneOf(['AntdIcon', 'fontawesome']),
+
     loading_state: PropTypes.shape({
         /**
          * Determines if the component is loading or not
@@ -129,7 +148,8 @@ AntdMessage.propTypes = {
 AntdMessage.defaultProps = {
     type: 'default',
     duration: 3,
-    top: 8
+    top: 8,
+    iconRenderer: 'AntdIcon'
 }
 
 export default AntdMessage;
