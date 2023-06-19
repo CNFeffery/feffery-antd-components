@@ -68,6 +68,8 @@ Keyword arguments:
 
     - icon (string; optional)
 
+    - iconRenderer (a value equal to: 'AntdIcon', 'fontawesome'; optional)
+
     - isDivider (boolean; optional)
 
     - key (string; optional)

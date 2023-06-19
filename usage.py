@@ -13,6 +13,35 @@ app.layout = html.Div(
     [
         fac.AntdSpace(
             [
+                fac.AntdDropdown(
+                    title='触发点',
+                    menuItems=[
+                        {
+                            'title': '选项1',
+                            'icon': 'fa-solid fa-cube',
+                            'iconRenderer': 'fontawesome'
+                        },
+                        {
+                            'title': '选项2',
+                            'icon': 'fa-solid fa-cube',
+                            'iconRenderer': 'fontawesome'
+                        },
+                        {
+                            'isDivider': True
+                        },
+                        {
+                            'title': '选项3-1',
+                            'icon': 'fa-solid fa-cube',
+                            'iconRenderer': 'fontawesome'
+                        },
+                        {
+                            'title': '选项3-2',
+                            'icon': 'fa-solid fa-cube',
+                            'iconRenderer': 'fontawesome'
+                        }
+                    ]
+                ),
+
                 fac.AntdBreadcrumb(
                     items=[
                         {

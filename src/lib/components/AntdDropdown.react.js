@@ -68,7 +68,24 @@ const AntdDropdown = (props) => {
                                 // 判断isDivider参数是否不为false
                                 menuItem.isDivider ?
                                     <Menu.Divider /> :
-                                    <Menu.Item icon={<AntdIcon icon={menuItem.icon} />}
+                                    <Menu.Item
+                                        icon={
+                                            menuItem.icon ?
+                                                (
+                                                    menuItem.iconRenderer === 'fontawesome' ?
+                                                        (
+                                                            React.createElement(
+                                                                'i',
+                                                                {
+                                                                    className: menuItem.icon
+                                                                }
+                                                            )
+                                                        ) :
+                                                        (
+                                                            <AntdIcon icon={menuItem.icon} />
+                                                        )
+                                                ) : null
+                                        }
                                         disabled={menuItem.disabled}
                                         key={menuItem.key ? menuItem.key : menuItem.title}>
                                         <a href={menuItem.href}
@@ -214,6 +231,10 @@ AntdDropdown.propTypes = {
 
             // 自定义前缀图标，与AntdIcon相通
             icon: PropTypes.string,
+
+            // 针对icon参数值设置渲染方式，默认为'AntdIcon'即icon等价于AntdIcon的icon参数
+            // 当设置为'fontawesome'时，icon参数对应fontawesome图标的css类名
+            iconRenderer: PropTypes.oneOf(['AntdIcon', 'fontawesome']),
 
             // 自定义key值，用于监听点击事件必填
             key: PropTypes.string,
