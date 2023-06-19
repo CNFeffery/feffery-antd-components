@@ -932,7 +932,23 @@ class AntdTable extends Component {
                                                         (
                                                             menuItem.isDivider ?
                                                                 <Menu.Divider /> :
-                                                                <Menu.Item icon={<AntdIcon icon={menuItem.icon} />}
+                                                                <Menu.Item
+                                                                    icon={
+                                                                        menuItem.icon && (
+                                                                            menuItem.iconRenderer === 'fontawesome' ?
+                                                                                (
+                                                                                    React.createElement(
+                                                                                        'i',
+                                                                                        {
+                                                                                            className: menuItem.icon
+                                                                                        }
+                                                                                    )
+                                                                                ) :
+                                                                                (
+                                                                                    <AntdIcon icon={menuItem.icon} />
+                                                                                )
+                                                                        )
+                                                                    }
                                                                     disabled={menuItem.disabled}
                                                                     key={menuItem.title}>
                                                                     <a >{menuItem.title}</a>
@@ -979,7 +995,23 @@ class AntdTable extends Component {
                                                         (
                                                             menuItem.isDivider ?
                                                                 <Menu.Divider /> :
-                                                                <Menu.Item icon={<AntdIcon icon={menuItem.icon} />}
+                                                                <Menu.Item
+                                                                    icon={
+                                                                        menuItem.icon && (
+                                                                            menuItem.iconRenderer === 'fontawesome' ?
+                                                                                (
+                                                                                    React.createElement(
+                                                                                        'i',
+                                                                                        {
+                                                                                            className: menuItem.icon
+                                                                                        }
+                                                                                    )
+                                                                                ) :
+                                                                                (
+                                                                                    <AntdIcon icon={menuItem.icon} />
+                                                                                )
+                                                                        )
+                                                                    }
                                                                     disabled={menuItem.disabled}
                                                                     key={menuItem.title}>
                                                                     <a href={menuItem.href}
@@ -1224,7 +1256,22 @@ class AntdTable extends Component {
                                                         danger={content_.danger}
                                                         disabled={content_.disabled}
                                                         style={content_.style}
-                                                        icon={<AntdIcon icon={content_.icon} />}
+                                                        icon={
+                                                            content_.icon && (
+                                                                content_.iconRenderer === 'fontawesome' ?
+                                                                    (
+                                                                        React.createElement(
+                                                                            'i',
+                                                                            {
+                                                                                className: content_.icon
+                                                                            }
+                                                                        )
+                                                                    ) :
+                                                                    (
+                                                                        <AntdIcon icon={content_.icon} />
+                                                                    )
+                                                            )
+                                                        }
                                                         onClick={(e) => {
                                                             // 阻止事件冒泡
                                                             e.stopPropagation();
@@ -1262,7 +1309,22 @@ class AntdTable extends Component {
                                     danger={content.danger}
                                     disabled={content.disabled}
                                     style={content.style}
-                                    icon={<AntdIcon icon={content.icon} />}
+                                    icon={
+                                        content.icon && (
+                                            content.iconRenderer === 'fonbtawesome' ?
+                                                (
+                                                    React.createElement(
+                                                        'i',
+                                                        {
+                                                            className: content.icon
+                                                        }
+                                                    )
+                                                ) :
+                                                (
+                                                    <AntdIcon icon={content.icon} />
+                                                )
+                                        )
+                                    }
                                     onClick={(e) => {
                                         // 阻止事件冒泡
                                         e.stopPropagation();
@@ -1298,7 +1360,22 @@ class AntdTable extends Component {
                                                     href={content_.href}
                                                     target={content_.target}
                                                     style={content_.style}
-                                                    icon={<AntdIcon icon={content_.icon} />}>
+                                                    icon={
+                                                        content_.icon && (
+                                                            content_.iconRenderer === 'fontawesome' ?
+                                                                (
+                                                                    React.createElement(
+                                                                        'i',
+                                                                        {
+                                                                            className: content_.icon
+                                                                        }
+                                                                    )
+                                                                ) :
+                                                                (
+                                                                    <AntdIcon icon={content_.icon} />
+                                                                )
+                                                        )
+                                                    }>
                                                     {content_.content}
                                                 </Button>
                                             )
@@ -1322,7 +1399,22 @@ class AntdTable extends Component {
                                 href={content.href}
                                 target={content.target}
                                 style={content.style}
-                                icon={<AntdIcon icon={content.icon} />}>
+                                icon={
+                                    content.icon && (
+                                        content.iconRenderer === 'fontawesome' ?
+                                            (
+                                                React.createElement(
+                                                    'i',
+                                                    {
+                                                        className: content.icon
+                                                    }
+                                                )
+                                            ) :
+                                            (
+                                                <AntdIcon icon={content.icon} />
+                                            )
+                                    )
+                                }>
                                 {content.content}
                             </Button>
                         }
@@ -1969,6 +2061,9 @@ AntdTable.propTypes = {
                         target: PropTypes.string,
                         // 为当前按钮设置前缀图标，同AntdIcon中的同名参数
                         icon: PropTypes.string,
+                        // 针对icon参数值设置渲染方式，默认为'AntdIcon'即icon等价于AntdIcon的icon参数
+                        // 当设置为'fontawesome'时，icon参数对应fontawesome图标的css类名
+                        iconRenderer: PropTypes.oneOf(['AntdIcon', 'fontawesome']),
                         // 用于存放任意结构的自定义辅助信息
                         custom: PropTypes.any
                     }),
@@ -1992,6 +2087,9 @@ AntdTable.propTypes = {
                             target: PropTypes.string,
                             // 为当前按钮设置前缀图标，同AntdIcon中的同名参数
                             icon: PropTypes.string,
+                            // 针对icon参数值设置渲染方式，默认为'AntdIcon'即icon等价于AntdIcon的icon参数
+                            // 当设置为'fontawesome'时，icon参数对应fontawesome图标的css类名
+                            iconRenderer: PropTypes.oneOf(['AntdIcon', 'fontawesome']),
                             // 用于存放任意结构的自定义辅助信息
                             custom: PropTypes.any
                         })
@@ -2089,6 +2187,9 @@ AntdTable.propTypes = {
                         disabled: PropTypes.bool,
                         // 设置当前链接的前缀图标，同AntdIcon的icon参数
                         icon: PropTypes.string,
+                        // 针对icon参数值设置渲染方式，默认为'AntdIcon'即icon等价于AntdIcon的icon参数
+                        // 当设置为'fontawesome'时，icon参数对应fontawesome图标的css类名
+                        iconRenderer: PropTypes.oneOf(['AntdIcon', 'fontawesome']),
                         // 设置当前节点是否充当分割线
                         isDivider: PropTypes.bool,
                         // 用于存放任意结构的自定义辅助信息
@@ -2107,6 +2208,9 @@ AntdTable.propTypes = {
                         disabled: PropTypes.bool,
                         // 设置当前链接的前缀图标，同AntdIcon的icon参数
                         icon: PropTypes.string,
+                        // 针对icon参数值设置渲染方式，默认为'AntdIcon'即icon等价于AntdIcon的icon参数
+                        // 当设置为'fontawesome'时，icon参数对应fontawesome图标的css类名
+                        iconRenderer: PropTypes.oneOf(['AntdIcon', 'fontawesome']),
                         // 设置当前节点是否充当分割线
                         isDivider: PropTypes.bool
                     })

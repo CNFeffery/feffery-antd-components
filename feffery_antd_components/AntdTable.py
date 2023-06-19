@@ -167,6 +167,8 @@ Keyword arguments:
 
     - icon (string; optional)
 
+    - iconRenderer (a value equal to: 'AntdIcon', 'fontawesome'; optional)
+
     - style (dict; optional)
 
     - target (string; optional)
@@ -184,6 +186,8 @@ Keyword arguments:
     - href (string; optional)
 
     - icon (string; optional)
+
+    - iconRenderer (a value equal to: 'AntdIcon', 'fontawesome'; optional)
 
     - style (dict; optional)
 
@@ -241,6 +245,8 @@ Keyword arguments:
 
     - icon (string; optional)
 
+    - iconRenderer (a value equal to: 'AntdIcon', 'fontawesome'; optional)
+
     - isDivider (boolean; optional)
 
     - title (string; optional) | list of dicts with keys:
@@ -250,6 +256,8 @@ Keyword arguments:
     - href (string; optional)
 
     - icon (string; optional)
+
+    - iconRenderer (a value equal to: 'AntdIcon', 'fontawesome'; optional)
 
     - isDivider (boolean; optional)
 
