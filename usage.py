@@ -13,6 +13,62 @@ app.layout = html.Div(
     [
         fac.AntdSpace(
             [
+
+                fac.AntdTree(
+                    treeData=[
+                        {
+                            'title': '四川省',
+                            'key': '四川省',
+                            'icon': 'fa-solid fa-cube',
+                            'iconRenderer': 'fontawesome',
+                            'children': [
+                                {
+                                    'title': '成都市',
+                                    'key': '成都市',
+                                    'icon': 'fa-solid fa-cube',
+                                    'iconRenderer': 'fontawesome'
+                                },
+                                {
+                                    'title': '广安市',
+                                    'key': '广安市',
+                                    'icon': 'fa-solid fa-cube',
+                                    'iconRenderer': 'fontawesome'
+                                }
+                            ]
+                        },
+                        {
+                            'title': '重庆市',
+                            'key': '重庆市',
+                            'icon': 'fa-solid fa-cube',
+                            'iconRenderer': 'fontawesome',
+                            'children': [
+                                {
+                                    'title': '渝中区',
+                                    'key': '渝中区',
+                                    'icon': 'fa-solid fa-cube',
+                                    'iconRenderer': 'fontawesome',
+                                    'children': [
+                                        {
+                                            'title': '解放碑街道',
+                                            'key': '解放碑街道',
+                                            'icon': 'fa-solid fa-cube',
+                                            'iconRenderer': 'fontawesome',
+                                        }
+                                    ]
+                                },
+                                {
+                                    'title': '渝北区',
+                                    'key': '渝北区',
+                                    'icon': 'fa-solid fa-cube',
+                                    'iconRenderer': 'fontawesome'
+                                }
+                            ]
+                        }
+                    ],
+                    showIcon=True,
+                    defaultExpandAll=True
+                ),
+
                 fac.AntdTable(
                     columns=[
                         {

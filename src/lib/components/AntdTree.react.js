@@ -72,14 +72,40 @@ const AntdTree = (props) => {
             }
             if (inputTreeData.children) {
                 if (isString(inputTreeData.icon)) {
-                    inputTreeData.icon = <AntdIcon icon={inputTreeData.icon} />
+                    inputTreeData.icon = (
+                        inputTreeData.iconRenderer === 'fontawesome' ?
+                            (
+                                React.createElement(
+                                    'i',
+                                    {
+                                        className: inputTreeData.icon
+                                    }
+                                )
+                            ) :
+                            (
+                                <AntdIcon icon={inputTreeData.icon} />
+                            )
+                    )
                 }
                 for (let i = 0; i < inputTreeData.children.length; i++) {
                     inputTreeData.children[i] = add_leaf_node_icon(inputTreeData.children[i])
                 }
             } else {
                 if (isString(inputTreeData.icon)) {
-                    inputTreeData.icon = <AntdIcon icon={inputTreeData.icon} />
+                    inputTreeData.icon = (
+                        inputTreeData.iconRenderer === 'fontawesome' ?
+                            (
+                                React.createElement(
+                                    'i',
+                                    {
+                                        className: inputTreeData.icon
+                                    }
+                                )
+                            ) :
+                            (
+                                <AntdIcon icon={inputTreeData.icon} />
+                            )
+                    )
                 }
             }
         }
@@ -221,7 +247,20 @@ const AntdTree = (props) => {
                                     itemProps => {
                                         return {
                                             ...itemProps,
-                                            icon: <AntdIcon icon={itemProps.icon} />
+                                            icon: itemProps.icon && (
+                                                itemProps.iconRenderer === 'fontawesome' ?
+                                                    (
+                                                        React.createElement(
+                                                            'i',
+                                                            {
+                                                                className: itemProps.icon
+                                                            }
+                                                        )
+                                                    ) :
+                                                    (
+                                                        <AntdIcon icon={itemProps.icon} />
+                                                    )
+                                            )
                                         }
                                     }
                                 ),
@@ -279,8 +318,12 @@ const PropTreeNodeShape = {
     // 可选，设置是否禁用
     disabled: PropTypes.bool,
 
-    // 可选，设置节点对应icon
-    icon: PropTypes.node,
+    // 为当前选项设置前缀图标，同AntdIcon中的icon参数
+    icon: PropTypes.string,
+
+    // 针对icon参数值设置渲染方式，默认为'AntdIcon'即icon等价于AntdIcon的icon参数
+    // 当设置为'fontawesome'时，icon参数对应fontawesome图标的css类名
+    iconRenderer: PropTypes.oneOf(['AntdIcon', 'fontawesome']),
 
     // 可选，当树为checkable时，设置对应节点是否展示checkbox
     checkable: PropTypes.bool,
@@ -317,7 +360,10 @@ const PropTreeNodeShape = {
             // 为当前右键菜单项设置标题内容
             label: PropTypes.string,
             // 为当前选项设置前缀图标，同AntdIcon中的icon参数
-            icon: PropTypes.string
+            icon: PropTypes.string,
+            // 针对icon参数值设置渲染方式，默认为'AntdIcon'即icon等价于AntdIcon的icon参数
+            // 当设置为'fontawesome'时，icon参数对应fontawesome图标的css类名
+            iconRenderer: PropTypes.oneOf(['AntdIcon', 'fontawesome']),
         })
     )
 };
@@ -337,8 +383,12 @@ const PropFlatNodeShape = {
     // 可选，设置是否禁用
     disabled: PropTypes.bool,
 
-    // 可选，设置节点对应icon
-    icon: PropTypes.node,
+    // 为当前选项设置前缀图标，同AntdIcon中的icon参数
+    icon: PropTypes.string,
+
+    // 针对icon参数值设置渲染方式，默认为'AntdIcon'即icon等价于AntdIcon的icon参数
+    // 当设置为'fontawesome'时，icon参数对应fontawesome图标的css类名
+    iconRenderer: PropTypes.oneOf(['AntdIcon', 'fontawesome']),
 
     // 可选，当树为checkable时，设置对应节点是否展示checkbox
     checkable: PropTypes.bool,
@@ -377,7 +427,10 @@ const PropFlatNodeShape = {
             // 为当前右键菜单项设置标题内容
             label: PropTypes.string,
             // 为当前选项设置前缀图标，同AntdIcon中的icon参数
-            icon: PropTypes.string
+            icon: PropTypes.string,
+            // 针对icon参数值设置渲染方式，默认为'AntdIcon'即icon等价于AntdIcon的icon参数
+            // 当设置为'fontawesome'时，icon参数对应fontawesome图标的css类名
+            iconRenderer: PropTypes.oneOf(['AntdIcon', 'fontawesome']),
         })
     )
 };
