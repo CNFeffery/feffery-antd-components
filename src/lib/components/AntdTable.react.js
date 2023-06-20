@@ -49,13 +49,13 @@ const { Text } = Typography;
 
 const ResizeableTitle = props => {
 
-    const { isLast, children, style, ...restProps } = props;
+    const { islast, children, style, ...restProps } = props;
 
     return (
         <Resizable style={style}
             enable={{
-                left: isLast,
-                right: !isLast,
+                left: islast === 0,
+                right: islast !== 0,
                 top: false,
                 bottom: false,
                 topRight: false,
@@ -1598,7 +1598,7 @@ class AntdTable extends Component {
                     ...{
                         onHeaderCell: (e) => {
                             return {
-                                isLast: idx === columns.length - 1,
+                                islast: idx - (columns.length - 1),
                                 ...(
                                     enableHoverListen ?
                                         {

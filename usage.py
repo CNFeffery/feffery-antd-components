@@ -11,6 +11,31 @@ demo_value = None
 
 app.layout = html.Div(
     [
+        fac.AntdModal(
+            html.Div(
+                [
+                    '测试' * 10000
+                ],
+                style={
+                    'padding': 25
+                }
+            ),
+            width='calc(100vw - 200px)',
+            visible=True,
+            maskClosable=False,
+            bodyStyle={
+                'maxHeight': 'calc(100vh - 250px)',
+                'overflowY': 'auto'
+            },
+            title='新建项目',
+            mask=False,
+            closable=False,
+            renderFooter=True,
+            okClickClose=False,
+            okText='确认创建',
+            cancelText='取消创建',
+            confirmAutoSpin=True
+        ),
         fac.AntdSpace(
             [
 
@@ -286,8 +311,6 @@ app.layout = html.Div(
                     items=[
                         {
                             'title': 'feffery-components仓库主页',
-                            'href': 'https://github.com/CNFeffery/feffery-dash-components',
-                            'target': '_blank',
                             'icon': 'fa-solid fa-cubes',
                             'iconRenderer': 'fontawesome',
                             'menuItems': [

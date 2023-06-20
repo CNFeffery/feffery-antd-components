@@ -67,7 +67,14 @@ const AntdBreadcrumb = (props) => {
                                     )
                                 )}
                             </Menu> : null
-                        }>
+                        }
+                        onClick={e => setProps({
+                            clickedItem: {
+                                title: item.title,
+                                timestamp: Date.now()
+                            }
+                        })}
+                    >
                         {
                             item.icon ? (
                                 item.iconRenderer === 'fontawesome' ?
@@ -160,6 +167,14 @@ AntdBreadcrumb.propTypes = {
 
     // 自定义分隔符，默认为'/'
     separator: PropTypes.node,
+
+    // 用于监听最近一次被点击的面包屑项信息
+    clickedItem: PropTypes.exact({
+        // 记录点击事件对应子项title值
+        itemTitle: PropTypes.string,
+        // 记录事件发生时的时间戳信息
+        timestamp: PropTypes.number
+    }),
 
     loading_state: PropTypes.shape({
         /**
