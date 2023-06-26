@@ -33,8 +33,6 @@ const AntdTooltip = (props) => {
         loading_state
     } = props;
 
-    children = parseChildrenToArray(children)
-
     return (
         <Tooltip id={id}
             className={
@@ -71,7 +69,7 @@ const AntdTooltip = (props) => {
             data-dash-is-loading={
                 (loading_state && loading_state.is_loading) || undefined
             }>
-            {children}
+            {parseChildrenToArray(children)}
         </Tooltip>
     );
 }

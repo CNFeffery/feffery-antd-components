@@ -70,7 +70,7 @@ const AntdBreadcrumb = (props) => {
                         }
                         onClick={e => setProps({
                             clickedItem: {
-                                title: item.title,
+                                itemTitle: item.title,
                                 timestamp: Date.now()
                             }
                         })}

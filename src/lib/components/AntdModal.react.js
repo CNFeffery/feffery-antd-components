@@ -43,6 +43,7 @@ const AntdModal = (props) => {
         confirmLoading,
         confirmAutoSpin,
         transitionType,
+        destroyOnClose,
         loading_state
     } = props;
 
@@ -103,7 +104,7 @@ const AntdModal = (props) => {
                 afterClose={listenClose}
                 footer={renderFooter ? undefined : null}
                 confirmLoading={confirmLoading}
-                destroyOnClose={true}
+                destroyOnClose={destroyOnClose}
                 data-dash-is-loading={
                     (loading_state && loading_state.is_loading) || undefined
                 }
@@ -248,6 +249,9 @@ AntdModal.propTypes = {
         'move-left', 'move-right'
     ]),
 
+    // 设置当前模态框中的内容是否在关闭后自动销毁，默认为true
+    destroyOnClose: PropTypes.bool,
+
     /**
      * Dash-assigned callback that should be called to report property changes
      * to Dash, to make them available for callbacks.
@@ -288,6 +292,7 @@ AntdModal.defaultProps = {
     confirmLoading: false,
     confirmAutoSpin: false,
     transitionType: 'zoom',
+    destroyOnClose: true,
     locale: 'zh-cn'
 }
 

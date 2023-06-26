@@ -1,10 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Popover } from 'antd';
+import { Popover, Button } from 'antd';
 import AntdIcon from './AntdIcon.react';
 import { parseChildrenToArray } from './utils';
 import { isString } from 'lodash';
 import useCss from '../hooks/useCss';
+
 
 // 定义气泡卡片组件Popover，api参数参考https://ant.design/components/popover-cn/
 const AntdPopover = (props) => {
@@ -26,6 +27,7 @@ const AntdPopover = (props) => {
         overlayInnerStyle,
         trigger,
         zIndex,
+        arrowPointAtCenter,
         popupContainer,
         loading_state
     } = props;
@@ -33,7 +35,8 @@ const AntdPopover = (props) => {
     children = parseChildrenToArray(children)
 
     return (
-        <Popover id={id}
+        <Popover
+            id={id}
             className={
                 isString(className) ?
                     className :
@@ -60,6 +63,7 @@ const AntdPopover = (props) => {
             overlayInnerStyle={overlayInnerStyle}
             trigger={trigger}
             zIndex={zIndex}
+            arrowPointAtCenter={arrowPointAtCenter}
             getPopupContainer={
                 popupContainer === 'parent' ?
                     (triggerNode) => triggerNode.parentNode :
@@ -67,8 +71,8 @@ const AntdPopover = (props) => {
             }
             data-dash-is-loading={
                 (loading_state && loading_state.is_loading) || undefined
-            }>{children}
-        </Popover>
+            }
+        >{children}</Popover>
     );
 }
 
