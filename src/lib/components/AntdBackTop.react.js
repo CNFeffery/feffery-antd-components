@@ -16,6 +16,7 @@ const AntdBackTop = (props) => {
         duration,
         visibilityHeight,
         containerId,
+        containerSelector,
         setProps,
         loading_state
     } = props;
@@ -30,8 +31,12 @@ const AntdBackTop = (props) => {
             style={style}
             key={key}
             target={
-                containerId ?
-                    () => document.getElementById(containerId) :
+                containerId || containerSelector ?
+                    (
+                        containerId ?
+                            () => document.getElementById(containerId) :
+                            () => eval(containerSelector)
+                    ) :
                     () => window
             }
             duration={duration * 1000}
@@ -67,6 +72,10 @@ AntdBackTop.propTypes = {
 
     // 设置绑定滚动条事件对应的容器id
     containerId: PropTypes.string,
+
+    // 当目标容器定位较为复杂时，可传入获取元素对应的js代码字符串
+    // 优先级低于containerId
+    containerSelector: PropTypes.string,
 
     loading_state: PropTypes.shape({
         /**
