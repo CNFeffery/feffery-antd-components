@@ -545,6 +545,7 @@ class AntdTable extends Component {
                                 <Input.TextArea
                                     autoSize={columns.filter(e => e.dataIndex === dataIndex)[0].editOptions?.autoSize}
                                     maxLength={columns.filter(e => e.dataIndex === dataIndex)[0].editOptions?.maxLength}
+                                    placeholder={columns.filter(e => e.dataIndex === dataIndex)[0].editOptions?.placeholder}
                                     ref={inputRef}
                                     onBlur={save}
                                     onFocus={() => {
@@ -556,6 +557,7 @@ class AntdTable extends Component {
                                 /> :
                                 <Input
                                     maxLength={columns.filter(e => e.dataIndex === dataIndex)[0].editOptions?.maxLength}
+                                    placeholder={columns.filter(e => e.dataIndex === dataIndex)[0].editOptions?.placeholder}
                                     ref={inputRef}
                                     onPressEnter={save}
                                     onBlur={save}
@@ -570,7 +572,7 @@ class AntdTable extends Component {
                         }}
                         onClick={toggleEdit}
                     >
-                        {children}
+                        {children[1] ? children : ' '}
                     </div>
                 );
             }
@@ -1234,8 +1236,9 @@ class AntdTable extends Component {
                                 <Space>
                                     {
                                         content.map(
-                                            content_ => (
+                                            (content_, idx) => (
                                                 <Popconfirm
+                                                    key={idx}
                                                     title={columns[i]['renderOptions']['renderButtonPopConfirmProps'].title}
                                                     okText={columns[i]['renderOptions']['renderButtonPopConfirmProps'].okText}
                                                     cancelText={columns[i]['renderOptions']['renderButtonPopConfirmProps'].cancelText}
@@ -1346,8 +1349,9 @@ class AntdTable extends Component {
                                 <Space>
                                     {
                                         content.map(
-                                            content_ => (
+                                            (content_, idx) => (
                                                 <Button
+                                                    key={idx}
                                                     onClick={(e) => {
                                                         // 阻止事件冒泡
                                                         e.stopPropagation();
@@ -1952,7 +1956,9 @@ AntdTable.propTypes = {
                     })
                 ]),
                 // 可选，限制当前字段下编辑模式输入框的最大输入字符数，默认无限制
-                maxLength: PropTypes.number
+                maxLength: PropTypes.number,
+                // 可选，用于在输入框中无内容时设置占位提示内容
+                placeholder: PropTypes.string
             }),
 
             // 设置列对齐方式，可选项有'left'、'center'、'right'
