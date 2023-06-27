@@ -1207,12 +1207,17 @@ class AntdTable extends Component {
                                     } catch (e) {
                                     };
 
-                                    setProps({
-                                        data: data,
-                                        recentlySelectRow: record,
-                                        recentlySelectDataIndex: columns[i]['dataIndex'],
-                                        recentlySelectValue: value
-                                    });
+                                    setTimeout(
+                                        () => {
+                                            setProps({
+                                                data: data,
+                                                recentlySelectRow: record,
+                                                recentlySelectDataIndex: columns[i]['dataIndex'],
+                                                recentlySelectValue: value
+                                            })
+                                        },
+                                        200
+                                    );
                                 }} />
                         );
                     }
