@@ -25,6 +25,7 @@ const AntdDrawer = (props) => {
         forceRender,
         destroyOnClose,
         containerId,
+        containerSelector,
         height,
         mask,
         maskClosable,
@@ -42,13 +43,14 @@ const AntdDrawer = (props) => {
     return (
         <Drawer
             id={id}
+            key={key}
             className={
                 isString(className) ?
                     className :
                     (className ? useCss(className) : undefined)
             }
             style={
-                containerId ?
+                containerId || containerSelector ?
                     {
                         ...{ position: 'absolute' },
                         ...style
@@ -59,7 +61,6 @@ const AntdDrawer = (props) => {
             bodyStyle={bodyStyle}
             headerStyle={headerStyle}
             maskStyle={maskStyle}
-            key={key}
             open={visible}
             title={title}
             placement={placement}
@@ -67,11 +68,11 @@ const AntdDrawer = (props) => {
             forceRender={forceRender}
             destroyOnClose={destroyOnClose}
             getContainer={
-                containerId ?
-                    () => (
-                        document.getElementById(containerId) ?
-                            document.getElementById(containerId) :
-                            document.body
+                containerId || containerSelector ?
+                    (
+                        containerId ?
+                            () => document.getElementById(containerId) || document.body :
+                            () => eval(containerSelector)
                     ) :
                     undefined}
             height={height}
@@ -164,6 +165,10 @@ AntdDrawer.propTypes = {
 
     // 当想要对抽屉进行局部渲染时，用于设置position为relative的容器id
     containerId: PropTypes.string,
+
+    // 当目标容器定位较为复杂时，可传入获取元素对应的js代码字符串
+    // 优先级低于containerId
+    containerSelector: PropTypes.string,
 
     loading_state: PropTypes.shape({
         /**

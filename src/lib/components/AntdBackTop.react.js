@@ -34,7 +34,7 @@ const AntdBackTop = (props) => {
                 containerId || containerSelector ?
                     (
                         containerId ?
-                            () => document.getElementById(containerId) :
+                            () => document.getElementById(containerId) || window :
                             () => eval(containerSelector)
                     ) :
                     () => window
