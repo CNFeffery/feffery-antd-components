@@ -1711,25 +1711,6 @@ class AntdTable extends Component {
             )
         }
 
-        // 若存在至少一个字段有group参数，则对columns进行重构
-        // 以支持双层表头
-        if (columns.some(e => e.group)) {
-            let tempColumns = []
-            // 新逻辑
-            for (let column of columns) {
-                if (column.group) {
-                    if (isString(column.group)) {
-                        insertNewColumnNode(column, [column.group], 0, tempColumns)
-                    } else {
-                        insertNewColumnNode(column, column.group, 0, tempColumns)
-                    }
-                } else {
-                    tempColumns.push(column)
-                }
-            }
-            columns = tempColumns
-        }
-
         // 配置自定义组件
         const components = {}
 
@@ -1748,6 +1729,25 @@ class AntdTable extends Component {
             }
         }
 
+        // 若存在至少一个字段有group参数，则对columns进行重构以支持多层表头
+        let tempColumns = []
+        if (columns.some(e => e.group)) {
+            // 新逻辑
+            for (let column of columns) {
+                if (column.group) {
+                    if (isString(column.group)) {
+                        insertNewColumnNode(column, [column.group], 0, tempColumns)
+                    } else {
+                        insertNewColumnNode(column, column.group, 0, tempColumns)
+                    }
+                } else {
+                    tempColumns.push(column)
+                }
+            }
+        } else {
+            tempColumns = [...columns]
+        }
+
         return (
             <ConfigProvider
                 locale={str2Locale.get(locale)}
@@ -1764,7 +1764,7 @@ class AntdTable extends Component {
                         // 根据hiddenRowKeys参数情况进行指定行记录的隐藏
                         data.filter(e => !hiddenRowKeys.includes(e.key))
                     }
-                    columns={columns}
+                    columns={tempColumns}
                     size={size2size.get(size)}
                     rowSelection={rowSelection}
                     sticky={sticky}
