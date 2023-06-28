@@ -163,7 +163,13 @@ AntdModal.propTypes = {
         disabled: PropTypes.bool,
 
         // 设置按钮形状（circle：圆形，round：圆角矩形，默认不设置，即正常矩形）
-        shape: PropTypes.oneOf(['circle', 'round'])
+        shape: PropTypes.oneOf(['circle', 'round']),
+
+        // 设置按钮css样式
+        style: PropTypes.object,
+
+        // 设置按钮css类
+        className: PropTypes.string
     }),
 
     // 设置取消按钮文字
@@ -184,7 +190,13 @@ AntdModal.propTypes = {
         disabled: PropTypes.bool,
 
         // 设置按钮形状（circle：圆形，round：圆角矩形，默认不设置，即正常矩形）
-        shape: PropTypes.oneOf(['circle', 'round'])
+        shape: PropTypes.oneOf(['circle', 'round']),
+
+        // 设置按钮css样式
+        style: PropTypes.object,
+
+        // 设置按钮css类
+        className: PropTypes.string
     }),
 
     // 自定义对话框的像素宽度，默认为520
