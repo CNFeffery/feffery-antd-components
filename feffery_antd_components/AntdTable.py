@@ -45,6 +45,8 @@ Keyword arguments:
 
         - mode (a value equal to: 'default', 'text-area'; optional)
 
+        - placeholder (string; optional)
+
     - editable (boolean; optional)
 
     - ellipsis (boolean | number | string | dict | list; optional)

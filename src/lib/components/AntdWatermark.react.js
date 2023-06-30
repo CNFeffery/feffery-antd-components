@@ -12,6 +12,8 @@ const AntdWatermark = (props) => {
         children,
         className,
         style,
+        markClassName,
+        markStyle,
         key,
         content,
         rotate,
@@ -20,6 +22,9 @@ const AntdWatermark = (props) => {
         fontSize,
         gapX,
         gapY,
+        image,
+        width,
+        height,
         loading_state
     } = props;
 
@@ -29,6 +34,8 @@ const AntdWatermark = (props) => {
         <WaterMark id={id}
             className={className}
             style={style}
+            markClassName={markClassName}
+            markStyle={markStyle}
             key={key}
             content={content}
             rotate={rotate}
@@ -37,6 +44,9 @@ const AntdWatermark = (props) => {
             fontSize={fontSize}
             gapX={gapX}
             gapY={gapY}
+            image={image}
+            width={width}
+            height={height}
             data-dash-is-loading={
                 (loading_state && loading_state.is_loading) || undefined
             }>
@@ -50,6 +60,9 @@ AntdWatermark.propTypes = {
     // 部件id
     id: PropTypes.string,
 
+    // 辅助刷新用唯一标识key值
+    key: PropTypes.string,
+
     /**
      * The content of the tab - will only be displayed if this tab is selected
      */
@@ -61,11 +74,17 @@ AntdWatermark.propTypes = {
     // 自定义css字典
     style: PropTypes.object,
 
-    // 辅助刷新用唯一标识key值
-    key: PropTypes.string,
+    // 设置水印层css类
+    markClassName: PropTypes.string,
+
+    // 设置水印层css样式
+    markStyle: PropTypes.object,
 
     // 设置水印文字内容
-    content: PropTypes.string,
+    content: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.arrayOf(PropTypes.string)
+    ]),
 
     // 设置水印旋转角度，默认-22
     rotate: PropTypes.number,
@@ -84,6 +103,16 @@ AntdWatermark.propTypes = {
 
     // 水印之间的垂直间距，默认为222
     gapY: PropTypes.number,
+
+    // 图片型水印
+    // 用于设置水印图片的地址
+    image: PropTypes.string,
+
+    // 用于设置水印图片的像素宽度
+    width: PropTypes.number,
+
+    // 用于设置水印图片的像素高度
+    height: PropTypes.number,
 
     loading_state: PropTypes.shape({
         /**

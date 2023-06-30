@@ -21,6 +21,8 @@ Keyword arguments:
 
 - containerId (string; optional)
 
+- containerSelector (string; optional)
+
 - destroyOnClose (boolean; default False)
 
 - drawerStyle (dict; optional)
@@ -70,10 +72,10 @@ Keyword arguments:
     _namespace = 'feffery_antd_components'
     _type = 'AntdDrawer'
     @_explicitize_args
-    def __init__(self, children=None, id=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, drawerStyle=Component.UNDEFINED, bodyStyle=Component.UNDEFINED, headerStyle=Component.UNDEFINED, maskStyle=Component.UNDEFINED, key=Component.UNDEFINED, visible=Component.UNDEFINED, title=Component.UNDEFINED, placement=Component.UNDEFINED, closable=Component.UNDEFINED, forceRender=Component.UNDEFINED, destroyOnClose=Component.UNDEFINED, width=Component.UNDEFINED, height=Component.UNDEFINED, mask=Component.UNDEFINED, maskClosable=Component.UNDEFINED, zIndex=Component.UNDEFINED, extra=Component.UNDEFINED, containerId=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
-        self._prop_names = ['children', 'id', 'bodyStyle', 'className', 'closable', 'containerId', 'destroyOnClose', 'drawerStyle', 'extra', 'forceRender', 'headerStyle', 'height', 'key', 'loading_state', 'mask', 'maskClosable', 'maskStyle', 'placement', 'style', 'title', 'visible', 'width', 'zIndex']
+    def __init__(self, children=None, id=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, drawerStyle=Component.UNDEFINED, bodyStyle=Component.UNDEFINED, headerStyle=Component.UNDEFINED, maskStyle=Component.UNDEFINED, key=Component.UNDEFINED, visible=Component.UNDEFINED, title=Component.UNDEFINED, placement=Component.UNDEFINED, closable=Component.UNDEFINED, forceRender=Component.UNDEFINED, destroyOnClose=Component.UNDEFINED, width=Component.UNDEFINED, height=Component.UNDEFINED, mask=Component.UNDEFINED, maskClosable=Component.UNDEFINED, zIndex=Component.UNDEFINED, extra=Component.UNDEFINED, containerId=Component.UNDEFINED, containerSelector=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
+        self._prop_names = ['children', 'id', 'bodyStyle', 'className', 'closable', 'containerId', 'containerSelector', 'destroyOnClose', 'drawerStyle', 'extra', 'forceRender', 'headerStyle', 'height', 'key', 'loading_state', 'mask', 'maskClosable', 'maskStyle', 'placement', 'style', 'title', 'visible', 'width', 'zIndex']
         self._valid_wildcard_attributes =            []
-        self.available_properties = ['children', 'id', 'bodyStyle', 'className', 'closable', 'containerId', 'destroyOnClose', 'drawerStyle', 'extra', 'forceRender', 'headerStyle', 'height', 'key', 'loading_state', 'mask', 'maskClosable', 'maskStyle', 'placement', 'style', 'title', 'visible', 'width', 'zIndex']
+        self.available_properties = ['children', 'id', 'bodyStyle', 'className', 'closable', 'containerId', 'containerSelector', 'destroyOnClose', 'drawerStyle', 'extra', 'forceRender', 'headerStyle', 'height', 'key', 'loading_state', 'mask', 'maskClosable', 'maskStyle', 'placement', 'style', 'title', 'visible', 'width', 'zIndex']
         self.available_wildcard_properties =            []
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()

@@ -19,6 +19,8 @@ Keyword arguments:
 
     `cancelButtonProps` is a dict with keys:
 
+    - className (string; optional)
+
     - danger (boolean; optional)
 
     - disabled (boolean; optional)
@@ -26,6 +28,8 @@ Keyword arguments:
     - shape (a value equal to: 'circle', 'round'; optional)
 
     - size (a value equal to: 'small', 'middle', 'large'; optional)
+
+    - style (dict; optional)
 
     - type (a value equal to: 'primary', 'ghost', 'dashed', 'link', 'text', 'default'; optional)
 
@@ -78,6 +82,8 @@ Keyword arguments:
 
     `okButtonProps` is a dict with keys:
 
+    - className (string; optional)
+
     - danger (boolean; optional)
 
     - disabled (boolean; optional)
@@ -85,6 +91,8 @@ Keyword arguments:
     - shape (a value equal to: 'circle', 'round'; optional)
 
     - size (a value equal to: 'small', 'middle', 'large'; optional)
+
+    - style (dict; optional)
 
     - type (a value equal to: 'primary', 'ghost', 'dashed', 'link', 'text', 'default'; optional)
 
