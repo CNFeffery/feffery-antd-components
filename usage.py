@@ -8,17 +8,30 @@ app = dash.Dash(__name__)
 
 app.layout = html.Div(
     [
-        fac.AntdWatermark(
-            html.Div(
+        fac.AntdPopupCard(
+            title=fac.AntdText(
+                '标题测试',
                 style={
-                    'height': '500px',
-                    'boxShadow': '0 6px 16px rgb(107 147 224 / 14%)',
-                    'marginBottom': '25px'
+                    'paddingLeft': 8,
+                    'borderLeft': '3px solid #40a9ff',
+                    'fontSize': 18
                 }
             ),
-            image='https://gw.alipayobjects.com/zos/bmw-prod/59a18171-ae17-4fc5-93a0-2645f64a3aca.svg',
-            width=115,
-            height=36
+            draggable=True,
+            dragClassName={
+                'cursor': 'grab',
+                '&:active': {
+                    'cursor': 'grabbing'
+                }
+            },
+            width=600,
+            closeIconType='two-tone',
+            bodyStyle={
+                'padding': 16
+            },
+            style={
+                'width': 800
+            }
         )
     ],
     style={

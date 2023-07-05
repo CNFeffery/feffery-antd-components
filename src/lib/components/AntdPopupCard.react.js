@@ -26,6 +26,7 @@ const AntdPopupCard = (props) => {
         closable,
         closeIconType,
         draggable,
+        dragClassName,
         zIndex,
         bodyStyle,
         setProps,
@@ -70,9 +71,16 @@ const AntdPopupCard = (props) => {
             key={key}
             title={
                 <div
+                    className={
+                        isString(dragClassName) ?
+                            dragClassName :
+                            (dragClassName ? useCss(dragClassName) : undefined)
+                    }
                     style={{
                         width: "100%",
-                        cursor: draggable ? "move" : 'inherit'
+                        ...(
+                            dragClassName?.cursor ? {} : { cursor: draggable ? "move" : 'inherit' }
+                        )
                     }}
                     onMouseOver={() => {
                         if (disabled) {
@@ -200,6 +208,12 @@ AntdPopupCard.propTypes = {
 
     // 设置是否可拖拽，默认为false
     draggable: PropTypes.bool,
+
+    // 设置标题拖拽区域的css类名
+    dragClassName: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.object
+    ]),
 
     // 设置弹出卡片的zIndex，默认为1000
     zIndex: PropTypes.number,
