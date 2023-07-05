@@ -9,33 +9,17 @@ app = dash.Dash(__name__)
 app.layout = html.Div(
     [
         fac.AntdPopupCard(
-            title=fac.AntdText(
-                '标题测试',
-                style={
-                    'paddingLeft': 8,
-                    'borderLeft': '3px solid #40a9ff',
-                    'fontSize': 18
-                }
-            ),
+            title='标题测试',
             draggable=True,
-            dragClassName={
-                'cursor': 'grab',
-                '&:active': {
-                    'cursor': 'grabbing'
-                }
-            },
-            width=600,
+            width=550,
             closeIconType='two-tone',
             bodyStyle={
                 'padding': 16
-            },
-            style={
-                'width': 800
             }
         )
     ],
     style={
-        'padding': 100
+        'paddingTop': 100
     }
 )
 

@@ -1,6 +1,6 @@
 import React, { useRef, useState } from 'react';
 import PropTypes from 'prop-types';
-import { Modal, ConfigProvider } from 'antd';
+import { Modal } from 'antd';
 import {
     CloseCircleFilled,
     CloseCircleOutlined,
@@ -9,6 +9,7 @@ import {
 import Draggable from "react-draggable";
 import { isString } from 'lodash';
 import useCss from '../hooks/useCss';
+import { v4 as uuidv4 } from 'uuid';
 
 // 定义弹出卡片组件AntdPopupCard，api参数参考https://ant.design/components/modal-cn/
 const AntdPopupCard = (props) => {
@@ -33,6 +34,7 @@ const AntdPopupCard = (props) => {
         loading_state
     } = props;
 
+    const [handleId, setHandleId] = useState(uuidv4().replace(/\d+/g, ""));
     const [disabled, setDisabled] = useState(false);
     const [bounds, setBounds] = useState({
         left: 0,
@@ -71,6 +73,7 @@ const AntdPopupCard = (props) => {
             key={key}
             title={
                 <div
+                    id={handleId}
                     className={
                         isString(dragClassName) ?
                             dragClassName :
@@ -147,6 +150,7 @@ const AntdPopupCard = (props) => {
                     <Draggable
                         disabled={disabled}
                         bounds={bounds}
+                        handle={'#' + handleId}
                         onStart={(event, uiData) => onStart(event, uiData)}
                     >
                         <div ref={draggleRef}>{modal}</div>
