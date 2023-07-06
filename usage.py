@@ -9,6 +9,7 @@ app = dash.Dash(__name__)
 app.layout = html.Div(
     [
         fac.AntdPopupCard(
+            '测试',
             title='标题测试',
             draggable=True,
             width=550,
