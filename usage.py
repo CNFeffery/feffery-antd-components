@@ -8,15 +8,23 @@ app = dash.Dash(__name__)
 
 app.layout = html.Div(
     [
-        fac.AntdPopupCard(
-            '测试',
-            title='标题测试',
-            draggable=True,
-            width=550,
-            closeIconType='two-tone',
-            bodyStyle={
-                'padding': 16
-            }
+        fac.AntdDescriptions(
+            [
+                fac.AntdDescriptionItem(
+                    fac.AntdText('content测试'),
+                    label='label测试'
+                )
+            ],
+            bordered=True
+        ),
+        fac.AntdDescriptions(
+            items=[
+                {
+                    'label': fac.AntdText('label测试'),
+                    'children': fac.AntdText('content测试')
+                }
+            ],
+            bordered=True
         )
     ],
     style={

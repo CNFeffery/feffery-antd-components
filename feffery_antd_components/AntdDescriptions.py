@@ -35,6 +35,24 @@ Keyword arguments:
 
 - contentStyle (dict; optional)
 
+- items (list of dicts; optional)
+
+    `items` is a list of dicts with keys:
+
+    - children (a list of or a singular dash component, string or number; optional)
+
+    - className (string; optional)
+
+    - contentStyle (dict; optional)
+
+    - label (a list of or a singular dash component, string or number; optional)
+
+    - labelStyle (dict; optional)
+
+    - span (number; optional)
+
+    - style (dict; optional)
+
 - key (string; optional)
 
 - labelStyle (dict; optional)
@@ -59,15 +77,15 @@ Keyword arguments:
 - style (dict; optional)
 
 - title (a list of or a singular dash component, string or number; optional)"""
-    _children_props = ['title']
+    _children_props = ['items[].label', 'items[].children', 'title']
     _base_nodes = ['title', 'children']
     _namespace = 'feffery_antd_components'
     _type = 'AntdDescriptions'
     @_explicitize_args
-    def __init__(self, children=None, id=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, key=Component.UNDEFINED, title=Component.UNDEFINED, column=Component.UNDEFINED, bordered=Component.UNDEFINED, size=Component.UNDEFINED, layout=Component.UNDEFINED, labelStyle=Component.UNDEFINED, contentStyle=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
-        self._prop_names = ['children', 'id', 'bordered', 'className', 'column', 'contentStyle', 'key', 'labelStyle', 'layout', 'loading_state', 'size', 'style', 'title']
+    def __init__(self, children=None, id=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, key=Component.UNDEFINED, items=Component.UNDEFINED, title=Component.UNDEFINED, column=Component.UNDEFINED, bordered=Component.UNDEFINED, size=Component.UNDEFINED, layout=Component.UNDEFINED, labelStyle=Component.UNDEFINED, contentStyle=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
+        self._prop_names = ['children', 'id', 'bordered', 'className', 'column', 'contentStyle', 'items', 'key', 'labelStyle', 'layout', 'loading_state', 'size', 'style', 'title']
         self._valid_wildcard_attributes =            []
-        self.available_properties = ['children', 'id', 'bordered', 'className', 'column', 'contentStyle', 'key', 'labelStyle', 'layout', 'loading_state', 'size', 'style', 'title']
+        self.available_properties = ['children', 'id', 'bordered', 'className', 'column', 'contentStyle', 'items', 'key', 'labelStyle', 'layout', 'loading_state', 'size', 'style', 'title']
         self.available_wildcard_properties =            []
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()

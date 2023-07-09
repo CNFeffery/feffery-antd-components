@@ -15,6 +15,7 @@ const AntdDescriptions = (props) => {
         className,
         style,
         key,
+        items,
         title,
         column,
         bordered,
@@ -26,13 +27,42 @@ const AntdDescriptions = (props) => {
         loading_state
     } = props;
 
-    children = parseChildrenToArray(children)
-
     let size2size = new Map([
         ['small', 'small'],
         ['default', 'middle'],
         ['large', 'default']
     ])
+
+    if (items) {
+        return (
+            <Descriptions id={id}
+                className={
+                    isString(className) ?
+                        className :
+                        (className ? useCss(className) : undefined)
+                }
+                style={style}
+                key={key}
+                title={title}
+                column={column}
+                bordered={bordered}
+                size={size2size.get(size)}
+                layout={layout}
+                labelStyle={labelStyle}
+                contentStyle={contentStyle}
+                data-dash-is-loading={
+                    (loading_state && loading_state.is_loading) || undefined
+                }>
+                {
+                    items.map(
+                        (item, index) => <Descriptions.Item key={index} {...item} />
+                    )
+                }
+            </Descriptions>
+        );
+    }
+
+    children = parseChildrenToArray(children)
 
     const descriptionItems = children.map(
         (child) => {
@@ -112,6 +142,32 @@ AntdDescriptions.propTypes = {
 
     // 辅助刷新用唯一标识key值
     key: PropTypes.string,
+
+    // 数据驱动形式的内部子项定义，设置后会忽略children参数
+    items: PropTypes.arrayOf(
+        PropTypes.exact({
+            // 设置当前子项标题内容
+            label: PropTypes.node,
+
+            // 设置当前子项占位份数，默认为1
+            span: PropTypes.number,
+
+            // 设置当前子项内容
+            children: PropTypes.node,
+
+            // 设置当前子项标签css样式
+            labelStyle: PropTypes.object,
+
+            // 设置当前子项内容css样式
+            contentStyle: PropTypes.object,
+
+            // 设置当前子项css样式
+            style: PropTypes.object,
+
+            // 设置当前子项css类名
+            className: PropTypes.string
+        })
+    ),
 
     // 设置标题内容
     title: PropTypes.node,
