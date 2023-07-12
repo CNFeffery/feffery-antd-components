@@ -42,11 +42,15 @@ Keyword arguments:
 
 - mouseLeaveDelay (number; default 0.1)
 
+- open (boolean; default False)
+
 - overlayClassName (string | dict; optional)
 
 - overlayInnerStyle (dict; optional)
 
 - overlayStyle (dict; optional)
+
+- permanent (boolean; default False)
 
 - placement (a value equal to: 'top', 'left', 'right', 'bottom', 'topLeft', 'topRight', 'bottomLeft', 'bottomRight', 'leftTop', 'leftBottom', 'rightTop', 'rightBottom'; default 'top')
 
@@ -64,10 +68,10 @@ Keyword arguments:
     _namespace = 'feffery_antd_components'
     _type = 'AntdPopover'
     @_explicitize_args
-    def __init__(self, children=None, id=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, key=Component.UNDEFINED, title=Component.UNDEFINED, content=Component.UNDEFINED, placement=Component.UNDEFINED, color=Component.UNDEFINED, mouseEnterDelay=Component.UNDEFINED, mouseLeaveDelay=Component.UNDEFINED, overlayClassName=Component.UNDEFINED, overlayStyle=Component.UNDEFINED, overlayInnerStyle=Component.UNDEFINED, trigger=Component.UNDEFINED, zIndex=Component.UNDEFINED, arrowPointAtCenter=Component.UNDEFINED, popupContainer=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
-        self._prop_names = ['children', 'id', 'arrowPointAtCenter', 'className', 'color', 'content', 'key', 'loading_state', 'mouseEnterDelay', 'mouseLeaveDelay', 'overlayClassName', 'overlayInnerStyle', 'overlayStyle', 'placement', 'popupContainer', 'style', 'title', 'trigger', 'zIndex']
+    def __init__(self, children=None, id=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, key=Component.UNDEFINED, title=Component.UNDEFINED, content=Component.UNDEFINED, placement=Component.UNDEFINED, color=Component.UNDEFINED, mouseEnterDelay=Component.UNDEFINED, mouseLeaveDelay=Component.UNDEFINED, overlayClassName=Component.UNDEFINED, overlayStyle=Component.UNDEFINED, overlayInnerStyle=Component.UNDEFINED, trigger=Component.UNDEFINED, zIndex=Component.UNDEFINED, arrowPointAtCenter=Component.UNDEFINED, open=Component.UNDEFINED, permanent=Component.UNDEFINED, popupContainer=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
+        self._prop_names = ['children', 'id', 'arrowPointAtCenter', 'className', 'color', 'content', 'key', 'loading_state', 'mouseEnterDelay', 'mouseLeaveDelay', 'open', 'overlayClassName', 'overlayInnerStyle', 'overlayStyle', 'permanent', 'placement', 'popupContainer', 'style', 'title', 'trigger', 'zIndex']
         self._valid_wildcard_attributes =            []
-        self.available_properties = ['children', 'id', 'arrowPointAtCenter', 'className', 'color', 'content', 'key', 'loading_state', 'mouseEnterDelay', 'mouseLeaveDelay', 'overlayClassName', 'overlayInnerStyle', 'overlayStyle', 'placement', 'popupContainer', 'style', 'title', 'trigger', 'zIndex']
+        self.available_properties = ['children', 'id', 'arrowPointAtCenter', 'className', 'color', 'content', 'key', 'loading_state', 'mouseEnterDelay', 'mouseLeaveDelay', 'open', 'overlayClassName', 'overlayInnerStyle', 'overlayStyle', 'permanent', 'placement', 'popupContainer', 'style', 'title', 'trigger', 'zIndex']
         self.available_wildcard_properties =            []
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()

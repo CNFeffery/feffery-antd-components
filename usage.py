@@ -8,27 +8,31 @@ app = dash.Dash(__name__)
 
 app.layout = html.Div(
     [
-        fac.AntdDescriptions(
+        fac.AntdSpace(
             [
-                fac.AntdDescriptionItem(
-                    fac.AntdText('content测试'),
-                    label='label测试'
+                fac.AntdPopover(
+                    fac.AntdButton(
+                        '锚点元素'
+                    ),
+                    title='气泡卡片示例',
+                    content='内容示例',
+                    open=True,
+                    permanent=True
+                ),
+                fac.AntdPopconfirm(
+                    fac.AntdButton(
+                        '触发'
+                    ),
+                    title='确认继续',
+                    open=True,
+                    permanent=True
                 )
             ],
-            bordered=True
-        ),
-        fac.AntdDescriptions(
-            items=[
-                {
-                    'label': fac.AntdText('label测试'),
-                    'children': fac.AntdText('content测试')
-                }
-            ],
-            bordered=True
+            size=100
         )
     ],
     style={
-        'paddingTop': 100
+        'padding': 150
     }
 )
 

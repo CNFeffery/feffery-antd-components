@@ -32,6 +32,10 @@ const AntdPopconfirm = (props) => {
         confirmCounts,
         cancelCounts,
         trigger,
+        zIndex,
+        arrowPointAtCenter,
+        open,
+        permanent,
         popupContainer,
         setProps,
         loading_state
@@ -83,6 +87,12 @@ const AntdPopconfirm = (props) => {
                 okButtonProps={okButtonProps}
                 cancelText={cancelText}
                 cancelButtonProps={cancelButtonProps}
+                zIndex={zIndex}
+                arrowPointAtCenter={arrowPointAtCenter}
+                open={open}
+                onOpenChange={
+                    permanent ? undefined : (e) => setProps({ open: e })
+                }
                 getPopupContainer={
                     popupContainer === 'parent' ?
                         (triggerNode) => triggerNode.parentNode :
@@ -213,6 +223,19 @@ AntdPopconfirm.propTypes = {
         ]
     ),
 
+    // 设置悬浮层zIndex
+    zIndex: PropTypes.number,
+
+    // 设置箭头是否指向锚点元素中心，默认为false
+    arrowPointAtCenter: PropTypes.bool,
+
+    // 用于监听或控制当前popconfirm的显隐，默认为false
+    open: PropTypes.bool,
+
+    // 用于设置是否保持popconfirm显示/隐藏
+    // 默认为false
+    permanent: PropTypes.bool,
+
     // 设置悬浮层锚定策略，可选的有'parent'、'body'，默认为'body'
     popupContainer: PropTypes.oneOf(['parent', 'body']),
 
@@ -248,7 +271,10 @@ AntdPopconfirm.defaultProps = {
     cancelCounts: 0,
     trigger: 'hover',
     locale: 'zh-cn',
-    popupContainer: 'body'
+    popupContainer: 'body',
+    arrowPointAtCenter: false,
+    open: false,
+    permanent: false
 }
 
 export default AntdPopconfirm;

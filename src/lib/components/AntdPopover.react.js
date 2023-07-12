@@ -28,7 +28,10 @@ const AntdPopover = (props) => {
         trigger,
         zIndex,
         arrowPointAtCenter,
+        open,
+        permanent,
         popupContainer,
+        setProps,
         loading_state
     } = props;
 
@@ -64,6 +67,10 @@ const AntdPopover = (props) => {
             trigger={trigger}
             zIndex={zIndex}
             arrowPointAtCenter={arrowPointAtCenter}
+            open={open}
+            onOpenChange={
+                permanent ? undefined : (e) => setProps({ open: e })
+            }
             getPopupContainer={
                 popupContainer === 'parent' ?
                     (triggerNode) => triggerNode.parentNode :
@@ -145,6 +152,13 @@ AntdPopover.propTypes = {
     // 设置箭头是否指向锚点元素中心，默认为false
     arrowPointAtCenter: PropTypes.bool,
 
+    // 用于监听或控制当前popover的显隐，默认为false
+    open: PropTypes.bool,
+
+    // 用于设置是否保持popover显示/隐藏
+    // 默认为false
+    permanent: PropTypes.bool,
+
     // 设置悬浮层锚定策略，可选的有'parent'、'body'，默认为'body'
     popupContainer: PropTypes.oneOf(['parent', 'body']),
 
@@ -177,7 +191,9 @@ AntdPopover.defaultProps = {
     placement: 'top',
     trigger: 'hover',
     arrowPointAtCenter: false,
-    popupContainer: 'body'
+    popupContainer: 'body',
+    open: false,
+    permanent: false
 }
 
 export default AntdPopover;
