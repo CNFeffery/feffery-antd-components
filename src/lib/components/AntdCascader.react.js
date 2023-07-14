@@ -113,6 +113,15 @@ const AntdCascader = (props) => {
                 status={status}
                 allowClear={isUndefined(readOnly) ? allowClear : !readOnly}
                 showCheckedStrategy={str2ShowCheckedStrategy.get(showCheckedStrategy)}
+                displayRender={
+                    multiple ?
+                        undefined :
+                        (
+                            showCheckedStrategy === 'show-child' ?
+                                (label) => label[label.length - 1] :
+                                (label) => label[0]
+                        )
+                }
                 showSearch={filter}
                 onChange={onSelect}
                 data-dash-is-loading={
