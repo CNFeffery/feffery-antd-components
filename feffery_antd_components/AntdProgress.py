@@ -66,6 +66,22 @@ Keyword arguments:
 
 - style (dict; optional)
 
+- success (dict; optional)
+
+    `success` is a dict with keys:
+
+    - percent (number; optional)
+
+    - strokeColor (dict; optional)
+
+        `strokeColor` is a string
+
+      Or dict with keys:
+
+        - from (string; optional)
+
+        - to (string; optional)
+
 - trailColor (string; optional)
 
 - type (a value equal to: 'line', 'circle', 'dashboard'; default 'line')
@@ -76,10 +92,10 @@ Keyword arguments:
     _namespace = 'feffery_antd_components'
     _type = 'AntdProgress'
     @_explicitize_args
-    def __init__(self, id=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, key=Component.UNDEFINED, type=Component.UNDEFINED, size=Component.UNDEFINED, percent=Component.UNDEFINED, format=Component.UNDEFINED, status=Component.UNDEFINED, showInfo=Component.UNDEFINED, strokeColor=Component.UNDEFINED, strokeLinecap=Component.UNDEFINED, strokeWidth=Component.UNDEFINED, trailColor=Component.UNDEFINED, width=Component.UNDEFINED, gapDegree=Component.UNDEFINED, gapPosition=Component.UNDEFINED, steps=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
-        self._prop_names = ['id', 'className', 'format', 'gapDegree', 'gapPosition', 'key', 'loading_state', 'percent', 'showInfo', 'size', 'status', 'steps', 'strokeColor', 'strokeLinecap', 'strokeWidth', 'style', 'trailColor', 'type', 'width']
+    def __init__(self, id=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, key=Component.UNDEFINED, type=Component.UNDEFINED, size=Component.UNDEFINED, percent=Component.UNDEFINED, success=Component.UNDEFINED, format=Component.UNDEFINED, status=Component.UNDEFINED, showInfo=Component.UNDEFINED, strokeColor=Component.UNDEFINED, strokeLinecap=Component.UNDEFINED, strokeWidth=Component.UNDEFINED, trailColor=Component.UNDEFINED, width=Component.UNDEFINED, gapDegree=Component.UNDEFINED, gapPosition=Component.UNDEFINED, steps=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
+        self._prop_names = ['id', 'className', 'format', 'gapDegree', 'gapPosition', 'key', 'loading_state', 'percent', 'showInfo', 'size', 'status', 'steps', 'strokeColor', 'strokeLinecap', 'strokeWidth', 'style', 'success', 'trailColor', 'type', 'width']
         self._valid_wildcard_attributes =            []
-        self.available_properties = ['id', 'className', 'format', 'gapDegree', 'gapPosition', 'key', 'loading_state', 'percent', 'showInfo', 'size', 'status', 'steps', 'strokeColor', 'strokeLinecap', 'strokeWidth', 'style', 'trailColor', 'type', 'width']
+        self.available_properties = ['id', 'className', 'format', 'gapDegree', 'gapPosition', 'key', 'loading_state', 'percent', 'showInfo', 'size', 'status', 'steps', 'strokeColor', 'strokeLinecap', 'strokeWidth', 'style', 'success', 'trailColor', 'type', 'width']
         self.available_wildcard_properties =            []
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()

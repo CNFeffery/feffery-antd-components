@@ -37,3 +37,5 @@ package-lock.json
 FefferyAntdComponents.jl
 
 .Rbuildignore
+
+/assets

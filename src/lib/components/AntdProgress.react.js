@@ -16,6 +16,7 @@ const AntdProgress = (props) => {
         type,
         size,
         percent,
+        success,
         format,
         status,
         showInfo,
@@ -44,6 +45,7 @@ const AntdProgress = (props) => {
             type={type}
             size={size}
             percent={percent}
+            success={success}
             format={format ? p => (format && format.content) ?
                 format.content : (
                     ((format && format.prefix) ? format.prefix : '') +
@@ -101,6 +103,24 @@ AntdProgress.propTypes = {
 
     // 设置进度条的完成程度，取值在0到100之间，100时会自动渲染“已完成状态”，默认为0
     percent: PropTypes.number,
+
+    // 成功状态进度条相关配置
+    success: PropTypes.exact({
+        // 自定义成功状态对应百分比
+        percent: PropTypes.number,
+        // 自定义成功状态进度条颜色
+        strokeColor: PropTypes.oneOfType([
+            PropTypes.string,
+            // 配置渐变色
+            PropTypes.exact({
+                // 配置开始颜色
+                from: PropTypes.string,
+
+                // 配置结束颜色
+                to: PropTypes.string
+            })
+        ])
+    }),
 
     // 自定义提示格式
     format: PropTypes.exact({

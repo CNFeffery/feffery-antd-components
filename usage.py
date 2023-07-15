@@ -6,104 +6,39 @@ app = dash.Dash(__name__)
 
 app.layout = html.Div(
     [
-
-        fac.AntdDivider(
-            'showCheckedStrategy="show-parent"（默认）',
-            innerTextOrientation='left'
-        ),
-        fac.AntdCascader(
-            placeholder='请选择',
-            options=[
-                {
-                    'value': '节点1',
-                    'label': '节点1',
-                    'children': [
-                        {
-                            'value': '节点1-1',
-                            'label': '节点1-1'
-                        },
-                        {
-                            'value': '节点1-2',
-                            'label': '节点1-2',
-                            'children': [
-                                {
-                                    'value': '节点1-2-1',
-                                    'label': '节点1-2-1'
-                                },
-                                {
-                                    'value': '节点1-2-2',
-                                    'label': '节点1-2-2'
-                                }
-                            ]
-                        }
-                    ]
+        fac.AntdTooltip(
+            fac.AntdProgress(
+                percent=60,
+                success={
+                    'percent': 30
                 },
-                {
-                    'value': '节点2',
-                    'label': '节点2',
-                    'children': [
-                        {
-                            'value': '节点2-1',
-                            'label': '节点2-1'
-                        },
-                        {
-                            'value': '节点2-2',
-                            'label': '节点2-2'
-                        }
-                    ]
+                style={
+                    'width': 300
                 }
-            ],
-            # multiple=True
+            ),
+            title='3 done / 3 in progress / 4 to do'
         ),
 
-        fac.AntdDivider(
-            'showCheckedStrategy="show-child"',
-            innerTextOrientation='left'
-        ),
-        fac.AntdCascader(
-            placeholder='请选择',
-            options=[
-                {
-                    'value': '节点1',
-                    'label': '节点1',
-                    'children': [
-                        {
-                            'value': '节点1-1',
-                            'label': '节点1-1'
-                        },
-                        {
-                            'value': '节点1-2',
-                            'label': '节点1-2',
-                            'children': [
-                                {
-                                    'value': '节点1-2-1',
-                                    'label': '节点1-2-1'
-                                },
-                                {
-                                    'value': '节点1-2-2',
-                                    'label': '节点1-2-2'
-                                }
-                            ]
-                        }
-                    ]
+        fac.AntdTooltip(
+            fac.AntdProgress(
+                percent=60,
+                success={
+                    'percent': 30
                 },
-                {
-                    'value': '节点2',
-                    'label': '节点2',
-                    'children': [
-                        {
-                            'value': '节点2-1',
-                            'label': '节点2-1'
-                        },
-                        {
-                            'value': '节点2-2',
-                            'label': '节点2-2'
-                        }
-                    ]
-                }
-            ],
-            showCheckedStrategy='show-child',
-            # multiple=True
+                type='circle'
+            ),
+            title='3 done / 3 in progress / 4 to do'
+        ),
+
+        fac.AntdTooltip(
+            fac.AntdProgress(
+                percent=60,
+                success={
+                    'percent': 30
+                },
+                type='dashboard'
+            ),
+            title='3 done / 3 in progress / 4 to do'
         )
     ],
     style={
