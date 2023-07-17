@@ -17,6 +17,7 @@ const AntdCheckCardGroup = (props) => {
         style,
         key,
         multiple,
+        allowNoValue,
         bordered,
         value,
         defaultValue,
@@ -58,7 +59,15 @@ const AntdCheckCardGroup = (props) => {
                     disabled
             }
             size={size}
-            onChange={(e) => setProps({ value: e })}
+            onChange={(e) => {
+                if (allowNoValue) {
+                    setProps({ value: e })
+                } else {
+                    if (e && e.length !== 0) {
+                        setProps({ value: e })
+                    }
+                }
+            }}
             persistence={persistence}
             persisted_props={persisted_props}
             persistence_type={persistence_type}
@@ -92,6 +101,9 @@ AntdCheckCardGroup.propTypes = {
 
     // 设置是否允许多选，默认为false
     multiple: PropTypes.bool,
+
+    // 设置是否允许当前组合卡片内无选中值，默认为true
+    allowNoValue: PropTypes.bool,
 
     // 设置是否显示边框，默认为true
     bordered: PropTypes.bool,
@@ -185,6 +197,7 @@ AntdCheckCardGroup.propTypes = {
 // 设置默认参数
 AntdCheckCardGroup.defaultProps = {
     multiple: false,
+    allowNoValue: true,
     bordered: true,
     disabled: false,
     size: 'default',
