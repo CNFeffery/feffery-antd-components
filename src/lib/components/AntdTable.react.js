@@ -648,6 +648,59 @@ class AntdTable extends Component {
                             ...columns[i],
                             ...this.getColumnSearchProps(columns[i].dataIndex, columns[i].title)
                         }
+                    } else if (filterOptions[columns[i].dataIndex].filterMode === 'tree') {
+                        // 若当前字段筛选模式为'tree'模式
+                        // 若当前字段对应filterOptions子元素下有filterCustomTreeItems属性
+                        // 则为其添加自定义树形选项
+                        if (filterOptions[columns[i].dataIndex].filterCustomTreeItems) {
+                            columns[i] = {
+                                ...columns[i],
+                                defaultFilteredValue: defaultFilteredValues[columns[i].dataIndex],
+                                filterMode: 'tree',
+                                // 直接使用自定义树形筛选菜单结构
+                                filters: filterOptions[columns[i].dataIndex].filterCustomTreeItems,
+                                // 针对不同再渲染模式设计值筛选逻辑
+                                onFilter: (value, record) => {
+                                    // 仅支持非数组型合法输入值，对象型输入支持对content、text、label、tag属性进行值筛选
+                                    if (record[columns[i].dataIndex] && !Array.isArray(record[columns[i].dataIndex])) {
+                                        // 判断当前记录是否有content属性
+                                        if (record[columns[i].dataIndex]?.content) {
+                                            return record[columns[i].dataIndex].content === value;
+                                        } else if (record[columns[i].dataIndex]?.text) {
+                                            return record[columns[i].dataIndex].text === value;
+                                        } else if (record[columns[i].dataIndex]?.label) {
+                                            return record[columns[i].dataIndex].label === value;
+                                        } else if (record[columns[i].dataIndex]?.tag) {
+                                            return record[columns[i].dataIndex].tag === value;
+                                        } else if (record[columns[i].dataIndex]?.toString) {
+                                            return record[columns[i].dataIndex].toString() === value;
+                                        }
+                                    } else if (Array.isArray(record[columns[i].dataIndex])) {
+                                        // 若当前记录为数组，分别检查数组元素对象是否具有content、tag、title属性
+                                        if (record[columns[i].dataIndex].some(item => item?.content)) {
+                                            // 检查当前记录数组中是否至少有一个对象的content属性等于筛选值value
+                                            return record[columns[i].dataIndex].some(
+                                                item => item?.content.toString().toLowerCase() === value?.toLowerCase()
+                                            )
+                                        } else if (record[columns[i].dataIndex].some(item => item?.tag)) {
+                                            // 检查当前记录数组中是否至少有一个对象的tag属性命中关键词
+                                            return record[columns[i].dataIndex].some(
+                                                item => item?.tag.toString().toLowerCase() === value?.toLowerCase()
+                                            )
+                                        } else if (record[columns[i].dataIndex].some(item => item?.title)) {
+                                            // 检查当前记录数组中是否至少有一个对象的title属性命中关键词
+                                            return record[columns[i].dataIndex].some(
+                                                item => item?.title.toString().toLowerCase() === value?.toLowerCase()
+                                            )
+                                        }
+                                    }
+                                    return false;
+                                },
+                                filterSearch: filterOptions[columns[i].dataIndex].filterSearch
+                            }
+                            console.log('===============================================')
+                            console.log(columns[i])
+                        }
                     } else {
                         // 否则则一律视为'checkbox'模式
                         // 若当前字段对应filterOptions子元素下有filterCustomItems属性
@@ -749,7 +802,6 @@ class AntdTable extends Component {
             }
         } else {
             // 否则在server-side模式下
-
             // 为filterOptions.filterDataIndexes中定义的每个字段
             // 添加简单值选择过滤功能
             // 为filterOptions.filterDataIndexes中定义的每个字段添加过滤功能
@@ -757,14 +809,32 @@ class AntdTable extends Component {
                 // 若当前字段在filterOptions的keys()中
                 if (Object.keys(filterOptions).indexOf(columns[i].dataIndex) !== -1) {
                     // 若当前字段对应filterOptions子元素有filterMode属性且filterMode属性为'keyword'
-                    if (filterOptions[columns[i].dataIndex].hasOwnProperty('filterMode') && filterOptions[columns[i].dataIndex].filterMode === 'keyword') {
+                    if (filterOptions[columns[i].dataIndex].filterMode === 'keyword') {
                         columns[i] = {
                             ...columns[i],
                             ...this.getColumnSearchProps(columns[i].dataIndex, columns[i].title)
                         }
+                    } else if (filterOptions[columns[i].dataIndex].filterMode === 'tree') {
+                        // 若当前字段筛选模式为'tree'模式
+                        // 若当前字段对应filterOptions子元素下有filterCustomTreeItems属性
+                        // 则为其添加自定义树形选项
+                        if (filterOptions[columns[i].dataIndex].filterCustomTreeItems) {
+                            columns[i] = {
+                                ...columns[i],
+                                defaultFilteredValue: defaultFilteredValues[columns[i].dataIndex],
+                                filterMode: 'tree',
+                                filters: filterOptions[columns[i].dataIndex].filterCustomTreeItems,
+                                onFilter: (value, record) => true // 契合后端刷新模式
+                            }
+                        } else {
+                            columns[i] = {
+                                ...columns[i],
+                                filters: [],
+                                onFilter: (value, record) => true
+                            }
+                        }
                     } else {
                         // 否则则一律视为'checkbox'模式
-
                         // 若当前字段对应filterOptions子元素下有filterCustomItems属性
                         // 则为其添加自定义选项
                         if (filterOptions[columns[i].dataIndex].hasOwnProperty('filterCustomItems')) {
@@ -2425,8 +2495,10 @@ AntdTable.propTypes = {
     // 定义筛选参数
     filterOptions: PropTypes.objectOf(
         PropTypes.exact({
-            // 设置筛选模式，可选的有'checkbox'、'keyword'，默认为'checkbox'
-            filterMode: PropTypes.oneOf(['checkbox', 'keyword']),
+            // 设置筛选模式，可选的有'checkbox'、'keyword'、'tree'
+            // 其中'tree'模式需要依赖树形结构参数filterCustomTreeItems
+            // 默认为'checkbox'
+            filterMode: PropTypes.oneOf(['checkbox', 'keyword', 'tree']),
 
             // 'checkbox'模式下可用，用于自定义待筛选项
             filterCustomItems: PropTypes.oneOfType([
@@ -2436,6 +2508,9 @@ AntdTable.propTypes = {
                 ]),
                 PropTypes.any
             ]),
+
+            // 'tree'模式下可用，用于自定义树型筛选菜单结构
+            filterCustomTreeItems: PropTypes.arrayOf(PropTypes.object),
 
             // 'checkbox'模式下可用，用于设置是否允许多选，默认为true
             filterMultiple: PropTypes.bool,

@@ -352,7 +352,9 @@ Keyword arguments:
 
     - filterCustomItems (list | boolean | number | string | dict | list; optional)
 
-    - filterMode (a value equal to: 'checkbox', 'keyword'; optional)
+    - filterCustomTreeItems (list of dicts; optional)
+
+    - filterMode (a value equal to: 'checkbox', 'keyword', 'tree'; optional)
 
     - filterMultiple (boolean; optional)
 
