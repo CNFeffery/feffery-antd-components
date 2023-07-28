@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext } from 'react';
 import PropTypes from 'prop-types';
 import { v4 as uuidv4 } from 'uuid';
 import { Upload, message, Modal, ConfigProvider } from 'antd';
-import AntdIcon from '../AntdIcon.react';
+import AntdIcon from '../general/AntdIcon.react';
 import useCss from '../../hooks/useCss';
 import { isString, isUndefined } from 'lodash';
 import { str2Locale, locale2text } from '../locales.react';

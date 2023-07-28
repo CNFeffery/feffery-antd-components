@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import { Dropdown, Menu, Button } from 'antd';
-import AntdIcon from './AntdIcon.react';
+import AntdIcon from './general/AntdIcon.react';
 import { DownOutlined } from '@ant-design/icons';
 import { isString, isUndefined } from 'lodash';
 import useCss from '../hooks/useCss';

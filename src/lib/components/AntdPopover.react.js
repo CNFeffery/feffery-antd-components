@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Popover, Button } from 'antd';
-import AntdIcon from './AntdIcon.react';
+import { Popover } from 'antd';
+import AntdIcon from './general/AntdIcon.react';
 import { parseChildrenToArray } from './utils';
 import { isString } from 'lodash';
 import useCss from '../hooks/useCss';

@@ -1,7 +1,7 @@
 import { useEffect, useMemo } from 'react';
 import PropTypes from 'prop-types';
 import { Tree, Tooltip, Dropdown } from 'antd';
-import AntdIcon from './AntdIcon.react';
+import AntdIcon from './general/AntdIcon.react';
 import { omitBy, isUndefined, isString, isObject, isArray, cloneDeep } from 'lodash';
 import { flatToTree } from './utils';
 import useCss from '../hooks/useCss';

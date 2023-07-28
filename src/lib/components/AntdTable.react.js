@@ -36,7 +36,7 @@ import {
 } from '@ant-design/plots';
 import Highlighter from 'react-highlight-words';
 import { Resizable } from 're-resizable';
-import AntdIcon from './AntdIcon.react';
+import AntdIcon from './general/AntdIcon.react';
 import {
     SearchOutlined,
     QuestionCircleOutlined,

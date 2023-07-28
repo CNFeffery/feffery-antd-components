@@ -1,7 +1,7 @@
 import React, { useEffect, useContext } from 'react';
 import PropTypes from 'prop-types';
 import { Segmented } from 'antd';
-import AntdIcon from "./AntdIcon.react"
+import AntdIcon from "./general/AntdIcon.react";
 import propTypes from 'prop-types';
 import { isString, isUndefined } from 'lodash';
 import useCss from '../hooks/useCss';

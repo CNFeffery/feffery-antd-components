@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Avatar } from 'antd';
 import useCss from '../hooks/useCss';
 import { isString } from 'lodash';
-import AntdIcon from './AntdIcon.react';
+import AntdIcon from './general/AntdIcon.react';
 
 
 // 定义头像组件AntdAvatar，api参数参考https://ant.design/components/avatar-cn/

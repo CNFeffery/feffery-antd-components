@@ -1,16 +1,16 @@
 import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import { Typography, ConfigProvider } from 'antd';
-import useCss from '../../hooks/useCss';
+import { str2Locale } from '../../locales.react';
+import useCss from '../../../hooks/useCss';
 import { isString } from 'lodash';
-import { str2Locale } from '../locales.react';
-import { parseChildrenToArray } from '../utils';
-import PropsContext from '../../contexts/PropsContext';
+import { parseChildrenToArray } from '../../utils';
+import PropsContext from '../../../contexts/PropsContext';
 
-const { Title } = Typography;
+const { Text } = Typography;
 
-// 定义标题组件AntdTitle，api参数参考https://ant.design/components/typography-cn/
-const AntdTitle = (props) => {
+// 定义文字组件AntdText，api参数参考https://ant.design/components/typography-cn/
+const AntdText = (props) => {
     // 取得必要属性或参数
     let {
         id,
@@ -19,7 +19,6 @@ const AntdTitle = (props) => {
         style,
         key,
         locale,
-        level,
         code,
         copyable,
         strikethrough,
@@ -30,6 +29,7 @@ const AntdTitle = (props) => {
         underline,
         type,
         keyboard,
+        ellipsis,
         setProps,
         loading_state
     } = props;
@@ -41,7 +41,7 @@ const AntdTitle = (props) => {
 
     return (
         <ConfigProvider locale={str2Locale.get(locale)}>
-            <Title id={id}
+            <Text id={id}
                 className={
                     isString(className) ?
                         className :
@@ -49,7 +49,6 @@ const AntdTitle = (props) => {
                 }
                 style={style}
                 key={key}
-                level={level}
                 code={code}
                 copyable={copyable}
                 delete={strikethrough}
@@ -60,17 +59,18 @@ const AntdTitle = (props) => {
                 underline={underline}
                 type={type}
                 keyboard={keyboard}
+                ellipsis={ellipsis}
                 data-dash-is-loading={
                     (loading_state && loading_state.is_loading) || undefined
                 }>
                 {children}
-            </Title>
+            </Text>
         </ConfigProvider>
     );
 }
 
 // 定义参数或属性
-AntdTitle.propTypes = {
+AntdText.propTypes = {
     // 组件id
     /**
      * Component id.
@@ -78,7 +78,7 @@ AntdTitle.propTypes = {
     id: PropTypes.string,
 
     /**
-     * The content of the title.
+     * The content of the text.
      */
     children: PropTypes.node,
 
@@ -108,14 +108,6 @@ AntdTitle.propTypes = {
      * Sets the language environment. Possible options are 'zh-cn' and 'en-us'.
      */
     locale: PropTypes.oneOf(['zh-cn', 'en-us']),
-
-    // 设置标题级别，可选的有1到5之间的整数，对应h1到h5
-    // 默认为1
-    /**
-     * Sets the level of the title. Possible values are integers between 1 and 5, corresponding to h1 to h5.
-     * Default is 1.
-     */
-    level: PropTypes.number,
 
     // 设置是否以code模式渲染内容
     /**
@@ -177,6 +169,16 @@ AntdTitle.propTypes = {
      */
     type: PropTypes.oneOf(['secondary', 'success', 'warning', 'danger']),
 
+    // 设置内容省略相关功能
+    // 默认为false
+    ellipsis: PropTypes.oneOfType([
+        PropTypes.bool,
+        PropTypes.exact({
+            // 自定义省略内容额外后缀
+            suffix: PropTypes.string
+        })
+    ]),
+
     loading_state: PropTypes.shape({
         /**
          * Determines if the component is loading or not
@@ -200,9 +202,9 @@ AntdTitle.propTypes = {
 };
 
 // 设置默认参数
-AntdTitle.defaultProps = {
-    locale: 'zh-cn',
-    level: 1
+AntdText.defaultProps = {
+    ellipsis: false,
+    locale: 'zh-cn'
 }
 
-export default AntdTitle;
+export default AntdText;

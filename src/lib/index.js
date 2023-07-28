@@ -1,10 +1,14 @@
-/* eslint-disable import/prefer-default-export */
-import 'antd/dist/antd.variable.min.css';
-import './components/styles.css';
+
+// 通用
+import AntdButton from './components/general/AntdButton.react';
+import AntdIcon from './components/general/AntdIcon.react';
+import AntdParagraph from './components/general/typography/AntdParagraph.react';
+import AntdText from './components/general/typography/AntdText.react';
+import AntdTitle from './components/general/typography/AntdTitle.react';
+
 import AntdDatePicker from './components/AntdDatePicker.react';
 import AntdDateRangePicker from './components/AntdDateRangePicker.react';
 import AntdDivider from './components/AntdDivider.react';
-import AntdButton from './components/AntdButton.react';
 import AntdSelect from './components/AntdSelect.react';
 import AntdTree from './components/AntdTree.react';
 import AntdTable from './components/AntdTable.react';
@@ -34,9 +38,6 @@ import AntdCheckbox from './components/AntdCheckbox.react';
 import AntdCheckboxGroup from './components/AntdCheckboxGroup.react';
 import AntdSpin from './components/AntdSpin.react';
 import AntdSwitch from './components/AntdSwitch.react';
-import AntdParagraph from './components/typography/AntdParagraph.react';
-import AntdText from './components/typography/AntdText.react';
-import AntdTitle from './components/typography/AntdTitle.react';
 import AntdTabPane from './components/tabs/AntdTabPane.react';
 import AntdTabs from './components/tabs/AntdTabs.react';
 import AntdPagination from './components/AntdPagination.react';
@@ -46,7 +47,6 @@ import AntdPopover from './components/AntdPopover.react';
 import AntdEmpty from './components/AntdEmpty.react';
 import AntdCascader from './components/AntdCascader.react';
 import AntdRadioGroup from './components/AntdRadioGroup.react';
-import AntdIcon from './components/AntdIcon.react';
 import AntdPopconfirm from './components/AntdPopconfirm.react';
 import AntdBackTop from './components/AntdBackTop.react';
 import AntdSkeleton from './components/skeleton/AntdSkeleton.react';
@@ -96,6 +96,9 @@ import AntdPopupCard from './components/AntdPopupCard.react';
 import AntdConfigProvider from './components/AntdConfigProvider';
 import AntdSpoiler from './components/AntdSpoiler.react';
 import AntdCompact from './components/AntdCompact.react';
+// css样式
+import 'antd/dist/antd.variable.min.css';
+import './components/styles.css';
 
 
 export {

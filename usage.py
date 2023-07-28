@@ -8,35 +8,19 @@ app = dash.Dash(__name__)
 
 app.layout = html.Div(
     [
-        fac.AntdTable(
-            columns=[
-                {
-                    'title': f'字段{i}',
-                    'dataIndex': f'字段{i}'
-                }
-                for i in range(1, 4)
-            ],
-            data=[
-                {
-                    f'字段{i}': random.choice(list('abcdefgh'))
-                    for i in range(1, 4)
-                }
-                for row in range(100)
-            ],
-            bordered=True,
-            filterOptions={
-                '字段1': {
-                    'filterMode': 'tree',
-                    'filterCustomTreeItems': [
-                        {
-                            'text': s,
-                            'value': s
-                        }
-                        for s in list('abcdefgh')
-                    ],
-                    'filterSearch': True,
-                    'filterMultiple': True
-                }
+        fac.AntdText(
+            '测试内容' * 100,
+            ellipsis={
+                'suffix': '😀'
+            }
+        ),
+        fac.AntdParagraph(
+            '测试内容' * 100,
+            ellipsis={
+                'expandable': True,
+                'symbol': '😉',
+                # 'suffix': '😀',
+                'rows': 3
             }
         )
     ],

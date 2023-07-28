@@ -1,11 +1,11 @@
 import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import { Typography, ConfigProvider } from 'antd';
-import { str2Locale } from '../locales.react';
-import useCss from '../../hooks/useCss';
+import { str2Locale } from '../../locales.react';
+import useCss from '../../../hooks/useCss';
 import { isString } from 'lodash';
-import { parseChildrenToArray } from '../utils';
-import PropsContext from '../../contexts/PropsContext';
+import { parseChildrenToArray } from '../../utils';
+import PropsContext from '../../../contexts/PropsContext';
 
 const { Paragraph } = Typography;
 
@@ -28,6 +28,7 @@ const AntdParagraph = (props) => {
         italic,
         underline,
         type,
+        ellipsis,
         setProps,
         loading_state
     } = props;
@@ -56,6 +57,7 @@ const AntdParagraph = (props) => {
                 italic={italic}
                 underline={underline}
                 type={type}
+                ellipsis={ellipsis}
                 data-dash-is-loading={
                     (loading_state && loading_state.is_loading) || undefined
                 }>
@@ -159,6 +161,22 @@ AntdParagraph.propTypes = {
      */
     type: PropTypes.oneOf(['secondary', 'success', 'warning', 'danger']),
 
+    // 设置内容省略相关功能
+    // 默认为false
+    ellipsis: PropTypes.oneOfType([
+        PropTypes.bool,
+        PropTypes.exact({
+            // 设置是否可展开
+            expandable: PropTypes.bool,
+            // 设置最多显示的行数
+            rows: PropTypes.number,
+            // 自定义省略内容后缀
+            suffix: PropTypes.string,
+            // 自定义展开按钮元素
+            symbol: PropTypes.node
+        })
+    ]),
+
     loading_state: PropTypes.shape({
         /**
          * Determines if the component is loading or not
@@ -183,6 +201,7 @@ AntdParagraph.propTypes = {
 
 // 设置默认参数
 AntdParagraph.defaultProps = {
+    ellipsis: false,
     locale: 'zh-cn'
 }
 

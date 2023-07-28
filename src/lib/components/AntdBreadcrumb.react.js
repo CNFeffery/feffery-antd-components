@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Breadcrumb, Menu } from 'antd';
-import AntdIcon from './AntdIcon.react';
+import AntdIcon from './general/AntdIcon.react';
 import { isString } from 'lodash';
 import useCss from '../hooks/useCss';
 

@@ -1,16 +1,16 @@
 import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import { Typography, ConfigProvider } from 'antd';
-import { str2Locale } from '../locales.react';
-import useCss from '../../hooks/useCss';
+import useCss from '../../../hooks/useCss';
 import { isString } from 'lodash';
-import { parseChildrenToArray } from '../utils';
-import PropsContext from '../../contexts/PropsContext';
+import { str2Locale } from '../../locales.react';
+import { parseChildrenToArray } from '../../utils';
+import PropsContext from '../../../contexts/PropsContext';
 
-const { Text } = Typography;
+const { Title } = Typography;
 
-// 定义文字组件AntdText，api参数参考https://ant.design/components/typography-cn/
-const AntdText = (props) => {
+// 定义标题组件AntdTitle，api参数参考https://ant.design/components/typography-cn/
+const AntdTitle = (props) => {
     // 取得必要属性或参数
     let {
         id,
@@ -19,6 +19,7 @@ const AntdText = (props) => {
         style,
         key,
         locale,
+        level,
         code,
         copyable,
         strikethrough,
@@ -40,7 +41,7 @@ const AntdText = (props) => {
 
     return (
         <ConfigProvider locale={str2Locale.get(locale)}>
-            <Text id={id}
+            <Title id={id}
                 className={
                     isString(className) ?
                         className :
@@ -48,6 +49,7 @@ const AntdText = (props) => {
                 }
                 style={style}
                 key={key}
+                level={level}
                 code={code}
                 copyable={copyable}
                 delete={strikethrough}
@@ -62,13 +64,13 @@ const AntdText = (props) => {
                     (loading_state && loading_state.is_loading) || undefined
                 }>
                 {children}
-            </Text>
+            </Title>
         </ConfigProvider>
     );
 }
 
 // 定义参数或属性
-AntdText.propTypes = {
+AntdTitle.propTypes = {
     // 组件id
     /**
      * Component id.
@@ -76,7 +78,7 @@ AntdText.propTypes = {
     id: PropTypes.string,
 
     /**
-     * The content of the text.
+     * The content of the title.
      */
     children: PropTypes.node,
 
@@ -106,6 +108,14 @@ AntdText.propTypes = {
      * Sets the language environment. Possible options are 'zh-cn' and 'en-us'.
      */
     locale: PropTypes.oneOf(['zh-cn', 'en-us']),
+
+    // 设置标题级别，可选的有1到5之间的整数，对应h1到h5
+    // 默认为1
+    /**
+     * Sets the level of the title. Possible values are integers between 1 and 5, corresponding to h1 to h5.
+     * Default is 1.
+     */
+    level: PropTypes.number,
 
     // 设置是否以code模式渲染内容
     /**
@@ -190,8 +200,9 @@ AntdText.propTypes = {
 };
 
 // 设置默认参数
-AntdText.defaultProps = {
-    locale: 'zh-cn'
+AntdTitle.defaultProps = {
+    locale: 'zh-cn',
+    level: 1
 }
 
-export default AntdText;
+export default AntdTitle;

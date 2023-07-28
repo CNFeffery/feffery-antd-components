@@ -7,7 +7,6 @@ from .AntdAvatarGroup import AntdAvatarGroup
 from .AntdBackTop import AntdBackTop
 from .AntdBadge import AntdBadge
 from .AntdBreadcrumb import AntdBreadcrumb
-from .AntdButton import AntdButton
 from .AntdCalendar import AntdCalendar
 from .AntdCarousel import AntdCarousel
 from .AntdCascader import AntdCascader
@@ -25,7 +24,6 @@ from .AntdDivider import AntdDivider
 from .AntdDrawer import AntdDrawer
 from .AntdDropdown import AntdDropdown
 from .AntdEmpty import AntdEmpty
-from .AntdIcon import AntdIcon
 from .AntdImage import AntdImage
 from .AntdInput import AntdInput
 from .AntdInputNumber import AntdInputNumber
@@ -72,6 +70,11 @@ from .AntdDescriptionItem import AntdDescriptionItem
 from .AntdDescriptions import AntdDescriptions
 from .AntdForm import AntdForm
 from .AntdFormItem import AntdFormItem
+from .AntdButton import AntdButton
+from .AntdIcon import AntdIcon
+from .AntdParagraph import AntdParagraph
+from .AntdText import AntdText
+from .AntdTitle import AntdTitle
 from .AntdCol import AntdCol
 from .AntdRow import AntdRow
 from .AntdContent import AntdContent
@@ -87,9 +90,6 @@ from .AntdSkeletonImage import AntdSkeletonImage
 from .AntdSkeletonInput import AntdSkeletonInput
 from .AntdTabPane import AntdTabPane
 from .AntdTabs import AntdTabs
-from .AntdParagraph import AntdParagraph
-from .AntdText import AntdText
-from .AntdTitle import AntdTitle
 from .AntdDraggerUpload import AntdDraggerUpload
 from .AntdPictureUpload import AntdPictureUpload
 from .AntdUpload import AntdUpload
@@ -104,7 +104,6 @@ __all__ = [
     "AntdBackTop",
     "AntdBadge",
     "AntdBreadcrumb",
-    "AntdButton",
     "AntdCalendar",
     "AntdCarousel",
     "AntdCascader",
@@ -122,7 +121,6 @@ __all__ = [
     "AntdDrawer",
     "AntdDropdown",
     "AntdEmpty",
-    "AntdIcon",
     "AntdImage",
     "AntdInput",
     "AntdInputNumber",
@@ -169,6 +167,11 @@ __all__ = [
     "AntdDescriptions",
     "AntdForm",
     "AntdFormItem",
+    "AntdButton",
+    "AntdIcon",
+    "AntdParagraph",
+    "AntdText",
+    "AntdTitle",
     "AntdCol",
     "AntdRow",
     "AntdContent",
@@ -184,9 +187,6 @@ __all__ = [
     "AntdSkeletonInput",
     "AntdTabPane",
     "AntdTabs",
-    "AntdParagraph",
-    "AntdText",
-    "AntdTitle",
     "AntdDraggerUpload",
     "AntdPictureUpload",
     "AntdUpload"

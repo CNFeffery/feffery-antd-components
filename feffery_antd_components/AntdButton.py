@@ -5,57 +5,48 @@ from dash.development.base_component import Component, _explicitize_args
 
 class AntdButton(Component):
     """An AntdButton component.
-
+按钮组件AntdButton，api参数参考https://ant.design/components/button-cn/
 
 Keyword arguments:
 
 - children (a list of or a singular dash component, string or number; optional):
-    Children of current component.
+    当前按钮内嵌元素.
 
 - id (string; optional):
-    Id of current component.
+    当前组件唯一id.
 
 - autoSpin (boolean; default False):
-    Setting whether to automatically update loading to True after each
-    button click,   enabling callback operations with a non-clickable
-    button effect; default is False.
+    当前按钮在每次点击后是否自动进入加载中状态  默认：False.
 
 - block (boolean; default False):
-    Setting whether the button should span the full width of its
-    parent element, default is False.
+    当前按钮是否撑满父元素  默认：False.
 
 - className (string | dict; optional):
-    CSS class of current component.
+    当前按钮css类，支持动态css类特性.
 
 - danger (boolean; default False):
-    Setting whether the button should be in a dangerous state, default
-    is False.
+    当前按钮是否呈现危险状态  默认：False.
 
 - debounceWait (number; default 200):
-    Used to set the debounce waiting duration (in milliseconds) for
-    nClicks listener update; default is 0.
+    当前按钮点击事件监听防抖延时，单位：毫秒  默认：200.
 
 - disabled (boolean; default False):
-    Setting whether the button should be rendered as a disabled state,
-    default is False.
+    当前按钮是否呈现禁用状态  默认：False.
 
 - href (string; optional):
-    Setting the URL for redirection, similar to the functionality of
-    an <a> tag.
+    当前按钮点击跳转链接地址.
 
 - icon (a list of or a singular dash component, string or number; optional):
-    Component-specific parameter for setting the prefix icon element
-    of the button.
+    当前按钮内嵌元素前缀图标.
 
 - key (string; optional):
-    Refreshing the key can force a redraw of the current component.
+    当前组件辅助用唯一id，可通过更新key值实现强制重绘.
 
 - loading (boolean; optional):
-    Used to set whether the button renders a \"loading, not
-    clickable\" effect; default is False.
+    当前按钮是否呈现加载中状态  默认：False.
 
 - loadingChildren (a list of or a singular dash component, string or number; optional):
-    Children of current component while loading=True.
+    当前按钮加载状态下内嵌元素.
 
 - loading_state (dict; optional)
 
@@ -71,33 +62,29 @@ Keyword arguments:
         Holds which property is loading.
 
 - nClicks (number; default 0):
-    Recording the number of times the button has been clicked since
-    rendering, default is 0.
+    当前按钮累计被点击次数  默认：0.
 
-- shape (a value equal to: 'circle', 'round'; optional):
-    Setting the shape of the button (circle: circle, round: rounded
-    rectangle; default is not set, i.e., normal rectangle).
+- shape (a value equal to: 'default', 'circle', 'round'; default 'default'):
+    当前按钮形状，可选的有'default'、'circle'、'round'  默认：'default'.
 
 - size (a value equal to: 'small', 'middle', 'large'; default 'middle'):
-    Setting the size of the button, available options are 'small',
-    'middle', and 'large'; default is 'middle'.
+    当前按钮尺寸规格，可选的有'small'、'middle'、'large'  默认：'middle'.
 
 - style (dict; optional):
-    CSS style dict of current component.
+    当前按钮css样式.
 
 - target (string; optional):
-    Used in conjunction with the href parameter to set the type of
-    action for the redirection.
+    当前按钮点击跳转链接行为类型.
 
-- type (a value equal to: 'primary', 'ghost', 'dashed', 'link', 'text', 'default'; default 'default'):
-    Setting the overall style of the button (optional options are
-    primary, ghost, dashed, link, text, default; default is default)."""
+- type (a value equal to: 'default', 'primary', 'ghost', 'dashed', 'link', 'text'; default 'default'):
+    当前按钮类型，可选的有'default'、'primary'、'ghost'、'dashed'、'link'、'text'
+    默认：'primary'."""
     _children_props = ['loadingChildren', 'icon']
     _base_nodes = ['loadingChildren', 'icon', 'children']
     _namespace = 'feffery_antd_components'
     _type = 'AntdButton'
     @_explicitize_args
-    def __init__(self, children=None, id=Component.UNDEFINED, loadingChildren=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, key=Component.UNDEFINED, type=Component.UNDEFINED, href=Component.UNDEFINED, target=Component.UNDEFINED, block=Component.UNDEFINED, danger=Component.UNDEFINED, disabled=Component.UNDEFINED, shape=Component.UNDEFINED, size=Component.UNDEFINED, nClicks=Component.UNDEFINED, debounceWait=Component.UNDEFINED, icon=Component.UNDEFINED, loading=Component.UNDEFINED, autoSpin=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
+    def __init__(self, children=None, id=Component.UNDEFINED, style=Component.UNDEFINED, className=Component.UNDEFINED, key=Component.UNDEFINED, loadingChildren=Component.UNDEFINED, type=Component.UNDEFINED, href=Component.UNDEFINED, target=Component.UNDEFINED, block=Component.UNDEFINED, danger=Component.UNDEFINED, disabled=Component.UNDEFINED, shape=Component.UNDEFINED, size=Component.UNDEFINED, nClicks=Component.UNDEFINED, debounceWait=Component.UNDEFINED, icon=Component.UNDEFINED, loading=Component.UNDEFINED, autoSpin=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
         self._prop_names = ['children', 'id', 'autoSpin', 'block', 'className', 'danger', 'debounceWait', 'disabled', 'href', 'icon', 'key', 'loading', 'loadingChildren', 'loading_state', 'nClicks', 'shape', 'size', 'style', 'target', 'type']
         self._valid_wildcard_attributes =            []
         self.available_properties = ['children', 'id', 'autoSpin', 'block', 'className', 'danger', 'debounceWait', 'disabled', 'href', 'icon', 'key', 'loading', 'loadingChildren', 'loading_state', 'nClicks', 'shape', 'size', 'style', 'target', 'type']

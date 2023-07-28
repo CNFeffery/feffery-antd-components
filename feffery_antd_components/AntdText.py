@@ -27,6 +27,18 @@ Keyword arguments:
 - disabled (boolean; optional):
     Sets whether the content is disabled.
 
+- ellipsis (dict; default False)
+
+    `ellipsis` is a boolean | dict with keys:
+
+    - expandable (boolean; optional)
+
+    - rows (number; optional)
+
+    - suffix (string; optional)
+
+    - symbol (a list of or a singular dash component, string or number; optional)
+
 - italic (boolean; optional):
     Sets whether the content should be italic.
 
@@ -72,15 +84,15 @@ Keyword arguments:
 
 - underline (boolean; optional):
     Sets whether to add underline."""
-    _children_props = []
+    _children_props = ['ellipsis.symbol']
     _base_nodes = ['children']
     _namespace = 'feffery_antd_components'
     _type = 'AntdText'
     @_explicitize_args
-    def __init__(self, children=None, id=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, key=Component.UNDEFINED, locale=Component.UNDEFINED, code=Component.UNDEFINED, copyable=Component.UNDEFINED, strikethrough=Component.UNDEFINED, disabled=Component.UNDEFINED, mark=Component.UNDEFINED, strong=Component.UNDEFINED, italic=Component.UNDEFINED, underline=Component.UNDEFINED, keyboard=Component.UNDEFINED, type=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
-        self._prop_names = ['children', 'id', 'className', 'code', 'copyable', 'disabled', 'italic', 'key', 'keyboard', 'loading_state', 'locale', 'mark', 'strikethrough', 'strong', 'style', 'type', 'underline']
+    def __init__(self, children=None, id=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, key=Component.UNDEFINED, locale=Component.UNDEFINED, code=Component.UNDEFINED, copyable=Component.UNDEFINED, strikethrough=Component.UNDEFINED, disabled=Component.UNDEFINED, mark=Component.UNDEFINED, strong=Component.UNDEFINED, italic=Component.UNDEFINED, underline=Component.UNDEFINED, keyboard=Component.UNDEFINED, type=Component.UNDEFINED, ellipsis=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
+        self._prop_names = ['children', 'id', 'className', 'code', 'copyable', 'disabled', 'ellipsis', 'italic', 'key', 'keyboard', 'loading_state', 'locale', 'mark', 'strikethrough', 'strong', 'style', 'type', 'underline']
         self._valid_wildcard_attributes =            []
-        self.available_properties = ['children', 'id', 'className', 'code', 'copyable', 'disabled', 'italic', 'key', 'keyboard', 'loading_state', 'locale', 'mark', 'strikethrough', 'strong', 'style', 'type', 'underline']
+        self.available_properties = ['children', 'id', 'className', 'code', 'copyable', 'disabled', 'ellipsis', 'italic', 'key', 'keyboard', 'loading_state', 'locale', 'mark', 'strikethrough', 'strong', 'style', 'type', 'underline']
         self.available_wildcard_properties =            []
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()

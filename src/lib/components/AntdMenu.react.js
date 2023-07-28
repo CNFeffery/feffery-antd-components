@@ -1,7 +1,7 @@
 import React, { Component, useEffect } from 'react';
 import isAbsoluteUrl from 'is-absolute-url';
 import PropTypes from 'prop-types';
-import AntdIcon from "./AntdIcon.react"
+import AntdIcon from "./general/AntdIcon.react";
 import { isUndefined, isNull, isString } from 'lodash';
 import { Menu, Button } from 'antd';
 import {
