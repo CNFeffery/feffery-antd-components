@@ -1,20 +1,20 @@
 import dash
 import random
 from dash import html
-import feffery_antd_components as fac
+import feffery_antd_components.alias as fac
 from dash.dependencies import Input, Output
 
 app = dash.Dash(__name__)
 
 app.layout = html.Div(
     [
-        fac.AntdText(
+        fac.Text(
             '测试内容' * 100,
             ellipsis={
                 'suffix': '😀'
             }
         ),
-        fac.AntdParagraph(
+        fac.Paragraph(
             '测试内容' * 100,
             ellipsis={
                 'expandable': True,
