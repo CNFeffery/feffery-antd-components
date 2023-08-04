@@ -31,13 +31,7 @@ Keyword arguments:
 
     `ellipsis` is a boolean | dict with keys:
 
-    - expandable (boolean; optional)
-
-    - rows (number; optional)
-
     - suffix (string; optional)
-
-    - symbol (a list of or a singular dash component, string or number; optional)
 
 - italic (boolean; optional):
     Sets whether the content should be italic.
@@ -84,7 +78,7 @@ Keyword arguments:
 
 - underline (boolean; optional):
     Sets whether to add underline."""
-    _children_props = ['ellipsis.symbol']
+    _children_props = []
     _base_nodes = ['children']
     _namespace = 'feffery_antd_components'
     _type = 'AntdText'

@@ -23,6 +23,7 @@ const AntdCheckCardGroup = (props) => {
         defaultValue,
         disabled,
         size,
+        readOnly,
         setProps,
         loading_state,
         persistence,
@@ -60,11 +61,14 @@ const AntdCheckCardGroup = (props) => {
             }
             size={size}
             onChange={(e) => {
-                if (allowNoValue) {
-                    setProps({ value: e })
-                } else {
-                    if (e && e.length !== 0) {
+                // 只读模式下不进行值更新
+                if (!readOnly) {
+                    if (allowNoValue) {
                         setProps({ value: e })
+                    } else {
+                        if (e && e.length !== 0) {
+                            setProps({ value: e })
+                        }
                     }
                 }
             }}
@@ -143,6 +147,10 @@ AntdCheckCardGroup.propTypes = {
     // 默认为'default'
     size: PropTypes.oneOf(['small', 'default', 'large']),
 
+    // 设置是否以只读模式进行渲染
+    // 默认为false
+    readOnly: PropTypes.bool,
+
     loading_state: PropTypes.shape({
         /**
          * Determines if the component is loading or not
@@ -201,6 +209,7 @@ AntdCheckCardGroup.defaultProps = {
     bordered: true,
     disabled: false,
     size: 'default',
+    readOnly: false,
     persisted_props: ['value'],
     persistence_type: 'local'
 }

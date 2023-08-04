@@ -59,6 +59,8 @@ Keyword arguments:
     is kept after the browser quit.  session: window.sessionStorage,
     data is cleared once the browser quit.
 
+- readOnly (boolean; default False)
+
 - size (a value equal to: 'small', 'default', 'large'; default 'default')
 
 - style (dict; optional)
@@ -69,10 +71,10 @@ Keyword arguments:
     _namespace = 'feffery_antd_components'
     _type = 'AntdCheckCardGroup'
     @_explicitize_args
-    def __init__(self, children=None, id=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, key=Component.UNDEFINED, multiple=Component.UNDEFINED, allowNoValue=Component.UNDEFINED, bordered=Component.UNDEFINED, value=Component.UNDEFINED, defaultValue=Component.UNDEFINED, disabled=Component.UNDEFINED, size=Component.UNDEFINED, loading_state=Component.UNDEFINED, persistence=Component.UNDEFINED, persisted_props=Component.UNDEFINED, persistence_type=Component.UNDEFINED, **kwargs):
-        self._prop_names = ['children', 'id', 'allowNoValue', 'bordered', 'className', 'defaultValue', 'disabled', 'key', 'loading_state', 'multiple', 'persisted_props', 'persistence', 'persistence_type', 'size', 'style', 'value']
+    def __init__(self, children=None, id=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, key=Component.UNDEFINED, multiple=Component.UNDEFINED, allowNoValue=Component.UNDEFINED, bordered=Component.UNDEFINED, value=Component.UNDEFINED, defaultValue=Component.UNDEFINED, disabled=Component.UNDEFINED, size=Component.UNDEFINED, readOnly=Component.UNDEFINED, loading_state=Component.UNDEFINED, persistence=Component.UNDEFINED, persisted_props=Component.UNDEFINED, persistence_type=Component.UNDEFINED, **kwargs):
+        self._prop_names = ['children', 'id', 'allowNoValue', 'bordered', 'className', 'defaultValue', 'disabled', 'key', 'loading_state', 'multiple', 'persisted_props', 'persistence', 'persistence_type', 'readOnly', 'size', 'style', 'value']
         self._valid_wildcard_attributes =            []
-        self.available_properties = ['children', 'id', 'allowNoValue', 'bordered', 'className', 'defaultValue', 'disabled', 'key', 'loading_state', 'multiple', 'persisted_props', 'persistence', 'persistence_type', 'size', 'style', 'value']
+        self.available_properties = ['children', 'id', 'allowNoValue', 'bordered', 'className', 'defaultValue', 'disabled', 'key', 'loading_state', 'multiple', 'persisted_props', 'persistence', 'persistence_type', 'readOnly', 'size', 'style', 'value']
         self.available_wildcard_properties =            []
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()

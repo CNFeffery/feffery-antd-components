@@ -1,27 +1,22 @@
 import dash
-import random
 from dash import html
-import feffery_antd_components.alias as fac
-from dash.dependencies import Input, Output
+import feffery_antd_components as fac
 
 app = dash.Dash(__name__)
 
 app.layout = html.Div(
     [
-        fac.Text(
-            '测试内容' * 100,
-            ellipsis={
-                'suffix': '😀'
-            }
-        ),
-        fac.Paragraph(
-            '测试内容' * 100,
-            ellipsis={
-                'expandable': True,
-                'symbol': '😉',
-                # 'suffix': '😀',
-                'rows': 3
-            }
+        fac.AntdCheckCardGroup(
+            [
+                fac.AntdCheckCard(
+                    f'选项{i}',
+                    value=i
+                )
+                for i in range(1, 6)
+            ],
+            defaultValue=[2, 3, 4],
+            multiple=True,
+            readOnly=True
         )
     ],
     style={
