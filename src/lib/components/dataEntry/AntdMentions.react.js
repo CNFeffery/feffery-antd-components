@@ -24,6 +24,7 @@ const AntdMentions = (props) => {
         disabled,
         status,
         popupContainer,
+        readOnly,
         setProps,
         loading_state
     } = props;
@@ -31,7 +32,9 @@ const AntdMentions = (props) => {
     const context = useContext(PropsContext)
 
     const onChange = (e) => {
-        setProps({ value: e })
+        if ( !readOnly ) {
+            setProps({ value: e })
+        }
     }
 
     const onSelect = (e) => {
@@ -165,6 +168,9 @@ AntdMentions.propTypes = {
 
     // 设置悬浮层锚定策略，可选的有'parent'、'body'，默认为'body'
     popupContainer: PropTypes.oneOf(['parent', 'body']),
+    
+    // 设置是否以只读模式进行渲染，默认为false
+    readOnly: PropTypes.bool,
 
     loading_state: PropTypes.shape({
         /**
@@ -195,7 +201,8 @@ AntdMentions.defaultProps = {
     placement: 'bottom',
     disabled: false,
     selectedOptions: [],
-    popupContainer: 'body'
+    popupContainer: 'body',
+    readOnly: false
 }
 
 export default AntdMentions;

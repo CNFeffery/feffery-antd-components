@@ -28,6 +28,7 @@ const AntdTransfer = (props) => {
         disabled,
         targetKeys,
         status,
+        readOnly,
         persistence,
         persisted_props,
         persistence_type,
@@ -43,11 +44,13 @@ const AntdTransfer = (props) => {
 
     // 监听选项移动事件
     const listenMove = (nextTargetKeys, moveDirection, moveKeys) => {
-        setProps({
-            targetKeys: nextTargetKeys,
-            moveDirection: moveDirection,
-            moveKeys: moveKeys
-        })
+        if (!readOnly) {
+            setProps({
+                targetKeys: nextTargetKeys,
+                moveDirection: moveDirection,
+                moveKeys: moveKeys
+            })
+        }
     }
 
     // 返回定制化的前端组件
@@ -215,6 +218,9 @@ AntdTransfer.propTypes = {
     // 设置校验状态，可选的有'error'、'warning'
     status: PropTypes.oneOf(['error', 'warning']),
 
+    // 设置是否以只读模式进行渲染，默认为false
+    readOnly: PropTypes.bool,
+
     /**
      * Dash-assigned callback that should be called to report property changes
      * to Dash, to make them available for callbacks.
@@ -275,6 +281,7 @@ AntdTransfer.defaultProps = {
     showSelectAll: true,
     disabled: false,
     optionFilterMode: 'case-insensitive',
+    readOnly: false,
     persisted_props: ['targetKeys'],
     persistence_type: 'local',
     locale: 'zh-cn'

@@ -18,6 +18,7 @@ const AntdCheckbox = (props) => {
         disabled,
         checked,
         indeterminate,
+        readOnly,
         setProps,
         persistence,
         persisted_props,
@@ -28,7 +29,9 @@ const AntdCheckbox = (props) => {
     const context = useContext(PropsContext)
 
     const onChange = e => {
-        setProps({ checked: e.target.checked })
+        if (!readOnly) {
+            setProps({ checked: e.target.checked })
+        }
     }
 
     // 返回定制化的前端组件
@@ -92,6 +95,9 @@ AntdCheckbox.propTypes = {
     // 此参数仅与样式有关，与勾选状态无关
     indeterminate: PropTypes.bool,
 
+    // 设置是否以只读模式进行渲染，默认为false
+    readOnly: PropTypes.bool,
+
     loading_state: PropTypes.shape({
         /**
          * Determines if the component is loading or not
@@ -149,7 +155,8 @@ AntdCheckbox.defaultProps = {
     persistence_type: 'local',
     disabled: false,
     checked: false,
-    indeterminate: false
+    indeterminate: false,
+    readOnly: false
 }
 
 export default AntdCheckbox;

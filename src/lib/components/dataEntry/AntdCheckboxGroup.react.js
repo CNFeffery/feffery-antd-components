@@ -17,6 +17,7 @@ const AntdCheckboxGroup = (props) => {
         options,
         value,
         disabled,
+        readOnly,
         setProps,
         persistence,
         persisted_props,
@@ -27,7 +28,9 @@ const AntdCheckboxGroup = (props) => {
     const context = useContext(PropsContext)
 
     const onChange = e => {
-        setProps({ value: e })
+        if (!readOnly) {
+            setProps({ value: e })
+        }
     }
 
     // 返回定制化的前端组件
@@ -104,6 +107,9 @@ AntdCheckboxGroup.propTypes = {
         ])
     ),
 
+    // 设置是否以只读模式进行渲染，默认为false
+    readOnly: PropTypes.bool,
+
     loading_state: PropTypes.shape({
         /**
          * Determines if the component is loading or not
@@ -159,7 +165,8 @@ AntdCheckboxGroup.propTypes = {
 AntdCheckboxGroup.defaultProps = {
     persisted_props: ['value'],
     persistence_type: 'local',
-    disabled: false
+    disabled: false,
+    readOnly: false
 }
 
 export default AntdCheckboxGroup;

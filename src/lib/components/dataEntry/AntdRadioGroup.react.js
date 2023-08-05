@@ -22,6 +22,7 @@ const AntdRadioGroup = (props) => {
         buttonStyle,
         disabled,
         size,
+        readOnly,
         setProps,
         persistence,
         persisted_props,
@@ -38,7 +39,9 @@ const AntdRadioGroup = (props) => {
     }, [])
 
     const onSelect = (e) => {
-        setProps({ value: e.target.value })
+        if (!readOnly) {
+            setProps({ value: e.target.value })
+        }
     }
 
     if (direction === 'vertical') {
@@ -187,6 +190,9 @@ AntdRadioGroup.propTypes = {
     // 可选的有'outline'和'solid'，默认为'outline'
     buttonStyle: PropTypes.oneOf(['outline', 'solid']),
 
+    // 设置是否以只读模式进行渲染，默认为false
+    readOnly: PropTypes.bool,
+
     loading_state: PropTypes.shape({
         /**
          * Determines if the component is loading or not
@@ -245,6 +251,7 @@ AntdRadioGroup.defaultProps = {
     buttonStyle: 'outline',
     disabled: false,
     size: 'middle',
+    readOnly: false,
     persisted_props: ['value'],
     persistence_type: 'local'
 }

@@ -20,6 +20,7 @@ const AntdSwitch = (props) => {
         unCheckedChildren,
         size,
         loading,
+        readOnly,
         setProps,
         persistence,
         persisted_props,
@@ -36,7 +37,9 @@ const AntdSwitch = (props) => {
     }, [])
 
     const onChange = checked => {
-        setProps({ checked: checked })
+        if (!readOnly) {
+            setProps({ checked: checked })
+        }
     }
 
     // 返回定制化的前端组件
@@ -107,6 +110,9 @@ AntdSwitch.propTypes = {
     // 设置是否渲染loading状态，默认为false
     loading: PropTypes.bool,
 
+    // 设置是否以只读模式进行渲染，默认为false
+    readOnly: PropTypes.bool,
+
     loading_state: PropTypes.shape({
         /**
          * Determines if the component is loading or not
@@ -163,6 +169,7 @@ AntdSwitch.defaultProps = {
     disabled: false,
     size: 'default',
     loading: false,
+    readOnly: false,
     persisted_props: ['checked'],
     persistence_type: 'local'
 }

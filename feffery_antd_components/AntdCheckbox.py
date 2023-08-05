@@ -55,16 +55,18 @@ Keyword arguments:
     is kept after the browser quit.  session: window.sessionStorage,
     data is cleared once the browser quit.
 
+- readOnly (boolean; default False)
+
 - style (dict; optional)"""
     _children_props = ['label']
     _base_nodes = ['label', 'children']
     _namespace = 'feffery_antd_components'
     _type = 'AntdCheckbox'
     @_explicitize_args
-    def __init__(self, id=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, key=Component.UNDEFINED, disabled=Component.UNDEFINED, label=Component.UNDEFINED, checked=Component.UNDEFINED, indeterminate=Component.UNDEFINED, loading_state=Component.UNDEFINED, persistence=Component.UNDEFINED, persisted_props=Component.UNDEFINED, persistence_type=Component.UNDEFINED, **kwargs):
-        self._prop_names = ['id', 'checked', 'className', 'disabled', 'indeterminate', 'key', 'label', 'loading_state', 'persisted_props', 'persistence', 'persistence_type', 'style']
+    def __init__(self, id=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, key=Component.UNDEFINED, disabled=Component.UNDEFINED, label=Component.UNDEFINED, checked=Component.UNDEFINED, indeterminate=Component.UNDEFINED, readOnly=Component.UNDEFINED, loading_state=Component.UNDEFINED, persistence=Component.UNDEFINED, persisted_props=Component.UNDEFINED, persistence_type=Component.UNDEFINED, **kwargs):
+        self._prop_names = ['id', 'checked', 'className', 'disabled', 'indeterminate', 'key', 'label', 'loading_state', 'persisted_props', 'persistence', 'persistence_type', 'readOnly', 'style']
         self._valid_wildcard_attributes =            []
-        self.available_properties = ['id', 'checked', 'className', 'disabled', 'indeterminate', 'key', 'label', 'loading_state', 'persisted_props', 'persistence', 'persistence_type', 'style']
+        self.available_properties = ['id', 'checked', 'className', 'disabled', 'indeterminate', 'key', 'label', 'loading_state', 'persisted_props', 'persistence', 'persistence_type', 'readOnly', 'style']
         self.available_wildcard_properties =            []
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()

@@ -28,6 +28,7 @@ const AntdSlider = (props) => {
         tooltipPrefix,
         tooltipSuffix,
         popupContainer,
+        readOnly,
         loading_state,
         setProps,
         persistence,
@@ -65,7 +66,9 @@ const AntdSlider = (props) => {
 
     // 监听用户完成拖拽的动作
     const onChange = (e) => {
-        setProps({ value: e })
+        if (!readOnly) {
+            setProps({ value: e })
+        }
     }
 
     // 返回定制化的前端组件
@@ -177,6 +180,9 @@ AntdSlider.propTypes = {
     // 设置悬浮层锚定策略，可选的有'parent'、'body'，默认为'body'
     popupContainer: PropTypes.oneOf(['parent', 'body']),
 
+    // 设置是否以只读模式进行渲染，默认为false
+    readOnly: PropTypes.bool,
+
     loading_state: PropTypes.shape({
         /**
          * Determines if the component is loading or not
@@ -239,6 +245,7 @@ AntdSlider.defaultProps = {
     tooltipSuffix: '',
     disabled: false,
     popupContainer: 'body',
+    readOnly: false,
     persisted_props: ['value'],
     persistence_type: 'local'
 }

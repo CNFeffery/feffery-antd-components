@@ -20,6 +20,7 @@ const AntdCheckCard = (props) => {
         defaultChecked,
         disabled,
         size,
+        readOnly,
         setProps,
         loading_state,
         persistence,
@@ -55,7 +56,11 @@ const AntdCheckCard = (props) => {
                     disabled
             }
             size={size}
-            onChange={e => setProps({ checked: e })}
+            onChange={e => {
+                if (!readOnly) {
+                    setProps({ checked: e })
+                }
+            }}
             persistence={persistence}
             persisted_props={persisted_props}
             persistence_type={persistence_type}
@@ -81,7 +86,7 @@ AntdCheckCard.propTypes = {
     // 自定义css字典
     style: PropTypes.object,
 
-    // 辅助刷新用唯一标识key值
+    // 辅助刷新用唯一标识key值/
     key: PropTypes.string,
 
     // 设置当前选择卡片是否处于选择状态
@@ -105,6 +110,9 @@ AntdCheckCard.propTypes = {
         PropTypes.number,
         PropTypes.string
     ]),
+
+    // 设置是否以只读模式进行渲染，默认为false
+    readOnly: PropTypes.bool,
 
     loading_state: PropTypes.shape({
         /**
@@ -162,6 +170,7 @@ AntdCheckCard.defaultProps = {
     bordered: true,
     disabled: false,
     size: 'default',
+    readOnly: false,
     persisted_props: ['checked'],
     persistence_type: 'local'
 }
