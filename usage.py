@@ -6,17 +6,22 @@ app = dash.Dash(__name__)
 
 app.layout = html.Div(
     [
-        fac.AntdCheckCardGroup(
-            [
-                fac.AntdCheckCard(
-                    f'选项{i}',
-                    value=i
-                )
-                for i in range(1, 6)
-            ],
-            defaultValue=[2, 3, 4],
-            multiple=True,
-            readOnly=True
+        fac.AntdIcon(
+            icon='antd-menu-fold',
+            style={
+                'color': '#93a4b6',
+                'position': 'absolute',
+                'top': 16,
+                'left': 20,
+                'cursor': 'pointer',
+                'padding': '6px 14px',
+                'borderRadius': 6
+            },
+            className={
+                '&:hover': {
+                    'background': '#f2f3f5'
+                }
+            }
         )
     ],
     style={

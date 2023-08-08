@@ -26,4 +26,4 @@ const useCss = (css) => {
     return className;
 };
 
-export default React.memo(useCss);
+export default useCss;
