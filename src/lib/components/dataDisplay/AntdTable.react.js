@@ -1250,6 +1250,7 @@ class AntdTable extends Component {
                                     textAlign: 'left',
                                     ...content.style
                                 }}
+                                showSearch={true}
                                 options={content.options}
                                 listHeight={content.listHeight}
                                 mode={content.mode}
