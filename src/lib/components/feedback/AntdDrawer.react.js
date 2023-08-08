@@ -15,7 +15,9 @@ const AntdDrawer = (props) => {
         style,
         drawerStyle,
         bodyStyle,
+        contentWrapperStyle,
         headerStyle,
+        footerStyle,
         maskStyle,
         key,
         visible,
@@ -32,6 +34,7 @@ const AntdDrawer = (props) => {
         width,
         zIndex,
         extra,
+        footer,
         setProps,
         loading_state
     } = props;
@@ -59,7 +62,9 @@ const AntdDrawer = (props) => {
             }
             drawerStyle={drawerStyle}
             bodyStyle={bodyStyle}
+            contentWrapperStyle={contentWrapperStyle}
             headerStyle={headerStyle}
+            footerStyle={footerStyle}
             maskStyle={maskStyle}
             open={visible}
             title={title}
@@ -81,6 +86,7 @@ const AntdDrawer = (props) => {
             width={width}
             zIndex={zIndex}
             extra={extra}
+            footer={footer}
             onClose={onClose}
             data-dash-is-loading={
                 (loading_state && loading_state.is_loading) || undefined
@@ -112,8 +118,14 @@ AntdDrawer.propTypes = {
     // 设置抽屉内容部分的css样式
     bodyStyle: PropTypes.object,
 
+    // 设置抽屉包裹内容部分的css样式
+    contentWrapperStyle: PropTypes.object,
+
     // 设置抽屉头部的css样式
     headerStyle: PropTypes.object,
+
+    // 设置抽屉页脚的css样式
+    footerStyle: PropTypes.object,
 
     // 设置抽屉遮罩部分的css样式
     maskStyle: PropTypes.object,
@@ -162,6 +174,9 @@ AntdDrawer.propTypes = {
 
     // 设置额外操作区元素
     extra: PropTypes.node,
+
+    // 设置页脚部分元素
+    footer: PropTypes.node,
 
     // 当想要对抽屉进行局部渲染时，用于设置position为relative的容器id
     containerId: PropTypes.string,
