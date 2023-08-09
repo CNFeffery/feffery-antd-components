@@ -135,8 +135,7 @@ module.exports = (env, argv) => {
             new WebpackDashDynamicImport(),
             new webpack.SourceMapDevToolPlugin({
                 filename: '[file].map',
-                exclude: ['async-plotlyjs'],
-                module: true
+                exclude: ['async-plotlyjs']
             })
         ]
     }

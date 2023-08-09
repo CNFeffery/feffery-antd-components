@@ -1,27 +1,81 @@
 import dash
+import json
 from dash import html
+from datetime import datetime
 import feffery_antd_components as fac
+from dash.dependencies import Input, Output
 
 app = dash.Dash(__name__)
 
 app.layout = html.Div(
     [
-        fac.AntdFormItem(
-            fac.AntdDateRangePicker(
-                id='projects-center:projects-manage:projects-list:date-range',
-                style={
-                    'width': 225
+        fac.AntdTable(
+            id='table-editable-demo',
+            columns=[
+                {
+                    'title': 'int型示例',
+                    'dataIndex': 'int型示例',
+                    'editable': True,
+                    'width': '25%'
+                },
+                {
+                    'title': 'float型示例',
+                    'dataIndex': 'float型示例',
+                    'editable': True,
+                    'width': '25%'
+                },
+                {
+                    'title': 'str型示例',
+                    'dataIndex': 'str型示例',
+                    'editable': True,
+                    'width': '25%'
+                },
+                {
+                    'title': '日期时间示例',
+                    'dataIndex': '日期时间示例',
+                    'editable': True,
+                    'width': '25%'
+                },
+            ],
+            data=[
+                {
+                    'key': f'row-{i}',
+                    'int型示例': 123,
+                    'float型示例': 1.23,
+                    'str型示例': '示例字符',
+                    '日期时间示例': datetime.now().strftime('%Y-%m-%d %H:%M:%S')
                 }
-            ),
-            label='时间范围选择',
-            tooltip='以接件时间为目标进行筛选',
-            colon=False
+                for i in range(1, 4)
+            ],
+            bordered=True
+        ),
+
+        html.Pre(
+            id='table-editable-demo-output'
         )
     ],
     style={
         'padding': 150
     }
 )
+
+
+@app.callback(
+    Output('table-editable-demo-output', 'children'),
+    Input('table-editable-demo', 'recentlyChangedRow'),
+    Input('table-editable-demo', 'recentlyChangedColumn'),
+    prevent_initial_call=True
+)
+def table_editable_demo(recentlyChangedRow, recentlyChangedColumn):
+
+    return json.dumps(
+        dict(
+            recentlyChangedRow=recentlyChangedRow,
+            recentlyChangedColumn=recentlyChangedColumn
+        ),
+        indent=4,
+        ensure_ascii=False
+    )
 
 
 if __name__ == '__main__':

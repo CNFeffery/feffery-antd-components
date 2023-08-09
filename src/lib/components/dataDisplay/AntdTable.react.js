@@ -324,7 +324,6 @@ class AntdTable extends Component {
     }
 
     render() {
-
         // 取得必要属性或参数
         let {
             id,
@@ -502,14 +501,22 @@ class AntdTable extends Component {
                     }
                 }
 
+                // #93 找到发生编辑行为的字段dataIndex
+                let _changedColumn = null;
+                for (let i = 0; i < rowColumns.length; i++) {
+                    if (row[rowColumns[i]] !== item[rowColumns[i]]) {
+                        _changedColumn = rowColumns[i]
+                    }
+                }
+
                 newData.splice(index, 1, { ...item, ...row });
 
                 setDataSource(newData);
 
-                // 更新数据
                 setProps({
                     currentData: newData,
                     recentlyChangedRow: row,
+                    recentlyChangedColumn: _changedColumn,
                     data: newData
                 })
             };
@@ -698,8 +705,6 @@ class AntdTable extends Component {
                                 },
                                 filterSearch: filterOptions[columns[i].dataIndex].filterSearch
                             }
-                            console.log('===============================================')
-                            console.log(columns[i])
                         }
                     } else {
                         // 否则则一律视为'checkbox'模式
@@ -2582,6 +2587,9 @@ AntdTable.propTypes = {
 
     // 经过最近一次修改操作后，被修改的行所对应dataSource中的json字典
     recentlyChangedRow: PropTypes.object,
+
+    // 经过最近一次修改操作后，被修改的行所对应列的dataIndex信息
+    recentlyChangedColumn: PropTypes.string,
 
     // 经过最近一次排序操作后，对应的字段及排序方式信息
     sorter: PropTypes.exact({
