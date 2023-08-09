@@ -4,6 +4,8 @@ import { Form } from 'antd';
 import { isString } from 'lodash';
 import useCss from '../../../hooks/useCss';
 
+const { Item } = Form;
+
 // 定义表单项组件AntdFormItem，api参数参考https://ant.design/components/form-cn/
 const AntdFormItem = (props) => {
     // 取得必要属性或参数
@@ -29,7 +31,7 @@ const AntdFormItem = (props) => {
     } = props;
 
     return (
-        <Form.Item id={id}
+        <Item id={id}
             className={
                 isString(className) ?
                     className :
@@ -53,7 +55,7 @@ const AntdFormItem = (props) => {
                 (loading_state && loading_state.is_loading) || undefined
             }>
             {children}
-        </Form.Item>
+        </Item>
     );
 }
 

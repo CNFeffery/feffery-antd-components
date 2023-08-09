@@ -6,20 +6,16 @@ app = dash.Dash(__name__)
 
 app.layout = html.Div(
     [
-        fac.AntdDrawer(
-            '测试内容'*10000,
-            id='drawer-id-test',
-            placement='right',
-            visible=True,
-            footer=html.Div(
+        fac.AntdFormItem(
+            fac.AntdDateRangePicker(
+                id='projects-center:projects-manage:projects-list:date-range',
                 style={
-                    'height': 36
+                    'width': 225
                 }
             ),
-            width='50vw',
-            footerStyle={
-                'background': 'lightgrey'
-            }
+            label='时间范围选择',
+            tooltip='以接件时间为目标进行筛选',
+            colon=False
         )
     ],
     style={
