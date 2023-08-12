@@ -74,6 +74,7 @@ import AntdSkeletonImage from './components/feedback/skeleton/AntdSkeletonImage.
 import AntdSkeleton from './components/feedback/skeleton/AntdSkeleton.react';
 import AntdSpin from './components/feedback/AntdSpin.react';
 // 布局
+import AntdCenter from './components/layout/AntdCenter.react';
 import AntdDivider from './components/layout/AntdDivider.react';
 import AntdRow from './components/layout/grid/AntdRow.react';
 import AntdCol from './components/layout/grid/AntdCol.react';
@@ -107,7 +108,6 @@ import './components/styles.css';
 export {
     AntdDatePicker,
     AntdDateRangePicker,
-    AntdDivider,
     AntdButton,
     AntdSelect,
     AntdTree,
@@ -118,6 +118,8 @@ export {
     AntdSteps,
     AntdMenu,
     AntdCollapse,
+    AntdCenter,
+    AntdDivider,
     AntdRow,
     AntdCol,
     AntdLayout,

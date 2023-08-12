@@ -70,6 +70,7 @@ from .AntdIcon import AntdIcon
 from .AntdParagraph import AntdParagraph
 from .AntdText import AntdText
 from .AntdTitle import AntdTitle
+from .AntdCenter import AntdCenter
 from .AntdCompact import AntdCompact
 from .AntdContent import AntdContent
 from .AntdDivider import AntdDivider
@@ -167,6 +168,7 @@ __all__ = [
     "AntdParagraph",
     "AntdText",
     "AntdTitle",
+    "AntdCenter",
     "AntdCompact",
     "AntdContent",
     "AntdDivider",
