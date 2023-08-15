@@ -35,7 +35,6 @@ import {
     RingProgress
 } from '@ant-design/plots';
 import Highlighter from 'react-highlight-words';
-import { Resizable } from 're-resizable';
 import AntdIcon from '../general/AntdIcon.react';
 import {
     SearchOutlined,
@@ -46,38 +45,6 @@ import { isNumber, isEqual, isString } from 'lodash';
 import { str2Locale, locale2text } from '../locales.react';
 
 const { Text } = Typography;
-
-const ResizeableTitle = props => {
-
-    const { islast, children, style, ...restProps } = props;
-
-    return (
-        <Resizable style={style}
-            enable={{
-                left: islast === 0,
-                right: islast !== 0,
-                top: false,
-                bottom: false,
-                topRight: false,
-                topLeft: false,
-                bottomRight: false,
-                bottomLeft: false
-            }}
-            handleStyles={{
-                left: {
-                    cursor: "ew-resize"
-                },
-                right: {
-                    cursor: "ew-resize"
-                }
-            }}
-            as={'th'}
-            {...restProps}
-        >
-            {children}
-        </Resizable>
-    );
-}
 
 const insertNewColumnNode = (column, group, currentLevel, currentNode) => {
     // 若当前递归到的层级小于group数组长度
@@ -1798,13 +1765,6 @@ class AntdTable extends Component {
             }
         }
 
-        // 若允许字段开启列宽可调整
-        if (columnsWidthResizable) {
-            components.header = {
-                cell: ResizeableTitle,
-            }
-        }
-
         // 若存在至少一个字段有group参数，则对columns进行重构以支持多层表头
         let tempColumns = []
         if (columns.some(e => e.group)) {
@@ -2772,10 +2732,6 @@ AntdTable.propTypes = {
     // 用于设置需要进行隐藏的行对应key值数组，默认为[]
     hiddenRowKeys: PropTypes.arrayOf(PropTypes.string),
 
-    // 设置是否开启列宽拖拽调整宽度功能
-    // 默认为false
-    columnsWidthResizable: PropTypes.bool,
-
     loading_state: PropTypes.shape({
         /**
          * Determines if the component is loading or not
@@ -2825,7 +2781,6 @@ AntdTable.defaultProps = {
     rowSelectionWidth: 32,
     selectedRowsSyncWithData: false,
     hiddenRowKeys: [],
-    columnsWidthResizable: false,
     // 按钮模式相关
     nClicksButton: 0,
     // 迷你图相关

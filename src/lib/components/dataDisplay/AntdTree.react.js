@@ -34,6 +34,7 @@ const AntdTree = (props) => {
         showIcon,
         height,
         draggable,
+        dragInSameLevel,
         persistence,
         persisted_props,
         persistence_type,
@@ -238,6 +239,13 @@ const AntdTree = (props) => {
             onDragEnter={onDragEnter}
             showIcon={showIcon}
             height={height}
+            allowDrop={({ dropNode, dropPosition }) => {
+                if (dragInSameLevel) {
+                    // 禁止非同级拖拽
+                    return dropPosition !== 0;
+                }
+                return true;
+            }}
             titleRender={(nodeData) => {
                 return (
                     nodeData.contextMenu ?
@@ -519,6 +527,10 @@ AntdTree.propTypes = {
     // 设置是否开启树节点可拖拽模式，默认为false
     draggable: PropTypes.bool,
 
+    // 设置拖拽模式下是否仅允许同级拖拽
+    // 默认：false
+    dragInSameLevel: PropTypes.bool,
+
     // 当节点被拖拽时，监听该节点的key值信息
     draggedNodeKey: PropTypes.string,
 
@@ -595,6 +607,7 @@ AntdTree.defaultProps = {
     selectable: true,
     showLine: { 'showLeafIcon': false },
     draggable: false,
+    dragInSameLevel: false,
     persisted_props: ['selectedKeys', 'checkedKeys', 'expandedKeys', 'halfCheckedKeys'],
     persistence_type: 'local'
 }

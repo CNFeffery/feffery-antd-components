@@ -1,27 +1,24 @@
 import dash
-import json
 from dash import html
-from datetime import datetime
 import feffery_antd_components as fac
-from dash.dependencies import Input, Output
 
 app = dash.Dash(__name__)
 
 app.layout = html.Div(
     [
-        fac.AntdCenter(
-            fac.AntdButton(
-                '测试',
-                icon=fac.AntdIcon(
-                    icon='antd-question'
-                ),
-                type='primary',
-            ),
-            style={
-                'height': 400,
-                'border': '1px solid #ced4da',
-                'borderRadius': 8
-            }
+        fac.AntdTree(
+            treeData=[
+                {
+                    'title': f'节点{i}',
+                    'key': f'节点{i}'
+                }
+                for i in range(1, 6)
+            ],
+            showLine=False,
+            draggable=True,
+            defaultExpandAll=True,
+            dragInSameLevel=True,
+            checkable=True
         )
     ],
     style={
