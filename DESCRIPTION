@@ -1,6 +1,6 @@
 Package: fefferyAntdComponents
 Title: Best implementation of Antd components in Plotly Dash.
-Version: 0.2.10-rc9
+Version: 0.2.10-rc10
 Description: Best implementation of Antd components in Plotly Dash.
 Depends: R (>= 3.0.2)
 Imports: 

@@ -35,6 +35,8 @@ const AntdTree = (props) => {
         height,
         draggable,
         dragInSameLevel,
+        nodeCheckedSuffix,
+        nodeUncheckedSuffix,
         persistence,
         persisted_props,
         persistence_type,
@@ -291,11 +293,13 @@ const AntdTree = (props) => {
                             <span className={nodeData.className ? `ant-tree-title ${nodeData.className}` : "ant-tree-title"}
                                 style={nodeData.style}>
                                 {nodeData.title}
+                                {checkedKeys?.includes(nodeData.key) ? nodeCheckedSuffix : nodeUncheckedSuffix}
                             </span>
                         </Dropdown> :
                         <span className={nodeData.className ? `ant-tree-title ${nodeData.className}` : "ant-tree-title"}
                             style={nodeData.style}>
                             {nodeData.title}
+                            {checkedKeys?.includes(nodeData.key) ? nodeCheckedSuffix : nodeUncheckedSuffix}
                         </span>
                 );
             }}
@@ -543,6 +547,13 @@ AntdTree.propTypes = {
         // 记录事件发生时的时间戳信息
         timestamp: PropTypes.number
     }),
+
+    // 节点拓展元素相关功能
+    // 为节点元素设置勾选状态下的后缀元素
+    nodeCheckedSuffix: PropTypes.node,
+
+    // 为节点元素设置非勾选状态下的后缀元素
+    nodeUncheckedSuffix: PropTypes.node,
 
     loading_state: PropTypes.shape({
         /**
