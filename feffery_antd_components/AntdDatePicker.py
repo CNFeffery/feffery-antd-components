@@ -33,6 +33,8 @@ Keyword arguments:
 
     - value (number | string | list of numbers | list of strings; optional)
 
+- extraFooter (a list of or a singular dash component, string or number; optional)
+
 - firstDayOfWeek (number; optional)
 
 - format (string; optional)
@@ -100,15 +102,15 @@ Keyword arguments:
 - style (dict; optional)
 
 - value (string; optional)"""
-    _children_props = []
-    _base_nodes = ['children']
+    _children_props = ['extraFooter']
+    _base_nodes = ['extraFooter', 'children']
     _namespace = 'feffery_antd_components'
     _type = 'AntdDatePicker'
     @_explicitize_args
-    def __init__(self, id=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, key=Component.UNDEFINED, locale=Component.UNDEFINED, format=Component.UNDEFINED, picker=Component.UNDEFINED, firstDayOfWeek=Component.UNDEFINED, disabled=Component.UNDEFINED, showTime=Component.UNDEFINED, size=Component.UNDEFINED, bordered=Component.UNDEFINED, placeholder=Component.UNDEFINED, placement=Component.UNDEFINED, value=Component.UNDEFINED, defaultValue=Component.UNDEFINED, defaultPickerValue=Component.UNDEFINED, disabledDatesStrategy=Component.UNDEFINED, status=Component.UNDEFINED, allowClear=Component.UNDEFINED, readOnly=Component.UNDEFINED, popupContainer=Component.UNDEFINED, loading_state=Component.UNDEFINED, persistence=Component.UNDEFINED, persisted_props=Component.UNDEFINED, persistence_type=Component.UNDEFINED, **kwargs):
-        self._prop_names = ['id', 'allowClear', 'bordered', 'className', 'defaultPickerValue', 'defaultValue', 'disabled', 'disabledDatesStrategy', 'firstDayOfWeek', 'format', 'key', 'loading_state', 'locale', 'persisted_props', 'persistence', 'persistence_type', 'picker', 'placeholder', 'placement', 'popupContainer', 'readOnly', 'showTime', 'size', 'status', 'style', 'value']
+    def __init__(self, id=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, key=Component.UNDEFINED, locale=Component.UNDEFINED, format=Component.UNDEFINED, picker=Component.UNDEFINED, firstDayOfWeek=Component.UNDEFINED, disabled=Component.UNDEFINED, showTime=Component.UNDEFINED, size=Component.UNDEFINED, bordered=Component.UNDEFINED, placeholder=Component.UNDEFINED, placement=Component.UNDEFINED, value=Component.UNDEFINED, defaultValue=Component.UNDEFINED, defaultPickerValue=Component.UNDEFINED, disabledDatesStrategy=Component.UNDEFINED, status=Component.UNDEFINED, allowClear=Component.UNDEFINED, readOnly=Component.UNDEFINED, extraFooter=Component.UNDEFINED, popupContainer=Component.UNDEFINED, loading_state=Component.UNDEFINED, persistence=Component.UNDEFINED, persisted_props=Component.UNDEFINED, persistence_type=Component.UNDEFINED, **kwargs):
+        self._prop_names = ['id', 'allowClear', 'bordered', 'className', 'defaultPickerValue', 'defaultValue', 'disabled', 'disabledDatesStrategy', 'extraFooter', 'firstDayOfWeek', 'format', 'key', 'loading_state', 'locale', 'persisted_props', 'persistence', 'persistence_type', 'picker', 'placeholder', 'placement', 'popupContainer', 'readOnly', 'showTime', 'size', 'status', 'style', 'value']
         self._valid_wildcard_attributes =            []
-        self.available_properties = ['id', 'allowClear', 'bordered', 'className', 'defaultPickerValue', 'defaultValue', 'disabled', 'disabledDatesStrategy', 'firstDayOfWeek', 'format', 'key', 'loading_state', 'locale', 'persisted_props', 'persistence', 'persistence_type', 'picker', 'placeholder', 'placement', 'popupContainer', 'readOnly', 'showTime', 'size', 'status', 'style', 'value']
+        self.available_properties = ['id', 'allowClear', 'bordered', 'className', 'defaultPickerValue', 'defaultValue', 'disabled', 'disabledDatesStrategy', 'extraFooter', 'firstDayOfWeek', 'format', 'key', 'loading_state', 'locale', 'persisted_props', 'persistence', 'persistence_type', 'picker', 'placeholder', 'placement', 'popupContainer', 'readOnly', 'showTime', 'size', 'status', 'style', 'value']
         self.available_wildcard_properties =            []
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()

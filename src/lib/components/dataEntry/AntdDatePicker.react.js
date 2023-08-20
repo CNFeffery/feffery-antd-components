@@ -35,6 +35,7 @@ const AntdDatePicker = (props) => {
         popupContainer,
         readOnly,
         placement,
+        extraFooter,
         persistence,
         persisted_props,
         persistence_type,
@@ -395,6 +396,7 @@ const AntdDatePicker = (props) => {
                     placement={placement}
                     open={isUndefined(readOnly) || !readOnly ? undefined : false}
                     inputReadOnly={readOnly}
+                    renderExtraFooter={() => extraFooter}
                     persistence={persistence}
                     persisted_props={persisted_props}
                     persistence_type={persistence_type}
@@ -510,6 +512,9 @@ AntdDatePicker.propTypes = {
     // 设置是否以只读模式进行渲染，底层利用open参数
     // 默认为false
     readOnly: PropTypes.bool,
+
+    // 设置展开面板底部额外内容
+    extraFooter: PropTypes.node,
 
     // 设置悬浮层锚定策略，可选的有'parent'、'body'，默认为'body'
     popupContainer: PropTypes.oneOf(['parent', 'body']),

@@ -21,6 +21,8 @@ Keyword arguments:
 
 - disabled (boolean; default False)
 
+- extraFooter (a list of or a singular dash component, string or number; optional)
+
 - format (string; default 'HH:mm:ss')
 
 - hourStep (number; default 1)
@@ -84,15 +86,15 @@ Keyword arguments:
 - use12Hours (boolean; default False)
 
 - value (string; optional)"""
-    _children_props = []
-    _base_nodes = ['children']
+    _children_props = ['extraFooter']
+    _base_nodes = ['extraFooter', 'children']
     _namespace = 'feffery_antd_components'
     _type = 'AntdTimePicker'
     @_explicitize_args
-    def __init__(self, id=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, key=Component.UNDEFINED, locale=Component.UNDEFINED, format=Component.UNDEFINED, disabled=Component.UNDEFINED, hourStep=Component.UNDEFINED, minuteStep=Component.UNDEFINED, secondStep=Component.UNDEFINED, use12Hours=Component.UNDEFINED, size=Component.UNDEFINED, bordered=Component.UNDEFINED, placeholder=Component.UNDEFINED, placement=Component.UNDEFINED, value=Component.UNDEFINED, defaultValue=Component.UNDEFINED, status=Component.UNDEFINED, allowClear=Component.UNDEFINED, readOnly=Component.UNDEFINED, popupContainer=Component.UNDEFINED, loading_state=Component.UNDEFINED, persistence=Component.UNDEFINED, persisted_props=Component.UNDEFINED, persistence_type=Component.UNDEFINED, **kwargs):
-        self._prop_names = ['id', 'allowClear', 'bordered', 'className', 'defaultValue', 'disabled', 'format', 'hourStep', 'key', 'loading_state', 'locale', 'minuteStep', 'persisted_props', 'persistence', 'persistence_type', 'placeholder', 'placement', 'popupContainer', 'readOnly', 'secondStep', 'size', 'status', 'style', 'use12Hours', 'value']
+    def __init__(self, id=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, key=Component.UNDEFINED, locale=Component.UNDEFINED, format=Component.UNDEFINED, disabled=Component.UNDEFINED, hourStep=Component.UNDEFINED, minuteStep=Component.UNDEFINED, secondStep=Component.UNDEFINED, use12Hours=Component.UNDEFINED, size=Component.UNDEFINED, bordered=Component.UNDEFINED, placeholder=Component.UNDEFINED, placement=Component.UNDEFINED, value=Component.UNDEFINED, defaultValue=Component.UNDEFINED, status=Component.UNDEFINED, allowClear=Component.UNDEFINED, readOnly=Component.UNDEFINED, extraFooter=Component.UNDEFINED, popupContainer=Component.UNDEFINED, loading_state=Component.UNDEFINED, persistence=Component.UNDEFINED, persisted_props=Component.UNDEFINED, persistence_type=Component.UNDEFINED, **kwargs):
+        self._prop_names = ['id', 'allowClear', 'bordered', 'className', 'defaultValue', 'disabled', 'extraFooter', 'format', 'hourStep', 'key', 'loading_state', 'locale', 'minuteStep', 'persisted_props', 'persistence', 'persistence_type', 'placeholder', 'placement', 'popupContainer', 'readOnly', 'secondStep', 'size', 'status', 'style', 'use12Hours', 'value']
         self._valid_wildcard_attributes =            []
-        self.available_properties = ['id', 'allowClear', 'bordered', 'className', 'defaultValue', 'disabled', 'format', 'hourStep', 'key', 'loading_state', 'locale', 'minuteStep', 'persisted_props', 'persistence', 'persistence_type', 'placeholder', 'placement', 'popupContainer', 'readOnly', 'secondStep', 'size', 'status', 'style', 'use12Hours', 'value']
+        self.available_properties = ['id', 'allowClear', 'bordered', 'className', 'defaultValue', 'disabled', 'extraFooter', 'format', 'hourStep', 'key', 'loading_state', 'locale', 'minuteStep', 'persisted_props', 'persistence', 'persistence_type', 'placeholder', 'placement', 'popupContainer', 'readOnly', 'secondStep', 'size', 'status', 'style', 'use12Hours', 'value']
         self.available_wildcard_properties =            []
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()

@@ -34,6 +34,7 @@ const AntdTimePicker = (props) => {
         status,
         popupContainer,
         readOnly,
+        extraFooter,
         persistence,
         persisted_props,
         persistence_type,
@@ -93,6 +94,7 @@ const AntdTimePicker = (props) => {
                     use12Hours={use12Hours}
                     allowClear={isUndefined(readOnly) ? allowClear : !readOnly}
                     status={status}
+                    renderExtraFooter={() => extraFooter}
                     persistence={persistence}
                     persisted_props={persisted_props}
                     persistence_type={persistence_type}
@@ -180,6 +182,9 @@ AntdTimePicker.propTypes = {
 
     // 设置是否以只读模式进行渲染，底层利用Select的open参数
     readOnly: PropTypes.bool,
+
+    // 设置展开面板底部额外内容
+    extraFooter: PropTypes.node,
 
     // 设置悬浮层锚定策略，可选的有'parent'、'body'，默认为'body'
     popupContainer: PropTypes.oneOf(['parent', 'body']),
