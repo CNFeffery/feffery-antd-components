@@ -63,6 +63,12 @@ app.layout = html.Div(
                     'fontSize': 15
                 }
             ),
+            nodeCheckedStyle={
+                'color': 'red'
+            },
+            nodeUncheckedStyle={
+                'opacity': 0.6
+            }
         )
     ],
     style={

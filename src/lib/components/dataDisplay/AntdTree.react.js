@@ -37,6 +37,8 @@ const AntdTree = (props) => {
         dragInSameLevel,
         nodeCheckedSuffix,
         nodeUncheckedSuffix,
+        nodeCheckedStyle,
+        nodeUncheckedStyle,
         persistence,
         persisted_props,
         persistence_type,
@@ -291,13 +293,19 @@ const AntdTree = (props) => {
                             trigger={['contextMenu']}
                         >
                             <span className={nodeData.className ? `ant-tree-title ${nodeData.className}` : "ant-tree-title"}
-                                style={nodeData.style}>
+                                style={{
+                                    ...(checkedKeys?.includes(nodeData.key) ? nodeCheckedStyle : nodeUncheckedStyle),
+                                    ...nodeData.style // 优先级更高
+                                }}>
                                 {nodeData.title}
                                 {checkedKeys?.includes(nodeData.key) ? nodeCheckedSuffix : nodeUncheckedSuffix}
                             </span>
                         </Dropdown> :
                         <span className={nodeData.className ? `ant-tree-title ${nodeData.className}` : "ant-tree-title"}
-                            style={nodeData.style}>
+                            style={{
+                                ...(checkedKeys?.includes(nodeData.key) ? nodeCheckedStyle : nodeUncheckedStyle),
+                                ...nodeData.style // 优先级更高
+                            }}>
                             {nodeData.title}
                             {checkedKeys?.includes(nodeData.key) ? nodeCheckedSuffix : nodeUncheckedSuffix}
                         </span>
@@ -554,6 +562,12 @@ AntdTree.propTypes = {
 
     // 为节点元素设置非勾选状态下的后缀元素
     nodeUncheckedSuffix: PropTypes.node,
+
+    // 为节点元素设置勾选状态下的css样式
+    nodeCheckedStyle: PropTypes.object,
+
+    // 为节点元素设置非勾选状态下的css样式
+    nodeUncheckedStyle: PropTypes.object,
 
     loading_state: PropTypes.shape({
         /**
