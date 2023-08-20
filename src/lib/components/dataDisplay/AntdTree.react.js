@@ -6,6 +6,23 @@ import { omitBy, isUndefined, isString, isObject, isArray, cloneDeep } from 'lod
 import { flatToTree } from '../utils';
 import useCss from '../../hooks/useCss';
 
+// 自定义工具函数
+// https://github.com/ant-design/ant-design/issues/15926
+const isSameLevel = (a, b) => {
+    const aLevel = a.props.pos.split('-').length;
+    const bLevel = b.props.pos.split('-').length;
+
+    return aLevel === bLevel;
+};
+
+const isSameParent = (a, b) => {
+    const aLevel = a.props.pos.split('-');
+    const bLevel = b.props.pos.split('-');
+    aLevel.pop();
+
+    return aLevel.join('') === bLevel.join('');
+}
+
 // 定义树形控件AntdTree，api参数参考https://ant.design/components/tree-cn/
 const AntdTree = (props) => {
 
@@ -158,6 +175,16 @@ const AntdTree = (props) => {
 
     // 处理树节点拖拽事件，偏平结构模式下不可用
     const onDrop = (info) => {
+
+        // 若仅允许同级拖拽
+        if (dragInSameLevel) {
+            const canDrop = (isSameLevel(info.dragNode, info.node) && info.dropToGap) || (isSameParent(info.dragNode, info.node) && !info.dropToGap);
+            if (!canDrop) {
+                // 结束拖拽计算过程
+                return
+            }
+        }
+
         const dropKey = info.node.key;
         const dragKey = info.dragNode.key;
         const dropPos = info.node.pos.split('-');
@@ -243,13 +270,6 @@ const AntdTree = (props) => {
             onDragEnter={onDragEnter}
             showIcon={showIcon}
             height={height}
-            allowDrop={({ dropNode, dropPosition }) => {
-                if (dragInSameLevel) {
-                    // 禁止非同级拖拽
-                    return dropPosition !== 0;
-                }
-                return true;
-            }}
             titleRender={(nodeData) => {
                 return (
                     nodeData.contextMenu ?
