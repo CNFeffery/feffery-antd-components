@@ -22,41 +22,10 @@ app.layout = html.Div(
                             for i in range(1, 6)
                         ],
                         size='small'
-                    )
-                ),
-                fac.AntdDateRangePicker(
-                    style={
-                        'width': 220
-                    },
-                    extraFooter=fac.AntdSpace(
-                        [
-                            fac.AntdButton(
-                                f'操作{i}',
-                                size='small',
-                                type='primary'
-                            )
-                            for i in range(1, 6)
-                        ],
-                        size='small'
-                    )
+                    ),
+                    showToday=False
                 ),
                 fac.AntdTimePicker(
-                    style={
-                        'width': 220
-                    },
-                    extraFooter=fac.AntdSpace(
-                        [
-                            fac.AntdButton(
-                                f'操作{i}',
-                                size='small',
-                                type='primary'
-                            )
-                            for i in range(1, 6)
-                        ],
-                        size='small'
-                    )
-                ),
-                fac.AntdTimeRangePicker(
                     style={
                         'width': 220
                     },

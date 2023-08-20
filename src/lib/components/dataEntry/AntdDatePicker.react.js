@@ -36,6 +36,7 @@ const AntdDatePicker = (props) => {
         readOnly,
         placement,
         extraFooter,
+        showToday,
         persistence,
         persisted_props,
         persistence_type,
@@ -397,6 +398,7 @@ const AntdDatePicker = (props) => {
                     open={isUndefined(readOnly) || !readOnly ? undefined : false}
                     inputReadOnly={readOnly}
                     renderExtraFooter={() => extraFooter}
+                    showToday={showToday}
                     persistence={persistence}
                     persisted_props={persisted_props}
                     persistence_type={persistence_type}
@@ -516,6 +518,9 @@ AntdDatePicker.propTypes = {
     // 设置展开面板底部额外内容
     extraFooter: PropTypes.node,
 
+    // 设置是否渲染“今天”快捷按钮，默认为true
+    showToday: PropTypes.bool,
+
     // 设置悬浮层锚定策略，可选的有'parent'、'body'，默认为'body'
     popupContainer: PropTypes.oneOf(['parent', 'body']),
 
@@ -583,6 +588,7 @@ AntdDatePicker.defaultProps = {
     allowClear: true,
     locale: 'zh-cn',
     placement: 'bottomLeft',
+    showToday: true,
     popupContainer: 'body',
     persisted_props: ['value'],
     persistence_type: 'local'
