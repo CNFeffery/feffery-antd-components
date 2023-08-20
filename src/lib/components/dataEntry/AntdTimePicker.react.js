@@ -35,6 +35,7 @@ const AntdTimePicker = (props) => {
         popupContainer,
         readOnly,
         extraFooter,
+        showNow,
         persistence,
         persisted_props,
         persistence_type,
@@ -95,6 +96,7 @@ const AntdTimePicker = (props) => {
                     allowClear={isUndefined(readOnly) ? allowClear : !readOnly}
                     status={status}
                     renderExtraFooter={() => extraFooter}
+                    showNow={showNow}
                     persistence={persistence}
                     persisted_props={persisted_props}
                     persistence_type={persistence_type}
@@ -186,6 +188,9 @@ AntdTimePicker.propTypes = {
     // 设置展开面板底部额外内容
     extraFooter: PropTypes.node,
 
+    // 设置是否渲染“此刻”快捷按钮，默认为true
+    showNow: PropTypes.bool,
+
     // 设置悬浮层锚定策略，可选的有'parent'、'body'，默认为'body'
     popupContainer: PropTypes.oneOf(['parent', 'body']),
 
@@ -255,6 +260,7 @@ AntdTimePicker.defaultProps = {
     allowClear: true,
     bordered: true,
     size: 'middle',
+    showNow: true,
     persisted_props: ['value'],
     persistence_type: 'local',
     locale: 'zh-cn',

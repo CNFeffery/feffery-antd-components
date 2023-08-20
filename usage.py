@@ -39,7 +39,8 @@ app.layout = html.Div(
                             for i in range(1, 6)
                         ],
                         size='small'
-                    )
+                    ),
+                    showNow=False
                 )
             ],
             direction='vertical'
