@@ -165,7 +165,8 @@ AntdPagination.propTypes = {
     // 设置总记录条数
     total: PropTypes.number,
 
-    // 设置是否展示总记录描述文案，默认为true
+    // 设置是否展示总记录描述文案
+    // 默认：true
     showTotal: PropTypes.bool,
 
     // 设置是否展示较少的跳页选项
