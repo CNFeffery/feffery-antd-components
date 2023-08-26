@@ -32,6 +32,7 @@ const AntdTabs = (props) => {
         tabBarGutter,
         inkBarAnimated,
         tabPaneAnimated,
+        destroyInactiveTabPane,
         setProps,
         persistence,
         persisted_props,
@@ -104,6 +105,7 @@ const AntdTabs = (props) => {
                     inkBar: inkBarAnimated,
                     tabPane: tabPaneAnimated
                 }}
+                destroyInactiveTabPane={destroyInactiveTabPane}
                 hideAdd={true}
                 onChange={onChange}
                 onEdit={onEdit}
@@ -313,6 +315,10 @@ AntdTabs.propTypes = {
     // 监听当前标签页组件中所包含标签页数量
     tabCount: PropTypes.number,
 
+    // 设置标签页不激活时是否自动销毁内部元素
+    // 默认：false
+    destroyInactiveTabPane: PropTypes.bool,
+
     loading_state: PropTypes.shape({
         /**
          * Determines if the component is loading or not
@@ -373,6 +379,7 @@ AntdTabs.defaultProps = {
     centered: false,
     inkBarAnimated: true,
     tabPaneAnimated: false,
+    destroyInactiveTabPane: false,
     persisted_props: ['activeKey'],
     persistence_type: 'local'
 }
