@@ -340,12 +340,6 @@ class AntdTable extends Component {
             loading_state
         } = this.props;
 
-        pagination = {
-            ...pagination,
-            showTotalPrefix: pagination?.showTotalPrefix || locale2text.AntdTable[locale].showTotalPrefix,
-            showTotalSuffix: pagination?.showTotalSuffix || locale2text.AntdTable[locale].showTotalSuffix
-        }
-
         if (!data) {
             data = []
         }
@@ -367,8 +361,8 @@ class AntdTable extends Component {
         // 为pagination补充默认参数值
         pagination = {
             ...pagination,
-            showTotalPrefix: pagination?.showTotalPrefix ? pagination.showTotalPrefix : '共 ',
-            showTotalSuffix: pagination?.showTotalSuffix ? pagination.showTotalSuffix : ' 条记录'
+            showTotalPrefix: pagination?.showTotalPrefix || locale2text.AntdTable[locale].showTotalPrefix,
+            showTotalSuffix: pagination?.showTotalSuffix || locale2text.AntdTable[locale].showTotalSuffix
         }
 
         // 根据columns中的hidden属性控制是否忽略对应字段
@@ -2537,7 +2531,11 @@ AntdTable.propTypes = {
             size: PropTypes.oneOf(['default', 'small']),
 
             // 用于在后端分页时手动设置总数据记录数量
-            total: PropTypes.number
+            total: PropTypes.number,
+
+            // 设置是否展示较少的跳页选项
+            // 默认：false
+            showLessItems: PropTypes.bool
         }),
         PropTypes.bool
     ]),

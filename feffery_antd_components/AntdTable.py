@@ -411,6 +411,8 @@ Keyword arguments:
 
     - position (a value equal to: 'topLeft', 'topCenter', 'topRight', 'bottomLeft', 'bottomCenter', 'bottomRight'; optional)
 
+    - showLessItems (boolean; optional)
+
     - showQuickJumper (boolean; optional)
 
     - showSizeChanger (boolean; optional)
