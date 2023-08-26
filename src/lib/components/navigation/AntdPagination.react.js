@@ -31,6 +31,7 @@ const AntdPagination = (props) => {
         size,
         total,
         showTotal,
+        showLessItems,
         setProps,
         loading_state,
         persistence,
@@ -89,6 +90,7 @@ const AntdPagination = (props) => {
                 simple={simple}
                 size={size}
                 total={total}
+                showLessItems={showLessItems}
                 onChange={onChange}
                 persistence={persistence}
                 persisted_props={persisted_props}
@@ -166,6 +168,10 @@ AntdPagination.propTypes = {
     // 设置是否展示总记录描述文案，默认为true
     showTotal: PropTypes.bool,
 
+    // 设置是否展示较少的跳页选项
+    // 默认：false
+    showLessItems: PropTypes.bool,
+
     loading_state: PropTypes.shape({
         /**
          * Determines if the component is loading or not
@@ -229,6 +235,7 @@ AntdPagination.defaultProps = {
     locale: 'zh-cn',
     showTotal: true,
     disabled: false,
+    showLessItems: false,
     persisted_props: ['current', 'pageSize'],
     persistence_type: 'local'
 }
