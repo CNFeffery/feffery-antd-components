@@ -47,6 +47,13 @@ const AntdTabs = (props) => {
         }
     }, [])
 
+    useEffect(() => {
+        // 更新最新的标签页数量
+        setProps({
+            tabCount: (items || []).length
+        })
+    }, [items])
+
     const onChange = e => {
         setProps({ activeKey: e })
     }
@@ -302,6 +309,9 @@ AntdTabs.propTypes = {
 
     // 用于设置第二方位额外元素
     tabBarRightExtraContent: PropTypes.node,
+
+    // 监听当前标签页组件中所包含标签页数量
+    tabCount: PropTypes.number,
 
     loading_state: PropTypes.shape({
         /**
