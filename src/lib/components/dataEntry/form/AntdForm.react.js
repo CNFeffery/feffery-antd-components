@@ -18,6 +18,7 @@ const AntdForm = (props) => {
         wrapperCol,
         colon,
         labelAlign,
+        labelWrap,
         layout,
         setProps,
         loading_state
@@ -36,6 +37,7 @@ const AntdForm = (props) => {
             wrapperCol={wrapperCol}
             colon={colon}
             labelAlign={labelAlign}
+            labelWrap={labelWrap}
             layout={layout}
             data-dash-is-loading={
                 (loading_state && loading_state.is_loading) || undefined
@@ -94,6 +96,10 @@ AntdForm.propTypes = {
     // 设置表单项标签的文本对齐方式，可选的有'left'与'right'，默认为'right'
     labelAlign: PropTypes.oneOf(['left', 'right']),
 
+    // 设置超长表单项标签是否允许换行
+    // 默认：false
+    labelWrap: PropTypes.bool,
+
     loading_state: PropTypes.shape({
         /**
          * Determines if the component is loading or not
@@ -120,7 +126,8 @@ AntdForm.propTypes = {
 AntdForm.defaultProps = {
     layout: 'horizontal',
     colon: true,
-    labelAlign: 'right'
+    labelAlign: 'right',
+    labelWrap: false
 }
 
 export default AntdForm;
