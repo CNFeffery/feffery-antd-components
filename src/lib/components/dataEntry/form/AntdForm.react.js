@@ -79,6 +79,12 @@ AntdForm.propTypes = {
 
         // 设置offset平移宽度
         offset: PropTypes.number,
+
+        // 同css中的flex属性
+        flex: PropTypes.oneOfType([
+            PropTypes.string,
+            PropTypes.number
+        ])
     }),
 
     // 设置表单项列宽相关属性，同AntdCol划分为24份宽度
@@ -88,6 +94,12 @@ AntdForm.propTypes = {
 
         // 设置offset平移宽度
         offset: PropTypes.number,
+
+        // 同css中的flex属性
+        flex: PropTypes.oneOfType([
+            PropTypes.string,
+            PropTypes.number
+        ])
     }),
 
     // 设置是否显示表单项标签后的冒号，仅在layout='horizontal'下有效

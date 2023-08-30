@@ -91,6 +91,12 @@ AntdFormItem.propTypes = {
 
         // 设置offset平移宽度
         offset: PropTypes.number,
+
+        // 同css中的flex属性
+        flex: PropTypes.oneOfType([
+            PropTypes.string,
+            PropTypes.number
+        ])
     }),
 
     // 配合label参数，表示是否显示label后面的冒号，默认为true
@@ -103,6 +109,12 @@ AntdFormItem.propTypes = {
 
         // 设置offset平移宽度
         offset: PropTypes.number,
+
+        // 同css中的flex属性
+        flex: PropTypes.oneOfType([
+            PropTypes.string,
+            PropTypes.number
+        ])
     }),
 
     // 设置表单项标签内容
@@ -153,7 +165,6 @@ AntdFormItem.propTypes = {
 // 设置默认参数
 AntdFormItem.defaultProps = {
     required: false,
-    colon: true,
     hidden: false
 }
 

@@ -27,6 +27,8 @@ Keyword arguments:
 
     `labelCol` is a dict with keys:
 
+    - flex (string | number; optional)
+
     - offset (number; optional)
 
     - span (number; optional)
@@ -53,6 +55,8 @@ Keyword arguments:
 - wrapperCol (dict; optional)
 
     `wrapperCol` is a dict with keys:
+
+    - flex (string | number; optional)
 
     - offset (number; optional)
 

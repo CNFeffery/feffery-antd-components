@@ -10,17 +10,27 @@ app = dash.Dash(__name__)
 app.layout = html.Div(
     [
         fac.AntdForm(
-            fac.AntdFormItem(
-                fac.AntdInput(),
-                label='超长标签'*4
-            ),
-            labelWrap=True,
+            [
+                fac.AntdFormItem(
+                    fac.AntdInput(),
+                    label='超长标签文案'*2,
+                    required=True
+                ),
+                fac.AntdFormItem(
+                    fac.AntdInput(),
+                    label='标签',
+                    required=True
+                )
+            ],
             labelCol={
-                'span': 8
+                'flex': '110px'
             },
-            style={
-                'width': 300
-            }
+            wrapperCol={
+                'flex': 1
+            },
+            labelWrap=True,
+            colon=False,
+            labelAlign='left'
         )
     ],
     style={

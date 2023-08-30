@@ -17,7 +17,7 @@ Keyword arguments:
 
 - className (string | dict; optional)
 
-- colon (boolean; default True)
+- colon (boolean; optional)
 
 - extra (a list of or a singular dash component, string or number; optional)
 
@@ -34,6 +34,8 @@ Keyword arguments:
 - labelCol (dict; optional)
 
     `labelCol` is a dict with keys:
+
+    - flex (string | number; optional)
 
     - offset (number; optional)
 
@@ -63,6 +65,8 @@ Keyword arguments:
 - wrapperCol (dict; optional)
 
     `wrapperCol` is a dict with keys:
+
+    - flex (string | number; optional)
 
     - offset (number; optional)
 
