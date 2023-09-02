@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo } from 'react';
 import PropTypes from 'prop-types';
-import { Tree, Tooltip, Dropdown } from 'antd';
+import { Tree, Tooltip, Dropdown, Rate } from 'antd';
 import AntdIcon from '../general/AntdIcon.react';
 import { omitBy, isUndefined, isString, isObject, isArray, cloneDeep } from 'lodash';
 import { flatToTree } from '../utils';
@@ -52,6 +52,8 @@ const AntdTree = (props) => {
         height,
         draggable,
         dragInSameLevel,
+        enableNodeFavorites,
+        favoritedKeys,
         nodeCheckedSuffix,
         nodeUncheckedSuffix,
         nodeCheckedStyle,
@@ -318,6 +320,32 @@ const AntdTree = (props) => {
                                     ...nodeData.style // 优先级更高
                                 }}>
                                 {nodeData.title}
+                                {
+                                    // 若当前节点满足收藏控件渲染条件
+                                    enableNodeFavorites && (isUndefined(nodeData.enableFavorites) || nodeData.enableFavorites) ?
+                                        <span style={{
+                                            paddingLeft: 2
+                                        }}
+                                            onClick={(e) => {
+                                                // 阻止事件向外传递
+                                                e.stopPropagation()
+                                            }}>
+                                            <Rate
+                                                count={1}
+                                                value={favoritedKeys.includes(nodeData.key) ? 1 : 0}
+                                                onChange={(e) => {
+                                                    setProps({
+                                                        favoritedKeys: (
+                                                            favoritedKeys.includes(nodeData.key) ?
+                                                                favoritedKeys.filter(key => key !== nodeData.key) :
+                                                                [...favoritedKeys, nodeData.key]
+                                                        )
+                                                    })
+                                                }}
+                                            />
+                                        </span> :
+                                        null
+                                }
                                 {checkedKeys?.includes(nodeData.key) ? nodeCheckedSuffix : nodeUncheckedSuffix}
                             </span>
                         </Dropdown> :
@@ -327,6 +355,32 @@ const AntdTree = (props) => {
                                 ...nodeData.style // 优先级更高
                             }}>
                             {nodeData.title}
+                            {
+                                // 若当前节点满足收藏控件渲染条件
+                                enableNodeFavorites && (isUndefined(nodeData.enableFavorites) || nodeData.enableFavorites) ?
+                                    <span style={{
+                                        paddingLeft: 2
+                                    }}
+                                        onClick={(e) => {
+                                            // 阻止事件向外传递
+                                            e.stopPropagation()
+                                        }}>
+                                        <Rate
+                                            count={1}
+                                            value={favoritedKeys.includes(nodeData.key) ? 1 : 0}
+                                            onChange={(e) => {
+                                                setProps({
+                                                    favoritedKeys: (
+                                                        favoritedKeys.includes(nodeData.key) ?
+                                                            favoritedKeys.filter(key => key !== nodeData.key) :
+                                                            [...favoritedKeys, nodeData.key]
+                                                    )
+                                                })
+                                            }}
+                                        />
+                                    </span> :
+                                    null
+                            }
                             {checkedKeys?.includes(nodeData.key) ? nodeCheckedSuffix : nodeUncheckedSuffix}
                         </span>
                 );
@@ -373,6 +427,9 @@ const PropTreeNodeShape = {
 
     // 可选，设置对应节点是否可选
     selectable: PropTypes.bool,
+
+    // 可选，当树为enableNodeFavorites时，设置对应节点是否收藏
+    enableFavorites: PropTypes.bool,
 
     // 设置当前节点css样式
     style: PropTypes.object,
@@ -438,6 +495,9 @@ const PropFlatNodeShape = {
 
     // 可选，设置对应节点是否可选
     selectable: PropTypes.bool,
+
+    // 可选，当树为enableNodeFavorites时，设置对应节点是否收藏
+    enableFavorites: PropTypes.bool,
 
     // 可选，设置对应节点的父节点key值
     parent: PropTypes.string,
@@ -576,6 +636,14 @@ AntdTree.propTypes = {
         timestamp: PropTypes.number
     }),
 
+    // 设置是否启用树节点收藏功能
+    // 默认：false
+    enableNodeFavorites: PropTypes.bool,
+
+    // 设置或监听已被收藏的节点key值数组
+    // 默认：[]
+    favoritedKeys: PropTypes.arrayOf(PropTypes.string),
+
     // 节点拓展元素相关功能
     // 为节点元素设置勾选状态下的后缀元素
     nodeCheckedSuffix: PropTypes.node,
@@ -659,6 +727,8 @@ AntdTree.defaultProps = {
     showLine: { 'showLeafIcon': false },
     draggable: false,
     dragInSameLevel: false,
+    enableNodeFavorites: false,
+    favoritedKeys: [],
     persisted_props: ['selectedKeys', 'checkedKeys', 'expandedKeys', 'halfCheckedKeys'],
     persistence_type: 'local',
     batchPropsNames: []
