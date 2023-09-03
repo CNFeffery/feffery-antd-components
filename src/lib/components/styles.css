@@ -161,3 +161,7 @@
 .ant-btn>*:not(:last-child) {
     margin-right: 0.25em;
 }
+
+.ant-tree-title .ant-rate {
+    font-size: 16px;
+}

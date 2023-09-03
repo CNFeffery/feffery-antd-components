@@ -1,10 +1,12 @@
-import React, { useEffect, useMemo } from 'react';
+import React, { useEffect, useRef, useMemo } from 'react';
 import PropTypes from 'prop-types';
 import { Tree, Tooltip, Dropdown, Rate } from 'antd';
 import AntdIcon from '../general/AntdIcon.react';
 import { omitBy, isUndefined, isString, isObject, isArray, cloneDeep } from 'lodash';
 import { flatToTree } from '../utils';
 import useCss from '../../hooks/useCss';
+
+const { scr } = Tree;
 
 // 自定义工具函数
 // https://github.com/ant-design/ant-design/issues/15926
@@ -54,6 +56,7 @@ const AntdTree = (props) => {
         dragInSameLevel,
         enableNodeFavorites,
         favoritedKeys,
+        scrollTarget,
         nodeCheckedSuffix,
         nodeUncheckedSuffix,
         nodeCheckedStyle,
@@ -63,6 +66,18 @@ const AntdTree = (props) => {
         persistence_type,
         loading_state
     } = props;
+
+    const treeRef = useRef(null);
+
+    // 控制一次性scrollTarget动作
+    useEffect(() => {
+        if (scrollTarget && treeRef.current) {
+            treeRef.current.scrollTo(scrollTarget);
+            setProps({
+                scrollTarget: null
+            })
+        }
+    }, [scrollTarget])
 
     if (showLine) {
         showLine = { 'showLeafIcon': false }
@@ -253,6 +268,7 @@ const AntdTree = (props) => {
             }
             style={style}
             key={key}
+            ref={treeRef}
             treeData={add_leaf_node_icon(cloneDeep(treeData))}
             selectedKeys={selectedKeys}
             checkedKeys={checkedKeys}
@@ -643,6 +659,17 @@ AntdTree.propTypes = {
     // 设置或监听已被收藏的节点key值数组
     // 默认：[]
     favoritedKeys: PropTypes.arrayOf(PropTypes.string),
+
+    // 用于执行滚动到指定节点的操作，每次执行后，此参数会自动重置为null
+    scrollTarget: PropTypes.exact({
+        // 用于设置滚动目标的key值
+        key: PropTypes.string.isRequired,
+        // 用于设置滚动后的节点对齐位置
+        // 可选的有'top'、'bottom'、'auto'
+        align: PropTypes.oneOf(['top', 'bottom', 'auto']),
+        // 用于设置滚动后的像素偏移量
+        offset: PropTypes.number
+    }),
 
     // 节点拓展元素相关功能
     // 为节点元素设置勾选状态下的后缀元素

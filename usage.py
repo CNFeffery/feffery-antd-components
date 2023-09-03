@@ -8,64 +8,27 @@ app = dash.Dash(__name__)
 
 app.layout = html.Div(
     [
+        fac.AntdButton(
+            '滚动到节点66',
+            id='button-demo'
+        ),
         fac.AntdTree(
-            id='input',
+            id='tree-demo',
             treeData=[
                 {
-                    'title': '四川省',
-                    'key': '四川省',
+                    'title': '根节点',
+                    'key': '根节点',
                     'children': [
                         {
-                            'title': '成都市',
-                            'key': '成都市',
-                        },
-                        {
-                            'title': '广安市',
-                            'key': '广安市',
+                            'title': f'节点{i}',
+                            'key': f'节点{i}'
                         }
-                    ],
-                    'contextMenu': [
-                        {
-                            'key': f'四川省-操作选项{i}',
-                            'label': f'操作选项{i}'
-                        }
-                        for i in range(1, 6)
-                    ]
-                },
-                {
-                    'title': '重庆市',
-                    'key': '重庆市',
-                    'children': [
-                        {
-                            'title': '渝中区',
-                            'key': '渝中区',
-                            'children': [
-                                {
-                                    'title': '解放碑街道',
-                                    'key': '解放碑街道',
-                                }
-                            ]
-                        },
-                        {
-                            'title': '渝北区',
-                            'key': '渝北区',
-                        }
-                    ],
-                    'contextMenu': [
-                        {
-                            'key': f'重庆市-操作选项{i}',
-                            'label': f'操作选项{i}',
-                            'icon': 'antd-function'
-                        }
-                        for i in range(1, 6)
+                        for i in range(1000)
                     ]
                 }
             ],
             defaultExpandAll=True,
-            enableNodeFavorites=True
-        ),
-        html.Pre(
-            id='output'
+            height=300
         )
     ],
     style={
@@ -75,16 +38,17 @@ app.layout = html.Div(
 
 
 @app.callback(
-    Output('output', 'children'),
-    Input('input', 'favoritedKeys')
+    Output('tree-demo', 'scrollTarget'),
+    Input('button-demo', 'nClicks'),
+    prevent_initial_call=True
 )
-def demo(favoritedKeys):
+def demo(nClicks):
 
-    return json.dumps(
-        dict(favoritedKeys=favoritedKeys),
-        indent=4,
-        ensure_ascii=False
-    )
+    return {
+        'key': '节点66',
+        'align': 'top',
+        'offset': 140
+    }
 
 
 if __name__ == '__main__':
