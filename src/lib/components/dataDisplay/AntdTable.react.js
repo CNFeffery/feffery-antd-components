@@ -1288,6 +1288,7 @@ class AntdTable extends Component {
                                                             recentlyButtonClickedRow: record,
                                                             nClicksButton: nClicksButton + 1,
                                                             clickedContent: content_.content,
+                                                            clickedCustom: content_.custom,
                                                             recentlyButtonClickedDataIndex: columns[i].dataIndex
                                                         })
                                                     }}
@@ -1341,6 +1342,7 @@ class AntdTable extends Component {
                                         recentlyButtonClickedRow: record,
                                         nClicksButton: nClicksButton + 1,
                                         clickedContent: content.content,
+                                        clickedCustom: content.custom,
                                         recentlyButtonClickedDataIndex: columns[i].dataIndex
                                     })
                                 }}
@@ -1396,6 +1398,7 @@ class AntdTable extends Component {
                                                             recentlyButtonClickedRow: record,
                                                             nClicksButton: nClicksButton + 1,
                                                             clickedContent: content_.content,
+                                                            clickedCustom: content_.custom,
                                                             recentlyButtonClickedDataIndex: columns[i].dataIndex
                                                         })
                                                     }}
@@ -1435,6 +1438,7 @@ class AntdTable extends Component {
                                         recentlyButtonClickedRow: record,
                                         nClicksButton: nClicksButton + 1,
                                         clickedContent: content.content,
+                                        clickedCustom: content.custom,
                                         recentlyButtonClickedDataIndex: columns[i].dataIndex
                                     })
                                 }}
@@ -2659,6 +2663,9 @@ AntdTable.propTypes = {
 
     // 对应最近一次按钮模式下被点击的按钮文字内容
     clickedContent: PropTypes.string,
+
+    // 对应最近一次按钮模式下被点击的按钮数据项对应custom字段内容
+    clickedCustom: PropTypes.any,
 
     // 对应最近一次按钮模式下被点击的按钮对应列dataIndex
     recentlyButtonClickedDataIndex: PropTypes.string,
