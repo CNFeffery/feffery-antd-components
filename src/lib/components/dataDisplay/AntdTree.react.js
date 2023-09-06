@@ -6,8 +6,6 @@ import { omitBy, isUndefined, isString, isObject, isArray, cloneDeep } from 'lod
 import { flatToTree } from '../utils';
 import useCss from '../../hooks/useCss';
 
-const { scr } = Tree;
-
 // 自定义工具函数
 // https://github.com/ant-design/ant-design/issues/15926
 const isSameLevel = (a, b) => {

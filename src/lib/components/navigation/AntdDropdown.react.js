@@ -278,6 +278,12 @@ AntdDropdown.propTypes = {
     // 设置悬浮层锚定策略，可选的有'parent'、'body'，默认为'body'
     popupContainer: PropTypes.oneOf(['parent', 'body']),
 
+    // 用于自定义需要纳入batchProps中的属性名数组
+    batchPropsNames: PropTypes.arrayOf(PropTypes.string),
+
+    // 打包监听batchPropsNames中定义的属性值变化
+    batchPropsValues: PropTypes.object,
+
     loading_state: PropTypes.shape({
         /**
          * Determines if the component is loading or not
@@ -310,7 +316,22 @@ AntdDropdown.defaultProps = {
     nClicks: 0,
     popupContainer: 'body',
     autoAdjustOverflow: true,
-    freePosition: false
+    freePosition: false,
+    batchPropsNames: []
 }
 
-export default AntdDropdown;
+export default React.memo(
+    AntdDropdown,
+    (prevProps, nextProps) => {
+        if (nextProps.batchPropsNames && nextProps.batchPropsNames.length !== 0) {
+            let _batchPropsValues = {};
+            for (let propName of nextProps.batchPropsNames) {
+                _batchPropsValues[propName] = nextProps[propName];
+            }
+            nextProps.setProps({
+                batchPropsValues: _batchPropsValues
+            })
+        }
+        return false;
+    }
+);

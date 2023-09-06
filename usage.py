@@ -1,75 +1,44 @@
-import json
 import dash
+import json
 from dash import html
 import feffery_antd_components as fac
-from dash.dependencies import Input, Output, State
+from dash.dependencies import Input, Output
 
 app = dash.Dash(__name__)
 
 app.layout = html.Div(
     [
-        fac.AntdTable(
-            id='table-rerender-button-demo',
-            columns=[
+        fac.AntdDropdown(
+            id='dropdown-demo',
+            title='触发点',
+            arrow=True,
+            placement='topCenter',
+            menuItems=[
                 {
-                    'title': 'button示例1',
-                    'dataIndex': 'button示例1',
-                    'renderOptions': {
-                        'renderType': 'button'
-                    }
+                    'title': '子页面1',
+                    'key': '子页面1',
                 },
                 {
-                    'title': 'button示例2',
-                    'dataIndex': 'button示例2',
-                    'renderOptions': {
-                        'renderType': 'button'
-                    }
+                    'title': '子页面2',
+                    'key': '子页面2',
                 },
                 {
-                    'title': 'button示例3',
-                    'dataIndex': 'button示例3',
-                    'renderOptions': {
-                        'renderType': 'button',
-                        'renderButtonPopConfirmProps': {
-                            'title': '确认执行？',
-                            'okText': '确认',
-                            'cancelText': '取消'
-                        }
-                    }
-                }
-            ],
-            data=[
+                    'isDivider': True
+                },
                 {
-                    'button示例1': {
-                        'content': f'按钮1-{i}',
-                        'type': 'link',
-                        'custom': f'按钮1-{i}balabalabalabala'
-                    },
-                    'button示例2': [
-                        {
-                            'content': f'按钮2-{i}-{j}',
-                            'type': 'primary',
-                            'custom': f'按钮2-{i}-{j}balabalabalabala'
-                        }
-                        for j in range(1, 3)
-                    ],
-                    'button示例3': [
-                        {
-                            'content': f'按钮3-{i}-{j}',
-                            'type': 'dashed',
-                            'danger': True,
-                            'custom': f'按钮3-{i}-{j}balabalabalabala'
-                        }
-                        for j in range(1, 3)
-                    ]
+                    'title': '子页面3-1',
+                    'key': '子页面3-1'
+                },
+                {
+                    'title': '子页面3-2',
+                    'key': '子页面3-2'
                 }
-                for i in range(1, 4)
             ],
-            bordered=True
+            batchPropsNames=['nClicks', 'clickedKey']
         ),
 
         html.Pre(
-            id='table-rerender-button-demo-output'
+            id='dropdown-demo-output'
         )
     ],
     style={
@@ -79,28 +48,14 @@ app.layout = html.Div(
 
 
 @app.callback(
-    Output('table-rerender-button-demo-output', 'children'),
-    Input('table-rerender-button-demo', 'nClicksButton'),
-    [State('table-rerender-button-demo', 'clickedContent'),
-     State('table-rerender-button-demo', 'clickedCustom'),
-     State('table-rerender-button-demo', 'recentlyButtonClickedDataIndex'),
-     State('table-rerender-button-demo', 'recentlyButtonClickedRow')],
+    Output('dropdown-demo-output', 'children'),
+    Input('dropdown-demo', 'batchPropsValues'),
     prevent_initial_call=True
 )
-def table_rerender_button_demo(nClicksButton,
-                               clickedContent,
-                               clickedCustom,
-                               recentlyButtonClickedDataIndex,
-                               recentlyButtonClickedRow):
+def dropdown_demo_callback(batchPropsValues):
 
     return json.dumps(
-        dict(
-            nClicksButton=nClicksButton,
-            clickedContent=clickedContent,
-            clickedCustom=clickedCustom,
-            recentlyButtonClickedDataIndex=recentlyButtonClickedDataIndex,
-            recentlyButtonClickedRow=recentlyButtonClickedRow
-        ),
+        batchPropsValues,
         indent=4,
         ensure_ascii=False
     )
