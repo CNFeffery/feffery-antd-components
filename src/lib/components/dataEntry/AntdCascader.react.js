@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useContext } from 'react';
+import React, { useEffect, useMemo, useContext } from 'react';
 import PropTypes from 'prop-types';
 import { Cascader, ConfigProvider } from 'antd';
 import { str2Locale } from '../locales.react';
@@ -297,6 +297,12 @@ AntdCascader.propTypes = {
     // 设置悬浮层锚定策略，可选的有'parent'、'body'，默认为'body'
     popupContainer: PropTypes.oneOf(['parent', 'body']),
 
+    // 用于自定义需要纳入batchProps中的属性名数组
+    batchPropsNames: PropTypes.arrayOf(PropTypes.string),
+
+    // 打包监听batchPropsNames中定义的属性值变化
+    batchPropsValues: PropTypes.object,
+
     loading_state: PropTypes.shape({
         /**
          * Determines if the component is loading or not
@@ -363,6 +369,21 @@ AntdCascader.defaultProps = {
     disabled: false,
     persisted_props: ['value'],
     persistence_type: 'local',
+    batchPropsNames: []
 }
 
-export default AntdCascader;
+export default React.memo(
+    AntdCascader,
+    (prevProps, nextProps) => {
+        if (nextProps.batchPropsNames && nextProps.batchPropsNames.length !== 0) {
+            let _batchPropsValues = {};
+            for (let propName of nextProps.batchPropsNames) {
+                _batchPropsValues[propName] = nextProps[propName];
+            }
+            nextProps.setProps({
+                batchPropsValues: _batchPropsValues
+            })
+        }
+        return false;
+    }
+);
