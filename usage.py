@@ -8,53 +8,11 @@ app = dash.Dash(__name__)
 
 app.layout = html.Div(
     [
-        fac.AntdCascader(
-            id='cascader-demo',
-            placeholder='请选择',
-            options=[
-                {
-                    'value': '节点1',
-                    'label': '节点1',
-                    'children': [
-                        {
-                            'value': '节点1-1',
-                            'label': '节点1-1'
-                        },
-                        {
-                            'value': '节点1-2',
-                            'label': '节点1-2',
-                            'children': [
-                                {
-                                    'value': '节点1-2-1',
-                                    'label': '节点1-2-1'
-                                },
-                                {
-                                    'value': '节点1-2-2',
-                                    'label': '节点1-2-2'
-                                }
-                            ]
-                        }
-                    ]
-                },
-                {
-                    'value': '节点2',
-                    'label': '节点2',
-                    'children': [
-                        {
-                            'value': '节点2-1',
-                            'label': '节点2-1'
-                        },
-                        {
-                            'value': '节点2-2',
-                            'label': '节点2-2'
-                        }
-                    ]
-                }
-            ],
-            style={
-                'width': '200px'
-            },
-            batchPropsNames=['options', 'value']
+        fac.AntdCheckbox(
+            id='checkbox-demo',
+            checked=True,
+            label='测试',
+            batchPropsNames=['id', 'checked', 'label']
         ),
 
         html.Pre(
@@ -69,7 +27,7 @@ app.layout = html.Div(
 
 @app.callback(
     Output('output', 'children'),
-    Input('cascader-demo', 'batchPropsValues'),
+    Input('checkbox-demo', 'batchPropsValues'),
     prevent_initial_call=True
 )
 def demo_callback(batchPropsValues):
