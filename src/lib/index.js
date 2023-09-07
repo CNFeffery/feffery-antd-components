@@ -19,6 +19,7 @@ import AntdInputNumber from './components/dataEntry/AntdInputNumber.react';
 import AntdMentions from './components/dataEntry/AntdMentions.react';
 import AntdRadioGroup from './components/dataEntry/AntdRadioGroup.react';
 import AntdRate from './components/dataEntry/AntdRate.react';
+import AntdSegmentedColoring from './components/dataEntry/AntdSegmentedColoring.react';
 import AntdSelect from './components/dataEntry/AntdSelect.react';
 import AntdSlider from './components/dataEntry/AntdSlider.react';
 import AntdSwitch from './components/dataEntry/AntdSwitch.react';
@@ -95,7 +96,6 @@ import AntdPagination from './components/navigation/AntdPagination.react';
 import AntdSteps from './components/navigation/AntdSteps.react';
 import AntdAccordion from './components/dataDisplay/AntdAccordion.react';
 // 其他
-import AntdSegmentedColoring from './components/other/AntdSegmentedColoring.react';
 import AntdAnchor from './components/other/AntdAnchor.react';
 import AntdBackTop from './components/other/AntdBackTop.react';
 import AntdWatermark from './components/other/AntdWatermark.react';

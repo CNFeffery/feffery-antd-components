@@ -8,13 +8,24 @@ app = dash.Dash(__name__)
 
 app.layout = html.Div(
     [
-        fac.AntdInputNumber(
-            id='input-number-demo',
+        fac.AntdMentions(
+            id='mentions-demo',
+            autoSize={
+                'minRows': 2,
+                'maxRows': 4
+            },
+            options=[
+                {
+                    'label': f'用户{c}',
+                    'value': f'用户{c}'
+                }
+                for c in list('abcdef')
+            ],
             style={
-                'width': 250
+                'width': 300
             },
             batchPropsNames=[
-                'id', 'value', 'debounceValue', 'nSubmit'
+                'id', 'value', 'options', 'selectedOptions'
             ]
         ),
 
@@ -30,7 +41,7 @@ app.layout = html.Div(
 
 @app.callback(
     Output('output', 'children'),
-    Input('input-number-demo', 'batchPropsValues'),
+    Input('mentions-demo', 'batchPropsValues'),
     prevent_initial_call=True
 )
 def demo_callback(batchPropsValues):

@@ -19,6 +19,10 @@ Keyword arguments:
 
     - minRows (number; optional)
 
+- batchPropsNames (list of strings; optional)
+
+- batchPropsValues (dict; optional)
+
 - className (string | dict; optional)
 
 - defaultValue (string; optional)
@@ -68,10 +72,10 @@ Keyword arguments:
     _namespace = 'feffery_antd_components'
     _type = 'AntdMentions'
     @_explicitize_args
-    def __init__(self, id=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, key=Component.UNDEFINED, autoSize=Component.UNDEFINED, prefix=Component.UNDEFINED, value=Component.UNDEFINED, defaultValue=Component.UNDEFINED, options=Component.REQUIRED, selectedOptions=Component.UNDEFINED, disabled=Component.UNDEFINED, placement=Component.UNDEFINED, status=Component.UNDEFINED, popupContainer=Component.UNDEFINED, readOnly=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
-        self._prop_names = ['id', 'autoSize', 'className', 'defaultValue', 'disabled', 'key', 'loading_state', 'options', 'placement', 'popupContainer', 'prefix', 'readOnly', 'selectedOptions', 'status', 'style', 'value']
+    def __init__(self, id=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, key=Component.UNDEFINED, autoSize=Component.UNDEFINED, prefix=Component.UNDEFINED, value=Component.UNDEFINED, defaultValue=Component.UNDEFINED, options=Component.REQUIRED, selectedOptions=Component.UNDEFINED, disabled=Component.UNDEFINED, placement=Component.UNDEFINED, status=Component.UNDEFINED, popupContainer=Component.UNDEFINED, readOnly=Component.UNDEFINED, batchPropsNames=Component.UNDEFINED, batchPropsValues=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
+        self._prop_names = ['id', 'autoSize', 'batchPropsNames', 'batchPropsValues', 'className', 'defaultValue', 'disabled', 'key', 'loading_state', 'options', 'placement', 'popupContainer', 'prefix', 'readOnly', 'selectedOptions', 'status', 'style', 'value']
         self._valid_wildcard_attributes =            []
-        self.available_properties = ['id', 'autoSize', 'className', 'defaultValue', 'disabled', 'key', 'loading_state', 'options', 'placement', 'popupContainer', 'prefix', 'readOnly', 'selectedOptions', 'status', 'style', 'value']
+        self.available_properties = ['id', 'autoSize', 'batchPropsNames', 'batchPropsValues', 'className', 'defaultValue', 'disabled', 'key', 'loading_state', 'options', 'placement', 'popupContainer', 'prefix', 'readOnly', 'selectedOptions', 'status', 'style', 'value']
         self.available_wildcard_properties =            []
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()

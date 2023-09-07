@@ -35,6 +35,7 @@ from .AntdInputNumber import AntdInputNumber
 from .AntdMentions import AntdMentions
 from .AntdRadioGroup import AntdRadioGroup
 from .AntdRate import AntdRate
+from .AntdSegmentedColoring import AntdSegmentedColoring
 from .AntdSelect import AntdSelect
 from .AntdSlider import AntdSlider
 from .AntdSwitch import AntdSwitch
@@ -92,7 +93,6 @@ from .AntdAnchor import AntdAnchor
 from .AntdBackTop import AntdBackTop
 from .AntdConfigProvider import AntdConfigProvider
 from .AntdCopyText import AntdCopyText
-from .AntdSegmentedColoring import AntdSegmentedColoring
 from .AntdWatermark import AntdWatermark
 
 __all__ = [
@@ -133,6 +133,7 @@ __all__ = [
     "AntdMentions",
     "AntdRadioGroup",
     "AntdRate",
+    "AntdSegmentedColoring",
     "AntdSelect",
     "AntdSlider",
     "AntdSwitch",
@@ -190,6 +191,5 @@ __all__ = [
     "AntdBackTop",
     "AntdConfigProvider",
     "AntdCopyText",
-    "AntdSegmentedColoring",
     "AntdWatermark"
 ]
