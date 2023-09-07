@@ -8,9 +8,12 @@ app = dash.Dash(__name__)
 
 app.layout = html.Div(
     [
-        fac.AntdTimePicker(
-            id='time-picker-demo',
-            defaultValue='06:00:00',
+        fac.AntdTimeRangePicker(
+            id='time-range-picker-demo',
+            defaultValue=[
+                '12:00:00',
+                '13:00:00'
+            ],
             batchPropsNames=[
                 'id', 'value', 'format'
             ]
@@ -28,7 +31,7 @@ app.layout = html.Div(
 
 @app.callback(
     Output('output', 'children'),
-    Input('time-picker-demo', 'batchPropsValues'),
+    Input('time-range-picker-demo', 'batchPropsValues'),
     prevent_initial_call=True
 )
 def demo_callback(batchPropsValues):
