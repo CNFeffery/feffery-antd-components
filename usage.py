@@ -8,11 +8,16 @@ app = dash.Dash(__name__)
 
 app.layout = html.Div(
     [
-        fac.AntdCheckbox(
-            id='checkbox-demo',
-            checked=True,
-            label='测试',
-            batchPropsNames=['id', 'checked', 'label']
+        fac.AntdCheckboxGroup(
+            id='checkbox-group-demo',
+            options=[
+                {
+                    'label': f'选项{i}',
+                    'value': f'选项{i}'
+                }
+                for i in range(5)
+            ],
+            batchPropsNames=['id', 'options', 'value']
         ),
 
         html.Pre(
@@ -27,7 +32,7 @@ app.layout = html.Div(
 
 @app.callback(
     Output('output', 'children'),
-    Input('checkbox-demo', 'batchPropsValues'),
+    Input('checkbox-group-demo', 'batchPropsValues'),
     prevent_initial_call=True
 )
 def demo_callback(batchPropsValues):
