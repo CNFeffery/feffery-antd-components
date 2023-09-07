@@ -8,20 +8,16 @@ app = dash.Dash(__name__)
 
 app.layout = html.Div(
     [
-        fac.AntdSelect(
-            id='select-demo',
-            options=[
-                {
-                    'label': f'选项{i}',
-                    'value': f'选项{i}'
-                }
-                for i in range(1, 6)
-            ],
+        fac.AntdSlider(
+            id='slider-demo',
+            min=0,
+            max=100,
+            defaultValue=33,
             style={
-                'width': 200
+                'width': 300
             },
             batchPropsNames=[
-                'id', 'options', 'value'
+                'id', 'min', 'max', 'value'
             ]
         ),
 
@@ -37,7 +33,7 @@ app.layout = html.Div(
 
 @app.callback(
     Output('output', 'children'),
-    Input('select-demo', 'batchPropsValues'),
+    Input('slider-demo', 'batchPropsValues'),
     prevent_initial_call=True
 )
 def demo_callback(batchPropsValues):
