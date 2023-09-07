@@ -194,6 +194,12 @@ AntdTimePicker.propTypes = {
     // 设置悬浮层锚定策略，可选的有'parent'、'body'，默认为'body'
     popupContainer: PropTypes.oneOf(['parent', 'body']),
 
+    // 用于自定义需要纳入batchProps中的属性名数组
+    batchPropsNames: PropTypes.arrayOf(PropTypes.string),
+
+    // 打包监听batchPropsNames中定义的属性值变化
+    batchPropsValues: PropTypes.object,
+
     /**
     * Object that holds the loading state object coming from dash-renderer
     */
@@ -264,7 +270,22 @@ AntdTimePicker.defaultProps = {
     persisted_props: ['value'],
     persistence_type: 'local',
     locale: 'zh-cn',
-    popupContainer: 'body'
+    popupContainer: 'body',
+    batchPropsNames: []
 }
 
-export default AntdTimePicker;
+export default React.memo(
+    AntdTimePicker,
+    (prevProps, nextProps) => {
+        if (nextProps.batchPropsNames && nextProps.batchPropsNames.length !== 0) {
+            let _batchPropsValues = {};
+            for (let propName of nextProps.batchPropsNames) {
+                _batchPropsValues[propName] = nextProps[propName];
+            }
+            nextProps.setProps({
+                batchPropsValues: _batchPropsValues
+            })
+        }
+        return false;
+    }
+);

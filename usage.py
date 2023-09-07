@@ -8,15 +8,11 @@ app = dash.Dash(__name__)
 
 app.layout = html.Div(
     [
-        fac.AntdSwitch(
-            id='switch-demo',
-            checkedChildren='开',
-            unCheckedChildren='关',
+        fac.AntdTimePicker(
+            id='time-picker-demo',
+            defaultValue='06:00:00',
             batchPropsNames=[
-                'id',
-                'checked',
-                'checkedChildren',
-                'unCheckedChildren'
+                'id', 'value', 'format'
             ]
         ),
 
@@ -32,7 +28,7 @@ app.layout = html.Div(
 
 @app.callback(
     Output('output', 'children'),
-    Input('switch-demo', 'batchPropsValues'),
+    Input('time-picker-demo', 'batchPropsValues'),
     prevent_initial_call=True
 )
 def demo_callback(batchPropsValues):
