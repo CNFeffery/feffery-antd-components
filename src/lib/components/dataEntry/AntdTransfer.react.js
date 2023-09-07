@@ -221,6 +221,12 @@ AntdTransfer.propTypes = {
     // 设置是否以只读模式进行渲染，默认为false
     readOnly: PropTypes.bool,
 
+    // 用于自定义需要纳入batchProps中的属性名数组
+    batchPropsNames: PropTypes.arrayOf(PropTypes.string),
+
+    // 打包监听batchPropsNames中定义的属性值变化
+    batchPropsValues: PropTypes.object,
+
     /**
      * Dash-assigned callback that should be called to report property changes
      * to Dash, to make them available for callbacks.
@@ -284,7 +290,22 @@ AntdTransfer.defaultProps = {
     readOnly: false,
     persisted_props: ['targetKeys'],
     persistence_type: 'local',
-    locale: 'zh-cn'
+    locale: 'zh-cn',
+    batchPropsNames: []
 }
 
-export default AntdTransfer;
+export default React.memo(
+    AntdTransfer,
+    (prevProps, nextProps) => {
+        if (nextProps.batchPropsNames && nextProps.batchPropsNames.length !== 0) {
+            let _batchPropsValues = {};
+            for (let propName of nextProps.batchPropsNames) {
+                _batchPropsValues[propName] = nextProps[propName];
+            }
+            nextProps.setProps({
+                batchPropsValues: _batchPropsValues
+            })
+        }
+        return false;
+    }
+);
