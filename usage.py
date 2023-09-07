@@ -8,18 +8,13 @@ app = dash.Dash(__name__)
 
 app.layout = html.Div(
     [
-        fac.AntdRadioGroup(
-            id='radio-group-demo',
-            options=[
-                {
-                    'label': f'选项{c}',
-                    'value': c
-                }
-                for c in list('abcdef')
-            ],
-            defaultValue='a',
+        fac.AntdRate(
+            id='rate-demo',
+            count=10,
+            allowHalf=True,
+            defaultValue=1,
             batchPropsNames=[
-                'id', 'options', 'value'
+                'id', 'value', 'count'
             ]
         ),
 
@@ -35,7 +30,7 @@ app.layout = html.Div(
 
 @app.callback(
     Output('output', 'children'),
-    Input('radio-group-demo', 'batchPropsValues'),
+    Input('rate-demo', 'batchPropsValues'),
     prevent_initial_call=True
 )
 def demo_callback(batchPropsValues):
