@@ -549,6 +549,12 @@ AntdDateRangePicker.propTypes = {
     // 设置组件悬浮层参考容器类型，可选的有'parent'、'body'，默认为'parent'
     popupContainer: PropTypes.oneOf(['parent', 'body']),
 
+    // 用于自定义需要纳入batchProps中的属性名数组
+    batchPropsNames: PropTypes.arrayOf(PropTypes.string),
+
+    // 打包监听batchPropsNames中定义的属性值变化
+    batchPropsValues: PropTypes.object,
+
     /**
     * Object that holds the loading state object coming from dash-renderer
     */
@@ -615,7 +621,22 @@ AntdDateRangePicker.defaultProps = {
     persistence_type: 'local',
     locale: 'zh-cn',
     placement: 'bottomLeft',
-    popupContainer: 'body'
+    popupContainer: 'body',
+    batchPropsNames: []
 }
 
-export default AntdDateRangePicker;
+export default React.memo(
+    AntdDateRangePicker,
+    (prevProps, nextProps) => {
+        if (nextProps.batchPropsNames && nextProps.batchPropsNames.length !== 0) {
+            let _batchPropsValues = {};
+            for (let propName of nextProps.batchPropsNames) {
+                _batchPropsValues[propName] = nextProps[propName];
+            }
+            nextProps.setProps({
+                batchPropsValues: _batchPropsValues
+            })
+        }
+        return false;
+    }
+);
