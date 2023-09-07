@@ -8,13 +8,17 @@ app = dash.Dash(__name__)
 
 app.layout = html.Div(
     [
-        fac.AntdRate(
-            id='rate-demo',
-            count=10,
-            allowHalf=True,
-            defaultValue=1,
+        fac.AntdSegmentedColoring(
+            id='segmented-coloring-demo',
+            size='small',
+            min=-10,
+            max=10,
+            breakpoints=[0, 1, 2, 3, 4, 5],
+            colors=["#deecf9", "#71afe5",
+                    "#2b88d8", "#0078d4",
+                    "#106ebe"],
             batchPropsNames=[
-                'id', 'value', 'count'
+                'id', 'min', 'max', 'breakpoints', 'colors', 'breakpoints'
             ]
         ),
 
@@ -30,7 +34,7 @@ app.layout = html.Div(
 
 @app.callback(
     Output('output', 'children'),
-    Input('rate-demo', 'batchPropsValues'),
+    Input('segmented-coloring-demo', 'batchPropsValues'),
     prevent_initial_call=True
 )
 def demo_callback(batchPropsValues):
