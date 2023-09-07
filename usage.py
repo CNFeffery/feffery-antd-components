@@ -8,13 +8,13 @@ app = dash.Dash(__name__)
 
 app.layout = html.Div(
     [
-        fac.AntdInput(
-            id='input-demo',
+        fac.AntdInputNumber(
+            id='input-number-demo',
             style={
                 'width': 250
             },
             batchPropsNames=[
-                'id', 'value', 'nSubmit', 'debounceValue'
+                'id', 'value', 'debounceValue', 'nSubmit'
             ]
         ),
 
@@ -30,7 +30,7 @@ app.layout = html.Div(
 
 @app.callback(
     Output('output', 'children'),
-    Input('input-demo', 'batchPropsValues'),
+    Input('input-number-demo', 'batchPropsValues'),
     prevent_initial_call=True
 )
 def demo_callback(batchPropsValues):
