@@ -11,6 +11,10 @@ Keyword arguments:
 
 - id (string; optional)
 
+- batchPropsNames (list of strings; optional)
+
+- batchPropsValues (dict; optional)
+
 - buttonStyle (a value equal to: 'outline', 'solid'; default 'outline')
 
 - className (string | dict; optional)
@@ -79,10 +83,10 @@ Keyword arguments:
     _namespace = 'feffery_antd_components'
     _type = 'AntdRadioGroup'
     @_explicitize_args
-    def __init__(self, id=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, key=Component.UNDEFINED, direction=Component.UNDEFINED, options=Component.UNDEFINED, disabled=Component.UNDEFINED, size=Component.UNDEFINED, value=Component.UNDEFINED, defaultValue=Component.UNDEFINED, optionType=Component.UNDEFINED, buttonStyle=Component.UNDEFINED, readOnly=Component.UNDEFINED, loading_state=Component.UNDEFINED, persistence=Component.UNDEFINED, persisted_props=Component.UNDEFINED, persistence_type=Component.UNDEFINED, **kwargs):
-        self._prop_names = ['id', 'buttonStyle', 'className', 'defaultValue', 'direction', 'disabled', 'key', 'loading_state', 'optionType', 'options', 'persisted_props', 'persistence', 'persistence_type', 'readOnly', 'size', 'style', 'value']
+    def __init__(self, id=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, key=Component.UNDEFINED, direction=Component.UNDEFINED, options=Component.UNDEFINED, disabled=Component.UNDEFINED, size=Component.UNDEFINED, value=Component.UNDEFINED, defaultValue=Component.UNDEFINED, optionType=Component.UNDEFINED, buttonStyle=Component.UNDEFINED, readOnly=Component.UNDEFINED, batchPropsNames=Component.UNDEFINED, batchPropsValues=Component.UNDEFINED, loading_state=Component.UNDEFINED, persistence=Component.UNDEFINED, persisted_props=Component.UNDEFINED, persistence_type=Component.UNDEFINED, **kwargs):
+        self._prop_names = ['id', 'batchPropsNames', 'batchPropsValues', 'buttonStyle', 'className', 'defaultValue', 'direction', 'disabled', 'key', 'loading_state', 'optionType', 'options', 'persisted_props', 'persistence', 'persistence_type', 'readOnly', 'size', 'style', 'value']
         self._valid_wildcard_attributes =            []
-        self.available_properties = ['id', 'buttonStyle', 'className', 'defaultValue', 'direction', 'disabled', 'key', 'loading_state', 'optionType', 'options', 'persisted_props', 'persistence', 'persistence_type', 'readOnly', 'size', 'style', 'value']
+        self.available_properties = ['id', 'batchPropsNames', 'batchPropsValues', 'buttonStyle', 'className', 'defaultValue', 'direction', 'disabled', 'key', 'loading_state', 'optionType', 'options', 'persisted_props', 'persistence', 'persistence_type', 'readOnly', 'size', 'style', 'value']
         self.available_wildcard_properties =            []
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()
