@@ -8,35 +8,21 @@ app = dash.Dash(__name__)
 
 app.layout = html.Div(
     [
-        fac.AntdTreeSelect(
-            id='tree-select-demo',
-            treeData=[
-                {
-                    'key': '节点1',
-                    'value': '1',
-                    'title': '节点1',
-                    'children': [
-                        {
-                            'key': f'节点1-{i}',
-                            'value': f'1-{i}',
-                            'title': f'节点1-{i}'
-                        }
-                        for i in range(1, 5)
-                    ]
-                },
-                {
-                    'key': '节点2',
-                    'value': '2',
-                    'title': '节点2'
-                }
-            ],
-            placeholder='请选择',
-            style={
-                'width': 256
+        fac.AntdComment(
+            id='comment-demo',
+            authorName='费弗里',
+            authorNameHref='https://github.com/CNFeffery/feffery-antd-components',
+            publishTime={
+                'value': '2022-01-01 19:29:01',
+                'format': 'YYYY-MM-DD hh:mm:ss'
             },
+            commentContent='我希望feffery-components项目系列组件可以帮助更多人快速开发心仪的应用！😀',
+            defaultAction='liked',
+            likesCount=1,
             batchPropsNames=[
-                'id', 'value', 'treeExpandedKeys', 'treeData'
-            ]
+                'id', 'replyClicks', 'deleteClicks', 'likesCount', 'dislikesCount', 'action'
+            ],
+            showDelete=True
         ),
 
         html.Pre(
@@ -51,7 +37,7 @@ app.layout = html.Div(
 
 @app.callback(
     Output('output', 'children'),
-    Input('tree-select-demo', 'batchPropsValues'),
+    Input('comment-demo', 'batchPropsValues'),
     prevent_initial_call=True
 )
 def demo_callback(batchPropsValues):
