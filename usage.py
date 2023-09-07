@@ -8,13 +8,13 @@ app = dash.Dash(__name__)
 
 app.layout = html.Div(
     [
-        fac.AntdDateRangePicker(
-            id='date-range-picker-demo',
+        fac.AntdInput(
+            id='input-demo',
             style={
                 'width': 250
             },
             batchPropsNames=[
-                'id', 'value', 'format', 'picker'
+                'id', 'value', 'nSubmit', 'debounceValue'
             ]
         ),
 
@@ -30,7 +30,7 @@ app.layout = html.Div(
 
 @app.callback(
     Output('output', 'children'),
-    Input('date-range-picker-demo', 'batchPropsValues'),
+    Input('input-demo', 'batchPropsValues'),
     prevent_initial_call=True
 )
 def demo_callback(batchPropsValues):

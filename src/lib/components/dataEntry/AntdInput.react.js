@@ -1,4 +1,4 @@
-import { useEffect, useContext } from 'react';
+import React, { useEffect, useContext } from 'react';
 import PropTypes from 'prop-types';
 import { Input } from 'antd';
 import md5 from 'md5';
@@ -416,6 +416,12 @@ AntdInput.propTypes = {
     // 默认为false
     emptyAsNone: PropTypes.bool,
 
+    // 用于自定义需要纳入batchProps中的属性名数组
+    batchPropsNames: PropTypes.arrayOf(PropTypes.string),
+
+    // 打包监听batchPropsNames中定义的属性值变化
+    batchPropsValues: PropTypes.object,
+
     loading_state: PropTypes.shape({
         /**
          * Determines if the component is loading or not
@@ -483,7 +489,22 @@ AntdInput.defaultProps = {
     emptyAsNone: false,
     debounceWait: 200,
     persisted_props: ['value', 'md5Value'],
-    persistence_type: 'local'
+    persistence_type: 'local',
+    batchPropsNames: []
 }
 
-export default AntdInput;
+export default React.memo(
+    AntdInput,
+    (prevProps, nextProps) => {
+        if (nextProps.batchPropsNames && nextProps.batchPropsNames.length !== 0) {
+            let _batchPropsValues = {};
+            for (let propName of nextProps.batchPropsNames) {
+                _batchPropsValues[propName] = nextProps[propName];
+            }
+            nextProps.setProps({
+                batchPropsValues: _batchPropsValues
+            })
+        }
+        return false;
+    }
+);
