@@ -8,16 +8,15 @@ app = dash.Dash(__name__)
 
 app.layout = html.Div(
     [
-        fac.AntdSlider(
-            id='slider-demo',
-            min=0,
-            max=100,
-            defaultValue=33,
-            style={
-                'width': 300
-            },
+        fac.AntdSwitch(
+            id='switch-demo',
+            checkedChildren='开',
+            unCheckedChildren='关',
             batchPropsNames=[
-                'id', 'min', 'max', 'value'
+                'id',
+                'checked',
+                'checkedChildren',
+                'unCheckedChildren'
             ]
         ),
 
@@ -33,7 +32,7 @@ app.layout = html.Div(
 
 @app.callback(
     Output('output', 'children'),
-    Input('slider-demo', 'batchPropsValues'),
+    Input('switch-demo', 'batchPropsValues'),
     prevent_initial_call=True
 )
 def demo_callback(batchPropsValues):

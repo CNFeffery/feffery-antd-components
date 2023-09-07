@@ -113,6 +113,12 @@ AntdSwitch.propTypes = {
     // 设置是否以只读模式进行渲染，默认为false
     readOnly: PropTypes.bool,
 
+    // 用于自定义需要纳入batchProps中的属性名数组
+    batchPropsNames: PropTypes.arrayOf(PropTypes.string),
+
+    // 打包监听batchPropsNames中定义的属性值变化
+    batchPropsValues: PropTypes.object,
+
     loading_state: PropTypes.shape({
         /**
          * Determines if the component is loading or not
@@ -171,7 +177,22 @@ AntdSwitch.defaultProps = {
     loading: false,
     readOnly: false,
     persisted_props: ['checked'],
-    persistence_type: 'local'
+    persistence_type: 'local',
+    batchPropsNames: []
 }
 
-export default AntdSwitch;
+export default React.memo(
+    AntdSwitch,
+    (prevProps, nextProps) => {
+        if (nextProps.batchPropsNames && nextProps.batchPropsNames.length !== 0) {
+            let _batchPropsValues = {};
+            for (let propName of nextProps.batchPropsNames) {
+                _batchPropsValues[propName] = nextProps[propName];
+            }
+            nextProps.setProps({
+                batchPropsValues: _batchPropsValues
+            })
+        }
+        return false;
+    }
+);
