@@ -4,7 +4,7 @@ const webpack = require('webpack');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const WebpackDashDynamicImport = require('@plotly/webpack-dash-dynamic-import');
 const packagejson = require('./package.json');
-const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+// const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 const dashLibraryName = packagejson.name.replace(/-/g, '_');
 
@@ -51,6 +51,7 @@ module.exports = (env, argv) => {
         entry,
         output: {
             path: path.resolve(__dirname, dashLibraryName),
+            chunkFilename: '[name].js',
             filename,
             library: dashLibraryName,
             libraryTarget: 'window',
@@ -128,7 +129,19 @@ module.exports = (env, argv) => {
                         }
                     }
                 )
-            ]
+            ],
+            splitChunks: {
+                name: '[name].js',
+                cacheGroups: {
+                    async: {
+                        chunks: 'async',
+                        minSize: 0,
+                        name(module, chunks, cacheGroupKey) {
+                            return `${cacheGroupKey}-${chunks[0].name}`;
+                        }
+                    }
+                }
+            }
         },
         plugins: [
             // new BundleAnalyzerPlugin(),
