@@ -1777,7 +1777,9 @@ class AntdTable extends Component {
                                 returnValue = {
                                     ...returnValue,
                                     record,
-                                    editable: item.editable
+                                    editable: item.editable,
+                                    dataIndex: item.dataIndex,
+                                    title: item.title
                                 }
                             } catch (e) {
                                 console.error(e)
