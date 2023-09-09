@@ -1,95 +1,123 @@
 import dash
-import json
-import numpy as np
-from dash import html
-from datetime import datetime
+from dash import html, dcc
 import feffery_antd_components as fac
-from dash.dependencies import Input, Output
+from dash.dependencies import Input, Output, State
 
-app = dash.Dash(__name__, compress=True)
+app = dash.Dash(__name__)
 
 app.layout = html.Div(
     [
+        dcc.Store(id='clicked-row-key'),
         fac.AntdTable(
+            id='demo-table',
             columns=[
                 {
-                    'title': 'int型示例',
-                    'dataIndex': 'int型示例',
-                    'editable': True,
-                    'width': '25%'
-                },
-                {
-                    'title': 'float型示例',
-                    'dataIndex': 'float型示例',
-                    'editable': True,
-                    'width': '25%'
-                },
-                {
-                    'title': 'str型示例',
-                    'dataIndex': 'str型示例',
-                    'editable': True,
-                    'width': '25%'
-                },
-                {
-                    'title': '日期时间示例',
-                    'dataIndex': '日期时间示例',
-                    'editable': True,
-                    'width': '25%'
-                },
+                    'title': f'示例字段{i}',
+                    'dataIndex': f'示例字段{i}'
+                }
+                for i in range(1, 9)
             ],
             data=[
                 {
-                    'int型示例': 123,
-                    'float型示例': 1.23,
-                    'str型示例': '示例字符',
-                    '日期时间示例': datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+                    f'示例字段{j}': i
+                    for j in range(1, 9)
                 }
-            ] * 3,
-            bordered=True
-        ),
-
-        fac.AntdTable(
-            columns=[
-                {
-                    'title': 'mini-area示例1',
-                    'dataIndex': 'mini-area示例1',
-                    'renderOptions': {
-                        'renderType': 'mini-area'
-                    },
-                    'width': '50%'
-                },
-                {
-                    'title': 'mini-area示例2',
-                    'dataIndex': 'mini-area示例2',
-                    'renderOptions': {
-                        'renderType': 'mini-area',
-                        'tooltipCustomContent': '''(x, data) => `数值：${data[0]?.data?.y.toFixed(3)}`'''
-                    },
-                    'width': '50%'
-                }
+                for i in range(10)
             ],
-            data=[
-                {
-                    'mini-area示例1': [
-                        np.random.rand()
-                        for i in range(25)
-                    ],
-                    'mini-area示例2': [
-                        np.random.rand()
-                        for i in range(25)
-                    ]
-                }
-            ] * 3,
             bordered=True,
-            style={
-                'width': 300
-            }
+            enableCellClickListenColumns=[
+                f'示例字段{i}' for i in range(1, 9)
+            ]
         )
     ],
     style={
-        'padding': 50
+        'padding': '50px 100px'
     }
 )
+
+
+@app.callback(
+    [Output('clicked-row-key', 'data'),
+     Output('demo-table', 'conditionalStyleFuncs')],
+    Input('demo-table', 'nClicksCell'),
+    [State('demo-table', 'recentlyCellClickColumn'),
+     State('demo-table', 'recentlyCellClickRecord'),
+     State('clicked-row-key', 'data')],
+    prevent_initial_call=True
+)
+def highlight_clicked_cell(nClicksCell,
+                           recentlyCellClickColumn,
+                           recentlyCellClickRecord,
+                           clicked_row_key):
+
+    if clicked_row_key:
+        # 若为同一单元格反复点击
+        if (
+            clicked_row_key['key'] == recentlyCellClickRecord['key'] and
+            clicked_row_key['column'] == recentlyCellClickColumn
+        ):
+            return [
+                None,
+                {}
+            ]
+
+        return [
+            {
+                'key': recentlyCellClickRecord['key'],
+                'column': recentlyCellClickColumn
+            },
+            {
+                recentlyCellClickColumn: '''
+                (record, index) => {
+                    if ( record.key === "%s" ) {
+                        return {
+                            style: {
+                                backgroundColor: "#ddf4ff"
+                            }
+                        }
+                    }
+                }
+                ''' % recentlyCellClickRecord['key']
+            }
+        ]
+
+    print(
+        {
+            recentlyCellClickColumn: '''
+            (record, index) => {
+                console.log(record)
+                if ( record.key === "%s" ) {
+                    return {
+                        style: {
+                            backgroundColor: "#ddf4ff"
+                        }
+                    }
+                }
+            }
+            ''' % recentlyCellClickRecord['key']
+        }
+    )
+
+    return [
+        {
+            'key': recentlyCellClickRecord['key'],
+            'column': recentlyCellClickColumn
+        },
+        {
+            recentlyCellClickColumn: '''
+            (record, index) => {
+                console.log(record)
+                if ( record.key === "%s" ) {
+                    return {
+                        style: {
+                            backgroundColor: "#ddf4ff"
+                        }
+                    }
+                }
+            }
+            ''' % recentlyCellClickRecord['key']
+        }
+    ]
 
 
 if __name__ == '__main__':

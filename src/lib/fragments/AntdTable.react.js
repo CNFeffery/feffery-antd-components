@@ -369,34 +369,13 @@ class AntdTable extends Component {
         // 根据columns中的hidden属性控制是否忽略对应字段
         columns = columns.filter(item => !item.hidden)
 
-        // 为columns配置默认align、conditionalStyleFuncs参数
+        // 为columns配置默认align参数
         for (let i in columns) {
             columns[i] = {
                 align: 'center',
-                ...columns[i],
-                ...{
-                    onCell: conditionalStyleFuncs[columns[i].dataIndex] ?
-                        eval(conditionalStyleFuncs[columns[i].dataIndex]) : undefined
-                }
+                ...columns[i]
             }
         }
-
-        // 处理可编辑特性
-        columns = columns.map((col) => {
-            if (!col.editable) {
-                return col;
-            }
-
-            return {
-                ...col,
-                onCell: (record) => ({
-                    record,
-                    editable: col.editable,
-                    dataIndex: col.dataIndex,
-                    title: col.title
-                }),
-            };
-        });
 
         // 自定义可编辑单元格
         const EditableContext = React.createContext(null);
@@ -1664,41 +1643,6 @@ class AntdTable extends Component {
             )
         )
 
-        // 添加单元格监听事件
-        if (enableCellClickListenColumns) {
-            columns = columns.map(
-                item => {
-                    if (enableCellClickListenColumns.includes(item.dataIndex)) {
-                        let currentDataIndex = item.dataIndex
-                        return {
-                            ...item,
-                            ...{
-                                onCell: (e) => {
-                                    return {
-                                        onClick: event => {
-                                            setProps({
-                                                recentlyCellClickColumn: currentDataIndex,
-                                                recentlyCellClickRecord: e,
-                                                nClicksCell: nClicksCell + 1
-                                            })
-                                        },
-                                        onDoubleClick: event => {
-                                            setProps({
-                                                recentlyCellDoubleClickColumn: currentDataIndex,
-                                                recentlyCellDoubleClickRecord: e,
-                                                nDoubleClicksCell: nDoubleClicksCell + 1
-                                            })
-                                        }
-                                    };
-                                }
-                            }
-                        }
-                    }
-                    return item;
-                }
-            )
-        }
-
         let rowSelection
         // 处理行选择功能设置
         if (rowSelectionType) {
@@ -1782,6 +1726,69 @@ class AntdTable extends Component {
         } else {
             tempColumns = [...columns]
         }
+
+        // 统一合并处理onCell自定义函数逻辑
+        tempColumns = tempColumns.map(
+            item => ({
+                ...item,
+                ...{
+                    onCell: (record, index) => {
+                        // 初始化onCell返回值
+                        let returnValue = {}
+                        // 处理自定义样式特性
+                        if (conditionalStyleFuncs && conditionalStyleFuncs[item.dataIndex]) {
+                            try {
+                                returnValue = {
+                                    ...returnValue,
+                                    ...eval(conditionalStyleFuncs[item.dataIndex])(record, index)
+                                }
+                            } catch (e) {
+                                console.error(e)
+                            }
+                        }
+                        // 处理单元格点击事件
+                        if (enableCellClickListenColumns && enableCellClickListenColumns.includes(item.dataIndex)) {
+                            try {
+                                returnValue = {
+                                    ...returnValue,
+                                    onClick: e => {
+                                        setProps({
+                                            recentlyCellClickColumn: item.dataIndex,
+                                            recentlyCellClickRecord: record,
+                                            nClicksCell: nClicksCell + 1
+                                        })
+                                    },
+                                    onDoubleClick: e => {
+                                        setProps({
+                                            recentlyCellDoubleClickColumn: item.dataIndex,
+                                            recentlyCellDoubleClickRecord: record,
+                                            nDoubleClicksCell: nDoubleClicksCell + 1
+                                        })
+                                    }
+                                }
+                            } catch (e) {
+                                console.error(e)
+                            }
+                        }
+
+                        // 处理可编辑特性
+                        if (item.editable) {
+                            try {
+                                returnValue = {
+                                    ...returnValue,
+                                    record,
+                                    editable: item.editable
+                                }
+                            } catch (e) {
+                                console.error(e)
+                            }
+                        }
+
+                        return returnValue;
+                    }
+                }
+            })
+        )
 
         return (
             <ConfigProvider
