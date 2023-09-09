@@ -1,57 +1,46 @@
 import dash
 import json
+import numpy as np
 from dash import html, dcc
 from datetime import datetime
 import feffery_antd_components as fac
 from dash.dependencies import Input, Output, State
 
-app = dash.Dash(__name__)
+app = dash.Dash(__name__, compress=True)
 
 app.layout = html.Div(
     [
+        fac.AntdUpload(),
+        fac.AntdDraggerUpload(),
+        fac.AntdPictureUpload(),
         fac.AntdTable(
-            id='table-editable-demo',
+            id='table-click-event-demo',
             columns=[
                 {
-                    'title': 'int型示例',
-                    'dataIndex': 'int型示例',
-                    'editable': True,
-                    'width': '25%'
-                },
-                {
-                    'title': 'float型示例',
-                    'dataIndex': 'float型示例',
-                    'editable': True,
-                    'width': '25%'
-                },
-                {
-                    'title': 'str型示例',
-                    'dataIndex': 'str型示例',
-                    'editable': True,
-                    'width': '25%'
-                },
-                {
-                    'title': '日期时间示例',
-                    'dataIndex': '日期时间示例',
-                    'editable': True,
-                    'width': '25%'
-                },
+                    'title': f'字段{i}',
+                    'dataIndex': f'字段{i}',
+                    'width': '20%'
+                }
+                for i in range(1, 6)
             ],
             data=[
                 {
-                    'key': f'row-{i}',
-                    'int型示例': 123,
-                    'float型示例': 1.23,
-                    'str型示例': '示例字符',
-                    '日期时间示例': datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+                    'key': f'row-{row}',
+                    **{
+                        f'字段{i}': f'字段{i}第{row}行'
+                        for i in range(1, 6)
+                    }
                 }
-                for i in range(1, 4)
+                for row in range(1, 6)
             ],
-            bordered=True
+            bordered=True,
+            enableCellClickListenColumns=[
+                f'字段{i}' for i in range(1, 6, 2)
+            ]
         ),
 
         html.Pre(
-            id='table-editable-demo-output'
+            id='table-click-event-demo-output'
         )
     ],
     style={
@@ -61,14 +50,34 @@ app.layout = html.Div(
 
 
 @app.callback(
-    Output('table-editable-demo-output', 'children'),
-    Input('table-editable-demo', 'recentlyChangedRow'),
+    Output('table-click-event-demo-output', 'children'),
+    [Input('table-click-event-demo', 'nClicksCell'),
+     Input('table-click-event-demo', 'nDoubleClicksCell')],
+    [State('table-click-event-demo', 'enableCellClickListenColumns'),
+     State('table-click-event-demo', 'recentlyCellClickColumn'),
+     State('table-click-event-demo', 'recentlyCellClickRecord'),
+     State('table-click-event-demo', 'recentlyCellDoubleClickColumn'),
+     State('table-click-event-demo', 'recentlyCellDoubleClickRecord')],
     prevent_initial_call=True
 )
-def table_editable_demo(recentlyChangedRow):
+def table_click_event_demo(nClicksCell,
+                           nDoubleClicksCell,
+                           enableCellClickListenColumns,
+                           recentlyCellClickColumn,
+                           recentlyCellClickRecord,
+                           recentlyCellDoubleClickColumn,
+                           recentlyCellDoubleClickRecord):
 
     return json.dumps(
-        recentlyChangedRow,
+        dict(
+            enableCellClickListenColumns=enableCellClickListenColumns,
+            nClicksCell=nClicksCell,
+            recentlyCellClickColumn=recentlyCellClickColumn,
+            recentlyCellClickRecord=recentlyCellClickRecord,
+            nDoubleClicksCell=nDoubleClicksCell,
+            recentlyCellDoubleClickColumn=recentlyCellDoubleClickColumn,
+            recentlyCellDoubleClickRecord=recentlyCellDoubleClickRecord
+        ),
         indent=4,
         ensure_ascii=False
     )

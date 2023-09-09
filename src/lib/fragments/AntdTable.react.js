@@ -1874,7 +1874,6 @@ class AntdTable extends Component {
 }
 
 
-
 export default AntdTable;
 
 AntdTable.defaultProps = defaultProps;
