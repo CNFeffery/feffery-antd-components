@@ -3,108 +3,23 @@ from dash import html, dcc
 import feffery_antd_components as fac
 from dash.dependencies import Input, Output, State
 
-app = dash.Dash(__name__, compress=True)
+app = dash.Dash(__name__, compress=True, suppress_callback_exceptions=True)
 
 app.layout = html.Div(
     [
-        fac.AntdUpload(),
-        dcc.Store(id='clicked-row-key'),
-        fac.AntdTable(
-            id='demo-table',
-            columns=[
-                {
-                    'title': f'示例字段{i}',
-                    'dataIndex': f'示例字段{i}'
-                }
-                for i in range(1, 9)
-            ],
-            data=[
-                {
-                    f'示例字段{j}': i
-                    for j in range(1, 9)
-                }
-                for i in range(10)
-            ],
-            bordered=True,
-            enableCellClickListenColumns=[
-                f'示例字段{i}' for i in range(1, 9)
-            ]
+        fac.AntdInput(
+            id='persistence-input-demo',
+            placeholder='请输入',
+            persistence=True,
+            style={
+                'width': 256
+            }
         )
     ],
     style={
         'padding': '50px 100px'
     }
 )
-
-
-@app.callback(
-    [Output('clicked-row-key', 'data'),
-     Output('demo-table', 'conditionalStyleFuncs')],
-    Input('demo-table', 'nClicksCell'),
-    [State('demo-table', 'recentlyCellClickColumn'),
-     State('demo-table', 'recentlyCellClickRecord'),
-     State('clicked-row-key', 'data')],
-    prevent_initial_call=True
-)
-def highlight_clicked_cell(nClicksCell,
-                           recentlyCellClickColumn,
-                           recentlyCellClickRecord,
-                           clicked_row_key):
-
-    if clicked_row_key:
-        # 若为同一单元格反复点击
-        if (
-            clicked_row_key['key'] == recentlyCellClickRecord['key'] and
-            clicked_row_key['column'] == recentlyCellClickColumn
-        ):
-            return [
-                None,
-                {}
-            ]
-
-        return [
-            {
-                'key': recentlyCellClickRecord['key'],
-                'column': recentlyCellClickColumn
-            },
-            {
-                recentlyCellClickColumn: '''
-                (record, index) => {
-                    if ( record.key === "%s" ) {
-                        return {
-                            style: {
-                                backgroundColor: "#e6f7ff",
-                                border: "1px solid #1890ff",
-                                boxSizing: "content-box"
-                            }
-                        }
-                    }
-                }
-                ''' % recentlyCellClickRecord['key']
-            }
-        ]
-
-    return [
-        {
-            'key': recentlyCellClickRecord['key'],
-            'column': recentlyCellClickColumn
-        },
-        {
-            recentlyCellClickColumn: '''
-            (record, index) => {
-                if ( record.key === "%s" ) {
-                    return {
-                        style: {
-                            backgroundColor: "#e6f7ff",
-                            border: "1px solid #1890ff",
-                            boxSizing: "content-box"
-                        }
-                    }
-                }
-            }
-            ''' % recentlyCellClickRecord['key']
-        }
-    ]
 
 
 if __name__ == '__main__':

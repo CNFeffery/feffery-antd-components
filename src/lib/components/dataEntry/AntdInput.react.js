@@ -46,8 +46,22 @@ const AntdInput = (props) => {
         loading_state,
         persistence,
         persisted_props,
-        persistence_type
+        persistence_type,
+        batchPropsNames
     } = props;
+
+    // 批属性监听
+    useEffect(() => {
+        if (batchPropsNames && batchPropsNames.length !== 0) {
+            let _batchPropsValues = {};
+            for (let propName of batchPropsNames) {
+                _batchPropsValues[propName] = props[propName];
+            }
+            setProps({
+                batchPropsValues: _batchPropsValues
+            })
+        }
+    })
 
     const context = useContext(PropsContext)
 
@@ -493,18 +507,4 @@ AntdInput.defaultProps = {
     batchPropsNames: []
 }
 
-export default React.memo(
-    AntdInput,
-    (prevProps, nextProps) => {
-        if (nextProps.batchPropsNames && nextProps.batchPropsNames.length !== 0) {
-            let _batchPropsValues = {};
-            for (let propName of nextProps.batchPropsNames) {
-                _batchPropsValues[propName] = nextProps[propName];
-            }
-            nextProps.setProps({
-                batchPropsValues: _batchPropsValues
-            })
-        }
-        return false;
-    }
-);
+export default AntdInput;

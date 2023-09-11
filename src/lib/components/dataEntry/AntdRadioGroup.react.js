@@ -27,8 +27,22 @@ const AntdRadioGroup = (props) => {
         persistence,
         persisted_props,
         persistence_type,
-        loading_state
+        loading_state,
+        batchPropsNames
     } = props;
+
+    // 批属性监听
+    useEffect(() => {
+        if (batchPropsNames && batchPropsNames.length !== 0) {
+            let _batchPropsValues = {};
+            for (let propName of batchPropsNames) {
+                _batchPropsValues[propName] = props[propName];
+            }
+            setProps({
+                batchPropsValues: _batchPropsValues
+            })
+        }
+    })
 
     const context = useContext(PropsContext)
 
@@ -263,18 +277,4 @@ AntdRadioGroup.defaultProps = {
     batchPropsNames: []
 }
 
-export default React.memo(
-    AntdRadioGroup,
-    (prevProps, nextProps) => {
-        if (nextProps.batchPropsNames && nextProps.batchPropsNames.length !== 0) {
-            let _batchPropsValues = {};
-            for (let propName of nextProps.batchPropsNames) {
-                _batchPropsValues[propName] = nextProps[propName];
-            }
-            nextProps.setProps({
-                batchPropsValues: _batchPropsValues
-            })
-        }
-        return false;
-    }
-);
+export default AntdRadioGroup;

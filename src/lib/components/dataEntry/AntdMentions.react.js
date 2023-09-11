@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { Mentions } from 'antd';
 import { isString, isUndefined } from 'lodash';
@@ -26,8 +26,22 @@ const AntdMentions = (props) => {
         popupContainer,
         readOnly,
         setProps,
-        loading_state
+        loading_state,
+        batchPropsNames
     } = props;
+
+    // 批属性监听
+    useEffect(() => {
+        if (batchPropsNames && batchPropsNames.length !== 0) {
+            let _batchPropsValues = {};
+            for (let propName of batchPropsNames) {
+                _batchPropsValues[propName] = props[propName];
+            }
+            setProps({
+                batchPropsValues: _batchPropsValues
+            })
+        }
+    })
 
     const context = useContext(PropsContext)
 
@@ -212,18 +226,4 @@ AntdMentions.defaultProps = {
     batchPropsNames: []
 }
 
-export default React.memo(
-    AntdMentions,
-    (prevProps, nextProps) => {
-        if (nextProps.batchPropsNames && nextProps.batchPropsNames.length !== 0) {
-            let _batchPropsValues = {};
-            for (let propName of nextProps.batchPropsNames) {
-                _batchPropsValues[propName] = nextProps[propName];
-            }
-            nextProps.setProps({
-                batchPropsValues: _batchPropsValues
-            })
-        }
-        return false;
-    }
-);
+export default AntdMentions;
