@@ -792,7 +792,7 @@ AntdTable.propTypes = {
     // 自定义空数据状态内容
     emptyContent: PropTypes.node,
 
-    // 设置是否开启单元格渲染优化，默认为true
+    // 设置是否开启单元格渲染优化，默认为false
     cellUpdateOptimize: PropTypes.bool,
 
     // 再渲染模式
@@ -886,6 +886,11 @@ AntdTable.propTypes = {
     // 用于设置需要进行隐藏的行对应key值数组，默认为[]
     hiddenRowKeys: PropTypes.arrayOf(PropTypes.string),
 
+    // 用于设置是否针对data参数进行深比较，从而避免React默认的浅比较prop导致部分数据变化情况下未刷新的问题
+    // 开启此功能后，在数据量较大时会对刷新性能造成负面影响
+    // 默认：false
+    dataDeepCompare: PropTypes.bool,
+
     loading_state: PropTypes.shape({
         /**
          * Determines if the component is loading or not
@@ -941,7 +946,8 @@ AntdTable.defaultProps = {
     miniChartHeight: 30,
     miniChartAnimation: false,
     // dropdown模式相关
-    nClicksDropdownItem: 0
+    nClicksDropdownItem: 0,
+    dataDeepCompare: false
 };
 
 export default AntdTable;

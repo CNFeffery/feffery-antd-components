@@ -40,7 +40,7 @@ import {
     QuestionCircleOutlined,
     DownOutlined
 } from '@ant-design/icons';
-import { isNumber, isEqual, isString } from 'lodash';
+import { isNumber, isEqual, isString, cloneDeep } from 'lodash';
 import { str2Locale, locale2text } from '../components/locales.react';
 import { propTypes, defaultProps } from '../components/dataDisplay/AntdTable.react';
 
@@ -1112,7 +1112,7 @@ class AntdTable extends Component {
                     columns[i]['render'] = (content, record) => {
                         const currentDataIndex = columns[i]['dataIndex']
                         return (
-                            <Checkbox defaultChecked={content.checked}
+                            <Checkbox checked={content.checked}
                                 disabled={content.disabled}
                                 onChange={(e) => {
                                     // 修改对应行对应字段item.checked值
@@ -1150,7 +1150,7 @@ class AntdTable extends Component {
                     columns[i]['render'] = (content, record) => {
                         const currentDataIndex = columns[i]['dataIndex']
                         return (
-                            <Switch defaultChecked={content.checked}
+                            <Switch checked={content.checked}
                                 disabled={content.disabled}
                                 checkedChildren={content.checkedChildren}
                                 unCheckedChildren={content.unCheckedChildren}
