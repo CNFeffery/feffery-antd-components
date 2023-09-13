@@ -165,3 +165,8 @@
 .ant-tree-title .ant-rate {
     font-size: 16px;
 }
+
+/* 针对上传组件允许按钮block模式 */
+.ant-upload-button-block .ant-upload {
+    display: block;
+}

@@ -60,6 +60,10 @@ AntdUpload.propTypes = {
         // 设置按钮是否显示为危险状态
         danger: PropTypes.bool,
 
+        // 设置按钮是否宽度撑满父元素
+        // 默认：false
+        block: PropTypes.bool,
+
         // 设置按钮的css样式
         style: PropTypes.object,
 

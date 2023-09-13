@@ -19,6 +19,8 @@ Keyword arguments:
 
     `buttonProps` is a dict with keys:
 
+    - block (boolean; optional)
+
     - className (string; optional)
 
     - danger (boolean; optional)
