@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useMemo } from 'react';
 import PropTypes from 'prop-types';
 import { Tree, Tooltip, Dropdown, Rate } from 'antd';
 import AntdIcon from '../general/AntdIcon.react';
+import Highlighter from 'react-highlight-words';
 import { omitBy, isUndefined, isString, isObject, isArray, cloneDeep } from 'lodash';
 import { flatToTree } from '../utils';
 import useCss from '../../hooks/useCss';
@@ -21,6 +22,31 @@ const isSameParent = (a, b) => {
     aLevel.pop();
 
     return aLevel.join('') === bLevel.join('');
+}
+
+const filterTree = (toFilterData, keyword) => {
+    return toFilterData.filter(node => {
+        // 首先检查当前节点是否匹配关键字
+        const isMatch = node.title.includes(keyword);
+
+        // 如果当前节点匹配关键字，但不是根节点，才保留它及其全部后代节点信息
+        if (isMatch) {
+            return true;
+        }
+
+        // 如果当前节点不匹配关键字，检查它的子节点
+        if (node.children && node.children.length > 0) {
+            node.children = filterTree(node.children, keyword);
+
+            // 如果有匹配的子节点，保留当前节点及其匹配的后代节点信息
+            if (node.children.length > 0) {
+                return true;
+            }
+        }
+
+        // 如果当前节点和它的子节点都不匹配，返回 false，表示不保留该节点
+        return false;
+    });
 }
 
 // 定义树形控件AntdTree，api参数参考https://ant.design/components/tree-cn/
@@ -55,6 +81,8 @@ const AntdTree = (props) => {
         enableNodeFavorites,
         favoritedKeys,
         scrollTarget,
+        searchKeyword,
+        highlightStyle,
         nodeCheckedSuffix,
         nodeUncheckedSuffix,
         nodeCheckedStyle,
@@ -281,7 +309,11 @@ const AntdTree = (props) => {
             style={style}
             key={key}
             ref={treeRef}
-            treeData={add_leaf_node_icon(cloneDeep(treeData))}
+            treeData={
+                searchKeyword ?
+                    add_leaf_node_icon(filterTree(cloneDeep(treeData), searchKeyword)) :
+                    add_leaf_node_icon(cloneDeep(treeData))
+            }
             selectedKeys={selectedKeys}
             checkedKeys={checkedKeys}
             selectable={selectable}
@@ -347,7 +379,16 @@ const AntdTree = (props) => {
                                     ...(checkedKeys?.includes(nodeData.key) ? nodeCheckedStyle : nodeUncheckedStyle),
                                     ...nodeData.style // 优先级更高
                                 }}>
-                                {nodeData.title}
+                                {
+                                    searchKeyword ?
+                                        <Highlighter
+                                            highlightStyle={highlightStyle}
+                                            searchWords={[searchKeyword]}
+                                            autoEscape
+                                            textToHighlight={nodeData.title}
+                                        /> :
+                                        nodeData.title
+                                }
                                 {
                                     // 若当前节点满足收藏控件渲染条件
                                     enableNodeFavorites && (isUndefined(nodeData.enableFavorites) || nodeData.enableFavorites) ?
@@ -382,7 +423,16 @@ const AntdTree = (props) => {
                                 ...(checkedKeys?.includes(nodeData.key) ? nodeCheckedStyle : nodeUncheckedStyle),
                                 ...nodeData.style // 优先级更高
                             }}>
-                            {nodeData.title}
+                            {
+                                searchKeyword ?
+                                    <Highlighter
+                                        highlightStyle={highlightStyle}
+                                        searchWords={[searchKeyword]}
+                                        autoEscape
+                                        textToHighlight={nodeData.title}
+                                    /> :
+                                    nodeData.title
+                            }
                             {
                                 // 若当前节点满足收藏控件渲染条件
                                 enableNodeFavorites && (isUndefined(nodeData.enableFavorites) || nodeData.enableFavorites) ?
@@ -683,6 +733,12 @@ AntdTree.propTypes = {
         offset: PropTypes.number
     }),
 
+    // 联动树搜索时使用，用于设置针对树节点title进行搜索的关键词
+    searchKeyword: PropTypes.string,
+
+    // 配合searchKeyword参数使用，用于设置树节点title命中关键词部分的高亮样式
+    highlightStyle: PropTypes.object,
+
     // 节点拓展元素相关功能
     // 为节点元素设置勾选状态下的后缀元素
     nodeCheckedSuffix: PropTypes.node,
@@ -766,6 +822,12 @@ AntdTree.defaultProps = {
     showLine: { 'showLeafIcon': false },
     draggable: false,
     dragInSameLevel: false,
+    highlightStyle: {
+        fontWeight: 'bold',
+        backgroundColor: 'transparent',
+        padding: 0,
+        color: '#ff5500'
+    },
     enableNodeFavorites: false,
     favoritedKeys: [],
     persisted_props: ['selectedKeys', 'checkedKeys', 'expandedKeys', 'halfCheckedKeys'],
