@@ -1,59 +1,29 @@
 import dash
+import json
+from dash import html
 import feffery_antd_components as fac
-from dash.dependencies import Input, Output
+from dash.dependencies import Input, Output, State
 
 app = dash.Dash(__name__, compress=True)
 
 app.layout = dash.html.Div(
     [
-        fac.AntdForm(
-            [
-                fac.AntdFormItem(
-                    fac.AntdRadioGroup(
-                        id='form-item-status-switch',
-                        options=[
-                            {
-                                'label': 'None',
-                                'value': 'None'
-                            },
-                            {
-                                'label': 'success',
-                                'value': 'success',
-                            },
-                            {
-                                'label': 'warning',
-                                'value': 'warning',
-                            },
-                            {
-                                'label': 'error',
-                                'value': 'error',
-                            },
-                            {
-                                'label': 'validating',
-                                'value': 'validating',
-                            }
-                        ],
-                        optionType='button',
-                        defaultValue='None'
-                    ),
-                    label='切换状态'
-                ),
-                fac.AntdFormItem(
-                    fac.AntdInput(),
-                    id='form-item-status-demo',
-                    label='用户名'
-                )
-            ],
-            labelCol={
-                'span': 4
-            },
-            wrapperCol={
-                'span': 20
-            },
+        fac.AntdCheckbox(
+            id='checkbox-demo-client-side',
+            label='全选',
             style={
-                'width': 500,
-                'margin': '0 auto'
+                'marginRight': '8px'
             }
+        ),
+        fac.AntdCheckboxGroup(
+            id='checkbox-group-demo-client-side',
+            options=[
+                {
+                    'label': f'选项{i}',
+                    'value': f'选项{i}'
+                }
+                for i in range(5)
+            ]
         )
     ],
     style={
@@ -62,16 +32,33 @@ app.layout = dash.html.Div(
 )
 
 
-@app.callback(
-    [Output('form-item-status-demo', 'validateStatus'),
-     Output('form-item-status-demo', 'help')],
-    Input('form-item-status-switch', 'value')
+app.clientside_callback(
+    '''(checked, value, options) => {
+        let ctx = dash_clientside.callback_context;
+        value = value || []
+        if ( ctx?.triggered[0].prop_id === 'checkbox-group-demo-client-side.value' ) {
+            return [
+                value.length === options.length ? true : false,
+                value,
+                value.length > 0 && value.length < options.length ? true : false
+            ]
+        } else if ( ctx?.triggered[0].prop_id === 'checkbox-demo-client-side.checked' ) {
+            return [
+                checked,
+                checked ? options.map(item => item.value) : [],
+                !checked && value.length > 0 && value.length < options.length ? true : false
+            ]
+        }
+        return dash_clientside.no_update;
+    }''',
+    [Output('checkbox-demo-client-side', 'checked'),
+     Output('checkbox-group-demo-client-side', 'value'),
+     Output('checkbox-demo-client-side', 'indeterminate')],
+    [Input('checkbox-demo-client-side', 'checked'),
+     Input('checkbox-group-demo-client-side', 'value')],
+    State('checkbox-group-demo-client-side', 'options'),
+    prevent_initial_call=True
 )
-def form_item_status_demo(value):
-    if not value or value == 'None':
-        return None, None
-
-    return value, f'validateStatus="{value}"'
 
 
 if __name__ == '__main__':
