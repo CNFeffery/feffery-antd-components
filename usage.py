@@ -2,63 +2,57 @@ import dash
 import feffery_antd_components as fac
 from dash.dependencies import Input, Output
 
-app = dash.Dash(__name__)
+app = dash.Dash(__name__, compress=True)
 
 app.layout = dash.html.Div(
     [
-        fac.AntdSpace(
+        fac.AntdForm(
             [
-                fac.AntdInput(
-                    id='search-keyword',
-                    placeholder='请输入搜索关键词',
-                    style={
-                        'width': 250
-                    }
+                fac.AntdFormItem(
+                    fac.AntdRadioGroup(
+                        id='form-item-status-switch',
+                        options=[
+                            {
+                                'label': 'None',
+                                'value': 'None'
+                            },
+                            {
+                                'label': 'success',
+                                'value': 'success',
+                            },
+                            {
+                                'label': 'warning',
+                                'value': 'warning',
+                            },
+                            {
+                                'label': 'error',
+                                'value': 'error',
+                            },
+                            {
+                                'label': 'validating',
+                                'value': 'validating',
+                            }
+                        ],
+                        optionType='button',
+                        defaultValue='None'
+                    ),
+                    label='切换状态'
                 ),
-                fac.AntdTree(
-                    id='demo-tree',
-                    treeData=[
-                        {
-                            'title': '四川省',
-                            'key': '四川省',
-                            'children': [
-                                {
-                                    'title': '成都市',
-                                    'key': '成都市'
-                                },
-                                {
-                                    'title': '广安市',
-                                    'key': '广安市'
-                                }
-                            ]
-                        },
-                        {
-                            'title': '重庆市',
-                            'key': '重庆市',
-                            'children': [
-                                {
-                                    'title': '渝中区',
-                                    'key': '渝中区',
-                                    'children': [
-                                        {
-                                            'title': '解放碑街道',
-                                            'key': '解放碑街道'
-                                        }
-                                    ]
-                                },
-                                {
-                                    'title': '渝北区',
-                                    'key': '渝北区'
-                                }
-                            ]
-                        }
-                    ],
-                    defaultExpandAll=True
+                fac.AntdFormItem(
+                    fac.AntdInput(),
+                    id='form-item-status-demo',
+                    label='用户名'
                 )
             ],
-            direction='vertical',
+            labelCol={
+                'span': 4
+            },
+            wrapperCol={
+                'span': 20
+            },
             style={
-                'width': '100%'
+                'width': 500,
+                'margin': '0 auto'
             }
         )
     ],
@@ -69,12 +63,15 @@ app.layout = dash.html.Div(
 
 
 @app.callback(
-    Output('demo-tree', 'searchKeyword'),
-    Input('search-keyword', 'value')
+    [Output('form-item-status-demo', 'validateStatus'),
+     Output('form-item-status-demo', 'help')],
+    Input('form-item-status-switch', 'value')
 )
-def filter_tree(keyword):
+def form_item_status_demo(value):
+    if not value or value == 'None':
+        return None, None
 
-    return keyword
+    return value, f'validateStatus="{value}"'
 
 
 if __name__ == '__main__':
