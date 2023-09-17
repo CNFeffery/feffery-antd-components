@@ -8,56 +8,46 @@ app = dash.Dash(__name__, compress=True)
 
 app.layout = dash.html.Div(
     [
-        fac.AntdCheckbox(
-            id='checkbox-demo-client-side',
-            label='全选',
-            style={
-                'marginRight': '8px'
-            }
-        ),
-        fac.AntdCheckboxGroup(
-            id='checkbox-group-demo-client-side',
-            options=[
+
+        fac.AntdTable(
+            columns=[
                 {
-                    'label': f'选项{i}',
-                    'value': f'选项{i}'
+                    'title': '字段测试',
+                    'dataIndex': '字段测试'
+                },
+                {
+                    'title': '自定义元素示例',
+                    'dataIndex': '自定义元素示例'
                 }
-                for i in range(5)
-            ]
+            ],
+            data=[
+                {
+                    '字段测试': '巴拉巴拉',
+                    '自定义元素示例': html.Div(
+                        fac.AntdText(
+                            '示例内容'*100,
+                            style={
+                                'textIndent': '2rem'
+                            }
+                        ),
+                        style={
+                            'maxHeight': 50,
+                            'overflowY': 'auto',
+                            'textAlign': 'left'
+                        }
+                    )
+                }
+            ] * 5,
+            bordered=True,
+            rowSelectionType='checkbox',
+            style={
+                'width': '100%'
+            }
         )
     ],
     style={
         'padding': '50px 100px'
     }
-)
-
-
-app.clientside_callback(
-    '''(checked, value, options) => {
-        let ctx = dash_clientside.callback_context;
-        value = value || []
-        if ( ctx?.triggered[0].prop_id === 'checkbox-group-demo-client-side.value' ) {
-            return [
-                value.length === options.length ? true : false,
-                value,
-                value.length > 0 && value.length < options.length ? true : false
-            ]
-        } else if ( ctx?.triggered[0].prop_id === 'checkbox-demo-client-side.checked' ) {
-            return [
-                checked,
-                checked ? options.map(item => item.value) : [],
-                !checked && value.length > 0 && value.length < options.length ? true : false
-            ]
-        }
-        return dash_clientside.no_update;
-    }''',
-    [Output('checkbox-demo-client-side', 'checked'),
-     Output('checkbox-group-demo-client-side', 'value'),
-     Output('checkbox-demo-client-side', 'indeterminate')],
-    [Input('checkbox-demo-client-side', 'checked'),
-     Input('checkbox-group-demo-client-side', 'value')],
-    State('checkbox-group-demo-client-side', 'options'),
-    prevent_initial_call=True
 )
 
 

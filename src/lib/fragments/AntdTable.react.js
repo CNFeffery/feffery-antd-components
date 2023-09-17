@@ -40,7 +40,7 @@ import {
     QuestionCircleOutlined,
     DownOutlined
 } from '@ant-design/icons';
-import { isNumber, isEqual, isString, cloneDeep } from 'lodash';
+import { isNumber, isEqual, isString, omitBy } from 'lodash';
 import { str2Locale, locale2text } from '../components/locales.react';
 import { propTypes, defaultProps } from '../components/dataDisplay/AntdTable.react';
 
@@ -275,7 +275,11 @@ class AntdTable extends Component {
         ) {
             // 同步更新selectedRows的值
             nextProps.setProps({
+                // 忽略组件型字段键值对
                 selectedRows: nextProps['data'].filter(item => nextProps['selectedRowKeys'].includes(item.key))
+                    .map(
+                        record => omitBy(record, value => value.$$typeof)
+                    )
             })
         }
 
@@ -1660,7 +1664,10 @@ class AntdTable extends Component {
                 onChange: (selectedRowKeys, selectedRows) => {
                     setProps({
                         selectedRowKeys: selectedRowKeys,
-                        selectedRows: selectedRows
+                        // 忽略组件型字段键值对
+                        selectedRows: selectedRows.map(
+                            record => omitBy(record, value => value.$$typeof)
+                        )
                     })
                 }
             }
