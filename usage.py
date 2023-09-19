@@ -8,83 +8,52 @@ app = dash.Dash(__name__, compress=True)
 
 app.layout = dash.html.Div(
     [
-        fac.AntdDivider(
-            '单选示例',
-            innerTextOrientation='left'
-        ),
-        fac.AntdTreeSelect(
-            id='tree-select-demo',
-            treeData=[
+        fac.AntdMenu(
+            menuItems=[
                 {
-                    'key': '节点1',
-                    'value': '1',
-                    'title': '节点1',
-                    'children': [
-                        {
-                            'key': f'节点1-{i}',
-                            'value': f'1-{i}',
-                            'title': f'节点1-{i}'
-                        }
-                        for i in range(1, 5)
-                    ]
+                    'component': 'Item',
+                    'props': {
+                        'key': 'item1',
+                        'href': '/11'
+                    }
                 },
                 {
-                    'key': '节点2',
-                    'value': '2',
-                    'title': '节点2'
-                }
-            ],
-            placeholder='请选择',
-            style={
-                'width': 256
-            }
-        ),
-        fac.AntdSpace(
-            id='tree-select-demo-output',
-            direction='vertical',
-            style={
-                'width': '100%'
-            }
-        ),
-
-        fac.AntdDivider(
-            '多选示例',
-            innerTextOrientation='left'
-        ),
-        fac.AntdTreeSelect(
-            id='tree-select-multiple-demo',
-            treeData=[
-                {
-                    'key': '节点1',
-                    'value': '1',
-                    'title': '节点1',
-                    'children': [
-                        {
-                            'key': f'节点1-{i}',
-                            'value': f'1-{i}',
-                            'title': f'节点1-{i}'
-                        }
-                        for i in range(1, 5)
-                    ]
+                    'component': 'Item',
+                    'props': {
+                        'key': 'item2',
+                        'href': '/22'
+                    }
                 },
                 {
-                    'key': '节点2',
-                    'value': '2',
-                    'title': '节点2'
+                    'component': 'Item',
+                    'props': {
+                        'key': 'item3',
+                        'href': '/33'
+                    }
                 }
             ],
-            placeholder='请选择',
-            multiple=True,
-            treeCheckable=True,
-            style={
-                'width': 256
-            }
-        ),
-        fac.AntdSpace(
-            id='tree-select-multiple-demo-output',
-            direction='vertical',
-            style={
-                'width': '100%'
+            currentKey='item1',
+            menuItemKeyToTitle={
+                'item1': fac.AntdSpace(
+                    [
+                        'item1',
+                        fac.AntdTag(
+                            content='new',
+                            color='green'
+                        )
+                    ]
+                ),
+                'item2': fac.AntdTooltip(
+                    'item2',
+                    title='我是item2的解释说明',
+                    placement='right'
+                ),
+                'item3': fac.AntdSpace(
+                    [
+                        fac.AntdText('item3'),
+                        fac.AntdSwitch(checked=False)
+                    ]
+                )
             }
         )
     ],
@@ -92,32 +61,6 @@ app.layout = dash.html.Div(
         'padding': '50px 100px'
     }
 )
-
-
-@app.callback(
-    Output('tree-select-demo-output', 'children'),
-    [Input('tree-select-demo', 'value'),
-     Input('tree-select-demo', 'treeExpandedKeys')]
-)
-def tree_select_demo(value, treeExpandedKeys):
-
-    return [
-        fac.AntdText(f'value: {value}'),
-        fac.AntdText(f'treeExpandedKeys: {treeExpandedKeys}')
-    ]
-
-
-@app.callback(
-    Output('tree-select-multiple-demo-output', 'children'),
-    [Input('tree-select-multiple-demo', 'value'),
-     Input('tree-select-multiple-demo', 'treeExpandedKeys')]
-)
-def tree_select_multiple_demo(value, treeExpandedKeys):
-
-    return [
-        fac.AntdText(f'value: {value}'),
-        fac.AntdText(f'treeExpandedKeys: {treeExpandedKeys}')
-    ]
 
 
 if __name__ == '__main__':

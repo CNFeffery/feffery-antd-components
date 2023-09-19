@@ -98,21 +98,21 @@ const str2Jsx = new Map([
 ])
 
 // 递归推导多层菜单结构
-const raw2Jsx = (obj, str2Jsx) => {
+const raw2Jsx = (obj, str2Jsx, menuItemKeyToTitle) => {
     // 若obj为数组
     if (Array.isArray(obj)) {
         // 若obj为数组，则针对数组中每个对象向下递归
-        obj = obj.map(obj_ => raw2Jsx(obj_, str2Jsx))
+        obj = obj.map(obj_ => raw2Jsx(obj_, str2Jsx, menuItemKeyToTitle))
 
     } else if (obj.hasOwnProperty('component')) {
         // 若obj包含children属性，则向下递归处理
         if (obj.hasOwnProperty('children')) {
-            Object.assign(obj, { children: obj.children.map(obj_ => raw2Jsx(obj_, str2Jsx)) })
+            Object.assign(obj, { children: obj.children.map(obj_ => raw2Jsx(obj_, str2Jsx, menuItemKeyToTitle)) })
 
             if (obj.component === 'SubMenu') {
                 obj = <SubMenu
                     key={obj.props.key}
-                    title={obj.props.title}
+                    title={obj.props.title || menuItemKeyToTitle[obj.props.key]}
                     disabled={obj.props.disabled}
                     icon={
                         obj.props.iconRenderer === 'fontawesome' ?
@@ -133,7 +133,7 @@ const raw2Jsx = (obj, str2Jsx) => {
             } else {
                 obj = <ItemGroup
                     key={obj.props.key}
-                    title={obj.props.title}
+                    title={obj.props.title || menuItemKeyToTitle[obj.props.key]}
                     disabled={obj.props.disabled}
                     icon={
                         obj.props.iconRenderer === 'fontawesome' ?
@@ -160,7 +160,7 @@ const raw2Jsx = (obj, str2Jsx) => {
                 // 生成Item对应的jsx
                 obj = <Item
                     key={obj.props.key}
-                    title={obj.props.title}
+                    title={obj.props.title || menuItemKeyToTitle[obj.props.key]}
                     disabled={obj.props.disabled}
                     danger={obj.props.danger}
                     icon={
@@ -179,12 +179,12 @@ const raw2Jsx = (obj, str2Jsx) => {
                     }
                     name={obj.props && obj.props.name}
                 >
-                    <UtilsLink href={obj.props.href} target={obj.props.target}>{obj.props.title}</UtilsLink>
+                    <UtilsLink href={obj.props.href} target={obj.props.target}>{obj.props.title || menuItemKeyToTitle[obj.props.key]}</UtilsLink>
                 </Item>
             } else {
                 obj = <Item
                     key={obj.props.key}
-                    title={obj.props.title}
+                    title={obj.props.title || menuItemKeyToTitle[obj.props.key]}
                     disabled={obj.props.disabled}
                     danger={obj.props.danger}
                     icon={
@@ -203,7 +203,7 @@ const raw2Jsx = (obj, str2Jsx) => {
                     }
                     name={obj.props && obj.props.name}
                 >
-                    {obj.props.title}
+                    {obj.props.title || menuItemKeyToTitle[obj.props.key]}
                 </Item>
             }
         }
@@ -220,6 +220,7 @@ const AntdMenu = (props) => {
         style,
         key,
         menuItems,
+        menuItemKeyToTitle,
         mode,
         theme,
         defaultOpenKeys,
@@ -253,7 +254,7 @@ const AntdMenu = (props) => {
     }, [])
 
     // 基于menuItems推导jsx数据结构
-    let _menuItems = raw2Jsx(menuItems, str2Jsx)
+    let _menuItems = raw2Jsx(menuItems, str2Jsx, menuItemKeyToTitle)
 
     // 监听Item的点击事件
     const listenSelected = (item) => {
@@ -357,6 +358,9 @@ AntdMenu.propTypes = {
 
     // 用于构建菜单内容结构的对象
     menuItems: PropTypes.array,
+
+    // 用于针对具体key值对应的菜单项定义组件型标题内容
+    menuItemKeyToTitle: PropTypes.objectOf(PropTypes.node),
 
     // 用于设置导航菜单显示模式
     // 默认'vertical'即垂直显示模式
