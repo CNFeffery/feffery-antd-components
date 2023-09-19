@@ -460,7 +460,8 @@ class AntdTable extends Component {
 
                 setProps({
                     currentData: newData,
-                    recentlyChangedRow: row,
+                    // 忽略组件型字段键值对
+                    recentlyChangedRow: omitBy(row, value => value.$$typeof),
                     recentlyChangedColumn: _changedColumn,
                     data: newData
                 })
@@ -942,7 +943,8 @@ class AntdTable extends Component {
                                                 nClicksDropdownItem: nClicksDropdownItem + 1,
                                                 recentlyClickedDropdownItemTitle: item.key,
                                                 recentlyDropdownItemClickedDataIndex: columns[i].dataIndex,
-                                                recentlyDropdownItemClickedRow: record
+                                                // 忽略组件型字段键值对
+                                                recentlyDropdownItemClickedRow: omitBy(record, value => value.$$typeof)
                                             })
                                         }, 200);
                                     }}>
@@ -1137,7 +1139,8 @@ class AntdTable extends Component {
                                     setTimeout(function () {
                                         setProps({
                                             data: data,
-                                            recentlyCheckedRow: record,
+                                            // 忽略组件型字段键值对
+                                            recentlyCheckedRow: omitBy(record, value => value.$$typeof),
                                             recentlyCheckedLabel: content.label,
                                             recentlyCheckedDataIndex: columns[i]['dataIndex'],
                                             recentlyCheckedStatus: e.target.checked
@@ -1177,7 +1180,8 @@ class AntdTable extends Component {
                                     setTimeout(function () {
                                         setProps({
                                             data: data,
-                                            recentlySwitchRow: record,
+                                            // 忽略组件型字段键值对
+                                            recentlySwitchRow: omitBy(record, value => value.$$typeof),
                                             recentlySwitchDataIndex: columns[i]['dataIndex'],
                                             recentlySwitchStatus: checked
                                         })
@@ -1234,7 +1238,8 @@ class AntdTable extends Component {
                                         () => {
                                             setProps({
                                                 data: data,
-                                                recentlySelectRow: record,
+                                                // 忽略组件型字段键值对
+                                                recentlySelectRow: omitBy(record, value => value.$$typeof),
                                                 recentlySelectDataIndex: columns[i]['dataIndex'],
                                                 recentlySelectValue: value
                                             })
@@ -1269,7 +1274,8 @@ class AntdTable extends Component {
                                                         // 阻止事件冒泡
                                                         e.stopPropagation();
                                                         setProps({
-                                                            recentlyButtonClickedRow: record,
+                                                            // 忽略组件型字段键值对
+                                                            recentlyButtonClickedRow: omitBy(record, value => value.$$typeof),
                                                             nClicksButton: nClicksButton + 1,
                                                             clickedContent: content_.content,
                                                             clickedCustom: content_.custom,
@@ -1323,7 +1329,8 @@ class AntdTable extends Component {
                                     // 阻止事件冒泡
                                     e.stopPropagation();
                                     setProps({
-                                        recentlyButtonClickedRow: record,
+                                        // 忽略组件型字段键值对
+                                        recentlyButtonClickedRow: omitBy(record, value => value.$$typeof),
                                         nClicksButton: nClicksButton + 1,
                                         clickedContent: content.content,
                                         clickedCustom: content.custom,
@@ -1379,7 +1386,8 @@ class AntdTable extends Component {
                                                         // 阻止事件冒泡
                                                         e.stopPropagation();
                                                         setProps({
-                                                            recentlyButtonClickedRow: record,
+                                                            // 忽略组件型字段键值对
+                                                            recentlyButtonClickedRow: omitBy(record, value => value.$$typeof),
                                                             nClicksButton: nClicksButton + 1,
                                                             clickedContent: content_.content,
                                                             clickedCustom: content_.custom,
@@ -1419,7 +1427,8 @@ class AntdTable extends Component {
                                     // 阻止事件冒泡
                                     e.stopPropagation();
                                     setProps({
-                                        recentlyButtonClickedRow: record,
+                                        // 忽略组件型字段键值对
+                                        recentlyButtonClickedRow: omitBy(record, value => value.$$typeof),
                                         nClicksButton: nClicksButton + 1,
                                         clickedContent: content.content,
                                         clickedCustom: content.custom,
@@ -1837,7 +1846,8 @@ class AntdTable extends Component {
                                     onMouseEnter: event => {
                                         setProps({
                                             recentlyMouseEnterRowKey: record.key,
-                                            recentlyMouseEnterRow: record
+                                            // 忽略组件型字段键值对
+                                            recentlyMouseEnterRow: omitBy(record, value => value.$$typeof)
                                         })
                                     }, // 鼠标移入行
                                 };

@@ -8,16 +8,19 @@ app = dash.Dash(__name__, compress=True)
 
 app.layout = dash.html.Div(
     [
-
         fac.AntdTable(
+            id='demo-input',
             columns=[
                 {
                     'title': '字段测试',
-                    'dataIndex': '字段测试'
+                    'dataIndex': '字段测试',
+                    'width': '50%',
+                    'editable': True
                 },
                 {
                     'title': '自定义元素示例',
-                    'dataIndex': '自定义元素示例'
+                    'dataIndex': '自定义元素示例',
+                    'width': '50%'
                 }
             ],
             data=[
@@ -31,24 +34,43 @@ app.layout = dash.html.Div(
                             }
                         ),
                         style={
-                            'maxHeight': 50,
+                            'maxHeight': 100,
                             'overflowY': 'auto',
                             'textAlign': 'left'
                         }
                     )
                 }
-            ] * 5,
+            ] * 3,
             bordered=True,
             rowSelectionType='checkbox',
             style={
                 'width': '100%'
             }
-        )
+        ),
+        html.Pre(id='demo-output')
     ],
     style={
         'padding': '50px 100px'
     }
 )
+
+
+@app.callback(
+    Output('demo-output', 'children'),
+    [Input('demo-input', 'selectedRows'),
+     Input('demo-input', 'recentlyChangedRow')]
+)
+def demo_output(selectedRows,
+                recentlyChangedRow):
+
+    return json.dumps(
+        dict(
+            selectedRows=selectedRows,
+            recentlyChangedRow=recentlyChangedRow
+        ),
+        indent=4,
+        ensure_ascii=False
+    )
 
 
 if __name__ == '__main__':
