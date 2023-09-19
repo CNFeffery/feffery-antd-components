@@ -1,148 +1,13 @@
-import React, { useEffect, useContext } from 'react';
+import React, { Suspense } from 'react';
 import PropTypes from 'prop-types';
-import { TimePicker, ConfigProvider } from 'antd';
-import moment from 'moment';
-import { isUndefined, isString } from 'lodash';
-import { str2Locale } from '../locales.react';
-import useCss from '../../hooks/useCss';
-import PropsContext from '../../contexts/PropsContext';
 
-const { RangePicker } = TimePicker
+const LazyAntdTimeRangePicker = React.lazy(() => import(/* webpackChunkName: "data_entry" */ '../../fragments/dataEntry/AntdTimeRangePicker.react'));
 
-// 定义时间范围选择组件AntdTimeRangePicker，api参数参考https://ant.design/components/time-picker-cn/
 const AntdTimeRangePicker = (props) => {
-    // 取得必要属性或参数
-    let {
-        id,
-        className,
-        style,
-        key,
-        locale,
-        setProps,
-        value,
-        defaultValue,
-        placeholder,
-        placement,
-        disabled,
-        hourStep,
-        minuteStep,
-        secondStep,
-        format,
-        use12Hours,
-        allowClear,
-        bordered,
-        size,
-        open,
-        status,
-        popupContainer,
-        readOnly,
-        extraFooter,
-        persistence,
-        persisted_props,
-        persistence_type,
-        loading_state,
-        batchPropsNames
-    } = props;
-
-    // 批属性监听
-    useEffect(() => {
-        if (batchPropsNames && batchPropsNames.length !== 0) {
-            let _batchPropsValues = {};
-            for (let propName of batchPropsNames) {
-                _batchPropsValues[propName] = props[propName];
-            }
-            setProps({
-                batchPropsValues: _batchPropsValues
-            })
-        }
-    })
-
-    const context = useContext(PropsContext)
-    locale = (context && context.locale) || locale
-
-    useEffect(() => {
-        // 初始化value
-        if (defaultValue && !value) {
-            // 当defaultValue不为空且value为空时，为value初始化defaultValue对应值
-            setProps({ value: defaultValue })
-        }
-    }, [])
-
-    const onChange = (time, timeString) => {
-        if (Array.isArray(timeString)) {
-            setProps({ value: [timeString[0], timeString[1]] })
-        } else {
-            setProps({ value: null })
-        }
-    }
-
-    // 返回定制化的前端组件
     return (
-        <div>
-            <ConfigProvider locale={str2Locale.get(locale)}>
-                <RangePicker
-                    id={id}
-                    className={
-                        isString(className) ?
-                            className :
-                            (className ? useCss(className) : undefined)
-                    }
-                    style={style}
-                    key={key}
-                    onChange={onChange}
-                    disabled={
-                        context && !isUndefined(context.componentDisabled) ?
-                            [context.componentDisabled, context.componentDisabled] :
-                            (
-                                (disabled && disabled.length === 2) ? disabled : undefined
-                            )
-                    }
-                    allowEmpty={(disabled && disabled.length === 2) ? disabled : undefined}
-                    placeholder={(placeholder && placeholder.length === 2) ? placeholder : undefined}
-                    placement={placement}
-                    bordered={bordered}
-                    size={
-                        context && !isUndefined(context.componentSize) ?
-                            context.componentSize :
-                            size
-                    }
-                    hourStep={hourStep}
-                    minuteStep={minuteStep}
-                    secondStep={secondStep}
-                    format={format}
-                    use12Hours={use12Hours}
-                    allowClear={isUndefined(readOnly) ? allowClear : !readOnly}
-                    defaultValue={
-                        (defaultValue && defaultValue.length === 2) ?
-                            [defaultValue[0] !== '' ? moment(defaultValue[0], format) : undefined,
-                            defaultValue[1] !== '' ? moment(defaultValue[1], format) : undefined] :
-                            undefined
-                    }
-                    value={
-                        (value && value.length === 2) ?
-                            [value[0] !== '' ? moment(value[0], format) : undefined,
-                            value[1] !== '' ? moment(value[1], format) : undefined] :
-                            undefined
-                    }
-                    status={status}
-                    renderExtraFooter={() => extraFooter}
-                    persistence={persistence}
-                    persisted_props={persisted_props}
-                    persistence_type={persistence_type}
-                    data-dash-is-loading={
-                        (loading_state && loading_state.is_loading) || undefined
-                    }
-                    getPopupContainer={
-                        popupContainer === 'parent' ?
-                            (triggerNode) => triggerNode.parentNode :
-                            undefined
-                    }
-                    open={isUndefined(readOnly) || !readOnly ? open : false}
-                    onOpenChange={(e) => setProps({ open: e })}
-                    inputReadOnly={readOnly}
-                />
-            </ConfigProvider>
-        </div>
+        <Suspense fallback={null}>
+            <LazyAntdTimeRangePicker {...props} />
+        </Suspense>
     );
 }
 
@@ -303,3 +168,6 @@ AntdTimeRangePicker.defaultProps = {
 }
 
 export default AntdTimeRangePicker;
+
+export const propTypes = AntdTimeRangePicker.propTypes;
+export const defaultProps = AntdTimeRangePicker.defaultProps;

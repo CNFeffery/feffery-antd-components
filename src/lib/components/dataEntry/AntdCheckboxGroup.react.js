@@ -1,9 +1,5 @@
 import React, { Suspense } from 'react';
 import PropTypes from 'prop-types';
-import { Checkbox } from 'antd';
-import { isString, isUndefined } from 'lodash';
-import useCss from '../../hooks/useCss';
-import PropsContext from '../../contexts/PropsContext';
 
 const LazyAntdCheckboxGroup = React.lazy(() => import(/* webpackChunkName: "data_entry" */ '../../fragments/dataEntry/AntdCheckboxGroup.react'));
 

@@ -1,130 +1,13 @@
-import React, { useEffect, useContext } from 'react';
+import React, { Suspense } from 'react';
 import PropTypes from 'prop-types';
-import { Slider } from 'antd';
-import { isString, isUndefined } from 'lodash';
-import useCss from '../../hooks/useCss';
-import PropsContext from '../../contexts/PropsContext';
 
+const LazyAntdSlider = React.lazy(() => import(/* webpackChunkName: "data_entry" */ '../../fragments/dataEntry/AntdSlider.react'));
 
-// 定义滑动输入条组件AntdSlider，api参数参考https://ant.design/components/slider-cn/
 const AntdSlider = (props) => {
-    // 取得必要属性或参数
-    let {
-        id,
-        className,
-        style,
-        railStyle,
-        key,
-        value,
-        defaultValue,
-        disabled,
-        vertical,
-        range,
-        min,
-        max,
-        step,
-        marks,
-        tooltipVisible,
-        tooltipPrefix,
-        tooltipSuffix,
-        popupContainer,
-        readOnly,
-        loading_state,
-        setProps,
-        persistence,
-        persisted_props,
-        persistence_type,
-        batchPropsNames
-    } = props;
-
-    // 批属性监听
-    useEffect(() => {
-        if (batchPropsNames && batchPropsNames.length !== 0) {
-            let _batchPropsValues = {};
-            for (let propName of batchPropsNames) {
-                _batchPropsValues[propName] = props[propName];
-            }
-            setProps({
-                batchPropsValues: _batchPropsValues
-            })
-        }
-    })
-
-    const context = useContext(PropsContext)
-
-    useEffect(() => {
-        // 初始化value
-        if (range) {
-            // 范围选择模式时
-            if (!value) {
-                setProps({
-                    value: defaultValue || [min, max],
-                    defaultValue: defaultValue || [min, max]
-                })
-            }
-        } else {
-            // 单值选择模式时
-            if (!value && value !== 0) {
-                setProps({
-                    value: (defaultValue || defaultValue === 0) ? defaultValue : max,
-                    defaultValue: (defaultValue || defaultValue === 0) ? defaultValue : max
-                })
-            }
-        }
-    }, [])
-
-    // 设置tipFormatter格式化函数
-    const formatter = (e) => {
-        return tooltipPrefix + `${e}` + tooltipSuffix
-    }
-
-    // 监听用户完成拖拽的动作
-    const onChange = (e) => {
-        if (!readOnly) {
-            setProps({ value: e })
-        }
-    }
-
-    // 返回定制化的前端组件
     return (
-        <Slider
-            id={id}
-            className={
-                isString(className) ?
-                    className :
-                    (className ? useCss(className) : undefined)
-            }
-            style={style}
-            railStyle={railStyle}
-            key={key}
-            value={value}
-            defaultValue={defaultValue}
-            disabled={
-                context && !isUndefined(context.componentDisabled) ?
-                    context.componentDisabled :
-                    disabled
-            }
-            vertical={vertical}
-            range={range}
-            min={min}
-            max={max}
-            step={step}
-            marks={marks}
-            tooltip={{
-                open: tooltipVisible,
-                getPopupContainer: popupContainer === 'parent' ?
-                    (triggerNode) => triggerNode.parentNode :
-                    undefined,
-                formatter: formatter
-            }}
-            onChange={onChange}
-            persistence={persistence}
-            persisted_props={persisted_props}
-            persistence_type={persistence_type}
-            data-dash-is-loading={
-                (loading_state && loading_state.is_loading) || undefined
-            }
-        />
+        <Suspense fallback={null}>
+            <LazyAntdSlider {...props} />
+        </Suspense>
     );
 }
 
@@ -272,3 +155,6 @@ AntdSlider.defaultProps = {
 }
 
 export default AntdSlider;
+
+export const propTypes = AntdSlider.propTypes;
+export const defaultProps = AntdSlider.defaultProps;
