@@ -8,59 +8,62 @@ app = dash.Dash(__name__, compress=True)
 
 app.layout = dash.html.Div(
     [
-        fac.AntdMenu(
-            menuItems=[
+        fac.AntdTable(
+            id='demo-table',
+            columns=[
                 {
-                    'component': 'Item',
-                    'props': {
-                        'key': 'item1',
-                        'href': '/11'
-                    }
+                    'title': '字段测试',
+                    'dataIndex': '字段测试'
                 },
                 {
-                    'component': 'Item',
-                    'props': {
-                        'key': 'item2',
-                        'href': '/22'
-                    }
-                },
-                {
-                    'component': 'Item',
-                    'props': {
-                        'key': 'item3',
-                        'href': '/33'
-                    }
+                    'title': '自定义元素示例',
+                    'dataIndex': '自定义元素示例'
                 }
             ],
-            currentKey='item1',
-            menuItemKeyToTitle={
-                'item1': fac.AntdSpace(
-                    [
-                        'item1',
-                        fac.AntdTag(
-                            content='new',
-                            color='green'
-                        )
-                    ]
-                ),
-                'item2': fac.AntdTooltip(
-                    'item2',
-                    title='我是item2的解释说明',
-                    placement='right'
-                ),
-                'item3': fac.AntdSpace(
-                    [
-                        fac.AntdText('item3'),
-                        fac.AntdSwitch(checked=False)
-                    ]
-                )
+            data=[
+                {
+                    '自定义元素示例': html.Div(
+                        fac.AntdText(
+                            '示例内容'*100,
+                            style={
+                                'textIndent': '2rem'
+                            }
+                        ),
+                        style={
+                            'maxHeight': 50,
+                            'overflowY': 'auto',
+                            'textAlign': 'left'
+                        }
+                    )
+                }
+            ] * 5,
+            bordered=True,
+            rowSelectionType='checkbox',
+            style={
+                'width': '100%'
             }
-        )
+        ),
+        html.Pre(id='demo-output')
     ],
     style={
         'padding': '50px 100px'
     }
 )
+
+
+@app.callback(
+    Output('demo-output', 'children'),
+    Input('demo-table', 'selectedRows')
+)
+def demo(selectedRows):
+
+    return json.dumps(
+        dict(
+            selectedRows=selectedRows
+        ),
+        indent=4,
+        ensure_ascii=False
+    )
 
 
 if __name__ == '__main__':
