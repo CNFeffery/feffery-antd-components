@@ -1,8 +1,9 @@
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { Tabs, Popover } from 'antd';
+import { Tabs, Popover, Dropdown } from 'antd';
 import { InfoCircleOutlined } from "@ant-design/icons";
 import { omit } from 'ramda';
+import AntdIcon from '../../general/AntdIcon.react';
 import { isString } from 'lodash';
 import useCss from '../../../hooks/useCss';
 
@@ -33,6 +34,7 @@ const AntdTabs = (props) => {
         inkBarAnimated,
         tabPaneAnimated,
         destroyInactiveTabPane,
+        clickedContextMenu,
         setProps,
         persistence,
         persisted_props,
@@ -69,13 +71,14 @@ const AntdTabs = (props) => {
         if (disabledTabKeys) {
             items = items.map(
                 item => {
+                    // 处理批量标签页禁用
                     if (disabledTabKeys.includes(item.key)) {
-                        return {
+                        item = {
                             ...item,
                             disabled: true
                         }
                     }
-                    return item
+                    return item;
                 }
             )
         }
@@ -89,7 +92,59 @@ const AntdTabs = (props) => {
                 }
                 style={style}
                 key={key}
-                items={items}
+                items={
+                    // 处理标签页标题右键菜单功能
+                    items.map(
+                        item => {
+                            if (item.contextMenu) {
+                                item.label = <Dropdown
+                                    menu={{
+                                        items: item.contextMenu.map(
+                                            itemProps => {
+                                                return {
+                                                    ...itemProps,
+                                                    icon: itemProps.icon && (
+                                                        itemProps.iconRenderer === 'fontawesome' ?
+                                                            (
+                                                                React.createElement(
+                                                                    'i',
+                                                                    {
+                                                                        className: itemProps.icon
+                                                                    }
+                                                                )
+                                                            ) :
+                                                            (
+                                                                <AntdIcon icon={itemProps.icon} />
+                                                            )
+                                                    )
+                                                }
+                                            }
+                                        ),
+                                        // 右键菜单事件监听
+                                        onClick: (e) => {
+                                            // 阻止事件蔓延
+                                            e.domEvent.stopPropagation()
+                                            // 更新相关事件信息
+                                            setProps({
+                                                clickedContextMenu: {
+                                                    tabKey: item.key,
+                                                    menuKey: e.key,
+                                                    timestamp: Date.now()
+                                                }
+                                            })
+                                        }
+                                    }}
+                                    trigger={['contextMenu']}
+                                >
+                                    <div >
+                                        {item.label}
+                                    </div>
+                                </Dropdown>
+                            }
+                            return item;
+                        }
+                    )
+                }
                 defaultActiveKey={defaultActiveKey}
                 activeKey={activeKey}
                 size={size}
@@ -266,7 +321,22 @@ AntdTabs.propTypes = {
             forceRender: PropTypes.bool,
 
             // 设置在'editable-card'模式下，当前标签页是否可被关闭，默认为true
-            closable: PropTypes.bool
+            closable: PropTypes.bool,
+
+            // 为当前标签页标题设置右键菜单相关参数
+            contextMenu: PropTypes.arrayOf(
+                PropTypes.exact({
+                    // 为当前右键菜单选项设置唯一key值
+                    key: PropTypes.string,
+                    // 为当前右键菜单项设置标题内容
+                    label: PropTypes.string,
+                    // 为当前选项设置前缀图标，同AntdIcon中的icon参数
+                    icon: PropTypes.string,
+                    // 针对icon参数值设置渲染方式，默认为'AntdIcon'即icon等价于AntdIcon的icon参数
+                    // 当设置为'fontawesome'时，icon参数对应fontawesome图标的css类名
+                    iconRenderer: PropTypes.oneOf(['AntdIcon', 'fontawesome']),
+                })
+            )
         })
     ),
 
@@ -318,6 +388,16 @@ AntdTabs.propTypes = {
     // 设置标签页不激活时是否自动销毁内部元素
     // 默认：false
     destroyInactiveTabPane: PropTypes.bool,
+
+    // 当有标签页标题的右键菜单选项被点击时，监听相关的事件信息
+    clickedContextMenu: PropTypes.exact({
+        // 记录对应的标签页key值
+        tabKey: PropTypes.string,
+        // 记录对应的右键菜单选项key值
+        menuKey: PropTypes.string,
+        // 记录事件发生时的时间戳信息
+        timestamp: PropTypes.number
+    }),
 
     loading_state: PropTypes.shape({
         /**

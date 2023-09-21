@@ -8,42 +8,42 @@ app = dash.Dash(__name__, compress=True)
 
 app.layout = dash.html.Div(
     [
-        fac.AntdTable(
-            id='demo-table',
-            columns=[
+        fac.AntdTabs(
+            id='input',
+            items=[
                 {
-                    'title': '字段测试',
-                    'dataIndex': '字段测试'
+                    'label': 'tab1',
+                    'key': 'tab1',
+                    'contextMenu': [
+                        {
+                            'key': f'tab1-menu{i}',
+                            'label': f'选项{i}',
+                            'icon': icon
+                        }
+                        for i, icon in enumerate(
+                            [
+                                'antd-compass',
+                                'antd-carry-out',
+                                'antd-bulb',
+                                'antd-build',
+                                'antd-setting'
+                            ]
+                        )
+                    ]
                 },
                 {
-                    'title': '自定义元素示例',
-                    'dataIndex': '自定义元素示例'
+                    'label': 'tab2',
+                    'key': 'tab2'
+                },
+                {
+                    'label': 'tab3',
+                    'key': 'tab3'
                 }
             ],
-            data=[
-                {
-                    '自定义元素示例': html.Div(
-                        fac.AntdText(
-                            '示例内容'*100,
-                            style={
-                                'textIndent': '2rem'
-                            }
-                        ),
-                        style={
-                            'maxHeight': 50,
-                            'overflowY': 'auto',
-                            'textAlign': 'left'
-                        }
-                    )
-                }
-            ] * 5,
-            bordered=True,
-            rowSelectionType='checkbox',
-            style={
-                'width': '100%'
-            }
+            type='card',
+            size='large'
         ),
-        html.Pre(id='demo-output')
+        html.Pre(id='output')
     ],
     style={
         'padding': '50px 100px'
@@ -52,14 +52,14 @@ app.layout = dash.html.Div(
 
 
 @app.callback(
-    Output('demo-output', 'children'),
-    Input('demo-table', 'selectedRows')
+    Output('output', 'children'),
+    Input('input', 'clickedContextMenu')
 )
-def demo(selectedRows):
+def demo(clickedContextMenu):
 
     return json.dumps(
         dict(
-            selectedRows=selectedRows
+            clickedContextMenu=clickedContextMenu
         ),
         indent=4,
         ensure_ascii=False
