@@ -5,6 +5,7 @@ import AntdParagraph from './components/general/typography/AntdParagraph.react';
 import AntdText from './components/general/typography/AntdText.react';
 import AntdTitle from './components/general/typography/AntdTitle.react';
 // 数据录入
+import AntdCalendar from './components/dataEntry/AntdCalendar.react';
 import AntdCheckCard from './components/dataEntry/check-card/AntdCheckCard.react';
 import AntdCheckCardGroup from './components/dataEntry/check-card/AntdCheckCardGroup.react';
 import AntdCheckbox from './components/dataEntry/AntdCheckbox.react';
@@ -35,7 +36,6 @@ import AntdAvatar from './components/dataDisplay/AntdAvatar.react';
 import AntdAvatarGroup from './components/dataDisplay/AntdAvatarGroup.react';
 import AntdBadge from './components/dataDisplay/AntdBadge.react';
 import AntdRibbon from './components/dataDisplay/AntdRibbon.react';
-import AntdCalendar from './components/dataDisplay/AntdCalendar.react';
 import AntdCardGrid from './components/dataDisplay/card/AntdCardGrid.react';
 import AntdCard from './components/dataDisplay/card/AntdCard.react';
 import AntdCarousel from './components/dataDisplay/AntdCarousel.react';
@@ -103,9 +103,10 @@ import AntdCopyText from './components/other/AntdCopyText.react';
 import AntdConfigProvider from './components/other/AntdConfigProvider';
 // css样式
 import 'antd/dist/antd.variable.min.css';
-import './components/styles.css';
+import './components/styles.css'; // 自定义样式
 
 export {
+    AntdCalendar,
     AntdDatePicker,
     AntdDateRangePicker,
     AntdButton,
@@ -181,7 +182,6 @@ export {
     AntdMentions,
     AntdImage,
     AntdPageHeader,
-    AntdCalendar,
     AntdComment,
     AntdDescriptions,
     AntdDescriptionItem,

@@ -1,75 +1,13 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import PropTypes from 'prop-types';
-import { Tooltip } from 'antd';
-import { isString } from 'lodash';
-import useCss from '../../hooks/useCss';
-import { parseChildrenToArray } from '../utils';
 
-// 定义布局组件Tooltip，api参数参考https://ant.design/components/tooltip-cn/
+const LazyAntdTooltip = React.lazy(() => import(/* webpackChunkName: "data_display" */ '../../fragments/dataDisplay/AntdTooltip.react'));
+
 const AntdTooltip = (props) => {
-    // 取得必要属性或参数
-    let {
-        id,
-        children,
-        className,
-        style,
-        key,
-        title,
-        placement,
-        color,
-        mouseEnterDelay,
-        mouseLeaveDelay,
-        overlayClassName,
-        overlayStyle,
-        overlayInnerStyle,
-        trigger,
-        zIndex,
-        arrowPointAtCenter,
-        open,
-        permanent,
-        popupContainer,
-        setProps,
-        loading_state
-    } = props;
-
     return (
-        <Tooltip id={id}
-            className={
-                isString(className) ?
-                    className :
-                    (className ? useCss(className) : undefined)
-            }
-            style={style}
-            key={key}
-            title={title}
-            placement={placement}
-            color={color}
-            mouseEnterDelay={mouseEnterDelay}
-            mouseLeaveDelay={mouseLeaveDelay}
-            overlayClassName={
-                isString(overlayClassName) ?
-                    overlayClassName :
-                    (overlayClassName ? useCss(overlayClassName) : undefined)
-            }
-            overlayStyle={overlayStyle}
-            overlayInnerStyle={overlayInnerStyle}
-            trigger={trigger}
-            zIndex={zIndex}
-            arrowPointAtCenter={arrowPointAtCenter}
-            open={open}
-            onOpenChange={
-                permanent ? undefined : (e) => setProps({ open: e })
-            }
-            getPopupContainer={
-                popupContainer === 'parent' ?
-                    (triggerNode) => triggerNode.parentNode :
-                    undefined
-            }
-            data-dash-is-loading={
-                (loading_state && loading_state.is_loading) || undefined
-            }>
-            {parseChildrenToArray(children)}
-        </Tooltip>
+        <Suspense fallback={null}>
+            <LazyAntdTooltip {...props} />
+        </Suspense>
     );
 }
 
@@ -183,3 +121,6 @@ AntdTooltip.defaultProps = {
 }
 
 export default AntdTooltip;
+
+export const propTypes = AntdTooltip.propTypes;
+export const defaultProps = AntdTooltip.defaultProps;

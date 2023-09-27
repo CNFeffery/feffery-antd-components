@@ -2,7 +2,6 @@ from .AntdAccordion import AntdAccordion
 from .AntdAvatar import AntdAvatar
 from .AntdAvatarGroup import AntdAvatarGroup
 from .AntdBadge import AntdBadge
-from .AntdCalendar import AntdCalendar
 from .AntdCarousel import AntdCarousel
 from .AntdCollapse import AntdCollapse
 from .AntdComment import AntdComment
@@ -25,6 +24,7 @@ from .AntdDescriptionItem import AntdDescriptionItem
 from .AntdDescriptions import AntdDescriptions
 from .AntdTabPane import AntdTabPane
 from .AntdTabs import AntdTabs
+from .AntdCalendar import AntdCalendar
 from .AntdCascader import AntdCascader
 from .AntdCheckbox import AntdCheckbox
 from .AntdCheckboxGroup import AntdCheckboxGroup
@@ -100,7 +100,6 @@ __all__ = [
     "AntdAvatar",
     "AntdAvatarGroup",
     "AntdBadge",
-    "AntdCalendar",
     "AntdCarousel",
     "AntdCollapse",
     "AntdComment",
@@ -123,6 +122,7 @@ __all__ = [
     "AntdDescriptions",
     "AntdTabPane",
     "AntdTabs",
+    "AntdCalendar",
     "AntdCascader",
     "AntdCheckbox",
     "AntdCheckboxGroup",

@@ -1,46 +1,13 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import PropTypes from 'prop-types';
-import { isString } from 'lodash';
-import useCss from '../../../hooks/useCss';
-import { parseChildrenToArray } from '../../utils';
 
-// 定义描述列表子项组件AntdDescriptionItem，api参数参考https://ant.design/components/descriptions-cn/
+const LazyAntdDescriptionItem = React.lazy(() => import(/* webpackChunkName: "data_display" */ '../../../fragments/dataDisplay/descriptions/AntdDescriptionItem.react'));
+
 const AntdDescriptionItem = (props) => {
-    // 取得必要属性或参数
-    let {
-        id,
-        children,
-        className,
-        style,
-        key,
-        label,
-        span,
-        labelStyle,
-        contentStyle,
-        setProps,
-        loading_state
-    } = props;
-
-    children = parseChildrenToArray(children)
-
     return (
-        <div id={id}
-            className={
-                isString(className) ?
-                    className :
-                    (className ? useCss(className) : undefined)
-            }
-            style={style}
-            key={key}
-            label={label}
-            span={span}
-            labelStyle={labelStyle}
-            contentStyle={contentStyle}
-            data-dash-is-loading={
-                (loading_state && loading_state.is_loading) || undefined
-            }>
-            {children}
-        </div>
+        <Suspense fallback={null}>
+            <LazyAntdDescriptionItem {...props} />
+        </Suspense>
     );
 }
 
@@ -106,3 +73,6 @@ AntdDescriptionItem.defaultProps = {
 }
 
 export default AntdDescriptionItem;
+
+export const propTypes = AntdDescriptionItem.propTypes;
+export const defaultProps = AntdDescriptionItem.defaultProps;

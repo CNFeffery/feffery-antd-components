@@ -1,43 +1,13 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import PropTypes from 'prop-types';
-import { Badge } from 'antd';
-import { isString } from 'lodash';
-import useCss from '../../hooks/useCss';
 
+const LazyAntdRibbon = React.lazy(() => import(/* webpackChunkName: "data_display" */ '../../fragments/dataDisplay/AntdRibbon.react'));
 
-// 定义缎带组件AntdRibbon，api参数参考https://ant.design/components/badge-cn/#Badge.Ribbon-(4.5.0+)
 const AntdRibbon = (props) => {
-    // 取得必要属性或参数
-    let {
-        id,
-        children,
-        className,
-        style,
-        key,
-        color,
-        placement,
-        text,
-        loading_state,
-        setProps
-    } = props;
-
     return (
-        <Badge.Ribbon
-            id={id}
-            className={
-                isString(className) ?
-                    className :
-                    (className ? useCss(className) : undefined)
-            }
-            style={style}
-            key={key}
-            color={color}
-            placement={placement}
-            text={text}
-            data-dash-is-loading={
-                (loading_state && loading_state.is_loading) || undefined
-            }
-        >{children}</Badge.Ribbon>
+        <Suspense fallback={null}>
+            <LazyAntdRibbon {...props} />
+        </Suspense>
     );
 }
 
@@ -98,3 +68,6 @@ AntdRibbon.defaultProps = {
 }
 
 export default AntdRibbon;
+
+export const propTypes = AntdRibbon.propTypes;
+export const defaultProps = AntdRibbon.defaultProps;

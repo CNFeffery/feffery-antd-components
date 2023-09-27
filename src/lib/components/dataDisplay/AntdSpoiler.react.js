@@ -1,84 +1,13 @@
-import React, { useRef } from 'react';
+import React, { Suspense } from 'react';
 import PropTypes from 'prop-types';
-import { Typography } from 'antd';
-import { useSize } from 'ahooks';
-import { locale2text } from '../locales.react';
-import { isString } from 'lodash';
-import useCss from '../../hooks/useCss';
 
-const { Link } = Typography;
+const LazyAntdSpoiler = React.lazy(() => import(/* webpackChunkName: "data_display" */ '../../fragments/dataDisplay/AntdSpoiler.react'));
 
-// 定义展开收起组件AntdSpoiler
 const AntdSpoiler = (props) => {
-    // 取得必要属性或参数
-    let {
-        id,
-        children,
-        className,
-        style,
-        key,
-        locale,
-        contentClassName,
-        contentStyle,
-        hideLabel,
-        showLabel,
-        labelPosition,
-        open,
-        maxHeight,
-        transitionDuration,
-        loading_state,
-        setProps
-    } = props;
-
-    const ref = useRef(null);
-    const size = useSize(ref);
-
     return (
-        <div id={id}
-            key={key}
-            className={
-                isString(className) ?
-                    className :
-                    (className ? useCss(className) : undefined)
-            }
-            style={style}
-            data-dash-is-loading={
-                (loading_state && loading_state.is_loading) || undefined
-            }>
-            <div
-                className={
-                    isString(contentClassName) ?
-                        contentClassName :
-                        (contentClassName ? useCss(contentClassName) : undefined)
-                }
-                style={
-                    {
-                        transitionTimingFunction: 'ease',
-                        ...contentStyle,
-                        maxHeight: open ? (size && size.height) : maxHeight,
-                        transitionDuration: `${transitionDuration}s`,
-                        transitionProperty: 'max-height',
-                        overflow: 'hidden'
-                    }
-                }>
-                <div ref={ref}>
-                    {children}
-                </div>
-            </div>
-            <div style={{
-                textAlign: labelPosition
-            }}>
-                <Link onClick={() => {
-                    setProps({
-                        open: !open
-                    })
-                }}>
-                    {
-                        open ? hideLabel || locale2text.AntdSpoiler[locale].hideLabel : showLabel || locale2text.AntdSpoiler[locale].showLabel
-                    }
-                </Link>
-            </div>
-        </div>
+        <Suspense fallback={null}>
+            <LazyAntdSpoiler {...props} />
+        </Suspense>
     );
 }
 
@@ -160,3 +89,6 @@ AntdSpoiler.defaultProps = {
 }
 
 export default AntdSpoiler;
+
+export const propTypes = AntdSpoiler.propTypes;
+export const defaultProps = AntdSpoiler.defaultProps;

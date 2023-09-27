@@ -1,83 +1,13 @@
-import React, { useEffect } from 'react';
+import React, { Suspense } from 'react';
 import PropTypes from 'prop-types';
-import { Collapse } from 'antd';
-import { isString } from 'lodash';
-import useCss from '../../hooks/useCss';
 
-const { Panel } = Collapse;
+const LazyAntdAccordion = React.lazy(() => import(/* webpackChunkName: "data_display" */ '../../fragments/dataDisplay/AntdAccordion.react'));
 
-// 定义手风琴组件AntdAccordion，api参数参考https://ant.design/components/collapse/#components-collapse-demo-accordion
 const AntdAccordion = (props) => {
-
-    // 取得必要属性或参数
-    let {
-        id,
-        className,
-        style,
-        key,
-        items,
-        accordion,
-        activeKey,
-        defaultActiveKey,
-        bordered,
-        collapsible,
-        expandIconPosition,
-        ghost,
-        loading_state,
-        setProps
-    } = props;
-
-    useEffect(() => {
-        if (defaultActiveKey && !activeKey) {
-            setProps({ activeKey: defaultActiveKey })
-        }
-    }, [])
-
     return (
-        <Collapse
-            id={id}
-            className={
-                isString(className) ?
-                    className :
-                    (className ? useCss(className) : undefined)
-            }
-            style={style}
-            key={key}
-            accordion={accordion}
-            activeKey={activeKey}
-            defaultActiveKey={defaultActiveKey}
-            bordered={bordered}
-            collapsible={collapsible}
-            expandIconPosition={expandIconPosition}
-            ghost={ghost}
-            onChange={(e) => setProps({ activeKey: e })}
-            data-dash-is-loading={
-                (loading_state && loading_state.is_loading) || undefined
-            }>
-            {
-                items ? (
-                    items.map(
-                        item => (
-                            <Panel
-                                className={
-                                    isString(item.className) ?
-                                        item.className :
-                                        (item.className ? useCss(item.className) : undefined)
-                                }
-                                style={item.style}
-                                key={item.key}
-                                collapsible={item.collapsible}
-                                header={item.title}
-                                extra={item.extra}
-                                showArrow={item.showArrow}
-                                forceRender={item.forceRender}>
-                                {item.children}
-                            </Panel>
-                        )
-                    )
-                ) : null
-            }
-        </Collapse>
+        <Suspense fallback={null}>
+            <LazyAntdAccordion {...props} />
+        </Suspense>
     );
 }
 
@@ -192,3 +122,6 @@ AntdAccordion.defaultProps = {
 }
 
 export default AntdAccordion;
+
+export const propTypes = AntdAccordion.propTypes;
+export const defaultProps = AntdAccordion.defaultProps;

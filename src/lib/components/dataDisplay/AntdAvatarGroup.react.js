@@ -1,46 +1,13 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import PropTypes from 'prop-types';
-import { Avatar } from 'antd';
-import useCss from '../../hooks/useCss';
-import { isString } from 'lodash';
 
-// 定义头像组合组件AntdAvatarGroup，api参数参考https://ant.design/components/avatar-cn/
+const LazyAntdAvatarGroup = React.lazy(() => import(/* webpackChunkName: "data_display" */ '../../fragments/dataDisplay/AntdAvatarGroup.react'));
+
 const AntdAvatarGroup = (props) => {
-    // 取得必要属性或参数
-    let {
-        id,
-        children,
-        className,
-        style,
-        key,
-        maxCount,
-        maxPopoverPlacement,
-        maxPopoverTrigger,
-        maxStyle,
-        size,
-        loading_state,
-        setProps
-    } = props;
-
     return (
-        <Avatar.Group
-            id={id}
-            className={
-                isString(className) ?
-                    className :
-                    (className ? useCss(className) : undefined)
-            }
-            style={style}
-            key={key}
-            maxCount={maxCount}
-            maxPopoverPlacement={maxPopoverPlacement}
-            maxPopoverTrigger={maxPopoverTrigger}
-            maxStyle={maxStyle}
-            size={size}
-            data-dash-is-loading={
-                (loading_state && loading_state.is_loading) || undefined
-            }
-        >{children}</Avatar.Group>
+        <Suspense fallback={null}>
+            <LazyAntdAvatarGroup {...props} />
+        </Suspense>
     );
 }
 
@@ -127,3 +94,6 @@ AntdAvatarGroup.defaultProps = {
 }
 
 export default AntdAvatarGroup;
+
+export const propTypes = AntdAvatarGroup.propTypes;
+export const defaultProps = AntdAvatarGroup.defaultProps;

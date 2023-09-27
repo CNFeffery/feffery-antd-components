@@ -6,64 +6,52 @@ from dash.dependencies import Input, Output, State
 
 app = dash.Dash(__name__, compress=True)
 
-app.layout = dash.html.Div(
+app.layout = html.Div(
     [
-        fac.AntdTabs(
-            id='input',
-            items=[
+        fac.AntdTree(
+            treeData=[
                 {
-                    'label': 'tab1',
-                    'key': 'tab1',
-                    'contextMenu': [
+                    'title': '四川省',
+                    'key': '四川省',
+                    'children': [
                         {
-                            'key': f'tab1-menu{i}',
-                            'label': f'选项{i}',
-                            'icon': icon
+                            'title': '成都市',
+                            'key': '成都市'
+                        },
+                        {
+                            'title': '广安市',
+                            'key': '广安市'
                         }
-                        for i, icon in enumerate(
-                            [
-                                'antd-compass',
-                                'antd-carry-out',
-                                'antd-bulb',
-                                'antd-build',
-                                'antd-setting'
-                            ]
-                        )
                     ]
                 },
                 {
-                    'label': 'tab2',
-                    'key': 'tab2'
-                },
-                {
-                    'label': 'tab3',
-                    'key': 'tab3'
+                    'title': '重庆市',
+                    'key': '重庆市',
+                    'children': [
+                        {
+                            'title': '渝中区',
+                            'key': '渝中区',
+                            'children': [
+                                {
+                                    'title': '解放碑街道',
+                                    'key': '解放碑街道'
+                                }
+                            ]
+                        },
+                        {
+                            'title': '渝北区',
+                            'key': '渝北区'
+                        }
+                    ]
                 }
             ],
-            type='card',
-            size='large'
-        ),
-        html.Pre(id='output')
+            defaultExpandAll=True
+        )
     ],
     style={
         'padding': '50px 100px'
     }
 )
-
-
-@app.callback(
-    Output('output', 'children'),
-    Input('input', 'clickedContextMenu')
-)
-def demo(clickedContextMenu):
-
-    return json.dumps(
-        dict(
-            clickedContextMenu=clickedContextMenu
-        ),
-        indent=4,
-        ensure_ascii=False
-    )
 
 
 if __name__ == '__main__':
