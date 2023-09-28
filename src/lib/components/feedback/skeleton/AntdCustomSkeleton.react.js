@@ -34,24 +34,24 @@ const AntdCustomSkeleton = (props) => {
                 // 当listenPropsMode为'default'时
                 if (listenPropsMode === 'default') {
                     if (debug) {
-                        console.log(loading_state.component_name + '.' + loading_state.prop_name)
+                        console.log(loading_state.component_name + '.' + loading_state.prop_name.split('@')[0])
                     }
                     setShowLoading(true);
                 } else if (listenPropsMode === 'exclude') {
                     // 当listenPropsMode为'exclude'模式时
                     // 当前触发loading_state的组件+属性组合不在排除列表中时，激活动画
-                    if (excludeProps.indexOf(loading_state.component_name + '.' + loading_state.prop_name) === -1) {
+                    if (excludeProps.indexOf(loading_state.component_name + '.' + loading_state.prop_name.split('@')[0]) === -1) {
                         if (debug) {
-                            console.log(loading_state.component_name + '.' + loading_state.prop_name)
+                            console.log(loading_state.component_name + '.' + loading_state.prop_name.split('@')[0])
                         }
                         setShowLoading(true);
                     }
                 } else if (listenPropsMode === 'include') {
                     // 当listenPropsMode为'include'模式时
                     // 当前触发loading_state的组件+属性组合在包含列表中时，激活动画
-                    if (includeProps.indexOf(loading_state.component_name + '.' + loading_state.prop_name) !== -1) {
+                    if (includeProps.indexOf(loading_state.component_name + '.' + loading_state.prop_name.split('@')[0]) !== -1) {
                         if (debug) {
-                            console.log(loading_state.component_name + '.' + loading_state.prop_name)
+                            console.log(loading_state.component_name + '.' + loading_state.prop_name.split('@')[0])
                         }
                         setShowLoading(true);
                     }
