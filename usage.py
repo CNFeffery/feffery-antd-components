@@ -4,55 +4,48 @@ from dash import html
 import feffery_antd_components as fac
 from dash.dependencies import Input, Output, State
 
-app = dash.Dash(__name__, compress=True)
+app = dash.Dash(__name__, compress=True, eager_loading=True)
 
 app.layout = html.Div(
-    [
-        fac.AntdTree(
-            treeData=[
-                {
-                    'title': '四川省',
-                    'key': '四川省',
-                    'children': [
-                        {
-                            'title': '成都市',
-                            'key': '成都市'
-                        },
-                        {
-                            'title': '广安市',
-                            'key': '广安市'
-                        }
-                    ]
+    fac.AntdMenu(
+        mode='inline',
+        menuItems=[
+            {
+                'component': 'SubMenu',
+                'props': {
+                    'key': f'{sub_menu}',
+                    'title': f'子菜单{sub_menu}'
                 },
-                {
-                    'title': '重庆市',
-                    'key': '重庆市',
-                    'children': [
-                        {
-                            'title': '渝中区',
-                            'key': '渝中区',
-                            'children': [
-                                {
-                                    'title': '解放碑街道',
-                                    'key': '解放碑街道'
-                                }
-                            ]
+                'children': [
+                    {
+                        'component': 'ItemGroup',
+                        'props': {
+                            'key': f'{sub_menu}-{item_group}',
+                            'title': f'菜单项分组{sub_menu}-{item_group}'
                         },
-                        {
-                            'title': '渝北区',
-                            'key': '渝北区'
-                        }
-                    ]
-                }
-            ],
-            defaultExpandAll=True
-        )
-    ],
+                        'children': [
+                            {
+                                'component': 'Item',
+                                'props': {
+                                    'key': f'{sub_menu}-{item_group}-{item}',
+                                    'title': f'菜单项{sub_menu}-{item_group}-{item}'
+                                }
+                            }
+                            for item in range(1, 3)
+                        ]
+                    }
+                    for item_group in range(1, 3)
+                ]
+            }
+            for sub_menu in range(1, 5)
+        ],
+        defaultOpenKeys=['2'],
+        inlineIndent=40
+    ),
     style={
-        'padding': '50px 100px'
+        'width': '250px'
     }
 )
-
 
 if __name__ == '__main__':
     app.run(debug=True)

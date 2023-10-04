@@ -230,6 +230,7 @@ const AntdMenu = (props) => {
         renderCollapsedButton,
         popupContainer,
         inlineCollapsed,
+        inlineIndent,
         setProps,
         persistence,
         persisted_props,
@@ -291,6 +292,7 @@ const AntdMenu = (props) => {
                             undefined
                     }
                     inlineCollapsed={inlineCollapsed}
+                    inlineIndent={inlineIndent}
                     persistence={persistence}
                     persisted_props={persisted_props}
                     persistence_type={persistence_type}
@@ -326,6 +328,8 @@ const AntdMenu = (props) => {
                         (triggerNode) => triggerNode.parentNode :
                         undefined
                 }
+                inlineCollapsed={inlineCollapsed}
+                inlineIndent={inlineIndent}
                 persistence={persistence}
                 persisted_props={persisted_props}
                 persistence_type={persistence_type}
@@ -391,8 +395,12 @@ AntdMenu.propTypes = {
     // 设置悬浮层锚定策略，可选的有'parent'、'body'，默认为'body'
     popupContainer: PropTypes.oneOf(['parent', 'body']),
 
-    // 设置当前菜单是否处于折叠状态（进inline模式下有效），默认为false
+    // 设置当前菜单是否处于折叠状态（仅inline模式下有效），默认为false
     inlineCollapsed: PropTypes.bool,
+
+    // 设置inline模式下，子菜单缩进像素宽度
+    // 默认为：24
+    inlineIndent: PropTypes.number,
 
     loading_state: PropTypes.shape({
         /**
@@ -452,6 +460,7 @@ AntdMenu.defaultProps = {
     renderCollapsedButton: false,
     popupContainer: 'body',
     inlineCollapsed: false,
+    inlineIndent: 24,
     persisted_props: ['currentKey', 'openKeys'],
     persistence_type: 'local'
 }
