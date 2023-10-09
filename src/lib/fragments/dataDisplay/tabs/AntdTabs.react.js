@@ -33,7 +33,6 @@ const AntdTabs = (props) => {
         inkBarAnimated,
         tabPaneAnimated,
         destroyInactiveTabPane,
-        clickedContextMenu,
         setProps,
         persistence,
         persisted_props,

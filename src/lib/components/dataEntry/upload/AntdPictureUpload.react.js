@@ -1,7 +1,7 @@
 import React, { Suspense } from 'react';
 import PropTypes from 'prop-types';
 
-const LazyAntdPictureUpload = React.lazy(() => import(/* webpackChunkName: "antd_upload" */ '../../../fragments/upload/AntdPictureUpload.react'));
+const LazyAntdPictureUpload = React.lazy(() => import(/* webpackChunkName: "upload" */ '../../../fragments/upload/AntdPictureUpload.react'));
 
 const AntdPictureUpload = (props) => {
     return (
@@ -39,6 +39,9 @@ AntdPictureUpload.propTypes = {
 
     // 可选，用于设置已上传完成文件的下载接口，get接口，具有参数taskId、filename
     downloadUrl: PropTypes.string,
+
+    // 可选，用于配合downloadUrl参数，设置除参数taskId、filename以外的其他请求参数
+    downloadUrlExtraParams: PropTypes.object,
 
     // 设置是否添加图片裁切、旋转预处理功能，默认为false
     editable: PropTypes.bool,

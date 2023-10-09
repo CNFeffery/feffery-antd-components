@@ -1,7 +1,7 @@
 import React, { Suspense } from 'react';
 import PropTypes from 'prop-types';
 
-const LazyAntdDraggerUpload = React.lazy(() => import(/* webpackChunkName: "antd_upload" */ '../../../fragments/upload/AntdDraggerUpload.react'));
+const LazyAntdDraggerUpload = React.lazy(() => import(/* webpackChunkName: "upload" */ '../../../fragments/upload/AntdDraggerUpload.react'));
 
 const AntdDraggerUpload = (props) => {
     return (
@@ -48,6 +48,9 @@ AntdDraggerUpload.propTypes = {
 
     // 可选，用于设置已上传完成文件的下载接口，get接口，具有参数taskId、filename
     downloadUrl: PropTypes.string,
+
+    // 可选，用于配合downloadUrl参数，设置除参数taskId、filename以外的其他请求参数
+    downloadUrlExtraParams: PropTypes.object,
 
     // 设置上传区域主要文字说明内容
     text: PropTypes.node,

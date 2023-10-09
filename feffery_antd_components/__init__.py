@@ -28,7 +28,7 @@ _current_path = _os.path.dirname(_os.path.abspath(__file__))
 
 _this_module = _sys.modules[__name__]
 
-async_resources = ['antd_table', 'antd_upload', 'data_entry', 'data_display']
+async_resources = ['antd_table', 'upload', 'data_entry', 'data_display']
 
 
 _js_dist = [

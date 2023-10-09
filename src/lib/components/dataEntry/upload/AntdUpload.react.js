@@ -1,7 +1,7 @@
 import React, { Suspense } from 'react';
 import PropTypes from 'prop-types';
 
-const LazyAntdUpload = React.lazy(() => import(/* webpackChunkName: "antd_upload" */ '../../../fragments/upload/AntdUpload.react'));
+const LazyAntdUpload = React.lazy(() => import(/* webpackChunkName: "upload" */ '../../../fragments/upload/AntdUpload.react'));
 
 const AntdUpload = (props) => {
     return (
@@ -39,6 +39,9 @@ AntdUpload.propTypes = {
 
     // 可选，用于设置已上传完成文件的下载接口，get接口，具有参数taskId、filename
     downloadUrl: PropTypes.string,
+
+    // 可选，用于配合downloadUrl参数，设置除参数taskId、filename以外的其他请求参数
+    downloadUrlExtraParams: PropTypes.object,
 
     // 设置已上传文件列表的最大显示长度，默认为3
     fileListMaxLength: PropTypes.number,
@@ -260,6 +263,7 @@ AntdUpload.defaultProps = {
     showErrorMessage: true,
     lastUploadTaskRecord: null,
     listUploadTaskRecord: [],
+    downloadUrlExtraParams: {},
     locale: 'zh-cn'
 }
 

@@ -49,6 +49,7 @@ const AntdDraggerUpload = (props) => {
         apiUrl,
         headers,
         downloadUrl,
+        downloadUrlExtraParams,
         text,
         hint,
         uploadId,
@@ -145,7 +146,9 @@ const AntdDraggerUpload = (props) => {
                             (file) => {
                                 // 配置已完成上传文件下载链接
                                 let urlInfo = downloadUrl && file.status === 'done' ? {
-                                    url: downloadUrl + `?taskId=${uploadId}&filename=${file.name}`
+                                    url: downloadUrl + `?taskId=${uploadId}&filename=${file.name}` + (
+                                        Object.keys(downloadUrlExtraParams).map(key => `&${key}=${downloadUrlExtraParams[key]}`).join('')
+                                    )
                                 } : {}
                                 return {
                                     fileName: file.name,
@@ -186,7 +189,9 @@ const AntdDraggerUpload = (props) => {
                                         (file) => {
                                             // 配置已完成上传文件下载链接
                                             let urlInfo = downloadUrl && file.status === 'done' ? {
-                                                url: downloadUrl + `?taskId=${uploadId}&filename=${file.name}`
+                                                url: downloadUrl + `?taskId=${uploadId}&filename=${file.name}` + (
+                                                    Object.keys(downloadUrlExtraParams).map(key => `&${key}=${downloadUrlExtraParams[key]}`).join('')
+                                                )
                                             } : {}
                                             return {
                                                 fileName: file.name,
@@ -218,7 +223,9 @@ const AntdDraggerUpload = (props) => {
                             (file) => {
                                 // 配置已完成上传文件下载链接
                                 let urlInfo = downloadUrl && file.status === 'done' ? {
-                                    url: downloadUrl + `?taskId=${uploadId}&filename=${file.name}`
+                                    url: downloadUrl + `?taskId=${uploadId}&filename=${file.name}` + (
+                                        Object.keys(downloadUrlExtraParams).map(key => `&${key}=${downloadUrlExtraParams[key]}`).join('')
+                                    )
                                 } : {}
                                 return {
                                     fileName: file.name,
@@ -245,7 +252,9 @@ const AntdDraggerUpload = (props) => {
                             (file) => {
                                 // 配置已完成上传文件下载链接
                                 let urlInfo = downloadUrl && file.status === 'done' ? {
-                                    url: downloadUrl + `?taskId=${uploadId}&filename=${file.name}`
+                                    url: downloadUrl + `?taskId=${uploadId}&filename=${file.name}` + (
+                                        Object.keys(downloadUrlExtraParams).map(key => `&${key}=${downloadUrlExtraParams[key]}`).join('')
+                                    )
                                 } : {}
                                 return {
                                     fileName: file.name,
@@ -299,7 +308,9 @@ const AntdDraggerUpload = (props) => {
                         item => {
                             return {
                                 ...item,
-                                url: downloadUrl + `?taskId=${uploadId}&filename=${item.name}`
+                                url: downloadUrl + `?taskId=${uploadId}&filename=${item.name}` + (
+                                    Object.keys(downloadUrlExtraParams).map(key => `&${key}=${downloadUrlExtraParams[key]}`).join('')
+                                )
                             }
                         }
                     )
