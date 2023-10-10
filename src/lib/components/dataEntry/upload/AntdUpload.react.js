@@ -43,6 +43,9 @@ AntdUpload.propTypes = {
     // 可选，用于配合downloadUrl参数，设置除参数taskId、filename以外的其他请求参数
     downloadUrlExtraParams: PropTypes.object,
 
+    // 可选，用于设置已上传完成文件的自定义后端下载接口，get接口，接口响应必须要有url参数
+    downloadUrlFromBackend: PropTypes.bool,
+
     // 设置已上传文件列表的最大显示长度，默认为3
     fileListMaxLength: PropTypes.number,
 
@@ -264,6 +267,7 @@ AntdUpload.defaultProps = {
     lastUploadTaskRecord: null,
     listUploadTaskRecord: [],
     downloadUrlExtraParams: {},
+    downloadUrlFromBackend: false,
     locale: 'zh-cn'
 }
 

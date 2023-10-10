@@ -56,6 +56,7 @@ const AntdPictureUpload = (props) => {
         headers,
         downloadUrl,
         downloadUrlExtraParams,
+        downloadUrlFromBackend,
         editable,
         editConfig,
         uploadId,
@@ -81,6 +82,7 @@ const AntdPictureUpload = (props) => {
 
     const context = useContext(PropsContext)
     locale = (context && context.locale) || locale
+    downloadUrlFromBackend = downloadUrl ? false : downloadUrlFromBackend
 
     listUploadTaskRecord = listUploadTaskRecord || []
 
@@ -175,11 +177,11 @@ const AntdPictureUpload = (props) => {
                     listUploadTaskRecord: info.fileList.map(
                         (file) => {
                             // 配置已完成上传文件下载链接
-                            let urlInfo = downloadUrl && file.status === 'done' ? {
+                            let urlInfo = downloadUrlFromBackend ? (file.response ? { url: file.response.url } : {}) : (downloadUrl && file.status === 'done' ? {
                                 url: downloadUrl + `?taskId=${uploadId}&filename=${file.name}` + (
                                     Object.keys(downloadUrlExtraParams).map(key => `&${key}=${downloadUrlExtraParams[key]}`).join('')
                                 )
-                            } : {}
+                            } : {})
                             return {
                                 fileName: file.name,
                                 fileSize: file.size,
@@ -204,11 +206,11 @@ const AntdPictureUpload = (props) => {
                     listUploadTaskRecord: info.fileList.map(
                         (file) => {
                             // 配置已完成上传文件下载链接
-                            let urlInfo = downloadUrl && file.status === 'done' ? {
+                            let urlInfo = downloadUrlFromBackend ? (file.response ? { url: file.response.url } : {}) : (downloadUrl && file.status === 'done' ? {
                                 url: downloadUrl + `?taskId=${uploadId}&filename=${file.name}` + (
                                     Object.keys(downloadUrlExtraParams).map(key => `&${key}=${downloadUrlExtraParams[key]}`).join('')
                                 )
-                            } : {}
+                            } : {})
                             return {
                                 fileName: file.name,
                                 fileSize: file.size,
@@ -263,6 +265,26 @@ const AntdPictureUpload = (props) => {
                                 url: downloadUrl + `?taskId=${uploadId}&filename=${item.name}` + (
                                     Object.keys(downloadUrlExtraParams).map(key => `&${key}=${downloadUrlExtraParams[key]}`).join('')
                                 )
+                            }
+                        }
+                    )
+                )
+            } else {
+                updateFileList(_fileList)
+            }
+
+            if (downloadUrlFromBackend) {
+                updateFileList(
+                    _fileList.map(
+                        item => {
+                            if (item.response) {
+                                return {
+                                    ...item,
+                                    url: item.response.url
+                                }
+                            }
+                            return {
+                                ...item
                             }
                         }
                     )

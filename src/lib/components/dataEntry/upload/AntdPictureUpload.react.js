@@ -43,6 +43,9 @@ AntdPictureUpload.propTypes = {
     // 可选，用于配合downloadUrl参数，设置除参数taskId、filename以外的其他请求参数
     downloadUrlExtraParams: PropTypes.object,
 
+    // 可选，用于设置已上传完成文件的自定义后端下载接口，get接口，接口响应必须要有url参数
+    downloadUrlFromBackend: PropTypes.bool,
+
     // 设置是否添加图片裁切、旋转预处理功能，默认为false
     editable: PropTypes.bool,
 
@@ -272,6 +275,7 @@ AntdPictureUpload.defaultProps = {
     showErrorMessage: true,
     lastUploadTaskRecord: null,
     listUploadTaskRecord: [],
+    downloadUrlFromBackend: false,
     locale: 'zh-cn'
 }
 
