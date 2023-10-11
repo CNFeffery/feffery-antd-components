@@ -189,7 +189,10 @@ AntdDraggerUpload.propTypes = {
             // 唯一标识当前任务的uuid信息，前端生成与后端无关
             uid: PropTypes.string,
 
-            url: PropTypes.string
+            url: PropTypes.string,
+
+            // 记录本次上传的接口响应信息
+            uploadResponse: PropTypes.any
         }),
         // 文件夹或多文件上传
         PropTypes.arrayOf(
@@ -212,7 +215,10 @@ AntdDraggerUpload.propTypes = {
                 // 唯一标识当前任务的uuid信息，前端生成与后端无关
                 uid: PropTypes.string,
 
-                url: PropTypes.string
+                url: PropTypes.string,
+
+                // 记录本次上传的接口响应信息
+                uploadResponse: PropTypes.any
             })
         )
     ]),

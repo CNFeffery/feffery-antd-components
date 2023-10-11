@@ -125,6 +125,8 @@ Keyword arguments:
 
     - uid (string; optional)
 
+    - uploadResponse (boolean | number | string | dict | list; optional)
+
     - url (string; optional)
 
 - loading_state (dict; optional)

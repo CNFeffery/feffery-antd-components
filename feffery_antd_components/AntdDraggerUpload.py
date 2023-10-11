@@ -101,6 +101,8 @@ Keyword arguments:
 
     - uid (string; optional)
 
+    - uploadResponse (boolean | number | string | dict | list; optional)
+
     - url (string; optional) | list of dicts with keys:
 
     - completeTimestamp (number; optional)
@@ -114,6 +116,8 @@ Keyword arguments:
     - taskStatus (string; optional)
 
     - uid (string; optional)
+
+    - uploadResponse (boolean | number | string | dict | list; optional)
 
     - url (string; optional)
 
