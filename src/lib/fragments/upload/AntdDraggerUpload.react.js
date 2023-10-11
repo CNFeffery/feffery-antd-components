@@ -100,6 +100,7 @@ const AntdDraggerUpload = (props) => {
             status: item.taskStatus,
             uid: item.uid,
             url: item.url,
+            uploadResponse: item.uploadResponse,
             fileSize: item.fileSize
         };
     }));
@@ -152,6 +153,8 @@ const AntdDraggerUpload = (props) => {
                                         Object.keys(downloadUrlExtraParams).map(key => `&${key}=${downloadUrlExtraParams[key]}`).join('')
                                     )
                                 } : {})
+                                // 配置已完成上传文件接口响应信息
+                                let responseInfo = file.response ? { uploadResponse: file.response } : {}
                                 return {
                                     fileName: file.name,
                                     fileSize: file.size,
@@ -159,7 +162,8 @@ const AntdDraggerUpload = (props) => {
                                     taskStatus: file.status === 'done' ? 'success' : 'failed',
                                     taskId: uploadId,
                                     uid: file.uid,
-                                    ...urlInfo
+                                    ...urlInfo,
+                                    ...responseInfo
                                 }
                             }
                         )
@@ -195,6 +199,8 @@ const AntdDraggerUpload = (props) => {
                                                     Object.keys(downloadUrlExtraParams).map(key => `&${key}=${downloadUrlExtraParams[key]}`).join('')
                                                 )
                                             } : {})
+                                            // 配置已完成上传文件接口响应信息
+                                            let responseInfo = file.response ? { uploadResponse: file.response } : {}
                                             return {
                                                 fileName: file.name,
                                                 fileSize: file.size,
@@ -202,7 +208,8 @@ const AntdDraggerUpload = (props) => {
                                                 taskStatus: file.status === 'done' ? 'success' : 'failed',
                                                 taskId: uploadId,
                                                 uid: file.uid,
-                                                ...urlInfo
+                                                ...urlInfo,
+                                                ...responseInfo
                                             }
                                         }
                                     )
@@ -229,6 +236,8 @@ const AntdDraggerUpload = (props) => {
                                         Object.keys(downloadUrlExtraParams).map(key => `&${key}=${downloadUrlExtraParams[key]}`).join('')
                                     )
                                 } : {})
+                                // 配置已完成上传文件接口响应信息
+                                let responseInfo = file.response ? { uploadResponse: file.response } : {}
                                 return {
                                     fileName: file.name,
                                     fileSize: file.size,
@@ -236,7 +245,8 @@ const AntdDraggerUpload = (props) => {
                                     taskStatus: file.status === 'done' ? 'success' : 'failed',
                                     taskId: uploadId,
                                     uid: file.uid,
-                                    ...urlInfo
+                                    ...urlInfo,
+                                    ...responseInfo
                                 }
                             }
                         )
@@ -258,6 +268,8 @@ const AntdDraggerUpload = (props) => {
                                         Object.keys(downloadUrlExtraParams).map(key => `&${key}=${downloadUrlExtraParams[key]}`).join('')
                                     )
                                 } : {})
+                                // 配置已完成上传文件接口响应信息
+                                let responseInfo = file.response ? { uploadResponse: file.response } : {}
                                 return {
                                     fileName: file.name,
                                     fileSize: file.size,
@@ -265,7 +277,8 @@ const AntdDraggerUpload = (props) => {
                                     taskStatus: file.status === 'done' ? 'success' : 'failed',
                                     taskId: uploadId,
                                     uid: file.uid,
-                                    ...urlInfo
+                                    ...urlInfo,
+                                    ...responseInfo
                                 }
                             }
                         )
@@ -308,27 +321,27 @@ const AntdDraggerUpload = (props) => {
                 updateFileList(
                     _fileList.map(
                         item => {
+                            // 配置已完成上传文件接口响应信息
+                            let responseInfo = item.response ? { uploadResponse: item.response } : {}
                             return {
                                 ...item,
                                 url: downloadUrl + `?taskId=${uploadId}&filename=${item.name}` + (
                                     Object.keys(downloadUrlExtraParams).map(key => `&${key}=${downloadUrlExtraParams[key]}`).join('')
-                                )
+                                ),
+                                ...responseInfo
                             }
                         }
                     )
                 )
-            } else {
-                updateFileList(_fileList)
-            }
-
-            if (downloadUrlFromBackend) {
+            } else if (downloadUrlFromBackend) {
                 updateFileList(
                     _fileList.map(
                         item => {
                             if (item.response) {
                                 return {
                                     ...item,
-                                    url: item.response.url
+                                    url: item.response.url,
+                                    uploadResponse: item.response
                                 }
                             }
                             return {
