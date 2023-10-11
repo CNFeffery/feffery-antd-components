@@ -15,7 +15,7 @@ class TreeUtils:
         node_key: str,
         new_node: dict,
         mode: Literal['replace', 'overlay'] = 'replace'
-    ) -> list:
+    ) -> Union[list, dict]:
         """对key值等于node_key的节点进行整体替换或增量更新
 
         Args:
@@ -61,7 +61,7 @@ class TreeUtils:
         input_object: Union[dict, list],
         node_key: str,
         new_node: dict
-    ) -> dict:
+    ) -> Union[list, dict]:
         """在key值等于node_key的节点之前插入平级新节点
 
         Args:
@@ -100,7 +100,7 @@ class TreeUtils:
         input_object: Union[dict, list],
         node_key: str,
         new_node: dict
-    ) -> dict:
+    ) -> Union[list, dict]:
         """在key值等于node_key的节点之后插入平级新节点
 
         Args:
@@ -138,7 +138,7 @@ class TreeUtils:
         cls,
         input_object: Union[dict, list],
         node_key: str
-    ) -> dict:
+    ) -> Union[list, dict]:
         """删除key值等于node_key的节点
 
         Args:
