@@ -53,6 +53,7 @@ const AntdPictureUpload = (props) => {
         key,
         locale,
         apiUrl,
+        apiUrlExtraParams,
         headers,
         downloadUrl,
         downloadUrlExtraParams,
@@ -141,7 +142,8 @@ const AntdPictureUpload = (props) => {
         action: apiUrl + `?uploadId=${uploadId}`,
         headers: headers,
         data: {
-            uploadId: uploadId
+            uploadId: uploadId,
+            ...apiUrlExtraParams
         },
         beforeUpload: (file) => {
             const sizeCheck = file.size / 1024 / 1024 < fileMaxSize;

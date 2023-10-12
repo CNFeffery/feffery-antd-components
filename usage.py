@@ -14,6 +14,7 @@ app.layout = html.Div(
             [
                 fac.AntdUpload(
                     apiUrl='/upload/',
+                    apiUrlExtraParams={'test': 111},
                     # downloadUrl='/download',
                     downloadUrlExtraParams={
                         'token': 'test',
@@ -42,6 +43,7 @@ app.layout = html.Div(
             [
                 fac.AntdDraggerUpload(
                     apiUrl='/upload/',
+                    apiUrlExtraParams={'test': 222},
                     # downloadUrl='/download',
                     downloadUrlExtraParams={
                         'token': 'test',
@@ -70,6 +72,7 @@ app.layout = html.Div(
             [
                 fac.AntdPictureUpload(
                     apiUrl='/upload/',
+                    apiUrlExtraParams={'test': 333},
                     # downloadUrl='/download',
                     downloadUrlExtraParams={
                         'token': 'test',
@@ -133,6 +136,7 @@ def upload():
 
     # 获取上传的文件名称
     filename = request.files['file'].filename
+    print(request.values.get('test'))
 
     # 基于上传id，若本地不存在则会自动创建目录
     try:

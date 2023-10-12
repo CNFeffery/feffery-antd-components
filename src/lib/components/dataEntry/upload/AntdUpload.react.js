@@ -34,6 +34,9 @@ AntdUpload.propTypes = {
     // 设置文件上传服务的接口url
     apiUrl: PropTypes.string,
 
+    // 设置文件上传服务所需额外参数
+    apiUrlExtraParams: PropTypes.object,
+
     // 设置文件上传服务额外的headers信息
     headers: PropTypes.object,
 
