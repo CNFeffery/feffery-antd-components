@@ -104,6 +104,10 @@ AntdTabs.propTypes = {
     // 对应最近一次进行删除操作的标签页面板对应key
     latestDeletePane: PropTypes.string,
 
+    // 设置标签页关闭按钮累积点击次数
+    // 默认：0
+    tabCloseCounts: PropTypes.number,
+
     // 用于设置第一方位额外元素
     tabBarLeftExtraContent: PropTypes.node,
 
@@ -188,6 +192,7 @@ AntdTabs.defaultProps = {
     inkBarAnimated: true,
     tabPaneAnimated: false,
     destroyInactiveTabPane: false,
+    tabCloseCounts: 0,
     persisted_props: ['activeKey'],
     persistence_type: 'local'
 }

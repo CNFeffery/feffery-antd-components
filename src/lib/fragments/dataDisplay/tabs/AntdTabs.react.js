@@ -33,6 +33,7 @@ const AntdTabs = (props) => {
         inkBarAnimated,
         tabPaneAnimated,
         destroyInactiveTabPane,
+        tabCloseCounts,
         setProps,
         persistence,
         persisted_props,
@@ -60,7 +61,7 @@ const AntdTabs = (props) => {
     }
 
     const onEdit = (targetKey, action) => {
-        setProps({ latestDeletePane: targetKey })
+        setProps({ latestDeletePane: targetKey, tabCloseCounts: tabCloseCounts + 1 })
     }
 
     // 0.2.x构造标签页新方式
