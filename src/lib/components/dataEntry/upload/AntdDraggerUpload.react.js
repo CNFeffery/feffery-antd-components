@@ -44,7 +44,7 @@ AntdDraggerUpload.propTypes = {
     apiUrl: PropTypes.string,
 
     // 设置文件上传服务所需额外参数
-    data: PropTypes.object,
+    apiUrlExtraParams: PropTypes.object,
 
     // 设置文件上传服务额外的headers信息
     headers: PropTypes.object,

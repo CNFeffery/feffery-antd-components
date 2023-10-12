@@ -14,7 +14,7 @@ app.layout = html.Div(
             [
                 fac.AntdUpload(
                     apiUrl='/upload/',
-                    data={'test': 111},
+                    apiUrlExtraParams={'test': 111},
                     # downloadUrl='/download',
                     downloadUrlExtraParams={
                         'token': 'test',
@@ -43,7 +43,7 @@ app.layout = html.Div(
             [
                 fac.AntdDraggerUpload(
                     apiUrl='/upload/',
-                    data={'test': 222},
+                    apiUrlExtraParams={'test': 222},
                     # downloadUrl='/download',
                     downloadUrlExtraParams={
                         'token': 'test',
@@ -72,7 +72,7 @@ app.layout = html.Div(
             [
                 fac.AntdPictureUpload(
                     apiUrl='/upload/',
-                    data={'test': 333},
+                    apiUrlExtraParams={'test': 333},
                     # downloadUrl='/download',
                     downloadUrlExtraParams={
                         'token': 'test',
