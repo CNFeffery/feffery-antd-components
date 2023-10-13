@@ -4,7 +4,7 @@ from dash import html
 import feffery_antd_components as fac
 from dash.dependencies import Input, Output, State, MATCH
 import os
-from flask import request, send_from_directory
+from flask import request, send_from_directory, Response
 
 app = dash.Dash(__name__, compress=True)
 
@@ -13,9 +13,9 @@ app.layout = html.Div(
         html.Div(
             [
                 fac.AntdUpload(
-                    apiUrl='/upload/',
+                    apiUrl='http://127.0.0.1:9099/upload',
                     apiUrlExtraParams={'test': 111},
-                    withCredentials=True,
+                    withCredentials=False,
                     # downloadUrl='/download',
                     downloadUrlExtraParams={
                         'token': 'test',
@@ -164,6 +164,13 @@ def download():
     directory = os.path.join(os.getcwd(), taskId)  # 替换为实际文件的目录路径
     return send_from_directory(directory, filename, as_attachment=True)
 
+
+# 浏览器直接访问该请求，模拟设置cookie
+@app.server.route('/setCookie')
+def set_cookie():
+    resp = Response('set_cookie成功')
+    resp.set_cookie('name', 'test')
+    return resp
 
 if __name__ == '__main__':
     app.run(debug=True)
