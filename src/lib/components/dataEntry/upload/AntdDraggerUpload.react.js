@@ -49,6 +49,9 @@ AntdDraggerUpload.propTypes = {
     // 设置文件上传服务额外的headers信息
     headers: PropTypes.object,
 
+    // 可选，设置上传请求时是否携带凭据信息如cookie，当上传接口与前端页面同域时，该参数设置无效，参考https://juejin.cn/post/7163597193058729998
+    withCredentials: PropTypes.bool,
+
     // 可选，用于设置已上传完成文件的下载接口，get接口，具有参数taskId、filename
     downloadUrl: PropTypes.string,
 
@@ -292,6 +295,7 @@ AntdDraggerUpload.defaultProps = {
     lastUploadTaskRecord: null,
     listUploadTaskRecord: [],
     downloadUrlFromBackend: false,
+    withCredentials: false,
     locale: 'zh-cn'
 }
 
