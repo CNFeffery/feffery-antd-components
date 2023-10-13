@@ -75,7 +75,11 @@ Keyword arguments:
 
     - taskId (string; optional)
 
-    - taskStatus (string; optional) | list of dicts with keys:
+    - taskStatus (string; optional)
+
+    - uploadResponse (boolean | number | string | dict | list; optional)
+
+    - url (string; optional) | list of dicts with keys:
 
     - completeTimestamp (number; optional)
 
@@ -86,6 +90,10 @@ Keyword arguments:
     - taskId (string; optional)
 
     - taskStatus (string; optional)
+
+    - uploadResponse (boolean | number | string | dict | list; optional)
+
+    - url (string; optional)
 
 - listUploadTaskRecord (dict; optional)
 

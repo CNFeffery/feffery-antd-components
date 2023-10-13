@@ -165,8 +165,12 @@ AntdPictureUpload.propTypes = {
             taskStatus: PropTypes.string,
 
             // 记录本次任务的id信息，若最近一次任务状态为'failed'，则不会携带此信息
-            taskId: PropTypes.string
+            taskId: PropTypes.string,
 
+            url: PropTypes.string,
+
+            // 记录本次上传的接口响应信息
+            uploadResponse: PropTypes.any
         }),
         // 文件夹或多文件上传
         PropTypes.arrayOf(
@@ -184,8 +188,12 @@ AntdPictureUpload.propTypes = {
                 taskStatus: PropTypes.string,
 
                 // 记录本次任务的id信息，若最近一次任务状态为'failed'，则不会携带此信息
-                taskId: PropTypes.string
+                taskId: PropTypes.string,
 
+                url: PropTypes.string,
+
+                // 记录本次上传的接口响应信息
+                uploadResponse: PropTypes.any
             })
         )
     ]),

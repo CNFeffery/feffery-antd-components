@@ -209,7 +209,17 @@ const AntdPictureUpload = (props) => {
                         fileSize: info.file.size,
                         completeTimestamp: new Date().getTime(),
                         taskStatus: info.file.status === 'done' ? 'success' : 'failed',
-                        taskId: uploadId
+                        taskId: uploadId,
+                        ...(
+                            downloadUrlFromBackend ? (info.file.response ? { url: info.file.response.url } : {}) : (downloadUrl && info.file.status === 'done' ? {
+                                url: downloadUrl + `?taskId=${uploadId}&filename=${info.file.name}` + (
+                                    Object.keys(downloadUrlExtraParams).map(key => `&${key}=${downloadUrlExtraParams[key]}`).join('')
+                                )
+                            } : {})
+                        ),
+                        ...(
+                            info.file.response ? { uploadResponse: info.file.response } : {}
+                        )
                     },
                     listUploadTaskRecord: info.fileList.map(
                         (file) => {

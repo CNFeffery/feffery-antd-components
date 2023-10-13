@@ -183,12 +183,22 @@ const AntdUpload = (props) => {
                                 setProps({
                                     lastUploadTaskRecord: info.fileList.slice(-lastTaskCount).map(
                                         (file) => {
+                                            // 配置已完成上传文件下载链接
+                                            let urlInfo = downloadUrlFromBackend ? (file.response ? { url: file.response.url } : {}) : (downloadUrl && file.status === 'done' ? {
+                                                url: downloadUrl + `?taskId=${uploadId}&filename=${file.name}` + (
+                                                    Object.keys(downloadUrlExtraParams).map(key => `&${key}=${downloadUrlExtraParams[key]}`).join('')
+                                                )
+                                            } : {})
+                                            // 配置已完成上传文件接口响应信息
+                                            let responseInfo = file.response ? { uploadResponse: file.response } : {}
                                             return {
                                                 fileName: file.name,
                                                 fileSize: file.size,
                                                 completeTimestamp: new Date().getTime(),
                                                 taskStatus: file.status === 'done' ? 'success' : 'failed',
-                                                taskId: uploadId
+                                                taskId: uploadId,
+                                                ...urlInfo,
+                                                ...responseInfo
                                             }
                                         }
                                     ),
@@ -256,7 +266,17 @@ const AntdUpload = (props) => {
                             fileSize: info.file.size,
                             completeTimestamp: new Date().getTime(),
                             taskStatus: info.file.status === 'done' ? 'success' : 'failed',
-                            taskId: uploadId
+                            taskId: uploadId,
+                            ...(
+                                downloadUrlFromBackend ? (info.file.response ? { url: info.file.response.url } : {}) : (downloadUrl && info.file.status === 'done' ? {
+                                    url: downloadUrl + `?taskId=${uploadId}&filename=${info.file.name}` + (
+                                        Object.keys(downloadUrlExtraParams).map(key => `&${key}=${downloadUrlExtraParams[key]}`).join('')
+                                    )
+                                } : {})
+                            ),
+                            ...(
+                                info.file.response ? { uploadResponse: info.file.response } : {}
+                            )
                         },
                         listUploadTaskRecord: info.fileList.map(
                             (file) => {
