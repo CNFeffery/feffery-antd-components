@@ -30,6 +30,7 @@ const AntdButton = (props) => {
         block,
         danger,
         disabled,
+        ghost,
         shape,
         size,
         nClicks,
@@ -82,6 +83,7 @@ const AntdButton = (props) => {
                     context.componentDisabled :
                     disabled
             }
+            ghost={ghost}
             shape={shape}
             size={
                 context && !isUndefined(context.componentSize) ?
@@ -170,6 +172,12 @@ AntdButton.propTypes = {
     disabled: PropTypes.bool,
 
     /**
+     * 幽灵属性，使当前按钮背景透明
+     * 默认：false
+     */
+    ghost: PropTypes.bool,
+
+    /**
      * 当前按钮形状，可选的有'default'、'circle'、'round'
      * 默认：'default'
      */
@@ -239,6 +247,7 @@ AntdButton.defaultProps = {
     block: false,
     danger: false,
     disabled: false,
+    ghost: false,
     size: 'middle',
     nClicks: 0,
     debounceWait: 200,

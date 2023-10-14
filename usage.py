@@ -100,6 +100,31 @@ app.layout = html.Div(
                 )
             ]
         ),
+        html.Div(
+            [
+                fac.AntdButton(
+                    type,
+                    ghost=True,
+                    type=type
+                ) for type in ['primary', 'ghost', 'dashed', 'link', 'text', 'default']
+            ],
+            style={
+                'padding': '26px 16px 16px',
+                'background': 'rgb(190, 200, 200)'
+            }
+        ),
+        html.Div(
+            [
+                fac.AntdButton(
+                    type,
+                    type=type
+                ) for type in ['primary', 'ghost', 'dashed', 'link', 'text', 'default']
+            ],
+            style={
+                'padding': '26px 16px 16px',
+                'background': 'rgb(190, 200, 200)'
+            }
+        )
     ],
     style={
         'padding': '50px 100px'
@@ -171,6 +196,7 @@ def set_cookie():
     resp = Response('set_cookie成功')
     resp.set_cookie('name', 'test')
     return resp
+
 
 if __name__ == '__main__':
     app.run(debug=True)
