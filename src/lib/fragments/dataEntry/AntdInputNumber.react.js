@@ -19,6 +19,7 @@ const AntdInputNumber = (props) => {
         size,
         addonBefore,
         addonAfter,
+        autoFocus,
         prefix,
         bordered,
         controls,
@@ -106,6 +107,7 @@ const AntdInputNumber = (props) => {
             }
             addonBefore={addonBefore}
             addonAfter={addonAfter}
+            autoFocus={autoFocus}
             prefix={prefix}
             placeholder={placeholder}
             bordered={bordered}

@@ -25,6 +25,7 @@ const AntdDateRangePicker = (props) => {
         format,
         showTime,
         allowClear,
+        autoFocus,
         value,
         disabledDatesStrategy,
         open,
@@ -401,6 +402,7 @@ const AntdDateRangePicker = (props) => {
                             showTime
                     }
                     allowClear={isUndefined(readOnly) ? allowClear : !readOnly}
+                    autoFocus={autoFocus}
                     disabled={
                         context && !isUndefined(context.componentDisabled) ?
                             [context.componentDisabled, context.componentDisabled] :

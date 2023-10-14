@@ -159,6 +159,9 @@ AntdCascader.propTypes = {
     // 设置是否添加内容清除按钮，默认true
     allowClear: PropTypes.bool,
 
+    // 用于设置是否自动获取焦点，默认为false
+    autoFocus: PropTypes.bool,
+
     // 设置已选项回填策略，可选的有'show-parent'、'show-child'
     // 默认为'show-parent'
     showCheckedStrategy: PropTypes.oneOf(['show-parent', 'show-child']),
@@ -234,6 +237,7 @@ AntdCascader.defaultProps = {
     multiple: false,
     expandTrigger: 'click',
     allowClear: true,
+    autoFocus: false,
     locale: 'zh-cn',
     optionsMode: 'tree',
     showCheckedStrategy: 'show-parent',

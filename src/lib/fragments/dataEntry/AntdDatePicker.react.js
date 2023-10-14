@@ -24,6 +24,7 @@ const AntdDatePicker = (props) => {
         disabled,
         showTime,
         allowClear,
+        autoFocus,
         placeholder,
         disabledDatesStrategy,
         defaultPickerValue,
@@ -407,6 +408,7 @@ const AntdDatePicker = (props) => {
                             showTime
                     }
                     allowClear={isUndefined(readOnly) ? allowClear : !readOnly}
+                    autoFocus={autoFocus}
                     status={status}
                     placement={placement}
                     open={isUndefined(readOnly) || !readOnly ? undefined : false}

@@ -16,6 +16,7 @@ const AntdCheckbox = (props) => {
         key,
         label,
         disabled,
+        autoFocus,
         checked,
         indeterminate,
         readOnly,
@@ -65,6 +66,7 @@ const AntdCheckbox = (props) => {
                     context.componentDisabled :
                     disabled
             }
+            autoFocus={autoFocus}
             checked={checked}
             indeterminate={indeterminate}
             persistence={persistence}

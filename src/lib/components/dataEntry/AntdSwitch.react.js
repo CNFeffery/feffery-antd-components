@@ -31,6 +31,9 @@ AntdSwitch.propTypes = {
     // 设置是否禁用组件
     disabled: PropTypes.bool,
 
+    // 用于设置是否自动获取焦点，默认为false
+    autoFocus: PropTypes.bool,
+
     // 对应选择框当前是否被选择
     checked: PropTypes.bool,
 
@@ -109,6 +112,7 @@ AntdSwitch.propTypes = {
 // 设置默认参数
 AntdSwitch.defaultProps = {
     disabled: false,
+    autoFocus: false,
     size: 'default',
     loading: false,
     readOnly: false,

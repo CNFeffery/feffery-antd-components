@@ -15,6 +15,7 @@ const AntdSwitch = (props) => {
         className,
         key,
         disabled,
+        autoFocus,
         checked,
         checkedChildren,
         unCheckedChildren,
@@ -73,6 +74,7 @@ const AntdSwitch = (props) => {
                     disabled
             }
             defaultChecked={checked}
+            autoFocus={autoFocus}
             checkedChildren={checkedChildren}
             checked={checked}
             unCheckedChildren={unCheckedChildren}

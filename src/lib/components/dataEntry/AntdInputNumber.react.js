@@ -34,6 +34,9 @@ AntdInputNumber.propTypes = {
     // 设置后置标签内容
     addonAfter: PropTypes.node,
 
+    // 用于设置是否自动获取焦点，默认为false
+    autoFocus: PropTypes.bool,
+
     // 设置框内嵌前缀内容
     prefix: PropTypes.node,
 
@@ -169,6 +172,7 @@ AntdInputNumber.propTypes = {
 
 // 设置默认参数
 AntdInputNumber.defaultProps = {
+    autoFocus: false,
     controls: true,
     keyboard: true,
     stringMode: false,

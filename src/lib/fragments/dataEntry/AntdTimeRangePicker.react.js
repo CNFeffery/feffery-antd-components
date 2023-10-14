@@ -30,6 +30,7 @@ const AntdTimeRangePicker = (props) => {
         format,
         use12Hours,
         allowClear,
+        autoFocus,
         bordered,
         size,
         open,
@@ -112,6 +113,7 @@ const AntdTimeRangePicker = (props) => {
                     format={format}
                     use12Hours={use12Hours}
                     allowClear={isUndefined(readOnly) ? allowClear : !readOnly}
+                    autoFocus={autoFocus}
                     defaultValue={
                         (defaultValue && defaultValue.length === 2) ?
                             [defaultValue[0] !== '' ? moment(defaultValue[0], format) : undefined,

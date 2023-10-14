@@ -49,6 +49,9 @@ AntdTimeRangePicker.propTypes = {
     // 设置是否显示输入框内容清除按钮，默认为true即不显示
     allowClear: PropTypes.bool,
 
+    // 用于设置是否自动获取焦点，默认为false
+    autoFocus: PropTypes.bool,
+
     // 空白输入下输入框的填充说明文字
     placeholder: PropTypes.arrayOf(PropTypes.string),
 
@@ -156,6 +159,7 @@ AntdTimeRangePicker.defaultProps = {
     secondStep: 1,
     use12Hours: false,
     allowClear: true,
+    autoFocus: false,
     bordered: true,
     size: 'middle',
     format: 'HH:mm:ss',

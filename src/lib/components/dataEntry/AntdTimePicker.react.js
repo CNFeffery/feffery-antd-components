@@ -77,6 +77,9 @@ AntdTimePicker.propTypes = {
     // 设置是否显示输入框内容清除按钮，默认为true
     allowClear: PropTypes.bool,
 
+    // 用于设置是否自动获取焦点，默认为false
+    autoFocus: PropTypes.bool,
+
     // 设置是否以只读模式进行渲染，底层利用Select的open参数
     readOnly: PropTypes.bool,
 
@@ -159,6 +162,7 @@ AntdTimePicker.defaultProps = {
     placement: 'bottomLeft',
     format: 'HH:mm:ss',
     allowClear: true,
+    autoFocus: false,
     bordered: true,
     size: 'middle',
     showNow: true,

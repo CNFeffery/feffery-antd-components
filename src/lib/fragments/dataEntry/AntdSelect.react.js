@@ -26,6 +26,7 @@ const AntdSelect = (props) => {
         options,
         colorsNameWidth,
         allowClear,
+        autoFocus,
         disabled,
         value,
         mode,
@@ -207,6 +208,7 @@ const AntdSelect = (props) => {
                 key={key}
                 mode={mode}
                 allowClear={isUndefined(readOnly) ? allowClear : !readOnly}
+                autoFocus={autoFocus}
                 placeholder={placeholder}
                 size={
                     context && !isUndefined(context.componentSize) ?
