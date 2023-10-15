@@ -27,6 +27,7 @@ const AntdTimePicker = (props) => {
         defaultValue,
         use12Hours,
         allowClear,
+        autoFocus,
         placeholder,
         placement,
         bordered,
@@ -108,6 +109,7 @@ const AntdTimePicker = (props) => {
                     defaultValue={defaultValue ? moment(defaultValue, format) : undefined}
                     use12Hours={use12Hours}
                     allowClear={isUndefined(readOnly) ? allowClear : !readOnly}
+                    autoFocus={autoFocus}
                     status={status}
                     renderExtraFooter={() => extraFooter}
                     showNow={showNow}

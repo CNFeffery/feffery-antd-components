@@ -188,6 +188,9 @@ AntdSelect.propTypes = {
     // 设置是否渲染内容清空按钮，默认为true
     allowClear: PropTypes.bool,
 
+    // 用于设置是否自动获取焦点，默认为false
+    autoFocus: PropTypes.bool,
+
     // 设置是否以只读模式进行渲染，底层利用Select的open参数
     // 默认为false
     readOnly: PropTypes.bool,
@@ -255,6 +258,7 @@ AntdSelect.propTypes = {
 // 设置默认参数
 AntdSelect.defaultProps = {
     allowClear: true,
+    autoFocus: false,
     disabled: false,
     size: 'middle',
     bordered: true,

@@ -38,6 +38,7 @@ const AntdCascader = (props) => {
         expandTrigger,
         status,
         allowClear,
+        autoFocus,
         showCheckedStrategy,
         popupContainer,
         readOnly,
@@ -125,6 +126,7 @@ const AntdCascader = (props) => {
                 expandTrigger={expandTrigger}
                 status={status}
                 allowClear={isUndefined(readOnly) ? allowClear : !readOnly}
+                autoFocus={autoFocus}
                 showCheckedStrategy={str2ShowCheckedStrategy.get(showCheckedStrategy)}
                 displayRender={
                     multiple ?

@@ -114,6 +114,9 @@ AntdDateRangePicker.propTypes = {
     // 设置是否显示输入框内容清除按钮，默认为true即显示
     allowClear: PropTypes.bool,
 
+    // 用于设置是否自动获取焦点，默认为false
+    autoFocus: PropTypes.bool,
+
     // 设置是否以只读模式进行渲染，底层利用open参数
     readOnly: PropTypes.bool,
 
@@ -191,6 +194,7 @@ AntdDateRangePicker.defaultProps = {
     size: 'middle',
     bordered: true,
     allowClear: true,
+    autoFocus: false,
     persisted_props: ['value'],
     persistence_type: 'local',
     locale: 'zh-cn',

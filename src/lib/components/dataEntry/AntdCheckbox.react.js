@@ -34,6 +34,9 @@ AntdCheckbox.propTypes = {
     // 用于设置选项对应显示的文字内容
     label: PropTypes.node,
 
+    // 用于设置是否自动获取焦点，默认为false
+    autoFocus: PropTypes.bool,
+
     // 对应选择框当前是否被选择，默认为false
     checked: PropTypes.bool,
 
@@ -106,6 +109,7 @@ AntdCheckbox.defaultProps = {
     persisted_props: ['checked'],
     persistence_type: 'local',
     disabled: false,
+    autoFocus: false,
     checked: false,
     indeterminate: false,
     readOnly: false,

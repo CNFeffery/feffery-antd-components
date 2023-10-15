@@ -100,6 +100,87 @@ app.layout = html.Div(
                 )
             ]
         ),
+        html.Div(
+            [
+                fac.AntdButton(
+                    type,
+                    ghost=True,
+                    type=type
+                ) for type in ['primary', 'ghost', 'dashed', 'link', 'text', 'default']
+            ],
+            style={
+                'padding': '26px 16px 16px',
+                'background': 'rgb(190, 200, 200)'
+            }
+        ),
+        html.Div(
+            [
+                fac.AntdButton(
+                    type,
+                    type=type
+                ) for type in ['primary', 'ghost', 'dashed', 'link', 'text', 'default']
+            ],
+            style={
+                'padding': '26px 16px 16px',
+                'background': 'rgb(190, 200, 200)'
+            }
+        ),
+
+        fac.AntdCascader(
+            placeholder='请选择',
+            autoFocus=False,
+            options=[
+                {
+                    'value': '节点1',
+                    'label': '节点1',
+                    'children': [
+                        {
+                            'value': '节点1-1',
+                            'label': '节点1-1'
+                        },
+                        {
+                            'value': '节点1-2',
+                            'label': '节点1-2',
+                            'children': [
+                                {
+                                    'value': '节点1-2-1',
+                                    'label': '节点1-2-1'
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        ),
+        fac.AntdCheckbox(
+            label='测试',
+            autoFocus=False
+        ),
+        fac.AntdDatePicker(autoFocus=False),
+        fac.AntdDateRangePicker(autoFocus=False),
+        fac.AntdInputNumber(autoFocus=False),
+        fac.AntdSelect(
+            options=[
+                {
+                    'label': f'选项{i}',
+                    'value': f'选项{i}'
+                }
+                for i in range(1, 6)
+            ],
+            style={
+                'width': 200
+            },
+            autoFocus=False
+        ),
+        fac.AntdSwitch(autoFocus=False),
+        fac.AntdTimePicker(
+            placeholder='请选择时间',
+            autoFocus=False
+        ),
+        fac.AntdTimeRangePicker(
+            placeholder=['开始时间', '结束时间'],
+            autoFocus=True
+        )
     ],
     style={
         'padding': '50px 100px'
@@ -171,6 +252,7 @@ def set_cookie():
     resp = Response('set_cookie成功')
     resp.set_cookie('name', 'test')
     return resp
+
 
 if __name__ == '__main__':
     app.run(debug=True)
