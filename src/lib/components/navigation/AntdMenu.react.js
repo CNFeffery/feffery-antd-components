@@ -112,7 +112,7 @@ const raw2Jsx = (obj, str2Jsx, menuItemKeyToTitle) => {
             if (obj.component === 'SubMenu') {
                 obj = <SubMenu
                     key={obj.props.key}
-                    title={obj.props.title || menuItemKeyToTitle[obj.props.key]}
+                    title={menuItemKeyToTitle[obj.props.key] || obj.props.title}
                     disabled={obj.props.disabled}
                     icon={
                         obj.props.iconRenderer === 'fontawesome' ?
@@ -133,7 +133,7 @@ const raw2Jsx = (obj, str2Jsx, menuItemKeyToTitle) => {
             } else {
                 obj = <ItemGroup
                     key={obj.props.key}
-                    title={obj.props.title || menuItemKeyToTitle[obj.props.key]}
+                    title={menuItemKeyToTitle[obj.props.key] || obj.props.title}
                     disabled={obj.props.disabled}
                     icon={
                         obj.props.iconRenderer === 'fontawesome' ?
@@ -160,7 +160,7 @@ const raw2Jsx = (obj, str2Jsx, menuItemKeyToTitle) => {
                 // 生成Item对应的jsx
                 obj = <Item
                     key={obj.props.key}
-                    title={obj.props.title || menuItemKeyToTitle[obj.props.key]}
+                    title={menuItemKeyToTitle[obj.props.key] || obj.props.title}
                     disabled={obj.props.disabled}
                     danger={obj.props.danger}
                     icon={
@@ -179,12 +179,12 @@ const raw2Jsx = (obj, str2Jsx, menuItemKeyToTitle) => {
                     }
                     name={obj.props && obj.props.name}
                 >
-                    <UtilsLink href={obj.props.href} target={obj.props.target}>{obj.props.title || menuItemKeyToTitle[obj.props.key]}</UtilsLink>
+                    <UtilsLink href={obj.props.href} target={obj.props.target}>{menuItemKeyToTitle[obj.props.key] || obj.props.title}</UtilsLink>
                 </Item>
             } else {
                 obj = <Item
                     key={obj.props.key}
-                    title={obj.props.title || menuItemKeyToTitle[obj.props.key]}
+                    title={menuItemKeyToTitle[obj.props.key] || obj.props.title}
                     disabled={obj.props.disabled}
                     danger={obj.props.danger}
                     icon={
@@ -203,7 +203,7 @@ const raw2Jsx = (obj, str2Jsx, menuItemKeyToTitle) => {
                     }
                     name={obj.props && obj.props.name}
                 >
-                    {obj.props.title || menuItemKeyToTitle[obj.props.key]}
+                    {menuItemKeyToTitle[obj.props.key] || obj.props.title}
                 </Item>
             }
         }
@@ -255,7 +255,7 @@ const AntdMenu = (props) => {
     }, [])
 
     // 基于menuItems推导jsx数据结构
-    let _menuItems = raw2Jsx(menuItems, str2Jsx, menuItemKeyToTitle)
+    let _menuItems = raw2Jsx(menuItems, str2Jsx, menuItemKeyToTitle || {})
 
     // 监听Item的点击事件
     const listenSelected = (item) => {
@@ -364,6 +364,7 @@ AntdMenu.propTypes = {
     menuItems: PropTypes.array,
 
     // 用于针对具体key值对应的菜单项定义组件型标题内容
+    // 优先级高于menuItems中对应节点的title属性
     menuItemKeyToTitle: PropTypes.objectOf(PropTypes.node),
 
     // 用于设置导航菜单显示模式
