@@ -17,6 +17,8 @@ const AntdAvatar = (props) => {
         text,
         src,
         srcSet,
+        draggable,
+        crossOrigin,
         icon,
         iconRenderer,
         alt,
@@ -41,6 +43,8 @@ const AntdAvatar = (props) => {
                 key={key}
                 src={src}
                 srcSet={srcSet}
+                draggable={draggable}
+                crossOrigin={crossOrigin}
                 alt={alt}
                 size={size}
                 shape={shape}

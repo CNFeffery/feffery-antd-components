@@ -25,6 +25,12 @@ app.layout = html.Div(
                         'width': 150
                     },
                     autoFocus=True
+                ),
+                fac.AntdAvatar(
+                    mode='image',
+                    src='https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png',
+                    draggable=True,
+                    crossOrigin='use-credentials'
                 )
             ],
             style={
