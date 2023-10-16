@@ -39,7 +39,7 @@ const AntdMessage = (props) => {
                 (className ? useCss(className) : undefined)
         ),
         style: style,
-        content: content,
+        content: content || ' ', // 规避content为空时Objects are not valid as a React child报错问题
         duration: duration
     }
 
