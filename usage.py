@@ -6,8 +6,12 @@ app = dash.Dash(__name__)
 
 app.layout = html.Div(
     [
-        fac.AntdUpload(
-            locale='en-us'
+        fac.AntdCheckCard(
+            fac.AntdText(
+                '选择卡片示例' * 10
+            ),
+            readOnly=True,
+            checked=True
         )
     ],
     style={
