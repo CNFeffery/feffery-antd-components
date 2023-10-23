@@ -498,6 +498,28 @@ import {
     ImSphere
 } from "react-icons/im/index.esm";
 import { GiMeshNetwork } from "react-icons/gi/index.esm";
+import {
+    PiCircle,
+    PiPolygon,
+    PiMapPin,
+    PiLineSegment,
+    PiLineSegments,
+    PiTrashSimple,
+    PiTrash,
+    PiRuler,
+    PiSelection,
+    PiSelectionSlash,
+    PiSquareSplitHorizontal,
+    PiSquareSplitVertical,
+    PiStackSimple,
+    PiStack,
+    PiNavigationArrow,
+    PiMapTrifold,
+    PiInfo,
+    PiLockKeyOpen,
+    PiLockKey,
+    PiGear
+} from 'react-icons/pi/index.esm';
 
 const str2Icon = new Map([
     ['md-star-half', <MdStarHalf />],
@@ -985,7 +1007,27 @@ const str2Icon = new Map([
     ['antd-border', <BorderOutlined />],
     ['antd-contacts', <ContactsOutlined />],
     ['antd-container', <ContainerOutlined />],
-    ['antd-delivered-procedure', <DeliveredProcedureOutlined />]
+    ['antd-delivered-procedure', <DeliveredProcedureOutlined />],
+    ['pi-circle', <PiCircle />],
+    ['pi-polygon', <PiPolygon />],
+    ['pi-map-pin', <PiMapPin />],
+    ['pi-line-segment', <PiLineSegment />],
+    ['pi-line-segments', <PiLineSegments />],
+    ['pi-trash-simple', <PiTrashSimple />],
+    ['pi-trash', <PiTrash />],
+    ['pi-ruler', <PiRuler />],
+    ['pi-selection', <PiSelection />],
+    ['pi-selection-slash', <PiSelectionSlash />],
+    ['pi-square-split-horizontal', <PiSquareSplitHorizontal />],
+    ['pi-square-split-vertical', <PiSquareSplitVertical />],
+    ['pi-stack-simple', <PiStackSimple />],
+    ['pi-stack', <PiStack />],
+    ['pi-navigation-arrow', <PiNavigationArrow />],
+    ['pi-map-trifold', <PiMapTrifold />],
+    ['pi-info', <PiInfo />],
+    ['pi-lock-key-open', <PiLockKeyOpen />],
+    ['pi-lock-key', <PiLockKey />],
+    ['pi-gear', <PiGear />],
 ])
 
 

@@ -6,12 +6,39 @@ app = dash.Dash(__name__)
 
 app.layout = html.Div(
     [
-        fac.AntdCheckCard(
-            fac.AntdText(
-                '选择卡片示例' * 10
-            ),
-            readOnly=True,
-            checked=True
+        fac.AntdSpace(
+            [
+                fac.AntdIcon(
+                    icon=icon,
+                    style={
+                        'fontSize': 20,
+                        'color': '#69c0ff'
+                    }
+                )
+                for icon in [
+                    'pi-circle',
+                    'pi-polygon',
+                    'pi-map-pin',
+                    'pi-line-segment',
+                    'pi-line-segments',
+                    'pi-trash-simple',
+                    'pi-trash',
+                    'pi-ruler',
+                    'pi-selection',
+                    'pi-selection-slash',
+                    'pi-square-split-horizontal',
+                    'pi-square-split-vertical',
+                    'pi-stack-simple',
+                    'pi-stack',
+                    'pi-navigation-arrow',
+                    'pi-map-trifold',
+                    'pi-info',
+                    'pi-lock-key-open',
+                    'pi-lock-key',
+                    'pi-gear',
+                ]
+            ],
+            wrap=True
         )
     ],
     style={
