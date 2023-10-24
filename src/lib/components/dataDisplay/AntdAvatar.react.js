@@ -53,6 +53,18 @@ AntdAvatar.propTypes = {
     // 设置base64类型图片字符串
     srcSet: PropTypes.string,
 
+    // 设置图片类型的头像其图片是否允许拖动
+    draggable: PropTypes.oneOfType([
+        // 布尔型输入
+        PropTypes.bool,
+
+        // 字符型输入，可选的有'true'和'false'
+        PropTypes.oneOf(['true', 'false'])
+    ]),
+
+    // 设置图片类型的头像CORS属性：anonymous表示跨域请求不发送凭证信息、use-credentials表示跨域请求发送凭证信息、''表示不返回跨域资源，并在控制台中报告错误，而不加载跨域资源
+    crossOrigin: PropTypes.oneOf(['anonymous', 'use-credentials', '']),
+
     // 设置头像尺寸大小，默认为'default'
     size: PropTypes.oneOfType([
         // 头像像素边长
