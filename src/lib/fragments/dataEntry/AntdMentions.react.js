@@ -24,7 +24,6 @@ const AntdMentions = (props) => {
         disabled,
         status,
         popupContainer,
-        readOnly,
         setProps,
         loading_state,
         batchPropsNames
@@ -46,9 +45,7 @@ const AntdMentions = (props) => {
     const context = useContext(PropsContext)
 
     const onChange = (e) => {
-        if (!readOnly) {
-            setProps({ value: e })
-        }
+        setProps({ value: e })
     }
 
     const onSelect = (e) => {

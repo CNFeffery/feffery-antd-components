@@ -59,10 +59,14 @@ const locale2text = {
     },
     Upload: {
         'zh-cn': {
+            uploadSuccess: '上传成功！',
+            uploadFailed: '上传失败！',
             sizeError: ['文件大小超出', 'MB限制！'],
             typeError: ['上传失败，', '文件格式不符合要求！']
         },
         'en-us': {
+            uploadSuccess: 'upload success!',
+            uploadFailed: 'upload failed!',
             sizeError: ['File size exceeds the ', 'MB limit!'],
             typeError: ['Uploading failed, The format of ', ' does not meet requirements!']
         }

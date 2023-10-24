@@ -247,11 +247,10 @@ const AntdPictureUpload = (props) => {
             }
 
             if (info.file.status === 'done' && showSuccessMessage) {
-                message.success(`${info.file.name} 上传成功！`);
+                message.success(`${info.file.name} ${locale2text.Upload[locale].uploadSuccess}`);
             } else if (info.file.status === 'error' && showErrorMessage) {
-                message.error(`${info.file.name} 上传失败！`);
+                message.error(`${info.file.name} ${locale2text.Upload[locale].uploadFailed}`);
             }
-
 
             // 获取当前上传文件列表
             let _fileList = [...info.fileList];

@@ -76,9 +76,6 @@ AntdMentions.propTypes = {
     // 设置悬浮层锚定策略，可选的有'parent'、'body'，默认为'body'
     popupContainer: PropTypes.oneOf(['parent', 'body']),
 
-    // 设置是否以只读模式进行渲染，默认为false
-    readOnly: PropTypes.bool,
-
     // 用于自定义需要纳入batchProps中的属性名数组
     batchPropsNames: PropTypes.arrayOf(PropTypes.string),
 
@@ -114,8 +111,6 @@ AntdMentions.defaultProps = {
     placement: 'bottom',
     disabled: false,
     selectedOptions: [],
-    popupContainer: 'body',
-    readOnly: false,
     batchPropsNames: []
 }
 
