@@ -6,37 +6,65 @@ app = dash.Dash(__name__)
 
 app.layout = html.Div(
     [
-        html.Div(
+        fac.AntdSpace(
             [
-                fac.AntdButton(
-                    '按钮测试',
-                    type='primary',
-                    ghost=True
-                ),
-                fac.AntdSelect(
-                    options=[
-                        {
-                            'label': f'item{i}',
-                            'value': f'item{i}'
-                        }
-                        for i in range(1, 6)
-                    ],
+                fac.AntdIcon(
+                    icon=icon,
                     style={
-                        'width': 150
-                    },
-                    autoFocus=True
-                ),
-                fac.AntdAvatar(
-                    mode='image',
-                    src='https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png',
-                    draggable=True,
-                    crossOrigin='use-credentials'
+                        'fontSize': 20
+                    }
                 )
+                for icon in [
+                    'pi-circle',
+                    'pi-polygon',
+                    'pi-map-pin',
+                    'pi-line-segment',
+                    'pi-line-segments',
+                    'pi-trash-simple',
+                    'pi-trash',
+                    'pi-ruler',
+                    'pi-selection',
+                    'pi-selection-slash',
+                    'pi-square-split-horizontal',
+                    'pi-square-split-vertical',
+                    'pi-stack-simple',
+                    'pi-stack',
+                    'pi-navigation-arrow',
+                    'pi-map-trifold',
+                    'pi-info',
+                    'pi-lock-key-open',
+                    'pi-lock-key',
+                    'pi-gear',
+                    'pi-airplane',
+                    'pi-anchor-simple',
+                    'pi-arrow-arc-left',
+                    'pi-arrow-arc-right',
+                    'pi-arrow-clockwise',
+                    'pi-arrow-counter-clockwise',
+                    'pi-barricade',
+                    'pi-binoculars',
+                    'pi-bounding-box',
+                    'pi-broom',
+                    'pi-buildings',
+                    'pi-calculator',
+                    'pi-camera',
+                    'pi-circuitry',
+                    'pi-clipboard',
+                    'pi-compass',
+                    'pi-copy',
+                    'pi-cpu',
+                    'pi-crosshair',
+                    'pi-cube-focus',
+                    'pi-cube',
+                    'pi-cursor',
+                    'pi-database',
+                    'pi-eye-slash',
+                    'pi-eye',
+                    'pi-faders',
+                    'pi-floppy-disk',
+                ]
             ],
-            style={
-                'padding': 20,
-                'background': 'lightgrey'
-            }
+            wrap=True
         )
     ],
     style={
