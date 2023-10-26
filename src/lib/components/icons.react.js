@@ -545,7 +545,13 @@ import {
     PiEyeSlash,
     PiEye,
     PiFaders,
-    PiFloppyDisk
+    PiFloppyDisk,
+    PiDotsThreeVertical,
+    PiDotsThree,
+    PiMathOperations,
+    PiPlus,
+    PiMinus,
+    PiPath
 } from 'react-icons/pi/index.esm';
 
 const str2Icon = new Map([
@@ -1081,7 +1087,13 @@ const str2Icon = new Map([
     ['pi-eye-slash', <PiEyeSlash />],
     ['pi-eye', <PiEye />],
     ['pi-faders', <PiFaders />],
-    ['pi-floppy-disk', <PiFloppyDisk />]
+    ['pi-floppy-disk', <PiFloppyDisk />],
+    ['pi-dots-three-vertical', <PiDotsThreeVertical />],
+    ['pi-dots-three', <PiDotsThree />],
+    ['pi-math-operations', <PiMathOperations />],
+    ['pi-plus', <PiPlus />],
+    ['pi-minus', <PiMinus />],
+    ['pi-path', <PiPath />]
 ])
 
 

@@ -15,6 +15,7 @@ const AntdCard = (props) => {
         style,
         key,
         extraLink,
+        extra,
         coverImg,
         bodyStyle,
         headStyle,
@@ -45,12 +46,14 @@ const AntdCard = (props) => {
             }}
             headStyle={headStyle}
             extra={
-                <a className={extraLink && extraLink.className}
-                    style={extraLink && extraLink.style}
-                    href={extraLink && extraLink.href}
-                    target={extraLink && extraLink.target || '_blank'}>
-                    {extraLink && extraLink.content}
-                </a>
+                extra || (
+                    <a className={extraLink && extraLink.className}
+                        style={extraLink && extraLink.style}
+                        href={extraLink && extraLink.href}
+                        target={extraLink && extraLink.target || '_blank'}>
+                        {extraLink && extraLink.content}
+                    </a>
+                )
             }
             cover={
                 <img alt={coverImg && coverImg.alt}

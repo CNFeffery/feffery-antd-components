@@ -54,6 +54,11 @@ AntdCard.propTypes = {
         style: PropTypes.object
     }),
 
+    /**
+     * 设置卡片右上角额外元素，优先级高于extraLink
+     */
+    extra: PropTypes.node,
+
     // 设置卡片填充封面图片功能，会自适应卡片的尺寸
     coverImg: PropTypes.exact({
         // 设置src属性
