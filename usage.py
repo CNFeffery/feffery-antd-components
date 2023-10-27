@@ -1,12 +1,45 @@
 import dash
 from dash import html
 import feffery_antd_components as fac
-from dash.dependencies import Input, Output
+from dash.dependencies import Input, Output, State
 
 app = dash.Dash(__name__)
 
 app.layout = html.Div(
     [
+        fac.AntdTabs(
+            id='tabs-add-delete-demo',
+            type='editable-card',
+            items=[
+                {
+                    'label': f'标签页{i}',
+                    'key': str(i),
+                    'children': html.Div(
+                        f'标签页{i}',
+                        style={
+                            'height': 200,
+                            'fontSize': 28,
+                            'display': 'flex',
+                            'justifyContent': 'center',
+                            'alignItems': 'center'
+                        }
+                    ),
+                    'closable': not (i == 1)
+                }
+                for i in range(1, 6)
+            ],
+            tabBarRightExtraContent=fac.AntdIcon(
+                id='tabs-add-delete-demo-add',
+                icon='antd-plus-circle-two-tone',
+                style={
+                    'fontSize': 20,
+                    'cursor': 'pointer'
+                }
+            )
+        ),
+        html.Div(
+            id='tabs-add-delete-demo-tab-count'
+        ),
         fac.AntdCard(
             '''
 　　从来就没有什么救世主，
@@ -107,6 +140,73 @@ app.layout = html.Div(
         'padding': 50
     }
 )
+
+
+@app.callback(
+    [Output('tabs-add-delete-demo', 'items'),
+     Output('tabs-add-delete-demo', 'activeKey')],
+    [Input('tabs-add-delete-demo-add', 'nClicks'),
+     Input('tabs-add-delete-demo', 'latestDeletePane')],
+    [State('tabs-add-delete-demo', 'items'),
+     State('tabs-add-delete-demo', 'activeKey')]
+)
+def tabs_add_delete_demo(nClicks,
+                         latestDeletePane,
+                         origin_items,
+                         activeKey):
+
+    if dash.ctx.triggered_id == 'tabs-add-delete-demo-add':
+
+        # 提取已有items中的最大key值
+        origin_max_key = max([int(item['key']) for item in origin_items])
+
+        return [
+            [
+                *origin_items,
+                {
+                    'label': f'标签页{origin_max_key+1}',
+                    'key': str(origin_max_key+1),
+                    'children': html.Div(
+                        f'标签页{origin_max_key+1}',
+                        style={
+                            'height': 200,
+                            'fontSize': 28,
+                            'display': 'flex',
+                            'justifyContent': 'center',
+                            'alignItems': 'center'
+                        }
+                    )
+                }
+            ],
+            str(origin_max_key+1)
+        ]
+
+    elif dash.ctx.triggered_id == 'tabs-add-delete-demo':
+
+        return [
+            [
+                item
+                for item in origin_items
+                if item['key'] != latestDeletePane
+            ],
+            '1' if latestDeletePane == activeKey else dash.no_update
+        ]
+
+    return dash.no_update
+
+
+@app.callback(
+    Output('tabs-add-delete-demo-tab-count', 'children'),
+    [Input('tabs-add-delete-demo', 'tabCount'),
+    Input('tabs-add-delete-demo', 'itemKeys')],
+    prevent_initial_call=True
+)
+def tabs_add_delete_demo_tab_count(tabCount, itemKeys):
+
+    return fac.AntdMessage(
+        content=f'标签页自由增删示例 tabCount: {tabCount}, itemKeys: {itemKeys}',
+        type='info'
+    )
 
 
 if __name__ == '__main__':

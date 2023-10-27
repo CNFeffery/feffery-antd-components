@@ -68,6 +68,11 @@ AntdTabs.propTypes = {
         })
     ),
 
+    /**
+     * 用于按顺序同步记录items中各子项key值数组
+     */
+    itemKeys: PropTypes.arrayOf(PropTypes.string),
+
     // 对应当前被选中的标签页面板对应key
     activeKey: PropTypes.string,
 

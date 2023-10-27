@@ -56,6 +56,13 @@ const AntdTabs = (props) => {
         })
     }, [items])
 
+    useEffect(() => {
+        // 同步当前items子项key值数组
+        setProps({
+            itemKeys: (items || []).map(item => item.key)
+        })
+    }, [items])
+
     const onChange = e => {
         setProps({ activeKey: e })
     }
