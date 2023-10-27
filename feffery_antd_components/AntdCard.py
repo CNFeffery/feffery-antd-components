@@ -15,6 +15,8 @@ Keyword arguments:
 
 - id (string; optional)
 
+- actions (list of a list of or a singular dash component, string or numbers; optional)
+
 - bodyStyle (dict; optional)
 
 - bordered (boolean; default True)
@@ -74,15 +76,15 @@ Keyword arguments:
 - style (dict; optional)
 
 - title (a list of or a singular dash component, string or number; optional)"""
-    _children_props = ['title', 'extra']
-    _base_nodes = ['title', 'extra', 'children']
+    _children_props = ['actions', 'title', 'extra']
+    _base_nodes = ['actions', 'title', 'extra', 'children']
     _namespace = 'feffery_antd_components'
     _type = 'AntdCard'
     @_explicitize_args
-    def __init__(self, children=None, id=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, key=Component.UNDEFINED, title=Component.UNDEFINED, extraLink=Component.UNDEFINED, extra=Component.UNDEFINED, coverImg=Component.UNDEFINED, bodyStyle=Component.UNDEFINED, headStyle=Component.UNDEFINED, bordered=Component.UNDEFINED, hoverable=Component.UNDEFINED, size=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
-        self._prop_names = ['children', 'id', 'bodyStyle', 'bordered', 'className', 'coverImg', 'extra', 'extraLink', 'headStyle', 'hoverable', 'key', 'loading_state', 'size', 'style', 'title']
+    def __init__(self, children=None, id=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, key=Component.UNDEFINED, actions=Component.UNDEFINED, title=Component.UNDEFINED, extraLink=Component.UNDEFINED, extra=Component.UNDEFINED, coverImg=Component.UNDEFINED, bodyStyle=Component.UNDEFINED, headStyle=Component.UNDEFINED, bordered=Component.UNDEFINED, hoverable=Component.UNDEFINED, size=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
+        self._prop_names = ['children', 'id', 'actions', 'bodyStyle', 'bordered', 'className', 'coverImg', 'extra', 'extraLink', 'headStyle', 'hoverable', 'key', 'loading_state', 'size', 'style', 'title']
         self._valid_wildcard_attributes =            []
-        self.available_properties = ['children', 'id', 'bodyStyle', 'bordered', 'className', 'coverImg', 'extra', 'extraLink', 'headStyle', 'hoverable', 'key', 'loading_state', 'size', 'style', 'title']
+        self.available_properties = ['children', 'id', 'actions', 'bodyStyle', 'bordered', 'className', 'coverImg', 'extra', 'extraLink', 'headStyle', 'hoverable', 'key', 'loading_state', 'size', 'style', 'title']
         self.available_wildcard_properties =            []
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()

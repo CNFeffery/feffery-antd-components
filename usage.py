@@ -55,6 +55,11 @@ app.layout = html.Div(
 英特纳雄耐尔就一定要实现。
 ''',
             title='卡片示例',
+            actions=[
+                fac.AntdIcon(icon='antd-setting'),
+                fac.AntdIcon(icon='antd-edit'),
+                fac.AntdIcon(icon='antd-ellipsis'),
+            ],
             extraLink={
                 'content': '链接示例',
                 'href': 'https://zh.wikipedia.org/zh-hans/国际歌'
@@ -66,8 +71,48 @@ app.layout = html.Div(
             ),
             style={
                 'width': 300,
-                'marginBottom': 10
+                'marginBottom': 30
             }
+        ),
+        fac.AntdCardMeta(
+            id='test',
+            style={
+                'marginBottom': '30px'
+            },
+            className='test',
+            key='111',
+            avatar=fac.AntdAvatar(src="https://joeschmoe.io/api/v1/random"),
+            description="This is the description",
+            title="Card title"
+        ),
+        fac.AntdCard(
+            fac.AntdCardMeta(
+                id='test',
+                style={
+                    'marginBottom': '10px'
+                },
+                className='test',
+                key='111',
+                avatar=fac.AntdAvatar(
+                    src="https://joeschmoe.io/api/v1/random"),
+                description="This is the description",
+                title="Card title"
+            ),
+            style={
+                'width': 300    
+            },
+            headStyle={
+                'display': 'none'
+            },
+            coverImg={
+                'src': 'https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png',
+                'alt': 'example'
+            },
+            actions=[
+                fac.AntdIcon(icon='antd-setting'),
+                fac.AntdIcon(icon='antd-edit'),
+                fac.AntdIcon(icon='antd-ellipsis'),
+            ]
         ),
         fac.AntdSpace(
             [
@@ -198,7 +243,7 @@ def tabs_add_delete_demo(nClicks,
 @app.callback(
     Output('tabs-add-delete-demo-tab-count', 'children'),
     [Input('tabs-add-delete-demo', 'tabCount'),
-    Input('tabs-add-delete-demo', 'itemKeys')],
+     Input('tabs-add-delete-demo', 'itemKeys')],
     prevent_initial_call=True
 )
 def tabs_add_delete_demo_tab_count(tabCount, itemKeys):

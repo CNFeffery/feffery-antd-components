@@ -20,6 +20,7 @@ from .AntdTooltip import AntdTooltip
 from .AntdTree import AntdTree
 from .AntdCard import AntdCard
 from .AntdCardGrid import AntdCardGrid
+from .AntdCardMeta import AntdCardMeta
 from .AntdDescriptionItem import AntdDescriptionItem
 from .AntdDescriptions import AntdDescriptions
 from .AntdTabPane import AntdTabPane
@@ -118,6 +119,7 @@ __all__ = [
     "AntdTree",
     "AntdCard",
     "AntdCardGrid",
+    "AntdCardMeta",
     "AntdDescriptionItem",
     "AntdDescriptions",
     "AntdTabPane",
