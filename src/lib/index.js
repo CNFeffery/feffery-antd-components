@@ -37,6 +37,7 @@ import AntdAvatarGroup from './components/dataDisplay/AntdAvatarGroup.react';
 import AntdBadge from './components/dataDisplay/AntdBadge.react';
 import AntdRibbon from './components/dataDisplay/AntdRibbon.react';
 import AntdCardGrid from './components/dataDisplay/card/AntdCardGrid.react';
+import AntdCardMeta from './components/dataDisplay/card/AntdCardMeta.react';
 import AntdCard from './components/dataDisplay/card/AntdCard.react';
 import AntdCarousel from './components/dataDisplay/AntdCarousel.react';
 import AntdCollapse from './components/dataDisplay/AntdCollapse.react';
@@ -178,6 +179,7 @@ export {
     AntdFormItem,
     AntdForm,
     AntdCardGrid,
+    AntdCardMeta,
     AntdCard,
     AntdMentions,
     AntdImage,
