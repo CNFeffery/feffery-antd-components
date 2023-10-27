@@ -55,6 +55,11 @@ app.layout = html.Div(
 英特纳雄耐尔就一定要实现。
 ''',
             title='卡片示例',
+            actions=[
+                fac.AntdIcon(icon='antd-setting'),    
+                fac.AntdIcon(icon='antd-edit'),    
+                fac.AntdIcon(icon='antd-ellipsis'),    
+            ],
             extraLink={
                 'content': '链接示例',
                 'href': 'https://zh.wikipedia.org/zh-hans/国际歌'

@@ -33,6 +33,9 @@ AntdCard.propTypes = {
     // 辅助刷新用唯一标识key值
     key: PropTypes.string,
 
+    // 卡片操作组，位置在卡片底部
+    actions: PropTypes.arrayOf(PropTypes.node),
+
     // 设置卡片标题内容
     title: PropTypes.node,
 

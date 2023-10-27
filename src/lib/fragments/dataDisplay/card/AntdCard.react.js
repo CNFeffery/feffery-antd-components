@@ -14,6 +14,7 @@ const AntdCard = (props) => {
         className,
         style,
         key,
+        actions,
         extraLink,
         extra,
         coverImg,
@@ -45,6 +46,7 @@ const AntdCard = (props) => {
                 ...bodyStyle
             }}
             headStyle={headStyle}
+            actions={actions}
             extra={
                 extra || (
                     <a className={extraLink && extraLink.className}
