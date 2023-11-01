@@ -1,7 +1,8 @@
 import React, { useEffect, useContext } from 'react';
 import moment from 'moment';
 import { str2Locale } from '../../components/locales.react';
-import { Comment, Tooltip, Popconfirm, ConfigProvider } from 'antd';
+import { Tooltip, Popconfirm, ConfigProvider } from 'antd';
+import { Comment } from '@ant-design/compatible';
 import AntdAvatar from './AntdAvatar.react';
 import { DislikeOutlined, LikeOutlined, DislikeFilled, LikeFilled } from '@ant-design/icons';
 import { parseChildrenToArray } from '../../components/utils';
