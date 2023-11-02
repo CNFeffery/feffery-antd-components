@@ -3,48 +3,44 @@ from dash import html
 import feffery_antd_components as fac
 from dash.dependencies import Input, Output
 
-app = dash.Dash(__name__)
+app = dash.Dash(__name__, compress=True)
 
 app.layout = html.Div(
     [
-        fac.AntdPageHeader(
-            fac.AntdSpace(
-                [
-                    fac.AntdButton('按钮1'),
-                    fac.AntdButton('按钮2', type='primary'),
-                    fac.AntdSwitch(
-                        checkedChildren='打开',
-                        unCheckedChildren='关闭'
-                    ),
-                    fac.AntdBadge(status='processing')
-                ]
-            ),
-            title='页头标题示例',
-            subTitle='页头副标题示例'
+        fac.AntdCalendar(),
+        fac.AntdCountdown(
+            title='倒计时示例',
+            value='2099-01-01 00:00:00',
+            format='还剩Y年M月D天H小时m分s秒'
         ),
-
-        fac.AntdPageHeader(
-            id='page-header-demo',
-            title='页头标题示例',
-            subTitle='页头副标题示例',
-            historyBackDisabled=True
+        fac.AntdComment(
+            authorName='费弗里',
+            authorNameHref='https://github.com/CNFeffery/feffery-antd-components',
+            publishTime={
+                'value': '2022-01-01 19:29:01',
+                'format': 'YYYY-MM-DD hh:mm:ss'
+            },
+            commentContent='我希望feffery-components项目系列组件可以帮助更多人快速开发心仪的应用！😀',
+            avatarProps={
+                'mode': 'image',
+                'src': '/assets/imgs/avatar-demo.jpg'
+            },
+            fromNow=True
+        ),
+        fac.AntdSpace(
+            [
+                fac.AntdDatePicker(),
+                fac.AntdDateRangePicker(),
+                fac.AntdTimePicker(),
+                fac.AntdTimeRangePicker()
+            ],
+            direction='vertical'
         )
     ],
     style={
         'padding': '50px 100px'
     }
 )
-
-
-@app.callback(
-    Output('page-header-demo', 'children'),
-    Input('page-header-demo', 'backClicks')
-)
-def page_header_demo_callback(backClicks):
-    return [
-        fac.AntdText('backClicks: ', strong=True),
-        fac.AntdText(backClicks)
-    ]
 
 
 if __name__ == '__main__':

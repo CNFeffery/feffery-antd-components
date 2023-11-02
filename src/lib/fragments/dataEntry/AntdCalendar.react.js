@@ -1,5 +1,5 @@
 import React, { useEffect, useContext } from 'react';
-import moment from 'moment';
+import dayjs from 'dayjs';
 import { Calendar, ConfigProvider } from 'antd';
 import { str2Locale } from '../../components/locales.react';
 import { isString } from 'lodash';
@@ -54,8 +54,8 @@ const AntdCalendar = (props) => {
                 }
                 style={style}
                 key={key}
-                defaultValue={defaultValue && moment(defaultValue, format)}
-                value={value && moment(value, format)}
+                defaultValue={defaultValue && dayjs(defaultValue, format)}
+                value={value && dayjs(value, format)}
                 onSelect={onSelect}
                 fullscreen={size !== 'default'}
                 persistence={persistence}

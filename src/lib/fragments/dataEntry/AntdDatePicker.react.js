@@ -1,8 +1,8 @@
 import React, { useEffect, useContext } from 'react';
 import { DatePicker, ConfigProvider } from 'antd';
-import moment from 'moment';
+import dayjs from 'dayjs';
 import { isString, isUndefined, isObject } from 'lodash';
-import "moment/locale/zh-cn";
+import 'dayjs/locale/zh-cn';
 import { str2Locale } from '../../components/locales.react';
 import useCss from '../../hooks/useCss';
 import PropsContext from '../../contexts/PropsContext';
@@ -82,14 +82,14 @@ const AntdDatePicker = (props) => {
         // defaultPickerValue为空时默认定位到今日对应面板位置
         if (!defaultPickerValue) {
             setProps({
-                defaultPickerValue: moment(new Date()).format(format || 'YYYY-MM-DD')
+                defaultPickerValue: dayjs(new Date()).format(format || 'YYYY-MM-DD')
             })
         }
     }, [])
 
     useEffect(() => {
         if (!isUndefined(firstDayOfWeek)) {
-            moment.locale(
+            dayjs.locale(
                 locale === 'en-us' ? 'en' : locale,
                 {
                     week: {
@@ -139,7 +139,7 @@ const AntdDatePicker = (props) => {
                         return true;
                     }
                 } else if (strategy.target === 'specific-date') {
-                    if (current.isSame(moment(strategy.value, 'YYYY-MM-DD'))) {
+                    if (current.isSame(dayjs(strategy.value, 'YYYY-MM-DD'))) {
                         return true;
                     }
                 }
@@ -170,7 +170,7 @@ const AntdDatePicker = (props) => {
                         return true;
                     }
                 } else if (strategy.target === 'specific-date') {
-                    if (!current.isSame(moment(strategy.value, 'YYYY-MM-DD'))) {
+                    if (!current.isSame(dayjs(strategy.value, 'YYYY-MM-DD'))) {
                         return true;
                     }
                 }
@@ -201,7 +201,7 @@ const AntdDatePicker = (props) => {
                         return true;
                     }
                 } else if (strategy.target === 'specific-date') {
-                    if (current.isSameOrBefore(moment(strategy.value, 'YYYY-MM-DD'))) {
+                    if (current.isSameOrBefore(dayjs(strategy.value, 'YYYY-MM-DD'))) {
                         return true;
                     }
                 }
@@ -232,7 +232,7 @@ const AntdDatePicker = (props) => {
                         return true;
                     }
                 } else if (strategy.target === 'specific-date') {
-                    if (current.isBefore(moment(strategy.value, 'YYYY-MM-DD'))) {
+                    if (current.isBefore(dayjs(strategy.value, 'YYYY-MM-DD'))) {
                         return true;
                     }
                 }
@@ -263,7 +263,7 @@ const AntdDatePicker = (props) => {
                         return true;
                     }
                 } else if (strategy.target === 'specific-date') {
-                    if (current.isSameOrAfter(moment(strategy.value, 'YYYY-MM-DD'))) {
+                    if (current.isSameOrAfter(dayjs(strategy.value, 'YYYY-MM-DD'))) {
                         return true;
                     }
                 }
@@ -294,7 +294,7 @@ const AntdDatePicker = (props) => {
                         return true;
                     }
                 } else if (strategy.target === 'specific-date') {
-                    if (current.isAfter(moment(strategy.value, 'YYYY-MM-DD'))) {
+                    if (current.isAfter(dayjs(strategy.value, 'YYYY-MM-DD'))) {
                         return true;
                     }
                 }
@@ -396,14 +396,14 @@ const AntdDatePicker = (props) => {
                             size
                     }
                     disabledDate={disabledDatesStrategy ? checkDisabledDate : undefined}
-                    defaultPickerValue={moment(defaultPickerValue, format)}
-                    value={value ? moment(value, format) : undefined}
-                    defaultValue={defaultValue ? moment(defaultValue, format) : undefined}
+                    defaultPickerValue={dayjs(defaultPickerValue, format)}
+                    value={value ? dayjs(value, format) : undefined}
+                    defaultValue={defaultValue ? dayjs(defaultValue, format) : undefined}
                     showTime={
                         // 处理时间选择面板在日期选定后的默认选中值
                         isObject(showTime) && showTime.defaultValue ?
                             {
-                                defaultValue: moment(showTime.defaultValue, showTime.format || 'HH:mm:ss')
+                                defaultValue: dayjs(showTime.defaultValue, showTime.format || 'HH:mm:ss')
                             } :
                             showTime
                     }

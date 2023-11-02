@@ -1,6 +1,6 @@
 import React, { useEffect, useContext } from 'react';
 import { TimePicker, ConfigProvider } from 'antd';
-import moment from 'moment';
+import dayjs from 'dayjs';
 import { isUndefined, isString } from 'lodash';
 import { str2Locale } from '../../components/locales.react';
 import useCss from '../../hooks/useCss';
@@ -116,14 +116,14 @@ const AntdTimeRangePicker = (props) => {
                     autoFocus={autoFocus}
                     defaultValue={
                         (defaultValue && defaultValue.length === 2) ?
-                            [defaultValue[0] !== '' ? moment(defaultValue[0], format) : undefined,
-                            defaultValue[1] !== '' ? moment(defaultValue[1], format) : undefined] :
+                            [defaultValue[0] !== '' ? dayjs(defaultValue[0], format) : undefined,
+                            defaultValue[1] !== '' ? dayjs(defaultValue[1], format) : undefined] :
                             undefined
                     }
                     value={
                         (value && value.length === 2) ?
-                            [value[0] !== '' ? moment(value[0], format) : undefined,
-                            value[1] !== '' ? moment(value[1], format) : undefined] :
+                            [value[0] !== '' ? dayjs(value[0], format) : undefined,
+                            value[1] !== '' ? dayjs(value[1], format) : undefined] :
                             undefined
                     }
                     status={status}

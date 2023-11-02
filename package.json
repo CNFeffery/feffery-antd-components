@@ -36,7 +36,6 @@
     "is-absolute-url": "4.0.1",
     "lodash": "^4.17.21",
     "md5": "2.3.0",
-    "moment": "^2.29.3",
     "nano-css": "^5.3.5",
     "ramda": "0.26.1",
     "react-draggable": "^4.4.5",

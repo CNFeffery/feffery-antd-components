@@ -1,5 +1,6 @@
 import React, { useEffect, useContext } from 'react';
-import moment from 'moment';
+import dayjs from 'dayjs';
+import relativeTime from 'dayjs/plugin/relativeTime';
 import { str2Locale } from '../../components/locales.react';
 import { Tooltip, Popconfirm, ConfigProvider } from 'antd';
 import { Comment } from '@ant-design/compatible';
@@ -10,6 +11,9 @@ import { isString } from 'lodash';
 import useCss from '../../hooks/useCss';
 import PropsContext from '../../contexts/PropsContext';
 import { propTypes, defaultProps } from '../../components/dataDisplay/AntdComment.react';
+
+// 调用dayjs相对时间插件模块
+dayjs.extend(relativeTime)
 
 // 定义评论组件AntdComment，api参数参考https://ant.design/components/comment-cn/
 const AntdComment = (props) => {
@@ -60,9 +64,9 @@ const AntdComment = (props) => {
     locale = (context && context.locale) || locale
 
     if (locale === 'zh-cn') {
-        moment.locale('zh-cn');
+        dayjs.locale('zh-cn');
     } else if (locale === 'en-us') {
-        moment.locale('en');
+        dayjs.locale('en');
     }
 
     children = parseChildrenToArray(children)
@@ -143,9 +147,9 @@ const AntdComment = (props) => {
                     <p>{commentContent}</p>
                 }
                 datetime={
-                    <Tooltip title={moment().format(publishTime.value)} placement={'right'}>
+                    <Tooltip title={dayjs().format(publishTime.value)} placement={'right'}>
                         <span>{fromNow ?
-                            moment(publishTime.value, publishTime.format ? publishTime.format : 'YYYY-MM-DD HH:mm:ss').fromNow() :
+                            dayjs(publishTime.value, publishTime.format ? publishTime.format : 'YYYY-MM-DD HH:mm:ss').fromNow() :
                             publishTime.value}</span>
                     </Tooltip>
                 }

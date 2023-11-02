@@ -1,6 +1,6 @@
 import React, { useEffect, useContext } from 'react';
 import { TimePicker, ConfigProvider } from 'antd';
-import moment from 'moment';
+import dayjs from 'dayjs';
 import { isString, isUndefined } from 'lodash';
 import { str2Locale } from '../../components/locales.react';
 import useCss from '../../hooks/useCss';
@@ -105,8 +105,8 @@ const AntdTimePicker = (props) => {
                     minuteStep={minuteStep}
                     secondStep={secondStep}
                     format={format}
-                    value={value ? moment(value, format) : undefined}
-                    defaultValue={defaultValue ? moment(defaultValue, format) : undefined}
+                    value={value ? dayjs(value, format) : undefined}
+                    defaultValue={defaultValue ? dayjs(defaultValue, format) : undefined}
                     use12Hours={use12Hours}
                     allowClear={isUndefined(readOnly) ? allowClear : !readOnly}
                     autoFocus={autoFocus}

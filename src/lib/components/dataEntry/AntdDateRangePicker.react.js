@@ -1,6 +1,5 @@
 import React, { Suspense } from 'react';
 import PropTypes from 'prop-types';
-import "moment/locale/zh-cn";
 
 const LazyAntdDateRangePicker = React.lazy(() => import(/* webpackChunkName: "data_entry" */ '../../fragments/dataEntry/AntdDateRangePicker.react'));
 
