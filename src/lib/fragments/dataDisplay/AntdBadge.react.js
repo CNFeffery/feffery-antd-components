@@ -13,6 +13,8 @@ const AntdBadge = (props) => {
         children,
         className,
         style,
+        styles,
+        classNames,
         key,
         color,
         count,
@@ -38,6 +40,8 @@ const AntdBadge = (props) => {
                     (className ? useCss(className) : undefined)
             }
             style={style}
+            styles={styles}
+            classNames={classNames}
             key={key}
             color={color}
             count={count}

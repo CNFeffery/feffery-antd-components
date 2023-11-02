@@ -28,6 +28,36 @@ AntdBadge.propTypes = {
     // 自定义css字典
     style: PropTypes.object,
 
+    /**
+     * 细分控制子元素css样式
+     */
+    styles: PropTypes.exact({
+        /**
+         * 控制根元素css样式
+         */
+        root: PropTypes.object,
+
+        /**
+         * 控制徽标元素css样式
+         */
+        indicator: PropTypes.object
+    }),
+
+    /**
+     * 细分控制子元素css类
+     */
+    classNames: PropTypes.exact({
+        /**
+         * 控制根元素css类
+         */
+        root: PropTypes.string,
+
+        /**
+         * 控制徽标元素css类
+         */
+        indicator: PropTypes.string
+    }),
+
     // 辅助刷新用唯一标识key值
     key: PropTypes.string,
 
