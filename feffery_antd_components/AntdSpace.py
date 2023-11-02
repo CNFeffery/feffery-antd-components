@@ -21,6 +21,14 @@ Keyword arguments:
 
 - className (string | dict; optional)
 
+- classNames (dict; optional):
+    细分控制子元素css类.
+
+    `classNames` is a dict with keys:
+
+    - item (string; optional):
+        控制子项容器元素css类.
+
 - customSplit (a list of or a singular dash component, string or number; optional)
 
 - direction (a value equal to: 'vertical', 'horizontal'; default 'horizontal')
@@ -44,16 +52,24 @@ Keyword arguments:
 
 - style (dict; optional)
 
+- styles (dict; optional):
+    细分控制子元素css样式.
+
+    `styles` is a dict with keys:
+
+    - item (dict; optional):
+        控制子项容器元素css样式.
+
 - wrap (boolean; default False)"""
     _children_props = ['customSplit']
     _base_nodes = ['customSplit', 'children']
     _namespace = 'feffery_antd_components'
     _type = 'AntdSpace'
     @_explicitize_args
-    def __init__(self, children=None, id=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, key=Component.UNDEFINED, align=Component.UNDEFINED, direction=Component.UNDEFINED, size=Component.UNDEFINED, addSplitLine=Component.UNDEFINED, customSplit=Component.UNDEFINED, wrap=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
-        self._prop_names = ['children', 'id', 'addSplitLine', 'align', 'className', 'customSplit', 'direction', 'key', 'loading_state', 'size', 'style', 'wrap']
+    def __init__(self, children=None, id=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, styles=Component.UNDEFINED, classNames=Component.UNDEFINED, key=Component.UNDEFINED, align=Component.UNDEFINED, direction=Component.UNDEFINED, size=Component.UNDEFINED, addSplitLine=Component.UNDEFINED, customSplit=Component.UNDEFINED, wrap=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
+        self._prop_names = ['children', 'id', 'addSplitLine', 'align', 'className', 'classNames', 'customSplit', 'direction', 'key', 'loading_state', 'size', 'style', 'styles', 'wrap']
         self._valid_wildcard_attributes =            []
-        self.available_properties = ['children', 'id', 'addSplitLine', 'align', 'className', 'customSplit', 'direction', 'key', 'loading_state', 'size', 'style', 'wrap']
+        self.available_properties = ['children', 'id', 'addSplitLine', 'align', 'className', 'classNames', 'customSplit', 'direction', 'key', 'loading_state', 'size', 'style', 'styles', 'wrap']
         self.available_wildcard_properties =            []
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()

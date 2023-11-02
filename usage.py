@@ -6,14 +6,28 @@ app = dash.Dash(__name__, compress=True)
 
 app.layout = html.Div(
     [
-        fac.AntdButton(
-            '按钮测试',
-            type='primary',
-            icon=fac.AntdIcon(icon='pi-polygon'),
+        fac.AntdSpace(
+            [
+                f'子项{i}'
+                for i in range(1, 4)
+            ],
             styles={
-                'icon': {
-                    'transform': 'translateY(3px)',
-                    'margin-inline-end': 4
+                'item': {
+                    'background': 'red',
+                    'padding': 5
+                }
+            }
+        ),
+        fac.AntdSpace(
+            [
+                f'子项{i}'
+                for i in range(1, 4)
+            ],
+            direction='vertical',
+            styles={
+                'item': {
+                    'background': 'red',
+                    'padding': 5
                 }
             }
         )
