@@ -22,6 +22,8 @@ const AntdButton = (props) => {
         loadingChildren,
         className,
         style,
+        styles,
+        classNames,
         key,
         setProps,
         type,
@@ -73,6 +75,8 @@ const AntdButton = (props) => {
                     className :
                     (className ? useCss(className) : undefined)
             }
+            styles={styles}
+            classNames={classNames}
             type={type}
             href={href}
             target={target}
@@ -126,6 +130,26 @@ AntdButton.propTypes = {
         PropTypes.string,
         PropTypes.object
     ]),
+
+    /**
+     * 细分控制子元素css样式
+     */
+    styles: PropTypes.exact({
+        /**
+         * 控制图标部分元素css样式
+         */
+        icon: PropTypes.object
+    }),
+
+    /**
+     * 细分控制子元素css类
+     */
+    classNames: PropTypes.exact({
+        /**
+         * 控制图标部分元素css类
+         */
+        icon: PropTypes.string
+    }),
 
     /**
      * 当前组件辅助用唯一id，可通过更新key值实现强制重绘
