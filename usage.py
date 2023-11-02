@@ -6,11 +6,36 @@ app = dash.Dash(__name__, compress=True)
 
 app.layout = html.Div(
     [
-        fac.AntdBadge(
-            dot=True,
+        fac.AntdInput(
+            prefix='前缀',
+            suffix='后缀',
+            style={
+                'width': 200
+            },
             styles={
-                'indicator': {
-                    'background': 'black'
+                'prefix': {
+                    'color': 'red'
+                },
+                'suffix': {
+                    'color': 'blue'
+                },
+                'input': {
+                    'background': '#d3f261'
+                }
+            }
+        ),
+        fac.AntdInput(
+            mode='text-area',
+            showCount=True,
+            style={
+                'width': 200
+            },
+            styles={
+                'count': {
+                    'color': 'red'
+                },
+                'textarea': {
+                    'color': '#389e0d'
                 }
             }
         )

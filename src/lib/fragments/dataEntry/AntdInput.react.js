@@ -16,6 +16,8 @@ const AntdInput = (props) => {
         id,
         className,
         style,
+        styles,
+        classNames,
         key,
         mode,
         passwordUseMd5,
@@ -152,6 +154,8 @@ const AntdInput = (props) => {
                         (className ? useCss(className) : undefined)
                 }
                 style={style}
+                styles={styles}
+                classNames={classNames}
                 key={key}
                 placeholder={placeholder}
                 autoComplete={autoComplete}
@@ -197,6 +201,8 @@ const AntdInput = (props) => {
                         (className ? useCss(className) : undefined)
                 }
                 style={style}
+                styles={styles}
+                classNames={classNames}
                 key={key}
                 placeholder={placeholder}
                 autoComplete={autoComplete}
@@ -239,6 +245,8 @@ const AntdInput = (props) => {
                         (className ? useCss(className) : undefined)
                 }
                 style={style}
+                styles={styles}
+                classNames={classNames}
                 key={key}
                 placeholder={placeholder}
                 autoComplete={autoComplete}
@@ -291,6 +299,8 @@ const AntdInput = (props) => {
                         (className ? useCss(className) : undefined)
                 }
                 style={style}
+                styles={styles}
+                classNames={classNames}
                 key={key}
                 placeholder={placeholder}
                 autoComplete={autoComplete}
