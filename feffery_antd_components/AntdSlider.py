@@ -17,6 +17,17 @@ Keyword arguments:
 
 - className (string | dict; optional)
 
+- classNames (dict; optional):
+    细分控制子元素css类.
+
+    `classNames` is a dict with keys:
+
+    - rail (string; optional):
+        设置背景条css类.
+
+    - track (string; optional):
+        设置选择条css类.
+
 - defaultValue (number | list of numbers; optional)
 
 - disabled (boolean; default False)
@@ -73,6 +84,17 @@ Keyword arguments:
 
 - style (dict; optional)
 
+- styles (dict; optional):
+    细分控制子元素css样式.
+
+    `styles` is a dict with keys:
+
+    - rail (dict; optional):
+        设置背景条css样式.
+
+    - track (dict; optional):
+        设置选择条css样式.
+
 - tooltipPrefix (string; default '')
 
 - tooltipSuffix (string; default '')
@@ -87,10 +109,10 @@ Keyword arguments:
     _namespace = 'feffery_antd_components'
     _type = 'AntdSlider'
     @_explicitize_args
-    def __init__(self, id=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, railStyle=Component.UNDEFINED, key=Component.UNDEFINED, vertical=Component.UNDEFINED, range=Component.UNDEFINED, min=Component.UNDEFINED, max=Component.UNDEFINED, step=Component.UNDEFINED, marks=Component.UNDEFINED, tooltipVisible=Component.UNDEFINED, tooltipPrefix=Component.UNDEFINED, tooltipSuffix=Component.UNDEFINED, disabled=Component.UNDEFINED, value=Component.UNDEFINED, defaultValue=Component.UNDEFINED, popupContainer=Component.UNDEFINED, readOnly=Component.UNDEFINED, batchPropsNames=Component.UNDEFINED, batchPropsValues=Component.UNDEFINED, loading_state=Component.UNDEFINED, persistence=Component.UNDEFINED, persisted_props=Component.UNDEFINED, persistence_type=Component.UNDEFINED, **kwargs):
-        self._prop_names = ['id', 'batchPropsNames', 'batchPropsValues', 'className', 'defaultValue', 'disabled', 'key', 'loading_state', 'marks', 'max', 'min', 'persisted_props', 'persistence', 'persistence_type', 'popupContainer', 'railStyle', 'range', 'readOnly', 'step', 'style', 'tooltipPrefix', 'tooltipSuffix', 'tooltipVisible', 'value', 'vertical']
+    def __init__(self, id=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, railStyle=Component.UNDEFINED, styles=Component.UNDEFINED, classNames=Component.UNDEFINED, key=Component.UNDEFINED, vertical=Component.UNDEFINED, range=Component.UNDEFINED, min=Component.UNDEFINED, max=Component.UNDEFINED, step=Component.UNDEFINED, marks=Component.UNDEFINED, tooltipVisible=Component.UNDEFINED, tooltipPrefix=Component.UNDEFINED, tooltipSuffix=Component.UNDEFINED, disabled=Component.UNDEFINED, value=Component.UNDEFINED, defaultValue=Component.UNDEFINED, popupContainer=Component.UNDEFINED, readOnly=Component.UNDEFINED, batchPropsNames=Component.UNDEFINED, batchPropsValues=Component.UNDEFINED, loading_state=Component.UNDEFINED, persistence=Component.UNDEFINED, persisted_props=Component.UNDEFINED, persistence_type=Component.UNDEFINED, **kwargs):
+        self._prop_names = ['id', 'batchPropsNames', 'batchPropsValues', 'className', 'classNames', 'defaultValue', 'disabled', 'key', 'loading_state', 'marks', 'max', 'min', 'persisted_props', 'persistence', 'persistence_type', 'popupContainer', 'railStyle', 'range', 'readOnly', 'step', 'style', 'styles', 'tooltipPrefix', 'tooltipSuffix', 'tooltipVisible', 'value', 'vertical']
         self._valid_wildcard_attributes =            []
-        self.available_properties = ['id', 'batchPropsNames', 'batchPropsValues', 'className', 'defaultValue', 'disabled', 'key', 'loading_state', 'marks', 'max', 'min', 'persisted_props', 'persistence', 'persistence_type', 'popupContainer', 'railStyle', 'range', 'readOnly', 'step', 'style', 'tooltipPrefix', 'tooltipSuffix', 'tooltipVisible', 'value', 'vertical']
+        self.available_properties = ['id', 'batchPropsNames', 'batchPropsValues', 'className', 'classNames', 'defaultValue', 'disabled', 'key', 'loading_state', 'marks', 'max', 'min', 'persisted_props', 'persistence', 'persistence_type', 'popupContainer', 'railStyle', 'range', 'readOnly', 'step', 'style', 'styles', 'tooltipPrefix', 'tooltipSuffix', 'tooltipVisible', 'value', 'vertical']
         self.available_wildcard_properties =            []
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()

@@ -8,33 +8,48 @@ app.layout = html.Div(
     [
         fac.AntdSpace(
             [
-                f'子项{i}'
-                for i in range(1, 4)
-            ],
-            styles={
-                'item': {
-                    'background': 'red',
-                    'padding': 5
-                }
-            }
-        ),
-        fac.AntdSpace(
-            [
-                f'子项{i}'
-                for i in range(1, 4)
+                fac.AntdSlider(
+                    min=0,
+                    max=100,
+                    value=66,
+                    style={
+                        'width': '100%'
+                    },
+                    styles={
+                        'rail': {
+                            'background': 'red'
+                        },
+                        'track': {
+                            'background': 'green'
+                        }
+                    }
+                ),
+                fac.AntdSlider(
+                    min=0,
+                    max=100,
+                    value=[40, 80],
+                    range=True,
+                    style={
+                        'width': '100%'
+                    },
+                    styles={
+                        'rail': {
+                            'background': 'red'
+                        },
+                        'track': {
+                            'background': 'green'
+                        }
+                    }
+                )
             ],
             direction='vertical',
-            styles={
-                'item': {
-                    'background': 'red',
-                    'padding': 5
-                }
+            style={
+                'width': 300
             }
         )
     ],
     style={
-        'padding': '50px 100px',
-        'height': 10000
+        'padding': '50px 100px'
     }
 )
 
