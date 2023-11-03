@@ -38,6 +38,7 @@ const AntdDatePicker = (props) => {
         placement,
         extraFooter,
         showToday,
+        presets,
         persistence,
         persisted_props,
         persistence_type,
@@ -415,6 +416,22 @@ const AntdDatePicker = (props) => {
                     inputReadOnly={readOnly}
                     renderExtraFooter={() => extraFooter}
                     showToday={showToday}
+                    presets={
+                        // 处理预设快捷选项列表
+                        (presets || []).map(
+                            (preset) => ({
+                                label: preset.label,
+                                value: () => {
+                                    setProps({
+                                        clickedPreset: {
+                                            value: preset.value,
+                                            timestamp: Date.now()
+                                        }
+                                    })
+                                }
+                            })
+                        )
+                    }
                     persistence={persistence}
                     persisted_props={persisted_props}
                     persistence_type={persistence_type}
