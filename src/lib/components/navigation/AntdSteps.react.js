@@ -119,8 +119,11 @@ AntdSteps.propTypes = {
     // 指定当前步骤条的状态，有'wait'、'process'、'finish'以及'error'四种，默认为'process'
     status: PropTypes.oneOf(['wait', 'process', 'finish', 'error']),
 
-    // 设置渲染形式，默认'default'，'navigation'表示导航形式
-    type: PropTypes.oneOf(['default', 'navigation']),
+    /**
+     * 设置步骤条渲染形式，可选的有'default'、'navigation'、'inline'
+     * 默认：'default'
+     */
+    type: PropTypes.oneOf(['default', 'navigation', 'inline']),
 
     // 设置是否允许点击进行步骤切换，默认为false
     allowClick: PropTypes.bool,

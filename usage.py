@@ -6,38 +6,16 @@ app = dash.Dash(__name__, compress=True)
 
 app.layout = html.Div(
     [
-        fac.AntdInput(
-            prefix='前缀',
-            suffix='后缀',
-            style={
-                'width': 200
-            },
-            styles={
-                'prefix': {
-                    'color': 'red'
-                },
-                'suffix': {
-                    'color': 'blue'
-                },
-                'input': {
-                    'background': '#d3f261'
+        fac.AntdSteps(
+            type='inline',
+            steps=[
+                {
+                    'title': f'步骤{i}'
                 }
-            }
-        ),
-        fac.AntdInput(
-            mode='text-area',
-            showCount=True,
-            style={
-                'width': 200
-            },
-            styles={
-                'count': {
-                    'color': 'red'
-                },
-                'textarea': {
-                    'color': '#389e0d'
-                }
-            }
+                for i in range(1, 4)
+            ],
+            current=0,
+            allowClick=True
         )
     ],
     style={

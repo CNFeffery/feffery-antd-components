@@ -56,7 +56,8 @@ Keyword arguments:
 
 - style (dict; optional)
 
-- type (a value equal to: 'default', 'navigation'; default 'default')"""
+- type (a value equal to: 'default', 'navigation', 'inline'; default 'default'):
+    设置步骤条渲染形式，可选的有'default'、'navigation'、'inline'  默认：'default'."""
     _children_props = ['steps[].title', 'steps[].subTitle', 'steps[].description']
     _base_nodes = ['children']
     _namespace = 'feffery_antd_components'
