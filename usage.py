@@ -10,8 +10,8 @@ app.layout = html.Div(
     [
         fac.AntdSpace(
             [
-                fac.AntdDatePicker(
-                    id='date-picker-input',
+                fac.AntdDateRangePicker(
+                    id='date-range-picker-input',
                     style={
                         'width': 200
                     },
@@ -24,7 +24,7 @@ app.layout = html.Div(
                     ]
                 ),
                 html.Pre(
-                    id='date-picker-output'
+                    id='date-range-picker-output'
                 )
             ],
             direction='vertical',
@@ -40,11 +40,11 @@ app.layout = html.Div(
 
 
 @app.callback(
-    Output('date-picker-output', 'children'),
-    Input('date-picker-input', 'clickedPreset'),
+    Output('date-range-picker-output', 'children'),
+    Input('date-range-picker-input', 'clickedPreset'),
     prevent_initial_call=True
 )
-def date_picker_demo(clickedPreset):
+def date_range_picker_demo(clickedPreset):
 
     return json.dumps(
         clickedPreset,

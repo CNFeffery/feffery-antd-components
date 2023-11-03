@@ -40,6 +40,7 @@ const AntdDateRangePicker = (props) => {
         readOnly,
         placement,
         extraFooter,
+        presets,
         persistence,
         persisted_props,
         persistence_type,
@@ -437,6 +438,22 @@ const AntdDateRangePicker = (props) => {
                     onOpenChange={(e) => setProps({ open: e })}
                     inputReadOnly={readOnly}
                     renderExtraFooter={() => extraFooter}
+                    presets={
+                        // 处理预设快捷选项列表
+                        (presets || []).map(
+                            (preset) => ({
+                                label: preset.label,
+                                value: () => {
+                                    setProps({
+                                        clickedPreset: {
+                                            value: preset.value,
+                                            timestamp: Date.now()
+                                        }
+                                    })
+                                }
+                            })
+                        )
+                    }
                     persistence={persistence}
                     persisted_props={persisted_props}
                     persistence_type={persistence_type}
