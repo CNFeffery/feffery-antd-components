@@ -20,6 +20,8 @@ const AntdSpace = (props) => {
         customSplit,
         wrap,
         addSplitLine,
+        styles,
+        classNames,
         setProps,
         loading_state
     } = props;
@@ -36,6 +38,8 @@ const AntdSpace = (props) => {
                             (className ? useCss(className) : undefined)
                     }
                     style={style}
+                    styles={styles}
+                    classNames={classNames}
                     key={key}
                     align={align}
                     direction={direction}
@@ -57,6 +61,8 @@ const AntdSpace = (props) => {
                         (className ? useCss(className) : undefined)
                 }
                 style={style}
+                styles={styles}
+                classNames={classNames}
                 key={key}
                 align={align}
                 direction={direction}
@@ -79,6 +85,8 @@ const AntdSpace = (props) => {
                     (className ? useCss(className) : undefined)
             }
             style={style}
+            styles={styles}
+            classNames={classNames}
             key={key}
             align={align}
             direction={direction}
@@ -111,6 +119,26 @@ AntdSpace.propTypes = {
 
     // 自定义css字典
     style: PropTypes.object,
+
+    /**
+     * 细分控制子元素css样式
+     */
+    styles: PropTypes.exact({
+        /**
+         * 控制子项容器元素css样式
+         */
+        item: PropTypes.object
+    }),
+
+    /**
+     * 细分控制子元素css类
+     */
+    classNames: PropTypes.exact({
+        /**
+         * 控制子项容器元素css类
+         */
+        item: PropTypes.string
+    }),
 
     // 辅助刷新用唯一标识key值
     key: PropTypes.string,

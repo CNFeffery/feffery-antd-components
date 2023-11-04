@@ -25,6 +25,66 @@ AntdInput.propTypes = {
     // 自定义css字典
     style: PropTypes.object,
 
+    /**
+     * 细分控制子元素css样式
+     */
+    styles: PropTypes.exact({
+        /**
+         * 控制input元素css样式
+         */
+        input: PropTypes.object,
+
+        /**
+         * 控制前缀容器css样式
+         */
+        prefix: PropTypes.object,
+
+        /**
+         * 控制后缀容器css样式
+         */
+        suffix: PropTypes.object,
+
+        /**
+         * 控制文字计数元素css样式
+         */
+        count: PropTypes.object,
+
+        /**
+         * 控制textarea元素css样式
+         */
+        textarea: PropTypes.object
+    }),
+
+    /**
+     * 细分控制子元素css类
+     */
+    classNames: PropTypes.exact({
+        /**
+         * 控制input元素css类
+         */
+        input: PropTypes.string,
+
+        /**
+         * 控制前缀容器css类
+         */
+        prefix: PropTypes.string,
+
+        /**
+         * 控制后缀容器css类
+         */
+        suffix: PropTypes.string,
+
+        /**
+         * 控制文字计数元素css类
+         */
+        count: PropTypes.string,
+
+        /**
+         * 控制textarea元素css类
+         */
+        textarea: PropTypes.string
+    }),
+
     // 辅助刷新用唯一标识key值
     key: PropTypes.string,
 

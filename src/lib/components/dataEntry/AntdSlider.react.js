@@ -28,6 +28,36 @@ AntdSlider.propTypes = {
     // 用于设置slider滑轨的css样式
     railStyle: PropTypes.object,
 
+    /**
+     * 细分控制子元素css样式
+     */
+    styles: PropTypes.exact({
+        /**
+         * 设置选择条css样式
+         */
+        track: PropTypes.object,
+
+        /**
+         * 设置背景条css样式
+         */
+        rail: PropTypes.object
+    }),
+
+    /**
+     * 细分控制子元素css类
+     */
+    classNames: PropTypes.exact({
+        /**
+         * 设置选择条css类
+         */
+        track: PropTypes.string,
+
+        /**
+         * 设置背景条css类
+         */
+        rail: PropTypes.string
+    }),
+
     // 辅助刷新用唯一标识key值
     key: PropTypes.string,
 

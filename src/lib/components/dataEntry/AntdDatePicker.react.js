@@ -1,6 +1,5 @@
 import React, { Suspense } from 'react';
 import PropTypes from 'prop-types';
-import "moment/locale/zh-cn";
 
 const LazyAntdDatePicker = React.lazy(() => import(/* webpackChunkName: "data_entry" */ '../../fragments/dataEntry/AntdDatePicker.react'));
 
@@ -119,6 +118,44 @@ AntdDatePicker.propTypes = {
 
     // 设置是否渲染“今天”快捷按钮，默认为true
     showToday: PropTypes.bool,
+
+    /**
+     * 配置预设范围触发列表信息
+     */
+    presets: PropTypes.arrayOf(
+        PropTypes.exact({
+            /**
+             * 组件型，设置当前预设子项元素
+             */
+            label: PropTypes.node,
+
+            /**
+             * 设置当前预设子项唯一值
+             */
+            value: PropTypes.oneOfType([
+                PropTypes.string,
+                PropTypes.number
+            ])
+        })
+    ),
+
+    /**
+     * 配合presets参数，监听最近一次预设子项点击事件相关信息
+     */
+    clickedPreset: PropTypes.exact({
+        /**
+         * 监听事件对应预设子项值
+         */
+        value: PropTypes.oneOfType([
+            PropTypes.string,
+            PropTypes.number
+        ]),
+
+        /**
+         * 监听事件对应时间戳
+         */
+        timestamp: PropTypes.number
+    }),
 
     // 设置悬浮层锚定策略，可选的有'parent'、'body'，默认为'body'
     popupContainer: PropTypes.oneOf(['parent', 'body']),

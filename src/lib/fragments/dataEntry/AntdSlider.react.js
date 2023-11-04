@@ -14,6 +14,8 @@ const AntdSlider = (props) => {
         className,
         style,
         railStyle,
+        styles,
+        classNames,
         key,
         value,
         defaultValue,
@@ -96,6 +98,8 @@ const AntdSlider = (props) => {
             }
             style={style}
             railStyle={railStyle}
+            styles={styles}
+            classNames={classNames}
             key={key}
             value={value}
             defaultValue={defaultValue}

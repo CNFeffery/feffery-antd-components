@@ -1,6 +1,6 @@
 import React from 'react';
 import { Statistic } from 'antd';
-import moment from 'moment';
+import dayjs from 'dayjs';
 import { isString } from 'lodash';
 import useCss from '../../hooks/useCss';
 import { propTypes, defaultProps } from '../../components/dataDisplay/AntdCountdown.react';
@@ -36,7 +36,7 @@ const AntdCountdown = (props) => {
             }
             style={style}
             key={key}
-            value={moment(value, valueFormat)}
+            value={dayjs(value, valueFormat)}
             format={format}
             prefix={prefix}
             suffix={suffix}

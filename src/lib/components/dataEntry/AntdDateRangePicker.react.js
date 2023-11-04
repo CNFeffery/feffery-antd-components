@@ -1,6 +1,5 @@
 import React, { Suspense } from 'react';
 import PropTypes from 'prop-types';
-import "moment/locale/zh-cn";
 
 const LazyAntdDateRangePicker = React.lazy(() => import(/* webpackChunkName: "data_entry" */ '../../fragments/dataEntry/AntdDateRangePicker.react'));
 
@@ -122,6 +121,44 @@ AntdDateRangePicker.propTypes = {
 
     // 设置展开面板底部额外内容
     extraFooter: PropTypes.node,
+
+    /**
+     * 配置预设范围触发列表信息
+     */
+    presets: PropTypes.arrayOf(
+        PropTypes.exact({
+            /**
+             * 组件型，设置当前预设子项元素
+             */
+            label: PropTypes.node,
+
+            /**
+             * 设置当前预设子项唯一值
+             */
+            value: PropTypes.oneOfType([
+                PropTypes.string,
+                PropTypes.number
+            ])
+        })
+    ),
+
+    /**
+     * 配合presets参数，监听最近一次预设子项点击事件相关信息
+     */
+    clickedPreset: PropTypes.exact({
+        /**
+         * 监听事件对应预设子项值
+         */
+        value: PropTypes.oneOfType([
+            PropTypes.string,
+            PropTypes.number
+        ]),
+
+        /**
+         * 监听事件对应时间戳
+         */
+        timestamp: PropTypes.number
+    }),
 
     // 设置组件悬浮层参考容器类型，可选的有'parent'、'body'，默认为'parent'
     popupContainer: PropTypes.oneOf(['parent', 'body']),

@@ -1,7 +1,7 @@
 import React, { useEffect, useContext } from 'react';
 import { DatePicker, ConfigProvider } from 'antd';
-import moment from 'moment';
-import "moment/locale/zh-cn";
+import dayjs from 'dayjs';
+import 'dayjs/locale/zh-cn';
 import { isString, isUndefined, isObject } from 'lodash';
 import { str2Locale } from '../../components/locales.react';
 import useCss from '../../hooks/useCss';
@@ -40,6 +40,7 @@ const AntdDateRangePicker = (props) => {
         readOnly,
         placement,
         extraFooter,
+        presets,
         persistence,
         persisted_props,
         persistence_type,
@@ -84,14 +85,14 @@ const AntdDateRangePicker = (props) => {
         // defaultPickerValue为空时默认定位到今日对应面板位置
         if (!defaultPickerValue) {
             setProps({
-                defaultPickerValue: moment(new Date()).format(format || 'YYYY-MM-DD')
+                defaultPickerValue: dayjs(new Date()).format(format || 'YYYY-MM-DD')
             })
         }
     }, [])
 
     useEffect(() => {
         if (!isUndefined(firstDayOfWeek)) {
-            moment.locale(
+            dayjs.locale(
                 locale === 'en-us' ? 'en' : locale,
                 {
                     week: {
@@ -145,7 +146,7 @@ const AntdDateRangePicker = (props) => {
                         return true;
                     }
                 } else if (strategy.target === 'specific-date') {
-                    if (current.isSame(moment(strategy.value, 'YYYY-MM-DD'))) {
+                    if (current.isSame(dayjs(strategy.value, 'YYYY-MM-DD'))) {
                         return true;
                     }
                 }
@@ -176,7 +177,7 @@ const AntdDateRangePicker = (props) => {
                         return true;
                     }
                 } else if (strategy.target === 'specific-date') {
-                    if (!current.isSame(moment(strategy.value, 'YYYY-MM-DD'))) {
+                    if (!current.isSame(dayjs(strategy.value, 'YYYY-MM-DD'))) {
                         return true;
                     }
                 }
@@ -207,7 +208,7 @@ const AntdDateRangePicker = (props) => {
                         return true;
                     }
                 } else if (strategy.target === 'specific-date') {
-                    if (current.isSameOrBefore(moment(strategy.value, 'YYYY-MM-DD'))) {
+                    if (current.isSameOrBefore(dayjs(strategy.value, 'YYYY-MM-DD'))) {
                         return true;
                     }
                 }
@@ -238,7 +239,7 @@ const AntdDateRangePicker = (props) => {
                         return true;
                     }
                 } else if (strategy.target === 'specific-date') {
-                    if (current.isBefore(moment(strategy.value, 'YYYY-MM-DD'))) {
+                    if (current.isBefore(dayjs(strategy.value, 'YYYY-MM-DD'))) {
                         return true;
                     }
                 }
@@ -269,7 +270,7 @@ const AntdDateRangePicker = (props) => {
                         return true;
                     }
                 } else if (strategy.target === 'specific-date') {
-                    if (current.isSameOrAfter(moment(strategy.value, 'YYYY-MM-DD'))) {
+                    if (current.isSameOrAfter(dayjs(strategy.value, 'YYYY-MM-DD'))) {
                         return true;
                     }
                 }
@@ -300,7 +301,7 @@ const AntdDateRangePicker = (props) => {
                         return true;
                     }
                 } else if (strategy.target === 'specific-date') {
-                    if (current.isAfter(moment(strategy.value, 'YYYY-MM-DD'))) {
+                    if (current.isAfter(dayjs(strategy.value, 'YYYY-MM-DD'))) {
                         return true;
                     }
                 }
@@ -395,8 +396,8 @@ const AntdDateRangePicker = (props) => {
                         isObject(showTime) && showTime.defaultValue ?
                             {
                                 defaultValue: [
-                                    moment(showTime.defaultValue[0], showTime.format || 'HH:mm:ss'),
-                                    moment(showTime.defaultValue[1], showTime.format || 'HH:mm:ss')
+                                    dayjs(showTime.defaultValue[0], showTime.format || 'HH:mm:ss'),
+                                    dayjs(showTime.defaultValue[1], showTime.format || 'HH:mm:ss')
                                 ]
                             } :
                             showTime
@@ -416,19 +417,19 @@ const AntdDateRangePicker = (props) => {
                     disabledDate={disabledDatesStrategy ? checkDisabledDate : undefined}
                     defaultPickerValue={
                         defaultPickerValue ?
-                            [moment(defaultPickerValue, format), moment(defaultPickerValue, format)] :
+                            [dayjs(defaultPickerValue, format), dayjs(defaultPickerValue, format)] :
                             undefined
                     }
                     value={
                         (value && value.length === 2) ?
-                            [value[0] ? moment(value[0], format) : undefined,
-                            value[1] ? moment(value[1], format) : undefined] :
+                            [value[0] ? dayjs(value[0], format) : undefined,
+                            value[1] ? dayjs(value[1], format) : undefined] :
                             undefined
                     }
                     defaultValue={
                         (defaultValue && defaultValue.length === 2) ?
-                            [defaultValue[0] ? moment(defaultValue[0], format) : undefined,
-                            defaultValue[1] ? moment(defaultValue[1], format) : undefined] :
+                            [defaultValue[0] ? dayjs(defaultValue[0], format) : undefined,
+                            defaultValue[1] ? dayjs(defaultValue[1], format) : undefined] :
                             undefined
                     }
                     status={status}
@@ -437,6 +438,22 @@ const AntdDateRangePicker = (props) => {
                     onOpenChange={(e) => setProps({ open: e })}
                     inputReadOnly={readOnly}
                     renderExtraFooter={() => extraFooter}
+                    presets={
+                        // 处理预设快捷选项列表
+                        (presets || []).map(
+                            (preset) => ({
+                                label: preset.label,
+                                value: () => {
+                                    setProps({
+                                        clickedPreset: {
+                                            value: preset.value,
+                                            timestamp: Date.now()
+                                        }
+                                    })
+                                }
+                            })
+                        )
+                    }
                     persistence={persistence}
                     persisted_props={persisted_props}
                     persistence_type={persistence_type}

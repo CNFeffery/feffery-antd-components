@@ -103,7 +103,6 @@ import AntdWatermark from './components/other/AntdWatermark.react';
 import AntdCopyText from './components/other/AntdCopyText.react';
 import AntdConfigProvider from './components/other/AntdConfigProvider';
 // css样式
-import 'antd/dist/antd.variable.min.css';
 import './components/styles.css'; // 自定义样式
 
 export {
