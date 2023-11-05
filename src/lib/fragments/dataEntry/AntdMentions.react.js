@@ -14,6 +14,7 @@ const AntdMentions = (props) => {
         id,
         className,
         style,
+        popupClassName,
         key,
         autoSize,
         prefix,
@@ -84,6 +85,7 @@ const AntdMentions = (props) => {
                     (className ? useCss(className) : undefined)
             }
             style={style}
+            popupClassName={popupClassName}
             key={key}
             autoSize={autoSize}
             prefix={prefix}

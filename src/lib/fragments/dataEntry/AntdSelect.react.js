@@ -17,6 +17,7 @@ const AntdSelect = (props) => {
         id,
         style,
         className,
+        popupClassName,
         key,
         locale,
         setProps,
@@ -205,6 +206,7 @@ const AntdSelect = (props) => {
                         (className ? useCss(className) : undefined)
                 }
                 style={style}
+                popupClassName={popupClassName}
                 key={key}
                 mode={mode}
                 allowClear={isUndefined(readOnly) ? allowClear : !readOnly}

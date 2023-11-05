@@ -17,6 +17,7 @@ const AntdDateRangePicker = (props) => {
         id,
         className,
         style,
+        popupClassName,
         key,
         locale,
         setProps,
@@ -383,6 +384,7 @@ const AntdDateRangePicker = (props) => {
                             (className ? useCss(className) : undefined)
                     }
                     style={style}
+                    popupClassName={popupClassName}
                     key={key}
                     format={format}
                     size={

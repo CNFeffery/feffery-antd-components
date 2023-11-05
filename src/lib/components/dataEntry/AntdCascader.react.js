@@ -62,6 +62,11 @@ AntdCascader.propTypes = {
         PropTypes.object
     ]),
 
+    /**
+     * 设置弹框菜单css类名
+     */
+    popupClassName: PropTypes.string,
+
     // 自定义css字典
     style: PropTypes.object,
 

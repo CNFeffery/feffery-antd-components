@@ -15,6 +15,7 @@ app.layout = html.Div(
                     style={
                         'width': 200
                     },
+                    popupClassName='demo-popup-class',
                     presets=[
                         {
                             'label': f'子项{i}',

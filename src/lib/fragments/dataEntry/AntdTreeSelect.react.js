@@ -25,6 +25,7 @@ const AntdTreeSelect = (props) => {
         id,
         style,
         className,
+        popupClassName,
         key,
         locale,
         treeData,
@@ -118,6 +119,7 @@ const AntdTreeSelect = (props) => {
                     width: '100%',
                     ...style
                 }}
+                popupClassName={popupClassName}
                 key={key}
                 treeData={treeDataMode === 'flat' ? flatToTreeData : treeData}
                 allowClear={isUndefined(readOnly) ? allowClear : !readOnly}

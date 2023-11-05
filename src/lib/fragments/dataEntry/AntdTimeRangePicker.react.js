@@ -16,6 +16,7 @@ const AntdTimeRangePicker = (props) => {
         id,
         className,
         style,
+        popupClassName,
         key,
         locale,
         setProps,
@@ -89,6 +90,7 @@ const AntdTimeRangePicker = (props) => {
                             (className ? useCss(className) : undefined)
                     }
                     style={style}
+                    popupClassName={popupClassName}
                     key={key}
                     onChange={onChange}
                     disabled={

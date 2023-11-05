@@ -25,6 +25,11 @@ AntdDateRangePicker.propTypes = {
     // 自定义css字典
     style: PropTypes.object,
 
+    /**
+     * 设置弹框菜单css类名
+     */
+    popupClassName: PropTypes.string,
+
     // 辅助刷新用唯一标识key值
     key: PropTypes.string,
 

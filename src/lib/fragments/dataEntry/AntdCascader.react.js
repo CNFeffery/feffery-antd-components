@@ -21,6 +21,7 @@ const AntdCascader = (props) => {
         id,
         style,
         className,
+        popupClassName,
         key,
         locale,
         options,
@@ -100,6 +101,7 @@ const AntdCascader = (props) => {
                         (className ? useCss(className) : undefined)
                 }
                 style={style}
+                popupClassName={popupClassName}
                 key={key}
                 options={options}
                 changeOnSelect={changeOnSelect}
