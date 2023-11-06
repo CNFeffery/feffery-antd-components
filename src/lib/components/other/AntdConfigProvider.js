@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { ConfigProvider } from 'antd';
 import PropsContext from '../../contexts/PropsContext';
@@ -18,14 +18,6 @@ const AntdConfigProvider = (props) => {
         loading_state
     } = props;
 
-    useEffect(() => {
-        ConfigProvider.config({
-            theme: {
-                primaryColor: primaryColor
-            }
-        })
-    }, [primaryColor])
-
     return (
         <PropsContext.Provider
             value={
@@ -38,6 +30,13 @@ const AntdConfigProvider = (props) => {
         >
             <ConfigProvider id={id}
                 key={key}
+                theme={
+                    {
+                        token: {
+                            colorPrimary: primaryColor
+                        }
+                    }
+                }
                 data-dash-is-loading={
                     (loading_state && loading_state.is_loading) || undefined
                 }>
