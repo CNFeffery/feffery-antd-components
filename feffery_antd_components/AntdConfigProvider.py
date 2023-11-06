@@ -13,6 +13,10 @@ Keyword arguments:
 
 - id (string; optional)
 
+- algorithm (a value equal to: 'default', 'dark', 'compact' | list of a value equal to: 'default', 'dark', 'compact's; default 'default'):
+    为内部组件设置快捷主题算法，支持多种主题组合，可选的主题有'default'、'dark'、'compact'
+    默认：'default'.
+
 - componentDisabled (boolean; optional)
 
 - componentSize (a value equal to: 'small', 'middle', 'large'; optional)
@@ -40,10 +44,10 @@ Keyword arguments:
     _namespace = 'feffery_antd_components'
     _type = 'AntdConfigProvider'
     @_explicitize_args
-    def __init__(self, children=None, id=Component.UNDEFINED, key=Component.UNDEFINED, primaryColor=Component.UNDEFINED, componentDisabled=Component.UNDEFINED, componentSize=Component.UNDEFINED, locale=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
-        self._prop_names = ['children', 'id', 'componentDisabled', 'componentSize', 'key', 'loading_state', 'locale', 'primaryColor']
+    def __init__(self, children=None, id=Component.UNDEFINED, key=Component.UNDEFINED, algorithm=Component.UNDEFINED, primaryColor=Component.UNDEFINED, componentDisabled=Component.UNDEFINED, componentSize=Component.UNDEFINED, locale=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
+        self._prop_names = ['children', 'id', 'algorithm', 'componentDisabled', 'componentSize', 'key', 'loading_state', 'locale', 'primaryColor']
         self._valid_wildcard_attributes =            []
-        self.available_properties = ['children', 'id', 'componentDisabled', 'componentSize', 'key', 'loading_state', 'locale', 'primaryColor']
+        self.available_properties = ['children', 'id', 'algorithm', 'componentDisabled', 'componentSize', 'key', 'loading_state', 'locale', 'primaryColor']
         self.available_wildcard_properties =            []
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()
