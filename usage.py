@@ -18,6 +18,13 @@ app.layout = html.Div(
                     'happy',
                     type='primary',
                     motionType='happy-work'
+                ),
+                fac.AntdConfigProvider(
+                    fac.AntdButton(
+                        'no wave',
+                        type='primary'
+                    ),
+                    wavesDisabled=True
                 )
             ]
         )

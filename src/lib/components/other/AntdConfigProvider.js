@@ -24,6 +24,7 @@ const AntdConfigProvider = (props) => {
         componentDisabled,
         componentSize,
         locale,
+        wavesDisabled,
         setProps,
         loading_state
     } = props;
@@ -55,6 +56,7 @@ const AntdConfigProvider = (props) => {
                         )
                     }
                 }
+                wave={{ disabled: wavesDisabled }}
                 data-dash-is-loading={
                     (loading_state && loading_state.is_loading) || undefined
                 }>
@@ -96,6 +98,12 @@ AntdConfigProvider.propTypes = {
     // 强制设置后代元素的语言，可选的有'zh-cn'、'en-us'
     locale: PropTypes.oneOf(['zh-cn', 'en-us']),
 
+    /**
+     * 设置是否禁用内部组件水波纹动效
+     * 默认：false
+     */
+    wavesDisabled: PropTypes.bool,
+
     loading_state: PropTypes.shape({
         /**
          * Determines if the component is loading or not
@@ -120,7 +128,8 @@ AntdConfigProvider.propTypes = {
 
 // 设置默认参数
 AntdConfigProvider.defaultProps = {
-    algorithm: 'default'
+    algorithm: 'default',
+    wavesDisabled: false
 }
 
 export default AntdConfigProvider;

@@ -38,16 +38,19 @@ Keyword arguments:
 
 - locale (a value equal to: 'zh-cn', 'en-us'; optional)
 
-- primaryColor (string; optional)"""
+- primaryColor (string; optional)
+
+- wavesDisabled (boolean; default False):
+    设置是否禁用内部组件水波纹动效  默认：False."""
     _children_props = []
     _base_nodes = ['children']
     _namespace = 'feffery_antd_components'
     _type = 'AntdConfigProvider'
     @_explicitize_args
-    def __init__(self, children=None, id=Component.UNDEFINED, key=Component.UNDEFINED, algorithm=Component.UNDEFINED, primaryColor=Component.UNDEFINED, componentDisabled=Component.UNDEFINED, componentSize=Component.UNDEFINED, locale=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
-        self._prop_names = ['children', 'id', 'algorithm', 'componentDisabled', 'componentSize', 'key', 'loading_state', 'locale', 'primaryColor']
+    def __init__(self, children=None, id=Component.UNDEFINED, key=Component.UNDEFINED, algorithm=Component.UNDEFINED, primaryColor=Component.UNDEFINED, componentDisabled=Component.UNDEFINED, componentSize=Component.UNDEFINED, locale=Component.UNDEFINED, wavesDisabled=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
+        self._prop_names = ['children', 'id', 'algorithm', 'componentDisabled', 'componentSize', 'key', 'loading_state', 'locale', 'primaryColor', 'wavesDisabled']
         self._valid_wildcard_attributes =            []
-        self.available_properties = ['children', 'id', 'algorithm', 'componentDisabled', 'componentSize', 'key', 'loading_state', 'locale', 'primaryColor']
+        self.available_properties = ['children', 'id', 'algorithm', 'componentDisabled', 'componentSize', 'key', 'loading_state', 'locale', 'primaryColor', 'wavesDisabled']
         self.available_wildcard_properties =            []
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()
