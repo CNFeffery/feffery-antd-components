@@ -8,24 +8,18 @@ app = dash.Dash(__name__, compress=True)
 
 app.layout = html.Div(
     [
-        fac.AntdTable(
-            columns=[
-                {
-                    'title': f'字段{i}',
-                    'dataIndex': f'字段{i}'
-                }
-                for i in range(1, 6)
-            ],
-            data=[
-                {
-                    f'字段{i}': '示例内容'
-                    for i in range(1, 6)
-                }
-            ] * 10000,
-            bordered=True,
-            virtual=True,
-            maxHeight=800,
-            pagination=False
+        fac.AntdSpace(
+            [
+                fac.AntdButton(
+                    'not happy',
+                    type='primary'
+                ),
+                fac.AntdButton(
+                    'happy',
+                    type='primary',
+                    motionType='happy-work'
+                )
+            ]
         )
     ],
     style={

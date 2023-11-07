@@ -6,6 +6,7 @@ import { Button } from 'antd';
 // 辅助库
 import { isString, isUndefined } from 'lodash';
 import { useRequest } from 'ahooks';
+import { HappyProvider } from '@ant-design/happy-work-theme';
 // 自定义hooks
 import useCss from '../../hooks/useCss';
 // 自定义上下文
@@ -40,6 +41,7 @@ const AntdButton = (props) => {
         icon,
         loading,
         autoSpin,
+        motionType,
         loading_state
     } = props;
 
@@ -64,8 +66,7 @@ const AntdButton = (props) => {
         }
     )
 
-
-    return (
+    const renderElement = (
         <Button
             id={id}
             key={key}
@@ -104,6 +105,15 @@ const AntdButton = (props) => {
             {loading ? (loadingChildren || children) : children}
         </Button>
     );
+
+    if (motionType === 'happy-work') {
+        return (
+            <HappyProvider >
+                {renderElement}
+            </HappyProvider>
+        )
+    }
+    return renderElement;
 }
 
 
@@ -241,6 +251,11 @@ AntdButton.propTypes = {
      * 默认：false
      */
     autoSpin: PropTypes.bool,
+
+    /**
+     * 为当前按钮设置特殊的点击动效，可选的有'happy-work'
+     */
+    motionType: PropTypes.oneOf(['happy-work']),
 
     loading_state: PropTypes.shape({
         /**
