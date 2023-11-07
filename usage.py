@@ -8,25 +8,41 @@ app = dash.Dash(__name__, compress=True)
 
 app.layout = html.Div(
     [
-        fac.AntdSpace(
-            [
-                fac.AntdButton(
-                    'not happy',
-                    type='primary'
-                ),
-                fac.AntdButton(
-                    'happy',
-                    type='primary',
-                    motionType='happy-work'
-                ),
-                fac.AntdConfigProvider(
-                    fac.AntdButton(
-                        'no wave',
-                        type='primary'
+        # token测试
+        fac.AntdConfigProvider(
+            fac.AntdSwitch(
+                checked=False
+            ),
+            token={
+                'motion': False,
+                'colorPrimary': 'red'
+            },
+            wavesDisabled=True
+        ),
+        # componentsToken测试
+        fac.AntdConfigProvider(
+            fac.AntdSpace(
+                [
+                    fac.AntdSwitch(
+                        checked=True
                     ),
-                    wavesDisabled=True
-                )
-            ]
+                    fac.AntdButton(
+                        '按钮测试',
+                        type='primary'
+                    )
+                ]
+            ),
+            componentsToken={
+                'Switch': {
+                    'colorPrimary': 'red',
+                    'algorithm': True
+                },
+                'Button': {
+                    'colorPrimary': 'green',
+                    'algorithm': True
+                }
+            },
+            useOldTheme='default'
         )
     ],
     style={

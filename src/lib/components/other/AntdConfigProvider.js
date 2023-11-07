@@ -1,5 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import {
+    defaultTheme,   // 默认主题
+    darkTheme,      // 暗色主题
+} from '@ant-design/compatible';
 import { ConfigProvider, theme } from 'antd';
 import { isUndefined, omitBy } from 'lodash';
 import PropsContext from '../../contexts/PropsContext';
@@ -12,6 +16,13 @@ const str2algorithm = new Map(
     ]
 );
 
+const str2oldTheme = new Map(
+    [
+        ['default', defaultTheme],
+        ['dark', darkTheme]
+    ]
+)
+
 // 定义参数配置组件AntdConfigProvider，api参数参考https://ant.design/components/tag-cn/
 const AntdConfigProvider = (props) => {
     // 取得必要属性或参数
@@ -20,11 +31,14 @@ const AntdConfigProvider = (props) => {
         children,
         key,
         algorithm,
+        useOldTheme,
         primaryColor,
         componentDisabled,
         componentSize,
         locale,
         wavesDisabled,
+        token,
+        componentsToken,
         setProps,
         loading_state
     } = props;
@@ -42,19 +56,28 @@ const AntdConfigProvider = (props) => {
             <ConfigProvider id={id}
                 key={key}
                 theme={
-                    {
-                        algorithm: (
-                            Array.isArray(algorithm) ?
-                                algorithm.map(e => str2algorithm.get(e)) :
-                                str2algorithm.get(algorithm)
-                        ),
-                        token: omitBy(
-                            {
-                                colorPrimary: primaryColor
-                            },
-                            isUndefined
-                        )
-                    }
+                    useOldTheme ?
+                        str2oldTheme.get(useOldTheme) :
+                        {
+                            algorithm: (
+                                Array.isArray(algorithm) ?
+                                    algorithm.map(e => str2algorithm.get(e)) :
+                                    str2algorithm.get(algorithm)
+                            ),
+                            token: omitBy(
+                                {
+                                    colorPrimary: primaryColor,
+                                    ...token
+                                },
+                                isUndefined
+                            ),
+                            components: omitBy(
+                                {
+                                    ...componentsToken
+                                },
+                                isUndefined
+                            )
+                        }
                 }
                 wave={{ disabled: wavesDisabled }}
                 data-dash-is-loading={
@@ -85,6 +108,11 @@ AntdConfigProvider.propTypes = {
         PropTypes.arrayOf(PropTypes.oneOf(['default', 'dark', 'compact']))
     ]),
 
+    /**
+     * 设置是否强制使用0.3.x版本之前的主题样式，可用的有'default'、'dark'
+     */
+    useOldTheme: PropTypes.oneOf(['default', 'dark']),
+
     // 自定义主色
     primaryColor: PropTypes.string,
 
@@ -103,6 +131,30 @@ AntdConfigProvider.propTypes = {
      * 默认：false
      */
     wavesDisabled: PropTypes.bool,
+
+    /**
+     * 配置design token相关参数
+     */
+    token: PropTypes.shape({
+        /**
+         * 设置是否开启动画效果
+         * 默认：true
+         */
+        motion: PropTypes.bool
+    }),
+
+    /**
+     * 配置针对具体组件的design token相关参数
+     */
+    componentsToken: PropTypes.objectOf(
+        PropTypes.shape({
+            /**
+             * 设置是否开启派生样式自动推导运算
+             * 默认：false
+             */
+            algorithm: PropTypes.bool
+        })
+    ),
 
     loading_state: PropTypes.shape({
         /**
