@@ -8,51 +8,30 @@ app = dash.Dash(__name__, compress=True)
 
 app.layout = html.Div(
     [
-        fac.AntdRadioGroup(
-            id='theme',
-            options=[
+        fac.AntdTable(
+            columns=[
                 {
-                    'label': theme,
-                    'value': theme
+                    'title': f'字段{i}',
+                    'dataIndex': f'字段{i}'
                 }
-                for theme in ['default', 'dark', 'compact', 'default+compact', 'dark+compact']
+                for i in range(1, 6)
             ],
-            defaultValue='default'
-        ),
-        fac.AntdConfigProvider(
-            [
-                fac.AntdSpace(
-                    [
-                        fac.AntdButton(
-                            '测试',
-                            type='primary'
-                        ),
-                        fac.AntdInput(
-                            placeholder='输入框测试'
-                        )
-                    ]
-                )
-            ],
-            id='algorithm'
+            data=[
+                {
+                    f'字段{i}': '示例内容'
+                    for i in range(1, 6)
+                }
+            ] * 10000,
+            bordered=True,
+            virtual=True,
+            maxHeight=800,
+            pagination=False
         )
     ],
     style={
         'padding': '50px 100px'
     }
 )
-
-
-@app.callback(
-    Output('algorithm', 'algorithm'),
-    Input('theme', 'value'),
-    prevent_initial_call=True
-)
-def change_theme(theme: str):
-
-    if '+' in theme:
-        return theme.split('+')
-
-    return theme
 
 
 if __name__ == '__main__':

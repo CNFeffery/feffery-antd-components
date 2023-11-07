@@ -40,7 +40,7 @@ import {
     QuestionCircleOutlined,
     DownOutlined
 } from '@ant-design/icons';
-import { isNumber, isEqual, isString, omitBy } from 'lodash';
+import { isNumber, isEqual, isString, isBoolean, omitBy } from 'lodash';
 import { str2Locale, locale2text } from '../components/locales.react';
 import { propTypes, defaultProps } from '../components/dataDisplay/AntdTable.react';
 
@@ -87,12 +87,15 @@ class AntdTable extends Component {
         super(props)
 
         // 处理pagination参数的默认值问题
-        props.setProps({
-            pagination: {
-                ...props.pagination,
-                current: props.pagination?.current ? props.pagination?.current : 1
-            }
-        })
+        if (isBoolean(props.pagination) && !props.pagination) {
+        } else {
+            props.setProps({
+                pagination: {
+                    ...props.pagination,
+                    current: props.pagination?.current ? props.pagination?.current : 1
+                }
+            })
+        }
 
         this.state = {
             searchText: '',
@@ -340,7 +343,7 @@ class AntdTable extends Component {
             cellUpdateOptimize,
             nClicksDropdownItem,
             hiddenRowKeys,
-            columnsWidthResizable,
+            virtual,
             setProps,
             loading_state
         } = this.props;
@@ -364,10 +367,14 @@ class AntdTable extends Component {
         ])
 
         // 为pagination补充默认参数值
-        pagination = {
-            ...pagination,
-            showTotalPrefix: pagination?.showTotalPrefix || locale2text.AntdTable[locale].showTotalPrefix,
-            showTotalSuffix: pagination?.showTotalSuffix || locale2text.AntdTable[locale].showTotalSuffix
+        if (isBoolean(pagination) && !pagination) {
+
+        } else {
+            pagination = {
+                ...pagination,
+                showTotalPrefix: pagination?.showTotalPrefix || locale2text.AntdTable[locale].showTotalPrefix,
+                showTotalSuffix: pagination?.showTotalSuffix || locale2text.AntdTable[locale].showTotalSuffix
+            }
         }
 
         // 根据columns中的hidden属性控制是否忽略对应字段
@@ -1828,14 +1835,18 @@ class AntdTable extends Component {
                     size={size2size.get(size)}
                     rowSelection={rowSelection}
                     sticky={sticky}
-                    pagination={{
-                        ...pagination,
-                        ...{
-                            showTotal: total => `${pagination.showTotalPrefix} ${total} ${pagination.showTotalSuffix}`
-                        },
-                        position: (pagination.position && !Array.isArray(pagination.position))
-                            ? [pagination.position] : pagination.position
-                    }}
+                    pagination={
+                        // 确保pagination=false生效
+                        pagination &&
+                        {
+                            ...pagination,
+                            ...{
+                                showTotal: total => `${pagination.showTotalPrefix} ${total} ${pagination.showTotalSuffix}`
+                            },
+                            position: (pagination.position && !Array.isArray(pagination.position))
+                                ? [pagination.position] : pagination.position
+                        }
+                    }
                     bordered={bordered}
                     scroll={{ x: maxWidth, y: maxHeight, scrollToFirstRowOnChange: true }}
                     onChange={this.onPageChange}
@@ -1873,6 +1884,7 @@ class AntdTable extends Component {
                         } : undefined
                     }
                     defaultExpandedRowKeys={defaultExpandedRowKeys}
+                    virtual={virtual}
                     data-dash-is-loading={
                         (loading_state && loading_state.is_loading) || undefined
                     }

@@ -891,6 +891,12 @@ AntdTable.propTypes = {
     // 默认：false
     dataDeepCompare: PropTypes.bool,
 
+    /**
+     * 是否开启虚拟滚动模式
+     * 默认：false
+     */
+    virtual: PropTypes.bool,
+
     loading_state: PropTypes.shape({
         /**
          * Determines if the component is loading or not
@@ -947,7 +953,8 @@ AntdTable.defaultProps = {
     miniChartAnimation: false,
     // dropdown模式相关
     nClicksDropdownItem: 0,
-    dataDeepCompare: false
+    dataDeepCompare: false,
+    virtual: false
 };
 
 export default AntdTable;
