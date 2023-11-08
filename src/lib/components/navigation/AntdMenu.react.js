@@ -2,7 +2,7 @@ import React, { Component, useEffect } from 'react';
 import isAbsoluteUrl from 'is-absolute-url';
 import PropTypes from 'prop-types';
 import AntdIcon from "../general/AntdIcon.react";
-import { isUndefined, isNull, isString } from 'lodash';
+import { isUndefined, isNull, isString, cloneDeep } from 'lodash';
 import { Menu, Button } from 'antd';
 import {
     MenuUnfoldOutlined,
@@ -108,7 +108,6 @@ const raw2Jsx = (obj, str2Jsx, menuItemKeyToTitle) => {
         // 若obj包含children属性，则向下递归处理
         if (obj.hasOwnProperty('children')) {
             Object.assign(obj, { children: obj.children.map(obj_ => raw2Jsx(obj_, str2Jsx, menuItemKeyToTitle)) })
-
             if (obj.component === 'SubMenu') {
                 obj = <SubMenu
                     key={obj.props.key}
@@ -255,7 +254,7 @@ const AntdMenu = (props) => {
     }, [])
 
     // 基于menuItems推导jsx数据结构
-    let _menuItems = raw2Jsx(menuItems, str2Jsx, menuItemKeyToTitle || {})
+    let _menuItems = raw2Jsx(cloneDeep(menuItems), str2Jsx, menuItemKeyToTitle || {})
 
     // 监听Item的点击事件
     const listenSelected = (item) => {
