@@ -78,6 +78,7 @@ import AntdSpin from './components/feedback/AntdSpin.react';
 // 布局
 import AntdCenter from './components/layout/AntdCenter.react';
 import AntdDivider from './components/layout/AntdDivider.react';
+import AntdFlex from './components/layout/AntdFlex.react';
 import AntdRow from './components/layout/grid/AntdRow.react';
 import AntdCol from './components/layout/grid/AntdCol.react';
 import AntdSpace from './components/layout/AntdSpace.react';
@@ -121,6 +122,7 @@ export {
     AntdCollapse,
     AntdCenter,
     AntdDivider,
+    AntdFlex,
     AntdRow,
     AntdCol,
     AntdLayout,

@@ -76,6 +76,7 @@ from .AntdCenter import AntdCenter
 from .AntdCompact import AntdCompact
 from .AntdContent import AntdContent
 from .AntdDivider import AntdDivider
+from .AntdFlex import AntdFlex
 from .AntdFooter import AntdFooter
 from .AntdHeader import AntdHeader
 from .AntdLayout import AntdLayout
@@ -175,6 +176,7 @@ __all__ = [
     "AntdCompact",
     "AntdContent",
     "AntdDivider",
+    "AntdFlex",
     "AntdFooter",
     "AntdHeader",
     "AntdLayout",
