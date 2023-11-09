@@ -19,6 +19,7 @@ const AntdFloatButton = (props) => {
         shape,
         href,
         target,
+        nClicks,
         setProps,
         loading_state
     } = props;
@@ -39,6 +40,7 @@ const AntdFloatButton = (props) => {
             shape={shape}
             href={href}
             target={target}
+            onClick={() => setProps({ nClicks: nClicks + 1 })}
             data-dash-is-loading={
                 (loading_state && loading_state.is_loading) || undefined
             }
@@ -101,6 +103,11 @@ AntdFloatButton.propTypes = {
      */
     target: PropTypes.string,
 
+    /**
+     * 监听当前悬浮按钮累计点击次数
+     */
+    nClicks: PropTypes.number,
+
     loading_state: PropTypes.shape({
         /**
          * Determines if the component is loading or not
@@ -127,7 +134,8 @@ AntdFloatButton.propTypes = {
 AntdFloatButton.defaultProps = {
     type: 'default',
     shape: 'circle',
-    target: '_blank'
+    target: '_blank',
+    nClicks: 0
 }
 
 export default AntdFloatButton;

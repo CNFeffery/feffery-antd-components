@@ -37,6 +37,9 @@ Keyword arguments:
     - prop_name (string; optional):
         Holds which property is loading.
 
+- nClicks (number; default 0):
+    监听当前悬浮按钮累计点击次数.
+
 - shape (a value equal to: 'circle', 'square'; default 'circle'):
     设置按钮形状，可选的有'circle'、'square'  默认：'circle'.
 
@@ -55,10 +58,10 @@ Keyword arguments:
     _namespace = 'feffery_antd_components'
     _type = 'AntdFloatButton'
     @_explicitize_args
-    def __init__(self, id=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, key=Component.UNDEFINED, icon=Component.UNDEFINED, description=Component.UNDEFINED, tooltip=Component.UNDEFINED, type=Component.UNDEFINED, shape=Component.UNDEFINED, href=Component.UNDEFINED, target=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
-        self._prop_names = ['id', 'className', 'description', 'href', 'icon', 'key', 'loading_state', 'shape', 'style', 'target', 'tooltip', 'type']
+    def __init__(self, id=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, key=Component.UNDEFINED, icon=Component.UNDEFINED, description=Component.UNDEFINED, tooltip=Component.UNDEFINED, type=Component.UNDEFINED, shape=Component.UNDEFINED, href=Component.UNDEFINED, target=Component.UNDEFINED, nClicks=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
+        self._prop_names = ['id', 'className', 'description', 'href', 'icon', 'key', 'loading_state', 'nClicks', 'shape', 'style', 'target', 'tooltip', 'type']
         self._valid_wildcard_attributes =            []
-        self.available_properties = ['id', 'className', 'description', 'href', 'icon', 'key', 'loading_state', 'shape', 'style', 'target', 'tooltip', 'type']
+        self.available_properties = ['id', 'className', 'description', 'href', 'icon', 'key', 'loading_state', 'nClicks', 'shape', 'style', 'target', 'tooltip', 'type']
         self.available_wildcard_properties =            []
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()
