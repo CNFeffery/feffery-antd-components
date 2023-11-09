@@ -69,6 +69,7 @@ from .AntdSkeletonImage import AntdSkeletonImage
 from .AntdSkeletonInput import AntdSkeletonInput
 from .AntdButton import AntdButton
 from .AntdFloatButton import AntdFloatButton
+from .AntdFloatButtonGroup import AntdFloatButtonGroup
 from .AntdIcon import AntdIcon
 from .AntdParagraph import AntdParagraph
 from .AntdText import AntdText
@@ -170,6 +171,7 @@ __all__ = [
     "AntdSkeletonInput",
     "AntdButton",
     "AntdFloatButton",
+    "AntdFloatButtonGroup",
     "AntdIcon",
     "AntdParagraph",
     "AntdText",
