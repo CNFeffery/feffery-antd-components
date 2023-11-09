@@ -1,5 +1,6 @@
 // 通用
 import AntdButton from './components/general/AntdButton.react';
+import AntdFloatButton from './components/general/AntdFloatButton.react';
 import AntdIcon from './components/general/AntdIcon.react';
 import AntdParagraph from './components/general/typography/AntdParagraph.react';
 import AntdText from './components/general/typography/AntdText.react';
@@ -111,6 +112,7 @@ export {
     AntdDatePicker,
     AntdDateRangePicker,
     AntdButton,
+    AntdFloatButton,
     AntdSelect,
     AntdTree,
     AntdTable,
