@@ -102,8 +102,9 @@ import AntdAccordion from './components/dataDisplay/AntdAccordion.react';
 // 其他
 import AntdAnchor from './components/other/AntdAnchor.react';
 import AntdBackTop from './components/other/AntdBackTop.react';
-import AntdWatermark from './components/other/AntdWatermark.react';
 import AntdCopyText from './components/other/AntdCopyText.react';
+import AntdTour from './components/other/AntdTour.react';
+import AntdWatermark from './components/other/AntdWatermark.react';
 import AntdConfigProvider from './components/other/AntdConfigProvider';
 // css样式
 import './components/styles.css'; // 自定义样式
@@ -208,5 +209,6 @@ export {
     AntdPopupCard,
     AntdConfigProvider,
     AntdSpoiler,
-    AntdCompact
+    AntdCompact,
+    AntdTour
 };

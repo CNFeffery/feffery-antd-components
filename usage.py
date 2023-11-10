@@ -2,24 +2,60 @@ import dash
 import json
 from dash import html
 import feffery_antd_components as fac
-from dash.dependencies import Input, Output, ALL
+from dash.dependencies import Input, Output
 
 app = dash.Dash(__name__, compress=True)
 
 app.layout = html.Div(
     [
-        html.Pre(id='output'),
-        fac.AntdFloatButtonGroup(
+        fac.AntdSpace(
             [
-                fac.AntdFloatButton(
-                    id={
-                        'type': 'float-button',
-                        'index': i
-                    }
+                fac.AntdButton(
+                    '打开引导',
+                    id='open-tour',
+                    type='primary'
+                ),
+                fac.AntdSpace(
+                    [
+                        fac.AntdButton(
+                            '第一步',
+                            id='step1'
+                        ),
+                        fac.AntdInput(
+                            className='step2',
+                            placeholder='第二步'
+                        )
+                    ],
+                    size='large'
+                ),
+                fac.AntdAlert(
+                    id='第三步',
+                    type='info',
+                    message='第三步'
                 )
-                for i in range(1, 5)
             ],
-            shape='square'
+            direction='vertical',
+            style={
+                'width': '100%'
+            }
+        ),
+        fac.AntdTour(
+            id='tour-demo',
+            steps=[
+                {
+                    'targetId': 'step1',
+                    'title': '我是第一步'
+                },
+                {
+                    'targetSelector': '.step2',
+                    'title': '我是第二步'
+                },
+                {
+                    'title': '我是第三步'
+                }
+            ],
+            type='primary',
+            mask=False
         )
     ],
     style={
@@ -29,23 +65,13 @@ app.layout = html.Div(
 
 
 @app.callback(
-    Output('output', 'children'),
-    Input(
-        {
-            'type': 'float-button',
-            'index': ALL
-        },
-        'nClicks'
-    ),
+    Output('tour-demo', 'open'),
+    Input('open-tour', 'nClicks'),
     prevent_initial_call=True
 )
-def demo(*args):
+def demo(nClicks):
 
-    return json.dumps(
-        dash.ctx.triggered,
-        indent=4,
-        ensure_ascii=False
-    )
+    return True
 
 
 if __name__ == '__main__':

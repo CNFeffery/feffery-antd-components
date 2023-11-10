@@ -97,6 +97,7 @@ from .AntdAnchor import AntdAnchor
 from .AntdBackTop import AntdBackTop
 from .AntdConfigProvider import AntdConfigProvider
 from .AntdCopyText import AntdCopyText
+from .AntdTour import AntdTour
 from .AntdWatermark import AntdWatermark
 
 __all__ = [
@@ -199,5 +200,6 @@ __all__ = [
     "AntdBackTop",
     "AntdConfigProvider",
     "AntdCopyText",
+    "AntdTour",
     "AntdWatermark"
 ]
