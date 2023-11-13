@@ -20,6 +20,19 @@ app.layout = html.Div(
                 )
             ],
             direction='vertical'
+        ),
+        fac.AntdQRCode(
+            id='qrcode',
+            value='https://github.com/CNFeffery/feffery-antd-components',
+            type="svg",
+            icon="https://gw.alipayobjects.com/zos/rmsportal/KDpgvguMpGfqaHPjicRK.svg",
+            size=180,
+            iconSize=50,
+            color='#1890ff',
+            bgColor='#fff',
+            bordered=False,
+            errorLevel='H',
+            status='expired'
         )
     ],
     style={
@@ -30,13 +43,13 @@ app.layout = html.Div(
 
 @app.callback(
     Output('output', 'children'),
-    Input('color-picker', 'value')
+    Input('qrcode', 'refreshClicks')
 )
-def demo(value):
+def demo(refreshClicks):
 
     return json.dumps(
         dict(
-            value=value
+            点击刷新次数=refreshClicks
         ),
         indent=4,
         ensure_ascii=False
