@@ -9,6 +9,7 @@ from .AntdCountdown import AntdCountdown
 from .AntdEmpty import AntdEmpty
 from .AntdImage import AntdImage
 from .AntdPopover import AntdPopover
+from .AntdQRCode import AntdQRCode
 from .AntdRibbon import AntdRibbon
 from .AntdSegmented import AntdSegmented
 from .AntdSpoiler import AntdSpoiler
@@ -113,6 +114,7 @@ __all__ = [
     "AntdEmpty",
     "AntdImage",
     "AntdPopover",
+    "AntdQRCode",
     "AntdRibbon",
     "AntdSegmented",
     "AntdSpoiler",
