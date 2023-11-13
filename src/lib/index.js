@@ -61,6 +61,7 @@ import AntdTimeline from './components/dataDisplay/AntdTimeline.react';
 import AntdTooltip from './components/dataDisplay/AntdTooltip.react';
 import AntdTree from './components/dataDisplay/AntdTree.react';
 import AntdSpoiler from './components/dataDisplay/AntdSpoiler.react';
+import AntdQRCode from './components/dataDisplay/AntdQRCode.react';
 // 反馈
 import AntdAlert from './components/feedback/AntdAlert.react';
 import AntdDrawer from './components/feedback/AntdDrawer.react';
@@ -212,5 +213,6 @@ export {
     AntdSpoiler,
     AntdCompact,
     AntdTour,
-    AntdColorPicker
+    AntdColorPicker,
+    AntdQRCode
 };
