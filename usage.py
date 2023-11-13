@@ -10,20 +10,32 @@ app = dash.Dash(__name__, compress=True)
 
 app.layout = html.Div(
     [
-        fac.AntdQRCode(
-            id='qrcode',
-            value='初始值',
-            # type="svg",
-            icon="https://gw.alipayobjects.com/zos/rmsportal/KDpgvguMpGfqaHPjicRK.svg",
-            size=180,
-            iconSize=50,
-            color='#1890ff',
-            bgColor='#fff',
-            # bordered=False,
-            errorLevel='H',
-            status='loading', # 初始化loading
-            expires=5,
-            autoSpin=True
+        fac.AntdDropdown(
+            id='dropdown-demo',
+            title='触发点',
+            menuItems=[
+                {
+                    'title': '选项1',
+                    'key': '选项1',
+                },
+                {
+                    'title': '选项2',
+                    'key': '选项2',
+                },
+                {
+                    'isDivider': True
+                },
+                {
+                    'title': '选项3-1',
+                    'key': '选项3-1',
+                },
+                {
+                    'title': '选项3-2',
+                    'key': '选项3-2',
+                }
+            ],
+            selectable=True,
+            multiple=True
         ),
         html.Pre(
             id='output'
@@ -36,32 +48,17 @@ app.layout = html.Div(
 
 
 @app.callback(
-    [Output('qrcode', 'value'),
-     Output('qrcode', 'status')],
-    Input('qrcode', 'value')
+    Output('output', 'children'),
+    Input('dropdown-demo', 'selectedKeys')
 )
-def init_value(value):
+def demo(selectedKeys):
 
-    if value == '初始值':
+    return json.dumps(
+        dict(selectedKeys=selectedKeys),
+        indent=4,
+        ensure_ascii=False
+    )
 
-        time.sleep(1)
-
-        return [str(uuid.uuid4()), 'active']
-
-    return dash.no_update
-
-
-@app.callback(
-    [Output('qrcode', 'value', allow_duplicate=True),
-     Output('qrcode', 'status', allow_duplicate=True)],
-    Input('qrcode', 'refreshClicks'),
-    prevent_initial_call=True
-)
-def demo(refreshClicks):
-
-    time.sleep(3)
-
-    return str(uuid.uuid4()), 'active'
 
 if __name__ == '__main__':
     app.run(debug=True)

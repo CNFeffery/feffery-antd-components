@@ -1,12 +1,13 @@
 import React, { useContext, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { Dropdown, Menu, Button } from 'antd';
+import { Dropdown, Menu, Button, Typography } from 'antd';
 import AntdIcon from '../general/AntdIcon.react';
 import { DownOutlined } from '@ant-design/icons';
 import { isString, isUndefined } from 'lodash';
 import useCss from '../../hooks/useCss';
 import PropsContext from '../../contexts/PropsContext';
 
+const { Link } = Typography;
 
 // 定义下拉菜单组件AntdDropdown，api参数参考https://ant.design/components/dropdown-cn/
 const AntdDropdown = (props) => {
@@ -28,6 +29,9 @@ const AntdDropdown = (props) => {
         visible,
         menuItems,
         nClicks,
+        selectable,
+        multiple,
+        selectedKeys,
         popupContainer,
         buttonProps,
         freePosition,
@@ -63,8 +67,10 @@ const AntdDropdown = (props) => {
             style={style}
             key={key}
             overlay={
-                <Menu onClick={(item, key, keyPath, domEvent) => (
-                    setProps({
+                <Menu selectable={selectable}
+                    multiple={multiple}
+                    selectedKeys={selectedKeys}
+                    onClick={(item, key, keyPath, e) => setProps({
                         clickedKey: item.key,
                         nClicks: nClicks + 1,
                         ...(
@@ -74,14 +80,16 @@ const AntdDropdown = (props) => {
                                 } :
                                 {}
                         )
-                    })
-                )}>
+                    })}
+                    onSelect={(e) => setProps({ selectedKeys: e.selectedKeys })}
+                    onDeselect={(e) => setProps({ selectedKeys: e.selectedKeys })}
+                >
                     {
                         menuItems.map(
                             menuItem => (
                                 // 判断isDivider参数是否不为false
                                 menuItem.isDivider ?
-                                    <Menu.Divider /> :
+                                    <Menu.Divider key='divider' /> :
                                     <Menu.Item
                                         icon={
                                             menuItem.icon ?
@@ -128,9 +136,7 @@ const AntdDropdown = (props) => {
             trigger={[trigger]}
             autoAdjustOverflow={autoAdjustOverflow}
             open={visible}
-            onOpenChange={(v) => setProps({
-                visible: v
-            })}
+            onOpenChange={(e) => setProps({ visible: e })}
             getPopupContainer={
                 popupContainer === 'parent' ?
                     (triggerNode) => triggerNode.parentNode :
@@ -162,10 +168,9 @@ const AntdDropdown = (props) => {
                                 {title} <DownOutlined />
                             </Button>
                             :
-                            <a className="ant-dropdown-link"
-                                onClick={e => e.preventDefault()}>
+                            <Link onClick={e => e.preventDefault()}>
                                 {title} <DownOutlined />
-                            </a>
+                            </Link>
                     )
             }
         </Dropdown>
@@ -257,6 +262,23 @@ AntdDropdown.propTypes = {
             isDivider: PropTypes.bool
         })
     ),
+
+    /**
+     * 设置菜单项是否可选中
+     * 默认：false
+     */
+    selectable: PropTypes.bool,
+
+    /**
+     * 设置菜单是否允许多选
+     * 默认：false
+     */
+    multiple: PropTypes.bool,
+
+    /**
+     * 设置或监听当前已选中菜单项key值数组
+     */
+    selectedKeys: PropTypes.arrayOf(PropTypes.string),
 
     // 设置下拉框是否显示连接箭头，默认为false
     arrow: PropTypes.bool,
