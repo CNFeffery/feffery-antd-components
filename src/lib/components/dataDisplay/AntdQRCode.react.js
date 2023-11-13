@@ -1,13 +1,12 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { QRCode, ConfigProvider } from 'antd';
 import useCss from '../../hooks/useCss';
 import { isString } from 'lodash';
 import { str2Locale } from '../locales.react';
 
-// 定义二维码组件AntdQRCode
+// 定义二维码组件AntdQRCode，api参数参考https://ant.design/components/collapse/#components-collapse-demo-accordion
 const AntdQRCode = (props) => {
-    // 取得必要属性或参数
     let {
         id,
         className,
@@ -24,43 +23,26 @@ const AntdQRCode = (props) => {
         bordered,
         errorLevel,
         status,
+        expires,
+        autoSpin,
         refreshClicks,
         setProps,
         loading_state
     } = props;
 
-    if (status == 'expired') {
-        return (
-            <ConfigProvider
-                locale={str2Locale.get(locale)}
-            >
-                <QRCode
-                    id={id}
-                    className={
-                        isString(className) ?
-                            className :
-                            (className ? useCss(className) : undefined)
-                    }
-                    style={style}
-                    key={key}
-                    value={value}
-                    type={type}
-                    icon={icon}
-                    size={size}
-                    iconSize={iconSize}
-                    color={color}
-                    bgColor={bgColor}
-                    bordered={bordered}
-                    errorLevel={errorLevel}
-                    status={status}
-                    onRefresh={() => setProps({ refreshClicks: refreshClicks + 1 })}
-                    data-dash-is-loading={
-                        (loading_state && loading_state.is_loading) || undefined
-                    }
-                />
-            </ConfigProvider>
-        );
-    }
+    console.log(loading_state)
+
+    useEffect(() => {
+        if (value && expires) {
+            setTimeout(
+                () => {
+                    setProps({ status: 'expired' })
+                },
+                expires * 1000
+            )
+        }
+    }, [value])
+
     return (
         <ConfigProvider
             locale={str2Locale.get(locale)}
@@ -83,7 +65,8 @@ const AntdQRCode = (props) => {
                 bgColor={bgColor}
                 bordered={bordered}
                 errorLevel={errorLevel}
-                status={status}
+                status={autoSpin && loading_state?.prop_name?.startsWith('value') ? 'loading' : status}
+                onRefresh={() => setProps({ refreshClicks: refreshClicks + 1 })}
                 data-dash-is-loading={
                     (loading_state && loading_state.is_loading) || undefined
                 }
@@ -129,7 +112,7 @@ AntdQRCode.propTypes = {
     icon: PropTypes.string,
 
     /**
-     * 设置二维码大小
+     * 设置二维码像素尺寸
      * 默认：160
      */
     size: PropTypes.number,
@@ -159,19 +142,30 @@ AntdQRCode.propTypes = {
     bordered: PropTypes.bool,
 
     /**
-     * 设置二维码纠错等级
+     * 设置二维码纠错等级，可选的有'L'、'M'、'Q'、'H'
      * 默认：'M'
      */
     errorLevel: PropTypes.oneOf(['L', 'M', 'Q', 'H']),
 
     /**
-     * 设置二维码状态
+     * 设置二维码状态，可选的有'active'、'expired'、'loading'
      * 默认：'active'
      */
     status: PropTypes.oneOf(['active', 'expired', 'loading']),
 
     /**
-     * 监听当前"点击刷新"按钮累计点击次数，仅在status为'expired'的时候生效
+     * 设置当前二维码过期时间，单位：秒，到期后二维码状态将会被强制更新为'expired'
+     */
+    expires: PropTypes.number,
+
+    /**
+     * 是否在value处于回调更新中时，自动切换到loading状态
+     * 默认：false
+     */
+    autoSpin: PropTypes.bool,
+
+    /**
+     * 监听当前"点击刷新"按钮累计点击次数，仅在status为'expired'时有意义
      */
     refreshClicks: PropTypes.number,
 
@@ -208,6 +202,7 @@ AntdQRCode.defaultProps = {
     bordered: true,
     errorLevel: 'M',
     status: 'active',
+    autoSpin: false,
     refreshClicks: 0
 }
 
