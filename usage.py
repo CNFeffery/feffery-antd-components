@@ -10,52 +10,16 @@ app.layout = html.Div(
     [
         fac.AntdSpace(
             [
-                fac.AntdButton(
-                    '打开引导',
-                    id='open-tour',
-                    type='primary'
+                html.Pre(
+                    id='output'
                 ),
-                fac.AntdSpace(
-                    [
-                        fac.AntdButton(
-                            '第一步',
-                            id='step1'
-                        ),
-                        fac.AntdInput(
-                            className='step2',
-                            placeholder='第二步'
-                        )
-                    ],
-                    size='large'
-                ),
-                fac.AntdAlert(
-                    id='第三步',
-                    type='info',
-                    message='第三步'
+                fac.AntdColorPicker(
+                    id='color-picker',
+                    allowClear=True,
+                    disabledAlpha=False
                 )
             ],
-            direction='vertical',
-            style={
-                'width': '100%'
-            }
-        ),
-        fac.AntdTour(
-            id='tour-demo',
-            steps=[
-                {
-                    'targetId': 'step1',
-                    'title': '我是第一步'
-                },
-                {
-                    'targetSelector': '.step2',
-                    'title': '我是第二步'
-                },
-                {
-                    'title': '我是第三步'
-                }
-            ],
-            type='primary',
-            mask=False
+            direction='vertical'
         )
     ],
     style={
@@ -65,13 +29,18 @@ app.layout = html.Div(
 
 
 @app.callback(
-    Output('tour-demo', 'open'),
-    Input('open-tour', 'nClicks'),
-    prevent_initial_call=True
+    Output('output', 'children'),
+    Input('color-picker', 'value')
 )
-def demo(nClicks):
+def demo(value):
 
-    return True
+    return json.dumps(
+        dict(
+            value=value
+        ),
+        indent=4,
+        ensure_ascii=False
+    )
 
 
 if __name__ == '__main__':

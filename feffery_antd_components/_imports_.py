@@ -29,6 +29,7 @@ from .AntdCalendar import AntdCalendar
 from .AntdCascader import AntdCascader
 from .AntdCheckbox import AntdCheckbox
 from .AntdCheckboxGroup import AntdCheckboxGroup
+from .AntdColorPicker import AntdColorPicker
 from .AntdDatePicker import AntdDatePicker
 from .AntdDateRangePicker import AntdDateRangePicker
 from .AntdInput import AntdInput
@@ -132,6 +133,7 @@ __all__ = [
     "AntdCascader",
     "AntdCheckbox",
     "AntdCheckboxGroup",
+    "AntdColorPicker",
     "AntdDatePicker",
     "AntdDateRangePicker",
     "AntdInput",
