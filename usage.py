@@ -49,12 +49,18 @@ app.layout = html.Div(
 
 @app.callback(
     Output('output', 'children'),
-    Input('dropdown-demo', 'selectedKeys')
+    [Input('dropdown-demo', 'selectedKeys'),
+     Input('dropdown-demo', 'clickedKey'),
+     Input('dropdown-demo', 'nClicks')]
 )
-def demo(selectedKeys):
+def demo(selectedKeys, clickedKey, nClicks):
 
     return json.dumps(
-        dict(selectedKeys=selectedKeys),
+        dict(
+            selectedKeys=selectedKeys,
+            clickedKey=clickedKey,
+            nClicks=nClicks
+        ),
         indent=4,
         ensure_ascii=False
     )

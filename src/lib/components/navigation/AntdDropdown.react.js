@@ -1,6 +1,6 @@
 import React, { useContext, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { Dropdown, Menu, Button, Typography } from 'antd';
+import { Dropdown, Button, Typography } from 'antd';
 import AntdIcon from '../general/AntdIcon.react';
 import { DownOutlined } from '@ant-design/icons';
 import { isString, isUndefined } from 'lodash';
@@ -66,60 +66,55 @@ const AntdDropdown = (props) => {
             }
             style={style}
             key={key}
-            overlay={
-                <Menu selectable={selectable}
-                    multiple={multiple}
-                    selectedKeys={selectedKeys}
-                    onClick={(item, key, keyPath, e) => setProps({
-                        clickedKey: item.key,
-                        nClicks: nClicks + 1,
-                        ...(
-                            freePosition ?
-                                {
-                                    visible: false
-                                } :
-                                {}
+            menu={{
+                items: menuItems.map(
+                    (menuItem) => ({
+                        type: menuItem.isDivider ? 'divider' : undefined,
+                        disabled: menuItem.disabled,
+                        key: menuItem.key || menuItem.title,
+                        label: (
+                            <a href={menuItem.href}
+                                target={menuItem.target}>
+                                {menuItem.title}
+                            </a>
+                        ),
+                        icon: (
+                            menuItem.icon ?
+                                (
+                                    menuItem.iconRenderer === 'fontawesome' ?
+                                        (
+                                            React.createElement(
+                                                'i',
+                                                {
+                                                    className: menuItem.icon
+                                                }
+                                            )
+                                        ) :
+                                        (
+                                            <AntdIcon icon={menuItem.icon} />
+                                        )
+                                ) :
+                                null
                         )
-                    })}
-                    onSelect={(e) => setProps({ selectedKeys: e.selectedKeys })}
-                    onDeselect={(e) => setProps({ selectedKeys: e.selectedKeys })}
-                >
-                    {
-                        menuItems.map(
-                            menuItem => (
-                                // 判断isDivider参数是否不为false
-                                menuItem.isDivider ?
-                                    <Menu.Divider key='divider' /> :
-                                    <Menu.Item
-                                        icon={
-                                            menuItem.icon ?
-                                                (
-                                                    menuItem.iconRenderer === 'fontawesome' ?
-                                                        (
-                                                            React.createElement(
-                                                                'i',
-                                                                {
-                                                                    className: menuItem.icon
-                                                                }
-                                                            )
-                                                        ) :
-                                                        (
-                                                            <AntdIcon icon={menuItem.icon} />
-                                                        )
-                                                ) : null
-                                        }
-                                        disabled={menuItem.disabled}
-                                        key={menuItem.key ? menuItem.key : menuItem.title}>
-                                        <a href={menuItem.href}
-                                            target={menuItem.target}>
-                                            {menuItem.title}
-                                        </a>
-                                    </Menu.Item>
-                            )
-                        )
-                    }
-                </Menu>
-            }
+                    })
+                ),
+                selectable: selectable,
+                multiple: multiple,
+                selectedKeys: selectedKeys,
+                onClick: (item, key, keyPath, e) => setProps({
+                    clickedKey: item.key,
+                    nClicks: nClicks + 1,
+                    ...(
+                        freePosition ?
+                            {
+                                visible: false
+                            } :
+                            {}
+                    )
+                }),
+                onSelect: (e) => setProps({ selectedKeys: e.selectedKeys }),
+                onDeselect: (e) => setProps({ selectedKeys: e.selectedKeys })
+            }}
             arrow={arrow}
             disabled={
                 context && !isUndefined(context.componentDisabled) ?
