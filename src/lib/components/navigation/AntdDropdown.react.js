@@ -105,7 +105,7 @@ const AntdDropdown = (props) => {
                     clickedKey: item.key,
                     nClicks: nClicks + 1,
                     ...(
-                        freePosition ?
+                        freePosition && !multiple ?
                             {
                                 visible: false
                             } :
