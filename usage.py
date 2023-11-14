@@ -35,7 +35,8 @@ app.layout = html.Div(
                 }
             ],
             selectable=True,
-            multiple=True
+            multiple=True,
+            nonSelectableKeys=['选项2']
         ),
         html.Pre(
             id='output'

@@ -32,6 +32,7 @@ const AntdDropdown = (props) => {
         selectable,
         multiple,
         selectedKeys,
+        nonSelectableKeys,
         popupContainer,
         buttonProps,
         freePosition,
@@ -101,18 +102,20 @@ const AntdDropdown = (props) => {
                 selectable: selectable,
                 multiple: multiple,
                 selectedKeys: selectedKeys,
-                onClick: (item, key, keyPath, e) => setProps({
-                    clickedKey: item.key,
-                    nClicks: nClicks + 1,
-                    ...(
-                        freePosition && !multiple ?
-                            {
-                                visible: false
-                            } :
-                            {}
-                    )
-                }),
-                onSelect: (e) => setProps({ selectedKeys: e.selectedKeys }),
+                onClick: (item, key, keyPath, e) => {
+                    setProps({
+                        clickedKey: item.key,
+                        nClicks: nClicks + 1,
+                        ...(
+                            freePosition && !multiple ?
+                                {
+                                    visible: false
+                                } :
+                                {}
+                        )
+                    })
+                },
+                onSelect: (e) => setProps({ selectedKeys: (e.selectedKeys || []).filter(key => !nonSelectableKeys.includes(key)) }),
                 onDeselect: (e) => setProps({ selectedKeys: e.selectedKeys })
             }}
             arrow={arrow}
@@ -232,7 +235,7 @@ AntdDropdown.propTypes = {
     menuItems: PropTypes.arrayOf(
         PropTypes.exact({
             // 定义节点文字内容
-            title: PropTypes.string,
+            title: PropTypes.node,
 
             // 定义节点链接url
             href: PropTypes.string,
@@ -274,6 +277,12 @@ AntdDropdown.propTypes = {
      * 设置或监听当前已选中菜单项key值数组
      */
     selectedKeys: PropTypes.arrayOf(PropTypes.string),
+
+    /**
+     * 设置不可选中项key值数组
+     * 默认：[]
+     */
+    nonSelectableKeys: PropTypes.arrayOf(PropTypes.string),
 
     // 设置下拉框是否显示连接箭头，默认为false
     arrow: PropTypes.bool,
@@ -348,7 +357,8 @@ AntdDropdown.defaultProps = {
     popupContainer: 'body',
     autoAdjustOverflow: true,
     freePosition: false,
-    batchPropsNames: []
+    batchPropsNames: [],
+    nonSelectableKeys: []
 }
 
 export default AntdDropdown;
