@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, useContext } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { DatePicker, ConfigProvider } from 'antd';
 import dayjs from 'dayjs';
 import isoWeek from 'dayjs/plugin/isoWeek';
@@ -55,7 +55,7 @@ const AntdDateRangePicker = (props) => {
         batchPropsNames
     } = props;
 
-    const rawValueRef = useRef(null);
+    const [rawValue, setRawValue] = useState(null);
 
     // 批属性监听
     useEffect(() => {
@@ -115,7 +115,7 @@ const AntdDateRangePicker = (props) => {
     const onChange = (date, dateString) => {
         if (Array.isArray(dateString)) {
             // 更新rawValue
-            rawValueRef.current = date;
+            setRawValue(date);
             if (dateString[0] !== '' && dateString[1] !== '') {
                 setProps({ value: [dateString[0], dateString[1]] })
             } else {
@@ -433,7 +433,7 @@ const AntdDateRangePicker = (props) => {
                             undefined
                     }
                     value={
-                        rawValueRef.current ||
+                        rawValue ||
                         (
                             (value && value.length === 2) ?
                                 [value[0] ? dayjs(value[0], format) : undefined,

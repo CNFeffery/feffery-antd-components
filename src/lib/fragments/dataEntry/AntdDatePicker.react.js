@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, useContext } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { DatePicker, ConfigProvider } from 'antd';
 import dayjs from 'dayjs';
 import isoWeek from 'dayjs/plugin/isoWeek';
@@ -53,7 +53,7 @@ const AntdDatePicker = (props) => {
         batchPropsNames
     } = props;
 
-    const rawValueRef = useRef(null);
+    const [rawValue, setRawValue] = useState(null);
 
     // 批属性监听
     useEffect(() => {
@@ -113,7 +113,7 @@ const AntdDatePicker = (props) => {
     const onChange = (date, dateString) => {
         if (isString(dateString)) {
             // 更新rawValue
-            rawValueRef.current = date;
+            setRawValue(date);
             setProps({ value: dateString })
         }
     }
@@ -410,7 +410,7 @@ const AntdDatePicker = (props) => {
                     }
                     disabledDate={disabledDatesStrategy ? checkDisabledDate : undefined}
                     defaultPickerValue={dayjs(defaultPickerValue, format)}
-                    value={rawValueRef.current || (value ? dayjs(value, format) : undefined)}
+                    value={rawValue || (value ? dayjs(value, format) : undefined)}
                     defaultValue={defaultValue ? dayjs(defaultValue, format) : undefined}
                     showTime={
                         // 处理时间选择面板在日期选定后的默认选中值
