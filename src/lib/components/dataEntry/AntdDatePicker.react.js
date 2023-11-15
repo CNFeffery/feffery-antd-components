@@ -115,7 +115,6 @@ AntdDatePicker.propTypes = {
     autoFocus: PropTypes.bool,
 
     // 设置是否以只读模式进行渲染，底层利用open参数
-    // 默认为false
     readOnly: PropTypes.bool,
 
     // 设置展开面板底部额外内容

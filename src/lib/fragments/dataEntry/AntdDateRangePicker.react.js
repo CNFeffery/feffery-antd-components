@@ -1,6 +1,8 @@
-import React, { useEffect, useContext } from 'react';
+import React, { useRef, useEffect, useContext } from 'react';
 import { DatePicker, ConfigProvider } from 'antd';
 import dayjs from 'dayjs';
+import isoWeek from 'dayjs/plugin/isoWeek';
+import advancedFormat from 'dayjs/plugin/advancedFormat';
 import 'dayjs/locale/zh-cn';
 import { isString, isUndefined, isObject } from 'lodash';
 import { str2Locale } from '../../components/locales.react';
@@ -9,6 +11,10 @@ import PropsContext from '../../contexts/PropsContext';
 import { propTypes, defaultProps } from '../../components/dataEntry/AntdDateRangePicker.react';
 
 const { RangePicker } = DatePicker;
+
+// 调用dayjs额外插件模块
+dayjs.extend(isoWeek)
+dayjs.extend(advancedFormat)
 
 // 定义日期范围选择组件AntdDateRangePicker，api参数参考https://ant.design/components/date-picker-cn/
 const AntdDateRangePicker = (props) => {
@@ -48,6 +54,8 @@ const AntdDateRangePicker = (props) => {
         loading_state,
         batchPropsNames
     } = props;
+
+    const rawValueRef = useRef(null);
 
     // 批属性监听
     useEffect(() => {
@@ -106,6 +114,8 @@ const AntdDateRangePicker = (props) => {
 
     const onChange = (date, dateString) => {
         if (Array.isArray(dateString)) {
+            // 更新rawValue
+            rawValueRef.current = date;
             if (dateString[0] !== '' && dateString[1] !== '') {
                 setProps({ value: [dateString[0], dateString[1]] })
             } else {
@@ -423,10 +433,13 @@ const AntdDateRangePicker = (props) => {
                             undefined
                     }
                     value={
-                        (value && value.length === 2) ?
-                            [value[0] ? dayjs(value[0], format) : undefined,
-                            value[1] ? dayjs(value[1], format) : undefined] :
-                            undefined
+                        rawValueRef.current ||
+                        (
+                            (value && value.length === 2) ?
+                                [value[0] ? dayjs(value[0], format) : undefined,
+                                value[1] ? dayjs(value[1], format) : undefined] :
+                                undefined
+                        )
                     }
                     defaultValue={
                         (defaultValue && defaultValue.length === 2) ?

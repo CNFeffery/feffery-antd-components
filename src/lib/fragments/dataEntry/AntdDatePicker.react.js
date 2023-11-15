@@ -1,12 +1,18 @@
-import React, { useEffect, useContext } from 'react';
+import React, { useRef, useEffect, useContext } from 'react';
 import { DatePicker, ConfigProvider } from 'antd';
 import dayjs from 'dayjs';
+import isoWeek from 'dayjs/plugin/isoWeek';
+import advancedFormat from 'dayjs/plugin/advancedFormat';
 import { isString, isUndefined, isObject } from 'lodash';
 import 'dayjs/locale/zh-cn';
 import { str2Locale } from '../../components/locales.react';
 import useCss from '../../hooks/useCss';
 import PropsContext from '../../contexts/PropsContext';
 import { propTypes, defaultProps } from '../../components/dataEntry/AntdDatePicker.react';
+
+// 调用dayjs额外插件模块
+dayjs.extend(isoWeek)
+dayjs.extend(advancedFormat)
 
 // 定义日期选择组件AntdDatePicker，api参数参考https://ant.design/components/date-picker-cn/
 const AntdDatePicker = (props) => {
@@ -46,6 +52,8 @@ const AntdDatePicker = (props) => {
         loading_state,
         batchPropsNames
     } = props;
+
+    const rawValueRef = useRef(null);
 
     // 批属性监听
     useEffect(() => {
@@ -104,6 +112,8 @@ const AntdDatePicker = (props) => {
 
     const onChange = (date, dateString) => {
         if (isString(dateString)) {
+            // 更新rawValue
+            rawValueRef.current = date;
             setProps({ value: dateString })
         }
     }
@@ -400,7 +410,7 @@ const AntdDatePicker = (props) => {
                     }
                     disabledDate={disabledDatesStrategy ? checkDisabledDate : undefined}
                     defaultPickerValue={dayjs(defaultPickerValue, format)}
-                    value={value ? dayjs(value, format) : undefined}
+                    value={rawValueRef.current || (value ? dayjs(value, format) : undefined)}
                     defaultValue={defaultValue ? dayjs(defaultValue, format) : undefined}
                     showTime={
                         // 处理时间选择面板在日期选定后的默认选中值
