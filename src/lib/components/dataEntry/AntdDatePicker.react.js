@@ -129,17 +129,14 @@ AntdDatePicker.propTypes = {
     presets: PropTypes.arrayOf(
         PropTypes.exact({
             /**
-             * 组件型，设置当前预设子项元素
+             * 组件型，设置当前预设子项标题
              */
             label: PropTypes.node,
 
             /**
-             * 设置当前预设子项唯一值
+             * 设置当前预设子项对应日期字符串
              */
-            value: PropTypes.oneOfType([
-                PropTypes.string,
-                PropTypes.number
-            ])
+            value: PropTypes.string
         })
     ),
 

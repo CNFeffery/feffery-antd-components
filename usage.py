@@ -1,118 +1,109 @@
 import dash
-import uuid
-import json
-import time
 from dash import html
 import feffery_antd_components as fac
-from dash.dependencies import Input, Output
+from datetime import datetime, timedelta
 
-app = dash.Dash(__name__, compress=True)
+app = dash.Dash(__name__)
 
-app.layout = html.Div(
-    [
-        fac.AntdSpace(
-            [
-                fac.AntdDatePicker(
-                    placeholder='picker="date"',
-                    format='YYYY年MM月DD日',
-                    style={
-                        'width': 175
-                    }
-                ),
-                fac.AntdDatePicker(
-                    placeholder='picker="week"',
-                    picker='week',
-                    format='YYYY-第W周',
-                    style={
-                        'width': 175
-                    }
-                ),
-                fac.AntdDatePicker(
-                    placeholder='picker="month"',
-                    picker='month',
-                    format='YYYY-MM',
-                    style={
-                        'width': 175
-                    }
-                ),
-                fac.AntdDatePicker(
-                    placeholder='picker="quarter"',
-                    picker='quarter',
-                    format='YYYY-第Q季度',
-                    style={
-                        'width': 175
-                    }
-                ),
-                fac.AntdDatePicker(
-                    placeholder='picker="year"',
-                    picker='year',
-                    format='YYYY年',
-                    style={
-                        'width': 175
-                    }
-                )
-            ],
-            direction='vertical'
-        ),
-        fac.AntdSpace(
-            [
-                fac.AntdDateRangePicker(
-                    placeholder=[
-                        'picker="date"', ''
-                    ],
-                    format='YYYY年MM月DD日',
-                    style={
-                        'width': 300
-                    }
-                ),
-                fac.AntdDateRangePicker(
-                    placeholder=[
-                        'picker="week"', ''
-                    ],
-                    picker='week',
-                    format='YYYY-第W周',
-                    style={
-                        'width': 300
-                    }
-                ),
-                fac.AntdDateRangePicker(
-                    placeholder=[
-                        'picker="month"', ''
-                    ],
-                    picker='month',
-                    format='YYYY-MM',
-                    style={
-                        'width': 300
-                    }
-                ),
-                fac.AntdDateRangePicker(
-                    placeholder=[
-                        'picker="quarter"', ''
-                    ],
-                    picker='quarter',
-                    format='YYYY-第Q季度',
-                    style={
-                        'width': 300
-                    }
-                ),
-                fac.AntdDateRangePicker(
-                    placeholder=[
-                        'picker="year"', ''
-                    ],
-                    picker='year',
-                    format='YYYY年',
-                    style={
-                        'width': 300
-                    }
-                )
-            ],
-            direction='vertical'
-        )
-    ],
-    style={
-        'padding': '50px 100px'
-    }
-)
+
+def render():
+    '''动态layout生成'''
+
+    return html.Div(
+        [
+            fac.AntdSpace(
+                [
+                    fac.AntdDatePicker(
+                        id='date-picker-demo',
+                        style={
+                            'width': 150
+                        },
+                        presets=[
+                            {
+                                'label': '前1天',
+                                'value': (datetime.now() - timedelta(days=1)).strftime('%Y-%m-%d')
+                            },
+                            {
+                                'label': '后1天',
+                                'value': (datetime.now() + timedelta(days=1)).strftime('%Y-%m-%d')
+                            },
+                            {
+                                'label': '7天前',
+                                'value': (datetime.now() - timedelta(days=7)).strftime('%Y-%m-%d')
+                            },
+                            {
+                                'label': '7天后',
+                                'value': (datetime.now() + timedelta(days=7)).strftime('%Y-%m-%d')
+                            }
+                        ]
+                    ),
+                    fac.AntdDateRangePicker(
+                        id='date-range-picker-demo',
+                        style={
+                            'width': 220
+                        },
+                        presets=[
+                            {
+                                'label': '前7天',
+                                'value': [
+                                    (datetime.now() - timedelta(days=7))
+                                    .strftime('%Y-%m-%d'),
+                                    datetime.now().strftime('%Y-%m-%d')
+                                ]
+                            },
+                            {
+                                'label': '后7天',
+                                'value': [
+                                    datetime.now().strftime('%Y-%m-%d'),
+                                    (datetime.now() + timedelta(days=7))
+                                    .strftime('%Y-%m-%d')
+                                ]
+                            },
+                            {
+                                'label': '前15天',
+                                'value': [
+                                    (datetime.now() - timedelta(days=15))
+                                    .strftime('%Y-%m-%d'),
+                                    datetime.now().strftime('%Y-%m-%d')
+                                ]
+                            },
+                            {
+                                'label': '后15天',
+                                'value': [
+                                    datetime.now().strftime('%Y-%m-%d'),
+                                    (datetime.now() + timedelta(days=15))
+                                    .strftime('%Y-%m-%d')
+                                ]
+                            },
+                            {
+                                'label': '前30天',
+                                'value': [
+                                    (datetime.now() - timedelta(days=30))
+                                    .strftime('%Y-%m-%d'),
+                                    datetime.now().strftime('%Y-%m-%d')
+                                ]
+                            },
+                            {
+                                'label': '后30天',
+                                'value': [
+                                    datetime.now().strftime('%Y-%m-%d'),
+                                    (datetime.now() + timedelta(days=30))
+                                    .strftime('%Y-%m-%d')
+                                ]
+                            }
+                        ]
+                    )
+                ]
+            )
+        ],
+        style={
+            'padding': '50px 100px'
+        }
+    )
+
+
+app.layout = render
+
 
 if __name__ == '__main__':
     app.run(debug=True)

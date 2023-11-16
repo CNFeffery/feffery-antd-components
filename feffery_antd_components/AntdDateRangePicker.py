@@ -115,8 +115,8 @@ Keyword arguments:
     - label (a list of or a singular dash component, string or number; optional):
         组件型，设置当前预设子项元素.
 
-    - value (string | number; optional):
-        设置当前预设子项唯一值.
+    - value (list of strings; optional):
+        设置当前预设子项日期范围字符串数组.
 
 - readOnly (boolean; optional)
 

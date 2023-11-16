@@ -434,12 +434,7 @@ const AntdDatePicker = (props) => {
                             (preset) => ({
                                 label: preset.label,
                                 value: () => {
-                                    setProps({
-                                        clickedPreset: {
-                                            value: preset.value,
-                                            timestamp: Date.now()
-                                        }
-                                    })
+                                    return dayjs(preset.value, format)
                                 }
                             })
                         )

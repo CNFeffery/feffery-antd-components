@@ -111,10 +111,10 @@ Keyword arguments:
     `presets` is a list of dicts with keys:
 
     - label (a list of or a singular dash component, string or number; optional):
-        组件型，设置当前预设子项元素.
+        组件型，设置当前预设子项标题.
 
-    - value (string | number; optional):
-        设置当前预设子项唯一值.
+    - value (string; optional):
+        设置当前预设子项对应日期字符串.
 
 - readOnly (boolean; optional)
 

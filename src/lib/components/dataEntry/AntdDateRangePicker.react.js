@@ -138,12 +138,9 @@ AntdDateRangePicker.propTypes = {
             label: PropTypes.node,
 
             /**
-             * 设置当前预设子项唯一值
+             * 设置当前预设子项日期范围字符串数组
              */
-            value: PropTypes.oneOfType([
-                PropTypes.string,
-                PropTypes.number
-            ])
+            value: PropTypes.arrayOf(PropTypes.string)
         })
     ),
 
