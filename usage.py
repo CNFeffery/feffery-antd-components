@@ -1,108 +1,78 @@
 import dash
-from dash import html
+from feffery_antd_components.utils import fill_output_dict
 import feffery_antd_components as fac
-from datetime import datetime, timedelta
+from dash.dependencies import Input, Output, State
 
 app = dash.Dash(__name__)
 
+app.layout = fac.AntdSpace(
+    [
+        fac.AntdSpace(
+            [
+                fac.AntdButton(
+                    '按钮1',
+                    type='primary',
+                    id='demo-button1'
+                ),
+                fac.AntdButton(
+                    '按钮2',
+                    type='primary',
+                    id='demo-button2'
+                ),
+                fac.AntdInput(
+                    id='demo-input1',
+                    placeholder='输入框1',
+                    style={
+                        'width': 150
+                    }
+                ),
+                fac.AntdInput(
+                    id='demo-input2',
+                    placeholder='输入框2',
+                    style={
+                        'width': 150
+                    }
+                )
+            ]
+        ),
+        fac.AntdSpace(
+            [
+                fac.AntdText(id='demo-output1'),
+                fac.AntdText(id='demo-output2')
+            ]
+        )
+    ],
+    direction='vertical',
+    style={
+        'padding': 50
+    }
+)
 
-def render():
-    '''动态layout生成'''
 
-    return html.Div(
-        [
-            fac.AntdSpace(
-                [
-                    fac.AntdDatePicker(
-                        id='date-picker-demo',
-                        style={
-                            'width': 150
-                        },
-                        presets=[
-                            {
-                                'label': '前1天',
-                                'value': (datetime.now() - timedelta(days=1)).strftime('%Y-%m-%d')
-                            },
-                            {
-                                'label': '后1天',
-                                'value': (datetime.now() + timedelta(days=1)).strftime('%Y-%m-%d')
-                            },
-                            {
-                                'label': '7天前',
-                                'value': (datetime.now() - timedelta(days=7)).strftime('%Y-%m-%d')
-                            },
-                            {
-                                'label': '7天后',
-                                'value': (datetime.now() + timedelta(days=7)).strftime('%Y-%m-%d')
-                            }
-                        ]
-                    ),
-                    fac.AntdDateRangePicker(
-                        id='date-range-picker-demo',
-                        style={
-                            'width': 220
-                        },
-                        presets=[
-                            {
-                                'label': '前7天',
-                                'value': [
-                                    (datetime.now() - timedelta(days=7))
-                                    .strftime('%Y-%m-%d'),
-                                    datetime.now().strftime('%Y-%m-%d')
-                                ]
-                            },
-                            {
-                                'label': '后7天',
-                                'value': [
-                                    datetime.now().strftime('%Y-%m-%d'),
-                                    (datetime.now() + timedelta(days=7))
-                                    .strftime('%Y-%m-%d')
-                                ]
-                            },
-                            {
-                                'label': '前15天',
-                                'value': [
-                                    (datetime.now() - timedelta(days=15))
-                                    .strftime('%Y-%m-%d'),
-                                    datetime.now().strftime('%Y-%m-%d')
-                                ]
-                            },
-                            {
-                                'label': '后15天',
-                                'value': [
-                                    datetime.now().strftime('%Y-%m-%d'),
-                                    (datetime.now() + timedelta(days=15))
-                                    .strftime('%Y-%m-%d')
-                                ]
-                            },
-                            {
-                                'label': '前30天',
-                                'value': [
-                                    (datetime.now() - timedelta(days=30))
-                                    .strftime('%Y-%m-%d'),
-                                    datetime.now().strftime('%Y-%m-%d')
-                                ]
-                            },
-                            {
-                                'label': '后30天',
-                                'value': [
-                                    datetime.now().strftime('%Y-%m-%d'),
-                                    (datetime.now() + timedelta(days=30))
-                                    .strftime('%Y-%m-%d')
-                                ]
-                            }
-                        ]
-                    )
-                ]
-            )
-        ],
-        style={
-            'padding': '50px 100px'
-        }
+@app.callback(
+    output=dict(
+        content1=Output('demo-output1', 'children'),
+        content2=Output('demo-output2', 'children')
+    ),
+    inputs=dict(
+        nClicks1=Input('demo-button1', 'nClicks'),
+        nClicks2=Input('demo-button2', 'nClicks')
+    ),
+    state=dict(
+        value1=State('demo-input1', 'value'),
+        value2=State('demo-input2', 'value')
+    ),
+    prevent_initial_call=True
+)
+def demo_callback(nClicks1, nClicks2, value1, value2):
+    '''字典化Output配合defaultdict'''
+
+    return fill_output_dict(
+        dict(
+            content1=f'nClicks1: {nClicks1}, nClicks2: {nClicks2}'
+        ),
+        '缺省值示例'
     )
-
-
-app.layout = render
 
 
 if __name__ == '__main__':

@@ -1,6 +1,8 @@
-from typing import Union, Literal
+import dash
+from collections import defaultdict
+from typing import Union, Literal, Any
 
-__all__ = ['TreeUtils']
+__all__ = ['TreeUtils', 'fill_output_dict']
 
 
 class TreeUtils:
@@ -165,6 +167,30 @@ class TreeUtils:
             ]
 
         return input_object
+
+
+def fill_output_dict(output_dict: dict, fill_value: Any = dash.no_update) -> dict:
+    """用于配合回调函数中Output角色的字典化写法，在已有明确字典返回值的基础上，为其他返回项进行默认值填充
+
+    Args:
+        output_dict (dict): 已有明确返回值字典
+        fill_value (Any): 设置其余无明确返回值的Output角色键值对统一填充值，默认为dash.no_update
+
+    Returns:
+        dict: 处理后可以直接通过回调返回的完整Output结果字典
+    """
+
+    # 构造辅助用defaultdict
+    output = defaultdict(
+        lambda: fill_value,
+        output_dict
+    )
+
+    return {
+        key: output[key]
+        # 通过上下文遍历所有Output字典键名
+        for key in dash.ctx.outputs_grouping.keys()
+    }
 
 
 if __name__ == '__main__':
