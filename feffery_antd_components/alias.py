@@ -9,6 +9,7 @@ from .AntdCountdown import AntdCountdown as Countdown
 from .AntdEmpty import AntdEmpty as Empty
 from .AntdImage import AntdImage as Image
 from .AntdPopover import AntdPopover as Popover
+from .AntdQRCode import AntdQRCode as QRCode
 from .AntdRibbon import AntdRibbon as Ribbon
 from .AntdSegmented import AntdSegmented as Segmented
 from .AntdSpoiler import AntdSpoiler as Spoiler
@@ -20,6 +21,7 @@ from .AntdTooltip import AntdTooltip as Tooltip
 from .AntdTree import AntdTree as Tree
 from .AntdCard import AntdCard as Card
 from .AntdCardGrid import AntdCardGrid as CardGrid
+from .AntdCardMeta import AntdCardMeta as CardMeta
 from .AntdDescriptionItem import AntdDescriptionItem as DescriptionItem
 from .AntdDescriptions import AntdDescriptions as Descriptions
 from .AntdTabPane import AntdTabPane as TabPane
@@ -28,6 +30,7 @@ from .AntdCalendar import AntdCalendar as Calendar
 from .AntdCascader import AntdCascader as Cascader
 from .AntdCheckbox import AntdCheckbox as Checkbox
 from .AntdCheckboxGroup import AntdCheckboxGroup as CheckboxGroup
+from .AntdColorPicker import AntdColorPicker as ColorPicker
 from .AntdDatePicker import AntdDatePicker as DatePicker
 from .AntdDateRangePicker import AntdDateRangePicker as DateRangePicker
 from .AntdInput import AntdInput as Input
@@ -67,6 +70,8 @@ from .AntdSkeletonButton import AntdSkeletonButton as SkeletonButton
 from .AntdSkeletonImage import AntdSkeletonImage as SkeletonImage
 from .AntdSkeletonInput import AntdSkeletonInput as SkeletonInput
 from .AntdButton import AntdButton as Button
+from .AntdFloatButton import AntdFloatButton as FloatButton
+from .AntdFloatButtonGroup import AntdFloatButtonGroup as FloatButtonGroup
 from .AntdIcon import AntdIcon as Icon
 from .AntdParagraph import AntdParagraph as Paragraph
 from .AntdText import AntdText as Text
@@ -75,6 +80,7 @@ from .AntdCenter import AntdCenter as Center
 from .AntdCompact import AntdCompact as Compact
 from .AntdContent import AntdContent as Content
 from .AntdDivider import AntdDivider as Divider
+from .AntdFlex import AntdFlex as Flex
 from .AntdFooter import AntdFooter as Footer
 from .AntdHeader import AntdHeader as Header
 from .AntdLayout import AntdLayout as Layout
@@ -93,6 +99,7 @@ from .AntdAnchor import AntdAnchor as Anchor
 from .AntdBackTop import AntdBackTop as BackTop
 from .AntdConfigProvider import AntdConfigProvider as ConfigProvider
 from .AntdCopyText import AntdCopyText as CopyText
+from .AntdTour import AntdTour as Tour
 from .AntdWatermark import AntdWatermark as Watermark
 
 __all__ = [
@@ -107,6 +114,7 @@ __all__ = [
     "Empty",
     "Image",
     "Popover",
+    "QRCode",
     "Ribbon",
     "Segmented",
     "Spoiler",
@@ -118,6 +126,7 @@ __all__ = [
     "Tree",
     "Card",
     "CardGrid",
+    "CardMeta",
     "DescriptionItem",
     "Descriptions",
     "TabPane",
@@ -126,6 +135,7 @@ __all__ = [
     "Cascader",
     "Checkbox",
     "CheckboxGroup",
+    "ColorPicker",
     "DatePicker",
     "DateRangePicker",
     "Input",
@@ -165,6 +175,8 @@ __all__ = [
     "SkeletonImage",
     "SkeletonInput",
     "Button",
+    "FloatButton",
+    "FloatButtonGroup",
     "Icon",
     "Paragraph",
     "Text",
@@ -173,6 +185,7 @@ __all__ = [
     "Compact",
     "Content",
     "Divider",
+    "Flex",
     "Footer",
     "Header",
     "Layout",
@@ -191,5 +204,6 @@ __all__ = [
     "BackTop",
     "ConfigProvider",
     "CopyText",
+    "Tour",
     "Watermark"
 ]
