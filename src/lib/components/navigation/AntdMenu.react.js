@@ -97,6 +97,9 @@ const str2Jsx = new Map([
     ['Divider', Divider]
 ])
 
+// 当前的SubMenu节点key值数组
+const rootSubmenuKeys = [];
+
 // 递归推导多层菜单结构
 const raw2Jsx = (obj, str2Jsx, menuItemKeyToTitle) => {
     // 若obj为数组
@@ -109,6 +112,7 @@ const raw2Jsx = (obj, str2Jsx, menuItemKeyToTitle) => {
         if (obj.hasOwnProperty('children')) {
             Object.assign(obj, { children: obj.children.map(obj_ => raw2Jsx(obj_, str2Jsx, menuItemKeyToTitle)) })
             if (obj.component === 'SubMenu') {
+                rootSubmenuKeys.push(obj.props.key)
                 obj = <SubMenu
                     key={obj.props.key}
                     title={menuItemKeyToTitle[obj.props.key] || obj.props.title}
@@ -225,6 +229,7 @@ const AntdMenu = (props) => {
         defaultOpenKeys,
         currentKey,
         openKeys,
+        onlyExpandCurrentSubMenu,
         defaultSelectedKey,
         renderCollapsedButton,
         popupContainer,
@@ -236,6 +241,19 @@ const AntdMenu = (props) => {
         persistence_type,
         loading_state
     } = props;
+
+    const onOpenChange = (keys) => {
+        if (onlyExpandCurrentSubMenu) {
+            const latestOpenKey = keys.find((key) => openKeys.indexOf(key) === -1);
+            if (latestOpenKey && rootSubmenuKeys.indexOf(latestOpenKey) === -1) {
+                setProps({ openKeys: keys });
+            } else {
+                setProps({ openKeys: latestOpenKey ? [latestOpenKey] : [] });
+            }
+        } else {
+            setProps({ openKeys: keys });
+        }
+    };
 
     useEffect(() => {
         // 初始化currentKey
@@ -284,7 +302,7 @@ const AntdMenu = (props) => {
                     defaultOpenKeys={defaultOpenKeys}
                     defaultSelectedKeys={defaultSelectedKey ? [defaultSelectedKey] : defaultSelectedKey}
                     onSelect={listenSelected}
-                    onOpenChange={(e) => setProps({ openKeys: e })}
+                    onOpenChange={onOpenChange}
                     getPopupContainer={
                         popupContainer === 'parent' ?
                             (triggerNode) => triggerNode.parentNode :
@@ -321,7 +339,7 @@ const AntdMenu = (props) => {
                 defaultOpenKeys={defaultOpenKeys}
                 defaultSelectedKeys={defaultSelectedKey ? [defaultSelectedKey] : defaultSelectedKey}
                 onSelect={listenSelected}
-                onOpenChange={(e) => setProps({ openKeys: e })}
+                onOpenChange={onOpenChange}
                 getPopupContainer={
                     popupContainer === 'parent' ?
                         (triggerNode) => triggerNode.parentNode :
@@ -382,6 +400,9 @@ AntdMenu.propTypes = {
 
     // 对应当前展开的SubMenu节点key值数组
     openKeys: PropTypes.arrayOf(PropTypes.string),
+
+    // 设置是否只展开当前父级菜单
+    onlyExpandCurrentSubMenu: PropTypes.bool,
 
     // 默认展开的SubMenu菜单项key值数组
     defaultOpenKeys: PropTypes.arrayOf(PropTypes.string),
@@ -457,6 +478,7 @@ AntdMenu.propTypes = {
 AntdMenu.defaultProps = {
     mode: 'vertical',
     theme: 'light',
+    onlyExpandCurrentSubMenu: false,
     renderCollapsedButton: false,
     popupContainer: 'body',
     inlineCollapsed: false,
