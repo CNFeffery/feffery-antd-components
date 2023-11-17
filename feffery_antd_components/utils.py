@@ -215,14 +215,15 @@ def df2table(
     # 样式相关参数
     # 列宽分配策略，可选的有'auto'、'fit-title'、'equal'
     column_width_mode: Literal['auto', 'fit-title', 'equal'] = 'auto',
-    bordered: bool = False,  # 表格是否添加框线
-    style: dict = None,  # 表格css样式
-    className: Union[str, dict] = None,  # 表格css类名
+    column_width_sum: str = '100%',  # 用于定义各列宽之和，常用的有'100%'、'1000px'等符合css中宽度规则的值
+    left_fixed_columns: List[str] = None,  # 定义需要在左侧固定的列名数组
+    right_fixed_columns: List[str] = None,  # 定义需要在右侧固定的列名数组
     # 字段筛选功能相关参数
     str_auto_filter: bool = True,  # 是否针对数据框中的字符型字段自动添加筛选功能
     str_max_unique_value_count: int = 20,  # 允许自动添加筛选功能的字符型字段唯一值数量上限
     checkbox_filter_radio_fields: List[str] = None,  # 需要将筛选功能设置为单选模式的字段名数组
     checkbox_filter_enable_search: bool = True,  # 是否为字段筛选菜单启用搜索框
+    **kwargs
 ) -> fac.AntdTable:
     """
     将 pandas DataFrame 转换为 AntdTable 组件。
@@ -244,6 +245,8 @@ def df2table(
     """
 
     # 默认参数定义
+    left_fixed_columns = left_fixed_columns or []
+    right_fixed_columns = right_fixed_columns or []
     checkbox_filter_radio_fields = checkbox_filter_radio_fields or []
 
     # 数据预处理
@@ -264,12 +267,22 @@ def df2table(
         # 计算所有字段名字符数之和
         columns_title_length_sum = sum(raw_df.columns.map(len))
         for i, column in enumerate(columns):
-            columns[i]['width'] = 'calc(100% * {} )'.format(
+            columns[i]['width'] = 'calc({} * {} )'.format(
+                column_width_sum,
                 len(column['title']) / columns_title_length_sum
             )
     elif column_width_mode == 'equal':
         for i, column in enumerate(columns):
-            columns[i]['width'] = 'calc(100% / {})'.format(len(columns))
+            columns[i]['width'] = 'calc({} / {})'.format(
+                column_width_sum,
+                len(columns)
+            )
+    # 根据left_fixed_columns、right_fixed_columns为相应字段设置是否固定
+    for i, column in enumerate(columns):
+        if column['dataIndex'] in left_fixed_columns:
+            columns[i]['fixed'] = 'left'
+        elif column['dataIndex'] in right_fixed_columns:
+            columns[i]['fixed'] = 'right'
 
     # 构造可选参数
     optional_params = {}
@@ -295,10 +308,8 @@ def df2table(
     return fac.AntdTable(
         data=output_df.to_dict('records'),
         columns=columns,
-        bordered=bordered,
-        style=style,
-        className=className,
-        **optional_params
+        **optional_params,
+        **kwargs
     )
 
 

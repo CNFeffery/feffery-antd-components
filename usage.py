@@ -13,14 +13,22 @@ demo_df = pd.DataFrame(
 )
 
 demo_df['字段6'] = np.random.choice(list('abcdefg'), 100, replace=True)
-demo_df['字段7'] = np.random.choice(list('ABCEDFGHIJKLMNOPKISTUVWXYZ'), 100, replace=True)
+demo_df['字段7'] = np.random.choice(
+    list('ABCEDFGHIJKLMNOPKISTUVWXYZ'),
+    100,
+    replace=True
+)
 
 app.layout = html.Div(
     [
         df2table(
             demo_df,
             bordered=True,
-            column_width_mode='equal'
+            column_width_mode='fit-title',
+            column_width_sum='600px',
+            maxWidth=2000,
+            left_fixed_columns=['字段1'],
+            right_fixed_columns=['字段6', '字段7']
         )
     ],
     style={
