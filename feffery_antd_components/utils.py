@@ -212,9 +212,10 @@ def fill_output_dict(output_dict: dict, fill_value: Any = dash.no_update) -> dic
 
 def df2table(
     raw_df: Any,
-    columns_alias: dict = None,
+    id: str = None,  # 设置对应AntdTable组件的id
+    columns_alias: dict = None,  # 为指定字段定义充当title的别名
     # 样式相关参数
-    # 列宽分配策略，可选的有'auto'、'fit-title'、'equal'
+    # 列宽分配策略，可选的有'auto'、'fmit-title'、'equal'
     column_width_mode: Literal['auto', 'fit-title', 'equal'] = 'auto',
     column_width_sum: str = '100%',  # 用于定义各列宽之和，常用的有'100%'、'1000px'等符合css中宽度规则的值
     left_fixed_columns: List[str] = None,  # 定义需要在左侧固定的列名数组
@@ -224,8 +225,11 @@ def df2table(
     str_max_unique_value_count: int = 20,  # 允许自动添加筛选功能的字符型字段唯一值数量上限
     checkbox_filter_radio_columns: List[str] = None,  # 需要将筛选功能设置为单选模式的字段名数组
     checkbox_filter_enable_search: bool = True,  # 是否为字段筛选菜单启用搜索框
-    # 字段编辑相关功能
+    # 字段编辑功能相关参数
     editable_columns: List[str] = None,  # 设置需要开启可编辑功能的列名数组
+    # 数据预处理相关参数
+    # 为指定字段设置小数保留位数，特别地，当传入{'*': 小数位数}时，表示对所有数值型字段统一设置保留位数
+    columns_precision: dict = None,
     **kwargs
 ) -> fac.AntdTable:
     """
@@ -260,14 +264,26 @@ def df2table(
     right_fixed_columns = right_fixed_columns or []
     checkbox_filter_radio_columns = checkbox_filter_radio_columns or []
     editable_columns = editable_columns or []
+    columns_precision = columns_precision or {}
 
-    # 数据预处理，拷贝元数据框，防止修改源数据
+    # 数据预处理
+    # 拷贝元数据框，防止修改源数据
     output_df = pd.DataFrame(raw_df).copy(deep=True)
+    # 根据columns_precision对指定字段进行小数保留处理
+    if len(columns_precision) == 1 and columns_precision.get('*'):
+        for column in output_df.select_dtypes('number').columns:
+            output_df[column] = (
+                output_df[column]
+                .round(columns_precision.get('*'))
+            )
+    else:
+        for key in columns_precision.keys():
+            output_df[key] = output_df[key].round(columns_precision.get(key))
 
     # 构造必选参数
     # 构造columns参数
     columns = []
-    for column in raw_df.columns:
+    for column in output_df.columns:
         columns.append(
             {
                 'dataIndex': column,
@@ -278,7 +294,7 @@ def df2table(
     if column_width_mode == 'fit-title':
         # 计算所有字段名字符数之和
         columns_title_length_sum = sum(
-            raw_df.columns
+            output_df.columns
             .map(lambda s: len(columns_alias.get(s)))
         )
         # 为各字段按比例分配列宽

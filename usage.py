@@ -32,7 +32,10 @@ app.layout = html.Div(
             maxWidth=2000,
             left_fixed_columns=['字段1'],
             right_fixed_columns=['字段6', '字段7'],
-            editable_columns=['字段6']
+            editable_columns=['字段6'],
+            columns_precision={
+                '*': 2
+            }
         )
     ],
     style={
