@@ -237,6 +237,8 @@ def df2table(
 
     Args:
         raw_df (Any): 要转换的输入 pandas DataFrame。
+        id (str, optional): 设置对应 AntdTable 组件的 id。默认为 None。
+        columns_alias (dict, optional): 为指定字段定义充当 title 的别名。默认为 None。
         column_width_mode (Literal['auto', 'fit-title', 'equal'], optional): 
             列宽分配策略，可选值为 'auto'、'fit-title'、'equal'。默认为 'auto'。
         column_width_sum (str, optional): 用于定义各列宽之和，常用的有 '100%'、'1000px' 等符合 CSS 中宽度规则的值。
@@ -245,9 +247,11 @@ def df2table(
         right_fixed_columns (List[str], optional): 定义需要在右侧固定的列名数组。默认为 None。
         str_auto_filter (bool, optional): 是否自动为字符串列添加筛选功能。默认为 True。
         str_max_unique_value_count (int, optional): 自动为字符串列添加筛选功能的唯一值的最大数量。默认为 20。
-        checkbox_filter_radio_fields (List[str], optional): 需要将筛选功能设置为单选模式的字段名数组。默认为 None。
+        checkbox_filter_radio_columns (List[str], optional): 需要将筛选功能设置为单选模式的字段名数组。默认为 None。
         checkbox_filter_enable_search (bool, optional): 是否在筛选菜单中启用搜索框。默认为 True。
         editable_columns (List[str], optional): 设置需要开启可编辑功能的列名数组。默认为 None.
+        columns_precision (dict, optional): 为指定字段设置小数保留位数，特别地，
+            当传入 {'*': 小数位数} 时，表示对所有数值型字段统一设置保留位数。默认为 None.
         **kwargs: 其他传递给 AntdTable 组件的参数。
 
     Returns:
