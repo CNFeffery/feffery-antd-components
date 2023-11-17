@@ -28,7 +28,8 @@ app.layout = html.Div(
             column_width_sum='600px',
             maxWidth=2000,
             left_fixed_columns=['字段1'],
-            right_fixed_columns=['字段6', '字段7']
+            right_fixed_columns=['字段6', '字段7'],
+            editable_columns=['字段6']
         )
     ],
     style={

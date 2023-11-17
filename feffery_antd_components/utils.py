@@ -223,6 +223,8 @@ def df2table(
     str_max_unique_value_count: int = 20,  # 允许自动添加筛选功能的字符型字段唯一值数量上限
     checkbox_filter_radio_fields: List[str] = None,  # 需要将筛选功能设置为单选模式的字段名数组
     checkbox_filter_enable_search: bool = True,  # 是否为字段筛选菜单启用搜索框
+    # 字段编辑相关功能
+    editable_columns: List[str] = None,  # 设置需要开启可编辑功能的列名数组
     **kwargs
 ) -> fac.AntdTable:
     """
@@ -232,13 +234,16 @@ def df2table(
         raw_df (Any): 要转换的输入 pandas DataFrame。
         column_width_mode (Literal['auto', 'fit-title', 'equal'], optional): 
             列宽分配策略，可选值为 'auto'、'fit-title'、'equal'。默认为 'auto'。
-        bordered (bool, optional): 是否为表格添加边框。默认为 False。
-        style (dict, optional): 表格的 CSS 样式。默认为 None。
-        className (Union[str, dict], optional): 表格的 CSS 类名。默认为 None。
+        column_width_sum (str, optional): 用于定义各列宽之和，常用的有 '100%'、'1000px' 等符合 CSS 中宽度规则的值。
+            默认为 '100%'。
+        left_fixed_columns (List[str], optional): 定义需要在左侧固定的列名数组。默认为 None。
+        right_fixed_columns (List[str], optional): 定义需要在右侧固定的列名数组。默认为 None。
         str_auto_filter (bool, optional): 是否自动为字符串列添加筛选功能。默认为 True。
         str_max_unique_value_count (int, optional): 自动为字符串列添加筛选功能的唯一值的最大数量。默认为 20。
         checkbox_filter_radio_fields (List[str], optional): 需要将筛选功能设置为单选模式的字段名数组。默认为 None。
         checkbox_filter_enable_search (bool, optional): 是否在筛选菜单中启用搜索框。默认为 True。
+        editable_columns (List[str], optional): 设置需要开启可编辑功能的列名数组。默认为 None.
+        **kwargs: 其他传递给 AntdTable 组件的参数。
 
     Returns:
         fac.AntdTable: 从输入 DataFrame 生成的 AntdTable 组件。
@@ -248,6 +253,7 @@ def df2table(
     left_fixed_columns = left_fixed_columns or []
     right_fixed_columns = right_fixed_columns or []
     checkbox_filter_radio_fields = checkbox_filter_radio_fields or []
+    editable_columns = editable_columns or []
 
     # 数据预处理
     output_df = pd.DataFrame(raw_df).copy(deep=True)
@@ -283,6 +289,10 @@ def df2table(
             columns[i]['fixed'] = 'left'
         elif column['dataIndex'] in right_fixed_columns:
             columns[i]['fixed'] = 'right'
+    # 根据editable_columns对相关列开启可编辑功能
+    for i, column in enumerate(columns):
+        if column['dataIndex'] in editable_columns:
+            columns[i]['editable'] = True
 
     # 构造可选参数
     optional_params = {}
