@@ -23,6 +23,9 @@ app.layout = html.Div(
     [
         df2table(
             demo_df,
+            columns_alias={
+                '字段1': '字段1别名测试'
+            },
             bordered=True,
             column_width_mode='fit-title',
             column_width_sum='600px',

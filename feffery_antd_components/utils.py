@@ -212,6 +212,7 @@ def fill_output_dict(output_dict: dict, fill_value: Any = dash.no_update) -> dic
 
 def df2table(
     raw_df: Any,
+    columns_alias: dict = None,
     # 样式相关参数
     # 列宽分配策略，可选的有'auto'、'fit-title'、'equal'
     column_width_mode: Literal['auto', 'fit-title', 'equal'] = 'auto',
@@ -221,7 +222,7 @@ def df2table(
     # 字段筛选功能相关参数
     str_auto_filter: bool = True,  # 是否针对数据框中的字符型字段自动添加筛选功能
     str_max_unique_value_count: int = 20,  # 允许自动添加筛选功能的字符型字段唯一值数量上限
-    checkbox_filter_radio_fields: List[str] = None,  # 需要将筛选功能设置为单选模式的字段名数组
+    checkbox_filter_radio_columns: List[str] = None,  # 需要将筛选功能设置为单选模式的字段名数组
     checkbox_filter_enable_search: bool = True,  # 是否为字段筛选菜单启用搜索框
     # 字段编辑相关功能
     editable_columns: List[str] = None,  # 设置需要开启可编辑功能的列名数组
@@ -250,12 +251,17 @@ def df2table(
     """
 
     # 默认参数定义
+    columns_alias = columns_alias or {}
+    columns_alias = {
+        column: columns_alias.get(column) or column
+        for column in raw_df.columns
+    }
     left_fixed_columns = left_fixed_columns or []
     right_fixed_columns = right_fixed_columns or []
-    checkbox_filter_radio_fields = checkbox_filter_radio_fields or []
+    checkbox_filter_radio_columns = checkbox_filter_radio_columns or []
     editable_columns = editable_columns or []
 
-    # 数据预处理
+    # 数据预处理，拷贝元数据框，防止修改源数据
     output_df = pd.DataFrame(raw_df).copy(deep=True)
 
     # 构造必选参数
@@ -265,13 +271,17 @@ def df2table(
         columns.append(
             {
                 'dataIndex': column,
-                'title': column
+                'title': columns_alias.get(column)
             }
         )
     # 根据column_width_mode构造列宽
     if column_width_mode == 'fit-title':
         # 计算所有字段名字符数之和
-        columns_title_length_sum = sum(raw_df.columns.map(len))
+        columns_title_length_sum = sum(
+            raw_df.columns
+            .map(lambda s: len(columns_alias.get(s)))
+        )
+        # 为各字段按比例分配列宽
         for i, column in enumerate(columns):
             columns[i]['width'] = 'calc({} * {} )'.format(
                 column_width_sum,
@@ -306,7 +316,7 @@ def df2table(
                     'filterSearch': checkbox_filter_enable_search
                 }
                 # 检查当前字段是否需要设置为单选模式
-                if column in checkbox_filter_radio_fields:
+                if column in checkbox_filter_radio_columns:
                     filterOptions[column]['filterMultiple'] = False
             else:
                 filterOptions[column] = {
