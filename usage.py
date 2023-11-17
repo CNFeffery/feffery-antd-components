@@ -1,41 +1,30 @@
 import dash
-import numpy as np
-import pandas as pd
 from dash import html
 import feffery_antd_components as fac
-from feffery_antd_components.utils import df2table
 
 app = dash.Dash(__name__)
 
-demo_df = pd.DataFrame(
-    np.random.rand(100, 5),
-    columns=[f'字段{str(i)*i}' for i in range(1, 6)]
-)
-
-demo_df['字段6'] = np.random.choice(list('abcdefg'), 100, replace=True)
-demo_df['字段7'] = np.random.choice(
-    list('ABCEDFGHIJKLMNOPKISTUVWXYZ'),
-    100,
-    replace=True
-)
-
 app.layout = html.Div(
     [
-        df2table(
-            demo_df,
-            columns_alias={
-                '字段1': '字段1别名测试'
-            },
-            bordered=True,
-            column_width_mode='fit-title',
-            column_width_sum='600px',
-            maxWidth=2000,
-            left_fixed_columns=['字段1'],
-            right_fixed_columns=['字段6', '字段7'],
-            editable_columns=['字段6'],
-            columns_precision={
-                '*': 2
-            }
+        fac.AntdTabs(
+            items=[
+                {
+                    'key': f'标签页{i}',
+                    'label': f'标签页{i}',
+                    'children': html.Div(
+                        f'这是标签页{i}的内容示例',
+                        style={
+                            'display': 'flex',
+                            'justifyContent': 'center',
+                            'alignItems': 'center',
+                            'fontSize': 18,
+                            'background': f'rgba(28, 126, 214, calc(1 - 0.2 * {i}))',
+                            'height': 200
+                        }
+                    )
+                }
+                for i in range(1, 6)
+            ]
         )
     ],
     style={

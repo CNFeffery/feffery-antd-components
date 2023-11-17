@@ -1,7 +1,7 @@
 import React, { Suspense } from 'react';
 import PropTypes from 'prop-types';
 
-const LazyAntdTabs = React.lazy(() => import(/* webpackChunkName: "data_display" */ '../../../fragments/dataDisplay/tabs/AntdTabs.react'));
+const LazyAntdTabs = React.lazy(() => import(/* webpackChunkName: "data_display" */ '../../fragments/dataDisplay/AntdTabs.react'));
 
 const AntdTabs = (props) => {
     return (
@@ -15,8 +15,6 @@ const AntdTabs = (props) => {
 AntdTabs.propTypes = {
     // 组件id
     id: PropTypes.string,
-
-    children: PropTypes.node,
 
     // css类名
     className: PropTypes.oneOfType([

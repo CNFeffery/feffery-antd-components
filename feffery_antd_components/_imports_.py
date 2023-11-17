@@ -15,6 +15,7 @@ from .AntdSegmented import AntdSegmented
 from .AntdSpoiler import AntdSpoiler
 from .AntdStatistic import AntdStatistic
 from .AntdTable import AntdTable
+from .AntdTabs import AntdTabs
 from .AntdTag import AntdTag
 from .AntdTimeline import AntdTimeline
 from .AntdTooltip import AntdTooltip
@@ -24,8 +25,6 @@ from .AntdCardGrid import AntdCardGrid
 from .AntdCardMeta import AntdCardMeta
 from .AntdDescriptionItem import AntdDescriptionItem
 from .AntdDescriptions import AntdDescriptions
-from .AntdTabPane import AntdTabPane
-from .AntdTabs import AntdTabs
 from .AntdCalendar import AntdCalendar
 from .AntdCascader import AntdCascader
 from .AntdCheckbox import AntdCheckbox
@@ -120,6 +119,7 @@ __all__ = [
     "AntdSpoiler",
     "AntdStatistic",
     "AntdTable",
+    "AntdTabs",
     "AntdTag",
     "AntdTimeline",
     "AntdTooltip",
@@ -129,8 +129,6 @@ __all__ = [
     "AntdCardMeta",
     "AntdDescriptionItem",
     "AntdDescriptions",
-    "AntdTabPane",
-    "AntdTabs",
     "AntdCalendar",
     "AntdCascader",
     "AntdCheckbox",

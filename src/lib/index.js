@@ -54,8 +54,7 @@ import AntdSegmented from './components/dataDisplay/AntdSegmented.react';
 import AntdStatistic from './components/dataDisplay/AntdStatistic.react';
 import AntdCountdown from './components/dataDisplay/AntdCountdown.react';
 import AntdTable from './components/dataDisplay/AntdTable.react';
-import AntdTabPane from './components/dataDisplay/tabs/AntdTabPane.react';
-import AntdTabs from './components/dataDisplay/tabs/AntdTabs.react';
+import AntdTabs from './fragments/dataDisplay/AntdTabs.react';
 import AntdTag from './components/dataDisplay/AntdTag.react';
 import AntdTimeline from './components/dataDisplay/AntdTimeline.react';
 import AntdTooltip from './components/dataDisplay/AntdTooltip.react';
@@ -153,7 +152,6 @@ export {
     AntdParagraph,
     AntdText,
     AntdTitle,
-    AntdTabPane,
     AntdTabs,
     AntdPagination,
     AntdTreeSelect,

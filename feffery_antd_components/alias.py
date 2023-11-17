@@ -24,7 +24,6 @@ from .AntdCardGrid import AntdCardGrid as CardGrid
 from .AntdCardMeta import AntdCardMeta as CardMeta
 from .AntdDescriptionItem import AntdDescriptionItem as DescriptionItem
 from .AntdDescriptions import AntdDescriptions as Descriptions
-from .AntdTabPane import AntdTabPane as TabPane
 from .AntdTabs import AntdTabs as Tabs
 from .AntdCalendar import AntdCalendar as Calendar
 from .AntdCascader import AntdCascader as Cascader
@@ -129,7 +128,6 @@ __all__ = [
     "CardMeta",
     "DescriptionItem",
     "Descriptions",
-    "TabPane",
     "Tabs",
     "Calendar",
     "Cascader",
