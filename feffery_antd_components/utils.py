@@ -359,8 +359,14 @@ def df2table(
         # 更新到optional_params中
         optional_params['filterOptions'] = filterOptions
 
+    # 处理kwargs中的AntdTable相关重复自定义参数
+    # columns以kwargs中的columns为准
+    if kwargs.get('columns'):
+        columns = kwargs.get('columns')
+
     return fac.AntdTable(
-        data=output_df.to_dict('records'),
+        # data以kwargs中的data为准
+        data=kwargs.get('data') or output_df.to_dict('records'),
         columns=columns,
         **optional_params,
         **kwargs
