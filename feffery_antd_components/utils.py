@@ -220,6 +220,10 @@ def df2table(
     column_width_sum: str = '100%',  # 用于定义各列宽之和，常用的有'100%'、'1000px'等符合css中宽度规则的值
     left_fixed_columns: List[str] = None,  # 定义需要在左侧固定的列名数组
     right_fixed_columns: List[str] = None,  # 定义需要在右侧固定的列名数组
+    # 字段排序功能相关参数
+    numeric_auto_sort: bool = True,  # 是否针对数据框中的数值型字段自动添加排序功能
+    # 针对字段排序配置组合排序相关参数，同AntdTable的sortOptions.multiple
+    sort_multiple: Union[bool, Literal['auto']] = False,
     # 字段筛选功能相关参数
     str_auto_filter: bool = True,  # 是否针对数据框中的字符型字段自动添加筛选功能
     str_max_unique_value_count: int = 20,  # 允许自动添加筛选功能的字符型字段唯一值数量上限
@@ -239,7 +243,7 @@ def df2table(
         raw_df (Any): 要转换的输入 pandas DataFrame。
         id (str, optional): 设置对应 AntdTable 组件的 id。默认为 None。
         columns_alias (dict, optional): 为指定字段定义充当 title 的别名。默认为 None。
-        column_width_mode (Literal['auto', 'fit-title', 'equal'], optional): 
+        column_width_mode (Literal['auto', 'fit-title', 'equal'], optional):
             列宽分配策略，可选值为 'auto'、'fit-title'、'equal'。默认为 'auto'。
         column_width_sum (str, optional): 用于定义各列宽之和，常用的有 '100%'、'1000px' 等符合 CSS 中宽度规则的值。
             默认为 '100%'。
@@ -252,6 +256,10 @@ def df2table(
         editable_columns (List[str], optional): 设置需要开启可编辑功能的列名数组。默认为 None.
         columns_precision (dict, optional): 为指定字段设置小数保留位数，特别地，
             当传入 {'*': 小数位数} 时，表示对所有数值型字段统一设置保留位数。默认为 None.
+        numeric_auto_sort (bool, optional): 是否针对数据框中的数值型字段自动添加排序功能。默认为 True。
+        sort_multiple (Union[bool, Literal['auto']], optional):
+            针对字段排序配置组合排序相关参数，同 AntdTable 的 sortOptions.multiple。默认为 False。
+        checkbox_filter_enable_search (bool, optional): 是否在筛选菜单中启用搜索框。默认为 True。
         **kwargs: 其他传递给 AntdTable 组件的参数。
 
     Returns:
@@ -271,7 +279,7 @@ def df2table(
     columns_precision = columns_precision or {}
 
     # 数据预处理
-    # 拷贝元数据框，防止修改源数据
+    # 拷贝源数据框，防止修改源数据
     output_df = pd.DataFrame(raw_df).copy(deep=True)
     # 根据columns_precision对指定字段进行小数保留处理
     if len(columns_precision) == 1 and columns_precision.get('*'):
@@ -326,6 +334,12 @@ def df2table(
 
     # 构造可选参数
     optional_params = {}
+    # 构造sortOptions参数
+    if numeric_auto_sort:
+        optional_params['sortOptions'] = {
+            'sortDataIndexes': output_df.select_dtypes('number').columns.tolist(),
+            'multiple': sort_multiple
+        }
     # 构造filterOptions参数
     if str_auto_filter:
         filterOptions = {}

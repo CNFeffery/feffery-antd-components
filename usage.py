@@ -1,84 +1,39 @@
 import dash
+import numpy as np
+import pandas as pd
 from dash import html
-from dash.dependencies import Input, Output
 import feffery_antd_components as fac
+from feffery_antd_components.utils import df2table
 
 app = dash.Dash(__name__)
 
+demo_df = pd.DataFrame(
+    np.random.rand(100, 5),
+    columns=[f'字段{str(i)*i}' for i in range(1, 6)]
+)
+
+demo_df['字段6'] = np.random.choice(list('abcdefg'), 100, replace=True)
+demo_df['字段7'] = np.random.choice(
+    list('ABCEDFGHIJKLMNOPKISTUVWXYZ'),
+    100,
+    replace=True
+)
+
 app.layout = html.Div(
     [
-        fac.AntdTabs(
-            items=[
-                {
-                    'key': f'标签页{i}',
-                    'label': f'标签页{i}',
-                    'children': html.Div(
-                        f'这是标签页{i}的内容示例',
-                        style={
-                            'display': 'flex',
-                            'justifyContent': 'center',
-                            'alignItems': 'center',
-                            'fontSize': 18,
-                            'background': f'rgba(28, 126, 214, calc(1 - 0.2 * {i}))',
-                            'height': 200
-                        }
-                    )
-                }
-                for i in range(1, 6)
-            ]
-        ),
-
-        html.Div(
-            fac.AntdMenu(
-                id='menu-demo',
-                menuItems=[
-                    {
-                        'component': 'SubMenu',
-                        'props': {
-                            'key': f'{sub_menu}',
-                            'title': f'子菜单{sub_menu}'
-                        },
-                        'children': [
-                            {
-                                'component': 'ItemGroup',
-                                'props': {
-                                    'key': f'{sub_menu}-{item_group}',
-                                    'title': f'菜单项分组{sub_menu}-{item_group}'
-                                },
-                                'children': [
-                                    {
-                                        'component': 'Item',
-                                        'props': {
-                                            'key': f'{sub_menu}-{item_group}-{item}',
-                                            'title': f'菜单项{sub_menu}-{item_group}-{item}'
-                                        }
-                                    }
-                                    for item in range(1, 3)
-                                ]
-                            }
-                            for item_group in range(1, 3)
-                        ]
-                    }
-                    for sub_menu in range(1, 5)
-                ],
-                mode='inline',
-                defaultOpenKeys=['1'],
-                onlyExpandCurrentSubMenu=True
-            ),
-            style={
-                'width': '250px'
-            }
-        ),
-        html.Div(
-            id='menu-demo-output',
-            style={
-                'height': '200px',
-                'background': '#a5d8ff',
-                'color': 'white',
-                'fontSize': '24px',
-                'display': 'flex',
-                'justifyContent': 'center',
-                'alignItems': 'center'
+        df2table(
+            demo_df,
+            columns_alias={
+                '字段1': '字段1别名测试'
+            },
+            bordered=True,
+            column_width_mode='equal',
+            left_fixed_columns=['字段1'],
+            right_fixed_columns=['字段6', '字段7'],
+            numeric_auto_sort=True,
+            editable_columns=['字段6'],
+            columns_precision={
+                '*': 2
             }
         )
     ],
@@ -86,15 +41,6 @@ app.layout = html.Div(
         'padding': '50px 100px'
     }
 )
-
-
-@app.callback(
-    Output('menu-demo-output', 'children'),
-    Input('menu-demo', 'openKeys')
-)
-def menu_callback_demo(openKeys):
-
-    return f'openKeys: {openKeys}'
 
 if __name__ == '__main__':
     app.run(debug=True)
