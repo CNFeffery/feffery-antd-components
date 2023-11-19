@@ -214,6 +214,8 @@ def df2table(
     raw_df: Any,
     id: str = None,  # 设置对应AntdTable组件的id
     columns_alias: dict = None,  # 为指定字段定义充当title的别名
+    # 为指定字段设置对应AntdTable原columns.*.renderOptions配置参数
+    columns_render_options: dict = None,
     # 样式相关参数
     # 列宽分配策略，可选的有'auto'、'fmit-title'、'equal'
     column_width_mode: Literal['auto', 'fit-title', 'equal'] = 'auto',
@@ -272,6 +274,7 @@ def df2table(
         column: columns_alias.get(column) or column
         for column in raw_df.columns
     }
+    columns_render_options = columns_render_options or {}
     left_fixed_columns = left_fixed_columns or []
     right_fixed_columns = right_fixed_columns or []
     checkbox_filter_radio_columns = checkbox_filter_radio_columns or []
@@ -331,6 +334,13 @@ def df2table(
     for i, column in enumerate(columns):
         if column['dataIndex'] in editable_columns:
             columns[i]['editable'] = True
+    # 根据columns_render_options为columns各字段补充再渲染相关参数
+    if columns_render_options:
+        for i, column in enumerate(columns):
+            if columns_render_options.get(column['dataIndex']):
+                columns[i]['renderOptions'] = columns_render_options.get(
+                    column['dataIndex']
+                )
 
     # 构造可选参数
     optional_params = {}
@@ -358,11 +368,6 @@ def df2table(
                 }
         # 更新到optional_params中
         optional_params['filterOptions'] = filterOptions
-
-    # 处理kwargs中的AntdTable相关重复自定义参数
-    # columns以kwargs中的columns为准
-    if kwargs.get('columns'):
-        columns = kwargs.get('columns')
 
     return fac.AntdTable(
         # data以kwargs中的data为准

@@ -26,6 +26,11 @@ app.layout = html.Div(
             columns_alias={
                 '字段1': '字段1别名测试'
             },
+            columns_render_options={
+                '字段1': {
+                    'renderType': 'copyable'
+                }
+            },
             bordered=True,
             column_width_mode='equal',
             left_fixed_columns=['字段1'],
