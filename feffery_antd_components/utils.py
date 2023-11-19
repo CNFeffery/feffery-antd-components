@@ -232,7 +232,8 @@ def df2table(
     checkbox_filter_radio_columns: List[str] = None,  # 需要将筛选功能设置为单选模式的字段名数组
     checkbox_filter_enable_search: bool = True,  # 是否为字段筛选菜单启用搜索框
     # 字段编辑功能相关参数
-    editable_columns: List[str] = None,  # 设置需要开启可编辑功能的列名数组
+    # 设置需要开启可编辑功能的列名数组，特别地，传入'*'表示全部字段均开启可编辑功能
+    editable_columns: Union[List[str], Literal['*']] = None,
     # 数据预处理相关参数
     # 为指定字段设置小数保留位数，特别地，当传入{'*': 小数位数}时，表示对所有数值型字段统一设置保留位数
     columns_precision: dict = None,
@@ -240,31 +241,25 @@ def df2table(
 ) -> fac.AntdTable:
     """
     将 pandas DataFrame 转换为 AntdTable 组件。
-
-    Args:
+    参数：
         raw_df (Any): 要转换的输入 pandas DataFrame。
-        id (str, optional): 设置对应 AntdTable 组件的 id。默认为 None。
-        columns_alias (dict, optional): 为指定字段定义充当 title 的别名。默认为 None。
-        column_width_mode (Literal['auto', 'fit-title', 'equal'], optional):
-            列宽分配策略，可选值为 'auto'、'fit-title'、'equal'。默认为 'auto'。
-        column_width_sum (str, optional): 用于定义各列宽之和，常用的有 '100%'、'1000px' 等符合 CSS 中宽度规则的值。
-            默认为 '100%'。
-        left_fixed_columns (List[str], optional): 定义需要在左侧固定的列名数组。默认为 None。
-        right_fixed_columns (List[str], optional): 定义需要在右侧固定的列名数组。默认为 None。
-        str_auto_filter (bool, optional): 是否自动为字符串列添加筛选功能。默认为 True。
-        str_max_unique_value_count (int, optional): 自动为字符串列添加筛选功能的唯一值的最大数量。默认为 20。
-        checkbox_filter_radio_columns (List[str], optional): 需要将筛选功能设置为单选模式的字段名数组。默认为 None。
-        checkbox_filter_enable_search (bool, optional): 是否在筛选菜单中启用搜索框。默认为 True。
-        editable_columns (List[str], optional): 设置需要开启可编辑功能的列名数组。默认为 None.
-        columns_precision (dict, optional): 为指定字段设置小数保留位数，特别地，
-            当传入 {'*': 小数位数} 时，表示对所有数值型字段统一设置保留位数。默认为 None.
-        numeric_auto_sort (bool, optional): 是否针对数据框中的数值型字段自动添加排序功能。默认为 True。
-        sort_multiple (Union[bool, Literal['auto']], optional):
-            针对字段排序配置组合排序相关参数，同 AntdTable 的 sortOptions.multiple。默认为 False。
-        checkbox_filter_enable_search (bool, optional): 是否在筛选菜单中启用搜索框。默认为 True。
+        id (str, 可选): 设置对应 AntdTable 组件的 id，默认为 None。
+        columns_alias (dict, 可选): 为指定字段定义充当 title 的别名，默认为 None。
+        columns_render_options (dict, 可选): 为指定字段设置对应 AntdTable 原 columns.*.renderOptions 配置参数，默认为 None。
+        column_width_mode (Literal['auto', 'fit-title', 'equal'], 可选): 列宽分配策略，可选 'auto'、'fit-title'、'equal'，默认为 'auto'。
+        column_width_sum (str, 可选): 用于定义各列宽之和，常用的有 '100%'、'1000px' 等符合 CSS 宽度规则的值，默认为 '100%'。
+        left_fixed_columns (List[str], 可选): 定义需要在左侧固定的列名数组，默认为 None。
+        right_fixed_columns (List[str], 可选): 定义需要在右侧固定的列名数组，默认为 None。
+        numeric_auto_sort (bool, 可选): 是否针对数据框中的数值型字段自动添加排序功能，默认为 True。
+        sort_multiple (Union[bool, Literal['auto']], 可选): 针对字段排序配置组合排序相关参数，默认值同 AntdTable 的 sortOptions.multiple，默认为 False。
+        str_auto_filter (bool, 可选): 是否针对数据框中的字符型字段自动添加筛选功能，默认为 True。
+        str_max_unique_value_count (int, 可选): 设置筛选功能的字符型字段唯一值数量上限，默认为 20。
+        checkbox_filter_radio_columns (List[str], 可选): 将筛选功能设置为单选模式的字段名数组，默认为空列表。
+        checkbox_filter_enable_search (bool, 可选): 字段筛选菜单是否启用搜索框，默认为 True。
+        editable_columns (List[str] | Literal['*'], 可选): 设置需要开启可编辑功能的列名数组，传入 '*' 表示全部字段均开启可编辑功能，默认为 None。
+        columns_precision (dict, 可选): 为指定字段设置小数保留位数，当传入 {'*': 小数位数} 时，表示对所有数值型字段统一设置保留位数，默认为 None。
         **kwargs: 其他传递给 AntdTable 组件的参数。
-
-    Returns:
+    返回值：
         fac.AntdTable: 从输入 DataFrame 生成的 AntdTable 组件。
     """
 
@@ -332,7 +327,7 @@ def df2table(
             columns[i]['fixed'] = 'right'
     # 根据editable_columns对相关列开启可编辑功能
     for i, column in enumerate(columns):
-        if column['dataIndex'] in editable_columns:
+        if column['dataIndex'] in editable_columns or editable_columns == '*':
             columns[i]['editable'] = True
     # 根据columns_render_options为columns各字段补充再渲染相关参数
     if columns_render_options:

@@ -36,7 +36,7 @@ app.layout = html.Div(
             left_fixed_columns=['字段1'],
             right_fixed_columns=['字段6', '字段7'],
             numeric_auto_sort=True,
-            editable_columns=['字段6'],
+            editable_columns='*',
             columns_precision={
                 '*': 2
             }
