@@ -29,6 +29,9 @@ app.layout = html.Div(
             columns_render_options={
                 '字段1': {
                     'renderType': 'copyable'
+                },
+                '字段6': {
+                    'renderType': 'tags'
                 }
             },
             bordered=True,
@@ -36,9 +39,14 @@ app.layout = html.Div(
             left_fixed_columns=['字段1'],
             right_fixed_columns=['字段6', '字段7'],
             numeric_auto_sort=True,
-            editable_columns='*',
             columns_precision={
                 '*': 2
+            },
+            columns_processor={
+                '字段6': lambda s: {
+                    'tag': s,
+                    'color': 'cyan'
+                }
             }
         )
     ],

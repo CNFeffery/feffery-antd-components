@@ -3,7 +3,7 @@ import warnings
 import importlib
 from collections import defaultdict
 import feffery_antd_components as fac
-from typing import Union, Literal, Any, List
+from typing import Union, Literal, Any, List, Callable, Dict
 
 try:
     import pandas as pd
@@ -237,6 +237,7 @@ def df2table(
     # 数据预处理相关参数
     # 为指定字段设置小数保留位数，特别地，当传入{'*': 小数位数}时，表示对所有数值型字段统一设置保留位数
     columns_precision: dict = None,
+    columns_processor: Dict[str, Callable] = None,  # 对指定字段进行预处理的自定义函数
     **kwargs
 ) -> fac.AntdTable:
     """
@@ -258,6 +259,7 @@ def df2table(
         checkbox_filter_enable_search (bool, 可选): 字段筛选菜单是否启用搜索框，默认为 True。
         editable_columns (List[str] | Literal['*'], 可选): 设置需要开启可编辑功能的列名数组，传入 '*' 表示全部字段均开启可编辑功能，默认为 None。
         columns_precision (dict, 可选): 为指定字段设置小数保留位数，当传入 {'*': 小数位数} 时，表示对所有数值型字段统一设置保留位数，默认为 None。
+        columns_processor (Dict[str, Callable], 可选): 对指定字段进行预处理的自定义函数，默认为 None。
         **kwargs: 其他传递给 AntdTable 组件的参数。
     返回值：
         fac.AntdTable: 从输入 DataFrame 生成的 AntdTable 组件。
@@ -275,20 +277,10 @@ def df2table(
     checkbox_filter_radio_columns = checkbox_filter_radio_columns or []
     editable_columns = editable_columns or []
     columns_precision = columns_precision or {}
+    columns_processor = columns_processor or {}
 
-    # 数据预处理
     # 拷贝源数据框，防止修改源数据
     output_df = pd.DataFrame(raw_df).copy(deep=True)
-    # 根据columns_precision对指定字段进行小数保留处理
-    if len(columns_precision) == 1 and columns_precision.get('*'):
-        for column in output_df.select_dtypes('number').columns:
-            output_df[column] = (
-                output_df[column]
-                .round(columns_precision.get('*'))
-            )
-    else:
-        for key in columns_precision.keys():
-            output_df[key] = output_df[key].round(columns_precision.get(key))
 
     # 构造必选参数
     # 构造columns参数
@@ -350,19 +342,39 @@ def df2table(
         filterOptions = {}
         for column in output_df.select_dtypes(include='object'):
             # 检查当前字符型字段唯一值数量是否小于等于str_max_unique_value_count
-            if output_df[column].nunique() <= str_max_unique_value_count:
-                filterOptions[column] = {
-                    'filterSearch': checkbox_filter_enable_search
-                }
-                # 检查当前字段是否需要设置为单选模式
-                if column in checkbox_filter_radio_columns:
-                    filterOptions[column]['filterMultiple'] = False
-            else:
-                filterOptions[column] = {
-                    'filterMode': 'keyword'
-                }
+            try:
+                if output_df[column].nunique() <= str_max_unique_value_count:
+                    filterOptions[column] = {
+                        'filterSearch': checkbox_filter_enable_search
+                    }
+                    # 检查当前字段是否需要设置为单选模式
+                    if column in checkbox_filter_radio_columns:
+                        filterOptions[column]['filterMultiple'] = False
+                else:
+                    filterOptions[column] = {
+                        'filterMode': 'keyword'
+                    }
+            # 忽略计算nunique时出现的异常
+            except:
+                pass
         # 更新到optional_params中
         optional_params['filterOptions'] = filterOptions
+
+    # 数据预处理
+    # 根据columns_precision对指定字段进行小数保留处理
+    if len(columns_precision) == 1 and columns_precision.get('*'):
+        for column in output_df.select_dtypes('number').columns:
+            output_df[column] = (
+                output_df[column]
+                .round(columns_precision.get('*'))
+            )
+    else:
+        for key in columns_precision.keys():
+            output_df[key] = output_df[key].round(columns_precision.get(key))
+    # 根据columns_processor对指定字段进行自定义预处理
+    if columns_processor:
+        for key, processor in columns_processor.items():
+            output_df[key] = output_df[key].apply(processor)
 
     return fac.AntdTable(
         # data以kwargs中的data为准
