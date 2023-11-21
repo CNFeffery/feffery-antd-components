@@ -50,6 +50,9 @@ AntdTransfer.propTypes = {
         )
     ),
 
+    // 自定义下拉菜单图标
+    selectionsIcon: PropTypes.node,
+
     // 自定义组件高度，接受css中合法的高度单位
     height: PropTypes.oneOfType([
         PropTypes.string,
@@ -63,6 +66,9 @@ AntdTransfer.propTypes = {
             pageSize: PropTypes.number
         })
     ]),
+
+    // 用于设置是否展示为单向样式，默认为false
+    oneWay: PropTypes.bool,
 
     // 用于设置左右移动操作按钮的文本内容，默认为['', '']
     operations: PropTypes.arrayOf(PropTypes.string),
@@ -170,6 +176,7 @@ AntdTransfer.propTypes = {
 AntdTransfer.defaultProps = {
     targetKeys: [],
     pagination: false,
+    oneWay: false,
     operations: ['', ''],
     showSearch: false,
     showSelectAll: true,
