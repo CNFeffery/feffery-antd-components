@@ -337,6 +337,7 @@ class AntdTable extends Component {
             expandedRowWidth,
             expandRowByClick,
             defaultExpandedRowKeys,
+            expandedRowKeys,
             enableCellClickListenColumns,
             nClicksCell,
             emptyContent,
@@ -1877,13 +1878,26 @@ class AntdTable extends Component {
                     ) : undefined}
                     expandable={
                         rowExpandedRowRender ? {
+                            defaultExpandedRowKeys: defaultExpandedRowKeys,
+                            expandedRowKeys: expandedRowKeys || defaultExpandedRowKeys,
                             expandedRowRender: (record) => rowExpandedRowRender.get(record.key),
                             rowExpandable: (record) => rowExpandedRowRender.has(record.key),
                             columnWidth: expandedRowWidth,
-                            expandRowByClick: expandRowByClick
-                        } : undefined
+                            expandRowByClick: expandRowByClick,
+                            onExpandedRowsChange: (e) => setProps({
+                                expandedRowKeys: e
+                            })
+                        } : {
+                            // 兼容行记录自带children的自动展开情况
+                            defaultExpandedRowKeys: defaultExpandedRowKeys,
+                            expandedRowKeys: expandedRowKeys || defaultExpandedRowKeys,
+                            columnWidth: expandedRowWidth,
+                            expandRowByClick: expandRowByClick,
+                            onExpandedRowsChange: (e) => setProps({
+                                expandedRowKeys: e
+                            })
+                        }
                     }
-                    defaultExpandedRowKeys={defaultExpandedRowKeys}
                     virtual={virtual}
                     data-dash-is-loading={
                         (loading_state && loading_state.is_loading) || undefined

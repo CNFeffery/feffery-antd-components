@@ -762,6 +762,9 @@ AntdTable.propTypes = {
     // 设置初始化时处于展开状态的行key值数组
     defaultExpandedRowKeys: PropTypes.arrayOf(PropTypes.string),
 
+    // 设置或监听处于展开状态的行key值数组
+    expandedRowKeys: PropTypes.arrayOf(PropTypes.string),
+
     // 设置启用单元格点击事件监听的字段dataIndex数组，开启后会干扰多种再渲染模式的交互，
     // 以及自定义条件单元格模式，请慎用
     enableCellClickListenColumns: PropTypes.arrayOf(
