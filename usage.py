@@ -34,6 +34,18 @@ app.layout = html.Div(
             percent=80,
             type='dashboard',
             size='small'
+        ),
+        fac.AntdDivider(
+            '',
+            innerTextOrientation='left'
+        ),
+        fac.AntdTooltip(
+            fac.AntdButton(
+                '锚点元素'
+            ),
+            title='信息提示示例',
+            arrow='hide',
+            fresh=True
         )
     ],
     style={
