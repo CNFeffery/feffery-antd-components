@@ -9,17 +9,31 @@ app = dash.Dash(__name__)
 app.layout = html.Div(
     [
         html.Pre(id='output'),
-        fac.AntdTransfer(
-            dataSource=[
-                {
-                    'key': i,
-                    'title': f'选项{i}'
-                }
-                for i in range(1, 10)
-            ],
-            targetKeys=[2, 3, 4],
-            oneWay=False,
-            selectionsIcon=fac.AntdIcon(icon='antd-setting')
+        fac.AntdDivider(
+            'type="line"（默认）',
+            innerTextOrientation='left'
+        ),
+        fac.AntdProgress(
+            percent=80,
+            size=[300, 20],
+        ),
+        fac.AntdDivider(
+            'type="circle"',
+            innerTextOrientation='left'
+        ),
+        fac.AntdProgress(
+            percent=80,
+            type='circle',
+            size=200
+        ),
+        fac.AntdDivider(
+            'type="dashboard"',
+            innerTextOrientation='left'
+        ),
+        fac.AntdProgress(
+            percent=80,
+            type='dashboard',
+            size='small'
         )
     ],
     style={

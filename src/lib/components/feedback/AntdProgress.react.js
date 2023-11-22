@@ -98,8 +98,12 @@ AntdProgress.propTypes = {
     // 默认为'line'
     type: PropTypes.oneOf(['line', 'circle', 'dashboard']),
 
-    // 设置进度条尺寸规格，可选的有'default'与'small'，默认为'default'
-    size: PropTypes.oneOf(['default', 'small']),
+    // 设置进度条尺寸规格，默认为'default'
+    size: PropTypes.oneOfType([
+        PropTypes.number,
+        PropTypes.arrayOf(PropTypes.number),
+        PropTypes.oneOf(['small', 'default']),
+    ]),
 
     // 设置进度条的完成程度，取值在0到100之间，100时会自动渲染“已完成状态”，默认为0
     percent: PropTypes.number,
