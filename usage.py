@@ -46,6 +46,28 @@ app.layout = html.Div(
             title='信息提示示例',
             arrow='hide',
             fresh=True
+        ),
+        fac.AntdSpace(
+            [
+                fac.AntdPopconfirm(
+                    fac.AntdButton(
+                        placement
+                    ),
+                    title=f'placement="{placement}"',
+                    description=f'description="{placement}"',
+                    placement=placement,
+                    arrow='center',
+                    fresh=True
+                )
+                for placement in [
+                    'top', 'left', 'right', 'bottom',
+                    'topLeft', 'topRight', 'bottomLeft',
+                    'bottomRight', 'leftTop', 'leftBottom',
+                    'rightTop', 'rightBottom'
+                ]
+            ],
+            size='small',
+            wrap=True
         )
     ],
     style={
