@@ -8,11 +8,18 @@ app = dash.Dash(__name__)
 
 app.layout = html.Div(
     [
-        fac.AntdDatePicker(
-            showTime=True
-        ),
-        fac.AntdDateRangePicker(
-            showTime=True
+        html.Pre(id='output'),
+        fac.AntdTransfer(
+            dataSource=[
+                {
+                    'key': i,
+                    'title': f'选项{i}'
+                }
+                for i in range(1, 10)
+            ],
+            targetKeys=[2, 3, 4],
+            oneWay=False,
+            selectionsIcon=fac.AntdIcon(icon='antd-setting')
         )
     ],
     style={

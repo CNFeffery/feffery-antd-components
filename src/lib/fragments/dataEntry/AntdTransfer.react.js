@@ -18,8 +18,10 @@ const AntdTransfer = (props) => {
         locale,
         setProps,
         dataSource,
+        selectionsIcon,
         height,
         pagination,
+        oneWay,
         operations,
         showSearch,
         optionFilterMode,
@@ -80,10 +82,12 @@ const AntdTransfer = (props) => {
                 }
                 key={key}
                 dataSource={dataSource}
+                selectionsIcon={selectionsIcon}
                 targetKeys={targetKeys}
                 onChange={listenMove}
                 render={item => item.title}
                 pagination={pagination}
+                oneWay={oneWay}
                 operations={operations}
                 showSearch={showSearch}
                 filterOption={
