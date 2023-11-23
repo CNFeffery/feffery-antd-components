@@ -22,12 +22,41 @@ app.layout = html.Div(
             ),
             text='回调中',
             fullscreen=True
-        )
+        ),
+        fac.AntdDivider(
+            '使用内置色彩主题',
+            innerTextOrientation='left'
+        ),
+        fac.AntdSpace(
+            [
+                fac.AntdTag(
+                    content=color,
+                    color=color,
+                    bordered=False
+                )
+                for color in [
+                    'magenta',
+                    'red',
+                    'volcano',
+                    'orange',
+                    'gold',
+                    'lime',
+                    'green',
+                    'cyan',
+                    'blue',
+                    'geekblue',
+                    'purple'
+                ]
+            ],
+            wrap=True,
+            size='small'
+        ),
     ],
     style={
         'padding': '50px 100px'
     }
 )
+
 
 @app.callback(
     Output('spin-basic-demo-output', 'children'),
