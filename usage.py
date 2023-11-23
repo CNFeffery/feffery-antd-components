@@ -47,6 +47,10 @@ app.layout = html.Div(
             arrow='hide',
             fresh=True
         ),
+        fac.AntdDivider(
+            '',
+            innerTextOrientation='left'
+        ),
         fac.AntdSpace(
             [
                 fac.AntdPopconfirm(
@@ -67,6 +71,31 @@ app.layout = html.Div(
                 ]
             ],
             size='small',
+            wrap=True
+        ),
+        fac.AntdDivider(
+            '',
+            innerTextOrientation='left'
+        ),
+        fac.AntdSpace(
+            [
+                fac.AntdPopover(
+                    fac.AntdButton(
+                        placement
+                    ),
+                    title='气泡卡片示例',
+                    content=f'placement="{placement}"',
+                    placement=placement,
+                    arrow='center',
+                    fresh=True
+                )
+                for placement in [
+                    'top', 'left', 'right', 'bottom',
+                    'topLeft', 'topRight', 'bottomLeft',
+                    'bottomRight', 'leftTop', 'leftBottom',
+                    'rightTop', 'rightBottom'
+                ]
+            ],
             wrap=True
         )
     ],
