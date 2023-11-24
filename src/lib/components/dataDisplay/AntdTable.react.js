@@ -541,7 +541,14 @@ AntdTable.propTypes = {
     sticky: PropTypes.oneOfType([
         PropTypes.bool,
         PropTypes.exact({
-            offsetHeader: PropTypes.number
+            /**
+             * 设置粘性表头垂直方向像素偏移量
+             */
+            offsetHeader: PropTypes.number,
+            /**
+             * 设置粘性表头下方横向滚动条像素偏移量
+             */
+            offsetScroll: PropTypes.number
         })
     ]),
 

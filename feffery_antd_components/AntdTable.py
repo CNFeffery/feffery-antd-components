@@ -515,7 +515,11 @@ Keyword arguments:
 
     `sticky` is a boolean | dict with keys:
 
-    - offsetHeader (number; optional)
+    - offsetHeader (number; optional):
+        设置粘性表头垂直方向像素偏移量.
+
+    - offsetScroll (number; optional):
+        设置粘性表头下方横向滚动条像素偏移量.
 
 - style (dict; optional)
 
