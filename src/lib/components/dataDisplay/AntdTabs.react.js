@@ -40,6 +40,15 @@ AntdTabs.propTypes = {
             // 用于设置标签页的子元素
             children: PropTypes.node,
 
+            // 自定义关闭图标，在 type="editable-card" 时有效，设置为null或false时隐藏关闭按钮
+            closeIcon: PropTypes.oneOfType([
+                PropTypes.bool,
+                PropTypes.node,
+            ]),
+
+            // 用于设置当标签页被隐藏时是否销毁 DOM 结构，默认为false
+            destroyInactiveTabPane: PropTypes.bool,
+
             // 用于设置是否禁用当前标签页，默认为false
             disabled: PropTypes.bool,
 
@@ -94,6 +103,14 @@ AntdTabs.propTypes = {
 
     // 设置是否开启居中布局，默认为false
     centered: PropTypes.bool,
+
+    // 自定义指示条长度，默认与 tab 等宽
+    indicatorSize: PropTypes.exact({
+        // 设置指示条宽度是否从tab宽度减去方式计算，默认为false
+        subTractFromOrigin: PropTypes.bool,
+        // 设置指示条宽度或者减去的宽度
+        width: PropTypes.number
+    }),
 
     // 设置标签卡之间的像素间距
     tabBarGutter: PropTypes.number,
@@ -192,6 +209,9 @@ AntdTabs.defaultProps = {
     size: 'default',
     type: 'line',
     centered: false,
+    indicatorSize: {
+        subTractFromOrigin: false
+    },
     inkBarAnimated: true,
     tabPaneAnimated: false,
     destroyInactiveTabPane: false,

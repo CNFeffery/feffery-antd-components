@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { Tooltip } from 'antd';
 import { isString } from 'lodash';
 import useCss from '../../hooks/useCss';
@@ -24,13 +24,26 @@ const AntdTooltip = (props) => {
         overlayInnerStyle,
         trigger,
         zIndex,
-        arrowPointAtCenter,
+        arrow,
+        fresh,
         open,
         permanent,
         popupContainer,
         setProps,
         loading_state
     } = props;
+
+    const arrowPoint = useMemo(() => {
+        if (arrow === 'hide') {
+            return false;
+        }
+        if (arrow === 'show') {
+            return true;
+        }
+        return {
+            pointAtCenter: true,
+        };
+    }, [arrow])
 
     return (
         <Tooltip id={id}
@@ -55,7 +68,8 @@ const AntdTooltip = (props) => {
             overlayInnerStyle={overlayInnerStyle}
             trigger={trigger}
             zIndex={zIndex}
-            arrowPointAtCenter={arrowPointAtCenter}
+            arrow={arrowPoint}
+            fresh={fresh}
             open={open}
             onOpenChange={
                 permanent ? undefined : (e) => setProps({ open: e })

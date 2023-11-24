@@ -77,8 +77,11 @@ AntdPopover.propTypes = {
     // 设置悬浮层zIndex
     zIndex: PropTypes.number,
 
-    // 设置箭头是否指向锚点元素中心，默认为false
-    arrowPointAtCenter: PropTypes.bool,
+    // 设置修改箭头的显示状态以及修改箭头是否指向目标元素中心，默认为'show'
+    arrow: PropTypes.oneOf(['show', 'hide', 'center']),
+
+    // 用于设置是否始终保持更新内容，默认为false。默认情况下，Tooltip 在关闭时会缓存内容，设置该属性后会始终保持更新。
+    fresh: PropTypes.bool,
 
     // 用于监听或控制当前popover的显隐，默认为false
     open: PropTypes.bool,
@@ -118,7 +121,8 @@ AntdPopover.defaultProps = {
     mouseLeaveDelay: 0.1,
     placement: 'top',
     trigger: 'hover',
-    arrowPointAtCenter: false,
+    arrow: 'show',
+    fresh: false,
     popupContainer: 'body',
     open: false,
     permanent: false

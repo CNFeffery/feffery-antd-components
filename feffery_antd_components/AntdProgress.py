@@ -46,7 +46,7 @@ Keyword arguments:
 
 - showInfo (boolean; default True)
 
-- size (a value equal to: 'default', 'small'; default 'default')
+- size (number | list of numbers | a value equal to: 'small', 'default'; default 'default')
 
 - status (a value equal to: 'success', 'exception', 'normal', 'active'; optional)
 

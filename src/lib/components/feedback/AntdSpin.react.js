@@ -17,6 +17,7 @@ const AntdSpin = (props) => {
         spinning,
         size,
         delay,
+        fullscreen,
         loading_state,
         text,
         listenPropsMode,
@@ -86,6 +87,7 @@ const AntdSpin = (props) => {
             spinning={showSpinning}
             size={size}
             delay={delay}
+            fullscreen={fullscreen}
             tip={text}
             indicator={indicator}
             data-dash-is-loading={
@@ -135,6 +137,9 @@ AntdSpin.propTypes = {
     // 设置加载动画附带的说明文字
     text: PropTypes.string,
 
+    // 全屏属性，显示带有Spin组件的背景，默认为false
+    fullscreen: PropTypes.bool,
+
     // 设置是否开启debug模式，开启后，每次动画加载都会在开发者工具的控制台打印prop信息
     debug: PropTypes.bool,
 
@@ -178,6 +183,7 @@ AntdSpin.propTypes = {
 AntdSpin.defaultProps = {
     size: 'middle',
     spinning: false,
+    fullscreen: false,
     listenPropsMode: 'default',
     excludeProps: [],
     includeProps: [],

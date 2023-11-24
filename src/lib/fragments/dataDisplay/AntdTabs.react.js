@@ -23,6 +23,7 @@ const AntdTabs = (props) => {
         tabPosition,
         type,
         centered,
+        indicatorSize,
         tabBarGutter,
         inkBarAnimated,
         tabPaneAnimated,
@@ -152,6 +153,7 @@ const AntdTabs = (props) => {
             tabPosition={tabPosition}
             type={type}
             centered={centered}
+            indicatorSize={indicatorSize.subTractFromOrigin ? (origin) => origin - indicatorSize.width : indicatorSize.width}
             tabBarGutter={tabBarGutter}
             tabBarExtraContent={{
                 left: tabBarLeftExtraContent,

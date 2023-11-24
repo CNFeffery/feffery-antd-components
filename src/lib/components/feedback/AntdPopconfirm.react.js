@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useMemo } from 'react';
 import PropTypes from 'prop-types';
 import { Popconfirm, ConfigProvider } from 'antd';
 import { str2Locale } from '../locales.react';
@@ -18,6 +18,7 @@ const AntdPopconfirm = (props) => {
         key,
         locale,
         title,
+        description,
         disabled,
         placement,
         mouseEnterDelay,
@@ -33,13 +34,26 @@ const AntdPopconfirm = (props) => {
         cancelCounts,
         trigger,
         zIndex,
-        arrowPointAtCenter,
+        arrow,
+        fresh,
         open,
         permanent,
         popupContainer,
         setProps,
         loading_state
     } = props;
+
+    const arrowPoint = useMemo(() => {
+        if (arrow === 'hide') {
+            return false;
+        }
+        if (arrow === 'show') {
+            return true;
+        }
+        return {
+            pointAtCenter: true,
+        };
+    }, [arrow])
 
     const context = useContext(PropsContext)
     locale = (context && context.locale) || locale
@@ -67,6 +81,7 @@ const AntdPopconfirm = (props) => {
                 style={style}
                 key={key}
                 title={title}
+                description={description}
                 disabled={
                     context && !isUndefined(context.componentDisabled) ?
                         context.componentDisabled :
@@ -88,7 +103,8 @@ const AntdPopconfirm = (props) => {
                 cancelText={cancelText}
                 cancelButtonProps={cancelButtonProps}
                 zIndex={zIndex}
-                arrowPointAtCenter={arrowPointAtCenter}
+                arrow={arrowPoint}
+                fresh={fresh}
                 open={open}
                 onOpenChange={
                     permanent ? undefined : (e) => setProps({ open: e })
@@ -136,6 +152,9 @@ AntdPopconfirm.propTypes = {
 
     // 设置显示的文字内容
     title: PropTypes.node,
+
+    // 设置显示内容的详细描述
+    description: PropTypes.node,
 
     // 设置是否禁用点击子元素唤起气泡卡片的交互行为
     // 默认为false
@@ -226,8 +245,11 @@ AntdPopconfirm.propTypes = {
     // 设置悬浮层zIndex
     zIndex: PropTypes.number,
 
-    // 设置箭头是否指向锚点元素中心，默认为false
-    arrowPointAtCenter: PropTypes.bool,
+    // 设置修改箭头的显示状态以及修改箭头是否指向目标元素中心，默认为'show'
+    arrow: PropTypes.oneOf(['show', 'hide', 'center']),
+
+    // 用于设置是否始终保持更新内容，默认为false。默认情况下，Tooltip 在关闭时会缓存内容，设置该属性后会始终保持更新。
+    fresh: PropTypes.bool,
 
     // 用于监听或控制当前popconfirm的显隐，默认为false
     open: PropTypes.bool,
@@ -272,7 +294,8 @@ AntdPopconfirm.defaultProps = {
     trigger: 'hover',
     locale: 'zh-cn',
     popupContainer: 'body',
-    arrowPointAtCenter: false,
+    arrow: 'show',
+    fresh: false,
     open: false,
     permanent: false
 }

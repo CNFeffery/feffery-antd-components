@@ -17,6 +17,7 @@ const AntdTag = (props) => {
         color,
         href,
         target,
+        bordered,
         setProps,
         loading_state
     } = props;
@@ -31,6 +32,7 @@ const AntdTag = (props) => {
             }
             style={style}
             color={color}
+            bordered={bordered}
             data-dash-is-loading={
                 (loading_state && loading_state.is_loading) || undefined
             }>
@@ -68,6 +70,9 @@ AntdTag.propTypes = {
     // 当标签充当跳转链接的作用时，设置对应的连接跳转方式，默认为'_blank'
     target: PropTypes.string,
 
+    // 设置是否有边框，默认为true
+    bordered: PropTypes.bool,
+
     loading_state: PropTypes.shape({
         /**
          * Determines if the component is loading or not
@@ -92,7 +97,8 @@ AntdTag.propTypes = {
 
 // 设置默认参数
 AntdTag.defaultProps = {
-    target: '_blank'
+    target: '_blank',
+    bordered: true
 }
 
 export default AntdTag;
