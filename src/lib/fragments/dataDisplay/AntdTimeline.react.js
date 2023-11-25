@@ -34,18 +34,21 @@ const AntdTimeline = (props) => {
             pending={pending}
             pendingDot={pendingDot}
             reverse={reverse}
+            items={items.map(
+                item => (
+                    {
+                        color: item.color,
+                        dot: item.icon,
+                        label: item.label,
+                        children: item.content,
+                        position: item.position
+                    }
+                )
+            )}
             data-dash-is-loading={
                 (loading_state && loading_state.is_loading) || undefined
             }
-        >{items.map(
-            item => (
-                <Timeline.Item color={item.color}
-                    dot={item.icon}
-                    label={item.label}>
-                    {item.content}
-                </Timeline.Item>
-            )
-        )}
+        >
         </Timeline>
     );
 }

@@ -25,6 +25,8 @@ Keyword arguments:
 
     - label (a list of or a singular dash component, string or number; optional)
 
+    - position (a value equal to: 'left', 'right'; optional)
+
 - key (string; optional)
 
 - loading_state (dict; optional)
