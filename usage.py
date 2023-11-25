@@ -8,28 +8,50 @@ app = dash.Dash(__name__)
 
 app.layout = html.Div(
     [
-        fac.AntdTable(
-            columns=[
+        fac.AntdTimeline(
+            mode='alternate',
+            items=[
                 {
-                    'title': f'字段{i}',
-                    'dataIndex': f'字段{i}'
-                }
-                for i in range(1, 6)
-            ],
-            data=[
+                    'content': '训练数据导入',
+                    'icon': fac.AntdIcon(
+                        icon='md-cloud-upload',
+                        style={
+                            'fontSize': '18px'
+                        }
+                    ),
+                    'position': 'left'
+                },
                 {
-                    f'字段{i}': '示例内容'
-                    for i in range(1, 6)
+                    'content': '模型训练',
+                    'icon': fac.AntdIcon(
+                        icon='antd-clock-circle',
+                        style={
+                            'fontSize': '18px'
+                        }
+                    ),
+                    'position': 'left'
+                },
+                {
+                    'content': '模型持久化',
+                    'icon': fac.AntdIcon(
+                        icon='fc-accept-database',
+                        style={
+                            'fontSize': '18px'
+                        }
+                    ),
+                    'position': 'left'
+                },
+                {
+                    'content': '模型发布',
+                    'icon': fac.AntdIcon(
+                        icon='md-cloud-done',
+                        style={
+                            'fontSize': '18px'
+                        }
+                    ),
+                    'position': 'right'
                 }
-            ] * 200,
-            sticky={
-                'offsetHeader': 100,
-                'offsetScroll': 100
-            },
-            pagination={
-                'pageSize': 999
-            },
-            maxWidth=900
+            ]
         )
     ],
     style={
