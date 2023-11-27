@@ -245,7 +245,12 @@ import {
     BorderOutlined,
     ContactsOutlined,
     ContainerOutlined,
-    DeliveredProcedureOutlined
+    DeliveredProcedureOutlined,
+    PauseOutlined,
+    StepBackwardOutlined,
+    StepForwardOutlined,
+    FastForwardOutlined,
+    FastBackwardOutlined
 } from '@ant-design/icons';
 import {
     BsAlarm,
@@ -1041,6 +1046,11 @@ const str2Icon = new Map([
     ['antd-contacts', <ContactsOutlined />],
     ['antd-container', <ContainerOutlined />],
     ['antd-delivered-procedure', <DeliveredProcedureOutlined />],
+    ['antd-pause', <PauseOutlined />],
+    ['antd-step-backward', <StepBackwardOutlined />],
+    ['antd-step-forward', <StepForwardOutlined />],
+    ['antd-fast-forward', <FastForwardOutlined />],
+    ['antd-fast-backward', <FastBackwardOutlined />],
     ['pi-circle', <PiCircle />],
     ['pi-polygon', <PiPolygon />],
     ['pi-map-pin', <PiMapPin />],

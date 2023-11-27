@@ -51,7 +51,8 @@ app.layout = html.Div(
                     ),
                     'position': 'right'
                 }
-            ]
+            ],
+            pending='处理中'
         )
     ],
     style={
