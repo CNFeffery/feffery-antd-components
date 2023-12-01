@@ -360,13 +360,6 @@ class AntdTable extends Component {
             }
         }
 
-        // 重新映射size到符合常识的顺序
-        let size2size = new Map([
-            ['small', 'default'],
-            ['default', 'small'],
-            ['large', 'middle']
-        ])
-
         // 为pagination补充默认参数值
         if (isBoolean(pagination) && !pagination) {
 
@@ -1833,7 +1826,7 @@ class AntdTable extends Component {
                         data.filter(e => !hiddenRowKeys.includes(e.key))
                     }
                     columns={tempColumns}
-                    size={size2size.get(size)}
+                    size={size}
                     rowSelection={rowSelection}
                     sticky={sticky}
                     pagination={

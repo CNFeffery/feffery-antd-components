@@ -508,8 +508,8 @@ AntdTable.propTypes = {
     // 设置组件最大宽度，每页超出部分将自动转换为横向滑动浏览方式
     maxWidth: PropTypes.number,
 
-    // 设置表格单元格尺寸规格，可选的有'small'、'default'和'large'
-    size: PropTypes.oneOf(['small', 'default', 'large']),
+    // 设置表格单元格尺寸规格，可选的有'small'、'middle'和'large'
+    size: PropTypes.oneOf(['small', 'middle', 'large']),
 
     // 进阶通用参数
     // 行选择相关参数
@@ -935,7 +935,7 @@ AntdTable.defaultProps = {
     locale: 'zh-cn',
     data: [],
     columns: [],
-    size: 'default',
+    size: 'middle',
     bordered: false,
     // 进阶通用参数
     sortOptions: {

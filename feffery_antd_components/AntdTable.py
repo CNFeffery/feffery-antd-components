@@ -493,7 +493,7 @@ Keyword arguments:
 
 - selectedRowsSyncWithData (boolean; default False)
 
-- size (a value equal to: 'small', 'default', 'large'; default 'default')
+- size (a value equal to: 'small', 'middle', 'large'; default 'middle')
 
 - sortOptions (dict; default {    sortDataIndexes: []})
 

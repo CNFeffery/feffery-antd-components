@@ -8,57 +8,50 @@ app = dash.Dash(__name__)
 
 app.layout = html.Div(
     [
-        fac.AntdTimeline(
-            mode='alternate',
-            items=[
+        fac.AntdSegmented(
+            id='table-size',
+            options=[
                 {
-                    'content': '训练数据导入',
-                    'icon': fac.AntdIcon(
-                        icon='md-cloud-upload',
-                        style={
-                            'fontSize': '18px'
-                        }
-                    ),
-                    'position': 'left'
-                },
-                {
-                    'content': '模型训练',
-                    'icon': fac.AntdIcon(
-                        icon='antd-clock-circle',
-                        style={
-                            'fontSize': '18px'
-                        }
-                    ),
-                    'position': 'left'
-                },
-                {
-                    'content': '模型持久化',
-                    'icon': fac.AntdIcon(
-                        icon='fc-accept-database',
-                        style={
-                            'fontSize': '18px'
-                        }
-                    ),
-                    'position': 'left'
-                },
-                {
-                    'content': '模型发布',
-                    'icon': fac.AntdIcon(
-                        icon='md-cloud-done',
-                        style={
-                            'fontSize': '18px'
-                        }
-                    ),
-                    'position': 'right'
+                    'label': size,
+                    'value': size
                 }
+                for size in ['small', 'middle', 'large']
             ],
-            pending='处理中'
+            value='middle'
+        ),
+        fac.AntdTable(
+            id='demo-table',
+            columns=[
+                {
+                    'title': f'示例字段{i}',
+                    'dataIndex': f'示例字段{i}',
+                    'width': 1
+                }
+                for i in range(1, 21)
+            ],
+            data=[
+                {
+                    f'示例字段{i}': '测试'
+                    for i in range(1, 21)
+                }
+                for j in range(5)
+            ],
+            bordered=True,
+            maxWidth=4080,
+            pagination=False
         )
     ],
     style={
         'padding': '50px 100px'
     }
 )
+
+app.clientside_callback(
+    '''(value) => value''',
+    Output('demo-table', 'size'),
+    Input('table-size', 'value')
+)
+
 
 if __name__ == '__main__':
     app.run(debug=True)
