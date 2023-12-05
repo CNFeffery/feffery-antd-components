@@ -51,9 +51,6 @@ const AntdInput = (props) => {
         batchPropsNames
     } = props;
 
-    // 解决受控value卡部分中文输入法问题
-    const [rawValue, setRawValue] = useState(value);
-
     // 批属性监听
     useEffect(() => {
         if (batchPropsNames && batchPropsNames.length !== 0) {
@@ -88,7 +85,6 @@ const AntdInput = (props) => {
 
     // 监听输入内容变化事件
     const onChange = e => {
-        setRawValue(e.target.value);
         // 若启用md5加密且为密码模式
         if (passwordUseMd5 && mode === 'password') {
             setProps({
@@ -163,7 +159,7 @@ const AntdInput = (props) => {
                 key={key}
                 placeholder={placeholder}
                 autoComplete={autoComplete}
-                value={rawValue || value}
+                value={value}
                 size={
                     context && !isUndefined(context.componentSize) ?
                         context.componentSize :
@@ -217,7 +213,7 @@ const AntdInput = (props) => {
                 }
                 allowClear={allowClear}
                 bordered={bordered}
-                value={rawValue || value}
+                value={value}
                 defaultValue={defaultValue}
                 disabled={
                     context && !isUndefined(context.componentDisabled) ?
@@ -261,7 +257,7 @@ const AntdInput = (props) => {
                 }
                 allowClear={allowClear}
                 bordered={bordered}
-                value={rawValue || value}
+                value={value}
                 defaultValue={defaultValue}
                 disabled={
                     context && !isUndefined(context.componentDisabled) ?
@@ -319,7 +315,7 @@ const AntdInput = (props) => {
                         context.componentDisabled :
                         disabled
                 }
-                value={rawValue || value}
+                value={value}
                 defaultValue={defaultValue}
                 maxLength={maxLength}
                 status={status}
