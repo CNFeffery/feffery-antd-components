@@ -4,8 +4,6 @@ import { Steps } from 'antd';
 import useCss from '../../hooks/useCss';
 import { isString } from 'lodash';
 
-const { Step } = Steps;
-
 // 定义步骤条组件AntdSteps，api参数参考https://ant.design/components/steps-cn/
 const AntdSteps = (props) => {
     // 取得必要属性或参数
@@ -44,9 +42,7 @@ const AntdSteps = (props) => {
             }
             style={style}
             key={key}
-            data-dash-is-loading={
-                (loading_state && loading_state.is_loading) || undefined
-            }
+            items={steps}
             current={current}
             direction={direction}
             labelPlacement={labelPlacement}
@@ -56,17 +52,10 @@ const AntdSteps = (props) => {
             type={type}
             responsive={responsive}
             onChange={allowClick ? (current) => setProps({ current: current }) : undefined}
-        >
-            {
-                steps.map(
-                    item => (
-                        <Step title={item.title}
-                            subTitle={item.subTitle}
-                            description={item.description} />
-                    )
-                )
+            data-dash-is-loading={
+                (loading_state && loading_state.is_loading) || undefined
             }
-        </Steps>
+        />
     );
 }
 
@@ -97,7 +86,16 @@ AntdSteps.propTypes = {
             subTitle: PropTypes.node,
 
             // 步骤对应的描述内容
-            description: PropTypes.node
+            description: PropTypes.node,
+
+            // 步骤自定义图标
+            icon: PropTypes.node,
+
+            // 是否禁用当前步骤
+            disabled: PropTypes.bool,
+
+            // 强制设置当前步骤状态，格式同status参数，不设置时会跟随status参数
+            status: PropTypes.oneOf(['wait', 'process', 'finish', 'error'])
         })
     ).isRequired,
 

@@ -8,48 +8,60 @@ app = dash.Dash(__name__)
 
 app.layout = html.Div(
     [
-        fac.AntdSegmented(
-            id='table-size',
-            options=[
+        fac.AntdSteps(
+            steps=[
                 {
-                    'label': size,
-                    'value': size
+                    'title': f'步骤{i + 1}的title',
+                    'subTitle': f'步骤{i + 1}的subTitle',
+                    'description': f'步骤{i + 1}的description',
+                    'icon': fac.AntdIcon(
+                        icon='antd-home'
+                    )
                 }
-                for size in ['small', 'middle', 'large']
+                for i in range(3)
             ],
-            value='middle'
+            current=2
         ),
-        fac.AntdTable(
-            id='demo-table',
-            columns=[
+        fac.AntdSteps(
+            steps=[
                 {
-                    'title': f'示例字段{i}',
-                    'dataIndex': f'示例字段{i}',
-                    'width': 1
+                    'title': f'步骤{i + 1}的title',
+                    'subTitle': f'步骤{i + 1}的subTitle',
+                    'description': f'步骤{i + 1}的description',
                 }
-                for i in range(1, 21)
+                for i in range(3)
             ],
-            data=[
+            status='wait',
+            current=2
+        ),
+        fac.AntdSteps(
+            steps=[
                 {
-                    f'示例字段{i}': '测试'
-                    for i in range(1, 21)
+                    'title': f'步骤{i + 1}的title',
+                    'subTitle': f'步骤{i + 1}的subTitle',
+                    'description': f'步骤{i + 1}的description',
                 }
-                for j in range(5)
+                for i in range(3)
             ],
-            bordered=True,
-            maxWidth=4080,
-            pagination=False
+            status='finish',
+            current=2
+        ),
+        fac.AntdSteps(
+            steps=[
+                {
+                    'title': f'步骤{i + 1}的title',
+                    'subTitle': f'步骤{i + 1}的subTitle',
+                    'description': f'步骤{i + 1}的description',
+                }
+                for i in range(3)
+            ],
+            status='error',
+            current=2
         )
     ],
     style={
         'padding': '50px 100px'
     }
-)
-
-app.clientside_callback(
-    '''(value) => value''',
-    Output('demo-table', 'size'),
-    Input('table-size', 'value')
 )
 
 

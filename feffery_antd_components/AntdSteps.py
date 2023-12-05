@@ -50,6 +50,12 @@ Keyword arguments:
 
     - description (a list of or a singular dash component, string or number; optional)
 
+    - disabled (boolean; optional)
+
+    - icon (a list of or a singular dash component, string or number; optional)
+
+    - status (a value equal to: 'wait', 'process', 'finish', 'error'; optional)
+
     - subTitle (a list of or a singular dash component, string or number; optional)
 
     - title (a list of or a singular dash component, string or number; required)
@@ -58,7 +64,7 @@ Keyword arguments:
 
 - type (a value equal to: 'default', 'navigation', 'inline'; default 'default'):
     设置步骤条渲染形式，可选的有'default'、'navigation'、'inline'  默认：'default'."""
-    _children_props = ['steps[].title', 'steps[].subTitle', 'steps[].description']
+    _children_props = ['steps[].title', 'steps[].subTitle', 'steps[].description', 'steps[].icon']
     _base_nodes = ['children']
     _namespace = 'feffery_antd_components'
     _type = 'AntdSteps'
