@@ -49,3 +49,9 @@ fac.AntdDatePicker(locale='en-us')
 ```
 
 <img src="./images/国际化示例.png" height=350></img>
+
+## 6 Contributors
+
+<a href = "https://github.com/CNFeffery/feffery-antd-components/graphs/contributors">
+  <img src = "https://contrib.rocks/image?repo=CNFeffery/feffery-antd-components"/>
+</a>
