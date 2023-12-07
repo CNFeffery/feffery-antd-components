@@ -53,10 +53,7 @@ const AntdBadge = (props) => {
             text={text}
             title={title}
             size={size}
-            onClick={() => {
-                nClicks++;
-                setProps({ nClicks: nClicks })
-            }}
+            onClick={() => setProps({ nClicks: nClicks + 1 })}
             data-dash-is-loading={
                 (loading_state && loading_state.is_loading) || undefined
             }

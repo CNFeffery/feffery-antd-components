@@ -526,7 +526,7 @@ class AntdTable extends Component {
                         }}
                         onClick={toggleEdit}
                     >
-                        {children[1] ? children : ' '}
+                        {(children[1] || children[1] === 0) ? children : ' '}
                     </div>
                 );
             }
