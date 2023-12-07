@@ -811,9 +811,10 @@ class AntdTable extends Component {
 
         // 处理sortOptions参数的默认值问题
         sortOptions = {
-            ...{
-                multiple: false
-            },
+            sortDataIndexes: [],
+            multiple: false,
+            forceCompareModes: {},
+            customOrders: {},
             ...sortOptions
         }
 
@@ -832,7 +833,7 @@ class AntdTable extends Component {
                                 // 初始化排序直接比较值
                                 let valueA = null
                                 let valueB = null
-                                // 兼容各种具有单个值的渲染模式，提取待比较的成对数据
+                                // 兼容各种具有单个值的再渲染模式，提取待比较的成对数据
                                 if (a[columns[j].dataIndex]?.content || b[columns[j].dataIndex]?.content) {
                                     valueA = a[columns[j].dataIndex]?.content
                                     valueB = b[columns[j].dataIndex]?.content
@@ -851,19 +852,47 @@ class AntdTable extends Component {
                                 }
                                 // 根据valueA、valueB的数据类型返回不同逻辑的判断结果
                                 // 若valueA、valueB至少有1个为数值型，则视作数值型比较
-                                if (isNumber(valueA) || isNumber(valueB)) {
-                                    return valueA - valueB
+                                // 若当前字段使用了强制比较模式
+                                if (sortOptions.forceCompareModes[columns[j].dataIndex]) {
+                                    // 数值比较模式
+                                    if (sortOptions.forceCompareModes[columns[j].dataIndex] === 'number') {
+                                        // 强制转换比较值为数值型
+                                        let numberA = Number(valueA)
+                                        let numberB = Number(valueB)
+                                        if (numberA < numberB) {
+                                            return -1;
+                                        } else if (numberA > numberB) {
+                                            return 1;
+                                        }
+                                        return 0;
+                                    } else if (sortOptions.forceCompareModes[columns[j].dataIndex] === 'custom' &&
+                                        sortOptions.customOrders[columns[j].dataIndex]) {
+                                        // 自定义顺序模式
+                                        // 查询比较值在对应的自定义顺序中的索引
+                                        let orderA = sortOptions.customOrders[columns[j].dataIndex].indexOf(valueA)
+                                        let orderB = sortOptions.customOrders[columns[j].dataIndex].indexOf(valueB)
+                                        if (orderA < orderB) {
+                                            return 1;
+                                        } else if (orderA > orderB) {
+                                            return -1;
+                                        }
+                                        return 0;
+                                    }
                                 } else {
-                                    // 否则均视作字符型比较
-                                    let stringA = valueA?.toString().toUpperCase()
-                                    let stringB = valueB?.toString().toUpperCase()
-                                    if (stringA < stringB) {
-                                        return -1;
+                                    // 默认自动判断
+                                    if (isNumber(valueA) || isNumber(valueB)) {
+                                        return valueA - valueB
+                                    } else {
+                                        // 否则均视作字符型比较
+                                        let stringA = valueA?.toString().toUpperCase()
+                                        let stringB = valueB?.toString().toUpperCase()
+                                        if (stringA < stringB) {
+                                            return -1;
+                                        } else if (stringA > stringB) {
+                                            return 1;
+                                        }
+                                        return 0;
                                     }
-                                    if (stringA > stringB) {
-                                        return 1;
-                                    }
-                                    return 0;
                                 }
                             }
                         },

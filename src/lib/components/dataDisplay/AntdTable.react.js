@@ -601,7 +601,6 @@ AntdTable.propTypes = {
 
     // 定义排序参数
     sortOptions: PropTypes.exact({
-
         // 定义要参与排序的字段对应的dataIndex，多字段组合排序情况下顺序即为优先级，从高往低
         sortDataIndexes: PropTypes.arrayOf(PropTypes.string),
 
@@ -609,7 +608,16 @@ AntdTable.propTypes = {
         multiple: PropTypes.oneOfType([
             PropTypes.bool,
             PropTypes.oneOf(['auto'])
-        ])
+        ]),
+
+        // 为各个字段设置比较模式，可选的有'number'（强制视作数值型）、'custom'（自定义比较模式）
+        // 其中'custom'模式下需要配合sortOptions.customOrders参数进行自定义顺序的定义
+        forceCompareModes: PropTypes.objectOf(
+            PropTypes.oneOf(['number', 'custom'])
+        ),
+
+        // 用于配合sortOptions.forceCompareModes中的'custom'模式相关字段进行排序顺序自定义
+        customOrders: PropTypes.objectOf(PropTypes.array)
     }),
 
     // 定义筛选参数
@@ -938,9 +946,7 @@ AntdTable.defaultProps = {
     size: 'middle',
     bordered: false,
     // 进阶通用参数
-    sortOptions: {
-        sortDataIndexes: []
-    },
+    sortOptions: {},
     filterOptions: {},
     defaultFilteredValues: {},
     mode: 'client-side',

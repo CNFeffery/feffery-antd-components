@@ -495,9 +495,13 @@ Keyword arguments:
 
 - size (a value equal to: 'small', 'middle', 'large'; default 'middle')
 
-- sortOptions (dict; default {    sortDataIndexes: []})
+- sortOptions (dict; optional)
 
     `sortOptions` is a dict with keys:
+
+    - customOrders (dict with strings as keys and values of type list; optional)
+
+    - forceCompareModes (dict with strings as keys and values of type a value equal to: 'number', 'custom'; optional)
 
     - multiple (boolean | a value equal to: 'auto'; optional)
 

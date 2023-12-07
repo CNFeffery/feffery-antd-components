@@ -6,19 +6,32 @@ app = dash.Dash(__name__)
 
 app.layout = html.Div(
     [
+        fac.AntdTitle(
+            'number模式测试',
+            level=4
+        ),
         fac.AntdTable(
             columns=[
                 {
                     'title': '字段示例',
-                    'dataIndex': '字段示例',
-                    'editable': True
+                    'dataIndex': '字段示例'
                 }
             ],
             data=[
                 {
-                    '字段示例': 0
+                    '字段示例': value
                 }
-            ] * 5,
+                for value in [
+                    '100', '9.9', '33333.0'
+                ]
+            ],
+            sortOptions={
+                'sortDataIndexes': ['字段示例'],
+                'forceCompareModes': {
+                    '字段示例': 'number'
+                }
+            },
+            size='small',
             bordered=True,
             style={
                 'width': 300
