@@ -7,7 +7,7 @@ app = dash.Dash(__name__)
 app.layout = html.Div(
     [
         fac.AntdTitle(
-            'number模式测试',
+            'custom模式测试',
             level=4
         ),
         fac.AntdTable(
@@ -22,13 +22,16 @@ app.layout = html.Div(
                     '字段示例': value
                 }
                 for value in [
-                    '100', '9.9', '33333.0'
+                    '省级', '市级', '国家级', '村级'
                 ]
             ],
             sortOptions={
                 'sortDataIndexes': ['字段示例'],
                 'forceCompareModes': {
-                    '字段示例': 'number'
+                    '字段示例': 'custom'
+                },
+                'customOrders': {
+                    '字段示例': ['国家级', '省级', '市级', '村级']
                 }
             },
             size='small',
