@@ -1,18 +1,15 @@
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { notification } from 'antd';
+import { notification, App } from 'antd';
 import { isString } from 'lodash';
 import useCss from '../../hooks/useCss';
-
 
 // 定义通知提醒框组件AntdNotification，api参数参考https://ant.design/components/notification-cn/
 const AntdNotification = (props) => {
     // 取得必要属性或参数
     let {
-        id,
         className,
         style,
-        key,
         message,
         description,
         type,
@@ -21,9 +18,12 @@ const AntdNotification = (props) => {
         bottom,
         duration,
         closable,
+        underCompatibilityMode,
         loading_state,
         setProps
     } = props;
+
+    const { notification: _notification } = App.useApp();
 
     let config = {
         className: (
@@ -46,28 +46,34 @@ const AntdNotification = (props) => {
     }
 
     useEffect(() => {
-        if (type === 'default') {
-            notification.open(config)
-        } else if (type === 'success') {
-            notification.success(config)
-        } else if (type === 'error') {
-            notification.error(config)
-        } else if (type === 'info') {
-            notification.info(config)
-        } else if (type === 'warning') {
-            notification.warning(config)
+        if (underCompatibilityMode) {
+            if (type === 'default') {
+                _notification.open(config)
+            } else if (type === 'success') {
+                _notification.success(config)
+            } else if (type === 'error') {
+                _notification.error(config)
+            } else if (type === 'info') {
+                _notification.info(config)
+            } else if (type === 'warning') {
+                _notification.warning(config)
+            }
+        } else {
+            if (type === 'default') {
+                notification.open(config)
+            } else if (type === 'success') {
+                notification.success(config)
+            } else if (type === 'error') {
+                notification.error(config)
+            } else if (type === 'info') {
+                notification.info(config)
+            } else if (type === 'warning') {
+                notification.warning(config)
+            }
         }
     })
 
-    return (
-        <div
-            id={id}
-            key={key}
-            data-dash-is-loading={
-                (loading_state && loading_state.is_loading) || undefined
-            }
-        ></div>
-    );
+    return <></>;
 }
 
 // 定义参数或属性
@@ -112,6 +118,11 @@ AntdNotification.propTypes = {
 
     // 设置是否渲染关闭按钮，默认为true
     closable: PropTypes.bool,
+
+    /**
+     * 设置当前消息提示组件是否处于设置了compatibilityMode=true的AntdConfigProvider内部
+     */
+    underCompatibilityMode: PropTypes.bool,
 
     loading_state: PropTypes.shape({
         /**

@@ -9,10 +9,8 @@ import useCss from '../../hooks/useCss';
 const AntdMessage = (props) => {
     // 取得必要属性或参数
     let {
-        id,
         className,
         style,
-        key,
         content,
         type,
         duration,

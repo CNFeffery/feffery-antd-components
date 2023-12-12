@@ -14,8 +14,8 @@ app.layout = fac.AntdConfigProvider(
                 type='primary'
             ),
             html.Div(
-                fac.AntdMessage(
-                    content='兼容性测试',
+                fac.AntdNotification(
+                    message='兼容性测试',
                     type='info',
                     underCompatibilityMode=True
                 ),
@@ -37,8 +37,8 @@ app.layout = fac.AntdConfigProvider(
 )
 def message_test(nClicks):
 
-    return fac.AntdMessage(
-        content='兼容性测试',
+    return fac.AntdNotification(
+        message='兼容性测试',
         type='info',
         underCompatibilityMode=True
     )
