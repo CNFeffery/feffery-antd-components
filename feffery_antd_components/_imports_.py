@@ -8,6 +8,7 @@ from .AntdComment import AntdComment
 from .AntdCountdown import AntdCountdown
 from .AntdEmpty import AntdEmpty
 from .AntdImage import AntdImage
+from .AntdImageGroup import AntdImageGroup
 from .AntdPopover import AntdPopover
 from .AntdQRCode import AntdQRCode
 from .AntdRibbon import AntdRibbon
@@ -112,6 +113,7 @@ __all__ = [
     "AntdCountdown",
     "AntdEmpty",
     "AntdImage",
+    "AntdImageGroup",
     "AntdPopover",
     "AntdQRCode",
     "AntdRibbon",

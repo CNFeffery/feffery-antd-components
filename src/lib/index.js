@@ -49,6 +49,7 @@ import AntdDescriptions from './components/dataDisplay/descriptions/AntdDescript
 import AntdDescriptionItem from './components/dataDisplay/descriptions/AntdDescriptionItem.react';
 import AntdEmpty from './components/dataDisplay/AntdEmpty.react';
 import AntdImage from './components/dataDisplay/AntdImage.react';
+import AntdImageGroup from './fragments/dataDisplay/AntdImageGroup.react';
 import AntdPopover from './components/dataDisplay/AntdPopover.react';
 import AntdSegmented from './components/dataDisplay/AntdSegmented.react';
 import AntdStatistic from './components/dataDisplay/AntdStatistic.react';
@@ -189,6 +190,7 @@ export {
     AntdCard,
     AntdMentions,
     AntdImage,
+    AntdImageGroup,
     AntdPageHeader,
     AntdComment,
     AntdDescriptions,
