@@ -1,79 +1,47 @@
 import dash
 from dash import html
 import feffery_antd_components as fac
+from dash.dependencies import Input, Output
 
 app = dash.Dash(__name__)
 
-app.layout = html.Div(
-    [
-        fac.AntdImageGroup(
-            [
-                fac.AntdRow(
-                    [
-                        fac.AntdCol(
-                            '无关内容测试'
-                        ),
-                        fac.AntdCol(
-                            fac.AntdImage(
-                                src='https://gw.alipayobjects.com/zos/rmsportal/KDpgvguMpGfqaHPjicRK.svg',
-                                width=200
-                            )
-                        ),
-                        fac.AntdCol(
-                            fac.AntdImage(
-                                src='https://gw.alipayobjects.com/zos/antfincdn/aPkFc8Sj7n/method-draw-image.svg',
-                                width=200
-                            )
-                        )
-                    ]
+app.layout = fac.AntdConfigProvider(
+    html.Div(
+        [
+            fac.AntdButton(
+                '兼容性测试',
+                id='demo-button',
+                type='primary'
+            ),
+            html.Div(
+                fac.AntdMessage(
+                    content='兼容性测试',
+                    type='info',
+                    underCompatibilityMode=True
                 ),
-                fac.AntdRow(
-                    [
-                        fac.AntdCol(
-                            '无关内容测试'
-                        ),
-                        fac.AntdCol(
-                            fac.AntdImage(
-                                src='https://gw.alipayobjects.com/zos/rmsportal/KDpgvguMpGfqaHPjicRK.svg',
-                                width=200
-                            )
-                        ),
-                        fac.AntdCol(
-                            fac.AntdImage(
-                                src='https://gw.alipayobjects.com/zos/antfincdn/aPkFc8Sj7n/method-draw-image.svg',
-                                width=200
-                            )
-                        )
-                    ],
-                    justify='end'
-                ),
-                fac.AntdRow(
-                    [
-                        fac.AntdCol(
-                            '无关内容测试'
-                        ),
-                        fac.AntdCol(
-                            fac.AntdImage(
-                                src='https://gw.alipayobjects.com/zos/rmsportal/KDpgvguMpGfqaHPjicRK.svg',
-                                width=200
-                            )
-                        ),
-                        fac.AntdCol(
-                            fac.AntdImage(
-                                src='https://gw.alipayobjects.com/zos/antfincdn/aPkFc8Sj7n/method-draw-image.svg',
-                                width=200
-                            )
-                        )
-                    ],
-                    justify='space-between'
-                )
-            ]
-        )
-    ],
-    style={
-        'padding': 50
-    }
+                id='demo-message-container'
+            )
+        ],
+        style={
+            'padding': 50
+        }
+    ),
+    compatibilityMode=True
 )
+
+
+@app.callback(
+    Output('demo-message-container', 'children'),
+    Input('demo-button', 'nClicks'),
+    prevent_initial_call=True
+)
+def message_test(nClicks):
+
+    return fac.AntdMessage(
+        content='兼容性测试',
+        type='info',
+        underCompatibilityMode=True
+    )
 
 
 if __name__ == '__main__':

@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { message } from 'antd';
+import { message, App } from 'antd';
 import AntdIcon from '../general/AntdIcon.react';
 import { isString } from 'lodash';
 import useCss from '../../hooks/useCss';
@@ -20,16 +20,21 @@ const AntdMessage = (props) => {
         iconRenderer,
         top,
         maxCount,
+        underCompatibilityMode,
         loading_state,
         setProps
     } = props;
 
+    const { message: _message } = App.useApp();
+
     // 令全局参数初始化时生效
     useEffect(() => {
-        message.config({
-            top: top,
-            maxCount: maxCount
-        });
+        if (!underCompatibilityMode) {
+            message.config({
+                top: top,
+                maxCount: maxCount
+            });
+        }
     }, []);
 
     let config = {
@@ -62,28 +67,34 @@ const AntdMessage = (props) => {
     }
 
     useEffect(() => {
-        if (type === 'default') {
-            message.open(config)
-        } else if (type === 'success') {
-            message.success(config)
-        } else if (type === 'error') {
-            message.error(config)
-        } else if (type === 'info') {
-            message.info(config)
-        } else if (type === 'warning') {
-            message.warning(config)
+        if (underCompatibilityMode) {
+            if (type === 'default') {
+                _message.open(config)
+            } else if (type === 'success') {
+                _message.success(config)
+            } else if (type === 'error') {
+                _message.error(config)
+            } else if (type === 'info') {
+                _message.info(config)
+            } else if (type === 'warning') {
+                _message.warning(config)
+            }
+        } else {
+            if (type === 'default') {
+                message.open(config)
+            } else if (type === 'success') {
+                message.success(config)
+            } else if (type === 'error') {
+                message.error(config)
+            } else if (type === 'info') {
+                message.info(config)
+            } else if (type === 'warning') {
+                message.warning(config)
+            }
         }
     })
 
-    return (
-        <div
-            id={id}
-            key={key}
-            data-dash-is-loading={
-                (loading_state && loading_state.is_loading) || undefined
-            }
-        ></div>
-    );
+    return <></>;
 }
 
 // 定义参数或属性
@@ -121,6 +132,11 @@ AntdMessage.propTypes = {
     // 针对icon参数值设置渲染方式，默认为'AntdIcon'即icon等价于AntdIcon的icon参数
     // 当设置为'fontawesome'时，icon参数对应fontawesome图标的css类名
     iconRenderer: PropTypes.oneOf(['AntdIcon', 'fontawesome']),
+
+    /**
+     * 设置当前消息提示组件是否处于设置了compatibilityMode=true的AntdConfigProvider内部
+     */
+    underCompatibilityMode: PropTypes.bool,
 
     loading_state: PropTypes.shape({
         /**

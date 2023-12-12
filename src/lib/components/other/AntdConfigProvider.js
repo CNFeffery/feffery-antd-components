@@ -4,8 +4,9 @@ import {
     defaultTheme,   // 默认主题
     darkTheme,      // 暗色主题
 } from '@ant-design/compatible';
-import { ConfigProvider, theme } from 'antd';
+import { ConfigProvider, App, theme } from 'antd';
 import { isUndefined, omitBy } from 'lodash';
+import { StyleProvider, legacyLogicalPropertiesTransformer } from '@ant-design/cssinjs'
 import PropsContext from '../../contexts/PropsContext';
 
 const str2algorithm = new Map(
@@ -39,9 +40,62 @@ const AntdConfigProvider = (props) => {
         wavesDisabled,
         token,
         componentsToken,
+        compatibilityMode,
         setProps,
         loading_state
     } = props;
+
+    if (compatibilityMode) {
+        return (
+            <PropsContext.Provider
+                value={
+                    {
+                        locale,
+                        componentDisabled,
+                        componentSize
+                    }
+                }
+            >
+                <StyleProvider hashPriority={'high'}
+                    transformers={[legacyLogicalPropertiesTransformer]}>
+                    <App>
+                        <ConfigProvider id={id}
+                            key={key}
+                            theme={
+                                useOldTheme ?
+                                    str2oldTheme.get(useOldTheme) :
+                                    {
+                                        algorithm: (
+                                            Array.isArray(algorithm) ?
+                                                algorithm.map(e => str2algorithm.get(e)) :
+                                                str2algorithm.get(algorithm)
+                                        ),
+                                        token: omitBy(
+                                            {
+                                                colorPrimary: primaryColor,
+                                                ...token
+                                            },
+                                            isUndefined
+                                        ),
+                                        components: omitBy(
+                                            {
+                                                ...componentsToken
+                                            },
+                                            isUndefined
+                                        )
+                                    }
+                            }
+                            wave={{ disabled: wavesDisabled }}
+                            data-dash-is-loading={
+                                (loading_state && loading_state.is_loading) || undefined
+                            }>
+                            {children}
+                        </ConfigProvider>
+                    </App>
+                </StyleProvider>
+            </PropsContext.Provider>
+        );
+    }
 
     return (
         <PropsContext.Provider
@@ -156,6 +210,12 @@ AntdConfigProvider.propTypes = {
         })
     ),
 
+    /**
+     * 是否开启针对88及以下版本Chromium内核浏览器的向下兼容模式
+     * 默认：false
+     */
+    compatibilityMode: PropTypes.bool,
+
     loading_state: PropTypes.shape({
         /**
          * Determines if the component is loading or not
@@ -181,7 +241,8 @@ AntdConfigProvider.propTypes = {
 // 设置默认参数
 AntdConfigProvider.defaultProps = {
     algorithm: 'default',
-    wavesDisabled: false
+    wavesDisabled: false,
+    compatibilityMode: false
 }
 
 export default AntdConfigProvider;
