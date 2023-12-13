@@ -51,6 +51,11 @@ const AntdInput = (props) => {
         batchPropsNames
     } = props;
 
+    // 解决受控value卡部分中文输入法问题
+    const [rawValue, setRawValue] = useState(value);
+    console.log('value: ', value)
+    console.log('rawValue: ', rawValue)
+
     // 批属性监听
     useEffect(() => {
         if (batchPropsNames && batchPropsNames.length !== 0) {
@@ -112,7 +117,13 @@ const AntdInput = (props) => {
                 )
             })
         }
+        setRawValue(e.target.value);
     }
+
+    // 解决value经回调更新后，rawValue未更新的问题
+    useEffect(() => {
+        setRawValue(value);
+    }, [value])
 
     const { run: onDebounceChange } = useRequest(
         (e) => {
@@ -159,7 +170,7 @@ const AntdInput = (props) => {
                 key={key}
                 placeholder={placeholder}
                 autoComplete={autoComplete}
-                value={value}
+                value={rawValue || value}
                 size={
                     context && !isUndefined(context.componentSize) ?
                         context.componentSize :
@@ -213,7 +224,7 @@ const AntdInput = (props) => {
                 }
                 allowClear={allowClear}
                 bordered={bordered}
-                value={value}
+                value={rawValue || value}
                 defaultValue={defaultValue}
                 disabled={
                     context && !isUndefined(context.componentDisabled) ?
@@ -257,7 +268,7 @@ const AntdInput = (props) => {
                 }
                 allowClear={allowClear}
                 bordered={bordered}
-                value={value}
+                value={rawValue || value}
                 defaultValue={defaultValue}
                 disabled={
                     context && !isUndefined(context.componentDisabled) ?
@@ -315,7 +326,7 @@ const AntdInput = (props) => {
                         context.componentDisabled :
                         disabled
                 }
-                value={value}
+                value={rawValue || value}
                 defaultValue={defaultValue}
                 maxLength={maxLength}
                 status={status}
