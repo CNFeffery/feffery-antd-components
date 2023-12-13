@@ -1,3 +1,4 @@
+import time
 import dash
 from dash import html
 import feffery_antd_components as fac
@@ -5,43 +6,39 @@ from dash.dependencies import Input, Output
 
 app = dash.Dash(__name__)
 
-app.layout = fac.AntdConfigProvider(
-    html.Div(
-        [
-            fac.AntdButton(
-                '兼容性测试',
-                id='demo-button',
-                type='primary'
-            ),
-            html.Div(
-                fac.AntdNotification(
-                    message='兼容性测试',
-                    type='info',
-                    underCompatibilityMode=True
-                ),
-                id='demo-message-container'
-            )
-        ],
-        style={
-            'padding': 50
-        }
-    ),
-    compatibilityMode=True
-)
+app.layout = html.Div(
+    [
+        fac.AntdButton(
+            '触发示例',
+            id='spin-basic-demo-trigger',
+            style={
+                'marginBottom': 10
+            }
+        ),
 
+        fac.AntdSpin(
+            fac.AntdText(
+                id='spin-basic-demo-output'
+            ),
+            text='回调中',
+            fullscreen=True
+        )
+    ],
+    style={
+        'padding': '50px 100px'
+    }
+)
 
 @app.callback(
-    Output('demo-message-container', 'children'),
-    Input('demo-button', 'nClicks'),
+    Output('spin-basic-demo-output', 'children'),
+    Input('spin-basic-demo-trigger', 'nClicks'),
     prevent_initial_call=True
 )
-def message_test(nClicks):
+def spin_basic_demo(nClicks):
 
-    return fac.AntdNotification(
-        message='兼容性测试',
-        type='info',
-        underCompatibilityMode=True
-    )
+    time.sleep(2)
+
+    return f'nClicks: {nClicks}'
 
 
 if __name__ == '__main__':
