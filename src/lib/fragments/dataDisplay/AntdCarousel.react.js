@@ -20,6 +20,7 @@ const AntdCarousel = (props) => {
         autoplaySpeed,
         speed,
         pauseOnHover,
+        infinite,
         loading_state,
         setProps
     } = props;
@@ -41,6 +42,7 @@ const AntdCarousel = (props) => {
             autoplaySpeed={autoplaySpeed}
             speed={speed}
             pauseOnHover={pauseOnHover}
+            infinite={infinite}
             data-dash-is-loading={
                 (loading_state && loading_state.is_loading) || undefined
             }
