@@ -8,6 +8,7 @@ from .AntdComment import AntdComment as Comment
 from .AntdCountdown import AntdCountdown as Countdown
 from .AntdEmpty import AntdEmpty as Empty
 from .AntdImage import AntdImage as Image
+from .AntdImageGroup import AntdImageGroup as ImageGroup
 from .AntdPopover import AntdPopover as Popover
 from .AntdQRCode import AntdQRCode as QRCode
 from .AntdRibbon import AntdRibbon as Ribbon
@@ -112,6 +113,7 @@ __all__ = [
     "Countdown",
     "Empty",
     "Image",
+    "ImageGroup",
     "Popover",
     "QRCode",
     "Ribbon",
