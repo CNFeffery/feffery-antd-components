@@ -92,6 +92,12 @@ AntdCard.propTypes = {
     // 设置卡片的尺寸，可选的有'default'与'small'，默认为'default'
     size: PropTypes.oneOf(['default', 'small']),
 
+    /**
+     * 监听当前卡片累计点击次数
+     * 默认：0
+     */
+    nClicks: PropTypes.number,
+
     loading_state: PropTypes.shape({
         /**
          * Determines if the component is loading or not
@@ -118,7 +124,8 @@ AntdCard.propTypes = {
 AntdCard.defaultProps = {
     bordered: true,
     hoverable: false,
-    size: 'default'
+    size: 'default',
+    nClicks: 0
 }
 
 export default AntdCard;

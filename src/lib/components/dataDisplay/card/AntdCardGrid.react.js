@@ -36,6 +36,12 @@ AntdCardGrid.propTypes = {
     // 设置网格是否可鼠标悬浮呈现浮起效果，默认为true
     hoverable: PropTypes.bool,
 
+    /**
+     * 监听当前卡片网格累计点击次数
+     * 默认：0
+     */
+    nClicks: PropTypes.number,
+
     loading_state: PropTypes.shape({
         /**
          * Determines if the component is loading or not
@@ -60,7 +66,8 @@ AntdCardGrid.propTypes = {
 
 // 设置默认参数
 AntdCardGrid.defaultProps = {
-    hoverable: true
+    hoverable: true,
+    nClicks: 0
 }
 
 export default AntdCardGrid;

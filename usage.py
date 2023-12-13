@@ -1,44 +1,65 @@
-import time
+import json
 import dash
 from dash import html
 import feffery_antd_components as fac
-from dash.dependencies import Input, Output
+from dash.dependencies import Input, Output, ALL
 
 app = dash.Dash(__name__)
 
 app.layout = html.Div(
     [
-        fac.AntdButton(
-            '触发示例',
-            id='spin-basic-demo-trigger',
+        fac.AntdCard(
+            [
+                fac.AntdCardGrid(
+                    f'网格{i}',
+                    id={
+                        'type': 'card-grid-demo',
+                        'index': i
+                    },
+                    style={
+                        'width': '25%',
+                        'display': 'flex',
+                        'justifyContent': 'center',
+                        'alignItems': 'center'
+                    }
+                )
+                for i in range(10)
+            ],
+            id='card-demo',
+            title='卡片网格示例',
             style={
-                'marginBottom': 10
+                'width': '400px',
+                'marginBottom': '10px'
             }
         ),
-
-        fac.AntdSpin(
-            fac.AntdText(
-                id='spin-basic-demo-output'
-            ),
-            text='回调中',
-            fullscreen=True
-        )
+        html.Pre(id='output')
     ],
     style={
         'padding': '50px 100px'
     }
 )
 
+
 @app.callback(
-    Output('spin-basic-demo-output', 'children'),
-    Input('spin-basic-demo-trigger', 'nClicks'),
-    prevent_initial_call=True
+    Output('output', 'children'),
+    [
+        Input('card-demo', 'nClicks'),
+        Input(
+            {
+                'type': 'card-grid-demo',
+                'index': ALL
+            },
+            'nClicks'
+        )
+    ]
 )
-def spin_basic_demo(nClicks):
+def demo(*args):
 
-    time.sleep(2)
-
-    return f'nClicks: {nClicks}'
+    return json.dumps(
+        dash.ctx.inputs,
+        indent=4,
+        ensure_ascii=False
+    )
 
 
 if __name__ == '__main__':

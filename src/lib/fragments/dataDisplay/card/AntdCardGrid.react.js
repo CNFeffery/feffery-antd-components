@@ -15,6 +15,7 @@ const AntdCardGrid = (props) => {
         style,
         key,
         hoverable,
+        nClicks,
         setProps,
         loading_state
     } = props;
@@ -31,6 +32,7 @@ const AntdCardGrid = (props) => {
             style={style}
             key={key}
             hoverable={hoverable}
+            onClick={(e) => setProps({ nClicks: nClicks + 1 })}
             data-dash-is-loading={
                 (loading_state && loading_state.is_loading) || undefined
             }>

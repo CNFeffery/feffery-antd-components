@@ -24,6 +24,7 @@ const AntdCard = (props) => {
         hoverable,
         size,
         title,
+        nClicks,
         setProps,
         loading_state
     } = props;
@@ -67,6 +68,7 @@ const AntdCard = (props) => {
             hoverable={hoverable}
             size={size}
             title={title}
+            onClick={(e) => setProps({ nClicks: nClicks + 1 })}
             data-dash-is-loading={
                 (loading_state && loading_state.is_loading) || undefined
             }>
