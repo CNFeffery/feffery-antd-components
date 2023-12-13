@@ -53,8 +53,6 @@ const AntdInput = (props) => {
 
     // 解决受控value卡部分中文输入法问题
     const [rawValue, setRawValue] = useState(value);
-    console.log('value: ', value)
-    console.log('rawValue: ', rawValue)
 
     // 批属性监听
     useEffect(() => {
