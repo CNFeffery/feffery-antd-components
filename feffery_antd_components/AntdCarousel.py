@@ -30,6 +30,9 @@ Keyword arguments:
 
 - key (string; optional)
 
+- lazyLoad (boolean; default False):
+    是否针对走马灯中的子项实施懒加载效果  默认：False.
+
 - loading_state (dict; optional)
 
     `loading_state` is a dict with keys:
@@ -53,10 +56,10 @@ Keyword arguments:
     _namespace = 'feffery_antd_components'
     _type = 'AntdCarousel'
     @_explicitize_args
-    def __init__(self, children=None, id=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, key=Component.UNDEFINED, autoplay=Component.UNDEFINED, dotPosition=Component.UNDEFINED, easing=Component.UNDEFINED, effect=Component.UNDEFINED, autoplaySpeed=Component.UNDEFINED, speed=Component.UNDEFINED, pauseOnHover=Component.UNDEFINED, infinite=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
-        self._prop_names = ['children', 'id', 'autoplay', 'autoplaySpeed', 'className', 'dotPosition', 'easing', 'effect', 'infinite', 'key', 'loading_state', 'pauseOnHover', 'speed', 'style']
+    def __init__(self, children=None, id=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, key=Component.UNDEFINED, autoplay=Component.UNDEFINED, dotPosition=Component.UNDEFINED, easing=Component.UNDEFINED, effect=Component.UNDEFINED, autoplaySpeed=Component.UNDEFINED, speed=Component.UNDEFINED, pauseOnHover=Component.UNDEFINED, infinite=Component.UNDEFINED, lazyLoad=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
+        self._prop_names = ['children', 'id', 'autoplay', 'autoplaySpeed', 'className', 'dotPosition', 'easing', 'effect', 'infinite', 'key', 'lazyLoad', 'loading_state', 'pauseOnHover', 'speed', 'style']
         self._valid_wildcard_attributes =            []
-        self.available_properties = ['children', 'id', 'autoplay', 'autoplaySpeed', 'className', 'dotPosition', 'easing', 'effect', 'infinite', 'key', 'loading_state', 'pauseOnHover', 'speed', 'style']
+        self.available_properties = ['children', 'id', 'autoplay', 'autoplaySpeed', 'className', 'dotPosition', 'easing', 'effect', 'infinite', 'key', 'lazyLoad', 'loading_state', 'pauseOnHover', 'speed', 'style']
         self.available_wildcard_properties =            []
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()

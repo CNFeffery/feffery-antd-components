@@ -8,58 +8,32 @@ app = dash.Dash(__name__)
 
 app.layout = html.Div(
     [
-        fac.AntdCard(
-            [
-                fac.AntdCardGrid(
-                    f'网格{i}',
-                    id={
-                        'type': 'card-grid-demo',
-                        'index': i
-                    },
-                    style={
-                        'width': '25%',
-                        'display': 'flex',
-                        'justifyContent': 'center',
-                        'alignItems': 'center'
-                    }
-                )
-                for i in range(10)
-            ],
-            id='card-demo',
-            title='卡片网格示例',
-            style={
-                'width': '400px',
-                'marginBottom': '10px'
-            }
-        ),
-        html.Pre(id='output')
+        fac.AntdConfigProvider(
+            fac.AntdCarousel(
+                [
+                    fac.AntdCenter(
+                        fac.AntdImage(
+                            src=image,
+                            preview=False,
+                            height=300
+                        )
+                    )
+                    for image in [
+                        'https://s3.amazonaws.com/static.neostack.com/img/react-slick/abstract01.jpg',
+                        'https://s3.amazonaws.com/static.neostack.com/img/react-slick/abstract02.jpg',
+                        'https://s3.amazonaws.com/static.neostack.com/img/react-slick/abstract03.jpg',
+                        'https://s3.amazonaws.com/static.neostack.com/img/react-slick/abstract04.jpg'
+                    ]
+                ],
+                lazyLoad=True
+            ),
+            algorithm='dark'
+        )
     ],
     style={
         'padding': '50px 100px'
     }
 )
-
-
-@app.callback(
-    Output('output', 'children'),
-    [
-        Input('card-demo', 'nClicks'),
-        Input(
-            {
-                'type': 'card-grid-demo',
-                'index': ALL
-            },
-            'nClicks'
-        )
-    ]
-)
-def demo(*args):
-
-    return json.dumps(
-        dash.ctx.inputs,
-        indent=4,
-        ensure_ascii=False
-    )
 
 
 if __name__ == '__main__':

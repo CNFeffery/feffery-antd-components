@@ -21,6 +21,7 @@ const AntdCarousel = (props) => {
         speed,
         pauseOnHover,
         infinite,
+        lazyLoad,
         loading_state,
         setProps
     } = props;
@@ -43,6 +44,7 @@ const AntdCarousel = (props) => {
             speed={speed}
             pauseOnHover={pauseOnHover}
             infinite={infinite}
+            lazyLoad={lazyLoad}
             data-dash-is-loading={
                 (loading_state && loading_state.is_loading) || undefined
             }

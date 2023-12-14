@@ -58,6 +58,12 @@ AntdCarousel.propTypes = {
      */
     infinite: PropTypes.bool,
 
+    /**
+     * 是否针对走马灯中的子项实施懒加载效果
+     * 默认：false
+     */
+    lazyLoad: PropTypes.bool,
+
     loading_state: PropTypes.shape({
         /**
          * Determines if the component is loading or not
@@ -89,7 +95,8 @@ AntdCarousel.defaultProps = {
     autoplaySpeed: 3000,
     speed: 500,
     pauseOnHover: false,
-    infinite: true
+    infinite: true,
+    lazyLoad: false
 }
 
 export default AntdCarousel;
