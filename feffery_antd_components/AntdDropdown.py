@@ -9,6 +9,9 @@ class AntdDropdown(Component):
 
 Keyword arguments:
 
+- children (a list of or a singular dash component, string or number; optional):
+    自定义下拉菜单锚定的自定义元素，优先级最高.
+
 - id (string; optional)
 
 - arrow (boolean; default False)
@@ -110,20 +113,26 @@ Keyword arguments:
 
 - trigger (a value equal to: 'click', 'hover'; default 'hover')
 
-- visible (boolean; default False)"""
+- visible (boolean; default False)
+
+- wrapperClassName (string | dict; optional):
+    针对自定义锚定元素的父容器设置css类名.
+
+- wrapperStyle (dict; optional):
+    针对自定义锚定元素的父容器设置css样式."""
     _children_props = ['menuItems[].title']
     _base_nodes = ['children']
     _namespace = 'feffery_antd_components'
     _type = 'AntdDropdown'
     @_explicitize_args
-    def __init__(self, id=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, key=Component.UNDEFINED, title=Component.UNDEFINED, buttonMode=Component.UNDEFINED, buttonProps=Component.UNDEFINED, freePosition=Component.UNDEFINED, freePositionStyle=Component.UNDEFINED, freePositionClassName=Component.UNDEFINED, clickedKey=Component.UNDEFINED, nClicks=Component.UNDEFINED, menuItems=Component.UNDEFINED, selectable=Component.UNDEFINED, multiple=Component.UNDEFINED, selectedKeys=Component.UNDEFINED, nonSelectableKeys=Component.UNDEFINED, arrow=Component.UNDEFINED, disabled=Component.UNDEFINED, overlayClassName=Component.UNDEFINED, overlayStyle=Component.UNDEFINED, placement=Component.UNDEFINED, trigger=Component.UNDEFINED, autoAdjustOverflow=Component.UNDEFINED, visible=Component.UNDEFINED, popupContainer=Component.UNDEFINED, batchPropsNames=Component.UNDEFINED, batchPropsValues=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
-        self._prop_names = ['id', 'arrow', 'autoAdjustOverflow', 'batchPropsNames', 'batchPropsValues', 'buttonMode', 'buttonProps', 'className', 'clickedKey', 'disabled', 'freePosition', 'freePositionClassName', 'freePositionStyle', 'key', 'loading_state', 'menuItems', 'multiple', 'nClicks', 'nonSelectableKeys', 'overlayClassName', 'overlayStyle', 'placement', 'popupContainer', 'selectable', 'selectedKeys', 'style', 'title', 'trigger', 'visible']
+    def __init__(self, children=None, id=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, wrapperStyle=Component.UNDEFINED, wrapperClassName=Component.UNDEFINED, key=Component.UNDEFINED, title=Component.UNDEFINED, buttonMode=Component.UNDEFINED, buttonProps=Component.UNDEFINED, freePosition=Component.UNDEFINED, freePositionStyle=Component.UNDEFINED, freePositionClassName=Component.UNDEFINED, clickedKey=Component.UNDEFINED, nClicks=Component.UNDEFINED, menuItems=Component.UNDEFINED, selectable=Component.UNDEFINED, multiple=Component.UNDEFINED, selectedKeys=Component.UNDEFINED, nonSelectableKeys=Component.UNDEFINED, arrow=Component.UNDEFINED, disabled=Component.UNDEFINED, overlayClassName=Component.UNDEFINED, overlayStyle=Component.UNDEFINED, placement=Component.UNDEFINED, trigger=Component.UNDEFINED, autoAdjustOverflow=Component.UNDEFINED, visible=Component.UNDEFINED, popupContainer=Component.UNDEFINED, batchPropsNames=Component.UNDEFINED, batchPropsValues=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
+        self._prop_names = ['children', 'id', 'arrow', 'autoAdjustOverflow', 'batchPropsNames', 'batchPropsValues', 'buttonMode', 'buttonProps', 'className', 'clickedKey', 'disabled', 'freePosition', 'freePositionClassName', 'freePositionStyle', 'key', 'loading_state', 'menuItems', 'multiple', 'nClicks', 'nonSelectableKeys', 'overlayClassName', 'overlayStyle', 'placement', 'popupContainer', 'selectable', 'selectedKeys', 'style', 'title', 'trigger', 'visible', 'wrapperClassName', 'wrapperStyle']
         self._valid_wildcard_attributes =            []
-        self.available_properties = ['id', 'arrow', 'autoAdjustOverflow', 'batchPropsNames', 'batchPropsValues', 'buttonMode', 'buttonProps', 'className', 'clickedKey', 'disabled', 'freePosition', 'freePositionClassName', 'freePositionStyle', 'key', 'loading_state', 'menuItems', 'multiple', 'nClicks', 'nonSelectableKeys', 'overlayClassName', 'overlayStyle', 'placement', 'popupContainer', 'selectable', 'selectedKeys', 'style', 'title', 'trigger', 'visible']
+        self.available_properties = ['children', 'id', 'arrow', 'autoAdjustOverflow', 'batchPropsNames', 'batchPropsValues', 'buttonMode', 'buttonProps', 'className', 'clickedKey', 'disabled', 'freePosition', 'freePositionClassName', 'freePositionStyle', 'key', 'loading_state', 'menuItems', 'multiple', 'nClicks', 'nonSelectableKeys', 'overlayClassName', 'overlayStyle', 'placement', 'popupContainer', 'selectable', 'selectedKeys', 'style', 'title', 'trigger', 'visible', 'wrapperClassName', 'wrapperStyle']
         self.available_wildcard_properties =            []
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()
         _locals.update(kwargs)  # For wildcard attrs and excess named props
-        args = {k: _locals[k] for k in _explicit_args}
+        args = {k: _locals[k] for k in _explicit_args if k != 'children'}
 
-        super(AntdDropdown, self).__init__(**args)
+        super(AntdDropdown, self).__init__(children=children, **args)

@@ -14,8 +14,11 @@ const AntdDropdown = (props) => {
     // 取得必要属性或参数
     let {
         id,
+        children,
         className,
         style,
+        wrapperStyle,
+        wrapperClassName,
         key,
         title,
         buttonMode,
@@ -159,16 +162,32 @@ const AntdDropdown = (props) => {
                         />
                     ) :
                     (
-                        buttonMode ?
-                            <Button
-                                {...buttonProps}
-                            >
-                                {title} <DownOutlined />
-                            </Button>
-                            :
-                            <Link onClick={e => e.preventDefault()}>
-                                {title} <DownOutlined />
-                            </Link>
+                        children ?
+                            (
+                                <div className={
+                                    isString(wrapperClassName) ?
+                                        wrapperClassName :
+                                        (wrapperClassName ? useCss(wrapperClassName) : undefined)
+                                }
+                                    style={{
+                                        display: 'inline-block',
+                                        ...wrapperStyle
+                                    }}>
+                                    {children}
+                                </div>
+                            ) :
+                            (
+                                buttonMode ?
+                                    <Button
+                                        {...buttonProps}
+                                    >
+                                        {title} <DownOutlined />
+                                    </Button>
+                                    :
+                                    <Link onClick={e => e.preventDefault()}>
+                                        {title} <DownOutlined />
+                                    </Link>
+                            )
                     )
             }
         </Dropdown>
@@ -180,6 +199,11 @@ AntdDropdown.propTypes = {
     // 组件id
     id: PropTypes.string,
 
+    /**
+     * 自定义下拉菜单锚定的自定义元素，优先级最高
+     */
+    children: PropTypes.node,
+
     // css类名
     className: PropTypes.oneOfType([
         PropTypes.string,
@@ -188,6 +212,19 @@ AntdDropdown.propTypes = {
 
     // 自定义css字典
     style: PropTypes.object,
+
+    /**
+     * 针对自定义锚定元素的父容器设置css样式
+     */
+    wrapperStyle: PropTypes.object,
+
+    /**
+     * 针对自定义锚定元素的父容器设置css类名
+     */
+    wrapperClassName: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.object
+    ]),
 
     // 辅助刷新用唯一标识key值
     key: PropTypes.string,
