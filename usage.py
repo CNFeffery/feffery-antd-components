@@ -1,54 +1,39 @@
 import dash
 from dash import html
 import feffery_antd_components as fac
+from dash.dependencies import Input, Output
 
 app = dash.Dash(__name__)
 
 app.layout = html.Div(
     [
-        fac.AntdDropdown(
-            fac.AntdAvatar(
-                icon='antd-user',
-                size='large',
-                style={
-                    'background': '#1890ff',
-                    'cursor': 'pointer'
-                }
-            ),
-            menuItems=[
-                {
-                    'title': fac.AntdSpace(
-                        [
-                            fac.AntdAvatar(
-                                text='我',
-                                mode='text',
-                                style={
-                                    'background': '#2f54eb'
-                                }
-                            ),
-                            fac.AntdSpace(
-                                [
-                                    '用户示例',
-                                    fac.AntdTag(
-                                        content='vip',
-                                        color='red'
-                                    )
-                                ],
-                                direction='vertical',
-                                size=0
-                            )
-                        ]
-                    )
-                }
-            ],
-            trigger='hover',
-            placement='bottomRight'
+        fac.AntdButton(
+            '新的通知',
+            id='new-notification',
+            type='primary'
+        ),
+        html.Div(
+            id='notification-container'
         )
     ],
     style={
         'padding': '50px 100px'
     }
 )
+
+
+@app.callback(
+    Output('notification-container', 'children'),
+    Input('new-notification', 'nClicks'),
+    prevent_initial_call=True
+)
+def new_notification(nClicks):
+    return [
+        fac.AntdNotification(
+            message='这是新的通知，nClicks={}'.format(nClicks),
+            type='info'
+        )
+    ]
 
 
 if __name__ == '__main__':

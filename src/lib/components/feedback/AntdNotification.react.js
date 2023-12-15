@@ -23,6 +23,7 @@ const AntdNotification = (props) => {
         setProps
     } = props;
 
+    const [api, contextHolder] = notification.useNotification({ stack: false });
     const { notification: _notification } = App.useApp();
 
     let config = {
@@ -60,20 +61,20 @@ const AntdNotification = (props) => {
             }
         } else {
             if (type === 'default') {
-                notification.open(config)
+                api.open(config)
             } else if (type === 'success') {
-                notification.success(config)
+                api.success(config)
             } else if (type === 'error') {
-                notification.error(config)
+                api.error(config)
             } else if (type === 'info') {
-                notification.info(config)
+                api.info(config)
             } else if (type === 'warning') {
-                notification.warning(config)
+                api.warning(config)
             }
         }
     })
 
-    return <></>;
+    return <>{contextHolder}</>;
 }
 
 // 定义参数或属性
