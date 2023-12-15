@@ -12,8 +12,11 @@ app.layout = html.Div(
             id='new-notification',
             type='primary'
         ),
-        html.Div(
-            id='notification-container'
+        fac.AntdConfigProvider(
+            html.Div(
+                id='notification-container'
+            ),
+            compatibilityMode=True
         )
     ],
     style={
@@ -28,12 +31,11 @@ app.layout = html.Div(
     prevent_initial_call=True
 )
 def new_notification(nClicks):
-    return [
-        fac.AntdNotification(
-            message='这是新的通知，nClicks={}'.format(nClicks),
-            type='info'
-        )
-    ]
+    return fac.AntdNotification(
+        message='这是新的通知，nClicks={}'.format(nClicks),
+        type='info',
+        underCompatibilityMode=True
+    )
 
 
 if __name__ == '__main__':

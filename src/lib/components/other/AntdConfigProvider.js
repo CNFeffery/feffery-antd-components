@@ -58,7 +58,9 @@ const AntdConfigProvider = (props) => {
             >
                 <StyleProvider hashPriority={'high'}
                     transformers={[legacyLogicalPropertiesTransformer]}>
-                    <App>
+                    <App notification={{
+                        stack: false
+                    }}>
                         <ConfigProvider id={id}
                             key={key}
                             theme={
