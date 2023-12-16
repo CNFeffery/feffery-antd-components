@@ -6,6 +6,7 @@ from .AntdCarousel import AntdCarousel
 from .AntdCollapse import AntdCollapse
 from .AntdComment import AntdComment
 from .AntdCountdown import AntdCountdown
+from .AntdDraggablePanel import AntdDraggablePanel
 from .AntdEmpty import AntdEmpty
 from .AntdImage import AntdImage
 from .AntdImageGroup import AntdImageGroup
@@ -111,6 +112,7 @@ __all__ = [
     "AntdCollapse",
     "AntdComment",
     "AntdCountdown",
+    "AntdDraggablePanel",
     "AntdEmpty",
     "AntdImage",
     "AntdImageGroup",
