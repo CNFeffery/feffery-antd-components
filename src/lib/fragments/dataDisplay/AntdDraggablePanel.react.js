@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import useCss from '../../hooks/useCss';
 import { isString } from 'lodash';
 import { DraggablePanel } from '@ant-design/pro-editor/es/DraggablePanel';
