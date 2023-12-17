@@ -17,19 +17,23 @@ app.layout = html.Div(
                     }
                 ),
                 fac.AntdDraggablePanel(
-                    '可拖拽面板',
-                    defaultSize={
-                        'width': 1200
+                    '悬浮可拖拽面板',
+                    mode='float',
+                    defaultPosition={
+                        'x': 400,
+                        'y': 5
+                    },
+                    style={
+                        'background': '#fff',
+                        'padding': 12
                     }
                 )
             ],
             style={
                 'background': '#f1f1f1',
                 'border': '2px solid #ddd',
-                'height': 300,
+                'height': 800,
                 'display': 'flex',
-                'overflow': 'hidden',
-                'maxWidth': '100%'
             }
         )
     ],

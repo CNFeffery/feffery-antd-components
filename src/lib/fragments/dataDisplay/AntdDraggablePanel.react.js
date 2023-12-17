@@ -15,6 +15,7 @@ const AntdDraggablePanel = (props) => {
         key,
         mode,
         defaultSize,
+        defaultPosition,
         placement,
         minWidth,
         minHeight,
@@ -38,6 +39,7 @@ const AntdDraggablePanel = (props) => {
             key={key}
             mode={mode}
             defaultSize={defaultSize}
+            defaultPosition={defaultPosition}
             placement={placement}
             minWidth={minWidth}
             minHeight={minHeight}

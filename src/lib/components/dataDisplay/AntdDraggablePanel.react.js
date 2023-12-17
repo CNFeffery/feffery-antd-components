@@ -69,6 +69,21 @@ AntdDraggablePanel.propTypes = {
     }),
 
     /**
+     * 设置当前面板默认位置
+     */
+    defaultPosition: PropTypes.exact({
+        /**
+         * 设置距离文档左端像素距离
+         */
+        x: PropTypes.number,
+
+        /**
+         * 设置距离文档顶端像素距离
+         */
+        y: PropTypes.number
+    }),
+
+    /**
      * 固定模式下，用于设置面板朝向，可选的有'right'、'left'、'top'、'bottom'
      * 默认：'right'
      */
