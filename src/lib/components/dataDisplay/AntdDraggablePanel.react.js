@@ -48,6 +48,27 @@ AntdDraggablePanel.propTypes = {
     mode: PropTypes.oneOf(['fixed', 'float']),
 
     /**
+     * 设置当前面板默认尺寸
+     */
+    defaultSize: PropTypes.exact({
+        /**
+         * 设置像素宽度数值，或css宽度字符串
+         */
+        width: PropTypes.oneOfType([
+            PropTypes.number,
+            PropTypes.string
+        ]),
+
+        /**
+         * 设置像素高度数值，或css高度字符串
+         */
+        height: PropTypes.oneOfType([
+            PropTypes.number,
+            PropTypes.string
+        ])
+    }),
+
+    /**
      * 固定模式下，用于设置面板朝向，可选的有'right'、'left'、'top'、'bottom'
      * 默认：'right'
      */
@@ -72,6 +93,25 @@ AntdDraggablePanel.propTypes = {
      * 面板最大像素高度
      */
     maxHeight: PropTypes.number,
+
+    /**
+     * 配置尺寸可调整性，可独立控制各个方向，也可直接控制所有方向是否可调整尺寸
+     */
+    resize: PropTypes.oneOfType(
+        [
+            PropTypes.bool,
+            PropTypes.exact({
+                bottom: PropTypes.bool,
+                bottomLeft: PropTypes.bool,
+                bottomRight: PropTypes.bool,
+                left: PropTypes.bool,
+                right: PropTypes.bool,
+                top: PropTypes.bool,
+                topLeft: PropTypes.bool,
+                topRight: PropTypes.bool
+            })
+        ]
+    ),
 
     /**
      * 面板是否可展开

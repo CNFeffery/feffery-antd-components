@@ -14,11 +14,13 @@ const AntdDraggablePanel = (props) => {
         className,
         key,
         mode,
+        defaultSize,
         placement,
         minWidth,
         minHeight,
         maxWidth,
         maxHeight,
+        resize,
         expandable,
         isExpand,
         setProps,
@@ -35,11 +37,13 @@ const AntdDraggablePanel = (props) => {
             style={style}
             key={key}
             mode={mode}
+            defaultSize={defaultSize}
             placement={placement}
             minWidth={minWidth}
             minHeight={minHeight}
             maxWidth={maxWidth}
             maxHeight={maxHeight}
+            resize={resize}
             expandable={expandable}
             isExpand={isExpand}
             data-dash-is-loading={

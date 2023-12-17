@@ -17,7 +17,10 @@ app.layout = html.Div(
                     }
                 ),
                 fac.AntdDraggablePanel(
-                    '可拖拽面板'
+                    '可拖拽面板',
+                    defaultSize={
+                        'width': 1200
+                    }
                 )
             ],
             style={
