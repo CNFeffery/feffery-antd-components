@@ -1754,6 +1754,73 @@ class AntdTable extends Component {
             }
         }
 
+        // 统一合并处理onCell自定义函数逻辑
+        columns = [...columns].map(
+            item => {
+                return {
+                    ...item,
+                    ...{
+                        onCell: (record, index) => {
+                            // 初始化onCell返回值
+                            let returnValue = {}
+                            // 处理自定义样式特性
+                            if (conditionalStyleFuncs && conditionalStyleFuncs[item.dataIndex]) {
+                                try {
+                                    returnValue = {
+                                        ...returnValue,
+                                        ...eval(conditionalStyleFuncs[item.dataIndex])(record, index)
+                                    }
+                                } catch (e) {
+                                    console.error(e)
+                                }
+                            }
+                            // 处理单元格点击事件
+                            if (enableCellClickListenColumns && enableCellClickListenColumns.includes(item.dataIndex)) {
+                                try {
+                                    returnValue = {
+                                        ...returnValue,
+                                        onClick: e => {
+                                            setProps({
+                                                recentlyCellClickColumn: item.dataIndex,
+                                                recentlyCellClickRecord: record,
+                                                nClicksCell: nClicksCell + 1
+                                            })
+                                        },
+                                        onDoubleClick: e => {
+                                            setProps({
+                                                recentlyCellDoubleClickColumn: item.dataIndex,
+                                                recentlyCellDoubleClickRecord: record,
+                                                nDoubleClicksCell: nDoubleClicksCell + 1
+                                            })
+                                        }
+                                    }
+                                } catch (e) {
+                                    console.error(e)
+                                }
+                            }
+
+                            // 处理可编辑特性
+                            if (item.editable) {
+                                try {
+                                    returnValue = {
+                                        ...returnValue,
+                                        record,
+                                        editable: item.editable,
+                                        dataIndex: item.dataIndex,
+                                        title: item.title
+                                    }
+                                } catch (e) {
+                                    console.error(e)
+                                }
+                            }
+
+                            return returnValue;
+                        }
+                    }
+                };
+            }
+        )
+
         // 若存在至少一个字段有group参数，则对columns进行重构以支持多层表头
         let tempColumns = []
         if (columns.some(e => e.group)) {
@@ -1772,71 +1839,6 @@ class AntdTable extends Component {
         } else {
             tempColumns = [...columns]
         }
-
-        // 统一合并处理onCell自定义函数逻辑
-        tempColumns = tempColumns.map(
-            item => ({
-                ...item,
-                ...{
-                    onCell: (record, index) => {
-                        // 初始化onCell返回值
-                        let returnValue = {}
-                        // 处理自定义样式特性
-                        if (conditionalStyleFuncs && conditionalStyleFuncs[item.dataIndex]) {
-                            try {
-                                returnValue = {
-                                    ...returnValue,
-                                    ...eval(conditionalStyleFuncs[item.dataIndex])(record, index)
-                                }
-                            } catch (e) {
-                                console.error(e)
-                            }
-                        }
-                        // 处理单元格点击事件
-                        if (enableCellClickListenColumns && enableCellClickListenColumns.includes(item.dataIndex)) {
-                            try {
-                                returnValue = {
-                                    ...returnValue,
-                                    onClick: e => {
-                                        setProps({
-                                            recentlyCellClickColumn: item.dataIndex,
-                                            recentlyCellClickRecord: record,
-                                            nClicksCell: nClicksCell + 1
-                                        })
-                                    },
-                                    onDoubleClick: e => {
-                                        setProps({
-                                            recentlyCellDoubleClickColumn: item.dataIndex,
-                                            recentlyCellDoubleClickRecord: record,
-                                            nDoubleClicksCell: nDoubleClicksCell + 1
-                                        })
-                                    }
-                                }
-                            } catch (e) {
-                                console.error(e)
-                            }
-                        }
-
-                        // 处理可编辑特性
-                        if (item.editable) {
-                            try {
-                                returnValue = {
-                                    ...returnValue,
-                                    record,
-                                    editable: item.editable,
-                                    dataIndex: item.dataIndex,
-                                    title: item.title
-                                }
-                            } catch (e) {
-                                console.error(e)
-                            }
-                        }
-
-                        return returnValue;
-                    }
-                }
-            })
-        )
 
         return (
             <ConfigProvider

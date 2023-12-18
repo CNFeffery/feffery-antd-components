@@ -7,33 +7,56 @@ app = dash.Dash(__name__)
 
 app.layout = html.Div(
     [
-        html.Div(
-            [
-                html.Div(
-                    '内容',
-                    style={
-                        'flex': 1,
-                        'padding': 12
-                    }
-                ),
-                fac.AntdDraggablePanel(
-                    '悬浮可拖拽面板',
-                    mode='float',
-                    defaultPosition={
-                        'x': 400,
-                        'y': 5
-                    },
-                    style={
-                        'background': '#fff',
-                        'padding': 12
-                    }
-                )
+        fac.AntdTable(
+            columns=[
+                {
+                    'title': '字段1-1-1',
+                    'dataIndex': '字段1-1-1',
+                    'group': ['字段1', '字段1-1']
+                },
+                {
+                    'title': '字段1-1-2',
+                    'dataIndex': '字段1-1-2',
+                    'group': ['字段1', '字段1-1']
+                },
+                {
+                    'title': '字段1-2',
+                    'dataIndex': '字段1-2',
+                    'group': '字段1'
+                },
+                {
+                    'title': '字段2',
+                    'dataIndex': '字段2'
+                }
             ],
-            style={
-                'background': '#f1f1f1',
-                'border': '2px solid #ddd',
-                'height': 800,
-                'display': 'flex',
+            data=[
+                {
+                    '字段1-1-1': 1,
+                    '字段1-1-2': 1,
+                    '字段1-2': 1,
+                    '字段2': 1
+                }
+            ] * 3,
+            filterOptions={
+                '字段1-1-1': {}
+            },
+            sortOptions={
+                'sortDataIndexes': ['字段1-1-1']
+            },
+            bordered=True,
+            conditionalStyleFuncs={
+                '字段1-1-1': '''
+(record, index) => {
+    console.log(record)
+    if ( index % 2 === 1 ) {
+        return {
+            style: {
+                backgroundColor: "#ebfbee"
+            }
+        }
+    }
+}
+'''
             }
         )
     ],
