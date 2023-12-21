@@ -43,9 +43,6 @@ Keyword arguments:
 - expandable (boolean; default True):
     面板是否可展开  默认：True.
 
-- isExpand (boolean; optional):
-    设置或监听当前面板是否为展开状态.
-
 - key (string; optional):
     强制刷新用.
 
@@ -108,10 +105,10 @@ Keyword arguments:
     _namespace = 'feffery_antd_components'
     _type = 'AntdDraggablePanel'
     @_explicitize_args
-    def __init__(self, children=None, id=Component.UNDEFINED, style=Component.UNDEFINED, className=Component.UNDEFINED, key=Component.UNDEFINED, mode=Component.UNDEFINED, defaultSize=Component.UNDEFINED, defaultPosition=Component.UNDEFINED, placement=Component.UNDEFINED, minWidth=Component.UNDEFINED, minHeight=Component.UNDEFINED, maxWidth=Component.UNDEFINED, maxHeight=Component.UNDEFINED, resize=Component.UNDEFINED, expandable=Component.UNDEFINED, isExpand=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
-        self._prop_names = ['children', 'id', 'className', 'defaultPosition', 'defaultSize', 'expandable', 'isExpand', 'key', 'loading_state', 'maxHeight', 'maxWidth', 'minHeight', 'minWidth', 'mode', 'placement', 'resize', 'style']
+    def __init__(self, children=None, id=Component.UNDEFINED, style=Component.UNDEFINED, className=Component.UNDEFINED, key=Component.UNDEFINED, mode=Component.UNDEFINED, defaultSize=Component.UNDEFINED, defaultPosition=Component.UNDEFINED, placement=Component.UNDEFINED, minWidth=Component.UNDEFINED, minHeight=Component.UNDEFINED, maxWidth=Component.UNDEFINED, maxHeight=Component.UNDEFINED, resize=Component.UNDEFINED, expandable=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
+        self._prop_names = ['children', 'id', 'className', 'defaultPosition', 'defaultSize', 'expandable', 'key', 'loading_state', 'maxHeight', 'maxWidth', 'minHeight', 'minWidth', 'mode', 'placement', 'resize', 'style']
         self._valid_wildcard_attributes =            []
-        self.available_properties = ['children', 'id', 'className', 'defaultPosition', 'defaultSize', 'expandable', 'isExpand', 'key', 'loading_state', 'maxHeight', 'maxWidth', 'minHeight', 'minWidth', 'mode', 'placement', 'resize', 'style']
+        self.available_properties = ['children', 'id', 'className', 'defaultPosition', 'defaultSize', 'expandable', 'key', 'loading_state', 'maxHeight', 'maxWidth', 'minHeight', 'minWidth', 'mode', 'placement', 'resize', 'style']
         self.available_wildcard_properties =            []
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()

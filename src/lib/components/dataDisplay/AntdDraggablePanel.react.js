@@ -134,11 +134,6 @@ AntdDraggablePanel.propTypes = {
      */
     expandable: PropTypes.bool,
 
-    /**
-     * 设置或监听当前面板是否为展开状态
-     */
-    isExpand: PropTypes.bool,
-
     loading_state: PropTypes.shape({
         /**
          * Determines if the component is loading or not

@@ -23,7 +23,6 @@ const AntdDraggablePanel = (props) => {
         maxHeight,
         resize,
         expandable,
-        isExpand,
         setProps,
         loading_state
     } = props;
@@ -47,7 +46,6 @@ const AntdDraggablePanel = (props) => {
             maxHeight={maxHeight}
             resize={resize}
             expandable={expandable}
-            isExpand={isExpand}
             data-dash-is-loading={
                 (loading_state && loading_state.is_loading) || undefined
             } >
