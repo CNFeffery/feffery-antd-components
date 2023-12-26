@@ -40,15 +40,23 @@ Keyword arguments:
 - locale (a value equal to: 'zh-cn', 'en-us'; default 'zh-cn'):
     设置语言环境，可选的有'zh-cn'、'en-us'  默认：'zh-cn'.
 
-- preview (boolean; default True):
-    设置是否启用交互预览功能  默认：True.
+- preview (dict; default True):
+    配置图片预览相关功能，传入False时会禁用预览功能  默认：True.
+
+    `preview` is a boolean | dict with keys:
+
+    - mask (a list of or a singular dash component, string or number; optional):
+        组件型，用于自定义缩略图遮罩元素.
+
+    - visible (boolean; optional):
+        是否展示预览层.
 
 - style (dict; optional):
     css样式.
 
 - visible (boolean; optional):
     设置或监听当前图片组是否处于全屏预览状态."""
-    _children_props = []
+    _children_props = ['preview.mask']
     _base_nodes = ['children']
     _namespace = 'feffery_antd_components'
     _type = 'AntdImageGroup'

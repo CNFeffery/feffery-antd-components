@@ -53,10 +53,22 @@ AntdImageGroup.propTypes = {
     fallback: PropTypes.string,
 
     /**
-     * 设置是否启用交互预览功能
+     * 配置图片预览相关功能，传入false时会禁用预览功能
      * 默认：true
      */
-    preview: PropTypes.bool,
+    preview: PropTypes.oneOfType([
+        PropTypes.bool,
+        PropTypes.exact({
+            /**
+             * 是否展示预览层
+             */
+            visible: PropTypes.bool,
+            /**
+             * 组件型，用于自定义缩略图遮罩元素
+             */
+            mask: PropTypes.node
+        })
+    ]),
 
     /**
      * 设置或监听当前图片组是否处于全屏预览状态

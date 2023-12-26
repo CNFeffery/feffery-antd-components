@@ -59,8 +59,23 @@ AntdImage.propTypes = {
     // 设置多张图片的展示模式，可选的有'fold'与'unfold'
     multiImageMode: PropTypes.oneOf(['fold', 'unfold']),
 
-    // 仅单图片传入时可用，用于设置是否添加交互预览功能，默认为true
-    preview: PropTypes.bool,
+    /**
+     * 配置图片预览相关功能，传入false时会禁用预览功能
+     * 默认：true
+     */
+    preview: PropTypes.oneOfType([
+        PropTypes.bool,
+        PropTypes.exact({
+            /**
+             * 是否展示预览层
+             */
+            visible: PropTypes.bool,
+            /**
+             * 组件型，用于自定义缩略图遮罩元素
+             */
+            mask: PropTypes.node
+        })
+    ]),
 
     loading_state: PropTypes.shape({
         /**

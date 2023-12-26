@@ -6,27 +6,30 @@ app = dash.Dash(__name__)
 
 app.layout = html.Div(
     [
-        html.Div(
+        fac.AntdSpace(
             [
-                html.Div(
-                    '内容',
-                    style={
-                        'flex': 1,
-                        'padding': 12
-                    }
+                fac.AntdImage(
+                    src='https://c4.staticflickr.com/9/8887/28897124891_98c4fdd82b_b.jpg',
+                    preview={
+                        'mask': '点我预览'
+                    },
+                    width=300
                 ),
-                fac.AntdDraggablePanel(
-                    '可拖拽面板'
+                fac.AntdImageGroup(
+                    fac.AntdSpace(
+                        [
+                            fac.AntdImage(
+                                src='https://c4.staticflickr.com/9/8887/28897124891_98c4fdd82b_b.jpg',
+                                preview={
+                                    'mask': '点我预览'
+                                },
+                                width=150
+                            )
+                        ] * 3
+                    )
                 )
             ],
-            style={
-                'background': '#f1f1f1',
-                'border': '2px solid #ddd',
-                'height': 300,
-                'display': 'flex',
-                'overflow': 'hidden',
-                'maxWidth': '100%'
-            }
+            direction='vertical'
         )
     ],
     style={
