@@ -196,6 +196,12 @@ AntdSelect.propTypes = {
     // 用于设置是否自动获取焦点，默认为false
     autoFocus: PropTypes.bool,
 
+    /**
+     * 设置下拉菜单是否与选择框同款，设置为false时将关闭虚拟滚动功能
+     * 默认：true
+     */
+    popupMatchSelectWidth: PropTypes.bool,
+
     // 设置是否以只读模式进行渲染，底层利用Select的open参数
     // 默认为false
     readOnly: PropTypes.bool,
@@ -281,6 +287,7 @@ AntdSelect.defaultProps = {
     optionFilterMode: 'case-insensitive',
     autoSpin: false,
     debounceWait: 200,
+    popupMatchSelectWidth: true,
     popupContainer: 'body',
     loadingEmptyContent: (
         <div style={{ display: 'flex', 'justifyContent': 'center' }}>

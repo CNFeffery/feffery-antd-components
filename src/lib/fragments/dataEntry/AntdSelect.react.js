@@ -48,6 +48,7 @@ const AntdSelect = (props) => {
         dropdownAfter,
         popupContainer,
         readOnly,
+        popupMatchSelectWidth,
         loading_state,
         persistence,
         persisted_props,
@@ -289,6 +290,7 @@ const AntdSelect = (props) => {
                         undefined
                 }
                 open={isUndefined(readOnly) || !readOnly ? undefined : false}
+                popupMatchSelectWidth={popupMatchSelectWidth}
             >
                 {optionsJsx}
             </Select>

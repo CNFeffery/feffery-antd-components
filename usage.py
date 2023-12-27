@@ -8,25 +8,30 @@ app.layout = html.Div(
     [
         fac.AntdSpace(
             [
-                fac.AntdImage(
-                    src='https://c4.staticflickr.com/9/8887/28897124891_98c4fdd82b_b.jpg',
-                    preview={
-                        'mask': '点我预览'
-                    },
-                    width=300
+                fac.AntdSelect(
+                    options=[
+                        {
+                            'label': f'选项{i}'*10,
+                            'value': f'选项{i}'*10,
+                        }
+                        for i in range(1, 10)
+                    ],
+                    style={
+                        'width': 200
+                    }
                 ),
-                fac.AntdImageGroup(
-                    fac.AntdSpace(
-                        [
-                            fac.AntdImage(
-                                src='https://c4.staticflickr.com/9/8887/28897124891_98c4fdd82b_b.jpg',
-                                preview={
-                                    'mask': '点我预览'
-                                },
-                                width=150
-                            )
-                        ] * 3
-                    )
+                fac.AntdSelect(
+                    options=[
+                        {
+                            'label': f'选项{i}'*10,
+                            'value': f'选项{i}'*10,
+                        }
+                        for i in range(1, 10)
+                    ],
+                    popupMatchSelectWidth=False,
+                    style={
+                        'width': 200
+                    }
                 )
             ],
             direction='vertical'
