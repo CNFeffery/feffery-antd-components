@@ -265,8 +265,11 @@ AntdTree.propTypes = {
         offset: PropTypes.number
     }),
 
-    // 联动树搜索时使用，用于设置针对树节点title进行搜索的关键词
-    searchKeyword: PropTypes.string,
+    // 联动树搜索时使用，用于设置针对树节点title进行搜索的关键词，也可以传入由多个关键词构成的数组
+    searchKeyword: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.arrayOf(PropTypes.string)
+    ]),
 
     // 配合searchKeyword参数使用，用于设置树节点title命中关键词部分的高亮样式
     highlightStyle: PropTypes.object,

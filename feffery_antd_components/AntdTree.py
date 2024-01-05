@@ -115,7 +115,7 @@ Keyword arguments:
 
     - offset (number; optional)
 
-- searchKeyword (string; optional)
+- searchKeyword (string | list of strings; optional)
 
 - selectable (boolean; default True)
 

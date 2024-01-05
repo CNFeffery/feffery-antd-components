@@ -27,7 +27,12 @@ const isSameParent = (a, b) => {
 const filterTree = (toFilterData, keyword) => {
     return toFilterData.filter(node => {
         // 首先检查当前节点是否匹配关键字
-        const isMatch = node.title.includes(keyword);
+        let isMatch = false;
+        if (Array.isArray(keyword)) {
+            isMatch = keyword.some(s => node.title.includes(s));
+        } else {
+            isMatch = node.title.includes(keyword);
+        }
 
         // 如果当前节点匹配关键字，但不是根节点，才保留它及其全部后代节点信息
         if (isMatch) {
@@ -383,7 +388,7 @@ const AntdTree = (props) => {
                                     searchKeyword ?
                                         <Highlighter
                                             highlightStyle={highlightStyle}
-                                            searchWords={[searchKeyword]}
+                                            searchWords={Array.isArray(searchKeyword) ? searchKeyword : [searchKeyword]}
                                             autoEscape
                                             textToHighlight={nodeData.title}
                                         /> :
@@ -427,7 +432,7 @@ const AntdTree = (props) => {
                                 searchKeyword ?
                                     <Highlighter
                                         highlightStyle={highlightStyle}
-                                        searchWords={[searchKeyword]}
+                                        searchWords={Array.isArray(searchKeyword) ? searchKeyword : [searchKeyword]}
                                         autoEscape
                                         textToHighlight={nodeData.title}
                                     /> :
