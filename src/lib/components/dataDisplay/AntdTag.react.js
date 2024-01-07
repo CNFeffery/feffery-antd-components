@@ -1,43 +1,13 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import PropTypes from 'prop-types';
-import useCss from '../../hooks/useCss';
-import { isString } from 'lodash';
-import { Tag } from 'antd';
 
+const LazyAntdTag = React.lazy(() => import(/* webpackChunkName: "data_display" */ '../../fragments/dataDisplay/AntdTag.react'));
 
-// 定义标签组件AntdTag，api参数参考https://ant.design/components/tag-cn/
 const AntdTag = (props) => {
-    // 取得必要属性或参数
-    let {
-        id,
-        className,
-        style,
-        key,
-        content,
-        color,
-        href,
-        target,
-        bordered,
-        setProps,
-        loading_state
-    } = props;
-
     return (
-        <Tag id={id}
-            key={key}
-            className={
-                isString(className) ?
-                    className :
-                    (className ? useCss(className) : undefined)
-            }
-            style={style}
-            color={color}
-            bordered={bordered}
-            data-dash-is-loading={
-                (loading_state && loading_state.is_loading) || undefined
-            }>
-            {href ? <a href={href} target={target}>{content}</a> : content}
-        </Tag>
+        <Suspense fallback={null}>
+            <LazyAntdTag {...props} />
+        </Suspense>
     );
 }
 
@@ -102,3 +72,6 @@ AntdTag.defaultProps = {
 }
 
 export default AntdTag;
+
+export const propTypes = AntdTag.propTypes;
+export const defaultProps = AntdTag.defaultProps;
