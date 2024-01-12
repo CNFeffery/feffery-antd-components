@@ -271,6 +271,10 @@ AntdTree.propTypes = {
         PropTypes.arrayOf(PropTypes.string)
     ]),
 
+    // 针对searchKeyword，设置是否大小写敏感
+    // 默认：true
+    caseSensitive: PropTypes.bool,
+
     // 配合searchKeyword参数使用，用于设置树节点title命中关键词部分的高亮样式
     highlightStyle: PropTypes.object,
 
@@ -357,6 +361,7 @@ AntdTree.defaultProps = {
     showLine: { 'showLeafIcon': false },
     draggable: false,
     dragInSameLevel: false,
+    caseSensitive: true,
     highlightStyle: {
         fontWeight: 'bold',
         backgroundColor: 'transparent',

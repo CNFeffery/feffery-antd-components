@@ -24,14 +24,14 @@ const isSameParent = (a, b) => {
     return aLevel.join('') === bLevel.join('');
 }
 
-const filterTree = (toFilterData, keyword) => {
+const filterTree = (toFilterData, keyword, caseSensitive) => {
     return toFilterData.filter(node => {
         // 首先检查当前节点是否匹配关键字
         let isMatch = false;
         if (Array.isArray(keyword)) {
-            isMatch = keyword.some(s => node.title.includes(s));
+            isMatch = keyword.some(s => caseSensitive ? node.title.includes(s) : node.title.toLowerCase().includes(s.toLowerCase()));
         } else {
-            isMatch = node.title.includes(keyword);
+            isMatch = caseSensitive ? node.title.includes(keyword) : node.title.toLowerCase().includes(keyword.toLowerCase());
         }
 
         // 如果当前节点匹配关键字，但不是根节点，才保留它及其全部后代节点信息
@@ -41,7 +41,7 @@ const filterTree = (toFilterData, keyword) => {
 
         // 如果当前节点不匹配关键字，检查它的子节点
         if (node.children && node.children.length > 0) {
-            node.children = filterTree(node.children, keyword);
+            node.children = filterTree(node.children, keyword, caseSensitive);
 
             // 如果有匹配的子节点，保留当前节点及其匹配的后代节点信息
             if (node.children.length > 0) {
@@ -87,6 +87,7 @@ const AntdTree = (props) => {
         favoritedKeys,
         scrollTarget,
         searchKeyword,
+        caseSensitive,
         highlightStyle,
         nodeCheckedSuffix,
         nodeUncheckedSuffix,
@@ -316,7 +317,7 @@ const AntdTree = (props) => {
             ref={treeRef}
             treeData={
                 searchKeyword ?
-                    add_leaf_node_icon(filterTree(cloneDeep(treeData), searchKeyword)) :
+                    add_leaf_node_icon(filterTree(cloneDeep(treeData), searchKeyword, caseSensitive)) :
                     add_leaf_node_icon(cloneDeep(treeData))
             }
             selectedKeys={selectedKeys}
