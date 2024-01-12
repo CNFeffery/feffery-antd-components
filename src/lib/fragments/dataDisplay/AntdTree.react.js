@@ -65,6 +65,7 @@ const AntdTree = (props) => {
         style,
         key,
         treeData,
+        treeNodeKeyToTitle,
         treeDataMode,
         checkable,
         selectable,
@@ -341,45 +342,96 @@ const AntdTree = (props) => {
             titleRender={(nodeData) => {
                 return (
                     nodeData.contextMenu ?
-                        <Dropdown
-                            menu={{
-                                items: nodeData.contextMenu.map(
-                                    itemProps => {
-                                        return {
-                                            ...itemProps,
-                                            icon: itemProps.icon && (
-                                                itemProps.iconRenderer === 'fontawesome' ?
-                                                    (
-                                                        React.createElement(
-                                                            'i',
-                                                            {
-                                                                className: itemProps.icon
-                                                            }
+                        (
+                            <Dropdown
+                                menu={{
+                                    items: nodeData.contextMenu.map(
+                                        itemProps => {
+                                            return {
+                                                ...itemProps,
+                                                icon: itemProps.icon && (
+                                                    itemProps.iconRenderer === 'fontawesome' ?
+                                                        (
+                                                            React.createElement(
+                                                                'i',
+                                                                {
+                                                                    className: itemProps.icon
+                                                                }
+                                                            )
+                                                        ) :
+                                                        (
+                                                            <AntdIcon icon={itemProps.icon} />
                                                         )
-                                                    ) :
-                                                    (
-                                                        <AntdIcon icon={itemProps.icon} />
-                                                    )
-                                            )
+                                                )
+                                            }
                                         }
+                                    ),
+                                    // 右键菜单事件监听
+                                    onClick: (e) => {
+                                        // 阻止事件蔓延
+                                        e.domEvent.stopPropagation()
+                                        // 更新相关事件信息
+                                        setProps({
+                                            clickedContextMenu: {
+                                                nodeKey: nodeData.key,
+                                                menuKey: e.key,
+                                                timestamp: Date.now()
+                                            }
+                                        })
                                     }
-                                ),
-                                // 右键菜单事件监听
-                                onClick: (e) => {
-                                    // 阻止事件蔓延
-                                    e.domEvent.stopPropagation()
-                                    // 更新相关事件信息
-                                    setProps({
-                                        clickedContextMenu: {
-                                            nodeKey: nodeData.key,
-                                            menuKey: e.key,
-                                            timestamp: Date.now()
-                                        }
-                                    })
-                                }
-                            }}
-                            trigger={['contextMenu']}
-                        >
+                                }}
+                                trigger={['contextMenu']}
+                            >
+                                <span className={nodeData.className ? `ant-tree-title ${nodeData.className}` : "ant-tree-title"}
+                                    style={{
+                                        ...(checkedKeys?.includes(nodeData.key) ? nodeCheckedStyle : nodeUncheckedStyle),
+                                        ...nodeData.style // 优先级更高
+                                    }}>
+                                    {
+                                        searchKeyword ?
+                                            <Highlighter
+                                                highlightStyle={highlightStyle}
+                                                searchWords={Array.isArray(searchKeyword) ? searchKeyword : [searchKeyword]}
+                                                autoEscape
+                                                textToHighlight={nodeData.title}
+                                            /> :
+                                            (
+                                                treeNodeKeyToTitle && treeNodeKeyToTitle[nodeData.key] ?
+                                                    treeNodeKeyToTitle[nodeData.key] :
+                                                    nodeData.title
+                                            )
+                                    }
+                                    {
+                                        // 若当前节点满足收藏控件渲染条件
+                                        enableNodeFavorites && (isUndefined(nodeData.enableFavorites) || nodeData.enableFavorites) ?
+                                            <span style={{
+                                                paddingLeft: 2
+                                            }}
+                                                onClick={(e) => {
+                                                    // 阻止事件向外传递
+                                                    e.stopPropagation()
+                                                }}>
+                                                <Rate
+                                                    count={1}
+                                                    value={favoritedKeys.includes(nodeData.key) ? 1 : 0}
+                                                    onChange={(e) => {
+                                                        setProps({
+                                                            favoritedKeys: (
+                                                                favoritedKeys.includes(nodeData.key) ?
+                                                                    favoritedKeys.filter(key => key !== nodeData.key) :
+                                                                    [...favoritedKeys, nodeData.key]
+                                                            )
+                                                        })
+                                                    }}
+                                                />
+                                            </span> :
+                                            null
+                                    }
+                                    {checkedKeys?.includes(nodeData.key) ? nodeCheckedSuffix : nodeUncheckedSuffix}
+                                </span>
+                            </Dropdown>
+                        ) :
+                        (
                             <span className={nodeData.className ? `ant-tree-title ${nodeData.className}` : "ant-tree-title"}
                                 style={{
                                     ...(checkedKeys?.includes(nodeData.key) ? nodeCheckedStyle : nodeUncheckedStyle),
@@ -393,7 +445,11 @@ const AntdTree = (props) => {
                                             autoEscape
                                             textToHighlight={nodeData.title}
                                         /> :
-                                        nodeData.title
+                                        (
+                                            treeNodeKeyToTitle && treeNodeKeyToTitle[nodeData.key] ?
+                                                treeNodeKeyToTitle[nodeData.key] :
+                                                nodeData.title
+                                        )
                                 }
                                 {
                                     // 若当前节点满足收藏控件渲染条件
@@ -423,50 +479,7 @@ const AntdTree = (props) => {
                                 }
                                 {checkedKeys?.includes(nodeData.key) ? nodeCheckedSuffix : nodeUncheckedSuffix}
                             </span>
-                        </Dropdown> :
-                        <span className={nodeData.className ? `ant-tree-title ${nodeData.className}` : "ant-tree-title"}
-                            style={{
-                                ...(checkedKeys?.includes(nodeData.key) ? nodeCheckedStyle : nodeUncheckedStyle),
-                                ...nodeData.style // 优先级更高
-                            }}>
-                            {
-                                searchKeyword ?
-                                    <Highlighter
-                                        highlightStyle={highlightStyle}
-                                        searchWords={Array.isArray(searchKeyword) ? searchKeyword : [searchKeyword]}
-                                        autoEscape
-                                        textToHighlight={nodeData.title}
-                                    /> :
-                                    nodeData.title
-                            }
-                            {
-                                // 若当前节点满足收藏控件渲染条件
-                                enableNodeFavorites && (isUndefined(nodeData.enableFavorites) || nodeData.enableFavorites) ?
-                                    <span style={{
-                                        paddingLeft: 2
-                                    }}
-                                        onClick={(e) => {
-                                            // 阻止事件向外传递
-                                            e.stopPropagation()
-                                        }}>
-                                        <Rate
-                                            count={1}
-                                            value={favoritedKeys.includes(nodeData.key) ? 1 : 0}
-                                            onChange={(e) => {
-                                                setProps({
-                                                    favoritedKeys: (
-                                                        favoritedKeys.includes(nodeData.key) ?
-                                                            favoritedKeys.filter(key => key !== nodeData.key) :
-                                                            [...favoritedKeys, nodeData.key]
-                                                    )
-                                                })
-                                            }}
-                                        />
-                                    </span> :
-                                    null
-                            }
-                            {checkedKeys?.includes(nodeData.key) ? nodeCheckedSuffix : nodeUncheckedSuffix}
-                        </span>
+                        )
                 );
             }}
             showLeafIcon={false}

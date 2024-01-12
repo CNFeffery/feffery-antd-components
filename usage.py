@@ -40,7 +40,17 @@ app.layout = html.Div(
                         }
                     ],
                     defaultExpandAll=True,
-                    caseSensitive=False
+                    caseSensitive=False,
+                    treeNodeKeyToTitle={
+                        'gdp': fac.AntdTag(
+                            content='gdp',
+                            color='blue'
+                        ),
+                        'CPI': fac.AntdTag(
+                            content='CPI',
+                            color='red'
+                        ),
+                    }
                 )
             ],
             direction='vertical'

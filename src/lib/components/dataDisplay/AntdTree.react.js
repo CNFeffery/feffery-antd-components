@@ -173,6 +173,10 @@ AntdTree.propTypes = {
         PropTypes.arrayOf(PropFlatNodeShape)
     ]),
 
+    // 用于针对具体key值对应的树节点定义组件型标题内容
+    // 优先级高于treeData中对应节点的title属性
+    treeNodeKeyToTitle: PropTypes.objectOf(PropTypes.node),
+
     // 设置是否渲染icon，默认为false
     showIcon: PropTypes.bool,
 
