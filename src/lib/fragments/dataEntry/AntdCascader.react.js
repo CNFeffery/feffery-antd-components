@@ -1,7 +1,7 @@
 import React, { useEffect, useMemo, useContext } from 'react';
 import { Cascader, ConfigProvider } from 'antd';
 import { str2Locale } from '../../components/locales.react';
-import { isUndefined, isString } from 'lodash';
+import { isUndefined, isString, cloneDeep } from 'lodash';
 import { flatToTree } from '../../components/utils';
 import useCss from '../../hooks/useCss';
 import PropsContext from '../../contexts/PropsContext';
@@ -14,6 +14,30 @@ const str2ShowCheckedStrategy = new Map([
     ['show-parent', SHOW_PARENT]
 ])
 
+// 递归替换originOptions中节点的label为optionsNodeKeyToLabel中对应的值
+const replaceNodeLabel = (originOptions, optionsNodeKeyToLabel) => {
+    // 若当前originOptions为数组
+    if (Array.isArray(originOptions)) {
+        // 遍历originOptions
+        for (let i = 0; i < originOptions.length; i++) {
+            // 递归替换originOptions中节点的label为optionsNodeKeyToLabel中对应的值
+            originOptions[i] = replaceNodeLabel(originOptions[i], optionsNodeKeyToLabel);
+        }
+    } else {
+        // 否则针对当前节点对象，当optionsNodeKeyToLabel中存在对应key时，替换label
+        if (optionsNodeKeyToLabel[originOptions.key]) {
+            originOptions.label = optionsNodeKeyToLabel[originOptions.key];
+        }
+        // 若当前节点对象存在children属性
+        if (originOptions.children) {
+            // 递归替换originOptions中节点的label为optionsNodeKeyToLabel中对应的值
+            originOptions.children = replaceNodeLabel(originOptions.children, optionsNodeKeyToLabel);
+        }
+    }
+    // 返回处理后的originOptions
+    return originOptions;
+}
+
 // 定义级联选择组件AntdCascader，api参数参考https://ant.design/components/cascader-cn/
 const AntdCascader = (props) => {
     // 取得必要属性或参数
@@ -25,6 +49,7 @@ const AntdCascader = (props) => {
         key,
         locale,
         options,
+        optionsNodeKeyToLabel,
         optionsMode,
         changeOnSelect,
         size,
@@ -103,7 +128,11 @@ const AntdCascader = (props) => {
                 style={style}
                 popupClassName={popupClassName}
                 key={key}
-                options={options}
+                options={
+                    optionsNodeKeyToLabel ?
+                        replaceNodeLabel(cloneDeep(options), optionsNodeKeyToLabel) :
+                        options
+                }
                 changeOnSelect={changeOnSelect}
                 size={
                     context && !isUndefined(context.componentSize) ?

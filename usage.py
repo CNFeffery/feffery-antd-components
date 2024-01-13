@@ -7,31 +7,59 @@ app = dash.Dash(__name__)
 
 app.layout = html.Div(
     [
-        fac.AntdTreeSelect(
-            treeDataMode='flat',
-            treeData=[
-                {
-                    'key': '节点1',
-                    'value': '1',
-                    'title': '节点1'
-                },
-                *[
-                    {
-                        'key': f'节点1-{i}',
-                        'value': f'1-{i}',
-                        'title': f'节点1-{i}',
-                        'parent': '节点1'
-                    }
-                    for i in range(1, 6)
-                ]
-            ],
+        fac.AntdCascader(
             placeholder='请选择',
-            treeNodeKeyToTitle={
+            options=[
+                {
+                    'value': '节点1',
+                    'key': '节点1',
+                    'label': '节点1',
+                    'children': [
+                        {
+                            'value': '节点1-1',
+                            'key': '节点1-1',
+                            'label': '节点1-1'
+                        },
+                        {
+                            'value': '节点1-2',
+                            'label': '节点1-2',
+                            'children': [
+                                {
+                                    'value': '节点1-2-1',
+                                    'label': '节点1-2-1'
+                                },
+                                {
+                                    'value': '节点1-2-2',
+                                    'label': '节点1-2-2'
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    'value': '节点2',
+                    'label': '节点2',
+                    'children': [
+                        {
+                            'value': '节点2-1',
+                            'label': '节点2-1'
+                        },
+                        {
+                            'value': '节点2-2',
+                            'label': '节点2-2'
+                        }
+                    ]
+                }
+            ],
+            optionsNodeKeyToLabel={
                 '节点1': fac.AntdText('节点1', italic=True),
-                '节点1-4': fac.AntdText('节点1-4', underline=True),
-            },
-            style={
-                'width': 256
+                '节点1-1': fac.AntdText(
+                    '节点1-1',
+                    strong=True,
+                    style={
+                        'color': 'red'
+                    }
+                )
             }
         )
     ],

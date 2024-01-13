@@ -19,6 +19,9 @@ const PropOptionNodeShape = {
         PropTypes.number
     ]).isRequired,
 
+    // 对应当前节点唯一key值
+    key: PropTypes.string,
+
     // 选项对应显示的文字标题
     label: PropTypes.string.isRequired,
 
@@ -84,6 +87,10 @@ AntdCascader.propTypes = {
         optionDataPropTypes,
         PropTypes.arrayOf(PropFlatOptionNodeShape)
     ]).isRequired,
+
+    // 用于针对具体key值对应的级联节点定义组件型标签内容
+    // 优先级高于options中对应节点的label属性
+    optionsNodeKeyToLabel: PropTypes.objectOf(PropTypes.node),
 
     // 设置是否禁用组件
     disabled: PropTypes.bool,
