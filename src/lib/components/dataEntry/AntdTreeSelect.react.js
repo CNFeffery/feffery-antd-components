@@ -114,6 +114,10 @@ AntdTreeSelect.propTypes = {
         PropTypes.arrayOf(PropFlatNodeShape)
     ]).isRequired,
 
+    // 用于针对具体key值对应的树节点定义组件型标题内容
+    // 优先级高于treeData中对应节点的title属性
+    treeNodeKeyToTitle: PropTypes.objectOf(PropTypes.node),
+
     // 设置是否禁用整个组件
     disabled: PropTypes.bool,
 

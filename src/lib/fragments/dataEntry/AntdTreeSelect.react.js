@@ -18,6 +18,30 @@ const str2ShowCheckedStrategy = new Map(
     ]
 )
 
+// 递归替换originTreeData中节点的title为treeNodeKeyToTitle中对应的值
+const replaceNodeTitle = (originTreeData, treeNodeKeyToTitle) => {
+    // 若当前originTreeData为数组
+    if (Array.isArray(originTreeData)) {
+        // 遍历originTreeData
+        for (let i = 0; i < originTreeData.length; i++) {
+            // 递归替换originTreeData中节点的title为treeNodeKeyToTitle中对应的值
+            originTreeData[i] = replaceNodeTitle(originTreeData[i], treeNodeKeyToTitle);
+        }
+    } else {
+        // 否则针对当前节点对象，当treeNodeKeyToTitle中存在对应key时，替换title
+        if (treeNodeKeyToTitle[originTreeData.key]) {
+            originTreeData.title = treeNodeKeyToTitle[originTreeData.key];
+        }
+        // 若当前节点对象存在children属性
+        if (originTreeData.children) {
+            // 递归替换originTreeData中节点的title为treeNodeKeyToTitle中对应的值
+            originTreeData.children = replaceNodeTitle(originTreeData.children, treeNodeKeyToTitle);
+        }
+    }
+    // 返回处理后的originTreeData
+    return originTreeData;
+}
+
 // 定义树选择组件AntdTreeSelect，api参数参考https://ant.design/components/tree-select-cn/
 const AntdTreeSelect = (props) => {
     // 取得必要属性或参数
@@ -29,6 +53,7 @@ const AntdTreeSelect = (props) => {
         key,
         locale,
         treeData,
+        treeNodeKeyToTitle,
         treeDataMode,
         allowClear,
         bordered,
@@ -96,13 +121,11 @@ const AntdTreeSelect = (props) => {
 
     // 用于获取用户已选择值的回调函数
     const updateSelectedValue = (e) => {
-
         if (treeCheckStrictly) {
             setProps({ value: e.map(item => item.value) })
         } else {
             setProps({ value: e })
         }
-
     }
 
     // 返回定制化的前端组件
@@ -121,7 +144,18 @@ const AntdTreeSelect = (props) => {
                 }}
                 popupClassName={popupClassName}
                 key={key}
-                treeData={treeDataMode === 'flat' ? flatToTreeData : treeData}
+                treeData={
+                    treeNodeKeyToTitle ?
+                        (
+                            replaceNodeTitle(
+                                [...(treeDataMode === 'flat' ? flatToTreeData : treeData)],
+                                treeNodeKeyToTitle
+                            )
+                        ) :
+                        (
+                            treeDataMode === 'flat' ? flatToTreeData : treeData
+                        )
+                }
                 allowClear={isUndefined(readOnly) ? allowClear : !readOnly}
                 bordered={bordered}
                 treeLine={treeLine}

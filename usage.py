@@ -7,68 +7,38 @@ app = dash.Dash(__name__)
 
 app.layout = html.Div(
     [
-        fac.AntdSpace(
-            [
-                fac.AntdInput(
-                    id='keyword',
-                    autoComplete='off'
-                ),
-                fac.AntdTree(
-                    id='demo-tree',
-                    treeData=[
-                        {
-                            'title': 'root',
-                            'key': 'root',
-                            'children': [
-                                {
-                                    'title': 'gdp',
-                                    'key': 'gdp'
-                                },
-                                {
-                                    'title': 'GDP',
-                                    'key': 'GDP'
-                                },
-                                {
-                                    'title': 'cpi',
-                                    'key': 'cpi'
-                                },
-                                {
-                                    'title': 'CPI',
-                                    'key': 'CPI'
-                                }
-                            ]
-                        }
-                    ],
-                    defaultExpandAll=True,
-                    caseSensitive=False,
-                    treeNodeKeyToTitle={
-                        'gdp': fac.AntdTag(
-                            content='gdp',
-                            color='blue'
-                        ),
-                        'CPI': fac.AntdTag(
-                            content='CPI',
-                            color='red'
-                        ),
+        fac.AntdTreeSelect(
+            treeDataMode='flat',
+            treeData=[
+                {
+                    'key': '节点1',
+                    'value': '1',
+                    'title': '节点1'
+                },
+                *[
+                    {
+                        'key': f'节点1-{i}',
+                        'value': f'1-{i}',
+                        'title': f'节点1-{i}',
+                        'parent': '节点1'
                     }
-                )
+                    for i in range(1, 6)
+                ]
             ],
-            direction='vertical'
+            placeholder='请选择',
+            treeNodeKeyToTitle={
+                '节点1': fac.AntdText('节点1', italic=True),
+                '节点1-4': fac.AntdText('节点1-4', underline=True),
+            },
+            style={
+                'width': 256
+            }
         )
     ],
     style={
         'padding': '50px 100px'
     }
 )
-
-
-@app.callback(
-    Output('demo-tree', 'searchKeyword'),
-    Input('keyword', 'value')
-)
-def set_search_keyword(value):
-    return value
-
 
 if __name__ == '__main__':
     app.run(debug=True)
