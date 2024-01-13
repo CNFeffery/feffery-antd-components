@@ -1,7 +1,7 @@
 import React, { useEffect, useMemo, useContext } from 'react';
 import { TreeSelect, ConfigProvider } from 'antd';
 import { str2Locale } from '../../components/locales.react';
-import { isUndefined, isString } from 'lodash';
+import { isUndefined, isString, cloneDeep } from 'lodash';
 import { flatToTree } from '../../components/utils';
 import useCss from '../../hooks/useCss';
 import PropsContext from '../../contexts/PropsContext';
@@ -148,7 +148,7 @@ const AntdTreeSelect = (props) => {
                     treeNodeKeyToTitle ?
                         (
                             replaceNodeTitle(
-                                [...(treeDataMode === 'flat' ? flatToTreeData : treeData)],
+                                cloneDeep(treeDataMode === 'flat' ? flatToTreeData : treeData),
                                 treeNodeKeyToTitle
                             )
                         ) :
