@@ -28,8 +28,11 @@ AntdTag.propTypes = {
     // 辅助刷新用唯一标识key值
     key: PropTypes.string,
 
-    // 自定义标签内部文字内容
+    // 设置标签内容
     content: PropTypes.node,
+
+    // 设置前缀图标元素
+    icon: PropTypes.node,
 
     // 直接设置标签颜色风格，除了内置的若干色彩主题之外，还可自行传入16进制格式的色彩值
     color: PropTypes.string,

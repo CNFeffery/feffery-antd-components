@@ -170,3 +170,8 @@
 .ant-upload-button-block .ant-upload {
     display: block;
 }
+
+/* 为AntdTag图标元素设置间距 */
+.ant-tag span:not(:first-child) {
+    margin-inline-start: 5px;
+}

@@ -13,6 +13,7 @@ const AntdTag = (props) => {
         style,
         key,
         content,
+        icon,
         color,
         href,
         target,
@@ -30,6 +31,7 @@ const AntdTag = (props) => {
                     (className ? useCss(className) : undefined)
             }
             style={style}
+            icon={icon}
             color={color}
             bordered={bordered}
             data-dash-is-loading={

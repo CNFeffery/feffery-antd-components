@@ -21,6 +21,8 @@ Keyword arguments:
 
 - href (string; optional)
 
+- icon (a list of or a singular dash component, string or number; optional)
+
 - key (string; optional)
 
 - loading_state (dict; optional)
@@ -39,15 +41,15 @@ Keyword arguments:
 - style (dict; optional)
 
 - target (string; default '_blank')"""
-    _children_props = ['content']
-    _base_nodes = ['content', 'children']
+    _children_props = ['content', 'icon']
+    _base_nodes = ['content', 'icon', 'children']
     _namespace = 'feffery_antd_components'
     _type = 'AntdTag'
     @_explicitize_args
-    def __init__(self, id=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, key=Component.UNDEFINED, content=Component.UNDEFINED, color=Component.UNDEFINED, href=Component.UNDEFINED, target=Component.UNDEFINED, bordered=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
-        self._prop_names = ['id', 'bordered', 'className', 'color', 'content', 'href', 'key', 'loading_state', 'style', 'target']
+    def __init__(self, id=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, key=Component.UNDEFINED, content=Component.UNDEFINED, icon=Component.UNDEFINED, color=Component.UNDEFINED, href=Component.UNDEFINED, target=Component.UNDEFINED, bordered=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
+        self._prop_names = ['id', 'bordered', 'className', 'color', 'content', 'href', 'icon', 'key', 'loading_state', 'style', 'target']
         self._valid_wildcard_attributes =            []
-        self.available_properties = ['id', 'bordered', 'className', 'color', 'content', 'href', 'key', 'loading_state', 'style', 'target']
+        self.available_properties = ['id', 'bordered', 'className', 'color', 'content', 'href', 'icon', 'key', 'loading_state', 'style', 'target']
         self.available_wildcard_properties =            []
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()
