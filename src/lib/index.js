@@ -43,6 +43,7 @@ import AntdCardGrid from './components/dataDisplay/card/AntdCardGrid.react';
 import AntdCardMeta from './components/dataDisplay/card/AntdCardMeta.react';
 import AntdCard from './components/dataDisplay/card/AntdCard.react';
 import AntdCarousel from './components/dataDisplay/AntdCarousel.react';
+import AntdCheckableTag from './components/dataDisplay/AntdCheckableTag.react';
 import AntdCollapse from './components/dataDisplay/AntdCollapse.react';
 import AntdComment from './components/dataDisplay/AntdComment.react';
 import AntdDescriptions from './components/dataDisplay/descriptions/AntdDescriptions.react';
@@ -216,5 +217,6 @@ export {
     AntdTour,
     AntdColorPicker,
     AntdQRCode,
-    AntdDraggablePanel
+    AntdDraggablePanel,
+    AntdCheckableTag
 };

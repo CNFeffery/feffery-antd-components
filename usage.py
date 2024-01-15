@@ -8,39 +8,22 @@ app = dash.Dash(__name__, compress=True)
 
 app.layout = html.Div(
     [
-        fac.AntdTag(
-            id='input',
-            content='标签测试',
-            icon=fac.AntdIcon(
-                icon='antd-robot'
-            ),
-            color='success',
-            closeIcon=True
-        ),
-        html.Pre(id='output')
+        fac.AntdSpace(
+            [
+                fac.AntdCheckableTag(
+                    content='标签1'
+                ),
+                fac.AntdCheckableTag(
+                    content='标签2',
+                    checked=True
+                )
+            ]
+        )
     ],
     style={
         'padding': '50px 100px'
     }
 )
-
-
-@app.callback(
-    Output('output', 'children'),
-    Input('input', 'closeCounts'),
-    prevent_initial_call=True
-)
-def demo(closeCounts):
-
-    return html.Pre(
-        json.dumps(
-            dict(
-                closeCounts=closeCounts
-            ),
-            indent=4,
-            ensure_ascii=True
-        )
-    )
 
 
 if __name__ == '__main__':
