@@ -18,6 +18,8 @@ const AntdTag = (props) => {
         href,
         target,
         bordered,
+        closeIcon,
+        closeCounts,
         setProps,
         loading_state
     } = props;
@@ -34,6 +36,14 @@ const AntdTag = (props) => {
             icon={icon}
             color={color}
             bordered={bordered}
+            closeIcon={closeIcon}
+            onClose={(e) => {
+                // 阻止默认关闭事件
+                e.preventDefault();
+                setProps({
+                    closeCounts: closeCounts + 1
+                })
+            }}
             data-dash-is-loading={
                 (loading_state && loading_state.is_loading) || undefined
             }>

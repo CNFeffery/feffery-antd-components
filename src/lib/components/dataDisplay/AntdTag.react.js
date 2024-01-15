@@ -46,6 +46,14 @@ AntdTag.propTypes = {
     // 设置是否有边框，默认为true
     bordered: PropTypes.bool,
 
+    // 设置是否显示关闭按钮
+    // 默认：false
+    closeIcon: PropTypes.bool,
+
+    // 监听当前标签的关闭按钮累积点击次数
+    // 默认：0
+    closeCounts: PropTypes.number,
+
     loading_state: PropTypes.shape({
         /**
          * Determines if the component is loading or not
@@ -71,7 +79,9 @@ AntdTag.propTypes = {
 // 设置默认参数
 AntdTag.defaultProps = {
     target: '_blank',
-    bordered: true
+    bordered: true,
+    closeIcon: false,
+    closeCounts: 0
 }
 
 export default AntdTag;
