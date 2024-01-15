@@ -3,6 +3,7 @@ from .AntdAvatar import AntdAvatar as Avatar
 from .AntdAvatarGroup import AntdAvatarGroup as AvatarGroup
 from .AntdBadge import AntdBadge as Badge
 from .AntdCarousel import AntdCarousel as Carousel
+from .AntdCheckableTag import AntdCheckableTag as CheckableTag
 from .AntdCollapse import AntdCollapse as Collapse
 from .AntdComment import AntdComment as Comment
 from .AntdCountdown import AntdCountdown as Countdown
@@ -109,6 +110,7 @@ __all__ = [
     "AvatarGroup",
     "Badge",
     "Carousel",
+    "CheckableTag",
     "Collapse",
     "Comment",
     "Countdown",
