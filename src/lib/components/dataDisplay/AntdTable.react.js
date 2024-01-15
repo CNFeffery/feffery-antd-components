@@ -70,6 +70,9 @@ AntdTable.propTypes = {
                 // 当renderType='link'时，此参数会将传入的字符串作为渲染link的显示文字内容
                 renderLinkText: PropTypes.string,
 
+                // 当renderType='button'时，此参数用于设置多个按钮之间是否添加分割线
+                renderButtonSplit: PropTypes.bool,
+
                 // 当renderType='button'时，此参数用于传入与气泡确认卡片相关的参数设置内容
                 renderButtonPopConfirmProps: PropTypes.exact({
                     // 设置气泡卡片的标题内容

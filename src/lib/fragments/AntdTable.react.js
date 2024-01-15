@@ -24,7 +24,8 @@ import {
     Image,
     Avatar,
     message,
-    Select
+    Select,
+    Divider
 } from 'antd';
 import {
     TinyLine,
@@ -1286,10 +1287,9 @@ class AntdTable extends Component {
                     // 当renderOptions参数的renderButtonPopConfirmProps参数存在
                     if (columns[i]['renderOptions']['renderButtonPopConfirmProps']) {
                         columns[i]['render'] = (content, record) => {
-
                             // 根据content是否为数组，来决定渲染单个按钮还是多个按钮
                             return Array.isArray(content) ? (
-                                <Space>
+                                <Space split={columns[i]['renderOptions'].renderButtonSplit && <Divider type={"vertical"} />}>
                                     {
                                         content.map(
                                             (content_, idx) => (
@@ -1403,10 +1403,9 @@ class AntdTable extends Component {
                         }
                     } else {
                         columns[i]['render'] = (content, record) => {
-
                             // 根据content是否为数组，来决定渲染单个按钮还是多个按钮
                             return Array.isArray(content) ? (
-                                <Space>
+                                <Space split={columns[i]['renderOptions'].renderButtonSplit && <Divider type={"vertical"} />}>
                                     {
                                         content.map(
                                             (content_, idx) => (

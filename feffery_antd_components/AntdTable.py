@@ -99,6 +99,8 @@ Keyword arguments:
 
             - title (string; optional)
 
+        - renderButtonSplit (boolean; optional)
+
         - renderLinkText (string; optional)
 
         - renderType (a value equal to: 'link', 'ellipsis', 'copyable', 'ellipsis-copyable', 'tags', 'status-badge', 'image', 'custom-format', 'corner-mark', 'row-merge', 'dropdown', 'dropdown-links', 'image-avatar', 'mini-line', 'mini-bar', 'mini-progress', 'mini-ring-progress', 'mini-area', 'button', 'checkbox', 'switch', 'select'; optional)
