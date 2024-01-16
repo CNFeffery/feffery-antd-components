@@ -49,6 +49,7 @@ const AntdCascader = (props) => {
         key,
         locale,
         options,
+        optionFilterProp,
         optionsNodeKeyToLabel,
         optionsMode,
         changeOnSelect,
@@ -107,7 +108,12 @@ const AntdCascader = (props) => {
         options = flatToTreeOptions
     }
 
+    // 搜索函数
     const filter = (inputValue, path) => {
+        // 若以value字段为搜索目标
+        if (optionFilterProp === 'value') {
+            return path.some(option => option.value?.toLowerCase().indexOf(inputValue.toLowerCase()) > -1);
+        }
         return path.some(option => option.label.toLowerCase().indexOf(inputValue.toLowerCase()) > -1);
     }
 
@@ -168,7 +174,7 @@ const AntdCascader = (props) => {
                                 (label) => label[0]
                         )
                 }
-                showSearch={filter}
+                showSearch={{ filter }}
                 onChange={onSelect}
                 data-dash-is-loading={
                     (loading_state && loading_state.is_loading) || undefined

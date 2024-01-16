@@ -1,74 +1,123 @@
 import dash
-import json
 from dash import html
 import feffery_antd_components as fac
-from dash.dependencies import Input, Output
 
-app = dash.Dash(__name__, compress=True)
+app = dash.Dash(__name__)
 
 app.layout = html.Div(
     [
-        fac.AntdTable(
-            id='table-rerender-button-demo',
-            columns=[
+        fac.AntdCascader(
+            options=[
                 {
-                    'title': 'button示例1',
-                    'dataIndex': 'button示例1',
-                    'renderOptions': {
-                        'renderType': 'button',
-                        'renderButtonSplit': True
-                    }
-                },
-                {
-                    'title': 'button示例2',
-                    'dataIndex': 'button示例2',
-                    'renderOptions': {
-                        'renderType': 'button',
-                        'renderButtonSplit': True
-                    }
-                },
-                {
-                    'title': 'button示例3',
-                    'dataIndex': 'button示例3',
-                    'renderOptions': {
-                        'renderType': 'button',
-                        'renderButtonPopConfirmProps': {
-                            'title': '确认执行？',
-                            'okText': '确认',
-                            'cancelText': '取消'
+                    'label': '四川省',
+                    'key': '四川省',
+                    'value': '四川省',
+                    'children': [
+                        {
+                            'label': '成都市',
+                            'key': '成都市',
+                            'value': '成都市',
                         },
-                        'renderButtonSplit': True
-                    }
-                }
-            ],
-            data=[
+                        {
+                            'label': '广安市',
+                            'key': '广安市',
+                            'value': '广安市',
+                        }
+                    ]
+                },
                 {
-                    'button示例1': {
-                        'content': f'按钮1-{i}',
-                        'type': 'link',
-                        'custom': 'balabalabalabala'
-                    },
-                    'button示例2': [
+                    'label': '重庆市',
+                    'key': '重庆市',
+                    'value': '重庆市',
+                    'children': [
                         {
-                            'content': f'按钮2-{i}-{j}',
-                            'type': 'primary',
-                            'custom': 'balabalabalabala'
-                        }
-                        for j in range(1, 3)
-                    ],
-                    'button示例3': [
+                            'label': '渝中区',
+                            'key': '渝中区',
+                            'value': '渝中区',
+                            'children': [
+                                {
+                                    'label': '解放碑街道',
+                                    'key': '解放碑街道',
+                                    'value': '解放碑街道',
+                                }
+                            ]
+                        },
                         {
-                            'content': f'按钮3-{i}-{j}',
-                            'type': 'dashed',
-                            'danger': True,
-                            'custom': 'balabalabalabala'
+                            'label': '渝北区',
+                            'key': '渝北区',
+                            'value': '渝北区',
                         }
-                        for j in range(1, 3)
                     ]
                 }
-                for i in range(1, 4)
             ],
-            bordered=True
+            optionsNodeKeyToLabel={
+                '四川省': fac.AntdSpace(
+                    [
+                        '四川省',
+                        fac.AntdTag(
+                            content='省级',
+                            color='magenta'
+                        )
+                    ]
+                ),
+                '重庆市': fac.AntdSpace(
+                    [
+                        '重庆市',
+                        fac.AntdTag(
+                            content='省级',
+                            color='magenta'
+                        )
+                    ]
+                ),
+                '成都市': fac.AntdSpace(
+                    [
+                        '成都市',
+                        fac.AntdTag(
+                            content='地级市',
+                            color='green'
+                        )
+                    ]
+                ),
+                '广安市': fac.AntdSpace(
+                    [
+                        '广安市',
+                        fac.AntdTag(
+                            content='地级市',
+                            color='green'
+                        )
+                    ]
+                ),
+                '渝中区': fac.AntdSpace(
+                    [
+                        '渝中区',
+                        fac.AntdTag(
+                            content='市辖区',
+                            color='cyan'
+                        )
+                    ]
+                ),
+                '渝北区': fac.AntdSpace(
+                    [
+                        '渝北区',
+                        fac.AntdTag(
+                            content='市辖区',
+                            color='cyan'
+                        )
+                    ]
+                ),
+                '解放碑街道': fac.AntdSpace(
+                    [
+                        '解放碑街道',
+                        fac.AntdTag(
+                            content='街镇乡',
+                            color='blue'
+                        )
+                    ]
+                )
+            },
+            placeholder='请选择',
+            multiple=True,
+            optionFilterProp='value'
         )
     ],
     style={

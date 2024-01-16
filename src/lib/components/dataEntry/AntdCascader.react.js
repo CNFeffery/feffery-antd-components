@@ -92,6 +92,10 @@ AntdCascader.propTypes = {
     // 优先级高于options中对应节点的label属性
     optionsNodeKeyToLabel: PropTypes.objectOf(PropTypes.node),
 
+    // 设置输入框下输入内容进行搜索的字段，可选的有'value'、'label'
+    // 默认为'label'
+    optionFilterProp: PropTypes.oneOf(['value', 'label']),
+
     // 设置是否禁用组件
     disabled: PropTypes.bool,
 
@@ -244,6 +248,7 @@ AntdCascader.propTypes = {
 
 // 设置默认参数
 AntdCascader.defaultProps = {
+    optionFilterProp: 'label',
     changeOnSelect: false,
     placement: 'bottomLeft',
     multiple: false,
