@@ -50,6 +50,7 @@ const AntdCascader = (props) => {
         locale,
         options,
         optionFilterProp,
+        panelMode,
         optionsNodeKeyToLabel,
         optionsMode,
         changeOnSelect,
@@ -122,6 +123,74 @@ const AntdCascader = (props) => {
     }
 
     // 返回定制化的前端组件
+    if (panelMode) {
+        return (
+            <ConfigProvider locale={str2Locale.get(locale)}>
+                <Cascader.Panel
+                    id={id}
+                    className={
+                        isString(className) ?
+                            className :
+                            (className ? useCss(className) : undefined)
+                    }
+                    style={style}
+                    popupClassName={popupClassName}
+                    key={key}
+                    options={
+                        optionsNodeKeyToLabel ?
+                            replaceNodeLabel(cloneDeep(options), optionsNodeKeyToLabel) :
+                            options
+                    }
+                    changeOnSelect={changeOnSelect}
+                    size={
+                        context && !isUndefined(context.componentSize) ?
+                            context.componentSize :
+                            size
+                    }
+                    bordered={bordered}
+                    disabled={
+                        context && !isUndefined(context.componentDisabled) ?
+                            context.componentDisabled :
+                            disabled
+                    }
+                    placeholder={placeholder}
+                    defaultValue={defaultValue}
+                    value={value}
+                    placement={placement}
+                    maxTagCount={maxTagCount}
+                    multiple={multiple}
+                    persistence={persistence}
+                    persisted_props={persisted_props}
+                    persistence_type={persistence_type}
+                    expandTrigger={expandTrigger}
+                    status={status}
+                    allowClear={isUndefined(readOnly) ? allowClear : !readOnly}
+                    autoFocus={autoFocus}
+                    showCheckedStrategy={str2ShowCheckedStrategy.get(showCheckedStrategy)}
+                    displayRender={
+                        multiple ?
+                            undefined :
+                            (
+                                showCheckedStrategy === 'show-child' ?
+                                    (label) => label[label.length - 1] :
+                                    (label) => label[0]
+                            )
+                    }
+                    showSearch={{ filter }}
+                    onChange={onSelect}
+                    data-dash-is-loading={
+                        (loading_state && loading_state.is_loading) || undefined
+                    }
+                    getPopupContainer={
+                        popupContainer === 'parent' ?
+                            (triggerNode) => triggerNode.parentNode :
+                            undefined
+                    }
+                    open={isUndefined(readOnly) || !readOnly ? undefined : false}
+                />
+            </ConfigProvider>
+        );
+    }
     return (
         <ConfigProvider locale={str2Locale.get(locale)}>
             <Cascader

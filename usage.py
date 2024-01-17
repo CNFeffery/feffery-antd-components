@@ -7,6 +7,7 @@ app = dash.Dash(__name__)
 app.layout = html.Div(
     [
         fac.AntdCascader(
+            panelMode=True,
             options=[
                 {
                     'label': '四川省',

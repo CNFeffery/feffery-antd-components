@@ -96,6 +96,10 @@ AntdCascader.propTypes = {
     // 默认为'label'
     optionFilterProp: PropTypes.oneOf(['value', 'label']),
 
+    // 是否开启内嵌面板模式
+    // 默认：false
+    panelMode: PropTypes.bool,
+
     // 设置是否禁用组件
     disabled: PropTypes.bool,
 
@@ -249,6 +253,7 @@ AntdCascader.propTypes = {
 // 设置默认参数
 AntdCascader.defaultProps = {
     optionFilterProp: 'label',
+    panelMode: false,
     changeOnSelect: false,
     placement: 'bottomLeft',
     multiple: false,
