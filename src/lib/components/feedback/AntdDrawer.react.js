@@ -13,6 +13,8 @@ const AntdDrawer = (props) => {
         children,
         className,
         style,
+        classNames,
+        styles,
         drawerStyle,
         bodyStyle,
         contentWrapperStyle,
@@ -60,6 +62,8 @@ const AntdDrawer = (props) => {
                     } :
                     style
             }
+            classNames={classNames}
+            styles={styles}
             drawerStyle={drawerStyle}
             bodyStyle={bodyStyle}
             contentWrapperStyle={contentWrapperStyle}
@@ -111,6 +115,26 @@ AntdDrawer.propTypes = {
 
     // 自定义css字典
     style: PropTypes.object,
+
+    // 配置抽屉各部分的css类名
+    classNames: PropTypes.exact({
+        header: PropTypes.string,
+        body: PropTypes.string,
+        footer: PropTypes.string,
+        mask: PropTypes.string,
+        content: PropTypes.string,
+        wrapper: PropTypes.string
+    }),
+
+    // 配置抽屉各部分的css样式
+    styles: PropTypes.exact({
+        header: PropTypes.object,
+        body: PropTypes.object,
+        footer: PropTypes.object,
+        mask: PropTypes.object,
+        content: PropTypes.object,
+        wrapper: PropTypes.object
+    }),
 
     // 设置抽屉弹出层的css样式
     drawerStyle: PropTypes.object,

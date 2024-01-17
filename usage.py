@@ -6,10 +6,15 @@ app = dash.Dash(__name__)
 
 app.layout = html.Div(
     [
-        fac.AntdCheckableTag(
-            content='标签内容',
-            checkedContent='已选中',
-            unCheckedContent='未选中'
+        fac.AntdDrawer(
+            visible=True,
+            title='标题示例',
+            footer=html.Div('页脚测试'),
+            styles={
+                'header': {
+                    'background': 'grey'
+                }
+            }
         )
     ],
     style={
