@@ -31,6 +31,12 @@ AntdCheckableTag.propTypes = {
     // 设置标签内容
     content: PropTypes.node,
 
+    // 勾选状态下显示的标签内容
+    checkedContent: PropTypes.node,
+
+    // 非勾选状态下显示的标签内容
+    unCheckedContent: PropTypes.node,
+
     /**
      * 设置或监听当前标签的选择状态
      * 默认：false

@@ -15,6 +15,8 @@ const AntdCheckableTag = (props) => {
         style,
         key,
         content,
+        checkedContent,
+        unCheckedContent,
         checked,
         setProps,
         loading_state
@@ -34,7 +36,9 @@ const AntdCheckableTag = (props) => {
             data-dash-is-loading={
                 (loading_state && loading_state.is_loading) || undefined
             }>
-            {content}
+            {
+                checked ? checkedContent || content : unCheckedContent || content
+            }
         </CheckableTag>
     );
 }

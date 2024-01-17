@@ -14,6 +14,8 @@ Keyword arguments:
 - checked (boolean; default False):
     设置或监听当前标签的选择状态  默认：False.
 
+- checkedContent (a list of or a singular dash component, string or number; optional)
+
 - className (string | dict; optional)
 
 - content (a list of or a singular dash component, string or number; optional)
@@ -33,16 +35,18 @@ Keyword arguments:
     - prop_name (string; optional):
         Holds which property is loading.
 
-- style (dict; optional)"""
-    _children_props = ['content']
-    _base_nodes = ['content', 'children']
+- style (dict; optional)
+
+- unCheckedContent (a list of or a singular dash component, string or number; optional)"""
+    _children_props = ['content', 'checkedContent', 'unCheckedContent']
+    _base_nodes = ['content', 'checkedContent', 'unCheckedContent', 'children']
     _namespace = 'feffery_antd_components'
     _type = 'AntdCheckableTag'
     @_explicitize_args
-    def __init__(self, id=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, key=Component.UNDEFINED, content=Component.UNDEFINED, checked=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
-        self._prop_names = ['id', 'checked', 'className', 'content', 'key', 'loading_state', 'style']
+    def __init__(self, id=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, key=Component.UNDEFINED, content=Component.UNDEFINED, checkedContent=Component.UNDEFINED, unCheckedContent=Component.UNDEFINED, checked=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
+        self._prop_names = ['id', 'checked', 'checkedContent', 'className', 'content', 'key', 'loading_state', 'style', 'unCheckedContent']
         self._valid_wildcard_attributes =            []
-        self.available_properties = ['id', 'checked', 'className', 'content', 'key', 'loading_state', 'style']
+        self.available_properties = ['id', 'checked', 'checkedContent', 'className', 'content', 'key', 'loading_state', 'style', 'unCheckedContent']
         self.available_wildcard_properties =            []
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()
