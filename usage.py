@@ -6,16 +6,6 @@ app = dash.Dash(__name__)
 
 app.layout = html.Div(
     [
-        fac.AntdDrawer(
-            visible=True,
-            title='标题示例',
-            footer=html.Div('页脚测试'),
-            styles={
-                'header': {
-                    'background': 'grey'
-                }
-            }
-        )
     ],
     style={
         'padding': '50px 100px'

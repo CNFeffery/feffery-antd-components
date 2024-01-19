@@ -17,6 +17,22 @@ Keyword arguments:
 
 - className (string | dict; optional)
 
+- classNames (dict; optional)
+
+    `classNames` is a dict with keys:
+
+    - body (string; optional)
+
+    - content (string; optional)
+
+    - footer (string; optional)
+
+    - header (string; optional)
+
+    - mask (string; optional)
+
+    - wrapper (string; optional)
+
 - closable (boolean; default True)
 
 - closeIconType (a value equal to: 'default', 'outlined', 'two-tone'; default 'default')
@@ -56,10 +72,10 @@ Keyword arguments:
     _namespace = 'feffery_antd_components'
     _type = 'AntdPopupCard'
     @_explicitize_args
-    def __init__(self, children=None, id=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, key=Component.UNDEFINED, title=Component.UNDEFINED, visible=Component.UNDEFINED, width=Component.UNDEFINED, transitionType=Component.UNDEFINED, closable=Component.UNDEFINED, closeIconType=Component.UNDEFINED, draggable=Component.UNDEFINED, dragClassName=Component.UNDEFINED, zIndex=Component.UNDEFINED, bodyStyle=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
-        self._prop_names = ['children', 'id', 'bodyStyle', 'className', 'closable', 'closeIconType', 'dragClassName', 'draggable', 'key', 'loading_state', 'style', 'title', 'transitionType', 'visible', 'width', 'zIndex']
+    def __init__(self, children=None, id=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, classNames=Component.UNDEFINED, key=Component.UNDEFINED, title=Component.UNDEFINED, visible=Component.UNDEFINED, width=Component.UNDEFINED, transitionType=Component.UNDEFINED, closable=Component.UNDEFINED, closeIconType=Component.UNDEFINED, draggable=Component.UNDEFINED, dragClassName=Component.UNDEFINED, zIndex=Component.UNDEFINED, bodyStyle=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
+        self._prop_names = ['children', 'id', 'bodyStyle', 'className', 'classNames', 'closable', 'closeIconType', 'dragClassName', 'draggable', 'key', 'loading_state', 'style', 'title', 'transitionType', 'visible', 'width', 'zIndex']
         self._valid_wildcard_attributes =            []
-        self.available_properties = ['children', 'id', 'bodyStyle', 'className', 'closable', 'closeIconType', 'dragClassName', 'draggable', 'key', 'loading_state', 'style', 'title', 'transitionType', 'visible', 'width', 'zIndex']
+        self.available_properties = ['children', 'id', 'bodyStyle', 'className', 'classNames', 'closable', 'closeIconType', 'dragClassName', 'draggable', 'key', 'loading_state', 'style', 'title', 'transitionType', 'visible', 'width', 'zIndex']
         self.available_wildcard_properties =            []
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()
