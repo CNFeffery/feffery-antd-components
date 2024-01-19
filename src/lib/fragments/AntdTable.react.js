@@ -723,7 +723,8 @@ class AntdTable extends Component {
                                         } else if (record[columns[i].dataIndex]?.tag) {
                                             return record[columns[i].dataIndex].tag === value;
                                         } else if (record[columns[i].dataIndex]?.toString) {
-                                            return record[columns[i].dataIndex].toString() === value;
+                                            // 确保字符型、数值型均可稳定进行筛选
+                                            return record[columns[i].dataIndex].toString() === value.toString();
                                         }
                                     } else if (Array.isArray(record[columns[i].dataIndex])) {
                                         // 若当前记录为数组，分别检查数组元素对象是否具有content、tag、title属性
