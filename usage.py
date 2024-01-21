@@ -8,7 +8,7 @@ app.layout = html.Div(
     [
         fac.AntdSpace(
             [
-                fac.AntdRadioGroup(
+                fac.AntdSelect(
                     options=[
                         {
                             'label': fac.AntdText(
@@ -18,13 +18,22 @@ app.layout = html.Div(
                             'value': f'选项{i}'
                         }
                         for i in range(5)
-                    ]
+                    ],
+                    style={
+                        'width': 200
+                    }
                 ),
-                fac.AntdRadioGroup(
-                    options=list(range(10))
+                fac.AntdSelect(
+                    options=list(range(10)),
+                    style={
+                        'width': 200
+                    }
                 ),
-                fac.AntdRadioGroup(
-                    options=[f'选项{i}' for i in range(10)]
+                fac.AntdSelect(
+                    options=[f'选项{i}' for i in range(10)],
+                    style={
+                        'width': 200
+                    }
                 )
             ],
             direction='vertical'

@@ -76,7 +76,7 @@ Keyword arguments:
 
 - options (list of dicts; optional)
 
-    `options` is a list of dicts with keys:
+    `options` is a list of string | number | dict with keys:
 
     - colors (list of strings; optional)
 
@@ -100,7 +100,7 @@ Keyword arguments:
 
         - label (a list of or a singular dash component, string or number; required)
 
-        - value (string | number; required)
+        - value (string | number; required)s
 
 - persisted_props (list of a value equal to: 'value's; default ['value']):
     Properties whose user interactions will persist after refreshing

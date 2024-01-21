@@ -1,7 +1,7 @@
 import React, { useEffect, useContext } from 'react';
 import { useRequest } from 'ahooks';
 import { Select, ConfigProvider } from 'antd';
-import { isUndefined, isString } from 'lodash';
+import { isUndefined, isString, isNumber } from 'lodash';
 import useCss from '../../hooks/useCss';
 import { str2Locale } from '../../components/locales.react';
 import PropsContext from '../../contexts/PropsContext';
@@ -112,82 +112,89 @@ const AntdSelect = (props) => {
 
     // 基于dash端传入的options参数，推导出对应的组件
     let optionsJsx = [];
-    for (let i = 0; i < options.length; i++) {
-        // 当存在分组时
-        if (options[i].hasOwnProperty('group')) {
-            let groupOptions = [];
-            // 构造OptGroup > Option结构
-            for (let j = 0; j < options[i].options.length; j++) {
-                groupOptions.push(
-                    <Option value={options[i].options[j].value} disabled={options[i].options[j].disabled}>
-                        {
-                            options[i].options[j].colors ?
-                                <div style={{ display: 'flex' }}>
-                                    <div style={{
-                                        flex: 'none',
-                                        textAlign: 'center',
-                                        width: colorsNameWidth,
-                                        fontSize: 12
-                                    }}>{options[i].options[j].label}</div>
-                                    {
-                                        colorsMode === 'sequential' ? <div style={{
-                                            margin: "1px 0 1px 10px",
-                                            borderRadius: "2px",
-                                            flex: 'auto',
-                                            background: options[i].options[j].colors.length > 1 ?
-                                                `linear-gradient(to right, ${options[i].options[j].colors.join()})` : options[i].options[j].colors[0]
-                                        }} /> : <div style={{
-                                            margin: "1px 0 1px 10px",
-                                            borderRadius: "2px",
-                                            flex: 'auto',
-                                            'display': 'flex'
-                                        }} >{
-                                                options[i].options[j].colors.map(c => <div style={{
-                                                    flex: 'auto',
-                                                    background: c
-                                                }} />)
-                                            }</ div>
-                                    }
-                                </div> : options[i].options[j].label
-                        }
-                    </Option>
-                )
-            }
-            optionsJsx.push(<OptGroup label={options[i].group}>{groupOptions}</OptGroup>)
-        } else {
-            optionsJsx.push(<Option value={options[i].value} disabled={options[i].disabled}>
-                {
-                    options[i].colors ?
-                        <div style={{ display: 'flex' }}>
-                            <div style={{
-                                flex: 'none',
-                                textAlign: 'center',
-                                fontSize: 12,
-                                width: colorsNameWidth
-                            }}>{options[i].label}</div>
+    // 快捷方式
+    if (options.every(item => isNumber(item) || isString(item))) {
+        optionsJsx = options.map(
+            item => (<Option value={item}>{item}</Option>)
+        )
+    } else {
+        for (let i = 0; i < options.length; i++) {
+            // 当存在分组时
+            if (options[i].hasOwnProperty('group')) {
+                let groupOptions = [];
+                // 构造OptGroup > Option结构
+                for (let j = 0; j < options[i].options.length; j++) {
+                    groupOptions.push(
+                        <Option value={options[i].options[j].value} disabled={options[i].options[j].disabled}>
                             {
-                                colorsMode === 'sequential' ? <div style={{
-                                    margin: "1px 0 1px 10px",
-                                    borderRadius: "2px",
-                                    flex: 'auto',
-                                    background: options[i].colors.length > 1 ?
-                                        `linear-gradient(to right, ${options[i].colors.join()})` : options[i].colors[0]
-                                }} /> : <div style={{
-                                    margin: "1px 0 1px 10px",
-                                    borderRadius: "2px",
-                                    flex: 'auto',
-                                    'display': 'flex'
-                                }} >{
-                                        options[i].colors.map(c => <div style={{
-                                            flex: 'auto',
-                                            background: c
-                                        }} />)
-                                    }</ div>
+                                options[i].options[j].colors ?
+                                    <div style={{ display: 'flex' }}>
+                                        <div style={{
+                                            flex: 'none',
+                                            textAlign: 'center',
+                                            width: colorsNameWidth,
+                                            fontSize: 12
+                                        }}>{options[i].options[j].label}</div>
+                                        {
+                                            colorsMode === 'sequential' ? <div style={{
+                                                margin: "1px 0 1px 10px",
+                                                borderRadius: "2px",
+                                                flex: 'auto',
+                                                background: options[i].options[j].colors.length > 1 ?
+                                                    `linear-gradient(to right, ${options[i].options[j].colors.join()})` : options[i].options[j].colors[0]
+                                            }} /> : <div style={{
+                                                margin: "1px 0 1px 10px",
+                                                borderRadius: "2px",
+                                                flex: 'auto',
+                                                'display': 'flex'
+                                            }} >{
+                                                    options[i].options[j].colors.map(c => <div style={{
+                                                        flex: 'auto',
+                                                        background: c
+                                                    }} />)
+                                                }</ div>
+                                        }
+                                    </div> : options[i].options[j].label
                             }
-
-                        </div> : options[i].label
+                        </Option>
+                    )
                 }
-            </Option>)
+                optionsJsx.push(<OptGroup label={options[i].group}>{groupOptions}</OptGroup>)
+            } else {
+                optionsJsx.push(<Option value={options[i].value} disabled={options[i].disabled}>
+                    {
+                        options[i].colors ?
+                            <div style={{ display: 'flex' }}>
+                                <div style={{
+                                    flex: 'none',
+                                    textAlign: 'center',
+                                    fontSize: 12,
+                                    width: colorsNameWidth
+                                }}>{options[i].label}</div>
+                                {
+                                    colorsMode === 'sequential' ? <div style={{
+                                        margin: "1px 0 1px 10px",
+                                        borderRadius: "2px",
+                                        flex: 'auto',
+                                        background: options[i].colors.length > 1 ?
+                                            `linear-gradient(to right, ${options[i].colors.join()})` : options[i].colors[0]
+                                    }} /> : <div style={{
+                                        margin: "1px 0 1px 10px",
+                                        borderRadius: "2px",
+                                        flex: 'auto',
+                                        'display': 'flex'
+                                    }} >{
+                                            options[i].colors.map(c => <div style={{
+                                                flex: 'auto',
+                                                background: c
+                                            }} />)
+                                        }</ div>
+                                }
+
+                            </div> : options[i].label
+                    }
+                </Option>)
+            }
         }
     }
 

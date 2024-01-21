@@ -40,6 +40,8 @@ AntdSelect.propTypes = {
     // 定义下拉框可选项
     options: PropTypes.arrayOf(
         PropTypes.oneOfType([
+            PropTypes.string,
+            PropTypes.number,
             PropTypes.exact({
                 // 选项对应显示的label
                 label: PropTypes.node.isRequired,
