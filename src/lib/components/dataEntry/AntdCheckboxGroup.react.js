@@ -33,19 +33,23 @@ AntdCheckboxGroup.propTypes = {
 
     // 用于在checkbox组模式下定义每个选择框的信息
     options: PropTypes.arrayOf(
-        PropTypes.exact({
-            // 设置选项显示的文字内容
-            label: PropTypes.node,
+        PropTypes.oneOfType([
+            PropTypes.string,
+            PropTypes.number,
+            PropTypes.exact({
+                // 设置选项显示的文字内容
+                label: PropTypes.node,
 
-            // 设置选项对应的值
-            value: PropTypes.oneOfType([
-                PropTypes.string,
-                PropTypes.number
-            ]),
+                // 设置选项对应的值
+                value: PropTypes.oneOfType([
+                    PropTypes.string,
+                    PropTypes.number
+                ]),
 
-            // 设置是否禁用当前选项
-            disabled: PropTypes.bool
-        })
+                // 设置是否禁用当前选项
+                disabled: PropTypes.bool
+            })
+        ])
     ),
 
     // 对应组合选择框当前被选中的选项的value数组

@@ -6,25 +6,28 @@ app = dash.Dash(__name__)
 
 app.layout = html.Div(
     [
-        fac.AntdTable(
-            data=[
-                {
-                    '年份': 2020 + i
-                }
-                for i in range(3)
+        fac.AntdSpace(
+            [
+                fac.AntdCheckboxGroup(
+                    options=[
+                        {
+                            'label': fac.AntdText(
+                                f'选项{i}',
+                                strong=True
+                            ),
+                            'value': f'选项{i}'
+                        }
+                        for i in range(5)
+                    ]
+                ),
+                fac.AntdCheckboxGroup(
+                    options=list(range(10))
+                ),
+                fac.AntdCheckboxGroup(
+                    options=[f'选项{i}' for i in range(10)]
+                )
             ],
-            columns=[
-                {
-                    'dataIndex': '年份',
-                    'title': '年份'
-                }
-            ],
-            filterOptions={
-                '年份': {}
-            },
-            style={
-                'width': 300
-            }
+            direction='vertical'
         )
     ],
     style={

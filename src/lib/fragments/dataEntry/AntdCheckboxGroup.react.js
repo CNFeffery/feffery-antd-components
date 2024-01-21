@@ -1,6 +1,6 @@
 import React, { useContext, useEffect } from 'react';
 import { Checkbox } from 'antd';
-import { isString, isUndefined } from 'lodash';
+import { isString, isNumber, isUndefined } from 'lodash';
 import useCss from '../../hooks/useCss';
 import PropsContext from '../../contexts/PropsContext';
 import { propTypes, defaultProps } from '../../components/dataEntry/AntdCheckboxGroup.react';
@@ -58,7 +58,12 @@ const AntdCheckboxGroup = (props) => {
             }
             style={style}
             key={key}
-            options={options}
+            options={
+                options.every(item => isNumber(item) || isString(item)) ?
+                    // 快捷方式
+                    options.map(item => ({ label: item, value: item })) :
+                    options
+            }
             value={value}
             disabled={
                 context && !isUndefined(context.componentDisabled) ?
