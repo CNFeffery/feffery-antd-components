@@ -8,7 +8,7 @@ app.layout = html.Div(
     [
         fac.AntdSpace(
             [
-                fac.AntdCheckboxGroup(
+                fac.AntdRadioGroup(
                     options=[
                         {
                             'label': fac.AntdText(
@@ -20,10 +20,10 @@ app.layout = html.Div(
                         for i in range(5)
                     ]
                 ),
-                fac.AntdCheckboxGroup(
+                fac.AntdRadioGroup(
                     options=list(range(10))
                 ),
-                fac.AntdCheckboxGroup(
+                fac.AntdRadioGroup(
                     options=[f'选项{i}' for i in range(10)]
                 )
             ],

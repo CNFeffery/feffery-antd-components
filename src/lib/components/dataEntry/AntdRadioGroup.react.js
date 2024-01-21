@@ -34,19 +34,23 @@ AntdRadioGroup.propTypes = {
 
     // 设置选项参数数组
     options: PropTypes.arrayOf(
-        PropTypes.exact({
-            // 设置选项的标题内容
-            label: PropTypes.node,
+        PropTypes.oneOfType([
+            PropTypes.string,
+            PropTypes.number,
+            PropTypes.exact({
+                // 设置选项的标题内容
+                label: PropTypes.node,
 
-            // 设置选项的对应值
-            value: PropTypes.oneOfType([
-                PropTypes.string,
-                PropTypes.number
-            ]),
+                // 设置选项的对应值
+                value: PropTypes.oneOfType([
+                    PropTypes.string,
+                    PropTypes.number
+                ]),
 
-            // 设置是否禁用当前选项，默认为false
-            disabled: PropTypes.bool
-        })
+                // 设置是否禁用当前选项，默认为false
+                disabled: PropTypes.bool
+            })
+        ])
     ),
 
     // 设置是否禁用整体组件

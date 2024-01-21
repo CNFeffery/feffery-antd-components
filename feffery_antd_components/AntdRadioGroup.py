@@ -44,13 +44,13 @@ Keyword arguments:
 
 - options (list of dicts; optional)
 
-    `options` is a list of dicts with keys:
+    `options` is a list of string | number | dict with keys:
 
     - disabled (boolean; optional)
 
     - label (a list of or a singular dash component, string or number; optional)
 
-    - value (string | number; optional)
+    - value (string | number; optional)s
 
 - persisted_props (list of a value equal to: 'value's; default ['value']):
     Properties whose user interactions will persist after refreshing

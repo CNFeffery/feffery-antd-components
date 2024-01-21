@@ -1,6 +1,6 @@
 import React, { useEffect, useContext } from 'react';
 import { Radio, Space } from 'antd';
-import { isString, isUndefined } from 'lodash';
+import { isString, isNumber, isUndefined } from 'lodash';
 import useCss from '../../hooks/useCss';
 import PropsContext from '../../contexts/PropsContext';
 import { propTypes, defaultProps } from '../../components/dataEntry/AntdRadioGroup.react';
@@ -59,7 +59,12 @@ const AntdRadioGroup = (props) => {
     }
 
     if (direction === 'vertical') {
-
+        let _options = (
+            options.every(item => isNumber(item) || isString(item)) ?
+                // 快捷方式
+                options.map(item => ({ label: item, value: item })) :
+                [...options]
+        )
         // 返回定制化的前端组件
         return (
             <Radio.Group
@@ -93,7 +98,7 @@ const AntdRadioGroup = (props) => {
                 }
             >
                 <Space direction='vertical'>
-                    {options.map(item => {
+                    {_options.map(item => {
                         return optionType !== 'button' ?
                             <Radio value={item.value} disabled={item.disabled}>{item.label}</Radio> :
                             <Radio.Button value={item.value} disabled={item.disabled}>{item.label}</Radio.Button>
@@ -114,7 +119,12 @@ const AntdRadioGroup = (props) => {
             }
             style={style}
             key={key}
-            options={options}
+            options={
+                options.every(item => isNumber(item) || isString(item)) ?
+                    // 快捷方式
+                    options.map(item => ({ label: item, value: item })) :
+                    options
+            }
             defaultValue={defaultValue}
             value={value}
             optionType={optionType}
