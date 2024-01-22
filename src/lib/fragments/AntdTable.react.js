@@ -314,6 +314,7 @@ class AntdTable extends Component {
             rowSelectionType,
             selectedRowKeys,
             rowSelectionWidth,
+            rowSelectionCheckStrictly,
             sticky,
             titlePopoverInfo,
             columnsFormatConstraint,
@@ -1692,6 +1693,7 @@ class AntdTable extends Component {
 
             rowSelection = {
                 columnWidth: rowSelectionWidth,
+                checkStrictly: rowSelectionCheckStrictly,
                 fixed: true,
                 type: rowSelectionType,
                 selectedRowKeys: selectedRowKeys,

@@ -533,6 +533,10 @@ AntdTable.propTypes = {
         PropTypes.number
     ]),
 
+    // 针对嵌套数据行，设置节点与其后代节点之间的勾选行为是否彼此独立不关联
+    // 默认：true
+    rowSelectionCheckStrictly: PropTypes.bool,
+
     // 记录已被选择的行记录值列表
     selectedRows: PropTypes.array,
 
