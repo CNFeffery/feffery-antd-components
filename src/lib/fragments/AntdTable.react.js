@@ -310,6 +310,7 @@ class AntdTable extends Component {
             containerId,
             columns,
             showHeader,
+            tableLayout,
             miniChartHeight,
             miniChartAnimation,
             rowSelectionType,
@@ -1862,6 +1863,7 @@ class AntdTable extends Component {
                     }
                     columns={tempColumns}
                     showHeader={showHeader}
+                    tableLayout={tableLayout}
                     size={size}
                     rowSelection={rowSelection}
                     sticky={sticky}

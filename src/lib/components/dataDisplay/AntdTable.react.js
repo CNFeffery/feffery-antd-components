@@ -186,6 +186,12 @@ AntdTable.propTypes = {
      */
     showHeader: PropTypes.bool,
 
+    /**
+     * 当columns中各字段未设置width时，用于控制字段布局方式
+     * 可选的有'auto'、'fixed'
+     */
+    tableLayout: PropTypes.oneOf(['auto', 'fixed']),
+
     // 定义与columns匹配的行记录数组
     data: PropTypes.arrayOf(
         PropTypes.objectOf(
