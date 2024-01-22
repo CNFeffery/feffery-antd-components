@@ -38,7 +38,16 @@ app.layout = html.Div(
             ],
             bordered=True,
             rowSelectionType='checkbox',
-            rowSelectionCheckStrictly=False
+            rowSelectionCheckStrictly=False,
+            footer=fac.AntdSpace(
+                [
+                    fac.AntdTag(
+                        content=f'标签{i}',
+                        color='green'
+                    )
+                    for i in range(1, 6)
+                ]
+            )
         ),
         html.Pre(
             id='output'

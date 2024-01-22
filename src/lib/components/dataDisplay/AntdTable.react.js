@@ -922,6 +922,11 @@ AntdTable.propTypes = {
      */
     virtual: PropTypes.bool,
 
+    /**
+     * 自定义页脚内容
+     */
+    footer: PropTypes.node,
+
     loading_state: PropTypes.shape({
         /**
          * Determines if the component is loading or not
