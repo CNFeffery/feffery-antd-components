@@ -349,6 +349,7 @@ class AntdTable extends Component {
             nClicksDropdownItem,
             hiddenRowKeys,
             virtual,
+            title,
             footer,
             setProps,
             loading_state
@@ -1930,6 +1931,7 @@ class AntdTable extends Component {
                         }
                     }
                     virtual={virtual}
+                    title={title && (() => title)}
                     footer={footer && (() => footer)}
                     data-dash-is-loading={
                         (loading_state && loading_state.is_loading) || undefined

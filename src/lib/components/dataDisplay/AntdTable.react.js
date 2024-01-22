@@ -156,6 +156,9 @@ AntdTable.propTypes = {
             // 控制是否隐藏当前字段，设置为true时进行隐藏，默认为false
             hidden: PropTypes.bool,
 
+            // 为当前字段对应列设置css类名
+            className: PropTypes.string,
+
             /**
              * 若当前字段通过defaultFilteredValues设置了初始化默认选中筛选值，
              * 用于设置是否在用户点击重置按钮后恢复默认选中筛选项
@@ -933,6 +936,11 @@ AntdTable.propTypes = {
      * 默认：false
      */
     virtual: PropTypes.bool,
+
+    /**
+     * 自定义整体标题内容
+     */
+    title: PropTypes.node,
 
     /**
      * 自定义页脚内容

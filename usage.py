@@ -2,16 +2,25 @@ import dash
 from dash import html
 from datetime import datetime
 import feffery_antd_components as fac
+import feffery_utils_components as fuc
 
 app = dash.Dash(__name__)
 
 app.layout = html.Div(
     [
+        fuc.FefferyStyle(
+            rawStyle='''
+.demo-column {
+    background: #bae7ff;
+}
+'''
+        ),
         fac.AntdTable(
             columns=[
                 {
                     'title': 'int型示例',
-                    'dataIndex': 'int型示例'
+                    'dataIndex': 'int型示例',
+                    'className': 'demo-column'
                 },
                 {
                     'title': 'float型示例',
