@@ -180,6 +180,12 @@ AntdTable.propTypes = {
         })
     ),
 
+    /**
+     * 是否显示表头
+     * 默认：true
+     */
+    showHeader: PropTypes.bool,
+
     // 定义与columns匹配的行记录数组
     data: PropTypes.arrayOf(
         PropTypes.objectOf(
@@ -952,6 +958,7 @@ AntdTable.propTypes = {
 // 设置默认参数
 AntdTable.defaultProps = {
     // 通用参数
+    showHeader: true,
     locale: 'zh-cn',
     data: [],
     columns: [],

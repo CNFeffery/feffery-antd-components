@@ -39,6 +39,7 @@ app.layout = html.Div(
             bordered=True,
             rowSelectionType='checkbox',
             rowSelectionCheckStrictly=False,
+            showHeader=False,
             footer=fac.AntdSpace(
                 [
                     fac.AntdTag(

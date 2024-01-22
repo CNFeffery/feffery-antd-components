@@ -309,6 +309,7 @@ class AntdTable extends Component {
             locale,
             containerId,
             columns,
+            showHeader,
             miniChartHeight,
             miniChartAnimation,
             rowSelectionType,
@@ -1860,6 +1861,7 @@ class AntdTable extends Component {
                         data.filter(e => !hiddenRowKeys.includes(e.key))
                     }
                     columns={tempColumns}
+                    showHeader={showHeader}
                     size={size}
                     rowSelection={rowSelection}
                     sticky={sticky}
