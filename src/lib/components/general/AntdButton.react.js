@@ -37,6 +37,7 @@ const AntdButton = (props) => {
         shape,
         size,
         nClicks,
+        clickExecuteJsString,
         debounceWait,
         icon,
         loading,
@@ -51,6 +52,15 @@ const AntdButton = (props) => {
     // 防抖点击事件监听
     const { run: onClick } = useRequest(
         () => {
+            // 若clickExecuteJsString有效，则通过eval进行执行
+            if (clickExecuteJsString) {
+                try {
+                    eval(clickExecuteJsString)
+                } catch (error) {
+                    console.error(error)
+                }
+            }
+
             if (autoSpin) {
                 // 更新nClicks，并自动进入loading状态
                 setProps({ nClicks: nClicks + 1, loading: true })
@@ -228,6 +238,11 @@ AntdButton.propTypes = {
      * 默认：0
      */
     nClicks: PropTypes.number,
+
+    /**
+     * 按钮点击时额外需要执行的js程序字符串
+     */
+    clickExecuteJsString: PropTypes.string,
 
     /**
      * 当前按钮点击事件监听防抖延时，单位：毫秒
