@@ -166,9 +166,9 @@ const AntdCascader = (props) => {
                     status={status}
                     allowClear={isUndefined(readOnly) ? allowClear : !readOnly}
                     autoFocus={autoFocus}
-                    showCheckedStrategy={str2ShowCheckedStrategy.get(showCheckedStrategy)}
+                    showCheckedStrategy={str2ShowCheckedStrategy.get(showCheckedStrategy) || undefined}
                     displayRender={
-                        multiple ?
+                        (multiple || !showCheckedStrategy) ?
                             undefined :
                             (
                                 showCheckedStrategy === 'show-child' ?
@@ -233,9 +233,9 @@ const AntdCascader = (props) => {
                 status={status}
                 allowClear={isUndefined(readOnly) ? allowClear : !readOnly}
                 autoFocus={autoFocus}
-                showCheckedStrategy={str2ShowCheckedStrategy.get(showCheckedStrategy)}
+                showCheckedStrategy={str2ShowCheckedStrategy.get(showCheckedStrategy) || undefined}
                 displayRender={
-                    multiple ?
+                    (multiple || !showCheckedStrategy) ?
                         undefined :
                         (
                             showCheckedStrategy === 'show-child' ?

@@ -92,7 +92,7 @@ Keyword arguments:
 
 - readOnly (boolean; optional)
 
-- showCheckedStrategy (a value equal to: 'show-parent', 'show-child'; default 'show-parent')
+- showCheckedStrategy (a value equal to: 'show-parent', 'show-child'; optional)
 
 - size (a value equal to: 'small', 'middle', 'large'; optional)
 

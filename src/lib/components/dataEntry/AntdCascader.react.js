@@ -183,7 +183,6 @@ AntdCascader.propTypes = {
     autoFocus: PropTypes.bool,
 
     // 设置已选项回填策略，可选的有'show-parent'、'show-child'
-    // 默认为'show-parent'
     showCheckedStrategy: PropTypes.oneOf(['show-parent', 'show-child']),
 
     // 设置是否以只读模式进行渲染，底层利用Select的open参数
@@ -262,7 +261,6 @@ AntdCascader.defaultProps = {
     autoFocus: false,
     locale: 'zh-cn',
     optionsMode: 'tree',
-    showCheckedStrategy: 'show-parent',
     popupContainer: 'body',
     bordered: true,
     disabled: false,
