@@ -555,6 +555,14 @@ AntdTable.propTypes = {
     // 记录已被选择的行记录值列表
     selectedRows: PropTypes.array,
 
+    // 设置不可被选中的行记录key值数组
+    rowSelectionIgnoreRowKeys: PropTypes.arrayOf(
+        PropTypes.oneOfType([
+            PropTypes.string,
+            PropTypes.number
+        ])
+    ),
+
     // 设置是否当data更新时，根据当前有效的selectedRowKeys参数对selectedRows进行同步更新
     // 默认为false
     selectedRowsSyncWithData: PropTypes.bool,

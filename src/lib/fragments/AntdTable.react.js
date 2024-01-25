@@ -317,6 +317,7 @@ class AntdTable extends Component {
             selectedRowKeys,
             rowSelectionWidth,
             rowSelectionCheckStrictly,
+            rowSelectionIgnoreRowKeys,
             sticky,
             titlePopoverInfo,
             columnsFormatConstraint,
@@ -1708,12 +1709,33 @@ class AntdTable extends Component {
                 ],
                 onChange: (selectedRowKeys, selectedRows) => {
                     setProps({
-                        selectedRowKeys: selectedRowKeys,
-                        // 忽略组件型字段键值对
-                        selectedRows: selectedRows.map(
-                            record => omitBy(record, value => value?.$$typeof)
+                        selectedRowKeys: (
+                            // 排除被忽略选择的行
+                            rowSelectionIgnoreRowKeys ?
+                                selectedRowKeys.filter(item => !rowSelectionIgnoreRowKeys.includes(item)) :
+                                selectedRowKeys
+                        ),
+                        selectedRows: (
+                            // 排除被忽略选择的行
+                            rowSelectionIgnoreRowKeys ?
+                                selectedRows.map(
+                                    // 忽略组件型字段键值对
+                                    record => omitBy(record, value => value?.$$typeof)
+                                ).filter(
+                                    record => !rowSelectionIgnoreRowKeys.includes(record.key)
+                                ) :
+                                selectedRows.map(
+                                    record => omitBy(record, value => value?.$$typeof)
+                                )
                         )
                     })
+                },
+                renderCell: (checked, record, index, originNode) => {
+                    // 排除不可选择的行
+                    if (rowSelectionIgnoreRowKeys && rowSelectionIgnoreRowKeys.includes(record.key)) {
+                        return null;
+                    }
+                    return originNode;
                 }
             }
         }

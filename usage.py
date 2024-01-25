@@ -1,59 +1,83 @@
 import dash
+import json
 from dash import html
 import feffery_antd_components as fac
+from dash.dependencies import Input, Output
 
 app = dash.Dash(__name__)
 
 app.layout = html.Div(
     [
-        fac.AntdCascader(
-            placeholder='请选择',
-            options=[
+        fac.AntdTable(
+            id='demo-table1',
+            columns=[
                 {
-                    'value': '节点1',
-                    'label': '节点1',
-                    'children': [
-                        {
-                            'value': '节点1-1',
-                            'label': '节点1-1'
-                        },
-                        {
-                            'value': '节点1-2',
-                            'label': '节点1-2',
-                            'children': [
-                                {
-                                    'value': '节点1-2-1',
-                                    'label': '节点1-2-1'
-                                },
-                                {
-                                    'value': '节点1-2-2',
-                                    'label': '节点1-2-2'
-                                }
-                            ]
-                        }
-                    ]
-                },
-                {
-                    'value': '节点2',
-                    'label': '节点2',
-                    'children': [
-                        {
-                            'value': '节点2-1',
-                            'label': '节点2-1'
-                        },
-                        {
-                            'value': '节点2-2',
-                            'label': '节点2-2'
-                        }
-                    ]
+                    'title': f'字段{i}',
+                    'dataIndex': f'字段{i}'
                 }
-            ]
-        )
+                for i in range(1, 6)
+            ],
+            data=[
+                {
+                    **{
+                        f'字段{i}': '示例内容'
+                        for i in range(1, 6)
+                    },
+                    'key': f'row-{row+1}'
+                }
+                for row in range(3)
+            ],
+            rowSelectionType='radio',
+            rowSelectionIgnoreRowKeys=['row-2']
+        ),
+
+        fac.AntdTable(
+            id='demo-table2',
+            columns=[
+                {
+                    'title': f'字段{i}',
+                    'dataIndex': f'字段{i}'
+                }
+                for i in range(1, 6)
+            ],
+            data=[
+                {
+                    **{
+                        f'字段{i}': '示例内容'
+                        for i in range(1, 6)
+                    },
+                    'key': f'row-{row+1}'
+                }
+                for row in range(3)
+            ],
+            rowSelectionType='checkbox',
+            rowSelectionIgnoreRowKeys=['row-2']
+        ),
+
+        html.Pre(id='demo-output')
     ],
     style={
         'padding': '50px 100px'
     }
 )
+
+
+@app.callback(
+    Output('demo-output', 'children'),
+    [Input('demo-table1', 'selectedRowKeys'),
+     Input('demo-table2', 'selectedRowKeys')]
+)
+def demo(selectedRowKeys1, selectedRowKeys2):
+
+    return json.dumps(
+        dict(
+            selectedRowKeys1=selectedRowKeys1,
+            selectedRowKeys2=selectedRowKeys2
+        ),
+        indent=4,
+        ensure_ascii=False
+    )
+
 
 if __name__ == '__main__':
     app.run(debug=True)
