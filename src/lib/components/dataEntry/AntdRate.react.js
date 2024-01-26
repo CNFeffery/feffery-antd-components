@@ -45,6 +45,9 @@ AntdRate.propTypes = {
     // 设置是否以只读方式进行展示，默认为false
     disabled: PropTypes.bool,
 
+    // 用于设置是否自动获取焦点，默认为false
+    autoFocus: PropTypes.bool,
+
     // 对应当前的星星数量
     value: PropTypes.number,
 
@@ -115,6 +118,7 @@ AntdRate.defaultProps = {
     count: 5,
     defaultValue: 0,
     disabled: false,
+    autoFocus: false,
     persisted_props: ['value'],
     persistence_type: 'local',
     batchPropsNames: []

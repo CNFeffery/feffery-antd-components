@@ -18,6 +18,7 @@ const AntdRate = (props) => {
         allowHalf,
         count,
         disabled,
+        autoFocus,
         tooltips,
         defaultValue,
         value,
@@ -69,6 +70,7 @@ const AntdRate = (props) => {
                     context.componentDisabled :
                     disabled
             }
+            autoFocus={autoFocus}
             tooltips={tooltips}
             value={value}
             onChange={v => setProps({ value: v })}
