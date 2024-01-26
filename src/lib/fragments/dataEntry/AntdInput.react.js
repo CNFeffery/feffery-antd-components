@@ -30,6 +30,7 @@ const AntdInput = (props) => {
         prefix,
         suffix,
         allowClear,
+        autoFocus,
         bordered,
         defaultValue,
         disabled,
@@ -179,6 +180,7 @@ const AntdInput = (props) => {
                 prefix={prefix}
                 suffix={suffix}
                 allowClear={allowClear}
+                autoFocus={autoFocus}
                 bordered={bordered}
                 defaultValue={defaultValue}
                 disabled={
@@ -221,6 +223,7 @@ const AntdInput = (props) => {
                         size
                 }
                 allowClear={allowClear}
+                autoFocus={autoFocus}
                 bordered={bordered}
                 value={rawValue || value}
                 defaultValue={defaultValue}
@@ -265,6 +268,7 @@ const AntdInput = (props) => {
                         size
                 }
                 allowClear={allowClear}
+                autoFocus={autoFocus}
                 bordered={bordered}
                 value={rawValue || value}
                 defaultValue={defaultValue}

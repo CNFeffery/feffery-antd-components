@@ -166,6 +166,9 @@ AntdInput.propTypes = {
     // 设置是否添加内容清除按钮，默认false
     allowClear: PropTypes.bool,
 
+    // 用于设置是否自动获取焦点，默认为false
+    autoFocus: PropTypes.bool,
+
     // 设置是否以只读模式进行渲染，默认为false
     readOnly: PropTypes.bool,
 
@@ -243,6 +246,7 @@ AntdInput.defaultProps = {
     nClicksSearch: 0,
     nSubmit: 0,
     allowClear: false,
+    autoFocus: false,
     emptyAsNone: false,
     debounceWait: 200,
     persisted_props: ['value', 'md5Value'],
