@@ -1,19 +1,23 @@
 import dash
-import json
 from dash import html
 import feffery_antd_components as fac
-from dash.dependencies import Input, Output
 
 app = dash.Dash(__name__)
 
 app.layout = html.Div(
     [
-        fac.AntdInput(
-            placeholder='请输入',
+        fac.AntdMentions(
+            options=[
+                {
+                    'label': f'用户{c}',
+                    'value': f'用户{c}'
+                }
+                for c in list('abcdef')
+            ],
+            autoFocus=True,
             style={
-                'width': '200px'
-            },
-            autoFocus=True
+                'width': 200
+            }
         )
     ],
     style={

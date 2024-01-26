@@ -78,6 +78,9 @@ AntdMentions.propTypes = {
     // 设置校验状态，可选的有'error'、'warning'
     status: PropTypes.oneOf(['error', 'warning']),
 
+    // 用于设置是否自动获取焦点，默认为false
+    autoFocus: PropTypes.bool,
+
     // 设置悬浮层锚定策略，可选的有'parent'、'body'，默认为'body'
     popupContainer: PropTypes.oneOf(['parent', 'body']),
 
@@ -115,6 +118,7 @@ AntdMentions.defaultProps = {
     prefix: '@',
     placement: 'bottom',
     disabled: false,
+    autoFocus: false,
     selectedOptions: [],
     batchPropsNames: []
 }

@@ -24,6 +24,7 @@ const AntdMentions = (props) => {
         options,
         disabled,
         status,
+        autoFocus,
         popupContainer,
         setProps,
         loading_state,
@@ -96,6 +97,7 @@ const AntdMentions = (props) => {
                     context.componentDisabled :
                     disabled
             }
+            autoFocus={autoFocus}
             status={status}
             onChange={onChange}
             onSelect={onSelect}
