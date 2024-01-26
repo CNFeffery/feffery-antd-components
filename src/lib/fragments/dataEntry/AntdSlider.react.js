@@ -20,6 +20,7 @@ const AntdSlider = (props) => {
         value,
         defaultValue,
         disabled,
+        autoFocus,
         vertical,
         range,
         min,
@@ -108,6 +109,7 @@ const AntdSlider = (props) => {
                     context.componentDisabled :
                     disabled
             }
+            autoFocus={autoFocus}
             vertical={vertical}
             range={range}
             min={min}

@@ -104,6 +104,9 @@ AntdSlider.propTypes = {
         PropTypes.arrayOf(PropTypes.number)
     ]),
 
+    // 用于设置是否自动获取焦点，默认为false
+    autoFocus: PropTypes.bool,
+
     // 设置悬浮层锚定策略，可选的有'parent'、'body'，默认为'body'
     popupContainer: PropTypes.oneOf(['parent', 'body']),
 
@@ -179,6 +182,7 @@ AntdSlider.defaultProps = {
     disabled: false,
     popupContainer: 'body',
     readOnly: false,
+    autoFocus: false,
     persisted_props: ['value'],
     persistence_type: 'local',
     batchPropsNames: []
