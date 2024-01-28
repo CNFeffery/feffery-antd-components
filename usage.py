@@ -6,13 +6,10 @@ app = dash.Dash(__name__)
 
 app.layout = html.Div(
     [
-        fac.AntdSlider(
-            min=0,
-            max=100,
-            defaultValue=33,
+        fac.AntdInput(
             autoFocus=True,
             style={
-                'width': 300
+                'width': 200
             }
         )
     ],
