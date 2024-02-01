@@ -139,7 +139,7 @@ const AntdInput = (props) => {
             })
         },
         {
-            debounceWait: Math.max(debounceWait, 200),
+            debounceWait: debounceWait,
             manual: true
         }
     )

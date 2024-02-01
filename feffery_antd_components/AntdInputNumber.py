@@ -29,7 +29,7 @@ Keyword arguments:
 
 - debounceValue (number | string; optional)
 
-- debounceWait (number; default 200)
+- debounceWait (number; default 0)
 
 - defaultValue (number | string; optional)
 

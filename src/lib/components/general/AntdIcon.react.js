@@ -135,7 +135,7 @@ AntdIcon.propTypes = {
 // 设置默认参数
 AntdIcon.defaultProps = {
     nClicks: 0,
-    debounceWait: 200
+    debounceWait: 0
 }
 
 export default AntdIcon;

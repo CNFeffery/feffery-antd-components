@@ -38,7 +38,7 @@ Keyword arguments:
 - danger (boolean; default False):
     当前按钮是否呈现危险状态  默认：False.
 
-- debounceWait (number; default 200):
+- debounceWait (number; default 0):
     当前按钮点击事件监听防抖延时，单位：毫秒  默认：200.
 
 - disabled (boolean; default False):

@@ -248,7 +248,7 @@ AntdInput.defaultProps = {
     allowClear: false,
     autoFocus: false,
     emptyAsNone: false,
-    debounceWait: 200,
+    debounceWait: 0,
     persisted_props: ['value', 'md5Value'],
     persistence_type: 'local',
     batchPropsNames: []

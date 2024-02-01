@@ -304,7 +304,7 @@ AntdButton.defaultProps = {
     ghost: false,
     size: 'middle',
     nClicks: 0,
-    debounceWait: 200,
+    debounceWait: 0,
     autoSpin: false
 }
 

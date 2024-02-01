@@ -180,7 +180,7 @@ AntdInputNumber.defaultProps = {
     size: 'middle',
     bordered: true,
     nSubmit: 0,
-    debounceWait: 200,
+    debounceWait: 0,
     persisted_props: ['value'],
     persistence_type: 'local',
     batchPropsNames: []

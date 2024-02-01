@@ -81,7 +81,7 @@ const AntdInputNumber = (props) => {
             setProps({ debounceValue: e })
         },
         {
-            debounceWait: Math.max(debounceWait, 200),
+            debounceWait: debounceWait,
             manual: true
         }
     )

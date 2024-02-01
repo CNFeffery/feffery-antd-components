@@ -33,7 +33,7 @@ Keyword arguments:
 
 - debounceSearchValue (string; optional)
 
-- debounceWait (number; default 200)
+- debounceWait (number; default 0)
 
 - defaultValue (string | number | list of string | numbers; optional)
 

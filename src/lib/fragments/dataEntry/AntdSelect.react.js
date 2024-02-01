@@ -96,7 +96,7 @@ const AntdSelect = (props) => {
             setProps({ debounceSearchValue: e })
         },
         {
-            debounceWait: Math.max(debounceWait, 200),
+            debounceWait: debounceWait,
             manual: true
         }
     )

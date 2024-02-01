@@ -15,7 +15,7 @@ Keyword arguments:
 - className (string | dict; optional):
     CSS class name.
 
-- debounceWait (number; default 200):
+- debounceWait (number; default 0):
     Configures the debounce wait time (in milliseconds) for value
     change updates, default is 0.
 

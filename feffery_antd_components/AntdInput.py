@@ -61,7 +61,7 @@ Keyword arguments:
 
 - debounceValue (string; optional)
 
-- debounceWait (number; default 200)
+- debounceWait (number; default 0)
 
 - defaultValue (string; optional)
 

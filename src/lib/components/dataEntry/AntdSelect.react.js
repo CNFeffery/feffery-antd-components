@@ -288,7 +288,7 @@ AntdSelect.defaultProps = {
     optionFilterProp: 'value',
     optionFilterMode: 'case-insensitive',
     autoSpin: false,
-    debounceWait: 200,
+    debounceWait: 0,
     popupMatchSelectWidth: true,
     popupContainer: 'body',
     loadingEmptyContent: (
