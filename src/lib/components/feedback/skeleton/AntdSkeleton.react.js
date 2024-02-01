@@ -4,7 +4,6 @@ import { Skeleton } from 'antd';
 import useCss from '../../../hooks/useCss';
 import { isString } from 'lodash';
 
-
 // 定义骨架屏组件AntdSkeleton，api参数参考https://ant.design/components/skeleton-cn/
 const AntdSkeleton = (props) => {
     // 取得必要属性或参数
@@ -16,6 +15,7 @@ const AntdSkeleton = (props) => {
         children,
         loading,
         active,
+        delay,
         avatar,
         paragraph,
         round,
@@ -30,11 +30,15 @@ const AntdSkeleton = (props) => {
 
     const [showLoading, setShowLoading] = useState(loading);
     const timer = useRef();
+    const delayTimer = useRef();
 
     useEffect(() => {
         if (loading_state) {
             if (timer.current) {
                 clearTimeout(timer.current);
+            }
+            if (delayTimer.current) {
+                clearTimeout(delayTimer.current);
             }
             if (loading_state.is_loading && !showLoading) {
                 // 当listenPropsMode为'default'时
@@ -42,7 +46,10 @@ const AntdSkeleton = (props) => {
                     if (debug) {
                         console.log(loading_state.component_name + '.' + loading_state.prop_name.split('@')[0])
                     }
-                    setShowLoading(true);
+                    delayTimer.current = setTimeout(
+                        () => setShowLoading(true),
+                        delay
+                    );
                 } else if (listenPropsMode === 'exclude') {
                     // 当listenPropsMode为'exclude'模式时
                     // 当前触发loading_state的组件+属性组合不在排除列表中时，激活动画
@@ -50,7 +57,10 @@ const AntdSkeleton = (props) => {
                         if (debug) {
                             console.log(loading_state.component_name + '.' + loading_state.prop_name.split('@')[0])
                         }
-                        setShowLoading(true);
+                        delayTimer.current = setTimeout(
+                            () => setShowLoading(true),
+                            delay
+                        );
                     }
                 } else if (listenPropsMode === 'include') {
                     // 当listenPropsMode为'include'模式时
@@ -59,7 +69,10 @@ const AntdSkeleton = (props) => {
                         if (debug) {
                             console.log(loading_state.component_name + '.' + loading_state.prop_name.split('@')[0])
                         }
-                        setShowLoading(true);
+                        delayTimer.current = setTimeout(
+                            () => setShowLoading(true),
+                            delay
+                        );
                     }
                 }
 
@@ -120,6 +133,12 @@ AntdSkeleton.propTypes = {
 
     // 设置是否显示动画效果，默认为false
     active: PropTypes.bool,
+
+    /**
+     * 设置加载延时时长，单位：毫秒
+     * 默认：0
+     */
+    delay: PropTypes.number,
 
     // 设置是否显示头像占位图，默认为false
     avatar: PropTypes.oneOfType([
@@ -222,6 +241,7 @@ AntdSkeleton.propTypes = {
 AntdSkeleton.defaultProps = {
     loading: false,
     active: false,
+    delay: 0,
     avatar: false,
     paragraph: true,
     title: true,

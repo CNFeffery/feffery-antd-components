@@ -1,29 +1,27 @@
-import uuid
 import dash
-from dash import html, Patch
+import time
+from dash import html
 import feffery_antd_components as fac
-from dash.dependencies import Input, Output, State
+from dash.dependencies import Input, Output
 
 app = dash.Dash(__name__)
 
 app.layout = html.Div(
     [
-        fac.AntdSpace(
-            [
-                fac.AntdButton(
-                    '新增',
-                    id='add-new-item',
-                    type='primary'
-                ),
-                fac.AntdTabs(
-                    id='demo-tabs',
-                    items=[]
-                )
-            ],
-            direction='vertical',
+        fac.AntdButton(
+            '触发示例',
+            id='skeleton-active-demo-trigger',
             style={
-                'width': '100%'
+                'marginBottom': 10
             }
+        ),
+
+        fac.AntdSkeleton(
+            fac.AntdParagraph(
+                id='skeleton-active-demo-output'
+            ),
+            active=True,
+            delay=300
         )
     ],
     style={
@@ -33,22 +31,15 @@ app.layout = html.Div(
 
 
 @app.callback(
-    Output('demo-tabs', 'items'),
-    Input('add-new-item', 'nClicks'),
+    Output('skeleton-active-demo-output', 'children'),
+    Input('skeleton-active-demo-trigger', 'nClicks'),
     prevent_initial_call=True
 )
-def demo(nClicks):
+def skeleton_active_demo(nClicks):
 
-    p = Patch()
-    p.append(
-        {
-            'label': '标签页',
-            'key': str(uuid.uuid4()),
-            'children': '新标签页'
-        }
-    )
+    time.sleep(3)
 
-    return p
+    return f'nClicks: {nClicks}'
 
 
 if __name__ == '__main__':
