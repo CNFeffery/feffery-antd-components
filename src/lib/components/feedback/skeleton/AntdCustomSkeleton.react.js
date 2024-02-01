@@ -14,6 +14,7 @@ const AntdCustomSkeleton = (props) => {
         children,
         skeletonContent,
         loading,
+        delay,
         listenPropsMode,
         excludeProps,
         includeProps,
@@ -24,11 +25,15 @@ const AntdCustomSkeleton = (props) => {
 
     const [showLoading, setShowLoading] = useState(loading);
     const timer = useRef();
+    const delayTimer = useRef();
 
     useEffect(() => {
         if (loading_state) {
             if (timer.current) {
                 clearTimeout(timer.current);
+            }
+            if (delayTimer.current) {
+                clearTimeout(delayTimer.current);
             }
             if (loading_state.is_loading && !showLoading) {
                 // 当listenPropsMode为'default'时
@@ -36,7 +41,10 @@ const AntdCustomSkeleton = (props) => {
                     if (debug) {
                         console.log(loading_state.component_name + '.' + loading_state.prop_name.split('@')[0])
                     }
-                    setShowLoading(true);
+                    delayTimer.current = setTimeout(
+                        () => setShowLoading(true),
+                        delay
+                    );
                 } else if (listenPropsMode === 'exclude') {
                     // 当listenPropsMode为'exclude'模式时
                     // 当前触发loading_state的组件+属性组合不在排除列表中时，激活动画
@@ -44,7 +52,10 @@ const AntdCustomSkeleton = (props) => {
                         if (debug) {
                             console.log(loading_state.component_name + '.' + loading_state.prop_name.split('@')[0])
                         }
-                        setShowLoading(true);
+                        delayTimer.current = setTimeout(
+                            () => setShowLoading(true),
+                            delay
+                        );
                     }
                 } else if (listenPropsMode === 'include') {
                     // 当listenPropsMode为'include'模式时
@@ -53,7 +64,10 @@ const AntdCustomSkeleton = (props) => {
                         if (debug) {
                             console.log(loading_state.component_name + '.' + loading_state.prop_name.split('@')[0])
                         }
-                        setShowLoading(true);
+                        delayTimer.current = setTimeout(
+                            () => setShowLoading(true),
+                            delay
+                        );
                     }
                 }
 
@@ -108,6 +122,12 @@ AntdCustomSkeleton.propTypes = {
 
     // 设置是否处于加载中状态
     loading: PropTypes.bool,
+
+    /**
+     * 设置加载延时时长，单位：毫秒
+     * 默认：0
+     */
+    delay: PropTypes.number,
 
     // 设置是否开启debug模式，开启后，每次动画加载都会在开发者工具的控制台打印prop信息
     // 默认为false

@@ -240,6 +240,7 @@ AntdSkeleton.propTypes = {
 // 设置默认参数
 AntdSkeleton.defaultProps = {
     loading: false,
+    delay: 0,
     active: false,
     delay: 0,
     avatar: false,

@@ -17,6 +17,9 @@ Keyword arguments:
 
 - debug (boolean; default False)
 
+- delay (number; optional):
+    设置加载延时时长，单位：毫秒  默认：0.
+
 - excludeProps (list of strings; optional)
 
 - includeProps (list of strings; optional)
@@ -48,10 +51,10 @@ Keyword arguments:
     _namespace = 'feffery_antd_components'
     _type = 'AntdCustomSkeleton'
     @_explicitize_args
-    def __init__(self, children=None, id=Component.UNDEFINED, skeletonContent=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, key=Component.UNDEFINED, loading=Component.UNDEFINED, debug=Component.UNDEFINED, listenPropsMode=Component.UNDEFINED, excludeProps=Component.UNDEFINED, includeProps=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
-        self._prop_names = ['children', 'id', 'className', 'debug', 'excludeProps', 'includeProps', 'key', 'listenPropsMode', 'loading', 'loading_state', 'skeletonContent', 'style']
+    def __init__(self, children=None, id=Component.UNDEFINED, skeletonContent=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, key=Component.UNDEFINED, loading=Component.UNDEFINED, delay=Component.UNDEFINED, debug=Component.UNDEFINED, listenPropsMode=Component.UNDEFINED, excludeProps=Component.UNDEFINED, includeProps=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
+        self._prop_names = ['children', 'id', 'className', 'debug', 'delay', 'excludeProps', 'includeProps', 'key', 'listenPropsMode', 'loading', 'loading_state', 'skeletonContent', 'style']
         self._valid_wildcard_attributes =            []
-        self.available_properties = ['children', 'id', 'className', 'debug', 'excludeProps', 'includeProps', 'key', 'listenPropsMode', 'loading', 'loading_state', 'skeletonContent', 'style']
+        self.available_properties = ['children', 'id', 'className', 'debug', 'delay', 'excludeProps', 'includeProps', 'key', 'listenPropsMode', 'loading', 'loading_state', 'skeletonContent', 'style']
         self.available_wildcard_properties =            []
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()
