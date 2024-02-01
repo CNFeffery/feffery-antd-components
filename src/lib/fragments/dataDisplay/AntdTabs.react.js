@@ -85,6 +85,11 @@ const AntdTabs = (props) => {
         )
     }
 
+    // 当标签页内容、前缀后额外内容均为空时，返回空节点
+    if (items.length === 0 && !tabBarLeftExtraContent && !tabBarRightExtraContent) {
+        return <></>;
+    }
+
     return (
         <Tabs id={id}
             className={
