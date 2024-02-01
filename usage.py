@@ -6,11 +6,19 @@ app = dash.Dash(__name__)
 
 app.layout = html.Div(
     [
-        fac.AntdInput(
-            autoFocus=True,
-            style={
-                'width': 200
-            }
+        fac.Fragment(
+            [
+                fac.AntdInput(
+                    autoFocus=True,
+                    style={
+                        'width': 200
+                    }
+                ),
+                fac.AntdButton(
+                    '按钮',
+                    type='primary'
+                )
+            ]
         )
     ],
     style={

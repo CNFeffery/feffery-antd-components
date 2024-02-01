@@ -110,6 +110,7 @@ import AntdCopyText from './components/other/AntdCopyText.react';
 import AntdTour from './components/other/AntdTour.react';
 import AntdWatermark from './components/other/AntdWatermark.react';
 import AntdConfigProvider from './components/other/AntdConfigProvider';
+import Fragment from './components/other/Fragment.react';
 // css样式
 import './components/styles.css'; // 自定义样式
 
@@ -218,5 +219,6 @@ export {
     AntdColorPicker,
     AntdQRCode,
     AntdDraggablePanel,
-    AntdCheckableTag
+    AntdCheckableTag,
+    Fragment
 };

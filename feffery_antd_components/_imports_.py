@@ -103,6 +103,7 @@ from .AntdConfigProvider import AntdConfigProvider
 from .AntdCopyText import AntdCopyText
 from .AntdTour import AntdTour
 from .AntdWatermark import AntdWatermark
+from .Fragment import Fragment
 
 __all__ = [
     "AntdAccordion",
@@ -209,5 +210,6 @@ __all__ = [
     "AntdConfigProvider",
     "AntdCopyText",
     "AntdTour",
-    "AntdWatermark"
+    "AntdWatermark",
+    "Fragment"
 ]
