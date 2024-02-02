@@ -7,14 +7,7 @@ app = dash.Dash(__name__)
 app.layout = html.Div(
     fac.AntdSpace(
         [
-            fac.AntdSelect(
-                options=[
-                    {
-                        'label': f'选项{i}',
-                        'value': f'选项{i}'
-                    }
-                    for i in range(1, 6)
-                ],
+            fac.AntdTimePicker(
                 bordered=True,
                 variant='filled',
                 style={
