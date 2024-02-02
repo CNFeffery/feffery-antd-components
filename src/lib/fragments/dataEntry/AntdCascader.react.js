@@ -56,6 +56,7 @@ const AntdCascader = (props) => {
         changeOnSelect,
         size,
         bordered,
+        variant,
         disabled,
         placeholder,
         defaultValue,
@@ -214,7 +215,8 @@ const AntdCascader = (props) => {
                         context.componentSize :
                         size
                 }
-                bordered={bordered}
+                bordered={variant === 'outlined' || bordered}
+                variant={variant}
                 disabled={
                     context && !isUndefined(context.componentDisabled) ?
                         context.componentDisabled :

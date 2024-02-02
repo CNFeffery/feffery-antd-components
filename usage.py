@@ -7,40 +7,50 @@ app = dash.Dash(__name__)
 app.layout = html.Div(
     fac.AntdSpace(
         [
-            fac.AntdInput(
-                placeholder='输入框测试',
+            fac.AntdCascader(
+                placeholder='请选择',
+                options=[
+                    {
+                        'value': '节点1',
+                        'label': '节点1',
+                        'children': [
+                            {
+                                'value': '节点1-1',
+                                'label': '节点1-1'
+                            },
+                            {
+                                'value': '节点1-2',
+                                'label': '节点1-2',
+                                'children': [
+                                    {
+                                        'value': '节点1-2-1',
+                                        'label': '节点1-2-1'
+                                    },
+                                    {
+                                        'value': '节点1-2-2',
+                                        'label': '节点1-2-2'
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        'value': '节点2',
+                        'label': '节点2',
+                        'children': [
+                            {
+                                'value': '节点2-1',
+                                'label': '节点2-1'
+                            },
+                            {
+                                'value': '节点2-2',
+                                'label': '节点2-2'
+                            }
+                        ]
+                    }
+                ],
                 bordered=True,
-                variant='filled',
-                style={
-                    'width': 300
-                }
-            ),
-            fac.AntdInput(
-                placeholder='输入框测试',
-                bordered=True,
-                variant='filled',
-                mode='search',
-                style={
-                    'width': 300
-                }
-            ),
-            fac.AntdInput(
-                placeholder='输入框测试',
-                bordered=True,
-                variant='filled',
-                mode='text-area',
-                style={
-                    'width': 300
-                }
-            ),
-            fac.AntdInput(
-                placeholder='输入框测试',
-                bordered=True,
-                variant='filled',
-                mode='password',
-                style={
-                    'width': 300
-                }
+                variant='filled'
             )
         ],
         direction='vertical'
