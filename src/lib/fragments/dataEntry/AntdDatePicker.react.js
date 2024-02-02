@@ -403,8 +403,11 @@ const AntdDatePicker = (props) => {
                             disabled
                     }
                     placeholder={placeholder}
-                    bordered={variant === 'outlined' || bordered}
-                    variant={variant}
+                    variant={(
+                        !variant ?
+                            (bordered ? 'outlined' : 'borderless') :
+                            variant
+                    )}
                     size={
                         context && !isUndefined(context.componentSize) ?
                             context.componentSize :

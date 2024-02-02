@@ -93,8 +93,11 @@ const AntdTimePicker = (props) => {
                     onChange={onChange}
                     placeholder={placeholder}
                     placement={placement}
-                    bordered={variant === 'outlined' || bordered}
-                    variant={variant}
+                    variant={(
+                        !variant ?
+                            (bordered ? 'outlined' : 'borderless') :
+                            variant
+                    )}
                     size={
                         context && !isUndefined(context.componentSize) ?
                             context.componentSize :

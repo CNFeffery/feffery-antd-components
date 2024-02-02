@@ -111,8 +111,11 @@ const AntdInputNumber = (props) => {
             autoFocus={autoFocus}
             prefix={prefix}
             placeholder={placeholder}
-            bordered={variant === 'outlined' || bordered}
-            variant={variant}
+            variant={(
+                !variant ?
+                    (bordered ? 'outlined' : 'borderless') :
+                    variant
+            )}
             controls={controls}
             value={value}
             defaultValue={defaultValue}

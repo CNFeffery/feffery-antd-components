@@ -158,8 +158,11 @@ const AntdTreeSelect = (props) => {
                         )
                 }
                 allowClear={isUndefined(readOnly) ? allowClear : !readOnly}
-                bordered={variant === 'outlined' || bordered}
-                variant={variant}
+                variant={(
+                    !variant ?
+                        (bordered ? 'outlined' : 'borderless') :
+                        variant
+                )}
                 treeLine={treeLine}
                 listHeight={listHeight}
                 placeholder={placeholder}

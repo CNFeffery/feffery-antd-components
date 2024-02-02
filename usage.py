@@ -7,17 +7,8 @@ app = dash.Dash(__name__)
 app.layout = html.Div(
     fac.AntdSpace(
         [
-            fac.AntdMentions(
-                placeholder='请输入',
-                bordered=True,
-                variant='filled',
-                options=[
-                    {
-                        'label': f'用户{c}',
-                        'value': f'用户{c}'
-                    }
-                    for c in list('abcdef')
-                ],
+            fac.AntdDatePicker(
+                bordered=False,
                 style={
                     'width': 200
                 }

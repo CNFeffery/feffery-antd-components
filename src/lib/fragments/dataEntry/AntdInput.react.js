@@ -182,8 +182,11 @@ const AntdInput = (props) => {
                 suffix={suffix}
                 allowClear={allowClear}
                 autoFocus={autoFocus}
-                bordered={variant === 'outlined' || bordered}
-                variant={variant}
+                variant={(
+                    !variant ?
+                        (bordered ? 'outlined' : 'borderless') :
+                        variant
+                )}
                 defaultValue={defaultValue}
                 disabled={
                     context && !isUndefined(context.componentDisabled) ?
@@ -226,8 +229,11 @@ const AntdInput = (props) => {
                 }
                 allowClear={allowClear}
                 autoFocus={autoFocus}
-                bordered={variant === 'outlined' || bordered}
-                variant={variant}
+                variant={(
+                    !variant ?
+                        (bordered ? 'outlined' : 'borderless') :
+                        variant
+                )}
                 value={rawValue || value}
                 defaultValue={defaultValue}
                 disabled={
@@ -272,8 +278,11 @@ const AntdInput = (props) => {
                 }
                 allowClear={allowClear}
                 autoFocus={autoFocus}
-                bordered={variant === 'outlined' || bordered}
-                variant={variant}
+                variant={(
+                    !variant ?
+                        (bordered ? 'outlined' : 'borderless') :
+                        variant
+                )}
                 value={rawValue || value}
                 defaultValue={defaultValue}
                 disabled={
@@ -326,8 +335,11 @@ const AntdInput = (props) => {
                         context.componentSize :
                         size
                 }
-                bordered={variant === 'outlined' || bordered}
-                variant={variant}
+                variant={(
+                    !variant ?
+                        (bordered ? 'outlined' : 'borderless') :
+                        variant
+                )}
                 disabled={
                     context && !isUndefined(context.componentDisabled) ?
                         context.componentDisabled :

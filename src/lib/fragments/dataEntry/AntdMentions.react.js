@@ -95,8 +95,11 @@ const AntdMentions = (props) => {
             prefix={prefix}
             defaultValue={defaultValue}
             placement={placement}
-            bordered={variant === 'outlined' || bordered}
-            variant={variant}
+            variant={(
+                !variant ?
+                    (bordered ? 'outlined' : 'borderless') :
+                    variant
+            )}
             placeholder={placeholder}
             disabled={
                 context && !isUndefined(context.componentDisabled) ?

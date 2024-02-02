@@ -215,8 +215,11 @@ const AntdCascader = (props) => {
                         context.componentSize :
                         size
                 }
-                bordered={variant === 'outlined' || bordered}
-                variant={variant}
+                variant={(
+                    !variant ?
+                        (bordered ? 'outlined' : 'borderless') :
+                        variant
+                )}
                 disabled={
                     context && !isUndefined(context.componentDisabled) ?
                         context.componentDisabled :
