@@ -33,6 +33,7 @@ const AntdTimeRangePicker = (props) => {
         allowClear,
         autoFocus,
         bordered,
+        variant,
         size,
         open,
         status,
@@ -103,7 +104,8 @@ const AntdTimeRangePicker = (props) => {
                     allowEmpty={(disabled && disabled.length === 2) ? disabled : undefined}
                     placeholder={(placeholder && placeholder.length === 2) ? placeholder : undefined}
                     placement={placement}
-                    bordered={bordered}
+                    bordered={variant === 'outlined' || bordered}
+                    variant={variant}
                     size={
                         context && !isUndefined(context.componentSize) ?
                             context.componentSize :

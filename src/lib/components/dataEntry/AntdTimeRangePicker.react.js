@@ -73,8 +73,17 @@ AntdTimeRangePicker.propTypes = {
     // 设置默认已选择的时间范围
     defaultValue: PropTypes.arrayOf(PropTypes.string),
 
-    // 用于设置是否显示边框，默认为true即显示边框
+    /**
+     * 设置是否渲染边框，设置为true时等价于variant='outlined'
+     * 默认：true
+     */
     bordered: PropTypes.bool,
+
+    /**
+     * 设置形态变体类型，可选的有'outlined'、'borderless'、'filled'
+     * 其中'outlined'等价于bordered=true，优先级高于bordered
+     */
+    variant: PropTypes.oneOf(['outlined', 'borderless', 'filled']),
 
     // 设置尺寸大小，可选的有'small'、'middle'及'large'
     size: PropTypes.oneOf([
