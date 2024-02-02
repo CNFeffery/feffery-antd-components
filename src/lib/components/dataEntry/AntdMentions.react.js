@@ -87,6 +87,11 @@ AntdMentions.propTypes = {
      */
     variant: PropTypes.oneOf(['outlined', 'borderless', 'filled']),
 
+    /**
+     * 设置占位提示内容
+     */
+    placeholder: PropTypes.string,
+
     // 设置校验状态，可选的有'error'、'warning'
     status: PropTypes.oneOf(['error', 'warning']),
 

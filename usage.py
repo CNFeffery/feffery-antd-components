@@ -8,6 +8,7 @@ app.layout = html.Div(
     fac.AntdSpace(
         [
             fac.AntdMentions(
+                placeholder='请输入',
                 bordered=True,
                 variant='filled',
                 options=[
