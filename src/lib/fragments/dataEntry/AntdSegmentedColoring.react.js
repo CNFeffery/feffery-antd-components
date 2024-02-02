@@ -27,6 +27,7 @@ const AntdSegmentedColoring = (props) => {
         style,
         size,
         bordered,
+        variant,
         controls,
         disabled,
         keyboard,
@@ -120,7 +121,8 @@ const AntdSegmentedColoring = (props) => {
                                         <InputNumber
                                             style={inputNumberStyle}
                                             size={size}
-                                            bordered={bordered}
+                                            bordered={variant === 'outlined' || bordered}
+                                            variant={variant}
                                             controls={controls}
                                             disabled={disabled}
                                             keyboard={keyboard}
@@ -157,7 +159,8 @@ const AntdSegmentedColoring = (props) => {
                                         <InputNumber
                                             style={inputNumberStyle}
                                             size={size}
-                                            bordered={bordered}
+                                            bordered={variant === 'outlined' || bordered}
+                                            variant={variant}
                                             controls={controls}
                                             disabled={disabled}
                                             keyboard={keyboard}
