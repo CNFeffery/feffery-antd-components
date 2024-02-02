@@ -38,6 +38,7 @@ const AntdDatePicker = (props) => {
         value,
         defaultValue,
         bordered,
+        variant,
         size,
         status,
         popupContainer,
@@ -402,7 +403,8 @@ const AntdDatePicker = (props) => {
                             disabled
                     }
                     placeholder={placeholder}
-                    bordered={bordered}
+                    bordered={variant === 'outlined' || bordered}
+                    variant={variant}
                     size={
                         context && !isUndefined(context.componentSize) ?
                             context.componentSize :
