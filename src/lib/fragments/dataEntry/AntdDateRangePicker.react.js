@@ -40,6 +40,7 @@ const AntdDateRangePicker = (props) => {
         placeholder,
         disabled,
         bordered,
+        variant,
         size,
         defaultPickerValue,
         status,
@@ -425,7 +426,8 @@ const AntdDateRangePicker = (props) => {
                     allowEmpty={(disabled && disabled.length === 2) ? disabled : undefined}
                     placeholder={(placeholder && placeholder.length === 2) ? placeholder : undefined}
                     onChange={onChange}
-                    bordered={bordered}
+                    bordered={variant === 'outlined' || bordered}
+                    variant={variant}
                     disabledDate={disabledDatesStrategy ? checkDisabledDate : undefined}
                     defaultPickerValue={
                         defaultPickerValue ?

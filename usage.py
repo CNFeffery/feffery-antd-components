@@ -7,11 +7,11 @@ app = dash.Dash(__name__)
 app.layout = html.Div(
     fac.AntdSpace(
         [
-            fac.AntdDatePicker(
+            fac.AntdDateRangePicker(
                 bordered=True,
                 variant='filled',
                 style={
-                    'width': 200
+                    'width': 300
                 }
             )
         ],
