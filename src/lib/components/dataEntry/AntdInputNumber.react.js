@@ -77,8 +77,17 @@ AntdInputNumber.propTypes = {
     // 用于设置输入框尺寸，可选的有'small'、'middle'与'large'，默认不填则为'middle'
     size: PropTypes.oneOf(['small', 'middle', 'large']),
 
-    // 设置是否有边框，默认为true
+    /**
+     * 设置是否渲染边框，设置为true时等价于variant='outlined'
+     * 默认：true
+     */
     bordered: PropTypes.bool,
+
+    /**
+     * 设置形态变体类型，可选的有'outlined'、'borderless'、'filled'
+     * 其中'outlined'等价于bordered=true，优先级高于bordered
+     */
+    variant: PropTypes.oneOf(['outlined', 'borderless', 'filled']),
 
     // 用于设置占位提示内容
     placeholder: PropTypes.string,
