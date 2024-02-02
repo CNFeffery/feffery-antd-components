@@ -32,6 +32,7 @@ const AntdInput = (props) => {
         allowClear,
         autoFocus,
         bordered,
+        variant,
         defaultValue,
         disabled,
         maxLength,
@@ -181,7 +182,8 @@ const AntdInput = (props) => {
                 suffix={suffix}
                 allowClear={allowClear}
                 autoFocus={autoFocus}
-                bordered={bordered}
+                bordered={variant === 'outlined' || bordered}
+                variant={variant}
                 defaultValue={defaultValue}
                 disabled={
                     context && !isUndefined(context.componentDisabled) ?
@@ -224,7 +226,8 @@ const AntdInput = (props) => {
                 }
                 allowClear={allowClear}
                 autoFocus={autoFocus}
-                bordered={bordered}
+                bordered={variant === 'outlined' || bordered}
+                variant={variant}
                 value={rawValue || value}
                 defaultValue={defaultValue}
                 disabled={
@@ -269,7 +272,8 @@ const AntdInput = (props) => {
                 }
                 allowClear={allowClear}
                 autoFocus={autoFocus}
-                bordered={bordered}
+                bordered={variant === 'outlined' || bordered}
+                variant={variant}
                 value={rawValue || value}
                 defaultValue={defaultValue}
                 disabled={
@@ -322,7 +326,8 @@ const AntdInput = (props) => {
                         context.componentSize :
                         size
                 }
-                bordered={bordered}
+                bordered={variant === 'outlined' || bordered}
+                variant={variant}
                 disabled={
                     context && !isUndefined(context.componentDisabled) ?
                         context.componentDisabled :
