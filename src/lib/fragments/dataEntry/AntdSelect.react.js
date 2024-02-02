@@ -24,6 +24,7 @@ const AntdSelect = (props) => {
         placeholder,
         size,
         bordered,
+        variant,
         options,
         colorsNameWidth,
         allowClear,
@@ -225,7 +226,8 @@ const AntdSelect = (props) => {
                         context.componentSize :
                         size
                 }
-                bordered={bordered}
+                bordered={variant === 'outlined' || bordered}
+                variant={variant}
                 value={value}
                 defaultValue={defaultValue}
                 onChange={updateSelectedValue}

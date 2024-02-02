@@ -7,21 +7,20 @@ app = dash.Dash(__name__)
 app.layout = html.Div(
     fac.AntdSpace(
         [
-            fac.AntdSegmentedColoring(
-                min=-10,
-                max=10,
-                breakpoints=[0, 1, 2, 3, 4, 5],
-                colors=[
-                    "#deecf9",
-                    "#71afe5",
-                    "#2b88d8",
-                    "#0078d4",
-                    "#106ebe"
+            fac.AntdSelect(
+                options=[
+                    {
+                        'label': f'选项{i}',
+                        'value': f'选项{i}'
+                    }
+                    for i in range(1, 6)
                 ],
                 bordered=True,
                 variant='filled',
-                size='small'
-            ),
+                style={
+                    'width': 200
+                }
+            )
         ],
         direction='vertical'
     ),
