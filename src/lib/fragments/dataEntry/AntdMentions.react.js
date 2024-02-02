@@ -21,6 +21,8 @@ const AntdMentions = (props) => {
         value,
         defaultValue,
         placement,
+        bordered,
+        variant,
         options,
         disabled,
         status,
@@ -92,6 +94,8 @@ const AntdMentions = (props) => {
             prefix={prefix}
             defaultValue={defaultValue}
             placement={placement}
+            bordered={variant === 'outlined' || bordered}
+            variant={variant}
             disabled={
                 context && !isUndefined(context.componentDisabled) ?
                     context.componentDisabled :

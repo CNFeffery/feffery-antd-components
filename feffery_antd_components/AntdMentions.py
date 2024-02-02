@@ -25,6 +25,9 @@ Keyword arguments:
 
 - batchPropsValues (dict; optional)
 
+- bordered (boolean; default True):
+    设置是否渲染边框，设置为True时等价于variant='outlined'  默认：True.
+
 - className (string | dict; optional)
 
 - defaultValue (string; optional)
@@ -69,16 +72,20 @@ Keyword arguments:
 
 - style (dict; optional)
 
-- value (string; optional)"""
+- value (string; optional)
+
+- variant (a value equal to: 'outlined', 'borderless', 'filled'; optional):
+    设置形态变体类型，可选的有'outlined'、'borderless'、'filled'
+    其中'outlined'等价于bordered=True，优先级高于bordered."""
     _children_props = ['options[].label']
     _base_nodes = ['children']
     _namespace = 'feffery_antd_components'
     _type = 'AntdMentions'
     @_explicitize_args
-    def __init__(self, id=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, popupClassName=Component.UNDEFINED, key=Component.UNDEFINED, autoSize=Component.UNDEFINED, prefix=Component.UNDEFINED, value=Component.UNDEFINED, defaultValue=Component.UNDEFINED, options=Component.REQUIRED, selectedOptions=Component.UNDEFINED, disabled=Component.UNDEFINED, placement=Component.UNDEFINED, status=Component.UNDEFINED, autoFocus=Component.UNDEFINED, popupContainer=Component.UNDEFINED, batchPropsNames=Component.UNDEFINED, batchPropsValues=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
-        self._prop_names = ['id', 'autoFocus', 'autoSize', 'batchPropsNames', 'batchPropsValues', 'className', 'defaultValue', 'disabled', 'key', 'loading_state', 'options', 'placement', 'popupClassName', 'popupContainer', 'prefix', 'selectedOptions', 'status', 'style', 'value']
+    def __init__(self, id=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, popupClassName=Component.UNDEFINED, key=Component.UNDEFINED, autoSize=Component.UNDEFINED, prefix=Component.UNDEFINED, value=Component.UNDEFINED, defaultValue=Component.UNDEFINED, options=Component.REQUIRED, selectedOptions=Component.UNDEFINED, disabled=Component.UNDEFINED, placement=Component.UNDEFINED, bordered=Component.UNDEFINED, variant=Component.UNDEFINED, status=Component.UNDEFINED, autoFocus=Component.UNDEFINED, popupContainer=Component.UNDEFINED, batchPropsNames=Component.UNDEFINED, batchPropsValues=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
+        self._prop_names = ['id', 'autoFocus', 'autoSize', 'batchPropsNames', 'batchPropsValues', 'bordered', 'className', 'defaultValue', 'disabled', 'key', 'loading_state', 'options', 'placement', 'popupClassName', 'popupContainer', 'prefix', 'selectedOptions', 'status', 'style', 'value', 'variant']
         self._valid_wildcard_attributes =            []
-        self.available_properties = ['id', 'autoFocus', 'autoSize', 'batchPropsNames', 'batchPropsValues', 'className', 'defaultValue', 'disabled', 'key', 'loading_state', 'options', 'placement', 'popupClassName', 'popupContainer', 'prefix', 'selectedOptions', 'status', 'style', 'value']
+        self.available_properties = ['id', 'autoFocus', 'autoSize', 'batchPropsNames', 'batchPropsValues', 'bordered', 'className', 'defaultValue', 'disabled', 'key', 'loading_state', 'options', 'placement', 'popupClassName', 'popupContainer', 'prefix', 'selectedOptions', 'status', 'style', 'value', 'variant']
         self.available_wildcard_properties =            []
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()
