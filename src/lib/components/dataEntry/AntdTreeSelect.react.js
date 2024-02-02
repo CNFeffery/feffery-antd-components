@@ -124,8 +124,17 @@ AntdTreeSelect.propTypes = {
     // 设置选择框大小，可选的有'small'、'middle'及'large'，默认为'middle'
     size: PropTypes.oneOf(['small', 'middle', 'large']),
 
-    // 设置是否显示边框，默认为true
+    /**
+     * 设置是否渲染边框，设置为true时等价于variant='outlined'
+     * 默认：true
+     */
     bordered: PropTypes.bool,
+
+    /**
+     * 设置形态变体类型，可选的有'outlined'、'borderless'、'filled'
+     * 其中'outlined'等价于bordered=true，优先级高于bordered
+     */
+    variant: PropTypes.oneOf(['outlined', 'borderless', 'filled']),
 
     // 选择框默认文本
     placeholder: PropTypes.string,
