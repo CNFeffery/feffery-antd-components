@@ -80,10 +80,8 @@ const AntdDraggerUpload = (props) => {
     locale = (context && context.locale) || locale
     downloadUrlFromBackend = downloadUrl ? false : downloadUrlFromBackend
 
-    listUploadTaskRecord = listUploadTaskRecord || []
-
     // 更新已上传文件 -> 上传完成时间映射字典
-    const uploadedFile2CompleteTime = parseHistoryTaskCompleteTime(listUploadTaskRecord)
+    const uploadedFile2CompleteTime = parseHistoryTaskCompleteTime(listUploadTaskRecord || [])
 
     useEffect(() => {
         // 初始化uploadId
@@ -152,18 +150,24 @@ const AntdDraggerUpload = (props) => {
                         listUploadTaskRecord: info.fileList.map(
                             (file) => {
                                 // 配置已完成上传文件下载链接
-                                let urlInfo = downloadUrlFromBackend ? (file.response ? { url: file.response.url } : {}) : (downloadUrl && file.status === 'done' ? {
-                                    url: downloadUrl + `?taskId=${uploadId}&filename=${file.name}` + (
-                                        Object.keys(downloadUrlExtraParams).map(key => `&${key}=${downloadUrlExtraParams[key]}`).join('')
+                                let urlInfo = downloadUrlFromBackend ?
+                                    (file.response ? { url: file.response.url } : {}) :
+                                    (
+                                        downloadUrl && (file.status === 'done' || file.status === 'success') ?
+                                            {
+                                                url: downloadUrl + `?taskId=${uploadId}&filename=${file.name}` + (
+                                                    Object.keys(downloadUrlExtraParams).map(key => `&${key}=${downloadUrlExtraParams[key]}`).join('')
+                                                )
+                                            } :
+                                            {}
                                     )
-                                } : {})
                                 // 配置已完成上传文件接口响应信息
                                 let responseInfo = file.response ? { uploadResponse: file.response } : {}
                                 return {
                                     fileName: file.name,
                                     fileSize: file.size,
                                     completeTimestamp: uploadedFile2CompleteTime.get(file.uid) || new Date().getTime(),
-                                    taskStatus: file.status === 'done' ? 'success' : 'failed',
+                                    taskStatus: (file.status === 'done' || file.status === 'success') ? 'success' : 'failed',
                                     taskId: uploadId,
                                     uid: file.uid,
                                     ...urlInfo,
@@ -181,24 +185,29 @@ const AntdDraggerUpload = (props) => {
 
                         } else {
                             if (lastTaskCount > 0) {
-
                                 // 更新任务记录
                                 setProps({
                                     lastUploadTaskRecord: info.fileList.slice(-lastTaskCount).map(
                                         (file) => {
                                             // 配置已完成上传文件下载链接
-                                            let urlInfo = downloadUrlFromBackend ? (file.response ? { url: file.response.url } : {}) : (downloadUrl && file.status === 'done' ? {
-                                                url: downloadUrl + `?taskId=${uploadId}&filename=${file.name}` + (
-                                                    Object.keys(downloadUrlExtraParams).map(key => `&${key}=${downloadUrlExtraParams[key]}`).join('')
+                                            let urlInfo = downloadUrlFromBackend ?
+                                                (file.response ? { url: file.response.url } : {}) :
+                                                (
+                                                    downloadUrl && (file.status === 'done' || file.status === 'success') ?
+                                                        {
+                                                            url: downloadUrl + `?taskId=${uploadId}&filename=${file.name}` + (
+                                                                Object.keys(downloadUrlExtraParams).map(key => `&${key}=${downloadUrlExtraParams[key]}`).join('')
+                                                            )
+                                                        } :
+                                                        {}
                                                 )
-                                            } : {})
                                             // 配置已完成上传文件接口响应信息
                                             let responseInfo = file.response ? { uploadResponse: file.response } : {}
                                             return {
                                                 fileName: file.name,
                                                 fileSize: file.size,
                                                 completeTimestamp: new Date().getTime(),
-                                                taskStatus: file.status === 'done' ? 'success' : 'failed',
+                                                taskStatus: (file.status === 'done' || file.status === 'success') ? 'success' : 'failed',
                                                 taskId: uploadId,
                                                 ...urlInfo,
                                                 ...responseInfo
@@ -208,18 +217,24 @@ const AntdDraggerUpload = (props) => {
                                     listUploadTaskRecord: info.fileList.map(
                                         (file) => {
                                             // 配置已完成上传文件下载链接
-                                            let urlInfo = downloadUrlFromBackend ? (file.response ? { url: file.response.url } : {}) : (downloadUrl && file.status === 'done' ? {
-                                                url: downloadUrl + `?taskId=${uploadId}&filename=${file.name}` + (
-                                                    Object.keys(downloadUrlExtraParams).map(key => `&${key}=${downloadUrlExtraParams[key]}`).join('')
+                                            let urlInfo = downloadUrlFromBackend ?
+                                                (file.response ? { url: file.response.url } : {}) :
+                                                (
+                                                    downloadUrl && (file.status === 'done' || file.status === 'success') ?
+                                                        {
+                                                            url: downloadUrl + `?taskId=${uploadId}&filename=${file.name}` + (
+                                                                Object.keys(downloadUrlExtraParams).map(key => `&${key}=${downloadUrlExtraParams[key]}`).join('')
+                                                            )
+                                                        } :
+                                                        {}
                                                 )
-                                            } : {})
                                             // 配置已完成上传文件接口响应信息
                                             let responseInfo = file.response ? { uploadResponse: file.response } : {}
                                             return {
                                                 fileName: file.name,
                                                 fileSize: file.size,
                                                 completeTimestamp: uploadedFile2CompleteTime.get(file.uid) || new Date().getTime(),
-                                                taskStatus: file.status === 'done' ? 'success' : 'failed',
+                                                taskStatus: (file.status === 'done' || file.status === 'success') ? 'success' : 'failed',
                                                 taskId: uploadId,
                                                 uid: file.uid,
                                                 ...urlInfo,
@@ -245,18 +260,24 @@ const AntdDraggerUpload = (props) => {
                         listUploadTaskRecord: info.fileList.map(
                             (file) => {
                                 // 配置已完成上传文件下载链接
-                                let urlInfo = downloadUrlFromBackend ? (file.response ? { url: file.response.url } : {}) : (downloadUrl && file.status === 'done' ? {
-                                    url: downloadUrl + `?taskId=${uploadId}&filename=${file.name}` + (
-                                        Object.keys(downloadUrlExtraParams).map(key => `&${key}=${downloadUrlExtraParams[key]}`).join('')
+                                let urlInfo = downloadUrlFromBackend ?
+                                    (file.response ? { url: file.response.url } : {}) :
+                                    (
+                                        downloadUrl && (file.status === 'done' || file.status === 'success') ?
+                                            {
+                                                url: downloadUrl + `?taskId=${uploadId}&filename=${file.name}` + (
+                                                    Object.keys(downloadUrlExtraParams).map(key => `&${key}=${downloadUrlExtraParams[key]}`).join('')
+                                                )
+                                            } :
+                                            {}
                                     )
-                                } : {})
                                 // 配置已完成上传文件接口响应信息
                                 let responseInfo = file.response ? { uploadResponse: file.response } : {}
                                 return {
                                     fileName: file.name,
                                     fileSize: file.size,
                                     completeTimestamp: uploadedFile2CompleteTime.get(file.uid) || new Date().getTime(),
-                                    taskStatus: file.status === 'done' ? 'success' : 'failed',
+                                    taskStatus: (file.status === 'done' || file.status === 'success') ? 'success' : 'failed',
                                     taskId: uploadId,
                                     uid: file.uid,
                                     ...urlInfo,
@@ -265,20 +286,26 @@ const AntdDraggerUpload = (props) => {
                             }
                         )
                     })
-                } else if (info.file.status === 'done' || info.file.status === 'error' || !info.file.status) {
+                } else if (info.file.status === 'done' || info.file.status === 'success' || info.file.status === 'error' || !info.file.status) {
                     setProps({
                         lastUploadTaskRecord: {
                             fileName: info.file.name,
                             fileSize: info.file.size,
                             completeTimestamp: new Date().getTime(),
-                            taskStatus: info.file.status === 'done' ? 'success' : 'failed',
+                            taskStatus: (info.file.status === 'done' || info.file.status === 'success') ? 'success' : 'failed',
                             taskId: uploadId,
                             ...(
-                                downloadUrlFromBackend ? (info.file.response ? { url: info.file.response.url } : {}) : (downloadUrl && info.file.status === 'done' ? {
-                                    url: downloadUrl + `?taskId=${uploadId}&filename=${info.file.name}` + (
-                                        Object.keys(downloadUrlExtraParams).map(key => `&${key}=${downloadUrlExtraParams[key]}`).join('')
+                                downloadUrlFromBackend ?
+                                    (info.file.response ? { url: info.file.response.url } : {}) :
+                                    (
+                                        downloadUrl && (info.file.status === 'done' || info.file.status === 'success') ?
+                                            {
+                                                url: downloadUrl + `?taskId=${uploadId}&filename=${info.file.name}` + (
+                                                    Object.keys(downloadUrlExtraParams).map(key => `&${key}=${downloadUrlExtraParams[key]}`).join('')
+                                                )
+                                            } :
+                                            {}
                                     )
-                                } : {})
                             ),
                             ...(
                                 info.file.response ? { uploadResponse: info.file.response } : {}
@@ -287,18 +314,24 @@ const AntdDraggerUpload = (props) => {
                         listUploadTaskRecord: info.fileList.map(
                             (file) => {
                                 // 配置已完成上传文件下载链接
-                                let urlInfo = downloadUrlFromBackend ? (file.response ? { url: file.response.url } : {}) : (downloadUrl && file.status === 'done' ? {
-                                    url: downloadUrl + `?taskId=${uploadId}&filename=${file.name}` + (
-                                        Object.keys(downloadUrlExtraParams).map(key => `&${key}=${downloadUrlExtraParams[key]}`).join('')
+                                let urlInfo = downloadUrlFromBackend ?
+                                    (file.response ? { url: file.response.url } : {}) :
+                                    (
+                                        downloadUrl && (file.status === 'done' || file.status === 'success') ?
+                                            {
+                                                url: downloadUrl + `?taskId=${uploadId}&filename=${file.name}` + (
+                                                    Object.keys(downloadUrlExtraParams).map(key => `&${key}=${downloadUrlExtraParams[key]}`).join('')
+                                                )
+                                            } :
+                                            {}
                                     )
-                                } : {})
                                 // 配置已完成上传文件接口响应信息
                                 let responseInfo = file.response ? { uploadResponse: file.response } : {}
                                 return {
                                     fileName: file.name,
                                     fileSize: file.size,
                                     completeTimestamp: uploadedFile2CompleteTime.get(file.uid) || new Date().getTime(),
-                                    taskStatus: file.status === 'done' ? 'success' : 'failed',
+                                    taskStatus: (file.status === 'done' || file.status === 'success') ? 'success' : 'failed',
                                     taskId: uploadId,
                                     uid: file.uid,
                                     ...urlInfo,
@@ -310,7 +343,7 @@ const AntdDraggerUpload = (props) => {
                 }
             }
 
-            if (info.file.status === 'done' && showSuccessMessage) {
+            if ((info.file.status === 'done' || info.file.status === 'success') && showSuccessMessage) {
                 message.success(`${info.file.name} ${locale2text.Upload[locale].uploadSuccess}`);
             } else if (info.file.status === 'error' && showErrorMessage) {
                 message.error(`${info.file.name} ${locale2text.Upload[locale].uploadFailed}`);
