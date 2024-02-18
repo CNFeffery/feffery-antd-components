@@ -29,6 +29,7 @@ const AntdButton = (props) => {
         setProps,
         type,
         href,
+        htmlType,
         target,
         block,
         danger,
@@ -90,6 +91,7 @@ const AntdButton = (props) => {
             classNames={classNames}
             type={type}
             href={href}
+            htmlType={htmlType}
             target={target}
             block={block}
             danger={danger}
@@ -191,6 +193,11 @@ AntdButton.propTypes = {
      * 当前按钮点击跳转链接地址
      */
     href: PropTypes.string,
+
+    /**
+     * 设置button原生的type值，可选值请参考HTML标准
+     */
+    htmlType: PropTypes.string,
 
     /**
      * 当前按钮点击跳转链接行为类型

@@ -50,6 +50,9 @@ Keyword arguments:
 - href (string; optional):
     当前按钮点击跳转链接地址.
 
+- htmlType (string; optional):
+    设置button原生的type值，可选值请参考HTML标准.
+
 - icon (a list of or a singular dash component, string or number; optional):
     当前按钮内嵌元素前缀图标.
 
@@ -109,10 +112,10 @@ Keyword arguments:
     _namespace = 'feffery_antd_components'
     _type = 'AntdButton'
     @_explicitize_args
-    def __init__(self, children=None, id=Component.UNDEFINED, style=Component.UNDEFINED, className=Component.UNDEFINED, styles=Component.UNDEFINED, classNames=Component.UNDEFINED, key=Component.UNDEFINED, loadingChildren=Component.UNDEFINED, type=Component.UNDEFINED, href=Component.UNDEFINED, target=Component.UNDEFINED, block=Component.UNDEFINED, danger=Component.UNDEFINED, disabled=Component.UNDEFINED, ghost=Component.UNDEFINED, shape=Component.UNDEFINED, size=Component.UNDEFINED, nClicks=Component.UNDEFINED, clickExecuteJsString=Component.UNDEFINED, debounceWait=Component.UNDEFINED, icon=Component.UNDEFINED, loading=Component.UNDEFINED, autoSpin=Component.UNDEFINED, motionType=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
-        self._prop_names = ['children', 'id', 'autoSpin', 'block', 'className', 'classNames', 'clickExecuteJsString', 'danger', 'debounceWait', 'disabled', 'ghost', 'href', 'icon', 'key', 'loading', 'loadingChildren', 'loading_state', 'motionType', 'nClicks', 'shape', 'size', 'style', 'styles', 'target', 'type']
+    def __init__(self, children=None, id=Component.UNDEFINED, style=Component.UNDEFINED, className=Component.UNDEFINED, styles=Component.UNDEFINED, classNames=Component.UNDEFINED, key=Component.UNDEFINED, loadingChildren=Component.UNDEFINED, type=Component.UNDEFINED, href=Component.UNDEFINED, htmlType=Component.UNDEFINED, target=Component.UNDEFINED, block=Component.UNDEFINED, danger=Component.UNDEFINED, disabled=Component.UNDEFINED, ghost=Component.UNDEFINED, shape=Component.UNDEFINED, size=Component.UNDEFINED, nClicks=Component.UNDEFINED, clickExecuteJsString=Component.UNDEFINED, debounceWait=Component.UNDEFINED, icon=Component.UNDEFINED, loading=Component.UNDEFINED, autoSpin=Component.UNDEFINED, motionType=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
+        self._prop_names = ['children', 'id', 'autoSpin', 'block', 'className', 'classNames', 'clickExecuteJsString', 'danger', 'debounceWait', 'disabled', 'ghost', 'href', 'htmlType', 'icon', 'key', 'loading', 'loadingChildren', 'loading_state', 'motionType', 'nClicks', 'shape', 'size', 'style', 'styles', 'target', 'type']
         self._valid_wildcard_attributes =            []
-        self.available_properties = ['children', 'id', 'autoSpin', 'block', 'className', 'classNames', 'clickExecuteJsString', 'danger', 'debounceWait', 'disabled', 'ghost', 'href', 'icon', 'key', 'loading', 'loadingChildren', 'loading_state', 'motionType', 'nClicks', 'shape', 'size', 'style', 'styles', 'target', 'type']
+        self.available_properties = ['children', 'id', 'autoSpin', 'block', 'className', 'classNames', 'clickExecuteJsString', 'danger', 'debounceWait', 'disabled', 'ghost', 'href', 'htmlType', 'icon', 'key', 'loading', 'loadingChildren', 'loading_state', 'motionType', 'nClicks', 'shape', 'size', 'style', 'styles', 'target', 'type']
         self.available_wildcard_properties =            []
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()
