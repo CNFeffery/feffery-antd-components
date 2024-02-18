@@ -76,6 +76,11 @@ AntdForm.propTypes = {
     // 默认：false
     labelWrap: PropTypes.bool,
 
+    /**
+     * 监听搜集内部表单输入类组件的输入值变化情况
+     */
+    values: PropTypes.object,
+
     loading_state: PropTypes.shape({
         /**
          * Determines if the component is loading or not

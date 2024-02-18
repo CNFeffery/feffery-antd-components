@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Form } from 'antd';
 import { isString } from 'lodash';
 import useCss from '../../../hooks/useCss';
+import FormContext from '../../../contexts/FormContext';
 import { propTypes, defaultProps } from '../../../components/dataEntry/form/AntdForm.react';
 
 
@@ -24,26 +25,44 @@ const AntdForm = (props) => {
         loading_state
     } = props;
 
+    const [_values, setValues] = useState({});
+
+    // 更新搜集到的最新values值
+    useEffect(() => {
+        setProps({
+            values: _values
+        })
+    }, [_values])
+
     return (
-        <Form id={id}
-            className={
-                isString(className) ?
-                    className :
-                    (className ? useCss(className) : undefined)
+        <FormContext.Provider
+            value={
+                {
+                    setValues: setValues,
+                    _values: _values
+                }
             }
-            style={style}
-            key={key}
-            labelCol={labelCol}
-            wrapperCol={wrapperCol}
-            colon={colon}
-            labelAlign={labelAlign}
-            labelWrap={labelWrap}
-            layout={layout}
-            data-dash-is-loading={
-                (loading_state && loading_state.is_loading) || undefined
-            }>
-            {children}
-        </Form>
+        >
+            <Form id={id}
+                className={
+                    isString(className) ?
+                        className :
+                        (className ? useCss(className) : undefined)
+                }
+                style={style}
+                key={key}
+                labelCol={labelCol}
+                wrapperCol={wrapperCol}
+                colon={colon}
+                labelAlign={labelAlign}
+                labelWrap={labelWrap}
+                layout={layout}
+                data-dash-is-loading={
+                    (loading_state && loading_state.is_loading) || undefined
+                }>
+                {children}
+            </Form>
+        </FormContext.Provider>
     );
 }
 
