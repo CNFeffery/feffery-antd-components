@@ -3,6 +3,7 @@ import { CheckCard } from '@ant-design/pro-card';
 import { isUndefined, isString } from 'lodash';
 import useCss from '../../../hooks/useCss';
 import PropsContext from '../../../contexts/PropsContext';
+import FormContext from '../../../contexts/FormContext';
 import { propTypes, defaultProps } from '../../../components/dataEntry/check-card/AntdCheckCard.react';
 
 // 定义选择卡片组件AntdCheckCard，api参数参考https://procomponents.ant.design/components/check-card
@@ -14,6 +15,7 @@ const AntdCheckCard = (props) => {
         className,
         style,
         key,
+        name,
         checked,
         bordered,
         value,
@@ -29,6 +31,21 @@ const AntdCheckCard = (props) => {
     } = props;
 
     const context = useContext(PropsContext)
+    const formContext = useContext(FormContext)
+
+    // 处理AntdForm表单值搜集功能
+    useEffect(() => {
+        // 当上下文有效，且存在有效字段名
+        if (formContext && formContext.setValues && (name || id)) {
+            // 融合当前最新checked值到上文_values中
+            formContext.setValues((prevValues) => ({
+                ...prevValues,
+                ...{
+                    [name || id]: checked
+                }
+            }))
+        }
+    }, [checked])
 
     useEffect(() => {
         if (!isUndefined(defaultChecked) && isUndefined(checked)) {

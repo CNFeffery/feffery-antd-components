@@ -16,13 +16,20 @@ app.layout = html.Div(
                 [
                     fac.AntdFormItem(
                         fac.AntdInput(
-                            id=f'test-field{i}',
-                            name=f'测试字段{i}',
+                            id='test-field1',
+                            name='测试字段1',
                             value='初始值'
                         )
+                    ),
+                    fac.AntdFormItem(
+                        fac.AntdCheckCard(
+                            '数值',
+                            id='test-field2',
+                            name='测试字段2',
+                            checked=False
+                        )
                     )
-                    for i in range(5)
-                ],
+                ][::-1],
                 id='demo-form'
             )
         ],
