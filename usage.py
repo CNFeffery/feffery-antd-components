@@ -19,9 +19,26 @@ app.layout = html.Div(
                             id=f'test-field{i}',
                             name=f'测试字段{i}',
                             value='初始值'
-                        )
+                        ),
+                        label=f'测试字段{i}',
+                        rules=[
+                            {
+                                'required': True,
+                                'message': '必填字段',
+                                'validateTrigger': 'onBlur',
+                                'max': 5
+                            }
+                        ]
                     )
                     for i in range(5)
+                ] + [
+                    fac.AntdFormItem(
+                        fac.AntdButton(
+                            '提交',
+                            type='primary',
+                            htmlType='submit'
+                        )
+                    )
                 ],
                 id='demo-form'
             )

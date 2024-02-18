@@ -25,6 +25,15 @@ const AntdForm = (props) => {
         loading_state
     } = props;
 
+    const [form] = Form.useForm();
+
+    const onFinish = (values) => {
+        console.log('Success:', values);
+      };
+      const onFinishFailed = (errorInfo) => {
+        console.log('Failed:', errorInfo);
+      };
+
     const [_values, setValues] = useState({});
 
     // 更新搜集到的最新values值
@@ -32,6 +41,9 @@ const AntdForm = (props) => {
         setProps({
             values: _values
         })
+        form.setFieldsValue(_values);
+        console.log(form.getFieldsValue())
+        form.validateFields()
     }, [_values])
 
     return (
@@ -44,6 +56,7 @@ const AntdForm = (props) => {
             }
         >
             <Form id={id}
+                form={form}
                 className={
                     isString(className) ?
                         className :
@@ -57,6 +70,8 @@ const AntdForm = (props) => {
                 labelAlign={labelAlign}
                 labelWrap={labelWrap}
                 layout={layout}
+                onFinish={onFinish}
+                onFinishFailed={onFinishFailed}
                 data-dash-is-loading={
                     (loading_state && loading_state.is_loading) || undefined
                 }>
