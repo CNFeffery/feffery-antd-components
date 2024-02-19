@@ -35,6 +35,7 @@ const AntdForm = (props) => {
       };
 
     const [_values, setValues] = useState({});
+    const [formValidateStatus, setFormValidateStatus] = useState({});
 
     // 更新搜集到的最新values值
     useEffect(() => {
@@ -43,12 +44,22 @@ const AntdForm = (props) => {
         })
     }, [_values])
 
+    // 更新搜集到的最新formValidateStatus值
+    useEffect(() => {
+        let formValidateStatusArray = Object.values(formValidateStatus);
+        setProps({
+            formValidateStatus: formValidateStatusArray.length > 0 ? formValidateStatusArray.every(item => item === true): null
+        })
+    }, [formValidateStatus])
+
     return (
         <FormContext.Provider
             value={
                 {
                     setValues: setValues,
                     _values: _values,
+                    formValidateStatus: formValidateStatus,
+                    setFormValidateStatus: setFormValidateStatus,
                     form: form
                 }
             }

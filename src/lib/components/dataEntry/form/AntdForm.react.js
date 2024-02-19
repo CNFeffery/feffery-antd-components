@@ -81,6 +81,11 @@ AntdForm.propTypes = {
      */
     values: PropTypes.object,
 
+    /**
+     * 监听搜集内部表单输入类组件的校验结果
+     */
+    formValidateStatus: PropTypes.bool,
+
     loading_state: PropTypes.shape({
         /**
          * Determines if the component is loading or not

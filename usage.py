@@ -12,13 +12,16 @@ app.layout = html.Div(
             html.Pre(
                 id='demo-output'
             ),
+            html.Pre(
+                id='status-output'
+            ),
             fac.AntdForm(
                 [
                     fac.AntdFormItem(
                         fac.AntdInput(
                             id='test-field1',
                             name='测试字段1',
-                            # value='初始值'
+                            value='初始值'
                         ),
                         label='测试字段1',
                         rules=[
@@ -34,12 +37,16 @@ app.layout = html.Div(
                         fac.AntdInput(
                             id='test-field2',
                             name='测试字段2',
-                            # value='初始值'
+                            value='初始值'
                         ),
                         label='测试字段2',
                         rules=[
                             {
                                 'required': True,
+                                'message': '不能为空',
+                                'validateTrigger': 'onChange',
+                            },
+                            {
                                 'message': '长度不能大于5',
                                 'validateTrigger': 'onChange',
                                 'max': 5
@@ -50,7 +57,7 @@ app.layout = html.Div(
                         fac.AntdInput(
                             id='test-field3',
                             name='测试字段3',
-                            # value='初始值'
+                            value='初始值'
                         ),
                         label='测试字段3',
                         rules=[
@@ -102,6 +109,19 @@ app.layout = html.Div(
 def demo(values):
     return json.dumps(
         values,
+        ensure_ascii=False,
+        indent=4
+    )
+    
+
+@app.callback(
+    Output('status-output', 'children'),
+    Input('demo-form', 'formValidateStatus'),
+    prevent_initial_call=True
+)
+def demo(formValidateStatus):
+    return json.dumps(
+        formValidateStatus,
         ensure_ascii=False,
         indent=4
     )

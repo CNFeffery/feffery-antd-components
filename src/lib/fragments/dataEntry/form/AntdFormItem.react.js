@@ -47,10 +47,34 @@ const AntdFormItem = (props) => {
 
     // 更新搜集到的最新values值
     useEffect(() => {
-        formContext.form.setFieldsValue(itemValues);
         // 用于处理初始渲染时不校验表单项
         if (count > 2) {
-            formContext.form.validateFields([Object.keys(itemValues)[0]]);
+            formContext.form.setFieldsValue(itemValues);
+            formContext.form.validateFields([Object.keys(itemValues)[0]]).then((values) => {
+                // 当上下文有效
+                if (formContext && formContext.setFormValidateStatus) {
+                    let itemName = Object.keys(itemValues)[0];
+                    let itemValidateStatus = {};
+                    itemValidateStatus[itemName] = true
+                    // 融合当前校验状态到上文formValidateStatus中
+                    formContext.setFormValidateStatus((prevValues) => ({
+                        ...prevValues,
+                        ...itemValidateStatus
+                    }))
+                }
+            }).catch((errorInfo) => {
+                // 当上下文有效
+                if (formContext && formContext.setFormValidateStatus) {
+                    let itemName = Object.keys(itemValues)[0];
+                    let itemValidateStatus = {};
+                    itemValidateStatus[itemName] = false
+                    // 融合当前校验状态到上文formValidateStatus中
+                    formContext.setFormValidateStatus((prevValues) => ({
+                        ...prevValues,
+                        ...itemValidateStatus
+                    }))
+                }
+            });
         }
         setCount((prevCount) => prevCount + 1);
     }, [itemValues])
