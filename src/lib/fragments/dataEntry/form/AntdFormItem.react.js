@@ -41,16 +41,8 @@ const AntdFormItem = (props) => {
 
     // 更新搜集到的最新values值
     useEffect(() => {
-        // 当上下文有效，且存在有效字段名
-        if (formContext && formContext.setValues) {
-            // 融合当前最新value值到上文_values中
-            formContext.setValues((prevValues) => ({
-                ...prevValues,
-                ...itemValues
-            }))
-        }
         formContext.form.setFieldsValue(itemValues);
-        // 用于处理初始渲染不校验表单项
+        // 用于处理初始渲染时不校验表单项
         if (count > 2) {
             formContext.form.validateFields([Object.keys(itemValues)[0]]);
         }
