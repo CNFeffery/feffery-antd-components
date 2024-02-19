@@ -33,6 +33,12 @@ const AntdFormItem = (props) => {
         loading_state
     } = props;
 
+    if (rules) {
+        rules.forEach(item => {
+            item.pattern = item.pattern ? new RegExp(item.pattern) : item.pattern;
+        });
+    }
+
     const [count, setCount] = useState(0);
 
     const formContext = useContext(FormContext)

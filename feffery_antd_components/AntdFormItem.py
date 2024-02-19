@@ -56,7 +56,35 @@ Keyword arguments:
 
 - required (boolean; optional)
 
-- rules (list; optional)
+- rules (list of dicts; optional)
+
+    `rules` is a list of dicts with keys:
+
+    - defaultField (dict; optional)
+
+    - enum (boolean | number | string | dict | list; optional)
+
+    - fields (boolean | number | string | dict | list; optional)
+
+    - len (number; optional)
+
+    - max (number; optional)
+
+    - message (string; optional)
+
+    - min (number; optional)
+
+    - pattern (string; optional)
+
+    - required (boolean; optional)
+
+    - type (a value equal to: 'string', 'number', 'boolean', 'method', 'regexp', 'integer', 'float', 'array', 'object', 'enum', 'date', 'url', 'hex', 'email', 'any'; optional)
+
+    - validateTrigger (string | list; optional)
+
+    - warningOnly (boolean; optional)
+
+    - whitespace (boolean; optional)
 
 - style (dict; optional)
 
