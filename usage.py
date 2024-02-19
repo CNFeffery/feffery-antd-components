@@ -18,30 +18,54 @@ app.layout = html.Div(
                         fac.AntdInput(
                             id='test-field1',
                             name='测试字段1',
-                            value='初始值'
-                        )
+                            # value='初始值'
+                        ),
+                        label='测试字段1',
+                        rules=[
+                            {
+                                'required': True,
+                                'message': '必填字段',
+                                'validateTrigger': 'onBlur',
+                            },
+                        ]
                     ),
                     fac.AntdFormItem(
-                        fac.AntdCheckCard(
-                            '数值',
+                        fac.AntdInput(
                             id='test-field2',
                             name='测试字段2',
-                            checked=False
-                        )
+                            # value='初始值'
+                        ),
+                        label='测试字段2',
+                        rules=[
+                            {
+                                'required': True,
+                                'message': '长度不能大于5',
+                                'validateTrigger': 'onChange',
+                                'max': 5
+                            }
+                        ]
                     ),
                     fac.AntdFormItem(
-                        fac.AntdCheckCardGroup(
-                            [
-                                fac.AntdCheckCard(
-                                    f'选项{i}',
-                                    value=i
-                                )
-                                for i in range(1, 6)
-                            ],
+                        fac.AntdInput(
                             id='test-field3',
-                            defaultValue=[3],
                             name='测试字段3',
-                            multiple=True
+                            # value='初始值'
+                        ),
+                        label='测试字段3',
+                        rules=[
+                            {
+                                'required': True,
+                                'message': '长度不能小于5',
+                                'validateTrigger': 'onFocus',
+                                'min': 5
+                            }
+                        ]
+                    ),
+                    fac.AntdFormItem(
+                        fac.AntdButton(
+                            '提交',
+                            type='primary',
+                            htmlType='submit'
                         )
                     ),
                     fac.AntdFormItem(
@@ -54,7 +78,7 @@ app.layout = html.Div(
                             }
                         )
                     )
-                ][::-1],
+                ],
                 id='demo-form'
             )
         ],

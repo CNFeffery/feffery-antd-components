@@ -36,6 +36,8 @@ AntdFormItem.propTypes = {
     // 设置是否为标签添加必填*标识，默认为false
     required: PropTypes.bool,
 
+    rules: PropTypes.array,
+
     // 设置表单项标签列宽相关属性，同AntdCol划分为24份宽度，优先级高于AntdForm
     labelCol: PropTypes.exact({
         // 设置span宽度
@@ -116,7 +118,7 @@ AntdFormItem.propTypes = {
 
 // 设置默认参数
 AntdFormItem.defaultProps = {
-    required: false,
+    // required: false,
     hidden: false
 }
 

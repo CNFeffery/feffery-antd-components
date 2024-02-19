@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { Form } from 'antd';
 import { isString } from 'lodash';
 import useCss from '../../../hooks/useCss';
+import FormContext from '../../../contexts/FormContext';
+import FormItemContext from '../../../contexts/FormItemContext';
 import { propTypes, defaultProps } from '../../../components/dataEntry/form/AntdFormItem.react';
 
 const { Item } = Form;
@@ -25,38 +27,77 @@ const AntdFormItem = (props) => {
         help,
         hidden,
         required,
+        rules,
         validateStatus,
         setProps,
         loading_state
     } = props;
 
+    const [count, setCount] = useState(0);
+
+    const formContext = useContext(FormContext)
+
+    const [itemValues, setItemValues] = useState({});
+
+    // 更新搜集到的最新values值
+    useEffect(() => {
+        // 当上下文有效，且存在有效字段名
+        if (formContext && formContext.setValues) {
+            // 融合当前最新value值到上文_values中
+            formContext.setValues((prevValues) => ({
+                ...prevValues,
+                ...itemValues
+            }))
+        }
+        formContext.form.setFieldsValue(itemValues);
+        // 用于处理初始渲染不校验表单项
+        if (count > 2) {
+            formContext.form.validateFields([Object.keys(itemValues)[0]]);
+        }
+        setCount((prevCount) => prevCount + 1);
+    }, [itemValues])
+
     return (
-        <Item id={id}
-            className={
-                isString(className) ?
-                    className :
-                    (className ? useCss(className) : undefined)
+        <FormItemContext.Provider
+            value={
+                {
+                    setItemValues: setItemValues,
+                    itemValues: itemValues,
+                    form: formContext.form,
+                    validateTrigger: rules ? rules.map((rule) => {
+                        return rule.validateTrigger
+                    }) : []
+                }
             }
-            style={style}
-            key={key}
-            labelCol={labelCol}
-            colon={colon}
-            wrapperCol={wrapperCol}
-            label={label}
-            labelAlign={labelAlign}
-            tooltip={tooltip}
-            extra={extra}
-            help={help}
-            hasFeedback={true}
-            hidden={hidden}
-            required={required}
-            validateStatus={validateStatus}
-            name={"test_field"}
-            data-dash-is-loading={
-                (loading_state && loading_state.is_loading) || undefined
-            }>
-            {children}
-        </Item>
+        >
+            <Item id={id}
+                className={
+                    isString(className) ?
+                        className :
+                        (className ? useCss(className) : undefined)
+                }
+                style={style}
+                key={key}
+                labelCol={labelCol}
+                colon={colon}
+                wrapperCol={wrapperCol}
+                label={label}
+                labelAlign={labelAlign}
+                tooltip={tooltip}
+                extra={extra}
+                help={help}
+                hasFeedback={true}
+                hidden={hidden}
+                required={required}
+                rules={rules}
+                validateStatus={validateStatus}
+                name={Object.keys(itemValues)[0]}
+                data-dash-is-loading={
+                    (loading_state && loading_state.is_loading) || undefined
+                }>
+                {children}
+            </Item>
+        </FormItemContext.Provider>
     );
 }
 
