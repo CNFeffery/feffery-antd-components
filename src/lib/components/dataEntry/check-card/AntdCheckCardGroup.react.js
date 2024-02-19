@@ -31,6 +31,12 @@ AntdCheckCardGroup.propTypes = {
     // 辅助刷新用唯一标识key值
     key: PropTypes.string,
 
+    /**
+     * 用于在基于AntdForm的表单值自动搜集功能中，充当当前表单项的字段名
+     * 缺省时会以id作为字段名
+     */
+    name: PropTypes.string,
+
     // 设置是否允许多选，默认为false
     multiple: PropTypes.bool,
 
