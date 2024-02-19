@@ -110,7 +110,7 @@ const AntdFormItem = (props) => {
                 help={help}
                 hasFeedback={true}
                 hidden={hidden}
-                required={required}
+                required={required || (rules && rules.length > 0 && rules.some(item => item.required)) ? true : false}
                 rules={rules}
                 validateStatus={validateStatus}
                 name={Object.keys(itemValues)[0]}

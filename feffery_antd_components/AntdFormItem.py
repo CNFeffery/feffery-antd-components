@@ -54,7 +54,7 @@ Keyword arguments:
     - prop_name (string; optional):
         Holds which property is loading.
 
-- required (boolean; optional)
+- required (boolean; default False)
 
 - rules (list of dicts; optional)
 

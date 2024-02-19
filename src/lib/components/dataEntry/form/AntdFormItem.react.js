@@ -86,7 +86,7 @@ AntdFormItem.propTypes = {
             'email',
             'any'
         ]),
-        
+
         // 设置触发验证时机，必须是 Form.Item 的 validateTrigger 的子集
         validateTrigger: PropTypes.oneOfType([
             PropTypes.string,
@@ -180,7 +180,7 @@ AntdFormItem.propTypes = {
 
 // 设置默认参数
 AntdFormItem.defaultProps = {
-    // required: false,
+    required: false,
     hidden: false
 }
 

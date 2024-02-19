@@ -29,10 +29,10 @@ const AntdForm = (props) => {
 
     const onFinish = (values) => {
         console.log('Success:', values);
-      };
-      const onFinishFailed = (errorInfo) => {
+    };
+    const onFinishFailed = (errorInfo) => {
         console.log('Failed:', errorInfo);
-      };
+    };
 
     const [_values, setValues] = useState({});
     const [formValidateStatus, setFormValidateStatus] = useState({});
@@ -48,7 +48,7 @@ const AntdForm = (props) => {
     useEffect(() => {
         let formValidateStatusArray = Object.values(formValidateStatus);
         setProps({
-            formValidateStatus: formValidateStatusArray.length > 0 ? formValidateStatusArray.every(item => item === true): null
+            formValidateStatus: formValidateStatusArray.length > 0 ? formValidateStatusArray.every(item => item === true) : null
         })
     }, [formValidateStatus])
 
