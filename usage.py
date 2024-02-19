@@ -28,6 +28,21 @@ app.layout = html.Div(
                             name='测试字段2',
                             checked=False
                         )
+                    ),
+                    fac.AntdFormItem(
+                        fac.AntdCheckCardGroup(
+                            [
+                                fac.AntdCheckCard(
+                                    f'选项{i}',
+                                    value=i
+                                )
+                                for i in range(1, 6)
+                            ],
+                            id='test-field3',
+                            defaultValue=[3],
+                            name='测试字段3',
+                            multiple=True
+                        )
                     )
                 ][::-1],
                 id='demo-form'
