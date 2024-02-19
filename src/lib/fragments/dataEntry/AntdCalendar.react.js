@@ -5,6 +5,7 @@ import { str2Locale } from '../../components/locales.react';
 import { isString } from 'lodash';
 import useCss from '../../hooks/useCss';
 import PropsContext from '../../contexts/PropsContext';
+import FormContext from '../../contexts/FormContext';
 import { propTypes, defaultProps } from '../../components/dataEntry/AntdCalendar.react';
 
 // 定义日历组件AntdCalendar，api参数参考https://ant.design/components/calendar-cn/
@@ -15,6 +16,7 @@ const AntdCalendar = (props) => {
         className,
         style,
         key,
+        name,
         locale,
         defaultValue,
         value,
@@ -28,7 +30,22 @@ const AntdCalendar = (props) => {
     } = props;
 
     const context = useContext(PropsContext)
+    const formContext = useContext(FormContext)
     locale = (context && context.locale) || locale
+
+    // 处理AntdForm表单值搜集功能
+    useEffect(() => {
+        // 当上下文有效，且存在有效字段名
+        if (formContext && formContext.setValues && (name || id)) {
+            // 融合当前最新value值到上文_values中
+            formContext.setValues((prevValues) => ({
+                ...prevValues,
+                ...{
+                    [name || id]: value || null
+                }
+            }))
+        }
+    }, [value])
 
     useEffect(() => {
         // 初始化value
