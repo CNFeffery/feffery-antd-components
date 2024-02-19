@@ -41,9 +41,6 @@ const AntdForm = (props) => {
         setProps({
             values: _values
         })
-        form.setFieldsValue(_values);
-        console.log(form.getFieldsValue())
-        form.validateFields()
     }, [_values])
 
     return (
@@ -51,7 +48,8 @@ const AntdForm = (props) => {
             value={
                 {
                     setValues: setValues,
-                    _values: _values
+                    _values: _values,
+                    form: form
                 }
             }
         >

@@ -86,7 +86,7 @@ const AntdInput = (props) => {
                 }
             }))
         }
-    }, [value])
+    }, [])
 
     useEffect(() => {
         // 初始化value
@@ -105,8 +105,46 @@ const AntdInput = (props) => {
         }
     }, [])
 
+    // 监听blur事件
+    const onBlur = e => {
+        // 当上下文有效，且存在有效字段名
+        if (formItemContext && formItemContext.setItemValues && formItemContext.validateTrigger.includes('onBlur') && (name || id)) {
+            // 融合当前最新value值到上文itemValues中
+            formItemContext.setItemValues((prevValues) => ({
+                ...prevValues,
+                ...{
+                    [name || id]: e.target.value || null
+                }
+            }))
+        }
+    }
+
+    // 监听focus事件
+    const onFocus = e => {
+        // 当上下文有效，且存在有效字段名
+        if (formItemContext && formItemContext.setItemValues && formItemContext.validateTrigger.includes('onFocus') && (name || id)) {
+            // 融合当前最新value值到上文itemValues中
+            formItemContext.setItemValues((prevValues) => ({
+                ...prevValues,
+                ...{
+                    [name || id]: value || null
+                }
+            }))
+        }
+    }
+
     // 监听输入内容变化事件
     const onChange = e => {
+        // 当上下文有效，且存在有效字段名
+        if (formItemContext && formItemContext.setItemValues && formItemContext.validateTrigger.includes('onChange') && (name || id)) {
+            // 融合当前最新value值到上文itemValues中
+            formItemContext.setItemValues((prevValues) => ({
+                ...prevValues,
+                ...{
+                    [name || id]: e.target.value || null
+                }
+            }))
+        }
         // 若启用md5加密且为密码模式
         if (passwordUseMd5 && mode === 'password') {
             setProps({
@@ -213,6 +251,8 @@ const AntdInput = (props) => {
                 maxLength={maxLength}
                 status={status}
                 readOnly={readOnly}
+                onBlur={onBlur}
+                onFocus={onFocus}
                 onChange={(e) => {
                     onChange(e)
                     onDebounceChange(e.target.value)
@@ -262,6 +302,8 @@ const AntdInput = (props) => {
                 status={status}
                 readOnly={readOnly}
                 onSearch={onSearch}
+                onBlur={onBlur}
+                onFocus={onFocus}
                 onChange={(e) => {
                     onChange(e)
                     onDebounceChange(e.target.value)
@@ -321,6 +363,8 @@ const AntdInput = (props) => {
                 status={status}
                 autoSize={autoSize}
                 readOnly={readOnly}
+                onBlur={onBlur}
+                onFocus={onFocus}
                 onChange={(e) => {
                     onChange(e)
                     onDebounceChange(e.target.value)
@@ -369,6 +413,8 @@ const AntdInput = (props) => {
                 prefix={prefix}
                 suffix={suffix}
                 readOnly={readOnly}
+                onBlur={onBlur}
+                onFocus={onFocus}
                 onChange={(e) => {
                     onChange(e)
                     onDebounceChange(e.target.value)

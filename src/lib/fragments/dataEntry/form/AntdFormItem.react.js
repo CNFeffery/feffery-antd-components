@@ -33,6 +33,8 @@ const AntdFormItem = (props) => {
         loading_state
     } = props;
 
+    const [count, setCount] = useState(0);
+
     const formContext = useContext(FormContext)
 
     const [itemValues, setItemValues] = useState({});
@@ -47,6 +49,12 @@ const AntdFormItem = (props) => {
                 ...itemValues
             }))
         }
+        formContext.form.setFieldsValue(itemValues);
+        // 用于处理初始渲染不校验表单项
+        if (count > 2) {
+            formContext.form.validateFields([Object.keys(itemValues)[0]]);
+        }
+        setCount((prevCount) => prevCount + 1);
     }, [itemValues])
 
     return (
@@ -54,7 +62,11 @@ const AntdFormItem = (props) => {
             value={
                 {
                     setItemValues: setItemValues,
-                    itemValues: itemValues
+                    itemValues: itemValues,
+                    form: formContext.form,
+                    validateTrigger: rules ? rules.map((rule) => {
+                        return rule.validateTrigger
+                    }) : []
                 }
             }
         >

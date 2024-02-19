@@ -16,22 +16,51 @@ app.layout = html.Div(
                 [
                     fac.AntdFormItem(
                         fac.AntdInput(
-                            id=f'test-field{i}',
-                            name=f'测试字段{i}',
-                            value='初始值'
+                            id='test-field1',
+                            name='测试字段1',
+                            # value='初始值'
                         ),
-                        label=f'测试字段{i}',
+                        label='测试字段1',
                         rules=[
                             {
                                 'required': True,
                                 'message': '必填字段',
                                 'validateTrigger': 'onBlur',
+                            },
+                        ]
+                    ),
+                    fac.AntdFormItem(
+                        fac.AntdInput(
+                            id='test-field2',
+                            name='测试字段2',
+                            # value='初始值'
+                        ),
+                        label='测试字段2',
+                        rules=[
+                            {
+                                'required': True,
+                                'message': '长度不能大于5',
+                                'validateTrigger': 'onChange',
                                 'max': 5
                             }
                         ]
-                    )
-                    for i in range(5)
-                ] + [
+                    ),
+                    fac.AntdFormItem(
+                        fac.AntdInput(
+                            id='test-field3',
+                            name='测试字段3',
+                            # value='初始值'
+                        ),
+                        label='测试字段3',
+                        rules=[
+                            {
+                                'required': True,
+                                'message': '长度不能小于5',
+                                'validateTrigger': 'onFocus',
+                                'min': 5
+                            }
+                        ]
+                    ),
                     fac.AntdFormItem(
                         fac.AntdButton(
                             '提交',
