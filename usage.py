@@ -68,6 +68,16 @@ app.layout = html.Div(
                             type='primary',
                             htmlType='submit'
                         )
+                    ),
+                    fac.AntdFormItem(
+                        fac.AntdCalendar(
+                            id='test-field4',
+                            name='测试字段4',
+                            defaultValue='2023-01-01',
+                            style={
+                                'width': '300px'
+                            }
+                        )
                     )
                 ],
                 id='demo-form'
