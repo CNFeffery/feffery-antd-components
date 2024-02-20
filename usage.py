@@ -70,10 +70,9 @@ app.layout = html.Div(
                         ]
                     ),
                     fac.AntdFormItem(
-                        fac.AntdRadioGroup(
+                        fac.AntdRate(
                             id='test-field4',
-                            name='测试字段4',
-                            options=[f'选项{i}' for i in range(1, 6)]
+                            name='测试字段4'
                         ),
                         label='测试字段4',
                     ),

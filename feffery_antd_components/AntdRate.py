@@ -44,6 +44,9 @@ Keyword arguments:
     - prop_name (string; optional):
         Holds which property is loading.
 
+- name (string; optional):
+    用于在基于AntdForm的表单值自动搜集功能中，充当当前表单项的字段名  缺省时会以id作为字段名.
+
 - persisted_props (list of a value equal to: 'value's; default ['value']):
     Properties whose user interactions will persist after refreshing
     the  component or the page. Since only `value` is allowed this
@@ -73,10 +76,10 @@ Keyword arguments:
     _namespace = 'feffery_antd_components'
     _type = 'AntdRate'
     @_explicitize_args
-    def __init__(self, id=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, key=Component.UNDEFINED, allowClear=Component.UNDEFINED, allowHalf=Component.UNDEFINED, count=Component.UNDEFINED, tooltips=Component.UNDEFINED, disabled=Component.UNDEFINED, autoFocus=Component.UNDEFINED, value=Component.UNDEFINED, defaultValue=Component.UNDEFINED, batchPropsNames=Component.UNDEFINED, batchPropsValues=Component.UNDEFINED, loading_state=Component.UNDEFINED, persistence=Component.UNDEFINED, persisted_props=Component.UNDEFINED, persistence_type=Component.UNDEFINED, **kwargs):
-        self._prop_names = ['id', 'allowClear', 'allowHalf', 'autoFocus', 'batchPropsNames', 'batchPropsValues', 'className', 'count', 'defaultValue', 'disabled', 'key', 'loading_state', 'persisted_props', 'persistence', 'persistence_type', 'style', 'tooltips', 'value']
+    def __init__(self, id=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, key=Component.UNDEFINED, name=Component.UNDEFINED, allowClear=Component.UNDEFINED, allowHalf=Component.UNDEFINED, count=Component.UNDEFINED, tooltips=Component.UNDEFINED, disabled=Component.UNDEFINED, autoFocus=Component.UNDEFINED, value=Component.UNDEFINED, defaultValue=Component.UNDEFINED, batchPropsNames=Component.UNDEFINED, batchPropsValues=Component.UNDEFINED, loading_state=Component.UNDEFINED, persistence=Component.UNDEFINED, persisted_props=Component.UNDEFINED, persistence_type=Component.UNDEFINED, **kwargs):
+        self._prop_names = ['id', 'allowClear', 'allowHalf', 'autoFocus', 'batchPropsNames', 'batchPropsValues', 'className', 'count', 'defaultValue', 'disabled', 'key', 'loading_state', 'name', 'persisted_props', 'persistence', 'persistence_type', 'style', 'tooltips', 'value']
         self._valid_wildcard_attributes =            []
-        self.available_properties = ['id', 'allowClear', 'allowHalf', 'autoFocus', 'batchPropsNames', 'batchPropsValues', 'className', 'count', 'defaultValue', 'disabled', 'key', 'loading_state', 'persisted_props', 'persistence', 'persistence_type', 'style', 'tooltips', 'value']
+        self.available_properties = ['id', 'allowClear', 'allowHalf', 'autoFocus', 'batchPropsNames', 'batchPropsValues', 'className', 'count', 'defaultValue', 'disabled', 'key', 'loading_state', 'name', 'persisted_props', 'persistence', 'persistence_type', 'style', 'tooltips', 'value']
         self.available_wildcard_properties =            []
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()
