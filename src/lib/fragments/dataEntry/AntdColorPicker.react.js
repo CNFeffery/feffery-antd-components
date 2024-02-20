@@ -1,10 +1,11 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useContext } from 'react';
 import { ColorPicker } from 'antd';
 import { Color } from '@rc-component/color-picker';
 import useCss from '../../hooks/useCss';
-import { isString } from 'lodash';
+import { isString, isUndefined } from 'lodash';
+import PropsContext from '../../contexts/PropsContext';
+import FormContext from '../../contexts/FormContext';
 import { propTypes, defaultProps } from '../../components/dataEntry/AntdColorPicker.react';
-
 
 // 定义颜色选择器组件AntdColorPicker，api参数参考https://ant.design/components/color-picker-cn
 const AntdColorPicker = (props) => {
@@ -14,6 +15,7 @@ const AntdColorPicker = (props) => {
         className,
         style,
         key,
+        name,
         allowClear,
         arrow,
         value,
@@ -29,6 +31,23 @@ const AntdColorPicker = (props) => {
         setProps,
         loading_state
     } = props;
+
+    const context = useContext(PropsContext)
+    const formContext = useContext(FormContext)
+
+    // 处理AntdForm表单值搜集功能
+    useEffect(() => {
+        // 当上下文有效，且存在有效字段名
+        if (formContext && formContext.setValues && (name || id)) {
+            // 融合当前最新value值到上文_values中
+            formContext.setValues((prevValues) => ({
+                ...prevValues,
+                ...{
+                    [name || id]: value || null
+                }
+            }))
+        }
+    }, [value])
 
     // 每次format发生变更时，同步更新value值
     useEffect(() => {
@@ -61,7 +80,11 @@ const AntdColorPicker = (props) => {
             arrow={arrow}
             value={value}
             format={format}
-            disabled={disabled}
+            disabled={
+                context && !isUndefined(context.componentDisabled) ?
+                    context.componentDisabled :
+                    disabled
+            }
             disabledAlpha={disabledAlpha}
             open={open}
             presets={presets}

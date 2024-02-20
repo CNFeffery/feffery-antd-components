@@ -48,6 +48,9 @@ Keyword arguments:
     - prop_name (string; optional):
         Holds which property is loading.
 
+- name (string; optional):
+    用于在基于AntdForm的表单值自动搜集功能中，充当当前表单项的字段名  缺省时会以id作为字段名.
+
 - open (boolean; optional):
     设置或监听当前颜色选择面板展开状态.
 
@@ -87,10 +90,10 @@ Keyword arguments:
     _namespace = 'feffery_antd_components'
     _type = 'AntdColorPicker'
     @_explicitize_args
-    def __init__(self, id=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, key=Component.UNDEFINED, allowClear=Component.UNDEFINED, arrow=Component.UNDEFINED, value=Component.UNDEFINED, format=Component.UNDEFINED, disabled=Component.UNDEFINED, disabledAlpha=Component.UNDEFINED, open=Component.UNDEFINED, presets=Component.UNDEFINED, placement=Component.UNDEFINED, showText=Component.UNDEFINED, size=Component.UNDEFINED, trigger=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
-        self._prop_names = ['id', 'allowClear', 'arrow', 'className', 'disabled', 'disabledAlpha', 'format', 'key', 'loading_state', 'open', 'placement', 'presets', 'showText', 'size', 'style', 'trigger', 'value']
+    def __init__(self, id=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, key=Component.UNDEFINED, name=Component.UNDEFINED, allowClear=Component.UNDEFINED, arrow=Component.UNDEFINED, value=Component.UNDEFINED, format=Component.UNDEFINED, disabled=Component.UNDEFINED, disabledAlpha=Component.UNDEFINED, open=Component.UNDEFINED, presets=Component.UNDEFINED, placement=Component.UNDEFINED, showText=Component.UNDEFINED, size=Component.UNDEFINED, trigger=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
+        self._prop_names = ['id', 'allowClear', 'arrow', 'className', 'disabled', 'disabledAlpha', 'format', 'key', 'loading_state', 'name', 'open', 'placement', 'presets', 'showText', 'size', 'style', 'trigger', 'value']
         self._valid_wildcard_attributes =            []
-        self.available_properties = ['id', 'allowClear', 'arrow', 'className', 'disabled', 'disabledAlpha', 'format', 'key', 'loading_state', 'open', 'placement', 'presets', 'showText', 'size', 'style', 'trigger', 'value']
+        self.available_properties = ['id', 'allowClear', 'arrow', 'className', 'disabled', 'disabledAlpha', 'format', 'key', 'loading_state', 'name', 'open', 'placement', 'presets', 'showText', 'size', 'style', 'trigger', 'value']
         self.available_wildcard_properties =            []
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()
