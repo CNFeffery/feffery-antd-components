@@ -70,7 +70,7 @@ app.layout = html.Div(
                         ]
                     ),
                     fac.AntdFormItem(
-                        fac.AntdColorPicker(
+                        fac.AntdDatePicker(
                             id='test-field4',
                             name='测试字段4'
                         ),
