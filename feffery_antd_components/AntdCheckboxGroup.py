@@ -34,6 +34,9 @@ Keyword arguments:
     - prop_name (string; optional):
         Holds which property is loading.
 
+- name (string; optional):
+    用于在基于AntdForm的表单值自动搜集功能中，充当当前表单项的字段名  缺省时会以id作为字段名.
+
 - options (list of dicts; optional)
 
     `options` is a list of string | number | dict with keys:
@@ -73,10 +76,10 @@ Keyword arguments:
     _namespace = 'feffery_antd_components'
     _type = 'AntdCheckboxGroup'
     @_explicitize_args
-    def __init__(self, id=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, key=Component.UNDEFINED, disabled=Component.UNDEFINED, options=Component.UNDEFINED, value=Component.UNDEFINED, readOnly=Component.UNDEFINED, batchPropsNames=Component.UNDEFINED, batchPropsValues=Component.UNDEFINED, loading_state=Component.UNDEFINED, persistence=Component.UNDEFINED, persisted_props=Component.UNDEFINED, persistence_type=Component.UNDEFINED, **kwargs):
-        self._prop_names = ['id', 'batchPropsNames', 'batchPropsValues', 'className', 'disabled', 'key', 'loading_state', 'options', 'persisted_props', 'persistence', 'persistence_type', 'readOnly', 'style', 'value']
+    def __init__(self, id=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, key=Component.UNDEFINED, name=Component.UNDEFINED, disabled=Component.UNDEFINED, options=Component.UNDEFINED, value=Component.UNDEFINED, readOnly=Component.UNDEFINED, batchPropsNames=Component.UNDEFINED, batchPropsValues=Component.UNDEFINED, loading_state=Component.UNDEFINED, persistence=Component.UNDEFINED, persisted_props=Component.UNDEFINED, persistence_type=Component.UNDEFINED, **kwargs):
+        self._prop_names = ['id', 'batchPropsNames', 'batchPropsValues', 'className', 'disabled', 'key', 'loading_state', 'name', 'options', 'persisted_props', 'persistence', 'persistence_type', 'readOnly', 'style', 'value']
         self._valid_wildcard_attributes =            []
-        self.available_properties = ['id', 'batchPropsNames', 'batchPropsValues', 'className', 'disabled', 'key', 'loading_state', 'options', 'persisted_props', 'persistence', 'persistence_type', 'readOnly', 'style', 'value']
+        self.available_properties = ['id', 'batchPropsNames', 'batchPropsValues', 'className', 'disabled', 'key', 'loading_state', 'name', 'options', 'persisted_props', 'persistence', 'persistence_type', 'readOnly', 'style', 'value']
         self.available_wildcard_properties =            []
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()
