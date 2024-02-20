@@ -96,6 +96,16 @@ AntdForm.propTypes = {
      */
     submitFormClicks: PropTypes.number,
 
+    /**
+     * 统一设置内部各AntdFormItem的validateStatus值，键为对应AntdFormItem的label值
+     * 优先级低于各AntdFormItem的validateStatus值
+     */
+    validateStatuses: PropTypes.objectOf(
+        PropTypes.oneOf([
+            'success', 'warning', 'error', 'validating'
+        ])
+    ),
+
     loading_state: PropTypes.shape({
         /**
          * Determines if the component is loading or not

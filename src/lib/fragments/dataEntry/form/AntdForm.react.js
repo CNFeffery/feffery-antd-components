@@ -23,6 +23,7 @@ const AntdForm = (props) => {
         layout,
         submitForm,
         submitFormClicks,
+        validateStatuses,
         setProps,
         loading_state
     } = props;
@@ -69,7 +70,8 @@ const AntdForm = (props) => {
                     _values: _values,
                     _formValidateStatus: _formValidateStatus,
                     setFormValidateStatus: setFormValidateStatus,
-                    form: form
+                    form: form,
+                    validateStatuses: validateStatuses
                 }
             }
         >
