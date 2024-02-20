@@ -21,7 +21,7 @@ app.layout = html.Div(
                         fac.AntdInput(
                             id='test-field1',
                             name='测试字段1',
-                            value='初始值'
+                            value='13333333333'
                         ),
                         label='测试字段1',
                         rules=[
@@ -57,7 +57,7 @@ app.layout = html.Div(
                         fac.AntdInput(
                             id='test-field3',
                             name='测试字段3',
-                            value='初始值'
+                            value='初始值123'
                         ),
                         label='测试字段3',
                         rules=[
@@ -70,14 +70,6 @@ app.layout = html.Div(
                         ]
                     ),
                     fac.AntdFormItem(
-                        fac.AntdButton(
-                            '提交',
-                            id='submit-button',
-                            type='primary',
-                            # htmlType='submit'
-                        )
-                    ),
-                    fac.AntdFormItem(
                         fac.AntdCalendar(
                             id='test-field4',
                             name='测试字段4',
@@ -86,8 +78,15 @@ app.layout = html.Div(
                                 'width': '300px'
                             }
                         )
+                    ),
+                    fac.AntdFormItem(
+                        fac.AntdButton(
+                            '提交',
+                            id='submit-button',
+                            type='primary'
+                        )
                     )
-                ],
+                ][::-1],
                 id='demo-form'
             )
         ],
@@ -107,7 +106,7 @@ app.layout = html.Div(
     Input('submit-button', 'nClicks'),
     prevent_initial_call=True
 )
-def submit_form(nClicks):
+def manual_submit_form(nClicks):
     if nClicks:
         return True
     return dash.no_update
@@ -120,7 +119,7 @@ def submit_form(nClicks):
      State('demo-form', 'formValidateStatus')],
     prevent_initial_call=True
 )
-def demo(submitFormClicks, values, formValidateStatus):
+def show_form_values(submitFormClicks, values, formValidateStatus):
     if formValidateStatus:
         return json.dumps(
             values,
@@ -128,14 +127,14 @@ def demo(submitFormClicks, values, formValidateStatus):
             indent=4
         )
     return '校验失败'
-    
+
 
 @app.callback(
     Output('status-output', 'children'),
     Input('demo-form', 'formValidateStatus'),
     prevent_initial_call=True
 )
-def demo(formValidateStatus):
+def show_form_validate_status(formValidateStatus):
     return json.dumps(
         formValidateStatus,
         ensure_ascii=False,

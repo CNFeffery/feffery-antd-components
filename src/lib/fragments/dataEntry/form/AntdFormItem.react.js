@@ -29,6 +29,7 @@ const AntdFormItem = (props) => {
         required,
         rules,
         validateStatus,
+        hasFeedback,
         setProps,
         loading_state
     } = props;
@@ -108,7 +109,7 @@ const AntdFormItem = (props) => {
                 tooltip={tooltip}
                 extra={extra}
                 help={help}
-                hasFeedback={true}
+                hasFeedback={hasFeedback}
                 hidden={hidden}
                 required={required || (rules && rules.length > 0 && rules.some(item => item.required)) ? true : false}
                 rules={rules}

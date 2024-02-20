@@ -150,6 +150,12 @@ AntdFormItem.propTypes = {
         'success', 'warning', 'error', 'validating'
     ]),
 
+    /**
+     * 是否配合不同的validateStatus值，呈现对应的状态图标，建议仅用于AntdInput
+     * 默认：false
+     */
+    hasFeedback: PropTypes.bool,
+
     // 设置与validateStatus状态一致的校验提示信息
     help: PropTypes.node,
 
@@ -181,7 +187,8 @@ AntdFormItem.propTypes = {
 // 设置默认参数
 AntdFormItem.defaultProps = {
     required: false,
-    hidden: false
+    hidden: false,
+    hasFeedback: false
 }
 
 export default AntdFormItem;
