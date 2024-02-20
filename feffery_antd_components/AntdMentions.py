@@ -49,6 +49,9 @@ Keyword arguments:
     - prop_name (string; optional):
         Holds which property is loading.
 
+- name (string; optional):
+    用于在基于AntdForm的表单值自动搜集功能中，充当当前表单项的字段名  缺省时会以id作为字段名.
+
 - options (list of dicts; required)
 
     `options` is a list of dicts with keys:
@@ -85,10 +88,10 @@ Keyword arguments:
     _namespace = 'feffery_antd_components'
     _type = 'AntdMentions'
     @_explicitize_args
-    def __init__(self, id=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, popupClassName=Component.UNDEFINED, key=Component.UNDEFINED, autoSize=Component.UNDEFINED, prefix=Component.UNDEFINED, value=Component.UNDEFINED, defaultValue=Component.UNDEFINED, options=Component.REQUIRED, selectedOptions=Component.UNDEFINED, disabled=Component.UNDEFINED, placement=Component.UNDEFINED, bordered=Component.UNDEFINED, variant=Component.UNDEFINED, placeholder=Component.UNDEFINED, status=Component.UNDEFINED, autoFocus=Component.UNDEFINED, popupContainer=Component.UNDEFINED, batchPropsNames=Component.UNDEFINED, batchPropsValues=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
-        self._prop_names = ['id', 'autoFocus', 'autoSize', 'batchPropsNames', 'batchPropsValues', 'bordered', 'className', 'defaultValue', 'disabled', 'key', 'loading_state', 'options', 'placeholder', 'placement', 'popupClassName', 'popupContainer', 'prefix', 'selectedOptions', 'status', 'style', 'value', 'variant']
+    def __init__(self, id=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, popupClassName=Component.UNDEFINED, key=Component.UNDEFINED, name=Component.UNDEFINED, autoSize=Component.UNDEFINED, prefix=Component.UNDEFINED, value=Component.UNDEFINED, defaultValue=Component.UNDEFINED, options=Component.REQUIRED, selectedOptions=Component.UNDEFINED, disabled=Component.UNDEFINED, placement=Component.UNDEFINED, bordered=Component.UNDEFINED, variant=Component.UNDEFINED, placeholder=Component.UNDEFINED, status=Component.UNDEFINED, autoFocus=Component.UNDEFINED, popupContainer=Component.UNDEFINED, batchPropsNames=Component.UNDEFINED, batchPropsValues=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
+        self._prop_names = ['id', 'autoFocus', 'autoSize', 'batchPropsNames', 'batchPropsValues', 'bordered', 'className', 'defaultValue', 'disabled', 'key', 'loading_state', 'name', 'options', 'placeholder', 'placement', 'popupClassName', 'popupContainer', 'prefix', 'selectedOptions', 'status', 'style', 'value', 'variant']
         self._valid_wildcard_attributes =            []
-        self.available_properties = ['id', 'autoFocus', 'autoSize', 'batchPropsNames', 'batchPropsValues', 'bordered', 'className', 'defaultValue', 'disabled', 'key', 'loading_state', 'options', 'placeholder', 'placement', 'popupClassName', 'popupContainer', 'prefix', 'selectedOptions', 'status', 'style', 'value', 'variant']
+        self.available_properties = ['id', 'autoFocus', 'autoSize', 'batchPropsNames', 'batchPropsValues', 'bordered', 'className', 'defaultValue', 'disabled', 'key', 'loading_state', 'name', 'options', 'placeholder', 'placement', 'popupClassName', 'popupContainer', 'prefix', 'selectedOptions', 'status', 'style', 'value', 'variant']
         self.available_wildcard_properties =            []
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()

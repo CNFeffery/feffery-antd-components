@@ -70,9 +70,16 @@ app.layout = html.Div(
                         ]
                     ),
                     fac.AntdFormItem(
-                        fac.AntdInputNumber(
+                        fac.AntdMentions(
                             id='test-field4',
                             name='测试字段4',
+                            options=[
+                                {
+                                    'label': f'用户{c}',
+                                    'value': f'用户{c}'
+                                }
+                                for c in list('abcdef')
+                            ],
                             style={
                                 'width': 200
                             }
