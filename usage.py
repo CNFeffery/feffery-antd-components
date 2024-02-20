@@ -70,10 +70,11 @@ app.layout = html.Div(
                         ]
                     ),
                     fac.AntdFormItem(
-                        fac.AntdSelect(
+                        fac.AntdSlider(
                             id='test-field4',
                             name='测试字段4',
-                            options=[f'选项{i}' for i in range(1, 6)],
+                            min=0,
+                            max=10,
                             style={
                                 'width': 200
                             }
