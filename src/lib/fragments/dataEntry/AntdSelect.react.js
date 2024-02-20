@@ -5,6 +5,7 @@ import { isUndefined, isString, isNumber } from 'lodash';
 import useCss from '../../hooks/useCss';
 import { str2Locale } from '../../components/locales.react';
 import PropsContext from '../../contexts/PropsContext';
+import FormContext from '../../contexts/FormContext';
 import { propTypes, defaultProps } from '../../components/dataEntry/AntdSelect.react';
 
 const { Option, OptGroup } = Select;
@@ -19,6 +20,7 @@ const AntdSelect = (props) => {
         className,
         popupClassName,
         key,
+        name,
         locale,
         setProps,
         placeholder,
@@ -71,7 +73,22 @@ const AntdSelect = (props) => {
     })
 
     const context = useContext(PropsContext)
+    const formContext = useContext(FormContext)
     locale = (context && context.locale) || locale
+
+    // 处理AntdForm表单值搜集功能
+    useEffect(() => {
+        // 当上下文有效，且存在有效字段名
+        if (formContext && formContext.setValues && (name || id)) {
+            // 融合当前最新value值到上文_values中
+            formContext.setValues((prevValues) => ({
+                ...prevValues,
+                ...{
+                    [name || id]: value || null
+                }
+            }))
+        }
+    }, [value])
 
     // 处理multiple模式下，defaultValue或value为None的显示异常问题 #78
     if (mode === 'multiple') {
