@@ -70,14 +70,9 @@ app.layout = html.Div(
                         ]
                     ),
                     fac.AntdFormItem(
-                        fac.AntdSlider(
+                        fac.AntdSwitch(
                             id='test-field4',
-                            name='测试字段4',
-                            min=0,
-                            max=10,
-                            style={
-                                'width': 200
-                            }
+                            name='测试字段4'
                         ),
                         label='测试字段4',
                     ),
