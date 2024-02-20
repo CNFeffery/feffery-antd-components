@@ -47,10 +47,6 @@ const AntdForm = (props) => {
         })
     }, [_formValidateStatus])
 
-    useEffect(() => {
-        form.setFieldsValue(_values);
-    }, []);
-
     // 手动搜集表单检验状态
     useEffect(() => {
         if (submitForm) {
