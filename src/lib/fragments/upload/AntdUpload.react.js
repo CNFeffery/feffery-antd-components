@@ -7,6 +7,7 @@ import { str2Locale, locale2text } from '../../components/locales.react';
 import { isString, isUndefined } from 'lodash';
 import useCss from '../../hooks/useCss';
 import PropsContext from '../../contexts/PropsContext';
+import FormContext from '../../contexts/FormContext';
 import { propTypes, defaultProps } from '../../components/dataEntry/upload/AntdUpload.react';
 
 
@@ -43,6 +44,7 @@ const AntdUpload = (props) => {
         className,
         style,
         key,
+        name,
         locale,
         apiUrl,
         apiUrlExtraParams,
@@ -75,8 +77,23 @@ const AntdUpload = (props) => {
     } = props;
 
     const context = useContext(PropsContext)
+    const formContext = useContext(FormContext)
     locale = (context && context.locale) || locale
     downloadUrlFromBackend = downloadUrl ? false : downloadUrlFromBackend
+
+    // 处理AntdForm表单值搜集功能
+    useEffect(() => {
+        // 当上下文有效，且存在有效字段名
+        if (formContext && formContext.setValues && (name || id)) {
+            // 融合当前最新listUploadTaskRecord值到上文_values中
+            formContext.setValues((prevValues) => ({
+                ...prevValues,
+                ...{
+                    [name || id]: listUploadTaskRecord || null
+                }
+            }))
+        }
+    }, [listUploadTaskRecord])
 
     listUploadTaskRecord = listUploadTaskRecord || []
 
