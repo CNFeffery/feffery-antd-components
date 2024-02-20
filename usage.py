@@ -70,9 +70,12 @@ app.layout = html.Div(
                         ]
                     ),
                     fac.AntdFormItem(
-                        fac.AntdDateRangePicker(
+                        fac.AntdInputNumber(
                             id='test-field4',
-                            name='测试字段4'
+                            name='测试字段4',
+                            style={
+                                'width': 200
+                            }
                         ),
                         label='测试字段4',
                     ),
