@@ -6,6 +6,7 @@ import useCss from '../../hooks/useCss';
 import { isString, isUndefined } from 'lodash';
 import { str2Locale, locale2text } from '../../components/locales.react';
 import PropsContext from '../../contexts/PropsContext';
+import FormContext from '../../contexts/FormContext';
 import { propTypes, defaultProps } from '../../components/dataEntry/upload/AntdDraggerUpload.react';
 
 const { Dragger } = Upload;
@@ -45,6 +46,7 @@ const AntdDraggerUpload = (props) => {
         draggerClassName,
         draggerStyle,
         key,
+        name,
         locale,
         apiUrl,
         apiUrlExtraParams,
@@ -77,8 +79,23 @@ const AntdDraggerUpload = (props) => {
     } = props;
 
     const context = useContext(PropsContext)
+    const formContext = useContext(FormContext)
     locale = (context && context.locale) || locale
     downloadUrlFromBackend = downloadUrl ? false : downloadUrlFromBackend
+
+    // 处理AntdForm表单值搜集功能
+    useEffect(() => {
+        // 当上下文有效，且存在有效字段名
+        if (formContext && formContext.setValues && (name || id)) {
+            // 融合当前最新listUploadTaskRecord值到上文_values中
+            formContext.setValues((prevValues) => ({
+                ...prevValues,
+                ...{
+                    [name || id]: listUploadTaskRecord || null
+                }
+            }))
+        }
+    }, [listUploadTaskRecord])
 
     // 更新已上传文件 -> 上传完成时间映射字典
     const uploadedFile2CompleteTime = parseHistoryTaskCompleteTime(listUploadTaskRecord || [])
