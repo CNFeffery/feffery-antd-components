@@ -70,9 +70,17 @@ app.layout = html.Div(
                         ]
                     ),
                     fac.AntdFormItem(
-                        fac.AntdTimeRangePicker(
+                        fac.AntdTransfer(
                             id='test-field4',
-                            name='测试字段4'
+                            name='测试字段4',
+                            dataSource=[
+                                {
+                                    'key': i,
+                                    'title': f'选项{i}'
+                                }
+                                for i in range(1, 10)
+                            ],
+                            targetKeys=[2, 3, 4]
                         ),
                         label='测试字段4',
                     ),

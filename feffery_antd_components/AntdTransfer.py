@@ -52,6 +52,9 @@ Keyword arguments:
 
 - moveKeys (list of number | strings; optional)
 
+- name (string; optional):
+    用于在基于AntdForm的表单值自动搜集功能中，充当当前表单项的字段名  缺省时会以id作为字段名.
+
 - oneWay (boolean; default False)
 
 - operations (list of strings; default ['', ''])
@@ -103,10 +106,10 @@ Keyword arguments:
     _namespace = 'feffery_antd_components'
     _type = 'AntdTransfer'
     @_explicitize_args
-    def __init__(self, id=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, key=Component.UNDEFINED, locale=Component.UNDEFINED, dataSource=Component.UNDEFINED, selectionsIcon=Component.UNDEFINED, height=Component.UNDEFINED, pagination=Component.UNDEFINED, oneWay=Component.UNDEFINED, operations=Component.UNDEFINED, showSearch=Component.UNDEFINED, optionFilterMode=Component.UNDEFINED, showSelectAll=Component.UNDEFINED, titles=Component.UNDEFINED, targetKeys=Component.UNDEFINED, moveDirection=Component.UNDEFINED, moveKeys=Component.UNDEFINED, disabled=Component.UNDEFINED, status=Component.UNDEFINED, readOnly=Component.UNDEFINED, batchPropsNames=Component.UNDEFINED, batchPropsValues=Component.UNDEFINED, loading_state=Component.UNDEFINED, persistence=Component.UNDEFINED, persisted_props=Component.UNDEFINED, persistence_type=Component.UNDEFINED, **kwargs):
-        self._prop_names = ['id', 'batchPropsNames', 'batchPropsValues', 'className', 'dataSource', 'disabled', 'height', 'key', 'loading_state', 'locale', 'moveDirection', 'moveKeys', 'oneWay', 'operations', 'optionFilterMode', 'pagination', 'persisted_props', 'persistence', 'persistence_type', 'readOnly', 'selectionsIcon', 'showSearch', 'showSelectAll', 'status', 'style', 'targetKeys', 'titles']
+    def __init__(self, id=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, key=Component.UNDEFINED, name=Component.UNDEFINED, locale=Component.UNDEFINED, dataSource=Component.UNDEFINED, selectionsIcon=Component.UNDEFINED, height=Component.UNDEFINED, pagination=Component.UNDEFINED, oneWay=Component.UNDEFINED, operations=Component.UNDEFINED, showSearch=Component.UNDEFINED, optionFilterMode=Component.UNDEFINED, showSelectAll=Component.UNDEFINED, titles=Component.UNDEFINED, targetKeys=Component.UNDEFINED, moveDirection=Component.UNDEFINED, moveKeys=Component.UNDEFINED, disabled=Component.UNDEFINED, status=Component.UNDEFINED, readOnly=Component.UNDEFINED, batchPropsNames=Component.UNDEFINED, batchPropsValues=Component.UNDEFINED, loading_state=Component.UNDEFINED, persistence=Component.UNDEFINED, persisted_props=Component.UNDEFINED, persistence_type=Component.UNDEFINED, **kwargs):
+        self._prop_names = ['id', 'batchPropsNames', 'batchPropsValues', 'className', 'dataSource', 'disabled', 'height', 'key', 'loading_state', 'locale', 'moveDirection', 'moveKeys', 'name', 'oneWay', 'operations', 'optionFilterMode', 'pagination', 'persisted_props', 'persistence', 'persistence_type', 'readOnly', 'selectionsIcon', 'showSearch', 'showSelectAll', 'status', 'style', 'targetKeys', 'titles']
         self._valid_wildcard_attributes =            []
-        self.available_properties = ['id', 'batchPropsNames', 'batchPropsValues', 'className', 'dataSource', 'disabled', 'height', 'key', 'loading_state', 'locale', 'moveDirection', 'moveKeys', 'oneWay', 'operations', 'optionFilterMode', 'pagination', 'persisted_props', 'persistence', 'persistence_type', 'readOnly', 'selectionsIcon', 'showSearch', 'showSelectAll', 'status', 'style', 'targetKeys', 'titles']
+        self.available_properties = ['id', 'batchPropsNames', 'batchPropsValues', 'className', 'dataSource', 'disabled', 'height', 'key', 'loading_state', 'locale', 'moveDirection', 'moveKeys', 'name', 'oneWay', 'operations', 'optionFilterMode', 'pagination', 'persisted_props', 'persistence', 'persistence_type', 'readOnly', 'selectionsIcon', 'showSearch', 'showSelectAll', 'status', 'style', 'targetKeys', 'titles']
         self.available_wildcard_properties =            []
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()
