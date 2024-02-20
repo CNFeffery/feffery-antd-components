@@ -70,33 +70,9 @@ app.layout = html.Div(
                         ]
                     ),
                     fac.AntdFormItem(
-                        fac.AntdTreeSelect(
+                        fac.AntdPictureUpload(
                             id='test-field4',
-                            name='测试字段4',
-                            treeData=[
-                                {
-                                    'key': '节点1',
-                                    'value': '1',
-                                    'title': '节点1',
-                                    'children': [
-                                        {
-                                            'key': f'节点1-{i}',
-                                            'value': f'1-{i}',
-                                            'title': f'节点1-{i}'
-                                        }
-                                        for i in range(1, 5)
-                                    ]
-                                },
-                                {
-                                    'key': '节点2',
-                                    'value': '2',
-                                    'title': '节点2'
-                                }
-                            ],
-                            placeholder='请选择',
-                            style={
-                                'width': 256
-                            }
+                            name='测试字段4'
                         ),
                         label='测试字段4',
                     ),
