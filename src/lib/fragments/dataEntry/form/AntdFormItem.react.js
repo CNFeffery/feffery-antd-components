@@ -108,7 +108,7 @@ const AntdFormItem = (props) => {
                 labelAlign={labelAlign}
                 tooltip={tooltip}
                 extra={extra}
-                help={help}
+                help={help || formContext?.helps[label]}
                 hasFeedback={hasFeedback}
                 hidden={hidden}
                 required={required || (rules && rules.length > 0 && rules.some(item => item.required)) ? true : false}

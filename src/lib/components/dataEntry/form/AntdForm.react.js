@@ -106,6 +106,12 @@ AntdForm.propTypes = {
         ])
     ),
 
+    /**
+     * 统一设置内部各AntdFormItem的help值，键为对应AntdFormItem的label值
+     * 优先级低于各AntdFormItem的help值
+     */
+    helps: PropTypes.objectOf(PropTypes.node),
+
     loading_state: PropTypes.shape({
         /**
          * Determines if the component is loading or not

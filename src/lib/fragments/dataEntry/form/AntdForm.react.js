@@ -24,6 +24,7 @@ const AntdForm = (props) => {
         submitForm,
         submitFormClicks,
         validateStatuses,
+        helps,
         setProps,
         loading_state
     } = props;
@@ -71,7 +72,8 @@ const AntdForm = (props) => {
                     _formValidateStatus: _formValidateStatus,
                     setFormValidateStatus: setFormValidateStatus,
                     form: form,
-                    validateStatuses: validateStatuses
+                    validateStatuses: validateStatuses,
+                    helps: helps
                 }
             }
         >

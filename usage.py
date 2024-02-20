@@ -62,6 +62,7 @@ app.layout = html.Div(
                         label='测试字段3',
                         hasFeedback=True,
                         validateStatus='error',
+                        help='错误',
                         rules=[
                             {
                                 'required': True,
@@ -94,6 +95,11 @@ app.layout = html.Div(
                     '测试字段1': 'warning',
                     '测试字段2': 'error',
                     '测试字段3': 'validating'
+                },
+                helps={
+                    '测试字段1': fac.AntdText('警告', strong=True, type='warning'),
+                    '测试字段2': '错误',
+                    '测试字段3': '校验中'
                 }
             )
         ],
