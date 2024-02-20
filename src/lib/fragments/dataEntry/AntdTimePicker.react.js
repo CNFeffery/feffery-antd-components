@@ -5,6 +5,7 @@ import { isString, isUndefined } from 'lodash';
 import { str2Locale } from '../../components/locales.react';
 import useCss from '../../hooks/useCss';
 import PropsContext from '../../contexts/PropsContext';
+import FormContext from '../../contexts/FormContext';
 import { propTypes, defaultProps } from '../../components/dataEntry/AntdTimePicker.react';
 
 
@@ -17,6 +18,7 @@ const AntdTimePicker = (props) => {
         style,
         popupClassName,
         key,
+        name,
         locale,
         setProps,
         disabled,
@@ -60,7 +62,22 @@ const AntdTimePicker = (props) => {
     })
 
     const context = useContext(PropsContext)
+    const formContext = useContext(FormContext)
     locale = (context && context.locale) || locale
+
+    // 处理AntdForm表单值搜集功能
+    useEffect(() => {
+        // 当上下文有效，且存在有效字段名
+        if (formContext && formContext.setValues && (name || id)) {
+            // 融合当前最新value值到上文_values中
+            formContext.setValues((prevValues) => ({
+                ...prevValues,
+                ...{
+                    [name || id]: value || null
+                }
+            }))
+        }
+    }, [value])
 
     useEffect(() => {
         // 初始化value

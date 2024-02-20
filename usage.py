@@ -70,7 +70,7 @@ app.layout = html.Div(
                         ]
                     ),
                     fac.AntdFormItem(
-                        fac.AntdSwitch(
+                        fac.AntdTimePicker(
                             id='test-field4',
                             name='测试字段4'
                         ),
