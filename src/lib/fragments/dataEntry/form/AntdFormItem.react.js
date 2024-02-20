@@ -108,12 +108,12 @@ const AntdFormItem = (props) => {
                 labelAlign={labelAlign}
                 tooltip={tooltip}
                 extra={extra}
-                help={help || formContext?.helps[label]}
+                help={help || (formContext?.helps && formContext.helps[label])}
                 hasFeedback={hasFeedback}
                 hidden={hidden}
                 required={required || (rules && rules.length > 0 && rules.some(item => item.required)) ? true : false}
                 rules={rules}
-                validateStatus={validateStatus || formContext?.validateStatuses[label]}
+                validateStatus={validateStatus || (formContext.validateStatuses && formContext.validateStatuses[label])}
                 name={Object.keys(itemValues)[0]}
                 data-dash-is-loading={
                     (loading_state && loading_state.is_loading) || undefined
