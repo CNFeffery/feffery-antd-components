@@ -5,6 +5,7 @@ import { isUndefined, isString, cloneDeep } from 'lodash';
 import { flatToTree } from '../../components/utils';
 import useCss from '../../hooks/useCss';
 import PropsContext from '../../contexts/PropsContext';
+import FormContext from '../../contexts/FormContext';
 import { propTypes, defaultProps } from '../../components/dataEntry/AntdTreeSelect.react';
 
 const { SHOW_ALL, SHOW_CHILD, SHOW_PARENT } = TreeSelect;
@@ -51,6 +52,7 @@ const AntdTreeSelect = (props) => {
         className,
         popupClassName,
         key,
+        name,
         locale,
         treeData,
         treeNodeKeyToTitle,
@@ -105,7 +107,22 @@ const AntdTreeSelect = (props) => {
     })
 
     const context = useContext(PropsContext)
+    const formContext = useContext(FormContext)
     locale = (context && context.locale) || locale
+
+    // 处理AntdForm表单值搜集功能
+    useEffect(() => {
+        // 当上下文有效，且存在有效字段名
+        if (formContext && formContext.setValues && (name || id)) {
+            // 融合当前最新value值到上文_values中
+            formContext.setValues((prevValues) => ({
+                ...prevValues,
+                ...{
+                    [name || id]: value || null
+                }
+            }))
+        }
+    }, [value])
 
     useEffect(() => {
         if (!value && defaultValue) {
