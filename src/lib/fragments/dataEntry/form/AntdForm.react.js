@@ -21,21 +21,16 @@ const AntdForm = (props) => {
         labelAlign,
         labelWrap,
         layout,
+        submitForm,
+        submitFormClicks,
         setProps,
         loading_state
     } = props;
 
     const [form] = Form.useForm();
 
-    const onFinish = (values) => {
-        console.log('Success:', values);
-    };
-    const onFinishFailed = (errorInfo) => {
-        console.log('Failed:', errorInfo);
-    };
-
     const [_values, setValues] = useState({});
-    const [formValidateStatus, setFormValidateStatus] = useState({});
+    const [_formValidateStatus, setFormValidateStatus] = useState({});
 
     // 更新搜集到的最新values值
     useEffect(() => {
@@ -44,13 +39,31 @@ const AntdForm = (props) => {
         })
     }, [_values])
 
-    // 更新搜集到的最新formValidateStatus值
+    // 更新搜集到的最新_formValidateStatus值
     useEffect(() => {
-        let formValidateStatusArray = Object.values(formValidateStatus);
+        let formValidateStatusArray = Object.values(_formValidateStatus);
         setProps({
             formValidateStatus: formValidateStatusArray.length > 0 ? formValidateStatusArray.every(item => item === true) : null
         })
-    }, [formValidateStatus])
+    }, [_formValidateStatus])
+
+    useEffect(() => {
+        form.setFieldsValue(_values);
+    }, []);
+
+    // 手动搜集表单检验状态
+    useEffect(() => {
+        if (submitForm) {
+            form.setFieldsValue(_values);
+            setProps({ submitFormClicks: submitFormClicks + 1 });
+            form.validateFields().then((values) => {
+                setProps({ formValidateStatus: true });
+            }).catch((errorInfo) => {
+                setProps({ formValidateStatus: false });
+            });
+            setProps({ submitForm: false });
+        }
+    }, [submitForm]);
 
     return (
         <FormContext.Provider
@@ -58,7 +71,7 @@ const AntdForm = (props) => {
                 {
                     setValues: setValues,
                     _values: _values,
-                    formValidateStatus: formValidateStatus,
+                    _formValidateStatus: _formValidateStatus,
                     setFormValidateStatus: setFormValidateStatus,
                     form: form
                 }
@@ -79,8 +92,6 @@ const AntdForm = (props) => {
                 labelAlign={labelAlign}
                 labelWrap={labelWrap}
                 layout={layout}
-                onFinish={onFinish}
-                onFinishFailed={onFinishFailed}
                 data-dash-is-loading={
                     (loading_state && loading_state.is_loading) || undefined
                 }>

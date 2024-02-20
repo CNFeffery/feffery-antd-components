@@ -86,6 +86,16 @@ AntdForm.propTypes = {
      */
     formValidateStatus: PropTypes.bool,
 
+    /**
+     * 控制参数，用于提交表单时手动搜集表单的校验结果，回调设置为true后会自动变为false
+     */
+    submitForm: PropTypes.bool,
+
+    /**
+     * 辅助监听表单提交参数
+     */
+    submitFormClicks: PropTypes.number,
+
     loading_state: PropTypes.shape({
         /**
          * Determines if the component is loading or not
@@ -113,7 +123,9 @@ AntdForm.defaultProps = {
     layout: 'horizontal',
     colon: true,
     labelAlign: 'right',
-    labelWrap: false
+    labelWrap: false,
+    submitForm: false,
+    submitFormClicks: 0
 }
 
 export default AntdForm;

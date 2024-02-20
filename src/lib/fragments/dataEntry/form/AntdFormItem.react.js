@@ -56,7 +56,7 @@ const AntdFormItem = (props) => {
                     let itemName = Object.keys(itemValues)[0];
                     let itemValidateStatus = {};
                     itemValidateStatus[itemName] = true
-                    // 融合当前校验状态到上文formValidateStatus中
+                    // 融合当前校验状态到上文_formValidateStatus中
                     formContext.setFormValidateStatus((prevValues) => ({
                         ...prevValues,
                         ...itemValidateStatus
@@ -68,7 +68,7 @@ const AntdFormItem = (props) => {
                     let itemName = Object.keys(itemValues)[0];
                     let itemValidateStatus = {};
                     itemValidateStatus[itemName] = false
-                    // 融合当前校验状态到上文formValidateStatus中
+                    // 融合当前校验状态到上文_formValidateStatus中
                     formContext.setFormValidateStatus((prevValues) => ({
                         ...prevValues,
                         ...itemValidateStatus

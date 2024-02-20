@@ -2,7 +2,7 @@ import dash
 import json
 from dash import html
 import feffery_antd_components as fac
-from dash.dependencies import Input, Output
+from dash.dependencies import Input, Output, State
 
 app = dash.Dash(__name__)
 
@@ -72,8 +72,9 @@ app.layout = html.Div(
                     fac.AntdFormItem(
                         fac.AntdButton(
                             '提交',
+                            id='submit-button',
                             type='primary',
-                            htmlType='submit'
+                            # htmlType='submit'
                         )
                     ),
                     fac.AntdFormItem(
@@ -102,16 +103,31 @@ app.layout = html.Div(
 
 
 @app.callback(
-    Output('demo-output', 'children'),
-    Input('demo-form', 'values'),
+    Output('demo-form', 'submitForm'),
+    Input('submit-button', 'nClicks'),
     prevent_initial_call=True
 )
-def demo(values):
-    return json.dumps(
-        values,
-        ensure_ascii=False,
-        indent=4
-    )
+def submit_form(nClicks):
+    if nClicks:
+        return True
+    return dash.no_update
+
+
+@app.callback(
+    Output('demo-output', 'children'),
+    Input('demo-form', 'submitFormClicks'),
+    [State('demo-form', 'values'),
+     State('demo-form', 'formValidateStatus')],
+    prevent_initial_call=True
+)
+def demo(submitFormClicks, values, formValidateStatus):
+    if formValidateStatus:
+        return json.dumps(
+            values,
+            ensure_ascii=False,
+            indent=4
+        )
+    return '校验失败'
     
 
 @app.callback(
