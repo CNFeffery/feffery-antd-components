@@ -113,7 +113,7 @@ const AntdFormItem = (props) => {
                 hidden={hidden}
                 required={required || (rules && rules.length > 0 && rules.some(item => item.required)) ? true : false}
                 rules={rules}
-                validateStatus={validateStatus || (formContext.validateStatuses && formContext.validateStatuses[label])}
+                validateStatus={validateStatus || (formContext?.validateStatuses && formContext.validateStatuses[label])}
                 name={Object.keys(itemValues)[0]}
                 data-dash-is-loading={
                     (loading_state && loading_state.is_loading) || undefined
