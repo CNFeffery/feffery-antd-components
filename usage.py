@@ -18,10 +18,22 @@ app.layout = html.Div(
             fac.AntdForm(
                 [
                     fac.AntdFormItem(
-                        fac.AntdInput(
+                        fac.AntdSelect(
                             id='test-field1',
                             name='测试字段1',
-                            value='13333333333'
+                            options=[
+                                {
+                                    'label': '选项1',
+                                    'value': '选项1'
+                                },
+                                {
+                                    'label': '13333333333',
+                                    'value': '13333333333'
+                                }
+                            ],
+                            style={
+                                'width': 200
+                            }
                         ),
                         label='测试字段1',
                         rules=[
@@ -34,10 +46,22 @@ app.layout = html.Div(
                         ]
                     ),
                     fac.AntdFormItem(
-                        fac.AntdInput(
+                        fac.AntdSelect(
                             id='test-field2',
                             name='测试字段2',
-                            value='初始值'
+                            options=[
+                                {
+                                    'label': '选项1',
+                                    'value': '选项1'
+                                },
+                                {
+                                    'label': '选项2选项2',
+                                    'value': '选项2选项2'
+                                }
+                            ],
+                            style={
+                                'width': 200
+                            }
                         ),
                         label='测试字段2',
                         rules=[
@@ -54,10 +78,22 @@ app.layout = html.Div(
                         ]
                     ),
                     fac.AntdFormItem(
-                        fac.AntdInput(
+                        fac.AntdSelect(
                             id='test-field3',
                             name='测试字段3',
-                            value='初始值123'
+                            options=[
+                                {
+                                    'label': '选项1',
+                                    'value': '选项1'
+                                },
+                                {
+                                    'label': '选项2选项2',
+                                    'value': '选项2选项2'
+                                }
+                            ],
+                            style={
+                                'width': 200
+                            }
                         ),
                         label='测试字段3',
                         rules=[
