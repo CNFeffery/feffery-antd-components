@@ -18,17 +18,24 @@ app.layout = html.Div(
             fac.AntdForm(
                 [
                     fac.AntdFormItem(
-                        fac.AntdCheckCard(
-                            '数值1',
-                            id='test-field1',
-                            name='测试字段1',
-                            checked=False
+                        fac.AntdCheckCardGroup(
+                            [
+                                fac.AntdCheckCard(
+                                    f'选项{i}',
+                                    value=i
+                                )
+                                for i in range(1, 6)
+                            ],
+                            id='test-field3',
+                            defaultValue=[3],
+                            name='测试字段3',
+                            multiple=True
                         ),
                         label='测试字段1',
                         rules=[
                             {
                                 'required': True,
-                                'type': 'boolean',
+                                'type': 'array',
                                 'message': '必选字段',
                                 'validateTrigger': 'onChange',
                             }
@@ -75,13 +82,13 @@ def manual_submit_form(nClicks):
     prevent_initial_call=True
 )
 def show_form_values(submitFormClicks, values, formValidateStatus):
-    if formValidateStatus:
+    # if formValidateStatus:
         return json.dumps(
             values,
             ensure_ascii=False,
             indent=4
         )
-    return '校验失败'
+    # return '校验失败'
 
 
 @app.callback(
