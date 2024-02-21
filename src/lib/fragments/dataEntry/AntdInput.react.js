@@ -90,7 +90,7 @@ const AntdInput = (props) => {
         }
     }, [value])
 
-    // 初始渲染时进行赋值
+    // 如果当前组件被表单项包裹，初始渲染时对表单项进行赋值
     useEffect(() => {
         // 当上下文有效，且存在有效字段名
         if (formItemContext && formItemContext.setItemValues && (name || id)) {

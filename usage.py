@@ -70,20 +70,13 @@ app.layout = html.Div(
                         ]
                     ),
                     fac.AntdFormItem(
-                        fac.AntdUpload(
-                            id='test-field4',
-                            name='测试字段4'
-                        ),
-                        label='测试字段4',
-                    ),
-                    fac.AntdFormItem(
                         fac.AntdButton(
                             '提交',
                             id='submit-button',
                             type='primary'
                         )
                     )
-                ][::-1],
+                ],
                 id='demo-form'
             )
         ],
