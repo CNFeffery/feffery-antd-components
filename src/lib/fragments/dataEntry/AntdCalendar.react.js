@@ -6,6 +6,7 @@ import { isString } from 'lodash';
 import useCss from '../../hooks/useCss';
 import PropsContext from '../../contexts/PropsContext';
 import FormContext from '../../contexts/FormContext';
+import FormItemContext from '../../contexts/FormItemContext';
 import { propTypes, defaultProps } from '../../components/dataEntry/AntdCalendar.react';
 
 // 定义日历组件AntdCalendar，api参数参考https://ant.design/components/calendar-cn/
@@ -31,6 +32,7 @@ const AntdCalendar = (props) => {
 
     const context = useContext(PropsContext)
     const formContext = useContext(FormContext)
+    const formItemContext = useContext(FormItemContext)
     locale = (context && context.locale) || locale
 
     // 处理AntdForm表单值搜集功能
@@ -55,7 +57,31 @@ const AntdCalendar = (props) => {
         }
     }, [])
 
+    // 如果当前组件被表单项包裹，初始渲染时对表单项进行赋值
+    useEffect(() => {
+        // 当上下文有效，且存在有效字段名
+        if (formItemContext && formItemContext.setItemValues && (name || id)) {
+            // 融合当前最新value值到上文itemValues中
+            formItemContext.setItemValues((prevValues) => ({
+                ...prevValues,
+                ...{
+                    [name || id]: value || null
+                }
+            }))
+        }
+    }, [])
+
     const onSelect = e => {
+        // 当上下文有效，且存在有效字段名
+        if (formItemContext && formItemContext.setItemValues && (name || id)) {
+            // 融合当前最新value值到上文itemValues中
+            formItemContext.setItemValues((prevValues) => ({
+                ...prevValues,
+                ...{
+                    [name || id]: e.format(format) || null
+                }
+            }))
+        }
         setProps({
             value: e.format(format)
         })

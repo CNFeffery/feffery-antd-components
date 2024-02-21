@@ -37,7 +37,7 @@ AntdFormItem.propTypes = {
     required: PropTypes.bool,
 
     // 校验规则，设置字段的校验逻辑
-    rules: PropTypes.arrayOf(PropTypes.exact({
+    rules: PropTypes.arrayOf(PropTypes.shape({
         // 仅在 type 为 array 类型时有效，用于指定数组元素的校验规则
         defaultField: PropTypes.object,
 
@@ -87,10 +87,11 @@ AntdFormItem.propTypes = {
             'any'
         ]),
 
-        // 设置触发验证时机，必须是 Form.Item 的 validateTrigger 的子集
-        validateTrigger: PropTypes.oneOfType([
-            PropTypes.string,
-            PropTypes.array
+        // 设置触发验证时机，可选值有onChange、onBlur、onFocus，默认为onChange
+        validateTrigger: PropTypes.oneOf([
+            'onChange',
+            'onBlur',
+            'onFocus'
         ]),
 
         // 仅警告，不阻塞表单提交

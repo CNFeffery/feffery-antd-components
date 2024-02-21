@@ -5,6 +5,7 @@ import useCss from '../../hooks/useCss';
 import { isString, isUndefined } from 'lodash';
 import PropsContext from '../../contexts/PropsContext';
 import FormContext from '../../contexts/FormContext';
+import FormItemContext from '../../contexts/FormItemContext';
 import { propTypes, defaultProps } from '../../components/dataEntry/AntdColorPicker.react';
 
 // 定义颜色选择器组件AntdColorPicker，api参数参考https://ant.design/components/color-picker-cn
@@ -34,6 +35,7 @@ const AntdColorPicker = (props) => {
 
     const context = useContext(PropsContext)
     const formContext = useContext(FormContext)
+    const formItemContext = useContext(FormItemContext)
 
     // 处理AntdForm表单值搜集功能
     useEffect(() => {
@@ -48,6 +50,20 @@ const AntdColorPicker = (props) => {
             }))
         }
     }, [value])
+
+    // 如果当前组件被表单项包裹，初始渲染时对表单项进行赋值
+    useEffect(() => {
+        // 当上下文有效，且存在有效字段名
+        if (formItemContext && formItemContext.setItemValues && (name || id)) {
+            // 融合当前最新value值到上文itemValues中
+            formItemContext.setItemValues((prevValues) => ({
+                ...prevValues,
+                ...{
+                    [name || id]: value || null
+                }
+            }))
+        }
+    }, [])
 
     // 每次format发生变更时，同步更新value值
     useEffect(() => {
@@ -94,17 +110,37 @@ const AntdColorPicker = (props) => {
             trigger={trigger}
             onFormatChange={(e) => setProps({ format: e })}
             onOpenChange={(e) => setProps({ open: e })}
-            onChangeComplete={(e) => setProps({
-                value: (
-                    format === 'hex' ?
-                        e.toHexString() :
-                        (
-                            format === 'rgb' ?
-                                e.toRgbString() :
-                                e.toHsbString()
-                        )
-                )
-            })}
+            onChangeComplete={(e) => {
+                // 当上下文有效，且存在有效字段名
+                if (formItemContext && formItemContext.setItemValues && (name || id)) {
+                    // 融合当前最新value值到上文itemValues中
+                    formItemContext.setItemValues((prevValues) => ({
+                        ...prevValues,
+                        ...{
+                            [name || id]: (
+                                format === 'hex' ?
+                                    e.toHexString() :
+                                    (
+                                        format === 'rgb' ?
+                                            e.toRgbString() :
+                                            e.toHsbString()
+                                    )
+                            ) || null
+                        }
+                    }))
+                }
+                setProps({
+                    value: (
+                        format === 'hex' ?
+                            e.toHexString() :
+                            (
+                                format === 'rgb' ?
+                                    e.toRgbString() :
+                                    e.toHsbString()
+                            )
+                    )
+                })
+            }}
             onClear={() => setProps({ value: null })}
             data-dash-is-loading={
                 (loading_state && loading_state.is_loading) || undefined

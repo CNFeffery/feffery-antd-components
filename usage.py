@@ -18,63 +18,19 @@ app.layout = html.Div(
             fac.AntdForm(
                 [
                     fac.AntdFormItem(
-                        fac.AntdInput(
+                        fac.AntdDateRangePicker(
                             id='test-field1',
-                            name='测试字段1',
-                            value='13333333333'
+                            name='测试字段1'
                         ),
                         label='测试字段1',
                         rules=[
                             {
                                 'required': True,
-                                'message': '不满足手机号码校验',
-                                'validateTrigger': 'onBlur',
-                                'pattern': '^(?:(?:\+|00)86)?1[3-9]\d{9}$'
-                            },
-                        ]
-                    ),
-                    fac.AntdFormItem(
-                        fac.AntdInput(
-                            id='test-field2',
-                            name='测试字段2',
-                            value='初始值'
-                        ),
-                        label='测试字段2',
-                        rules=[
-                            {
-                                'required': True,
-                                'message': '不能为空',
+                                'type': 'array',
+                                'message': '必选字段',
                                 'validateTrigger': 'onChange',
-                            },
-                            {
-                                'message': '长度不能大于5',
-                                'validateTrigger': 'onChange',
-                                'max': 5
                             }
                         ]
-                    ),
-                    fac.AntdFormItem(
-                        fac.AntdInput(
-                            id='test-field3',
-                            name='测试字段3',
-                            value='初始值123'
-                        ),
-                        label='测试字段3',
-                        rules=[
-                            {
-                                'required': True,
-                                'message': '长度不能小于5',
-                                'validateTrigger': 'onFocus',
-                                'min': 5
-                            }
-                        ]
-                    ),
-                    fac.AntdFormItem(
-                        fac.AntdUpload(
-                            id='test-field4',
-                            name='测试字段4'
-                        ),
-                        label='测试字段4',
                     ),
                     fac.AntdFormItem(
                         fac.AntdButton(
@@ -83,7 +39,7 @@ app.layout = html.Div(
                             type='primary'
                         )
                     )
-                ][::-1],
+                ],
                 id='demo-form'
             )
         ],

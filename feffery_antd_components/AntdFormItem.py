@@ -83,7 +83,7 @@ Keyword arguments:
 
     - type (a value equal to: 'string', 'number', 'boolean', 'method', 'regexp', 'integer', 'float', 'array', 'object', 'enum', 'date', 'url', 'hex', 'email', 'any'; optional)
 
-    - validateTrigger (string | list; optional)
+    - validateTrigger (a value equal to: 'onChange', 'onBlur', 'onFocus'; optional)
 
     - warningOnly (boolean; optional)
 
