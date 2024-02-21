@@ -18,15 +18,16 @@ app.layout = html.Div(
             fac.AntdForm(
                 [
                     fac.AntdFormItem(
-                        fac.AntdCheckbox(
+                        fac.AntdCheckboxGroup(
                             id='test-field1',
                             name='测试字段1',
+                            options=[f'选项{i}' for i in range(1, 6)]
                         ),
                         label='测试字段1',
                         rules=[
                             {
                                 'required': True,
-                                'type': 'boolean',
+                                'type': 'array', 
                                 'message': '必选字段',
                                 'validateTrigger': 'onBlur',
                             }
