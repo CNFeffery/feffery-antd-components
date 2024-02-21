@@ -87,10 +87,11 @@ AntdFormItem.propTypes = {
             'any'
         ]),
 
-        // 设置触发验证时机，必须是 Form.Item 的 validateTrigger 的子集
-        validateTrigger: PropTypes.oneOfType([
-            PropTypes.string,
-            PropTypes.array
+        // 设置触发验证时机，可选值有onChange、onBlur、onFocus，默认为onChange
+        validateTrigger: PropTypes.oneOf([
+            'onChange',
+            'onBlur',
+            'onFocus'
         ]),
 
         // 仅警告，不阻塞表单提交
