@@ -37,7 +37,7 @@ AntdFormItem.propTypes = {
     required: PropTypes.bool,
 
     // 校验规则，设置字段的校验逻辑
-    rules: PropTypes.arrayOf(PropTypes.exact({
+    rules: PropTypes.arrayOf(PropTypes.shape({
         // 仅在 type 为 array 类型时有效，用于指定数组元素的校验规则
         defaultField: PropTypes.object,
 
