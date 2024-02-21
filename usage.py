@@ -18,18 +18,56 @@ app.layout = html.Div(
             fac.AntdForm(
                 [
                     fac.AntdFormItem(
-                        fac.AntdCalendar(
+                        fac.AntdCascader(
                             id='test-field1',
                             name='测试字段1',
-                            # defaultValue='2023-01-01',
-                            style={
-                                'width': '300px'
-                            }
+                            placeholder='请选择',
+                            options=[
+                                {
+                                    'value': '节点1',
+                                    'label': '节点1',
+                                    'children': [
+                                        {
+                                            'value': '节点1-1',
+                                            'label': '节点1-1'
+                                        },
+                                        {
+                                            'value': '节点1-2',
+                                            'label': '节点1-2',
+                                            'children': [
+                                                {
+                                                    'value': '节点1-2-1',
+                                                    'label': '节点1-2-1'
+                                                },
+                                                {
+                                                    'value': '节点1-2-2',
+                                                    'label': '节点1-2-2'
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                },
+                                {
+                                    'value': '节点2',
+                                    'label': '节点2',
+                                    'children': [
+                                        {
+                                            'value': '节点2-1',
+                                            'label': '节点2-1'
+                                        },
+                                        {
+                                            'value': '节点2-2',
+                                            'label': '节点2-2'
+                                        }
+                                    ]
+                                }
+                            ]
                         ),
                         label='测试字段1',
                         rules=[
                             {
                                 'required': True,
+                                'type': 'array',
                                 'message': '必选字段',
                                 'validateTrigger': 'onChange',
                             }
