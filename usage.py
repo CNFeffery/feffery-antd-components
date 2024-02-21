@@ -18,90 +18,19 @@ app.layout = html.Div(
             fac.AntdForm(
                 [
                     fac.AntdFormItem(
-                        fac.AntdSelect(
+                        fac.AntdCheckCard(
+                            '数值1',
                             id='test-field1',
                             name='测试字段1',
-                            options=[
-                                {
-                                    'label': '选项1',
-                                    'value': '选项1'
-                                },
-                                {
-                                    'label': '13333333333',
-                                    'value': '13333333333'
-                                }
-                            ],
-                            style={
-                                'width': 200
-                            }
+                            checked=False
                         ),
                         label='测试字段1',
                         rules=[
                             {
                                 'required': True,
-                                'message': '不满足手机号码校验',
-                                'validateTrigger': 'onBlur',
-                                'pattern': '^(?:(?:\+|00)86)?1[3-9]\d{9}$'
-                            },
-                        ]
-                    ),
-                    fac.AntdFormItem(
-                        fac.AntdSelect(
-                            id='test-field2',
-                            name='测试字段2',
-                            options=[
-                                {
-                                    'label': '选项1',
-                                    'value': '选项1'
-                                },
-                                {
-                                    'label': '选项2选项2',
-                                    'value': '选项2选项2'
-                                }
-                            ],
-                            style={
-                                'width': 200
-                            }
-                        ),
-                        label='测试字段2',
-                        rules=[
-                            {
-                                'required': True,
-                                'message': '不能为空',
+                                'type': 'boolean',
+                                'message': '必选字段',
                                 'validateTrigger': 'onChange',
-                            },
-                            {
-                                'message': '长度不能大于5',
-                                'validateTrigger': 'onChange',
-                                'max': 5
-                            }
-                        ]
-                    ),
-                    fac.AntdFormItem(
-                        fac.AntdSelect(
-                            id='test-field3',
-                            name='测试字段3',
-                            options=[
-                                {
-                                    'label': '选项1',
-                                    'value': '选项1'
-                                },
-                                {
-                                    'label': '选项2选项2',
-                                    'value': '选项2选项2'
-                                }
-                            ],
-                            style={
-                                'width': 200
-                            }
-                        ),
-                        label='测试字段3',
-                        rules=[
-                            {
-                                'required': True,
-                                'message': '长度不能小于5',
-                                'validateTrigger': 'onFocus',
-                                'min': 5
                             }
                         ]
                     ),
