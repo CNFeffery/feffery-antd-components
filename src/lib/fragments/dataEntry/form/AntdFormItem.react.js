@@ -36,6 +36,13 @@ const AntdFormItem = (props) => {
 
     if (rules) {
         rules.forEach(item => {
+            // 处理表单项值为false时使用validateFields但校验规则不触发的问题
+            item.transform = (inputValue) => {
+                if (inputValue === false) {
+                    return null;
+                }
+                return inputValue;
+            };
             item.pattern = item.pattern ? new RegExp(item.pattern) : item.pattern;
         });
     }

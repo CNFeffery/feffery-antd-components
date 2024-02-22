@@ -4,6 +4,7 @@ import { isUndefined, isString } from 'lodash';
 import useCss from '../../../hooks/useCss';
 import PropsContext from '../../../contexts/PropsContext';
 import FormContext from '../../../contexts/FormContext';
+import FormItemContext from '../../../contexts/FormItemContext';
 import { propTypes, defaultProps } from '../../../components/dataEntry/check-card/AntdCheckCard.react';
 
 // 定义选择卡片组件AntdCheckCard，api参数参考https://procomponents.ant.design/components/check-card
@@ -32,6 +33,7 @@ const AntdCheckCard = (props) => {
 
     const context = useContext(PropsContext)
     const formContext = useContext(FormContext)
+    const formItemContext = useContext(FormItemContext)
 
     // 处理AntdForm表单值搜集功能
     useEffect(() => {
@@ -46,6 +48,20 @@ const AntdCheckCard = (props) => {
             }))
         }
     }, [checked])
+
+    // 如果当前组件被表单项包裹，初始渲染时对表单项进行赋值
+    useEffect(() => {
+        // 当上下文有效，且存在有效字段名
+        if (formItemContext && formItemContext.setItemValues && (name || id)) {
+            // 融合当前最新checked值到上文itemValues中
+            formItemContext.setItemValues((prevValues) => ({
+                ...prevValues,
+                ...{
+                    [name || id]: checked || null
+                }
+            }))
+        }
+    }, [])
 
     useEffect(() => {
         if (!isUndefined(defaultChecked) && isUndefined(checked)) {
@@ -74,6 +90,16 @@ const AntdCheckCard = (props) => {
             }
             size={size}
             onChange={e => {
+                // 当上下文有效，且存在有效字段名
+                if (formItemContext && formItemContext.setItemValues && (name || id)) {
+                    // 融合当前最新checked值到上文itemValues中
+                    formItemContext.setItemValues((prevValues) => ({
+                        ...prevValues,
+                        ...{
+                            [name || id]: e || null
+                        }
+                    }))
+                }
                 if (!readOnly) {
                     setProps({ checked: e })
                 }
