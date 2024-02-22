@@ -4,6 +4,7 @@ import { isString, isUndefined } from 'lodash';
 import useCss from '../../hooks/useCss';
 import PropsContext from '../../contexts/PropsContext';
 import FormContext from '../../contexts/FormContext';
+import FormItemContext from '../../contexts/FormItemContext';
 import { propTypes, defaultProps } from '../../components/dataEntry/AntdSlider.react';
 
 
@@ -56,6 +57,7 @@ const AntdSlider = (props) => {
 
     const context = useContext(PropsContext)
     const formContext = useContext(FormContext)
+    const formItemContext = useContext(FormItemContext)
 
     // 处理AntdForm表单值搜集功能
     useEffect(() => {
@@ -70,6 +72,20 @@ const AntdSlider = (props) => {
             }))
         }
     }, [value])
+
+    // 如果当前组件被表单项包裹，初始渲染时对表单项进行赋值
+    useEffect(() => {
+        // 当上下文有效，且存在有效字段名
+        if (formItemContext && formItemContext.setItemValues && (name || id)) {
+            // 融合当前最新value值到上文itemValues中
+            formItemContext.setItemValues((prevValues) => ({
+                ...prevValues,
+                ...{
+                    [name || id]: value || null
+                }
+            }))
+        }
+    }, [])
 
     useEffect(() => {
         // 初始化value
@@ -97,9 +113,47 @@ const AntdSlider = (props) => {
         return tooltipPrefix + `${e}` + tooltipSuffix
     }
 
+    // 监听blur事件
+    const onBlur = e => {
+        // 当上下文有效，且存在有效字段名
+        if (formItemContext && formItemContext.setItemValues && formItemContext.validateTrigger.includes('onBlur') && (name || id)) {
+            // 融合当前最新value值到上文itemValues中
+            formItemContext.setItemValues((prevValues) => ({
+                ...prevValues,
+                ...{
+                    [name || id]: value || null
+                }
+            }))
+        }
+    }
+
+    // 监听focus事件
+    const onFocus = e => {
+        // 当上下文有效，且存在有效字段名
+        if (formItemContext && formItemContext.setItemValues && formItemContext.validateTrigger.includes('onFocus') && (name || id)) {
+            // 融合当前最新value值到上文itemValues中
+            formItemContext.setItemValues((prevValues) => ({
+                ...prevValues,
+                ...{
+                    [name || id]: value || null
+                }
+            }))
+        }
+    }
+
     // 监听用户完成拖拽的动作
     const onChange = (e) => {
         if (!readOnly) {
+            // 当上下文有效，且存在有效字段名
+            if (formItemContext && formItemContext.setItemValues && formItemContext.validateTrigger.includes('onChange') && (name || id)) {
+                // 融合当前最新value值到上文itemValues中
+                formItemContext.setItemValues((prevValues) => ({
+                    ...prevValues,
+                    ...{
+                        [name || id]: e || null
+                    }
+                }))
+            }
             setProps({ value: e })
         }
     }
@@ -139,6 +193,8 @@ const AntdSlider = (props) => {
                     undefined,
                 formatter: formatter
             }}
+            onBlur={onBlur}
+            onFocus={onFocus}
             onChange={onChange}
             persistence={persistence}
             persisted_props={persisted_props}

@@ -18,9 +18,14 @@ app.layout = html.Div(
             fac.AntdForm(
                 [
                     fac.AntdFormItem(
-                        fac.AntdRate(
+                        fac.AntdSlider(
                             id='test-field1',
-                            name='测试字段1'
+                            name='测试字段1',
+                            min=0,
+                            max=10,
+                            style={
+                                'width': 200
+                            }
                         ),
                         label='测试字段1',
                         rules=[
