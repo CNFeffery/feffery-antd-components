@@ -18,9 +18,16 @@ app.layout = html.Div(
             fac.AntdForm(
                 [
                     fac.AntdFormItem(
-                        fac.AntdInputNumber(
-                            id='test-field1',
-                            name='测试字段1',
+                        fac.AntdMentions(
+                            id='test-field4',
+                            name='测试字段4',
+                            options=[
+                                {
+                                    'label': f'用户{c}',
+                                    'value': f'用户{c}'
+                                }
+                                for c in list('abcdef')
+                            ],
                             style={
                                 'width': 200
                             }
@@ -29,7 +36,6 @@ app.layout = html.Div(
                         rules=[
                             {
                                 'required': True,
-                                'type': 'number',
                                 'message': '必选字段',
                                 'validateTrigger': 'onChange',
                             }
