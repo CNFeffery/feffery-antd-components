@@ -18,9 +18,16 @@ app.layout = html.Div(
             fac.AntdForm(
                 [
                     fac.AntdFormItem(
-                        fac.AntdTimeRangePicker(
+                        fac.AntdTransfer(
                             id='test-field1',
-                            name='测试字段1'
+                            name='测试字段1',
+                            dataSource=[
+                                {
+                                    'key': i,
+                                    'title': f'选项{i}'
+                                }
+                                for i in range(1, 10)
+                            ],
                         ),
                         label='测试字段1',
                         rules=[
@@ -28,7 +35,7 @@ app.layout = html.Div(
                                 'required': True,
                                 'type': 'array',
                                 'message': '必选字段',
-                                'validateTrigger': 'onFocus',
+                                'validateTrigger': 'onChange',
                             }
                         ]
                     ),

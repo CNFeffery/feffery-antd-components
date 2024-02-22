@@ -5,6 +5,7 @@ import { isString, isUndefined } from 'lodash';
 import useCss from '../../hooks/useCss';
 import PropsContext from '../../contexts/PropsContext';
 import FormContext from '../../contexts/FormContext';
+import FormItemContext from '../../contexts/FormItemContext';
 import { propTypes, defaultProps } from '../../components/dataEntry/AntdTransfer.react';
 
 
@@ -55,6 +56,7 @@ const AntdTransfer = (props) => {
 
     const context = useContext(PropsContext)
     const formContext = useContext(FormContext)
+    const formItemContext = useContext(FormItemContext)
     locale = (context && context.locale) || locale
 
     // 处理AntdForm表单值搜集功能
@@ -71,6 +73,20 @@ const AntdTransfer = (props) => {
         }
     }, [targetKeys])
 
+    // 如果当前组件被表单项包裹，初始渲染时对表单项进行赋值
+    useEffect(() => {
+        // 当上下文有效，且存在有效字段名
+        if (formItemContext && formItemContext.setItemValues && (name || id)) {
+            // 融合当前最新targetKeys值到上文itemValues中
+            formItemContext.setItemValues((prevValues) => ({
+                ...prevValues,
+                ...{
+                    [name || id]: targetKeys || null
+                }
+            }))
+        }
+    }, [])
+
     if (!titles) {
         titles = locale2text.AntdTransfer[locale].titles
     }
@@ -78,6 +94,16 @@ const AntdTransfer = (props) => {
     // 监听选项移动事件
     const listenMove = (nextTargetKeys, moveDirection, moveKeys) => {
         if (!readOnly) {
+            // 当上下文有效，且存在有效字段名
+            if (formItemContext && formItemContext.setItemValues && (name || id)) {
+                // 融合当前最新targetKeys值到上文itemValues中
+                formItemContext.setItemValues((prevValues) => ({
+                    ...prevValues,
+                    ...{
+                        [name || id]: nextTargetKeys || null
+                    }
+                }))
+            }
             setProps({
                 targetKeys: nextTargetKeys,
                 moveDirection: moveDirection,
