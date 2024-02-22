@@ -18,7 +18,7 @@ app.layout = html.Div(
             fac.AntdForm(
                 [
                     fac.AntdFormItem(
-                        fac.AntdSwitch(
+                        fac.AntdTimePicker(
                             id='test-field1',
                             name='测试字段1'
                         ),
@@ -26,9 +26,8 @@ app.layout = html.Div(
                         rules=[
                             {
                                 'required': True,
-                                'type': 'boolean',
                                 'message': '必选字段',
-                                'validateTrigger': 'onChange',
+                                'validateTrigger': 'onFocus',
                             }
                         ]
                     ),
