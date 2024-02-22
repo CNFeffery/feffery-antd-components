@@ -3,6 +3,8 @@ import json
 from dash import html
 import feffery_antd_components as fac
 from dash.dependencies import Input, Output, State
+import os
+from flask import request
 
 app = dash.Dash(__name__)
 
@@ -18,9 +20,10 @@ app.layout = html.Div(
             fac.AntdForm(
                 [
                     fac.AntdFormItem(
-                        fac.AntdDateRangePicker(
+                        fac.AntdUpload(
                             id='test-field1',
-                            name='测试字段1'
+                            name='测试字段1',
+                            apiUrl='/upload/'
                         ),
                         label='测试字段1',
                         rules=[
@@ -93,6 +96,34 @@ def show_form_validate_status(formValidateStatus):
         ensure_ascii=False,
         indent=4
     )
+    
+
+@app.server.route('/upload/', methods=['POST'])
+def upload():
+    '''
+    构建文件上传服务
+    :return:
+    '''
+
+    # 获取上传id参数，用于指向保存路径
+    uploadId = request.values.get('uploadId')
+
+    # 获取上传的文件名称
+    filename = request.files['file'].filename
+
+    # 基于上传id，若本地不存在则会自动创建目录
+    try:
+        os.mkdir(os.path.join('caches', uploadId))
+    except FileExistsError:
+        pass
+
+    # 流式写出文件到指定目录
+    with open(os.path.join('caches', uploadId, filename), 'wb') as f:
+        # 流式写出大型文件，这里的10代表10MB
+        for chunk in iter(lambda: request.files['file'].read(1024 * 1024 * 10), b''):
+            f.write(chunk)
+
+    return {'filename': filename}
 
 
 if __name__ == '__main__':
