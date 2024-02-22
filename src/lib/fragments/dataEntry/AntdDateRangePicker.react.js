@@ -60,6 +60,15 @@ const AntdDateRangePicker = (props) => {
 
     const [rawValue, setRawValue] = useState(null);
 
+    // 解决value经回调更新后，rawValue未更新的问题
+    useEffect(() => {
+        if (value) {
+            setRawValue([dayjs(value[0], format), dayjs(value[1], format)]);
+        } else {
+            setRawValue(null);
+        }
+    }, [value])
+
     // 批属性监听
     useEffect(() => {
         if (batchPropsNames && batchPropsNames.length !== 0) {
