@@ -18,19 +18,10 @@ app.layout = html.Div(
             fac.AntdForm(
                 [
                     fac.AntdFormItem(
-                        fac.AntdMentions(
-                            id='test-field4',
-                            name='测试字段4',
-                            options=[
-                                {
-                                    'label': f'用户{c}',
-                                    'value': f'用户{c}'
-                                }
-                                for c in list('abcdef')
-                            ],
-                            style={
-                                'width': 200
-                            }
+                        fac.AntdRadioGroup(
+                            id='test-field1',
+                            name='测试字段1',
+                            options=[f'选项{i}' for i in range(1, 6)]
                         ),
                         label='测试字段1',
                         rules=[
