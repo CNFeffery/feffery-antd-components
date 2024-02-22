@@ -20,7 +20,7 @@ app.layout = html.Div(
             fac.AntdForm(
                 [
                     fac.AntdFormItem(
-                        fac.AntdPictureUpload(
+                        fac.AntdDraggerUpload(
                             id='test-field1',
                             name='测试字段1',
                             apiUrl='/upload/'
