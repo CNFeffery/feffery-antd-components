@@ -57,7 +57,7 @@ const AntdCheckCard = (props) => {
             formItemContext.setItemValues((prevValues) => ({
                 ...prevValues,
                 ...{
-                    [name || id]: checked || null
+                    [name || id]: checked
                 }
             }))
         }
@@ -96,7 +96,7 @@ const AntdCheckCard = (props) => {
                     formItemContext.setItemValues((prevValues) => ({
                         ...prevValues,
                         ...{
-                            [name || id]: e || null
+                            [name || id]: e
                         }
                     }))
                 }

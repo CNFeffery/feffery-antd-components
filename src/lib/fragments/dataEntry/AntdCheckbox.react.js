@@ -70,7 +70,7 @@ const AntdCheckbox = (props) => {
             formItemContext.setItemValues((prevValues) => ({
                 ...prevValues,
                 ...{
-                    [name || id]: checked || null
+                    [name || id]: checked
                 }
             }))
         }
@@ -84,7 +84,7 @@ const AntdCheckbox = (props) => {
             formItemContext.setItemValues((prevValues) => ({
                 ...prevValues,
                 ...{
-                    [name || id]: checked || null
+                    [name || id]: checked
                 }
             }))
         }
@@ -98,7 +98,7 @@ const AntdCheckbox = (props) => {
             formItemContext.setItemValues((prevValues) => ({
                 ...prevValues,
                 ...{
-                    [name || id]: checked || null
+                    [name || id]: checked
                 }
             }))
         }
@@ -111,7 +111,7 @@ const AntdCheckbox = (props) => {
             formItemContext.setItemValues((prevValues) => ({
                 ...prevValues,
                 ...{
-                    [name || id]: e.target.checked || null
+                    [name || id]: e.target.checked
                 }
             }))
         }
