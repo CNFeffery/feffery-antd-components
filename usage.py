@@ -18,15 +18,18 @@ app.layout = html.Div(
             fac.AntdForm(
                 [
                     fac.AntdFormItem(
-                        fac.AntdDateRangePicker(
+                        fac.AntdInputNumber(
                             id='test-field1',
-                            name='测试字段1'
+                            name='测试字段1',
+                            style={
+                                'width': 200
+                            }
                         ),
                         label='测试字段1',
                         rules=[
                             {
                                 'required': True,
-                                'type': 'array',
+                                'type': 'number',
                                 'message': '必选字段',
                                 'validateTrigger': 'onChange',
                             }
