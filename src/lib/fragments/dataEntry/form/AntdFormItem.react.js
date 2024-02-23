@@ -95,7 +95,7 @@ const AntdFormItem = (props) => {
                     itemValues: itemValues,
                     form: formContext?.form,
                     validateTrigger: rules ? rules.map((rule) => {
-                        return rule.validateTrigger
+                        return rule.validateTrigger ? rule.validateTrigger : 'onChange'
                     }) : []
                 }
             }
