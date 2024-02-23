@@ -93,7 +93,7 @@ const AntdFormItem = (props) => {
                 {
                     setItemValues: setItemValues,
                     itemValues: itemValues,
-                    form: formContext.form,
+                    form: formContext?.form,
                     validateTrigger: rules ? rules.map((rule) => {
                         return rule.validateTrigger
                     }) : []
