@@ -96,7 +96,7 @@ def show_form_validate_status(formValidateStatus):
         ensure_ascii=False,
         indent=4
     )
-    
+
 
 @app.server.route('/upload/', methods=['POST'])
 def upload():
