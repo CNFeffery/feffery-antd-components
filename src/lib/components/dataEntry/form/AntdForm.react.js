@@ -97,6 +97,16 @@ AntdForm.propTypes = {
     submitFormClicks: PropTypes.number,
 
     /**
+     * 控制参数，用于重置表单项校验状态（不能重置表单项包裹的组件的值，需要通过回调重置表单项包裹的组件的值），回调设置为true后会自动变为false
+     */
+    resetForm: PropTypes.bool,
+
+    /**
+     * 辅助监听表单重置参数
+     */
+    resetFormClicks: PropTypes.number,
+
+    /**
      * 统一设置内部各AntdFormItem的validateStatus值，键为对应AntdFormItem的label值
      * 优先级低于各AntdFormItem的validateStatus值
      */
@@ -141,7 +151,9 @@ AntdForm.defaultProps = {
     labelAlign: 'right',
     labelWrap: false,
     submitForm: false,
-    submitFormClicks: 0
+    submitFormClicks: 0,
+    resetForm: false,
+    resetFormClicks: 0
 }
 
 export default AntdForm;
