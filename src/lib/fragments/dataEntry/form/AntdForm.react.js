@@ -23,6 +23,8 @@ const AntdForm = (props) => {
         layout,
         submitForm,
         submitFormClicks,
+        resetForm,
+        resetFormClicks,
         validateStatuses,
         helps,
         setProps,
@@ -62,6 +64,24 @@ const AntdForm = (props) => {
             setProps({ submitForm: false });
         }
     }, [submitForm]);
+
+    // 手动重置表单项值及校验状态
+    useEffect(() => {
+        if (resetForm) {
+            let filedData = Object.entries(_values).map((item) => {
+                return {
+                    name: item[0],
+                    value: null,
+                    errors: [],
+                    warnings: []
+                }
+            })
+            form.setFields(filedData);
+            setProps({ resetFormClicks: resetFormClicks + 1 });
+            setProps({ formValidateStatus: null });
+            setProps({ resetForm: false });
+        }
+    }, [resetForm]);
 
     return (
         <FormContext.Provider
