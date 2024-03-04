@@ -568,7 +568,7 @@ const AntdUpload = (props) => {
                         }
                         {...buttonProps}
                     >
-                        {buttonContent || "点击上传文件"}
+                        {buttonContent || locale2text.Upload[locale].buttonContent}
                     </Button>
                 </Upload>
             </div>
