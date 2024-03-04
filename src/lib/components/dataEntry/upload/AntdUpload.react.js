@@ -64,8 +64,15 @@ AntdUpload.propTypes = {
     // 设置允许上传的文件后缀名数组
     fileTypes: PropTypes.arrayOf(PropTypes.string),
 
-    // 按钮模式下设置按钮内的文字内容
+    /**
+     * 自定义下载按钮内容
+     */
     buttonContent: PropTypes.node,
+
+    /**
+     * 自定义下载按钮前缀图标
+     */
+    buttonIcon: PropTypes.node,
 
     // 配置上传按钮常用参数
     buttonProps: PropTypes.exact({

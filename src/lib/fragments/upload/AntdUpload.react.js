@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useContext } from 'react';
-import PropTypes from 'prop-types';
 import { v4 as uuidv4 } from 'uuid';
 import { Upload, message, Button, Modal, ConfigProvider } from 'antd';
 import { UploadOutlined } from '@ant-design/icons';
@@ -57,6 +56,7 @@ const AntdUpload = (props) => {
         uploadId,
         fileListMaxLength,
         buttonContent,
+        buttonIcon,
         buttonProps,
         fileTypes,
         fileMaxSize,
@@ -560,7 +560,7 @@ const AntdUpload = (props) => {
                     data-dash-is-loading={
                         (loading_state && loading_state.is_loading) || undefined
                     }>
-                    <Button icon={<UploadOutlined />}
+                    <Button icon={buttonIcon || <UploadOutlined />}
                         disabled={
                             context && !isUndefined(context.componentDisabled) ?
                                 context.componentDisabled :
