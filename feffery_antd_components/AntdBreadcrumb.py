@@ -17,6 +17,9 @@ Keyword arguments:
 
     `clickedItem` is a dict with keys:
 
+    - itemKey (string; optional):
+        记录点击事件对应子项key值.
+
     - itemTitle (string; optional)
 
     - timestamp (number; optional)
@@ -30,6 +33,9 @@ Keyword arguments:
     - icon (string; optional)
 
     - iconRenderer (a value equal to: 'AntdIcon', 'fontawesome'; optional)
+
+    - key (string; optional):
+        定义节点唯一key值.
 
     - menuItems (list of dicts; optional)
 

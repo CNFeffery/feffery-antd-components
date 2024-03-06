@@ -71,6 +71,7 @@ const AntdBreadcrumb = (props) => {
                         onClick={e => setProps({
                             clickedItem: {
                                 itemTitle: item.title,
+                                itemKey: item.key,
                                 timestamp: Date.now()
                             }
                         })}
@@ -126,6 +127,11 @@ AntdBreadcrumb.propTypes = {
             // 定义节点文字内容
             title: PropTypes.string,
 
+            /**
+             * 定义节点唯一key值
+             */
+            key: PropTypes.string,
+
             // 定义节点链接url
             href: PropTypes.string,
 
@@ -172,6 +178,10 @@ AntdBreadcrumb.propTypes = {
     clickedItem: PropTypes.exact({
         // 记录点击事件对应子项title值
         itemTitle: PropTypes.string,
+        /**
+         * 记录点击事件对应子项key值
+         */
+        itemKey: PropTypes.string,
         // 记录事件发生时的时间戳信息
         timestamp: PropTypes.number
     }),
