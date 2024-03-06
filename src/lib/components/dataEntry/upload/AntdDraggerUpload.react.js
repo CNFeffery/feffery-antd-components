@@ -67,6 +67,11 @@ AntdDraggerUpload.propTypes = {
     // 可选，用于设置已上传完成文件的自定义后端下载接口，get接口，接口响应必须要有url参数
     downloadUrlFromBackend: PropTypes.bool,
 
+    /**
+     * 自定义上传图标
+     */
+    icon: PropTypes.node,
+
     // 设置上传区域主要文字说明内容
     text: PropTypes.node,
 

@@ -56,6 +56,7 @@ const AntdDraggerUpload = (props) => {
         downloadUrl,
         downloadUrlExtraParams,
         downloadUrlFromBackend,
+        icon,
         text,
         hint,
         uploadId,
@@ -558,8 +559,7 @@ const AntdDraggerUpload = (props) => {
                                         cancelText: locale2text.AntdPictureUpload[locale].confirmBeforeDeleteCancelText,
                                         onOk: () => {
                                             resolve(true);
-                                        },
-
+                                        }
                                     });
                                 });
                             } :
@@ -567,7 +567,7 @@ const AntdDraggerUpload = (props) => {
                     }
                     {...uploadProps}>
                     <p className="ant-upload-drag-icon">
-                        {<AntdIcon icon={'antd-cloud-upload'} />}
+                        {icon || <AntdIcon icon={'antd-cloud-upload'} />}
                     </p>
                     <p className="ant-upload-text">{text}</p>
                     <p className="ant-upload-hint">

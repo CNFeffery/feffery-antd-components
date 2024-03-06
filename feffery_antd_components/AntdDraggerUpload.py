@@ -61,6 +61,9 @@ Keyword arguments:
 
 - hint (a list of or a singular dash component, string or number; optional)
 
+- icon (a list of or a singular dash component, string or number; optional):
+    自定义上传图标.
+
 - key (string; optional)
 
 - lastUploadTaskRecord (dict; optional)
@@ -192,15 +195,15 @@ Keyword arguments:
 - uploadId (string; optional)
 
 - withCredentials (boolean; default False)"""
-    _children_props = ['text', 'hint']
-    _base_nodes = ['text', 'hint', 'children']
+    _children_props = ['icon', 'text', 'hint']
+    _base_nodes = ['icon', 'text', 'hint', 'children']
     _namespace = 'feffery_antd_components'
     _type = 'AntdDraggerUpload'
     @_explicitize_args
-    def __init__(self, id=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, key=Component.UNDEFINED, name=Component.UNDEFINED, draggerClassName=Component.UNDEFINED, draggerStyle=Component.UNDEFINED, locale=Component.UNDEFINED, apiUrl=Component.UNDEFINED, apiUrlExtraParams=Component.UNDEFINED, headers=Component.UNDEFINED, withCredentials=Component.UNDEFINED, downloadUrl=Component.UNDEFINED, downloadUrlExtraParams=Component.UNDEFINED, downloadUrlFromBackend=Component.UNDEFINED, text=Component.UNDEFINED, hint=Component.UNDEFINED, fileListMaxLength=Component.UNDEFINED, fileTypes=Component.UNDEFINED, uploadId=Component.UNDEFINED, fileMaxSize=Component.UNDEFINED, multiple=Component.UNDEFINED, directory=Component.UNDEFINED, failedTooltipInfo=Component.UNDEFINED, showUploadList=Component.UNDEFINED, confirmBeforeDelete=Component.UNDEFINED, showPercent=Component.UNDEFINED, progressProps=Component.UNDEFINED, showSuccessMessage=Component.UNDEFINED, showErrorMessage=Component.UNDEFINED, lastUploadTaskRecord=Component.UNDEFINED, listUploadTaskRecord=Component.UNDEFINED, defaultFileList=Component.UNDEFINED, disabled=Component.UNDEFINED, status=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
-        self._prop_names = ['id', 'apiUrl', 'apiUrlExtraParams', 'className', 'confirmBeforeDelete', 'defaultFileList', 'directory', 'disabled', 'downloadUrl', 'downloadUrlExtraParams', 'downloadUrlFromBackend', 'draggerClassName', 'draggerStyle', 'failedTooltipInfo', 'fileListMaxLength', 'fileMaxSize', 'fileTypes', 'headers', 'hint', 'key', 'lastUploadTaskRecord', 'listUploadTaskRecord', 'loading_state', 'locale', 'multiple', 'name', 'progressProps', 'showErrorMessage', 'showPercent', 'showSuccessMessage', 'showUploadList', 'status', 'style', 'text', 'uploadId', 'withCredentials']
+    def __init__(self, id=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, key=Component.UNDEFINED, name=Component.UNDEFINED, draggerClassName=Component.UNDEFINED, draggerStyle=Component.UNDEFINED, locale=Component.UNDEFINED, apiUrl=Component.UNDEFINED, apiUrlExtraParams=Component.UNDEFINED, headers=Component.UNDEFINED, withCredentials=Component.UNDEFINED, downloadUrl=Component.UNDEFINED, downloadUrlExtraParams=Component.UNDEFINED, downloadUrlFromBackend=Component.UNDEFINED, icon=Component.UNDEFINED, text=Component.UNDEFINED, hint=Component.UNDEFINED, fileListMaxLength=Component.UNDEFINED, fileTypes=Component.UNDEFINED, uploadId=Component.UNDEFINED, fileMaxSize=Component.UNDEFINED, multiple=Component.UNDEFINED, directory=Component.UNDEFINED, failedTooltipInfo=Component.UNDEFINED, showUploadList=Component.UNDEFINED, confirmBeforeDelete=Component.UNDEFINED, showPercent=Component.UNDEFINED, progressProps=Component.UNDEFINED, showSuccessMessage=Component.UNDEFINED, showErrorMessage=Component.UNDEFINED, lastUploadTaskRecord=Component.UNDEFINED, listUploadTaskRecord=Component.UNDEFINED, defaultFileList=Component.UNDEFINED, disabled=Component.UNDEFINED, status=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
+        self._prop_names = ['id', 'apiUrl', 'apiUrlExtraParams', 'className', 'confirmBeforeDelete', 'defaultFileList', 'directory', 'disabled', 'downloadUrl', 'downloadUrlExtraParams', 'downloadUrlFromBackend', 'draggerClassName', 'draggerStyle', 'failedTooltipInfo', 'fileListMaxLength', 'fileMaxSize', 'fileTypes', 'headers', 'hint', 'icon', 'key', 'lastUploadTaskRecord', 'listUploadTaskRecord', 'loading_state', 'locale', 'multiple', 'name', 'progressProps', 'showErrorMessage', 'showPercent', 'showSuccessMessage', 'showUploadList', 'status', 'style', 'text', 'uploadId', 'withCredentials']
         self._valid_wildcard_attributes =            []
-        self.available_properties = ['id', 'apiUrl', 'apiUrlExtraParams', 'className', 'confirmBeforeDelete', 'defaultFileList', 'directory', 'disabled', 'downloadUrl', 'downloadUrlExtraParams', 'downloadUrlFromBackend', 'draggerClassName', 'draggerStyle', 'failedTooltipInfo', 'fileListMaxLength', 'fileMaxSize', 'fileTypes', 'headers', 'hint', 'key', 'lastUploadTaskRecord', 'listUploadTaskRecord', 'loading_state', 'locale', 'multiple', 'name', 'progressProps', 'showErrorMessage', 'showPercent', 'showSuccessMessage', 'showUploadList', 'status', 'style', 'text', 'uploadId', 'withCredentials']
+        self.available_properties = ['id', 'apiUrl', 'apiUrlExtraParams', 'className', 'confirmBeforeDelete', 'defaultFileList', 'directory', 'disabled', 'downloadUrl', 'downloadUrlExtraParams', 'downloadUrlFromBackend', 'draggerClassName', 'draggerStyle', 'failedTooltipInfo', 'fileListMaxLength', 'fileMaxSize', 'fileTypes', 'headers', 'hint', 'icon', 'key', 'lastUploadTaskRecord', 'listUploadTaskRecord', 'loading_state', 'locale', 'multiple', 'name', 'progressProps', 'showErrorMessage', 'showPercent', 'showSuccessMessage', 'showUploadList', 'status', 'style', 'text', 'uploadId', 'withCredentials']
         self.available_wildcard_properties =            []
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()
