@@ -43,6 +43,7 @@ const AntdButton = (props) => {
         loading,
         autoSpin,
         motionType,
+        extraProps,
         loading_state
     } = props;
 
@@ -78,6 +79,7 @@ const AntdButton = (props) => {
 
     const renderElement = (
         <Button
+            {...(extraProps || {})}
             id={id}
             key={key}
             style={style}
@@ -271,6 +273,11 @@ AntdButton.propTypes = {
      * 为当前按钮设置特殊的点击动效，可选的有'happy-work'
      */
     motionType: PropTypes.oneOf(['happy-work']),
+
+    /**
+     * 为当前组件补充额外自定义键值对参数
+     */
+    extraProps: PropTypes.object,
 
     loading_state: PropTypes.shape({
         /**
