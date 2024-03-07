@@ -13,6 +13,7 @@ const AntdSlider = (props) => {
     // 取得必要属性或参数
     let {
         id,
+        name,
         className,
         style,
         railStyle,
