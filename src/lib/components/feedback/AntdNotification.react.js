@@ -1,10 +1,12 @@
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { notification, App } from 'antd';
-import { isString } from 'lodash';
+import { notification, Button, App } from 'antd';
+import { isString, omit } from 'lodash';
 import useCss from '../../hooks/useCss';
 
-// 定义通知提醒框组件AntdNotification，api参数参考https://ant.design/components/notification-cn/
+/**
+ * 通知提醒框组件AntdNotification
+ */
 const AntdNotification = (props) => {
     // 取得必要属性或参数
     let {
@@ -18,6 +20,7 @@ const AntdNotification = (props) => {
         bottom,
         duration,
         closable,
+        closeButton,
         underCompatibilityMode,
         loading_state,
         setProps
@@ -43,6 +46,15 @@ const AntdNotification = (props) => {
             closable ?
                 undefined :
                 <span style={{ visibility: "hidden" }} />
+        ),
+        btn: (
+            closeButton ?
+                (
+                    <Button type="primary" size="small" onClick={() => api.destroy()} {...omit(closeButton, ['content'])}>
+                        {closeButton.content}
+                    </Button>
+                ) :
+                undefined
         )
     }
 
@@ -117,8 +129,37 @@ AntdNotification.propTypes = {
     // 设置通知从显示到自动消失的时长（秒），默认为4.5，当传入null时表示不会自动消失
     duration: PropTypes.number,
 
-    // 设置是否渲染关闭按钮，默认为true
+    // 设置是否渲染关闭图标，默认为true
     closable: PropTypes.bool,
+
+    /**
+     * 配置右下方关闭按钮相关参数
+     * 默认不渲染关闭按钮
+     */
+    closeButton: PropTypes.exact({
+        /**
+         * 按钮文案内容
+         */
+        content: PropTypes.string,
+        /**
+         * 按钮css样式
+         */
+        style: PropTypes.object,
+        /**
+         * 按钮css类名
+         */
+        className: PropTypes.string,
+        /**
+         * 按钮类型，可选的有'default'、'primary'、'ghost'、'dashed'、'link'、'text'
+         * 默认：'primary'
+         */
+        type: PropTypes.oneOf(['default', 'primary', 'ghost', 'dashed', 'link', 'text']),
+        /**
+         * 当前按钮是否呈现危险状态
+         * 默认：false
+         */
+        danger: PropTypes.bool
+    }),
 
     /**
      * 设置当前消息提示组件是否处于设置了compatibilityMode=true的AntdConfigProvider内部

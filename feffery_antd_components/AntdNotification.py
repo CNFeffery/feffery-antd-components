@@ -5,7 +5,7 @@ from dash.development.base_component import Component, _explicitize_args
 
 class AntdNotification(Component):
     """An AntdNotification component.
-
+通知提醒框组件AntdNotification
 
 Keyword arguments:
 
@@ -16,6 +16,27 @@ Keyword arguments:
 - className (string | dict; optional)
 
 - closable (boolean; default True)
+
+- closeButton (dict; optional):
+    配置右下方关闭按钮相关参数  默认不渲染关闭按钮.
+
+    `closeButton` is a dict with keys:
+
+    - className (string; optional):
+        按钮css类名.
+
+    - content (string; optional):
+        按钮文案内容.
+
+    - danger (boolean; optional):
+        当前按钮是否呈现危险状态  默认：False.
+
+    - style (dict; optional):
+        按钮css样式.
+
+    - type (a value equal to: 'default', 'primary', 'ghost', 'dashed', 'link', 'text'; optional):
+        按钮类型，可选的有'default'、'primary'、'ghost'、'dashed'、'link'、'text'
+        默认：'primary'.
 
 - description (string; optional)
 
@@ -53,10 +74,10 @@ Keyword arguments:
     _namespace = 'feffery_antd_components'
     _type = 'AntdNotification'
     @_explicitize_args
-    def __init__(self, id=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, key=Component.UNDEFINED, message=Component.UNDEFINED, description=Component.UNDEFINED, type=Component.UNDEFINED, placement=Component.UNDEFINED, top=Component.UNDEFINED, bottom=Component.UNDEFINED, duration=Component.UNDEFINED, closable=Component.UNDEFINED, underCompatibilityMode=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
-        self._prop_names = ['id', 'bottom', 'className', 'closable', 'description', 'duration', 'key', 'loading_state', 'message', 'placement', 'style', 'top', 'type', 'underCompatibilityMode']
+    def __init__(self, id=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, key=Component.UNDEFINED, message=Component.UNDEFINED, description=Component.UNDEFINED, type=Component.UNDEFINED, placement=Component.UNDEFINED, top=Component.UNDEFINED, bottom=Component.UNDEFINED, duration=Component.UNDEFINED, closable=Component.UNDEFINED, closeButton=Component.UNDEFINED, underCompatibilityMode=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
+        self._prop_names = ['id', 'bottom', 'className', 'closable', 'closeButton', 'description', 'duration', 'key', 'loading_state', 'message', 'placement', 'style', 'top', 'type', 'underCompatibilityMode']
         self._valid_wildcard_attributes =            []
-        self.available_properties = ['id', 'bottom', 'className', 'closable', 'description', 'duration', 'key', 'loading_state', 'message', 'placement', 'style', 'top', 'type', 'underCompatibilityMode']
+        self.available_properties = ['id', 'bottom', 'className', 'closable', 'closeButton', 'description', 'duration', 'key', 'loading_state', 'message', 'placement', 'style', 'top', 'type', 'underCompatibilityMode']
         self.available_wildcard_properties =            []
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()

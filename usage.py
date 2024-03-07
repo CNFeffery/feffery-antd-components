@@ -7,11 +7,15 @@ app = dash.Dash(__name__)
 app.layout = html.Div(
     fac.AntdSpace(
         [
-            fac.AntdButton(
-                '测试',
-                extraProps={
-                    'data-x-test': 'test'
-                }
+            fac.AntdNotification(
+                message='通知提示框示例',
+                duration=0,
+                type='info',
+                placement='topLeft',
+                closeButton={
+                    'content': '我知道了'
+                },
+                closable=False
             )
         ],
         direction='vertical',
