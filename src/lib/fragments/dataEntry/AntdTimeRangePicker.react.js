@@ -139,11 +139,11 @@ const AntdTimeRangePicker = (props) => {
             formItemContext.setItemValues((prevValues) => ({
                 ...prevValues,
                 ...{
-                    [name || id]: Array.isArray(timeString) ? [timeString[0], timeString[1]] : null
+                    [name || id]: timeString[0] !== '' && timeString[1] !== '' ? [timeString[0], timeString[1]] : null
                 }
             }))
         }
-        if (Array.isArray(timeString)) {
+        if (timeString[0] !== '' && timeString[1] !== '') {
             setProps({ value: [timeString[0], timeString[1]] })
         } else {
             setProps({ value: null })
