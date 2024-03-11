@@ -7,7 +7,6 @@ from .AntdCheckableTag import AntdCheckableTag
 from .AntdCollapse import AntdCollapse
 from .AntdComment import AntdComment
 from .AntdCountdown import AntdCountdown
-from .AntdDraggablePanel import AntdDraggablePanel
 from .AntdEmpty import AntdEmpty
 from .AntdImage import AntdImage
 from .AntdImageGroup import AntdImageGroup
@@ -104,6 +103,8 @@ from .AntdCopyText import AntdCopyText
 from .AntdTour import AntdTour
 from .AntdWatermark import AntdWatermark
 from .Fragment import Fragment
+from .AntdDraggablePanel import AntdDraggablePanel
+from .AntdEditorLayout import AntdEditorLayout
 
 __all__ = [
     "AntdAccordion",
@@ -115,7 +116,6 @@ __all__ = [
     "AntdCollapse",
     "AntdComment",
     "AntdCountdown",
-    "AntdDraggablePanel",
     "AntdEmpty",
     "AntdImage",
     "AntdImageGroup",
@@ -211,5 +211,7 @@ __all__ = [
     "AntdCopyText",
     "AntdTour",
     "AntdWatermark",
-    "Fragment"
+    "Fragment",
+    "AntdDraggablePanel",
+    "AntdEditorLayout"
 ]

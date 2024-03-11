@@ -4,7 +4,7 @@ const webpack = require('webpack');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const WebpackDashDynamicImport = require('@plotly/webpack-dash-dynamic-import');
 const packagejson = require('./package.json');
-// const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 const dashLibraryName = packagejson.name.replace(/-/g, '_');
 
@@ -61,23 +61,54 @@ module.exports = (env, argv) => {
         module: {
             rules: [
                 {
-                    test: /\.js?$/,
+                    test: /\.jsx?$/,
                     exclude: /node_modules/,
                     use: {
                         loader: 'babel-loader',
                         options: {
                             presets: ['@babel/preset-env'],
                             plugins: [
-                                "@babel/plugin-proposal-optional-chaining"
+                                '@babel/plugin-proposal-optional-chaining'
                             ]
                         }
                     },
                 },
                 {
-                    test: /\.jsx?$/,
-                    exclude: /node_modules/,
+                    test: /\.c?js$/,
+                    include: [
+                        path.resolve('node_modules', 'lib0'),
+                        path.resolve('node_modules', '@reactflow'),
+                        path.resolve('node_modules', 'yjs'),
+                        path.resolve('node_modules', 'parse5'),
+                    ],
                     use: {
                         loader: 'babel-loader',
+                        options: {
+                            presets: ['@babel/preset-env'],
+                            plugins: [
+                                '@babel/plugin-proposal-optional-chaining',
+                                '@babel/plugin-proposal-nullish-coalescing-operator'
+                            ]
+                        }
+                    },
+                },
+                {
+                    include: /node_modules/,
+                    test: /\.mjs$/,
+                    type: 'javascript/auto'
+                },
+                {
+                    include: /node_modules/,
+                    test: /\.mjs$/,
+                    use: {
+                        loader: 'babel-loader',
+                        options: {
+                            presets: ['@babel/preset-env'],
+                            plugins: [
+                                '@babel/plugin-proposal-optional-chaining',
+                                '@babel/plugin-proposal-nullish-coalescing-operator'
+                            ]
+                        }
                     },
                 },
                 {

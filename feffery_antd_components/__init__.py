@@ -33,7 +33,8 @@ async_resources = [
     'antd_table',
     'upload',
     'data_entry',
-    'data_display'
+    'data_display',
+    'pro_editor'
 ]
 
 

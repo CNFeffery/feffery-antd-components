@@ -1,7 +1,7 @@
 import React, { Suspense } from 'react';
 import PropTypes from 'prop-types';
 
-const LazyAntdDraggablePanel = React.lazy(() => import(/* webpackChunkName: "data_display" */ '../../fragments/dataDisplay/AntdDraggablePanel.react'));
+const LazyAntdDraggablePanel = React.lazy(() => import(/* webpackChunkName: "pro_editor" */ '../../fragments/proEditor/AntdDraggablePanel.react'));
 
 const AntdDraggablePanel = (props) => {
     return (

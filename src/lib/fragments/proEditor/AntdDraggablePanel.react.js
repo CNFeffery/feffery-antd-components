@@ -1,8 +1,8 @@
 import React from 'react';
 import useCss from '../../hooks/useCss';
 import { isString } from 'lodash';
-import { DraggablePanel } from '@ant-design/pro-editor/es/DraggablePanel';
-import { propTypes, defaultProps } from '../../components/dataDisplay/AntdDraggablePanel.react';
+import { DraggablePanel } from '@ant-design/pro-editor';
+import { propTypes, defaultProps } from '../../components/proEditor/AntdDraggablePanel.react';
 
 // 定义可拖拽面板组件AntdDraggablePanel，api参数参考https://pro-editor.antdigital.dev/zh-CN/components/draggable-panel
 const AntdDraggablePanel = (props) => {

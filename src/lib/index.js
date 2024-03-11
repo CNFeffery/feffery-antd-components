@@ -48,7 +48,6 @@ import AntdCollapse from './components/dataDisplay/AntdCollapse.react';
 import AntdComment from './components/dataDisplay/AntdComment.react';
 import AntdDescriptions from './components/dataDisplay/descriptions/AntdDescriptions.react';
 import AntdDescriptionItem from './components/dataDisplay/descriptions/AntdDescriptionItem.react';
-import AntdDraggablePanel from './components/dataDisplay/AntdDraggablePanel.react';
 import AntdEmpty from './components/dataDisplay/AntdEmpty.react';
 import AntdImage from './components/dataDisplay/AntdImage.react';
 import AntdImageGroup from './fragments/dataDisplay/AntdImageGroup.react';
@@ -111,6 +110,9 @@ import AntdTour from './components/other/AntdTour.react';
 import AntdWatermark from './components/other/AntdWatermark.react';
 import AntdConfigProvider from './components/other/AntdConfigProvider';
 import Fragment from './components/other/Fragment.react';
+// 复杂交互
+import AntdDraggablePanel from './components/proEditor/AntdDraggablePanel.react';
+import AntdEditorLayout from './components/proEditor/AntdEditorLayout.react';
 // css样式
 import './components/styles.css'; // 自定义样式
 
@@ -220,5 +222,6 @@ export {
     AntdQRCode,
     AntdDraggablePanel,
     AntdCheckableTag,
-    Fragment
+    Fragment,
+    AntdEditorLayout
 };
