@@ -7,7 +7,6 @@ from .AntdCheckableTag import AntdCheckableTag as CheckableTag
 from .AntdCollapse import AntdCollapse as Collapse
 from .AntdComment import AntdComment as Comment
 from .AntdCountdown import AntdCountdown as Countdown
-from .AntdDraggablePanel import AntdDraggablePanel as DraggablePanel
 from .AntdEmpty import AntdEmpty as Empty
 from .AntdImage import AntdImage as Image
 from .AntdImageGroup import AntdImageGroup as ImageGroup
@@ -103,6 +102,9 @@ from .AntdConfigProvider import AntdConfigProvider as ConfigProvider
 from .AntdCopyText import AntdCopyText as CopyText
 from .AntdTour import AntdTour as Tour
 from .AntdWatermark import AntdWatermark as Watermark
+from .Fragment import Fragment as ment
+from .AntdDraggablePanel import AntdDraggablePanel as DraggablePanel
+from .AntdEditorLayout import AntdEditorLayout as EditorLayout
 
 __all__ = [
     "Accordion",
@@ -114,7 +116,6 @@ __all__ = [
     "Collapse",
     "Comment",
     "Countdown",
-    "DraggablePanel",
     "Empty",
     "Image",
     "ImageGroup",
@@ -209,5 +210,8 @@ __all__ = [
     "ConfigProvider",
     "CopyText",
     "Tour",
-    "Watermark"
+    "Watermark",
+    "ment",
+    "DraggablePanel",
+    "EditorLayout"
 ]
