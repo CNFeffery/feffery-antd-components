@@ -102,7 +102,7 @@ from .AntdConfigProvider import AntdConfigProvider as ConfigProvider
 from .AntdCopyText import AntdCopyText as CopyText
 from .AntdTour import AntdTour as Tour
 from .AntdWatermark import AntdWatermark as Watermark
-from .Fragment import Fragment as ment
+from .Fragment import Fragment
 from .AntdDraggablePanel import AntdDraggablePanel as DraggablePanel
 from .AntdEditorLayout import AntdEditorLayout as EditorLayout
 
@@ -211,7 +211,7 @@ __all__ = [
     "CopyText",
     "Tour",
     "Watermark",
-    "ment",
+    "Fragment",
     "DraggablePanel",
     "EditorLayout"
 ]
