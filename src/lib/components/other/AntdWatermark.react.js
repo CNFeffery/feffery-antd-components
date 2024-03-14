@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { WaterMark } from '@ant-design/pro-layout';
+import { WaterMark } from '@ant-design/pro-components';
 import { parseChildrenToArray } from '../utils';
 
 // 定义水印组件AntdWatermark，api参数参考https://procomponents.ant.design/components/water-mark

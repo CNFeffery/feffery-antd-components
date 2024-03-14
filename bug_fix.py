@@ -1,53 +1,47 @@
 import dash
 from dash import html
 import feffery_antd_components as fac
-from dash.dependencies import Input, Output
 
 app = dash.Dash(__name__)
 
 app.layout = html.Div(
     [
-        fac.AntdSpace(
-            [
-                fac.AntdButton(
-                    '新消息',
-                    id='new-message',
-                    type='primary'
-                ),
-                fac.AntdButton(
-                    '新通知',
-                    id='new-notification',
-                    type='primary'
-                )
-            ]
+        fac.AntdAvatar(
+            text='测试',
+            mode='text',
+            size=48,
+            style={
+                'background': '#2e6af8',
+                'fontSize': 18
+            }
         ),
-        html.Div(id='output')
+        fac.AntdCheckCardGroup(
+            [
+                fac.AntdCheckCard(
+                    f'选项{i}',
+                    value=i
+                )
+                for i in range(1, 6)
+            ],
+            defaultValue=3
+        ),
+        fac.AntdPageHeader(
+            title='页头标题示例',
+            subTitle='页头副标题示例'
+        ),
+        fac.AntdWatermark(
+            html.Div(
+                style={
+                    'height': '500px',
+                    'boxShadow': '0 6px 16px rgb(107 147 224 / 14%)',
+                    'marginBottom': '25px'
+                }
+            ),
+            content='水印内容测试',
+            fontSize=28
+        )
     ]
 )
-
-
-@app.callback(
-    Output('output', 'children'),
-    Input('new-message', 'nClicks'),
-    prevent_initial_call=True
-)
-def new_message(nClicks):
-
-    return fac.AntdMessage(
-        content='新消息'
-    )
-
-
-@app.callback(
-    Output('output', 'children', allow_duplicate=True),
-    Input('new-notification', 'nClicks'),
-    prevent_initial_call=True
-)
-def new_notification(nClicks):
-
-    return fac.AntdNotification(
-        message='新通知'
-    )
 
 
 if __name__ == '__main__':

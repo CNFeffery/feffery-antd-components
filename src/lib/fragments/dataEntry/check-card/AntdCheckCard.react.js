@@ -1,5 +1,5 @@
 import React, { useEffect, useContext } from 'react';
-import { CheckCard } from '@ant-design/pro-card';
+import { CheckCard } from '@ant-design/pro-components';
 import { isUndefined, isString } from 'lodash';
 import useCss from '../../../hooks/useCss';
 import PropsContext from '../../../contexts/PropsContext';

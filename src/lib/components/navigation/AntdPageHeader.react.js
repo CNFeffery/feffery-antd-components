@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { PageHeader } from '@ant-design/pro-layout';
+import { PageHeader } from '@ant-design/pro-components';
 import { isString } from 'lodash';
 import useCss from '../../hooks/useCss';
 import { parseChildrenToArray } from '../utils';
