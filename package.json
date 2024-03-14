@@ -44,7 +44,8 @@
         "react-icons": "^4.11.0",
         "react-text-loop": "2.3.0",
         "react-use": "^17.4.0",
-        "uuid": "8.3.2"
+        "uuid": "8.3.2",
+        "zustand": "^4.5.2"
     },
     "devDependencies": {
         "@babel/core": "^7.5.4",

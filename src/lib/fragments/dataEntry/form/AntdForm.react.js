@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Form } from 'antd';
 import { isString } from 'lodash';
 import useCss from '../../../hooks/useCss';
-import FormContext from '../../../contexts/FormContext';
+import useFormStore from '../../../store/formStore';
 import { propTypes, defaultProps } from '../../../components/dataEntry/form/AntdForm.react';
 
 
@@ -33,8 +33,17 @@ const AntdForm = (props) => {
 
     const [form] = Form.useForm();
 
-    const [_values, setValues] = useState({});
-    const [_formValidateStatus, setFormValidateStatus] = useState({});
+    const _values = useFormStore((state) => state.values);
+    const _formValidateStatus = useFormStore((state) => state.formValidateStatus);
+    const updateValidateStatuses = useFormStore((state) => state.updateValidateStatuses);
+    const updateHelps = useFormStore((state) => state.updateHelps);
+    const updateForm = useFormStore((state) => state.updateForm);
+
+    useEffect(() => {
+        updateValidateStatuses(validateStatuses);
+        updateHelps(helps);
+        updateForm(form);
+    }, [])
 
     // 更新搜集到的最新values值
     useEffect(() => {
@@ -84,44 +93,30 @@ const AntdForm = (props) => {
     }, [resetForm]);
 
     return (
-        <FormContext.Provider
-            value={
-                {
-                    setValues: setValues,
-                    _values: _values,
-                    _formValidateStatus: _formValidateStatus,
-                    setFormValidateStatus: setFormValidateStatus,
-                    form: form,
-                    validateStatuses: validateStatuses,
-                    helps: helps
-                }
+        <Form id={id}
+            form={form}
+            className={
+                isString(className) ?
+                    className :
+                    (className ? useCss(className) : undefined)
             }
-        >
-            <Form id={id}
-                form={form}
-                className={
-                    isString(className) ?
-                        className :
-                        (className ? useCss(className) : undefined)
-                }
-                style={style}
-                key={key}
-                labelCol={labelCol}
-                wrapperCol={wrapperCol}
-                colon={colon}
-                labelAlign={labelAlign}
-                labelWrap={labelWrap}
-                layout={layout}
-                data-dash-is-loading={
-                    (loading_state && loading_state.is_loading) || undefined
-                }>
-                {children}
-            </Form>
-        </FormContext.Provider>
+            style={style}
+            key={key}
+            labelCol={labelCol}
+            wrapperCol={wrapperCol}
+            colon={colon}
+            labelAlign={labelAlign}
+            labelWrap={labelWrap}
+            layout={layout}
+            data-dash-is-loading={
+                (loading_state && loading_state.is_loading) || undefined
+            }>
+            {children}
+        </Form>
     );
 }
 
-export default AntdForm;
+export default React.memo(AntdForm);
 
 AntdForm.defaultProps = defaultProps;
 AntdForm.propTypes = propTypes;

@@ -1,9 +1,9 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { Form } from 'antd';
 import { isString } from 'lodash';
 import useCss from '../../../hooks/useCss';
-import FormContext from '../../../contexts/FormContext';
-import FormItemContext from '../../../contexts/FormItemContext';
+import useFormStore from '../../../store/formStore';
+import useFormItemStore from '../../../store/formItemStore';
 import { propTypes, defaultProps } from '../../../components/dataEntry/form/AntdFormItem.react';
 
 const { Item } = Form;
@@ -34,6 +34,19 @@ const AntdFormItem = (props) => {
         loading_state
     } = props;
 
+    const formItemType = children.props._dashprivate_layout.type;
+    const name = children.props._dashprivate_layout.props.name;
+
+    const validateStatuses = useFormStore((state) => state.validateStatuses);
+    const helps = useFormStore((state) => state.helps);
+    const form = useFormStore((state) => state.form);
+    const updateFormValidateStatus = useFormStore((state) => state.updateFormValidateStatus);
+    const updateValidateTrigger = useFormItemStore((state) => state.updateValidateTrigger);
+    const itemValues = useFormItemStore((state) => state[formItemType]);
+    const itemValue = useMemo(() => {
+        return itemValues && name ? { [name]: itemValues[name] } : {};
+    }, [itemValues]);
+
     if (rules) {
         rules.forEach(item => {
             // 处理表单项值为false时使用validateFields但校验规则不触发的问题
@@ -49,89 +62,65 @@ const AntdFormItem = (props) => {
 
     const [count, setCount] = useState(0);
 
-    const formContext = useContext(FormContext)
-
-    const [itemValues, setItemValues] = useState({});
+    useEffect(() => {
+        updateValidateTrigger(rules ? rules.map((rule) => {
+            return rule.validateTrigger ? rule.validateTrigger : 'onChange'
+        }) : [])
+    }, [])
 
     // 更新搜集到的最新values值
     useEffect(() => {
         // 用于处理初始渲染时不校验表单项
-        if (count > 2) {
-            formContext.form.setFieldsValue(itemValues);
-            formContext.form.validateFields([Object.keys(itemValues)[0]]).then((values) => {
-                // 当上下文有效
-                if (formContext && formContext.setFormValidateStatus) {
-                    let itemName = Object.keys(itemValues)[0];
-                    let itemValidateStatus = {};
-                    itemValidateStatus[itemName] = true
-                    // 融合当前校验状态到上文_formValidateStatus中
-                    formContext.setFormValidateStatus((prevValues) => ({
-                        ...prevValues,
-                        ...itemValidateStatus
-                    }))
-                }
+        if (count > 0 && name) {
+            let setValue = {[name]: itemValue[name]['value']}
+            form.setFieldsValue(setValue);
+            form.validateFields([Object.keys(setValue)[0]]).then((values) => {
+                let itemName = Object.keys(setValue)[0];
+                let itemValidateStatus = {};
+                itemValidateStatus[itemName] = true
+                updateFormValidateStatus(itemValidateStatus)
             }).catch((errorInfo) => {
-                // 当上下文有效
-                if (formContext && formContext.setFormValidateStatus) {
-                    let itemName = Object.keys(itemValues)[0];
-                    let itemValidateStatus = {};
-                    itemValidateStatus[itemName] = false
-                    // 融合当前校验状态到上文_formValidateStatus中
-                    formContext.setFormValidateStatus((prevValues) => ({
-                        ...prevValues,
-                        ...itemValidateStatus
-                    }))
-                }
+                let itemName = Object.keys(setValue)[0];
+                let itemValidateStatus = {};
+                itemValidateStatus[itemName] = false
+                updateFormValidateStatus(itemValidateStatus)
             });
         }
         setCount((prevCount) => prevCount + 1);
-    }, [itemValues])
+    }, [name && itemValue[name] && itemValue[name]['timestamp']])
 
     return (
-        <FormItemContext.Provider
-            value={
-                {
-                    setItemValues: setItemValues,
-                    itemValues: itemValues,
-                    form: formContext?.form,
-                    validateTrigger: rules ? rules.map((rule) => {
-                        return rule.validateTrigger ? rule.validateTrigger : 'onChange'
-                    }) : []
-                }
+        <Item id={id}
+            className={
+                isString(className) ?
+                    className :
+                    (className ? useCss(className) : undefined)
             }
-        >
-            <Item id={id}
-                className={
-                    isString(className) ?
-                        className :
-                        (className ? useCss(className) : undefined)
-                }
-                style={style}
-                key={key}
-                labelCol={labelCol}
-                colon={colon}
-                wrapperCol={wrapperCol}
-                label={label}
-                labelAlign={labelAlign}
-                tooltip={tooltip}
-                extra={extra}
-                help={help || (formContext?.helps && formContext.helps[label])}
-                hasFeedback={hasFeedback}
-                hidden={hidden}
-                required={required || (rules && rules.length > 0 && rules.some(item => item.required)) ? true : false}
-                rules={rules}
-                validateStatus={validateStatus || (formContext?.validateStatuses && formContext.validateStatuses[label])}
-                name={Object.keys(itemValues)[0]}
-                data-dash-is-loading={
-                    (loading_state && loading_state.is_loading) || undefined
-                }>
-                {children}
-            </Item>
-        </FormItemContext.Provider>
+            style={style}
+            key={key}
+            labelCol={labelCol}
+            colon={colon}
+            wrapperCol={wrapperCol}
+            label={label}
+            labelAlign={labelAlign}
+            tooltip={tooltip}
+            extra={extra}
+            help={help || helps[label]}
+            hasFeedback={hasFeedback}
+            hidden={hidden}
+            required={required || (rules && rules.length > 0 && rules.some(item => item.required)) ? true : false}
+            rules={rules}
+            validateStatus={validateStatus || validateStatuses[label]}
+            name={name}
+            data-dash-is-loading={
+                (loading_state && loading_state.is_loading) || undefined
+            }>
+            {children}
+        </Item>
     );
 }
 
-export default AntdFormItem;
+export default React.memo(AntdFormItem);
 
 AntdFormItem.defaultProps = defaultProps;
 AntdFormItem.propTypes = propTypes;
