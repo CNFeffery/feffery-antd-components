@@ -4,6 +4,7 @@ import { create } from 'zustand';
 const useFormItemStore = create((set) => ({
     validateTrigger: [],
     AntdCheckCard: {},
+    AntdCheckCardGroup: {},
     AntdInput: {},
     AntdInputNumber: {},
     AntdSelect: {}, 
@@ -16,6 +17,12 @@ const useFormItemStore = create((set) => ({
     updateAntdCheckCard: (value) => set((state) => ({
         AntdCheckCard: {
             ...state.AntdCheckCard,
+            ...value
+        }
+    })),
+    updateAntdCheckCardGroup: (value) => set((state) => ({
+        AntdCheckCardGroup: {
+            ...state.AntdCheckCardGroup,
             ...value
         }
     })),
