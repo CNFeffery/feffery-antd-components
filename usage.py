@@ -35,16 +35,15 @@ app.layout = html.Div(
                         )
                     )
                 ] + [fac.AntdFormItem(
-                        fac.AntdCheckboxGroup(
+                        fac.AntdColorPicker(
                             id=f'test-field{i}',
                             name=f'测试字段{i}',
-                            options=[f'选项{i}' for i in range(1, 6)]
+                            value=None
                         ),
                         label=f'测试字段{i}',
                         rules=[
                             {
                                 'required': True,
-                                'type': 'array',
                                 'message': '必选字段',
                                 'validateTrigger': 'onBlur' if i % 2 else 'onChange',
                             },

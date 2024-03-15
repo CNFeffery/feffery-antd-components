@@ -9,6 +9,7 @@ const useFormItemStore = create((set) => ({
     AntdCascader: {},
     AntdCheckbox: {},
     AntdCheckboxGroup: {},
+    AntdColorPicker: {},
     AntdInput: {},
     AntdInputNumber: {},
     AntdSelect: {}, 
@@ -51,6 +52,12 @@ const useFormItemStore = create((set) => ({
     updateAntdCheckboxGroup: (value) => set((state) => ({
         AntdCheckboxGroup: {
             ...state.AntdCheckboxGroup,
+            ...value
+        }
+    })),
+    updateAntdColorPicker: (value) => set((state) => ({
+        AntdColorPicker: {
+            ...state.AntdColorPicker,
             ...value
         }
     })),
