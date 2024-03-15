@@ -35,10 +35,9 @@ app.layout = html.Div(
                         )
                     )
                 ] + [fac.AntdFormItem(
-                        fac.AntdColorPicker(
+                        fac.AntdDatePicker(
                             id=f'test-field{i}',
                             name=f'测试字段{i}',
-                            value=None
                         ),
                         label=f'测试字段{i}',
                         rules=[
