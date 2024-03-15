@@ -35,56 +35,15 @@ app.layout = html.Div(
                         )
                     )
                 ] + [fac.AntdFormItem(
-                        fac.AntdCascader(
+                        fac.AntdCheckbox(
                             id=f'test-field{i}',
                             name=f'测试字段{i}',
-                            placeholder='请选择',
-                            options=[
-                                {
-                                    'value': '节点1',
-                                    'label': '节点1',
-                                    'children': [
-                                        {
-                                            'value': '节点1-1',
-                                            'label': '节点1-1'
-                                        },
-                                        {
-                                            'value': '节点1-2',
-                                            'label': '节点1-2',
-                                            'children': [
-                                                {
-                                                    'value': '节点1-2-1',
-                                                    'label': '节点1-2-1'
-                                                },
-                                                {
-                                                    'value': '节点1-2-2',
-                                                    'label': '节点1-2-2'
-                                                }
-                                            ]
-                                        }
-                                    ]
-                                },
-                                {
-                                    'value': '节点2',
-                                    'label': '节点2',
-                                    'children': [
-                                        {
-                                            'value': '节点2-1',
-                                            'label': '节点2-1'
-                                        },
-                                        {
-                                            'value': '节点2-2',
-                                            'label': '节点2-2'
-                                        }
-                                    ]
-                                }
-                            ]
                         ),
                         label=f'测试字段{i}',
                         rules=[
                             {
                                 'required': True,
-                                'type': 'array',
+                                'type': 'boolean',
                                 'message': '必选字段',
                                 'validateTrigger': 'onBlur' if i % 2 else 'onChange',
                             },
@@ -116,7 +75,7 @@ def manual_submit_form(nClicks):
 
 
 @app.callback(
-    [Output('demo-form', 'resetForm')] + [Output(f'test-field{i}', 'value') for i in range(24)],
+    [Output('demo-form', 'resetForm')] + [Output(f'test-field{i}', 'checked') for i in range(24)],
     Input('reset-button', 'nClicks'),
     prevent_initial_call=True
 )
