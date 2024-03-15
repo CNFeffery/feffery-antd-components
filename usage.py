@@ -35,7 +35,7 @@ app.layout = html.Div(
                         )
                     )
                 ] + [fac.AntdFormItem(
-                        fac.AntdDatePicker(
+                        fac.AntdDateRangePicker(
                             id=f'test-field{i}',
                             name=f'测试字段{i}',
                         ),
@@ -43,6 +43,7 @@ app.layout = html.Div(
                         rules=[
                             {
                                 'required': True,
+                                'type': 'array',
                                 'message': '必选字段',
                                 'validateTrigger': 'onBlur' if i % 2 else 'onChange',
                             },

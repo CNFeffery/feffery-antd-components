@@ -11,6 +11,7 @@ const useFormItemStore = create((set) => ({
     AntdCheckboxGroup: {},
     AntdColorPicker: {},
     AntdDatePicker: {},
+    AntdDateRangePicker: {},
     AntdInput: {},
     AntdInputNumber: {},
     AntdSelect: {}, 
@@ -65,6 +66,12 @@ const useFormItemStore = create((set) => ({
     updateAntdDatePicker: (value) => set((state) => ({
         AntdDatePicker: {
             ...state.AntdDatePicker,
+            ...value
+        }
+    })),
+    updateAntdDateRangePicker: (value) => set((state) => ({
+        AntdDateRangePicker: {
+            ...state.AntdDateRangePicker,
             ...value
         }
     })),
