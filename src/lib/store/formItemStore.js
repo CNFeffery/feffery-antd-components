@@ -8,6 +8,7 @@ const useFormItemStore = create((set) => ({
     AntdCalendar: {},
     AntdCascader: {},
     AntdCheckbox: {},
+    AntdCheckboxGroup: {},
     AntdInput: {},
     AntdInputNumber: {},
     AntdSelect: {}, 
@@ -44,6 +45,12 @@ const useFormItemStore = create((set) => ({
     updateAntdCheckbox: (value) => set((state) => ({
         AntdCheckbox: {
             ...state.AntdCheckbox,
+            ...value
+        }
+    })),
+    updateAntdCheckboxGroup: (value) => set((state) => ({
+        AntdCheckboxGroup: {
+            ...state.AntdCheckboxGroup,
             ...value
         }
     })),
