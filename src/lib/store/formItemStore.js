@@ -5,6 +5,7 @@ const useFormItemStore = create((set) => ({
     validateTrigger: [],
     AntdCheckCard: {},
     AntdCheckCardGroup: {},
+    AntdCalendar: {},
     AntdInput: {},
     AntdInputNumber: {},
     AntdSelect: {}, 
@@ -23,6 +24,12 @@ const useFormItemStore = create((set) => ({
     updateAntdCheckCardGroup: (value) => set((state) => ({
         AntdCheckCardGroup: {
             ...state.AntdCheckCardGroup,
+            ...value
+        }
+    })),
+    updateAntdCalendar: (value) => set((state) => ({
+        AntdCalendar: {
+            ...state.AntdCalendar,
             ...value
         }
     })),
