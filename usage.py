@@ -35,15 +35,56 @@ app.layout = html.Div(
                         )
                     )
                 ] + [fac.AntdFormItem(
-                        fac.AntdCalendar(
+                        fac.AntdCascader(
                             id=f'test-field{i}',
                             name=f'测试字段{i}',
-                            value=None
+                            placeholder='请选择',
+                            options=[
+                                {
+                                    'value': '节点1',
+                                    'label': '节点1',
+                                    'children': [
+                                        {
+                                            'value': '节点1-1',
+                                            'label': '节点1-1'
+                                        },
+                                        {
+                                            'value': '节点1-2',
+                                            'label': '节点1-2',
+                                            'children': [
+                                                {
+                                                    'value': '节点1-2-1',
+                                                    'label': '节点1-2-1'
+                                                },
+                                                {
+                                                    'value': '节点1-2-2',
+                                                    'label': '节点1-2-2'
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                },
+                                {
+                                    'value': '节点2',
+                                    'label': '节点2',
+                                    'children': [
+                                        {
+                                            'value': '节点2-1',
+                                            'label': '节点2-1'
+                                        },
+                                        {
+                                            'value': '节点2-2',
+                                            'label': '节点2-2'
+                                        }
+                                    ]
+                                }
+                            ]
                         ),
                         label=f'测试字段{i}',
                         rules=[
                             {
                                 'required': True,
+                                'type': 'array',
                                 'message': '必选字段',
                                 'validateTrigger': 'onBlur' if i % 2 else 'onChange',
                             },
