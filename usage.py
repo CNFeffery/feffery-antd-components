@@ -45,7 +45,7 @@ app.layout = html.Div(
                             {
                                 'required': True,
                                 'message': '不满足手机号码校验',
-                                'validateTrigger': 'onBlur',
+                                'validateTrigger': 'onBlur' if i % 2 else 'onChange',
                                 'pattern': '^(?:(?:\+|00)86)?1[3-9]\d{9}$'
                             },
                         ]

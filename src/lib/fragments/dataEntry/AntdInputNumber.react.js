@@ -67,6 +67,10 @@ const AntdInputNumber = (props) => {
     const validateTrigger = useFormItemStore((state) => state.validateTrigger)
     const updateAntdInputNumber = useFormItemStore((state) => state.updateAntdInputNumber)
 
+    const currentValidateTrigger = useMemo(() => {
+        return validateTrigger.filter((item) => item[name || id]).flatMap((item) => item[name || id])
+    }, [validateTrigger])
+
     // 处理AntdForm表单值搜集功能
     useEffect(() => {
         if (name || id) {
@@ -94,21 +98,21 @@ const AntdInputNumber = (props) => {
 
     // 监听blur事件
     const onBlur = e => {
-        if (validateTrigger.includes('onBlur') && (name || id)) {
+        if (currentValidateTrigger.includes('onBlur') && (name || id)) {
             updateAntdInputNumber({[name || id]: {value: value || null, timestamp: Date.now()}})
         }
     }
 
     // 监听focus事件
     const onFocus = e => {
-        if (validateTrigger.includes('onFocus') && (name || id)) {
+        if (currentValidateTrigger.includes('onFocus') && (name || id)) {
             updateAntdInputNumber({[name || id]: {value: value || null, timestamp: Date.now()}})
         }
     }
 
     // 监听输入内容变化事件
     const onChange = e => {
-        if (validateTrigger.includes('onChange') && (name || id)) {
+        if (currentValidateTrigger.includes('onChange') && (name || id)) {
             updateAntdInputNumber({[name || id]: {value: e || null, timestamp: Date.now()}})
         }
         setProps({ value: e })

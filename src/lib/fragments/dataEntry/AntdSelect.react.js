@@ -79,6 +79,10 @@ const AntdSelect = (props) => {
     const updateAntdSelect = useFormItemStore((state) => state.updateAntdSelect)
     locale = (context && context.locale) || locale
 
+    const currentValidateTrigger = useMemo(() => {
+        return validateTrigger.filter((item) => item[name || id]).flatMap((item) => item[name || id])
+    }, [validateTrigger])
+
     // 处理AntdForm表单值搜集功能
     useEffect(() => {
         if (name || id) {
@@ -109,21 +113,21 @@ const AntdSelect = (props) => {
 
     // 监听blur事件
     const onBlur = e => {
-        if (validateTrigger.includes('onBlur') && (name || id)) {
+        if (currentValidateTrigger.includes('onBlur') && (name || id)) {
             updateAntdSelect({[name || id]: {value: value || null, timestamp: Date.now()}})
         }
     }
 
     // 监听focus事件
     const onFocus = e => {
-        if (validateTrigger.includes('onFocus') && (name || id)) {
+        if (currentValidateTrigger.includes('onFocus') && (name || id)) {
             updateAntdSelect({[name || id]: {value: value || null, timestamp: Date.now()}})
         }
     }
 
     // 用于获取用户已选择值的回调函数
     const updateSelectedValue = (value) => {
-        if (validateTrigger.includes('onChange') && (name || id)) {
+        if (currentValidateTrigger.includes('onChange') && (name || id)) {
             updateAntdSelect({[name || id]: {value: value || null, timestamp: Date.now()}})
         }
         setProps({ value: value })

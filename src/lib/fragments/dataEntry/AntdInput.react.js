@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect, useContext, useMemo } from 'react';
 import { Input } from 'antd';
 import md5 from 'md5';
 import { useRequest } from 'ahooks';
@@ -77,6 +77,10 @@ const AntdInput = (props) => {
     const validateTrigger = useFormItemStore((state) => state.validateTrigger)
     const updateAntdInput = useFormItemStore((state) => state.updateAntdInput)
 
+    const currentValidateTrigger = useMemo(() => {
+        return validateTrigger.filter((item) => item[name || id]).flatMap((item) => item[name || id])
+    }, [validateTrigger])
+
     // 处理AntdForm表单值搜集功能
     useEffect(() => {
         if (name || id) {
@@ -110,21 +114,21 @@ const AntdInput = (props) => {
 
     // 监听blur事件
     const onBlur = e => {
-        if (validateTrigger.includes('onBlur') && (name || id)) {
+        if (currentValidateTrigger.includes('onBlur') && (name || id)) {
             updateAntdInput({[name || id]: {value: e.target.value || null, timestamp: Date.now()}})
         }
     }
 
     // 监听focus事件
     const onFocus = e => {
-        if (validateTrigger.includes('onFocus') && (name || id)) {
+        if (currentValidateTrigger.includes('onFocus') && (name || id)) {
             updateAntdInput({[name || id]: {value: value || null, timestamp: Date.now()}})
         }
     }
 
     // 监听输入内容变化事件
     const onChange = e => {
-        if (validateTrigger.includes('onChange') && (name || id)) {
+        if (currentValidateTrigger.includes('onChange') && (name || id)) {
             updateAntdInput({[name || id]: {value: e.target.value || null, timestamp: Date.now()}})
         }
         // 若启用md5加密且为密码模式

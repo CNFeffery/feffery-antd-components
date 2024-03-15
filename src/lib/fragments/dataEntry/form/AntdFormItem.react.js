@@ -35,7 +35,7 @@ const AntdFormItem = (props) => {
     } = props;
 
     const formItemType = children.props._dashprivate_layout.type;
-    const name = children.props._dashprivate_layout.props.name;
+    const name = children.props._dashprivate_layout.props.name || children.props._dashprivate_layout.props.id;
 
     const validateStatuses = useFormStore((state) => state.validateStatuses);
     const helps = useFormStore((state) => state.helps);
@@ -63,16 +63,18 @@ const AntdFormItem = (props) => {
     const [count, setCount] = useState(0);
 
     useEffect(() => {
-        updateValidateTrigger(rules ? rules.map((rule) => {
-            return rule.validateTrigger ? rule.validateTrigger : 'onChange'
-        }) : [])
+        updateValidateTrigger([{
+            [name]: rules ? rules.map((rule) => {
+                return rule.validateTrigger ? rule.validateTrigger : 'onChange'
+            }) : []
+        }])
     }, [])
 
     // 更新搜集到的最新values值
     useEffect(() => {
         // 用于处理初始渲染时不校验表单项
-        if (count > 0 && name) {
-            let setValue = {[name]: itemValue[name]['value']}
+        if (count > 0 && name && itemValue[name]) {
+            let setValue = { [name]: itemValue[name]['value'] }
             form.setFieldsValue(setValue);
             form.validateFields([Object.keys(setValue)[0]]).then((values) => {
                 let itemName = Object.keys(setValue)[0];
