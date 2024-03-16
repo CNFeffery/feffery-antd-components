@@ -35,15 +35,21 @@ app.layout = html.Div(
                         )
                     )
                 ] + [fac.AntdFormItem(
-                        fac.AntdInputNumber(
+                        fac.AntdMentions(
                             id=f'test-field{i}',
                             name=f'测试字段{i}',
+                            options=[
+                                {
+                                    'label': f'用户{c}',
+                                    'value': f'用户{c}'
+                                }
+                                for c in list('abcdef')
+                            ],
                         ),
                         label=f'测试字段{i}',
                         rules=[
                             {
                                 'required': True,
-                                'type': 'number',
                                 'message': '必选字段',
                                 'validateTrigger': 'onBlur' if i % 2 else 'onChange',
                             },

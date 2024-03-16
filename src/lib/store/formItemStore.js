@@ -14,6 +14,7 @@ const useFormItemStore = create((set) => ({
     AntdDateRangePicker: {},
     AntdInput: {},
     AntdInputNumber: {},
+    AntdMentions: {},
     AntdSelect: {}, 
     updateValidateTrigger: (value) => set((state) => ({
         validateTrigger: [
@@ -84,6 +85,12 @@ const useFormItemStore = create((set) => ({
     updateAntdInputNumber: (value) => set((state) => ({
         AntdInputNumber: {
             ...state.AntdInputNumber,
+            ...value
+        }
+    })),
+    updateAntdMentions: (value) => set((state) => ({
+        AntdMentions: {
+            ...state.AntdMentions,
             ...value
         }
     })),
