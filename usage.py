@@ -35,27 +35,20 @@ app.layout = html.Div(
                         )
                     )
                 ] + [fac.AntdFormItem(
-                        fac.AntdSelect(
+                        fac.AntdSlider(
                             id=f'test-field{i}',
                             name=f'测试字段{i}',
-                            options=[
-                                {
-                                    'label': '选项1',
-                                    'value': '选项1'
-                                },
-                                {
-                                    'label': '13333333333',
-                                    'value': '13333333333'
-                                }
-                            ],
+                            min=0,
+                            max=10,
+                            defaultValue=0
                         ),
                         label=f'测试字段{i}',
                         rules=[
                             {
                                 'required': True,
-                                'message': '不满足手机号码校验',
+                                'type': 'number',
+                                'message': '必选字段',
                                 'validateTrigger': 'onBlur' if i % 2 else 'onChange',
-                                'pattern': '^(?:(?:\+|00)86)?1[3-9]\d{9}$'
                             },
                         ]
                     ) for i in range(24)],
