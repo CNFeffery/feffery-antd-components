@@ -35,9 +35,16 @@ app.layout = html.Div(
                         )
                     )
                 ] + [fac.AntdFormItem(
-                        fac.AntdTimeRangePicker(
+                        fac.AntdTransfer(
                             id=f'test-field{i}',
                             name=f'测试字段{i}',
+                            dataSource=[
+                                {
+                                    'key': i,
+                                    'title': f'选项{i}'
+                                }
+                                for i in range(1, 10)
+                            ],
                         ),
                         label=f'测试字段{i}',
                         rules=[
@@ -75,7 +82,7 @@ def manual_submit_form(nClicks):
 
 
 @app.callback(
-    [Output('demo-form', 'resetForm')] + [Output(f'test-field{i}', 'value') for i in range(24)],
+    [Output('demo-form', 'resetForm')] + [Output(f'test-field{i}', 'targetKeys') for i in range(24)],
     Input('reset-button', 'nClicks'),
     prevent_initial_call=True
 )
