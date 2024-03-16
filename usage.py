@@ -35,18 +35,15 @@ app.layout = html.Div(
                         )
                     )
                 ] + [fac.AntdFormItem(
-                        fac.AntdSlider(
+                        fac.AntdSwitch(
                             id=f'test-field{i}',
                             name=f'测试字段{i}',
-                            min=0,
-                            max=10,
-                            defaultValue=0
                         ),
                         label=f'测试字段{i}',
                         rules=[
                             {
                                 'required': True,
-                                'type': 'number',
+                                'type': 'boolean',
                                 'message': '必选字段',
                                 'validateTrigger': 'onBlur' if i % 2 else 'onChange',
                             },
@@ -78,7 +75,7 @@ def manual_submit_form(nClicks):
 
 
 @app.callback(
-    [Output('demo-form', 'resetForm')] + [Output(f'test-field{i}', 'value') for i in range(24)],
+    [Output('demo-form', 'resetForm')] + [Output(f'test-field{i}', 'checked') for i in range(24)],
     Input('reset-button', 'nClicks'),
     prevent_initial_call=True
 )
