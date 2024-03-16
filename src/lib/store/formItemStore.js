@@ -16,6 +16,7 @@ const useFormItemStore = create((set) => ({
     AntdInputNumber: {},
     AntdMentions: {},
     AntdRadioGroup: {},
+    AntdRate: {},
     AntdSelect: {}, 
     updateValidateTrigger: (value) => set((state) => ({
         validateTrigger: [
@@ -98,6 +99,12 @@ const useFormItemStore = create((set) => ({
     updateAntdRadioGroup: (value) => set((state) => ({
         AntdRadioGroup: {
             ...state.AntdRadioGroup,
+            ...value
+        }
+    })),
+    updateAntdRate: (value) => set((state) => ({
+        AntdRate: {
+            ...state.AntdRate,
             ...value
         }
     })),
