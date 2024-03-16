@@ -21,6 +21,7 @@ const useFormItemStore = create((set) => ({
     AntdSlider: {},
     AntdSwitch: {},
     AntdTimePicker: {},
+    AntdTimeRangePicker: {},
     updateValidateTrigger: (value) => set((state) => ({
         validateTrigger: [
             ...state.validateTrigger,
@@ -132,6 +133,12 @@ const useFormItemStore = create((set) => ({
     updateAntdTimePicker: (value) => set((state) => ({
         AntdTimePicker: {
             ...state.AntdTimePicker,
+            ...value
+        }
+    })),
+    updateAntdTimeRangePicker: (value) => set((state) => ({
+        AntdTimeRangePicker: {
+            ...state.AntdTimeRangePicker,
             ...value
         }
     })),
