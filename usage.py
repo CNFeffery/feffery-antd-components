@@ -35,22 +35,35 @@ app.layout = html.Div(
                         )
                     )
                 ] + [fac.AntdFormItem(
-                        fac.AntdTransfer(
+                        fac.AntdTreeSelect(
                             id=f'test-field{i}',
                             name=f'测试字段{i}',
-                            dataSource=[
+                            treeData=[
                                 {
-                                    'key': i,
-                                    'title': f'选项{i}'
+                                    'key': '节点1',
+                                    'value': '1',
+                                    'title': '节点1',
+                                    'children': [
+                                        {
+                                            'key': f'节点1-{i}',
+                                            'value': f'1-{i}',
+                                            'title': f'节点1-{i}'
+                                        }
+                                        for i in range(1, 5)
+                                    ]
+                                },
+                                {
+                                    'key': '节点2',
+                                    'value': '2',
+                                    'title': '节点2'
                                 }
-                                for i in range(1, 10)
                             ],
+                            placeholder='请选择',
                         ),
                         label=f'测试字段{i}',
                         rules=[
                             {
                                 'required': True,
-                                'type': 'array',
                                 'message': '必选字段',
                                 'validateTrigger': 'onBlur' if i % 2 else 'onChange',
                             },
@@ -82,7 +95,7 @@ def manual_submit_form(nClicks):
 
 
 @app.callback(
-    [Output('demo-form', 'resetForm')] + [Output(f'test-field{i}', 'targetKeys') for i in range(24)],
+    [Output('demo-form', 'resetForm')] + [Output(f'test-field{i}', 'value') for i in range(24)],
     Input('reset-button', 'nClicks'),
     prevent_initial_call=True
 )
