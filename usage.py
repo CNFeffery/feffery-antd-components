@@ -35,7 +35,7 @@ app.layout = html.Div(
                         )
                     )
                 ] + [fac.AntdFormItem(
-                        fac.AntdDraggerUpload(
+                        fac.AntdPictureUpload(
                             id=f'test-field{i}',
                             name=f'测试字段{i}',
                             apiUrl='/upload/'
