@@ -1,12 +1,12 @@
-import React, { useEffect, useContext } from 'react';
+import React, { useEffect, useContext, useMemo } from 'react';
 import { useRequest } from 'ahooks';
 import { Select, ConfigProvider } from 'antd';
 import { isUndefined, isString, isNumber } from 'lodash';
 import useCss from '../../hooks/useCss';
 import { str2Locale } from '../../components/locales.react';
 import PropsContext from '../../contexts/PropsContext';
-import FormContext from '../../contexts/FormContext';
-import FormItemContext from '../../contexts/FormItemContext';
+import useFormStore from '../../store/formStore';
+import useFormItemStore from '../../store/formItemStore';
 import { propTypes, defaultProps } from '../../components/dataEntry/AntdSelect.react';
 
 const { Option, OptGroup } = Select;
@@ -74,35 +74,26 @@ const AntdSelect = (props) => {
     })
 
     const context = useContext(PropsContext)
-    const formContext = useContext(FormContext)
-    const formItemContext = useContext(FormItemContext)
+    const updateValues = useFormStore((state) => state.updateValues)
+    const validateTrigger = useFormItemStore((state) => state.validateTrigger)
+    const updateAntdSelect = useFormItemStore((state) => state.updateAntdSelect)
     locale = (context && context.locale) || locale
+
+    const currentValidateTrigger = useMemo(() => {
+        return validateTrigger.filter((item) => item[name || id]).flatMap((item) => item[name || id])
+    }, [validateTrigger])
 
     // 处理AntdForm表单值搜集功能
     useEffect(() => {
-        // 当上下文有效，且存在有效字段名
-        if (formContext && formContext.setValues && (name || id)) {
-            // 融合当前最新value值到上文_values中
-            formContext.setValues((prevValues) => ({
-                ...prevValues,
-                ...{
-                    [name || id]: value || null
-                }
-            }))
+        if (name || id) {
+            updateValues({[name || id]: value || null})
         }
     }, [value])
 
     // 如果当前组件被表单项包裹，初始渲染时对表单项进行赋值
     useEffect(() => {
-        // 当上下文有效，且存在有效字段名
-        if (formItemContext && formItemContext.setItemValues && (name || id)) {
-            // 融合当前最新value值到上文itemValues中
-            formItemContext.setItemValues((prevValues) => ({
-                ...prevValues,
-                ...{
-                    [name || id]: value || null
-                }
-            }))
+        if (name || id) {
+            updateAntdSelect({[name || id]: {value: value || null}})
         }
     }, [])
 
@@ -122,43 +113,22 @@ const AntdSelect = (props) => {
 
     // 监听blur事件
     const onBlur = e => {
-        // 当上下文有效，且存在有效字段名
-        if (formItemContext && formItemContext.setItemValues && formItemContext.validateTrigger.includes('onBlur') && (name || id)) {
-            // 融合当前最新value值到上文itemValues中
-            formItemContext.setItemValues((prevValues) => ({
-                ...prevValues,
-                ...{
-                    [name || id]: value || null
-                }
-            }))
+        if (currentValidateTrigger.includes('onBlur') && (name || id)) {
+            updateAntdSelect({[name || id]: {value: value || null, timestamp: Date.now()}})
         }
     }
 
     // 监听focus事件
     const onFocus = e => {
-        // 当上下文有效，且存在有效字段名
-        if (formItemContext && formItemContext.setItemValues && formItemContext.validateTrigger.includes('onFocus') && (name || id)) {
-            // 融合当前最新value值到上文itemValues中
-            formItemContext.setItemValues((prevValues) => ({
-                ...prevValues,
-                ...{
-                    [name || id]: value || null
-                }
-            }))
+        if (currentValidateTrigger.includes('onFocus') && (name || id)) {
+            updateAntdSelect({[name || id]: {value: value || null, timestamp: Date.now()}})
         }
     }
 
     // 用于获取用户已选择值的回调函数
     const updateSelectedValue = (value) => {
-        // 当上下文有效，且存在有效字段名
-        if (formItemContext && formItemContext.setItemValues && formItemContext.validateTrigger.includes('onChange') && (name || id)) {
-            // 融合当前最新value值到上文itemValues中
-            formItemContext.setItemValues((prevValues) => ({
-                ...prevValues,
-                ...{
-                    [name || id]: value || null
-                }
-            }))
+        if (currentValidateTrigger.includes('onChange') && (name || id)) {
+            updateAntdSelect({[name || id]: {value: value || null, timestamp: Date.now()}})
         }
         setProps({ value: value })
     }

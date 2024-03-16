@@ -6,8 +6,8 @@ import { str2Locale, locale2text } from '../../components/locales.react';
 import { isUndefined, isString } from 'lodash';
 import ImgCrop from 'antd-img-crop';
 import PropsContext from '../../contexts/PropsContext';
-import FormContext from '../../contexts/FormContext';
-import FormItemContext from '../../contexts/FormItemContext';
+import useFormStore from '../../store/formStore';
+import useFormItemStore from '../../store/formItemStore';
 import useCss from '../../hooks/useCss';
 import { propTypes, defaultProps } from '../../components/dataEntry/upload/AntdPictureUpload.react';
 
@@ -86,36 +86,22 @@ const AntdPictureUpload = (props) => {
     } = props;
 
     const context = useContext(PropsContext)
-    const formContext = useContext(FormContext)
-    const formItemContext = useContext(FormItemContext)
+    const updateValues = useFormStore((state) => state.updateValues)
+    const updateAntdPictureUpload = useFormItemStore((state) => state.updateAntdPictureUpload)
     locale = (context && context.locale) || locale
     downloadUrlFromBackend = downloadUrl ? false : downloadUrlFromBackend
 
     // 处理AntdForm表单值搜集功能
     useEffect(() => {
-        // 当上下文有效，且存在有效字段名
-        if (formContext && formContext.setValues && (name || id)) {
-            // 融合当前最新listUploadTaskRecord值到上文_values中
-            formContext.setValues((prevValues) => ({
-                ...prevValues,
-                ...{
-                    [name || id]: listUploadTaskRecord || null
-                }
-            }))
+        if (name || id) {
+            updateValues({[name || id]: listUploadTaskRecord || null})
         }
     }, [listUploadTaskRecord])
 
     // 如果当前组件被表单项包裹，初始渲染时对表单项进行赋值
     useEffect(() => {
-        // 当上下文有效，且存在有效字段名
-        if (formItemContext && formItemContext.setItemValues && (name || id)) {
-            // 融合当前最新listUploadTaskRecord值到上文itemValues中
-            formItemContext.setItemValues((prevValues) => ({
-                ...prevValues,
-                ...{
-                    [name || id]: listUploadTaskRecord || null
-                }
-            }))
+        if (name || id) {
+            updateAntdPictureUpload({[name || id]: {value: listUploadTaskRecord || null}})
         }
     }, [])
 
@@ -239,15 +225,8 @@ const AntdPictureUpload = (props) => {
                     }
                 )
 
-                // 当上下文有效，且存在有效字段名
-                if (formItemContext && formItemContext.setItemValues && (name || id)) {
-                    // 融合当前最新listUploadTaskRecord值到上文itemValues中
-                    formItemContext.setItemValues((prevValues) => ({
-                        ...prevValues,
-                        ...{
-                            [name || id]: _listUploadTaskRecord || null
-                        }
-                    }))
+                if (name || id) {
+                    updateAntdPictureUpload({[name || id]: {value: _listUploadTaskRecord || null, timestamp: Date.now()}})
                 }
 
                 // 更新任务记录
@@ -283,15 +262,9 @@ const AntdPictureUpload = (props) => {
                         }
                     }
                 )
-                // 当上下文有效，且存在有效字段名
-                if (formItemContext && formItemContext.setItemValues && (name || id)) {
-                    // 融合当前最新listUploadTaskRecord值到上文itemValues中
-                    formItemContext.setItemValues((prevValues) => ({
-                        ...prevValues,
-                        ...{
-                            [name || id]: _listUploadTaskRecord || null
-                        }
-                    }))
+                
+                if (name || id) {
+                    updateAntdPictureUpload({[name || id]: {value: _listUploadTaskRecord || null, timestamp: Date.now()}})
                 }
                 setProps({
                     lastUploadTaskRecord: {
