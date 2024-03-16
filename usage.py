@@ -35,35 +35,16 @@ app.layout = html.Div(
                         )
                     )
                 ] + [fac.AntdFormItem(
-                        fac.AntdTreeSelect(
+                        fac.AntdDraggerUpload(
                             id=f'test-field{i}',
                             name=f'测试字段{i}',
-                            treeData=[
-                                {
-                                    'key': '节点1',
-                                    'value': '1',
-                                    'title': '节点1',
-                                    'children': [
-                                        {
-                                            'key': f'节点1-{i}',
-                                            'value': f'1-{i}',
-                                            'title': f'节点1-{i}'
-                                        }
-                                        for i in range(1, 5)
-                                    ]
-                                },
-                                {
-                                    'key': '节点2',
-                                    'value': '2',
-                                    'title': '节点2'
-                                }
-                            ],
-                            placeholder='请选择',
+                            apiUrl='/upload/'
                         ),
                         label=f'测试字段{i}',
                         rules=[
                             {
                                 'required': True,
+                                'type': 'array',
                                 'message': '必选字段',
                                 'validateTrigger': 'onBlur' if i % 2 else 'onChange',
                             },
@@ -95,13 +76,13 @@ def manual_submit_form(nClicks):
 
 
 @app.callback(
-    [Output('demo-form', 'resetForm')] + [Output(f'test-field{i}', 'value') for i in range(24)],
+    [Output('demo-form', 'resetForm')] + [Output(f'test-field{i}', 'listUploadTaskRecord') for i in range(24)],
     Input('reset-button', 'nClicks'),
     prevent_initial_call=True
 )
 def manual_reset_form(nClicks):
     if nClicks:
-        return [True] + [None] * 24
+        return [True] + [[]] * 24
     return [dash.no_update] * 25
 
 

@@ -24,6 +24,7 @@ const useFormItemStore = create((set) => ({
     AntdTimeRangePicker: {},
     AntdTransfer: {},
     AntdTreeSelect: {},
+    AntdDraggerUpload: {},
     updateValidateTrigger: (value) => set((state) => ({
         validateTrigger: [
             ...state.validateTrigger,
@@ -153,6 +154,12 @@ const useFormItemStore = create((set) => ({
     updateAntdTreeSelect: (value) => set((state) => ({
         AntdTreeSelect: {
             ...state.AntdTreeSelect,
+            ...value
+        }
+    })),
+    updateAntdDraggerUpload: (value) => set((state) => ({
+        AntdDraggerUpload: {
+            ...state.AntdDraggerUpload,
             ...value
         }
     })),
