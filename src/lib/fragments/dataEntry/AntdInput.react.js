@@ -164,7 +164,7 @@ const AntdInput = (props) => {
         // 若启用md5加密且为密码模式
         if (passwordUseMd5 && mode === 'password') {
             setProps({
-                md5Value: md5(e.target.value),
+                md5Value: e.target.value ? md5(e.target.value) : null,
                 value: (
                     emptyAsNone ?
                         (
