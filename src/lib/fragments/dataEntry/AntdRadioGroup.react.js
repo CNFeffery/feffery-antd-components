@@ -3,8 +3,8 @@ import { Radio, Space } from 'antd';
 import { isString, isNumber, isUndefined } from 'lodash';
 import useCss from '../../hooks/useCss';
 import PropsContext from '../../contexts/PropsContext';
-import FormContext from '../../contexts/FormContext';
-import FormItemContext from '../../contexts/FormItemContext';
+import useFormStore from '../../store/formStore';
+import useFormItemStore from '../../store/formItemStore';
 import { propTypes, defaultProps } from '../../components/dataEntry/AntdRadioGroup.react';
 
 
@@ -48,34 +48,20 @@ const AntdRadioGroup = (props) => {
     })
 
     const context = useContext(PropsContext)
-    const formContext = useContext(FormContext)
-    const formItemContext = useContext(FormItemContext)
+    const updateValues = useFormStore((state) => state.updateValues)
+    const updateAntdRadioGroup = useFormItemStore((state) => state.updateAntdRadioGroup)
 
     // 处理AntdForm表单值搜集功能
     useEffect(() => {
-        // 当上下文有效，且存在有效字段名
-        if (formContext && formContext.setValues && (name || id)) {
-            // 融合当前最新value值到上文_values中
-            formContext.setValues((prevValues) => ({
-                ...prevValues,
-                ...{
-                    [name || id]: value || null
-                }
-            }))
+        if (name || id) {
+            updateValues({[name || id]: value || null})
         }
     }, [value])
 
     // 如果当前组件被表单项包裹，初始渲染时对表单项进行赋值
     useEffect(() => {
-        // 当上下文有效，且存在有效字段名
-        if (formItemContext && formItemContext.setItemValues && (name || id)) {
-            // 融合当前最新value值到上文itemValues中
-            formItemContext.setItemValues((prevValues) => ({
-                ...prevValues,
-                ...{
-                    [name || id]: value || null
-                }
-            }))
+        if (name || id) {
+            updateAntdRadioGroup({[name || id]: {value: value || null}})
         }
     }, [])
 
@@ -87,15 +73,8 @@ const AntdRadioGroup = (props) => {
 
     const onSelect = (e) => {
         if (!readOnly) {
-            // 当上下文有效，且存在有效字段名
-            if (formItemContext && formItemContext.setItemValues && (name || id)) {
-                // 融合当前最新value值到上文itemValues中
-                formItemContext.setItemValues((prevValues) => ({
-                    ...prevValues,
-                    ...{
-                        [name || id]: e.target.value || null
-                    }
-                }))
+            if (name || id) {
+                updateAntdRadioGroup({[name || id]: {value: e.target.value || null, timestamp: Date.now()}})
             }
             setProps({ value: e.target.value })
         }
