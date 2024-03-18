@@ -6,7 +6,7 @@ import os
 import json
 from flask import request
 
-app = dash.Dash(__name__)
+app = dash.Dash(__name__, compress=True)
 
 app.layout = html.Div(
     fac.AntdSpace(
