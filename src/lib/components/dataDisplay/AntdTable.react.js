@@ -827,6 +827,40 @@ AntdTable.propTypes = {
     // 记录单元格单击事件发生的总次数
     nClicksCell: PropTypes.number,
 
+    /**
+     * 监听单元格单击事件详细参数
+     */
+    cellClickEvent: PropTypes.exact({
+        /**
+         * 以页面整体左上角为原点，记录x坐标
+         */
+        pageX: PropTypes.number,
+        /**
+         * 以页面整体左上角为原点，记录y坐标
+         */
+        pageY: PropTypes.number,
+        /**
+         * 以浏览器窗口左上角为原点，记录x坐标
+         */
+        clientX: PropTypes.number,
+        /**
+         * 以浏览器窗口左上角为原点，记录y坐标
+         */
+        clientY: PropTypes.number,
+        /**
+         * 以屏幕左上角为原点，记录x坐标
+         */
+        screenX: PropTypes.number,
+        /**
+         * 以屏幕左上角为原点，记录y坐标
+         */
+        screenY: PropTypes.number,
+        /**
+         * 点击事件对应的时间戳
+         */
+        timestamp: PropTypes.number
+    }),
+
     // 双击事件
     // 记录单元格点击事件对应的字段dataIndex信息
     recentlyCellDoubleClickColumn: PropTypes.string,
@@ -836,6 +870,40 @@ AntdTable.propTypes = {
 
     // 记录单元格单击事件发生的总次数
     nDoubleClicksCell: PropTypes.number,
+
+    /**
+     * 监听单元格双击事件详细参数
+     */
+    cellDoubleClickEvent: PropTypes.exact({
+        /**
+         * 以页面整体左上角为原点，记录x坐标
+         */
+        pageX: PropTypes.number,
+        /**
+         * 以页面整体左上角为原点，记录y坐标
+         */
+        pageY: PropTypes.number,
+        /**
+         * 以浏览器窗口左上角为原点，记录x坐标
+         */
+        clientX: PropTypes.number,
+        /**
+         * 以浏览器窗口左上角为原点，记录y坐标
+         */
+        clientY: PropTypes.number,
+        /**
+         * 以屏幕左上角为原点，记录x坐标
+         */
+        screenX: PropTypes.number,
+        /**
+         * 以屏幕左上角为原点，记录y坐标
+         */
+        screenY: PropTypes.number,
+        /**
+         * 点击事件对应的时间戳
+         */
+        timestamp: PropTypes.number
+    }),
 
     // 自定义空数据状态内容
     emptyContent: PropTypes.node,

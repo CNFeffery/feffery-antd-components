@@ -1817,14 +1817,32 @@ class AntdTable extends Component {
                                             setProps({
                                                 recentlyCellClickColumn: item.dataIndex,
                                                 recentlyCellClickRecord: record,
-                                                nClicksCell: nClicksCell + 1
+                                                nClicksCell: nClicksCell + 1,
+                                                cellClickEvent: {
+                                                    pageX: e.pageX,
+                                                    pageY: e.pageY,
+                                                    clientX: e.clientX,
+                                                    clientY: e.clientY,
+                                                    screenX: e.screenX,
+                                                    screenY: e.screenY,
+                                                    timestamp: Date.now()
+                                                }
                                             })
                                         },
                                         onDoubleClick: e => {
                                             setProps({
                                                 recentlyCellDoubleClickColumn: item.dataIndex,
                                                 recentlyCellDoubleClickRecord: record,
-                                                nDoubleClicksCell: nDoubleClicksCell + 1
+                                                nDoubleClicksCell: nDoubleClicksCell + 1,
+                                                cellDoubleClickEvent: {
+                                                    pageX: e.pageX,
+                                                    pageY: e.pageY,
+                                                    clientX: e.clientX,
+                                                    clientY: e.clientY,
+                                                    screenX: e.screenX,
+                                                    screenY: e.screenY,
+                                                    timestamp: Date.now()
+                                                }
                                             })
                                         }
                                     }
