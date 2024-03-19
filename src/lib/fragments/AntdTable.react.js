@@ -270,6 +270,12 @@ class AntdTable extends Component {
         const changedProps = Object.keys(nextProps)
             .filter(key => !isEqual(this.props[key], nextProps[key]))
 
+        // 特殊处理：
+        // 当recentlySelectValue发生变动时，阻止本次重绘
+        if (changedProps.includes('recentlySelectValue')) {
+            return false;
+        }
+
         // #80
         // selectedRowsSyncWithData=true时，当data发生更新，在selectedRowKeys有效时，对selectedRows进行同步更新
         if (

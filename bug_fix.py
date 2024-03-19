@@ -1,51 +1,62 @@
-
 import dash
 from dash import html
 import feffery_antd_components as fac
-from dash.dependencies import Input, Output
 
 app = dash.Dash(__name__)
 
 app.layout = html.Div(
     [
-        html.Div(
+        fac.AntdSpace(
             [
-                fac.AntdButton(
-                    '打开示例抽屉',
-                    id='drawer-local-demo-open',
-                    type='primary'
-                ),
-                fac.AntdDrawer(
-                    '示例内容',
-                    id='drawer-local-demo',
-                    title='局部容器抽屉示例',
-                    containerId='drawer-local-container'
+                fac.AntdTable(
+                    id='main-table-user-manager',
+                    columns=[
+                        {
+                            'title': '密码',
+                            'dataIndex': '密码',
+                            'editable': True,
+                            'width': 'calc(100%*2 / 10)'
+                        },
+                        {
+                            'title': '应用权限',
+                            'dataIndex': '应用权限',
+                            'renderOptions': {
+                                'renderType': 'select'
+                            },
+                            'width': 'calc(100%*4 / 10)'
+                        },
+                    ],
+                    data=[
+                        {
+                            '密码': '11111',
+                            '应用权限': {
+                                'options': [
+                                    {
+                                        'label': f'选项{j}',
+                                        'value': f'选项{j}'
+                                    }
+                                    for j in range(5)
+                                ],
+                                'mode': 'multiple',
+                                'allowClear': True,
+                                'placeholder': '请选择'
+                            },
+                        }
+                        for i in range(1, 4)
+                    ],
+                    bordered=True,
                 )
             ],
-            id='drawer-local-container',
+            direction='vertical',
             style={
-                'width': 800,
-                'height': 400,
-                'border': '1px solid #e9ecef',
-                'position': 'relative',
-                'padding': 25,
-                'overflowX': 'hidden',
-                'background': '#d9d9d9'
+                'width': '100%'
             }
         )
-    ]
+    ],
+    style={
+        'padding': 30
+    }
 )
-
-
-@app.callback(
-    Output('drawer-local-demo', 'visible'),
-    Input('drawer-local-demo-open', 'nClicks'),
-    prevent_initial_call=True
-)
-def drawer_local_demo(nClicks):
-
-    return True
-
 
 if __name__ == '__main__':
     app.run(debug=True)
