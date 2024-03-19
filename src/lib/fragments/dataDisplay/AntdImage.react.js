@@ -27,7 +27,7 @@ const AntdImage = (props) => {
     const context = useContext(PropsContext)
     locale = (context && context.locale) || locale
 
-    const [visible, setVisible] = useState(preview?.visible);
+    const [visible, setVisible] = useState(preview?.visible || false);
 
     // 多图片模式时
     if (Array.isArray(src)) {
@@ -94,11 +94,15 @@ const AntdImage = (props) => {
                     height={height}
                     src={src}
                     fallback={fallback}
-                    preview={{
-                        ...preview,
-                        visible: visible,
-                        onVisibleChange: vis => setVisible(vis)
-                    }}
+                    preview={
+                        preview ?
+                            {
+                                ...preview,
+                                visible: visible,
+                                onVisibleChange: vis => setVisible(vis)
+                            } :
+                            false
+                    }
                 />
             </ConfigProvider>
         );
