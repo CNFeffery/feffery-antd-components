@@ -4,8 +4,9 @@ import useCss from '../../hooks/useCss';
 import { isString } from 'lodash';
 import { Drawer } from 'antd';
 
-
-// 定义抽屉组件AntdDrawer，api参数参考https://ant.design/components/drawer-cn/
+/**
+ * 抽屉组件AntdDrawer
+ */
 const AntdDrawer = (props) => {
     // 取得必要属性或参数
     let {
@@ -13,6 +14,7 @@ const AntdDrawer = (props) => {
         children,
         className,
         style,
+        rootStyle,
         classNames,
         styles,
         drawerStyle,
@@ -64,6 +66,14 @@ const AntdDrawer = (props) => {
             }
             classNames={classNames}
             styles={styles}
+            rootStyle={
+                containerId || containerSelector ?
+                    {
+                        position: 'absolute',
+                        ...rootStyle
+                    } :
+                    rootStyle
+            }
             drawerStyle={drawerStyle}
             bodyStyle={bodyStyle}
             contentWrapperStyle={contentWrapperStyle}
@@ -135,6 +145,11 @@ AntdDrawer.propTypes = {
         content: PropTypes.object,
         wrapper: PropTypes.object
     }),
+
+    /**
+     * 设置当前抽屉根节点css样式（包含蒙版层），特殊的，当设置了containerId或containerSelector时，该参数默认会被添加position为absolute
+     */
+    rootStyle: PropTypes.object,
 
     // 设置抽屉弹出层的css样式
     drawerStyle: PropTypes.object,

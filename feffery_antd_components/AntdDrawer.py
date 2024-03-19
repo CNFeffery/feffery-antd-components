@@ -5,7 +5,7 @@ from dash.development.base_component import Component, _explicitize_args
 
 class AntdDrawer(Component):
     """An AntdDrawer component.
-
+抽屉组件AntdDrawer
 
 Keyword arguments:
 
@@ -80,6 +80,9 @@ Keyword arguments:
 
 - placement (a value equal to: 'left', 'right', 'top', 'bottom'; default 'right')
 
+- rootStyle (dict; optional):
+    设置当前抽屉根节点css样式（包含蒙版层），特殊的，当设置了containerId或containerSelector时，该参数默认会被添加position为absolute.
+
 - style (dict; optional)
 
 - styles (dict; optional)
@@ -110,10 +113,10 @@ Keyword arguments:
     _namespace = 'feffery_antd_components'
     _type = 'AntdDrawer'
     @_explicitize_args
-    def __init__(self, children=None, id=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, classNames=Component.UNDEFINED, styles=Component.UNDEFINED, drawerStyle=Component.UNDEFINED, bodyStyle=Component.UNDEFINED, contentWrapperStyle=Component.UNDEFINED, headerStyle=Component.UNDEFINED, footerStyle=Component.UNDEFINED, maskStyle=Component.UNDEFINED, key=Component.UNDEFINED, visible=Component.UNDEFINED, title=Component.UNDEFINED, placement=Component.UNDEFINED, closable=Component.UNDEFINED, forceRender=Component.UNDEFINED, destroyOnClose=Component.UNDEFINED, width=Component.UNDEFINED, height=Component.UNDEFINED, mask=Component.UNDEFINED, maskClosable=Component.UNDEFINED, zIndex=Component.UNDEFINED, extra=Component.UNDEFINED, footer=Component.UNDEFINED, containerId=Component.UNDEFINED, containerSelector=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
-        self._prop_names = ['children', 'id', 'bodyStyle', 'className', 'classNames', 'closable', 'containerId', 'containerSelector', 'contentWrapperStyle', 'destroyOnClose', 'drawerStyle', 'extra', 'footer', 'footerStyle', 'forceRender', 'headerStyle', 'height', 'key', 'loading_state', 'mask', 'maskClosable', 'maskStyle', 'placement', 'style', 'styles', 'title', 'visible', 'width', 'zIndex']
+    def __init__(self, children=None, id=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, classNames=Component.UNDEFINED, styles=Component.UNDEFINED, rootStyle=Component.UNDEFINED, drawerStyle=Component.UNDEFINED, bodyStyle=Component.UNDEFINED, contentWrapperStyle=Component.UNDEFINED, headerStyle=Component.UNDEFINED, footerStyle=Component.UNDEFINED, maskStyle=Component.UNDEFINED, key=Component.UNDEFINED, visible=Component.UNDEFINED, title=Component.UNDEFINED, placement=Component.UNDEFINED, closable=Component.UNDEFINED, forceRender=Component.UNDEFINED, destroyOnClose=Component.UNDEFINED, width=Component.UNDEFINED, height=Component.UNDEFINED, mask=Component.UNDEFINED, maskClosable=Component.UNDEFINED, zIndex=Component.UNDEFINED, extra=Component.UNDEFINED, footer=Component.UNDEFINED, containerId=Component.UNDEFINED, containerSelector=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
+        self._prop_names = ['children', 'id', 'bodyStyle', 'className', 'classNames', 'closable', 'containerId', 'containerSelector', 'contentWrapperStyle', 'destroyOnClose', 'drawerStyle', 'extra', 'footer', 'footerStyle', 'forceRender', 'headerStyle', 'height', 'key', 'loading_state', 'mask', 'maskClosable', 'maskStyle', 'placement', 'rootStyle', 'style', 'styles', 'title', 'visible', 'width', 'zIndex']
         self._valid_wildcard_attributes =            []
-        self.available_properties = ['children', 'id', 'bodyStyle', 'className', 'classNames', 'closable', 'containerId', 'containerSelector', 'contentWrapperStyle', 'destroyOnClose', 'drawerStyle', 'extra', 'footer', 'footerStyle', 'forceRender', 'headerStyle', 'height', 'key', 'loading_state', 'mask', 'maskClosable', 'maskStyle', 'placement', 'style', 'styles', 'title', 'visible', 'width', 'zIndex']
+        self.available_properties = ['children', 'id', 'bodyStyle', 'className', 'classNames', 'closable', 'containerId', 'containerSelector', 'contentWrapperStyle', 'destroyOnClose', 'drawerStyle', 'extra', 'footer', 'footerStyle', 'forceRender', 'headerStyle', 'height', 'key', 'loading_state', 'mask', 'maskClosable', 'maskStyle', 'placement', 'rootStyle', 'style', 'styles', 'title', 'visible', 'width', 'zIndex']
         self.available_wildcard_properties =            []
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()

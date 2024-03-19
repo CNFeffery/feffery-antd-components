@@ -1,4 +1,4 @@
-import json
+
 import dash
 from dash import html
 import feffery_antd_components as fac
@@ -8,34 +8,43 @@ app = dash.Dash(__name__)
 
 app.layout = html.Div(
     [
-        fac.AntdSpace(
+        html.Div(
             [
-                fac.AntdInput(
-                    id='input-demo',
-                    passwordUseMd5=True,
-                    mode='password',
-                    style={
-                        'width': 200
-                    }
+                fac.AntdButton(
+                    '打开示例抽屉',
+                    id='drawer-local-demo-open',
+                    type='primary'
                 ),
-                html.Pre(id='output')
-            ]
+                fac.AntdDrawer(
+                    '示例内容',
+                    id='drawer-local-demo',
+                    title='局部容器抽屉示例',
+                    containerId='drawer-local-container'
+                )
+            ],
+            id='drawer-local-container',
+            style={
+                'width': 800,
+                'height': 400,
+                'border': '1px solid #e9ecef',
+                'position': 'relative',
+                'padding': 25,
+                'overflowX': 'hidden',
+                'background': '#d9d9d9'
+            }
         )
     ]
 )
 
 
 @app.callback(
-    Output('output', 'children'),
-    Input('input-demo', 'md5Value')
+    Output('drawer-local-demo', 'visible'),
+    Input('drawer-local-demo-open', 'nClicks'),
+    prevent_initial_call=True
 )
-def demo(md5Value):
+def drawer_local_demo(nClicks):
 
-    return json.dumps(
-        dict(md5Value=md5Value),
-        indent=4,
-        ensure_ascii=False
-    )
+    return True
 
 
 if __name__ == '__main__':
