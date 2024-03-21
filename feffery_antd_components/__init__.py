@@ -34,7 +34,8 @@ async_resources = [
     'upload',
     'data_entry',
     'data_display',
-    'pro_editor'
+    'pro_editor',
+    'form_render'
 ]
 
 

@@ -113,6 +113,8 @@ import Fragment from './components/other/Fragment.react';
 // 复杂交互
 import AntdDraggablePanel from './components/proEditor/AntdDraggablePanel.react';
 import AntdEditorLayout from './components/proEditor/AntdEditorLayout.react';
+// 表单生成
+import AntdFormRender from './components/formRender/AntdFormRender.react';
 // css样式
 import './components/styles.css'; // 自定义样式
 
@@ -223,5 +225,6 @@ export {
     AntdDraggablePanel,
     AntdCheckableTag,
     Fragment,
-    AntdEditorLayout
+    AntdEditorLayout,
+    AntdFormRender
 };
