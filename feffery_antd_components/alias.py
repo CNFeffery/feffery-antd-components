@@ -90,14 +90,14 @@ from .AntdSider import AntdSider as Sider
 from .AntdSpace import AntdSpace as Space
 from .AntdCol import AntdCol as Col
 from .AntdRow import AntdRow as Row
-from .AntdAffix import AntdAffix as Affix
+from .AntdAnchor import AntdAnchor as Anchor
 from .AntdBreadcrumb import AntdBreadcrumb as Breadcrumb
 from .AntdDropdown import AntdDropdown as Dropdown
 from .AntdMenu import AntdMenu as Menu
 from .AntdPageHeader import AntdPageHeader as PageHeader
 from .AntdPagination import AntdPagination as Pagination
 from .AntdSteps import AntdSteps as Steps
-from .AntdAnchor import AntdAnchor as Anchor
+from .AntdAffix import AntdAffix as Affix
 from .AntdBackTop import AntdBackTop as BackTop
 from .AntdConfigProvider import AntdConfigProvider as ConfigProvider
 from .AntdCopyText import AntdCopyText as CopyText
@@ -200,14 +200,14 @@ __all__ = [
     "Space",
     "Col",
     "Row",
-    "Affix",
+    "Anchor",
     "Breadcrumb",
     "Dropdown",
     "Menu",
     "PageHeader",
     "Pagination",
     "Steps",
-    "Anchor",
+    "Affix",
     "BackTop",
     "ConfigProvider",
     "CopyText",

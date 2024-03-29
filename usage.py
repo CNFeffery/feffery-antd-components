@@ -4,7 +4,6 @@ import feffery_antd_components as fac
 from dash.dependencies import Input, State, Output
 import json
 
-
 app = dash.Dash(__name__)
 
 schema = {
