@@ -1,12 +1,16 @@
-import React from 'react';
+// react核心
 import PropTypes from 'prop-types';
+// antd核心
 import { FloatButton } from 'antd';
-import useCss from '../../hooks/useCss';
+// 辅助库
 import { isString } from 'lodash';
+// 自定义hooks
+import useCss from '../../hooks/useCss';
 
-// 定义悬浮按钮组件AntdFloatButton
+/**
+ * 悬浮按钮组件AntdFloatButton
+ */
 const AntdFloatButton = (props) => {
-    // 取得必要属性或参数
     let {
         id,
         className,
@@ -48,63 +52,71 @@ const AntdFloatButton = (props) => {
     );
 }
 
-// 定义参数或属性
 AntdFloatButton.propTypes = {
-    // 组件id
+    /**
+     * 组件唯一id
+     */
     id: PropTypes.string,
 
-    // css类名
+    /**
+     * 对当前组件的`key`值进行更新，可实现强制重绘当前组件的效果
+     */
+    key: PropTypes.string,
+
+    /**
+     * 当前组件css样式
+     */
+    style: PropTypes.object,
+
+    /**
+     * 当前组件css类名，支持[动态css](/advanced-classname)
+     */
     className: PropTypes.oneOfType([
         PropTypes.string,
         PropTypes.object
     ]),
 
-    // 自定义css字典
-    style: PropTypes.object,
-
-    // 辅助刷新用唯一标识key值
-    key: PropTypes.string,
-
     /**
-     * 组件型，用于设置自定义图标元素
+     * 组件型，按钮内嵌前缀图标元素
      */
     icon: PropTypes.node,
 
     /**
-     * 组件型，用于设置文字及其他内容，仅shape='square'时可用
+     * 组件型，按钮内嵌元素，仅`shape='square'`时可用
      */
     description: PropTypes.node,
 
     /**
-     * 组件型，用于设置附加气泡卡片的内部元素
+     * 组件型，按钮额外气泡卡片内容
      */
     tooltip: PropTypes.node,
 
     /**
-     * 设置按钮类型，可选的有'default'、'primary'
-     * 默认：'default'
+     * 按钮类型，可选项有`'default'`、`'primary'`
+     * 默认值：`'default'`
      */
     type: PropTypes.oneOf(['default', 'primary']),
 
     /**
-     * 设置按钮形状，可选的有'circle'、'square'
-     * 默认：'circle'
+     * 按钮形状，可选项有`'circle'`、`'square'`
+     * 默认值：`'circle'`
      */
     shape: PropTypes.oneOf(['circle', 'square']),
 
     /**
-     * 为按钮设置点击后跳转的链接地址
+     * 按钮点击跳转链接地址
      */
     href: PropTypes.string,
 
     /**
-     * 设置链接点击跳转行为
-     * 默认：'_blank'
+     * 按钮点击跳转链接方式
+     * 默认值：`'_blank'`
      */
     target: PropTypes.string,
 
     /**
-     * 监听当前悬浮按钮累计点击次数
+     * 按钮累计点击次数，用于监听按钮点击行为
+     * 默认值：`0`
      */
     nClicks: PropTypes.number,
 

@@ -1,12 +1,17 @@
-import { str2Icon } from '../icons.react';
+// react核心
 import PropTypes from 'prop-types';
-import useCss from '../../hooks/useCss';
+// antd核心
+import { str2Icon } from '../icons.react';
+// 辅助库
 import { isString } from 'lodash';
 import { useRequest } from 'ahooks';
+// 自定义hooks
+import useCss from '../../hooks/useCss';
 
-// 定义图标组件AntdIcon
+/**
+ * 图标组件AntdIcon
+ */
 const AntdIcon = (props) => {
-    // 取得必要属性或参数
     let {
         id,
         className,
@@ -63,50 +68,44 @@ const AntdIcon = (props) => {
     return null;
 }
 
-// 定义参数或属性
 AntdIcon.propTypes = {
-    // 组件id
     /**
-     * Component id.
+     * 组件唯一id
      */
     id: PropTypes.string,
 
-    // css类名
     /**
-     * CSS class name.
+     * 对当前组件的`key`值进行更新，可实现强制重绘当前组件的效果
+     */
+    key: PropTypes.string,
+
+    /**
+     * 当前组件css样式
+     */
+    style: PropTypes.object,
+
+    /**
+     * 当前组件css类名，支持[动态css](/advanced-classname)
      */
     className: PropTypes.oneOfType([
         PropTypes.string,
         PropTypes.object
     ]),
 
-    // 用于指定icon类型
     /**
-     * Specifies the icon type.
+     * 图标名称
      */
     icon: PropTypes.string,
 
-    // 自定义css字典
     /**
-     * Custom CSS styles.
-     */
-    style: PropTypes.object,
-
-    // 辅助刷新用唯一标识key值
-    /**
-     * A unique identifier key used for refreshing assistance.
-     */
-    key: PropTypes.string,
-
-    // 记录按钮从渲染后开始被点击的次数，默认为0
-    /**
-     * Records the number of times the button has been clicked since rendering, default is 0.
+     * 图标累计点击次数，用于监听图标点击行为
+     * 默认值：`0`
      */
     nClicks: PropTypes.number,
 
-    // 用于配置value变化更新的防抖等待时长（单位：毫秒），默认为0
     /**
-     * Configures the debounce wait time (in milliseconds) for value change updates, default is 0.
+     * 图标点击事件监听防抖延时，单位：毫秒
+     * 默认值：`0`
      */
     debounceWait: PropTypes.number,
 

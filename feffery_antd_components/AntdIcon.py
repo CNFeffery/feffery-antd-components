@@ -5,25 +5,24 @@ from dash.development.base_component import Component, _explicitize_args
 
 class AntdIcon(Component):
     """An AntdIcon component.
-
+图标组件AntdIcon
 
 Keyword arguments:
 
 - id (string; optional):
-    Component id.
+    组件唯一id.
 
 - className (string | dict; optional):
-    CSS class name.
+    当前组件css类名，支持[动态css](/advanced-classname).
 
 - debounceWait (number; default 0):
-    Configures the debounce wait time (in milliseconds) for value
-    change updates, default is 0.
+    图标点击事件监听防抖延时，单位：毫秒  默认值：`0`.
 
 - icon (string; optional):
-    Specifies the icon type.
+    图标名称.
 
 - key (string; optional):
-    A unique identifier key used for refreshing assistance.
+    对当前组件的`key`值进行更新，可实现强制重绘当前组件的效果.
 
 - loading_state (dict; optional)
 
@@ -39,17 +38,16 @@ Keyword arguments:
         Holds which property is loading.
 
 - nClicks (number; default 0):
-    Records the number of times the button has been clicked since
-    rendering, default is 0.
+    图标累计点击次数，用于监听图标点击行为  默认值：`0`.
 
 - style (dict; optional):
-    Custom CSS styles."""
+    当前组件css样式."""
     _children_props = []
     _base_nodes = ['children']
     _namespace = 'feffery_antd_components'
     _type = 'AntdIcon'
     @_explicitize_args
-    def __init__(self, id=Component.UNDEFINED, className=Component.UNDEFINED, icon=Component.UNDEFINED, style=Component.UNDEFINED, key=Component.UNDEFINED, nClicks=Component.UNDEFINED, debounceWait=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
+    def __init__(self, id=Component.UNDEFINED, key=Component.UNDEFINED, style=Component.UNDEFINED, className=Component.UNDEFINED, icon=Component.UNDEFINED, nClicks=Component.UNDEFINED, debounceWait=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
         self._prop_names = ['id', 'className', 'debounceWait', 'icon', 'key', 'loading_state', 'nClicks', 'style']
         self._valid_wildcard_attributes =            []
         self.available_properties = ['id', 'className', 'debounceWait', 'icon', 'key', 'loading_state', 'nClicks', 'style']

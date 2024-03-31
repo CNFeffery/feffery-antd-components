@@ -5,40 +5,39 @@ from dash.development.base_component import Component, _explicitize_args
 
 class AntdTitle(Component):
     """An AntdTitle component.
-
+标题组件AntdTitle
 
 Keyword arguments:
 
 - children (a list of or a singular dash component, string or number; optional):
-    The content of the title.
+    组件型，内嵌元素.
 
 - id (string; optional):
-    Component id.
+    组件唯一id.
 
 - className (string | dict; optional):
-    CSS class name.
+    当前组件css类名，支持[动态css](/advanced-classname).
 
 - code (boolean; optional):
-    Sets whether to render the content in code mode.
+    是否渲染为代码形式.
 
 - copyable (boolean; optional):
-    Sets whether the content can be quickly copied.
+    是否开启快捷复制功能.
 
 - disabled (boolean; optional):
-    Sets whether the content is disabled.
+    是否渲染为禁用形式.
 
 - italic (boolean; optional):
-    Sets whether the content should be italic.
+    是否渲染为斜体形式.
 
 - key (string; optional):
-    A unique identifier key used for refreshing assistance.
+    对当前组件的`key`值进行更新，可实现强制重绘当前组件的效果.
 
 - keyboard (boolean; optional):
-    Sets whether to add keyboard key style.
+    是否渲染为键盘形式.
 
 - level (number; default 1):
-    Sets the level of the title. Possible values are integers between
-    1 and 5, corresponding to h1 to h5.  Default is 1.
+    标题级别，可选项有`1`、`2`、`3`、`4`、`5`  默认值：`1`.
 
 - loading_state (dict; optional)
 
@@ -54,34 +53,31 @@ Keyword arguments:
         Holds which property is loading.
 
 - locale (a value equal to: 'zh-cn', 'en-us'; default 'zh-cn'):
-    Sets the language environment. Possible options are 'zh-cn' and
-    'en-us'.
+    组件文案语种，可选项有`'zh-cn'`、`'en-us'`  默认值：`'zh-cn'`.
 
 - mark (boolean; optional):
-    Sets whether to add mark style.
+    是否渲染为高亮形式.
 
 - strikethrough (boolean; optional):
-    Sets whether to render the content with strikethrough mode.
+    是否渲染为删除线形式.
 
 - strong (boolean; optional):
-    Sets whether the content should be bold.
+    是否渲染为加粗形式.
 
 - style (dict; optional):
-    Custom CSS styles.
+    当前组件css样式.
 
 - type (a value equal to: 'secondary', 'success', 'warning', 'danger'; optional):
-    Sets the text status type for rendering. Possible options are
-    'secondary', 'success', 'warning', and 'danger'. Default is no
-    status.
+    设置内容特殊状态形式，可选项有`'secondary'`、`'success'`、`'warning'`、`'danger'`.
 
 - underline (boolean; optional):
-    Sets whether to add underline."""
+    是否渲染为下划线形式."""
     _children_props = []
     _base_nodes = ['children']
     _namespace = 'feffery_antd_components'
     _type = 'AntdTitle'
     @_explicitize_args
-    def __init__(self, children=None, id=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, key=Component.UNDEFINED, locale=Component.UNDEFINED, level=Component.UNDEFINED, code=Component.UNDEFINED, copyable=Component.UNDEFINED, strikethrough=Component.UNDEFINED, disabled=Component.UNDEFINED, mark=Component.UNDEFINED, strong=Component.UNDEFINED, italic=Component.UNDEFINED, underline=Component.UNDEFINED, keyboard=Component.UNDEFINED, type=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
+    def __init__(self, children=None, id=Component.UNDEFINED, key=Component.UNDEFINED, style=Component.UNDEFINED, className=Component.UNDEFINED, locale=Component.UNDEFINED, level=Component.UNDEFINED, code=Component.UNDEFINED, copyable=Component.UNDEFINED, strikethrough=Component.UNDEFINED, disabled=Component.UNDEFINED, mark=Component.UNDEFINED, strong=Component.UNDEFINED, italic=Component.UNDEFINED, underline=Component.UNDEFINED, keyboard=Component.UNDEFINED, type=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
         self._prop_names = ['children', 'id', 'className', 'code', 'copyable', 'disabled', 'italic', 'key', 'keyboard', 'level', 'loading_state', 'locale', 'mark', 'strikethrough', 'strong', 'style', 'type', 'underline']
         self._valid_wildcard_attributes =            []
         self.available_properties = ['children', 'id', 'className', 'code', 'copyable', 'disabled', 'italic', 'key', 'keyboard', 'level', 'loading_state', 'locale', 'mark', 'strikethrough', 'strong', 'style', 'type', 'underline']

@@ -1,10 +1,15 @@
-import React from 'react';
+// react核心
 import PropTypes from 'prop-types';
+// antd核心
 import { FloatButton } from 'antd';
-import useCss from '../../hooks/useCss';
+// 辅助库
 import { isString } from 'lodash';
+// 自定义hooks
+import useCss from '../../hooks/useCss';
 
-// 定义悬浮按钮组AntdFloatButtonGroup
+/**
+ * 悬浮按钮组组件AntdFloatButtonGroup
+ */
 const AntdFloatButtonGroup = (props) => {
     // 取得必要属性或参数
     let {
@@ -13,10 +18,6 @@ const AntdFloatButtonGroup = (props) => {
         className,
         style,
         key,
-        icon,
-        description,
-        tooltip,
-        type,
         shape,
         trigger,
         open,
@@ -33,10 +34,6 @@ const AntdFloatButtonGroup = (props) => {
             }
             style={style}
             key={key}
-            icon={icon}
-            description={description}
-            tooltip={tooltip}
-            type={type}
             shape={shape}
             trigger={trigger}
             open={open}
@@ -48,62 +45,48 @@ const AntdFloatButtonGroup = (props) => {
     );
 }
 
-// 定义参数或属性
 AntdFloatButtonGroup.propTypes = {
-    // 组件id
+    /**
+     * 组件唯一id
+     */
     id: PropTypes.string,
 
     /**
-     * 当前悬浮按钮组内各悬浮按钮组件
+     * 对当前组件的`key`值进行更新，可实现强制重绘当前组件的效果
+     */
+    key: PropTypes.string,
+
+    /**
+     * 当前悬浮按钮组内悬浮按钮
      */
     children: PropTypes.node,
 
-    // css类名
+    /**
+     * 当前组件css样式
+     */
+    style: PropTypes.object,
+
+    /**
+     * 当前组件css类名，支持[动态css](/advanced-classname)
+     */
     className: PropTypes.oneOfType([
         PropTypes.string,
         PropTypes.object
     ]),
 
-    // 自定义css字典
-    style: PropTypes.object,
-
-    // 辅助刷新用唯一标识key值
-    key: PropTypes.string,
-
     /**
-     * 组件型，用于设置自定义图标元素
-     */
-    icon: PropTypes.node,
-
-    /**
-     * 组件型，用于设置文字及其他内容，仅shape='square'时可用
-     */
-    description: PropTypes.node,
-
-    /**
-     * 组件型，用于设置附加气泡卡片的内部元素
-     */
-    tooltip: PropTypes.node,
-
-    /**
-     * 设置按钮类型，可选的有'default'、'primary'
-     * 默认：'default'
-     */
-    type: PropTypes.oneOf(['default', 'primary']),
-
-    /**
-     * 设置内部各按钮形状，可选的有'circle'、'square'
-     * 默认：'circle'
+     * 内部各悬浮按钮形状，可选项有`'circle'`、`'square'`
+     * 默认值：`'circle'`
      */
     shape: PropTypes.oneOf(['circle', 'square']),
 
     /**
-     * 当传入有效值时，用于设置菜单触发模式，可选的有'click'、'hover'
+     * 菜单展开模式触发方式，可选项有`'click'`、`'hover'`
      */
     trigger: PropTypes.oneOf(['click', 'hover']),
 
     /**
-     * 用于设置或监听当前悬浮按钮组展开状态
+     * 设置或监听当前悬浮按钮组展开状态
      */
     open: PropTypes.bool,
 
@@ -131,7 +114,6 @@ AntdFloatButtonGroup.propTypes = {
 
 // 设置默认参数
 AntdFloatButtonGroup.defaultProps = {
-    type: 'default',
     shape: 'circle'
 }
 

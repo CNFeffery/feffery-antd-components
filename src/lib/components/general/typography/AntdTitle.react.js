@@ -1,17 +1,23 @@
-import React, { useContext } from 'react';
+// react核心
+import { useContext } from 'react';
 import PropTypes from 'prop-types';
+// antd核心
 import { Typography, ConfigProvider } from 'antd';
-import useCss from '../../../hooks/useCss';
+// 辅助库
 import { isString } from 'lodash';
 import { str2Locale } from '../../locales.react';
 import { parseChildrenToArray } from '../../utils';
+// 自定义hooks
+import useCss from '../../../hooks/useCss';
+// 自定义上下文
 import PropsContext from '../../../contexts/PropsContext';
 
 const { Title } = Typography;
 
-// 定义标题组件AntdTitle，api参数参考https://ant.design/components/typography-cn/
+/**
+ * 标题组件AntdTitle
+ */
 const AntdTitle = (props) => {
-    // 取得必要属性或参数
     let {
         id,
         children,
@@ -71,109 +77,93 @@ const AntdTitle = (props) => {
 
 // 定义参数或属性
 AntdTitle.propTypes = {
-    // 组件id
     /**
-     * Component id.
-     */
+      * 组件唯一id
+      */
     id: PropTypes.string,
 
     /**
-     * The content of the title.
+     * 对当前组件的`key`值进行更新，可实现强制重绘当前组件的效果
+     */
+    key: PropTypes.string,
+
+    /**
+     * 组件型，内嵌元素
      */
     children: PropTypes.node,
 
-    // css类名
     /**
-     * CSS class name.
+     * 当前组件css样式
+     */
+    style: PropTypes.object,
+
+    /**
+     * 当前组件css类名，支持[动态css](/advanced-classname)
      */
     className: PropTypes.oneOfType([
         PropTypes.string,
         PropTypes.object
     ]),
 
-    // 自定义css字典
     /**
-     * Custom CSS styles.
-     */
-    style: PropTypes.object,
-
-    // 辅助刷新用唯一标识key值
-    /**
-     * A unique identifier key used for refreshing assistance.
-     */
-    key: PropTypes.string,
-
-    // 设置语言环境，可选的有'zh-cn'、'en-us'
-    /**
-     * Sets the language environment. Possible options are 'zh-cn' and 'en-us'.
+     * 组件文案语种，可选项有`'zh-cn'`、`'en-us'`
+     * 默认值：`'zh-cn'`
      */
     locale: PropTypes.oneOf(['zh-cn', 'en-us']),
 
-    // 设置标题级别，可选的有1到5之间的整数，对应h1到h5
-    // 默认为1
     /**
-     * Sets the level of the title. Possible values are integers between 1 and 5, corresponding to h1 to h5.
-     * Default is 1.
+     * 标题级别，可选项有`1`、`2`、`3`、`4`、`5`
+     * 默认值：`1`
      */
     level: PropTypes.number,
 
-    // 设置是否以code模式渲染内容
     /**
-     * Sets whether to render the content in code mode.
+     * 是否渲染为代码形式
      */
     code: PropTypes.bool,
 
-    // 设置内容是否可快速复制
     /**
-     * Sets whether the content can be quickly copied.
+     * 是否开启快捷复制功能
      */
     copyable: PropTypes.bool,
 
-    // 设置是否以删除线模式渲染内容
     /**
-     * Sets whether to render the content with strikethrough mode.
+     * 是否渲染为删除线形式
      */
     strikethrough: PropTypes.bool,
 
-    // 设置是否以禁用模式渲染内容
     /**
-     * Sets whether the content is disabled.
+     * 是否渲染为禁用形式
      */
     disabled: PropTypes.bool,
 
-    // 设置是否添加标记样式
     /**
-     * Sets whether to add mark style.
+     * 是否渲染为高亮形式
      */
     mark: PropTypes.bool,
 
-    // 设置是否加粗
     /**
-     * Sets whether the content should be bold.
+     * 是否渲染为加粗形式
      */
     strong: PropTypes.bool,
 
-    // 设置是否斜体
     /**
-     * Sets whether the content should be italic.
+     * 是否渲染为斜体形式
      */
     italic: PropTypes.bool,
 
-    // 设置是否添加下划线
     /**
-     * Sets whether to add underline.
+     * 是否渲染为下划线形式
      */
     underline: PropTypes.bool,
 
-    // 设置是否添加键盘按键样式
     /**
-     * Sets whether to add keyboard key style.
+     * 是否渲染为键盘形式
      */
     keyboard: PropTypes.bool,
 
-    // 设置文本状态类型渲染，可用的有'secondary'、'success'、'warning'和'danger'，默认无状态
     /**
-     * Sets the text status type for rendering. Possible options are 'secondary', 'success', 'warning', and 'danger'. Default is no status.
+     * 设置内容特殊状态形式，可选项有`'secondary'`、`'success'`、`'warning'`、`'danger'`
      */
     type: PropTypes.oneOf(['secondary', 'success', 'warning', 'danger']),
 

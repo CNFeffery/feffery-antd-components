@@ -5,65 +5,65 @@ from dash.development.base_component import Component, _explicitize_args
 
 class AntdButton(Component):
     """An AntdButton component.
-按钮组件AntdButton，api参数参考https://ant.design/components/button-cn/
+按钮组件AntdButton
 
 Keyword arguments:
 
 - children (a list of or a singular dash component, string or number; optional):
-    当前按钮内嵌元素.
+    组件型，按钮内嵌元素.
 
 - id (string; optional):
-    当前组件唯一id.
+    组件唯一id.
 
 - autoSpin (boolean; default False):
-    当前按钮在每次点击后是否自动进入加载中状态  默认：False.
+    当前按钮在每次点击后是否自动进入加载中状态  默认值：`False`.
 
 - block (boolean; default False):
-    当前按钮是否撑满父元素  默认：False.
+    按钮是否渲染为块级元素（宽度撑满父容器）  默认值：`False`.
 
 - className (string | dict; optional):
-    当前按钮css类，支持动态css类特性.
+    当前组件css类名，支持[动态css](/advanced-classname).
 
 - classNames (dict; optional):
-    细分控制子元素css类.
+    细分控制子元素css类名.
 
     `classNames` is a dict with keys:
 
     - icon (string; optional):
-        控制图标部分元素css类.
+        按钮图标元素css类名.
 
 - clickExecuteJsString (string; optional):
-    按钮点击时额外需要执行的js程序字符串.
+    按钮点击时需要附带执行的js程序字符串.
 
 - danger (boolean; default False):
-    当前按钮是否呈现危险状态  默认：False.
+    按钮是否呈现危险样式  默认值：`False`.
 
 - debounceWait (number; default 0):
-    当前按钮点击事件监听防抖延时，单位：毫秒  默认：200.
+    按钮点击事件监听防抖延时，单位：毫秒  默认值：`0`.
 
 - disabled (boolean; default False):
-    当前按钮是否呈现禁用状态  默认：False.
+    按钮是否呈现禁用状态  默认值：`False`.
 
 - extraProps (dict; optional):
     为当前组件补充额外自定义键值对参数.
 
 - ghost (boolean; default False):
-    幽灵属性，使当前按钮背景透明  默认：False.
+    按钮是否呈现透明背景状态  默认值：`False`.
 
 - href (string; optional):
-    当前按钮点击跳转链接地址.
+    按钮点击跳转链接地址.
 
 - icon (a list of or a singular dash component, string or number; optional):
-    当前按钮内嵌元素前缀图标.
+    组件型，按钮内嵌前缀图标元素.
 
 - key (string; optional):
-    当前组件辅助用唯一id，可通过更新key值实现强制重绘.
+    对当前组件的`key`值进行更新，可实现强制重绘当前组件的效果.
 
 - loading (boolean; optional):
-    当前按钮是否呈现加载中状态  默认：False.
+    按钮是否呈现加载状态  默认值：`False`.
 
 - loadingChildren (a list of or a singular dash component, string or number; optional):
-    当前按钮加载状态下内嵌元素.
+    组件型，按钮加载状态下显示的内嵌元素.
 
 - loading_state (dict; optional)
 
@@ -79,19 +79,19 @@ Keyword arguments:
         Holds which property is loading.
 
 - motionType (a value equal to: 'happy-work'; optional):
-    为当前按钮设置特殊的点击动效，可选的有'happy-work'.
+    按钮额外的特殊交互类型，可选项有`'happy-work'`.
 
 - nClicks (number; default 0):
-    当前按钮累计被点击次数  默认：0.
+    按钮累计点击次数，用于监听按钮点击行为  默认值：`0`.
 
 - shape (a value equal to: 'default', 'circle', 'round'; default 'default'):
-    当前按钮形状，可选的有'default'、'circle'、'round'  默认：'default'.
+    按钮形状，可选项有`'default'`、`'circle'`、`'round'`  默认值：`'default'`.
 
 - size (a value equal to: 'small', 'middle', 'large'; default 'middle'):
-    当前按钮尺寸规格，可选的有'small'、'middle'、'large'  默认：'middle'.
+    按钮尺寸规格，可选项有`'small'`、`'middle'`、`'large'`  默认值：`'middle'`.
 
 - style (dict; optional):
-    当前按钮css样式.
+    当前组件css样式.
 
 - styles (dict; optional):
     细分控制子元素css样式.
@@ -99,20 +99,20 @@ Keyword arguments:
     `styles` is a dict with keys:
 
     - icon (dict; optional):
-        控制图标部分元素css样式.
+        按钮图标元素css样式.
 
-- target (string; optional):
-    当前按钮点击跳转链接行为类型.
+- target (string; default '_blank'):
+    按钮点击跳转链接方式  默认值：`'_blank'`.
 
 - type (a value equal to: 'default', 'primary', 'ghost', 'dashed', 'link', 'text'; default 'default'):
-    当前按钮类型，可选的有'default'、'primary'、'ghost'、'dashed'、'link'、'text'
-    默认：'primary'."""
+    按钮类型，可选项有`'default'`、`'primary'`、`'ghost'`、`'dashed'`、`'link'`、`'text'`
+    默认值：`'default'`."""
     _children_props = ['loadingChildren', 'icon']
     _base_nodes = ['loadingChildren', 'icon', 'children']
     _namespace = 'feffery_antd_components'
     _type = 'AntdButton'
     @_explicitize_args
-    def __init__(self, children=None, id=Component.UNDEFINED, style=Component.UNDEFINED, className=Component.UNDEFINED, styles=Component.UNDEFINED, classNames=Component.UNDEFINED, key=Component.UNDEFINED, loadingChildren=Component.UNDEFINED, type=Component.UNDEFINED, href=Component.UNDEFINED, target=Component.UNDEFINED, block=Component.UNDEFINED, danger=Component.UNDEFINED, disabled=Component.UNDEFINED, ghost=Component.UNDEFINED, shape=Component.UNDEFINED, size=Component.UNDEFINED, nClicks=Component.UNDEFINED, clickExecuteJsString=Component.UNDEFINED, debounceWait=Component.UNDEFINED, icon=Component.UNDEFINED, loading=Component.UNDEFINED, autoSpin=Component.UNDEFINED, motionType=Component.UNDEFINED, extraProps=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
+    def __init__(self, children=None, id=Component.UNDEFINED, key=Component.UNDEFINED, style=Component.UNDEFINED, className=Component.UNDEFINED, styles=Component.UNDEFINED, classNames=Component.UNDEFINED, loadingChildren=Component.UNDEFINED, type=Component.UNDEFINED, href=Component.UNDEFINED, target=Component.UNDEFINED, block=Component.UNDEFINED, danger=Component.UNDEFINED, disabled=Component.UNDEFINED, ghost=Component.UNDEFINED, shape=Component.UNDEFINED, size=Component.UNDEFINED, nClicks=Component.UNDEFINED, clickExecuteJsString=Component.UNDEFINED, debounceWait=Component.UNDEFINED, icon=Component.UNDEFINED, loading=Component.UNDEFINED, autoSpin=Component.UNDEFINED, motionType=Component.UNDEFINED, extraProps=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
         self._prop_names = ['children', 'id', 'autoSpin', 'block', 'className', 'classNames', 'clickExecuteJsString', 'danger', 'debounceWait', 'disabled', 'extraProps', 'ghost', 'href', 'icon', 'key', 'loading', 'loadingChildren', 'loading_state', 'motionType', 'nClicks', 'shape', 'size', 'style', 'styles', 'target', 'type']
         self._valid_wildcard_attributes =            []
         self.available_properties = ['children', 'id', 'autoSpin', 'block', 'className', 'classNames', 'clickExecuteJsString', 'danger', 'debounceWait', 'disabled', 'extraProps', 'ghost', 'href', 'icon', 'key', 'loading', 'loadingChildren', 'loading_state', 'motionType', 'nClicks', 'shape', 'size', 'style', 'styles', 'target', 'type']
