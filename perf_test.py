@@ -23,7 +23,14 @@ components = [
     'AntdHeader',
     'AntdContent',
     'AntdFooter',
-    'AntdSider'
+    'AntdSider',
+    'AntdAnchor',
+    'AntdBreadcrumb',
+    'AntdDropdown',
+    'AntdMenu',
+    'AntdPageHeader',
+    'AntdPagination',
+    'AntdSteps'
 ]
 
 app.layout = html.Div(

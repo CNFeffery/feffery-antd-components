@@ -5,23 +5,30 @@ from dash.development.base_component import Component, _explicitize_args
 
 class AntdSteps(Component):
     """An AntdSteps component.
-
+步骤条组件AntdSteps
 
 Keyword arguments:
 
-- id (string; optional)
+- id (string; optional):
+    组件唯一id.
 
-- allowClick (boolean; default False)
+- allowClick (boolean; default False):
+    是否可点击切换步骤  默认值：`False`.
 
-- className (string | dict; optional)
+- className (string | dict; optional):
+    当前组件css类名，支持[动态css](/advanced-classname).
 
-- current (number; default 0)
+- current (number; default 0):
+    当前所处的步骤序号  默认值：`0`.
 
-- direction (a value equal to: 'horizontal', 'vertical'; default 'horizontal')
+- direction (a value equal to: 'horizontal', 'vertical'; default 'horizontal'):
+    步骤条显示方向，可选项有`'horizontal'`、`'vertical'`  默认值：`'horizontal'`.
 
-- key (string; optional)
+- key (string; optional):
+    对当前组件的`key`值进行更新，可实现强制重绘当前组件的效果.
 
-- labelPlacement (a value equal to: 'horizontal', 'vertical'; optional)
+- labelPlacement (a value equal to: 'horizontal', 'vertical'; optional):
+    标签内容显示方位，可选项有`'horizontal'`、`'vertical'`.
 
 - loading_state (dict; optional)
 
@@ -36,40 +43,53 @@ Keyword arguments:
     - prop_name (string; optional):
         Holds which property is loading.
 
-- progressDot (boolean; default False)
+- progressDot (boolean; default False):
+    是否渲染为点状步骤条  默认值：`False`.
 
-- responsive (boolean; default True)
+- responsive (boolean; default True):
+    是否在页面宽度小于532px时自动强制垂直显示  默认值：`True`.
 
-- size (a value equal to: 'default', 'small'; default 'default')
+- size (a value equal to: 'default', 'small'; default 'default'):
+    步骤条尺寸规格，可选项有`'default'`、`'small'`  默认值：`'default'`.
 
-- status (a value equal to: 'wait', 'process', 'finish', 'error'; default 'process')
+- status (a value equal to: 'wait', 'process', 'finish', 'error'; default 'process'):
+    步骤条状态，可选项有`'wait'`、`'process'`、`'finish'`、`'error'`
+    默认值：`'process'`.
 
-- steps (list of dicts; required)
+- steps (list of dicts; required):
+    必填，步骤内容定义数据结构.
 
     `steps` is a list of dicts with keys:
 
-    - description (a list of or a singular dash component, string or number; optional)
+    - description (a list of or a singular dash component, string or number; optional):
+        步骤描述内容.
 
-    - disabled (boolean; optional)
+    - disabled (boolean; optional):
+        是否禁用当前步骤.
 
-    - icon (a list of or a singular dash component, string or number; optional)
+    - icon (a list of or a singular dash component, string or number; optional):
+        步骤自定义图标.
 
-    - status (a value equal to: 'wait', 'process', 'finish', 'error'; optional)
+    - status (a value equal to: 'wait', 'process', 'finish', 'error'; optional):
+        强制设置当前步骤状态，同参数status.
 
-    - subTitle (a list of or a singular dash component, string or number; optional)
+    - subTitle (a list of or a singular dash component, string or number; optional):
+        步骤子标题.
 
-    - title (a list of or a singular dash component, string or number; required)
+    - title (a list of or a singular dash component, string or number; required):
+        步骤标题.
 
-- style (dict; optional)
+- style (dict; optional):
+    当前组件css样式.
 
 - type (a value equal to: 'default', 'navigation', 'inline'; default 'default'):
-    设置步骤条渲染形式，可选的有'default'、'navigation'、'inline'  默认：'default'."""
+    步骤条类型，可选项有`'default'`、`'navigation'`、`'inline'`  默认值：`'default'`."""
     _children_props = ['steps[].title', 'steps[].subTitle', 'steps[].description', 'steps[].icon']
     _base_nodes = ['children']
     _namespace = 'feffery_antd_components'
     _type = 'AntdSteps'
     @_explicitize_args
-    def __init__(self, id=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, key=Component.UNDEFINED, steps=Component.REQUIRED, current=Component.UNDEFINED, direction=Component.UNDEFINED, labelPlacement=Component.UNDEFINED, progressDot=Component.UNDEFINED, size=Component.UNDEFINED, status=Component.UNDEFINED, type=Component.UNDEFINED, allowClick=Component.UNDEFINED, responsive=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
+    def __init__(self, id=Component.UNDEFINED, key=Component.UNDEFINED, style=Component.UNDEFINED, className=Component.UNDEFINED, steps=Component.REQUIRED, current=Component.UNDEFINED, direction=Component.UNDEFINED, labelPlacement=Component.UNDEFINED, progressDot=Component.UNDEFINED, size=Component.UNDEFINED, status=Component.UNDEFINED, type=Component.UNDEFINED, allowClick=Component.UNDEFINED, responsive=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
         self._prop_names = ['id', 'allowClick', 'className', 'current', 'direction', 'key', 'labelPlacement', 'loading_state', 'progressDot', 'responsive', 'size', 'status', 'steps', 'style', 'type']
         self._valid_wildcard_attributes =            []
         self.available_properties = ['id', 'allowClick', 'className', 'current', 'direction', 'key', 'labelPlacement', 'loading_state', 'progressDot', 'responsive', 'size', 'status', 'steps', 'style', 'type']

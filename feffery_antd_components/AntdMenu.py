@@ -5,25 +5,32 @@ from dash.development.base_component import Component, _explicitize_args
 
 class AntdMenu(Component):
     """An AntdMenu component.
-
+导航菜单组件AntdMenu
 
 Keyword arguments:
 
-- id (string; optional)
+- id (string; optional):
+    组件唯一id.
 
-- className (string | dict; optional)
+- className (string | dict; optional):
+    当前组件css类名，支持[动态css](/advanced-classname).
 
-- currentKey (string; optional)
+- currentKey (string; optional):
+    监听或设置当前已选中菜单项key值.
 
-- defaultOpenKeys (list of strings; optional)
+- defaultOpenKeys (list of strings; optional):
+    默认展开的菜单项key值.
 
 - defaultSelectedKey (string; optional)
 
-- inlineCollapsed (boolean; default False)
+- inlineCollapsed (boolean; default False):
+    当前菜单是否折叠，仅inline模式下有效  默认值：`False`.
 
-- inlineIndent (number; default 24)
+- inlineIndent (number; default 24):
+    inline模式下，子菜单相对上一级的像素缩进宽度  默认值：`24`.
 
-- key (string; optional)
+- key (string; optional):
+    对当前组件的`key`值进行更新，可实现强制重绘当前组件的效果.
 
 - loading_state (dict; optional)
 
@@ -38,48 +45,48 @@ Keyword arguments:
     - prop_name (string; optional):
         Holds which property is loading.
 
-- menuItemKeyToTitle (dict with strings as keys and values of type a list of or a singular dash component, string or number; optional)
+- menuItemKeyToTitle (dict with strings as keys and values of type a list of or a singular dash component, string or number; optional):
+    为指定节点定义组件型菜单项标题，优先级高于menuItems中对应节点的title属性.
 
-- menuItems (list; optional)
+- menuItems (list; optional):
+    导航菜单数据结构.
 
-- mode (a value equal to: 'vertical', 'horizontal', 'inline'; default 'vertical')
+- mode (a value equal to: 'vertical', 'horizontal', 'inline'; default 'vertical'):
+    显示模式，可选项有`'vertical'`、`'horizontal'`、`'inline'`  默认值：`'vertical'`.
 
-- onlyExpandCurrentSubMenu (boolean; default False)
+- onlyExpandCurrentSubMenu (boolean; default False):
+    是否只展开当前选中项的父级菜单  默认值：`False`.
 
-- openKeys (list of strings; optional)
+- openKeys (list of strings; optional):
+    监听或设置当前已展开子菜单项key值.
 
 - persisted_props (list of a value equal to: 'currentKey', 'openKeys's; default ['currentKey', 'openKeys']):
-    Properties whose user interactions will persist after refreshing
-    the  component or the page. Since only `value` is allowed this
-    prop can  normally be ignored.
+    当前组件启用持久化的属性值数组，可选项有`'currentKey'`、`'openKeys'`
+    默认值：`['currentKey', 'openKeys']`.
 
 - persistence (boolean | string | number; optional):
-    Used to allow user interactions in this component to be persisted
-    when  the component - or the page - is refreshed. If `persisted`
-    is truthy and  hasn't changed from its previous value, a `value`
-    that the user has  changed while using the app will keep that
-    change, as long as  the new `value` also matches what was given
-    originally.  Used in conjunction with `persistence_type`.
+    是否为当前组件开启持久化功能.
 
 - persistence_type (a value equal to: 'local', 'session', 'memory'; default 'local'):
-    Where persisted user changes will be stored:  memory: only kept in
-    memory, reset on page refresh.  local: window.localStorage, data
-    is kept after the browser quit.  session: window.sessionStorage,
-    data is cleared once the browser quit.
+    当前组件的属性持久化存储类型  默认值：`'local'`.
 
-- popupContainer (a value equal to: 'parent', 'body'; default 'body')
+- popupContainer (a value equal to: 'parent', 'body'; default 'body'):
+    菜单展开层锚定策略，可选项有`'parent'`、`'body'`  默认值：`'body'`.
 
-- renderCollapsedButton (boolean; default False)
+- renderCollapsedButton (boolean; default False):
+    是否渲染菜单折叠状态控制按钮  默认值：`False`.
 
-- style (dict; optional)
+- style (dict; optional):
+    当前组件css样式.
 
-- theme (a value equal to: 'light', 'dark'; default 'light')"""
+- theme (a value equal to: 'light', 'dark'; default 'light'):
+    主题，可选项有`'light'`、`'dark'`  默认值：`'light'`."""
     _children_props = ['menuItemKeyToTitle{}']
     _base_nodes = ['children']
     _namespace = 'feffery_antd_components'
     _type = 'AntdMenu'
     @_explicitize_args
-    def __init__(self, id=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, key=Component.UNDEFINED, menuItems=Component.UNDEFINED, menuItemKeyToTitle=Component.UNDEFINED, mode=Component.UNDEFINED, theme=Component.UNDEFINED, currentKey=Component.UNDEFINED, openKeys=Component.UNDEFINED, onlyExpandCurrentSubMenu=Component.UNDEFINED, defaultOpenKeys=Component.UNDEFINED, defaultSelectedKey=Component.UNDEFINED, renderCollapsedButton=Component.UNDEFINED, popupContainer=Component.UNDEFINED, inlineCollapsed=Component.UNDEFINED, inlineIndent=Component.UNDEFINED, loading_state=Component.UNDEFINED, persistence=Component.UNDEFINED, persisted_props=Component.UNDEFINED, persistence_type=Component.UNDEFINED, **kwargs):
+    def __init__(self, id=Component.UNDEFINED, key=Component.UNDEFINED, style=Component.UNDEFINED, className=Component.UNDEFINED, menuItems=Component.UNDEFINED, menuItemKeyToTitle=Component.UNDEFINED, mode=Component.UNDEFINED, theme=Component.UNDEFINED, currentKey=Component.UNDEFINED, openKeys=Component.UNDEFINED, onlyExpandCurrentSubMenu=Component.UNDEFINED, defaultOpenKeys=Component.UNDEFINED, defaultSelectedKey=Component.UNDEFINED, renderCollapsedButton=Component.UNDEFINED, popupContainer=Component.UNDEFINED, inlineCollapsed=Component.UNDEFINED, inlineIndent=Component.UNDEFINED, loading_state=Component.UNDEFINED, persistence=Component.UNDEFINED, persisted_props=Component.UNDEFINED, persistence_type=Component.UNDEFINED, **kwargs):
         self._prop_names = ['id', 'className', 'currentKey', 'defaultOpenKeys', 'defaultSelectedKey', 'inlineCollapsed', 'inlineIndent', 'key', 'loading_state', 'menuItemKeyToTitle', 'menuItems', 'mode', 'onlyExpandCurrentSubMenu', 'openKeys', 'persisted_props', 'persistence', 'persistence_type', 'popupContainer', 'renderCollapsedButton', 'style', 'theme']
         self._valid_wildcard_attributes =            []
         self.available_properties = ['id', 'className', 'currentKey', 'defaultOpenKeys', 'defaultSelectedKey', 'inlineCollapsed', 'inlineIndent', 'key', 'loading_state', 'menuItemKeyToTitle', 'menuItems', 'mode', 'onlyExpandCurrentSubMenu', 'openKeys', 'persisted_props', 'persistence', 'persistence_type', 'popupContainer', 'renderCollapsedButton', 'style', 'theme']

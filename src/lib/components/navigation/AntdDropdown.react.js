@@ -1,17 +1,23 @@
+// react核心
 import React, { useContext, useEffect } from 'react';
 import PropTypes from 'prop-types';
+// antd核心
 import { Dropdown, Button, Typography } from 'antd';
 import AntdIcon from '../general/AntdIcon.react';
 import { DownOutlined } from '@ant-design/icons';
+// 辅助库
 import { isString, isUndefined } from 'lodash';
+// 自定义hooks
 import useCss from '../../hooks/useCss';
+// 自定义上下文
 import PropsContext from '../../contexts/PropsContext';
 
 const { Link } = Typography;
 
-// 定义下拉菜单组件AntdDropdown，api参数参考https://ant.design/components/dropdown-cn/
+/**
+ * 下拉菜单组件AntdDropdown
+ */
 const AntdDropdown = (props) => {
-    // 取得必要属性或参数
     let {
         id,
         children,
@@ -194,171 +200,243 @@ const AntdDropdown = (props) => {
     );
 }
 
-// 定义参数或属性
 AntdDropdown.propTypes = {
-    // 组件id
+    /**
+     * 组件唯一id
+     */
     id: PropTypes.string,
 
     /**
-     * 自定义下拉菜单锚定的自定义元素，优先级最高
+     * 对当前组件的`key`值进行更新，可实现强制重绘当前组件的效果
+     */
+    key: PropTypes.string,
+
+    /**
+     * 组件型，下拉菜单触发锚定元素
      */
     children: PropTypes.node,
 
-    // css类名
+    /**
+     * 当前组件css样式
+     */
+    style: PropTypes.object,
+
+    /**
+     * 当前组件css类名，支持[动态css](/advanced-classname)
+     */
     className: PropTypes.oneOfType([
         PropTypes.string,
         PropTypes.object
     ]),
 
-    // 自定义css字典
-    style: PropTypes.object,
-
     /**
-     * 针对自定义锚定元素的父容器设置css样式
+     * 锚定元素父容器css样式
      */
     wrapperStyle: PropTypes.object,
 
     /**
-     * 针对自定义锚定元素的父容器设置css类名
+     * 锚定元素父容器css类名
      */
     wrapperClassName: PropTypes.oneOfType([
         PropTypes.string,
         PropTypes.object
     ]),
 
-    // 辅助刷新用唯一标识key值
-    key: PropTypes.string,
-
-    // 设置下拉菜单触发点文字标题信息
+    /**
+     * 下拉菜单触发元素标题内容，children参数未设置时有效
+     */
     title: PropTypes.string,
 
-    // 设置下拉菜单触发节点是否渲染为“按钮模式”，默认为false
+    /**
+     * 下拉菜单触发元素是否渲染为按钮形式，children参数未设置时有效
+     * 默认值：`false`
+     */
     buttonMode: PropTypes.bool,
 
-    // 配置按钮模式下，按钮的一些基本属性
+    /**
+     * 针对下拉菜单触发元素的按钮形式进行进一步配置
+     */
     buttonProps: PropTypes.exact({
-        // 设置按钮尺寸规格，可选的有'default'/'small'/'large'
-        size: PropTypes.oneOf(['default', 'small', 'large']),
-
-        // 设置按钮整体风格（可选项有primary、ghost、dashed、link、text、default）
-        type: PropTypes.oneOf(['primary', 'ghost', 'dashed', 'link', 'text', 'default']),
-
-        // 设置按钮是否显示为危险状态
+        /**
+         * 按钮尺寸规格，可选项有`'small'`、`'middle'`、`'large'`
+         * 默认值：`'middle'`
+         */
+        size: PropTypes.oneOf(['small', 'middle', 'large']),
+        /**
+         * 按钮类型，可选项有`'default'`、`'primary'`、`'ghost'`、`'dashed'`、`'link'`、`'text'`
+         * 默认值：`'default'`
+         */
+        type: PropTypes.oneOf(['default', 'primary', 'ghost', 'dashed', 'link', 'text']),
+        /**
+         * 按钮是否呈现危险样式
+         * 默认值：`false`
+         */
         danger: PropTypes.bool,
-
-        // 设置按钮的css样式
+        /**
+         * 按钮css样式
+         */
         style: PropTypes.object,
-
-        // 设置按钮的css类名
+        /**
+         * 按钮css类名
+         */
         className: PropTypes.string
     }),
 
-    // 设置是否开启自由位置模式，默认为false，此项开启后会覆盖buttonMode参数
+    /**
+     * 是否开启自由位置模式
+     * 默认值：`false`
+     */
     freePosition: PropTypes.bool,
 
-    // 当freePosition=true时，用于为自由位置挂载位置设置css样式
+    /**
+     * 自由位置模式开启后，控制挂载位置对应css样式
+     */
     freePositionStyle: PropTypes.object,
 
-    // 当freePosition=true时，用于为自由位置挂载位置设置css类
+    /**
+     * 自由位置模式开启后，控制挂载位置对应css类名
+     */
     freePositionClassName: PropTypes.string,
 
-    // 记录最近一次被点击的下拉菜单选项对应key
+    /**
+     * 监听被点击的下拉菜单选项key值
+     */
     clickedKey: PropTypes.string,
 
-    // 记录总被点击次数，用于在clickedKey未更新时辅助触发回调
+    /**
+     * 监听下拉菜单选项累计被点击次数
+     * 默认值：`0`
+     */
     nClicks: PropTypes.number,
 
-    // 用于设置下拉菜单的数据结构
+    /**
+     * 下拉菜单数据结构
+     */
     menuItems: PropTypes.arrayOf(
         PropTypes.exact({
-            // 定义节点文字内容
+            /**
+             * 组件型，节点标题
+             */
             title: PropTypes.node,
-
-            // 定义节点链接url
+            /**
+             * 节点链接地址
+             */
             href: PropTypes.string,
-
-            // 定义节点链接跳转target属性
+            /**
+             * 节点链接跳转行为
+             */
             target: PropTypes.string,
-
-            // 设置是否禁用当前节点，默认为false
+            /**
+             * 是否禁用节点
+             * 默认值：`false`
+             */
             disabled: PropTypes.bool,
-
-            // 自定义前缀图标，与AntdIcon相通
+            /**
+             * 节点前缀图标名称，与`iconRenderer`方式相关联，`'AntdIcon'`方式下同AntdIcon的icon参数，`'fontawesome'`方式下代表图标的css类名
+             */
             icon: PropTypes.string,
-
-            // 针对icon参数值设置渲染方式，默认为'AntdIcon'即icon等价于AntdIcon的icon参数
-            // 当设置为'fontawesome'时，icon参数对应fontawesome图标的css类名
+            /**
+             * 前缀图标渲染方式，可选项有`'AntdIcon'`、`'fontawesome'`
+             * 默认值：`'AntdIcon'`
+             */
             iconRenderer: PropTypes.oneOf(['AntdIcon', 'fontawesome']),
-
-            // 自定义key值，用于监听点击事件必填
+            /**
+             * 节点唯一key值
+             */
             key: PropTypes.string,
-
-            // 自定义当前节点是否为分割线，若设置为true，则会忽略其他同级参数
+            /**
+             * 节点是否渲染为分割线
+             */
             isDivider: PropTypes.bool
         })
     ),
 
     /**
-     * 设置菜单项是否可选中
-     * 默认：false
+     * 菜单项是否可选择
+     * 默认值：`false`
      */
     selectable: PropTypes.bool,
 
     /**
-     * 设置菜单是否允许多选
-     * 默认：false
+     * 菜单项是否可多选
+     * 默认值：`false`
      */
     multiple: PropTypes.bool,
 
     /**
-     * 设置或监听当前已选中菜单项key值数组
+     * 设置或监听当前已选中菜单项key值
      */
     selectedKeys: PropTypes.arrayOf(PropTypes.string),
 
     /**
      * 设置不可选中项key值数组
-     * 默认：[]
+     * 默认值：`[]`
      */
     nonSelectableKeys: PropTypes.arrayOf(PropTypes.string),
 
-    // 设置下拉框是否显示连接箭头，默认为false
+    /**
+     * 下拉菜单是否渲染指示箭头
+     * 默认值：`false`
+     */
     arrow: PropTypes.bool,
 
-    // 是否禁用功能，默认为false
+    /**
+     * 是否禁用组件功能
+     * 默认值：`false`
+     */
     disabled: PropTypes.bool,
 
-    // 设置下拉菜单容器的类名
+    /**
+     * 下拉菜单容器css类名，支持[动态css](/advanced-classname)
+     */
     overlayClassName: PropTypes.oneOfType([
         PropTypes.string,
         PropTypes.object
     ]),
 
-    // 设置下拉菜单容器的样式
+    /**
+     * 下拉菜单容器css样式
+     */
     overlayStyle: PropTypes.object,
 
-    // 设置菜单弹出的方位，可选的有'bottomLeft'、'bottomCenter'、'bottomRight'、
-    // 'topLeft'、'topCenter'与'topRight'
-    placement: PropTypes.oneOf([
-        'bottomLeft', 'bottomCenter', 'bottomRight',
-        'topLeft', 'topCenter', 'topRight'
-    ]),
+    /**
+     * 下拉菜单弹出方位，可选项有`'bottomLeft'`、`'bottomCenter'`、`'bottomRight'`、`'topLeft'`、`'topCenter'`、`'topRight'`
+     */
+    placement: PropTypes.oneOf(['bottomLeft', 'bottomCenter', 'bottomRight', 'topLeft', 'topCenter', 'topRight']),
 
-    // 设置触发下拉菜单显示的行为，'click'表示点击，'hover'表示鼠标悬浮
+    /**
+     * 下拉菜单显示触发方式，可选项有`'click'`、`'hover'`
+     * 默认值：`'hover'`
+     */
     trigger: PropTypes.oneOf(['click', 'hover']),
 
-    // 用于设置是否在下拉菜单被遮挡时自动调整位置，默认为true
+    /**
+     * 下拉菜单是否在被遮挡时自动调整位置
+     * 默认值：`true`
+     */
     autoAdjustOverflow: PropTypes.bool,
 
-    // 对应下拉菜单是否显示，默认为false
+    /**
+     * 监听或设置下拉菜单是否展开
+     * 默认值：`false`
+     */
     visible: PropTypes.bool,
 
-    // 设置悬浮层锚定策略，可选的有'parent'、'body'，默认为'body'
+    /**
+     * 下拉菜单展开层锚定策略，可选项有`'parent'`、`'body'`
+     * 默认值：`'body'`
+     */
     popupContainer: PropTypes.oneOf(['parent', 'body']),
 
-    // 用于自定义需要纳入batchProps中的属性名数组
+    /**
+     * 需要纳入批属性监听的属性名
+     * 默认值：`[]`
+     */
     batchPropsNames: PropTypes.arrayOf(PropTypes.string),
 
-    // 打包监听batchPropsNames中定义的属性值变化
+    /**
+     * 批量监听与当前batchPropsNames对应的属性值
+     */
     batchPropsValues: PropTypes.object,
 
     loading_state: PropTypes.shape({
@@ -385,17 +463,19 @@ AntdDropdown.propTypes = {
 
 // 设置默认参数
 AntdDropdown.defaultProps = {
+    buttonMode: false,
+    freePosition: false,
+    nClicks: 0,
+    selectable: false,
+    multiple: false,
+    nonSelectableKeys: [],
     arrow: false,
     disabled: false,
-    visible: false,
-    buttonMode: false,
     trigger: 'hover',
-    nClicks: 0,
-    popupContainer: 'body',
     autoAdjustOverflow: true,
-    freePosition: false,
-    batchPropsNames: [],
-    nonSelectableKeys: []
+    visible: false,
+    popupContainer: 'body',
+    batchPropsNames: []
 }
 
 export default AntdDropdown;

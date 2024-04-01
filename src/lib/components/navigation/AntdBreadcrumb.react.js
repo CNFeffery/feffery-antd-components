@@ -1,13 +1,18 @@
+// react核心
 import React from 'react';
 import PropTypes from 'prop-types';
+// antd核心
 import { Breadcrumb, Menu } from 'antd';
 import AntdIcon from '../general/AntdIcon.react';
+// 辅助库
 import { isString } from 'lodash';
+// 自定义hooks
 import useCss from '../../hooks/useCss';
 
-// 定义面包屑组件AntdBreadcrumb，api参数参考https://ant.design/components/breadcrumb-cn/
+/**
+ * 面包屑组件AntdBreadcrumb
+ */
 const AntdBreadcrumb = (props) => {
-    // 取得必要属性或参数
     let {
         id,
         className,
@@ -104,85 +109,116 @@ const AntdBreadcrumb = (props) => {
     );
 }
 
-// 定义参数或属性
 AntdBreadcrumb.propTypes = {
-    // 组件id
+    /**
+     * 组件唯一id
+     */
     id: PropTypes.string,
 
-    // css类名
+    /**
+     * 对当前组件的`key`值进行更新，可实现强制重绘当前组件的效果
+     */
+    key: PropTypes.string,
+
+    /**
+     * 当前组件css样式
+     */
+    style: PropTypes.object,
+
+    /**
+     * 当前组件css类名，支持[动态css](/advanced-classname)
+     */
     className: PropTypes.oneOfType([
         PropTypes.string,
         PropTypes.object
     ]),
 
-    // 自定义css字典
-    style: PropTypes.object,
-
-    // 辅助刷新用唯一标识key值
-    key: PropTypes.string,
-
-    // 定义生成面包屑的数据结构
+    /**
+     * 面包屑节点数据结构
+     */
     items: PropTypes.arrayOf(
         PropTypes.exact({
-            // 定义节点文字内容
-            title: PropTypes.string,
-
             /**
-             * 定义节点唯一key值
+             * 节点标题
+             */
+            title: PropTypes.string,
+            /**
+             * 节点唯一key值
              */
             key: PropTypes.string,
-
-            // 定义节点链接url
+            /**
+             * 节点链接地址
+             */
             href: PropTypes.string,
-
-            // 定义节点链接跳转target属性
+            /**
+             * 节点链接跳转行为
+             */
             target: PropTypes.string,
-
-            // 自定义前缀图标，与AntdIcon相通
+            /**
+             * 节点前缀图标名称，与`iconRenderer`方式相关联，`'AntdIcon'`方式下同AntdIcon的icon参数，`'fontawesome'`方式下代表图标的css类名
+             */
             icon: PropTypes.string,
-
-            // 针对当前项对应icon参数值设置渲染方式，默认为'AntdIcon'即icon等价于AntdIcon的icon参数
-            // 当设置为'fontawesome'时，icon参数对应fontawesome图标的css类名
+            /**
+             * 前缀图标渲染方式，可选项有`'AntdIcon'`、`'fontawesome'`
+             * 默认值：`'AntdIcon'`
+             */
             iconRenderer: PropTypes.oneOf(['AntdIcon', 'fontawesome']),
-
-            // 可选，用于设置在当前节点下生成下拉菜单的数据结构
+            /**
+             * 为当前节点设置下拉菜单生成所需的数据结构
+             */
             menuItems: PropTypes.arrayOf(
                 PropTypes.exact({
-                    // 定义节点文字内容
+                    /**
+                     * 下拉菜单节点标题
+                     */
                     title: PropTypes.string,
-
-                    // 定义节点链接url
+                    /**
+                     * 下拉菜单节点链接地址
+                     */
                     href: PropTypes.string,
-
-                    // 定义节点链接跳转target属性
+                    /**
+                     * 下拉菜单节点链接跳转方式
+                     */
                     target: PropTypes.string,
-
-                    // 设置是否禁用当前节点，默认为false
+                    /**
+                     * 是否禁用当前下拉菜单节点
+                     */
                     disabled: PropTypes.bool,
-
-                    // 自定义前缀图标，与AntdIcon相通
+                    /**
+                     * 下拉菜单节点前缀图标名称，与`iconRenderer`方式相关联，`'AntdIcon'`方式下同AntdIcon的icon参数，`'fontawesome'`方式下代表图标的css类名
+                     */
                     icon: PropTypes.string,
-
-                    // 针对当前项对应icon参数值设置渲染方式，默认为'AntdIcon'即icon等价于AntdIcon的icon参数
-                    // 当设置为'fontawesome'时，icon参数对应fontawesome图标的css类名
+                    /**
+                     * 前缀图标渲染方式，可选项有`'AntdIcon'`、`'fontawesome'`
+                     * 默认值：`'AntdIcon'`
+                     */
                     iconRenderer: PropTypes.oneOf(['AntdIcon', 'fontawesome'])
                 })
             )
         })
     ),
 
-    // 自定义分隔符，默认为'/'
+    /**
+     * 组件型，分隔符
+     * 默认值：`'/'`
+     */
     separator: PropTypes.node,
 
-    // 用于监听最近一次被点击的面包屑项信息
+    /**
+     * 监听面包屑节点点击事件
+     */
     clickedItem: PropTypes.exact({
-        // 记录点击事件对应子项title值
+        /**
+         * 被点击节点标题
+         */
         itemTitle: PropTypes.string,
         /**
-         * 记录点击事件对应子项key值
+         * 被点击节点key值
          */
         itemKey: PropTypes.string,
-        // 记录事件发生时的时间戳信息
+        /**
+         * 点击事件时间戳
+         */
         timestamp: PropTypes.number
     }),
 

@@ -1,12 +1,16 @@
-import React from 'react';
+// react核心
 import PropTypes from 'prop-types';
+// antd核心
 import { Steps } from 'antd';
-import useCss from '../../hooks/useCss';
+// 辅助库
 import { isString } from 'lodash';
+// 自定义hooks
+import useCss from '../../hooks/useCss';
 
-// 定义步骤条组件AntdSteps，api参数参考https://ant.design/components/steps-cn/
+/**
+ * 步骤条组件AntdSteps
+ */
 const AntdSteps = (props) => {
-    // 取得必要属性或参数
     let {
         id,
         className,
@@ -59,74 +63,113 @@ const AntdSteps = (props) => {
     );
 }
 
-// 定义参数或属性
 AntdSteps.propTypes = {
-    // 组件id
+    /**
+     * 组件唯一id
+     */
     id: PropTypes.string,
 
-    // css类名
+    /**
+     * 对当前组件的`key`值进行更新，可实现强制重绘当前组件的效果
+     */
+    key: PropTypes.string,
+
+    /**
+     * 当前组件css样式
+     */
+    style: PropTypes.object,
+
+    /**
+     * 当前组件css类名，支持[动态css](/advanced-classname)
+     */
     className: PropTypes.oneOfType([
         PropTypes.string,
         PropTypes.object
     ]),
 
-    // 自定义css字典
-    style: PropTypes.object,
-
-    // 辅助刷新用唯一标识key值
-    key: PropTypes.string,
-
-    // 定义各步骤参数信息，必填
+    /**
+     * 必填，步骤内容定义数据结构
+     */
     steps: PropTypes.arrayOf(
         PropTypes.exact({
-            // 步骤对应的标题内容
+            /**
+             * 步骤标题
+             */
             title: PropTypes.node.isRequired,
-
-            // 步骤对应的子标题内容
+            /**
+             * 步骤子标题
+             */
             subTitle: PropTypes.node,
-
-            // 步骤对应的描述内容
+            /**
+             * 步骤描述内容
+             */
             description: PropTypes.node,
-
-            // 步骤自定义图标
+            /**
+             * 步骤自定义图标
+             */
             icon: PropTypes.node,
-
-            // 是否禁用当前步骤
+            /**
+             * 是否禁用当前步骤
+             */
             disabled: PropTypes.bool,
-
-            // 强制设置当前步骤状态，格式同status参数，不设置时会跟随status参数
+            /**
+             * 强制设置当前步骤状态，同参数status
+             */
             status: PropTypes.oneOf(['wait', 'process', 'finish', 'error'])
         })
     ).isRequired,
 
-    // 指定当前处于的步骤序号，默认为0
+    /**
+     * 当前所处的步骤序号
+     * 默认值：`0`
+     */
     current: PropTypes.number,
 
-    // 指定进度条方向样式，'horizontal'代表水平，'vertical'代表垂直，默认为'horizontal'
+    /**
+     * 步骤条显示方向，可选项有`'horizontal'`、`'vertical'`
+     * 默认值：`'horizontal'`
+     */
     direction: PropTypes.oneOf(['horizontal', 'vertical']),
 
-    // 指定标签放置位置，默认'horizontal'放图标右侧，可选'vertical'放图标下方
+    /**
+     * 标签内容显示方位，可选项有`'horizontal'`、`'vertical'`
+     */
     labelPlacement: PropTypes.oneOf(['horizontal', 'vertical']),
 
-    // 是否以“点状步骤条”形式渲染，默认为false
+    /**
+     * 是否渲染为点状步骤条
+     * 默认值：`false`
+     */
     progressDot: PropTypes.bool,
 
-    // 设置尺寸大小，默认'default'代表常规尺寸，'small'代表迷你尺寸
+    /**
+     * 步骤条尺寸规格，可选项有`'default'`、`'small'`
+     * 默认值：`'default'`
+     */
     size: PropTypes.oneOf(['default', 'small']),
 
-    // 指定当前步骤条的状态，有'wait'、'process'、'finish'以及'error'四种，默认为'process'
+    /**
+     * 步骤条状态，可选项有`'wait'`、`'process'`、`'finish'`、`'error'`
+     * 默认值：`'process'`
+     */
     status: PropTypes.oneOf(['wait', 'process', 'finish', 'error']),
 
     /**
-     * 设置步骤条渲染形式，可选的有'default'、'navigation'、'inline'
-     * 默认：'default'
+     * 步骤条类型，可选项有`'default'`、`'navigation'`、`'inline'`
+     * 默认值：`'default'`
      */
     type: PropTypes.oneOf(['default', 'navigation', 'inline']),
 
-    // 设置是否允许点击进行步骤切换，默认为false
+    /**
+     * 是否可点击切换步骤
+     * 默认值：`false`
+     */
     allowClick: PropTypes.bool,
 
-    // 设置是否在屏幕宽度小于532px时自动强制垂直渲染，默认为True
+    /**
+     * 是否在页面宽度小于532px时自动强制垂直显示
+     * 默认值：`true`
+     */
     responsive: PropTypes.bool,
 
     loading_state: PropTypes.shape({

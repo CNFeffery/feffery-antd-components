@@ -1,14 +1,18 @@
-import React from 'react';
+// react核心
 import PropTypes from 'prop-types';
-import useCss from '../../hooks/useCss';
-import { isString } from 'lodash';
+// antd核心
 import { Anchor } from 'antd';
+// 辅助库
+import { isString } from 'lodash';
+// 自定义hooks
+import useCss from '../../hooks/useCss';
 
 const { Link } = Anchor;
 
-// 定义锚点组件AntdAnchor，api参数参考https://ant.design/components/anchor-cn/
+/**
+ * 锚点组件AntdAnchor
+ */
 const AntdAnchor = (props) => {
-    // 取得必要属性或参数
     let {
         id,
         className,
@@ -98,13 +102,19 @@ const AntdAnchor = (props) => {
 
 // 定义递归PropTypes
 const PropLinkNodeShape = {
-    // 标题
+    /**
+     * 节点标题
+     */
     title: PropTypes.string,
 
-    // 对应所绑定页面内锚点的id
+    /**
+     * 节点目标链接地址
+     */
     href: PropTypes.string,
 
-    // 设置点击行为
+    /**
+     * 节点链接跳转行为
+     */
     target: PropTypes.string
 };
 
@@ -112,45 +122,71 @@ const PropLinkNode = PropTypes.shape(PropLinkNodeShape);
 PropLinkNodeShape.children = PropTypes.arrayOf(PropLinkNode);
 const linkDictPropTypes = PropTypes.arrayOf(PropLinkNode);
 
-// 定义参数或属性
 AntdAnchor.propTypes = {
-    // 组件id
+    /**
+     * 组件唯一id
+     */
     id: PropTypes.string,
 
-    // css类名
+    /**
+     * 对当前组件的`key`值进行更新，可实现强制重绘当前组件的效果
+     */
+    key: PropTypes.string,
+
+    /**
+     * 当前组件css样式
+     */
+    style: PropTypes.object,
+
+    /**
+     * 当前组件css类名，支持[动态css](/advanced-classname)
+     */
     className: PropTypes.oneOfType([
         PropTypes.string,
         PropTypes.object
     ]),
 
-    // 自定义css字典
-    style: PropTypes.object,
-
-    // 辅助刷新用唯一标识key值
-    key: PropTypes.string,
-
-    // 用于构造目录层次结构的json字典
+    /**
+     * 目录层次数据结构
+     */
     linkDict: linkDictPropTypes.isRequired,
 
-    // 控制锚点组件位置，'left'代表靠左侧，'right'代表靠右侧，默认为'right'
+    /**
+     * 锚点位置，可选项有`'left'`、`'right'`
+     * 默认值：`'right'`
+     */
     align: PropTypes.oneOf(['left', 'right']),
 
-    // 设置其绑定的容器id
+    /**
+     * 锚点目标容器id
+     */
     containerId: PropTypes.string,
 
-    // 设置锚点位移偏移量，默认与offsetTop相同
+    /**
+     * 锚点位移偏移量，默认同参数offsetTop
+     */
     targetOffset: PropTypes.number,
 
-    // 设置是否开启“固定模式”，默认为true
+    /**
+     * 是否开启固定模式
+     * 默认值：`true`
+     */
     affix: PropTypes.bool,
 
-    // 设置锚点区域的边界像素大小，默认为5
+    /**
+     * 锚点像素边距
+     * 默认值：`5`
+     */
     bounds: PropTypes.number,
 
-    // 设置距离窗口顶部触发锚定效果的指定像素偏移量
+    /**
+     * 设置距离窗口顶部触发锚定效果的指定像素偏移量
+     */
     offsetTop: PropTypes.number,
 
-    // 监听锚点被点击事件
+    /**
+     * 监听锚点节点点击事件
+     */
     clickedLink: PropTypes.object,
 
     loading_state: PropTypes.shape({

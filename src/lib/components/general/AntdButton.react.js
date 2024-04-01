@@ -233,6 +233,7 @@ AntdButton.propTypes = {
      * 默认值：`'middle'`
      */
     size: PropTypes.oneOf(['small', 'middle', 'large']),
+
     /**
      * 按钮累计点击次数，用于监听按钮点击行为
      * 默认值：`0`

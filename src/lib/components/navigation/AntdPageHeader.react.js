@@ -1,13 +1,17 @@
-import React from 'react';
+// react核心
 import PropTypes from 'prop-types';
+// antd核心
 import { PageHeader } from '@ant-design/pro-components';
+// 辅助库
 import { isString } from 'lodash';
-import useCss from '../../hooks/useCss';
 import { parseChildrenToArray } from '../utils';
+// 自定义hooks
+import useCss from '../../hooks/useCss';
 
-// 定义页头组件AntdPageHeader，api参数参考https://ant.design/components/page-header-cn/
+/**
+ * 页头组件AntdPageHeader
+ */
 const AntdPageHeader = (props) => {
-    // 取得必要属性或参数
     let {
         id,
         children,
@@ -52,44 +56,67 @@ const AntdPageHeader = (props) => {
     );
 }
 
-// 定义参数或属性
 AntdPageHeader.propTypes = {
-    // 组件id
+    /**
+     * 组件唯一id
+     */
     id: PropTypes.string,
 
     /**
-     * The content of the tab - will only be displayed if this tab is selected
+     * 对当前组件的`key`值进行更新，可实现强制重绘当前组件的效果
+     */
+    key: PropTypes.string,
+
+    /**
+     * 组件型，内嵌元素
      */
     children: PropTypes.node,
 
-    // css类名
+    /**
+     * 当前组件css样式
+     */
+    style: PropTypes.object,
+
+    /**
+     * 当前组件css类名，支持[动态css](/advanced-classname)
+     */
     className: PropTypes.oneOfType([
         PropTypes.string,
         PropTypes.object
     ]),
 
-    // 自定义css字典
-    style: PropTypes.object,
-
-    // 辅助刷新用唯一标识key值
-    key: PropTypes.string,
-
-    // 设置标题内容
+    /**
+     * 组件型，页头标题内容
+     */
     title: PropTypes.node,
 
-    // 设置副标题内容
+    /**
+     * 组件型，页头副标题内容
+     */
     subTitle: PropTypes.node,
 
-    // 设置是否展示返回按钮，默认为true
+    /**
+     * 是否渲染返回按钮
+     * 默认值：`true`
+     */
     showBackIcon: PropTypes.bool,
 
-    // 设置是否禁用页头返回按钮的浏览器后退功能，默认为false
+    /**
+     * 是否禁用点击返回按钮回退上一地址的功能
+     * 默认值：`false`
+     */
     historyBackDisabled: PropTypes.bool,
 
-    // 监听返回按钮被点击次数
+    /**
+     * 返回按钮累计点击次数，用于监听返回按钮点击行为
+     * 默认值：`0`
+     */
     backClicks: PropTypes.number,
 
-    // 设置是否开启透明背景模式，默认为true
+    /**
+     * 是否开启透明背景模式
+     * 默认值：`false`
+     */
     ghost: PropTypes.bool,
 
     loading_state: PropTypes.shape({
@@ -116,9 +143,10 @@ AntdPageHeader.propTypes = {
 
 // 设置默认参数
 AntdPageHeader.defaultProps = {
-    backClicks: 0,
     showBackIcon: true,
-    historyBackDisabled: false
+    historyBackDisabled: false,
+    backClicks: 0,
+    ghost: false
 }
 
 export default AntdPageHeader;

@@ -1,13 +1,17 @@
+// react核心
 import React, { Component, useEffect } from 'react';
-import isAbsoluteUrl from 'is-absolute-url';
 import PropTypes from 'prop-types';
-import AntdIcon from "../general/AntdIcon.react";
-import { isUndefined, isNull, isString, cloneDeep } from 'lodash';
+// antd核心
 import { Menu, Button } from 'antd';
+import AntdIcon from "../general/AntdIcon.react";
 import {
     MenuUnfoldOutlined,
     MenuFoldOutlined,
 } from '@ant-design/icons';
+// 辅助库
+import { isUndefined, isNull, isString, cloneDeep } from 'lodash';
+import isAbsoluteUrl from 'is-absolute-url';
+// 自定义hooks
 import useCss from '../../hooks/useCss';
 
 const { SubMenu, Item, ItemGroup, Divider } = Menu;
@@ -89,7 +93,7 @@ class UtilsLink extends Component {
     }
 }
 
-// 定义字符串-> 组件 Map对象
+// 字符串 -> 组件
 const str2Jsx = new Map([
     ['SubMenu', SubMenu],
     ['Item', Item],
@@ -214,9 +218,10 @@ const raw2Jsx = (obj, str2Jsx, menuItemKeyToTitle) => {
     return obj;
 }
 
-// 定义导航菜单组件AntdMenu，api参数参考https://ant.design/components/menu-cn/
+/**
+ * 导航菜单组件AntdMenu
+ */
 const AntdMenu = (props) => {
-    // 取得必要属性或参数
     let {
         id,
         className,
@@ -360,67 +365,98 @@ const AntdMenu = (props) => {
     }
 }
 
-// 定义参数或属性
 AntdMenu.propTypes = {
-    // 组件id
+    /**
+     * 组件唯一id
+     */
     id: PropTypes.string,
 
-    // css类名
+    /**
+     * 对当前组件的`key`值进行更新，可实现强制重绘当前组件的效果
+     */
+    key: PropTypes.string,
+
+    /**
+     * 当前组件css样式
+     */
+    style: PropTypes.object,
+
+    /**
+     * 当前组件css类名，支持[动态css](/advanced-classname)
+     */
     className: PropTypes.oneOfType([
         PropTypes.string,
         PropTypes.object
     ]),
 
-    // 自定义css字典
-    style: PropTypes.object,
-
-    // 辅助刷新用唯一标识key值
-    key: PropTypes.string,
-
-    // 用于构建菜单内容结构的对象
+    /**
+     * 导航菜单数据结构
+     */
     menuItems: PropTypes.array,
 
-    // 用于针对具体key值对应的菜单项定义组件型标题内容
-    // 优先级高于menuItems中对应节点的title属性
+    /**
+     * 为指定节点定义组件型菜单项标题，优先级高于menuItems中对应节点的title属性
+     */
     menuItemKeyToTitle: PropTypes.objectOf(PropTypes.node),
 
-    // 用于设置导航菜单显示模式
-    // 默认'vertical'即垂直显示模式
-    // 'horizontal'表示水平显示模式
-    // 'inline'表示垂直内嵌显示模式
+    /**
+     * 显示模式，可选项有`'vertical'`、`'horizontal'`、`'inline'`
+     * 默认值：`'vertical'`
+     */
     mode: PropTypes.oneOf(['vertical', 'horizontal', 'inline']),
 
-    // 用于设置导航菜单整体风格主题
-    // 默认'light'即明亮主题
-    // 'dark'为暗黑主题
+    /**
+     * 主题，可选项有`'light'`、`'dark'`
+     * 默认值：`'light'`
+     */
     theme: PropTypes.oneOf(['light', 'dark']),
 
-    // 对应当前被选中的选项对应key
+    /**
+     * 监听或设置当前已选中菜单项key值
+     */
     currentKey: PropTypes.string,
 
-    // 对应当前展开的SubMenu节点key值数组
+    /**
+     * 监听或设置当前已展开子菜单项key值
+     */
     openKeys: PropTypes.arrayOf(PropTypes.string),
 
-    // 设置是否只展开当前父级菜单
+    /**
+     * 是否只展开当前选中项的父级菜单
+     * 默认值：`false`
+     */
     onlyExpandCurrentSubMenu: PropTypes.bool,
 
-    // 默认展开的SubMenu菜单项key值数组
+    /**
+     * 默认展开的菜单项key值
+     */
     defaultOpenKeys: PropTypes.arrayOf(PropTypes.string),
 
     // 默认选中的菜单项对应key
     defaultSelectedKey: PropTypes.string,
 
-    // 设置是否渲染菜单展开/收缩按钮
+    /**
+     * 是否渲染菜单折叠状态控制按钮
+     * 默认值：`false`
+     */
     renderCollapsedButton: PropTypes.bool,
 
-    // 设置悬浮层锚定策略，可选的有'parent'、'body'，默认为'body'
+    /**
+     * 菜单展开层锚定策略，可选项有`'parent'`、`'body'`
+     * 默认值：`'body'`
+     */
     popupContainer: PropTypes.oneOf(['parent', 'body']),
 
-    // 设置当前菜单是否处于折叠状态（仅inline模式下有效），默认为false
+    /**
+     * 当前菜单是否折叠，仅inline模式下有效
+     * 默认值：`false`
+     */
     inlineCollapsed: PropTypes.bool,
 
-    // 设置inline模式下，子菜单缩进像素宽度
-    // 默认为：24
+    /**
+     * inline模式下，子菜单相对上一级的像素缩进宽度
+     * 默认值：`24`
+     */
     inlineIndent: PropTypes.number,
 
     loading_state: PropTypes.shape({
@@ -445,13 +481,8 @@ AntdMenu.propTypes = {
     setProps: PropTypes.func,
 
     /**
-   * Used to allow user interactions in this component to be persisted when
-   * the component - or the page - is refreshed. If `persisted` is truthy and
-   * hasn't changed from its previous value, a `value` that the user has
-   * changed while using the app will keep that change, as long as
-   * the new `value` also matches what was given originally.
-   * Used in conjunction with `persistence_type`.
-   */
+     * 是否为当前组件开启持久化功能
+     */
     persistence: PropTypes.oneOfType([
         PropTypes.bool,
         PropTypes.string,
@@ -459,17 +490,14 @@ AntdMenu.propTypes = {
     ]),
 
     /**
-     * Properties whose user interactions will persist after refreshing the
-     * component or the page. Since only `value` is allowed this prop can
-     * normally be ignored.
+     * 当前组件启用持久化的属性值数组，可选项有`'currentKey'`、`'openKeys'`
+     * 默认值：`['currentKey', 'openKeys']`
      */
     persisted_props: PropTypes.arrayOf(PropTypes.oneOf(['currentKey', 'openKeys'])),
 
     /**
-     * Where persisted user changes will be stored:
-     * memory: only kept in memory, reset on page refresh.
-     * local: window.localStorage, data is kept after the browser quit.
-     * session: window.sessionStorage, data is cleared once the browser quit.
+     * 当前组件的属性持久化存储类型
+     * 默认值：`'local'`
      */
     persistence_type: PropTypes.oneOf(['local', 'session', 'memory'])
 };
