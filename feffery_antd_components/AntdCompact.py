@@ -5,23 +5,27 @@ from dash.development.base_component import Component, _explicitize_args
 
 class AntdCompact(Component):
     """An AntdCompact component.
-
+紧凑排列组件AntdCompact
 
 Keyword arguments:
 
 - children (a list of or a singular dash component, string or number; optional):
-    The content of the tab - will only be displayed if this tab is
-    selected.
+    组件型，内嵌元素.
 
-- id (string; optional)
+- id (string; optional):
+    组件唯一id.
 
-- block (boolean; default False)
+- block (boolean; default False):
+    是否渲染为块级元素（宽度撑满父容器）  默认值：`False`.
 
-- className (string | dict; optional)
+- className (string | dict; optional):
+    当前组件css类名，支持[动态css](/advanced-classname).
 
-- direction (a value equal to: 'vertical', 'horizontal'; default 'horizontal')
+- direction (a value equal to: 'vertical', 'horizontal'; default 'horizontal'):
+    排列方向，可选项有`'vertical'`、`'horizontal'`  默认值：`'horizontal'`.
 
-- key (string; optional)
+- key (string; optional):
+    对当前组件的`key`值进行更新，可实现强制重绘当前组件的效果.
 
 - loading_state (dict; optional)
 
@@ -36,13 +40,14 @@ Keyword arguments:
     - prop_name (string; optional):
         Holds which property is loading.
 
-- style (dict; optional)"""
+- style (dict; optional):
+    当前组件css样式."""
     _children_props = []
     _base_nodes = ['children']
     _namespace = 'feffery_antd_components'
     _type = 'AntdCompact'
     @_explicitize_args
-    def __init__(self, children=None, id=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, key=Component.UNDEFINED, direction=Component.UNDEFINED, block=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
+    def __init__(self, children=None, id=Component.UNDEFINED, key=Component.UNDEFINED, style=Component.UNDEFINED, className=Component.UNDEFINED, direction=Component.UNDEFINED, block=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
         self._prop_names = ['children', 'id', 'block', 'className', 'direction', 'key', 'loading_state', 'style']
         self._valid_wildcard_attributes =            []
         self.available_properties = ['children', 'id', 'block', 'className', 'direction', 'key', 'loading_state', 'style']

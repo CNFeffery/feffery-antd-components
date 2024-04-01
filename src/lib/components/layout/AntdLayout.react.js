@@ -1,14 +1,17 @@
-import React from 'react';
+// react核心
 import PropTypes from 'prop-types';
+// antd核心
 import { Layout } from 'antd';
+// 辅助库
 import { isString } from 'lodash';
+import { parseChildrenToArray } from '../utils';
+// 自定义hooks
 import useCss from '../../hooks/useCss';
 
-import { parseChildrenToArray } from '../utils';
-
-// 定义布局组件AntdLayout，api参数参考https://ant.design/components/layout-cn/
+/**
+ * 布局容器组件AntdLayout
+ */
 const AntdLayout = (props) => {
-    // 取得必要属性或参数
     let {
         id,
         children,
@@ -38,27 +41,34 @@ const AntdLayout = (props) => {
     );
 }
 
-// 定义参数或属性
 AntdLayout.propTypes = {
-    // 组件id
+    /**
+     * 组件唯一id
+     */
     id: PropTypes.string,
 
     /**
-     * The content of the tab - will only be displayed if this tab is selected
+     * 对当前组件的`key`值进行更新，可实现强制重绘当前组件的效果
+     */
+    key: PropTypes.string,
+
+    /**
+     * 组件型，内嵌元素
      */
     children: PropTypes.node,
 
-    // css类名
+    /**
+     * 当前组件css样式
+     */
+    style: PropTypes.object,
+
+    /**
+     * 当前组件css类名，支持[动态css](/advanced-classname)
+     */
     className: PropTypes.oneOfType([
         PropTypes.string,
         PropTypes.object
     ]),
-
-    // 自定义css字典
-    style: PropTypes.object,
-
-    // 辅助刷新用唯一标识key值
-    key: PropTypes.string,
 
     loading_state: PropTypes.shape({
         /**

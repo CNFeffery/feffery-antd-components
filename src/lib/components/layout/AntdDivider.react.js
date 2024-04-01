@@ -1,12 +1,16 @@
-import React from "react";
+// react核心
 import PropTypes from "prop-types";
+// antd核心
 import { Divider } from "antd";
+// 辅助库
 import { isString } from "lodash";
+// 自定义hooks
 import useCss from "../../hooks/useCss";
 
-// 定义分割线组件AntdDivider，api参数参考https://ant.design/components/divider-cn/
+/**
+ * 分割线组件AntdDivider
+ */
 const AntdDivider = (props) => {
-    // 取得必要属性或参数
     let {
         id,
         children,
@@ -91,83 +95,78 @@ const AntdDivider = (props) => {
     }
 };
 
-// 定义参数或属性
 AntdDivider.propTypes = {
-    // 组件id
     /**
-     * Component id.
+     * 组件唯一id
      */
     id: PropTypes.string,
 
-    // 内嵌文字的文本内容
     /**
-     * Text content of the inline text.
-     */
-    children: PropTypes.node,
-
-    // css类名
-    /**
-     * CSS class name.
-     */
-    className: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
-
-    // 辅助刷新用唯一标识key值
-    /**
-     * A unique identifier key used for refreshing assistance.
+     * 对当前组件的`key`值进行更新，可实现强制重绘当前组件的效果
      */
     key: PropTypes.string,
 
-    // 内嵌文字的对齐方式（left：左对齐，center：居中，right：右对齐。默认为center）
     /**
-     * Text alignment of the inline text. Possible values are 'left', 'center', and 'right'. Default is 'center'.
+     * 组件型，分割线内嵌元素
+     */
+    children: PropTypes.node,
+
+    /**
+     * 当前组件css类名，支持[动态css](/advanced-classname)
+     */
+    className: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.object
+    ]),
+
+    /**
+     * 内嵌元素对齐方式，可选项有`'left'`、`'center'`、`'right'`
+     * 默认值：`'center'`
      */
     innerTextOrientation: PropTypes.oneOf(["left", "center", "right"]),
 
-    // 是否以虚线方式渲染（true：虚线，false：实线。默认为false）
     /**
-     * Whether to render the divider as dashed line. true for dashed line, false for solid line. Default is false.
+     * 是否渲染为虚线形式
+     * 默认值：`false`
      */
     isDashed: PropTypes.bool,
 
-    // 分割线方向（水平：horizontal，竖直：vertical。默认为horizontal）
     /**
-     * Direction of the divider. Possible values are 'horizontal' and 'vertical'. Default is 'horizontal'.
+     * 分割线方向，可选项有`'horizontal'`、`'vertical'`
+     * 默认值：`'horizontal'`
      */
     direction: PropTypes.oneOf(["horizontal", "vertical"]),
 
-    // 内嵌文字大小，接受在css中合法的font-size值输入
     /**
-     * Font size of the inline text. Accepts valid font-size values in CSS.
+     * 内嵌元素字体大小
      */
-    fontSize: PropTypes.string,
+    fontSize: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.number
+    ]),
 
-    // 分割线颜色，接受在css中合法的颜色值输入
     /**
-     * Color of the divider. Accepts valid color values in CSS.
+     * 分割线颜色
      */
     lineColor: PropTypes.string,
 
-    // 内嵌文字字体，接受在css中合法的font-style值输入
     /**
-     * Font style of the inline text. Accepts valid font-style values in CSS.
+     * 内嵌元素字体风格
      */
     fontStyle: PropTypes.string,
 
-    // 内嵌文字粗细，接受在css中合法的font-weight值输入
     /**
-     * Font weight of the inline text. Accepts valid font-weight values in CSS.
+     * 内嵌元素字重
      */
     fontWeight: PropTypes.string,
 
-    // 内嵌文字字体族，接受在css中合法的font-family值输入
     /**
-     * Font family of the inline text. Accepts valid font-family values in CSS.
+     * 内嵌元素字体
      */
     fontFamily: PropTypes.string,
 
-    // 内嵌文字色彩，接受在css中合法的color值输入
     /**
-     * Color of the inline text. Accepts valid color values in CSS.
+     * 内嵌元素字体颜色
      */
     fontColor: PropTypes.string,
 
@@ -195,14 +194,9 @@ AntdDivider.propTypes = {
 
 // 设置默认参数
 AntdDivider.defaultProps = {
-    innerTextOrientation: "center",
+    innerTextOrientation: 'center',
     isDashed: false,
-    direction: "horizontal",
-    lineColor: "lightgrey",
-    fontStyle: "initial",
-    fontWeight: "initial",
-    fontFamily: "initial",
-    fontColor: "#000000",
+    direction: 'horizontal'
 };
 
 export default AntdDivider;

@@ -1,16 +1,19 @@
-import React from 'react';
+// react核心
 import PropTypes from 'prop-types';
+// antd核心
 import { Layout } from 'antd';
+// 辅助库
 import { isString } from 'lodash';
-import useCss from '../../hooks/useCss';
-
 import { parseChildrenToArray } from '../utils';
+// 自定义hooks
+import useCss from '../../hooks/useCss';
 
 const { Sider } = Layout;
 
-// 定义侧边栏组件AntdSider，api参数参考https://ant.design/components/layout-cn/
+/**
+ * 侧边栏组件AntdSider
+ */
 const AntdSider = (props) => {
-    // 取得必要属性或参数
     let {
         id,
         children,
@@ -63,56 +66,88 @@ const AntdSider = (props) => {
     );
 }
 
-// 定义参数或属性
 AntdSider.propTypes = {
-    // 组件id
+    /**
+     * 组件唯一id
+     */
     id: PropTypes.string,
 
     /**
-     * The content of the tab - will only be displayed if this tab is selected
+     * 对当前组件的`key`值进行更新，可实现强制重绘当前组件的效果
+     */
+    key: PropTypes.string,
+
+    /**
+     * 组件型，内嵌元素
      */
     children: PropTypes.node,
 
-    // css类名
+    /**
+     * 当前组件css样式
+     */
+    style: PropTypes.object,
+
+    /**
+     * 当前组件css类名，支持[动态css](/advanced-classname)
+     */
     className: PropTypes.oneOfType([
         PropTypes.string,
         PropTypes.object
     ]),
 
-    // 自定义css字典
-    style: PropTypes.object,
-
-    // 辅助刷新用唯一标识key值
-    key: PropTypes.string,
-
-    // 设置当前侧边栏区域是否收起，默认为false
+    /**
+     * 当前是否收起
+     * 默认值：`false`
+     */
     collapsed: PropTypes.bool,
 
-    // 设置是否默认状态即收起，默认为false
+    /**
+     * 初始化是否收起
+     */
     defaultCollapsed: PropTypes.bool,
 
     // 设置收缩的像素宽度，默认为80即80px，设置为0时会渲染特殊触发组件
+    /**
+     * 收起后呈现的像素宽度，设置为0时会额外渲染特殊触发组件
+     * 默认值：`80`
+     */
     collapsedWidth: PropTypes.number,
 
-    // 设置是否可收起，默认为false
+    /**
+     * 是否可收起
+     * 默认值：`false`
+     */
     collapsible: PropTypes.bool,
 
-    // 设置是否水平翻转折叠提示箭头的方向，通常在Sider位于右侧时使用，默认为false
+    /**
+     * 是否翻转收起箭头的方向，通常在Sider位于右侧时使用
+     * 默认值：`false`
+     */
     reverseArrow: PropTypes.bool,
 
-    // 设置主题颜色，默认为'dark'
+    /**
+     * 主题，可选项有`'light'`、`'dark'`
+     * 默认值：`'dark'`
+     */
     theme: PropTypes.oneOf(['light', 'dark']),
 
-    // 设置侧边栏像素宽度，默认为200
+    /**
+     * 侧边栏像素宽度
+     * 默认值：`200`
+     */
     width: PropTypes.oneOfType([
         PropTypes.number,
         PropTypes.string
     ]),
 
-    // 自定义触发器，自定义时需要设置为null
+    /**
+     * 设置为`None`时不渲染自带的特殊触发组件
+     */
     trigger: PropTypes.node,
 
-    // 设置侧边栏折叠响应式断点
+    /**
+     * 侧边栏自动收起对应的响应式断点
+     */
     breakpoint: PropTypes.oneOf(['xs', 'sm', 'md', 'lg', 'xl', 'xxl']),
 
     loading_state: PropTypes.shape({

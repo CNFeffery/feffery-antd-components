@@ -1,12 +1,15 @@
-import React from 'react';
+// react核心
 import PropTypes from 'prop-types';
-import useCss from '../../hooks/useCss';
+// 辅助库
 import { isString } from 'lodash';
 import { parseChildrenToArray } from '../utils';
+// 自定义hooks
+import useCss from '../../hooks/useCss';
 
-// 定义居中组件AntdCenter，基于flex布局
+/**
+ * 居中组件AntdCenter
+ */
 const AntdCenter = (props) => {
-    // 取得必要属性或参数
     let {
         id,
         children,
@@ -42,30 +45,39 @@ const AntdCenter = (props) => {
     );
 }
 
-// 定义参数或属性
 AntdCenter.propTypes = {
-    // 组件id
+    /**
+     * 组件唯一id
+     */
     id: PropTypes.string,
 
     /**
-     * The content of the tab - will only be displayed if this tab is selected
+     * 对当前组件的`key`值进行更新，可实现强制重绘当前组件的效果
+     */
+    key: PropTypes.string,
+
+    /**
+     * 组件型，内嵌元素
      */
     children: PropTypes.node,
 
-    // css类名
+    /**
+     * 当前组件css样式
+     */
+    style: PropTypes.object,
+
+    /**
+     * 当前组件css类名，支持[动态css](/advanced-classname)
+     */
     className: PropTypes.oneOfType([
         PropTypes.string,
         PropTypes.object
     ]),
 
-    // 自定义css字典
-    style: PropTypes.object,
-
-    // 辅助刷新用唯一标识key值
-    key: PropTypes.string,
-
-    // 设置是否作为行内元素
-    // 默认为false
+    /**
+     * 是否渲染为行内元素
+     * 默认值：`false`
+     */
     inline: PropTypes.bool,
 
     loading_state: PropTypes.shape({

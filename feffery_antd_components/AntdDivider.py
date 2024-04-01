@@ -5,55 +5,48 @@ from dash.development.base_component import Component, _explicitize_args
 
 class AntdDivider(Component):
     """An AntdDivider component.
-
+分割线组件AntdDivider
 
 Keyword arguments:
 
 - children (a list of or a singular dash component, string or number; optional):
-    Text content of the inline text.
+    组件型，分割线内嵌元素.
 
 - id (string; optional):
-    Component id.
+    组件唯一id.
 
 - className (string | dict; optional):
-    CSS class name.
+    当前组件css类名，支持[动态css](/advanced-classname).
 
-- direction (a value equal to: "horizontal", "vertical"; default "horizontal"):
-    Direction of the divider. Possible values are 'horizontal' and
-    'vertical'. Default is 'horizontal'.
+- direction (a value equal to: "horizontal", "vertical"; default 'horizontal'):
+    分割线方向，可选项有`'horizontal'`、`'vertical'`  默认值：`'horizontal'`.
 
-- fontColor (string; default "#000000"):
-    Color of the inline text. Accepts valid color values in CSS.
+- fontColor (string; optional):
+    内嵌元素字体颜色.
 
-- fontFamily (string; default "initial"):
-    Font family of the inline text. Accepts valid font-family values
-    in CSS.
+- fontFamily (string; optional):
+    内嵌元素字体.
 
-- fontSize (string; optional):
-    Font size of the inline text. Accepts valid font-size values in
-    CSS.
+- fontSize (string | number; optional):
+    内嵌元素字体大小.
 
-- fontStyle (string; default "initial"):
-    Font style of the inline text. Accepts valid font-style values in
-    CSS.
+- fontStyle (string; optional):
+    内嵌元素字体风格.
 
-- fontWeight (string; default "initial"):
-    Font weight of the inline text. Accepts valid font-weight values
-    in CSS.
+- fontWeight (string; optional):
+    内嵌元素字重.
 
-- innerTextOrientation (a value equal to: "left", "center", "right"; default "center"):
-    Text alignment of the inline text. Possible values are 'left',
-    'center', and 'right'. Default is 'center'.
+- innerTextOrientation (a value equal to: "left", "center", "right"; default 'center'):
+    内嵌元素对齐方式，可选项有`'left'`、`'center'`、`'right'`  默认值：`'center'`.
 
 - isDashed (boolean; default False):
-    Whether to render the divider as dashed line. True for dashed
-    line, False for solid line. Default is False.
+    是否渲染为虚线形式  默认值：`False`.
 
 - key (string; optional):
-    A unique identifier key used for refreshing assistance.
+    对当前组件的`key`值进行更新，可实现强制重绘当前组件的效果.
 
-- lineColor (string; default "lightgrey"):
-    Color of the divider. Accepts valid color values in CSS.
+- lineColor (string; optional):
+    分割线颜色.
 
 - loading_state (dict; optional)
 
@@ -72,7 +65,7 @@ Keyword arguments:
     _namespace = 'feffery_antd_components'
     _type = 'AntdDivider'
     @_explicitize_args
-    def __init__(self, children=None, id=Component.UNDEFINED, className=Component.UNDEFINED, key=Component.UNDEFINED, innerTextOrientation=Component.UNDEFINED, isDashed=Component.UNDEFINED, direction=Component.UNDEFINED, fontSize=Component.UNDEFINED, lineColor=Component.UNDEFINED, fontStyle=Component.UNDEFINED, fontWeight=Component.UNDEFINED, fontFamily=Component.UNDEFINED, fontColor=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
+    def __init__(self, children=None, id=Component.UNDEFINED, key=Component.UNDEFINED, className=Component.UNDEFINED, innerTextOrientation=Component.UNDEFINED, isDashed=Component.UNDEFINED, direction=Component.UNDEFINED, fontSize=Component.UNDEFINED, lineColor=Component.UNDEFINED, fontStyle=Component.UNDEFINED, fontWeight=Component.UNDEFINED, fontFamily=Component.UNDEFINED, fontColor=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
         self._prop_names = ['children', 'id', 'className', 'direction', 'fontColor', 'fontFamily', 'fontSize', 'fontStyle', 'fontWeight', 'innerTextOrientation', 'isDashed', 'key', 'lineColor', 'loading_state']
         self._valid_wildcard_attributes =            []
         self.available_properties = ['children', 'id', 'className', 'direction', 'fontColor', 'fontFamily', 'fontSize', 'fontStyle', 'fontWeight', 'innerTextOrientation', 'isDashed', 'key', 'lineColor', 'loading_state']

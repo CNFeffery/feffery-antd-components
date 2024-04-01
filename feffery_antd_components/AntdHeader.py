@@ -5,19 +5,21 @@ from dash.development.base_component import Component, _explicitize_args
 
 class AntdHeader(Component):
     """An AntdHeader component.
-
+页首组件AntdHeader
 
 Keyword arguments:
 
 - children (a list of or a singular dash component, string or number; optional):
-    The content of the tab - will only be displayed if this tab is
-    selected.
+    组件型，内嵌元素.
 
-- id (string; optional)
+- id (string; optional):
+    组件唯一id.
 
-- className (string | dict; optional)
+- className (string | dict; optional):
+    当前组件css类名，支持[动态css](/advanced-classname).
 
-- key (string; optional)
+- key (string; optional):
+    对当前组件的`key`值进行更新，可实现强制重绘当前组件的效果.
 
 - loading_state (dict; optional)
 
@@ -32,13 +34,14 @@ Keyword arguments:
     - prop_name (string; optional):
         Holds which property is loading.
 
-- style (dict; optional)"""
+- style (dict; optional):
+    当前组件css样式."""
     _children_props = []
     _base_nodes = ['children']
     _namespace = 'feffery_antd_components'
     _type = 'AntdHeader'
     @_explicitize_args
-    def __init__(self, children=None, id=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, key=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
+    def __init__(self, children=None, id=Component.UNDEFINED, key=Component.UNDEFINED, style=Component.UNDEFINED, className=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
         self._prop_names = ['children', 'id', 'className', 'key', 'loading_state', 'style']
         self._valid_wildcard_attributes =            []
         self.available_properties = ['children', 'id', 'className', 'key', 'loading_state', 'style']

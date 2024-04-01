@@ -5,39 +5,51 @@ from dash.development.base_component import Component, _explicitize_args
 
 class AntdRow(Component):
     """An AntdRow component.
-
+行组件AntdRow
 
 Keyword arguments:
 
 - children (a list of or a singular dash component, string or number; optional):
-    The content of the tab - will only be displayed if this tab is
-    selected.
+    组件型，内嵌元素.
 
-- id (string; optional)
+- id (string; optional):
+    组件唯一id.
 
-- align (a value equal to: 'top', 'middle', 'bottom'; default 'top')
+- align (a value equal to: 'top', 'middle', 'bottom'; default 'top'):
+    竖直方向对齐方式，可选项有`'top'`、`'middle'`、`'bottom'`  默认值：`'top'`.
 
-- className (string | dict; optional)
+- className (string | dict; optional):
+    当前组件css类名，支持[动态css](/advanced-classname).
 
-- gutter (dict; default 0)
+- gutter (dict; default 0):
+    网格间隔，传入数值型时为水平像素间隔，传入数组时分别设置水平、垂直像素间隔，传入字典时可为响应式各断点设置水平像素间隔.
 
     `gutter` is a number | list of numbers | dict with keys:
 
-    - lg (number; optional)
+    - lg (number; optional):
+        页面宽度大于等于992px时的水平像素间隔.
 
-    - md (number; optional)
+    - md (number; optional):
+        页面宽度大于等于768px时的水平像素间隔.
 
-    - sm (number; optional)
+    - sm (number; optional):
+        页面宽度大于等于567px时的水平像素间隔.
 
-    - xl (number; optional)
+    - xl (number; optional):
+        页面宽度大于等于1200px时的水平像素间隔.
 
-    - xs (number; optional)
+    - xs (number; optional):
+        页面宽度小于567px时的水平像素间隔.
 
-    - xxl (number; optional)
+    - xxl (number; optional):
+        页面宽度大于等于1600px时的水平像素间隔.
 
-- justify (a value equal to: 'start', 'end', 'center', 'space-around', 'space-between'; default 'start')
+- justify (a value equal to: 'start', 'end', 'center', 'space-around', 'space-between'; default 'start'):
+    水平排列方式，可选项有`'start'`、`'end'`、`'center'`、`'space-around'`、`'space-between'`
+    默认值：`'start'`.
 
-- key (string; optional)
+- key (string; optional):
+    对当前组件的`key`值进行更新，可实现强制重绘当前组件的效果.
 
 - loading_state (dict; optional)
 
@@ -52,15 +64,17 @@ Keyword arguments:
     - prop_name (string; optional):
         Holds which property is loading.
 
-- style (dict; optional)
+- style (dict; optional):
+    当前组件css样式.
 
-- wrap (boolean; default True)"""
+- wrap (boolean; default True):
+    是否允许自动换行  默认值：`True`."""
     _children_props = []
     _base_nodes = ['children']
     _namespace = 'feffery_antd_components'
     _type = 'AntdRow'
     @_explicitize_args
-    def __init__(self, children=None, id=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, key=Component.UNDEFINED, align=Component.UNDEFINED, gutter=Component.UNDEFINED, justify=Component.UNDEFINED, wrap=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
+    def __init__(self, children=None, id=Component.UNDEFINED, key=Component.UNDEFINED, style=Component.UNDEFINED, className=Component.UNDEFINED, align=Component.UNDEFINED, gutter=Component.UNDEFINED, justify=Component.UNDEFINED, wrap=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
         self._prop_names = ['children', 'id', 'align', 'className', 'gutter', 'justify', 'key', 'loading_state', 'style', 'wrap']
         self._valid_wildcard_attributes =            []
         self.available_properties = ['children', 'id', 'align', 'className', 'gutter', 'justify', 'key', 'loading_state', 'style', 'wrap']

@@ -11,7 +11,19 @@ components = [
     'AntdIcon',
     'AntdParagraph',
     'AntdText',
-    'AntdTitle'
+    'AntdTitle',
+    'AntdCenter',
+    'AntdDivider',
+    'AntdFlex',
+    'AntdRow',
+    'AntdCol',
+    'AntdSpace',
+    'AntdCompact',
+    'AntdLayout',
+    'AntdHeader',
+    'AntdContent',
+    'AntdFooter',
+    'AntdSider'
 ]
 
 app.layout = html.Div(
@@ -29,15 +41,7 @@ app.layout = html.Div(
                         }
                     )
                 }
-                for component in [
-                    'AntdButton',
-                    'AntdFloatButton',
-                    'AntdFloatButtonGroup',
-                    'AntdIcon',
-                    'AntdParagraph',
-                    'AntdText',
-                    'AntdTitle'
-                ]
+                for component in components[::-1]
             ],
             activeKey=components[-1]
         )

@@ -5,29 +5,36 @@ from dash.development.base_component import Component, _explicitize_args
 
 class AntdSider(Component):
     """An AntdSider component.
-
+侧边栏组件AntdSider
 
 Keyword arguments:
 
 - children (a list of or a singular dash component, string or number; optional):
-    The content of the tab - will only be displayed if this tab is
-    selected.
+    组件型，内嵌元素.
 
-- id (string; optional)
+- id (string; optional):
+    组件唯一id.
 
-- breakpoint (a value equal to: 'xs', 'sm', 'md', 'lg', 'xl', 'xxl'; optional)
+- breakpoint (a value equal to: 'xs', 'sm', 'md', 'lg', 'xl', 'xxl'; optional):
+    侧边栏自动收起对应的响应式断点.
 
-- className (string | dict; optional)
+- className (string | dict; optional):
+    当前组件css类名，支持[动态css](/advanced-classname).
 
-- collapsed (boolean; default False)
+- collapsed (boolean; default False):
+    当前是否收起  默认值：`False`.
 
-- collapsedWidth (number; default 80)
+- collapsedWidth (number; default 80):
+    收起后呈现的像素宽度，设置为0时会额外渲染特殊触发组件  默认值：`80`.
 
-- collapsible (boolean; default False)
+- collapsible (boolean; default False):
+    是否可收起  默认值：`False`.
 
-- defaultCollapsed (boolean; default False)
+- defaultCollapsed (boolean; default False):
+    初始化是否收起.
 
-- key (string; optional)
+- key (string; optional):
+    对当前组件的`key`值进行更新，可实现强制重绘当前组件的效果.
 
 - loading_state (dict; optional)
 
@@ -42,21 +49,26 @@ Keyword arguments:
     - prop_name (string; optional):
         Holds which property is loading.
 
-- reverseArrow (boolean; default False)
+- reverseArrow (boolean; default False):
+    是否翻转收起箭头的方向，通常在Sider位于右侧时使用  默认值：`False`.
 
-- style (dict; optional)
+- style (dict; optional):
+    当前组件css样式.
 
-- theme (a value equal to: 'light', 'dark'; default 'dark')
+- theme (a value equal to: 'light', 'dark'; default 'dark'):
+    主题，可选项有`'light'`、`'dark'`  默认值：`'dark'`.
 
-- trigger (a list of or a singular dash component, string or number; optional)
+- trigger (a list of or a singular dash component, string or number; optional):
+    设置为`None`时不渲染自带的特殊触发组件.
 
-- width (number | string; default 200)"""
+- width (number | string; default 200):
+    侧边栏像素宽度  默认值：`200`."""
     _children_props = ['trigger']
     _base_nodes = ['trigger', 'children']
     _namespace = 'feffery_antd_components'
     _type = 'AntdSider'
     @_explicitize_args
-    def __init__(self, children=None, id=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, key=Component.UNDEFINED, collapsed=Component.UNDEFINED, defaultCollapsed=Component.UNDEFINED, collapsedWidth=Component.UNDEFINED, collapsible=Component.UNDEFINED, reverseArrow=Component.UNDEFINED, theme=Component.UNDEFINED, width=Component.UNDEFINED, trigger=Component.UNDEFINED, breakpoint=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
+    def __init__(self, children=None, id=Component.UNDEFINED, key=Component.UNDEFINED, style=Component.UNDEFINED, className=Component.UNDEFINED, collapsed=Component.UNDEFINED, defaultCollapsed=Component.UNDEFINED, collapsedWidth=Component.UNDEFINED, collapsible=Component.UNDEFINED, reverseArrow=Component.UNDEFINED, theme=Component.UNDEFINED, width=Component.UNDEFINED, trigger=Component.UNDEFINED, breakpoint=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
         self._prop_names = ['children', 'id', 'breakpoint', 'className', 'collapsed', 'collapsedWidth', 'collapsible', 'defaultCollapsed', 'key', 'loading_state', 'reverseArrow', 'style', 'theme', 'trigger', 'width']
         self._valid_wildcard_attributes =            []
         self.available_properties = ['children', 'id', 'breakpoint', 'className', 'collapsed', 'collapsedWidth', 'collapsible', 'defaultCollapsed', 'key', 'loading_state', 'reverseArrow', 'style', 'theme', 'trigger', 'width']

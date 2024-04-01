@@ -5,21 +5,24 @@ from dash.development.base_component import Component, _explicitize_args
 
 class AntdSpace(Component):
     """An AntdSpace component.
-
+排列组件AntdSpace
 
 Keyword arguments:
 
 - children (a list of or a singular dash component, string or number; optional):
-    The content of the tab - will only be displayed if this tab is
-    selected.
+    组件型，内嵌元素.
 
-- id (string; optional)
+- id (string; optional):
+    组件唯一id.
 
-- addSplitLine (boolean; default False)
+- addSplitLine (boolean; default False):
+    是否添加分隔线  默认值：`False`.
 
-- align (a value equal to: 'start', 'end', 'center', 'baseline'; optional)
+- align (a value equal to: 'start', 'end', 'center', 'baseline'; optional):
+    对齐方式，可选项有`'start'`、`'end'`、`'center'`、`'baseline'`.
 
-- className (string | dict; optional)
+- className (string | dict; optional):
+    当前组件css类名，支持[动态css](/advanced-classname).
 
 - classNames (dict; optional):
     细分控制子元素css类.
@@ -29,11 +32,14 @@ Keyword arguments:
     - item (string; optional):
         控制子项容器元素css类.
 
-- customSplit (a list of or a singular dash component, string or number; optional)
+- customSplit (a list of or a singular dash component, string or number; optional):
+    自定义分隔线元素.
 
-- direction (a value equal to: 'vertical', 'horizontal'; default 'horizontal')
+- direction (a value equal to: 'vertical', 'horizontal'; default 'horizontal'):
+    排列方向，可选项有`'vertical'`、`'horizontal'`  默认值：`'horizontal'`.
 
-- key (string; optional)
+- key (string; optional):
+    对当前组件的`key`值进行更新，可实现强制重绘当前组件的效果.
 
 - loading_state (dict; optional)
 
@@ -48,9 +54,12 @@ Keyword arguments:
     - prop_name (string; optional):
         Holds which property is loading.
 
-- size (a value equal to: 'small', 'middle', 'large' | number; default 'small')
+- size (a value equal to: 'small', 'middle', 'large' | number; default 'small'):
+    子元素间隔大小，可选项有`'small'`、`'middle'`、`'large'`，或直接设置数值型代表像素间隔
+    默认值：`'small'`.
 
-- style (dict; optional)
+- style (dict; optional):
+    当前组件css样式.
 
 - styles (dict; optional):
     细分控制子元素css样式.
@@ -60,13 +69,14 @@ Keyword arguments:
     - item (dict; optional):
         控制子项容器元素css样式.
 
-- wrap (boolean; default False)"""
+- wrap (boolean; default False):
+    子元素是否自动换行，仅`direction='horizontal'`时有效  默认值：`False`."""
     _children_props = ['customSplit']
     _base_nodes = ['customSplit', 'children']
     _namespace = 'feffery_antd_components'
     _type = 'AntdSpace'
     @_explicitize_args
-    def __init__(self, children=None, id=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, styles=Component.UNDEFINED, classNames=Component.UNDEFINED, key=Component.UNDEFINED, align=Component.UNDEFINED, direction=Component.UNDEFINED, size=Component.UNDEFINED, addSplitLine=Component.UNDEFINED, customSplit=Component.UNDEFINED, wrap=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
+    def __init__(self, children=None, id=Component.UNDEFINED, key=Component.UNDEFINED, style=Component.UNDEFINED, className=Component.UNDEFINED, styles=Component.UNDEFINED, classNames=Component.UNDEFINED, align=Component.UNDEFINED, direction=Component.UNDEFINED, size=Component.UNDEFINED, addSplitLine=Component.UNDEFINED, customSplit=Component.UNDEFINED, wrap=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
         self._prop_names = ['children', 'id', 'addSplitLine', 'align', 'className', 'classNames', 'customSplit', 'direction', 'key', 'loading_state', 'size', 'style', 'styles', 'wrap']
         self._valid_wildcard_attributes =            []
         self.available_properties = ['children', 'id', 'addSplitLine', 'align', 'className', 'classNames', 'customSplit', 'direction', 'key', 'loading_state', 'size', 'style', 'styles', 'wrap']

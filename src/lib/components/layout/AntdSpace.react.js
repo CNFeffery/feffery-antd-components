@@ -1,13 +1,17 @@
-import React from 'react';
+// react核心
 import PropTypes from 'prop-types';
+// antd核心
 import { Space, Divider } from 'antd';
-import useCss from '../../hooks/useCss';
+// 辅助库
 import { isString } from 'lodash';
 import { parseChildrenToArray } from '../utils';
+// 自定义hooks
+import useCss from '../../hooks/useCss';
 
-// 定义间距组件AntdSpace，api参数参考https://ant.design/components/space-cn/
+/**
+ * 排列组件AntdSpace
+ */
 const AntdSpace = (props) => {
-    // 取得必要属性或参数
     let {
         id,
         children,
@@ -101,24 +105,34 @@ const AntdSpace = (props) => {
     );
 }
 
-// 定义参数或属性
 AntdSpace.propTypes = {
-    // 组件id
+    /**
+     * 组件唯一id
+     */
     id: PropTypes.string,
 
     /**
-     * The content of the tab - will only be displayed if this tab is selected
+     * 对当前组件的`key`值进行更新，可实现强制重绘当前组件的效果
+     */
+    key: PropTypes.string,
+
+    /**
+     * 组件型，内嵌元素
      */
     children: PropTypes.node,
 
-    // css类名
+    /**
+     * 当前组件css样式
+     */
+    style: PropTypes.object,
+
+    /**
+     * 当前组件css类名，支持[动态css](/advanced-classname)
+     */
     className: PropTypes.oneOfType([
         PropTypes.string,
         PropTypes.object
     ]),
-
-    // 自定义css字典
-    style: PropTypes.object,
 
     /**
      * 细分控制子元素css样式
@@ -140,28 +154,41 @@ AntdSpace.propTypes = {
         item: PropTypes.string
     }),
 
-    // 辅助刷新用唯一标识key值
-    key: PropTypes.string,
-
-    // 自定义对齐方式，可选的有'start'、'end'、'center'、'baseline'
+    /**
+     * 对齐方式，可选项有`'start'`、`'end'`、`'center'`、`'baseline'`
+     */
     align: PropTypes.oneOf(['start', 'end', 'center', 'baseline']),
 
-    // 设置间距方向，可选的有'vertical'、'horizontal'，默认为'horizontal'
+    /**
+     * 排列方向，可选项有`'vertical'`、`'horizontal'`
+     * 默认值：`'horizontal'`
+     */
     direction: PropTypes.oneOf(['vertical', 'horizontal']),
 
-    // 设置间隔尺寸大小，可选的有'small'、'middle'、'large'，或直接设置整数代表像素值，默认为'small'
+    /**
+     * 子元素间隔大小，可选项有`'small'`、`'middle'`、`'large'`，或直接设置数值型代表像素间隔
+     * 默认值：`'small'`
+     */
     size: PropTypes.oneOfType([
         PropTypes.oneOf(['small', 'middle', 'large']),
         PropTypes.number
     ]),
 
-    // 是否添加分隔线，默认为false
+    /**
+     * 是否添加分隔线
+     * 默认值：`false`
+     */
     addSplitLine: PropTypes.bool,
 
-    // 设置自定义分隔元素
+    /**
+     * 自定义分隔线元素
+     */
     customSplit: PropTypes.node,
 
-    // 设置超出长度是否自动换行，仅在direction='horizontal'模式下可用
+    /**
+     * 子元素是否自动换行，仅`direction='horizontal'`时有效
+     * 默认值：`false`
+     */
     wrap: PropTypes.bool,
 
     loading_state: PropTypes.shape({
@@ -188,9 +215,9 @@ AntdSpace.propTypes = {
 
 // 设置默认参数
 AntdSpace.defaultProps = {
-    addSplitLine: false,
     direction: 'horizontal',
     size: 'small',
+    addSplitLine: false,
     wrap: false
 }
 

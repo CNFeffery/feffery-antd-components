@@ -1,13 +1,17 @@
-import React from 'react';
+// react核心
 import PropTypes from 'prop-types';
+// antd核心
 import { Row } from 'antd';
-import useCss from '../../../hooks/useCss';
+// 辅助库
 import { isString } from 'lodash';
 import { parseChildrenToArray } from '../../utils';
+// 自定义hooks
+import useCss from '../../../hooks/useCss';
 
-// 定义行组件AntdRow，api参数参考https://ant.design/components/grid-cn/
+/**
+ * 行组件AntdRow
+ */
 const AntdRow = (props) => {
-    // 取得必要属性或参数
     let {
         id,
         children,
@@ -45,52 +49,87 @@ const AntdRow = (props) => {
     );
 }
 
-// 定义参数或属性
 AntdRow.propTypes = {
-    // 组件id
+    /**
+     * 组件唯一id
+     */
     id: PropTypes.string,
 
     /**
-     * The content of the tab - will only be displayed if this tab is selected
+     * 对当前组件的`key`值进行更新，可实现强制重绘当前组件的效果
+     */
+    key: PropTypes.string,
+
+    /**
+     * 组件型，内嵌元素
      */
     children: PropTypes.node,
 
-    // css类名
+    /**
+     * 当前组件css样式
+     */
+    style: PropTypes.object,
+
+    /**
+     * 当前组件css类名，支持[动态css](/advanced-classname)
+     */
     className: PropTypes.oneOfType([
         PropTypes.string,
         PropTypes.object
     ]),
 
-    // 自定义css字典
-    style: PropTypes.object,
-
-    // 辅助刷新用唯一标识key值
-    key: PropTypes.string,
-
-    // 设置垂直对齐方式，可选的有'top'、'middle'和'bottom'，默认为'top'
+    /**
+     * 竖直方向对齐方式，可选项有`'top'`、`'middle'`、`'bottom'`
+     * 默认值：`'top'`
+     */
     align: PropTypes.oneOf(['top', 'middle', 'bottom']),
 
-    // 设置栅格间隔
+    /**
+     * 网格间隔，传入数值型时为水平像素间隔，传入数组时分别设置水平、垂直像素间隔，传入字典时可为响应式各断点设置水平像素间隔
+     */
     gutter: PropTypes.oneOfType([
         PropTypes.number,
         PropTypes.arrayOf(PropTypes.number),
-        // 响应式设置水平间隔
         PropTypes.exact({
+            /**
+             * 页面宽度小于567px时的水平像素间隔
+             */
             xs: PropTypes.number,
+            /**
+             * 页面宽度大于等于567px时的水平像素间隔
+             */
             sm: PropTypes.number,
+            /**
+             * 页面宽度大于等于768px时的水平像素间隔
+             */
             md: PropTypes.number,
+            /**
+             * 页面宽度大于等于992px时的水平像素间隔
+             */
             lg: PropTypes.number,
+            /**
+             * 页面宽度大于等于1200px时的水平像素间隔
+             */
             xl: PropTypes.number,
+            /**
+             * 页面宽度大于等于1600px时的水平像素间隔
+             */
             xxl: PropTypes.number
         })
     ]),
 
-    // 设置水平排列方式，可选的有'start'、'end'、'center'、'space-around'、'space-between'，默认为'start'
+    /**
+     * 水平排列方式，可选项有`'start'`、`'end'`、`'center'`、`'space-around'`、`'space-between'`
+     * 默认值：`'start'`
+     */
     justify: PropTypes.oneOf([
         'start', 'end', 'center', 'space-around', 'space-between'
     ]),
 
-    // 设置每行宽度超过24时是否自动换行，默认为true
+    /**
+     * 是否允许自动换行
+     * 默认值：`true`
+     */
     wrap: PropTypes.bool,
 
     loading_state: PropTypes.shape({
