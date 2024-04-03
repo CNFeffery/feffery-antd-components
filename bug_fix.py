@@ -17,47 +17,13 @@ app.layout = html.Div(
                     label='表单项1'
                 ),
                 fac.AntdFormItem(
-                    fac.AntdCascader(
-                        placeholder='请选择',
+                    fac.AntdCheckboxGroup(
                         options=[
                             {
-                                'value': '节点1',
-                                'label': '节点1',
-                                'children': [
-                                    {
-                                        'value': '节点1-1',
-                                        'label': '节点1-1'
-                                    },
-                                    {
-                                        'value': '节点1-2',
-                                        'label': '节点1-2',
-                                        'children': [
-                                            {
-                                                'value': '节点1-2-1',
-                                                'label': '节点1-2-1'
-                                            },
-                                            {
-                                                'value': '节点1-2-2',
-                                                'label': '节点1-2-2'
-                                            }
-                                        ]
-                                    }
-                                ]
-                            },
-                            {
-                                'value': '节点2',
-                                'label': '节点2',
-                                'children': [
-                                    {
-                                        'value': '节点2-1',
-                                        'label': '节点2-1'
-                                    },
-                                    {
-                                        'value': '节点2-2',
-                                        'label': '节点2-2'
-                                    }
-                                ]
+                                'label': f'选项{i}',
+                                'value': f'选项{i}'
                             }
+                            for i in range(5)
                         ],
                         name='表单项2'
                     ),
