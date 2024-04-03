@@ -34,7 +34,7 @@ import AntdCheckbox from './components/dataEntry/AntdCheckbox.react';
 import AntdCheckboxGroup from './components/dataEntry/AntdCheckboxGroup.react';
 // import AntdCheckCard from './components/dataEntry/check-card/AntdCheckCard.react';
 // import AntdCheckCardGroup from './components/dataEntry/check-card/AntdCheckCardGroup.react';
-// import AntdColorPicker from './components/dataEntry/AntdColorPicker.react';
+import AntdColorPicker from './components/dataEntry/AntdColorPicker.react';
 // import AntdDatePicker from './components/dataEntry/AntdDatePicker.react';
 // import AntdDateRangePicker from './components/dataEntry/AntdDateRangePicker.react';
 import AntdForm from './components/dataEntry/form/AntdForm.react';
@@ -155,7 +155,7 @@ export {
     AntdCheckboxGroup,
     // AntdCheckCard,
     // AntdCheckCardGroup,
-    // AntdColorPicker,
+    AntdColorPicker,
     // AntdDatePicker,
     // AntdDateRangePicker,
     AntdForm,

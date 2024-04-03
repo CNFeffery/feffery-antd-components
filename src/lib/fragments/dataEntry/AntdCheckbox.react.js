@@ -4,7 +4,7 @@ import { isString, isUndefined } from 'lodash';
 import useCss from '../../hooks/useCss';
 import PropsContext from '../../contexts/PropsContext';
 import FormContext from '../../contexts/FormContext';
-import useFromStore from '../../store/formStore';
+import useFormStore from '../../store/formStore';
 import { propTypes, defaultProps } from '../../components/dataEntry/AntdCheckbox.react';
 
 
@@ -47,7 +47,7 @@ const AntdCheckbox = (props) => {
     const context = useContext(PropsContext)
     const formContext = useContext(FormContext)
 
-    const updateValues = useFromStore(state => state.updateValues)
+    const updateValues = useFormStore(state => state.updateValues)
 
     // 处理AntdForm表单值搜集功能
     useEffect(() => {

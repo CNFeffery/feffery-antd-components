@@ -4,7 +4,7 @@ import { isString } from 'lodash';
 import useCss from '../../../hooks/useCss';
 import { propTypes, defaultProps } from '../../../components/dataEntry/form/AntdForm.react';
 import FormContext from '../../../contexts/FormContext'
-import useFromStore from '../../../store/formStore';
+import useFormStore from '../../../store/formStore';
 
 // 定义表单组件AntdForm，api参数参考https://ant.design/components/form-cn/
 const AntdForm = (props) => {
@@ -31,7 +31,7 @@ const AntdForm = (props) => {
     console.log(props.values)
 
     // 订阅当前表单值搜集状态的变动
-    const _values = useFromStore((state) => state.values[id])
+    const _values = useFormStore((state) => state.values[id])
 
     useEffect(() => {
         setProps({ values: _values })

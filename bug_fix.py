@@ -17,14 +17,7 @@ app.layout = html.Div(
                     label='表单项1'
                 ),
                 fac.AntdFormItem(
-                    fac.AntdCheckboxGroup(
-                        options=[
-                            {
-                                'label': f'选项{i}',
-                                'value': f'选项{i}'
-                            }
-                            for i in range(5)
-                        ],
+                    fac.AntdColorPicker(
                         name='表单项2'
                     ),
                     label='表单项2'

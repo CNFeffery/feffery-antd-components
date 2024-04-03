@@ -1,6 +1,6 @@
 import { create } from 'zustand';
 
-const useFromStore = create((set) => ({
+const useFormStore = create((set) => ({
     values: {},
     updateValues: (formId, newValueName, newValue) => set((state) => ({
         values: {
@@ -13,4 +13,4 @@ const useFromStore = create((set) => ({
     }))
 }));
 
-export default useFromStore;
+export default useFormStore;

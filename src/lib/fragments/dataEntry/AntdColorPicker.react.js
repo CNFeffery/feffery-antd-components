@@ -4,8 +4,8 @@ import { Color } from '@rc-component/color-picker';
 import useCss from '../../hooks/useCss';
 import { isString, isUndefined } from 'lodash';
 import PropsContext from '../../contexts/PropsContext';
+import FormContext from '../../contexts/FormContext';
 import useFormStore from '../../store/formStore';
-import useFormItemStore from '../../store/formItemStore';
 import { propTypes, defaultProps } from '../../components/dataEntry/AntdColorPicker.react';
 
 // 定义颜色选择器组件AntdColorPicker，api参数参考https://ant.design/components/color-picker-cn
@@ -34,22 +34,18 @@ const AntdColorPicker = (props) => {
     } = props;
 
     const context = useContext(PropsContext)
+    const formContext = useContext(FormContext)
+
     const updateValues = useFormStore((state) => state.updateValues)
-    const updateAntdColorPicker = useFormItemStore((state) => state.updateAntdColorPicker)
 
     // 处理AntdForm表单值搜集功能
     useEffect(() => {
-        if (name || id) {
-            updateValues({ [name || id]: value || null })
+        // 若上文中存在有效表单id
+        if (formContext.formId && (name || id)) {
+            // 表单值更新
+            updateValues(formContext.formId, name || id, value)
         }
     }, [value])
-
-    // 如果当前组件被表单项包裹，初始渲染时对表单项进行赋值
-    useEffect(() => {
-        if (name || id) {
-            updateAntdColorPicker({ [name || id]: { value: value || null } })
-        }
-    }, [])
 
     // 每次format发生变更时，同步更新value值
     useEffect(() => {
@@ -97,21 +93,6 @@ const AntdColorPicker = (props) => {
             onFormatChange={(e) => setProps({ format: e })}
             onOpenChange={(e) => setProps({ open: e })}
             onChangeComplete={(e) => {
-                if (name || id) {
-                    updateAntdColorPicker({
-                        [name || id]: {
-                            value: (
-                                format === 'hex' ?
-                                    e.toHexString() :
-                                    (
-                                        format === 'rgb' ?
-                                            e.toRgbString() :
-                                            e.toHsbString()
-                                    )
-                            ) || null, timestamp: Date.now()
-                        }
-                    })
-                }
                 setProps({
                     value: (
                         format === 'hex' ?
