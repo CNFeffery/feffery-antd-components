@@ -5,8 +5,8 @@ import { str2Locale } from '../../components/locales.react';
 import { isString } from 'lodash';
 import useCss from '../../hooks/useCss';
 import PropsContext from '../../contexts/PropsContext';
+import FormContext from '../../contexts/FormContext';
 import useFormStore from '../../store/formStore';
-import useFormItemStore from '../../store/formItemStore';
 import { propTypes, defaultProps } from '../../components/dataEntry/AntdCalendar.react';
 
 // 定义日历组件AntdCalendar，api参数参考https://ant.design/components/calendar-cn/
@@ -31,14 +31,18 @@ const AntdCalendar = (props) => {
     } = props;
 
     const context = useContext(PropsContext)
+    const formContext = useContext(FormContext)
+
     const updateValues = useFormStore((state) => state.updateValues)
-    const updateAntdCalendar = useFormItemStore((state) => state.updateAntdCalendar)
+
     locale = (context && context.locale) || locale
 
     // 处理AntdForm表单值搜集功能
     useEffect(() => {
-        if (name || id) {
-            updateValues({[name || id]: value || null})
+        // 若上文中存在有效表单id
+        if (formContext.formId && (name || id)) {
+            // 表单值更新
+            updateValues(formContext.formId, name || id, value)
         }
     }, [value])
 
@@ -50,17 +54,7 @@ const AntdCalendar = (props) => {
         }
     }, [])
 
-    // 如果当前组件被表单项包裹，初始渲染时对表单项进行赋值
-    useEffect(() => {
-        if (name || id) {
-            updateAntdCalendar({[name || id]: {value: value || null}})
-        }
-    }, [])
-
     const onSelect = e => {
-        if (name || id) {
-            updateAntdCalendar({[name || id]: {value: e.format(format) || null, timestamp: Date.now()}})
-        }
         setProps({
             value: e.format(format)
         })
