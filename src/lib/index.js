@@ -29,7 +29,7 @@
 // import AntdSteps from './components/navigation/AntdSteps.react';
 // // 数据录入
 import AntdCalendar from './components/dataEntry/AntdCalendar.react';
-// import AntdCascader from './components/dataEntry/AntdCascader.react';
+import AntdCascader from './components/dataEntry/AntdCascader.react';
 import AntdCheckbox from './components/dataEntry/AntdCheckbox.react';
 // import AntdCheckboxGroup from './components/dataEntry/AntdCheckboxGroup.react';
 // import AntdCheckCard from './components/dataEntry/check-card/AntdCheckCard.react';
@@ -150,7 +150,7 @@ export {
     // AntdSteps,
     // // 数据录入
     AntdCalendar,
-    // AntdCascader,
+    AntdCascader,
     AntdCheckbox,
     // AntdCheckboxGroup,
     // AntdCheckCard,
