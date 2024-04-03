@@ -1,10 +1,10 @@
-import React, { useContext, useEffect, useMemo } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { Checkbox } from 'antd';
 import { isString, isUndefined } from 'lodash';
 import useCss from '../../hooks/useCss';
 import PropsContext from '../../contexts/PropsContext';
-import useFormStore from '../../store/formStore';
-import useFormItemStore from '../../store/formItemStore';
+import FormContext from '../../contexts/FormContext';
+import useFromStore from '../../store/formStore';
 import { propTypes, defaultProps } from '../../components/dataEntry/AntdCheckbox.react';
 
 
@@ -45,46 +45,20 @@ const AntdCheckbox = (props) => {
     })
 
     const context = useContext(PropsContext)
-    const updateValues = useFormStore((state) => state.updateValues)
-    const validateTrigger = useFormItemStore((state) => state.validateTrigger)
-    const updateAntdCheckbox = useFormItemStore((state) => state.updateAntdCheckbox)
+    const formContext = useContext(FormContext)
 
-    const currentValidateTrigger = useMemo(() => {
-        return validateTrigger.filter((item) => item[name || id]).flatMap((item) => item[name || id])
-    }, [validateTrigger])
+    const updateValues = useFromStore(state => state.updateValues)
 
     // 处理AntdForm表单值搜集功能
     useEffect(() => {
-        if (name || id) {
-            updateValues({[name || id]: checked})
+        // 若上文中存在有效表单id
+        if (formContext.formId && (name || id)) {
+            // 表单值更新
+            updateValues(formContext.formId, name || id, checked)
         }
     }, [checked])
 
-    // 如果当前组件被表单项包裹，初始渲染时对表单项进行赋值
-    useEffect(() => {
-        if (name || id) {
-            updateAntdCheckbox({[name || id]: {value: checked}})
-        }
-    }, [])
-
-    // 监听blur事件
-    const onBlur = e => {
-        if (currentValidateTrigger.includes('onBlur') && (name || id)) {
-            updateAntdCheckbox({[name || id]: {value: checked, timestamp: Date.now()}})
-        }
-    }
-
-    // 监听focus事件
-    const onFocus = e => {
-        if (currentValidateTrigger.includes('onFocus') && (name || id)) {
-            updateAntdCheckbox({[name || id]: {value: checked, timestamp: Date.now()}})
-        }
-    }
-
-    const onChange = e => {
-        if (currentValidateTrigger.includes('onChange') && (name || id)) {
-            updateAntdCheckbox({[name || id]: {value: e.target.checked, timestamp: Date.now()}})
-        }
+    const onChange = (e) => {
         if (!readOnly) {
             setProps({ checked: e.target.checked })
         }
@@ -101,8 +75,6 @@ const AntdCheckbox = (props) => {
             }
             style={style}
             key={key}
-            onBlur={onBlur}
-            onFocus={onFocus}
             onChange={onChange}
             disabled={
                 context && !isUndefined(context.componentDisabled) ?
@@ -118,9 +90,7 @@ const AntdCheckbox = (props) => {
             data-dash-is-loading={
                 (loading_state && loading_state.is_loading) || undefined
             }
-        >
-            {label}
-        </Checkbox>
+        >{label}</Checkbox>
     );
 }
 

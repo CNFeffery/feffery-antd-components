@@ -1,38 +1,16 @@
 import { create } from 'zustand';
 
-
-const useFormStore = create((set) => ({
+const useFromStore = create((set) => ({
     values: {},
-    formValidateStatus: {},
-    validateStatuses: {},
-    helps: {},
-    form: null,
-    updateValues: (value) => set((state) => ({
+    updateValues: (formId, newValueName, newValue) => set((state) => ({
         values: {
-            ...state.values, 
-            ...value
+            ...state.values,
+            [formId]: {
+                ...state.values[formId],
+                [newValueName]: newValue
+            }
         }
-    })),
-    updateFormValidateStatus: (value) => set((state) => ({
-        formValidateStatus: {
-            ...state.formValidateStatus, 
-            ...value
-        }
-    })),
-    updateValidateStatuses: (value) => set((state) => ({
-        validateStatuses: {
-            ...state.validateStatuses, 
-            ...value
-        }
-    })),
-    updateHelps: (value) => set((state) => ({
-        helps: {
-            ...state.helps, 
-            ...value
-        }
-    })),
-    updateForm: (value) => set(() => ({form: value}))
+    }))
 }));
 
-
-export default useFormStore;
+export default useFromStore;

@@ -59,36 +59,6 @@ Keyword arguments:
 
 - required (boolean; default False)
 
-- rules (list of dicts; optional)
-
-    `rules` is a list of dicts with keys:
-
-    - defaultField (dict; optional)
-
-    - enum (boolean | number | string | dict | list; optional)
-
-    - fields (boolean | number | string | dict | list; optional)
-
-    - len (number; optional)
-
-    - max (number; optional)
-
-    - message (string; optional)
-
-    - min (number; optional)
-
-    - pattern (string; optional)
-
-    - required (boolean; optional)
-
-    - type (a value equal to: 'string', 'number', 'boolean', 'method', 'regexp', 'integer', 'float', 'array', 'object', 'enum', 'date', 'url', 'hex', 'email', 'any'; optional)
-
-    - validateTrigger (a value equal to: 'onChange', 'onBlur', 'onFocus'; optional)
-
-    - warningOnly (boolean; optional)
-
-    - whitespace (boolean; optional)
-
 - style (dict; optional)
 
 - tooltip (a list of or a singular dash component, string or number; optional)
@@ -109,10 +79,10 @@ Keyword arguments:
     _namespace = 'feffery_antd_components'
     _type = 'AntdFormItem'
     @_explicitize_args
-    def __init__(self, children=None, id=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, key=Component.UNDEFINED, required=Component.UNDEFINED, rules=Component.UNDEFINED, labelCol=Component.UNDEFINED, colon=Component.UNDEFINED, wrapperCol=Component.UNDEFINED, label=Component.UNDEFINED, labelAlign=Component.UNDEFINED, tooltip=Component.UNDEFINED, extra=Component.UNDEFINED, validateStatus=Component.UNDEFINED, hasFeedback=Component.UNDEFINED, help=Component.UNDEFINED, hidden=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
-        self._prop_names = ['children', 'id', 'className', 'colon', 'extra', 'hasFeedback', 'help', 'hidden', 'key', 'label', 'labelAlign', 'labelCol', 'loading_state', 'required', 'rules', 'style', 'tooltip', 'validateStatus', 'wrapperCol']
+    def __init__(self, children=None, id=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, key=Component.UNDEFINED, required=Component.UNDEFINED, labelCol=Component.UNDEFINED, colon=Component.UNDEFINED, wrapperCol=Component.UNDEFINED, label=Component.UNDEFINED, labelAlign=Component.UNDEFINED, tooltip=Component.UNDEFINED, extra=Component.UNDEFINED, validateStatus=Component.UNDEFINED, hasFeedback=Component.UNDEFINED, help=Component.UNDEFINED, hidden=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
+        self._prop_names = ['children', 'id', 'className', 'colon', 'extra', 'hasFeedback', 'help', 'hidden', 'key', 'label', 'labelAlign', 'labelCol', 'loading_state', 'required', 'style', 'tooltip', 'validateStatus', 'wrapperCol']
         self._valid_wildcard_attributes =            []
-        self.available_properties = ['children', 'id', 'className', 'colon', 'extra', 'hasFeedback', 'help', 'hidden', 'key', 'label', 'labelAlign', 'labelCol', 'loading_state', 'required', 'rules', 'style', 'tooltip', 'validateStatus', 'wrapperCol']
+        self.available_properties = ['children', 'id', 'className', 'colon', 'extra', 'hasFeedback', 'help', 'hidden', 'key', 'label', 'labelAlign', 'labelCol', 'loading_state', 'required', 'style', 'tooltip', 'validateStatus', 'wrapperCol']
         self.available_wildcard_properties =            []
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()

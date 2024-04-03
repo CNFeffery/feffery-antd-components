@@ -19,9 +19,6 @@ Keyword arguments:
 
 - colon (boolean; default True)
 
-- formValidateStatus (boolean; optional):
-    监听搜集内部表单输入类组件的校验结果.
-
 - helps (dict with strings as keys and values of type a list of or a singular dash component, string or number; optional):
     统一设置内部各AntdFormItem的help值，键为对应AntdFormItem的label值
     优先级低于各AntdFormItem的help值.
@@ -57,19 +54,7 @@ Keyword arguments:
     - prop_name (string; optional):
         Holds which property is loading.
 
-- resetForm (boolean; default False):
-    控制参数，用于重置表单项校验状态（不能重置表单项包裹的组件的值，需要通过回调重置表单项包裹的组件的值），回调设置为True后会自动变为False.
-
-- resetFormClicks (number; default 0):
-    辅助监听表单重置参数.
-
 - style (dict; optional)
-
-- submitForm (boolean; default False):
-    控制参数，用于提交表单时手动搜集表单的校验结果，回调设置为True后会自动变为False.
-
-- submitFormClicks (number; default 0):
-    辅助监听表单提交参数.
 
 - validateStatuses (dict with strings as keys and values of type a value equal to: 'success', 'warning', 'error', 'validating'; optional):
     统一设置内部各AntdFormItem的validateStatus值，键为对应AntdFormItem的label值
@@ -92,10 +77,10 @@ Keyword arguments:
     _namespace = 'feffery_antd_components'
     _type = 'AntdForm'
     @_explicitize_args
-    def __init__(self, children=None, id=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, key=Component.UNDEFINED, layout=Component.UNDEFINED, labelCol=Component.UNDEFINED, wrapperCol=Component.UNDEFINED, colon=Component.UNDEFINED, labelAlign=Component.UNDEFINED, labelWrap=Component.UNDEFINED, values=Component.UNDEFINED, formValidateStatus=Component.UNDEFINED, submitForm=Component.UNDEFINED, submitFormClicks=Component.UNDEFINED, resetForm=Component.UNDEFINED, resetFormClicks=Component.UNDEFINED, validateStatuses=Component.UNDEFINED, helps=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
-        self._prop_names = ['children', 'id', 'className', 'colon', 'formValidateStatus', 'helps', 'key', 'labelAlign', 'labelCol', 'labelWrap', 'layout', 'loading_state', 'resetForm', 'resetFormClicks', 'style', 'submitForm', 'submitFormClicks', 'validateStatuses', 'values', 'wrapperCol']
+    def __init__(self, children=None, id=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, key=Component.UNDEFINED, layout=Component.UNDEFINED, labelCol=Component.UNDEFINED, wrapperCol=Component.UNDEFINED, colon=Component.UNDEFINED, labelAlign=Component.UNDEFINED, labelWrap=Component.UNDEFINED, values=Component.UNDEFINED, validateStatuses=Component.UNDEFINED, helps=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
+        self._prop_names = ['children', 'id', 'className', 'colon', 'helps', 'key', 'labelAlign', 'labelCol', 'labelWrap', 'layout', 'loading_state', 'style', 'validateStatuses', 'values', 'wrapperCol']
         self._valid_wildcard_attributes =            []
-        self.available_properties = ['children', 'id', 'className', 'colon', 'formValidateStatus', 'helps', 'key', 'labelAlign', 'labelCol', 'labelWrap', 'layout', 'loading_state', 'resetForm', 'resetFormClicks', 'style', 'submitForm', 'submitFormClicks', 'validateStatuses', 'values', 'wrapperCol']
+        self.available_properties = ['children', 'id', 'className', 'colon', 'helps', 'key', 'labelAlign', 'labelCol', 'labelWrap', 'layout', 'loading_state', 'style', 'validateStatuses', 'values', 'wrapperCol']
         self.available_wildcard_properties =            []
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()

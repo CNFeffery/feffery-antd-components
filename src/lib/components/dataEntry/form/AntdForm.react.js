@@ -82,31 +82,6 @@ AntdForm.propTypes = {
     values: PropTypes.object,
 
     /**
-     * 监听搜集内部表单输入类组件的校验结果
-     */
-    formValidateStatus: PropTypes.bool,
-
-    /**
-     * 控制参数，用于提交表单时手动搜集表单的校验结果，回调设置为true后会自动变为false
-     */
-    submitForm: PropTypes.bool,
-
-    /**
-     * 辅助监听表单提交参数
-     */
-    submitFormClicks: PropTypes.number,
-
-    /**
-     * 控制参数，用于重置表单项校验状态（不能重置表单项包裹的组件的值，需要通过回调重置表单项包裹的组件的值），回调设置为true后会自动变为false
-     */
-    resetForm: PropTypes.bool,
-
-    /**
-     * 辅助监听表单重置参数
-     */
-    resetFormClicks: PropTypes.number,
-
-    /**
      * 统一设置内部各AntdFormItem的validateStatus值，键为对应AntdFormItem的label值
      * 优先级低于各AntdFormItem的validateStatus值
      */
@@ -149,11 +124,7 @@ AntdForm.defaultProps = {
     layout: 'horizontal',
     colon: true,
     labelAlign: 'right',
-    labelWrap: false,
-    submitForm: false,
-    submitFormClicks: 0,
-    resetForm: false,
-    resetFormClicks: 0
+    labelWrap: false
 }
 
 export default AntdForm;
