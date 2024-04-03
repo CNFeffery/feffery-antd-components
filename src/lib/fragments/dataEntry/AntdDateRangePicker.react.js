@@ -8,8 +8,8 @@ import { isString, isUndefined, isObject } from 'lodash';
 import { str2Locale } from '../../components/locales.react';
 import useCss from '../../hooks/useCss';
 import PropsContext from '../../contexts/PropsContext';
+import FormContext from '../../contexts/FormContext';
 import useFormStore from '../../store/formStore';
-import useFormItemStore from '../../store/formItemStore';
 import { propTypes, defaultProps } from '../../components/dataEntry/AntdDateRangePicker.react';
 
 const { RangePicker } = DatePicker;
@@ -84,28 +84,20 @@ const AntdDateRangePicker = (props) => {
     })
 
     const context = useContext(PropsContext)
-    const updateValues = useFormStore((state) => state.updateValues)
-    const validateTrigger = useFormItemStore((state) => state.validateTrigger)
-    const updateAntdDateRangePicker = useFormItemStore((state) => state.updateAntdDateRangePicker)
-    locale = (context && context.locale) || locale
+    const formContext = useContext(FormContext)
 
-    const currentValidateTrigger = useMemo(() => {
-        return validateTrigger.filter((item) => item[name || id]).flatMap((item) => item[name || id])
-    }, [validateTrigger])
+    const updateValues = useFormStore((state) => state.updateValues)
+
+    locale = (context && context.locale) || locale
 
     // 处理AntdForm表单值搜集功能
     useEffect(() => {
-        if (name || id) {
-            updateValues({[name || id]: value || null})
+        // 若上文中存在有效表单id
+        if (formContext.formId && (name || id)) {
+            // 表单值更新
+            updateValues(formContext.formId, name || id, value)
         }
     }, [value])
-
-    // 如果当前组件被表单项包裹，初始渲染时对表单项进行赋值
-    useEffect(() => {
-        if (name || id) {
-            updateAntdDateRangePicker({[name || id]: {value: value || null}})
-        }
-    }, [])
 
     useEffect(() => {
         // 初始化value
@@ -146,25 +138,8 @@ const AntdDateRangePicker = (props) => {
         }
     }, [firstDayOfWeek])
 
-    // 监听blur事件
-    const onBlur = e => {
-        if (currentValidateTrigger.includes('onBlur') && (name || id)) {
-            updateAntdDateRangePicker({[name || id]: {value: value || null, timestamp: Date.now()}})
-        }
-    }
-
-    // 监听focus事件
-    const onFocus = e => {
-        if (currentValidateTrigger.includes('onFocus') && (name || id)) {
-            updateAntdDateRangePicker({[name || id]: {value: value || null, timestamp: Date.now()}})
-        }
-    }
-
     const onChange = (date, dateString) => {
         if (Array.isArray(dateString)) {
-            if (currentValidateTrigger.includes('onChange') && (name || id)) {
-                updateAntdDateRangePicker({[name || id]: {value: dateString[0] !== '' && dateString[1] !== '' ? [dateString[0], dateString[1]] : null, timestamp: Date.now()}})
-            }
             // 更新rawValue
             setRawValue(date);
             if (dateString[0] !== '' && dateString[1] !== '') {
@@ -475,8 +450,6 @@ const AntdDateRangePicker = (props) => {
                             )}
                     allowEmpty={(disabled && disabled.length === 2) ? disabled : undefined}
                     placeholder={(placeholder && placeholder.length === 2) ? placeholder : undefined}
-                    onBlur={onBlur}
-                    onFocus={onFocus}
                     onChange={onChange}
                     variant={(
                         !variant ?
