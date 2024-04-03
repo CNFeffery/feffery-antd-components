@@ -5,8 +5,8 @@ import { useRequest } from 'ahooks';
 import { isString, isUndefined } from 'lodash';
 import useCss from '../../hooks/useCss';
 import PropsContext from '../../contexts/PropsContext';
+import FormContext from '../../contexts/FormContext';
 import useFormStore from '../../store/formStore';
-import useFormItemStore from '../../store/formItemStore';
 import { propTypes, defaultProps } from '../../components/dataEntry/AntdInput.react';
 
 const { Search, TextArea } = Input;
@@ -73,27 +73,18 @@ const AntdInput = (props) => {
     })
 
     const context = useContext(PropsContext)
-    const updateValues = useFormStore((state) => state.updateValues)
-    const validateTrigger = useFormItemStore((state) => state.validateTrigger)
-    const updateAntdInput = useFormItemStore((state) => state.updateAntdInput)
+    const formContext = useContext(FormContext)
 
-    const currentValidateTrigger = useMemo(() => {
-        return validateTrigger.filter((item) => item[name || id]).flatMap((item) => item[name || id])
-    }, [validateTrigger])
+    const updateValues = useFormStore((state) => state.updateValues)
 
     // 处理AntdForm表单值搜集功能
     useEffect(() => {
-        if (name || id) {
-            updateValues({[name || id]: value || null})
+        // 若上文中存在有效表单id
+        if (formContext.formId && (name || id)) {
+            // 表单值更新
+            updateValues(formContext.formId, name || id, value)
         }
     }, [value])
-
-    // 如果当前组件被表单项包裹，初始渲染时对表单项进行赋值
-    useEffect(() => {
-        if (name || id) {
-            updateAntdInput({[name || id]: {value: value || null}})
-        }
-    }, [])
 
     useEffect(() => {
         // 初始化value
@@ -112,25 +103,8 @@ const AntdInput = (props) => {
         }
     }, [])
 
-    // 监听blur事件
-    const onBlur = e => {
-        if (currentValidateTrigger.includes('onBlur') && (name || id)) {
-            updateAntdInput({[name || id]: {value: e.target.value || null, timestamp: Date.now()}})
-        }
-    }
-
-    // 监听focus事件
-    const onFocus = e => {
-        if (currentValidateTrigger.includes('onFocus') && (name || id)) {
-            updateAntdInput({[name || id]: {value: value || null, timestamp: Date.now()}})
-        }
-    }
-
     // 监听输入内容变化事件
     const onChange = e => {
-        if (currentValidateTrigger.includes('onChange') && (name || id)) {
-            updateAntdInput({[name || id]: {value: e.target.value || null, timestamp: Date.now()}})
-        }
         // 若启用md5加密且为密码模式
         if (passwordUseMd5 && mode === 'password') {
             setProps({
@@ -237,8 +211,6 @@ const AntdInput = (props) => {
                 maxLength={maxLength}
                 status={status}
                 readOnly={readOnly}
-                onBlur={onBlur}
-                onFocus={onFocus}
                 onChange={(e) => {
                     onChange(e)
                     onDebounceChange(e.target.value)
@@ -288,8 +260,6 @@ const AntdInput = (props) => {
                 status={status}
                 readOnly={readOnly}
                 onSearch={onSearch}
-                onBlur={onBlur}
-                onFocus={onFocus}
                 onChange={(e) => {
                     onChange(e)
                     onDebounceChange(e.target.value)
@@ -349,8 +319,6 @@ const AntdInput = (props) => {
                 status={status}
                 autoSize={autoSize}
                 readOnly={readOnly}
-                onBlur={onBlur}
-                onFocus={onFocus}
                 onChange={(e) => {
                     onChange(e)
                     onDebounceChange(e.target.value)
@@ -399,8 +367,6 @@ const AntdInput = (props) => {
                 prefix={prefix}
                 suffix={suffix}
                 readOnly={readOnly}
-                onBlur={onBlur}
-                onFocus={onFocus}
                 onChange={(e) => {
                     onChange(e)
                     onDebounceChange(e.target.value)
