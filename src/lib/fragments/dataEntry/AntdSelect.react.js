@@ -5,8 +5,8 @@ import { isUndefined, isString, isNumber } from 'lodash';
 import useCss from '../../hooks/useCss';
 import { str2Locale } from '../../components/locales.react';
 import PropsContext from '../../contexts/PropsContext';
+import FormContext from '../../contexts/FormContext';
 import useFormStore from '../../store/formStore';
-import useFormItemStore from '../../store/formItemStore';
 import { propTypes, defaultProps } from '../../components/dataEntry/AntdSelect.react';
 
 const { Option, OptGroup } = Select;
@@ -74,28 +74,20 @@ const AntdSelect = (props) => {
     })
 
     const context = useContext(PropsContext)
-    const updateValues = useFormStore((state) => state.updateValues)
-    const validateTrigger = useFormItemStore((state) => state.validateTrigger)
-    const updateAntdSelect = useFormItemStore((state) => state.updateAntdSelect)
-    locale = (context && context.locale) || locale
+    const formContext = useContext(FormContext)
 
-    const currentValidateTrigger = useMemo(() => {
-        return validateTrigger.filter((item) => item[name || id]).flatMap((item) => item[name || id])
-    }, [validateTrigger])
+    const updateValues = useFormStore((state) => state.updateValues)
+
+    locale = (context && context.locale) || locale
 
     // 处理AntdForm表单值搜集功能
     useEffect(() => {
-        if (name || id) {
-            updateValues({[name || id]: value || null})
+        // 若上文中存在有效表单id
+        if (formContext.formId && (name || id)) {
+            // 表单值更新
+            updateValues(formContext.formId, name || id, value)
         }
     }, [value])
-
-    // 如果当前组件被表单项包裹，初始渲染时对表单项进行赋值
-    useEffect(() => {
-        if (name || id) {
-            updateAntdSelect({[name || id]: {value: value || null}})
-        }
-    }, [])
 
     // 处理multiple模式下，defaultValue或value为None的显示异常问题 #78
     if (mode === 'multiple') {
@@ -111,25 +103,8 @@ const AntdSelect = (props) => {
         }
     }, [])
 
-    // 监听blur事件
-    const onBlur = e => {
-        if (currentValidateTrigger.includes('onBlur') && (name || id)) {
-            updateAntdSelect({[name || id]: {value: value || null, timestamp: Date.now()}})
-        }
-    }
-
-    // 监听focus事件
-    const onFocus = e => {
-        if (currentValidateTrigger.includes('onFocus') && (name || id)) {
-            updateAntdSelect({[name || id]: {value: value || null, timestamp: Date.now()}})
-        }
-    }
-
     // 用于获取用户已选择值的回调函数
     const updateSelectedValue = (value) => {
-        if (currentValidateTrigger.includes('onChange') && (name || id)) {
-            updateAntdSelect({[name || id]: {value: value || null, timestamp: Date.now()}})
-        }
         setProps({ value: value })
     }
 
@@ -274,8 +249,6 @@ const AntdSelect = (props) => {
                 )}
                 value={value}
                 defaultValue={defaultValue}
-                onBlur={onBlur}
-                onFocus={onFocus}
                 onChange={updateSelectedValue}
                 maxTagCount={maxTagCount}
                 listHeight={listHeight}

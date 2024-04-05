@@ -17,9 +17,14 @@ app.layout = html.Div(
                     label='表单项1'
                 ),
                 fac.AntdFormItem(
-                    fac.AntdRate(
-                        count=10,
-                        allowHalf=True,
+                    fac.AntdSelect(
+                        options=[
+                            {
+                                'label': f'选项{i}',
+                                'value': f'选项{i}'
+                            }
+                            for i in range(1, 6)
+                        ],
                         name='表单项2'
                     ),
                     label='表单项2'
