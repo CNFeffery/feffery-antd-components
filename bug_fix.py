@@ -17,15 +17,9 @@ app.layout = html.Div(
                     label='表单项1'
                 ),
                 fac.AntdFormItem(
-                    fac.AntdRadioGroup(
-                        options=[
-                            {
-                                'label': f'选项{c}',
-                                'value': c
-                            }
-                            for c in list('abcdef')
-                        ],
-                        defaultValue='a',
+                    fac.AntdRate(
+                        count=10,
+                        allowHalf=True,
                         name='表单项2'
                     ),
                     label='表单项2'
