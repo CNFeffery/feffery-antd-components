@@ -17,7 +17,14 @@ app.layout = html.Div(
                     label='表单项1'
                 ),
                 fac.AntdFormItem(
-                    fac.AntdInputNumber(
+                    fac.AntdMentions(
+                        options=[
+                            {
+                                'label': f'用户{c}',
+                                'value': f'用户{c}'
+                            }
+                            for c in list('abcdef')
+                        ],
                         name='表单项2'
                     ),
                     label='表单项2'
