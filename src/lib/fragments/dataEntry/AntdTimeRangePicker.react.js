@@ -1,12 +1,12 @@
-import React, { useEffect, useContext, useMemo } from 'react';
+import React, { useEffect, useContext } from 'react';
 import { TimePicker, ConfigProvider } from 'antd';
 import dayjs from 'dayjs';
 import { isUndefined, isString } from 'lodash';
 import { str2Locale } from '../../components/locales.react';
 import useCss from '../../hooks/useCss';
 import PropsContext from '../../contexts/PropsContext';
+import FormContext from '../../contexts/FormContext';
 import useFormStore from '../../store/formStore';
-import useFormItemStore from '../../store/formItemStore';
 import { propTypes, defaultProps } from '../../components/dataEntry/AntdTimeRangePicker.react';
 
 const { RangePicker } = TimePicker
@@ -64,28 +64,20 @@ const AntdTimeRangePicker = (props) => {
     })
 
     const context = useContext(PropsContext)
-    const updateValues = useFormStore((state) => state.updateValues)
-    const validateTrigger = useFormItemStore((state) => state.validateTrigger)
-    const updateAntdTimeRangePicker = useFormItemStore((state) => state.updateAntdTimeRangePicker)
-    locale = (context && context.locale) || locale
+    const formContext = useContext(FormContext)
 
-    const currentValidateTrigger = useMemo(() => {
-        return validateTrigger.filter((item) => item[name || id]).flatMap((item) => item[name || id])
-    }, [validateTrigger])
+    const updateValues = useFormStore((state) => state.updateValues)
+
+    locale = (context && context.locale) || locale
 
     // 处理AntdForm表单值搜集功能
     useEffect(() => {
-        if (name || id) {
-            updateValues({ [name || id]: value || null })
+        // 若上文中存在有效表单id
+        if (formContext.formId && (name || id)) {
+            // 表单值更新
+            updateValues(formContext.formId, name || id, value)
         }
     }, [value])
-
-    // 如果当前组件被表单项包裹，初始渲染时对表单项进行赋值
-    useEffect(() => {
-        if (name || id) {
-            updateAntdTimeRangePicker({ [name || id]: { value: value || null } })
-        }
-    }, [])
 
     useEffect(() => {
         // 初始化value
@@ -95,24 +87,7 @@ const AntdTimeRangePicker = (props) => {
         }
     }, [])
 
-    // 监听blur事件
-    const onBlur = e => {
-        if (currentValidateTrigger.includes('onBlur') && (name || id)) {
-            updateAntdTimeRangePicker({ [name || id]: { value: value || null, timestamp: Date.now() } })
-        }
-    }
-
-    // 监听focus事件
-    const onFocus = e => {
-        if (currentValidateTrigger.includes('onFocus') && (name || id)) {
-            updateAntdTimeRangePicker({ [name || id]: { value: value || null, timestamp: Date.now() } })
-        }
-    }
-
     const onChange = (time, timeString) => {
-        if (currentValidateTrigger.includes('onChange') && (name || id)) {
-            updateAntdTimeRangePicker({ [name || id]: { value: timeString[0] !== '' && timeString[1] !== '' ? [timeString[0], timeString[1]] : null, timestamp: Date.now() } })
-        }
         if (timeString[0] !== '' && timeString[1] !== '') {
             setProps({ value: [timeString[0], timeString[1]] })
         } else {
@@ -134,8 +109,6 @@ const AntdTimeRangePicker = (props) => {
                     style={style}
                     popupClassName={popupClassName}
                     key={key}
-                    onBlur={onBlur}
-                    onFocus={onFocus}
                     onChange={onChange}
                     disabled={
                         context && !isUndefined(context.componentDisabled) ?
