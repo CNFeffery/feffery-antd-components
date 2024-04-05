@@ -17,14 +17,15 @@ app.layout = html.Div(
                     label='表单项1'
                 ),
                 fac.AntdFormItem(
-                    fac.AntdMentions(
+                    fac.AntdRadioGroup(
                         options=[
                             {
-                                'label': f'用户{c}',
-                                'value': f'用户{c}'
+                                'label': f'选项{c}',
+                                'value': c
                             }
                             for c in list('abcdef')
                         ],
+                        defaultValue='a',
                         name='表单项2'
                     ),
                     label='表单项2'

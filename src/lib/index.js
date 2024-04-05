@@ -42,7 +42,7 @@ import AntdFormItem from './components/dataEntry/form/AntdFormItem.react';
 import AntdInput from './components/dataEntry/AntdInput.react';
 import AntdInputNumber from './components/dataEntry/AntdInputNumber.react';
 import AntdMentions from './components/dataEntry/AntdMentions.react';
-// import AntdRadioGroup from './components/dataEntry/AntdRadioGroup.react';
+import AntdRadioGroup from './components/dataEntry/AntdRadioGroup.react';
 // import AntdRate from './components/dataEntry/AntdRate.react';
 // import AntdSegmentedColoring from './components/dataEntry/AntdSegmentedColoring.react';
 // import AntdSelect from './components/dataEntry/AntdSelect.react';
@@ -163,7 +163,7 @@ export {
     AntdInput,
     AntdInputNumber,
     AntdMentions,
-    // AntdRadioGroup,
+    AntdRadioGroup,
     // AntdRate,
     // AntdSegmentedColoring,
     // AntdSelect,
