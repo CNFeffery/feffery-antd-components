@@ -1,11 +1,11 @@
-import React, { useEffect, useContext, useMemo } from 'react';
+import React, { useEffect, useContext } from 'react';
 import { InputNumber } from 'antd';
 import { useRequest } from 'ahooks';
 import { isString, isUndefined } from 'lodash';
 import useCss from '../../hooks/useCss';
 import PropsContext from '../../contexts/PropsContext';
+import FormContext from '../../contexts/FormContext';
 import useFormStore from '../../store/formStore';
-import useFormItemStore from '../../store/formItemStore';
 import { propTypes, defaultProps } from '../../components/dataEntry/AntdInputNumber.react';
 
 
@@ -63,27 +63,18 @@ const AntdInputNumber = (props) => {
     })
 
     const context = useContext(PropsContext)
-    const updateValues = useFormStore((state) => state.updateValues)
-    const validateTrigger = useFormItemStore((state) => state.validateTrigger)
-    const updateAntdInputNumber = useFormItemStore((state) => state.updateAntdInputNumber)
+    const formContext = useContext(FormContext)
 
-    const currentValidateTrigger = useMemo(() => {
-        return validateTrigger.filter((item) => item[name || id]).flatMap((item) => item[name || id])
-    }, [validateTrigger])
+    const updateValues = useFormStore((state) => state.updateValues)
 
     // 处理AntdForm表单值搜集功能
     useEffect(() => {
-        if (name || id) {
-            updateValues({[name || id]: value || null})
+        // 若上文中存在有效表单id
+        if (formContext.formId && (name || id)) {
+            // 表单值更新
+            updateValues(formContext.formId, name || id, value)
         }
     }, [value])
-
-    // 如果当前组件被表单项包裹，初始渲染时对表单项进行赋值
-    useEffect(() => {
-        if (name || id) {
-            updateAntdInputNumber({[name || id]: {value: value || null}})
-        }
-    }, [])
 
     useEffect(() => {
         // 初始化value
@@ -96,25 +87,8 @@ const AntdInputNumber = (props) => {
         }
     }, [])
 
-    // 监听blur事件
-    const onBlur = e => {
-        if (currentValidateTrigger.includes('onBlur') && (name || id)) {
-            updateAntdInputNumber({[name || id]: {value: value || null, timestamp: Date.now()}})
-        }
-    }
-
-    // 监听focus事件
-    const onFocus = e => {
-        if (currentValidateTrigger.includes('onFocus') && (name || id)) {
-            updateAntdInputNumber({[name || id]: {value: value || null, timestamp: Date.now()}})
-        }
-    }
-
     // 监听输入内容变化事件
     const onChange = e => {
-        if (currentValidateTrigger.includes('onChange') && (name || id)) {
-            updateAntdInputNumber({[name || id]: {value: e || null, timestamp: Date.now()}})
-        }
         setProps({ value: e })
     }
 
@@ -173,8 +147,6 @@ const AntdInputNumber = (props) => {
             readOnly={readOnly}
             stringMode={stringMode}
             status={status}
-            onBlur={onBlur}
-            onFocus={onFocus}
             onChange={(e) => {
                 onChange(e)
                 onDebounceChange(e)

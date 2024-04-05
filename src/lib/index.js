@@ -40,7 +40,7 @@ import AntdDateRangePicker from './components/dataEntry/AntdDateRangePicker.reac
 import AntdForm from './components/dataEntry/form/AntdForm.react';
 import AntdFormItem from './components/dataEntry/form/AntdFormItem.react';
 import AntdInput from './components/dataEntry/AntdInput.react';
-// import AntdInputNumber from './components/dataEntry/AntdInputNumber.react';
+import AntdInputNumber from './components/dataEntry/AntdInputNumber.react';
 // import AntdMentions from './components/dataEntry/AntdMentions.react';
 // import AntdRadioGroup from './components/dataEntry/AntdRadioGroup.react';
 // import AntdRate from './components/dataEntry/AntdRate.react';
@@ -161,7 +161,7 @@ export {
     AntdForm,
     AntdFormItem,
     AntdInput,
-    // AntdInputNumber,
+    AntdInputNumber,
     // AntdMentions,
     // AntdRadioGroup,
     // AntdRate,

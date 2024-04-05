@@ -17,7 +17,7 @@ app.layout = html.Div(
                     label='表单项1'
                 ),
                 fac.AntdFormItem(
-                    fac.AntdInput(
+                    fac.AntdInputNumber(
                         name='表单项2'
                     ),
                     label='表单项2'
