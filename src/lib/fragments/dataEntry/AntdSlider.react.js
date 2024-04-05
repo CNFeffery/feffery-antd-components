@@ -1,10 +1,10 @@
-import React, { useEffect, useContext, useMemo } from 'react';
+import React, { useEffect, useContext } from 'react';
 import { Slider } from 'antd';
 import { isString, isUndefined } from 'lodash';
 import useCss from '../../hooks/useCss';
 import PropsContext from '../../contexts/PropsContext';
+import FormContext from '../../contexts/FormContext';
 import useFormStore from '../../store/formStore';
-import useFormItemStore from '../../store/formItemStore';
 import { propTypes, defaultProps } from '../../components/dataEntry/AntdSlider.react';
 
 
@@ -57,27 +57,18 @@ const AntdSlider = (props) => {
     })
 
     const context = useContext(PropsContext)
-    const updateValues = useFormStore((state) => state.updateValues)
-    const validateTrigger = useFormItemStore((state) => state.validateTrigger)
-    const updateAntdSlider = useFormItemStore((state) => state.updateAntdSlider)
+    const formContext = useContext(FormContext)
 
-    const currentValidateTrigger = useMemo(() => {
-        return validateTrigger.filter((item) => item[name || id]).flatMap((item) => item[name || id])
-    }, [validateTrigger])
+    const updateValues = useFormStore((state) => state.updateValues)
 
     // 处理AntdForm表单值搜集功能
     useEffect(() => {
-        if (name || id) {
-            updateValues({[name || id]: value || null})
+        // 若上文中存在有效表单id
+        if (formContext.formId && (name || id)) {
+            // 表单值更新
+            updateValues(formContext.formId, name || id, value)
         }
     }, [value])
-
-    // 如果当前组件被表单项包裹，初始渲染时对表单项进行赋值
-    useEffect(() => {
-        if (name || id) {
-            updateAntdSlider({[name || id]: {value: value || null}})
-        }
-    }, [])
 
     useEffect(() => {
         // 初始化value
@@ -105,26 +96,9 @@ const AntdSlider = (props) => {
         return tooltipPrefix + `${e}` + tooltipSuffix
     }
 
-    // 监听blur事件
-    const onBlur = e => {
-        if (currentValidateTrigger.includes('onBlur') && (name || id)) {
-            updateAntdSlider({[name || id]: {value: value || null, timestamp: Date.now()}})
-        }
-    }
-
-    // 监听focus事件
-    const onFocus = e => {
-        if (currentValidateTrigger.includes('onFocus') && (name || id)) {
-            updateAntdSlider({[name || id]: {value: value || null, timestamp: Date.now()}})
-        }
-    }
-
     // 监听用户完成拖拽的动作
     const onChange = (e) => {
         if (!readOnly) {
-            if (currentValidateTrigger.includes('onChange') && (name || id)) {
-                updateAntdSlider({[name || id]: {value: e || null, timestamp: Date.now()}})
-            }
             setProps({ value: e })
         }
     }
@@ -164,8 +138,6 @@ const AntdSlider = (props) => {
                     undefined,
                 formatter: formatter
             }}
-            onBlur={onBlur}
-            onFocus={onFocus}
             onChange={onChange}
             persistence={persistence}
             persisted_props={persisted_props}

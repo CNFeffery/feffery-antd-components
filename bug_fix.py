@@ -17,14 +17,13 @@ app.layout = html.Div(
                     label='表单项1'
                 ),
                 fac.AntdFormItem(
-                    fac.AntdSelect(
-                        options=[
-                            {
-                                'label': f'选项{i}',
-                                'value': f'选项{i}'
-                            }
-                            for i in range(1, 6)
-                        ],
+                    fac.AntdSlider(
+                        min=0,
+                        max=100,
+                        defaultValue=33,
+                        style={
+                            'width': 300
+                        },
                         name='表单项2'
                     ),
                     label='表单项2'
