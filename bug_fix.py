@@ -17,7 +17,15 @@ app.layout = html.Div(
                     label='表单项1'
                 ),
                 fac.AntdFormItem(
-                    fac.AntdTimeRangePicker(
+                    fac.AntdTransfer(
+                        dataSource=[
+                            {
+                                'key': i,
+                                'title': f'选项{i}'
+                            }
+                            for i in range(1, 10)
+                        ],
+                        targetKeys=[2, 3, 4],
                         name='表单项2'
                     ),
                     label='表单项2'

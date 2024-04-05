@@ -50,7 +50,7 @@ import AntdSlider from './components/dataEntry/AntdSlider.react';
 import AntdSwitch from './components/dataEntry/AntdSwitch.react';
 import AntdTimePicker from './components/dataEntry/AntdTimePicker.react';
 import AntdTimeRangePicker from './components/dataEntry/AntdTimeRangePicker.react';
-// import AntdTransfer from './components/dataEntry/AntdTransfer.react';
+import AntdTransfer from './components/dataEntry/AntdTransfer.react';
 // import AntdTreeSelect from './components/dataEntry/AntdTreeSelect.react';
 // import AntdPictureUpload from './components/dataEntry/upload/AntdPictureUpload.react';
 // import AntdDraggerUpload from './components/dataEntry/upload/AntdDraggerUpload.react';
@@ -171,7 +171,7 @@ export {
     AntdSwitch,
     AntdTimePicker,
     AntdTimeRangePicker,
-    // AntdTransfer,
+    AntdTransfer,
     // AntdTreeSelect,
     // AntdPictureUpload,
     // AntdDraggerUpload,

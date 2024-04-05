@@ -4,8 +4,8 @@ import { str2Locale, locale2text } from '../../components/locales.react';
 import { isString, isUndefined } from 'lodash';
 import useCss from '../../hooks/useCss';
 import PropsContext from '../../contexts/PropsContext';
+import FormContext from '../../contexts/FormContext';
 import useFormStore from '../../store/formStore';
-import useFormItemStore from '../../store/formItemStore';
 import { propTypes, defaultProps } from '../../components/dataEntry/AntdTransfer.react';
 
 
@@ -55,23 +55,20 @@ const AntdTransfer = (props) => {
     })
 
     const context = useContext(PropsContext)
+    const formContext = useContext(FormContext)
+
     const updateValues = useFormStore((state) => state.updateValues)
-    const updateAntdTransfer = useFormItemStore((state) => state.updateAntdTransfer)
+
     locale = (context && context.locale) || locale
 
     // 处理AntdForm表单值搜集功能
     useEffect(() => {
-        if (name || id) {
-            updateValues({[name || id]: targetKeys || null})
+        // 若上文中存在有效表单id
+        if (formContext.formId && (name || id)) {
+            // 表单值更新
+            updateValues(formContext.formId, name || id, targetKeys)
         }
     }, [targetKeys])
-
-    // 如果当前组件被表单项包裹，初始渲染时对表单项进行赋值
-    useEffect(() => {
-        if (name || id) {
-            updateAntdTransfer({[name || id]: {value: targetKeys || null}})
-        }
-    }, [])
 
     if (!titles) {
         titles = locale2text.AntdTransfer[locale].titles
@@ -80,9 +77,6 @@ const AntdTransfer = (props) => {
     // 监听选项移动事件
     const listenMove = (nextTargetKeys, moveDirection, moveKeys) => {
         if (!readOnly) {
-            if (name || id) {
-                updateAntdTransfer({[name || id]: {value: nextTargetKeys || null, timestamp: Date.now()}})
-            }
             setProps({
                 targetKeys: nextTargetKeys,
                 moveDirection: moveDirection,
