@@ -17,13 +17,7 @@ app.layout = html.Div(
                     label='表单项1'
                 ),
                 fac.AntdFormItem(
-                    fac.AntdSlider(
-                        min=0,
-                        max=100,
-                        defaultValue=33,
-                        style={
-                            'width': 300
-                        },
+                    fac.AntdSwitch(
                         name='表单项2'
                     ),
                     label='表单项2'

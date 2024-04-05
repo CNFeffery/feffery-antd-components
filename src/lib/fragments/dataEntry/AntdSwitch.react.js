@@ -1,10 +1,10 @@
-import React, { useEffect, useContext, useMemo } from 'react';
+import React, { useEffect, useContext } from 'react';
 import { Switch } from 'antd';
 import { isUndefined, isString } from 'lodash';
 import useCss from '../../hooks/useCss';
 import PropsContext from '../../contexts/PropsContext';
+import FormContext from '../../contexts/FormContext';
 import useFormStore from '../../store/formStore';
-import useFormItemStore from '../../store/formItemStore';
 import { propTypes, defaultProps } from '../../components/dataEntry/AntdSwitch.react';
 
 
@@ -47,27 +47,18 @@ const AntdSwitch = (props) => {
     })
 
     const context = useContext(PropsContext)
-    const updateValues = useFormStore((state) => state.updateValues)
-    const validateTrigger = useFormItemStore((state) => state.validateTrigger)
-    const updateAntdSwitch = useFormItemStore((state) => state.updateAntdSwitch)
+    const formContext = useContext(FormContext)
 
-    const currentValidateTrigger = useMemo(() => {
-        return validateTrigger.filter((item) => item[name || id]).flatMap((item) => item[name || id])
-    }, [validateTrigger])
+    const updateValues = useFormStore((state) => state.updateValues)
 
     // 处理AntdForm表单值搜集功能
     useEffect(() => {
-        if (name || id) {
-            updateValues({[name || id]: checked})
+        // 若上文中存在有效表单id
+        if (formContext.formId && (name || id)) {
+            // 表单值更新
+            updateValues(formContext.formId, name || id, checked)
         }
     }, [checked])
-
-    // 如果当前组件被表单项包裹，初始渲染时对表单项进行赋值
-    useEffect(() => {
-        if (name || id) {
-            updateAntdSwitch({[name || id]: {value: checked}})
-        }
-    }, [])
 
     useEffect(() => {
         if (isUndefined(checked)) {
@@ -75,25 +66,8 @@ const AntdSwitch = (props) => {
         }
     }, [])
 
-    // 监听blur事件
-    const onBlur = e => {
-        if (currentValidateTrigger.includes('onBlur') && (name || id)) {
-            updateAntdSwitch({[name || id]: {value: checked, timestamp: Date.now()}})
-        }
-    }
-
-    // 监听focus事件
-    const onFocus = e => {
-        if (currentValidateTrigger.includes('onFocus') && (name || id)) {
-            updateAntdSwitch({[name || id]: {value: checked, timestamp: Date.now()}})
-        }
-    }
-
     const onChange = checked => {
         if (!readOnly) {
-            if (currentValidateTrigger.includes('onChange') && (name || id)) {
-                updateAntdSwitch({[name || id]: {value: checked, timestamp: Date.now()}})
-            }
             setProps({ checked: checked })
         }
     }
@@ -121,8 +95,6 @@ const AntdSwitch = (props) => {
             unCheckedChildren={unCheckedChildren}
             size={size}
             loading={loading}
-            onBlur={onBlur}
-            onFocus={onFocus}
             onChange={onChange}
             persistence={persistence}
             persisted_props={persisted_props}

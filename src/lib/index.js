@@ -47,7 +47,7 @@ import AntdRate from './components/dataEntry/AntdRate.react';
 // import AntdSegmentedColoring from './components/dataEntry/AntdSegmentedColoring.react';
 import AntdSelect from './components/dataEntry/AntdSelect.react';
 import AntdSlider from './components/dataEntry/AntdSlider.react';
-// import AntdSwitch from './components/dataEntry/AntdSwitch.react';
+import AntdSwitch from './components/dataEntry/AntdSwitch.react';
 // import AntdTimePicker from './components/dataEntry/AntdTimePicker.react';
 // import AntdTimeRangePicker from './components/dataEntry/AntdTimeRangePicker.react';
 // import AntdTransfer from './components/dataEntry/AntdTransfer.react';
@@ -168,7 +168,7 @@ export {
     // AntdSegmentedColoring,
     AntdSelect,
     AntdSlider,
-    // AntdSwitch,
+    AntdSwitch,
     // AntdTimePicker,
     // AntdTimeRangePicker,
     // AntdTransfer,
