@@ -17,7 +17,7 @@ app.layout = html.Div(
                     label='表单项1'
                 ),
                 fac.AntdFormItem(
-                    fac.AntdSwitch(
+                    fac.AntdTimePicker(
                         name='表单项2'
                     ),
                     label='表单项2'
