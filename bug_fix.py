@@ -17,11 +17,9 @@ app.layout = html.Div(
                     label='表单项1'
                 ),
                 fac.AntdFormItem(
-                    fac.AntdDraggerUpload(
+                    fac.AntdPictureUpload(
                         apiUrl='/upload/',
                         fileMaxSize=1,
-                        text='拖拽上传示例',
-                        hint='点击或拖拽文件至此处进行上传',
                         name='表单项2'
                     ),
                     label='表单项2'
