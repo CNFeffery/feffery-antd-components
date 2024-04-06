@@ -18,7 +18,7 @@ const useFormStore = create((set) => ({
             // 清除对应表单项的值
             [formId]: omit([newValueName], state.values[formId])
         }
-    })),
+    }))
 }));
 
 export default useFormStore;

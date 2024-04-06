@@ -1,5 +1,5 @@
-// // 通用
-// import AntdButton from './components/general/AntdButton.react';
+// 通用
+import AntdButton from './components/general/AntdButton.react';
 // import AntdFloatButton from './components/general/AntdFloatButton.react';
 // import AntdFloatButtonGroup from './components/general/AntdFloatButtonGroup.react';
 // import AntdIcon from './components/general/AntdIcon.react';
@@ -119,8 +119,8 @@ import AntdUpload from './components/dataEntry/upload/AntdUpload.react';
 import './components/styles.css'; // 自定义样式
 
 export {
-    // // 通用
-    // AntdButton,
+    // 通用
+    AntdButton,
     // AntdFloatButton,
     // AntdFloatButtonGroup,
     // AntdIcon,
