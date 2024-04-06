@@ -17,15 +17,11 @@ app.layout = html.Div(
                     label='表单项1'
                 ),
                 fac.AntdFormItem(
-                    fac.AntdCheckCardGroup(
-                        [
-                            fac.AntdCheckCard(
-                                f'选项{i}',
-                                value=i
-                            )
-                            for i in range(1, 6)
-                        ],
-                        defaultValue=3,
+                    fac.AntdDraggerUpload(
+                        apiUrl='/upload/',
+                        fileMaxSize=1,
+                        text='拖拽上传示例',
+                        hint='点击或拖拽文件至此处进行上传',
                         name='表单项2'
                     ),
                     label='表单项2'

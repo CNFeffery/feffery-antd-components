@@ -53,7 +53,7 @@ import AntdTimeRangePicker from './components/dataEntry/AntdTimeRangePicker.reac
 import AntdTransfer from './components/dataEntry/AntdTransfer.react';
 import AntdTreeSelect from './components/dataEntry/AntdTreeSelect.react';
 // import AntdPictureUpload from './components/dataEntry/upload/AntdPictureUpload.react';
-// import AntdDraggerUpload from './components/dataEntry/upload/AntdDraggerUpload.react';
+import AntdDraggerUpload from './components/dataEntry/upload/AntdDraggerUpload.react';
 // import AntdUpload from './components/dataEntry/upload/AntdUpload.react';
 // // 数据展示
 // import AntdAccordion from './components/dataDisplay/AntdAccordion.react';
@@ -174,7 +174,7 @@ export {
     AntdTransfer,
     AntdTreeSelect,
     // AntdPictureUpload,
-    // AntdDraggerUpload,
+    AntdDraggerUpload,
     // AntdUpload,
     // // 数据展示
     // AntdAccordion,
