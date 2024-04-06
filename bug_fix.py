@@ -17,9 +17,15 @@ app.layout = html.Div(
                     label='表单项1'
                 ),
                 fac.AntdFormItem(
-                    fac.AntdCheckCard(
-                        '选择卡片示例' * 10,
-                        checked=True,
+                    fac.AntdCheckCardGroup(
+                        [
+                            fac.AntdCheckCard(
+                                f'选项{i}',
+                                value=i
+                            )
+                            for i in range(1, 6)
+                        ],
+                        defaultValue=3,
                         name='表单项2'
                     ),
                     label='表单项2'
