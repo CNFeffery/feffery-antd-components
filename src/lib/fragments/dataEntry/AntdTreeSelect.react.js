@@ -5,8 +5,8 @@ import { isUndefined, isString, cloneDeep } from 'lodash';
 import { flatToTree } from '../../components/utils';
 import useCss from '../../hooks/useCss';
 import PropsContext from '../../contexts/PropsContext';
+import FormContext from '../../contexts/FormContext';
 import useFormStore from '../../store/formStore';
-import useFormItemStore from '../../store/formItemStore';
 import { propTypes, defaultProps } from '../../components/dataEntry/AntdTreeSelect.react';
 
 const { SHOW_ALL, SHOW_CHILD, SHOW_PARENT } = TreeSelect;
@@ -108,28 +108,20 @@ const AntdTreeSelect = (props) => {
     })
 
     const context = useContext(PropsContext)
-    const updateValues = useFormStore((state) => state.updateValues)
-    const validateTrigger = useFormItemStore((state) => state.validateTrigger)
-    const updateAntdTreeSelect = useFormItemStore((state) => state.updateAntdTreeSelect)
-    locale = (context && context.locale) || locale
+    const formContext = useContext(FormContext)
 
-    const currentValidateTrigger = useMemo(() => {
-        return validateTrigger.filter((item) => item[name || id]).flatMap((item) => item[name || id])
-    }, [validateTrigger])
+    const updateValues = useFormStore((state) => state.updateValues)
+
+    locale = (context && context.locale) || locale
 
     // 处理AntdForm表单值搜集功能
     useEffect(() => {
-        if (name || id) {
-            updateValues({[name || id]: value || null})
+        // 若上文中存在有效表单id
+        if (formContext.formId && (name || id)) {
+            // 表单值更新
+            updateValues(formContext.formId, name || id, value)
         }
     }, [value])
-
-    // 如果当前组件被表单项包裹，初始渲染时对表单项进行赋值
-    useEffect(() => {
-        if (name || id) {
-            updateAntdTreeSelect({[name || id]: {value: value || null}})
-        }
-    }, [])
 
     useEffect(() => {
         if (!value && defaultValue) {
@@ -144,25 +136,8 @@ const AntdTreeSelect = (props) => {
         return flatToTree(treeData);
     }, [treeData])
 
-    // 监听blur事件
-    const onBlur = e => {
-        if (currentValidateTrigger.includes('onBlur') && (name || id)) {
-            updateAntdTreeSelect({[name || id]: {value: value || null, timestamp: Date.now()}})
-        }
-    }
-
-    // 监听focus事件
-    const onFocus = e => {
-        if (currentValidateTrigger.includes('onFocus') && (name || id)) {
-            updateAntdTreeSelect({[name || id]: {value: value || null, timestamp: Date.now()}})
-        }
-    }
-
     // 用于获取用户已选择值的回调函数
     const updateSelectedValue = (e) => {
-        if (currentValidateTrigger.includes('onChange') && (name || id)) {
-            updateAntdTreeSelect({[name || id]: {value: treeCheckStrictly ? (e.map(item => item.value) || null) : (e || null), timestamp: Date.now()}})
-        }
         if (treeCheckStrictly) {
             setProps({ value: e.map(item => item.value) })
         } else {
@@ -222,8 +197,6 @@ const AntdTreeSelect = (props) => {
                 treeDefaultExpandAll={treeDefaultExpandAll}
                 treeDefaultExpandedKeys={treeDefaultExpandedKeys}
                 treeExpandedKeys={treeExpandedKeys}
-                onBlur={onBlur}
-                onFocus={onFocus}
                 onChange={updateSelectedValue}
                 showSearch={true}
                 virtual={virtual}
