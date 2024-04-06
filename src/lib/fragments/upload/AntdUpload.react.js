@@ -6,8 +6,8 @@ import { str2Locale, locale2text } from '../../components/locales.react';
 import { isString, isUndefined } from 'lodash';
 import useCss from '../../hooks/useCss';
 import PropsContext from '../../contexts/PropsContext';
+import FormContext from '../../contexts/FormContext';
 import useFormStore from '../../store/formStore';
-import useFormItemStore from '../../store/formItemStore';
 import { propTypes, defaultProps } from '../../components/dataEntry/upload/AntdUpload.react';
 
 
@@ -78,24 +78,21 @@ const AntdUpload = (props) => {
     } = props;
 
     const context = useContext(PropsContext)
+    const formContext = useContext(FormContext)
+
     const updateValues = useFormStore((state) => state.updateValues)
-    const updateAntdUpload = useFormItemStore((state) => state.updateAntdUpload)
+
     locale = (context && context.locale) || locale
     downloadUrlFromBackend = downloadUrl ? false : downloadUrlFromBackend
 
     // 处理AntdForm表单值搜集功能
     useEffect(() => {
-        if (name || id) {
-            updateValues({[name || id]: listUploadTaskRecord || null})
+        // 若上文中存在有效表单id
+        if (formContext.formId && (name || id)) {
+            // 表单值更新
+            updateValues(formContext.formId, name || id, listUploadTaskRecord)
         }
     }, [listUploadTaskRecord])
-
-    // 如果当前组件被表单项包裹，初始渲染时对表单项进行赋值
-    useEffect(() => {
-        if (name || id) {
-            updateAntdUpload({[name || id]: {value: listUploadTaskRecord || null}})
-        }
-    }, [])
 
     listUploadTaskRecord = listUploadTaskRecord || []
 
@@ -193,10 +190,6 @@ const AntdUpload = (props) => {
                         }
                     )
 
-                    if (name || id) {
-                        updateAntdUpload({[name || id]: {value: _listUploadTaskRecord || null, timestamp: Date.now()}})
-                    }
-
                     // 更新任务记录
                     setProps({
                         listUploadTaskRecord: _listUploadTaskRecord
@@ -238,10 +231,6 @@ const AntdUpload = (props) => {
                                         }
                                     }
                                 )
-
-                                if (name || id) {
-                                    updateAntdUpload({[name || id]: {value: _listUploadTaskRecord || null, timestamp: Date.now()}})
-                                }
 
                                 // 更新任务记录
                                 setProps({
@@ -312,10 +301,6 @@ const AntdUpload = (props) => {
                         }
                     )
 
-                    if (name || id) {
-                        updateAntdUpload({[name || id]: {value: _listUploadTaskRecord || null, timestamp: Date.now()}})
-                    }
-
                     // 更新任务记录
                     setProps({
                         listUploadTaskRecord: _listUploadTaskRecord
@@ -349,9 +334,7 @@ const AntdUpload = (props) => {
                             }
                         }
                     )
-                    if (name || id) {
-                        updateAntdUpload({[name || id]: {value: _listUploadTaskRecord || null, timestamp: Date.now()}})
-                    }
+
                     setProps({
                         lastUploadTaskRecord: {
                             fileName: info.file.name,

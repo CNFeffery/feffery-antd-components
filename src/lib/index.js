@@ -54,7 +54,7 @@ import AntdTransfer from './components/dataEntry/AntdTransfer.react';
 import AntdTreeSelect from './components/dataEntry/AntdTreeSelect.react';
 import AntdPictureUpload from './components/dataEntry/upload/AntdPictureUpload.react';
 import AntdDraggerUpload from './components/dataEntry/upload/AntdDraggerUpload.react';
-// import AntdUpload from './components/dataEntry/upload/AntdUpload.react';
+import AntdUpload from './components/dataEntry/upload/AntdUpload.react';
 // // 数据展示
 // import AntdAccordion from './components/dataDisplay/AntdAccordion.react';
 // import AntdAvatar from './components/dataDisplay/AntdAvatar.react';
@@ -175,7 +175,7 @@ export {
     AntdTreeSelect,
     AntdPictureUpload,
     AntdDraggerUpload,
-    // AntdUpload,
+    AntdUpload,
     // // 数据展示
     // AntdAccordion,
     // AntdAvatar,

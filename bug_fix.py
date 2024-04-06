@@ -17,7 +17,7 @@ app.layout = html.Div(
                     label='表单项1'
                 ),
                 fac.AntdFormItem(
-                    fac.AntdPictureUpload(
+                    fac.AntdUpload(
                         apiUrl='/upload/',
                         fileMaxSize=1,
                         name='表单项2'
