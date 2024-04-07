@@ -27,9 +27,6 @@ const AntdForm = (props) => {
         loading_state
     } = props;
 
-    console.log('---------------------------------')
-    console.log(props.values)
-
     // 订阅当前表单值搜集状态的变动
     const _values = useFormStore((state) => state.values[id])
 

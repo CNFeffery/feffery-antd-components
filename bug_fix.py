@@ -8,6 +8,9 @@ app = dash.Dash(__name__)
 
 app.layout = html.Div(
     [
+        fac.AntdUpload(
+            name='表单项1',
+        ),
         fac.AntdButton(
             '更新表单项',
             id='update-form-items'
