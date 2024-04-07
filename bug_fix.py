@@ -15,7 +15,7 @@ app.layout = html.Div(
         fac.AntdForm(
             [
                 fac.AntdFormItem(
-                    fac.AntdSwitch(
+                    fac.AntdTimePicker(
                         name='表单项1',
                     ),
                     label='表单项1'
@@ -41,7 +41,7 @@ def update_form_items(nClicks):
 
     return [
         fac.AntdFormItem(
-            fac.AntdSwitch(
+            fac.AntdTimePicker(
                 name='表单项'+new_uuid,
             ),
             label='表单项'+new_uuid
