@@ -15,32 +15,10 @@ app.layout = html.Div(
         fac.AntdForm(
             [
                 fac.AntdFormItem(
-                    fac.AntdTreeSelect(
-                        treeData=[
-                            {
-                                'key': '节点1',
-                                'value': '1',
-                                'title': '节点1',
-                                'children': [
-                                    {
-                                        'key': f'节点1-{i}',
-                                        'value': f'1-{i}',
-                                        'title': f'节点1-{i}'
-                                    }
-                                    for i in range(1, 5)
-                                ]
-                            },
-                            {
-                                'key': '节点2',
-                                'value': '2',
-                                'title': '节点2'
-                            }
-                        ],
-                        placeholder='请选择',
-                        style={
-                            'width': 256
-                        },
-                        name='表单项1'
+                    fac.AntdCheckCard(
+                        '选择卡片示例' * 10,
+                        checked=True,
+                        name='表单项1',
                     ),
                     label='表单项1'
                 )
@@ -65,31 +43,9 @@ def update_form_items(nClicks):
 
     return [
         fac.AntdFormItem(
-            fac.AntdTreeSelect(
-                treeData=[
-                    {
-                        'key': '节点1',
-                        'value': '1',
-                        'title': '节点1',
-                        'children': [
-                            {
-                                'key': f'节点1-{i}',
-                                'value': f'1-{i}',
-                                'title': f'节点1-{i}'
-                            }
-                            for i in range(1, 5)
-                        ]
-                    },
-                    {
-                        'key': '节点2',
-                        'value': '2',
-                        'title': '节点2'
-                    }
-                ],
-                placeholder='请选择',
-                style={
-                    'width': 256
-                },
+            fac.AntdCheckCard(
+                '选择卡片示例' * 10,
+                checked=True,
                 name='表单项'+new_uuid
             ),
             label='表单项'+new_uuid
