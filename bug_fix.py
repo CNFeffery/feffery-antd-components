@@ -15,8 +15,16 @@ app.layout = html.Div(
         fac.AntdForm(
             [
                 fac.AntdFormItem(
-                    fac.AntdTimeRangePicker(
-                        name='表单项1',
+                    fac.AntdTransfer(
+                        dataSource=[
+                            {
+                                'key': i,
+                                'title': f'选项{i}'
+                            }
+                            for i in range(1, 10)
+                        ],
+                        targetKeys=[2, 3, 4],
+                        name='表单项1'
                     ),
                     label='表单项1'
                 )
@@ -41,8 +49,16 @@ def update_form_items(nClicks):
 
     return [
         fac.AntdFormItem(
-            fac.AntdTimeRangePicker(
-                name='表单项'+new_uuid,
+            fac.AntdTransfer(
+                dataSource=[
+                    {
+                        'key': i,
+                        'title': f'选项{i}'
+                    }
+                    for i in range(1, 10)
+                ],
+                targetKeys=[2, 3, 4],
+                name='表单项'+new_uuid
             ),
             label='表单项'+new_uuid
         )
