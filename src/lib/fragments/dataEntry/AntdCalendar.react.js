@@ -45,7 +45,7 @@ const AntdCalendar = (props) => {
             // 表单值更新
             updateValues(formContext.formId, name || id, value)
         }
-    }, [value])
+    }, [value, name, id])
 
     // 处理组件卸载后，对应表单项值的清除
     useEffect(() => {
