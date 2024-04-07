@@ -15,7 +15,17 @@ app.layout = html.Div(
         fac.AntdForm(
             [
                 fac.AntdFormItem(
-                    fac.AntdInputNumber(
+                    fac.AntdMentions(
+                        options=[
+                            {
+                                'label': f'用户{c}',
+                                'value': f'用户{c}'
+                            }
+                            for c in list('abcdef')
+                        ],
+                        style={
+                            'width': 200
+                        },
                         name='表单项1'
                     ),
                     label='表单项1'
@@ -41,7 +51,17 @@ def update_form_items(nClicks):
 
     return [
         fac.AntdFormItem(
-            fac.AntdInputNumber(
+            fac.AntdMentions(
+                options=[
+                    {
+                        'label': f'用户{c}',
+                        'value': f'用户{c}'
+                    }
+                    for c in list('abcdef')
+                ],
+                style={
+                    'width': 200
+                },
                 name='表单项'+new_uuid
             ),
             label='表单项'+new_uuid
