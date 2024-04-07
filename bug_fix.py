@@ -15,17 +15,16 @@ app.layout = html.Div(
         fac.AntdForm(
             [
                 fac.AntdFormItem(
-                    fac.AntdMentions(
+                    fac.AntdRadioGroup(
                         options=[
                             {
-                                'label': f'用户{c}',
-                                'value': f'用户{c}'
+                                'label': f'选项{c}',
+                                'value': c
                             }
                             for c in list('abcdef')
                         ],
-                        style={
-                            'width': 200
-                        },
+                        defaultValue='a',
+                        direction='vertical',
                         name='表单项1'
                     ),
                     label='表单项1'
@@ -51,17 +50,16 @@ def update_form_items(nClicks):
 
     return [
         fac.AntdFormItem(
-            fac.AntdMentions(
+            fac.AntdRadioGroup(
                 options=[
                     {
-                        'label': f'用户{c}',
-                        'value': f'用户{c}'
+                        'label': f'选项{c}',
+                        'value': c
                     }
                     for c in list('abcdef')
                 ],
-                style={
-                    'width': 200
-                },
+                defaultValue='a',
+                direction='vertical',
                 name='表单项'+new_uuid
             ),
             label='表单项'+new_uuid
