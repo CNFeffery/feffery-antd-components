@@ -15,16 +15,8 @@ app.layout = html.Div(
         fac.AntdForm(
             [
                 fac.AntdFormItem(
-                    fac.AntdRadioGroup(
-                        options=[
-                            {
-                                'label': f'选项{c}',
-                                'value': c
-                            }
-                            for c in list('abcdef')
-                        ],
-                        defaultValue='a',
-                        direction='vertical',
+                    fac.AntdRate(
+                        count=10,
                         name='表单项1'
                     ),
                     label='表单项1'
@@ -50,16 +42,8 @@ def update_form_items(nClicks):
 
     return [
         fac.AntdFormItem(
-            fac.AntdRadioGroup(
-                options=[
-                    {
-                        'label': f'选项{c}',
-                        'value': c
-                    }
-                    for c in list('abcdef')
-                ],
-                defaultValue='a',
-                direction='vertical',
+            fac.AntdRate(
+                count=10,
                 name='表单项'+new_uuid
             ),
             label='表单项'+new_uuid
