@@ -38,6 +38,7 @@ const AntdCheckCardGroup = (props) => {
     const formContext = useContext(FormContext)
 
     const updateValues = useFormStore((state) => state.updateValues)
+    const deleteItemValue = useFormStore((state) => state.deleteItemValue)
 
     // 处理AntdForm表单值搜集功能
     useEffect(() => {
@@ -46,7 +47,18 @@ const AntdCheckCardGroup = (props) => {
             // 表单值更新
             updateValues(formContext.formId, name || id, value)
         }
-    }, [value])
+    }, [value, name, id])
+
+    // 处理组件卸载后，对应表单项值的清除
+    useEffect(() => {
+        return () => {
+            // 若上文中存在有效表单id
+            if (formContext.formId && (name || id)) {
+                // 表单值更新
+                deleteItemValue(formContext.formId, name || id)
+            }
+        }
+    }, [name, id])
 
     useEffect(() => {
         if (defaultValue && !value) {
