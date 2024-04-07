@@ -15,14 +15,8 @@ app.layout = html.Div(
         fac.AntdForm(
             [
                 fac.AntdFormItem(
-                    fac.AntdSlider(
-                        min=0,
-                        max=100,
-                        defaultValue=33,
-                        style={
-                            'width': 300
-                        },
-                        name='表单项1'
+                    fac.AntdSwitch(
+                        name='表单项1',
                     ),
                     label='表单项1'
                 )
@@ -47,14 +41,8 @@ def update_form_items(nClicks):
 
     return [
         fac.AntdFormItem(
-            fac.AntdSlider(
-                min=0,
-                max=100,
-                defaultValue=33,
-                style={
-                    'width': 300
-                },
-                name='表单项'+new_uuid
+            fac.AntdSwitch(
+                name='表单项'+new_uuid,
             ),
             label='表单项'+new_uuid
         )
