@@ -15,8 +15,17 @@ app.layout = html.Div(
         fac.AntdForm(
             [
                 fac.AntdFormItem(
-                    fac.AntdRate(
-                        count=10,
+                    fac.AntdSelect(
+                        options=[
+                            {
+                                'label': f'选项{i}',
+                                'value': f'选项{i}'
+                            }
+                            for i in range(1, 6)
+                        ],
+                        style={
+                            'width': 200
+                        },
                         name='表单项1'
                     ),
                     label='表单项1'
@@ -42,8 +51,17 @@ def update_form_items(nClicks):
 
     return [
         fac.AntdFormItem(
-            fac.AntdRate(
-                count=10,
+            fac.AntdSelect(
+                options=[
+                    {
+                        'label': f'选项{i}',
+                        'value': f'选项{i}'
+                    }
+                    for i in range(1, 6)
+                ],
+                style={
+                    'width': 200
+                },
                 name='表单项'+new_uuid
             ),
             label='表单项'+new_uuid

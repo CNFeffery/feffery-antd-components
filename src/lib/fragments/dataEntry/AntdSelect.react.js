@@ -77,6 +77,7 @@ const AntdSelect = (props) => {
     const formContext = useContext(FormContext)
 
     const updateValues = useFormStore((state) => state.updateValues)
+    const deleteItemValue = useFormStore((state) => state.deleteItemValue)
 
     locale = (context && context.locale) || locale
 
@@ -87,7 +88,18 @@ const AntdSelect = (props) => {
             // 表单值更新
             updateValues(formContext.formId, name || id, value)
         }
-    }, [value])
+    }, [value, name, id])
+
+    // 处理组件卸载后，对应表单项值的清除
+    useEffect(() => {
+        return () => {
+            // 若上文中存在有效表单id
+            if (formContext.formId && (name || id)) {
+                // 表单值更新
+                deleteItemValue(formContext.formId, name || id)
+            }
+        }
+    }, [name, id])
 
     // 处理multiple模式下，defaultValue或value为None的显示异常问题 #78
     if (mode === 'multiple') {
