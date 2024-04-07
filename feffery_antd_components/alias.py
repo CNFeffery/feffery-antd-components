@@ -37,6 +37,7 @@ from .AntdDateRangePicker import AntdDateRangePicker as DateRangePicker
 from .AntdInput import AntdInput as Input
 from .AntdInputNumber import AntdInputNumber as InputNumber
 from .AntdMentions import AntdMentions as Mentions
+from .AntdOTP import AntdOTP as OTP
 from .AntdRadioGroup import AntdRadioGroup as RadioGroup
 from .AntdRate import AntdRate as Rate
 from .AntdSegmentedColoring import AntdSegmentedColoring as SegmentedColoring
@@ -147,6 +148,7 @@ __all__ = [
     "Input",
     "InputNumber",
     "Mentions",
+    "OTP",
     "RadioGroup",
     "Rate",
     "SegmentedColoring",
