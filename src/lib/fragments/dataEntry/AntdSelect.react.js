@@ -84,7 +84,7 @@ const AntdSelect = (props) => {
     // 处理AntdForm表单值搜集功能
     useEffect(() => {
         // 若上文中存在有效表单id
-        if (formContext.formId && (name || id)) {
+        if (formContext?.formId && (name || id)) {
             // 表单值更新
             updateValues(formContext.formId, name || id, value)
         }
@@ -94,7 +94,7 @@ const AntdSelect = (props) => {
     useEffect(() => {
         return () => {
             // 若上文中存在有效表单id
-            if (formContext.formId && (name || id)) {
+            if (formContext?.formId && (name || id)) {
                 // 表单值更新
                 deleteItemValue(formContext.formId, name || id)
             }

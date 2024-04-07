@@ -37,6 +37,7 @@ from .AntdDateRangePicker import AntdDateRangePicker
 from .AntdInput import AntdInput
 from .AntdInputNumber import AntdInputNumber
 from .AntdMentions import AntdMentions
+from .AntdOTP import AntdOTP
 from .AntdRadioGroup import AntdRadioGroup
 from .AntdRate import AntdRate
 from .AntdSegmentedColoring import AntdSegmentedColoring
@@ -70,7 +71,7 @@ from .AntdSkeletonAvatar import AntdSkeletonAvatar
 from .AntdSkeletonButton import AntdSkeletonButton
 from .AntdSkeletonImage import AntdSkeletonImage
 from .AntdSkeletonInput import AntdSkeletonInput
-# from .AntdFormRender import AntdFormRender
+from .AntdFormRender import AntdFormRender
 from .AntdButton import AntdButton
 from .AntdFloatButton import AntdFloatButton
 from .AntdFloatButtonGroup import AntdFloatButtonGroup
@@ -147,6 +148,7 @@ __all__ = [
     "AntdInput",
     "AntdInputNumber",
     "AntdMentions",
+    "AntdOTP",
     "AntdRadioGroup",
     "AntdRate",
     "AntdSegmentedColoring",
@@ -180,7 +182,7 @@ __all__ = [
     "AntdSkeletonButton",
     "AntdSkeletonImage",
     "AntdSkeletonInput",
-    # "AntdFormRender",
+    "AntdFormRender",
     "AntdButton",
     "AntdFloatButton",
     "AntdFloatButtonGroup",
