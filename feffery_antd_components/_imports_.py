@@ -70,7 +70,7 @@ from .AntdSkeletonAvatar import AntdSkeletonAvatar
 from .AntdSkeletonButton import AntdSkeletonButton
 from .AntdSkeletonImage import AntdSkeletonImage
 from .AntdSkeletonInput import AntdSkeletonInput
-from .AntdFormRender import AntdFormRender
+# from .AntdFormRender import AntdFormRender
 from .AntdButton import AntdButton
 from .AntdFloatButton import AntdFloatButton
 from .AntdFloatButtonGroup import AntdFloatButtonGroup
@@ -180,7 +180,7 @@ __all__ = [
     "AntdSkeletonButton",
     "AntdSkeletonImage",
     "AntdSkeletonInput",
-    "AntdFormRender",
+    # "AntdFormRender",
     "AntdButton",
     "AntdFloatButton",
     "AntdFloatButtonGroup",
