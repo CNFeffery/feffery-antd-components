@@ -96,7 +96,7 @@ const AntdCascader = (props) => {
     })
 
     const context = useContext(PropsContext)
-    const formContext = useContext(FormContext)
+    const formId = useContext(FormContext)
 
     const updateValues = useFormStore((state) => state.updateValues)
     const deleteItemValue = useFormStore((state) => state.deleteItemValue)
@@ -106,9 +106,9 @@ const AntdCascader = (props) => {
     // 处理AntdForm表单值搜集功能
     useEffect(() => {
         // 若上文中存在有效表单id
-        if (formContext?.formId && (name || id)) {
+        if (formId && (name || id)) {
             // 表单值更新
-            updateValues(formContext.formId, name || id, value)
+            updateValues(formId, name || id, value)
         }
     }, [value, name, id])
 
@@ -116,9 +116,9 @@ const AntdCascader = (props) => {
     useEffect(() => {
         return () => {
             // 若上文中存在有效表单id
-            if (formContext?.formId && (name || id)) {
+            if (formId && (name || id)) {
                 // 表单值更新
-                deleteItemValue(formContext.formId, name || id)
+                deleteItemValue(formId, name || id)
             }
         }
     }, [name, id])

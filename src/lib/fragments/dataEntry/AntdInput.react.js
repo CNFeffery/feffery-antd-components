@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext, useMemo } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { Input } from 'antd';
 import md5 from 'md5';
 import { useRequest } from 'ahooks';
@@ -7,7 +7,6 @@ import useCss from '../../hooks/useCss';
 import PropsContext from '../../contexts/PropsContext';
 import FormContext from '../../contexts/FormContext';
 import useFormStore from '../../store/formStore';
-import { useStore } from 'zustand';
 import { propTypes, defaultProps } from '../../components/dataEntry/AntdInput.react';
 
 const { Search, TextArea } = Input;
