@@ -1,54 +1,62 @@
 import dash
-import uuid
 from dash import html
 import feffery_antd_components as fac
-from dash.dependencies import Input, Output
+from dash.dependencies import Input, Output, State
 
 app = dash.Dash(__name__)
 
 app.layout = html.Div(
     [
-        fac.AntdUpload(
-            name='表单项1',
-        ),
         fac.AntdButton(
-            '更新表单项',
-            id='update-form-items'
+            '更新状态',
+            id='update-statuses'
         ),
         fac.AntdForm(
             [
                 fac.AntdFormItem(
-                    fac.AntdUpload(
-                        name='表单项1',
+                    fac.AntdInput(
+                        name=f'表单项{i}',
+                        style={
+                            'width': 300
+                        }
                     ),
-                    label='表单项1'
+                    label=f'表单项{i}',
+                    hasFeedback=True
                 )
+                for i in range(20)
             ],
             id='demo-form',
-            layout='vertical'
+            helps={
+                f'表单项{i}': f'表单项{i}'
+                for i in range(20)
+            },
+            validateStatuses={
+                f'表单项{i}': 'success'
+                for i in range(20)
+            }
         )
     ],
     style={
-        'padding': 30
+        'padding': 50
     }
 )
 
 @app.callback(
-    Output('demo-form', 'children'),
-    Input('update-form-items', 'nClicks'),
+    [Output('demo-form', 'validateStatuses'),
+    Output('demo-form', 'helps')],
+    Input('update-statuses', 'nClicks'),
     prevent_initial_call=True
 )
-def update_form_items(nClicks):
-
-    new_uuid = str(uuid.uuid4())
-
+def update_statuses(nClicks):
     return [
-        fac.AntdFormItem(
-            fac.AntdUpload(
-                name='表单项'+new_uuid
-            ),
-            label='表单项'+new_uuid
-        )
+        {
+            f'表单项{i}': 'error'
+            for i in range(20)
+        },
+        {
+            f'表单项{i}': '新消息'
+            for i in range(20)
+        }
     ]
 
 if __name__ == '__main__':

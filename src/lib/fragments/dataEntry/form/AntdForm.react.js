@@ -1,9 +1,10 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { Form } from 'antd';
 import { isString } from 'lodash';
 import useCss from '../../../hooks/useCss';
 import { propTypes, defaultProps } from '../../../components/dataEntry/form/AntdForm.react';
-import FormContext from '../../../contexts/FormContext'
+import { createStore, useStore } from 'zustand';
+import FormContext from '../../../contexts/FormContext';
 import useFormStore from '../../../store/formStore';
 
 // 定义表单组件AntdForm，api参数参考https://ant.design/components/form-cn/
@@ -30,19 +31,31 @@ const AntdForm = (props) => {
     // 订阅当前表单值搜集状态的变动
     const _values = useFormStore((state) => state.values[id])
 
+    const updateValidateStatuses = useFormStore((state) => state.updateValidateStatuses)
+    const updateHelps = useFormStore((state) => state.updateHelps)
+
+    useEffect(() => {
+        // 更新当前表单校验状态值
+        if (id) {
+            updateValidateStatuses(id, validateStatuses)
+        }
+    }, [validateStatuses])
+
+    useEffect(() => {
+        // 更新当前表单校验状态值
+        if (id) {
+            updateHelps(id, helps)
+        }
+    }, [helps])
+
     useEffect(() => {
         setProps({ values: _values })
     }, [_values])
 
     return (
         <FormContext.Provider
-            value={
-                {
-                    formId: id,
-                    validateStatuses: validateStatuses || {},
-                    helps: helps || {},
-                }
-            }>
+            value={id}
+        >
             <Form id={id}
                 className={
                     isString(className) ?
@@ -62,7 +75,7 @@ const AntdForm = (props) => {
                 }>
                 {children}
             </Form>
-        </FormContext.Provider>
+        </FormContext.Provider >
     );
 }
 

@@ -3,6 +3,7 @@ import { Form } from 'antd';
 import { isString } from 'lodash';
 import useCss from '../../../hooks/useCss';
 import FormContext from '../../../contexts/FormContext';
+import useFormStore from '../../../store/formStore';
 import { propTypes, defaultProps } from '../../../components/dataEntry/form/AntdFormItem.react';
 
 const { Item } = Form;
@@ -32,7 +33,9 @@ const AntdFormItem = (props) => {
         loading_state
     } = props;
 
-    const formContext = useContext(FormContext);
+    const formId = useContext(FormContext);
+    const _validateStatus = useFormStore((state) => state.validateStatuses?.[formId]?.[label]);
+    const _help = useFormStore((state) => state.helps?.[formId]?.[label]);
 
     return (
         <Item id={id}
@@ -50,11 +53,11 @@ const AntdFormItem = (props) => {
             labelAlign={labelAlign}
             tooltip={tooltip}
             extra={extra}
-            help={help || formContext.helps[label]}
+            help={help || _help}
             hasFeedback={hasFeedback}
             hidden={hidden}
             required={required}
-            validateStatus={validateStatus || formContext.validateStatuses[label]}
+            validateStatus={validateStatus || _validateStatus}
             data-dash-is-loading={
                 (loading_state && loading_state.is_loading) || undefined
             }>
