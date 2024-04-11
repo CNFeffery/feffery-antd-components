@@ -15,30 +15,23 @@ app.layout = html.Div(
                 fac.AntdOTP(length=8),
                 fac.AntdOTP(variant='filled'),
                 '回调示例：',
-                fac.AntdOTP(
-                    id='otp-demo'
-                ),
-                html.Pre(id='otp-demo-output')
+                fac.AntdOTP(id='otp-demo'),
+                html.Pre(id='otp-demo-output'),
             ],
-            direction='vertical'
+            direction='vertical',
         )
     ],
-    style={
-        'padding': '50px 100px'
-    }
+    style={'padding': '50px 100px'},
 )
 
 
 @app.callback(
     Output('otp-demo-output', 'children'),
-    Input('otp-demo', 'value')
+    Input('otp-demo', 'value'),
 )
 def demo_output(value):
-
     return json.dumps(
-        dict(value=value),
-        indent=4,
-        ensure_ascii=False
+        dict(value=value), indent=4, ensure_ascii=False
     )
 
 
