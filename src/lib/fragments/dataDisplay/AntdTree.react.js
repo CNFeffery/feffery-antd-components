@@ -114,6 +114,10 @@ const AntdTree = (props) => {
         }
     })
 
+    // load functions from window for custom data rendering
+    // 从window加载函数以进行自定义数据渲染
+    const antdTreeFunctions = window.antdTreeFunctions || {};
+
     const treeRef = useRef(null);
 
     // 控制一次性scrollTarget动作
@@ -340,6 +344,11 @@ const AntdTree = (props) => {
             showIcon={showIcon}
             height={height}
             titleRender={(nodeData) => {
+                // load the custom renderer for the current node
+                // 加载当前节点的自定义渲染器
+                const DataRenderer = (nodeData.data && nodeData.dataRenderer) ?
+                    antdTreeFunctions[nodeData.dataRenderer] : null;
+
                 return (
                     nodeData.contextMenu ?
                         (
@@ -388,18 +397,22 @@ const AntdTree = (props) => {
                                         ...nodeData.style // 优先级更高
                                     }}>
                                     {
-                                        searchKeyword ?
-                                            <Highlighter
-                                                highlightStyle={highlightStyle}
-                                                searchWords={Array.isArray(searchKeyword) ? searchKeyword : [searchKeyword]}
-                                                autoEscape
-                                                textToHighlight={nodeData.title}
-                                            /> :
+                                        DataRenderer ? <DataRenderer {...nodeData.data} /> :
                                             (
-                                                treeNodeKeyToTitle && treeNodeKeyToTitle[nodeData.key] ?
-                                                    treeNodeKeyToTitle[nodeData.key] :
-                                                    nodeData.title
+                                                searchKeyword ?
+                                                    <Highlighter
+                                                        highlightStyle={highlightStyle}
+                                                        searchWords={Array.isArray(searchKeyword) ? searchKeyword : [searchKeyword]}
+                                                        autoEscape
+                                                        textToHighlight={nodeData.title}
+                                                    /> :
+                                                    (
+                                                        treeNodeKeyToTitle && treeNodeKeyToTitle[nodeData.key] ?
+                                                            treeNodeKeyToTitle[nodeData.key] :
+                                                            nodeData.title
+                                                    )
                                             )
+
                                     }
                                     {
                                         // 若当前节点满足收藏控件渲染条件
@@ -438,17 +451,20 @@ const AntdTree = (props) => {
                                     ...nodeData.style // 优先级更高
                                 }}>
                                 {
-                                    searchKeyword ?
-                                        <Highlighter
-                                            highlightStyle={highlightStyle}
-                                            searchWords={Array.isArray(searchKeyword) ? searchKeyword : [searchKeyword]}
-                                            autoEscape
-                                            textToHighlight={nodeData.title}
-                                        /> :
+                                    DataRenderer ? <DataRenderer {...nodeData.data} /> :
                                         (
-                                            treeNodeKeyToTitle && treeNodeKeyToTitle[nodeData.key] ?
-                                                treeNodeKeyToTitle[nodeData.key] :
-                                                nodeData.title
+                                            searchKeyword ?
+                                                <Highlighter
+                                                    highlightStyle={highlightStyle}
+                                                    searchWords={Array.isArray(searchKeyword) ? searchKeyword : [searchKeyword]}
+                                                    autoEscape
+                                                    textToHighlight={nodeData.title}
+                                                /> :
+                                                (
+                                                    treeNodeKeyToTitle && treeNodeKeyToTitle[nodeData.key] ?
+                                                        treeNodeKeyToTitle[nodeData.key] :
+                                                        nodeData.title
+                                                )
                                         )
                                 }
                                 {
