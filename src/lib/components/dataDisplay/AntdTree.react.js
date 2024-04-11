@@ -72,7 +72,13 @@ const PropTreeNodeShape = {
             // 当设置为'fontawesome'时，icon参数对应fontawesome图标的css类名
             iconRenderer: PropTypes.oneOf(['AntdIcon', 'fontawesome']),
         })
-    )
+    ),
+
+    // custom render data
+    // 自定义渲染数据
+    data: PropTypes.object,
+
+    dataRenderer: PropTypes.string,
 };
 
 const PropTreeNode = PropTypes.shape(PropTreeNodeShape);
@@ -142,7 +148,13 @@ const PropFlatNodeShape = {
             // 当设置为'fontawesome'时，icon参数对应fontawesome图标的css类名
             iconRenderer: PropTypes.oneOf(['AntdIcon', 'fontawesome']),
         })
-    )
+    ),
+
+    // custom render data
+    // 自定义渲染数据
+    data: PropTypes.object,
+
+    dataRenderer: PropTypes.string,
 };
 
 // 定义参数或属性
