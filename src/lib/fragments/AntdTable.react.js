@@ -1257,7 +1257,7 @@ class AntdTable extends Component {
                                 bordered={content.bordered}
                                 placeholder={content.placeholder}
                                 placement={content.placement}
-                                value={content.value}
+                                defaultValue={content.value}
                                 maxTagCount={content.maxTagCount}
                                 optionFilterProp={content.optionFilterProp}
                                 allowClear={content.allowClear}
