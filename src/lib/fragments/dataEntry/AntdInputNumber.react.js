@@ -2,10 +2,9 @@ import React, { useEffect, useContext } from 'react';
 import { InputNumber } from 'antd';
 import { useRequest } from 'ahooks';
 import { isString, isUndefined } from 'lodash';
+import { getBatchPropsValues } from '../utils';
 import useCss from '../../hooks/useCss';
 import PropsContext from '../../contexts/PropsContext';
-import FormContext from '../../contexts/FormContext';
-import useFormStore from '../../store/formStore';
 import { propTypes, defaultProps } from '../../components/dataEntry/AntdInputNumber.react';
 
 
@@ -18,7 +17,6 @@ const AntdInputNumber = (props) => {
         className,
         style,
         key,
-        name,
         size,
         addonBefore,
         addonAfter,
@@ -46,47 +44,27 @@ const AntdInputNumber = (props) => {
         persisted_props,
         persistence_type,
         loading_state,
-        batchPropsNames
+        batchPropsNames,
+        batchPropsValues,
+        batchFormValuesMode
     } = props;
 
     // 批属性监听
     useEffect(() => {
-        if (batchPropsNames && batchPropsNames.length !== 0) {
-            let _batchPropsValues = {};
-            for (let propName of batchPropsNames) {
-                _batchPropsValues[propName] = props[propName];
-            }
+        if (!batchFormValuesMode && batchPropsNames && batchPropsNames.length !== 0) {
             setProps({
-                batchPropsValues: _batchPropsValues
+                batchPropsValues: getBatchPropsValues(batchPropsNames, props)
             })
         }
     })
 
+    useEffect(() => {
+        if (batchFormValuesMode) {
+            setProps({ value: batchPropsValues?.value })
+        }
+    }, [batchPropsValues])
+
     const context = useContext(PropsContext)
-    const formId = useContext(FormContext)
-
-    const updateValues = useFormStore((state) => state.updateValues)
-    const deleteItemValue = useFormStore((state) => state.deleteItemValue)
-
-    // 处理AntdForm表单值搜集功能
-    useEffect(() => {
-        // 若上文中存在有效表单id
-        if (formId && (name || id)) {
-            // 表单值更新
-            updateValues(formId, name || id, value)
-        }
-    }, [value, name, id])
-
-    // 处理组件卸载后，对应表单项值的清除
-    useEffect(() => {
-        return () => {
-            // 若上文中存在有效表单id
-            if (formId && (name || id)) {
-                // 表单值更新
-                deleteItemValue(formId, name || id)
-            }
-        }
-    }, [name, id])
 
     useEffect(() => {
         // 初始化value
@@ -99,8 +77,23 @@ const AntdInputNumber = (props) => {
         }
     }, [])
 
+    const onBlur = () => {
+        props?.onBlur?.()
+    }
+
+    const onFocus = () => {
+        props?.onFocus?.()
+    }
+
     // 监听输入内容变化事件
     const onChange = e => {
+        let _batchPropsValues = batchFormValuesMode ? getBatchPropsValues(batchPropsNames, props) : e
+        if (batchFormValuesMode) {
+            if (batchPropsNames.includes('value')) {
+                _batchPropsValues['value'] = e
+            }
+        }
+        props?.onChange?.(_batchPropsValues)
         setProps({ value: e })
     }
 
@@ -159,6 +152,8 @@ const AntdInputNumber = (props) => {
             readOnly={readOnly}
             stringMode={stringMode}
             status={status}
+            onBlur={onBlur}
+            onFocus={onFocus}
             onChange={(e) => {
                 onChange(e)
                 onDebounceChange(e)

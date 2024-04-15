@@ -3,10 +3,9 @@ import { Input } from 'antd';
 import md5 from 'md5';
 import { useRequest } from 'ahooks';
 import { isString, isUndefined } from 'lodash';
+import { getBatchPropsValues } from '../utils';
 import useCss from '../../hooks/useCss';
 import PropsContext from '../../contexts/PropsContext';
-import FormContext from '../../contexts/FormContext';
-import useFormStore from '../../store/formStore';
 import { propTypes, defaultProps } from '../../components/dataEntry/AntdInput.react';
 
 const { Search, TextArea } = Input;
@@ -21,7 +20,6 @@ const AntdInput = (props) => {
         styles,
         classNames,
         key,
-        name,
         mode,
         passwordUseMd5,
         autoComplete,
@@ -53,7 +51,9 @@ const AntdInput = (props) => {
         persistence,
         persisted_props,
         persistence_type,
-        batchPropsNames
+        batchPropsNames,
+        batchPropsValues,
+        batchFormValuesMode
     } = props;
 
     // 解决受控value卡部分中文输入法问题
@@ -61,42 +61,20 @@ const AntdInput = (props) => {
 
     // 批属性监听
     useEffect(() => {
-        if (batchPropsNames && batchPropsNames.length !== 0) {
-            let _batchPropsValues = {};
-            for (let propName of batchPropsNames) {
-                _batchPropsValues[propName] = props[propName];
-            }
+        if (!batchFormValuesMode && batchPropsNames && batchPropsNames.length !== 0) {
             setProps({
-                batchPropsValues: _batchPropsValues
+                batchPropsValues: getBatchPropsValues(batchPropsNames, props)
             })
         }
     })
 
+    useEffect(() => {
+        if (batchFormValuesMode) {
+            setProps({ value: batchPropsValues?.value })
+        }
+    }, [batchPropsValues])
+
     const context = useContext(PropsContext)
-    const formId = useContext(FormContext)
-
-    const updateValues = useFormStore((state) => state.updateValues)
-    const deleteItemValue = useFormStore((state) => state.deleteItemValue)
-
-    // 处理AntdForm表单值搜集功能
-    useEffect(() => {
-        // 若上文中存在有效表单id
-        if (formId && (name || id)) {
-            // 表单值更新
-            updateValues(formId, name || id, value)
-        }
-    }, [value, name, id])
-
-    // 处理组件卸载后，对应表单项值的清除
-    useEffect(() => {
-        return () => {
-            // 若上文中存在有效表单id
-            if (formId && (name || id)) {
-                // 表单值更新
-                deleteItemValue(formId, name || id)
-            }
-        }
-    }, [name, id])
 
     useEffect(() => {
         // 初始化value
@@ -115,8 +93,23 @@ const AntdInput = (props) => {
         }
     }, [])
 
+    const onBlur = () => {
+        props?.onBlur?.()
+    }
+
+    const onFocus = () => {
+        props?.onFocus?.()
+    }
+
     // 监听输入内容变化事件
     const onChange = e => {
+        let _batchPropsValues = batchFormValuesMode ? getBatchPropsValues(batchPropsNames, props) : e.target.value
+        if (batchFormValuesMode) {
+            if (batchPropsNames.includes('value')) {
+                _batchPropsValues['value'] = e.target.value
+            }
+        }
+        props?.onChange?.(_batchPropsValues)
         // 若启用md5加密且为密码模式
         if (passwordUseMd5 && mode === 'password') {
             setProps({
@@ -223,6 +216,8 @@ const AntdInput = (props) => {
                 maxLength={maxLength}
                 status={status}
                 readOnly={readOnly}
+                onBlur={onBlur}
+                onFocus={onFocus}
                 onChange={(e) => {
                     onChange(e)
                     onDebounceChange(e.target.value)
@@ -272,6 +267,8 @@ const AntdInput = (props) => {
                 status={status}
                 readOnly={readOnly}
                 onSearch={onSearch}
+                onBlur={onBlur}
+                onFocus={onFocus}
                 onChange={(e) => {
                     onChange(e)
                     onDebounceChange(e.target.value)
@@ -331,6 +328,8 @@ const AntdInput = (props) => {
                 status={status}
                 autoSize={autoSize}
                 readOnly={readOnly}
+                onBlur={onBlur}
+                onFocus={onFocus}
                 onChange={(e) => {
                     onChange(e)
                     onDebounceChange(e.target.value)
@@ -379,6 +378,8 @@ const AntdInput = (props) => {
                 prefix={prefix}
                 suffix={suffix}
                 readOnly={readOnly}
+                onBlur={onBlur}
+                onFocus={onFocus}
                 onChange={(e) => {
                     onChange(e)
                     onDebounceChange(e.target.value)

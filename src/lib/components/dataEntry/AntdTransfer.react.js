@@ -128,6 +128,11 @@ AntdTransfer.propTypes = {
     batchPropsValues: PropTypes.object,
 
     /**
+     * 设置作为表单项时表单值是否开启多值模式，可以监听多个参数，默认为false
+     */
+    batchFormValuesMode: PropTypes.bool,
+
+    /**
      * Dash-assigned callback that should be called to report property changes
      * to Dash, to make them available for callbacks.
      */

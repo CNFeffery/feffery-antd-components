@@ -28,12 +28,6 @@ AntdInputNumber.propTypes = {
     // 辅助刷新用唯一标识key值
     key: PropTypes.string,
 
-    /**
-     * 用于在基于AntdForm的表单值自动搜集功能中，充当当前表单项的字段名
-     * 缺省时会以id作为字段名
-     */
-    name: PropTypes.string,
-
     // 设置前置标签内容
     addonBefore: PropTypes.node,
 
@@ -133,6 +127,11 @@ AntdInputNumber.propTypes = {
 
     // 打包监听batchPropsNames中定义的属性值变化
     batchPropsValues: PropTypes.object,
+
+    /**
+     * 设置作为表单项时表单值是否开启多值模式，可以监听多个参数，默认为false
+     */
+    batchFormValuesMode: PropTypes.bool,
 
     loading_state: PropTypes.shape({
         /**

@@ -1,10 +1,9 @@
 import React, { useContext, useEffect } from 'react';
 import { Checkbox } from 'antd';
 import { isString, isUndefined } from 'lodash';
+import { getBatchPropsValues } from '../utils';
 import useCss from '../../hooks/useCss';
 import PropsContext from '../../contexts/PropsContext';
-import FormContext from '../../contexts/FormContext';
-import useFormStore from '../../store/formStore';
 import { propTypes, defaultProps } from '../../components/dataEntry/AntdCheckbox.react';
 
 
@@ -16,7 +15,6 @@ const AntdCheckbox = (props) => {
         style,
         className,
         key,
-        name,
         label,
         disabled,
         autoFocus,
@@ -28,49 +26,44 @@ const AntdCheckbox = (props) => {
         persisted_props,
         persistence_type,
         loading_state,
-        batchPropsNames
+        batchPropsNames,
+        batchPropsValues,
+        batchFormValuesMode
     } = props;
 
     // 批属性监听
     useEffect(() => {
-        if (batchPropsNames && batchPropsNames.length !== 0) {
-            let _batchPropsValues = {};
-            for (let propName of batchPropsNames) {
-                _batchPropsValues[propName] = props[propName];
-            }
+        if (!batchFormValuesMode && batchPropsNames && batchPropsNames.length !== 0) {
             setProps({
-                batchPropsValues: _batchPropsValues
+                batchPropsValues: getBatchPropsValues(batchPropsNames, props)
             })
         }
     })
 
+    useEffect(() => {
+        if (batchFormValuesMode) {
+            setProps({ checked: batchPropsValues?.checked })
+        }
+    }, [batchPropsValues])
+
     const context = useContext(PropsContext)
-    const formId = useContext(FormContext)
 
-    const updateValues = useFormStore(state => state.updateValues)
-    const deleteItemValue = useFormStore(state => state.deleteItemValue)
+    const onBlur = () => {
+        props?.onBlur?.()
+    }
 
-    // 处理AntdForm表单值搜集功能
-    useEffect(() => {
-        // 若上文中存在有效表单id
-        if (formId && (name || id)) {
-            // 表单值更新
-            updateValues(formId, name || id, checked)
-        }
-    }, [checked, name, id])
-
-    // 处理组件卸载后，对应表单项值的清除
-    useEffect(() => {
-        return () => {
-            // 若上文中存在有效表单id
-            if (formId && (name || id)) {
-                // 表单值更新
-                deleteItemValue(formId, name || id)
-            }
-        }
-    }, [name, id])
+    const onFocus = () => {
+        props?.onFocus?.()
+    }
 
     const onChange = (e) => {
+        let _batchPropsValues = batchFormValuesMode ? getBatchPropsValues(batchPropsNames, props) : e.target.checked
+        if (batchFormValuesMode) {
+            if (batchPropsNames.includes('checked')) {
+                _batchPropsValues['checked'] = e.target.checked
+            }
+        }
+        props?.onChange?.(_batchPropsValues)
         if (!readOnly) {
             setProps({ checked: e.target.checked })
         }
@@ -87,6 +80,8 @@ const AntdCheckbox = (props) => {
             }
             style={style}
             key={key}
+            onBlur={onBlur}
+            onFocus={onFocus}
             onChange={onChange}
             disabled={
                 context && !isUndefined(context.componentDisabled) ?
