@@ -14,6 +14,12 @@ const useFormStore = create((set) => ({
             }
         }
     })),
+    updateFormValues: (formId, newValues) => set((state) => ({
+        values: {
+            ...state.values,
+            [formId]: newValues
+        }
+    })),
     deleteItemValue: (formId, newValueName) => set((state) => ({
         values: {
             ...state.values,

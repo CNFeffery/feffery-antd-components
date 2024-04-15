@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { Form } from 'antd';
-import { isString } from 'lodash';
+import { isString, isEmpty } from 'lodash';
 import useCss from '../../../hooks/useCss';
 import { propTypes, defaultProps } from '../../../components/dataEntry/form/AntdForm.react';
 import FormContext from '../../../contexts/FormContext';
@@ -21,6 +21,7 @@ const AntdForm = (props) => {
         labelAlign,
         labelWrap,
         layout,
+        values,
         validateStatuses,
         helps,
         setProps,
@@ -30,8 +31,16 @@ const AntdForm = (props) => {
     // 订阅当前表单值搜集状态的变动
     const _values = useFormStore((state) => state.values[id])
 
+    const updateFormValues = useFormStore((state) => state.updateFormValues)
     const updateValidateStatuses = useFormStore((state) => state.updateValidateStatuses)
     const updateHelps = useFormStore((state) => state.updateHelps)
+
+    // 受控更新values
+    useEffect(() => {
+        if (id && values && !isEmpty(values)) {
+            updateFormValues(id, values)
+        }
+    }, [values])
 
     useEffect(() => {
         // 更新当前表单校验状态值
