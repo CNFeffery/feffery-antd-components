@@ -77,9 +77,106 @@ AntdForm.propTypes = {
     labelWrap: PropTypes.bool,
 
     /**
-     * 监听搜集内部表单输入类组件的输入值变化情况
+     * 设置默认的验证提示模板
+     */
+    validateMessages: PropTypes.exact({
+        default: PropTypes.string,
+        required: PropTypes.string,
+        enum: PropTypes.string,
+        whitespace: PropTypes.string,
+        date: PropTypes.exact({
+            format: PropTypes.string,
+            parse: PropTypes.string,
+            invalid: PropTypes.string
+        }),
+        types: PropTypes.exact({
+            string: PropTypes.string,
+            method: PropTypes.string,
+            array: PropTypes.string,
+            object: PropTypes.string,
+            number: PropTypes.string,
+            date: PropTypes.string,
+            boolean: PropTypes.string,
+            integer: PropTypes.string,
+            float: PropTypes.string,
+            regexp: PropTypes.string,
+            email: PropTypes.string,
+            url: PropTypes.string,
+            hex: PropTypes.string
+        }),
+        string: PropTypes.exact({
+            len: PropTypes.string,
+            min: PropTypes.string,
+            max: PropTypes.string,
+            range: PropTypes.string
+        }),
+        number: PropTypes.exact({
+            len: PropTypes.string,
+            min: PropTypes.string,
+            max: PropTypes.string,
+            range: PropTypes.string
+        }),
+        array: PropTypes.exact({
+            len: PropTypes.string,
+            min: PropTypes.string,
+            max: PropTypes.string,
+            range: PropTypes.string
+        }),
+        pattern: PropTypes.exact({
+            mismatch: PropTypes.string
+        })
+    }),
+
+    /**
+     * 统一设置字段触发验证的时机，可选值有onChange、onBlur、onFocus，默认为onChange
+     */
+    validateTrigger: PropTypes.oneOfType([
+        PropTypes.oneOf([
+            'onChange',
+            'onBlur',
+            'onFocus'
+        ]),
+        PropTypes.arrayOf(PropTypes.oneOf([
+            'onChange',
+            'onBlur',
+            'onFocus'
+        ]))
+    ]),
+
+    /**
+     * 搜集内部表单输入类组件的输入值变化情况
      */
     values: PropTypes.object,
+
+    /**
+     * 设置表单默认值，只有初始化以及重置时生效
+     */
+    initialValues: PropTypes.object,
+
+    /**
+     * 监听搜集内部表单输入类组件的校验结果
+     */
+    formValidateStatus: PropTypes.bool,
+
+    /**
+     * 控制参数，用于提交表单时手动搜集表单的校验结果，回调设置为true后会自动变为false
+     */
+    submitForm: PropTypes.bool,
+
+    /**
+     * 辅助监听表单提交参数
+     */
+    submitFormClicks: PropTypes.number,
+
+    /**
+     * 控制参数，用于重置表单项校验状态（不能重置表单项包裹的组件的值，需要通过回调重置表单项包裹的组件的值），回调设置为true后会自动变为false
+     */
+    resetForm: PropTypes.bool,
+
+    /**
+     * 辅助监听表单重置参数
+     */
+    resetFormClicks: PropTypes.number,
 
     /**
      * 统一设置内部各AntdFormItem的validateStatus值，键为对应AntdFormItem的label值
@@ -119,12 +216,65 @@ AntdForm.propTypes = {
     setProps: PropTypes.func
 };
 
+const typeTemplate = '${label} is not a valid ${type}';
+
 // 设置默认参数
 AntdForm.defaultProps = {
     layout: 'horizontal',
     colon: true,
     labelAlign: 'right',
-    labelWrap: false
+    labelWrap: false,
+    validateMessages: {
+        default: 'Field validation error for ${label}',
+        required: 'Please enter ${label}',
+        enum: '${label} must be one of [${enum}]',
+        whitespace: '${label} cannot be a blank character',
+        date: {
+            format: '${label} date format is invalid',
+            parse: '${label} cannot be converted to a date',
+            invalid: '${label} is an invalid date',
+        },
+        types: {
+            string: typeTemplate,
+            method: typeTemplate,
+            array: typeTemplate,
+            object: typeTemplate,
+            number: typeTemplate,
+            date: typeTemplate,
+            boolean: typeTemplate,
+            integer: typeTemplate,
+            float: typeTemplate,
+            regexp: typeTemplate,
+            email: typeTemplate,
+            url: typeTemplate,
+            hex: typeTemplate,
+        },
+        string: {
+            len: '${label} must be ${len} characters',
+            min: '${label} must be at least ${min} characters',
+            max: '${label} must be up to ${max} characters',
+            range: '${label} must be between ${min}-${max} characters',
+        },
+        number: {
+            len: '${label} must be equal to ${len}',
+            min: '${label} must be minimum ${min}',
+            max: '${label} must be maximum ${max}',
+            range: '${label} must be between ${min}-${max}',
+        },
+        array: {
+            len: 'Must be ${len} ${label}',
+            min: 'At least ${min} ${label}',
+            max: 'At most ${max} ${label}',
+            range: 'The amount of ${label} must be between ${min}-${max}',
+        },
+        pattern: {
+            mismatch: '${label} does not match the pattern ${pattern}',
+        },
+    },
+    submitForm: false,
+    submitFormClicks: 0,
+    resetForm: false,
+    resetFormClicks: 0
 }
 
 export default AntdForm;

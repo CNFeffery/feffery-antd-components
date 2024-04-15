@@ -26,12 +26,24 @@ const AntdFormItem = (props) => {
         extra,
         help,
         hidden,
+        initialValue,
+        name,
+        rules,
+        validateTrigger,
+        valuePropName,
         required,
         validateStatus,
         hasFeedback,
         setProps,
         loading_state
     } = props;
+
+    if (rules) {
+        rules.forEach(item => {
+            item.pattern = item.pattern ? new RegExp(item.pattern) : item.pattern;
+            item.validator = eval(item.validator);
+        });
+    }
 
     const formId = useContext(FormContext);
     const _validateStatus = useFormStore((state) => state.validateStatuses?.[formId]?.[label]);
@@ -56,6 +68,11 @@ const AntdFormItem = (props) => {
             help={help || _help}
             hasFeedback={hasFeedback}
             hidden={hidden}
+            initialValue={initialValue}
+            name={name}
+            rules={rules}
+            validateTrigger={validateTrigger}
+            valuePropName={valuePropName}
             required={required}
             validateStatus={validateStatus || _validateStatus}
             data-dash-is-loading={

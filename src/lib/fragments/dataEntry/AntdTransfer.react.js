@@ -2,10 +2,9 @@ import React, { useContext, useEffect } from 'react';
 import { Transfer, ConfigProvider } from 'antd';
 import { str2Locale, locale2text } from '../../components/locales.react';
 import { isString, isUndefined } from 'lodash';
+import { getBatchPropsValues } from '../utils';
 import useCss from '../../hooks/useCss';
 import PropsContext from '../../contexts/PropsContext';
-import FormContext from '../../contexts/FormContext';
-import useFormStore from '../../store/formStore';
 import { propTypes, defaultProps } from '../../components/dataEntry/AntdTransfer.react';
 
 
@@ -17,7 +16,6 @@ const AntdTransfer = (props) => {
         className,
         style,
         key,
-        name,
         locale,
         setProps,
         dataSource,
@@ -38,49 +36,29 @@ const AntdTransfer = (props) => {
         persisted_props,
         persistence_type,
         loading_state,
-        batchPropsNames
+        batchPropsNames,
+        batchPropsValues,
+        batchFormValuesMode
     } = props;
 
     // 批属性监听
     useEffect(() => {
-        if (batchPropsNames && batchPropsNames.length !== 0) {
-            let _batchPropsValues = {};
-            for (let propName of batchPropsNames) {
-                _batchPropsValues[propName] = props[propName];
-            }
+        if (!batchFormValuesMode && batchPropsNames && batchPropsNames.length !== 0) {
             setProps({
-                batchPropsValues: _batchPropsValues
+                batchPropsValues: getBatchPropsValues(batchPropsNames, props)
             })
         }
     })
 
-    const context = useContext(PropsContext)
-    const formId = useContext(FormContext)
+    useEffect(() => {
+        if (batchFormValuesMode) {
+            setProps({ targetKeys: batchPropsValues?.targetKeys })
+        }
+    }, [batchPropsValues])
 
-    const updateValues = useFormStore((state) => state.updateValues)
-    const deleteItemValue = useFormStore((state) => state.deleteItemValue)
+    const context = useContext(PropsContext)
 
     locale = (context && context.locale) || locale
-
-    // 处理AntdForm表单值搜集功能
-    useEffect(() => {
-        // 若上文中存在有效表单id
-        if (formId && (name || id)) {
-            // 表单值更新
-            updateValues(formId, name || id, targetKeys)
-        }
-    }, [targetKeys, name, id])
-
-    // 处理组件卸载后，对应表单项值的清除
-    useEffect(() => {
-        return () => {
-            // 若上文中存在有效表单id
-            if (formId && (name || id)) {
-                // 表单值更新
-                deleteItemValue(formId, name || id)
-            }
-        }
-    }, [name, id])
 
     if (!titles) {
         titles = locale2text.AntdTransfer[locale].titles
@@ -88,6 +66,21 @@ const AntdTransfer = (props) => {
 
     // 监听选项移动事件
     const listenMove = (nextTargetKeys, moveDirection, moveKeys) => {
+        let _batchPropsValues = batchFormValuesMode ? getBatchPropsValues(batchPropsNames, props) : nextTargetKeys
+        if (batchFormValuesMode) {
+            if (batchPropsNames.includes('targetKeys')) {
+                _batchPropsValues['targetKeys'] = nextTargetKeys
+            }
+            if (batchPropsNames.includes('moveDirection')) {
+                _batchPropsValues['moveDirection'] = moveDirection
+            }
+            if (batchPropsNames.includes('moveKeys')) {
+                _batchPropsValues['moveKeys'] = moveKeys
+            }
+        }
+        props?.onChange?.(_batchPropsValues)
+        props?.onBlur?.(_batchPropsValues)
+        props?.onFocus?.(_batchPropsValues)
         if (!readOnly) {
             setProps({
                 targetKeys: nextTargetKeys,

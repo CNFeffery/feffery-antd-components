@@ -21,17 +21,39 @@ const AntdForm = (props) => {
         labelAlign,
         labelWrap,
         layout,
+        validateMessages,
+        validateTrigger,
+        values,
+        initialValues,
+        formValidateStatus,
+        submitForm,
+        submitFormClicks,
+        resetForm,
+        resetFormClicks,
         validateStatuses,
         helps,
         setProps,
         loading_state
     } = props;
 
-    // 订阅当前表单值搜集状态的变动
-    const _values = useFormStore((state) => state.values[id])
+    const [form] = Form.useForm();
 
     const updateValidateStatuses = useFormStore((state) => state.updateValidateStatuses)
     const updateHelps = useFormStore((state) => state.updateHelps)
+
+    const onFinish = (data) => {
+        setProps({ formValidateStatus: true })
+        setProps({ values: data })
+    }
+
+    const onFinishFailed = (data) => {
+        setProps({ formValidateStatus: false })
+        setProps({ values: data.values })
+    }
+
+    const onValuesChange = (changedValues, allValues) => {
+        setProps({ values: allValues })
+    }
 
     useEffect(() => {
         // 更新当前表单校验状态值
@@ -48,14 +70,36 @@ const AntdForm = (props) => {
     }, [helps])
 
     useEffect(() => {
-        setProps({ values: _values })
-    }, [_values])
+        form.setFieldsValue(values)
+    }, [values])
+
+    // 手动搜集表单检验状态
+    useEffect(() => {
+        if (submitForm) {
+            form.submit();
+            setProps({ submitFormClicks: submitFormClicks + 1 });
+            setProps({ submitForm: false });
+        }
+    }, [submitForm]);
+
+    // 手动重置表单项值及校验状态
+    useEffect(() => {
+        if (resetForm) {
+            form.resetFields();
+            setProps({ values: initialValues });
+            setProps({ resetFormClicks: resetFormClicks + 1 });
+            setProps({ formValidateStatus: null });
+            setProps({ resetForm: false });
+        }
+    }, [resetForm]);
+
 
     return (
         <FormContext.Provider
             value={id}
         >
             <Form id={id}
+                form={form}
                 className={
                     isString(className) ?
                         className :
@@ -69,6 +113,12 @@ const AntdForm = (props) => {
                 labelAlign={labelAlign}
                 labelWrap={labelWrap}
                 layout={layout}
+                validateMessages={validateMessages}
+                validateTrigger={validateTrigger}
+                initialValues={initialValues}
+                onFinish={onFinish}
+                onFinishFailed={onFinishFailed}
+                onValuesChange={onValuesChange}
                 data-dash-is-loading={
                     (loading_state && loading_state.is_loading) || undefined
                 }>
