@@ -21,9 +21,49 @@ app.layout = html.Div(
         fac.AntdForm(
             [
                 fac.AntdFormItem(
-                    fac.AntdCalendar(
+                    fac.AntdCascader(
+                        placeholder='请选择',
+                        options=[
+                            {
+                                'value': '节点1',
+                                'label': '节点1',
+                                'children': [
+                                    {
+                                        'value': '节点1-1',
+                                        'label': '节点1-1',
+                                    },
+                                    {
+                                        'value': '节点1-2',
+                                        'label': '节点1-2',
+                                        'children': [
+                                            {
+                                                'value': '节点1-2-1',
+                                                'label': '节点1-2-1',
+                                            },
+                                            {
+                                                'value': '节点1-2-2',
+                                                'label': '节点1-2-2',
+                                            },
+                                        ],
+                                    },
+                                ],
+                            },
+                            {
+                                'value': '节点2',
+                                'label': '节点2',
+                                'children': [
+                                    {
+                                        'value': '节点2-1',
+                                        'label': '节点2-1',
+                                    },
+                                    {
+                                        'value': '节点2-2',
+                                        'label': '节点2-2',
+                                    },
+                                ],
+                            },
+                        ],
                         name=f'表单项{i}',
-                        style={'width': 300},
                     ),
                     label=f'表单项{i}',
                     hasFeedback=True,
@@ -65,7 +105,10 @@ def update_statuses(nClicks):
     prevent_initial_call=True,
 )
 def update_values(nClicks):
-    return {f'表单项{i}': '2024-04-18' for i in range(25)}
+    return {
+        f'表单项{i}': ['节点1', '节点1-2', '节点1-2-1']
+        for i in range(25)
+    }
 
 
 @app.callback(
