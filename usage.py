@@ -8,7 +8,7 @@ app = dash.Dash(__name__)
 
 app.layout = html.Div(
     [
-        fac.AntdUpload(
+        fac.AntdDraggerUpload(
             id='upload-demo',
             directory=True,
             withOriginFileObj=True,
