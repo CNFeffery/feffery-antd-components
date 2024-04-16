@@ -22,8 +22,13 @@ app.layout = html.Div(
         fac.AntdForm(
             [
                 fac.AntdFormItem(
-                    fac.AntdTimeRangePicker(
-                        name=f'表单项{i}'
+                    fac.AntdTransfer(
+                        dataSource=[
+                            {'key': i, 'title': f'选项{i}'}
+                            for i in range(1, 10)
+                        ],
+                        targetKeys=[2, 3, 4],
+                        name=f'表单项{i}',
                     ),
                     label=f'表单项{i}',
                     hasFeedback=True,
@@ -65,10 +70,7 @@ def update_statuses(nClicks):
     prevent_initial_call=True,
 )
 def update_values(nClicks):
-    return {
-        f'表单项{i}': ['12:00:08', '16:00:08']
-        for i in range(25)
-    }
+    return {f'表单项{i}': [1, 3, 5] for i in range(25)}
 
 
 @app.callback(

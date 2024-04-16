@@ -62,6 +62,18 @@ const AntdTransfer = (props) => {
 
     locale = (context && context.locale) || locale
 
+    // 收集当前组件相关表单值
+    const currentFormValue = useFormStore(state => state.values?.[formId]?.[name || id])
+
+    // 受控更新当前组件相关表单值
+    useEffect(() => {
+        if (formId && !isUndefined(currentFormValue)) {
+            setProps({
+                targetKeys: currentFormValue
+            })
+        }
+    }, [currentFormValue])
+
     // 处理AntdForm表单值搜集功能
     useEffect(() => {
         // 若上文中存在有效表单id
