@@ -22,12 +22,29 @@ app.layout = html.Div(
         fac.AntdForm(
             [
                 fac.AntdFormItem(
-                    fac.AntdTransfer(
-                        dataSource=[
-                            {'key': i, 'title': f'选项{i}'}
-                            for i in range(1, 10)
+                    fac.AntdTreeSelect(
+                        treeData=[
+                            {
+                                'key': '节点1',
+                                'value': '1',
+                                'title': '节点1',
+                                'children': [
+                                    {
+                                        'key': f'节点1-{i}',
+                                        'value': f'1-{i}',
+                                        'title': f'节点1-{i}',
+                                    }
+                                    for i in range(1, 5)
+                                ],
+                            },
+                            {
+                                'key': '节点2',
+                                'value': '2',
+                                'title': '节点2',
+                            },
                         ],
-                        targetKeys=[2, 3, 4],
+                        placeholder='请选择',
+                        style={'width': 256},
                         name=f'表单项{i}',
                     ),
                     label=f'表单项{i}',
@@ -70,7 +87,7 @@ def update_statuses(nClicks):
     prevent_initial_call=True,
 )
 def update_values(nClicks):
-    return {f'表单项{i}': [1, 3, 5] for i in range(25)}
+    return {f'表单项{i}': '1-2' for i in range(25)}
 
 
 @app.callback(
