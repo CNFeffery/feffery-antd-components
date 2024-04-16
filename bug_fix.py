@@ -21,7 +21,9 @@ app.layout = html.Div(
         fac.AntdForm(
             [
                 fac.AntdFormItem(
-                    fac.AntdDatePicker(name=f'表单项{i}'),
+                    fac.AntdDateRangePicker(
+                        name=f'表单项{i}'
+                    ),
                     label=f'表单项{i}',
                     hasFeedback=True,
                 )
@@ -62,7 +64,10 @@ def update_statuses(nClicks):
     prevent_initial_call=True,
 )
 def update_values(nClicks):
-    return {f'表单项{i}': '2024-04-16' for i in range(25)}
+    return {
+        f'表单项{i}': ['2024-04-16', '2024-04-22']
+        for i in range(25)
+    }
 
 
 @app.callback(
