@@ -22,7 +22,7 @@ app.layout = html.Div(
         fac.AntdForm(
             [
                 fac.AntdFormItem(
-                    fac.AntdRadioGroup(
+                    fac.AntdSelect(
                         options=[
                             {
                                 'label': f'选项{c}',
