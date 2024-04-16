@@ -1,5 +1,4 @@
 import dash
-import random
 from dash import html
 import feffery_antd_components as fac
 from dash.dependencies import Input, Output
@@ -16,27 +15,28 @@ app.layout = html.Div(
                 fac.AntdButton(
                     '更新值', id='update-values'
                 ),
+                fac.AntdButton('清空值', id='clear-values'),
             ]
         ),
         fac.AntdForm(
             [
                 fac.AntdFormItem(
-                    fac.AntdCheckbox(
+                    fac.AntdCalendar(
                         name=f'表单项{i}',
                         style={'width': 300},
                     ),
                     label=f'表单项{i}',
                     hasFeedback=True,
                 )
-                for i in range(50)
+                for i in range(25)
             ],
             id='demo-form',
             helps={
                 f'表单项{i}': f'表单项{i}'
-                for i in range(50)
+                for i in range(25)
             },
             validateStatuses={
-                f'表单项{i}': 'success' for i in range(50)
+                f'表单项{i}': 'success' for i in range(25)
             },
         ),
     ],
@@ -54,8 +54,8 @@ app.layout = html.Div(
 )
 def update_statuses(nClicks):
     return [
-        {f'表单项{i}': 'error' for i in range(50)},
-        {f'表单项{i}': '新消息' for i in range(50)},
+        {f'表单项{i}': 'error' for i in range(25)},
+        {f'表单项{i}': '新消息' for i in range(25)},
     ]
 
 
@@ -65,10 +65,16 @@ def update_statuses(nClicks):
     prevent_initial_call=True,
 )
 def update_values(nClicks):
-    return {
-        f'表单项{i}': random.uniform(1, 10) <= 2
-        for i in range(50)
-    }
+    return {f'表单项{i}': '2024-04-18' for i in range(25)}
+
+
+@app.callback(
+    Output('demo-form', 'values', allow_duplicate=True),
+    Input('clear-values', 'nClicks'),
+    prevent_initial_call=True,
+)
+def clear_values(nClicks):
+    return {f'表单项{i}': None for i in range(25)}
 
 
 if __name__ == '__main__':

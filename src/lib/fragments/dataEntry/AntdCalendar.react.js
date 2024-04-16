@@ -2,7 +2,7 @@ import React, { useEffect, useContext } from 'react';
 import dayjs from 'dayjs';
 import { Calendar, ConfigProvider } from 'antd';
 import { str2Locale } from '../../components/locales.react';
-import { isString } from 'lodash';
+import { isString, isUndefined } from 'lodash';
 import useCss from '../../hooks/useCss';
 import PropsContext from '../../contexts/PropsContext';
 import FormContext from '../../contexts/FormContext';
@@ -37,6 +37,18 @@ const AntdCalendar = (props) => {
     const deleteItemValue = useFormStore((state) => state.deleteItemValue)
 
     locale = (context && context.locale) || locale
+
+    // 收集当前组件相关表单值
+    const currentFormValue = useFormStore(state => state.values?.[formId]?.[name || id])
+
+    // 受控更新当前组件相关表单值
+    useEffect(() => {
+        if (formId && !isUndefined(currentFormValue)) {
+            setProps({
+                value: currentFormValue
+            })
+        }
+    }, [currentFormValue])
 
     // 处理AntdForm表单值搜集功能
     useEffect(() => {
