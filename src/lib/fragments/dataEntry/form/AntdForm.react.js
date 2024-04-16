@@ -38,6 +38,9 @@ const AntdForm = (props) => {
     // 受控更新values
     useEffect(() => {
         if (id && values && !isEmpty(values)) {
+            console.log('=======================================')
+            console.log('values: ', values)
+            console.log('_values: ', _values)
             updateFormValues(id, values)
         }
     }, [values])
