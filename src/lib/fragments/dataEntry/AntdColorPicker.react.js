@@ -39,6 +39,18 @@ const AntdColorPicker = (props) => {
     const updateValues = useFormStore((state) => state.updateValues)
     const deleteItemValue = useFormStore((state) => state.deleteItemValue)
 
+    // 收集当前组件相关表单值
+    const currentFormValue = useFormStore(state => state.values?.[formId]?.[name || id])
+
+    // 受控更新当前组件相关表单值
+    useEffect(() => {
+        if (formId && !isUndefined(currentFormValue)) {
+            setProps({
+                value: currentFormValue
+            })
+        }
+    }, [currentFormValue])
+
     // 处理AntdForm表单值搜集功能
     useEffect(() => {
         // 若上文中存在有效表单id
@@ -72,7 +84,7 @@ const AntdColorPicker = (props) => {
                                 _color.toRgbString() :
                                 _color.toHsbString()
                         )
-                )
+                ).toLowerCase()
             })
         }
     }, [format])
@@ -88,7 +100,7 @@ const AntdColorPicker = (props) => {
             key={key}
             allowClear={allowClear}
             arrow={arrow}
-            value={value}
+            value={value?.toLowerCase() || '#1677ff'}
             format={format}
             disabled={
                 context && !isUndefined(context.componentDisabled) ?
@@ -114,7 +126,7 @@ const AntdColorPicker = (props) => {
                                     e.toRgbString() :
                                     e.toHsbString()
                             )
-                    )
+                    )?.toLowerCase()
                 })
             }}
             onClear={() => setProps({ value: null })}

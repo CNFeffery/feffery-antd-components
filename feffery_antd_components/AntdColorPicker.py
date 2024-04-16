@@ -83,7 +83,7 @@ Keyword arguments:
 - trigger (a value equal to: 'hover', 'click'; default 'click'):
     设置颜色选择面板触发方式，可选的有'hover'、'click'  默认：'click'.
 
-- value (string; default '#1677FF'):
+- value (string; default '#1677ff'):
     设置或监听当前选中的颜色值  默认：'#1677FF'."""
     _children_props = ['presets[].label']
     _base_nodes = ['children']

@@ -21,16 +21,7 @@ app.layout = html.Div(
         fac.AntdForm(
             [
                 fac.AntdFormItem(
-                    fac.AntdCheckboxGroup(
-                        options=[
-                            {
-                                'label': f'选项{i}',
-                                'value': f'选项{i}',
-                            }
-                            for i in range(5)
-                        ],
-                        name=f'表单项{i}',
-                    ),
+                    fac.AntdColorPicker(name=f'表单项{i}'),
                     label=f'表单项{i}',
                     hasFeedback=True,
                 )
@@ -71,9 +62,7 @@ def update_statuses(nClicks):
     prevent_initial_call=True,
 )
 def update_values(nClicks):
-    return {
-        f'表单项{i}': ['选项2', '选项4'] for i in range(25)
-    }
+    return {f'表单项{i}': '#ff4d4f' for i in range(25)}
 
 
 @app.callback(

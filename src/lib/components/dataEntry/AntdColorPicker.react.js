@@ -168,7 +168,7 @@ AntdColorPicker.defaultProps = {
     showText: false,
     size: 'middle',
     trigger: 'click',
-    value: '#1677FF'
+    value: '#1677ff'
 }
 
 export default AntdColorPicker;
