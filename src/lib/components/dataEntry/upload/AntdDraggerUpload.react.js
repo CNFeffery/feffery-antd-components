@@ -58,6 +58,12 @@ AntdDraggerUpload.propTypes = {
     // 可选，设置上传请求时是否携带凭据信息如cookie，当上传接口与前端页面同域时，该参数设置无效，参考https://juejin.cn/post/7163597193058729998
     withCredentials: PropTypes.bool,
 
+    /**
+     * listUploadTaskRecord信息中是否记录浏览器原生originFileObj相关信息
+     * 默认值：`false`
+     */
+    withOriginFileObj: PropTypes.bool,
+
     // 可选，用于设置已上传完成文件的下载接口，get接口，具有参数taskId、filename
     downloadUrl: PropTypes.string,
 
@@ -244,7 +250,12 @@ AntdDraggerUpload.propTypes = {
                 url: PropTypes.string,
 
                 // 记录本次上传的接口响应信息
-                uploadResponse: PropTypes.any
+                uploadResponse: PropTypes.any,
+
+                /**
+                 * 监听当前文件上传任务对应的originFileObj主要信息
+                 */
+                originFileObj: PropTypes.any
             })
         )
     ]),
@@ -316,6 +327,7 @@ AntdDraggerUpload.defaultProps = {
     listUploadTaskRecord: [],
     downloadUrlFromBackend: false,
     withCredentials: false,
+    withOriginFileObj: false,
     locale: 'zh-cn'
 }
 
