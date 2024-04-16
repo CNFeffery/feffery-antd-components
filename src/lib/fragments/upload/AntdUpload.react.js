@@ -137,7 +137,11 @@ const AntdUpload = (props) => {
 
     let uploadProps = {
         name: 'file',
-        action: apiUrl + `?uploadId=${uploadId}`,
+        action: (file) => {
+            if (withOriginFileObj) {
+                return apiUrl + `?uploadId=${uploadId}&webkitRelativePath=${encodeURI(file.webkitRelativePath)}`;
+            } return apiUrl + `?uploadId=${uploadId}`;
+        },
         headers: headers,
         data: {
             uploadId: uploadId,
