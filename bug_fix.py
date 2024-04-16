@@ -22,7 +22,7 @@ app.layout = html.Div(
         fac.AntdForm(
             [
                 fac.AntdFormItem(
-                    fac.AntdInput(name=f'表单项{i}'),
+                    fac.AntdInputNumber(name=f'表单项{i}'),
                     label=f'表单项{i}',
                     hasFeedback=True,
                 )
@@ -63,10 +63,7 @@ def update_statuses(nClicks):
     prevent_initial_call=True,
 )
 def update_values(nClicks):
-    return {
-        f'表单项{i}': f'表单项{i} {nClicks}'
-        for i in range(25)
-    }
+    return {f'表单项{i}': nClicks for i in range(25)}
 
 
 @app.callback(
