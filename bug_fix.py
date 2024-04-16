@@ -22,11 +22,8 @@ app.layout = html.Div(
         fac.AntdForm(
             [
                 fac.AntdFormItem(
-                    fac.AntdSlider(
-                        min=0,
-                        max=100,
-                        value=66,
-                        name=f'表单项{i}',
+                    fac.AntdSwitch(
+                        name=f'表单项{i}'
                     ),
                     label=f'表单项{i}',
                     hasFeedback=True,
@@ -68,7 +65,7 @@ def update_statuses(nClicks):
     prevent_initial_call=True,
 )
 def update_values(nClicks):
-    return {f'表单项{i}': 77 for i in range(25)}
+    return {f'表单项{i}': True for i in range(25)}
 
 
 @app.callback(
