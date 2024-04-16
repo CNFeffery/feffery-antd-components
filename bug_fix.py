@@ -21,47 +21,13 @@ app.layout = html.Div(
         fac.AntdForm(
             [
                 fac.AntdFormItem(
-                    fac.AntdCascader(
-                        placeholder='请选择',
+                    fac.AntdCheckboxGroup(
                         options=[
                             {
-                                'value': '节点1',
-                                'label': '节点1',
-                                'children': [
-                                    {
-                                        'value': '节点1-1',
-                                        'label': '节点1-1',
-                                    },
-                                    {
-                                        'value': '节点1-2',
-                                        'label': '节点1-2',
-                                        'children': [
-                                            {
-                                                'value': '节点1-2-1',
-                                                'label': '节点1-2-1',
-                                            },
-                                            {
-                                                'value': '节点1-2-2',
-                                                'label': '节点1-2-2',
-                                            },
-                                        ],
-                                    },
-                                ],
-                            },
-                            {
-                                'value': '节点2',
-                                'label': '节点2',
-                                'children': [
-                                    {
-                                        'value': '节点2-1',
-                                        'label': '节点2-1',
-                                    },
-                                    {
-                                        'value': '节点2-2',
-                                        'label': '节点2-2',
-                                    },
-                                ],
-                            },
+                                'label': f'选项{i}',
+                                'value': f'选项{i}',
+                            }
+                            for i in range(5)
                         ],
                         name=f'表单项{i}',
                     ),
@@ -106,8 +72,7 @@ def update_statuses(nClicks):
 )
 def update_values(nClicks):
     return {
-        f'表单项{i}': ['节点1', '节点1-2', '节点1-2-1']
-        for i in range(25)
+        f'表单项{i}': ['选项2', '选项4'] for i in range(25)
     }
 
 
