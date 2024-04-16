@@ -4,6 +4,7 @@ import { Upload, message, Button, Modal, ConfigProvider } from 'antd';
 import { UploadOutlined } from '@ant-design/icons';
 import { str2Locale, locale2text } from '../../components/locales.react';
 import { isString, isUndefined } from 'lodash';
+import { pick } from 'ramda';
 import useCss from '../../hooks/useCss';
 import PropsContext from '../../contexts/PropsContext';
 import FormContext from '../../contexts/FormContext';
@@ -50,6 +51,7 @@ const AntdUpload = (props) => {
         apiUrlExtraParams,
         headers,
         withCredentials,
+        withOriginFileObj,
         downloadUrl,
         downloadUrlExtraParams,
         downloadUrlFromBackend,
@@ -159,7 +161,6 @@ const AntdUpload = (props) => {
             return sizeCheck;
         },
         onChange(info) {
-
             // 计算最近一次任务的子任务数量
             let lastTaskCount
             if (info.file.status === 'removed') {
@@ -197,7 +198,15 @@ const AntdUpload = (props) => {
                                 taskId: uploadId,
                                 uid: file.uid,
                                 ...urlInfo,
-                                ...responseInfo
+                                ...responseInfo,
+                                // 处理originFileObj信息携带
+                                ...(
+                                    withOriginFileObj ?
+                                        {
+                                            originFileObj: pick(['name', 'size', 'type', 'webkitRelativePath'], file.originFileObj)
+                                        } :
+                                        {}
+                                )
                             }
                         }
                     )
@@ -239,7 +248,15 @@ const AntdUpload = (props) => {
                                             taskId: uploadId,
                                             uid: file.uid,
                                             ...urlInfo,
-                                            ...responseInfo
+                                            ...responseInfo,
+                                            // 处理originFileObj信息携带
+                                            ...(
+                                                withOriginFileObj ?
+                                                    {
+                                                        originFileObj: pick(['name', 'size', 'type', 'webkitRelativePath'], file.originFileObj)
+                                                    } :
+                                                    {}
+                                            )
                                         }
                                     }
                                 )
@@ -308,7 +325,15 @@ const AntdUpload = (props) => {
                                 taskId: uploadId,
                                 uid: file.uid,
                                 ...urlInfo,
-                                ...responseInfo
+                                ...responseInfo,
+                                // 处理originFileObj信息携带
+                                ...(
+                                    withOriginFileObj ?
+                                        {
+                                            originFileObj: pick(['name', 'size', 'type', 'webkitRelativePath'], file.originFileObj)
+                                        } :
+                                        {}
+                                )
                             }
                         }
                     )
@@ -342,7 +367,15 @@ const AntdUpload = (props) => {
                                 taskId: uploadId,
                                 uid: file.uid,
                                 ...urlInfo,
-                                ...responseInfo
+                                ...responseInfo,
+                                // 处理originFileObj信息携带
+                                ...(
+                                    withOriginFileObj ?
+                                        {
+                                            originFileObj: pick(['name', 'size', 'type', 'webkitRelativePath'], file.originFileObj)
+                                        } :
+                                        {}
+                                )
                             }
                         }
                     )

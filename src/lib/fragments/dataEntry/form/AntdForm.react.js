@@ -34,13 +34,10 @@ const AntdForm = (props) => {
     const updateFormValues = useFormStore((state) => state.updateFormValues)
     const updateValidateStatuses = useFormStore((state) => state.updateValidateStatuses)
     const updateHelps = useFormStore((state) => state.updateHelps)
-    console.log('_values：', _values)
+
     // 受控更新values
     useEffect(() => {
         if (id && values && !isEmpty(values)) {
-            console.log('=======================================')
-            console.log('values: ', values)
-            console.log('_values: ', _values)
             updateFormValues(id, values)
         }
     }, [values])

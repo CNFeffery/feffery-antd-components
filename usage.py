@@ -8,30 +8,25 @@ app = dash.Dash(__name__)
 
 app.layout = html.Div(
     [
-        fac.AntdSpace(
-            [
-                fac.AntdOTP(),
-                fac.AntdOTP(disabled=True),
-                fac.AntdOTP(length=8),
-                fac.AntdOTP(variant='filled'),
-                '回调示例：',
-                fac.AntdOTP(id='otp-demo'),
-                html.Pre(id='otp-demo-output'),
-            ],
-            direction='vertical',
-        )
+        fac.AntdUpload(
+            id='upload-demo',
+            directory=True,
+            buttonContent='点击上传文件夹',
+            withOriginFileObj=True,
+        ),
+        html.Pre(id='output'),
     ],
     style={'padding': '50px 100px'},
 )
 
 
 @app.callback(
-    Output('otp-demo-output', 'children'),
-    Input('otp-demo', 'value'),
+    Output('output', 'children'),
+    Input('upload-demo', 'listUploadTaskRecord'),
 )
-def demo_output(value):
+def update(listUploadTaskRecord):
     return json.dumps(
-        dict(value=value), indent=4, ensure_ascii=False
+        listUploadTaskRecord, indent=4, ensure_ascii=False
     )
 
 
