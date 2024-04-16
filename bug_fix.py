@@ -16,14 +16,13 @@ app.layout = html.Div(
                     '更新值', id='update-values'
                 ),
                 fac.AntdButton('清空值', id='clear-values'),
-            ]
+            ],
+            style={'marginBottom': 8},
         ),
         fac.AntdForm(
             [
                 fac.AntdFormItem(
-                    fac.AntdDateRangePicker(
-                        name=f'表单项{i}'
-                    ),
+                    fac.AntdInput(name=f'表单项{i}'),
                     label=f'表单项{i}',
                     hasFeedback=True,
                 )
@@ -65,7 +64,7 @@ def update_statuses(nClicks):
 )
 def update_values(nClicks):
     return {
-        f'表单项{i}': ['2024-04-16', '2024-04-22']
+        f'表单项{i}': f'表单项{i} {nClicks}'
         for i in range(25)
     }
 
