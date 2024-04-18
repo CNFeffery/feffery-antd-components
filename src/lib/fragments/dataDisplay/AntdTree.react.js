@@ -344,10 +344,25 @@ const AntdTree = (props) => {
             showIcon={showIcon}
             height={height}
             titleRender={(nodeData) => {
-                // load the custom renderer for the current node
-                // 加载当前节点的自定义渲染器
-                const DataRenderer = (nodeData.data && nodeData.dataRenderer) ?
-                    antdTreeFunctions[nodeData.dataRenderer] : null;
+                console.log("node component: ", nodeData.nodeComponent);
+
+                function renderNodeComponent(nodeComponent) {
+                    return (
+                        // 未经过 Dash 处理的渲染节点组件
+                        // render node component that hasn't been processed by Dash
+                        typeof nodeComponent.type === "string" ?
+                            React.createElement(
+                                window[nodeComponent.namespace][nodeComponent.type],
+                                {
+                                    ...nodeComponent.props,
+                                    setProps: props.setProps  // 渲染 Dash 组件所需的 | required to render Dash components
+                                }
+                        ) :
+                        // 显示 Dash 处理的节点组件
+                        // Show node component processed by Dash
+                        nodeComponent
+                    )
+                }
 
                 return (
                     nodeData.contextMenu ?
@@ -397,7 +412,7 @@ const AntdTree = (props) => {
                                         ...nodeData.style // 优先级更高
                                     }}>
                                     {
-                                        DataRenderer ? <DataRenderer {...nodeData.data} /> :
+                                        nodeData.nodeComponent ? renderNodeComponent(nodeData.nodeComponent) :
                                             (
                                                 searchKeyword ?
                                                     <Highlighter
@@ -451,7 +466,7 @@ const AntdTree = (props) => {
                                     ...nodeData.style // 优先级更高
                                 }}>
                                 {
-                                    DataRenderer ? <DataRenderer {...nodeData.data} /> :
+                                    nodeData.nodeComponent ? renderNodeComponent(nodeData.nodeComponent) :
                                         (
                                             searchKeyword ?
                                                 <Highlighter

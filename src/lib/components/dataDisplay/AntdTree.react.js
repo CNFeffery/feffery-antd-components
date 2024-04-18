@@ -74,16 +74,24 @@ const PropTreeNodeShape = {
         })
     ),
 
-    // custom render data
-    // 自定义渲染数据
-    data: PropTypes.object,
-
-    dataRenderer: PropTypes.string,
+    // 可选，将显示 Dash 组件而不是标题
+    // Optional, the Dash component that will be displayed instead of the title
+    nodeComponent: PropTypes.oneOfType([
+        // Dash 处理的 Dash 组件是一个节点
+        // The Dash component handled by Dash is a node
+        PropTypes.node,
+        //尚未被 Dash 处理的 Dash 组件是具有 type、namespace 和 props 的对象
+        // Dash components that have not yet been processed by Dash are objects with type, namespace, and props
+        PropTypes.exact({
+            type: PropTypes.string,
+            namespace: PropTypes.string,
+            props: PropTypes.object
+        }),
+    ]),
 };
 
 const PropTreeNode = PropTypes.shape(PropTreeNodeShape);
 PropTreeNodeShape.children = PropTypes.arrayOf(PropTreeNode);
-const treeDataPropTypes = PropTypes.arrayOf(PropTreeNode);
 
 // 定义偏平结构节点类型
 const PropFlatNodeShape = {
@@ -150,11 +158,16 @@ const PropFlatNodeShape = {
         })
     ),
 
-    // custom render data
-    // 自定义渲染数据
-    data: PropTypes.object,
-
-    dataRenderer: PropTypes.string,
+    // Dash component to be rendered as the node content
+    // 将呈现为节点内容的 Dash 组件
+    nodeComponent: PropTypes.oneOfType([
+        PropTypes.node,
+        PropTypes.exact({
+            type: PropTypes.string,
+            namespace: PropTypes.string,
+            props: PropTypes.object
+        }),
+    ]),
 };
 
 // 定义参数或属性
@@ -180,9 +193,9 @@ AntdTree.propTypes = {
     // 组织树形结构的json结构数据
     treeData: PropTypes.oneOfType([
         // 树结构
-        treeDataPropTypes,
+        PropTypes.arrayOf(PropTypes.shape(PropTreeNodeShape)),
         // 偏平结构
-        PropTypes.arrayOf(PropFlatNodeShape)
+        PropTypes.arrayOf(PropTypes.shape(PropFlatNodeShape))
     ]),
 
     // 用于针对具体key值对应的树节点定义组件型标题内容
