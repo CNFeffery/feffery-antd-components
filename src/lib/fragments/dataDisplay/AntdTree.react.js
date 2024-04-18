@@ -344,7 +344,6 @@ const AntdTree = (props) => {
             showIcon={showIcon}
             height={height}
             titleRender={(nodeData) => {
-                console.log("node component: ", nodeData.nodeComponent);
 
                 function renderNodeComponent(nodeComponent) {
                     return (
