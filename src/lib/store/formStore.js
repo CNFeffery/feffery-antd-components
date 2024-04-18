@@ -5,7 +5,7 @@ const useFormStore = create((set) => ({
     values: {},
     validateStatuses: {},
     helps: {},
-    updateValues: (formId, newValueName, newValue) => set((state) => ({
+    updateItemValue: (formId, newValueName, newValue) => set((state) => ({
         values: {
             ...state.values,
             [formId]: {
@@ -19,6 +19,10 @@ const useFormStore = create((set) => ({
             ...state.values,
             [formId]: newValues
         }
+    })),
+    deleteFormValues: (formId) => set((state) => ({
+        // 清除对应表单值
+        values: omit([formId], state.values)
     })),
     deleteItemValue: (formId, newValueName) => set((state) => ({
         values: {

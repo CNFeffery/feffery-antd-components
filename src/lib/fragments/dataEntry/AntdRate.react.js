@@ -47,27 +47,21 @@ const AntdRate = (props) => {
     })
 
     const context = useContext(PropsContext)
-    const formContext = useContext(FormContext)
+    const formId = useContext(FormContext)
 
-    const updateValues = useFormStore((state) => state.updateValues)
+    const updateItemValue = useFormStore((state) => state.updateItemValue)
     const deleteItemValue = useFormStore((state) => state.deleteItemValue)
 
-    // 处理AntdForm表单值搜集功能
-    useEffect(() => {
-        // 若上文中存在有效表单id
-        if (formContext?.formId && (name || id)) {
-            // 表单值更新
-            updateValues(formContext.formId, name || id, value)
-        }
-    }, [value, name, id])
+    // 收集当前组件相关表单值
+    const currentFormValue = useFormStore(state => state.values?.[formId]?.[name || id])
 
     // 处理组件卸载后，对应表单项值的清除
     useEffect(() => {
         return () => {
             // 若上文中存在有效表单id
-            if (formContext?.formId && (name || id)) {
+            if (formId && (name || id)) {
                 // 表单值更新
-                deleteItemValue(formContext.formId, name || id)
+                deleteItemValue(formId, name || id)
             }
         }
     }, [name, id])
@@ -82,6 +76,11 @@ const AntdRate = (props) => {
 
     // 监听change事件
     const onChange = e => {
+        // AntdForm表单批量控制
+        if (formId && (name || id)) {
+            // 表单值更新
+            updateItemValue(formId, name || id, e)
+        }
         setProps({ value: e });
     }
 
@@ -104,7 +103,11 @@ const AntdRate = (props) => {
             }
             autoFocus={autoFocus}
             tooltips={tooltips}
-            value={value}
+            value={
+                formId && (name || id) ?
+                    currentFormValue :
+                    value
+            }
             onChange={onChange}
             persistence={persistence}
             persisted_props={persisted_props}

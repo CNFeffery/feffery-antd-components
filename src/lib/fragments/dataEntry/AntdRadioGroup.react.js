@@ -50,29 +50,11 @@ const AntdRadioGroup = (props) => {
     const context = useContext(PropsContext)
     const formId = useContext(FormContext)
 
-    const updateValues = useFormStore((state) => state.updateValues)
+    const updateItemValue = useFormStore((state) => state.updateItemValue)
     const deleteItemValue = useFormStore((state) => state.deleteItemValue)
 
     // 收集当前组件相关表单值
     const currentFormValue = useFormStore(state => state.values?.[formId]?.[name || id])
-
-    // 受控更新当前组件相关表单值
-    useEffect(() => {
-        if (formId && !isUndefined(currentFormValue)) {
-            setProps({
-                value: currentFormValue
-            })
-        }
-    }, [currentFormValue])
-
-    // 处理AntdForm表单值搜集功能
-    useEffect(() => {
-        // 若上文中存在有效表单id
-        if (formId && (name || id)) {
-            // 表单值更新
-            updateValues(formId, name || id, value)
-        }
-    }, [value, name, id])
 
     // 处理组件卸载后，对应表单项值的清除
     useEffect(() => {
@@ -93,6 +75,11 @@ const AntdRadioGroup = (props) => {
 
     const onSelect = (e) => {
         if (!readOnly) {
+            // AntdForm表单批量控制
+            if (formId && (name || id)) {
+                // 表单值更新
+                updateItemValue(formId, name || id, e)
+            }
             setProps({ value: e.target.value })
         }
     }
@@ -115,8 +102,16 @@ const AntdRadioGroup = (props) => {
                 }
                 style={style}
                 key={key}
-                defaultValue={defaultValue}
-                value={value}
+                defaultValue={
+                    formId && (name || id) ?
+                        undefined :
+                        defaultValue
+                }
+                value={
+                    formId && (name || id) ?
+                        currentFormValue :
+                        value
+                }
                 buttonStyle={buttonStyle}
                 disabled={
                     context && !isUndefined(context.componentDisabled) ?
@@ -164,8 +159,16 @@ const AntdRadioGroup = (props) => {
                     options.map(item => ({ label: item, value: item })) :
                     options
             }
-            defaultValue={defaultValue}
-            value={value}
+            defaultValue={
+                formId && (name || id) ?
+                    undefined :
+                    defaultValue
+            }
+            value={
+                formId && (name || id) ?
+                    currentFormValue :
+                    value
+            }
             optionType={optionType}
             buttonStyle={buttonStyle}
             disabled={

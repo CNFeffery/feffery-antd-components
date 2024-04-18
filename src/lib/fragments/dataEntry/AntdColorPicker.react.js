@@ -36,29 +36,11 @@ const AntdColorPicker = (props) => {
     const context = useContext(PropsContext)
     const formId = useContext(FormContext)
 
-    const updateValues = useFormStore((state) => state.updateValues)
+    const updateItemValue = useFormStore((state) => state.updateItemValue)
     const deleteItemValue = useFormStore((state) => state.deleteItemValue)
 
     // 收集当前组件相关表单值
     const currentFormValue = useFormStore(state => state.values?.[formId]?.[name || id])
-
-    // 受控更新当前组件相关表单值
-    useEffect(() => {
-        if (formId && !isUndefined(currentFormValue)) {
-            setProps({
-                value: currentFormValue
-            })
-        }
-    }, [currentFormValue])
-
-    // 处理AntdForm表单值搜集功能
-    useEffect(() => {
-        // 若上文中存在有效表单id
-        if (formId && (name || id)) {
-            // 表单值更新
-            updateValues(formId, name || id, value)
-        }
-    }, [value, name, id])
 
     // 处理组件卸载后，对应表单项值的清除
     useEffect(() => {
@@ -100,7 +82,11 @@ const AntdColorPicker = (props) => {
             key={key}
             allowClear={allowClear}
             arrow={arrow}
-            value={value?.toLowerCase() || '#1677ff'}
+            value={
+                formId && (name || id) ?
+                    currentFormValue?.toLowerCase() || '#1677ff' :
+                    value?.toLowerCase() || '#1677ff'
+            }
             format={format}
             disabled={
                 context && !isUndefined(context.componentDisabled) ?
@@ -117,6 +103,23 @@ const AntdColorPicker = (props) => {
             onFormatChange={(e) => setProps({ format: e })}
             onOpenChange={(e) => setProps({ open: e })}
             onChangeComplete={(e) => {
+                // AntdForm表单批量控制
+                if (formId && (name || id)) {
+                    // 表单值更新
+                    updateItemValue(
+                        formId,
+                        name || id,
+                        (
+                            format === 'hex' ?
+                                e.toHexString() :
+                                (
+                                    format === 'rgb' ?
+                                        e.toRgbString() :
+                                        e.toHsbString()
+                                )
+                        )?.toLowerCase()
+                    )
+                }
                 setProps({
                     value: (
                         format === 'hex' ?
@@ -129,7 +132,14 @@ const AntdColorPicker = (props) => {
                     )?.toLowerCase()
                 })
             }}
-            onClear={() => setProps({ value: null })}
+            onClear={() => {
+                // AntdForm表单批量控制
+                if (formId && (name || id)) {
+                    // 表单值更新
+                    updateItemValue(formId, name || id, null)
+                }
+                setProps({ value: null })
+            }}
             data-dash-is-loading={
                 (loading_state && loading_state.is_loading) || undefined
             } />

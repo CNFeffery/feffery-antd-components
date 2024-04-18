@@ -63,12 +63,20 @@ const AntdDateRangePicker = (props) => {
 
     // 解决value经回调更新后，rawValue未更新的问题
     useEffect(() => {
-        if (value) {
-            setRawValue([dayjs(value[0], format), dayjs(value[1], format)]);
+        if (formId && (name || id)) {
+            if (currentFormValue) {
+                setRawValue([dayjs(currentFormValue[0], format), dayjs(currentFormValue[1], format)]);
+            } else {
+                setRawValue(null);
+            }
         } else {
-            setRawValue(null);
+            if (value) {
+                setRawValue([dayjs(value[0], format), dayjs(value[1], format)]);
+            } else {
+                setRawValue(null);
+            }
         }
-    }, [value])
+    }, [value, currentFormValue])
 
     // 批属性监听
     useEffect(() => {
@@ -86,31 +94,13 @@ const AntdDateRangePicker = (props) => {
     const context = useContext(PropsContext)
     const formId = useContext(FormContext)
 
-    const updateValues = useFormStore((state) => state.updateValues)
+    const updateItemValue = useFormStore((state) => state.updateItemValue)
     const deleteItemValue = useFormStore((state) => state.deleteItemValue)
 
     locale = (context && context.locale) || locale
 
     // 收集当前组件相关表单值
     const currentFormValue = useFormStore(state => state.values?.[formId]?.[name || id])
-
-    // 受控更新当前组件相关表单值
-    useEffect(() => {
-        if (formId && !isUndefined(currentFormValue)) {
-            setProps({
-                value: currentFormValue
-            })
-        }
-    }, [currentFormValue])
-
-    // 处理AntdForm表单值搜集功能
-    useEffect(() => {
-        // 若上文中存在有效表单id
-        if (formId && (name || id)) {
-            // 表单值更新
-            updateValues(formId, name || id, value)
-        }
-    }, [value, name, id])
 
     // 处理组件卸载后，对应表单项值的清除
     useEffect(() => {
@@ -164,6 +154,11 @@ const AntdDateRangePicker = (props) => {
 
     const onChange = (date, dateString) => {
         if (Array.isArray(dateString)) {
+            // AntdForm表单批量控制
+            if (formId && (name || id)) {
+                // 表单值更新
+                updateItemValue(formId, name || id, dateString)
+            }
             // 更新rawValue
             setRawValue(date);
             if (dateString[0] !== '' && dateString[1] !== '') {
@@ -487,19 +482,32 @@ const AntdDateRangePicker = (props) => {
                             undefined
                     }
                     value={
-                        rawValue ||
-                        (
-                            (value && value.length === 2) ?
-                                [value[0] ? dayjs(value[0], format) : undefined,
-                                value[1] ? dayjs(value[1], format) : undefined] :
-                                undefined
-                        )
+                        formId && (name || id) ?
+                            (
+                                (currentFormValue && currentFormValue.length === 2) ?
+                                    [currentFormValue[0] ? dayjs(currentFormValue[0], format) : undefined,
+                                    currentFormValue[1] ? dayjs(currentFormValue[1], format) : undefined] :
+                                    undefined
+                            ) :
+                            (
+                                rawValue ||
+                                (
+                                    (value && value.length === 2) ?
+                                        [value[0] ? dayjs(value[0], format) : undefined,
+                                        value[1] ? dayjs(value[1], format) : undefined] :
+                                        undefined
+                                )
+                            )
                     }
                     defaultValue={
-                        (defaultValue && defaultValue.length === 2) ?
-                            [defaultValue[0] ? dayjs(defaultValue[0], format) : undefined,
-                            defaultValue[1] ? dayjs(defaultValue[1], format) : undefined] :
-                            undefined
+                        formId && (name || id) ?
+                            undefined :
+                            (
+                                (defaultValue && defaultValue.length === 2) ?
+                                    [defaultValue[0] ? dayjs(defaultValue[0], format) : undefined,
+                                    defaultValue[1] ? dayjs(defaultValue[1], format) : undefined] :
+                                    undefined
+                            )
                     }
                     status={status}
                     placement={placement}

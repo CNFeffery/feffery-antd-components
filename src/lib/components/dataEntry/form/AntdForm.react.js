@@ -77,12 +77,18 @@ AntdForm.propTypes = {
     labelWrap: PropTypes.bool,
 
     /**
-     * 监听搜集内部表单输入类组件的输入值变化情况
+     * 是否启用表单批量控制功能，开启后会导致部分性能的损耗
+     * 默认值：`false`
+     */
+    enableBatchControl: PropTypes.bool,
+
+    /**
+     * `enableBatchControl=True`时，可用于监听或设置搜集内部表单输入类组件的输入值变化情况，开启后内部表单输入类组件自身的`defaultValue`、`value`参数将会失效
      */
     values: PropTypes.object,
 
     /**
-     * 统一设置内部各AntdFormItem的validateStatus值，键为对应AntdFormItem的label值
+     * `enableBatchControl=True`时，可用于统一设置内部各AntdFormItem的validateStatus值，键为对应AntdFormItem的label值
      * 优先级低于各AntdFormItem的validateStatus值
      */
     validateStatuses: PropTypes.objectOf(
@@ -92,7 +98,7 @@ AntdForm.propTypes = {
     ),
 
     /**
-     * 统一设置内部各AntdFormItem的help值，键为对应AntdFormItem的label值
+     * `enableBatchControl=True`时，可用于统一设置内部各AntdFormItem的help值，键为对应AntdFormItem的label值
      * 优先级低于各AntdFormItem的help值
      */
     helps: PropTypes.objectOf(PropTypes.node),
@@ -124,7 +130,8 @@ AntdForm.defaultProps = {
     layout: 'horizontal',
     colon: true,
     labelAlign: 'right',
-    labelWrap: false
+    labelWrap: false,
+    enableBatchControl: false
 }
 
 export default AntdForm;

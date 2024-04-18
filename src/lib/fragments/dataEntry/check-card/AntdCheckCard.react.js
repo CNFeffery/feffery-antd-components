@@ -34,7 +34,7 @@ const AntdCheckCard = (props) => {
     const context = useContext(PropsContext)
     const formId = useContext(FormContext)
 
-    const updateValues = useFormStore((state) => state.updateValues)
+    const updateItemValue = useFormStore((state) => state.updateItemValue)
     const deleteItemValue = useFormStore((state) => state.deleteItemValue)
 
     // 处理AntdForm表单值搜集功能
@@ -42,7 +42,7 @@ const AntdCheckCard = (props) => {
         // 若上文中存在有效表单id
         if (formId && (name || id)) {
             // 表单值更新
-            updateValues(formId, name || id, checked)
+            updateItemValue(formId, name || id, checked)
         }
     }, [checked, name, id])
 

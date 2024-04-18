@@ -76,31 +76,13 @@ const AntdSelect = (props) => {
     const context = useContext(PropsContext)
     const formId = useContext(FormContext)
 
-    const updateValues = useFormStore((state) => state.updateValues)
+    const updateItemValue = useFormStore((state) => state.updateItemValue)
     const deleteItemValue = useFormStore((state) => state.deleteItemValue)
 
     locale = (context && context.locale) || locale
 
     // 收集当前组件相关表单值
     const currentFormValue = useFormStore(state => state.values?.[formId]?.[name || id])
-
-    // 受控更新当前组件相关表单值
-    useEffect(() => {
-        if (formId && !isUndefined(currentFormValue)) {
-            setProps({
-                value: currentFormValue
-            })
-        }
-    }, [currentFormValue])
-
-    // 处理AntdForm表单值搜集功能
-    useEffect(() => {
-        // 若上文中存在有效表单id
-        if (formId && (name || id)) {
-            // 表单值更新
-            updateValues(formId, name || id, value)
-        }
-    }, [value, name, id])
 
     // 处理组件卸载后，对应表单项值的清除
     useEffect(() => {
@@ -128,8 +110,13 @@ const AntdSelect = (props) => {
     }, [])
 
     // 用于获取用户已选择值的回调函数
-    const updateSelectedValue = (value) => {
-        setProps({ value: value })
+    const updateSelectedValue = (e) => {
+        // AntdForm表单批量控制
+        if (formId && (name || id)) {
+            // 表单值更新
+            updateItemValue(formId, name || id, e)
+        }
+        setProps({ value: e })
     }
 
     const { run: onDebounceSearch } = useRequest(
@@ -271,8 +258,16 @@ const AntdSelect = (props) => {
                         (bordered ? 'outlined' : 'borderless') :
                         variant
                 )}
-                value={value}
-                defaultValue={defaultValue}
+                defaultValue={
+                    formId && (name || id) ?
+                        undefined :
+                        defaultValue
+                }
+                value={
+                    formId && (name || id) ?
+                        currentFormValue :
+                        value
+                }
                 onChange={updateSelectedValue}
                 maxTagCount={maxTagCount}
                 listHeight={listHeight}

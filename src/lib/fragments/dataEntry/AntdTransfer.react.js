@@ -57,31 +57,13 @@ const AntdTransfer = (props) => {
     const context = useContext(PropsContext)
     const formId = useContext(FormContext)
 
-    const updateValues = useFormStore((state) => state.updateValues)
+    const updateItemValue = useFormStore((state) => state.updateItemValue)
     const deleteItemValue = useFormStore((state) => state.deleteItemValue)
 
     locale = (context && context.locale) || locale
 
     // 收集当前组件相关表单值
     const currentFormValue = useFormStore(state => state.values?.[formId]?.[name || id])
-
-    // 受控更新当前组件相关表单值
-    useEffect(() => {
-        if (formId && !isUndefined(currentFormValue)) {
-            setProps({
-                targetKeys: currentFormValue
-            })
-        }
-    }, [currentFormValue])
-
-    // 处理AntdForm表单值搜集功能
-    useEffect(() => {
-        // 若上文中存在有效表单id
-        if (formId && (name || id)) {
-            // 表单值更新
-            updateValues(formId, name || id, targetKeys)
-        }
-    }, [targetKeys, name, id])
 
     // 处理组件卸载后，对应表单项值的清除
     useEffect(() => {
@@ -101,6 +83,11 @@ const AntdTransfer = (props) => {
     // 监听选项移动事件
     const listenMove = (nextTargetKeys, moveDirection, moveKeys) => {
         if (!readOnly) {
+            // AntdForm表单批量控制
+            if (formId && (name || id)) {
+                // 表单值更新
+                updateItemValue(formId, name || id, nextTargetKeys)
+            }
             setProps({
                 targetKeys: nextTargetKeys,
                 moveDirection: moveDirection,
@@ -123,7 +110,11 @@ const AntdTransfer = (props) => {
                 key={key}
                 dataSource={dataSource}
                 selectionsIcon={selectionsIcon}
-                targetKeys={targetKeys}
+                targetKeys={
+                    formId && (name || id) ?
+                        currentFormValue :
+                        targetKeys
+                }
                 onChange={listenMove}
                 render={item => item.title}
                 pagination={pagination}

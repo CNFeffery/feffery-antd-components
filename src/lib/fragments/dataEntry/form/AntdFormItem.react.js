@@ -53,11 +53,11 @@ const AntdFormItem = (props) => {
             labelAlign={labelAlign}
             tooltip={tooltip}
             extra={extra}
-            help={help || _help}
+            help={help || (formId && _help)}
             hasFeedback={hasFeedback}
             hidden={hidden}
             required={required}
-            validateStatus={validateStatus || _validateStatus}
+            validateStatus={validateStatus || (formId && _validateStatus)}
             data-dash-is-loading={
                 (loading_state && loading_state.is_loading) || undefined
             }>

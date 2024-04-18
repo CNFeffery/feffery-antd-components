@@ -88,7 +88,7 @@ const AntdPictureUpload = (props) => {
     const context = useContext(PropsContext)
     const formId = useContext(FormContext)
 
-    const updateValues = useFormStore((state) => state.updateValues)
+    const updateItemValue = useFormStore((state) => state.updateItemValue)
     const deleteItemValue = useFormStore((state) => state.deleteItemValue)
 
     locale = (context && context.locale) || locale
@@ -99,7 +99,7 @@ const AntdPictureUpload = (props) => {
         // 若上文中存在有效表单id
         if (formId && (name || id)) {
             // 表单值更新
-            updateValues(formId, name || id, listUploadTaskRecord)
+            updateItemValue(formId, name || id, listUploadTaskRecord)
         }
     }, [listUploadTaskRecord, name, id])
 

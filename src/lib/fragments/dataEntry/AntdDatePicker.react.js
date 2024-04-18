@@ -61,12 +61,20 @@ const AntdDatePicker = (props) => {
 
     // 解决value经回调更新后，rawValue未更新的问题
     useEffect(() => {
-        if (value) {
-            setRawValue(dayjs(value, format));
+        if (formId && (name || id)) {
+            if (currentFormValue) {
+                setRawValue(dayjs(currentFormValue, format));
+            } else {
+                setRawValue(null);
+            }
         } else {
-            setRawValue(null);
+            if (value) {
+                setRawValue(dayjs(value, format));
+            } else {
+                setRawValue(null);
+            }
         }
-    }, [value])
+    }, [value, currentFormValue])
 
     // 批属性监听
     useEffect(() => {
@@ -84,31 +92,13 @@ const AntdDatePicker = (props) => {
     const context = useContext(PropsContext)
     const formId = useContext(FormContext)
 
-    const updateValues = useFormStore((state) => state.updateValues)
+    const updateItemValue = useFormStore((state) => state.updateItemValue)
     const deleteItemValue = useFormStore((state) => state.deleteItemValue)
 
     locale = (context && context.locale) || locale
 
     // 收集当前组件相关表单值
     const currentFormValue = useFormStore(state => state.values?.[formId]?.[name || id])
-
-    // 受控更新当前组件相关表单值
-    useEffect(() => {
-        if (formId && !isUndefined(currentFormValue)) {
-            setProps({
-                value: currentFormValue
-            })
-        }
-    }, [currentFormValue])
-
-    // 处理AntdForm表单值搜集功能
-    useEffect(() => {
-        // 若上文中存在有效表单id
-        if (formId && (name || id)) {
-            // 表单值更新
-            updateValues(formId, name || id, value)
-        }
-    }, [value, name, id])
 
     // 处理组件卸载后，对应表单项值的清除
     useEffect(() => {
@@ -162,6 +152,11 @@ const AntdDatePicker = (props) => {
 
     const onChange = (date, dateString) => {
         if (isString(dateString)) {
+            // AntdForm表单批量控制
+            if (formId && (name || id)) {
+                // 表单值更新
+                updateItemValue(formId, name || id, dateString)
+            }
             // 更新rawValue
             setRawValue(date);
             setProps({ value: dateString })
@@ -464,8 +459,16 @@ const AntdDatePicker = (props) => {
                     }
                     disabledDate={disabledDatesStrategy ? checkDisabledDate : undefined}
                     defaultPickerValue={dayjs(defaultPickerValue, format)}
-                    value={rawValue || (value ? dayjs(value, format) : undefined)}
-                    defaultValue={defaultValue ? dayjs(defaultValue, format) : undefined}
+                    value={
+                        formId && (name || id) ?
+                            (currentFormValue ? dayjs(currentFormValue, format) : undefined) :
+                            (rawValue || (value ? dayjs(value, format) : undefined))
+                    }
+                    defaultValue={
+                        formId && (name || id) ?
+                            undefined :
+                            (defaultValue ? dayjs(defaultValue, format) : undefined)
+                    }
                     showTime={
                         // 处理时间选择面板在日期选定后的默认选中值
                         isObject(showTime) && showTime.defaultValue ?
@@ -481,7 +484,7 @@ const AntdDatePicker = (props) => {
                     open={isUndefined(readOnly) || !readOnly ? undefined : false}
                     inputReadOnly={readOnly}
                     renderExtraFooter={() => extraFooter}
-                    showToday={showToday}
+                    showNow={showToday}
                     presets={
                         // 处理预设快捷选项列表
                         (presets || []).map(

@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { Form } from 'antd';
-import { isString, isEmpty } from 'lodash';
+import { isString, isUndefined, isEmpty } from 'lodash';
 import useCss from '../../../hooks/useCss';
 import { propTypes, defaultProps } from '../../../components/dataEntry/form/AntdForm.react';
 import FormContext from '../../../contexts/FormContext';
@@ -21,6 +21,7 @@ const AntdForm = (props) => {
         labelAlign,
         labelWrap,
         layout,
+        enableBatchControl,
         values,
         validateStatuses,
         helps,
@@ -35,34 +36,41 @@ const AntdForm = (props) => {
     const updateValidateStatuses = useFormStore((state) => state.updateValidateStatuses)
     const updateHelps = useFormStore((state) => state.updateHelps)
 
-    // 受控更新values
+    // console.log('='.repeat(50))
+    // console.log('_values: ', _values)
+    // console.log('values: ', values)
+
+    // _values状态响应value变化
     useEffect(() => {
-        if (id && values && !isEmpty(values)) {
+        if (enableBatchControl && id) {
             updateFormValues(id, values)
         }
     }, [values])
 
+    // value响应_value状态变化
+    useEffect(() => {
+        if (enableBatchControl && id && !isUndefined(_values) && !isEmpty(_values)) {
+            setProps({ values: _values })
+        }
+    }, [_values])
+
     useEffect(() => {
         // 更新当前表单校验状态值
-        if (id) {
-            updateValidateStatuses(id, validateStatuses)
+        if (enableBatchControl && id) {
+            updateValidateStatuses(id, validateStatuses || {})
         }
     }, [validateStatuses])
 
     useEffect(() => {
         // 更新当前表单校验状态值
-        if (id) {
-            updateHelps(id, helps)
+        if (enableBatchControl && id) {
+            updateHelps(id, helps || {})
         }
     }, [helps])
 
-    useEffect(() => {
-        setProps({ values: _values })
-    }, [_values])
-
     return (
         <FormContext.Provider
-            value={id}
+            value={enableBatchControl ? id : null}
         >
             <Form id={id}
                 className={
