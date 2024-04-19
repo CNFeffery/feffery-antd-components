@@ -88,6 +88,24 @@ const AntdUpload = (props) => {
     locale = (context && context.locale) || locale
     downloadUrlFromBackend = downloadUrl ? false : downloadUrlFromBackend
 
+    // 收集当前组件相关表单值
+    const currentFormValue = useFormStore(state => state.values?.[formId]?.[name || id])
+
+    // 针对上传类组件，特殊处理由表单值控制上传列表的清空
+    useEffect(() => {
+        // 若上文中存在有效表单id
+        if (formId && (name || id)) {
+            if (!currentFormValue || currentFormValue.length === 0) {
+                // 清空上传列表
+                updateFileList([])
+                setProps({
+                    listUploadTaskRecord: [],
+                    lastUploadTaskRecord: null
+                })
+            }
+        }
+    }, [currentFormValue])
+
     // 处理组件卸载后，对应表单项值的清除
     useEffect(() => {
         return () => {
