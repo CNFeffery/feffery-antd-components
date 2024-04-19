@@ -69,7 +69,7 @@ const AntdOTP = (props) => {
             })
         }
     }, [])
-    console.log('currentFormValue: ', currentFormValue)
+
     return (
         <OTP id={id}
             key={key}

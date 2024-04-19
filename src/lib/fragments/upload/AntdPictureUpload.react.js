@@ -94,15 +94,6 @@ const AntdPictureUpload = (props) => {
     locale = (context && context.locale) || locale
     downloadUrlFromBackend = downloadUrl ? false : downloadUrlFromBackend
 
-    // 处理AntdForm表单值搜集功能
-    useEffect(() => {
-        // 若上文中存在有效表单id
-        if (formId && (name || id)) {
-            // 表单值更新
-            updateItemValue(formId, name || id, listUploadTaskRecord)
-        }
-    }, [listUploadTaskRecord, name, id])
-
     // 处理组件卸载后，对应表单项值的清除
     useEffect(() => {
         return () => {
@@ -234,6 +225,11 @@ const AntdPictureUpload = (props) => {
                     }
                 )
 
+                // AntdForm表单批量控制
+                if (formId && (name || id)) {
+                    // 表单值更新
+                    updateItemValue(formId, name || id, _listUploadTaskRecord)
+                }
                 // 更新任务记录
                 setProps({
                     listUploadTaskRecord: _listUploadTaskRecord
@@ -268,6 +264,11 @@ const AntdPictureUpload = (props) => {
                     }
                 )
 
+                // AntdForm表单批量控制
+                if (formId && (name || id)) {
+                    // 表单值更新
+                    updateItemValue(formId, name || id, _listUploadTaskRecord)
+                }
                 setProps({
                     lastUploadTaskRecord: {
                         fileName: info.file.name,

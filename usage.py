@@ -8,25 +8,19 @@ app = dash.Dash(__name__)
 
 app.layout = html.Div(
     [
-        fac.AntdDraggerUpload(
-            id='upload-demo',
-            directory=True,
-            withOriginFileObj=True,
-        ),
-        html.Pre(id='output'),
+        fac.AntdForm(
+            [
+                fac.AntdPictureUpload(
+                    id='upload-demo',
+                    name='上传测试',
+                )
+            ],
+            id='demo-form',
+            enableBatchControl=True,
+        )
     ],
     style={'padding': '50px 100px'},
 )
-
-
-@app.callback(
-    Output('output', 'children'),
-    Input('upload-demo', 'listUploadTaskRecord'),
-)
-def update(listUploadTaskRecord):
-    return json.dumps(
-        listUploadTaskRecord, indent=4, ensure_ascii=False
-    )
 
 
 if __name__ == '__main__':
