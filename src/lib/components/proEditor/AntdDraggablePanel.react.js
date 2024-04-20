@@ -11,25 +11,29 @@ const AntdDraggablePanel = (props) => {
     );
 }
 
-// 定义参数或属性
 AntdDraggablePanel.propTypes = {
     /**
-     * 组件id
+     * 组件唯一id
      */
     id: PropTypes.string,
 
     /**
-     * 内部组件元素
+     * 对当前组件的`key`值进行更新，可实现强制重绘当前组件的效果
+     */
+    key: PropTypes.string,
+
+    /**
+     * 组件型，按钮内嵌元素
      */
     children: PropTypes.node,
 
     /**
-     * css样式
+     * 当前组件css样式
      */
     style: PropTypes.object,
 
     /**
-     * css类名
+     * 当前组件css类名，支持[动态css](/advanced-classname)
      */
     className: PropTypes.oneOfType([
         PropTypes.string,
@@ -37,13 +41,8 @@ AntdDraggablePanel.propTypes = {
     ]),
 
     /**
-     * 强制刷新用
-     */
-    key: PropTypes.string,
-
-    /**
-     * 设置面板模式，可选的有'fixed'（固定模式）、'float'（浮动窗口模式）
-     * 默认：'fixed'
+     * 设置面板模式，可选项有`'fixed'`（固定模式）、`'float'`（浮动窗口模式）
+     * 默认值：`'fixed'`
      */
     mode: PropTypes.oneOf(['fixed', 'float']),
 
@@ -84,8 +83,8 @@ AntdDraggablePanel.propTypes = {
     }),
 
     /**
-     * 固定模式下，用于设置面板朝向，可选的有'right'、'left'、'top'、'bottom'
-     * 默认：'right'
+     * 固定模式下，用于设置面板朝向，可选项有`'right'`、`'left'`、`'top'`、`'bottom'`
+     * 默认值：`'right'`
      */
     placement: PropTypes.oneOf(['right', 'left', 'top', 'bottom']),
 
@@ -130,7 +129,7 @@ AntdDraggablePanel.propTypes = {
 
     /**
      * 面板是否可展开
-     * 默认：true
+     * 默认值：`true`
      */
     expandable: PropTypes.bool,
 

@@ -11,20 +11,24 @@ const AntdEditorLayout = (props) => {
     );
 }
 
-// 定义参数或属性
 AntdEditorLayout.propTypes = {
     /**
-     * 组件id
+     * 组件唯一id
      */
     id: PropTypes.string,
 
     /**
-     * css样式
+     * 对当前组件的`key`值进行更新，可实现强制重绘当前组件的效果
+     */
+    key: PropTypes.string,
+
+    /**
+     * 当前组件css样式
      */
     style: PropTypes.object,
 
     /**
-     * css类名
+     * 当前组件css类名，支持[动态css](/advanced-classname)
      */
     className: PropTypes.oneOfType([
         PropTypes.string,
@@ -32,12 +36,7 @@ AntdEditorLayout.propTypes = {
     ]),
 
     /**
-     * 强制刷新用
-     */
-    key: PropTypes.string,
-
-    /**
-     * 配置页首布局内容，设置为false时不显示
+     * 配置页首布局内容，设置为`false`时不显示
      */
     header: PropTypes.oneOfType([
         PropTypes.exact({
@@ -62,7 +61,7 @@ AntdEditorLayout.propTypes = {
              */
             children: PropTypes.node,
             /**
-             * 页首主题类型，可选的有'ghost'、'block'、'pure'
+             * 页首主题类型，可选的有`'ghost'`、`'block'`、`'pure'`
              */
             themeType: PropTypes.oneOf(['ghost', 'block', 'pure'])
         }),
@@ -70,7 +69,7 @@ AntdEditorLayout.propTypes = {
     ]),
 
     /**
-     * 配置页脚布局内容，设置为false时不显示
+     * 配置页脚布局内容，设置为`false`时不显示
      */
     footer: PropTypes.oneOfType([
         PropTypes.exact({
@@ -95,7 +94,7 @@ AntdEditorLayout.propTypes = {
              */
             children: PropTypes.node,
             /**
-             * 页脚主题类型，可选的有'ghost'、'block'、'pure'
+             * 页脚主题类型，可选的有`'ghost'`、`'block'`、`'pure'`
              */
             themeType: PropTypes.oneOf(['ghost', 'block', 'pure'])
         }),
@@ -103,7 +102,7 @@ AntdEditorLayout.propTypes = {
     ]),
 
     /**
-     * 配置左侧面板布局内容，设置为false时不显示
+     * 配置左侧面板布局内容，设置为`false`时不显示
      */
     leftPannel: PropTypes.oneOfType([
         PropTypes.exact({
@@ -112,7 +111,7 @@ AntdEditorLayout.propTypes = {
              */
             children: PropTypes.node,
             /**
-             * 面板方向，可选的有'horizontal'、'vertical'
+             * 面板方向，可选的有`'horizontal'`、`'vertical'`
              */
             direction: PropTypes.oneOf(['horizontal', 'vertical']),
             /**
@@ -140,7 +139,7 @@ AntdEditorLayout.propTypes = {
              */
             className: PropTypes.string,
             /**
-             * 面板主题类型，可选的有'ghost'、'block'、'pure'
+             * 面板主题类型，可选的有`'ghost'`、`'block'`、`'pure'`
              */
             themeType: PropTypes.oneOf(['ghost', 'block', 'pure'])
         }),
@@ -148,7 +147,7 @@ AntdEditorLayout.propTypes = {
     ]),
 
     /**
-     * 配置右侧面板布局内容，设置为false时不显示
+     * 配置右侧面板布局内容，设置为`false`时不显示
      */
     rightPannel: PropTypes.oneOfType([
         PropTypes.exact({
@@ -157,7 +156,7 @@ AntdEditorLayout.propTypes = {
              */
             children: PropTypes.node,
             /**
-             * 面板方向，可选的有'horizontal'、'vertical'
+             * 面板方向，可选的有`'horizontal'`、`'vertical'`
              */
             direction: PropTypes.oneOf(['horizontal', 'vertical']),
             /**
@@ -185,7 +184,7 @@ AntdEditorLayout.propTypes = {
              */
             className: PropTypes.string,
             /**
-             * 面板主题类型，可选的有'ghost'、'block'、'pure'
+             * 面板主题类型，可选的有`'ghost'`、`'block'`、`'pure'`
              */
             themeType: PropTypes.oneOf(['ghost', 'block', 'pure'])
         }),
@@ -193,7 +192,7 @@ AntdEditorLayout.propTypes = {
     ]),
 
     /**
-     * 配置底部面板布局内容，设置为false时不显示
+     * 配置底部面板布局内容，设置为`false`时不显示
      */
     bottomPannel: PropTypes.oneOfType([
         PropTypes.exact({
@@ -202,7 +201,7 @@ AntdEditorLayout.propTypes = {
              */
             children: PropTypes.node,
             /**
-             * 面板方向，可选的有'horizontal'、'vertical'
+             * 面板方向，可选的有`'horizontal'`、`'vertical'`
              */
             direction: PropTypes.oneOf(['horizontal', 'vertical']),
             /**
@@ -230,7 +229,7 @@ AntdEditorLayout.propTypes = {
              */
             className: PropTypes.string,
             /**
-             * 面板主题类型，可选的有'ghost'、'block'、'pure'
+             * 面板主题类型，可选的有`'ghost'`、`'block'`、`'pure'`
              */
             themeType: PropTypes.oneOf(['ghost', 'block', 'pure'])
         }),
@@ -238,7 +237,7 @@ AntdEditorLayout.propTypes = {
     ]),
 
     /**
-     * 配置中心面板布局内容，设置为false时不显示
+     * 配置中心面板布局内容，设置为`false`时不显示
      */
     centerPannel: PropTypes.oneOfType([
         PropTypes.exact({
@@ -247,7 +246,7 @@ AntdEditorLayout.propTypes = {
              */
             children: PropTypes.node,
             /**
-             * 面板方向，可选的有'horizontal'、'vertical'
+             * 面板方向，可选的有`'horizontal'`、`'vertical'`
              */
             direction: PropTypes.oneOf(['horizontal', 'vertical']),
             /**
@@ -275,7 +274,7 @@ AntdEditorLayout.propTypes = {
              */
             className: PropTypes.string,
             /**
-             * 面板主题类型，可选的有'ghost'、'block'、'pure'
+             * 面板主题类型，可选的有`'ghost'`、`'block'`、`'pure'`
              */
             themeType: PropTypes.oneOf(['ghost', 'block', 'pure'])
         }),
@@ -283,12 +282,12 @@ AntdEditorLayout.propTypes = {
     ]),
 
     /**
-     * 布局类型，可选的有'Left&Right'、'LeftFull'、'RightFull'、'Bottom'
+     * 布局类型，可选的有`'Left&Right'`、`'LeftFull'`、`'RightFull'`、`'Bottom'`
      */
     type: PropTypes.oneOf(['Left&Right', 'LeftFull', 'RightFull', 'Bottom']),
 
     /**
-     * 整体主题类型，可选的有'ghost'、'block'、'pure'
+     * 整体主题类型，可选的有`'ghost'`、`'block'`、`'pure'`
      */
     themeType: PropTypes.oneOf(['ghost', 'block', 'pure']),
 

@@ -1,12 +1,18 @@
+// react核心
 import React from 'react';
-import useCss from '../../hooks/useCss';
+// 辅助库
 import { isString, isBoolean } from 'lodash';
+// antd核心
 import { EditorLayout } from '@ant-design/pro-editor';
+// 自定义hooks
+import useCss from '../../hooks/useCss';
+// 自定义上下文
 import { propTypes, defaultProps } from '../../components/proEditor/AntdEditorLayout.react';
 
-// 定义编辑器布局组件AntdEditorLayout，api参数参考https://pro-editor.antdigital.dev/zh-CN/components/layout#apis
+/**
+ * 编辑器布局组件AntdEditorLayout
+ */
 const AntdEditorLayout = (props) => {
-    // 取得必要属性或参数
     let {
         id,
         style,

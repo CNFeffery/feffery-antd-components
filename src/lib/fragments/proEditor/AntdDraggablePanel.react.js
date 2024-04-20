@@ -1,12 +1,18 @@
+// react核心
 import React from 'react';
-import useCss from '../../hooks/useCss';
+// 辅助库
 import { isString } from 'lodash';
+// antd核心
 import { DraggablePanel } from '@ant-design/pro-editor';
+// 自定义hooks
+import useCss from '../../hooks/useCss';
+// 参数类型
 import { propTypes, defaultProps } from '../../components/proEditor/AntdDraggablePanel.react';
 
-// 定义可拖拽面板组件AntdDraggablePanel，api参数参考https://pro-editor.antdigital.dev/zh-CN/components/draggable-panel
+/**
+ * 可拖拽面板组件AntdDraggablePanel
+ */
 const AntdDraggablePanel = (props) => {
-    // 取得必要属性或参数
     let {
         id,
         children,

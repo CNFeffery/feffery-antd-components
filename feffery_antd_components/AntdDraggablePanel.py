@@ -10,13 +10,13 @@ class AntdDraggablePanel(Component):
 Keyword arguments:
 
 - children (a list of or a singular dash component, string or number; optional):
-    内部组件元素.
+    组件型，按钮内嵌元素.
 
 - id (string; optional):
-    组件id.
+    组件唯一id.
 
 - className (string | dict; optional):
-    css类名.
+    当前组件css类名，支持[动态css](/advanced-classname).
 
 - defaultPosition (dict; optional):
     设置当前面板默认位置.
@@ -41,10 +41,10 @@ Keyword arguments:
         设置像素宽度数值，或css宽度字符串.
 
 - expandable (boolean; default True):
-    面板是否可展开  默认：True.
+    面板是否可展开  默认值：`True`.
 
 - key (string; optional):
-    强制刷新用.
+    对当前组件的`key`值进行更新，可实现强制重绘当前组件的效果.
 
 - loading_state (dict; optional)
 
@@ -72,10 +72,11 @@ Keyword arguments:
     面板最小像素宽度.
 
 - mode (a value equal to: 'fixed', 'float'; default 'fixed'):
-    设置面板模式，可选的有'fixed'（固定模式）、'float'（浮动窗口模式）  默认：'fixed'.
+    设置面板模式，可选项有`'fixed'`（固定模式）、`'float'`（浮动窗口模式）  默认值：`'fixed'`.
 
 - placement (a value equal to: 'right', 'left', 'top', 'bottom'; default 'right'):
-    固定模式下，用于设置面板朝向，可选的有'right'、'left'、'top'、'bottom'  默认：'right'.
+    固定模式下，用于设置面板朝向，可选项有`'right'`、`'left'`、`'top'`、`'bottom'`
+    默认值：`'right'`.
 
 - resize (dict; optional):
     配置尺寸可调整性，可独立控制各个方向，也可直接控制所有方向是否可调整尺寸.
@@ -99,13 +100,13 @@ Keyword arguments:
     - topRight (boolean; optional)
 
 - style (dict; optional):
-    css样式."""
+    当前组件css样式."""
     _children_props = []
     _base_nodes = ['children']
     _namespace = 'feffery_antd_components'
     _type = 'AntdDraggablePanel'
     @_explicitize_args
-    def __init__(self, children=None, id=Component.UNDEFINED, style=Component.UNDEFINED, className=Component.UNDEFINED, key=Component.UNDEFINED, mode=Component.UNDEFINED, defaultSize=Component.UNDEFINED, defaultPosition=Component.UNDEFINED, placement=Component.UNDEFINED, minWidth=Component.UNDEFINED, minHeight=Component.UNDEFINED, maxWidth=Component.UNDEFINED, maxHeight=Component.UNDEFINED, resize=Component.UNDEFINED, expandable=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
+    def __init__(self, children=None, id=Component.UNDEFINED, key=Component.UNDEFINED, style=Component.UNDEFINED, className=Component.UNDEFINED, mode=Component.UNDEFINED, defaultSize=Component.UNDEFINED, defaultPosition=Component.UNDEFINED, placement=Component.UNDEFINED, minWidth=Component.UNDEFINED, minHeight=Component.UNDEFINED, maxWidth=Component.UNDEFINED, maxHeight=Component.UNDEFINED, resize=Component.UNDEFINED, expandable=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
         self._prop_names = ['children', 'id', 'className', 'defaultPosition', 'defaultSize', 'expandable', 'key', 'loading_state', 'maxHeight', 'maxWidth', 'minHeight', 'minWidth', 'mode', 'placement', 'resize', 'style']
         self._valid_wildcard_attributes =            []
         self.available_properties = ['children', 'id', 'className', 'defaultPosition', 'defaultSize', 'expandable', 'key', 'loading_state', 'maxHeight', 'maxWidth', 'minHeight', 'minWidth', 'mode', 'placement', 'resize', 'style']

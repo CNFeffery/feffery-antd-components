@@ -30,7 +30,9 @@ components = [
     'AntdMenu',
     'AntdPageHeader',
     'AntdPagination',
-    'AntdSteps'
+    'AntdSteps',
+    'AntdEditorLayout',
+    'AntdDraggablePanel',
 ]
 
 app.layout = html.Div(
@@ -44,18 +46,16 @@ app.layout = html.Div(
                         getattr(fac, component).__doc__,
                         style={
                             'maxHeight': 'calc(100vh - 200px)',
-                            'overflowY': 'auto'
-                        }
-                    )
+                            'overflowY': 'auto',
+                        },
+                    ),
                 }
                 for component in components[::-1]
             ],
-            activeKey=components[-1]
+            activeKey=components[-1],
         )
     ],
-    style={
-        'padding': 30
-    }
+    style={'padding': 30},
 )
 
 if __name__ == '__main__':
