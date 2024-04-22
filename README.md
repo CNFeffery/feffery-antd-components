@@ -26,7 +26,7 @@ pip install feffery-antd-components -U
 ## 2 最新预发布版本安装方式
 
 > [!NOTE]  
-> 最新预发布版本（2024-04-19）：`0.3.0rc10`
+> 最新预发布版本（2024-04-22）：`0.3.0rc11`
 
 ```bash
 pip install feffery-antd-components --pre -U
