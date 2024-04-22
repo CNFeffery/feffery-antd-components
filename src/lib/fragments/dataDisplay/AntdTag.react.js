@@ -1,6 +1,7 @@
 import React from 'react';
 import useCss from '../../hooks/useCss';
 import { isString } from 'lodash';
+import { pickBy } from 'ramda';
 import { Tag } from 'antd';
 import { propTypes, defaultProps } from '../../components/dataDisplay/AntdTag.react';
 
@@ -25,7 +26,10 @@ const AntdTag = (props) => {
     } = props;
 
     return (
-        <Tag id={id}
+        <Tag
+            // 提取具有data-*或aria-*通配格式的属性
+            {...pickBy((_, k) => k.startsWith('data-') || k.startsWith('aria-'), props)}
+            id={id}
             key={key}
             className={
                 isString(className) ?

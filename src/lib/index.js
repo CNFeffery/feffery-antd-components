@@ -72,7 +72,7 @@ import AntdDescriptions from './components/dataDisplay/descriptions/AntdDescript
 import AntdDescriptionItem from './components/dataDisplay/descriptions/AntdDescriptionItem.react';
 import AntdEmpty from './components/dataDisplay/AntdEmpty.react';
 import AntdImage from './components/dataDisplay/AntdImage.react';
-import AntdImageGroup from './fragments/dataDisplay/AntdImageGroup.react';
+import AntdImageGroup from './components/dataDisplay/AntdImageGroup.react';
 import AntdPopover from './components/dataDisplay/AntdPopover.react';
 import AntdQRCode from './components/dataDisplay/AntdQRCode.react';
 import AntdRibbon from './components/dataDisplay/AntdRibbon.react';
@@ -81,7 +81,7 @@ import AntdSpoiler from './components/dataDisplay/AntdSpoiler.react';
 import AntdStatistic from './components/dataDisplay/AntdStatistic.react';
 import AntdCountdown from './components/dataDisplay/AntdCountdown.react';
 import AntdTable from './components/dataDisplay/AntdTable.react';
-import AntdTabs from './fragments/dataDisplay/AntdTabs.react';
+import AntdTabs from './components/dataDisplay/AntdTabs.react';
 import AntdTag from './components/dataDisplay/AntdTag.react';
 import AntdTimeline from './components/dataDisplay/AntdTimeline.react';
 import AntdTooltip from './components/dataDisplay/AntdTooltip.react';

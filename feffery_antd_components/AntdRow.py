@@ -18,8 +18,14 @@ Keyword arguments:
 - align (a value equal to: 'top', 'middle', 'bottom'; default 'top'):
     竖直方向对齐方式，可选项有`'top'`、`'middle'`、`'bottom'`  默认值：`'top'`.
 
+- aria-* (string; optional):
+    `aria-*`格式属性通配.
+
 - className (string | dict; optional):
     当前组件css类名，支持[动态css](/advanced-classname).
+
+- data-* (string; optional):
+    `data-*`格式属性通配.
 
 - gutter (dict; default 0):
     网格间隔，传入数值型时为水平像素间隔，传入数组时分别设置水平、垂直像素间隔，传入字典时可为响应式各断点设置水平像素间隔.
@@ -75,10 +81,10 @@ Keyword arguments:
     _type = 'AntdRow'
     @_explicitize_args
     def __init__(self, children=None, id=Component.UNDEFINED, key=Component.UNDEFINED, style=Component.UNDEFINED, className=Component.UNDEFINED, align=Component.UNDEFINED, gutter=Component.UNDEFINED, justify=Component.UNDEFINED, wrap=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
-        self._prop_names = ['children', 'id', 'align', 'className', 'gutter', 'justify', 'key', 'loading_state', 'style', 'wrap']
-        self._valid_wildcard_attributes =            []
-        self.available_properties = ['children', 'id', 'align', 'className', 'gutter', 'justify', 'key', 'loading_state', 'style', 'wrap']
-        self.available_wildcard_properties =            []
+        self._prop_names = ['children', 'id', 'align', 'aria-*', 'className', 'data-*', 'gutter', 'justify', 'key', 'loading_state', 'style', 'wrap']
+        self._valid_wildcard_attributes =            ['data-', 'aria-']
+        self.available_properties = ['children', 'id', 'align', 'aria-*', 'className', 'data-*', 'gutter', 'justify', 'key', 'loading_state', 'style', 'wrap']
+        self.available_wildcard_properties =            ['data-', 'aria-']
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()
         _locals.update(kwargs)  # For wildcard attrs and excess named props

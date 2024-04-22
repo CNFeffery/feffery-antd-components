@@ -2,6 +2,7 @@ import React from 'react';
 import { Carousel } from 'antd';
 import useCss from '../../hooks/useCss';
 import { isString } from 'lodash';
+import { pickBy } from 'ramda';
 import { propTypes, defaultProps } from '../../components/dataDisplay/AntdCarousel.react';
 
 // 定义走马灯组件AntdCarousel，api参数参考https://ant.design/components/carousel-cn/
@@ -28,6 +29,8 @@ const AntdCarousel = (props) => {
 
     return (
         <Carousel
+            // 提取具有data-*或aria-*通配格式的属性
+            {...pickBy((_, k) => k.startsWith('data-') || k.startsWith('aria-'), props)}
             id={id}
             className={
                 isString(className) ?

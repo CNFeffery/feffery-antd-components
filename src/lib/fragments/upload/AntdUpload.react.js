@@ -4,6 +4,7 @@ import { Upload, message, Button, Modal, ConfigProvider } from 'antd';
 import { UploadOutlined } from '@ant-design/icons';
 import { str2Locale, locale2text } from '../../components/locales.react';
 import { isString, isUndefined } from 'lodash';
+import { pickBy } from 'ramda';
 import { pick } from 'ramda';
 import useCss from '../../hooks/useCss';
 import PropsContext from '../../contexts/PropsContext';
@@ -519,7 +520,10 @@ const AntdUpload = (props) => {
     // 返回定制化的前端组件
     return (
         <ConfigProvider locale={str2Locale.get(locale)}>
-            <div id={id}
+            <div
+                // 提取具有data-*或aria-*通配格式的属性
+                {...pickBy((_, k) => k.startsWith('data-') || k.startsWith('aria-'), props)}
+                id={id}
                 className={
                     isString(className) ?
                         className :

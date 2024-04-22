@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 import { Statistic, Space, Tooltip } from 'antd';
 import useCss from '../../hooks/useCss';
 import { isString, isNumber } from 'lodash';
+import { pickBy } from 'ramda';
 import { QuestionCircleOutlined } from "@ant-design/icons";
-
 
 // 定义统计数值组件AntdStatistic，api参数参考https://ant.design/components/statistic-cn/
 const AntdStatistic = (props) => {
@@ -27,7 +27,10 @@ const AntdStatistic = (props) => {
     } = props;
 
     return (
-        <Statistic id={id}
+        <Statistic
+            // 提取具有data-*或aria-*通配格式的属性
+            {...pickBy((_, k) => k.startsWith('data-') || k.startsWith('aria-'), props)}
+            id={id}
             className={
                 isString(className) ?
                     className :
@@ -103,6 +106,16 @@ AntdStatistic.propTypes = {
 
     // 设置数值的css样式
     valueStyle: PropTypes.object,
+
+    /**
+     * `data-*`格式属性通配
+     */
+    'data-*': PropTypes.string,
+
+    /**
+     * `aria-*`格式属性通配
+     */
+    'aria-*': PropTypes.string,
 
     loading_state: PropTypes.shape({
         /**

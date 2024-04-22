@@ -5,12 +5,15 @@ from dash.development.base_component import Component, _explicitize_args
 
 class AntdEditorLayout(Component):
     """An AntdEditorLayout component.
-
+编辑器布局组件AntdEditorLayout
 
 Keyword arguments:
 
 - id (string; optional):
     组件唯一id.
+
+- aria-* (string; optional):
+    `aria-*`格式属性通配.
 
 - bottomPannel (dict; optional):
     配置底部面板布局内容，设置为`False`时不显示.
@@ -78,6 +81,9 @@ Keyword arguments:
 
 - className (string | dict; optional):
     当前组件css类名，支持[动态css](/advanced-classname).
+
+- data-* (string; optional):
+    `data-*`格式属性通配.
 
 - footer (dict; optional):
     配置页脚布局内容，设置为`False`时不显示.
@@ -219,10 +225,10 @@ Keyword arguments:
     _type = 'AntdEditorLayout'
     @_explicitize_args
     def __init__(self, id=Component.UNDEFINED, key=Component.UNDEFINED, style=Component.UNDEFINED, className=Component.UNDEFINED, header=Component.UNDEFINED, footer=Component.UNDEFINED, leftPannel=Component.UNDEFINED, rightPannel=Component.UNDEFINED, bottomPannel=Component.UNDEFINED, centerPannel=Component.UNDEFINED, type=Component.UNDEFINED, themeType=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
-        self._prop_names = ['id', 'bottomPannel', 'centerPannel', 'className', 'footer', 'header', 'key', 'leftPannel', 'loading_state', 'rightPannel', 'style', 'themeType', 'type']
-        self._valid_wildcard_attributes =            []
-        self.available_properties = ['id', 'bottomPannel', 'centerPannel', 'className', 'footer', 'header', 'key', 'leftPannel', 'loading_state', 'rightPannel', 'style', 'themeType', 'type']
-        self.available_wildcard_properties =            []
+        self._prop_names = ['id', 'aria-*', 'bottomPannel', 'centerPannel', 'className', 'data-*', 'footer', 'header', 'key', 'leftPannel', 'loading_state', 'rightPannel', 'style', 'themeType', 'type']
+        self._valid_wildcard_attributes =            ['data-', 'aria-']
+        self.available_properties = ['id', 'aria-*', 'bottomPannel', 'centerPannel', 'className', 'data-*', 'footer', 'header', 'key', 'leftPannel', 'loading_state', 'rightPannel', 'style', 'themeType', 'type']
+        self.available_wildcard_properties =            ['data-', 'aria-']
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()
         _locals.update(kwargs)  # For wildcard attrs and excess named props

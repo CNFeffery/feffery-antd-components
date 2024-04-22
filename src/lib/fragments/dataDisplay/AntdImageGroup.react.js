@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import useCss from '../../hooks/useCss';
 import { isString } from 'lodash';
+import { pickBy } from 'ramda';
 import { Image, ConfigProvider } from 'antd';
 import { str2Locale } from '../../components/locales.react';
 import PropsContext from '../../contexts/PropsContext';
@@ -28,6 +29,8 @@ const AntdImageGroup = (props) => {
     return (
         <ConfigProvider locale={str2Locale.get(locale)}>
             <Image.PreviewGroup
+                // 提取具有data-*或aria-*通配格式的属性
+                {...pickBy((_, k) => k.startsWith('data-') || k.startsWith('aria-'), props)}
                 id={id}
                 style={style}
                 className={

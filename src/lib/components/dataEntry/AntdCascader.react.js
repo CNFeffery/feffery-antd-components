@@ -213,6 +213,16 @@ AntdCascader.propTypes = {
     // 打包监听batchPropsNames中定义的属性值变化
     batchPropsValues: PropTypes.object,
 
+    /**
+     * `data-*`格式属性通配
+     */
+    'data-*': PropTypes.string,
+
+    /**
+     * `aria-*`格式属性通配
+     */
+    'aria-*': PropTypes.string,
+
     loading_state: PropTypes.shape({
         /**
          * Determines if the component is loading or not

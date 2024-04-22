@@ -33,6 +33,9 @@ components = [
     'AntdSteps',
     'AntdEditorLayout',
     'AntdDraggablePanel',
+    'AntdAffix',
+    'AntdBackTop',
+    'AntdConfigProvider',
 ]
 
 app.layout = html.Div(

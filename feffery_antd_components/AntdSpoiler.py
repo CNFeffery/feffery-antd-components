@@ -13,11 +13,17 @@ Keyword arguments:
 
 - id (string; optional)
 
+- aria-* (string; optional):
+    `aria-*`格式属性通配.
+
 - className (string | dict; optional)
 
 - contentClassName (string | dict; optional)
 
 - contentStyle (dict; optional)
+
+- data-* (string; optional):
+    `data-*`格式属性通配.
 
 - hideLabel (a list of or a singular dash component, string or number; optional)
 
@@ -55,10 +61,10 @@ Keyword arguments:
     _type = 'AntdSpoiler'
     @_explicitize_args
     def __init__(self, children=None, id=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, contentClassName=Component.UNDEFINED, contentStyle=Component.UNDEFINED, key=Component.UNDEFINED, locale=Component.UNDEFINED, hideLabel=Component.UNDEFINED, showLabel=Component.UNDEFINED, labelPosition=Component.UNDEFINED, open=Component.UNDEFINED, maxHeight=Component.UNDEFINED, transitionDuration=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
-        self._prop_names = ['children', 'id', 'className', 'contentClassName', 'contentStyle', 'hideLabel', 'key', 'labelPosition', 'loading_state', 'locale', 'maxHeight', 'open', 'showLabel', 'style', 'transitionDuration']
-        self._valid_wildcard_attributes =            []
-        self.available_properties = ['children', 'id', 'className', 'contentClassName', 'contentStyle', 'hideLabel', 'key', 'labelPosition', 'loading_state', 'locale', 'maxHeight', 'open', 'showLabel', 'style', 'transitionDuration']
-        self.available_wildcard_properties =            []
+        self._prop_names = ['children', 'id', 'aria-*', 'className', 'contentClassName', 'contentStyle', 'data-*', 'hideLabel', 'key', 'labelPosition', 'loading_state', 'locale', 'maxHeight', 'open', 'showLabel', 'style', 'transitionDuration']
+        self._valid_wildcard_attributes =            ['data-', 'aria-']
+        self.available_properties = ['children', 'id', 'aria-*', 'className', 'contentClassName', 'contentStyle', 'data-*', 'hideLabel', 'key', 'labelPosition', 'loading_state', 'locale', 'maxHeight', 'open', 'showLabel', 'style', 'transitionDuration']
+        self.available_wildcard_properties =            ['data-', 'aria-']
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()
         _locals.update(kwargs)  # For wildcard attrs and excess named props

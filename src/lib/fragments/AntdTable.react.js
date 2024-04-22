@@ -42,6 +42,7 @@ import {
     DownOutlined
 } from '@ant-design/icons';
 import { isNumber, isEqual, isString, isBoolean, omitBy } from 'lodash';
+import { pickBy } from 'ramda';
 import { str2Locale, locale2text } from '../components/locales.react';
 import { propTypes, defaultProps } from '../components/dataDisplay/AntdTable.react';
 
@@ -1898,6 +1899,8 @@ class AntdTable extends Component {
                 renderEmpty={emptyContent ? () => emptyContent : undefined}
             >
                 <Table
+                    // 提取具有data-*或aria-*通配格式的属性
+                    {...pickBy((_, k) => k.startsWith('data-') || k.startsWith('aria-'), this.props)}
                     id={id}
                     className={className}
                     style={style}

@@ -98,6 +98,16 @@ AntdFormItem.propTypes = {
     // 设置是否隐藏字段，隐藏后仍然会收集和校验字段，默认为false
     hidden: PropTypes.bool,
 
+    /**
+     * `data-*`格式属性通配
+     */
+    'data-*': PropTypes.string,
+
+    /**
+     * `aria-*`格式属性通配
+     */
+    'aria-*': PropTypes.string,
+
     loading_state: PropTypes.shape({
         /**
          * Determines if the component is loading or not

@@ -1,12 +1,18 @@
+// react核心
 import React from 'react';
 import PropTypes from 'prop-types';
-import {
-    defaultTheme,   // 默认主题
-    darkTheme,      // 暗色主题
-} from '@ant-design/compatible';
+// antd核心
 import { ConfigProvider, App, theme } from 'antd';
-import { isUndefined, omitBy } from 'lodash';
+import {
+    // 默认主题
+    defaultTheme,
+    // 暗色主题
+    darkTheme,
+} from '@ant-design/compatible';
 import { StyleProvider, legacyLogicalPropertiesTransformer } from '@ant-design/cssinjs'
+// 辅助库
+import { isUndefined, omitBy } from 'lodash';
+// 自定义上下文
 import PropsContext from '../../contexts/PropsContext';
 
 const str2algorithm = new Map(
@@ -24,9 +30,10 @@ const str2oldTheme = new Map(
     ]
 )
 
-// 定义参数配置组件AntdConfigProvider，api参数参考https://ant.design/components/tag-cn/
+/**
+ * 参数配置组件AntdConfigProvider
+ */
 const AntdConfigProvider = (props) => {
-    // 取得必要属性或参数
     let {
         id,
         children,
@@ -145,19 +152,25 @@ const AntdConfigProvider = (props) => {
     );
 }
 
-// 定义参数或属性
 AntdConfigProvider.propTypes = {
-    // 组件id
+    /**
+     * 组件唯一id
+     */
     id: PropTypes.string,
 
-    children: PropTypes.node,
-
-    // 辅助刷新用唯一标识key值
+    /**
+     * 对当前组件的`key`值进行更新，可实现强制重绘当前组件的效果
+     */
     key: PropTypes.string,
 
     /**
-     * 为内部组件设置快捷主题算法，支持多种主题组合，可选的主题有'default'、'dark'、'compact'
-     * 默认：'default'
+     * 组件型，内嵌元素
+     */
+    children: PropTypes.node,
+
+    /**
+     * 为内部组件设置快捷主题算法，支持多种主题组合，可选项有`'default'`、`'dark'`、`'compact'`
+     * 默认值：`'default'`
      */
     algorithm: PropTypes.oneOfType([
         PropTypes.oneOf(['default', 'dark', 'compact']),
@@ -165,56 +178,63 @@ AntdConfigProvider.propTypes = {
     ]),
 
     /**
-     * 设置是否强制使用0.3.x版本之前的主题样式，可用的有'default'、'dark'
+     * 是否强制使用`0.3.x`版本之前的主题样式，可选项有`'default'`、`'dark'`
      */
     useOldTheme: PropTypes.oneOf(['default', 'dark']),
 
-    // 自定义主色
+    /**
+     * 主题色
+     */
     primaryColor: PropTypes.string,
 
-    // 强制设置是否针对后台元素中的所有组件设置禁用状态
+    /**
+     * 是否针后代元素中的所有组件强制设置禁用状态
+     */
     componentDisabled: PropTypes.bool,
 
-    // 强制设置后代元素的尺寸规格，可选的有'small'、'middle'、'large'
-    // 其中'default'兼容'middle'
+    /**
+     * 强制设置后代元素的尺寸规格，可选项有`'small'`、`'middle'`、`'large'`，其中`'default'`兼容`'middle'`
+     */
     componentSize: PropTypes.oneOf(['small', 'middle', 'large']),
 
-    // 强制设置后代元素的语言，可选的有'zh-cn'、'en-us'
+    /**
+     * 强制设置后代元素的语言，可选项有`'zh-cn'`、`'en-us'`
+     */
     locale: PropTypes.oneOf(['zh-cn', 'en-us']),
 
     /**
-     * 设置是否禁用内部组件水波纹动效
-     * 默认：false
+     * 是否禁用内部组件水波纹动效
+     * 默认值：`false`
      */
     wavesDisabled: PropTypes.bool,
 
     /**
-     * 配置design token相关参数
+     * 配置`design token`相关参数
      */
     token: PropTypes.shape({
         /**
-         * 设置是否开启动画效果
-         * 默认：true
+         * 是否开启动画效果
+         * 默认值：`true`
          */
         motion: PropTypes.bool
     }),
 
     /**
-     * 配置针对具体组件的design token相关参数
+     * 配置针对具体组件的`design token`相关参数
      */
     componentsToken: PropTypes.objectOf(
         PropTypes.shape({
             /**
-             * 设置是否开启派生样式自动推导运算
-             * 默认：false
+             * 是否开启派生样式自动推导运算
+             * 默认值：`false`
              */
             algorithm: PropTypes.bool
         })
     ),
 
     /**
-     * 是否开启针对88及以下版本Chromium内核浏览器的向下兼容模式
-     * 默认：false
+     * 是否开启针对`88`及以下版本`Chromium`内核浏览器的向下兼容模式
+     * 默认值：`false`
      */
     compatibilityMode: PropTypes.bool,
 

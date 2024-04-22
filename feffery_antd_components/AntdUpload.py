@@ -15,6 +15,9 @@ Keyword arguments:
 
 - apiUrlExtraParams (dict; optional)
 
+- aria-* (string; optional):
+    `aria-*`格式属性通配.
+
 - buttonContent (a list of or a singular dash component, string or number; optional):
     自定义下载按钮内容.
 
@@ -40,6 +43,9 @@ Keyword arguments:
 - className (string | dict; optional)
 
 - confirmBeforeDelete (boolean; default False)
+
+- data-* (string; optional):
+    `data-*`格式属性通配.
 
 - defaultFileList (list of dicts; optional)
 
@@ -202,10 +208,10 @@ Keyword arguments:
     _type = 'AntdUpload'
     @_explicitize_args
     def __init__(self, id=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, key=Component.UNDEFINED, name=Component.UNDEFINED, locale=Component.UNDEFINED, apiUrl=Component.UNDEFINED, apiUrlExtraParams=Component.UNDEFINED, headers=Component.UNDEFINED, withCredentials=Component.UNDEFINED, withOriginFileObj=Component.UNDEFINED, downloadUrl=Component.UNDEFINED, downloadUrlExtraParams=Component.UNDEFINED, downloadUrlFromBackend=Component.UNDEFINED, fileListMaxLength=Component.UNDEFINED, fileTypes=Component.UNDEFINED, buttonContent=Component.UNDEFINED, buttonIcon=Component.UNDEFINED, buttonProps=Component.UNDEFINED, uploadId=Component.UNDEFINED, fileMaxSize=Component.UNDEFINED, multiple=Component.UNDEFINED, directory=Component.UNDEFINED, failedTooltipInfo=Component.UNDEFINED, showUploadList=Component.UNDEFINED, confirmBeforeDelete=Component.UNDEFINED, showPercent=Component.UNDEFINED, progressProps=Component.UNDEFINED, showSuccessMessage=Component.UNDEFINED, showErrorMessage=Component.UNDEFINED, lastUploadTaskRecord=Component.UNDEFINED, listUploadTaskRecord=Component.UNDEFINED, defaultFileList=Component.UNDEFINED, disabled=Component.UNDEFINED, status=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
-        self._prop_names = ['id', 'apiUrl', 'apiUrlExtraParams', 'buttonContent', 'buttonIcon', 'buttonProps', 'className', 'confirmBeforeDelete', 'defaultFileList', 'directory', 'disabled', 'downloadUrl', 'downloadUrlExtraParams', 'downloadUrlFromBackend', 'failedTooltipInfo', 'fileListMaxLength', 'fileMaxSize', 'fileTypes', 'headers', 'key', 'lastUploadTaskRecord', 'listUploadTaskRecord', 'loading_state', 'locale', 'multiple', 'name', 'progressProps', 'showErrorMessage', 'showPercent', 'showSuccessMessage', 'showUploadList', 'status', 'style', 'uploadId', 'withCredentials', 'withOriginFileObj']
-        self._valid_wildcard_attributes =            []
-        self.available_properties = ['id', 'apiUrl', 'apiUrlExtraParams', 'buttonContent', 'buttonIcon', 'buttonProps', 'className', 'confirmBeforeDelete', 'defaultFileList', 'directory', 'disabled', 'downloadUrl', 'downloadUrlExtraParams', 'downloadUrlFromBackend', 'failedTooltipInfo', 'fileListMaxLength', 'fileMaxSize', 'fileTypes', 'headers', 'key', 'lastUploadTaskRecord', 'listUploadTaskRecord', 'loading_state', 'locale', 'multiple', 'name', 'progressProps', 'showErrorMessage', 'showPercent', 'showSuccessMessage', 'showUploadList', 'status', 'style', 'uploadId', 'withCredentials', 'withOriginFileObj']
-        self.available_wildcard_properties =            []
+        self._prop_names = ['id', 'apiUrl', 'apiUrlExtraParams', 'aria-*', 'buttonContent', 'buttonIcon', 'buttonProps', 'className', 'confirmBeforeDelete', 'data-*', 'defaultFileList', 'directory', 'disabled', 'downloadUrl', 'downloadUrlExtraParams', 'downloadUrlFromBackend', 'failedTooltipInfo', 'fileListMaxLength', 'fileMaxSize', 'fileTypes', 'headers', 'key', 'lastUploadTaskRecord', 'listUploadTaskRecord', 'loading_state', 'locale', 'multiple', 'name', 'progressProps', 'showErrorMessage', 'showPercent', 'showSuccessMessage', 'showUploadList', 'status', 'style', 'uploadId', 'withCredentials', 'withOriginFileObj']
+        self._valid_wildcard_attributes =            ['data-', 'aria-']
+        self.available_properties = ['id', 'apiUrl', 'apiUrlExtraParams', 'aria-*', 'buttonContent', 'buttonIcon', 'buttonProps', 'className', 'confirmBeforeDelete', 'data-*', 'defaultFileList', 'directory', 'disabled', 'downloadUrl', 'downloadUrlExtraParams', 'downloadUrlFromBackend', 'failedTooltipInfo', 'fileListMaxLength', 'fileMaxSize', 'fileTypes', 'headers', 'key', 'lastUploadTaskRecord', 'listUploadTaskRecord', 'loading_state', 'locale', 'multiple', 'name', 'progressProps', 'showErrorMessage', 'showPercent', 'showSuccessMessage', 'showUploadList', 'status', 'style', 'uploadId', 'withCredentials', 'withOriginFileObj']
+        self.available_wildcard_properties =            ['data-', 'aria-']
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()
         _locals.update(kwargs)  # For wildcard attrs and excess named props

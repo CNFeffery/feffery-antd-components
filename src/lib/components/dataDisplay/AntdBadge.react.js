@@ -96,6 +96,16 @@ AntdBadge.propTypes = {
     // 记录徽标被点击次数，默认为0
     nClicks: PropTypes.number,
 
+    /**
+     * `data-*`格式属性通配
+     */
+    'data-*': PropTypes.string,
+
+    /**
+     * `aria-*`格式属性通配
+     */
+    'aria-*': PropTypes.string,
+
     loading_state: PropTypes.shape({
         /**
          * Determines if the component is loading or not

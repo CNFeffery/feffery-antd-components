@@ -3,6 +3,9 @@ import PropTypes from 'prop-types';
 
 const LazyAntdDraggablePanel = React.lazy(() => import(/* webpackChunkName: "pro_editor" */ '../../fragments/proEditor/AntdDraggablePanel.react'));
 
+/**
+ * 可拖拽面板组件AntdDraggablePanel
+ */
 const AntdDraggablePanel = (props) => {
     return (
         <Suspense fallback={null}>
@@ -23,7 +26,7 @@ AntdDraggablePanel.propTypes = {
     key: PropTypes.string,
 
     /**
-     * 组件型，按钮内嵌元素
+     * 组件型，内嵌元素
      */
     children: PropTypes.node,
 
@@ -132,6 +135,16 @@ AntdDraggablePanel.propTypes = {
      * 默认值：`true`
      */
     expandable: PropTypes.bool,
+
+    /**
+     * `data-*`格式属性通配
+     */
+    'data-*': PropTypes.string,
+
+    /**
+     * `aria-*`格式属性通配
+     */
+    'aria-*': PropTypes.string,
 
     loading_state: PropTypes.shape({
         /**

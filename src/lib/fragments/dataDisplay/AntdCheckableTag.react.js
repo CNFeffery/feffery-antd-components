@@ -1,6 +1,7 @@
 import React from 'react';
 import useCss from '../../hooks/useCss';
 import { isString } from 'lodash';
+import { pickBy } from 'ramda';
 import { Tag } from 'antd';
 import { propTypes, defaultProps } from '../../components/dataDisplay/AntdCheckableTag.react';
 
@@ -23,7 +24,10 @@ const AntdCheckableTag = (props) => {
     } = props;
 
     return (
-        <CheckableTag id={id}
+        <CheckableTag
+            // 提取具有data-*或aria-*通配格式的属性
+            {...pickBy((_, k) => k.startsWith('data-') || k.startsWith('aria-'), props)}
+            id={id}
             key={key}
             className={
                 isString(className) ?

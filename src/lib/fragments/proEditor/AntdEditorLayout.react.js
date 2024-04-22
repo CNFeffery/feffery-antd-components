@@ -2,6 +2,7 @@
 import React from 'react';
 // 辅助库
 import { isString, isBoolean } from 'lodash';
+import { pickBy } from 'ramda';
 // antd核心
 import { EditorLayout } from '@ant-design/pro-editor';
 // 自定义hooks
@@ -30,7 +31,10 @@ const AntdEditorLayout = (props) => {
     } = props;
 
     return (
-        <EditorLayout id={id}
+        <EditorLayout
+            // 提取具有data-*或aria-*通配格式的属性
+            {...pickBy((_, k) => k.startsWith('data-') || k.startsWith('aria-'), props)}
+            id={id}
             className={
                 isString(className) ?
                     className :

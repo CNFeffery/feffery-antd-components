@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { Space } from 'antd';
 // 辅助库
 import { isString } from 'lodash';
+import { pickBy } from 'ramda';
 import { parseChildrenToArray } from '../utils';
 // 自定义hooks
 import useCss from '../../hooks/useCss';
@@ -29,7 +30,10 @@ const AntdCompact = (props) => {
     children = parseChildrenToArray(children)
 
     return (
-        <Compact id={id}
+        <Compact
+            // 提取具有data-*或aria-*通配格式的属性
+            {...pickBy((_, k) => k.startsWith('data-') || k.startsWith('aria-'), props)}
+            id={id}
             className={
                 isString(className) ?
                     className :
@@ -87,6 +91,16 @@ AntdCompact.propTypes = {
      * 默认值：`false`
      */
     block: PropTypes.bool,
+
+    /**
+     * `data-*`格式属性通配
+     */
+    'data-*': PropTypes.string,
+
+    /**
+     * `aria-*`格式属性通配
+     */
+    'aria-*': PropTypes.string,
 
     loading_state: PropTypes.shape({
         /**

@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 import { Result } from 'antd';
 import { LoadingOutlined } from '@ant-design/icons';
 import { isString } from 'lodash';
+import { pickBy } from 'ramda';
 import useCss from '../../hooks/useCss';
-
 
 // 定义结果组件AntdResult，api参数参考https://ant.design/components/result-cn/
 const AntdResult = (props) => {
@@ -23,7 +23,10 @@ const AntdResult = (props) => {
     } = props;
 
     return (
-        <Result id={id}
+        <Result
+            // 提取具有data-*或aria-*通配格式的属性
+            {...pickBy((_, k) => k.startsWith('data-') || k.startsWith('aria-'), props)}
+            id={id}
             className={
                 isString(className) ?
                     className :
@@ -77,6 +80,16 @@ AntdResult.propTypes = {
 
     // 自定义图标元素
     icon: PropTypes.node,
+
+    /**
+     * `data-*`格式属性通配
+     */
+    'data-*': PropTypes.string,
+
+    /**
+     * `aria-*`格式属性通配
+     */
+    'aria-*': PropTypes.string,
 
     loading_state: PropTypes.shape({
         /**

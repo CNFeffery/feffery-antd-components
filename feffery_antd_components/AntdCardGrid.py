@@ -15,7 +15,13 @@ Keyword arguments:
 
 - id (string; optional)
 
+- aria-* (string; optional):
+    `aria-*`格式属性通配.
+
 - className (string | dict; optional)
+
+- data-* (string; optional):
+    `data-*`格式属性通配.
 
 - hoverable (boolean; default True)
 
@@ -44,10 +50,10 @@ Keyword arguments:
     _type = 'AntdCardGrid'
     @_explicitize_args
     def __init__(self, children=None, id=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, key=Component.UNDEFINED, hoverable=Component.UNDEFINED, nClicks=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
-        self._prop_names = ['children', 'id', 'className', 'hoverable', 'key', 'loading_state', 'nClicks', 'style']
-        self._valid_wildcard_attributes =            []
-        self.available_properties = ['children', 'id', 'className', 'hoverable', 'key', 'loading_state', 'nClicks', 'style']
-        self.available_wildcard_properties =            []
+        self._prop_names = ['children', 'id', 'aria-*', 'className', 'data-*', 'hoverable', 'key', 'loading_state', 'nClicks', 'style']
+        self._valid_wildcard_attributes =            ['data-', 'aria-']
+        self.available_properties = ['children', 'id', 'aria-*', 'className', 'data-*', 'hoverable', 'key', 'loading_state', 'nClicks', 'style']
+        self.available_wildcard_properties =            ['data-', 'aria-']
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()
         _locals.update(kwargs)  # For wildcard attrs and excess named props

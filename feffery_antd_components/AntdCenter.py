@@ -15,8 +15,14 @@ Keyword arguments:
 - id (string; optional):
     组件唯一id.
 
+- aria-* (string; optional):
+    `aria-*`格式属性通配.
+
 - className (string | dict; optional):
     当前组件css类名，支持[动态css](/advanced-classname).
+
+- data-* (string; optional):
+    `data-*`格式属性通配.
 
 - inline (boolean; default False):
     是否渲染为行内元素  默认值：`False`.
@@ -45,10 +51,10 @@ Keyword arguments:
     _type = 'AntdCenter'
     @_explicitize_args
     def __init__(self, children=None, id=Component.UNDEFINED, key=Component.UNDEFINED, style=Component.UNDEFINED, className=Component.UNDEFINED, inline=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
-        self._prop_names = ['children', 'id', 'className', 'inline', 'key', 'loading_state', 'style']
-        self._valid_wildcard_attributes =            []
-        self.available_properties = ['children', 'id', 'className', 'inline', 'key', 'loading_state', 'style']
-        self.available_wildcard_properties =            []
+        self._prop_names = ['children', 'id', 'aria-*', 'className', 'data-*', 'inline', 'key', 'loading_state', 'style']
+        self._valid_wildcard_attributes =            ['data-', 'aria-']
+        self.available_properties = ['children', 'id', 'aria-*', 'className', 'data-*', 'inline', 'key', 'loading_state', 'style']
+        self.available_wildcard_properties =            ['data-', 'aria-']
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()
         _locals.update(kwargs)  # For wildcard attrs and excess named props

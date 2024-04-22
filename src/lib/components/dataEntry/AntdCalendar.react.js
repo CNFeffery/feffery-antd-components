@@ -49,6 +49,16 @@ AntdCalendar.propTypes = {
     // 设置面板默认日期
     defaultValue: PropTypes.string,
 
+    /**
+     * `data-*`格式属性通配
+     */
+    'data-*': PropTypes.string,
+
+    /**
+     * `aria-*`格式属性通配
+     */
+    'aria-*': PropTypes.string,
+
     loading_state: PropTypes.shape({
         /**
          * Determines if the component is loading or not

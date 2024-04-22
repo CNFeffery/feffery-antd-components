@@ -3,6 +3,7 @@ import { Tree, Tooltip, Dropdown, Rate } from 'antd';
 import AntdIcon from '../../components/general/AntdIcon.react';
 import Highlighter from 'react-highlight-words';
 import { omitBy, isUndefined, isString, isObject, isArray, cloneDeep } from 'lodash';
+import { pickBy } from 'ramda';
 import { flatToTree } from '../../components/utils';
 import useCss from '../../hooks/useCss';
 import { propTypes, defaultProps } from '../../components/dataDisplay/AntdTree.react';
@@ -307,6 +308,8 @@ const AntdTree = (props) => {
 
     return (
         <Tree
+            // 提取具有data-*或aria-*通配格式的属性
+            {...pickBy((_, k) => k.startsWith('data-') || k.startsWith('aria-'), props)}
             id={id}
             className={
                 isString(className) ?

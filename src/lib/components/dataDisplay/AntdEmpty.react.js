@@ -50,6 +50,16 @@ AntdEmpty.propTypes = {
     // 设置自定义图片的css样式
     imageStyle: PropTypes.object,
 
+    /**
+     * `data-*`格式属性通配
+     */
+    'data-*': PropTypes.string,
+
+    /**
+     * `aria-*`格式属性通配
+     */
+    'aria-*': PropTypes.string,
+
     loading_state: PropTypes.shape({
         /**
          * Determines if the component is loading or not

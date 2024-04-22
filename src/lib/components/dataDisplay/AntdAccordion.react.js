@@ -91,6 +91,16 @@ AntdAccordion.propTypes = {
     // 设置是否开启透明无边框模式，默认为false
     ghost: PropTypes.bool,
 
+    /**
+     * `data-*`格式属性通配
+     */
+    'data-*': PropTypes.string,
+
+    /**
+     * `aria-*`格式属性通配
+     */
+    'aria-*': PropTypes.string,
+
     loading_state: PropTypes.shape({
         /**
          * Determines if the component is loading or not

@@ -13,9 +13,15 @@ Keyword arguments:
 
 - alt (string; optional)
 
+- aria-* (string; optional):
+    `aria-*`格式属性通配.
+
 - className (string | dict; optional)
 
 - crossOrigin (a value equal to: 'anonymous', 'use-credentials', ''; optional)
+
+- data-* (string; optional):
+    `data-*`格式属性通配.
 
 - draggable (boolean | a value equal to: 'true', 'false'; optional)
 
@@ -74,10 +80,10 @@ Keyword arguments:
     _type = 'AntdAvatar'
     @_explicitize_args
     def __init__(self, id=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, key=Component.UNDEFINED, mode=Component.UNDEFINED, gap=Component.UNDEFINED, text=Component.UNDEFINED, icon=Component.UNDEFINED, iconRenderer=Component.UNDEFINED, alt=Component.UNDEFINED, src=Component.UNDEFINED, srcSet=Component.UNDEFINED, draggable=Component.UNDEFINED, crossOrigin=Component.UNDEFINED, size=Component.UNDEFINED, shape=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
-        self._prop_names = ['id', 'alt', 'className', 'crossOrigin', 'draggable', 'gap', 'icon', 'iconRenderer', 'key', 'loading_state', 'mode', 'shape', 'size', 'src', 'srcSet', 'style', 'text']
-        self._valid_wildcard_attributes =            []
-        self.available_properties = ['id', 'alt', 'className', 'crossOrigin', 'draggable', 'gap', 'icon', 'iconRenderer', 'key', 'loading_state', 'mode', 'shape', 'size', 'src', 'srcSet', 'style', 'text']
-        self.available_wildcard_properties =            []
+        self._prop_names = ['id', 'alt', 'aria-*', 'className', 'crossOrigin', 'data-*', 'draggable', 'gap', 'icon', 'iconRenderer', 'key', 'loading_state', 'mode', 'shape', 'size', 'src', 'srcSet', 'style', 'text']
+        self._valid_wildcard_attributes =            ['data-', 'aria-']
+        self.available_properties = ['id', 'alt', 'aria-*', 'className', 'crossOrigin', 'data-*', 'draggable', 'gap', 'icon', 'iconRenderer', 'key', 'loading_state', 'mode', 'shape', 'size', 'src', 'srcSet', 'style', 'text']
+        self.available_wildcard_properties =            ['data-', 'aria-']
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()
         _locals.update(kwargs)  # For wildcard attrs and excess named props

@@ -2,6 +2,7 @@ import React, { useEffect, useContext } from 'react';
 import { CheckCard } from '@ant-design/pro-components';
 import { parseChildrenToArray } from '../../../components/utils';
 import { isString, isUndefined } from 'lodash';
+import { pickBy } from 'ramda';
 import useCss from '../../../hooks/useCss';
 import PropsContext from '../../../contexts/PropsContext';
 import FormContext from '../../../contexts/FormContext';
@@ -69,7 +70,10 @@ const AntdCheckCardGroup = (props) => {
     children = parseChildrenToArray(children)
 
     return (
-        <CheckCard.Group id={id}
+        <CheckCard.Group
+            // 提取具有data-*或aria-*通配格式的属性
+            {...pickBy((_, k) => k.startsWith('data-') || k.startsWith('aria-'), props)}
+            id={id}
             className={
                 isString(className) ?
                     className :

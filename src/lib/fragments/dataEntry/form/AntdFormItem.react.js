@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import { Form } from 'antd';
 import { isString } from 'lodash';
+import { pickBy } from 'ramda';
 import useCss from '../../../hooks/useCss';
 import FormContext from '../../../contexts/FormContext';
 import useFormStore from '../../../store/formStore';
@@ -38,7 +39,10 @@ const AntdFormItem = (props) => {
     const _help = useFormStore((state) => state.helps?.[formId]?.[label]);
 
     return (
-        <Item id={id}
+        <Item
+            // 提取具有data-*或aria-*通配格式的属性
+            {...pickBy((_, k) => k.startsWith('data-') || k.startsWith('aria-'), props)}
+            id={id}
             className={
                 isString(className) ?
                     className :

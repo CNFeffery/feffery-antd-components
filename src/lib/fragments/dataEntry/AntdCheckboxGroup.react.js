@@ -1,6 +1,7 @@
 import React, { useContext, useEffect } from 'react';
 import { Checkbox } from 'antd';
 import { isString, isNumber, isUndefined } from 'lodash';
+import { pickBy } from 'ramda';
 import useCss from '../../hooks/useCss';
 import PropsContext from '../../contexts/PropsContext';
 import FormContext from '../../contexts/FormContext';
@@ -76,6 +77,8 @@ const AntdCheckboxGroup = (props) => {
     // 返回定制化的前端组件
     return (
         <Checkbox.Group
+            // 提取具有data-*或aria-*通配格式的属性
+            {...pickBy((_, k) => k.startsWith('data-') || k.startsWith('aria-'), props)}
             id={id}
             className={
                 isString(className) ?

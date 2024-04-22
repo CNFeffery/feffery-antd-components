@@ -11,7 +11,13 @@ Keyword arguments:
 
 - id (string; optional)
 
+- aria-* (string; optional):
+    `aria-*`格式属性通配.
+
 - className (string | dict; optional)
+
+- data-* (string; optional):
+    `data-*`格式属性通配.
 
 - items (list of dicts; required)
 
@@ -57,10 +63,10 @@ Keyword arguments:
     _type = 'AntdTimeline'
     @_explicitize_args
     def __init__(self, id=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, key=Component.UNDEFINED, items=Component.REQUIRED, mode=Component.UNDEFINED, pending=Component.UNDEFINED, pendingDot=Component.UNDEFINED, reverse=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
-        self._prop_names = ['id', 'className', 'items', 'key', 'loading_state', 'mode', 'pending', 'pendingDot', 'reverse', 'style']
-        self._valid_wildcard_attributes =            []
-        self.available_properties = ['id', 'className', 'items', 'key', 'loading_state', 'mode', 'pending', 'pendingDot', 'reverse', 'style']
-        self.available_wildcard_properties =            []
+        self._prop_names = ['id', 'aria-*', 'className', 'data-*', 'items', 'key', 'loading_state', 'mode', 'pending', 'pendingDot', 'reverse', 'style']
+        self._valid_wildcard_attributes =            ['data-', 'aria-']
+        self.available_properties = ['id', 'aria-*', 'className', 'data-*', 'items', 'key', 'loading_state', 'mode', 'pending', 'pendingDot', 'reverse', 'style']
+        self.available_wildcard_properties =            ['data-', 'aria-']
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()
         _locals.update(kwargs)  # For wildcard attrs and excess named props

@@ -3,6 +3,7 @@ import { Flex } from 'antd';
 import PropTypes from 'prop-types';
 // 辅助库
 import { isString } from 'lodash';
+import { pickBy } from 'ramda';
 import { parseChildrenToArray } from '../utils';
 // 自定义hooks
 import useCss from '../../hooks/useCss';
@@ -30,7 +31,10 @@ const AntdFlex = (props) => {
     children = parseChildrenToArray(children)
 
     return (
-        <Flex id={id}
+        <Flex
+            // 提取具有data-*或aria-*通配格式的属性
+            {...pickBy((_, k) => k.startsWith('data-') || k.startsWith('aria-'), props)}
+            id={id}
             className={
                 isString(className) ?
                     className :
@@ -119,6 +123,16 @@ AntdFlex.propTypes = {
         PropTypes.number,
         PropTypes.oneOf(['small', 'middle', 'large'])
     ]),
+
+    /**
+     * `data-*`格式属性通配
+     */
+    'data-*': PropTypes.string,
+
+    /**
+     * `aria-*`格式属性通配
+     */
+    'aria-*': PropTypes.string,
 
     loading_state: PropTypes.shape({
         /**

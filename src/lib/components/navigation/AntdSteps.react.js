@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { Steps } from 'antd';
 // 辅助库
 import { isString } from 'lodash';
+import { pickBy } from 'ramda';
 // 自定义hooks
 import useCss from '../../hooks/useCss';
 
@@ -38,6 +39,8 @@ const AntdSteps = (props) => {
 
     return (
         <Steps
+            // 提取具有data-*或aria-*通配格式的属性
+            {...pickBy((_, k) => k.startsWith('data-') || k.startsWith('aria-'), props)}
             id={id}
             className={
                 isString(className) ?
@@ -171,6 +174,16 @@ AntdSteps.propTypes = {
      * 默认值：`true`
      */
     responsive: PropTypes.bool,
+
+    /**
+     * `data-*`格式属性通配
+     */
+    'data-*': PropTypes.string,
+
+    /**
+     * `aria-*`格式属性通配
+     */
+    'aria-*': PropTypes.string,
 
     loading_state: PropTypes.shape({
         /**

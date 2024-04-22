@@ -11,7 +11,13 @@ Keyword arguments:
 
 - id (string; optional)
 
+- aria-* (string; optional):
+    `aria-*`格式属性通配.
+
 - className (string | dict; optional)
+
+- data-* (string; optional):
+    `data-*`格式属性通配.
 
 - defaultValue (string; optional)
 
@@ -67,10 +73,10 @@ Keyword arguments:
     _type = 'AntdCalendar'
     @_explicitize_args
     def __init__(self, id=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, key=Component.UNDEFINED, name=Component.UNDEFINED, locale=Component.UNDEFINED, format=Component.UNDEFINED, size=Component.UNDEFINED, value=Component.UNDEFINED, defaultValue=Component.UNDEFINED, loading_state=Component.UNDEFINED, persistence=Component.UNDEFINED, persisted_props=Component.UNDEFINED, persistence_type=Component.UNDEFINED, **kwargs):
-        self._prop_names = ['id', 'className', 'defaultValue', 'format', 'key', 'loading_state', 'locale', 'name', 'persisted_props', 'persistence', 'persistence_type', 'size', 'style', 'value']
-        self._valid_wildcard_attributes =            []
-        self.available_properties = ['id', 'className', 'defaultValue', 'format', 'key', 'loading_state', 'locale', 'name', 'persisted_props', 'persistence', 'persistence_type', 'size', 'style', 'value']
-        self.available_wildcard_properties =            []
+        self._prop_names = ['id', 'aria-*', 'className', 'data-*', 'defaultValue', 'format', 'key', 'loading_state', 'locale', 'name', 'persisted_props', 'persistence', 'persistence_type', 'size', 'style', 'value']
+        self._valid_wildcard_attributes =            ['data-', 'aria-']
+        self.available_properties = ['id', 'aria-*', 'className', 'data-*', 'defaultValue', 'format', 'key', 'loading_state', 'locale', 'name', 'persisted_props', 'persistence', 'persistence_type', 'size', 'style', 'value']
+        self.available_wildcard_properties =            ['data-', 'aria-']
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()
         _locals.update(kwargs)  # For wildcard attrs and excess named props

@@ -14,6 +14,9 @@ Keyword arguments:
 - allowClear (boolean; default False):
     是否允许清除已选颜色  默认：False.
 
+- aria-* (string; optional):
+    `aria-*`格式属性通配.
+
 - arrow (dict; optional):
     配置颜色选择面板附带的箭头  默认：True.
 
@@ -23,6 +26,9 @@ Keyword arguments:
         箭头是否位于面板中心.
 
 - className (string | dict; optional)
+
+- data-* (string; optional):
+    `data-*`格式属性通配.
 
 - disabled (boolean; default False):
     是否禁用当前组件  默认：False.
@@ -91,10 +97,10 @@ Keyword arguments:
     _type = 'AntdColorPicker'
     @_explicitize_args
     def __init__(self, id=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, key=Component.UNDEFINED, name=Component.UNDEFINED, allowClear=Component.UNDEFINED, arrow=Component.UNDEFINED, value=Component.UNDEFINED, format=Component.UNDEFINED, disabled=Component.UNDEFINED, disabledAlpha=Component.UNDEFINED, open=Component.UNDEFINED, presets=Component.UNDEFINED, placement=Component.UNDEFINED, showText=Component.UNDEFINED, size=Component.UNDEFINED, trigger=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
-        self._prop_names = ['id', 'allowClear', 'arrow', 'className', 'disabled', 'disabledAlpha', 'format', 'key', 'loading_state', 'name', 'open', 'placement', 'presets', 'showText', 'size', 'style', 'trigger', 'value']
-        self._valid_wildcard_attributes =            []
-        self.available_properties = ['id', 'allowClear', 'arrow', 'className', 'disabled', 'disabledAlpha', 'format', 'key', 'loading_state', 'name', 'open', 'placement', 'presets', 'showText', 'size', 'style', 'trigger', 'value']
-        self.available_wildcard_properties =            []
+        self._prop_names = ['id', 'allowClear', 'aria-*', 'arrow', 'className', 'data-*', 'disabled', 'disabledAlpha', 'format', 'key', 'loading_state', 'name', 'open', 'placement', 'presets', 'showText', 'size', 'style', 'trigger', 'value']
+        self._valid_wildcard_attributes =            ['data-', 'aria-']
+        self.available_properties = ['id', 'allowClear', 'aria-*', 'arrow', 'className', 'data-*', 'disabled', 'disabledAlpha', 'format', 'key', 'loading_state', 'name', 'open', 'placement', 'presets', 'showText', 'size', 'style', 'trigger', 'value']
+        self.available_wildcard_properties =            ['data-', 'aria-']
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()
         _locals.update(kwargs)  # For wildcard attrs and excess named props

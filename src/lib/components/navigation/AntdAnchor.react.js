@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { Anchor } from 'antd';
 // 辅助库
 import { isString } from 'lodash';
+import { pickBy } from 'ramda';
 // 自定义hooks
 import useCss from '../../hooks/useCss';
 
@@ -65,6 +66,8 @@ const AntdAnchor = (props) => {
 
     return (
         <div
+            // 提取具有data-*或aria-*通配格式的属性
+            {...pickBy((_, k) => k.startsWith('data-') || k.startsWith('aria-'), props)}
             style={{ float: align }}
             data-dash-is-loading={
                 (loading_state && loading_state.is_loading) || undefined
@@ -188,6 +191,16 @@ AntdAnchor.propTypes = {
      * 监听锚点节点点击事件
      */
     clickedLink: PropTypes.object,
+
+    /**
+     * `data-*`格式属性通配
+     */
+    'data-*': PropTypes.string,
+
+    /**
+     * `aria-*`格式属性通配
+     */
+    'aria-*': PropTypes.string,
 
     loading_state: PropTypes.shape({
         /**

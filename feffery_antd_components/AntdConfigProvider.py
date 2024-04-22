@@ -5,35 +5,40 @@ from dash.development.base_component import Component, _explicitize_args
 
 class AntdConfigProvider(Component):
     """An AntdConfigProvider component.
-
+参数配置组件AntdConfigProvider
 
 Keyword arguments:
 
-- children (a list of or a singular dash component, string or number; optional)
+- children (a list of or a singular dash component, string or number; optional):
+    组件型，内嵌元素.
 
-- id (string; optional)
+- id (string; optional):
+    组件唯一id.
 
 - algorithm (a value equal to: 'default', 'dark', 'compact' | list of a value equal to: 'default', 'dark', 'compact's; default 'default'):
-    为内部组件设置快捷主题算法，支持多种主题组合，可选的主题有'default'、'dark'、'compact'
-    默认：'default'.
+    为内部组件设置快捷主题算法，支持多种主题组合，可选项有`'default'`、`'dark'`、`'compact'`
+    默认值：`'default'`.
 
 - compatibilityMode (boolean; default False):
-    是否开启针对88及以下版本Chromium内核浏览器的向下兼容模式  默认：False.
+    是否开启针对`88`及以下版本`Chromium`内核浏览器的向下兼容模式  默认值：`False`.
 
-- componentDisabled (boolean; optional)
+- componentDisabled (boolean; optional):
+    是否针后代元素中的所有组件强制设置禁用状态.
 
-- componentSize (a value equal to: 'small', 'middle', 'large'; optional)
+- componentSize (a value equal to: 'small', 'middle', 'large'; optional):
+    强制设置后代元素的尺寸规格，可选项有`'small'`、`'middle'`、`'large'`，其中`'default'`兼容`'middle'`.
 
 - componentsToken (dict; optional):
-    配置针对具体组件的design token相关参数.
+    配置针对具体组件的`design token`相关参数.
 
     `componentsToken` is a dict with strings as keys and values of
     type dict with keys:
 
     - algorithm (boolean; optional):
-        设置是否开启派生样式自动推导运算  默认：False.
+        是否开启派生样式自动推导运算  默认值：`False`.
 
-- key (string; optional)
+- key (string; optional):
+    对当前组件的`key`值进行更新，可实现强制重绘当前组件的效果.
 
 - loading_state (dict; optional)
 
@@ -48,23 +53,25 @@ Keyword arguments:
     - prop_name (string; optional):
         Holds which property is loading.
 
-- locale (a value equal to: 'zh-cn', 'en-us'; optional)
+- locale (a value equal to: 'zh-cn', 'en-us'; optional):
+    强制设置后代元素的语言，可选项有`'zh-cn'`、`'en-us'`.
 
-- primaryColor (string; optional)
+- primaryColor (string; optional):
+    主题色.
 
 - token (dict; optional):
-    配置design token相关参数.
+    配置`design token`相关参数.
 
     `token` is a dict with keys:
 
     - motion (boolean; optional):
-        设置是否开启动画效果  默认：True.
+        是否开启动画效果  默认值：`True`.
 
 - useOldTheme (a value equal to: 'default', 'dark'; optional):
-    设置是否强制使用0.3.x版本之前的主题样式，可用的有'default'、'dark'.
+    是否强制使用`0.3.x`版本之前的主题样式，可选项有`'default'`、`'dark'`.
 
 - wavesDisabled (boolean; default False):
-    设置是否禁用内部组件水波纹动效  默认：False."""
+    是否禁用内部组件水波纹动效  默认值：`False`."""
     _children_props = []
     _base_nodes = ['children']
     _namespace = 'feffery_antd_components'

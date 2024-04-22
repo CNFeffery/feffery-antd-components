@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { Skeleton } from 'antd';
 import useCss from '../../../hooks/useCss';
 import { isString } from 'lodash';
+import { pickBy } from 'ramda';
 
 // 定义骨架屏组件AntdSkeleton，api参数参考https://ant.design/components/skeleton-cn/
 const AntdSkeleton = (props) => {
@@ -85,6 +86,8 @@ const AntdSkeleton = (props) => {
     // 返回定制化的前端组件
     return (
         <Skeleton
+            // 提取具有data-*或aria-*通配格式的属性
+            {...pickBy((_, k) => k.startsWith('data-') || k.startsWith('aria-'), props)}
             id={id}
             className={
                 isString(className) ?
@@ -214,6 +217,16 @@ AntdSkeleton.propTypes = {
     // 设置需要包含输出监听过程的组件信息列表
     // 仅在listenPropsMode为'include'时生效
     includeProps: PropTypes.arrayOf(PropTypes.string),
+
+    /**
+     * `data-*`格式属性通配
+     */
+    'data-*': PropTypes.string,
+
+    /**
+     * `aria-*`格式属性通配
+     */
+    'aria-*': PropTypes.string,
 
     loading_state: PropTypes.shape({
         /**

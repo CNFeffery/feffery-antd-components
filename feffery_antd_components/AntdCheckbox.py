@@ -11,6 +11,9 @@ Keyword arguments:
 
 - id (string; optional)
 
+- aria-* (string; optional):
+    `aria-*`格式属性通配.
+
 - autoFocus (boolean; default False)
 
 - batchPropsNames (list of strings; optional)
@@ -20,6 +23,9 @@ Keyword arguments:
 - checked (boolean; default False)
 
 - className (string | dict; optional)
+
+- data-* (string; optional):
+    `data-*`格式属性通配.
 
 - disabled (boolean; default False)
 
@@ -73,10 +79,10 @@ Keyword arguments:
     _type = 'AntdCheckbox'
     @_explicitize_args
     def __init__(self, id=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, key=Component.UNDEFINED, name=Component.UNDEFINED, disabled=Component.UNDEFINED, label=Component.UNDEFINED, autoFocus=Component.UNDEFINED, checked=Component.UNDEFINED, indeterminate=Component.UNDEFINED, readOnly=Component.UNDEFINED, batchPropsNames=Component.UNDEFINED, batchPropsValues=Component.UNDEFINED, loading_state=Component.UNDEFINED, persistence=Component.UNDEFINED, persisted_props=Component.UNDEFINED, persistence_type=Component.UNDEFINED, **kwargs):
-        self._prop_names = ['id', 'autoFocus', 'batchPropsNames', 'batchPropsValues', 'checked', 'className', 'disabled', 'indeterminate', 'key', 'label', 'loading_state', 'name', 'persisted_props', 'persistence', 'persistence_type', 'readOnly', 'style']
-        self._valid_wildcard_attributes =            []
-        self.available_properties = ['id', 'autoFocus', 'batchPropsNames', 'batchPropsValues', 'checked', 'className', 'disabled', 'indeterminate', 'key', 'label', 'loading_state', 'name', 'persisted_props', 'persistence', 'persistence_type', 'readOnly', 'style']
-        self.available_wildcard_properties =            []
+        self._prop_names = ['id', 'aria-*', 'autoFocus', 'batchPropsNames', 'batchPropsValues', 'checked', 'className', 'data-*', 'disabled', 'indeterminate', 'key', 'label', 'loading_state', 'name', 'persisted_props', 'persistence', 'persistence_type', 'readOnly', 'style']
+        self._valid_wildcard_attributes =            ['data-', 'aria-']
+        self.available_properties = ['id', 'aria-*', 'autoFocus', 'batchPropsNames', 'batchPropsValues', 'checked', 'className', 'data-*', 'disabled', 'indeterminate', 'key', 'label', 'loading_state', 'name', 'persisted_props', 'persistence', 'persistence_type', 'readOnly', 'style']
+        self.available_wildcard_properties =            ['data-', 'aria-']
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()
         _locals.update(kwargs)  # For wildcard attrs and excess named props

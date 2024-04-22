@@ -4,6 +4,7 @@ import TextLoop from 'react-text-loop'
 import { Alert } from 'antd';
 import useCss from '../../hooks/useCss';
 import { isString } from 'lodash';
+import { pickBy } from 'ramda';
 import Marquee from 'react-fast-marquee';
 
 
@@ -29,7 +30,10 @@ const AntdAlert = (props) => {
 
     if (messageRenderMode === 'loop-text' && Array.isArray(message)) {
         return (
-            <Alert id={id}
+            <Alert
+                // 提取具有data-*或aria-*通配格式的属性
+                {...pickBy((_, k) => k.startsWith('data-') || k.startsWith('aria-'), props)}
+                id={id}
                 className={
                     isString(className) ?
                         className :
@@ -55,7 +59,10 @@ const AntdAlert = (props) => {
     }
 
     return (
-        <Alert id={id}
+        <Alert
+            // 提取具有data-*或aria-*通配格式的属性
+            {...pickBy((_, k) => k.startsWith('data-') || k.startsWith('aria-'), props)}
+            id={id}
             className={
                 isString(className) ?
                     className :
@@ -122,6 +129,16 @@ AntdAlert.propTypes = {
 
     // 设置是否用作顶部公告，默认为false
     banner: PropTypes.bool,
+
+    /**
+     * `data-*`格式属性通配
+     */
+    'data-*': PropTypes.string,
+
+    /**
+     * `aria-*`格式属性通配
+     */
+    'aria-*': PropTypes.string,
 
     /**
      * Dash-assigned callback that should be called to report property changes

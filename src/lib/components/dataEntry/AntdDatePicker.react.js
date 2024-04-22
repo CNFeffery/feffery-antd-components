@@ -183,6 +183,16 @@ AntdDatePicker.propTypes = {
     batchPropsValues: PropTypes.object,
 
     /**
+     * `data-*`格式属性通配
+     */
+    'data-*': PropTypes.string,
+
+    /**
+     * `aria-*`格式属性通配
+     */
+    'aria-*': PropTypes.string,
+
+    /**
     * Object that holds the loading state object coming from dash-renderer
     */
     loading_state: PropTypes.shape({

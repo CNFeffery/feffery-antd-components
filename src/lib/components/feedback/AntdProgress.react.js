@@ -2,8 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Progress } from 'antd';
 import { isString } from 'lodash';
+import { pickBy } from 'ramda';
 import useCss from '../../hooks/useCss';
-
 
 // 定义进度条组件AntdProgress，api参数参考https://ant.design/components/progress-cn/
 const AntdProgress = (props) => {
@@ -34,6 +34,8 @@ const AntdProgress = (props) => {
 
     return (
         <Progress
+            // 提取具有data-*或aria-*通配格式的属性
+            {...pickBy((_, k) => k.startsWith('data-') || k.startsWith('aria-'), props)}
             id={id}
             className={
                 isString(className) ?
@@ -181,6 +183,16 @@ AntdProgress.propTypes = {
 
     // 用于设置特殊的步骤进度条分段数量，仅'line'模式可用
     steps: PropTypes.number,
+
+    /**
+     * `data-*`格式属性通配
+     */
+    'data-*': PropTypes.string,
+
+    /**
+     * `aria-*`格式属性通配
+     */
+    'aria-*': PropTypes.string,
 
     loading_state: PropTypes.shape({
         /**

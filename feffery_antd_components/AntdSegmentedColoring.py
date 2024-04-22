@@ -11,6 +11,9 @@ Keyword arguments:
 
 - id (string; optional)
 
+- aria-* (string; optional):
+    `aria-*`格式属性通配.
+
 - batchPropsNames (list of strings; optional)
 
 - batchPropsValues (dict; optional)
@@ -29,6 +32,9 @@ Keyword arguments:
 - colors (list of strings; required)
 
 - controls (boolean; default True)
+
+- data-* (string; optional):
+    `data-*`格式属性通配.
 
 - disabled (boolean; default False)
 
@@ -80,10 +86,10 @@ Keyword arguments:
     _type = 'AntdSegmentedColoring'
     @_explicitize_args
     def __init__(self, id=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, key=Component.UNDEFINED, breakpoints=Component.REQUIRED, colors=Component.REQUIRED, controls=Component.UNDEFINED, keyboard=Component.UNDEFINED, min=Component.UNDEFINED, max=Component.UNDEFINED, step=Component.UNDEFINED, precision=Component.UNDEFINED, disabled=Component.UNDEFINED, size=Component.UNDEFINED, bordered=Component.UNDEFINED, variant=Component.UNDEFINED, placeholder=Component.UNDEFINED, readOnly=Component.UNDEFINED, pureLegend=Component.UNDEFINED, inputNumberStyle=Component.UNDEFINED, colorBlockStyle=Component.UNDEFINED, colorBlockPosition=Component.UNDEFINED, pureLegendLabelStyle=Component.UNDEFINED, batchPropsNames=Component.UNDEFINED, batchPropsValues=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
-        self._prop_names = ['id', 'batchPropsNames', 'batchPropsValues', 'bordered', 'breakpoints', 'className', 'colorBlockPosition', 'colorBlockStyle', 'colors', 'controls', 'disabled', 'inputNumberStyle', 'key', 'keyboard', 'loading_state', 'max', 'min', 'placeholder', 'precision', 'pureLegend', 'pureLegendLabelStyle', 'readOnly', 'size', 'step', 'style', 'variant']
-        self._valid_wildcard_attributes =            []
-        self.available_properties = ['id', 'batchPropsNames', 'batchPropsValues', 'bordered', 'breakpoints', 'className', 'colorBlockPosition', 'colorBlockStyle', 'colors', 'controls', 'disabled', 'inputNumberStyle', 'key', 'keyboard', 'loading_state', 'max', 'min', 'placeholder', 'precision', 'pureLegend', 'pureLegendLabelStyle', 'readOnly', 'size', 'step', 'style', 'variant']
-        self.available_wildcard_properties =            []
+        self._prop_names = ['id', 'aria-*', 'batchPropsNames', 'batchPropsValues', 'bordered', 'breakpoints', 'className', 'colorBlockPosition', 'colorBlockStyle', 'colors', 'controls', 'data-*', 'disabled', 'inputNumberStyle', 'key', 'keyboard', 'loading_state', 'max', 'min', 'placeholder', 'precision', 'pureLegend', 'pureLegendLabelStyle', 'readOnly', 'size', 'step', 'style', 'variant']
+        self._valid_wildcard_attributes =            ['data-', 'aria-']
+        self.available_properties = ['id', 'aria-*', 'batchPropsNames', 'batchPropsValues', 'bordered', 'breakpoints', 'className', 'colorBlockPosition', 'colorBlockStyle', 'colors', 'controls', 'data-*', 'disabled', 'inputNumberStyle', 'key', 'keyboard', 'loading_state', 'max', 'min', 'placeholder', 'precision', 'pureLegend', 'pureLegendLabelStyle', 'readOnly', 'size', 'step', 'style', 'variant']
+        self.available_wildcard_properties =            ['data-', 'aria-']
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()
         _locals.update(kwargs)  # For wildcard attrs and excess named props

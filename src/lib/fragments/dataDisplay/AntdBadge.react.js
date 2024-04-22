@@ -1,6 +1,7 @@
 import React from 'react';
 import { Badge } from 'antd';
 import { isString } from 'lodash';
+import { pickBy } from 'ramda';
 import useCss from '../../hooks/useCss';
 import { propTypes, defaultProps } from '../../components/dataDisplay/AntdBadge.react';
 
@@ -33,6 +34,8 @@ const AntdBadge = (props) => {
 
     return (
         <Badge
+            // 提取具有data-*或aria-*通配格式的属性
+            {...pickBy((_, k) => k.startsWith('data-') || k.startsWith('aria-'), props)}
             id={id}
             className={
                 isString(className) ?

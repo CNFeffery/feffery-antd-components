@@ -6,6 +6,7 @@ import { Typography, ConfigProvider } from 'antd';
 // 辅助库
 import { str2Locale } from '../../locales.react';
 import { isString } from 'lodash';
+import { pickBy } from 'ramda';
 import { parseChildrenToArray } from '../../utils';
 // 自定义hooks
 import useCss from '../../../hooks/useCss';
@@ -47,7 +48,10 @@ const AntdText = (props) => {
 
     return (
         <ConfigProvider locale={str2Locale.get(locale)}>
-            <Text id={id}
+            <Text
+                // 提取具有data-*或aria-*通配格式的属性
+                {...pickBy((_, k) => k.startsWith('data-') || k.startsWith('aria-'), props)}
+                id={id}
                 className={
                     isString(className) ?
                         className :
@@ -173,6 +177,16 @@ AntdText.propTypes = {
             suffix: PropTypes.string
         })
     ]),
+
+    /**
+     * `data-*`格式属性通配
+     */
+    'data-*': PropTypes.string,
+
+    /**
+     * `aria-*`格式属性通配
+     */
+    'aria-*': PropTypes.string,
 
     loading_state: PropTypes.shape({
         /**

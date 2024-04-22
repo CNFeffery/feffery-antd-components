@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 import { Divider } from "antd";
 // 辅助库
 import { isString } from "lodash";
+import { pickBy } from 'ramda';
 // 自定义hooks
 import useCss from "../../hooks/useCss";
 
@@ -32,6 +33,8 @@ const AntdDivider = (props) => {
         // 返回定制化的前端组件
         return (
             <Divider
+                // 提取具有data-*或aria-*通配格式的属性
+                {...pickBy((_, k) => k.startsWith('data-') || k.startsWith('aria-'), props)}
                 id={id}
                 style={{
                     borderTopColor: lineColor,
@@ -64,6 +67,8 @@ const AntdDivider = (props) => {
         // 返回定制化的前端组件
         return (
             <Divider
+                // 提取具有data-*或aria-*通配格式的属性
+                {...pickBy((_, k) => k.startsWith('data-') || k.startsWith('aria-'), props)}
                 id={id}
                 style={{
                     borderLeftColor: lineColor,
@@ -169,6 +174,16 @@ AntdDivider.propTypes = {
      * 内嵌元素字体颜色
      */
     fontColor: PropTypes.string,
+
+    /**
+     * `data-*`格式属性通配
+     */
+    'data-*': PropTypes.string,
+
+    /**
+     * `aria-*`格式属性通配
+     */
+    'aria-*': PropTypes.string,
 
     loading_state: PropTypes.shape({
         /**

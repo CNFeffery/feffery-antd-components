@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { Tour, ConfigProvider } from 'antd';
 import useCss from '../../hooks/useCss';
 import { isString } from 'lodash';
+import { pickBy } from 'ramda';
 import { str2Locale } from '../locales.react';
 
 // 定义漫游式引导组件AntdTour
@@ -30,7 +31,10 @@ const AntdTour = (props) => {
         <ConfigProvider
             locale={str2Locale.get(locale)}
         >
-            <Tour id={id}
+            <Tour
+                // 提取具有data-*或aria-*通配格式的属性
+                {...pickBy((_, k) => k.startsWith('data-') || k.startsWith('aria-'), props)}
+                id={id}
                 className={
                     isString(className) ?
                         className :
@@ -281,6 +285,16 @@ AntdTour.propTypes = {
      * 默认：1001
      */
     zIndex: PropTypes.number,
+
+    /**
+     * `data-*`格式属性通配
+     */
+    'data-*': PropTypes.string,
+
+    /**
+     * `aria-*`格式属性通配
+     */
+    'aria-*': PropTypes.string,
 
     loading_state: PropTypes.shape({
         /**

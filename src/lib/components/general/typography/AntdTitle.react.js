@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import { Typography, ConfigProvider } from 'antd';
 // 辅助库
 import { isString } from 'lodash';
+import { pickBy } from 'ramda';
 import { str2Locale } from '../../locales.react';
 import { parseChildrenToArray } from '../../utils';
 // 自定义hooks
@@ -47,7 +48,10 @@ const AntdTitle = (props) => {
 
     return (
         <ConfigProvider locale={str2Locale.get(locale)}>
-            <Title id={id}
+            <Title
+                // 提取具有data-*或aria-*通配格式的属性
+                {...pickBy((_, k) => k.startsWith('data-') || k.startsWith('aria-'), props)}
+                id={id}
                 className={
                     isString(className) ?
                         className :
@@ -166,6 +170,16 @@ AntdTitle.propTypes = {
      * 设置内容特殊状态形式，可选项有`'secondary'`、`'success'`、`'warning'`、`'danger'`
      */
     type: PropTypes.oneOf(['secondary', 'success', 'warning', 'danger']),
+
+    /**
+     * `data-*`格式属性通配
+     */
+    'data-*': PropTypes.string,
+
+    /**
+     * `aria-*`格式属性通配
+     */
+    'aria-*': PropTypes.string,
 
     loading_state: PropTypes.shape({
         /**

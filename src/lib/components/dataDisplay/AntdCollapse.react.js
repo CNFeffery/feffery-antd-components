@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { Collapse } from 'antd';
 import { parseChildrenToArray } from '../utils';
 import { isString } from 'lodash';
+import { pickBy } from 'ramda';
 import useCss from '../../hooks/useCss';
 
 const { Panel } = Collapse;
@@ -34,6 +35,8 @@ const AntdCollapse = (props) => {
 
     return (
         <Collapse
+            // 提取具有data-*或aria-*通配格式的属性
+            {...pickBy((_, k) => k.startsWith('data-') || k.startsWith('aria-'), props)}
             id={id}
             className={
                 isString(className) ?
@@ -114,6 +117,16 @@ AntdCollapse.propTypes = {
 
     // 设置当折叠面板默认未展开时强制渲染内部元素，默认为false
     forceRender: PropTypes.bool,
+
+    /**
+     * `data-*`格式属性通配
+     */
+    'data-*': PropTypes.string,
+
+    /**
+     * `aria-*`格式属性通配
+     */
+    'aria-*': PropTypes.string,
 
     loading_state: PropTypes.shape({
         /**

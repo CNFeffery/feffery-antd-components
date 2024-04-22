@@ -3,6 +3,7 @@ import { Input } from 'antd';
 import md5 from 'md5';
 import { useRequest } from 'ahooks';
 import { isString, isUndefined } from 'lodash';
+import { pickBy } from 'ramda';
 import useCss from '../../hooks/useCss';
 import PropsContext from '../../contexts/PropsContext';
 import FormContext from '../../contexts/FormContext';
@@ -189,7 +190,10 @@ const AntdInput = (props) => {
     // 不同的mode模式下渲染不同的组件
     if (mode === 'default') {
         return (
-            <Input id={id}
+            <Input
+                // 提取具有data-*或aria-*通配格式的属性
+                {...pickBy((_, k) => k.startsWith('data-') || k.startsWith('aria-'), props)}
+                id={id}
                 className={
                     isString(className) ?
                         className :
@@ -249,7 +253,10 @@ const AntdInput = (props) => {
         );
     } else if (mode === 'search') {
         return (
-            <Search id={id}
+            <Search
+                // 提取具有data-*或aria-*通配格式的属性
+                {...pickBy((_, k) => k.startsWith('data-') || k.startsWith('aria-'), props)}
+                id={id}
                 className={
                     isString(className) ?
                         className :
@@ -306,7 +313,10 @@ const AntdInput = (props) => {
         );
     } else if (mode === 'text-area') {
         return (
-            <TextArea id={id}
+            <TextArea
+                // 提取具有data-*或aria-*通配格式的属性
+                {...pickBy((_, k) => k.startsWith('data-') || k.startsWith('aria-'), props)}
+                id={id}
                 className={
                     isString(className) ?
                         className :
@@ -373,7 +383,10 @@ const AntdInput = (props) => {
         );
     } else if (mode === 'password') {
         return (
-            <Input.Password id={id}
+            <Input.Password
+                // 提取具有data-*或aria-*通配格式的属性
+                {...pickBy((_, k) => k.startsWith('data-') || k.startsWith('aria-'), props)}
+                id={id}
                 className={
                     isString(className) ?
                         className :

@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { str2Locale } from '../locales.react';
 import { Modal, ConfigProvider } from 'antd';
 import { isString } from 'lodash';
+import { pickBy } from 'ramda';
 import useCss from '../../hooks/useCss';
 import PropsContext from '../../contexts/PropsContext';
 
@@ -75,6 +76,8 @@ const AntdModal = (props) => {
     return (
         <ConfigProvider locale={str2Locale.get(locale)}>
             <Modal
+                // 提取具有data-*或aria-*通配格式的属性
+                {...pickBy((_, k) => k.startsWith('data-') || k.startsWith('aria-'), props)}
                 id={id}
                 className={
                     isString(className) ?
@@ -263,6 +266,16 @@ AntdModal.propTypes = {
 
     // 设置当前模态框中的内容是否在关闭后自动销毁，默认为true
     destroyOnClose: PropTypes.bool,
+
+    /**
+     * `data-*`格式属性通配
+     */
+    'data-*': PropTypes.string,
+
+    /**
+     * `aria-*`格式属性通配
+     */
+    'aria-*': PropTypes.string,
 
     /**
      * Dash-assigned callback that should be called to report property changes

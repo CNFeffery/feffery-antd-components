@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 import { isString } from 'lodash';
+import { pickBy } from 'ramda';
 import useCss from '../../../hooks/useCss';
 
 // 自定义骨架屏组件AntdCustomSkeleton
@@ -80,6 +81,8 @@ const AntdCustomSkeleton = (props) => {
     // 返回定制化的前端组件
     return (
         <div
+            // 提取具有data-*或aria-*通配格式的属性
+            {...pickBy((_, k) => k.startsWith('data-') || k.startsWith('aria-'), props)}
             id={id}
             className={
                 isString(className) ?
@@ -143,6 +146,16 @@ AntdCustomSkeleton.propTypes = {
     // 设置需要包含输出监听过程的组件信息列表
     // 仅在listenPropsMode为'include'时生效
     includeProps: PropTypes.arrayOf(PropTypes.string),
+
+    /**
+     * `data-*`格式属性通配
+     */
+    'data-*': PropTypes.string,
+
+    /**
+     * `aria-*`格式属性通配
+     */
+    'aria-*': PropTypes.string,
 
     loading_state: PropTypes.shape({
         /**

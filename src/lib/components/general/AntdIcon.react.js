@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { str2Icon } from '../icons.react';
 // 辅助库
 import { isString } from 'lodash';
+import { pickBy } from 'ramda';
 import { useRequest } from 'ahooks';
 // 自定义hooks
 import useCss from '../../hooks/useCss';
@@ -38,7 +39,10 @@ const AntdIcon = (props) => {
 
     if (icon) {
         return (
-            <span id={id}
+            <span
+                // 提取具有data-*或aria-*通配格式的属性
+                {...pickBy((_, k) => k.startsWith('data-') || k.startsWith('aria-'), props)}
+                id={id}
                 className={
                     isString(className) ?
                         className :
@@ -108,6 +112,16 @@ AntdIcon.propTypes = {
      * 默认值：`0`
      */
     debounceWait: PropTypes.number,
+
+    /**
+     * `data-*`格式属性通配
+     */
+    'data-*': PropTypes.string,
+
+    /**
+     * `aria-*`格式属性通配
+     */
+    'aria-*': PropTypes.string,
 
     loading_state: PropTypes.shape({
         /**

@@ -4,6 +4,7 @@ import React, { useEffect, useContext } from 'react';
 import { Input } from 'antd';
 // 辅助库
 import { isString, isUndefined } from 'lodash';
+import { pickBy } from 'ramda';
 // 自定义hooks
 import useCss from '../../hooks/useCss';
 // 自定义上下文
@@ -71,7 +72,10 @@ const AntdOTP = (props) => {
     }, [])
 
     return (
-        <OTP id={id}
+        <OTP
+            // 提取具有data-*或aria-*通配格式的属性
+            {...pickBy((_, k) => k.startsWith('data-') || k.startsWith('aria-'), props)}
+            id={id}
             key={key}
             className={
                 isString(className) ?

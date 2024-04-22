@@ -87,6 +87,16 @@ AntdAvatar.propTypes = {
     // 设置头像的形状，可选的有'circle'、'square'，默认为'circle'
     shape: PropTypes.oneOf(['circle', 'square']),
 
+    /**
+     * `data-*`格式属性通配
+     */
+    'data-*': PropTypes.string,
+
+    /**
+     * `aria-*`格式属性通配
+     */
+    'aria-*': PropTypes.string,
+
     loading_state: PropTypes.shape({
         /**
          * Determines if the component is loading or not

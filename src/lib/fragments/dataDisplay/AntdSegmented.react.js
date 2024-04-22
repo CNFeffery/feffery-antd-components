@@ -2,6 +2,7 @@ import React, { useEffect, useContext } from 'react';
 import { Segmented } from 'antd';
 import AntdIcon from "../../components/general/AntdIcon.react";
 import { isString, isUndefined } from 'lodash';
+import { pickBy } from 'ramda';
 import useCss from '../../hooks/useCss';
 import PropsContext from '../../contexts/PropsContext';
 import { propTypes, defaultProps } from '../../components/dataDisplay/AntdSegmented.react';
@@ -60,6 +61,8 @@ const AntdSegmented = (props) => {
     // 返回定制化的前端组件
     return (
         <Segmented
+            // 提取具有data-*或aria-*通配格式的属性
+            {...pickBy((_, k) => k.startsWith('data-') || k.startsWith('aria-'), props)}
             id={id}
             className={
                 isString(className) ?

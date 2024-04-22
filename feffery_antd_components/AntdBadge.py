@@ -13,6 +13,9 @@ Keyword arguments:
 
 - id (string; optional)
 
+- aria-* (string; optional):
+    `aria-*`格式属性通配.
+
 - className (string | dict; optional)
 
 - classNames (dict; optional):
@@ -29,6 +32,9 @@ Keyword arguments:
 - color (string; optional)
 
 - count (number; optional)
+
+- data-* (string; optional):
+    `data-*`格式属性通配.
 
 - dot (boolean; default False)
 
@@ -81,10 +87,10 @@ Keyword arguments:
     _type = 'AntdBadge'
     @_explicitize_args
     def __init__(self, children=None, id=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, styles=Component.UNDEFINED, classNames=Component.UNDEFINED, key=Component.UNDEFINED, color=Component.UNDEFINED, count=Component.UNDEFINED, dot=Component.UNDEFINED, showZero=Component.UNDEFINED, overflowCount=Component.UNDEFINED, offset=Component.UNDEFINED, status=Component.UNDEFINED, text=Component.UNDEFINED, title=Component.UNDEFINED, size=Component.UNDEFINED, nClicks=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
-        self._prop_names = ['children', 'id', 'className', 'classNames', 'color', 'count', 'dot', 'key', 'loading_state', 'nClicks', 'offset', 'overflowCount', 'showZero', 'size', 'status', 'style', 'styles', 'text', 'title']
-        self._valid_wildcard_attributes =            []
-        self.available_properties = ['children', 'id', 'className', 'classNames', 'color', 'count', 'dot', 'key', 'loading_state', 'nClicks', 'offset', 'overflowCount', 'showZero', 'size', 'status', 'style', 'styles', 'text', 'title']
-        self.available_wildcard_properties =            []
+        self._prop_names = ['children', 'id', 'aria-*', 'className', 'classNames', 'color', 'count', 'data-*', 'dot', 'key', 'loading_state', 'nClicks', 'offset', 'overflowCount', 'showZero', 'size', 'status', 'style', 'styles', 'text', 'title']
+        self._valid_wildcard_attributes =            ['data-', 'aria-']
+        self.available_properties = ['children', 'id', 'aria-*', 'className', 'classNames', 'color', 'count', 'data-*', 'dot', 'key', 'loading_state', 'nClicks', 'offset', 'overflowCount', 'showZero', 'size', 'status', 'style', 'styles', 'text', 'title']
+        self.available_wildcard_properties =            ['data-', 'aria-']
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()
         _locals.update(kwargs)  # For wildcard attrs and excess named props

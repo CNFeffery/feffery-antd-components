@@ -15,11 +15,17 @@ Keyword arguments:
 - id (string; optional):
     组件唯一id.
 
+- aria-* (string; optional):
+    `aria-*`格式属性通配.
+
 - block (boolean; default False):
     是否渲染为块级元素（宽度撑满父容器）  默认值：`False`.
 
 - className (string | dict; optional):
     当前组件css类名，支持[动态css](/advanced-classname).
+
+- data-* (string; optional):
+    `data-*`格式属性通配.
 
 - direction (a value equal to: 'vertical', 'horizontal'; default 'horizontal'):
     排列方向，可选项有`'vertical'`、`'horizontal'`  默认值：`'horizontal'`.
@@ -48,10 +54,10 @@ Keyword arguments:
     _type = 'AntdCompact'
     @_explicitize_args
     def __init__(self, children=None, id=Component.UNDEFINED, key=Component.UNDEFINED, style=Component.UNDEFINED, className=Component.UNDEFINED, direction=Component.UNDEFINED, block=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
-        self._prop_names = ['children', 'id', 'block', 'className', 'direction', 'key', 'loading_state', 'style']
-        self._valid_wildcard_attributes =            []
-        self.available_properties = ['children', 'id', 'block', 'className', 'direction', 'key', 'loading_state', 'style']
-        self.available_wildcard_properties =            []
+        self._prop_names = ['children', 'id', 'aria-*', 'block', 'className', 'data-*', 'direction', 'key', 'loading_state', 'style']
+        self._valid_wildcard_attributes =            ['data-', 'aria-']
+        self.available_properties = ['children', 'id', 'aria-*', 'block', 'className', 'data-*', 'direction', 'key', 'loading_state', 'style']
+        self.available_wildcard_properties =            ['data-', 'aria-']
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()
         _locals.update(kwargs)  # For wildcard attrs and excess named props

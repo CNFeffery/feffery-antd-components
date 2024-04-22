@@ -5,6 +5,7 @@ import isoWeek from 'dayjs/plugin/isoWeek';
 import advancedFormat from 'dayjs/plugin/advancedFormat';
 import 'dayjs/locale/zh-cn';
 import { isString, isUndefined, isObject } from 'lodash';
+import { pickBy } from 'ramda';
 import { str2Locale } from '../../components/locales.react';
 import useCss from '../../hooks/useCss';
 import PropsContext from '../../contexts/PropsContext';
@@ -432,6 +433,8 @@ const AntdDateRangePicker = (props) => {
         <div>
             <ConfigProvider locale={str2Locale.get(locale)}>
                 <RangePicker
+                    // 提取具有data-*或aria-*通配格式的属性
+                    {...pickBy((_, k) => k.startsWith('data-') || k.startsWith('aria-'), props)}
                     id={id}
                     className={
                         isString(className) ?

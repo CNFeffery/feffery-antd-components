@@ -2,6 +2,7 @@ import React from 'react';
 import { Avatar } from 'antd';
 import useCss from '../../hooks/useCss';
 import { isString } from 'lodash';
+import { pickBy } from 'ramda';
 import AntdIcon from '../../components/general/AntdIcon.react';
 import { propTypes, defaultProps } from '../../components/dataDisplay/AntdAvatar.react';
 
@@ -33,6 +34,8 @@ const AntdAvatar = (props) => {
     if (mode === 'image') {
         return (
             <Avatar
+                // 提取具有data-*或aria-*通配格式的属性
+                {...pickBy((_, k) => k.startsWith('data-') || k.startsWith('aria-'), props)}
                 id={id}
                 className={
                     isString(className) ?
@@ -58,6 +61,8 @@ const AntdAvatar = (props) => {
         // text文字模式
         return (
             <Avatar
+                // 提取具有data-*或aria-*通配格式的属性
+                {...pickBy((_, k) => k.startsWith('data-') || k.startsWith('aria-'), props)}
                 id={id}
                 className={
                     isString(className) ?
@@ -78,6 +83,8 @@ const AntdAvatar = (props) => {
         // icon图标模式
         return (
             <Avatar
+                // 提取具有data-*或aria-*通配格式的属性
+                {...pickBy((_, k) => k.startsWith('data-') || k.startsWith('aria-'), props)}
                 id={id}
                 className={
                     isString(className) ?

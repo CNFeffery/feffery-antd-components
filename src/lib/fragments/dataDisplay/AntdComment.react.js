@@ -8,6 +8,7 @@ import AntdAvatar from './AntdAvatar.react';
 import { DislikeOutlined, LikeOutlined, DislikeFilled, LikeFilled } from '@ant-design/icons';
 import { parseChildrenToArray } from '../../components/utils';
 import { isString } from 'lodash';
+import { pickBy } from 'ramda';
 import useCss from '../../hooks/useCss';
 import PropsContext from '../../contexts/PropsContext';
 import { propTypes, defaultProps } from '../../components/dataDisplay/AntdComment.react';
@@ -132,6 +133,8 @@ const AntdComment = (props) => {
     return (
         <ConfigProvider locale={str2Locale.get(locale)}>
             <Comment
+                // 提取具有data-*或aria-*通配格式的属性
+                {...pickBy((_, k) => k.startsWith('data-') || k.startsWith('aria-'), props)}
                 id={id}
                 className={
                     isString(className) ?

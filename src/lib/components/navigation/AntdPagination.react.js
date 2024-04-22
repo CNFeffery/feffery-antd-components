@@ -6,6 +6,7 @@ import { Pagination, ConfigProvider } from 'antd';
 // 辅助库
 import { str2Locale, locale2text } from '../locales.react';
 import { isString, isUndefined } from 'lodash';
+import { pickBy } from 'ramda';
 // 自定义hooks
 import useCss from '../../hooks/useCss';
 // 自定义上下文
@@ -84,6 +85,8 @@ const AntdPagination = (props) => {
     return (
         <ConfigProvider locale={str2Locale.get(locale)}>
             <Pagination
+                // 提取具有data-*或aria-*通配格式的属性
+                {...pickBy((_, k) => k.startsWith('data-') || k.startsWith('aria-'), props)}
                 id={id}
                 className={
                     isString(className) ?
@@ -252,6 +255,16 @@ AntdPagination.propTypes = {
      * 批量监听与当前batchPropsNames对应的属性值
      */
     batchPropsValues: PropTypes.object,
+
+    /**
+     * `data-*`格式属性通配
+     */
+    'data-*': PropTypes.string,
+
+    /**
+     * `aria-*`格式属性通配
+     */
+    'aria-*': PropTypes.string,
 
     loading_state: PropTypes.shape({
         /**

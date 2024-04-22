@@ -13,7 +13,13 @@ Keyword arguments:
 
 - id (string; optional)
 
+- aria-* (string; optional):
+    `aria-*`格式属性通配.
+
 - className (string | dict; optional)
+
+- data-* (string; optional):
+    `data-*`格式属性通配.
 
 - debug (boolean; default False)
 
@@ -52,10 +58,10 @@ Keyword arguments:
     _type = 'AntdCustomSkeleton'
     @_explicitize_args
     def __init__(self, children=None, id=Component.UNDEFINED, skeletonContent=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, key=Component.UNDEFINED, loading=Component.UNDEFINED, delay=Component.UNDEFINED, debug=Component.UNDEFINED, listenPropsMode=Component.UNDEFINED, excludeProps=Component.UNDEFINED, includeProps=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
-        self._prop_names = ['children', 'id', 'className', 'debug', 'delay', 'excludeProps', 'includeProps', 'key', 'listenPropsMode', 'loading', 'loading_state', 'skeletonContent', 'style']
-        self._valid_wildcard_attributes =            []
-        self.available_properties = ['children', 'id', 'className', 'debug', 'delay', 'excludeProps', 'includeProps', 'key', 'listenPropsMode', 'loading', 'loading_state', 'skeletonContent', 'style']
-        self.available_wildcard_properties =            []
+        self._prop_names = ['children', 'id', 'aria-*', 'className', 'data-*', 'debug', 'delay', 'excludeProps', 'includeProps', 'key', 'listenPropsMode', 'loading', 'loading_state', 'skeletonContent', 'style']
+        self._valid_wildcard_attributes =            ['data-', 'aria-']
+        self.available_properties = ['children', 'id', 'aria-*', 'className', 'data-*', 'debug', 'delay', 'excludeProps', 'includeProps', 'key', 'listenPropsMode', 'loading', 'loading_state', 'skeletonContent', 'style']
+        self.available_wildcard_properties =            ['data-', 'aria-']
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()
         _locals.update(kwargs)  # For wildcard attrs and excess named props

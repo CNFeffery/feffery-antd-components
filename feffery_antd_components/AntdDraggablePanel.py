@@ -5,18 +5,24 @@ from dash.development.base_component import Component, _explicitize_args
 
 class AntdDraggablePanel(Component):
     """An AntdDraggablePanel component.
-
+可拖拽面板组件AntdDraggablePanel
 
 Keyword arguments:
 
 - children (a list of or a singular dash component, string or number; optional):
-    组件型，按钮内嵌元素.
+    组件型，内嵌元素.
 
 - id (string; optional):
     组件唯一id.
 
+- aria-* (string; optional):
+    `aria-*`格式属性通配.
+
 - className (string | dict; optional):
     当前组件css类名，支持[动态css](/advanced-classname).
+
+- data-* (string; optional):
+    `data-*`格式属性通配.
 
 - defaultPosition (dict; optional):
     设置当前面板默认位置.
@@ -107,10 +113,10 @@ Keyword arguments:
     _type = 'AntdDraggablePanel'
     @_explicitize_args
     def __init__(self, children=None, id=Component.UNDEFINED, key=Component.UNDEFINED, style=Component.UNDEFINED, className=Component.UNDEFINED, mode=Component.UNDEFINED, defaultSize=Component.UNDEFINED, defaultPosition=Component.UNDEFINED, placement=Component.UNDEFINED, minWidth=Component.UNDEFINED, minHeight=Component.UNDEFINED, maxWidth=Component.UNDEFINED, maxHeight=Component.UNDEFINED, resize=Component.UNDEFINED, expandable=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
-        self._prop_names = ['children', 'id', 'className', 'defaultPosition', 'defaultSize', 'expandable', 'key', 'loading_state', 'maxHeight', 'maxWidth', 'minHeight', 'minWidth', 'mode', 'placement', 'resize', 'style']
-        self._valid_wildcard_attributes =            []
-        self.available_properties = ['children', 'id', 'className', 'defaultPosition', 'defaultSize', 'expandable', 'key', 'loading_state', 'maxHeight', 'maxWidth', 'minHeight', 'minWidth', 'mode', 'placement', 'resize', 'style']
-        self.available_wildcard_properties =            []
+        self._prop_names = ['children', 'id', 'aria-*', 'className', 'data-*', 'defaultPosition', 'defaultSize', 'expandable', 'key', 'loading_state', 'maxHeight', 'maxWidth', 'minHeight', 'minWidth', 'mode', 'placement', 'resize', 'style']
+        self._valid_wildcard_attributes =            ['data-', 'aria-']
+        self.available_properties = ['children', 'id', 'aria-*', 'className', 'data-*', 'defaultPosition', 'defaultSize', 'expandable', 'key', 'loading_state', 'maxHeight', 'maxWidth', 'minHeight', 'minWidth', 'mode', 'placement', 'resize', 'style']
+        self.available_wildcard_properties =            ['data-', 'aria-']
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()
         _locals.update(kwargs)  # For wildcard attrs and excess named props

@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { WaterMark } from '@ant-design/pro-components';
 import { parseChildrenToArray } from '../utils';
+import { pickBy } from 'ramda';
 
 // 定义水印组件AntdWatermark，api参数参考https://procomponents.ant.design/components/water-mark
 const AntdWatermark = (props) => {
@@ -30,7 +31,10 @@ const AntdWatermark = (props) => {
     children = parseChildrenToArray(children)
 
     return (
-        <WaterMark id={id}
+        <WaterMark
+            // 提取具有data-*或aria-*通配格式的属性
+            {...pickBy((_, k) => k.startsWith('data-') || k.startsWith('aria-'), props)}
+            id={id}
             className={className}
             style={style}
             markClassName={markClassName}
@@ -112,6 +116,16 @@ AntdWatermark.propTypes = {
 
     // 用于设置水印图片的像素高度
     height: PropTypes.number,
+
+    /**
+     * `data-*`格式属性通配
+     */
+    'data-*': PropTypes.string,
+
+    /**
+     * `aria-*`格式属性通配
+     */
+    'aria-*': PropTypes.string,
 
     loading_state: PropTypes.shape({
         /**

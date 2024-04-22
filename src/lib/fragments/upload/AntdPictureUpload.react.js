@@ -4,6 +4,7 @@ import { Upload, message, Modal, ConfigProvider } from 'antd';
 import { PlusOutlined } from '@ant-design/icons';
 import { str2Locale, locale2text } from '../../components/locales.react';
 import { isUndefined, isString } from 'lodash';
+import { pickBy } from 'ramda';
 import ImgCrop from 'antd-img-crop';
 import PropsContext from '../../contexts/PropsContext';
 import FormContext from '../../contexts/FormContext';
@@ -394,7 +395,10 @@ const AntdPictureUpload = (props) => {
         // 返回定制化的前端组件
         return (
             <ConfigProvider locale={str2Locale.get(locale)}>
-                <div id={id}
+                <div
+                    // 提取具有data-*或aria-*通配格式的属性
+                    {...pickBy((_, k) => k.startsWith('data-') || k.startsWith('aria-'), props)}
+                    id={id}
                     className={
                         isString(className) ?
                             className :
@@ -476,7 +480,10 @@ const AntdPictureUpload = (props) => {
     // 返回定制化的前端组件
     return (
         <ConfigProvider locale={str2Locale.get(locale)}>
-            <div id={id}
+            <div
+                // 提取具有data-*或aria-*通配格式的属性
+                {...pickBy((_, k) => k.startsWith('data-') || k.startsWith('aria-'), props)}
+                id={id}
                 className={
                     isString(className) ?
                         className :

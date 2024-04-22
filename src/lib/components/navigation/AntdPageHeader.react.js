@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { PageHeader } from '@ant-design/pro-components';
 // 辅助库
 import { isString } from 'lodash';
+import { pickBy } from 'ramda';
 import { parseChildrenToArray } from '../utils';
 // 自定义hooks
 import useCss from '../../hooks/useCss';
@@ -31,7 +32,10 @@ const AntdPageHeader = (props) => {
     children = parseChildrenToArray(children)
 
     return (
-        <PageHeader id={id}
+        <PageHeader
+            // 提取具有data-*或aria-*通配格式的属性
+            {...pickBy((_, k) => k.startsWith('data-') || k.startsWith('aria-'), props)}
+            id={id}
             className={
                 isString(className) ?
                     className :
@@ -118,6 +122,16 @@ AntdPageHeader.propTypes = {
      * 默认值：`false`
      */
     ghost: PropTypes.bool,
+
+    /**
+     * `data-*`格式属性通配
+     */
+    'data-*': PropTypes.string,
+
+    /**
+     * `aria-*`格式属性通配
+     */
+    'aria-*': PropTypes.string,
 
     loading_state: PropTypes.shape({
         /**

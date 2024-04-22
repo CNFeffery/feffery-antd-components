@@ -13,6 +13,9 @@ Keyword arguments:
 
 - id (string; optional)
 
+- aria-* (string; optional):
+    `aria-*`格式属性通配.
+
 - bodyStyle (dict; optional)
 
 - className (string | dict; optional)
@@ -40,6 +43,9 @@ Keyword arguments:
 - containerSelector (string; optional)
 
 - contentWrapperStyle (dict; optional)
+
+- data-* (string; optional):
+    `data-*`格式属性通配.
 
 - destroyOnClose (boolean; default False)
 
@@ -114,10 +120,10 @@ Keyword arguments:
     _type = 'AntdDrawer'
     @_explicitize_args
     def __init__(self, children=None, id=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, classNames=Component.UNDEFINED, styles=Component.UNDEFINED, rootStyle=Component.UNDEFINED, drawerStyle=Component.UNDEFINED, bodyStyle=Component.UNDEFINED, contentWrapperStyle=Component.UNDEFINED, headerStyle=Component.UNDEFINED, footerStyle=Component.UNDEFINED, maskStyle=Component.UNDEFINED, key=Component.UNDEFINED, visible=Component.UNDEFINED, title=Component.UNDEFINED, placement=Component.UNDEFINED, closable=Component.UNDEFINED, forceRender=Component.UNDEFINED, destroyOnClose=Component.UNDEFINED, width=Component.UNDEFINED, height=Component.UNDEFINED, mask=Component.UNDEFINED, maskClosable=Component.UNDEFINED, zIndex=Component.UNDEFINED, extra=Component.UNDEFINED, footer=Component.UNDEFINED, containerId=Component.UNDEFINED, containerSelector=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
-        self._prop_names = ['children', 'id', 'bodyStyle', 'className', 'classNames', 'closable', 'containerId', 'containerSelector', 'contentWrapperStyle', 'destroyOnClose', 'drawerStyle', 'extra', 'footer', 'footerStyle', 'forceRender', 'headerStyle', 'height', 'key', 'loading_state', 'mask', 'maskClosable', 'maskStyle', 'placement', 'rootStyle', 'style', 'styles', 'title', 'visible', 'width', 'zIndex']
-        self._valid_wildcard_attributes =            []
-        self.available_properties = ['children', 'id', 'bodyStyle', 'className', 'classNames', 'closable', 'containerId', 'containerSelector', 'contentWrapperStyle', 'destroyOnClose', 'drawerStyle', 'extra', 'footer', 'footerStyle', 'forceRender', 'headerStyle', 'height', 'key', 'loading_state', 'mask', 'maskClosable', 'maskStyle', 'placement', 'rootStyle', 'style', 'styles', 'title', 'visible', 'width', 'zIndex']
-        self.available_wildcard_properties =            []
+        self._prop_names = ['children', 'id', 'aria-*', 'bodyStyle', 'className', 'classNames', 'closable', 'containerId', 'containerSelector', 'contentWrapperStyle', 'data-*', 'destroyOnClose', 'drawerStyle', 'extra', 'footer', 'footerStyle', 'forceRender', 'headerStyle', 'height', 'key', 'loading_state', 'mask', 'maskClosable', 'maskStyle', 'placement', 'rootStyle', 'style', 'styles', 'title', 'visible', 'width', 'zIndex']
+        self._valid_wildcard_attributes =            ['data-', 'aria-']
+        self.available_properties = ['children', 'id', 'aria-*', 'bodyStyle', 'className', 'classNames', 'closable', 'containerId', 'containerSelector', 'contentWrapperStyle', 'data-*', 'destroyOnClose', 'drawerStyle', 'extra', 'footer', 'footerStyle', 'forceRender', 'headerStyle', 'height', 'key', 'loading_state', 'mask', 'maskClosable', 'maskStyle', 'placement', 'rootStyle', 'style', 'styles', 'title', 'visible', 'width', 'zIndex']
+        self.available_wildcard_properties =            ['data-', 'aria-']
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()
         _locals.update(kwargs)  # For wildcard attrs and excess named props

@@ -13,11 +13,17 @@ Keyword arguments:
 
 - id (string; optional)
 
+- aria-* (string; optional):
+    `aria-*`格式属性通配.
+
 - autoplay (boolean; default False)
 
 - autoplaySpeed (number; default 3000)
 
 - className (string | dict; optional)
+
+- data-* (string; optional):
+    `data-*`格式属性通配.
 
 - dotPosition (a value equal to: 'top', 'bottom', 'left', 'right'; default 'bottom')
 
@@ -57,10 +63,10 @@ Keyword arguments:
     _type = 'AntdCarousel'
     @_explicitize_args
     def __init__(self, children=None, id=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, key=Component.UNDEFINED, autoplay=Component.UNDEFINED, dotPosition=Component.UNDEFINED, easing=Component.UNDEFINED, effect=Component.UNDEFINED, autoplaySpeed=Component.UNDEFINED, speed=Component.UNDEFINED, pauseOnHover=Component.UNDEFINED, infinite=Component.UNDEFINED, lazyLoad=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
-        self._prop_names = ['children', 'id', 'autoplay', 'autoplaySpeed', 'className', 'dotPosition', 'easing', 'effect', 'infinite', 'key', 'lazyLoad', 'loading_state', 'pauseOnHover', 'speed', 'style']
-        self._valid_wildcard_attributes =            []
-        self.available_properties = ['children', 'id', 'autoplay', 'autoplaySpeed', 'className', 'dotPosition', 'easing', 'effect', 'infinite', 'key', 'lazyLoad', 'loading_state', 'pauseOnHover', 'speed', 'style']
-        self.available_wildcard_properties =            []
+        self._prop_names = ['children', 'id', 'aria-*', 'autoplay', 'autoplaySpeed', 'className', 'data-*', 'dotPosition', 'easing', 'effect', 'infinite', 'key', 'lazyLoad', 'loading_state', 'pauseOnHover', 'speed', 'style']
+        self._valid_wildcard_attributes =            ['data-', 'aria-']
+        self.available_properties = ['children', 'id', 'aria-*', 'autoplay', 'autoplaySpeed', 'className', 'data-*', 'dotPosition', 'easing', 'effect', 'infinite', 'key', 'lazyLoad', 'loading_state', 'pauseOnHover', 'speed', 'style']
+        self.available_wildcard_properties =            ['data-', 'aria-']
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()
         _locals.update(kwargs)  # For wildcard attrs and excess named props

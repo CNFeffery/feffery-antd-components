@@ -12,6 +12,9 @@ Keyword arguments:
 - id (string; optional):
     组件唯一id.
 
+- aria-* (string; optional):
+    `aria-*`格式属性通配.
+
 - batchPropsNames (list of strings; optional):
     需要纳入批属性监听的属性名  默认值：`[]`.
 
@@ -23,6 +26,9 @@ Keyword arguments:
 
 - current (number; optional):
     监听或设置当前页码.
+
+- data-* (string; optional):
+    `data-*`格式属性通配.
 
 - defaultCurrent (number; default 1):
     初始化时的当前页码  默认值：`1`.
@@ -106,10 +112,10 @@ Keyword arguments:
     _type = 'AntdPagination'
     @_explicitize_args
     def __init__(self, id=Component.UNDEFINED, key=Component.UNDEFINED, style=Component.UNDEFINED, className=Component.UNDEFINED, locale=Component.UNDEFINED, defaultCurrent=Component.UNDEFINED, defaultPageSize=Component.UNDEFINED, current=Component.UNDEFINED, disabled=Component.UNDEFINED, hideOnSinglePage=Component.UNDEFINED, pageSize=Component.UNDEFINED, pageSizeOptions=Component.UNDEFINED, showSizeChanger=Component.UNDEFINED, showQuickJumper=Component.UNDEFINED, showTotalPrefix=Component.UNDEFINED, showTotalSuffix=Component.UNDEFINED, simple=Component.UNDEFINED, size=Component.UNDEFINED, total=Component.UNDEFINED, showTotal=Component.UNDEFINED, showLessItems=Component.UNDEFINED, batchPropsNames=Component.UNDEFINED, batchPropsValues=Component.UNDEFINED, loading_state=Component.UNDEFINED, persistence=Component.UNDEFINED, persisted_props=Component.UNDEFINED, persistence_type=Component.UNDEFINED, **kwargs):
-        self._prop_names = ['id', 'batchPropsNames', 'batchPropsValues', 'className', 'current', 'defaultCurrent', 'defaultPageSize', 'disabled', 'hideOnSinglePage', 'key', 'loading_state', 'locale', 'pageSize', 'pageSizeOptions', 'persisted_props', 'persistence', 'persistence_type', 'showLessItems', 'showQuickJumper', 'showSizeChanger', 'showTotal', 'showTotalPrefix', 'showTotalSuffix', 'simple', 'size', 'style', 'total']
-        self._valid_wildcard_attributes =            []
-        self.available_properties = ['id', 'batchPropsNames', 'batchPropsValues', 'className', 'current', 'defaultCurrent', 'defaultPageSize', 'disabled', 'hideOnSinglePage', 'key', 'loading_state', 'locale', 'pageSize', 'pageSizeOptions', 'persisted_props', 'persistence', 'persistence_type', 'showLessItems', 'showQuickJumper', 'showSizeChanger', 'showTotal', 'showTotalPrefix', 'showTotalSuffix', 'simple', 'size', 'style', 'total']
-        self.available_wildcard_properties =            []
+        self._prop_names = ['id', 'aria-*', 'batchPropsNames', 'batchPropsValues', 'className', 'current', 'data-*', 'defaultCurrent', 'defaultPageSize', 'disabled', 'hideOnSinglePage', 'key', 'loading_state', 'locale', 'pageSize', 'pageSizeOptions', 'persisted_props', 'persistence', 'persistence_type', 'showLessItems', 'showQuickJumper', 'showSizeChanger', 'showTotal', 'showTotalPrefix', 'showTotalSuffix', 'simple', 'size', 'style', 'total']
+        self._valid_wildcard_attributes =            ['data-', 'aria-']
+        self.available_properties = ['id', 'aria-*', 'batchPropsNames', 'batchPropsValues', 'className', 'current', 'data-*', 'defaultCurrent', 'defaultPageSize', 'disabled', 'hideOnSinglePage', 'key', 'loading_state', 'locale', 'pageSize', 'pageSizeOptions', 'persisted_props', 'persistence', 'persistence_type', 'showLessItems', 'showQuickJumper', 'showSizeChanger', 'showTotal', 'showTotalPrefix', 'showTotalSuffix', 'simple', 'size', 'style', 'total']
+        self.available_wildcard_properties =            ['data-', 'aria-']
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()
         _locals.update(kwargs)  # For wildcard attrs and excess named props

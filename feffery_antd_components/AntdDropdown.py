@@ -15,6 +15,9 @@ Keyword arguments:
 - id (string; optional):
     组件唯一id.
 
+- aria-* (string; optional):
+    `aria-*`格式属性通配.
+
 - arrow (boolean; default False):
     下拉菜单是否渲染指示箭头  默认值：`False`.
 
@@ -56,6 +59,9 @@ Keyword arguments:
 
 - clickedKey (string; optional):
     监听被点击的下拉菜单选项key值.
+
+- data-* (string; optional):
+    `data-*`格式属性通配.
 
 - disabled (boolean; default False):
     是否禁用组件功能  默认值：`False`.
@@ -164,10 +170,10 @@ Keyword arguments:
     _type = 'AntdDropdown'
     @_explicitize_args
     def __init__(self, children=None, id=Component.UNDEFINED, key=Component.UNDEFINED, style=Component.UNDEFINED, className=Component.UNDEFINED, wrapperStyle=Component.UNDEFINED, wrapperClassName=Component.UNDEFINED, title=Component.UNDEFINED, buttonMode=Component.UNDEFINED, buttonProps=Component.UNDEFINED, freePosition=Component.UNDEFINED, freePositionStyle=Component.UNDEFINED, freePositionClassName=Component.UNDEFINED, clickedKey=Component.UNDEFINED, nClicks=Component.UNDEFINED, menuItems=Component.UNDEFINED, selectable=Component.UNDEFINED, multiple=Component.UNDEFINED, selectedKeys=Component.UNDEFINED, nonSelectableKeys=Component.UNDEFINED, arrow=Component.UNDEFINED, disabled=Component.UNDEFINED, overlayClassName=Component.UNDEFINED, overlayStyle=Component.UNDEFINED, placement=Component.UNDEFINED, trigger=Component.UNDEFINED, autoAdjustOverflow=Component.UNDEFINED, visible=Component.UNDEFINED, popupContainer=Component.UNDEFINED, batchPropsNames=Component.UNDEFINED, batchPropsValues=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
-        self._prop_names = ['children', 'id', 'arrow', 'autoAdjustOverflow', 'batchPropsNames', 'batchPropsValues', 'buttonMode', 'buttonProps', 'className', 'clickedKey', 'disabled', 'freePosition', 'freePositionClassName', 'freePositionStyle', 'key', 'loading_state', 'menuItems', 'multiple', 'nClicks', 'nonSelectableKeys', 'overlayClassName', 'overlayStyle', 'placement', 'popupContainer', 'selectable', 'selectedKeys', 'style', 'title', 'trigger', 'visible', 'wrapperClassName', 'wrapperStyle']
-        self._valid_wildcard_attributes =            []
-        self.available_properties = ['children', 'id', 'arrow', 'autoAdjustOverflow', 'batchPropsNames', 'batchPropsValues', 'buttonMode', 'buttonProps', 'className', 'clickedKey', 'disabled', 'freePosition', 'freePositionClassName', 'freePositionStyle', 'key', 'loading_state', 'menuItems', 'multiple', 'nClicks', 'nonSelectableKeys', 'overlayClassName', 'overlayStyle', 'placement', 'popupContainer', 'selectable', 'selectedKeys', 'style', 'title', 'trigger', 'visible', 'wrapperClassName', 'wrapperStyle']
-        self.available_wildcard_properties =            []
+        self._prop_names = ['children', 'id', 'aria-*', 'arrow', 'autoAdjustOverflow', 'batchPropsNames', 'batchPropsValues', 'buttonMode', 'buttonProps', 'className', 'clickedKey', 'data-*', 'disabled', 'freePosition', 'freePositionClassName', 'freePositionStyle', 'key', 'loading_state', 'menuItems', 'multiple', 'nClicks', 'nonSelectableKeys', 'overlayClassName', 'overlayStyle', 'placement', 'popupContainer', 'selectable', 'selectedKeys', 'style', 'title', 'trigger', 'visible', 'wrapperClassName', 'wrapperStyle']
+        self._valid_wildcard_attributes =            ['data-', 'aria-']
+        self.available_properties = ['children', 'id', 'aria-*', 'arrow', 'autoAdjustOverflow', 'batchPropsNames', 'batchPropsValues', 'buttonMode', 'buttonProps', 'className', 'clickedKey', 'data-*', 'disabled', 'freePosition', 'freePositionClassName', 'freePositionStyle', 'key', 'loading_state', 'menuItems', 'multiple', 'nClicks', 'nonSelectableKeys', 'overlayClassName', 'overlayStyle', 'placement', 'popupContainer', 'selectable', 'selectedKeys', 'style', 'title', 'trigger', 'visible', 'wrapperClassName', 'wrapperStyle']
+        self.available_wildcard_properties =            ['data-', 'aria-']
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()
         _locals.update(kwargs)  # For wildcard attrs and excess named props

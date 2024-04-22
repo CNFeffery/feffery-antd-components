@@ -12,6 +12,9 @@ Keyword arguments:
 - id (string; optional):
     组件唯一id.
 
+- aria-* (string; optional):
+    `aria-*`格式属性通配.
+
 - className (string | dict; optional):
     当前组件css类名，支持[动态css](/advanced-classname).
 
@@ -28,6 +31,9 @@ Keyword arguments:
 
     - timestamp (number; optional):
         点击事件时间戳.
+
+- data-* (string; optional):
+    `data-*`格式属性通配.
 
 - items (list of dicts; optional):
     面包屑节点数据结构.
@@ -108,10 +114,10 @@ Keyword arguments:
     _type = 'AntdBreadcrumb'
     @_explicitize_args
     def __init__(self, id=Component.UNDEFINED, key=Component.UNDEFINED, style=Component.UNDEFINED, className=Component.UNDEFINED, items=Component.UNDEFINED, separator=Component.UNDEFINED, clickedItem=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
-        self._prop_names = ['id', 'className', 'clickedItem', 'items', 'key', 'loading_state', 'separator', 'style']
-        self._valid_wildcard_attributes =            []
-        self.available_properties = ['id', 'className', 'clickedItem', 'items', 'key', 'loading_state', 'separator', 'style']
-        self.available_wildcard_properties =            []
+        self._prop_names = ['id', 'aria-*', 'className', 'clickedItem', 'data-*', 'items', 'key', 'loading_state', 'separator', 'style']
+        self._valid_wildcard_attributes =            ['data-', 'aria-']
+        self.available_properties = ['id', 'aria-*', 'className', 'clickedItem', 'data-*', 'items', 'key', 'loading_state', 'separator', 'style']
+        self.available_wildcard_properties =            ['data-', 'aria-']
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()
         _locals.update(kwargs)  # For wildcard attrs and excess named props

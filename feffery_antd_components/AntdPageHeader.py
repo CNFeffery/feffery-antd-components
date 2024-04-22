@@ -15,11 +15,17 @@ Keyword arguments:
 - id (string; optional):
     组件唯一id.
 
+- aria-* (string; optional):
+    `aria-*`格式属性通配.
+
 - backClicks (number; default 0):
     返回按钮累计点击次数，用于监听返回按钮点击行为  默认值：`0`.
 
 - className (string | dict; optional):
     当前组件css类名，支持[动态css](/advanced-classname).
+
+- data-* (string; optional):
+    `data-*`格式属性通配.
 
 - ghost (boolean; default False):
     是否开启透明背景模式  默认值：`False`.
@@ -60,10 +66,10 @@ Keyword arguments:
     _type = 'AntdPageHeader'
     @_explicitize_args
     def __init__(self, children=None, id=Component.UNDEFINED, key=Component.UNDEFINED, style=Component.UNDEFINED, className=Component.UNDEFINED, title=Component.UNDEFINED, subTitle=Component.UNDEFINED, showBackIcon=Component.UNDEFINED, historyBackDisabled=Component.UNDEFINED, backClicks=Component.UNDEFINED, ghost=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
-        self._prop_names = ['children', 'id', 'backClicks', 'className', 'ghost', 'historyBackDisabled', 'key', 'loading_state', 'showBackIcon', 'style', 'subTitle', 'title']
-        self._valid_wildcard_attributes =            []
-        self.available_properties = ['children', 'id', 'backClicks', 'className', 'ghost', 'historyBackDisabled', 'key', 'loading_state', 'showBackIcon', 'style', 'subTitle', 'title']
-        self.available_wildcard_properties =            []
+        self._prop_names = ['children', 'id', 'aria-*', 'backClicks', 'className', 'data-*', 'ghost', 'historyBackDisabled', 'key', 'loading_state', 'showBackIcon', 'style', 'subTitle', 'title']
+        self._valid_wildcard_attributes =            ['data-', 'aria-']
+        self.available_properties = ['children', 'id', 'aria-*', 'backClicks', 'className', 'data-*', 'ghost', 'historyBackDisabled', 'key', 'loading_state', 'showBackIcon', 'style', 'subTitle', 'title']
+        self.available_wildcard_properties =            ['data-', 'aria-']
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()
         _locals.update(kwargs)  # For wildcard attrs and excess named props

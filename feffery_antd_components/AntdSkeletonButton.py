@@ -13,9 +13,15 @@ Keyword arguments:
 
 - active (boolean; default False)
 
+- aria-* (string; optional):
+    `aria-*`格式属性通配.
+
 - block (boolean; default False)
 
 - className (string | dict; optional)
+
+- data-* (string; optional):
+    `data-*`格式属性通配.
 
 - key (string; optional)
 
@@ -43,10 +49,10 @@ Keyword arguments:
     _type = 'AntdSkeletonButton'
     @_explicitize_args
     def __init__(self, id=Component.UNDEFINED, style=Component.UNDEFINED, className=Component.UNDEFINED, key=Component.UNDEFINED, active=Component.UNDEFINED, block=Component.UNDEFINED, shape=Component.UNDEFINED, size=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
-        self._prop_names = ['id', 'active', 'block', 'className', 'key', 'loading_state', 'shape', 'size', 'style']
-        self._valid_wildcard_attributes =            []
-        self.available_properties = ['id', 'active', 'block', 'className', 'key', 'loading_state', 'shape', 'size', 'style']
-        self.available_wildcard_properties =            []
+        self._prop_names = ['id', 'active', 'aria-*', 'block', 'className', 'data-*', 'key', 'loading_state', 'shape', 'size', 'style']
+        self._valid_wildcard_attributes =            ['data-', 'aria-']
+        self.available_properties = ['id', 'active', 'aria-*', 'block', 'className', 'data-*', 'key', 'loading_state', 'shape', 'size', 'style']
+        self.available_wildcard_properties =            ['data-', 'aria-']
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()
         _locals.update(kwargs)  # For wildcard attrs and excess named props

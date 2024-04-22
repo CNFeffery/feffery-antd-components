@@ -18,6 +18,9 @@ Keyword arguments:
 - align (a value equal to: 'left', 'right'; default 'right'):
     锚点位置，可选项有`'left'`、`'right'`  默认值：`'right'`.
 
+- aria-* (string; optional):
+    `aria-*`格式属性通配.
+
 - bounds (number; default 5):
     锚点像素边距  默认值：`5`.
 
@@ -29,6 +32,9 @@ Keyword arguments:
 
 - containerId (string; optional):
     锚点目标容器id.
+
+- data-* (string; optional):
+    `data-*`格式属性通配.
 
 - key (string; optional):
     对当前组件的`key`值进行更新，可实现强制重绘当前组件的效果.
@@ -63,10 +69,10 @@ Keyword arguments:
     _type = 'AntdAnchor'
     @_explicitize_args
     def __init__(self, id=Component.UNDEFINED, key=Component.UNDEFINED, style=Component.UNDEFINED, className=Component.UNDEFINED, linkDict=Component.UNDEFINED, align=Component.UNDEFINED, containerId=Component.UNDEFINED, targetOffset=Component.UNDEFINED, affix=Component.UNDEFINED, bounds=Component.UNDEFINED, offsetTop=Component.UNDEFINED, clickedLink=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
-        self._prop_names = ['id', 'affix', 'align', 'bounds', 'className', 'clickedLink', 'containerId', 'key', 'linkDict', 'loading_state', 'offsetTop', 'style', 'targetOffset']
-        self._valid_wildcard_attributes =            []
-        self.available_properties = ['id', 'affix', 'align', 'bounds', 'className', 'clickedLink', 'containerId', 'key', 'linkDict', 'loading_state', 'offsetTop', 'style', 'targetOffset']
-        self.available_wildcard_properties =            []
+        self._prop_names = ['id', 'affix', 'align', 'aria-*', 'bounds', 'className', 'clickedLink', 'containerId', 'data-*', 'key', 'linkDict', 'loading_state', 'offsetTop', 'style', 'targetOffset']
+        self._valid_wildcard_attributes =            ['data-', 'aria-']
+        self.available_properties = ['id', 'affix', 'align', 'aria-*', 'bounds', 'className', 'clickedLink', 'containerId', 'data-*', 'key', 'linkDict', 'loading_state', 'offsetTop', 'style', 'targetOffset']
+        self.available_wildcard_properties =            ['data-', 'aria-']
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()
         _locals.update(kwargs)  # For wildcard attrs and excess named props

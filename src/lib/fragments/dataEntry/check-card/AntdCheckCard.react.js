@@ -1,6 +1,7 @@
 import React, { useEffect, useContext } from 'react';
 import { CheckCard } from '@ant-design/pro-components';
 import { isUndefined, isString } from 'lodash';
+import { pickBy } from 'ramda';
 import useCss from '../../../hooks/useCss';
 import PropsContext from '../../../contexts/PropsContext';
 import FormContext from '../../../contexts/FormContext';
@@ -64,7 +65,10 @@ const AntdCheckCard = (props) => {
     }, [])
 
     return (
-        <CheckCard id={id}
+        <CheckCard
+            // 提取具有data-*或aria-*通配格式的属性
+            {...pickBy((_, k) => k.startsWith('data-') || k.startsWith('aria-'), props)}
+            id={id}
             className={
                 isString(className) ?
                     className :
@@ -96,7 +100,6 @@ const AntdCheckCard = (props) => {
             } />
     );
 }
-
 
 export default AntdCheckCard;
 

@@ -12,11 +12,17 @@ Keyword arguments:
 - id (string; optional):
     组件唯一id.
 
+- aria-* (string; optional):
+    `aria-*`格式属性通配.
+
 - className (string | dict; optional):
     当前组件css类名，支持[动态css](/advanced-classname).
 
 - currentKey (string; optional):
     监听或设置当前已选中菜单项key值.
+
+- data-* (string; optional):
+    `data-*`格式属性通配.
 
 - defaultOpenKeys (list of strings; optional):
     默认展开的菜单项key值.
@@ -87,10 +93,10 @@ Keyword arguments:
     _type = 'AntdMenu'
     @_explicitize_args
     def __init__(self, id=Component.UNDEFINED, key=Component.UNDEFINED, style=Component.UNDEFINED, className=Component.UNDEFINED, menuItems=Component.UNDEFINED, menuItemKeyToTitle=Component.UNDEFINED, mode=Component.UNDEFINED, theme=Component.UNDEFINED, currentKey=Component.UNDEFINED, openKeys=Component.UNDEFINED, onlyExpandCurrentSubMenu=Component.UNDEFINED, defaultOpenKeys=Component.UNDEFINED, defaultSelectedKey=Component.UNDEFINED, renderCollapsedButton=Component.UNDEFINED, popupContainer=Component.UNDEFINED, inlineCollapsed=Component.UNDEFINED, inlineIndent=Component.UNDEFINED, loading_state=Component.UNDEFINED, persistence=Component.UNDEFINED, persisted_props=Component.UNDEFINED, persistence_type=Component.UNDEFINED, **kwargs):
-        self._prop_names = ['id', 'className', 'currentKey', 'defaultOpenKeys', 'defaultSelectedKey', 'inlineCollapsed', 'inlineIndent', 'key', 'loading_state', 'menuItemKeyToTitle', 'menuItems', 'mode', 'onlyExpandCurrentSubMenu', 'openKeys', 'persisted_props', 'persistence', 'persistence_type', 'popupContainer', 'renderCollapsedButton', 'style', 'theme']
-        self._valid_wildcard_attributes =            []
-        self.available_properties = ['id', 'className', 'currentKey', 'defaultOpenKeys', 'defaultSelectedKey', 'inlineCollapsed', 'inlineIndent', 'key', 'loading_state', 'menuItemKeyToTitle', 'menuItems', 'mode', 'onlyExpandCurrentSubMenu', 'openKeys', 'persisted_props', 'persistence', 'persistence_type', 'popupContainer', 'renderCollapsedButton', 'style', 'theme']
-        self.available_wildcard_properties =            []
+        self._prop_names = ['id', 'aria-*', 'className', 'currentKey', 'data-*', 'defaultOpenKeys', 'defaultSelectedKey', 'inlineCollapsed', 'inlineIndent', 'key', 'loading_state', 'menuItemKeyToTitle', 'menuItems', 'mode', 'onlyExpandCurrentSubMenu', 'openKeys', 'persisted_props', 'persistence', 'persistence_type', 'popupContainer', 'renderCollapsedButton', 'style', 'theme']
+        self._valid_wildcard_attributes =            ['data-', 'aria-']
+        self.available_properties = ['id', 'aria-*', 'className', 'currentKey', 'data-*', 'defaultOpenKeys', 'defaultSelectedKey', 'inlineCollapsed', 'inlineIndent', 'key', 'loading_state', 'menuItemKeyToTitle', 'menuItems', 'mode', 'onlyExpandCurrentSubMenu', 'openKeys', 'persisted_props', 'persistence', 'persistence_type', 'popupContainer', 'renderCollapsedButton', 'style', 'theme']
+        self.available_wildcard_properties =            ['data-', 'aria-']
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()
         _locals.update(kwargs)  # For wildcard attrs and excess named props

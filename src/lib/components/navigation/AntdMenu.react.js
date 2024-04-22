@@ -10,6 +10,7 @@ import {
 } from '@ant-design/icons';
 // 辅助库
 import { isUndefined, isNull, isString, cloneDeep } from 'lodash';
+import { pickBy } from 'ramda';
 import isAbsoluteUrl from 'is-absolute-url';
 // 自定义hooks
 import useCss from '../../hooks/useCss';
@@ -292,6 +293,8 @@ const AntdMenu = (props) => {
                     {React.createElement(inlineCollapsed ? MenuUnfoldOutlined : MenuFoldOutlined)}
                 </Button>
                 <Menu
+                    // 提取具有data-*或aria-*通配格式的属性
+                    {...pickBy((_, k) => k.startsWith('data-') || k.startsWith('aria-'), props)}
                     id={id}
                     className={
                         isString(className) ?
@@ -329,6 +332,8 @@ const AntdMenu = (props) => {
     } else {
         return (
             <Menu
+                // 提取具有data-*或aria-*通配格式的属性
+                {...pickBy((_, k) => k.startsWith('data-') || k.startsWith('aria-'), props)}
                 id={id}
                 className={
                     isString(className) ?
@@ -458,6 +463,16 @@ AntdMenu.propTypes = {
      * 默认值：`24`
      */
     inlineIndent: PropTypes.number,
+
+    /**
+     * `data-*`格式属性通配
+     */
+    'data-*': PropTypes.string,
+
+    /**
+     * `aria-*`格式属性通配
+     */
+    'aria-*': PropTypes.string,
 
     loading_state: PropTypes.shape({
         /**

@@ -4,8 +4,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Skeleton } from 'antd';
 import { isString } from 'lodash';
+import { pickBy } from 'ramda';
 import useCss from '../../../hooks/useCss';
-
 
 // 定义骨骼屏按钮占位图组件AntdSkeletonButton
 const AntdSkeletonButton = (props) => {
@@ -26,7 +26,10 @@ const AntdSkeletonButton = (props) => {
 
     // 返回定制化的前端组件
     return (
-        <Skeleton.Button id={id}
+        <Skeleton.Button
+            // 提取具有data-*或aria-*通配格式的属性
+            {...pickBy((_, k) => k.startsWith('data-') || k.startsWith('aria-'), props)}
+            id={id}
             style={style}
             className={
                 isString(className) ?
@@ -70,6 +73,16 @@ AntdSkeletonButton.propTypes = {
 
     // 设置按钮占位图的尺寸，可选的有'large'、'small'、'default'，默认为'default'
     size: PropTypes.oneOf(['large', 'small', 'default']),
+
+    /**
+     * `data-*`格式属性通配
+     */
+    'data-*': PropTypes.string,
+
+    /**
+     * `aria-*`格式属性通配
+     */
+    'aria-*': PropTypes.string,
 
     loading_state: PropTypes.shape({
         /**

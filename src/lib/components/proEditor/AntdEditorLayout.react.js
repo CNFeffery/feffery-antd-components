@@ -3,6 +3,9 @@ import PropTypes from 'prop-types';
 
 const LazyAntdEditorLayout = React.lazy(() => import(/* webpackChunkName: "pro_editor" */ '../../fragments/proEditor/AntdEditorLayout.react'));
 
+/**
+ * 编辑器布局组件AntdEditorLayout
+ */
 const AntdEditorLayout = (props) => {
     return (
         <Suspense fallback={null}>
@@ -290,6 +293,16 @@ AntdEditorLayout.propTypes = {
      * 整体主题类型，可选的有`'ghost'`、`'block'`、`'pure'`
      */
     themeType: PropTypes.oneOf(['ghost', 'block', 'pure']),
+
+    /**
+     * `data-*`格式属性通配
+     */
+    'data-*': PropTypes.string,
+
+    /**
+     * `aria-*`格式属性通配
+     */
+    'aria-*': PropTypes.string,
 
     loading_state: PropTypes.shape({
         /**

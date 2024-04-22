@@ -11,9 +11,15 @@ Keyword arguments:
 
 - id (string; optional)
 
+- aria-* (string; optional):
+    `aria-*`格式属性通配.
+
 - avatar (a list of or a singular dash component, string or number; optional)
 
 - className (string | dict; optional)
+
+- data-* (string; optional):
+    `data-*`格式属性通配.
 
 - description (a list of or a singular dash component, string or number; optional)
 
@@ -41,10 +47,10 @@ Keyword arguments:
     _type = 'AntdCardMeta'
     @_explicitize_args
     def __init__(self, id=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, key=Component.UNDEFINED, avatar=Component.UNDEFINED, description=Component.UNDEFINED, title=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
-        self._prop_names = ['id', 'avatar', 'className', 'description', 'key', 'loading_state', 'style', 'title']
-        self._valid_wildcard_attributes =            []
-        self.available_properties = ['id', 'avatar', 'className', 'description', 'key', 'loading_state', 'style', 'title']
-        self.available_wildcard_properties =            []
+        self._prop_names = ['id', 'aria-*', 'avatar', 'className', 'data-*', 'description', 'key', 'loading_state', 'style', 'title']
+        self._valid_wildcard_attributes =            ['data-', 'aria-']
+        self.available_properties = ['id', 'aria-*', 'avatar', 'className', 'data-*', 'description', 'key', 'loading_state', 'style', 'title']
+        self.available_wildcard_properties =            ['data-', 'aria-']
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()
         _locals.update(kwargs)  # For wildcard attrs and excess named props

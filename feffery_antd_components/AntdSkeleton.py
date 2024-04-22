@@ -15,6 +15,9 @@ Keyword arguments:
 
 - active (boolean; default False)
 
+- aria-* (string; optional):
+    `aria-*`格式属性通配.
+
 - avatar (dict; default False)
 
     `avatar` is a boolean | dict with keys:
@@ -26,6 +29,9 @@ Keyword arguments:
     - size (number | a value equal to: 'large', 'small', 'default'; optional)
 
 - className (string | dict; optional)
+
+- data-* (string; optional):
+    `data-*`格式属性通配.
 
 - debug (boolean; default False)
 
@@ -78,10 +84,10 @@ Keyword arguments:
     _type = 'AntdSkeleton'
     @_explicitize_args
     def __init__(self, children=None, id=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, key=Component.UNDEFINED, loading=Component.UNDEFINED, active=Component.UNDEFINED, delay=Component.UNDEFINED, avatar=Component.UNDEFINED, paragraph=Component.UNDEFINED, title=Component.UNDEFINED, round=Component.UNDEFINED, debug=Component.UNDEFINED, listenPropsMode=Component.UNDEFINED, excludeProps=Component.UNDEFINED, includeProps=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
-        self._prop_names = ['children', 'id', 'active', 'avatar', 'className', 'debug', 'delay', 'excludeProps', 'includeProps', 'key', 'listenPropsMode', 'loading', 'loading_state', 'paragraph', 'round', 'style', 'title']
-        self._valid_wildcard_attributes =            []
-        self.available_properties = ['children', 'id', 'active', 'avatar', 'className', 'debug', 'delay', 'excludeProps', 'includeProps', 'key', 'listenPropsMode', 'loading', 'loading_state', 'paragraph', 'round', 'style', 'title']
-        self.available_wildcard_properties =            []
+        self._prop_names = ['children', 'id', 'active', 'aria-*', 'avatar', 'className', 'data-*', 'debug', 'delay', 'excludeProps', 'includeProps', 'key', 'listenPropsMode', 'loading', 'loading_state', 'paragraph', 'round', 'style', 'title']
+        self._valid_wildcard_attributes =            ['data-', 'aria-']
+        self.available_properties = ['children', 'id', 'active', 'aria-*', 'avatar', 'className', 'data-*', 'debug', 'delay', 'excludeProps', 'includeProps', 'key', 'listenPropsMode', 'loading', 'loading_state', 'paragraph', 'round', 'style', 'title']
+        self.available_wildcard_properties =            ['data-', 'aria-']
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()
         _locals.update(kwargs)  # For wildcard attrs and excess named props

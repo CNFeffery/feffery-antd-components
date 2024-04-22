@@ -11,6 +11,9 @@ Keyword arguments:
 
 - id (string; optional)
 
+- aria-* (string; optional):
+    `aria-*`格式属性通配.
+
 - checked (boolean; default False):
     设置或监听当前标签的选择状态  默认：False.
 
@@ -19,6 +22,9 @@ Keyword arguments:
 - className (string | dict; optional)
 
 - content (a list of or a singular dash component, string or number; optional)
+
+- data-* (string; optional):
+    `data-*`格式属性通配.
 
 - key (string; optional)
 
@@ -44,10 +50,10 @@ Keyword arguments:
     _type = 'AntdCheckableTag'
     @_explicitize_args
     def __init__(self, id=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, key=Component.UNDEFINED, content=Component.UNDEFINED, checkedContent=Component.UNDEFINED, unCheckedContent=Component.UNDEFINED, checked=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
-        self._prop_names = ['id', 'checked', 'checkedContent', 'className', 'content', 'key', 'loading_state', 'style', 'unCheckedContent']
-        self._valid_wildcard_attributes =            []
-        self.available_properties = ['id', 'checked', 'checkedContent', 'className', 'content', 'key', 'loading_state', 'style', 'unCheckedContent']
-        self.available_wildcard_properties =            []
+        self._prop_names = ['id', 'aria-*', 'checked', 'checkedContent', 'className', 'content', 'data-*', 'key', 'loading_state', 'style', 'unCheckedContent']
+        self._valid_wildcard_attributes =            ['data-', 'aria-']
+        self.available_properties = ['id', 'aria-*', 'checked', 'checkedContent', 'className', 'content', 'data-*', 'key', 'loading_state', 'style', 'unCheckedContent']
+        self.available_wildcard_properties =            ['data-', 'aria-']
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()
         _locals.update(kwargs)  # For wildcard attrs and excess named props

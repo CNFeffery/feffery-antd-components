@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import { Button } from 'antd';
 // 辅助库
 import { isString, isUndefined } from 'lodash';
+import { pickBy } from 'ramda';
 import { useRequest } from 'ahooks';
 import { HappyProvider } from '@ant-design/happy-work-theme';
 // 自定义hooks
@@ -42,7 +43,6 @@ const AntdButton = (props) => {
         loading,
         autoSpin,
         motionType,
-        extraProps,
         loading_state
     } = props;
 
@@ -78,7 +78,8 @@ const AntdButton = (props) => {
 
     const renderElement = (
         <Button
-            {...(extraProps || {})}
+            // 提取具有data-*或aria-*通配格式的属性
+            {...pickBy((_, k) => k.startsWith('data-') || k.startsWith('aria-'), props)}
             id={id}
             key={key}
             style={style}
@@ -274,9 +275,14 @@ AntdButton.propTypes = {
     motionType: PropTypes.oneOf(['happy-work']),
 
     /**
-     * 为当前组件补充额外自定义键值对参数
+     * `data-*`格式属性通配
      */
-    extraProps: PropTypes.object,
+    'data-*': PropTypes.string,
+
+    /**
+     * `aria-*`格式属性通配
+     */
+    'aria-*': PropTypes.string,
 
     loading_state: PropTypes.shape({
         /**

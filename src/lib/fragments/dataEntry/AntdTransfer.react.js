@@ -2,6 +2,7 @@ import React, { useContext, useEffect } from 'react';
 import { Transfer, ConfigProvider } from 'antd';
 import { str2Locale, locale2text } from '../../components/locales.react';
 import { isString, isUndefined } from 'lodash';
+import { pickBy } from 'ramda';
 import useCss from '../../hooks/useCss';
 import PropsContext from '../../contexts/PropsContext';
 import FormContext from '../../contexts/FormContext';
@@ -100,6 +101,8 @@ const AntdTransfer = (props) => {
     return (
         <ConfigProvider locale={str2Locale.get(locale)}>
             <Transfer
+                // 提取具有data-*或aria-*通配格式的属性
+                {...pickBy((_, k) => k.startsWith('data-') || k.startsWith('aria-'), props)}
                 id={id}
                 style={style}
                 className={

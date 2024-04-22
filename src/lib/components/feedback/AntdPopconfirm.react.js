@@ -4,6 +4,7 @@ import { Popconfirm, ConfigProvider } from 'antd';
 import { str2Locale } from '../locales.react';
 import { parseChildrenToArray } from '../utils';
 import { isString, isUndefined } from 'lodash';
+import { pickBy } from 'ramda';
 import useCss from '../../hooks/useCss';
 import PropsContext from '../../contexts/PropsContext';
 
@@ -72,7 +73,10 @@ const AntdPopconfirm = (props) => {
 
     return (
         <ConfigProvider locale={str2Locale.get(locale)}>
-            <Popconfirm id={id}
+            <Popconfirm
+                // 提取具有data-*或aria-*通配格式的属性
+                {...pickBy((_, k) => k.startsWith('data-') || k.startsWith('aria-'), props)}
+                id={id}
                 className={
                     isString(className) ?
                         className :
@@ -260,6 +264,16 @@ AntdPopconfirm.propTypes = {
 
     // 设置悬浮层锚定策略，可选的有'parent'、'body'，默认为'body'
     popupContainer: PropTypes.oneOf(['parent', 'body']),
+
+    /**
+     * `data-*`格式属性通配
+     */
+    'data-*': PropTypes.string,
+
+    /**
+     * `aria-*`格式属性通配
+     */
+    'aria-*': PropTypes.string,
 
     loading_state: PropTypes.shape({
         /**

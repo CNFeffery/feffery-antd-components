@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { Layout } from 'antd';
 // 辅助库
 import { isString } from 'lodash';
+import { pickBy } from 'ramda';
 import { parseChildrenToArray } from '../utils';
 // 自定义hooks
 import useCss from '../../hooks/useCss';
@@ -40,7 +41,10 @@ const AntdSider = (props) => {
     children = parseChildrenToArray(children)
 
     return (
-        <Sider id={id}
+        <Sider
+            // 提取具有data-*或aria-*通配格式的属性
+            {...pickBy((_, k) => k.startsWith('data-') || k.startsWith('aria-'), props)}
+            id={id}
             className={
                 isString(className) ?
                     className :
@@ -149,6 +153,16 @@ AntdSider.propTypes = {
      * 侧边栏自动收起对应的响应式断点
      */
     breakpoint: PropTypes.oneOf(['xs', 'sm', 'md', 'lg', 'xl', 'xxl']),
+
+    /**
+     * `data-*`格式属性通配
+     */
+    'data-*': PropTypes.string,
+
+    /**
+     * `aria-*`格式属性通配
+     */
+    'aria-*': PropTypes.string,
 
     loading_state: PropTypes.shape({
         /**

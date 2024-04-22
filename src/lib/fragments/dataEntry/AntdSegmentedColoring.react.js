@@ -3,6 +3,7 @@
 import React, { useContext, useEffect } from 'react';
 import { InputNumber, Space, message, Typography } from 'antd';
 import { isString, isUndefined } from 'lodash';
+import { pickBy } from 'ramda';
 import useCss from '../../hooks/useCss';
 import PropsContext from '../../contexts/PropsContext';
 import { propTypes, defaultProps } from '../../components/dataEntry/AntdSegmentedColoring.react';
@@ -78,6 +79,8 @@ const AntdSegmentedColoring = (props) => {
 
     return (
         <Space
+            // 提取具有data-*或aria-*通配格式的属性
+            {...pickBy((_, k) => k.startsWith('data-') || k.startsWith('aria-'), props)}
             id={id}
             key={key}
             style={{

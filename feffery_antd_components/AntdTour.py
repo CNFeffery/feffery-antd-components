@@ -11,6 +11,9 @@ Keyword arguments:
 
 - id (string; optional)
 
+- aria-* (string; optional):
+    `aria-*`格式属性通配.
+
 - arrow (dict; default True):
     配置各引导步骤弹框的箭头  默认：True.
 
@@ -23,6 +26,9 @@ Keyword arguments:
 
 - current (number; optional):
     设置或监听当前漫游式引导所处的步骤序号.
+
+- data-* (string; optional):
+    `data-*`格式属性通配.
 
 - key (string; optional)
 
@@ -142,10 +148,10 @@ Keyword arguments:
     _type = 'AntdTour'
     @_explicitize_args
     def __init__(self, id=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, key=Component.UNDEFINED, locale=Component.UNDEFINED, steps=Component.UNDEFINED, arrow=Component.UNDEFINED, placement=Component.UNDEFINED, mask=Component.UNDEFINED, type=Component.UNDEFINED, open=Component.UNDEFINED, current=Component.UNDEFINED, zIndex=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
-        self._prop_names = ['id', 'arrow', 'className', 'current', 'key', 'loading_state', 'locale', 'mask', 'open', 'placement', 'steps', 'style', 'type', 'zIndex']
-        self._valid_wildcard_attributes =            []
-        self.available_properties = ['id', 'arrow', 'className', 'current', 'key', 'loading_state', 'locale', 'mask', 'open', 'placement', 'steps', 'style', 'type', 'zIndex']
-        self.available_wildcard_properties =            []
+        self._prop_names = ['id', 'aria-*', 'arrow', 'className', 'current', 'data-*', 'key', 'loading_state', 'locale', 'mask', 'open', 'placement', 'steps', 'style', 'type', 'zIndex']
+        self._valid_wildcard_attributes =            ['data-', 'aria-']
+        self.available_properties = ['id', 'aria-*', 'arrow', 'className', 'current', 'data-*', 'key', 'loading_state', 'locale', 'mask', 'open', 'placement', 'steps', 'style', 'type', 'zIndex']
+        self.available_wildcard_properties =            ['data-', 'aria-']
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()
         _locals.update(kwargs)  # For wildcard attrs and excess named props

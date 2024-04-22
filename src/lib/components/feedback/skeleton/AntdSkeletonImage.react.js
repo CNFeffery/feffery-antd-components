@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import { Skeleton } from 'antd';
 import useCss from '../../../hooks/useCss';
 import { isString } from 'lodash';
-
+import { pickBy } from 'ramda';
 
 // 定义骨骼屏图片占位图组件AntdSkeletonImage
 const AntdSkeletonImage = (props) => {
@@ -22,7 +22,10 @@ const AntdSkeletonImage = (props) => {
 
     // 返回定制化的前端组件
     return (
-        <Skeleton.Image id={id}
+        <Skeleton.Image
+            // 提取具有data-*或aria-*通配格式的属性
+            {...pickBy((_, k) => k.startsWith('data-') || k.startsWith('aria-'), props)}
+            id={id}
             style={style}
             className={
                 isString(className) ?
@@ -50,6 +53,16 @@ AntdSkeletonImage.propTypes = {
     ]),
 
     key: PropTypes.string,
+
+    /**
+     * `data-*`格式属性通配
+     */
+    'data-*': PropTypes.string,
+
+    /**
+     * `aria-*`格式属性通配
+     */
+    'aria-*': PropTypes.string,
 
     loading_state: PropTypes.shape({
         /**

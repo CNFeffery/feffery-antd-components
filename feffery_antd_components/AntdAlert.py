@@ -13,11 +13,17 @@ Keyword arguments:
 
 - action (a list of or a singular dash component, string or number; optional)
 
+- aria-* (string; optional):
+    `aria-*`格式属性通配.
+
 - banner (boolean; default False)
 
 - className (string | dict; optional)
 
 - closable (boolean; default False)
+
+- data-* (string; optional):
+    `data-*`格式属性通配.
 
 - description (a list of or a singular dash component, string or number; optional)
 
@@ -51,10 +57,10 @@ Keyword arguments:
     _type = 'AntdAlert'
     @_explicitize_args
     def __init__(self, id=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, key=Component.UNDEFINED, message=Component.UNDEFINED, description=Component.UNDEFINED, type=Component.UNDEFINED, showIcon=Component.UNDEFINED, closable=Component.UNDEFINED, messageRenderMode=Component.UNDEFINED, action=Component.UNDEFINED, banner=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
-        self._prop_names = ['id', 'action', 'banner', 'className', 'closable', 'description', 'key', 'loading_state', 'message', 'messageRenderMode', 'showIcon', 'style', 'type']
-        self._valid_wildcard_attributes =            []
-        self.available_properties = ['id', 'action', 'banner', 'className', 'closable', 'description', 'key', 'loading_state', 'message', 'messageRenderMode', 'showIcon', 'style', 'type']
-        self.available_wildcard_properties =            []
+        self._prop_names = ['id', 'action', 'aria-*', 'banner', 'className', 'closable', 'data-*', 'description', 'key', 'loading_state', 'message', 'messageRenderMode', 'showIcon', 'style', 'type']
+        self._valid_wildcard_attributes =            ['data-', 'aria-']
+        self.available_properties = ['id', 'action', 'aria-*', 'banner', 'className', 'closable', 'data-*', 'description', 'key', 'loading_state', 'message', 'messageRenderMode', 'showIcon', 'style', 'type']
+        self.available_wildcard_properties =            ['data-', 'aria-']
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()
         _locals.update(kwargs)  # For wildcard attrs and excess named props

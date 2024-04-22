@@ -17,6 +17,9 @@ Keyword arguments:
 
 - actions (list of a list of or a singular dash component, string or numbers; optional)
 
+- aria-* (string; optional):
+    `aria-*`格式属性通配.
+
 - bodyStyle (dict; optional)
 
 - bordered (boolean; default True)
@@ -34,6 +37,9 @@ Keyword arguments:
     - src (string; optional)
 
     - style (dict; optional)
+
+- data-* (string; optional):
+    `data-*`格式属性通配.
 
 - extra (a list of or a singular dash component, string or number; optional):
     设置卡片右上角额外元素，优先级高于extraLink.
@@ -85,10 +91,10 @@ Keyword arguments:
     _type = 'AntdCard'
     @_explicitize_args
     def __init__(self, children=None, id=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, key=Component.UNDEFINED, actions=Component.UNDEFINED, title=Component.UNDEFINED, extraLink=Component.UNDEFINED, extra=Component.UNDEFINED, coverImg=Component.UNDEFINED, bodyStyle=Component.UNDEFINED, headStyle=Component.UNDEFINED, bordered=Component.UNDEFINED, hoverable=Component.UNDEFINED, size=Component.UNDEFINED, nClicks=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
-        self._prop_names = ['children', 'id', 'actions', 'bodyStyle', 'bordered', 'className', 'coverImg', 'extra', 'extraLink', 'headStyle', 'hoverable', 'key', 'loading_state', 'nClicks', 'size', 'style', 'title']
-        self._valid_wildcard_attributes =            []
-        self.available_properties = ['children', 'id', 'actions', 'bodyStyle', 'bordered', 'className', 'coverImg', 'extra', 'extraLink', 'headStyle', 'hoverable', 'key', 'loading_state', 'nClicks', 'size', 'style', 'title']
-        self.available_wildcard_properties =            []
+        self._prop_names = ['children', 'id', 'actions', 'aria-*', 'bodyStyle', 'bordered', 'className', 'coverImg', 'data-*', 'extra', 'extraLink', 'headStyle', 'hoverable', 'key', 'loading_state', 'nClicks', 'size', 'style', 'title']
+        self._valid_wildcard_attributes =            ['data-', 'aria-']
+        self.available_properties = ['children', 'id', 'actions', 'aria-*', 'bodyStyle', 'bordered', 'className', 'coverImg', 'data-*', 'extra', 'extraLink', 'headStyle', 'hoverable', 'key', 'loading_state', 'nClicks', 'size', 'style', 'title']
+        self.available_wildcard_properties =            ['data-', 'aria-']
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()
         _locals.update(kwargs)  # For wildcard attrs and excess named props

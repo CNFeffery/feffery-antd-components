@@ -8,6 +8,7 @@ import {
 } from "@ant-design/icons";
 import Draggable from "react-draggable";
 import { isString } from 'lodash';
+import { pickBy } from 'ramda';
 import useCss from '../../hooks/useCss';
 import { v4 as uuidv4 } from 'uuid';
 
@@ -63,6 +64,8 @@ const AntdPopupCard = (props) => {
     // 返回定制化的前端组件
     return (
         <Modal
+            // 提取具有data-*或aria-*通配格式的属性
+            {...pickBy((_, k) => k.startsWith('data-') || k.startsWith('aria-'), props)}
             id={id}
             className={
                 isString(className) ?
@@ -224,6 +227,16 @@ AntdPopupCard.propTypes = {
 
     // 自定义弹出卡片主体区域css样式
     bodyStyle: PropTypes.object,
+
+    /**
+     * `data-*`格式属性通配
+     */
+    'data-*': PropTypes.string,
+
+    /**
+     * `aria-*`格式属性通配
+     */
+    'aria-*': PropTypes.string,
 
     /**
      * Dash-assigned callback that should be called to report property changes

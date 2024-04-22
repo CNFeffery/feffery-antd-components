@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import { Empty, ConfigProvider } from 'antd';
 import { str2Locale } from '../../components/locales.react';
 import { isString } from 'lodash';
+import { pickBy } from 'ramda';
 import useCss from '../../hooks/useCss';
 import PropsContext from '../../contexts/PropsContext';
 import { propTypes, defaultProps } from '../../components/dataDisplay/AntdEmpty.react';
@@ -34,7 +35,10 @@ const AntdEmpty = (props) => {
 
     return (
         <ConfigProvider locale={str2Locale.get(locale)}>
-            <Empty id={id}
+            <Empty
+                // 提取具有data-*或aria-*通配格式的属性
+                {...pickBy((_, k) => k.startsWith('data-') || k.startsWith('aria-'), props)}
+                id={id}
                 className={
                     isString(className) ?
                         className :

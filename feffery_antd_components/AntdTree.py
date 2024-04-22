@@ -11,6 +11,9 @@ Keyword arguments:
 
 - id (string; optional)
 
+- aria-* (string; optional):
+    `aria-*`格式属性通配.
+
 - batchPropsNames (list of strings; optional)
 
 - batchPropsValues (dict; optional)
@@ -34,6 +37,9 @@ Keyword arguments:
     - nodeKey (string; optional)
 
     - timestamp (number; optional)
+
+- data-* (string; optional):
+    `data-*`格式属性通配.
 
 - defaultCheckedKeys (list of strings; optional)
 
@@ -144,10 +150,10 @@ Keyword arguments:
     _type = 'AntdTree'
     @_explicitize_args
     def __init__(self, id=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, key=Component.UNDEFINED, treeDataMode=Component.UNDEFINED, treeData=Component.UNDEFINED, treeNodeKeyToTitle=Component.UNDEFINED, showIcon=Component.UNDEFINED, selectable=Component.UNDEFINED, multiple=Component.UNDEFINED, checkable=Component.UNDEFINED, defaultExpandAll=Component.UNDEFINED, expandedKeys=Component.UNDEFINED, defaultExpandedKeys=Component.UNDEFINED, defaultExpandParent=Component.UNDEFINED, selectedKeys=Component.UNDEFINED, defaultSelectedKeys=Component.UNDEFINED, checkedKeys=Component.UNDEFINED, defaultCheckedKeys=Component.UNDEFINED, halfCheckedKeys=Component.UNDEFINED, checkStrictly=Component.UNDEFINED, showLine=Component.UNDEFINED, height=Component.UNDEFINED, draggable=Component.UNDEFINED, dragInSameLevel=Component.UNDEFINED, draggedNodeKey=Component.UNDEFINED, clickedContextMenu=Component.UNDEFINED, enableNodeFavorites=Component.UNDEFINED, favoritedKeys=Component.UNDEFINED, scrollTarget=Component.UNDEFINED, searchKeyword=Component.UNDEFINED, caseSensitive=Component.UNDEFINED, highlightStyle=Component.UNDEFINED, nodeCheckedSuffix=Component.UNDEFINED, nodeUncheckedSuffix=Component.UNDEFINED, nodeCheckedStyle=Component.UNDEFINED, nodeUncheckedStyle=Component.UNDEFINED, batchPropsNames=Component.UNDEFINED, batchPropsValues=Component.UNDEFINED, loading_state=Component.UNDEFINED, persistence=Component.UNDEFINED, persisted_props=Component.UNDEFINED, persistence_type=Component.UNDEFINED, **kwargs):
-        self._prop_names = ['id', 'batchPropsNames', 'batchPropsValues', 'caseSensitive', 'checkStrictly', 'checkable', 'checkedKeys', 'className', 'clickedContextMenu', 'defaultCheckedKeys', 'defaultExpandAll', 'defaultExpandParent', 'defaultExpandedKeys', 'defaultSelectedKeys', 'dragInSameLevel', 'draggable', 'draggedNodeKey', 'enableNodeFavorites', 'expandedKeys', 'favoritedKeys', 'halfCheckedKeys', 'height', 'highlightStyle', 'key', 'loading_state', 'multiple', 'nodeCheckedStyle', 'nodeCheckedSuffix', 'nodeUncheckedStyle', 'nodeUncheckedSuffix', 'persisted_props', 'persistence', 'persistence_type', 'scrollTarget', 'searchKeyword', 'selectable', 'selectedKeys', 'showIcon', 'showLine', 'style', 'treeData', 'treeDataMode', 'treeNodeKeyToTitle']
-        self._valid_wildcard_attributes =            []
-        self.available_properties = ['id', 'batchPropsNames', 'batchPropsValues', 'caseSensitive', 'checkStrictly', 'checkable', 'checkedKeys', 'className', 'clickedContextMenu', 'defaultCheckedKeys', 'defaultExpandAll', 'defaultExpandParent', 'defaultExpandedKeys', 'defaultSelectedKeys', 'dragInSameLevel', 'draggable', 'draggedNodeKey', 'enableNodeFavorites', 'expandedKeys', 'favoritedKeys', 'halfCheckedKeys', 'height', 'highlightStyle', 'key', 'loading_state', 'multiple', 'nodeCheckedStyle', 'nodeCheckedSuffix', 'nodeUncheckedStyle', 'nodeUncheckedSuffix', 'persisted_props', 'persistence', 'persistence_type', 'scrollTarget', 'searchKeyword', 'selectable', 'selectedKeys', 'showIcon', 'showLine', 'style', 'treeData', 'treeDataMode', 'treeNodeKeyToTitle']
-        self.available_wildcard_properties =            []
+        self._prop_names = ['id', 'aria-*', 'batchPropsNames', 'batchPropsValues', 'caseSensitive', 'checkStrictly', 'checkable', 'checkedKeys', 'className', 'clickedContextMenu', 'data-*', 'defaultCheckedKeys', 'defaultExpandAll', 'defaultExpandParent', 'defaultExpandedKeys', 'defaultSelectedKeys', 'dragInSameLevel', 'draggable', 'draggedNodeKey', 'enableNodeFavorites', 'expandedKeys', 'favoritedKeys', 'halfCheckedKeys', 'height', 'highlightStyle', 'key', 'loading_state', 'multiple', 'nodeCheckedStyle', 'nodeCheckedSuffix', 'nodeUncheckedStyle', 'nodeUncheckedSuffix', 'persisted_props', 'persistence', 'persistence_type', 'scrollTarget', 'searchKeyword', 'selectable', 'selectedKeys', 'showIcon', 'showLine', 'style', 'treeData', 'treeDataMode', 'treeNodeKeyToTitle']
+        self._valid_wildcard_attributes =            ['data-', 'aria-']
+        self.available_properties = ['id', 'aria-*', 'batchPropsNames', 'batchPropsValues', 'caseSensitive', 'checkStrictly', 'checkable', 'checkedKeys', 'className', 'clickedContextMenu', 'data-*', 'defaultCheckedKeys', 'defaultExpandAll', 'defaultExpandParent', 'defaultExpandedKeys', 'defaultSelectedKeys', 'dragInSameLevel', 'draggable', 'draggedNodeKey', 'enableNodeFavorites', 'expandedKeys', 'favoritedKeys', 'halfCheckedKeys', 'height', 'highlightStyle', 'key', 'loading_state', 'multiple', 'nodeCheckedStyle', 'nodeCheckedSuffix', 'nodeUncheckedStyle', 'nodeUncheckedSuffix', 'persisted_props', 'persistence', 'persistence_type', 'scrollTarget', 'searchKeyword', 'selectable', 'selectedKeys', 'showIcon', 'showLine', 'style', 'treeData', 'treeDataMode', 'treeNodeKeyToTitle']
+        self.available_wildcard_properties =            ['data-', 'aria-']
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()
         _locals.update(kwargs)  # For wildcard attrs and excess named props

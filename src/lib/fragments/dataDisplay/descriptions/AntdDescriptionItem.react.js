@@ -1,5 +1,6 @@
 import React from 'react';
 import { isString } from 'lodash';
+import { pickBy } from 'ramda';
 import useCss from '../../../hooks/useCss';
 import { parseChildrenToArray } from '../../../components/utils';
 import { propTypes, defaultProps } from '../../../components/dataDisplay/descriptions/AntdDescriptionItem.react';
@@ -24,7 +25,10 @@ const AntdDescriptionItem = (props) => {
     children = parseChildrenToArray(children)
 
     return (
-        <div id={id}
+        <div
+            // 提取具有data-*或aria-*通配格式的属性
+            {...pickBy((_, k) => k.startsWith('data-') || k.startsWith('aria-'), props)}
+            id={id}
             className={
                 isString(className) ?
                     className :

@@ -15,9 +15,15 @@ Keyword arguments:
 
 - allowNoValue (boolean; default True)
 
+- aria-* (string; optional):
+    `aria-*`格式属性通配.
+
 - bordered (boolean; default True)
 
 - className (string | dict; optional)
+
+- data-* (string; optional):
+    `data-*`格式属性通配.
 
 - defaultValue (number | string | list of number | strings; optional)
 
@@ -75,10 +81,10 @@ Keyword arguments:
     _type = 'AntdCheckCardGroup'
     @_explicitize_args
     def __init__(self, children=None, id=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, key=Component.UNDEFINED, name=Component.UNDEFINED, multiple=Component.UNDEFINED, allowNoValue=Component.UNDEFINED, bordered=Component.UNDEFINED, value=Component.UNDEFINED, defaultValue=Component.UNDEFINED, disabled=Component.UNDEFINED, size=Component.UNDEFINED, readOnly=Component.UNDEFINED, loading_state=Component.UNDEFINED, persistence=Component.UNDEFINED, persisted_props=Component.UNDEFINED, persistence_type=Component.UNDEFINED, **kwargs):
-        self._prop_names = ['children', 'id', 'allowNoValue', 'bordered', 'className', 'defaultValue', 'disabled', 'key', 'loading_state', 'multiple', 'name', 'persisted_props', 'persistence', 'persistence_type', 'readOnly', 'size', 'style', 'value']
-        self._valid_wildcard_attributes =            []
-        self.available_properties = ['children', 'id', 'allowNoValue', 'bordered', 'className', 'defaultValue', 'disabled', 'key', 'loading_state', 'multiple', 'name', 'persisted_props', 'persistence', 'persistence_type', 'readOnly', 'size', 'style', 'value']
-        self.available_wildcard_properties =            []
+        self._prop_names = ['children', 'id', 'allowNoValue', 'aria-*', 'bordered', 'className', 'data-*', 'defaultValue', 'disabled', 'key', 'loading_state', 'multiple', 'name', 'persisted_props', 'persistence', 'persistence_type', 'readOnly', 'size', 'style', 'value']
+        self._valid_wildcard_attributes =            ['data-', 'aria-']
+        self.available_properties = ['children', 'id', 'allowNoValue', 'aria-*', 'bordered', 'className', 'data-*', 'defaultValue', 'disabled', 'key', 'loading_state', 'multiple', 'name', 'persisted_props', 'persistence', 'persistence_type', 'readOnly', 'size', 'style', 'value']
+        self.available_wildcard_properties =            ['data-', 'aria-']
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()
         _locals.update(kwargs)  # For wildcard attrs and excess named props

@@ -13,6 +13,9 @@ Keyword arguments:
 
 - allowClear (boolean; default True)
 
+- aria-* (string; optional):
+    `aria-*`格式属性通配.
+
 - autoClearSearchValue (boolean; default True)
 
 - autoFocus (boolean; default False)
@@ -31,6 +34,9 @@ Keyword arguments:
 - colorsMode (a value equal to: 'sequential', 'diverging'; default 'sequential')
 
 - colorsNameWidth (number; default 40)
+
+- data-* (string; optional):
+    `data-*`格式属性通配.
 
 - debounceSearchValue (string; optional)
 
@@ -158,10 +164,10 @@ Keyword arguments:
     _type = 'AntdSelect'
     @_explicitize_args
     def __init__(self, id=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, popupClassName=Component.UNDEFINED, key=Component.UNDEFINED, name=Component.UNDEFINED, locale=Component.UNDEFINED, options=Component.UNDEFINED, listHeight=Component.UNDEFINED, colorsMode=Component.UNDEFINED, colorsNameWidth=Component.UNDEFINED, mode=Component.UNDEFINED, disabled=Component.UNDEFINED, size=Component.UNDEFINED, bordered=Component.UNDEFINED, variant=Component.UNDEFINED, placeholder=Component.UNDEFINED, placement=Component.UNDEFINED, value=Component.UNDEFINED, defaultValue=Component.UNDEFINED, maxTagCount=Component.UNDEFINED, status=Component.UNDEFINED, optionFilterProp=Component.UNDEFINED, searchValue=Component.UNDEFINED, optionFilterMode=Component.UNDEFINED, debounceSearchValue=Component.UNDEFINED, debounceWait=Component.UNDEFINED, autoSpin=Component.UNDEFINED, autoClearSearchValue=Component.UNDEFINED, emptyContent=Component.UNDEFINED, loadingEmptyContent=Component.UNDEFINED, dropdownBefore=Component.UNDEFINED, dropdownAfter=Component.UNDEFINED, allowClear=Component.UNDEFINED, autoFocus=Component.UNDEFINED, popupMatchSelectWidth=Component.UNDEFINED, readOnly=Component.UNDEFINED, popupContainer=Component.UNDEFINED, batchPropsNames=Component.UNDEFINED, batchPropsValues=Component.UNDEFINED, loading_state=Component.UNDEFINED, persistence=Component.UNDEFINED, persisted_props=Component.UNDEFINED, persistence_type=Component.UNDEFINED, **kwargs):
-        self._prop_names = ['id', 'allowClear', 'autoClearSearchValue', 'autoFocus', 'autoSpin', 'batchPropsNames', 'batchPropsValues', 'bordered', 'className', 'colorsMode', 'colorsNameWidth', 'debounceSearchValue', 'debounceWait', 'defaultValue', 'disabled', 'dropdownAfter', 'dropdownBefore', 'emptyContent', 'key', 'listHeight', 'loadingEmptyContent', 'loading_state', 'locale', 'maxTagCount', 'mode', 'name', 'optionFilterMode', 'optionFilterProp', 'options', 'persisted_props', 'persistence', 'persistence_type', 'placeholder', 'placement', 'popupClassName', 'popupContainer', 'popupMatchSelectWidth', 'readOnly', 'searchValue', 'size', 'status', 'style', 'value', 'variant']
-        self._valid_wildcard_attributes =            []
-        self.available_properties = ['id', 'allowClear', 'autoClearSearchValue', 'autoFocus', 'autoSpin', 'batchPropsNames', 'batchPropsValues', 'bordered', 'className', 'colorsMode', 'colorsNameWidth', 'debounceSearchValue', 'debounceWait', 'defaultValue', 'disabled', 'dropdownAfter', 'dropdownBefore', 'emptyContent', 'key', 'listHeight', 'loadingEmptyContent', 'loading_state', 'locale', 'maxTagCount', 'mode', 'name', 'optionFilterMode', 'optionFilterProp', 'options', 'persisted_props', 'persistence', 'persistence_type', 'placeholder', 'placement', 'popupClassName', 'popupContainer', 'popupMatchSelectWidth', 'readOnly', 'searchValue', 'size', 'status', 'style', 'value', 'variant']
-        self.available_wildcard_properties =            []
+        self._prop_names = ['id', 'allowClear', 'aria-*', 'autoClearSearchValue', 'autoFocus', 'autoSpin', 'batchPropsNames', 'batchPropsValues', 'bordered', 'className', 'colorsMode', 'colorsNameWidth', 'data-*', 'debounceSearchValue', 'debounceWait', 'defaultValue', 'disabled', 'dropdownAfter', 'dropdownBefore', 'emptyContent', 'key', 'listHeight', 'loadingEmptyContent', 'loading_state', 'locale', 'maxTagCount', 'mode', 'name', 'optionFilterMode', 'optionFilterProp', 'options', 'persisted_props', 'persistence', 'persistence_type', 'placeholder', 'placement', 'popupClassName', 'popupContainer', 'popupMatchSelectWidth', 'readOnly', 'searchValue', 'size', 'status', 'style', 'value', 'variant']
+        self._valid_wildcard_attributes =            ['data-', 'aria-']
+        self.available_properties = ['id', 'allowClear', 'aria-*', 'autoClearSearchValue', 'autoFocus', 'autoSpin', 'batchPropsNames', 'batchPropsValues', 'bordered', 'className', 'colorsMode', 'colorsNameWidth', 'data-*', 'debounceSearchValue', 'debounceWait', 'defaultValue', 'disabled', 'dropdownAfter', 'dropdownBefore', 'emptyContent', 'key', 'listHeight', 'loadingEmptyContent', 'loading_state', 'locale', 'maxTagCount', 'mode', 'name', 'optionFilterMode', 'optionFilterProp', 'options', 'persisted_props', 'persistence', 'persistence_type', 'placeholder', 'placement', 'popupClassName', 'popupContainer', 'popupMatchSelectWidth', 'readOnly', 'searchValue', 'size', 'status', 'style', 'value', 'variant']
+        self.available_wildcard_properties =            ['data-', 'aria-']
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()
         _locals.update(kwargs)  # For wildcard attrs and excess named props

@@ -1,6 +1,7 @@
 import React from 'react';
 import { Card } from 'antd';
 import { isString } from 'lodash';
+import { pickBy } from 'ramda';
 import useCss from '../../../hooks/useCss';
 import { propTypes, defaultProps } from '../../../components/dataDisplay/card/AntdCardMeta.react';
 
@@ -21,7 +22,10 @@ const AntdCardMeta = (props) => {
     } = props;
 
     return (
-        <Meta id={id}
+        <Meta
+            // 提取具有data-*或aria-*通配格式的属性
+            {...pickBy((_, k) => k.startsWith('data-') || k.startsWith('aria-'), props)}
+            id={id}
             className={
                 isString(className) ?
                     className :

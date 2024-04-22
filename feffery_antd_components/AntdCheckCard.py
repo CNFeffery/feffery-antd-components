@@ -13,11 +13,17 @@ Keyword arguments:
 
 - id (string; optional)
 
+- aria-* (string; optional):
+    `aria-*`格式属性通配.
+
 - bordered (boolean; default True)
 
 - checked (boolean; optional)
 
 - className (string | dict; optional)
+
+- data-* (string; optional):
+    `data-*`格式属性通配.
 
 - defaultChecked (boolean; optional)
 
@@ -73,10 +79,10 @@ Keyword arguments:
     _type = 'AntdCheckCard'
     @_explicitize_args
     def __init__(self, children=None, id=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, key=Component.UNDEFINED, name=Component.UNDEFINED, checked=Component.UNDEFINED, defaultChecked=Component.UNDEFINED, bordered=Component.UNDEFINED, disabled=Component.UNDEFINED, size=Component.UNDEFINED, value=Component.UNDEFINED, readOnly=Component.UNDEFINED, loading_state=Component.UNDEFINED, persistence=Component.UNDEFINED, persisted_props=Component.UNDEFINED, persistence_type=Component.UNDEFINED, **kwargs):
-        self._prop_names = ['children', 'id', 'bordered', 'checked', 'className', 'defaultChecked', 'disabled', 'key', 'loading_state', 'name', 'persisted_props', 'persistence', 'persistence_type', 'readOnly', 'size', 'style', 'value']
-        self._valid_wildcard_attributes =            []
-        self.available_properties = ['children', 'id', 'bordered', 'checked', 'className', 'defaultChecked', 'disabled', 'key', 'loading_state', 'name', 'persisted_props', 'persistence', 'persistence_type', 'readOnly', 'size', 'style', 'value']
-        self.available_wildcard_properties =            []
+        self._prop_names = ['children', 'id', 'aria-*', 'bordered', 'checked', 'className', 'data-*', 'defaultChecked', 'disabled', 'key', 'loading_state', 'name', 'persisted_props', 'persistence', 'persistence_type', 'readOnly', 'size', 'style', 'value']
+        self._valid_wildcard_attributes =            ['data-', 'aria-']
+        self.available_properties = ['children', 'id', 'aria-*', 'bordered', 'checked', 'className', 'data-*', 'defaultChecked', 'disabled', 'key', 'loading_state', 'name', 'persisted_props', 'persistence', 'persistence_type', 'readOnly', 'size', 'style', 'value']
+        self.available_wildcard_properties =            ['data-', 'aria-']
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()
         _locals.update(kwargs)  # For wildcard attrs and excess named props

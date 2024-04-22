@@ -13,7 +13,13 @@ Keyword arguments:
 
 - active (boolean; default False)
 
+- aria-* (string; optional):
+    `aria-*`格式属性通配.
+
 - className (string | dict; optional)
+
+- data-* (string; optional):
+    `data-*`格式属性通配.
 
 - key (string; optional)
 
@@ -39,10 +45,10 @@ Keyword arguments:
     _type = 'AntdSkeletonInput'
     @_explicitize_args
     def __init__(self, id=Component.UNDEFINED, style=Component.UNDEFINED, className=Component.UNDEFINED, key=Component.UNDEFINED, active=Component.UNDEFINED, size=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
-        self._prop_names = ['id', 'active', 'className', 'key', 'loading_state', 'size', 'style']
-        self._valid_wildcard_attributes =            []
-        self.available_properties = ['id', 'active', 'className', 'key', 'loading_state', 'size', 'style']
-        self.available_wildcard_properties =            []
+        self._prop_names = ['id', 'active', 'aria-*', 'className', 'data-*', 'key', 'loading_state', 'size', 'style']
+        self._valid_wildcard_attributes =            ['data-', 'aria-']
+        self.available_properties = ['id', 'active', 'aria-*', 'className', 'data-*', 'key', 'loading_state', 'size', 'style']
+        self.available_wildcard_properties =            ['data-', 'aria-']
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()
         _locals.update(kwargs)  # For wildcard attrs and excess named props

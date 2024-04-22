@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import useCss from '../../hooks/useCss';
 import { isString } from 'lodash';
+import { pickBy } from 'ramda';
 import { Drawer } from 'antd';
 
 /**
@@ -49,6 +50,8 @@ const AntdDrawer = (props) => {
 
     return (
         <Drawer
+            // 提取具有data-*或aria-*通配格式的属性
+            {...pickBy((_, k) => k.startsWith('data-') || k.startsWith('aria-'), props)}
             id={id}
             key={key}
             className={
@@ -223,6 +226,16 @@ AntdDrawer.propTypes = {
     // 当目标容器定位较为复杂时，可传入获取元素对应的js代码字符串
     // 优先级低于containerId
     containerSelector: PropTypes.string,
+
+    /**
+     * `data-*`格式属性通配
+     */
+    'data-*': PropTypes.string,
+
+    /**
+     * `aria-*`格式属性通配
+     */
+    'aria-*': PropTypes.string,
 
     loading_state: PropTypes.shape({
         /**

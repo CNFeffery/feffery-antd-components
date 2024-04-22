@@ -15,9 +15,15 @@ Keyword arguments:
 
 - id (string; optional)
 
+- aria-* (string; optional):
+    `aria-*`格式属性通配.
+
 - className (string | dict; optional)
 
 - colon (boolean; default True)
+
+- data-* (string; optional):
+    `data-*`格式属性通配.
 
 - enableBatchControl (boolean; default False):
     是否启用表单批量控制功能，开启后会导致部分性能的损耗  默认值：`False`.
@@ -81,10 +87,10 @@ Keyword arguments:
     _type = 'AntdForm'
     @_explicitize_args
     def __init__(self, children=None, id=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, key=Component.UNDEFINED, layout=Component.UNDEFINED, labelCol=Component.UNDEFINED, wrapperCol=Component.UNDEFINED, colon=Component.UNDEFINED, labelAlign=Component.UNDEFINED, labelWrap=Component.UNDEFINED, enableBatchControl=Component.UNDEFINED, values=Component.UNDEFINED, validateStatuses=Component.UNDEFINED, helps=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
-        self._prop_names = ['children', 'id', 'className', 'colon', 'enableBatchControl', 'helps', 'key', 'labelAlign', 'labelCol', 'labelWrap', 'layout', 'loading_state', 'style', 'validateStatuses', 'values', 'wrapperCol']
-        self._valid_wildcard_attributes =            []
-        self.available_properties = ['children', 'id', 'className', 'colon', 'enableBatchControl', 'helps', 'key', 'labelAlign', 'labelCol', 'labelWrap', 'layout', 'loading_state', 'style', 'validateStatuses', 'values', 'wrapperCol']
-        self.available_wildcard_properties =            []
+        self._prop_names = ['children', 'id', 'aria-*', 'className', 'colon', 'data-*', 'enableBatchControl', 'helps', 'key', 'labelAlign', 'labelCol', 'labelWrap', 'layout', 'loading_state', 'style', 'validateStatuses', 'values', 'wrapperCol']
+        self._valid_wildcard_attributes =            ['data-', 'aria-']
+        self.available_properties = ['children', 'id', 'aria-*', 'className', 'colon', 'data-*', 'enableBatchControl', 'helps', 'key', 'labelAlign', 'labelCol', 'labelWrap', 'layout', 'loading_state', 'style', 'validateStatuses', 'values', 'wrapperCol']
+        self.available_wildcard_properties =            ['data-', 'aria-']
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()
         _locals.update(kwargs)  # For wildcard attrs and excess named props

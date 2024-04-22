@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import { Skeleton } from 'antd';
 import useCss from '../../../hooks/useCss';
 import { isString } from 'lodash';
-
+import { pickBy } from 'ramda';
 
 // 定义骨骼屏输入框占位图组件AntdSkeletonInput
 const AntdSkeletonInput = (props) => {
@@ -24,7 +24,10 @@ const AntdSkeletonInput = (props) => {
 
     // 返回定制化的前端组件
     return (
-        <Skeleton.Input id={id}
+        <Skeleton.Input
+            // 提取具有data-*或aria-*通配格式的属性
+            {...pickBy((_, k) => k.startsWith('data-') || k.startsWith('aria-'), props)}
+            id={id}
             style={style}
             className={
                 isString(className) ?
@@ -60,6 +63,16 @@ AntdSkeletonInput.propTypes = {
 
     // 设置输入框占位图的尺寸，可选的有'large'、'small'、'default'，默认为'default'
     size: PropTypes.oneOf(['large', 'small', 'default']),
+
+    /**
+     * `data-*`格式属性通配
+     */
+    'data-*': PropTypes.string,
+
+    /**
+     * `aria-*`格式属性通配
+     */
+    'aria-*': PropTypes.string,
 
     loading_state: PropTypes.shape({
         /**

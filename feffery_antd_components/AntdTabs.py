@@ -13,6 +13,9 @@ Keyword arguments:
 
 - activeKey (string; optional)
 
+- aria-* (string; optional):
+    `aria-*`格式属性通配.
+
 - centered (boolean; default False)
 
 - className (string | dict; optional)
@@ -26,6 +29,9 @@ Keyword arguments:
     - tabKey (string; optional)
 
     - timestamp (number; optional)
+
+- data-* (string; optional):
+    `data-*`格式属性通配.
 
 - defaultActiveKey (string; optional)
 
@@ -139,10 +145,10 @@ Keyword arguments:
     _type = 'AntdTabs'
     @_explicitize_args
     def __init__(self, id=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, key=Component.UNDEFINED, items=Component.UNDEFINED, itemKeys=Component.UNDEFINED, activeKey=Component.UNDEFINED, defaultActiveKey=Component.UNDEFINED, disabledTabKeys=Component.UNDEFINED, tabPosition=Component.UNDEFINED, size=Component.UNDEFINED, type=Component.UNDEFINED, centered=Component.UNDEFINED, indicatorSize=Component.UNDEFINED, tabBarGutter=Component.UNDEFINED, inkBarAnimated=Component.UNDEFINED, tabPaneAnimated=Component.UNDEFINED, latestDeletePane=Component.UNDEFINED, tabCloseCounts=Component.UNDEFINED, tabBarLeftExtraContent=Component.UNDEFINED, tabBarRightExtraContent=Component.UNDEFINED, tabCount=Component.UNDEFINED, destroyInactiveTabPane=Component.UNDEFINED, clickedContextMenu=Component.UNDEFINED, loading_state=Component.UNDEFINED, persistence=Component.UNDEFINED, persisted_props=Component.UNDEFINED, persistence_type=Component.UNDEFINED, **kwargs):
-        self._prop_names = ['id', 'activeKey', 'centered', 'className', 'clickedContextMenu', 'defaultActiveKey', 'destroyInactiveTabPane', 'disabledTabKeys', 'indicatorSize', 'inkBarAnimated', 'itemKeys', 'items', 'key', 'latestDeletePane', 'loading_state', 'persisted_props', 'persistence', 'persistence_type', 'size', 'style', 'tabBarGutter', 'tabBarLeftExtraContent', 'tabBarRightExtraContent', 'tabCloseCounts', 'tabCount', 'tabPaneAnimated', 'tabPosition', 'type']
-        self._valid_wildcard_attributes =            []
-        self.available_properties = ['id', 'activeKey', 'centered', 'className', 'clickedContextMenu', 'defaultActiveKey', 'destroyInactiveTabPane', 'disabledTabKeys', 'indicatorSize', 'inkBarAnimated', 'itemKeys', 'items', 'key', 'latestDeletePane', 'loading_state', 'persisted_props', 'persistence', 'persistence_type', 'size', 'style', 'tabBarGutter', 'tabBarLeftExtraContent', 'tabBarRightExtraContent', 'tabCloseCounts', 'tabCount', 'tabPaneAnimated', 'tabPosition', 'type']
-        self.available_wildcard_properties =            []
+        self._prop_names = ['id', 'activeKey', 'aria-*', 'centered', 'className', 'clickedContextMenu', 'data-*', 'defaultActiveKey', 'destroyInactiveTabPane', 'disabledTabKeys', 'indicatorSize', 'inkBarAnimated', 'itemKeys', 'items', 'key', 'latestDeletePane', 'loading_state', 'persisted_props', 'persistence', 'persistence_type', 'size', 'style', 'tabBarGutter', 'tabBarLeftExtraContent', 'tabBarRightExtraContent', 'tabCloseCounts', 'tabCount', 'tabPaneAnimated', 'tabPosition', 'type']
+        self._valid_wildcard_attributes =            ['data-', 'aria-']
+        self.available_properties = ['id', 'activeKey', 'aria-*', 'centered', 'className', 'clickedContextMenu', 'data-*', 'defaultActiveKey', 'destroyInactiveTabPane', 'disabledTabKeys', 'indicatorSize', 'inkBarAnimated', 'itemKeys', 'items', 'key', 'latestDeletePane', 'loading_state', 'persisted_props', 'persistence', 'persistence_type', 'size', 'style', 'tabBarGutter', 'tabBarLeftExtraContent', 'tabBarRightExtraContent', 'tabCloseCounts', 'tabCount', 'tabPaneAnimated', 'tabPosition', 'type']
+        self.available_wildcard_properties =            ['data-', 'aria-']
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()
         _locals.update(kwargs)  # For wildcard attrs and excess named props

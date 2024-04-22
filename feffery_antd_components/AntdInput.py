@@ -17,6 +17,9 @@ Keyword arguments:
 
 - allowClear (boolean; default False)
 
+- aria-* (string; optional):
+    `aria-*`格式属性通配.
+
 - autoComplete (a value equal to: 'off', 'on'; default 'on')
 
 - autoFocus (boolean; default False)
@@ -59,6 +62,9 @@ Keyword arguments:
         控制textarea元素css类.
 
 - countFormat (string; optional)
+
+- data-* (string; optional):
+    `data-*`格式属性通配.
 
 - debounceValue (string; optional)
 
@@ -166,10 +172,10 @@ Keyword arguments:
     _type = 'AntdInput'
     @_explicitize_args
     def __init__(self, id=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, styles=Component.UNDEFINED, classNames=Component.UNDEFINED, key=Component.UNDEFINED, name=Component.UNDEFINED, mode=Component.UNDEFINED, autoComplete=Component.UNDEFINED, disabled=Component.UNDEFINED, size=Component.UNDEFINED, bordered=Component.UNDEFINED, variant=Component.UNDEFINED, placeholder=Component.UNDEFINED, value=Component.UNDEFINED, defaultValue=Component.UNDEFINED, md5Value=Component.UNDEFINED, debounceValue=Component.UNDEFINED, passwordUseMd5=Component.UNDEFINED, debounceWait=Component.UNDEFINED, addonBefore=Component.UNDEFINED, addonAfter=Component.UNDEFINED, prefix=Component.UNDEFINED, suffix=Component.UNDEFINED, maxLength=Component.UNDEFINED, showCount=Component.UNDEFINED, countFormat=Component.UNDEFINED, autoSize=Component.UNDEFINED, nSubmit=Component.UNDEFINED, nClicksSearch=Component.UNDEFINED, status=Component.UNDEFINED, allowClear=Component.UNDEFINED, autoFocus=Component.UNDEFINED, readOnly=Component.UNDEFINED, emptyAsNone=Component.UNDEFINED, batchPropsNames=Component.UNDEFINED, batchPropsValues=Component.UNDEFINED, loading_state=Component.UNDEFINED, persistence=Component.UNDEFINED, persisted_props=Component.UNDEFINED, persistence_type=Component.UNDEFINED, **kwargs):
-        self._prop_names = ['id', 'addonAfter', 'addonBefore', 'allowClear', 'autoComplete', 'autoFocus', 'autoSize', 'batchPropsNames', 'batchPropsValues', 'bordered', 'className', 'classNames', 'countFormat', 'debounceValue', 'debounceWait', 'defaultValue', 'disabled', 'emptyAsNone', 'key', 'loading_state', 'maxLength', 'md5Value', 'mode', 'nClicksSearch', 'nSubmit', 'name', 'passwordUseMd5', 'persisted_props', 'persistence', 'persistence_type', 'placeholder', 'prefix', 'readOnly', 'showCount', 'size', 'status', 'style', 'styles', 'suffix', 'value', 'variant']
-        self._valid_wildcard_attributes =            []
-        self.available_properties = ['id', 'addonAfter', 'addonBefore', 'allowClear', 'autoComplete', 'autoFocus', 'autoSize', 'batchPropsNames', 'batchPropsValues', 'bordered', 'className', 'classNames', 'countFormat', 'debounceValue', 'debounceWait', 'defaultValue', 'disabled', 'emptyAsNone', 'key', 'loading_state', 'maxLength', 'md5Value', 'mode', 'nClicksSearch', 'nSubmit', 'name', 'passwordUseMd5', 'persisted_props', 'persistence', 'persistence_type', 'placeholder', 'prefix', 'readOnly', 'showCount', 'size', 'status', 'style', 'styles', 'suffix', 'value', 'variant']
-        self.available_wildcard_properties =            []
+        self._prop_names = ['id', 'addonAfter', 'addonBefore', 'allowClear', 'aria-*', 'autoComplete', 'autoFocus', 'autoSize', 'batchPropsNames', 'batchPropsValues', 'bordered', 'className', 'classNames', 'countFormat', 'data-*', 'debounceValue', 'debounceWait', 'defaultValue', 'disabled', 'emptyAsNone', 'key', 'loading_state', 'maxLength', 'md5Value', 'mode', 'nClicksSearch', 'nSubmit', 'name', 'passwordUseMd5', 'persisted_props', 'persistence', 'persistence_type', 'placeholder', 'prefix', 'readOnly', 'showCount', 'size', 'status', 'style', 'styles', 'suffix', 'value', 'variant']
+        self._valid_wildcard_attributes =            ['data-', 'aria-']
+        self.available_properties = ['id', 'addonAfter', 'addonBefore', 'allowClear', 'aria-*', 'autoComplete', 'autoFocus', 'autoSize', 'batchPropsNames', 'batchPropsValues', 'bordered', 'className', 'classNames', 'countFormat', 'data-*', 'debounceValue', 'debounceWait', 'defaultValue', 'disabled', 'emptyAsNone', 'key', 'loading_state', 'maxLength', 'md5Value', 'mode', 'nClicksSearch', 'nSubmit', 'name', 'passwordUseMd5', 'persisted_props', 'persistence', 'persistence_type', 'placeholder', 'prefix', 'readOnly', 'showCount', 'size', 'status', 'style', 'styles', 'suffix', 'value', 'variant']
+        self.available_wildcard_properties =            ['data-', 'aria-']
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()
         _locals.update(kwargs)  # For wildcard attrs and excess named props

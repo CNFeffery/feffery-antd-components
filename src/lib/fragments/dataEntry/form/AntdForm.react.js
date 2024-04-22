@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { Form } from 'antd';
 import { isString, isUndefined, isEmpty } from 'lodash';
+import { pickBy } from 'ramda';
 import useCss from '../../../hooks/useCss';
 import { propTypes, defaultProps } from '../../../components/dataEntry/form/AntdForm.react';
 import FormContext from '../../../contexts/FormContext';
@@ -73,7 +74,10 @@ const AntdForm = (props) => {
         <FormContext.Provider
             value={enableBatchControl ? id : null}
         >
-            <Form id={id}
+            <Form
+                // 提取具有data-*或aria-*通配格式的属性
+                {...pickBy((_, k) => k.startsWith('data-') || k.startsWith('aria-'), props)}
+                id={id}
                 className={
                     isString(className) ?
                         className :

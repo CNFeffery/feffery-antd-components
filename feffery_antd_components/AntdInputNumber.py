@@ -15,6 +15,9 @@ Keyword arguments:
 
 - addonBefore (a list of or a singular dash component, string or number; optional)
 
+- aria-* (string; optional):
+    `aria-*`格式属性通配.
+
 - autoFocus (boolean; default False)
 
 - batchPropsNames (list of strings; optional)
@@ -27,6 +30,9 @@ Keyword arguments:
 - className (string | dict; optional)
 
 - controls (boolean; default True)
+
+- data-* (string; optional):
+    `data-*`格式属性通配.
 
 - debounceValue (number | string; optional)
 
@@ -110,10 +116,10 @@ Keyword arguments:
     _type = 'AntdInputNumber'
     @_explicitize_args
     def __init__(self, id=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, key=Component.UNDEFINED, name=Component.UNDEFINED, addonBefore=Component.UNDEFINED, addonAfter=Component.UNDEFINED, autoFocus=Component.UNDEFINED, prefix=Component.UNDEFINED, controls=Component.UNDEFINED, keyboard=Component.UNDEFINED, min=Component.UNDEFINED, max=Component.UNDEFINED, step=Component.UNDEFINED, precision=Component.UNDEFINED, stringMode=Component.UNDEFINED, disabled=Component.UNDEFINED, size=Component.UNDEFINED, bordered=Component.UNDEFINED, variant=Component.UNDEFINED, placeholder=Component.UNDEFINED, value=Component.UNDEFINED, defaultValue=Component.UNDEFINED, debounceValue=Component.UNDEFINED, debounceWait=Component.UNDEFINED, nSubmit=Component.UNDEFINED, status=Component.UNDEFINED, readOnly=Component.UNDEFINED, batchPropsNames=Component.UNDEFINED, batchPropsValues=Component.UNDEFINED, loading_state=Component.UNDEFINED, persistence=Component.UNDEFINED, persisted_props=Component.UNDEFINED, persistence_type=Component.UNDEFINED, **kwargs):
-        self._prop_names = ['id', 'addonAfter', 'addonBefore', 'autoFocus', 'batchPropsNames', 'batchPropsValues', 'bordered', 'className', 'controls', 'debounceValue', 'debounceWait', 'defaultValue', 'disabled', 'key', 'keyboard', 'loading_state', 'max', 'min', 'nSubmit', 'name', 'persisted_props', 'persistence', 'persistence_type', 'placeholder', 'precision', 'prefix', 'readOnly', 'size', 'status', 'step', 'stringMode', 'style', 'value', 'variant']
-        self._valid_wildcard_attributes =            []
-        self.available_properties = ['id', 'addonAfter', 'addonBefore', 'autoFocus', 'batchPropsNames', 'batchPropsValues', 'bordered', 'className', 'controls', 'debounceValue', 'debounceWait', 'defaultValue', 'disabled', 'key', 'keyboard', 'loading_state', 'max', 'min', 'nSubmit', 'name', 'persisted_props', 'persistence', 'persistence_type', 'placeholder', 'precision', 'prefix', 'readOnly', 'size', 'status', 'step', 'stringMode', 'style', 'value', 'variant']
-        self.available_wildcard_properties =            []
+        self._prop_names = ['id', 'addonAfter', 'addonBefore', 'aria-*', 'autoFocus', 'batchPropsNames', 'batchPropsValues', 'bordered', 'className', 'controls', 'data-*', 'debounceValue', 'debounceWait', 'defaultValue', 'disabled', 'key', 'keyboard', 'loading_state', 'max', 'min', 'nSubmit', 'name', 'persisted_props', 'persistence', 'persistence_type', 'placeholder', 'precision', 'prefix', 'readOnly', 'size', 'status', 'step', 'stringMode', 'style', 'value', 'variant']
+        self._valid_wildcard_attributes =            ['data-', 'aria-']
+        self.available_properties = ['id', 'addonAfter', 'addonBefore', 'aria-*', 'autoFocus', 'batchPropsNames', 'batchPropsValues', 'bordered', 'className', 'controls', 'data-*', 'debounceValue', 'debounceWait', 'defaultValue', 'disabled', 'key', 'keyboard', 'loading_state', 'max', 'min', 'nSubmit', 'name', 'persisted_props', 'persistence', 'persistence_type', 'placeholder', 'precision', 'prefix', 'readOnly', 'size', 'status', 'step', 'stringMode', 'style', 'value', 'variant']
+        self.available_wildcard_properties =            ['data-', 'aria-']
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()
         _locals.update(kwargs)  # For wildcard attrs and excess named props

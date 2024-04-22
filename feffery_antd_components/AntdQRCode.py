@@ -11,6 +11,9 @@ Keyword arguments:
 
 - id (string; optional)
 
+- aria-* (string; optional):
+    `aria-*`格式属性通配.
+
 - autoSpin (boolean; default False):
     是否在value处于回调更新中时，自动切换到loading状态  默认：False.
 
@@ -24,6 +27,9 @@ Keyword arguments:
 
 - color (string; default '#000'):
     设置二维码颜色  默认：'#000'.
+
+- data-* (string; optional):
+    `data-*`格式属性通配.
 
 - errorLevel (a value equal to: 'L', 'M', 'Q', 'H'; default 'M'):
     设置二维码纠错等级，可选的有'L'、'M'、'Q'、'H'  默认：'M'.
@@ -76,10 +82,10 @@ Keyword arguments:
     _type = 'AntdQRCode'
     @_explicitize_args
     def __init__(self, id=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, key=Component.UNDEFINED, locale=Component.UNDEFINED, value=Component.UNDEFINED, type=Component.UNDEFINED, icon=Component.UNDEFINED, size=Component.UNDEFINED, iconSize=Component.UNDEFINED, color=Component.UNDEFINED, bgColor=Component.UNDEFINED, bordered=Component.UNDEFINED, errorLevel=Component.UNDEFINED, status=Component.UNDEFINED, expires=Component.UNDEFINED, autoSpin=Component.UNDEFINED, refreshClicks=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
-        self._prop_names = ['id', 'autoSpin', 'bgColor', 'bordered', 'className', 'color', 'errorLevel', 'expires', 'icon', 'iconSize', 'key', 'loading_state', 'locale', 'refreshClicks', 'size', 'status', 'style', 'type', 'value']
-        self._valid_wildcard_attributes =            []
-        self.available_properties = ['id', 'autoSpin', 'bgColor', 'bordered', 'className', 'color', 'errorLevel', 'expires', 'icon', 'iconSize', 'key', 'loading_state', 'locale', 'refreshClicks', 'size', 'status', 'style', 'type', 'value']
-        self.available_wildcard_properties =            []
+        self._prop_names = ['id', 'aria-*', 'autoSpin', 'bgColor', 'bordered', 'className', 'color', 'data-*', 'errorLevel', 'expires', 'icon', 'iconSize', 'key', 'loading_state', 'locale', 'refreshClicks', 'size', 'status', 'style', 'type', 'value']
+        self._valid_wildcard_attributes =            ['data-', 'aria-']
+        self.available_properties = ['id', 'aria-*', 'autoSpin', 'bgColor', 'bordered', 'className', 'color', 'data-*', 'errorLevel', 'expires', 'icon', 'iconSize', 'key', 'loading_state', 'locale', 'refreshClicks', 'size', 'status', 'style', 'type', 'value']
+        self.available_wildcard_properties =            ['data-', 'aria-']
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()
         _locals.update(kwargs)  # For wildcard attrs and excess named props

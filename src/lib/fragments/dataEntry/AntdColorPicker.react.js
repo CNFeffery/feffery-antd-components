@@ -3,6 +3,7 @@ import { ColorPicker } from 'antd';
 import { Color } from '@rc-component/color-picker';
 import useCss from '../../hooks/useCss';
 import { isString, isUndefined } from 'lodash';
+import { pickBy } from 'ramda';
 import PropsContext from '../../contexts/PropsContext';
 import FormContext from '../../contexts/FormContext';
 import useFormStore from '../../store/formStore';
@@ -72,7 +73,10 @@ const AntdColorPicker = (props) => {
     }, [format])
 
     return (
-        <ColorPicker id={id}
+        <ColorPicker
+            // 提取具有data-*或aria-*通配格式的属性
+            {...pickBy((_, k) => k.startsWith('data-') || k.startsWith('aria-'), props)}
+            id={id}
             className={
                 isString(className) ?
                     className :

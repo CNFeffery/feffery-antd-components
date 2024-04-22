@@ -2,6 +2,7 @@ import React, { useEffect, useContext } from 'react';
 import { TimePicker, ConfigProvider } from 'antd';
 import dayjs from 'dayjs';
 import { isUndefined, isString } from 'lodash';
+import { pickBy } from 'ramda';
 import { str2Locale } from '../../components/locales.react';
 import useCss from '../../hooks/useCss';
 import PropsContext from '../../contexts/PropsContext';
@@ -115,6 +116,8 @@ const AntdTimeRangePicker = (props) => {
         <div>
             <ConfigProvider locale={str2Locale.get(locale)}>
                 <RangePicker
+                    // 提取具有data-*或aria-*通配格式的属性
+                    {...pickBy((_, k) => k.startsWith('data-') || k.startsWith('aria-'), props)}
                     id={id}
                     className={
                         isString(className) ?

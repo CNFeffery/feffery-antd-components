@@ -18,8 +18,14 @@ Keyword arguments:
 - align (string; default 'normal'):
     子元素在交叉轴方向上的对齐方式，同css中的align-items  默认值：`'normal'`.
 
+- aria-* (string; optional):
+    `aria-*`格式属性通配.
+
 - className (string | dict; optional):
     当前组件css类名，支持[动态css](/advanced-classname).
+
+- data-* (string; optional):
+    `data-*`格式属性通配.
 
 - flex (string; default 'normal'):
     同css中的flex  默认值：`'normal'`.
@@ -60,10 +66,10 @@ Keyword arguments:
     _type = 'AntdFlex'
     @_explicitize_args
     def __init__(self, children=None, id=Component.UNDEFINED, key=Component.UNDEFINED, style=Component.UNDEFINED, className=Component.UNDEFINED, vertical=Component.UNDEFINED, wrap=Component.UNDEFINED, justify=Component.UNDEFINED, align=Component.UNDEFINED, flex=Component.UNDEFINED, gap=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
-        self._prop_names = ['children', 'id', 'align', 'className', 'flex', 'gap', 'justify', 'key', 'loading_state', 'style', 'vertical', 'wrap']
-        self._valid_wildcard_attributes =            []
-        self.available_properties = ['children', 'id', 'align', 'className', 'flex', 'gap', 'justify', 'key', 'loading_state', 'style', 'vertical', 'wrap']
-        self.available_wildcard_properties =            []
+        self._prop_names = ['children', 'id', 'align', 'aria-*', 'className', 'data-*', 'flex', 'gap', 'justify', 'key', 'loading_state', 'style', 'vertical', 'wrap']
+        self._valid_wildcard_attributes =            ['data-', 'aria-']
+        self.available_properties = ['children', 'id', 'align', 'aria-*', 'className', 'data-*', 'flex', 'gap', 'justify', 'key', 'loading_state', 'style', 'vertical', 'wrap']
+        self.available_wildcard_properties =            ['data-', 'aria-']
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()
         _locals.update(kwargs)  # For wildcard attrs and excess named props

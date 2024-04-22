@@ -11,6 +11,9 @@ Keyword arguments:
 
 - id (string; optional)
 
+- aria-* (string; optional):
+    `aria-*`格式属性通配.
+
 - batchPropsNames (list of strings; optional)
 
 - batchPropsValues (dict; optional)
@@ -18,6 +21,9 @@ Keyword arguments:
 - buttonStyle (a value equal to: 'outline', 'solid'; default 'outline')
 
 - className (string | dict; optional)
+
+- data-* (string; optional):
+    `data-*`格式属性通配.
 
 - defaultValue (string | number; optional)
 
@@ -87,10 +93,10 @@ Keyword arguments:
     _type = 'AntdRadioGroup'
     @_explicitize_args
     def __init__(self, id=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, key=Component.UNDEFINED, name=Component.UNDEFINED, direction=Component.UNDEFINED, options=Component.UNDEFINED, disabled=Component.UNDEFINED, size=Component.UNDEFINED, value=Component.UNDEFINED, defaultValue=Component.UNDEFINED, optionType=Component.UNDEFINED, buttonStyle=Component.UNDEFINED, readOnly=Component.UNDEFINED, batchPropsNames=Component.UNDEFINED, batchPropsValues=Component.UNDEFINED, loading_state=Component.UNDEFINED, persistence=Component.UNDEFINED, persisted_props=Component.UNDEFINED, persistence_type=Component.UNDEFINED, **kwargs):
-        self._prop_names = ['id', 'batchPropsNames', 'batchPropsValues', 'buttonStyle', 'className', 'defaultValue', 'direction', 'disabled', 'key', 'loading_state', 'name', 'optionType', 'options', 'persisted_props', 'persistence', 'persistence_type', 'readOnly', 'size', 'style', 'value']
-        self._valid_wildcard_attributes =            []
-        self.available_properties = ['id', 'batchPropsNames', 'batchPropsValues', 'buttonStyle', 'className', 'defaultValue', 'direction', 'disabled', 'key', 'loading_state', 'name', 'optionType', 'options', 'persisted_props', 'persistence', 'persistence_type', 'readOnly', 'size', 'style', 'value']
-        self.available_wildcard_properties =            []
+        self._prop_names = ['id', 'aria-*', 'batchPropsNames', 'batchPropsValues', 'buttonStyle', 'className', 'data-*', 'defaultValue', 'direction', 'disabled', 'key', 'loading_state', 'name', 'optionType', 'options', 'persisted_props', 'persistence', 'persistence_type', 'readOnly', 'size', 'style', 'value']
+        self._valid_wildcard_attributes =            ['data-', 'aria-']
+        self.available_properties = ['id', 'aria-*', 'batchPropsNames', 'batchPropsValues', 'buttonStyle', 'className', 'data-*', 'defaultValue', 'direction', 'disabled', 'key', 'loading_state', 'name', 'optionType', 'options', 'persisted_props', 'persistence', 'persistence_type', 'readOnly', 'size', 'style', 'value']
+        self.available_wildcard_properties =            ['data-', 'aria-']
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()
         _locals.update(kwargs)  # For wildcard attrs and excess named props

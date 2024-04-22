@@ -2,6 +2,7 @@
 import React from 'react';
 // 辅助库
 import { isString } from 'lodash';
+import { pickBy } from 'ramda';
 // antd核心
 import { DraggablePanel } from '@ant-design/pro-editor';
 // 自定义hooks
@@ -34,7 +35,10 @@ const AntdDraggablePanel = (props) => {
     } = props;
 
     return (
-        <DraggablePanel id={id}
+        <DraggablePanel
+            // 提取具有data-*或aria-*通配格式的属性
+            {...pickBy((_, k) => k.startsWith('data-') || k.startsWith('aria-'), props)}
+            id={id}
             className={
                 isString(className) ?
                     className :

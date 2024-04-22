@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { Spin } from 'antd';
 import useCss from '../../hooks/useCss'
 import { isString } from 'lodash';
+import { pickBy } from 'ramda';
 
 // 定义加载动画组件AntdSpin，api参数参考https://ant.design/components/spin-cn/
 const AntdSpin = (props) => {
@@ -73,7 +74,10 @@ const AntdSpin = (props) => {
     if (fullscreen) {
         return (
             <>
-                <Spin id={id}
+                <Spin
+                    // 提取具有data-*或aria-*通配格式的属性
+                    {...pickBy((_, k) => k.startsWith('data-') || k.startsWith('aria-'), props)}
+                    id={id}
                     className={
                         isString(className) ?
                             className :
@@ -102,7 +106,10 @@ const AntdSpin = (props) => {
 
     // 返回定制化的前端组件
     return (
-        <Spin id={id}
+        <Spin
+            // 提取具有data-*或aria-*通配格式的属性
+            {...pickBy((_, k) => k.startsWith('data-') || k.startsWith('aria-'), props)}
+            id={id}
             className={
                 isString(className) ?
                     className :
@@ -187,6 +194,16 @@ AntdSpin.propTypes = {
 
     // 传入作为自定义指示符的组件
     indicator: PropTypes.node,
+
+    /**
+     * `data-*`格式属性通配
+     */
+    'data-*': PropTypes.string,
+
+    /**
+     * `aria-*`格式属性通配
+     */
+    'aria-*': PropTypes.string,
 
     loading_state: PropTypes.shape({
         /**

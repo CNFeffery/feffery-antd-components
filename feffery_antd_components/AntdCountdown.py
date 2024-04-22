@@ -11,7 +11,13 @@ Keyword arguments:
 
 - id (string; optional)
 
+- aria-* (string; optional):
+    `aria-*`格式属性通配.
+
 - className (string | dict; optional)
+
+- data-* (string; optional):
+    `data-*`格式属性通配.
 
 - format (string; optional)
 
@@ -51,10 +57,10 @@ Keyword arguments:
     _type = 'AntdCountdown'
     @_explicitize_args
     def __init__(self, id=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, key=Component.UNDEFINED, format=Component.UNDEFINED, value=Component.UNDEFINED, valueFormat=Component.UNDEFINED, prefix=Component.UNDEFINED, suffix=Component.UNDEFINED, title=Component.UNDEFINED, titleTooltip=Component.UNDEFINED, valueStyle=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
-        self._prop_names = ['id', 'className', 'format', 'key', 'loading_state', 'prefix', 'style', 'suffix', 'title', 'titleTooltip', 'value', 'valueFormat', 'valueStyle']
-        self._valid_wildcard_attributes =            []
-        self.available_properties = ['id', 'className', 'format', 'key', 'loading_state', 'prefix', 'style', 'suffix', 'title', 'titleTooltip', 'value', 'valueFormat', 'valueStyle']
-        self.available_wildcard_properties =            []
+        self._prop_names = ['id', 'aria-*', 'className', 'data-*', 'format', 'key', 'loading_state', 'prefix', 'style', 'suffix', 'title', 'titleTooltip', 'value', 'valueFormat', 'valueStyle']
+        self._valid_wildcard_attributes =            ['data-', 'aria-']
+        self.available_properties = ['id', 'aria-*', 'className', 'data-*', 'format', 'key', 'loading_state', 'prefix', 'style', 'suffix', 'title', 'titleTooltip', 'value', 'valueFormat', 'valueStyle']
+        self.available_wildcard_properties =            ['data-', 'aria-']
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()
         _locals.update(kwargs)  # For wildcard attrs and excess named props
