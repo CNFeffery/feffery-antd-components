@@ -5,18 +5,18 @@ from dash.development.base_component import Component, _explicitize_args
 
 class Fragment(Component):
     """A Fragment component.
-
+空节点组件Fragment
 
 Keyword arguments:
 
 - children (a list of or a singular dash component, string or number; optional):
-    用于传入内部组件.
+    组件型，内嵌元素.
 
 - id (string; optional):
-    组件id.
+    组件唯一id.
 
 - key (string; optional):
-    辅助刷新用唯一标识key值.
+    对当前组件的`key`值进行更新，可实现强制重绘当前组件的效果.
 
 - loading_state (dict; optional)
 

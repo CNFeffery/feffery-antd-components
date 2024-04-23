@@ -1,25 +1,27 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-// 定义空节点组件Fragment
+/**
+ * 空节点组件Fragment
+ */
 const Fragment = (props) => (<>{props.children}</>);
 
 // 定义参数或属性
 Fragment.propTypes = {
     /**
-     * 组件id
+     * 组件唯一id
      */
     id: PropTypes.string,
 
     /**
-     * 用于传入内部组件
-     */
-    children: PropTypes.node,
-
-    /**
-     * 辅助刷新用唯一标识key值
+     * 对当前组件的`key`值进行更新，可实现强制重绘当前组件的效果
      */
     key: PropTypes.string,
+
+    /**
+     * 组件型，内嵌元素
+     */
+    children: PropTypes.node,
 
     loading_state: PropTypes.shape({
         /**

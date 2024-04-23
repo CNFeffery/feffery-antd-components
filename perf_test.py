@@ -36,6 +36,7 @@ components = [
     'AntdAffix',
     'AntdBackTop',
     'AntdConfigProvider',
+    'Fragment',
 ]
 
 app.layout = html.Div(
