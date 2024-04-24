@@ -58,7 +58,7 @@ const AntdSegmented = (props) => {
         setProps({ value: v })
     }
 
-    // 返回定制化的前端组件
+    
     return (
         <Segmented
             // 提取具有data-*或aria-*通配格式的属性

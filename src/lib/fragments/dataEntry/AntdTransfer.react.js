@@ -97,7 +97,7 @@ const AntdTransfer = (props) => {
         }
     }
 
-    // 返回定制化的前端组件
+    
     return (
         <ConfigProvider locale={str2Locale.get(locale)}>
             <Transfer

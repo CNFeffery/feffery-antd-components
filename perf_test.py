@@ -37,6 +37,21 @@ components = [
     'AntdBackTop',
     'AntdConfigProvider',
     'Fragment',
+    'AntdAlert',
+    'AntdDrawer',
+    'AntdMessage',
+    'AntdModal',
+    'AntdNotification',
+    'AntdPopconfirm',
+    'AntdPopupCard',
+    'AntdProgress',
+    'AntdResult',
+    'AntdCustomSkeleton',
+    'AntdSkeletonAvatar',
+    'AntdSkeletonButton',
+    'AntdSkeletonImage',
+    'AntdSkeleton',
+    'AntdSpin',
 ]
 
 app.layout = html.Div(

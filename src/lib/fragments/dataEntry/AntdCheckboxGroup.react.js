@@ -74,7 +74,7 @@ const AntdCheckboxGroup = (props) => {
         }
     }
 
-    // 返回定制化的前端组件
+    
     return (
         <Checkbox.Group
             // 提取具有data-*或aria-*通配格式的属性

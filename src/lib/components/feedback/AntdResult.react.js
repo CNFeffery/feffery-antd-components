@@ -1,14 +1,19 @@
+// react核心
 import React from 'react';
 import PropTypes from 'prop-types';
+// antd核心
 import { Result } from 'antd';
 import { LoadingOutlined } from '@ant-design/icons';
+// 辅助库
 import { isString } from 'lodash';
 import { pickBy } from 'ramda';
+// 自定义hooks
 import useCss from '../../hooks/useCss';
 
-// 定义结果组件AntdResult，api参数参考https://ant.design/components/result-cn/
+/**
+ * 结果组件AntdResult
+ */
 const AntdResult = (props) => {
-    // 取得必要属性或参数
     let {
         id,
         className,
@@ -51,34 +56,49 @@ const AntdResult = (props) => {
     );
 }
 
-// 定义参数或属性
 AntdResult.propTypes = {
-    // 组件id
+    /**
+     * 组件唯一id
+     */
     id: PropTypes.string,
 
-    // css类名
+    /**
+     * 对当前组件的`key`值进行更新，可实现强制重绘当前组件的效果
+     */
+    key: PropTypes.string,
+
+    /**
+     * 当前组件css样式
+     */
+    style: PropTypes.object,
+
+    /**
+     * 当前组件css类名，支持[动态css](/advanced-classname)
+     */
     className: PropTypes.oneOfType([
         PropTypes.string,
         PropTypes.object
     ]),
 
-    // 自定义css字典
-    style: PropTypes.object,
-
-    // 辅助刷新用唯一标识key值
-    key: PropTypes.string,
-
-    // 用于设置结果的状态风格，可选的有'success'、'error'、
-    // 'info'、'warning'、'404'、'403'、'500'，默认为'info'
+    /**
+     * 状态，可选项有`'success'`、`'error'`、`'info'`、`'warning'`、`'404'`、`'403'`、`'500'`
+     * 默认值：`'info'`
+     */
     status: PropTypes.oneOf(['success', 'error', 'info', 'warning', '404', '403', '500', 'loading']),
 
-    // 用于设置标题文字内容
+    /**
+     * 组件型，标题内容
+     */
     title: PropTypes.node,
 
-    // 用于设置副标题文字内容
+    /**
+     * 组件型，副标题内容
+     */
     subTitle: PropTypes.node,
 
-    // 自定义图标元素
+    /**
+     * 组件型，图标内容
+     */
     icon: PropTypes.node,
 
     /**

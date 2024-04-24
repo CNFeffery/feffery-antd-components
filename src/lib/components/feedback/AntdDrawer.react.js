@@ -1,15 +1,18 @@
+// react核心
 import React from 'react';
 import PropTypes from 'prop-types';
-import useCss from '../../hooks/useCss';
+// antd核心
+import { Drawer } from 'antd';
+// 辅助库
 import { isString } from 'lodash';
 import { pickBy } from 'ramda';
-import { Drawer } from 'antd';
+// 自定义hooks
+import useCss from '../../hooks/useCss';
 
 /**
  * 抽屉组件AntdDrawer
  */
 const AntdDrawer = (props) => {
-    // 取得必要属性或参数
     let {
         id,
         children,
@@ -18,12 +21,6 @@ const AntdDrawer = (props) => {
         rootStyle,
         classNames,
         styles,
-        drawerStyle,
-        bodyStyle,
-        contentWrapperStyle,
-        headerStyle,
-        footerStyle,
-        maskStyle,
         key,
         visible,
         title,
@@ -77,12 +74,6 @@ const AntdDrawer = (props) => {
                     } :
                     rootStyle
             }
-            drawerStyle={drawerStyle}
-            bodyStyle={bodyStyle}
-            contentWrapperStyle={contentWrapperStyle}
-            headerStyle={headerStyle}
-            footerStyle={footerStyle}
-            maskStyle={maskStyle}
             open={visible}
             title={title}
             placement={placement}
@@ -113,118 +104,181 @@ const AntdDrawer = (props) => {
     );
 }
 
-// 定义参数或属性
 AntdDrawer.propTypes = {
-    // 组件id
+    /**
+     * 组件唯一id
+     */
     id: PropTypes.string,
 
+    /**
+     * 对当前组件的`key`值进行更新，可实现强制重绘当前组件的效果
+     */
+    key: PropTypes.string,
+
+    /**
+     * 组件型，内嵌元素
+     */
     children: PropTypes.node,
 
-    // css类名
+    /**
+     * 当前组件css样式
+     */
+    style: PropTypes.object,
+
+    /**
+     * 当前组件css类名，支持[动态css](/advanced-classname)
+     */
     className: PropTypes.oneOfType([
         PropTypes.string,
         PropTypes.object
     ]),
 
-    // 自定义css字典
-    style: PropTypes.object,
-
-    // 配置抽屉各部分的css类名
+    /**
+     * 配置各子元素的css类名
+     */
     classNames: PropTypes.exact({
+        /**
+         * 头部元素css类名
+         */
         header: PropTypes.string,
+        /**
+         * 内容元素css类名
+         */
         body: PropTypes.string,
+        /**
+         * 底部元素css类名
+         */
         footer: PropTypes.string,
+        /**
+         * 遮罩层元素css类名
+         */
         mask: PropTypes.string,
-        content: PropTypes.string,
-        wrapper: PropTypes.string
-    }),
-
-    // 配置抽屉各部分的css样式
-    styles: PropTypes.exact({
-        header: PropTypes.object,
-        body: PropTypes.object,
-        footer: PropTypes.object,
-        mask: PropTypes.object,
-        content: PropTypes.object,
-        wrapper: PropTypes.object
+        /**
+         * 抽屉容器元素css类名
+         */
+        content: PropTypes.string
     }),
 
     /**
-     * 设置当前抽屉根节点css样式（包含蒙版层），特殊的，当设置了containerId或containerSelector时，该参数默认会被添加position为absolute
+     * 配置各子元素的css样式
+     */
+    styles: PropTypes.exact({
+        /**
+         * 头部元素css样式
+         */
+        header: PropTypes.object,
+        /**
+         * 内容元素css样式
+         */
+        body: PropTypes.object,
+        /**
+         * 底部元素css样式
+         */
+        footer: PropTypes.object,
+        /**
+         * 遮罩层元素css样式
+         */
+        mask: PropTypes.object,
+        /**
+         * 抽屉容器元素css样式
+         */
+        content: PropTypes.object
+    }),
+
+    /**
+     * 抽屉根节点css样式（包含遮罩层），特殊的，当设置了`containerId`或`containerSelector`时，该参数会自动设置`position`为`absolute`
      */
     rootStyle: PropTypes.object,
 
-    // 设置抽屉弹出层的css样式
-    drawerStyle: PropTypes.object,
-
-    // 设置抽屉内容部分的css样式
-    bodyStyle: PropTypes.object,
-
-    // 设置抽屉包裹内容部分的css样式
-    contentWrapperStyle: PropTypes.object,
-
-    // 设置抽屉头部的css样式
-    headerStyle: PropTypes.object,
-
-    // 设置抽屉页脚的css样式
-    footerStyle: PropTypes.object,
-
-    // 设置抽屉遮罩部分的css样式
-    maskStyle: PropTypes.object,
-
-    // 辅助刷新用唯一标识key值
-    key: PropTypes.string,
-
-    // 设置抽屉是否弹出，默认为false
+    /**
+     * 监听或设置抽屉是否可见
+     * 默认值：`false`
+     */
     visible: PropTypes.bool,
 
-    // 设置抽屉的标题内容
+    /**
+     * 组件型，抽屉标题内容
+     */
     title: PropTypes.node,
 
-    // 设置抽屉的弹出位置，可选的有'left'、'right'、'top'和'bottom'，默认为'right'
+    /**
+     * 抽屉弹出位置，可选项有`'left'`、`'right'`、`'top'`、`'bottom'`
+     * 默认值：`'right'`
+     */
     placement: PropTypes.oneOf(['left', 'right', 'top', 'bottom']),
 
-    // 设置是否显示右上角关闭按钮，默认为true
+    /**
+     * 是否显示关闭按钮
+     * 默认值：`true`
+     */
     closable: PropTypes.bool,
 
-    // 设置是否对抽屉内的子元素进行预渲染，默认为false
+    /**
+     * 是否对抽屉内的子元素进行预渲染
+     * 默认值：`false`
+     */
     forceRender: PropTypes.bool,
 
-    // 设置是否在关闭时销毁抽屉内的子元素，默认为false
+    /**
+     * 是否在关闭时销毁抽屉内的子元素
+     * 默认值：`false`
+     */
     destroyOnClose: PropTypes.bool,
 
-    // 设置抽屉的像素宽度，默认为256
+    /**
+     * 抽屉像素宽度，`placement`为`'left'`、`'right'`时有效
+     * 默认值：`256`
+     */
     width: PropTypes.oneOfType([
         PropTypes.number,
         PropTypes.string
     ]),
 
-    // 当placement为'top'或'bottom'时，用于设置抽屉的像素高度，默认为256
+    /**
+     * 抽屉像素高度，`placement`为`'top'`、`'bottom'`时有效
+     * 默认值：`256`
+     */
     height: PropTypes.oneOfType([
         PropTypes.number,
         PropTypes.string
     ]),
 
-    // 设置是否在抽屉展开时，在空白区域显示蒙版，默认为true
+    /**
+     * 是否显示遮罩层
+     * 默认值：`true`
+     */
     mask: PropTypes.bool,
 
-    // 设置点击蒙版区域时是否可以直接关闭抽屉，默认为true
+    /**
+     * 是否允许点击遮罩区域关闭抽屉
+     * 默认值：`true`
+     */
     maskClosable: PropTypes.bool,
 
-    // 快捷设置抽屉整体的z-index，默认为1000
+    /**
+     * 抽屉整体`z-index`
+     * 默认值：`1000`
+     */
     zIndex: PropTypes.number,
 
-    // 设置额外操作区元素
+    /**
+     * 组件型，额外操作区元素
+     */
     extra: PropTypes.node,
 
-    // 设置页脚部分元素
+    /**
+     * 组件型，底部元素
+     */
     footer: PropTypes.node,
 
-    // 当想要对抽屉进行局部渲染时，用于设置position为relative的容器id
+    /**
+     * 用于设置`position`为`relative`的局部容器id
+     */
     containerId: PropTypes.string,
 
-    // 当目标容器定位较为复杂时，可传入获取元素对应的js代码字符串
-    // 优先级低于containerId
+    /**
+     * 当目标容器定位较为复杂时，可传入获取元素对应的js代码字符串，优先级低于`containerId`
+     */
     containerSelector: PropTypes.string,
 
     /**

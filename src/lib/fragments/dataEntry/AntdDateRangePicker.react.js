@@ -428,7 +428,7 @@ const AntdDateRangePicker = (props) => {
         }
     }
 
-    // 返回定制化的前端组件
+    
     return (
         <div>
             <ConfigProvider locale={str2Locale.get(locale)}>

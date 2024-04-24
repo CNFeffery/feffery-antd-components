@@ -30,7 +30,7 @@ const AntdDivider = (props) => {
     } = props;
 
     if (direction === "horizontal") {
-        // 返回定制化的前端组件
+        
         return (
             <Divider
                 // 提取具有data-*或aria-*通配格式的属性
@@ -64,7 +64,7 @@ const AntdDivider = (props) => {
             </Divider>
         );
     } else if (direction === "vertical") {
-        // 返回定制化的前端组件
+        
         return (
             <Divider
                 // 提取具有data-*或aria-*通配格式的属性

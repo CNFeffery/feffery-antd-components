@@ -1,16 +1,18 @@
-/* eslint-disable no-undefined */
-/* eslint-disable no-unused-vars */
+// react核心
 import React from 'react';
 import PropTypes from 'prop-types';
+// antd核心
 import { Skeleton } from 'antd';
+// 辅助库
 import { isString } from 'lodash';
 import { pickBy } from 'ramda';
+// 自定义hooks
 import useCss from '../../../hooks/useCss';
 
-// 定义骨骼屏按钮占位图组件AntdSkeletonButton
+/**
+ * 骨骼屏按钮占位图组件AntdSkeletonButton
+ */
 const AntdSkeletonButton = (props) => {
-
-    // 取得必要属性或参数
     const {
         id,
         style,
@@ -24,7 +26,6 @@ const AntdSkeletonButton = (props) => {
         setProps
     } = props;
 
-    // 返回定制化的前端组件
     return (
         <Skeleton.Button
             // 提取具有data-*或aria-*通配格式的属性
@@ -48,30 +49,52 @@ const AntdSkeletonButton = (props) => {
     );
 }
 
-// 定义参数或属性
 AntdSkeletonButton.propTypes = {
-    // 组件id
+    /**
+     * 组件唯一id
+     */
     id: PropTypes.string,
 
+    /**
+     * 对当前组件的`key`值进行更新，可实现强制重绘当前组件的效果
+     */
+    key: PropTypes.string,
+
+    /**
+     * 当前组件css样式
+     */
     style: PropTypes.object,
 
+    /**
+     * 当前组件css类名，支持[动态css](/advanced-classname)
+     */
     className: PropTypes.oneOfType([
         PropTypes.string,
         PropTypes.object
     ]),
 
-    key: PropTypes.string,
-
-    // 设置是否展示动画效果，默认为false
+    /**
+     * 是否显示动画
+     * 默认值：`false`
+     */
     active: PropTypes.bool,
 
-    // 设置按钮占位图是否充满父容器，默认为false
+    /**
+     * 是否撑满父容器
+     * 默认值：`false`
+     */
     block: PropTypes.bool,
 
-    // 设置按钮占位图的形状，可选的有'circle'、'round'、'default'，默认为'default'
+    /**
+     * 按钮占位图形状，可选项有`'circle'`、`'round'`、`'default'`
+     * 默认值：`'default'`
+     */
     shape: PropTypes.oneOf(['circle', 'round', 'default']),
 
-    // 设置按钮占位图的尺寸，可选的有'large'、'small'、'default'，默认为'default'
+    /**
+     * 按钮占位图尺寸，可选项有`'large'`、`'small'`、`'default'`
+     * 默认值：`'default'`
+     */
     size: PropTypes.oneOf(['large', 'small', 'default']),
 
     /**

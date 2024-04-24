@@ -151,7 +151,7 @@ const AntdCascader = (props) => {
         setProps({ value: e })
     }
 
-    // 返回定制化的前端组件
+    
     if (panelMode) {
         return (
             <ConfigProvider locale={str2Locale.get(locale)}>

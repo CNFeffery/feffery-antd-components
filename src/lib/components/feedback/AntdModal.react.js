@@ -1,17 +1,21 @@
+// react核心
 import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
-import { str2Locale } from '../locales.react';
+// antd核心
 import { Modal, ConfigProvider } from 'antd';
+// 辅助库
+import { str2Locale } from '../locales.react';
 import { isString } from 'lodash';
 import { pickBy } from 'ramda';
+// 自定义hooks
 import useCss from '../../hooks/useCss';
+// 自定义上下文
 import PropsContext from '../../contexts/PropsContext';
 
-
-// 定义对话框组件AntdModal，api参数参考https://ant.design/components/modal-cn/
+/**
+ * 对话框组件AntdModal
+ */
 const AntdModal = (props) => {
-
-    // 取得必要属性或参数
     let {
         id,
         children,
@@ -72,7 +76,7 @@ const AntdModal = (props) => {
         setProps({ closeCounts: closeCounts + 1 })
     };
 
-    // 返回定制化的前端组件
+    
     return (
         <ConfigProvider locale={str2Locale.get(locale)}>
             <Modal
@@ -116,155 +120,268 @@ const AntdModal = (props) => {
     );
 }
 
-// 定义参数或属性
 AntdModal.propTypes = {
-    // 组件id
+    /**
+     * 组件唯一id
+     */
     id: PropTypes.string,
 
-    // 内嵌文字的文本内容
+    /**
+     * 对当前组件的`key`值进行更新，可实现强制重绘当前组件的效果
+     */
+    key: PropTypes.string,
+
+    /**
+     * 组件型，内嵌元素
+     */
     children: PropTypes.node,
 
-    // css类名
+    /**
+     * 当前组件css样式
+     */
+    style: PropTypes.object,
+
+    /**
+     * 当前组件css类名，支持[动态css](/advanced-classname)
+     */
     className: PropTypes.oneOfType([
         PropTypes.string,
         PropTypes.object
     ]),
 
-    // 自定义css字典
-    style: PropTypes.object,
-
-    // 辅助刷新用唯一标识key值
-    key: PropTypes.string,
-
-    // 设置语言环境，可选的有'zh-cn'、'en-us'
+    /**
+     * 组件文案语种，可选项有`'zh-cn'`、`'en-us'`
+     * 默认值：`'zh-cn'`
+     */
     locale: PropTypes.oneOf(['zh-cn', 'en-us']),
 
-    // 设置对话框是否可见，默认为false
+    /**
+     * 监听或设置对话框是否可见
+     * 默认值：`false`
+     */
     visible: PropTypes.bool,
 
-    // 设置标题内容
+    /**
+     * 组件型，标题内容
+     */
     title: PropTypes.node,
 
-    // 设置是否渲染底部按钮区域，默认为false
+    /**
+     * 是否渲染底部操作按钮
+     * 默认值：`false`
+     */
     renderFooter: PropTypes.bool,
 
-    // 设置确认按钮文字
+    /**
+     * 组件型，确认按钮内容
+     */
     okText: PropTypes.node,
 
-    // 配置确认按钮相关参数
+    /**
+     * 配置确认按钮相关参数
+     */
     okButtonProps: PropTypes.exact({
-        // 设置按钮尺寸尺寸，可选的有'small'、'middle'和'large'，默认为'middle'
+        /**
+         * 按钮尺寸规格，可选项有`'small'`、`'middle'`、`'large'`
+         * 默认值：`'middle'`
+         */
         size: PropTypes.oneOf(['small', 'middle', 'large']),
 
-        // 设置按钮整体风格（可选项有primary、ghost、dashed、link、text、default）
+        /**
+         * 按钮类型，可选项有`'default'`、`'primary'`、`'ghost'`、`'dashed'`、`'link'`、`'text'`
+         * 默认值：`'default'`
+         */
         type: PropTypes.oneOf(['primary', 'ghost', 'dashed', 'link', 'text', 'default']),
 
-        // 设置按钮是否显示为危险状态
+        /**
+         * 按钮是否呈现危险样式
+         * 默认值：`false`
+         */
         danger: PropTypes.bool,
 
-        // 设置按钮是否以失效状态渲染，默认为false
+        /**
+         * 按钮是否呈现禁用状态
+         * 默认值：`false`
+         */
         disabled: PropTypes.bool,
 
-        // 设置按钮形状（circle：圆形，round：圆角矩形，默认不设置，即正常矩形）
+        /**
+         * 按钮形状，可选项有`'default'`、`'circle'`、`'round'`
+         * 默认值：`'default'`
+         */
         shape: PropTypes.oneOf(['circle', 'round']),
 
-        // 设置按钮css样式
+        /**
+         * 按钮css样式
+         */
         style: PropTypes.object,
 
-        // 设置按钮css类
+        /**
+         * 按钮css类名
+         */
         className: PropTypes.string
     }),
 
-    // 设置取消按钮文字
+    /**
+     * 组件型，取消按钮内容
+     */
     cancelText: PropTypes.node,
 
-    // 配置取消按钮相关参数
+    /**
+     * 配置取消按钮相关参数
+     */
     cancelButtonProps: PropTypes.exact({
-        // 设置按钮尺寸尺寸，可选的有'small'、'middle'和'large'，默认为'middle'
+        /**
+         * 按钮尺寸规格，可选项有`'small'`、`'middle'`、`'large'`
+         * 默认值：`'middle'`
+         */
         size: PropTypes.oneOf(['small', 'middle', 'large']),
 
-        // 设置按钮整体风格（可选项有primary、ghost、dashed、link、text、default）
+        /**
+         * 按钮类型，可选项有`'default'`、`'primary'`、`'ghost'`、`'dashed'`、`'link'`、`'text'`
+         * 默认值：`'default'`
+         */
         type: PropTypes.oneOf(['primary', 'ghost', 'dashed', 'link', 'text', 'default']),
 
-        // 设置按钮是否显示为危险状态
+        /**
+         * 按钮是否呈现危险样式
+         * 默认值：`false`
+         */
         danger: PropTypes.bool,
 
-        // 设置按钮是否以失效状态渲染，默认为false
+        /**
+         * 按钮是否呈现禁用状态
+         * 默认值：`false`
+         */
         disabled: PropTypes.bool,
 
-        // 设置按钮形状（circle：圆形，round：圆角矩形，默认不设置，即正常矩形）
+        /**
+         * 按钮形状，可选项有`'default'`、`'circle'`、`'round'`
+         * 默认值：`'default'`
+         */
         shape: PropTypes.oneOf(['circle', 'round']),
 
-        // 设置按钮css样式
+        /**
+         * 按钮css样式
+         */
         style: PropTypes.object,
 
-        // 设置按钮css类
+        /**
+         * 按钮css类名
+         */
         className: PropTypes.string
     }),
 
-    // 自定义对话框的像素宽度，默认为520
+    /**
+     * 对话框像素宽度
+     * 默认值：`520`
+     */
     width: PropTypes.oneOfType([
         PropTypes.number,
         PropTypes.string
     ]),
 
-    // 设置是否垂直居中显示对话框，默认为false
+    /**
+     * 是否垂直居中显示对话框
+     * 默认值：`false`
+     */
     centered: PropTypes.bool,
 
-    // 是否支持键盘esc关闭，默认为true
+    /**
+     * 是否支持键盘esc关闭对话框
+     * 默认值：`true`
+     */
     keyboard: PropTypes.bool,
 
-    // 是否显示右上角的关闭按钮，默认为true
+    /**
+     * 是否显示右上角的关闭按钮
+     * 默认值：`true`
+     */
     closable: PropTypes.bool,
 
-    // 是否显示背景蒙版，默认为true
+    /**
+     * 是否显示背景遮罩
+     * 默认值：`true`
+     */
     mask: PropTypes.bool,
 
-    // 点击背景蒙版是否可以关闭对话框
+    /**
+     * 是否允许点击遮罩层关闭对话框
+     * 默认值：`true`
+     */
     maskClosable: PropTypes.bool,
 
-    // 设置点击确认按钮是否会触发对话框关闭，默认为true
+    /**
+     * 是否点击确认按钮触发对话框关闭
+     * 默认值：`true`
+     */
     okClickClose: PropTypes.bool,
 
-    // 设置模态框的zIndex，默认为1000
+    /**
+     * 模态框z-index
+     * 默认值：`1000`
+     */
     zIndex: PropTypes.number,
 
-    // 自定义mask遮罩css样式
+    /**
+     * 遮罩层css样式
+     */
     maskStyle: PropTypes.object,
 
-    // 自定义模态框主体区域css样式
+    /**
+     * 内容区域css样式
+     */
     bodyStyle: PropTypes.object,
 
-    // 记录确认按钮被点击的次数
+    /**
+     * 监听确认按钮累计点击次数
+     * 默认值：`0`
+     */
     okCounts: PropTypes.number,
 
-    // 记录取消按钮被点击的次数
+    /**
+     * 监听取消按钮累计点击次数
+     * 默认值：`0`
+     */
     cancelCounts: PropTypes.number,
 
-    // 记录关闭按钮被点击的次数
+    /**
+     * 监听关闭按钮累计点击次数
+     * 默认值：`0`
+     */
     closeCounts: PropTypes.number,
 
-    // 设置是否在每次确认按钮点击之后，是否自动更新confirmLoading=true，从而配合回调
-    // 实现回调运作中按钮无可点击的效果
-    // 默认为false
+    /**
+     * 是否在每次确认按钮点击之后，自动更新`confirmLoading=true`
+     * 默认值：`false`
+     */
     confirmAutoSpin: PropTypes.bool,
 
-    // 设置confirmLoading状态下按钮的文字内容
+    /**
+     * 组件型，`confirmLoading=true`时，确认按钮的内容
+     */
     loadingOkText: PropTypes.node,
 
-    // 设置页脚中确认按钮是否处于加载中状态，默认为false
+    /**
+     * 底部确认按钮是否处于加载中状态
+     * 默认值：`false`
+     */
     confirmLoading: PropTypes.bool,
 
-    // 设置卡片显隐动画类型，可选的有'fade'、'zoom'、'zoom-big'、'zoom-big-fast'、'zoom-up'、
-    // 'zoom-down'、'zoom-left'、'zoom-right'、'slide-up'、'slide-down'、'slide-left'、
-    // 'slide-right'、'move-up'、'move-down'、'move-left'、'move-right'
+    /**
+     * 卡片显隐动画类型，可选项有`'fade'`、`'zoom'`、`'zoom-big'`、`'zoom-big-fast'`、`'zoom-up'`、`'zoom-down'`、`'zoom-left'`、`'zoom-right'`、`'slide-up'`、`'slide-down'`、`'slide-left'`、`'slide-right'`、`'move-up'`、`'move-down'`、`'move-left'`、`'move-right'`
+     * 默认值：`'zoom'`
+     */
     transitionType: PropTypes.oneOf([
         'none', 'fade', 'zoom', 'zoom-big', 'zoom-big-fast', 'slide-up',
         'slide-down', 'slide-left', 'slide-right', 'move-up', 'move-down',
         'move-left', 'move-right'
     ]),
 
-    // 设置当前模态框中的内容是否在关闭后自动销毁，默认为true
+    /**
+     * 是否在模态框关闭后自动销毁内部元素
+     * 默认值：`true`
+     */
     destroyOnClose: PropTypes.bool,
 
     /**

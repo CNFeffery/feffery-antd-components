@@ -1,13 +1,18 @@
+// react核心
 import React, { useState, useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
+// antd核心
 import { Spin } from 'antd';
-import useCss from '../../hooks/useCss'
+// 辅助库
 import { isString } from 'lodash';
 import { pickBy } from 'ramda';
+// 自定义hooks
+import useCss from '../../hooks/useCss'
 
-// 定义加载动画组件AntdSpin，api参数参考https://ant.design/components/spin-cn/
+/**
+ * 加载动画组件AntdSpid
+ */
 const AntdSpin = (props) => {
-    // 取得必要属性或参数
     let {
         id,
         className,
@@ -104,7 +109,6 @@ const AntdSpin = (props) => {
         );
     }
 
-    // 返回定制化的前端组件
     return (
         <Spin
             // 提取具有data-*或aria-*通配格式的属性
@@ -136,63 +140,96 @@ const AntdSpin = (props) => {
 
 AntdSpin._dashprivate_isLoadingComponent = true;
 
-// 定义参数或属性
 AntdSpin.propTypes = {
-    // 组件id
+    /**
+     * 组件唯一id
+     */
     id: PropTypes.string,
 
     /**
-     * The content of the tab - will only be displayed if this tab is selected
+     * 对当前组件的`key`值进行更新，可实现强制重绘当前组件的效果
+     */
+    key: PropTypes.string,
+
+    /**
+     * 组件型，内嵌元素
      */
     children: PropTypes.node,
 
-    // css类名
+    /**
+     * 当前组件css样式
+     */
+    style: PropTypes.object,
+
+    /**
+     * 当前组件css类名，支持[动态css](/advanced-classname)
+     */
     className: PropTypes.oneOfType([
         PropTypes.string,
         PropTypes.object
     ]),
 
-    // 包装器类名
+    /**
+     * 外层容器css类名
+     */
     wrapperClassName: PropTypes.oneOfType([
         PropTypes.string,
         PropTypes.object
     ]),
 
-    // 自定义css字典
-    style: PropTypes.object,
-
-    key: PropTypes.string,
-
-    // 设置是否处于加载中状态
+    /**
+     * 是否处于加载中状态
+     */
     spinning: PropTypes.bool,
 
-    // 设置加载中组件的大小尺寸，可选的有'small'、'middle'及'large'，默认为'middle'
+    /**
+     * 默认加载状态图标的尺寸，可选项有`'small'`、`'middle'`、`'large'`
+     * 默认值：`'middle'`
+     */
     size: PropTypes.oneOf(['small', 'middle', 'large']),
 
-    // 设置延迟加载时长，单位：毫秒，若delay时长内加载结束则不渲染加载动画
+    /**
+     * 加载动画渲染延时，单位：毫秒
+     * 默认值：`0`
+     */
     delay: PropTypes.number,
 
-    // 设置加载动画附带的说明文字
+    /**
+     * 加载动画提示文字
+     */
     text: PropTypes.string,
 
-    // 全屏属性，显示带有Spin组件的背景，默认为false
+    /**
+     * 是否开启全屏模式
+     * 默认值：`false`
+     */
     fullscreen: PropTypes.bool,
 
-    // 设置是否开启debug模式，开启后，每次动画加载都会在开发者工具的控制台打印prop信息
+    /**
+     * 是否开启debug模式，开启后，每次动画加载都会在开发者工具的控制台打印相关`prop`信息
+     * 默认值：`false`
+     */
     debug: PropTypes.bool,
 
-    // 设置自定义监听组件的模式，可选的有'default'、'exclude'、'include'，默认为'default'
+    /**
+     * 监听模式，可选项有`'default'`、`'exclude'`、`'include'`
+     * 默认值：`'default'`
+     */
     listenPropsMode: PropTypes.oneOf(['default', 'exclude', 'include']),
 
-    // 设置需要忽略输出监听过程的组件信息列表
-    // 仅在listenPropsMode为'exclude'时生效
+    /**
+     * `listenPropsMode='exclude'`时，设置需要排除监听的回调目标列表，格式如`['组件id1.组件属性1', '组件id2.组件属性2', ...]`
+     */
     excludeProps: PropTypes.arrayOf(PropTypes.string),
 
-    // 设置需要包含输出监听过程的组件信息列表
-    // 仅在listenPropsMode为'include'时生效
+    /**
+     * `listenPropsMode='include'`时，设置需要包含监听的回调目标列表，格式如`['组件id1.组件属性1', '组件id2.组件属性2', ...]`
+     */
     includeProps: PropTypes.arrayOf(PropTypes.string),
 
-    // 传入作为自定义指示符的组件
+    /**
+     * 组件型，自定义加载状态图标
+     */
     indicator: PropTypes.node,
 
     /**

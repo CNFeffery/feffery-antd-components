@@ -5,53 +5,75 @@ from dash.development.base_component import Component, _explicitize_args
 
 class AntdPopconfirm(Component):
     """An AntdPopconfirm component.
-
+气泡确认框组件AntdPopconfirm
 
 Keyword arguments:
 
 - children (a list of or a singular dash component, string or number; optional):
-    The content of the tab - will only be displayed if this tab is
-    selected.
+    组件型，气泡确认框挂载元素.
 
-- id (string; optional)
+- id (string; optional):
+    组件唯一id.
 
 - aria-* (string; optional):
     `aria-*`格式属性通配.
 
-- arrow (a value equal to: 'show', 'hide', 'center'; default 'show')
+- arrow (a value equal to: 'show', 'hide', 'center'; default 'show'):
+    指示箭头显示形式，可选项有`'show'`、`'hide'`、`'center'`  默认值：`'show'`.
 
-- cancelButtonProps (dict; optional)
+- cancelButtonProps (dict; optional):
+    配置取消按钮相关参数.
 
     `cancelButtonProps` is a dict with keys:
 
-    - danger (boolean; optional)
+    - className (string; optional):
+        按钮css类名.
 
-    - disabled (boolean; optional)
+    - danger (boolean; optional):
+        按钮是否呈现危险样式  默认值：`False`.
 
-    - shape (a value equal to: 'circle', 'round'; optional)
+    - disabled (boolean; optional):
+        按钮是否呈现禁用状态  默认值：`False`.
 
-    - size (a value equal to: 'small', 'middle', 'large'; optional)
+    - shape (a value equal to: 'circle', 'round'; optional):
+        按钮形状，可选项有`'default'`、`'circle'`、`'round'`  默认值：`'default'`.
 
-    - type (a value equal to: 'primary', 'ghost', 'dashed', 'link', 'text', 'default'; optional)
+    - size (a value equal to: 'small', 'middle', 'large'; optional):
+        按钮尺寸规格，可选项有`'small'`、`'middle'`、`'large'`  默认值：`'middle'`.
 
-- cancelCounts (number; default 0)
+    - style (dict; optional):
+        按钮css样式.
 
-- cancelText (a list of or a singular dash component, string or number; optional)
+    - type (a value equal to: 'primary', 'ghost', 'dashed', 'link', 'text', 'default'; optional):
+        按钮类型，可选项有`'default'`、`'primary'`、`'ghost'`、`'dashed'`、`'link'`、`'text'`
+        默认值：`'default'`.
 
-- className (string | dict; optional)
+- cancelCounts (number; default 0):
+    监听取消按钮累计点击次数  默认值：`0`.
 
-- confirmCounts (number; default 0)
+- cancelText (a list of or a singular dash component, string or number; optional):
+    组件型，取消按钮内容.
+
+- className (string | dict; optional):
+    当前组件css类名，支持[动态css](/advanced-classname).
+
+- confirmCounts (number; default 0):
+    监听确认按钮累计点击次数  默认值：`0`.
 
 - data-* (string; optional):
     `data-*`格式属性通配.
 
-- description (a list of or a singular dash component, string or number; optional)
+- description (a list of or a singular dash component, string or number; optional):
+    组件型，描述内容.
 
-- disabled (boolean; default False)
+- disabled (boolean; default False):
+    是否禁用当前组件  默认值：`False`.
 
-- fresh (boolean; default False)
+- fresh (boolean; default False):
+    是否保持内容更新  默认值：`False`.
 
-- key (string; optional)
+- key (string; optional):
+    对当前组件的`key`值进行更新，可实现强制重绘当前组件的效果.
 
 - loading_state (dict; optional)
 
@@ -66,55 +88,84 @@ Keyword arguments:
     - prop_name (string; optional):
         Holds which property is loading.
 
-- locale (a value equal to: 'zh-cn', 'en-us'; default 'zh-cn')
+- locale (a value equal to: 'zh-cn', 'en-us'; default 'zh-cn'):
+    组件文案语种，可选项有`'zh-cn'`、`'en-us'`  默认值：`'zh-cn'`.
 
-- mouseEnterDelay (number; default 0.1)
+- mouseEnterDelay (number; default 0.1):
+    从鼠标移入挂载元素，到气泡确认框显示的延时，单位：秒  默认值：`0.1`.
 
-- mouseLeaveDelay (number; default 0.1)
+- mouseLeaveDelay (number; default 0.1):
+    从鼠标移出挂载元素，到气泡确认框消失的延时，单位：秒  默认值：`0.1`.
 
-- okButtonProps (dict; optional)
+- okButtonProps (dict; optional):
+    配置确认按钮相关参数.
 
     `okButtonProps` is a dict with keys:
 
-    - danger (boolean; optional)
+    - className (string; optional):
+        按钮css类名.
 
-    - disabled (boolean; optional)
+    - danger (boolean; optional):
+        按钮是否呈现危险样式  默认值：`False`.
 
-    - shape (a value equal to: 'circle', 'round'; optional)
+    - disabled (boolean; optional):
+        按钮是否呈现禁用状态  默认值：`False`.
 
-    - size (a value equal to: 'small', 'middle', 'large'; optional)
+    - shape (a value equal to: 'circle', 'round'; optional):
+        按钮形状，可选项有`'default'`、`'circle'`、`'round'`  默认值：`'default'`.
 
-    - type (a value equal to: 'primary', 'ghost', 'dashed', 'link', 'text', 'default'; optional)
+    - size (a value equal to: 'small', 'middle', 'large'; optional):
+        按钮尺寸规格，可选项有`'small'`、`'middle'`、`'large'`  默认值：`'middle'`.
 
-- okText (a list of or a singular dash component, string or number; optional)
+    - style (dict; optional):
+        按钮css样式.
 
-- open (boolean; default False)
+    - type (a value equal to: 'primary', 'ghost', 'dashed', 'link', 'text', 'default'; optional):
+        按钮类型，可选项有`'default'`、`'primary'`、`'ghost'`、`'dashed'`、`'link'`、`'text'`
+        默认值：`'default'`.
 
-- overlayClassName (string | dict; optional)
+- okText (a list of or a singular dash component, string or number; optional):
+    组件型，确认按钮内容.
 
-- overlayInnerStyle (dict; optional)
+- open (boolean; default False):
+    监听或设置气泡确认框的显示状态  默认值：`False`.
 
-- overlayStyle (dict; optional)
+- overlayClassName (string | dict; optional):
+    气泡确认框css类名.
 
-- permanent (boolean; default False)
+- overlayInnerStyle (dict; optional):
+    内容区域css样式.
 
-- placement (a value equal to: 'top', 'left', 'right', 'bottom', 'topLeft', 'topRight', 'bottomLeft', 'bottomRight', 'leftTop', 'leftBottom', 'rightTop', 'rightBottom'; default 'top')
+- overlayStyle (dict; optional):
+    气泡确认框css样式.
 
-- popupContainer (a value equal to: 'parent', 'body'; default 'body')
+- permanent (boolean; default False):
+    是否保持气泡确认框显示/隐藏  默认值：`False`.
 
-- style (dict; optional)
+- placement (a value equal to: 'top', 'left', 'right', 'bottom', 'topLeft', 'topRight', 'bottomLeft', 'bottomRight', 'leftTop', 'leftBottom', 'rightTop', 'rightBottom'; default 'top'):
+    气泡确认框弹出位置，可选项有`'top'`、`'left'`、`'right'`、`'bottom'`、`'topLeft'`、`'topRight'`、`'bottomLeft'`、`'bottomRight'`、`'leftTop'`、`'leftBottom'`、`'rightTop'`、`'rightBottom'`
+    默认值：`'top'`.
 
-- title (a list of or a singular dash component, string or number; optional)
+- popupContainer (a value equal to: 'parent', 'body'; default 'body'):
+    悬浮层渲染挂载父节点策略，可选项有`'parent'`、`'body'`  默认值：`'body'`.
 
-- trigger (a value equal to: 'hover', 'focus', 'click' | list of a value equal to: 'hover', 'focus', 'click's; default 'hover')
+- style (dict; optional):
+    当前组件css样式.
 
-- zIndex (number; optional)"""
+- title (a list of or a singular dash component, string or number; optional):
+    组件型，标题内容.
+
+- trigger (a value equal to: 'hover', 'focus', 'click' | list of a value equal to: 'hover', 'focus', 'click's; default 'hover'):
+    气泡确认框触发行为，可选项有`'hover'`、`'focus'`、`'click'`，可多选组合  默认值：`'hover'`.
+
+- zIndex (number; optional):
+    气泡确认框z-index."""
     _children_props = ['title', 'description', 'okText', 'cancelText']
     _base_nodes = ['title', 'description', 'okText', 'cancelText', 'children']
     _namespace = 'feffery_antd_components'
     _type = 'AntdPopconfirm'
     @_explicitize_args
-    def __init__(self, children=None, id=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, key=Component.UNDEFINED, locale=Component.UNDEFINED, title=Component.UNDEFINED, description=Component.UNDEFINED, disabled=Component.UNDEFINED, placement=Component.UNDEFINED, mouseEnterDelay=Component.UNDEFINED, mouseLeaveDelay=Component.UNDEFINED, overlayClassName=Component.UNDEFINED, overlayStyle=Component.UNDEFINED, overlayInnerStyle=Component.UNDEFINED, okText=Component.UNDEFINED, okButtonProps=Component.UNDEFINED, cancelText=Component.UNDEFINED, cancelButtonProps=Component.UNDEFINED, confirmCounts=Component.UNDEFINED, cancelCounts=Component.UNDEFINED, trigger=Component.UNDEFINED, zIndex=Component.UNDEFINED, arrow=Component.UNDEFINED, fresh=Component.UNDEFINED, open=Component.UNDEFINED, permanent=Component.UNDEFINED, popupContainer=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
+    def __init__(self, children=None, id=Component.UNDEFINED, key=Component.UNDEFINED, style=Component.UNDEFINED, className=Component.UNDEFINED, locale=Component.UNDEFINED, title=Component.UNDEFINED, description=Component.UNDEFINED, disabled=Component.UNDEFINED, placement=Component.UNDEFINED, mouseEnterDelay=Component.UNDEFINED, mouseLeaveDelay=Component.UNDEFINED, overlayClassName=Component.UNDEFINED, overlayStyle=Component.UNDEFINED, overlayInnerStyle=Component.UNDEFINED, okText=Component.UNDEFINED, okButtonProps=Component.UNDEFINED, cancelText=Component.UNDEFINED, cancelButtonProps=Component.UNDEFINED, confirmCounts=Component.UNDEFINED, cancelCounts=Component.UNDEFINED, trigger=Component.UNDEFINED, zIndex=Component.UNDEFINED, arrow=Component.UNDEFINED, fresh=Component.UNDEFINED, open=Component.UNDEFINED, permanent=Component.UNDEFINED, popupContainer=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
         self._prop_names = ['children', 'id', 'aria-*', 'arrow', 'cancelButtonProps', 'cancelCounts', 'cancelText', 'className', 'confirmCounts', 'data-*', 'description', 'disabled', 'fresh', 'key', 'loading_state', 'locale', 'mouseEnterDelay', 'mouseLeaveDelay', 'okButtonProps', 'okText', 'open', 'overlayClassName', 'overlayInnerStyle', 'overlayStyle', 'permanent', 'placement', 'popupContainer', 'style', 'title', 'trigger', 'zIndex']
         self._valid_wildcard_attributes =            ['data-', 'aria-']
         self.available_properties = ['children', 'id', 'aria-*', 'arrow', 'cancelButtonProps', 'cancelCounts', 'cancelText', 'className', 'confirmCounts', 'data-*', 'description', 'disabled', 'fresh', 'key', 'loading_state', 'locale', 'mouseEnterDelay', 'mouseLeaveDelay', 'okButtonProps', 'okText', 'open', 'overlayClassName', 'overlayInnerStyle', 'overlayStyle', 'permanent', 'placement', 'popupContainer', 'style', 'title', 'trigger', 'zIndex']

@@ -9,61 +9,67 @@ class AntdDrawer(Component):
 
 Keyword arguments:
 
-- children (a list of or a singular dash component, string or number; optional)
+- children (a list of or a singular dash component, string or number; optional):
+    组件型，内嵌元素.
 
-- id (string; optional)
+- id (string; optional):
+    组件唯一id.
 
 - aria-* (string; optional):
     `aria-*`格式属性通配.
 
-- bodyStyle (dict; optional)
+- className (string | dict; optional):
+    当前组件css类名，支持[动态css](/advanced-classname).
 
-- className (string | dict; optional)
-
-- classNames (dict; optional)
+- classNames (dict; optional):
+    配置各子元素的css类名.
 
     `classNames` is a dict with keys:
 
-    - body (string; optional)
+    - body (string; optional):
+        内容元素css类名.
 
-    - content (string; optional)
+    - content (string; optional):
+        抽屉容器元素css类名.
 
-    - footer (string; optional)
+    - footer (string; optional):
+        底部元素css类名.
 
-    - header (string; optional)
+    - header (string; optional):
+        头部元素css类名.
 
-    - mask (string; optional)
+    - mask (string; optional):
+        遮罩层元素css类名.
 
-    - wrapper (string; optional)
+- closable (boolean; default True):
+    是否显示关闭按钮  默认值：`True`.
 
-- closable (boolean; default True)
+- containerId (string; optional):
+    用于设置`position`为`relative`的局部容器id.
 
-- containerId (string; optional)
-
-- containerSelector (string; optional)
-
-- contentWrapperStyle (dict; optional)
+- containerSelector (string; optional):
+    当目标容器定位较为复杂时，可传入获取元素对应的js代码字符串，优先级低于`containerId`.
 
 - data-* (string; optional):
     `data-*`格式属性通配.
 
-- destroyOnClose (boolean; default False)
+- destroyOnClose (boolean; default False):
+    是否在关闭时销毁抽屉内的子元素  默认值：`False`.
 
-- drawerStyle (dict; optional)
+- extra (a list of or a singular dash component, string or number; optional):
+    组件型，额外操作区元素.
 
-- extra (a list of or a singular dash component, string or number; optional)
+- footer (a list of or a singular dash component, string or number; optional):
+    组件型，底部元素.
 
-- footer (a list of or a singular dash component, string or number; optional)
+- forceRender (boolean; default False):
+    是否对抽屉内的子元素进行预渲染  默认值：`False`.
 
-- footerStyle (dict; optional)
+- height (number | string; default 256):
+    抽屉像素高度，`placement`为`'top'`、`'bottom'`时有效  默认值：`256`.
 
-- forceRender (boolean; default False)
-
-- headerStyle (dict; optional)
-
-- height (number | string; default 256)
-
-- key (string; optional)
+- key (string; optional):
+    对当前组件的`key`值进行更新，可实现强制重绘当前组件的效果.
 
 - loading_state (dict; optional)
 
@@ -78,51 +84,61 @@ Keyword arguments:
     - prop_name (string; optional):
         Holds which property is loading.
 
-- mask (boolean; default True)
+- mask (boolean; default True):
+    是否显示遮罩层  默认值：`True`.
 
-- maskClosable (boolean; default True)
+- maskClosable (boolean; default True):
+    是否允许点击遮罩区域关闭抽屉  默认值：`True`.
 
-- maskStyle (dict; optional)
-
-- placement (a value equal to: 'left', 'right', 'top', 'bottom'; default 'right')
+- placement (a value equal to: 'left', 'right', 'top', 'bottom'; default 'right'):
+    抽屉弹出位置，可选项有`'left'`、`'right'`、`'top'`、`'bottom'`  默认值：`'right'`.
 
 - rootStyle (dict; optional):
-    设置当前抽屉根节点css样式（包含蒙版层），特殊的，当设置了containerId或containerSelector时，该参数默认会被添加position为absolute.
+    抽屉根节点css样式（包含遮罩层），特殊的，当设置了`containerId`或`containerSelector`时，该参数会自动设置`position`为`absolute`.
 
-- style (dict; optional)
+- style (dict; optional):
+    当前组件css样式.
 
-- styles (dict; optional)
+- styles (dict; optional):
+    配置各子元素的css样式.
 
     `styles` is a dict with keys:
 
-    - body (dict; optional)
+    - body (dict; optional):
+        内容元素css样式.
 
-    - content (dict; optional)
+    - content (dict; optional):
+        抽屉容器元素css样式.
 
-    - footer (dict; optional)
+    - footer (dict; optional):
+        底部元素css样式.
 
-    - header (dict; optional)
+    - header (dict; optional):
+        头部元素css样式.
 
-    - mask (dict; optional)
+    - mask (dict; optional):
+        遮罩层元素css样式.
 
-    - wrapper (dict; optional)
+- title (a list of or a singular dash component, string or number; optional):
+    组件型，抽屉标题内容.
 
-- title (a list of or a singular dash component, string or number; optional)
+- visible (boolean; default False):
+    监听或设置抽屉是否可见  默认值：`False`.
 
-- visible (boolean; default False)
+- width (number | string; default 256):
+    抽屉像素宽度，`placement`为`'left'`、`'right'`时有效  默认值：`256`.
 
-- width (number | string; default 256)
-
-- zIndex (number; default 1000)"""
+- zIndex (number; default 1000):
+    抽屉整体`z-index`  默认值：`1000`."""
     _children_props = ['title', 'extra', 'footer']
     _base_nodes = ['title', 'extra', 'footer', 'children']
     _namespace = 'feffery_antd_components'
     _type = 'AntdDrawer'
     @_explicitize_args
-    def __init__(self, children=None, id=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, classNames=Component.UNDEFINED, styles=Component.UNDEFINED, rootStyle=Component.UNDEFINED, drawerStyle=Component.UNDEFINED, bodyStyle=Component.UNDEFINED, contentWrapperStyle=Component.UNDEFINED, headerStyle=Component.UNDEFINED, footerStyle=Component.UNDEFINED, maskStyle=Component.UNDEFINED, key=Component.UNDEFINED, visible=Component.UNDEFINED, title=Component.UNDEFINED, placement=Component.UNDEFINED, closable=Component.UNDEFINED, forceRender=Component.UNDEFINED, destroyOnClose=Component.UNDEFINED, width=Component.UNDEFINED, height=Component.UNDEFINED, mask=Component.UNDEFINED, maskClosable=Component.UNDEFINED, zIndex=Component.UNDEFINED, extra=Component.UNDEFINED, footer=Component.UNDEFINED, containerId=Component.UNDEFINED, containerSelector=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
-        self._prop_names = ['children', 'id', 'aria-*', 'bodyStyle', 'className', 'classNames', 'closable', 'containerId', 'containerSelector', 'contentWrapperStyle', 'data-*', 'destroyOnClose', 'drawerStyle', 'extra', 'footer', 'footerStyle', 'forceRender', 'headerStyle', 'height', 'key', 'loading_state', 'mask', 'maskClosable', 'maskStyle', 'placement', 'rootStyle', 'style', 'styles', 'title', 'visible', 'width', 'zIndex']
+    def __init__(self, children=None, id=Component.UNDEFINED, key=Component.UNDEFINED, style=Component.UNDEFINED, className=Component.UNDEFINED, classNames=Component.UNDEFINED, styles=Component.UNDEFINED, rootStyle=Component.UNDEFINED, visible=Component.UNDEFINED, title=Component.UNDEFINED, placement=Component.UNDEFINED, closable=Component.UNDEFINED, forceRender=Component.UNDEFINED, destroyOnClose=Component.UNDEFINED, width=Component.UNDEFINED, height=Component.UNDEFINED, mask=Component.UNDEFINED, maskClosable=Component.UNDEFINED, zIndex=Component.UNDEFINED, extra=Component.UNDEFINED, footer=Component.UNDEFINED, containerId=Component.UNDEFINED, containerSelector=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
+        self._prop_names = ['children', 'id', 'aria-*', 'className', 'classNames', 'closable', 'containerId', 'containerSelector', 'data-*', 'destroyOnClose', 'extra', 'footer', 'forceRender', 'height', 'key', 'loading_state', 'mask', 'maskClosable', 'placement', 'rootStyle', 'style', 'styles', 'title', 'visible', 'width', 'zIndex']
         self._valid_wildcard_attributes =            ['data-', 'aria-']
-        self.available_properties = ['children', 'id', 'aria-*', 'bodyStyle', 'className', 'classNames', 'closable', 'containerId', 'containerSelector', 'contentWrapperStyle', 'data-*', 'destroyOnClose', 'drawerStyle', 'extra', 'footer', 'footerStyle', 'forceRender', 'headerStyle', 'height', 'key', 'loading_state', 'mask', 'maskClosable', 'maskStyle', 'placement', 'rootStyle', 'style', 'styles', 'title', 'visible', 'width', 'zIndex']
+        self.available_properties = ['children', 'id', 'aria-*', 'className', 'classNames', 'closable', 'containerId', 'containerSelector', 'data-*', 'destroyOnClose', 'extra', 'footer', 'forceRender', 'height', 'key', 'loading_state', 'mask', 'maskClosable', 'placement', 'rootStyle', 'style', 'styles', 'title', 'visible', 'width', 'zIndex']
         self.available_wildcard_properties =            ['data-', 'aria-']
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()

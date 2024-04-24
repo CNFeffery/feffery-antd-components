@@ -517,7 +517,7 @@ const AntdUpload = (props) => {
         Object.assign(uploadProps, { accept: '.' + fileTypes.join(',.') })
     }
 
-    // 返回定制化的前端组件
+    
     return (
         <ConfigProvider locale={str2Locale.get(locale)}>
             <div

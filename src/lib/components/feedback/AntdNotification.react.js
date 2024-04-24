@@ -1,14 +1,17 @@
+// react核心
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
+// antd核心
 import { notification, Button, App } from 'antd';
+// 辅助库
 import { isString, omit } from 'lodash';
+// 自定义hooks
 import useCss from '../../hooks/useCss';
 
 /**
  * 通知提醒框组件AntdNotification
  */
 const AntdNotification = (props) => {
-    // 取得必要属性或参数
     let {
         className,
         style,
@@ -91,54 +94,81 @@ const AntdNotification = (props) => {
 
 // 定义参数或属性
 AntdNotification.propTypes = {
-    // 组件id
+    /**
+     * 组件唯一id
+     */
     id: PropTypes.string,
 
-    // css类名
+    /**
+     * 对当前组件的`key`值进行更新，可实现强制重绘当前组件的效果
+     */
+    key: PropTypes.string,
+
+    /**
+     * 当前组件css样式
+     */
+    style: PropTypes.object,
+
+    /**
+     * 当前组件css类名，支持[动态css](/advanced-classname)
+     */
     className: PropTypes.oneOfType([
         PropTypes.string,
         PropTypes.object
     ]),
 
-    // 自定义css字典
-    style: PropTypes.object,
-
-    // 辅助刷新用唯一标识key值
-    key: PropTypes.string,
-
-    // 设置通知提醒标题，必填
+    /**
+     * 通知提醒主要信息
+     */
     message: PropTypes.string,
 
-    // 设置通知提醒内容
+    /**
+     * 通知提醒描述信息
+     */
     description: PropTypes.string,
 
-    // 设置通知类型，可选项有'default'、'success'、'error'、'info'、'warning'，默认为'default'
+    /**
+     * 通知提醒类型，可选项有`'default'`、`'success'`、`'error'`、`'info'`、`'warning'`
+     * 默认值：`'default'`
+     */
     type: PropTypes.oneOf(['default', 'success', 'error', 'info', 'warning']),
 
-    // 设置通知在屏幕中的弹出位置，可选的有'topLeft'、'topRight'、'bottomLeft'和'bottomRight'，默认为'topRight'
+    /**
+     * 通知提醒框在屏幕中的弹出位置，可选项有`'topLeft'`、`'topRight'`、`'bottomLeft'`、`'bottomRight'`
+     * 默认值：`'topRight'`
+     */
     placement: PropTypes.oneOf(['topLeft', 'topRight', 'bottomLeft', 'bottomRight']),
 
-    // 当通知从顶部弹出时，设置距离顶部的像素距离
-    // 默认为24
+    /**
+     * 当通知从顶部弹出时，设置距离顶部的像素距离
+     * 默认值：`24`
+     */
     top: PropTypes.number,
 
-    // 当通知从底部弹出时，设置距离底部的像素距离
-    // 默认为24
+    /**
+     * 当通知从底部弹出时，设置距离底部的像素距离
+     * 默认值：`24`
+     */
     bottom: PropTypes.number,
 
-    // 设置通知从显示到自动消失的时长（秒），默认为4.5，当传入null时表示不会自动消失
+    /**
+     * 通知从显示到自动消失的时长，单位：秒，当传入`None`时会一直显示
+     * 默认值：`4.5`
+     */
     duration: PropTypes.number,
 
-    // 设置是否渲染关闭图标，默认为true
+    /**
+     * 是否显示关闭按钮
+     * 默认值：`true`
+     */
     closable: PropTypes.bool,
 
     /**
-     * 配置右下方关闭按钮相关参数
-     * 默认不渲染关闭按钮
+     * 配置右下方关闭按钮相关参数，默认不显示关闭按钮
      */
     closeButton: PropTypes.exact({
         /**
-         * 按钮文案内容
+         * 按钮内容
          */
         content: PropTypes.string,
         /**
@@ -150,19 +180,19 @@ AntdNotification.propTypes = {
          */
         className: PropTypes.string,
         /**
-         * 按钮类型，可选的有'default'、'primary'、'ghost'、'dashed'、'link'、'text'
-         * 默认：'primary'
+         * 按钮类型，可选项有`'default'`、`'primary'`、`'ghost'`、`'dashed'`、`'link'`、`'text'`
+         * 默认值：`'default'`
          */
         type: PropTypes.oneOf(['default', 'primary', 'ghost', 'dashed', 'link', 'text']),
         /**
-         * 当前按钮是否呈现危险状态
-         * 默认：false
+         * 按钮是否呈现危险状态
+         * 默认值：`false`
          */
         danger: PropTypes.bool
     }),
 
     /**
-     * 设置当前消息提示组件是否处于设置了compatibilityMode=true的AntdConfigProvider内部
+     * 当前通知提醒框组件是否位于设置了`compatibilityMode=true`的`AntdConfigProvider`内部
      */
     underCompatibilityMode: PropTypes.bool,
 

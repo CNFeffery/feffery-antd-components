@@ -1,16 +1,18 @@
-/* eslint-disable no-undefined */
-/* eslint-disable no-unused-vars */
+// react核心
 import React from 'react';
 import PropTypes from 'prop-types';
+// antd核心
 import { Skeleton } from 'antd';
-import useCss from '../../../hooks/useCss';
+// 辅助库
 import { isString } from 'lodash';
 import { pickBy } from 'ramda';
+// 自定义hooks
+import useCss from '../../../hooks/useCss';
 
-// 定义骨骼屏输入框占位图组件AntdSkeletonInput
+/**
+ * 骨骼屏输入框占位图组件AntdSkeletonInput
+ */
 const AntdSkeletonInput = (props) => {
-
-    // 取得必要属性或参数
     const {
         id,
         style,
@@ -22,7 +24,6 @@ const AntdSkeletonInput = (props) => {
         setProps
     } = props;
 
-    // 返回定制化的前端组件
     return (
         <Skeleton.Input
             // 提取具有data-*或aria-*通配格式的属性
@@ -44,24 +45,40 @@ const AntdSkeletonInput = (props) => {
     );
 }
 
-// 定义参数或属性
 AntdSkeletonInput.propTypes = {
-    // 组件id
+    /**
+     * 组件唯一id
+     */
     id: PropTypes.string,
 
+    /**
+     * 对当前组件的`key`值进行更新，可实现强制重绘当前组件的效果
+     */
+    key: PropTypes.string,
+
+    /**
+     * 当前组件css样式
+     */
     style: PropTypes.object,
 
+    /**
+     * 当前组件css类名，支持[动态css](/advanced-classname)
+     */
     className: PropTypes.oneOfType([
         PropTypes.string,
         PropTypes.object
     ]),
 
-    key: PropTypes.string,
-
-    // 设置是否展示动画效果，默认为false
+    /**
+     * 是否显示动画
+     * 默认值：`false`
+     */
     active: PropTypes.bool,
 
-    // 设置输入框占位图的尺寸，可选的有'large'、'small'、'default'，默认为'default'
+    /**
+     * 输入框占位图尺寸，可选项有`'large'`、`'small'`、`'default'`
+     * 默认值：`'default'`
+     */
     size: PropTypes.oneOf(['large', 'small', 'default']),
 
     /**

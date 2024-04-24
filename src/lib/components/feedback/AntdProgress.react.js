@@ -1,13 +1,18 @@
+// react核心
 import React from 'react';
 import PropTypes from 'prop-types';
+// antd核心
 import { Progress } from 'antd';
+// 辅助库
 import { isString } from 'lodash';
 import { pickBy } from 'ramda';
+// 自定义hooks
 import useCss from '../../hooks/useCss';
 
-// 定义进度条组件AntdProgress，api参数参考https://ant.design/components/progress-cn/
+/**
+ * 进度条组件AntdProgress
+ */
 const AntdProgress = (props) => {
-    // 取得必要属性或参数
     let {
         id,
         className,
@@ -79,109 +84,167 @@ const AntdProgress = (props) => {
     );
 }
 
-// 定义参数或属性
 AntdProgress.propTypes = {
-    // 组件id
+    /**
+     * 组件唯一id
+     */
     id: PropTypes.string,
 
-    // css类名
+    /**
+     * 对当前组件的`key`值进行更新，可实现强制重绘当前组件的效果
+     */
+    key: PropTypes.string,
+
+    /**
+     * 当前组件css样式
+     */
+    style: PropTypes.object,
+
+    /**
+     * 当前组件css类名，支持[动态css](/advanced-classname)
+     */
     className: PropTypes.oneOfType([
         PropTypes.string,
         PropTypes.object
     ]),
 
-    // 自定义css字典
-    style: PropTypes.object,
-
-    // 辅助刷新用唯一标识key值
-    key: PropTypes.string,
-
-    // 设置进度条类型，可选的有'line'（条形）、'circle'（环形）与'dashboard'（仪表盘型）
-    // 默认为'line'
+    /**
+     * 进度条类型，可选项有`'line'`、`'circle'`、`'dashboard'`
+     * 默认值：`'line'`
+     */
     type: PropTypes.oneOf(['line', 'circle', 'dashboard']),
 
-    // 设置进度条尺寸规格，默认为'default'
+    /**
+     * 进度条尺寸规格，可选项有`'small'`、`'default'`、`'large'`，传入数值型表示像素尺寸
+     * 默认值：`'default'`
+     */
     size: PropTypes.oneOfType([
         PropTypes.number,
         PropTypes.arrayOf(PropTypes.number),
         PropTypes.oneOf(['small', 'default']),
     ]),
 
-    // 设置进度条的完成程度，取值在0到100之间，100时会自动渲染“已完成状态”，默认为0
+    /**
+     * 进度条进度，取值应在`0`到`100`之间，当`100`时默认会渲染为完成状态
+     * 默认值：`0`
+     */
     percent: PropTypes.number,
 
-    // 成功状态进度条相关配置
+    /**
+     * 配置进度条完成状态相关参数
+     */
     success: PropTypes.exact({
-        // 自定义成功状态对应百分比
+        /**
+         * 达到完成状态对应的进度，取值应在`0`到`100`之间
+         * 默认值：`100`
+         */
         percent: PropTypes.number,
-        // 自定义成功状态进度条颜色
+        /**
+         * 完成状态进度条颜色，支持渐变色
+         */
         strokeColor: PropTypes.oneOfType([
             PropTypes.string,
-            // 配置渐变色
             PropTypes.exact({
-                // 配置开始颜色
+                /**
+                 * 渐变色开端颜色
+                 */
                 from: PropTypes.string,
 
-                // 配置结束颜色
+                /**
+                 * 渐变色末端颜色
+                 */
                 to: PropTypes.string
             })
         ])
     }),
 
-    // 自定义提示格式
+    /**
+     * 配置进度提示相关参数
+     */
     format: PropTypes.exact({
-        // 设置前缀文字，默认为''
+        /**
+         * 进度提示前缀文字
+         * 默认值：`''`
+         */
         prefix: PropTypes.string,
-
-        // 设置后缀文字，默认为'%'
+        /**
+         * 进度提示后缀文字
+         * 默认值：`'%'`
+         */
         suffix: PropTypes.string,
-
-        // 设置直接显示的全部内容，此参数设置时会屏蔽实际的百分比数值及prefix、suffix参数
+        /**
+         * 组件型，强制设置显示内容
+         */
         content: PropTypes.node
     }),
 
-    // 设置进度条状态，可选的有'success'、'exception'、'normal'与'active'（仅限type='line'时生效）
+    /**
+     * 进度条状态，可选项有`'success'`、`'exception'`、`'normal'`、`'active'`，其中`'active'`仅在`type='line'`时生效
+     * 默认值：`'normal'`
+     */
     status: PropTypes.oneOf(['success', 'exception', 'normal', 'active']),
 
-    // 设置是否显示进度数值或状态图标，默认为true
+    /**
+     * 是否显示进度数值或状态图标
+     * 默认值：`true`
+     */
     showInfo: PropTypes.bool,
 
-    // 设置进度条的颜色，与css接受的颜色值格式相同
+    /**
+     * 配置进度条颜色，支持渐变色
+     */
     strokeColor: PropTypes.oneOfType([
         PropTypes.string,
-        // 配置渐变色
         PropTypes.exact({
-            // 配置开始颜色
+            /**
+             * 渐变色开端颜色
+             */
             from: PropTypes.string,
 
-            // 配置结束颜色
+            /**
+             * 渐变色末端颜色
+             */
             to: PropTypes.string
         })
     ]),
 
-    // 设置进度条的线型样式，可选的有'round'、'butt'和'square'
-    // 同css中的stroke-linecap属性
-    // 默认为'round'
+    /**
+     * 进度条线型，可选项有`'round'`、`'butt'`、`'square'`
+     * 默认值：`'round'`
+     */
     strokeLinecap: PropTypes.oneOf(['round', 'butt', 'square']),
 
-    // 配置进度条线像素宽度
+    /**
+     * 进度条线的宽度，单位是进度条画布宽度的百分比
+     */
     strokeWidth: PropTypes.number,
 
-    // 设置未完成分段部分的颜色，默认不设置则无颜色
+    /**
+     * 未完成分段部分的颜色，默认无颜色
+     */
     trailColor: PropTypes.string,
 
-    // 针对circle与dashboard模式，设置画布像素宽度
-    // 默认为132
+    /**
+     * 进度条画布宽度，`type='circle'`或`type='dashboard'`时有效
+     * 默认值：`132`
+     */
     width: PropTypes.number,
 
-    // 针对dashboard模式，设置仪表盘进度条缺口角度，可取值在0到295之间，默认为75
+    /**
+     * 进度条缺口角度，取值应在`0`到`295`之间，仅`type='dashboard'`时可用
+     * 默认值：`75`
+     */
     gapDegree: PropTypes.number,
 
-    // 针对dashboard模式，设置仪表盘缺口方位，可选的有'top'、'bottom'、'left'与'right'
-    // 默认为'bottom'
+    /**
+     * 仪表盘缺口方向，可选项有`'top'`、`'bottom'`、`'left'`、`'right'`，仅`type='dashboard'`时可用
+     * 默认值：`'bottom'`
+     */
     gapPosition: PropTypes.oneOf(['top', 'bottom', 'left', 'right']),
 
-    // 用于设置特殊的步骤进度条分段数量，仅'line'模式可用
+    /**
+     * 进度条分段数量
+     */
     steps: PropTypes.number,
 
     /**

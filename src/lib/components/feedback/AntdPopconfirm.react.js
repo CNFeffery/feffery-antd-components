@@ -1,16 +1,22 @@
+// react核心
 import React, { useContext, useMemo } from 'react';
 import PropTypes from 'prop-types';
+// antd核心
 import { Popconfirm, ConfigProvider } from 'antd';
+// 辅助库
 import { str2Locale } from '../locales.react';
 import { parseChildrenToArray } from '../utils';
 import { isString, isUndefined } from 'lodash';
 import { pickBy } from 'ramda';
+// 自定义hooks
 import useCss from '../../hooks/useCss';
+// 自定义上下文
 import PropsContext from '../../contexts/PropsContext';
 
-// 定义气泡确认框组件AntdPopconfirm，api参数参考https://ant.design/components/popconfirm-cn/
+/**
+ * 气泡确认框组件AntdPopconfirm
+ */
 const AntdPopconfirm = (props) => {
-    // 取得必要属性或参数
     let {
         id,
         children,
@@ -129,116 +135,212 @@ const AntdPopconfirm = (props) => {
     );
 }
 
-// 定义参数或属性
 AntdPopconfirm.propTypes = {
-    // 组件id
+    /**
+     * 组件唯一id
+     */
     id: PropTypes.string,
 
     /**
-     * The content of the tab - will only be displayed if this tab is selected
+     * 对当前组件的`key`值进行更新，可实现强制重绘当前组件的效果
+     */
+    key: PropTypes.string,
+
+    /**
+     * 组件型，气泡确认框挂载元素
      */
     children: PropTypes.node,
 
-    // css类名
+    /**
+     * 当前组件css样式
+     */
+    style: PropTypes.object,
+
+    /**
+     * 当前组件css类名，支持[动态css](/advanced-classname)
+     */
     className: PropTypes.oneOfType([
         PropTypes.string,
         PropTypes.object
     ]),
 
-    // 自定义css字典
-    style: PropTypes.object,
-
-    // 辅助刷新用唯一标识key值
-    key: PropTypes.string,
-
-    // 设置语言环境，可选的有'zh-cn'、'en-us'
+    /**
+     * 组件文案语种，可选项有`'zh-cn'`、`'en-us'`
+     * 默认值：`'zh-cn'`
+     */
     locale: PropTypes.oneOf(['zh-cn', 'en-us']),
 
-    // 设置显示的文字内容
+    /**
+     * 组件型，标题内容
+     */
     title: PropTypes.node,
 
-    // 设置显示内容的详细描述
+    /**
+     * 组件型，描述内容
+     */
     description: PropTypes.node,
 
-    // 设置是否禁用点击子元素唤起气泡卡片的交互行为
-    // 默认为false
+    /**
+     * 是否禁用当前组件
+     * 默认值：`false`
+     */
     disabled: PropTypes.bool,
 
-    // 设置气泡框的位置，可选的有'top'、'left'、'right'、'bottom'、'topLeft'
-    // 、'topRight'、'bottomLeft'、'bottomRight'、'leftTop'、'leftBottom'
-    // 、'rightTop'、'rightBottom'，默认为'top'
+    /**
+     * 气泡确认框弹出位置，可选项有`'top'`、`'left'`、`'right'`、`'bottom'`、`'topLeft'`、`'topRight'`、`'bottomLeft'`、`'bottomRight'`、`'leftTop'`、`'leftBottom'`、`'rightTop'`、`'rightBottom'`
+     * 默认值：`'top'`
+     */
     placement: PropTypes.oneOf([
         'top', 'left', 'right', 'bottom', 'topLeft', 'topRight', 'bottomLeft',
         'bottomRight', 'leftTop', 'leftBottom', 'rightTop', 'rightBottom'
     ]),
 
-    // 设置鼠标移入后延时多少才显示 Tooltip，单位：秒，默认为0.1
+    /**
+     * 从鼠标移入挂载元素，到气泡确认框显示的延时，单位：秒
+     * 默认值：`0.1`
+     */
     mouseEnterDelay: PropTypes.number,
 
-    // 设置鼠标移出后延时多少才隐藏 Tooltip，单位：秒，默认为0.1
+    /**
+     * 从鼠标移出挂载元素，到气泡确认框消失的延时，单位：秒
+     * 默认值：`0.1`
+     */
     mouseLeaveDelay: PropTypes.number,
 
-    // 设置卡片css类
+    /**
+     * 气泡确认框css类名
+     */
     overlayClassName: PropTypes.oneOfType([
         PropTypes.string,
         PropTypes.object
     ]),
 
-    // 设置卡片样式
+    /**
+     * 气泡确认框css样式
+     */
     overlayStyle: PropTypes.object,
 
-    // 设置卡片内容区域的样式
+    /**
+     * 内容区域css样式
+     */
     overlayInnerStyle: PropTypes.object,
 
-    // 设置确认按钮文字
+    /**
+     * 组件型，确认按钮内容
+     */
     okText: PropTypes.node,
 
-    // 配置确认按钮相关参数
+    /**
+     * 配置确认按钮相关参数
+     */
     okButtonProps: PropTypes.exact({
-        // 设置按钮尺寸尺寸，可选的有'small'、'middle'和'large'，默认为'middle'
+        /**
+         * 按钮尺寸规格，可选项有`'small'`、`'middle'`、`'large'`
+         * 默认值：`'middle'`
+         */
         size: PropTypes.oneOf(['small', 'middle', 'large']),
 
-        // 设置按钮整体风格（可选项有primary、ghost、dashed、link、text、default）
+        /**
+         * 按钮类型，可选项有`'default'`、`'primary'`、`'ghost'`、`'dashed'`、`'link'`、`'text'`
+         * 默认值：`'default'`
+         */
         type: PropTypes.oneOf(['primary', 'ghost', 'dashed', 'link', 'text', 'default']),
 
-        // 设置按钮是否显示为危险状态
+        /**
+         * 按钮是否呈现危险样式
+         * 默认值：`false`
+         */
         danger: PropTypes.bool,
 
-        // 设置按钮是否以失效状态渲染，默认为false
+        /**
+         * 按钮是否呈现禁用状态
+         * 默认值：`false`
+         */
         disabled: PropTypes.bool,
 
-        // 设置按钮形状（circle：圆形，round：圆角矩形，默认不设置，即正常矩形）
-        shape: PropTypes.oneOf(['circle', 'round'])
+        /**
+         * 按钮形状，可选项有`'default'`、`'circle'`、`'round'`
+         * 默认值：`'default'`
+         */
+        shape: PropTypes.oneOf(['circle', 'round']),
+
+        /**
+         * 按钮css样式
+         */
+        style: PropTypes.object,
+
+        /**
+         * 按钮css类名
+         */
+        className: PropTypes.string
     }),
 
-    // 设置取消按钮文字
+    /**
+     * 组件型，取消按钮内容
+     */
     cancelText: PropTypes.node,
 
-    // 配置取消按钮相关参数
+    /**
+     * 配置取消按钮相关参数
+     */
     cancelButtonProps: PropTypes.exact({
-        // 设置按钮尺寸尺寸，可选的有'small'、'middle'和'large'，默认为'middle'
+        /**
+         * 按钮尺寸规格，可选项有`'small'`、`'middle'`、`'large'`
+         * 默认值：`'middle'`
+         */
         size: PropTypes.oneOf(['small', 'middle', 'large']),
 
-        // 设置按钮整体风格（可选项有primary、ghost、dashed、link、text、default）
+        /**
+         * 按钮类型，可选项有`'default'`、`'primary'`、`'ghost'`、`'dashed'`、`'link'`、`'text'`
+         * 默认值：`'default'`
+         */
         type: PropTypes.oneOf(['primary', 'ghost', 'dashed', 'link', 'text', 'default']),
 
-        // 设置按钮是否显示为危险状态
+        /**
+         * 按钮是否呈现危险样式
+         * 默认值：`false`
+         */
         danger: PropTypes.bool,
 
-        // 设置按钮是否以失效状态渲染，默认为false
+        /**
+         * 按钮是否呈现禁用状态
+         * 默认值：`false`
+         */
         disabled: PropTypes.bool,
 
-        // 设置按钮形状（circle：圆形，round：圆角矩形，默认不设置，即正常矩形）
-        shape: PropTypes.oneOf(['circle', 'round'])
+        /**
+         * 按钮形状，可选项有`'default'`、`'circle'`、`'round'`
+         * 默认值：`'default'`
+         */
+        shape: PropTypes.oneOf(['circle', 'round']),
+
+        /**
+         * 按钮css样式
+         */
+        style: PropTypes.object,
+
+        /**
+         * 按钮css类名
+         */
+        className: PropTypes.string
     }),
 
-    // 记录确认按钮被点击的次数
+    /**
+     * 监听确认按钮累计点击次数
+     * 默认值：`0`
+     */
     confirmCounts: PropTypes.number,
 
-    // 记录取消按钮被点击的次数
+    /**
+     * 监听取消按钮累计点击次数
+     * 默认值：`0`
+     */
     cancelCounts: PropTypes.number,
 
-    // 设置触发行为，可选的有'hover'、'focus'、'click'，或是以上多个组成的数组，默认为'hover'
+    /**
+     * 气泡确认框触发行为，可选项有`'hover'`、`'focus'`、`'click'`，可多选组合
+     * 默认值：`'hover'`
+     */
     trigger: PropTypes.oneOfType(
         [
             PropTypes.oneOf(['hover', 'focus', 'click']),
@@ -246,23 +348,39 @@ AntdPopconfirm.propTypes = {
         ]
     ),
 
-    // 设置悬浮层zIndex
+    /**
+     * 气泡确认框z-index
+     */
     zIndex: PropTypes.number,
 
-    // 设置修改箭头的显示状态以及修改箭头是否指向目标元素中心，默认为'show'
+    /**
+     * 指示箭头显示形式，可选项有`'show'`、`'hide'`、`'center'`
+     * 默认值：`'show'`
+     */
     arrow: PropTypes.oneOf(['show', 'hide', 'center']),
 
-    // 用于设置是否始终保持更新内容，默认为false。默认情况下，Tooltip 在关闭时会缓存内容，设置该属性后会始终保持更新。
+    /**
+     * 是否保持内容更新
+     * 默认值：`false`
+     */
     fresh: PropTypes.bool,
 
-    // 用于监听或控制当前popconfirm的显隐，默认为false
+    /**
+     * 监听或设置气泡确认框的显示状态
+     * 默认值：`false`
+     */
     open: PropTypes.bool,
 
-    // 用于设置是否保持popconfirm显示/隐藏
-    // 默认为false
+    /**
+     * 是否保持气泡确认框显示/隐藏
+     * 默认值：`false`
+     */
     permanent: PropTypes.bool,
 
-    // 设置悬浮层锚定策略，可选的有'parent'、'body'，默认为'body'
+    /**
+     * 悬浮层渲染挂载父节点策略，可选项有`'parent'`、`'body'`
+     * 默认值：`'body'`
+     */
     popupContainer: PropTypes.oneOf(['parent', 'body']),
 
     /**

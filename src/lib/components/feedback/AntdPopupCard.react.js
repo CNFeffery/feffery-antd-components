@@ -1,20 +1,25 @@
+// react核心
 import React, { useRef, useState } from 'react';
 import PropTypes from 'prop-types';
+// antd核心
 import { Modal } from 'antd';
 import {
     CloseCircleFilled,
     CloseCircleOutlined,
     CloseCircleTwoTone
 } from "@ant-design/icons";
+// 辅助库
 import Draggable from "react-draggable";
 import { isString } from 'lodash';
 import { pickBy } from 'ramda';
-import useCss from '../../hooks/useCss';
 import { v4 as uuidv4 } from 'uuid';
+// 自定义hooks
+import useCss from '../../hooks/useCss';
 
-// 定义弹出卡片组件AntdPopupCard，api参数参考https://ant.design/components/modal-cn/
+/**
+ * 弹出式卡片组件AntdPopupCard
+ */
 const AntdPopupCard = (props) => {
-    // 取得必要属性或参数
     const {
         id,
         children,
@@ -61,7 +66,7 @@ const AntdPopupCard = (props) => {
         });
     };
 
-    // 返回定制化的前端组件
+    
     return (
         <Modal
             // 提取具有data-*或aria-*通配格式的属性
@@ -166,66 +171,99 @@ const AntdPopupCard = (props) => {
     );
 }
 
-// 定义参数或属性
 AntdPopupCard.propTypes = {
-    // 组件id
+    /**
+     * 组件唯一id
+     */
     id: PropTypes.string,
 
-    // 内嵌文字的文本内容
+    /**
+     * 对当前组件的`key`值进行更新，可实现强制重绘当前组件的效果
+     */
+    key: PropTypes.string,
+
+    /**
+     * 组件型，内嵌元素
+     */
     children: PropTypes.node,
 
-    // css类名
+    /**
+     * 当前组件css样式
+     */
+    style: PropTypes.object,
+
+    /**
+     * 当前组件css类名，支持[动态css](/advanced-classname)
+     */
     className: PropTypes.oneOfType([
         PropTypes.string,
         PropTypes.object
     ]),
 
-    // 自定义css字典
-    style: PropTypes.object,
-
-    // 辅助刷新用唯一标识key值
-    key: PropTypes.string,
-
-    // 设置标题内容
+    /**
+     * 组件型，标题内容
+     */
     title: PropTypes.node,
 
-    // 设置&记录当前弹出卡片是否可见，默认为true
+    /**
+     * 设置或监听当前弹出式卡片是否显示
+     * 默认值：`true`
+     */
     visible: PropTypes.bool,
 
-    // 自定义对话框的像素宽度
+    /**
+     * 弹出式卡片像素宽度
+     */
     width: PropTypes.oneOfType([
         PropTypes.number,
         PropTypes.string
     ]),
 
-    // 设置卡片显隐动画类型，可选的有'fade'、'zoom'、'zoom-big'、'zoom-big-fast'、'zoom-up'、
-    // 'zoom-down'、'zoom-left'、'zoom-right'、'slide-up'、'slide-down'、'slide-left'、
-    // 'slide-right'、'move-up'、'move-down'、'move-left'、'move-right'
+    /**
+     * 卡片显隐动画类型，可选项有`'fade'`、`'zoom'`、`'zoom-big'`、`'zoom-big-fast'`、`'zoom-up'`、`'zoom-down'`、`'zoom-left'`、`'zoom-right'`、`'slide-up'`、`'slide-down'`、`'slide-left'`、`'slide-right'`、`'move-up'`、`'move-down'`、`'move-left'`、`'move-right'`
+     * 默认值：`'zoom'`
+     */
     transitionType: PropTypes.oneOf([
         'none', 'fade', 'zoom', 'zoom-big', 'zoom-big-fast', 'slide-up',
         'slide-down', 'slide-left', 'slide-right', 'move-up', 'move-down',
         'move-left', 'move-right'
     ]),
 
-    // 设置是否渲染关闭按钮，默认为true
+    /**
+     * 是否显示右上角的关闭按钮
+     * 默认值：`true`
+     */
     closable: PropTypes.bool,
 
-    // 设置关闭按钮类型，可选的有'default'、'outlined'、'two-tone'
+    /**
+     * 关闭按钮类型，可选项有`'default'`、`'outlined'`、`'two-tone'`
+     * 默认值：`'default'`
+     */
     closeIconType: PropTypes.oneOf(['default', 'outlined', 'two-tone']),
 
-    // 设置是否可拖拽，默认为false
+    /**
+     * 是否可拖拽
+     * 默认值：`false`
+     */
     draggable: PropTypes.bool,
 
-    // 设置标题拖拽区域的css类名
+    /**
+     * 顶部可拖拽区域css类名
+     */
     dragClassName: PropTypes.oneOfType([
         PropTypes.string,
         PropTypes.object
     ]),
 
-    // 设置弹出卡片的zIndex，默认为1000
+    /**
+     * 弹出式卡片z-index
+     * 默认值：`1000`
+     */
     zIndex: PropTypes.number,
 
-    // 自定义弹出卡片主体区域css样式
+    /**
+     * 内容区域css样式
+     */
     bodyStyle: PropTypes.object,
 
     /**

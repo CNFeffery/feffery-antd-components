@@ -1,13 +1,18 @@
+// react核心
 import React, { useState, useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
+// antd核心
 import { Skeleton } from 'antd';
-import useCss from '../../../hooks/useCss';
+// 辅助库
 import { isString } from 'lodash';
 import { pickBy } from 'ramda';
+// 自定义hooks
+import useCss from '../../../hooks/useCss';
 
-// 定义骨架屏组件AntdSkeleton，api参数参考https://ant.design/components/skeleton-cn/
+/**
+ * 骨架屏组件AntdSkeleton
+ */
 const AntdSkeleton = (props) => {
-    // 取得必要属性或参数
     let {
         id,
         className,
@@ -83,7 +88,6 @@ const AntdSkeleton = (props) => {
         }
     }, [loading_state]);
 
-    // 返回定制化的前端组件
     return (
         <Skeleton
             // 提取具有data-*或aria-*通配格式的属性
@@ -112,70 +116,95 @@ const AntdSkeleton = (props) => {
 
 AntdSkeleton._dashprivate_isLoadingComponent = true;
 
-// 定义参数或属性
 AntdSkeleton.propTypes = {
-    // 组件id
+    /**
+     * 组件唯一id
+     */
     id: PropTypes.string,
 
+    /**
+     * 对当前组件的`key`值进行更新，可实现强制重绘当前组件的效果
+     */
+    key: PropTypes.string,
+
+    /**
+     * 组件型，内嵌元素
+     */
     children: PropTypes.node,
 
-    // css类名
+    /**
+     * 当前组件css样式
+     */
+    style: PropTypes.object,
+
+    /**
+     * 当前组件css类名，支持[动态css](/advanced-classname)
+     */
     className: PropTypes.oneOfType([
         PropTypes.string,
         PropTypes.object
     ]),
 
-    // 自定义css字典
-    style: PropTypes.object,
-
-    // 辅助刷新用唯一标识key值
-    key: PropTypes.string,
-
-    // 设置是否处于加载中状态
+    /**
+     * 是否处于加载中状态
+     */
     loading: PropTypes.bool,
 
-    // 设置是否显示动画效果，默认为false
+    /**
+     * 是否显示动画
+     * 默认值：`false`
+     */
     active: PropTypes.bool,
 
     /**
-     * 设置加载延时时长，单位：毫秒
-     * 默认：0
+     * 加载动画渲染延时，单位：毫秒
+     * 默认值：`0`
      */
     delay: PropTypes.number,
 
-    // 设置是否显示头像占位图，默认为false
+    /**
+     * 配置头像占位图相关参数，设置为`false`时不显示
+     * 默认值：`true`
+     */
     avatar: PropTypes.oneOfType([
         PropTypes.bool,
         PropTypes.exact({
-            // 设置是否对头像占位展示动画效果（仅在单独使用头像占位时生效）
-            // 默认为false
+            /**
+             * 头像占位图是否显示动画
+             * 默认值：`false`
+             */
             active: PropTypes.bool,
-
-            // 指定头像的形状，可选的有'circle'、'square'
+            /**
+             * 头像占位图形状，可选项有`'circle'`、`'square'`
+             */
             shape: PropTypes.oneOf(['circle', 'square']),
-
-            // 设置头像占位图的大小
+            /**
+             * 头像占位图尺寸，传入数值型表示像素尺寸，也可传入预设的尺寸规格，可选项有`'large'`、`'small'`、`'default'`
+             * 默认值：`'default'`
+             */
             size: PropTypes.oneOfType([
-                // 像素大小
                 PropTypes.number,
-
-                // 固定规格，可选的有'large'、'small'与'default'
-                PropTypes.oneOf([
-                    'large', 'small', 'default'
-                ])
-            ])
+                PropTypes.oneOf(['large', 'small', 'default'])
+            ]),
         })
     ]),
 
-    // 设置是否显示段落占位图，默认为true
+    /**
+     * 配置段落占位图相关参数，设置为`false`时不显示
+     * 默认值：`true`
+     */
     paragraph: PropTypes.oneOfType([
         PropTypes.bool,
         PropTypes.exact({
-            // 设置段落占位图的行数
+            /**
+             * 段落占位图行数
+             */
             rows: PropTypes.number,
-
             // 设置段落占位图的宽度（数值像素或字符串css宽度），若为数组时，则一一对应每行宽度，
             // 反之则是最后一行的宽度
+            /**
+             * 段落占位图宽度，当传入*int*或*string*型时，用于设置段落占位图最后一行的宽度，当传入*list*型时，用于逐行设置宽度
+             */
             width: PropTypes.oneOfType([
                 PropTypes.number,
                 PropTypes.string,
@@ -189,11 +218,16 @@ AntdSkeleton.propTypes = {
         })
     ]),
 
-    // 设置是否显示标题占位图，默认为true
+    /**
+     * 是否显示标题占位图
+     * 默认值：`true`
+     */
     title: PropTypes.oneOfType([
         PropTypes.bool,
         PropTypes.exact({
-            // 设置标题占位图的宽度（数值像素宽度或字符串css宽度）
+            /**
+             * 标题占位图宽度
+             */
             width: PropTypes.oneOfType([
                 PropTypes.number,
                 PropTypes.string
@@ -201,21 +235,32 @@ AntdSkeleton.propTypes = {
         })
     ]),
 
-    // 设置段落与标题占位是否显示圆角，默认为false
+    /**
+     * 段落、标题占位图是否渲染圆角
+     * 默认值：`false`
+     */
     round: PropTypes.bool,
 
-    // 设置是否开启debug模式，开启后，每次动画加载都会在开发者工具的控制台打印prop信息
+    /**
+     * 是否开启debug模式，开启后，每次动画加载都会在开发者工具的控制台打印相关`prop`信息
+     * 默认值：`false`
+     */
     debug: PropTypes.bool,
 
-    // 设置自定义监听组件的模式，可选的有'default'、'exclude'、'include'，默认为'default'
+    /**
+     * 监听模式，可选项有`'default'`、`'exclude'`、`'include'`
+     * 默认值：`'default'`
+     */
     listenPropsMode: PropTypes.oneOf(['default', 'exclude', 'include']),
 
-    // 设置需要忽略输出监听过程的组件信息列表
-    // 仅在listenPropsMode为'exclude'时生效
+    /**
+     * `listenPropsMode='exclude'`时，设置需要排除监听的回调目标列表，格式如`['组件id1.组件属性1', '组件id2.组件属性2', ...]`
+     */
     excludeProps: PropTypes.arrayOf(PropTypes.string),
 
-    // 设置需要包含输出监听过程的组件信息列表
-    // 仅在listenPropsMode为'include'时生效
+    /**
+     * `listenPropsMode='include'`时，设置需要包含监听的回调目标列表，格式如`['组件id1.组件属性1', '组件id2.组件属性2', ...]`
+     */
     includeProps: PropTypes.arrayOf(PropTypes.string),
 
     /**

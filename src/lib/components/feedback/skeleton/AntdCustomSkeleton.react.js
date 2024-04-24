@@ -1,12 +1,16 @@
+// react核心
 import React, { useState, useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
+// 辅助库
 import { isString } from 'lodash';
 import { pickBy } from 'ramda';
+// 自定义hooks
 import useCss from '../../../hooks/useCss';
 
-// 自定义骨架屏组件AntdCustomSkeleton
+/**
+ * 自定义骨架屏组件AntdCustomSkeleton
+ */
 const AntdCustomSkeleton = (props) => {
-    // 取得必要属性或参数
     let {
         id,
         className,
@@ -78,7 +82,7 @@ const AntdCustomSkeleton = (props) => {
         }
     }, [loading_state]);
 
-    // 返回定制化的前端组件
+
     return (
         <div
             // 提取具有data-*或aria-*通配格式的属性
@@ -101,50 +105,71 @@ const AntdCustomSkeleton = (props) => {
 
 AntdCustomSkeleton._dashprivate_isLoadingComponent = true;
 
-// 定义参数或属性
 AntdCustomSkeleton.propTypes = {
-    // 组件id
+    /**
+     * 组件唯一id
+     */
     id: PropTypes.string,
 
+    /**
+     * 对当前组件的`key`值进行更新，可实现强制重绘当前组件的效果
+     */
+    key: PropTypes.string,
+
+    /**
+     * 组件型，内嵌元素
+     */
     children: PropTypes.node,
 
-    // 设置加载状态时应当展示作为骨骼屏的内容
-    skeletonContent: PropTypes.node,
+    /**
+     * 当前组件css样式
+     */
+    style: PropTypes.object,
 
-    // css类名
+    /**
+     * 当前组件css类名，支持[动态css](/advanced-classname)
+     */
     className: PropTypes.oneOfType([
         PropTypes.string,
         PropTypes.object
     ]),
 
-    // 自定义css字典
-    style: PropTypes.object,
+    /**
+     * 组件型，加载状态下显示的内容
+     */
+    skeletonContent: PropTypes.node,
 
-    // 辅助刷新用唯一标识key值
-    key: PropTypes.string,
-
-    // 设置是否处于加载中状态
+    /**
+     * 是否处于加载中状态
+     */
     loading: PropTypes.bool,
 
     /**
-     * 设置加载延时时长，单位：毫秒
-     * 默认：0
+     * 加载动画渲染延时，单位：毫秒
+     * 默认值：`0`
      */
     delay: PropTypes.number,
 
-    // 设置是否开启debug模式，开启后，每次动画加载都会在开发者工具的控制台打印prop信息
-    // 默认为false
+    /**
+     * 是否开启debug模式，开启后，每次动画加载都会在开发者工具的控制台打印相关`prop`信息
+     * 默认值：`false`
+     */
     debug: PropTypes.bool,
 
-    // 设置自定义监听组件的模式，可选的有'default'、'exclude'、'include'，默认为'default'
+    /**
+     * 监听模式，可选项有`'default'`、`'exclude'`、`'include'`
+     * 默认值：`'default'`
+     */
     listenPropsMode: PropTypes.oneOf(['default', 'exclude', 'include']),
 
-    // 设置需要忽略输出监听过程的组件信息列表
-    // 仅在listenPropsMode为'exclude'时生效
+    /**
+     * `listenPropsMode='exclude'`时，设置需要排除监听的回调目标列表，格式如`['组件id1.组件属性1', '组件id2.组件属性2', ...]`
+     */
     excludeProps: PropTypes.arrayOf(PropTypes.string),
 
-    // 设置需要包含输出监听过程的组件信息列表
-    // 仅在listenPropsMode为'include'时生效
+    /**
+     * `listenPropsMode='include'`时，设置需要包含监听的回调目标列表，格式如`['组件id1.组件属性1', '组件id2.组件属性2', ...]`
+     */
     includeProps: PropTypes.arrayOf(PropTypes.string),
 
     /**

@@ -115,7 +115,7 @@ const AntdSlider = (props) => {
         }
     }
 
-    // 返回定制化的前端组件
+    
     return (
         <Slider
             // 提取具有data-*或aria-*通配格式的属性
