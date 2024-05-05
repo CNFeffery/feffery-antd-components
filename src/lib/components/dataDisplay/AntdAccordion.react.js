@@ -3,6 +3,9 @@ import PropTypes from 'prop-types';
 
 const LazyAntdAccordion = React.lazy(() => import(/* webpackChunkName: "data_display" */ '../../fragments/dataDisplay/AntdAccordion.react'));
 
+/**
+ * 手风琴组件AntdAccordion
+ */
 const AntdAccordion = (props) => {
     return (
         <Suspense fallback={null}>
@@ -11,59 +14,91 @@ const AntdAccordion = (props) => {
     );
 }
 
-// 定义参数或属性
 AntdAccordion.propTypes = {
-    // 组件id
+    /**
+     * 组件唯一id
+     */
     id: PropTypes.string,
 
-    children: PropTypes.node,
+    /**
+     * 对当前组件的`key`值进行更新，可实现强制重绘当前组件的效果
+     */
+    key: PropTypes.string,
 
-    // css类名
+    /**
+     * 当前组件css样式
+     */
+    style: PropTypes.object,
+
+    /**
+     * 当前组件css类名，支持[动态css](/advanced-classname)
+     */
     className: PropTypes.oneOfType([
         PropTypes.string,
         PropTypes.object
     ]),
 
-    // 自定义css字典
-    style: PropTypes.object,
-
-    // 辅助刷新用唯一标识key值
-    key: PropTypes.string,
-
-    // 设置用于定义手风琴列表的数组数据
+    /**
+     * 定义手风琴子项
+     */
     items: PropTypes.arrayOf(
         PropTypes.exact({
-            // 设置当前手风琴项的子元素内容
+            /**
+             * 当前子项内部元素
+             */
             children: PropTypes.node,
-            // 设置当前手风琴项的css类
+            /**
+             * 当前子项css类名，支持[动态css](/advanced-classname)
+             */
             className: PropTypes.oneOfType([
                 PropTypes.string,
                 PropTypes.object
             ]),
-            // 设置当前手风琴项的css样式
+            /**
+             * 当前子项css样式
+             */
             style: PropTypes.object,
-            // 设置当前手风琴项的key值，用于唯一标识当前手风琴项，必填
+            /**
+             * 必填，当前子项唯一key值
+             */
             key: PropTypes.oneOfType([
                 PropTypes.string,
                 PropTypes.number
             ]).isRequired,
-            // 设置当前手风琴项的折叠触发行为，可选的有'header'、'disabled'、'icon'
+            /**
+             * 当前子项折叠触发方式，可选项有`'header'`、`'disabled'`、`'icon'`
+             */
             collapsible: PropTypes.oneOf(['header', 'disabled', 'icon']),
-            // 设置当前手风琴项的标题内容
+            /**
+             * 当前子项标题元素
+             */
             title: PropTypes.node,
-            // 设置手风琴项右上角的额外区域内容
+            /**
+             * 当前子项右上角额外元素
+             */
             extra: PropTypes.node,
-            // 设置是否展示当前手风琴项的箭头图标，默认为true
+            /**
+             * 是否展示当前手风琴项的箭头图标
+             * 默认值：`true`
+             */
             showArrow: PropTypes.bool,
-            // 设置当折叠面板默认未展开时强制渲染内部元素，默认为false
+            /**
+             * 是否强制渲染内部元素
+             * 默认值：`false`
+             */
             forceRender: PropTypes.bool,
         })
     ),
 
-    // 设置是否开启手风琴模式，默认为true
+    /**
+     * 是否开启手风琴模式
+     * 默认值：`true`
+     */
     accordion: PropTypes.bool,
 
-    // 设置/记录当前处于展开状态的手风琴项的key值
+    /**
+     * 监听或设置当前处于展开状态的手风琴项key值
+     */
     activeKey: PropTypes.oneOfType([
         PropTypes.string,
         PropTypes.arrayOf(PropTypes.string),
@@ -71,7 +106,9 @@ AntdAccordion.propTypes = {
         PropTypes.arrayOf(PropTypes.number)
     ]),
 
-    // 设置默认处于展开状态的手风琴项的key值
+    /**
+     * 设置初始化处于展开状态的手风琴项key值
+     */
     defaultActiveKey: PropTypes.oneOfType([
         PropTypes.string,
         PropTypes.arrayOf(PropTypes.string),
@@ -79,16 +116,26 @@ AntdAccordion.propTypes = {
         PropTypes.arrayOf(PropTypes.number)
     ]),
 
-    // 设置是否渲染边框，默认为true
+    /**
+     * 是否渲染边框
+     * 默认值：`true`
+     */
     bordered: PropTypes.bool,
 
-    // 统一设置所有手风琴项的折叠触发行为，可选的有'header'、'disabled'、'icon'
+    /**
+     * 设置所有子项折叠触发方式，可选项有`'header'`、`'disabled'`、`'icon'`
+     */
     collapsible: PropTypes.oneOf(['header', 'disabled', 'icon']),
 
-    // 自定义折叠图标位置，可选的有'left'、'right'
+    /**
+     * 设置折叠图标位置，可选项有`'left'`、`'right'`
+     */
     expandIconPosition: PropTypes.oneOf(['left', 'right']),
 
-    // 设置是否开启透明无边框模式，默认为false
+    /**
+     * 是否开启透明无边框模式
+     * 默认值：`false`
+     */
     ghost: PropTypes.bool,
 
     /**

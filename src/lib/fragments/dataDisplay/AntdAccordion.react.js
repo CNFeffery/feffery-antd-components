@@ -1,16 +1,21 @@
+// react核心
 import React, { useEffect } from 'react';
+// antd核心
 import { Collapse } from 'antd';
+// 辅助库
 import { isString } from 'lodash';
 import { pickBy } from 'ramda';
+// 自定义hooks
 import useCss from '../../hooks/useCss';
+// 参数类型
 import { propTypes, defaultProps } from '../../components/dataDisplay/AntdAccordion.react';
 
 const { Panel } = Collapse;
 
-// 定义手风琴组件AntdAccordion，api参数参考https://ant.design/components/collapse/#components-collapse-demo-accordion
+/**
+ * 手风琴组件AntdAccordion
+ */
 const AntdAccordion = (props) => {
-
-    // 取得必要属性或参数
     let {
         id,
         className,
