@@ -3,6 +3,9 @@ import PropTypes from 'prop-types';
 
 const LazyAntdAvatar = React.lazy(() => import(/* webpackChunkName: "data_display" */ '../../fragments/dataDisplay/AntdAvatar.react'));
 
+/**
+ * 头像组件AntdAvatar
+ */
 const AntdAvatar = (props) => {
     return (
         <Suspense fallback={null}>
@@ -11,69 +14,92 @@ const AntdAvatar = (props) => {
     );
 }
 
-// 定义参数或属性
 AntdAvatar.propTypes = {
-    // 组件id
+    /**
+     * 组件唯一id
+     */
     id: PropTypes.string,
 
-    // css类名
+    /**
+     * 对当前组件的`key`值进行更新，可实现强制重绘当前组件的效果
+     */
+    key: PropTypes.string,
+
+    /**
+     * 当前组件css样式
+     */
+    style: PropTypes.object,
+
+    /**
+     * 当前组件css类名，支持[动态css](/advanced-classname)
+     */
     className: PropTypes.oneOfType([
         PropTypes.string,
         PropTypes.object
     ]),
 
-    // 自定义css字典
-    style: PropTypes.object,
-
-    // 辅助刷新用唯一标识key值
-    key: PropTypes.string,
-
-    // 设置头像模式，可选的有'text'、'icon'及'image'，默认为'icon'
+    /**
+     * 头像模式，可选项有`'text'`、`'icon'`、`'image'`
+     * 默认值：`'icon'`
+     */
     mode: PropTypes.oneOf(['text', 'icon', 'image']),
 
-    // 对于字符型头像，设置字符距离左右两侧边界的像素距离，默认为4
+    /**
+     * `mode='text'`时，设置字符距离左右两侧边界的像素距离
+     * 默认值：`4`
+     */
     gap: PropTypes.number,
 
-    // 对应文字类型头像的文字内容
+    /**
+     * `mode='text'`时，设置文字内容
+     */
     text: PropTypes.string,
 
-    // 设置头像的自定义icon，与AntdIcon通用，默认无icon
+    /**
+     * `mode='icon'`时，设置图标，同**AntdIcon**的`icon`参数
+     */
     icon: PropTypes.string,
 
-    // 针对icon参数值设置渲染方式，默认为'AntdIcon'即icon等价于AntdIcon的icon参数
-    // 当设置为'fontawesome'时，icon参数对应fontawesome图标的css类名
+    /**
+     * `mode='icon'`时，设置图标渲染方式，可选项有`'AntdIcon'`、`'fontawesome'`
+     */
     iconRenderer: PropTypes.oneOf(['AntdIcon', 'fontawesome']),
 
-    // 设置图像无法显示时的替代文本
+    /**
+     * `mode='image'`时，设置图像无法显示时的占位文字
+     */
     alt: PropTypes.string,
 
-    // 设置图片类型的头像资源地址
+    /**
+     * `mode='image'`时，设置图片地址
+     */
     src: PropTypes.string,
 
-    // 设置base64类型图片字符串
+    /**
+     * `mode='image'`时，设置图片base64地址
+     */
     srcSet: PropTypes.string,
 
-    // 设置图片类型的头像其图片是否允许拖动
+    /**
+     * `mode='image'`时，设置图片是否允许拖拽
+     */
     draggable: PropTypes.oneOfType([
-        // 布尔型输入
         PropTypes.bool,
-
-        // 字符型输入，可选的有'true'和'false'
         PropTypes.oneOf(['true', 'false'])
     ]),
 
-    // 设置图片类型的头像CORS属性：anonymous表示跨域请求不发送凭证信息、use-credentials表示跨域请求发送凭证信息、''表示不返回跨域资源，并在控制台中报告错误，而不加载跨域资源
+    /**
+     * `mode='image'`时，设置图片的CORS属性，可选项有`'anonymous'`、`'use-credentials'`、`''`
+     */
     crossOrigin: PropTypes.oneOf(['anonymous', 'use-credentials', '']),
 
-    // 设置头像尺寸大小，默认为'default'
+    /**
+     * 配置头像尺寸，可传入数值型代表像素尺寸（支持响应式），或传入字符型使用预设尺寸规格，可选项有`'large'`、`'small'`、`'default'`
+     * 默认值：`'default'`
+     */
     size: PropTypes.oneOfType([
-        // 头像像素边长
         PropTypes.number,
-
-        // 固定的规格，可选的有'large'、'small'及'default'
         PropTypes.oneOf(['large', 'small', 'default']),
-
-        // 响应式size
         PropTypes.exact({
             xs: PropTypes.number,
             sm: PropTypes.number,
@@ -84,7 +110,10 @@ AntdAvatar.propTypes = {
         })
     ]),
 
-    // 设置头像的形状，可选的有'circle'、'square'，默认为'circle'
+    /**
+     * 头像形状，可选项有`'circle'`、`'square'`
+     * 默认值：`'circle'`
+     */
     shape: PropTypes.oneOf(['circle', 'square']),
 
     /**

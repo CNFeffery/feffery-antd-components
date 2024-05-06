@@ -53,6 +53,7 @@ components = [
     'AntdSkeleton',
     'AntdSpin',
     'AntdAccordion',
+    'AntdAvatar'
 ]
 
 app.layout = html.Div(

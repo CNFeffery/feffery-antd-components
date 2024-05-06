@@ -1,10 +1,10 @@
 // react核心
 import React from 'react';
+// antd核心
+import { DraggablePanel } from '@ant-design/pro-editor';
 // 辅助库
 import { isString } from 'lodash';
 import { pickBy } from 'ramda';
-// antd核心
-import { DraggablePanel } from '@ant-design/pro-editor';
 // 自定义hooks
 import useCss from '../../hooks/useCss';
 // 参数类型

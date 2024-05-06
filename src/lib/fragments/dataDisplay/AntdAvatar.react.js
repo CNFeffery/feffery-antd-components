@@ -1,14 +1,20 @@
+// react核心
 import React from 'react';
+// antd核心
 import { Avatar } from 'antd';
-import useCss from '../../hooks/useCss';
+import AntdIcon from '../../components/general/AntdIcon.react';
+// 辅助库
 import { isString } from 'lodash';
 import { pickBy } from 'ramda';
-import AntdIcon from '../../components/general/AntdIcon.react';
+// 自定义hooks
+import useCss from '../../hooks/useCss';
+// 参数类型
 import { propTypes, defaultProps } from '../../components/dataDisplay/AntdAvatar.react';
 
-// 定义头像组件AntdAvatar，api参数参考https://ant.design/components/avatar-cn/
+/**
+ * 头像组件AntdAvatar
+ */
 const AntdAvatar = (props) => {
-    // 取得必要属性或参数
     let {
         id,
         className,
