@@ -18,6 +18,12 @@ Keyword arguments:
 - className (string | dict; optional):
     当前组件css类名，支持[动态css](/advanced-classname).
 
+- description (a list of or a singular dash component, string or number; optional):
+    描述内容.
+
+- icon (a list of or a singular dash component, string or number; optional):
+    图标元素.
+
 - key (string; optional):
     对当前组件的`key`值进行更新，可实现强制重绘当前组件的效果.
 
@@ -43,17 +49,23 @@ Keyword arguments:
 - style (dict; optional):
     当前组件css样式.
 
+- tooltip (a list of or a singular dash component, string or number; optional):
+    气泡卡片内容.
+
 - trigger (a value equal to: 'click', 'hover'; optional):
-    菜单展开模式触发方式，可选项有`'click'`、`'hover'`."""
-    _children_props = []
-    _base_nodes = ['children']
+    菜单展开模式触发方式，可选项有`'click'`、`'hover'`.
+
+- type (a value equal to: 'default', 'primary'; default 'default'):
+    按钮类型，可选项有`'default'`、`'primary'`  默认值：`'default'`."""
+    _children_props = ['icon', 'description', 'tooltip']
+    _base_nodes = ['icon', 'description', 'tooltip', 'children']
     _namespace = 'feffery_antd_components'
     _type = 'AntdFloatButtonGroup'
     @_explicitize_args
-    def __init__(self, children=None, id=Component.UNDEFINED, key=Component.UNDEFINED, style=Component.UNDEFINED, className=Component.UNDEFINED, shape=Component.UNDEFINED, trigger=Component.UNDEFINED, open=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
-        self._prop_names = ['children', 'id', 'className', 'key', 'loading_state', 'open', 'shape', 'style', 'trigger']
+    def __init__(self, children=None, id=Component.UNDEFINED, key=Component.UNDEFINED, style=Component.UNDEFINED, className=Component.UNDEFINED, icon=Component.UNDEFINED, description=Component.UNDEFINED, tooltip=Component.UNDEFINED, type=Component.UNDEFINED, shape=Component.UNDEFINED, trigger=Component.UNDEFINED, open=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
+        self._prop_names = ['children', 'id', 'className', 'description', 'icon', 'key', 'loading_state', 'open', 'shape', 'style', 'tooltip', 'trigger', 'type']
         self._valid_wildcard_attributes =            []
-        self.available_properties = ['children', 'id', 'className', 'key', 'loading_state', 'open', 'shape', 'style', 'trigger']
+        self.available_properties = ['children', 'id', 'className', 'description', 'icon', 'key', 'loading_state', 'open', 'shape', 'style', 'tooltip', 'trigger', 'type']
         self.available_wildcard_properties =            []
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()

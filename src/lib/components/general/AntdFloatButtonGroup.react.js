@@ -18,6 +18,10 @@ const AntdFloatButtonGroup = (props) => {
         className,
         style,
         key,
+        icon,
+        description,
+        tooltip,
+        type,
         shape,
         trigger,
         open,
@@ -34,6 +38,10 @@ const AntdFloatButtonGroup = (props) => {
             }
             style={style}
             key={key}
+            icon={icon}
+            description={description}
+            tooltip={tooltip}
+            type={type}
             shape={shape}
             trigger={trigger}
             open={open}
@@ -75,6 +83,27 @@ AntdFloatButtonGroup.propTypes = {
     ]),
 
     /**
+     * 图标元素
+     */
+    icon: PropTypes.node,
+
+    /**
+     * 描述内容
+     */
+    description: PropTypes.node,
+
+    /**
+     * 气泡卡片内容
+     */
+    tooltip: PropTypes.node,
+
+    /**
+     * 按钮类型，可选项有`'default'`、`'primary'`
+     * 默认值：`'default'`
+     */
+    type: PropTypes.oneOf(['default', 'primary']),
+
+    /**
      * 内部各悬浮按钮形状，可选项有`'circle'`、`'square'`
      * 默认值：`'circle'`
      */
@@ -114,6 +143,7 @@ AntdFloatButtonGroup.propTypes = {
 
 // 设置默认参数
 AntdFloatButtonGroup.defaultProps = {
+    type: 'default',
     shape: 'circle'
 }
 
