@@ -7,29 +7,40 @@ app = dash.Dash(__name__)
 
 app.layout = html.Div(
     [
-        fac.AntdFloatButtonGroup(
-            [
-                fac.AntdFloatButton(
-                    id='back-to-top-btn',
-                    icon=fac.AntdIcon(icon='antd-arrow-up'),
-                    tooltip='回到顶部',
-                ),
-                fac.AntdFloatButton(
-                    id='global-theme-config-button',
-                    icon=fac.AntdIcon(icon='antd-setting'),
-                    tooltip='全局主题配置',
-                ),
+        fac.AntdTable(
+            columns=[
+                {
+                    'dataIndex': 'link示例1',
+                    'title': 'link示例1',
+                    'renderOptions': {'renderType': 'link'},
+                },
+                {
+                    'dataIndex': 'link示例2',
+                    'title': 'link示例2',
+                    'renderOptions': {
+                        'renderType': 'link',
+                        'renderLinkText': '示例链接',
+                    },
+                },
             ],
-            icon=fac.AntdIcon(icon='antd-plus'),
-            description='描述',
-            tooltip='提示',
-            type='primary',
-            trigger='hover',
-            style={'opacity': 0.5},
+            data=[
+                {
+                    'link示例1': {
+                        'content': 'fac仓库',
+                        'href': 'https://github.com/CNFeffery/feffery-antd-components',
+                    },
+                    'link示例2': {
+                        'href': 'https://github.com/CNFeffery/feffery-antd-components'
+                    },
+                },
+                {'link示例1': None, 'link示例2': None},
+                {'link示例1': {}, 'link示例2': {}},
+            ],
+            bordered=True,
         )
     ],
     style={'padding': 50},
 )
 
 if __name__ == '__main__':
-    app.run(debug=True, dev_tools_ui=False)
+    app.run(debug=True)

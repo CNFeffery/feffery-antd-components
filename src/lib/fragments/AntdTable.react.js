@@ -41,7 +41,7 @@ import {
     QuestionCircleOutlined,
     DownOutlined
 } from '@ant-design/icons';
-import { isNumber, isEqual, isString, isBoolean, omitBy } from 'lodash';
+import { isNumber, isEqual, isString, isBoolean, isEmpty, omitBy } from 'lodash';
 import { pickBy } from 'ramda';
 import { str2Locale, locale2text } from '../components/locales.react';
 import { propTypes, defaultProps } from '../components/dataDisplay/AntdTable.react';
@@ -949,21 +949,31 @@ class AntdTable extends Component {
                 else if (columns[i]['renderOptions']['renderType'] === 'link') {
                     // 检查renderLinkText参数是否定义
                     if (columns[i]['renderOptions']['renderLinkText']) {
-                        columns[i]['render'] = content => (
-                            <a href={content.disabled ? undefined : content.href}
-                                target={content.target ? content.target : '_blank'}
-                                disabled={content.disabled}>
-                                {content.content ? content.content : columns[i]['renderOptions']['renderLinkText']}
-                            </a>
-                        )
+                        columns[i]['render'] = content => {
+                            if ((!content || isEmpty(content)) && content !== 0 && content !== '') {
+                                return <a > </ a>;
+                            }
+                            return (
+                                <a href={content.disabled ? undefined : content.href}
+                                    target={content.target ? content.target : '_blank'}
+                                    disabled={content.disabled}>
+                                    {content.content ? content.content : columns[i]['renderOptions']['renderLinkText']}
+                                </a>
+                            )
+                        }
                     } else {
-                        columns[i]['render'] = content => (
-                            <a href={content.disabled ? undefined : content.href}
-                                target={content.target ? content.target : '_blank'}
-                                disabled={content.disabled}>
-                                {content.content ? content.content : '链接🔗'}
-                            </a>
-                        )
+                        columns[i]['render'] = content => {
+                            if ((!content || isEmpty(content)) && content !== 0 && content !== '') {
+                                return <a > </ a>;
+                            }
+                            return (
+                                <a href={content.disabled ? undefined : content.href}
+                                    target={content.target ? content.target : '_blank'}
+                                    disabled={content.disabled}>
+                                    {content.content ? content.content : ' '}
+                                </a>
+                            )
+                        }
                     }
                 }
                 // copyable模式
