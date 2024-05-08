@@ -232,7 +232,7 @@ const AntdSelect = (props) => {
         optionFilterProp = 'children'
     }
 
-    
+
     return (
         <ConfigProvider locale={str2Locale.get(locale)}>
             <Select
@@ -290,16 +290,16 @@ const AntdSelect = (props) => {
                         if (inputValue !== '') {
                             if (optionFilterMode === 'case-insensitive') {
                                 // 进行大小写不敏感筛选
-                                return (option[optionFilterProp] || '').toLowerCase()
+                                return (String(option[optionFilterProp]) || '').toLowerCase()
                                     .includes(inputValue.toLowerCase())
                             } else if (optionFilterMode === 'case-sensitive') {
                                 // 判断输入的内容是否是当前选项筛选依据字段值的子串
-                                return option[optionFilterProp].includes(inputValue)
+                                return String(option[optionFilterProp]).includes(inputValue)
                             } else if (optionFilterMode === 'regex') {
                                 // 判断输入的正则规则是否匹配当前选项筛选依据字段值
                                 try {
                                     // 尝试进行正则匹配
-                                    return eval(`/${inputValue}/`).test(option[optionFilterProp])
+                                    return eval(`/${inputValue}/`).test(String(option[optionFilterProp]))
                                 } catch {
                                     // 忽略非法的正则表达式
                                     return false

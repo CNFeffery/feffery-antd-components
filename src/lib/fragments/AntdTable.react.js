@@ -978,11 +978,16 @@ class AntdTable extends Component {
                 }
                 // copyable模式
                 else if (columns[i]['renderOptions']['renderType'] === 'copyable') {
-                    columns[i]['render'] = content => (
-                        <Text copyable={true}>
-                            {content}
-                        </Text>
-                    )
+                    columns[i]['render'] = content => {
+                        if ((!content || isEmpty(content)) && content !== 0 && content !== '') {
+                            return null;
+                        }
+                        return (
+                            <Text copyable={true}>
+                                {content}
+                            </Text>
+                        )
+                    }
                 }
                 // dropdown模式
                 else if (columns[i]['renderOptions']['renderType'] === 'dropdown') {
