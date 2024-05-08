@@ -6,8 +6,31 @@ app = dash.Dash(__name__)
 
 app.layout = html.Div(
     [
-        fac.AntdSelect(
-            options=[1, 2, 3], style={'width': 200}
+        fac.AntdTable(
+            columns=[
+                {
+                    'dataIndex': '常规字段',
+                    'title': '常规字段',
+                },
+                {
+                    'dataIndex': 'copyable示例',
+                    'title': 'copyable示例',
+                    'renderOptions': {
+                        'renderType': 'copyable'
+                    },
+                },
+            ],
+            data=[
+                {
+                    '常规字段': '测试',
+                    'copyable示例': 'bala' * 4,
+                },
+                {
+                    '常规字段': '测试',
+                    'copyable示例': None,
+                },
+            ],
+            bordered=True,
         )
     ],
     style={'padding': 50},

@@ -951,7 +951,7 @@ class AntdTable extends Component {
                     if (columns[i]['renderOptions']['renderLinkText']) {
                         columns[i]['render'] = content => {
                             if ((!content || isEmpty(content)) && content !== 0 && content !== '') {
-                                return <a > </ a>;
+                                return null;
                             }
                             return (
                                 <a href={content.disabled ? undefined : content.href}
@@ -964,7 +964,7 @@ class AntdTable extends Component {
                     } else {
                         columns[i]['render'] = content => {
                             if ((!content || isEmpty(content)) && content !== 0 && content !== '') {
-                                return <a > </ a>;
+                                return null;
                             }
                             return (
                                 <a href={content.disabled ? undefined : content.href}
