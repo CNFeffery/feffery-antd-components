@@ -1526,20 +1526,26 @@ class AntdTable extends Component {
                         }
                     }
                 }
-                // tag模式
+                // tags模式
                 else if (columns[i]['renderOptions']['renderType'] === 'tags') {
-                    columns[i]['render'] = tags => (
-                        // 兼容单标签/多标签输入
-                        <>
-                            {(Array.isArray(tags) ? tags : [tags]).map(tag => {
-                                return (
-                                    <Tag color={tag.color}>
-                                        {tag.tag}
-                                    </Tag>
-                                );
-                            })}
-                        </>
-                    )
+
+                    columns[i]['render'] = tags => {
+                        if ((!tags || isEmpty(tags)) && tags !== 0 && tags !== '') {
+                            return null;
+                        }
+                        return (
+                            // 兼容单标签/多标签输入
+                            <>
+                                {(Array.isArray(tags) ? tags : [tags]).map(tag => {
+                                    return (
+                                        <Tag color={tag.color}>
+                                            {tag.tag}
+                                        </Tag>
+                                    );
+                                })}
+                            </>
+                        )
+                    }
                 }
                 // custom-format模式
                 else if (columns[i]['renderOptions']['renderType'] === 'custom-format') {
