@@ -13,24 +13,25 @@ app.layout = html.Div(
                     'title': '常规字段',
                 },
                 {
-                    'dataIndex': 'copyable示例',
-                    'title': 'copyable示例',
+                    'dataIndex': 'ellipsis-copyable示例',
+                    'title': 'ellipsis-copyable示例',
                     'renderOptions': {
-                        'renderType': 'copyable'
+                        'renderType': 'ellipsis-copyable'
                     },
                 },
             ],
             data=[
                 {
                     '常规字段': '测试',
-                    'copyable示例': 'bala' * 4,
+                    'ellipsis-copyable示例': 'bala' * 10,
                 },
                 {
                     '常规字段': '测试',
-                    'copyable示例': None,
+                    'ellipsis-copyable示例': None,
                 },
             ],
             bordered=True,
+            style={'width': 200},
         )
     ],
     style={'padding': 50},

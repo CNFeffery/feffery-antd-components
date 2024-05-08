@@ -1133,11 +1133,16 @@ class AntdTable extends Component {
                     columns[i]['ellipsis'] = {
                         showTitle: false
                     }
-                    columns[i]['render'] = content => (
-                        <Text copyable={true} ellipsis={{ tooltip: content }}>
-                            {content}
-                        </Text>
-                    )
+                    columns[i]['render'] = content => {
+                        if ((!content || isEmpty(content)) && content !== 0 && content !== '') {
+                            return null;
+                        }
+                        return (
+                            <Text copyable={true} ellipsis={{ tooltip: content }}>
+                                {content}
+                            </Text>
+                        )
+                    }
                 }
                 // corner-mark模式
                 else if (columns[i]['renderOptions']['renderType'] === 'corner-mark') {
