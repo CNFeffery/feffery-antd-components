@@ -1158,9 +1158,14 @@ class AntdTable extends Component {
                 }
                 // status-badge模式
                 else if (columns[i]['renderOptions']['renderType'] === 'status-badge') {
-                    columns[i]['render'] = content => (
-                        <Badge status={content.status} text={content.text} />
-                    )
+                    columns[i]['render'] = content => {
+                        if ((!content || isEmpty(content)) && content !== 0 && content !== '') {
+                            return null;
+                        }
+                        return (
+                            <Badge status={content.status} text={content.text} />
+                        )
+                    }
                 }
                 // image模式
                 else if (columns[i]['renderOptions']['renderType'] === 'image') {

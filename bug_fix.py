@@ -13,47 +13,32 @@ app.layout = html.Div(
                     'title': '常规字段',
                 },
                 {
-                    'dataIndex': 'tags示例',
-                    'title': 'tags示例',
-                    'renderOptions': {'renderType': 'tags'},
+                    'dataIndex': 'status-badge示例',
+                    'title': 'status-badge示例',
+                    'renderOptions': {
+                        'renderType': 'status-badge'
+                    },
                 },
             ],
             data=[
                 {
                     '常规字段': '测试',
-                    'tags示例': {
-                        'tag': '测试',
-                        'color': 'green',
+                    'status-badge示例': {
+                        'text': '测试',
+                        'status': 'processing',
                     },
                 },
                 {
                     '常规字段': '测试',
-                    'tags示例': [
-                        {
-                            'tag': '测试',
-                            'color': 'green',
-                        },
-                        {
-                            'tag': '测试',
-                            'color': 'green',
-                        },
-                    ],
+                    'status-badge示例': None,
                 },
                 {
                     '常规字段': '测试',
-                    'tags示例': None,
-                },
-                {
-                    '常规字段': '测试',
-                    'tags示例': {},
-                },
-                {
-                    '常规字段': '测试',
-                    'tags示例': [],
+                    'status-badge示例': {},
                 },
             ],
             bordered=True,
-            style={'width': 200},
+            style={'width': 300},
         )
     ],
     style={'padding': 50},
