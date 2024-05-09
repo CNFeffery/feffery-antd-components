@@ -352,6 +352,7 @@ class AntdTable extends Component {
             expandedRowKeys,
             enableCellClickListenColumns,
             nClicksCell,
+            nContextMenuClicksCell,
             emptyContent,
             cellUpdateOptimize,
             nClicksDropdownItem,
@@ -1845,7 +1846,7 @@ class AntdTable extends Component {
                                     console.error(e)
                                 }
                             }
-                            // 处理单元格点击事件
+                            // 处理单元格单击、双击、右键事件
                             if (enableCellClickListenColumns && enableCellClickListenColumns.includes(item.dataIndex)) {
                                 try {
                                     returnValue = {
@@ -1872,6 +1873,24 @@ class AntdTable extends Component {
                                                 recentlyCellDoubleClickRecord: record,
                                                 nDoubleClicksCell: nDoubleClicksCell + 1,
                                                 cellDoubleClickEvent: {
+                                                    pageX: e.pageX,
+                                                    pageY: e.pageY,
+                                                    clientX: e.clientX,
+                                                    clientY: e.clientY,
+                                                    screenX: e.screenX,
+                                                    screenY: e.screenY,
+                                                    timestamp: Date.now()
+                                                }
+                                            })
+                                        },
+                                        onContextMenu: e => {
+                                            // 阻止浏览器默认右键菜单
+                                            e.preventDefault()
+                                            setProps({
+                                                recentlyContextMenuClickColumn: item.dataIndex,
+                                                recentlyContextMenuClickRecord: record,
+                                                nContextMenuClicksCell: nContextMenuClicksCell + 1,
+                                                cellContextMenuClickEvent: {
                                                     pageX: e.pageX,
                                                     pageY: e.pageY,
                                                     clientX: e.clientX,

@@ -905,6 +905,51 @@ AntdTable.propTypes = {
         timestamp: PropTypes.number
     }),
 
+    // 记录单元格右键事件
+    // 右键事件
+    // 记录单元格右键事件对应的字段dataIndex信息
+    recentlyContextMenuClickColumn: PropTypes.string,
+
+    // 记录单元格右键事件对应的行记录信息
+    recentlyContextMenuClickRecord: PropTypes.object,
+
+    // 记录单元格右键事件发生的总次数
+    nContextMenuClicksCell: PropTypes.number,
+
+    /**
+     * 监听单元格右键事件详细参数
+     */
+    cellContextMenuClickEvent: PropTypes.exact({
+        /**
+         * 以页面整体左上角为原点，记录x坐标
+         */
+        pageX: PropTypes.number,
+        /**
+         * 以页面整体左上角为原点，记录y坐标
+         */
+        pageY: PropTypes.number,
+        /**
+         * 以浏览器窗口左上角为原点，记录x坐标
+         */
+        clientX: PropTypes.number,
+        /**
+         * 以浏览器窗口左上角为原点，记录y坐标
+         */
+        clientY: PropTypes.number,
+        /**
+         * 以屏幕左上角为原点，记录x坐标
+         */
+        screenX: PropTypes.number,
+        /**
+         * 以屏幕左上角为原点，记录y坐标
+         */
+        screenY: PropTypes.number,
+        /**
+         * 点击事件对应的时间戳
+         */
+        timestamp: PropTypes.number
+    }),
+
     // 自定义空数据状态内容
     emptyContent: PropTypes.node,
 
@@ -1075,6 +1120,7 @@ AntdTable.defaultProps = {
     enableCellClickListenColumns: [],
     nClicksCell: 0,
     nDoubleClicksCell: 0,
+    nContextMenuClicksCell: 0,
     cellUpdateOptimize: false,
     summaryRowFixed: false,
     conditionalStyleFuncs: {},
