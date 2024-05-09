@@ -13,31 +13,27 @@ app.layout = html.Div(
                     'title': '常规字段',
                 },
                 {
-                    'dataIndex': 'corner-mark示例',
-                    'title': 'corner-mark示例',
+                    'dataIndex': 'image-avatar示例',
+                    'title': 'image-avatar示例',
                     'renderOptions': {
-                        'renderType': 'corner-mark'
+                        'renderType': 'image-avatar'
                     },
                 },
             ],
             data=[
                 {
                     '常规字段': '测试',
-                    'corner-mark示例': {
-                        'content': '角标模式',
-                        'color': 'red',
-                        'offsetX': -7.5,
-                        'offsetY': -8.5,
-                        'placement': 'top-left',
+                    'image-avatar示例': {
+                        'src': '/_favicon.ico?v=2.16.1'
                     },
                 },
                 {
                     '常规字段': '测试',
-                    'corner-mark示例': None,
+                    'image-avatar示例': None,
                 },
                 {
                     '常规字段': '测试',
-                    'corner-mark示例': {},
+                    'image-avatar示例': {},
                 },
             ],
             bordered=True,

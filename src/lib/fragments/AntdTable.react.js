@@ -1186,13 +1186,18 @@ class AntdTable extends Component {
                 }
                 // image-avatar模式
                 else if (columns[i]['renderOptions']['renderType'] === 'image-avatar') {
-                    columns[i]['render'] = content => (
-                        <Avatar
-                            src={content?.src}
-                            size={content?.size}
-                            shape={content?.shape}
-                        />
-                    )
+                    columns[i]['render'] = content => {
+                        if ((!content || isEmpty(content)) && content !== 0 && content !== '') {
+                            return null;
+                        }
+                        return (
+                            <Avatar
+                                src={content?.src}
+                                size={content?.size}
+                                shape={content?.shape}
+                            />
+                        )
+                    }
                 }
                 // checkbox模式
                 else if (columns[i]['renderOptions']['renderType'] === 'checkbox') {
