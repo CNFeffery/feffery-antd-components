@@ -13,28 +13,31 @@ app.layout = html.Div(
                     'title': '常规字段',
                 },
                 {
-                    'dataIndex': 'image示例',
-                    'title': 'image示例',
+                    'dataIndex': 'corner-mark示例',
+                    'title': 'corner-mark示例',
                     'renderOptions': {
-                        'renderType': 'image'
+                        'renderType': 'corner-mark'
                     },
                 },
             ],
             data=[
                 {
                     '常规字段': '测试',
-                    'image示例': {
-                        'src': '/assets/imgs/fac-logo.svg',
-                        'height': '75px',
+                    'corner-mark示例': {
+                        'content': '角标模式',
+                        'color': 'red',
+                        'offsetX': -7.5,
+                        'offsetY': -8.5,
+                        'placement': 'top-left',
                     },
                 },
                 {
                     '常规字段': '测试',
-                    'image示例': None,
+                    'corner-mark示例': None,
                 },
                 {
                     '常规字段': '测试',
-                    'image示例': {},
+                    'corner-mark示例': {},
                 },
             ],
             bordered=True,

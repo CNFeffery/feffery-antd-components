@@ -1147,15 +1147,20 @@ class AntdTable extends Component {
                 }
                 // corner-mark模式
                 else if (columns[i]['renderOptions']['renderType'] === 'corner-mark') {
-                    columns[i]['render'] = content => (
-                        <div className={content.placement ? 'ant-corner-mark-' + content.placement : 'ant-corner-mark-top-right'}
-                            style={{
-                                '--ant-corner-mark-color': content.hide ? 'transparent' : (content.color ? content.color : '#1890ff'),
-                                '--ant-corner-mark-transform': `translate(${content.offsetX ? content.offsetX : 0}px, ${content.offsetY ? content.offsetY : 0}px)`
-                            }}>
-                            {content.content}
-                        </div>
-                    )
+                    columns[i]['render'] = content => {
+                        if ((!content || isEmpty(content)) && content !== 0 && content !== '') {
+                            return null;
+                        }
+                        return (
+                            <div className={content.placement ? 'ant-corner-mark-' + content.placement : 'ant-corner-mark-top-right'}
+                                style={{
+                                    '--ant-corner-mark-color': content.hide ? 'transparent' : (content.color ? content.color : '#1890ff'),
+                                    '--ant-corner-mark-transform': `translate(${content.offsetX ? content.offsetX : 0}px, ${content.offsetY ? content.offsetY : 0}px)`
+                                }}>
+                                {content.content}
+                            </div>
+                        )
+                    }
                 }
                 // status-badge模式
                 else if (columns[i]['renderOptions']['renderType'] === 'status-badge') {
