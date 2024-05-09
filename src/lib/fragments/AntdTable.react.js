@@ -1169,9 +1169,14 @@ class AntdTable extends Component {
                 }
                 // image模式
                 else if (columns[i]['renderOptions']['renderType'] === 'image') {
-                    columns[i]['render'] = content => (
-                        <Image src={content.src} height={content.height} preview={content.preview} />
-                    )
+                    columns[i]['render'] = content => {
+                        if ((!content || isEmpty(content)) && content !== 0 && content !== '') {
+                            return null;
+                        }
+                        return (
+                            <Image src={content.src} height={content.height} preview={content.preview} />
+                        )
+                    }
                 }
                 // image-avatar模式
                 else if (columns[i]['renderOptions']['renderType'] === 'image-avatar') {

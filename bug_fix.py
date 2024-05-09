@@ -13,28 +13,28 @@ app.layout = html.Div(
                     'title': '常规字段',
                 },
                 {
-                    'dataIndex': 'status-badge示例',
-                    'title': 'status-badge示例',
+                    'dataIndex': 'image示例',
+                    'title': 'image示例',
                     'renderOptions': {
-                        'renderType': 'status-badge'
+                        'renderType': 'image'
                     },
                 },
             ],
             data=[
                 {
                     '常规字段': '测试',
-                    'status-badge示例': {
-                        'text': '测试',
-                        'status': 'processing',
+                    'image示例': {
+                        'src': '/assets/imgs/fac-logo.svg',
+                        'height': '75px',
                     },
                 },
                 {
                     '常规字段': '测试',
-                    'status-badge示例': None,
+                    'image示例': None,
                 },
                 {
                     '常规字段': '测试',
-                    'status-badge示例': {},
+                    'image示例': {},
                 },
             ],
             bordered=True,

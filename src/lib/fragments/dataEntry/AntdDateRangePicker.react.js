@@ -428,7 +428,7 @@ const AntdDateRangePicker = (props) => {
         }
     }
 
-    
+
     return (
         <div>
             <ConfigProvider locale={str2Locale.get(locale)}>
