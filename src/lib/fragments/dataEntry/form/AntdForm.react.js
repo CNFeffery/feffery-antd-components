@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { Form } from 'antd';
 import { isString, isUndefined, isEmpty } from 'lodash';
-import { pickBy } from 'ramda';
+import { pickBy, difference } from 'ramda';
 import useCss from '../../../hooks/useCss';
 import { propTypes, defaultProps } from '../../../components/dataEntry/form/AntdForm.react';
 import FormContext from '../../../contexts/FormContext';
@@ -52,7 +52,10 @@ const AntdForm = (props) => {
     // value响应_value状态变化
     useEffect(() => {
         if (enableBatchControl && id && !isUndefined(_values) && !isEmpty(_values)) {
-            setProps({ values: _values })
+            // 若不存在仅在_values中出现的字段名
+            if (difference(Object.keys(_values), Object.keys(values)).length === 0) {
+                setProps({ values: _values })
+            }
         }
     }, [_values])
 
