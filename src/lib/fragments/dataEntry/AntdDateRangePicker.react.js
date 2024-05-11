@@ -131,13 +131,6 @@ const AntdDateRangePicker = (props) => {
                 format: 'YYYY-MM-DD'
             })
         }
-
-        // defaultPickerValue为空时默认定位到今日对应面板位置
-        if (!defaultPickerValue) {
-            setProps({
-                defaultPickerValue: dayjs(new Date()).format(format || (showTime ? 'YYYY-MM-DD HH:mm:ss' : 'YYYY-MM-DD'))
-            })
-        }
     }, [])
 
     useEffect(() => {

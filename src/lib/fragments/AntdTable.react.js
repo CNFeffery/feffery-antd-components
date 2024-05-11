@@ -1338,7 +1338,6 @@ class AntdTable extends Component {
                 }
                 // button模式
                 else if (columns[i]['renderOptions']['renderType'] === 'button') {
-
                     // 当renderOptions参数的renderButtonPopConfirmProps参数存在
                     if (columns[i]['renderOptions']['renderButtonPopConfirmProps']) {
                         columns[i]['render'] = (content, record) => {
