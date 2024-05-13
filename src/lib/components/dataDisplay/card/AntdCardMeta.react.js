@@ -3,6 +3,9 @@ import PropTypes from 'prop-types';
 
 const LazyAntdCardMeta = React.lazy(() => import(/* webpackChunkName: "data_display" */ '../../../fragments/dataDisplay/card/AntdCardMeta.react'));
 
+/**
+ * 结构化卡片组件AntdCardMeta
+ */
 const AntdCardMeta = (props) => {
     return (
         <Suspense fallback={null}>
@@ -11,30 +14,43 @@ const AntdCardMeta = (props) => {
     );
 }
 
-// 定义参数或属性
 AntdCardMeta.propTypes = {
-    // 组件id
+    /**
+     * 组件唯一id
+     */
     id: PropTypes.string,
 
-    // css类名
+    /**
+     * 对当前组件的`key`值进行更新，可实现强制重绘当前组件的效果
+     */
+    key: PropTypes.string,
+
+    /**
+     * 当前组件css样式
+     */
+    style: PropTypes.object,
+
+    /**
+     * 当前组件css类名，支持[动态css](/advanced-classname)
+     */
     className: PropTypes.oneOfType([
         PropTypes.string,
         PropTypes.object
     ]),
 
-    // 自定义css字典
-    style: PropTypes.object,
-
-    // 辅助刷新用唯一标识key值
-    key: PropTypes.string,
-
-    // 设置网格头像/图标
+    /**
+     * 组件型，头像元素
+     */
     avatar: PropTypes.node,
 
-    // 设置网格描述内容
+    /**
+     * 组件型，描述内容
+     */
     description: PropTypes.node,
 
-    // 设置网格标题内容
+    /**
+     * 组件型，标题内容
+     */
     title: PropTypes.node,
 
     /**

@@ -1,14 +1,21 @@
+// react核心
 import React from 'react';
+// antd核心
 import { Card } from 'antd';
+// 辅助库
 import { isString } from 'lodash';
 import { pickBy } from 'ramda';
+// 自定义hooks
 import useCss from '../../../hooks/useCss';
+// 参数类型
 import { propTypes, defaultProps } from '../../../components/dataDisplay/card/AntdCardMeta.react';
 
-// 定义卡片头像、标题和描述信息组件AntdCardMeta，api参数参考https://ant.design/components/card-cn/
 const { Meta } = Card;
+
+/**
+ * 结构化卡片组件AntdCardMeta
+ */
 const AntdCardMeta = (props) => {
-    // 取得必要属性或参数
     let {
         id,
         className,
