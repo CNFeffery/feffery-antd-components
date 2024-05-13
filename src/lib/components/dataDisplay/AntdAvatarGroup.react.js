@@ -3,6 +3,9 @@ import PropTypes from 'prop-types';
 
 const LazyAntdAvatarGroup = React.lazy(() => import(/* webpackChunkName: "data_display" */ '../../fragments/dataDisplay/AntdAvatarGroup.react'));
 
+/**
+ * 头像组合组件AntdAvatarGroup
+ */
 const AntdAvatarGroup = (props) => {
     return (
         <Suspense fallback={null}>
@@ -11,49 +14,64 @@ const AntdAvatarGroup = (props) => {
     );
 }
 
-// 定义参数或属性
 AntdAvatarGroup.propTypes = {
-    // 组件id
+    /**
+     * 组件唯一id
+     */
     id: PropTypes.string,
 
-    // 内嵌的若干个AntdAvatar元素
+    /**
+     * 对当前组件的`key`值进行更新，可实现强制重绘当前组件的效果
+     */
+    key: PropTypes.string,
+
+    /**
+     * 组件型，传入组内各`AntdAvatar`组件
+     */
     children: PropTypes.node,
 
-    // css类名
+    /**
+     * 当前组件css样式
+     */
+    style: PropTypes.object,
+
+    /**
+     * 当前组件css类名，支持[动态css](/advanced-classname)
+     */
     className: PropTypes.oneOfType([
         PropTypes.string,
         PropTypes.object
     ]),
 
-    // 自定义css字典
-    style: PropTypes.object,
-
-    // 辅助刷新用唯一标识key值
-    key: PropTypes.string,
-
-    // 设置要显示的最大头像个数，默认无限制
+    /**
+     * 最多显示的头像个数，默认无限制
+     */
     maxCount: PropTypes.number,
 
-    // 设置超出maxCount部分的头像气泡卡片弹出方位
-    // 可选的有'top'、'bottom'，默认为'top'
+    /**
+     * 超出`maxCount`数量限制之外的头像气泡卡片弹出方位，可选项有`'top'`、`'bottom'`
+     * 默认值：`'top'`
+     */
     maxPopoverPlacement: PropTypes.oneOf(['top', 'bottom']),
 
-    // 设置超出maxCount部分的头像气泡卡片弹出触发方式
-    // 可选的有'hover'、'click'，默认为'hover'
+    /**
+     * 超出`maxCount`数量限制之外的头像气泡卡片弹出触发方式，可选项有`'hover'`、`'click'`
+     * 默认值：`'hover'`
+     */
     maxPopoverTrigger: PropTypes.oneOf(['hover', 'click']),
 
-    // 为省略头像部分设置css样式
+    /**
+     * 头像省略部分css样式
+     */
     maxStyle: PropTypes.object,
 
-    // 统一设置内部头像的大小，默认为'default'
+    /**
+     * 统一设置内部头像尺寸规格，传入数值型表示像素尺寸，传入字符型表示内置规格，可选项有`'large'`、`'small'`、`'default'`，支持响应式断点
+     * 默认值：`'default'`
+     */
     size: PropTypes.oneOfType([
-        // 头像像素边长
         PropTypes.number,
-
-        // 固定的规格，可选的有'large'、'small'及'default'
         PropTypes.oneOf(['large', 'small', 'default']),
-
-        // 响应式size
         PropTypes.exact({
             xs: PropTypes.number,
             sm: PropTypes.number,

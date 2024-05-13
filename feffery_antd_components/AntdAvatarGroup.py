@@ -5,23 +5,27 @@ from dash.development.base_component import Component, _explicitize_args
 
 class AntdAvatarGroup(Component):
     """An AntdAvatarGroup component.
-
+头像组合组件AntdAvatarGroup
 
 Keyword arguments:
 
-- children (a list of or a singular dash component, string or number; optional)
+- children (a list of or a singular dash component, string or number; optional):
+    组件型，传入组内各`AntdAvatar`组件.
 
-- id (string; optional)
+- id (string; optional):
+    组件唯一id.
 
 - aria-* (string; optional):
     `aria-*`格式属性通配.
 
-- className (string | dict; optional)
+- className (string | dict; optional):
+    当前组件css类名，支持[动态css](/advanced-classname).
 
 - data-* (string; optional):
     `data-*`格式属性通配.
 
-- key (string; optional)
+- key (string; optional):
+    对当前组件的`key`值进行更新，可实现强制重绘当前组件的效果.
 
 - loading_state (dict; optional)
 
@@ -36,15 +40,22 @@ Keyword arguments:
     - prop_name (string; optional):
         Holds which property is loading.
 
-- maxCount (number; optional)
+- maxCount (number; optional):
+    最多显示的头像个数，默认无限制.
 
-- maxPopoverPlacement (a value equal to: 'top', 'bottom'; default 'top')
+- maxPopoverPlacement (a value equal to: 'top', 'bottom'; default 'top'):
+    超出`maxCount`数量限制之外的头像气泡卡片弹出方位，可选项有`'top'`、`'bottom'`  默认值：`'top'`.
 
-- maxPopoverTrigger (a value equal to: 'hover', 'click'; default 'hover')
+- maxPopoverTrigger (a value equal to: 'hover', 'click'; default 'hover'):
+    超出`maxCount`数量限制之外的头像气泡卡片弹出触发方式，可选项有`'hover'`、`'click'`
+    默认值：`'hover'`.
 
-- maxStyle (dict; optional)
+- maxStyle (dict; optional):
+    头像省略部分css样式.
 
-- size (dict; default 'default')
+- size (dict; default 'default'):
+    统一设置内部头像尺寸规格，传入数值型表示像素尺寸，传入字符型表示内置规格，可选项有`'large'`、`'small'`、`'default'`，支持响应式断点
+    默认值：`'default'`.
 
     `size` is a number | a value equal to: 'large', 'small', 'default'
     | dict with keys:
@@ -61,13 +72,14 @@ Keyword arguments:
 
     - xxl (number; optional)
 
-- style (dict; optional)"""
+- style (dict; optional):
+    当前组件css样式."""
     _children_props = []
     _base_nodes = ['children']
     _namespace = 'feffery_antd_components'
     _type = 'AntdAvatarGroup'
     @_explicitize_args
-    def __init__(self, children=None, id=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, key=Component.UNDEFINED, maxCount=Component.UNDEFINED, maxPopoverPlacement=Component.UNDEFINED, maxPopoverTrigger=Component.UNDEFINED, maxStyle=Component.UNDEFINED, size=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
+    def __init__(self, children=None, id=Component.UNDEFINED, key=Component.UNDEFINED, style=Component.UNDEFINED, className=Component.UNDEFINED, maxCount=Component.UNDEFINED, maxPopoverPlacement=Component.UNDEFINED, maxPopoverTrigger=Component.UNDEFINED, maxStyle=Component.UNDEFINED, size=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
         self._prop_names = ['children', 'id', 'aria-*', 'className', 'data-*', 'key', 'loading_state', 'maxCount', 'maxPopoverPlacement', 'maxPopoverTrigger', 'maxStyle', 'size', 'style']
         self._valid_wildcard_attributes =            ['data-', 'aria-']
         self.available_properties = ['children', 'id', 'aria-*', 'className', 'data-*', 'key', 'loading_state', 'maxCount', 'maxPopoverPlacement', 'maxPopoverTrigger', 'maxStyle', 'size', 'style']

@@ -1,13 +1,19 @@
+// react核心W
 import React from 'react';
+// antd核心
 import { Avatar } from 'antd';
-import useCss from '../../hooks/useCss';
+// 辅助库
 import { isString } from 'lodash';
 import { pickBy } from 'ramda';
+// 自定义hooks
+import useCss from '../../hooks/useCss';
+// 参数类型
 import { propTypes, defaultProps } from '../../components/dataDisplay/AntdAvatarGroup.react';
 
-// 定义头像组合组件AntdAvatarGroup，api参数参考https://ant.design/components/avatar-cn/
+/**
+ * 头像组合组件AntdAvatarGroup
+ */
 const AntdAvatarGroup = (props) => {
-    // 取得必要属性或参数
     let {
         id,
         children,
