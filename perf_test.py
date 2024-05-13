@@ -59,6 +59,7 @@ components = [
     'AntdCardGrid',
     'AntdCardMeta',
     'AntdCard',
+    'AntdCarousel',
 ]
 
 app.layout = html.Div(

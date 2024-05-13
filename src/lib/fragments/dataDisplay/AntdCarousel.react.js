@@ -1,13 +1,19 @@
+// react核心
 import React from 'react';
+// antd核心
 import { Carousel } from 'antd';
-import useCss from '../../hooks/useCss';
+// 辅助库
 import { isString } from 'lodash';
 import { pickBy } from 'ramda';
+// 自定义hooks
+import useCss from '../../hooks/useCss';
+// 参数类型
 import { propTypes, defaultProps } from '../../components/dataDisplay/AntdCarousel.react';
 
-// 定义走马灯组件AntdCarousel，api参数参考https://ant.design/components/carousel-cn/
+/**
+ * 走马灯组件AntdCarousel
+ */
 const AntdCarousel = (props) => {
-    // 取得必要属性或参数
     let {
         id,
         children,

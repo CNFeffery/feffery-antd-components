@@ -3,6 +3,9 @@ import PropTypes from 'prop-types';
 
 const LazyAntdCarousel = React.lazy(() => import(/* webpackChunkName: "data_display" */ '../../fragments/dataDisplay/AntdCarousel.react'));
 
+/**
+ * 走马灯组件AntdCarousel
+ */
 const AntdCarousel = (props) => {
     return (
         <Suspense fallback={null}>
@@ -11,62 +14,92 @@ const AntdCarousel = (props) => {
     );
 }
 
-// 定义参数或属性
 AntdCarousel.propTypes = {
-    // 组件id
+    /**
+     * 组件唯一id
+     */
     id: PropTypes.string,
 
-    // 可选，传入走马灯内各元素所组成的数组
+    /**
+     * 对当前组件的`key`值进行更新，可实现强制重绘当前组件的效果
+     */
+    key: PropTypes.string,
+
+    /**
+     * 组件型，定义走马灯中需要轮播的若干元素
+     */
     children: PropTypes.node,
 
-    // css类名
+    /**
+     * 当前组件css样式
+     */
+    style: PropTypes.object,
+
+    /**
+     * 当前组件css类名，支持[动态css](/advanced-classname)
+     */
     className: PropTypes.oneOfType([
         PropTypes.string,
         PropTypes.object
     ]),
 
-    // 自定义css字典
-    style: PropTypes.object,
-
-    // 辅助刷新用唯一标识key值
-    key: PropTypes.string,
-
     /**
-     * 设置是否显示箭头
+     * 是否显示箭头
      * 默认值：`false`
      */
     arrows: PropTypes.bool,
 
-    // 设置是否开启自动切换模式，默认为false
+    /**
+     * 是否自动轮播
+     * 默认值：`false`
+     */
     autoplay: PropTypes.bool,
 
-    // 设置面板指示位置，可选的有'top'、'bottom'、'left'与'right'，默认为'bottom'
+    /**
+     * 面板指示器位置，可选项有`'top'`、`'bottom'`、`'left'`、`'right'`
+     * 默认值：`'bottom'`
+     */
     dotPosition: PropTypes.oneOf(['top', 'bottom', 'left', 'right']),
 
-    // 设置动画效果，接受css中animation-timing-function参数合法值，默认为'linear'
+    /**
+     * 调整动画效果，同css中的`animation-timing-function`
+     * 默认值：'linear'
+     */
     easing: PropTypes.string,
 
-    // 设置动画效果，可选的有'scrollx'与'fade'，默认为'scrollx'
+    /**
+     * 动化效果，可选项有`'scrollx'`、`'fade'`
+     * 默认值：'scrollx'
+     */
     effect: PropTypes.oneOf(['scrollx', 'fade']),
 
-    // 设置轮播时间间隔，单位：毫秒，默认为3000
+    /**
+     * 轮播间隔时长，单位：毫秒
+     * 默认值：`3000`
+     */
     autoplaySpeed: PropTypes.number,
 
-    // 设置每次轮播动画的耗时，单位：毫秒，默认为500`
+    /**
+     * 轮播动画耗时，单位：毫秒
+     * 默认值：`500`
+     */
     speed: PropTypes.number,
 
-    // 设置是否在鼠标悬停时暂停轮播，默认为false
+    /**
+     * 是否在鼠标悬停时暂停轮播
+     * 默认值：`false`
+     */
     pauseOnHover: PropTypes.bool,
 
     /**
-     * 是否启用无限循环切换
-     * 默认：true
+     * 是否启用无限循环轮播
+     * 默认值：`true`
      */
     infinite: PropTypes.bool,
 
     /**
      * 是否针对走马灯中的子项实施懒加载效果
-     * 默认：false
+     * 默认值：`false`
      */
     lazyLoad: PropTypes.bool,
 
