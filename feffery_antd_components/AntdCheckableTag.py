@@ -5,28 +5,33 @@ from dash.development.base_component import Component, _explicitize_args
 
 class AntdCheckableTag(Component):
     """An AntdCheckableTag component.
-
+可选择标签AntdCheckableTag
 
 Keyword arguments:
 
-- id (string; optional)
+- id (string; optional):
+    组件唯一id.
 
 - aria-* (string; optional):
     `aria-*`格式属性通配.
 
 - checked (boolean; default False):
-    设置或监听当前标签的选择状态  默认：False.
+    监听或设置当前标签的选择状态  默认值：`False`.
 
-- checkedContent (a list of or a singular dash component, string or number; optional)
+- checkedContent (a list of or a singular dash component, string or number; optional):
+    组件型，选择状态下的标签内容.
 
-- className (string | dict; optional)
+- className (string | dict; optional):
+    当前组件css类名，支持[动态css](/advanced-classname).
 
-- content (a list of or a singular dash component, string or number; optional)
+- content (a list of or a singular dash component, string or number; optional):
+    组件型，标签内容.
 
 - data-* (string; optional):
     `data-*`格式属性通配.
 
-- key (string; optional)
+- key (string; optional):
+    对当前组件的`key`值进行更新，可实现强制重绘当前组件的效果.
 
 - loading_state (dict; optional)
 
@@ -41,15 +46,17 @@ Keyword arguments:
     - prop_name (string; optional):
         Holds which property is loading.
 
-- style (dict; optional)
+- style (dict; optional):
+    当前组件css样式.
 
-- unCheckedContent (a list of or a singular dash component, string or number; optional)"""
+- unCheckedContent (a list of or a singular dash component, string or number; optional):
+    组件型，未选择状态下的标签内容."""
     _children_props = ['content', 'checkedContent', 'unCheckedContent']
     _base_nodes = ['content', 'checkedContent', 'unCheckedContent', 'children']
     _namespace = 'feffery_antd_components'
     _type = 'AntdCheckableTag'
     @_explicitize_args
-    def __init__(self, id=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, key=Component.UNDEFINED, content=Component.UNDEFINED, checkedContent=Component.UNDEFINED, unCheckedContent=Component.UNDEFINED, checked=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
+    def __init__(self, id=Component.UNDEFINED, key=Component.UNDEFINED, style=Component.UNDEFINED, className=Component.UNDEFINED, content=Component.UNDEFINED, checkedContent=Component.UNDEFINED, unCheckedContent=Component.UNDEFINED, checked=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
         self._prop_names = ['id', 'aria-*', 'checked', 'checkedContent', 'className', 'content', 'data-*', 'key', 'loading_state', 'style', 'unCheckedContent']
         self._valid_wildcard_attributes =            ['data-', 'aria-']
         self.available_properties = ['id', 'aria-*', 'checked', 'checkedContent', 'className', 'content', 'data-*', 'key', 'loading_state', 'style', 'unCheckedContent']

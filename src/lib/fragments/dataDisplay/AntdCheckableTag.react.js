@@ -1,15 +1,21 @@
+// react核心
 import React from 'react';
-import useCss from '../../hooks/useCss';
+// antd核心
+import { Tag } from 'antd';
+// 辅助库
 import { isString } from 'lodash';
 import { pickBy } from 'ramda';
-import { Tag } from 'antd';
+// 自定义hooks
+import useCss from '../../hooks/useCss';
+// 参数类型
 import { propTypes, defaultProps } from '../../components/dataDisplay/AntdCheckableTag.react';
 
 const { CheckableTag } = Tag;
 
-// 定义可选择标签AntdCheckableTag，api参数参考https://ant.design/components/tag-cn/
+/**
+ * 可选择标签AntdCheckableTag
+ */
 const AntdCheckableTag = (props) => {
-    // 取得必要属性或参数
     let {
         id,
         className,

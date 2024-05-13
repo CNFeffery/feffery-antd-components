@@ -60,6 +60,7 @@ components = [
     'AntdCardMeta',
     'AntdCard',
     'AntdCarousel',
+    'AntdCheckableTag',
 ]
 
 app.layout = html.Div(
