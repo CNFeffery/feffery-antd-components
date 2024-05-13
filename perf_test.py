@@ -55,6 +55,7 @@ components = [
     'AntdAccordion',
     'AntdAvatar',
     'AntdAvatarGroup',
+    'AntdBadge',
 ]
 
 app.layout = html.Div(

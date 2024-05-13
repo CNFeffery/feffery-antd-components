@@ -3,6 +3,9 @@ import PropTypes from 'prop-types';
 
 const LazyAntdBadge = React.lazy(() => import(/* webpackChunkName: "data_display" */ '../../fragments/dataDisplay/AntdBadge.react'));
 
+/**
+ * 徽标组件AntdBadge
+ */
 const AntdBadge = (props) => {
     return (
         <Suspense fallback={null}>
@@ -11,22 +14,34 @@ const AntdBadge = (props) => {
     );
 }
 
-// 定义参数或属性
 AntdBadge.propTypes = {
-    // 组件id
+    /**
+     * 组件唯一id
+     */
     id: PropTypes.string,
 
-    // 可选，传入要对其添加徽标的目标元素
+    /**
+     * 对当前组件的`key`值进行更新，可实现强制重绘当前组件的效果
+     */
+    key: PropTypes.string,
+
+    /**
+     * 组件型，定义徽标添加目标元素
+     */
     children: PropTypes.node,
 
-    // css类名
+    /**
+     * 当前组件css样式
+     */
+    style: PropTypes.object,
+
+    /**
+     * 当前组件css类名，支持[动态css](/advanced-classname)
+     */
     className: PropTypes.oneOfType([
         PropTypes.string,
         PropTypes.object
     ]),
-
-    // 自定义css字典
-    style: PropTypes.object,
 
     /**
      * 细分控制子元素css样式
@@ -36,7 +51,6 @@ AntdBadge.propTypes = {
          * 控制根元素css样式
          */
         root: PropTypes.object,
-
         /**
          * 控制徽标元素css样式
          */
@@ -51,49 +65,69 @@ AntdBadge.propTypes = {
          * 控制根元素css类
          */
         root: PropTypes.string,
-
         /**
          * 控制徽标元素css类
          */
         indicator: PropTypes.string
     }),
 
-    // 辅助刷新用唯一标识key值
-    key: PropTypes.string,
-
-    // 自定义徽标颜色
+    /**
+     * 徽标颜色
+     */
     color: PropTypes.string,
 
-    // 自定义展示的数字，为0时若不设置showZero=true则会自动隐藏
-    // 可配合overflowCount参数设置展示封顶的数值大小，譬如count=105时
-    // 设置overflowCount=99，会显示为99+
+    /**
+     * 徽标显示的数字
+     */
     count: PropTypes.number,
 
-    // 设置是否不展示数字，只显示一个小红点，默认为false
+    /**
+     * 是否用圆点代替数字显示
+     * 默认值：`false`
+     */
     dot: PropTypes.bool,
 
-    // 设置当count=0时，是否仍然显示0数值，默认为false
+    /**
+     * 当`count=0`时，是否强制显示数字
+     * 默认值：`false`
+     */
     showZero: PropTypes.bool,
 
-    // 设置数字值封顶大小，默认为99
+    /**
+     * 数字显示上限，超出会以显示`+`后缀
+     * 默认值：`99`
+     */
     overflowCount: PropTypes.number,
 
-    // 设置徽标的位置像素偏移，格式为[x方向偏移, y方向偏移]
+    /**
+     * 徽标在水平、竖直方向上的像素偏移，格式为`[水平偏移, 竖直偏移]`
+     */
     offset: PropTypes.arrayOf(PropTypes.number),
 
-    // 设置徽标状态，可选的有'success'、'processing'、'default'、'error'及'warning'
+    /**
+     * 徽标状态，可选项有`'success'`、`'processing'`、`'default'`、`'error'`、`'warning'`
+     */
     status: PropTypes.oneOf(['success', 'processing', 'default', 'error', 'warning']),
 
-    // 当status已设置时有效，用于设置状态徽标的文本内容
+    /**
+     * 参数`status`有效时，设置徽标文本内容
+     */
     text: PropTypes.string,
 
-    // 设置鼠标放在状态徽标上时显示的文字内容
+    /**
+     * 徽标鼠标悬停显示文字内容
+     */
     title: PropTypes.string,
 
-    // 设置徽标规格大小，可选的有'default'和'small'
+    /**
+     * 徽标尺寸规格，可选项有`'default'`、`'small'`
+     */
     size: PropTypes.oneOf(['default', 'small']),
 
-    // 记录徽标被点击次数，默认为0
+    /**
+     * 监听徽标累计被点击次数
+     * 默认值：`0`
+     */
     nClicks: PropTypes.number,
 
     /**
