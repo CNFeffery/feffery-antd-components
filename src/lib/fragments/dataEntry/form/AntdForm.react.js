@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { Form } from 'antd';
 import { isString, isUndefined, isEmpty } from 'lodash';
+import { useUnmount } from 'ahooks';
 import { pickBy, difference } from 'ramda';
 import useCss from '../../../hooks/useCss';
 import { propTypes, defaultProps } from '../../../components/dataEntry/form/AntdForm.react';
@@ -42,6 +43,13 @@ const AntdForm = (props) => {
     // console.log('_values: ', _values)
     // console.log('values: ', values)
 
+    useUnmount(() => {
+        // 处理内存泄漏及相关的其他问题
+        if (enableBatchControl && id) {
+            updateFormValues(id, undefined)
+        }
+    })
+
     // _values状态响应value变化
     useEffect(() => {
         if (enableBatchControl && id) {
@@ -52,10 +60,7 @@ const AntdForm = (props) => {
     // value响应_value状态变化
     useEffect(() => {
         if (enableBatchControl && id && !isUndefined(_values) && !isEmpty(_values)) {
-            // 若不存在仅在_values中出现的字段名
-            if (difference(Object.keys(_values), Object.keys(values)).length === 0) {
-                setProps({ values: _values })
-            }
+            setProps({ values: _values })
         }
     }, [_values])
 
