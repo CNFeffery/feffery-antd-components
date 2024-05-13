@@ -31,6 +31,12 @@ AntdCarousel.propTypes = {
     // 辅助刷新用唯一标识key值
     key: PropTypes.string,
 
+    /**
+     * 设置是否显示箭头
+     * 默认值：`false`
+     */
+    arrows: PropTypes.bool,
+
     // 设置是否开启自动切换模式，默认为false
     autoplay: PropTypes.bool,
 
@@ -98,6 +104,7 @@ AntdCarousel.propTypes = {
 
 // 设置默认参数
 AntdCarousel.defaultProps = {
+    arrows: false,
     autoplay: false,
     dotPosition: 'bottom',
     easing: 'linear',
