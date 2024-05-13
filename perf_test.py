@@ -56,6 +56,7 @@ components = [
     'AntdAvatar',
     'AntdAvatarGroup',
     'AntdBadge',
+    'AntdCardGrid',
 ]
 
 app.layout = html.Div(

@@ -3,6 +3,9 @@ import PropTypes from 'prop-types';
 
 const LazyAntdCardGrid = React.lazy(() => import(/* webpackChunkName: "data_display" */ '../../../fragments/dataDisplay/card/AntdCardGrid.react'));
 
+/**
+ * 卡片网格组件AntdCardGrid
+ */
 const AntdCardGrid = (props) => {
     return (
         <Suspense fallback={null}>
@@ -11,34 +14,44 @@ const AntdCardGrid = (props) => {
     );
 }
 
-// 定义参数或属性
 AntdCardGrid.propTypes = {
-    // 组件id
+    /**
+     * 组件唯一id
+     */
     id: PropTypes.string,
 
     /**
-     * The content of the tab - will only be displayed if this tab is selected
+     * 对当前组件的`key`值进行更新，可实现强制重绘当前组件的效果
+     */
+    key: PropTypes.string,
+
+    /**
+     * 组件型，内嵌元素
      */
     children: PropTypes.node,
 
-    // css类名
+    /**
+     * 当前组件css样式
+     */
+    style: PropTypes.object,
+
+    /**
+     * 当前组件css类名，支持[动态css](/advanced-classname)
+     */
     className: PropTypes.oneOfType([
         PropTypes.string,
         PropTypes.object
     ]),
 
-    // 自定义css字典
-    style: PropTypes.object,
-
-    // 辅助刷新用唯一标识key值
-    key: PropTypes.string,
-
-    // 设置网格是否可鼠标悬浮呈现浮起效果，默认为true
+    /**
+     * 鼠标悬停时是否显示特殊样式
+     * 默认值：`true`
+     */
     hoverable: PropTypes.bool,
 
     /**
      * 监听当前卡片网格累计点击次数
-     * 默认：0
+     * 默认值：`0`
      */
     nClicks: PropTypes.number,
 

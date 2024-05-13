@@ -1,14 +1,20 @@
+// react核心
 import React from 'react';
+// antd核心
 import { Card } from 'antd';
+// 辅助库
 import { isString } from 'lodash';
 import { pickBy } from 'ramda';
-import useCss from '../../../hooks/useCss';
 import { parseChildrenToArray } from '../../../components/utils';
+// 自定义hooks
+import useCss from '../../../hooks/useCss';
+// 参数类型
 import { propTypes, defaultProps } from '../../../components/dataDisplay/card/AntdCardGrid.react';
 
-// 定义卡片网格组件AntdCardGrid，api参数参考https://ant.design/components/card-cn/
+/**
+ * 卡片网格组件AntdCardGrid
+ */
 const AntdCardGrid = (props) => {
-    // 取得必要属性或参数
     let {
         id,
         children,
