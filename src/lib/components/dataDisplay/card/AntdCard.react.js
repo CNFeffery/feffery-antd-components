@@ -11,90 +11,129 @@ const AntdCard = (props) => {
     );
 }
 
-// 定义参数或属性
 AntdCard.propTypes = {
-    // 组件id
+    /**
+     * 组件唯一id
+     */
     id: PropTypes.string,
 
     /**
-     * The content of the tab - will only be displayed if this tab is selected
+     * 对当前组件的`key`值进行更新，可实现强制重绘当前组件的效果
+     */
+    key: PropTypes.string,
+
+    /**
+     * 组件型，内嵌元素
      */
     children: PropTypes.node,
 
-    // css类名
+    /**
+     * 当前组件css样式
+     */
+    style: PropTypes.object,
+
+    /**
+     * 当前组件css类名，支持[动态css](/advanced-classname)
+     */
     className: PropTypes.oneOfType([
         PropTypes.string,
         PropTypes.object
     ]),
 
-    // 自定义css字典
-    style: PropTypes.object,
+    /**
+     * 组件型，底部操作区元素
+     */
+    actions: PropTypes.node,
 
-    // 辅助刷新用唯一标识key值
-    key: PropTypes.string,
-
-    // 卡片操作组，位置在卡片底部
-    actions: PropTypes.arrayOf(PropTypes.node),
-
-    // 设置卡片标题内容
+    /**
+     * 组件型，标题内容
+     */
     title: PropTypes.node,
 
-    // 设置卡片右上角额外链接功能
+    /**
+     * 配置卡片右上角额外链接相关参数
+     */
     extraLink: PropTypes.exact({
-        // 链接文字内容
+        /**
+         * 链接文字内容
+         */
         content: PropTypes.string,
-
-        // 链接url地址
+        /**
+         * 链接地址
+         */
         href: PropTypes.string,
-
-        // 链接target跳转事件，默认为'_blank'
+        /**
+         * 链接跳转行为
+         */
         target: PropTypes.string,
-
-        // 链接className
+        /**
+         * 链接css类名
+         */
         className: PropTypes.string,
-
-        // 链接css样式表
+        /**
+         * 链接css样式
+         */
         style: PropTypes.object
     }),
 
     /**
-     * 设置卡片右上角额外元素，优先级高于extraLink
+     * 组件型，卡片右上角额外元素，优先级高于`extraLink`
      */
     extra: PropTypes.node,
 
-    // 设置卡片填充封面图片功能，会自适应卡片的尺寸
+    /**
+     * 配置封面图片相关参数
+     */
     coverImg: PropTypes.exact({
-        // 设置src属性
+        /**
+         * 图片资源地址
+         */
         src: PropTypes.string,
-
-        // 设置alt属性
+        /**
+         * 图片alt信息
+         */
         alt: PropTypes.string,
-
-        // css类名
+        /**
+         * 图片css类名
+         */
         className: PropTypes.string,
-
-        // 设置css样式表
+        /**
+         * 图片css样式
+         */
         style: PropTypes.object
     }),
 
-    // 设置内容区域自定义样式
+    /**
+     * 内容区css样式
+     */
     bodyStyle: PropTypes.object,
 
-    // 设置标题区域自定义样式
+    /**
+     * 标题css样式
+     */
     headStyle: PropTypes.object,
 
-    // 设置是否有边框，默认为true
+    /**
+     * 是否渲染边框
+     * 默认值：`true`
+     */
     bordered: PropTypes.bool,
 
-    // 设置卡片鼠标悬浮时是否呈现浮起效果，默认为false
+    /**
+     * 是否在鼠标悬停时显示特殊样式
+     * 默认值：`false`
+     */
     hoverable: PropTypes.bool,
 
-    // 设置卡片的尺寸，可选的有'default'与'small'，默认为'default'
+    /**
+     * 卡片尺寸规格，可选项有`'default'`、`'small'`
+     * 默认值：`'default'`
+     */
     size: PropTypes.oneOf(['default', 'small']),
 
     /**
      * 监听当前卡片累计点击次数
-     * 默认：0
+     * 默认值：`0`
      */
     nClicks: PropTypes.number,
 
