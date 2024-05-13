@@ -40,6 +40,7 @@ const AntdButton = (props) => {
         clickExecuteJsString,
         debounceWait,
         icon,
+        iconPosition,
         loading,
         autoSpin,
         motionType,
@@ -108,6 +109,7 @@ const AntdButton = (props) => {
                     size
             }
             icon={icon}
+            iconPosition={iconPosition}
             loading={loading}
             onClick={onClick}
             data-dash-is-loading={
@@ -258,6 +260,12 @@ AntdButton.propTypes = {
     icon: PropTypes.node,
 
     /**
+     * 按钮图标组件的位置，可选项有`'start'`、`'end'`
+     * 默认值：`'start'`
+     */
+    iconPosition: PropTypes.oneOf(['start', 'end']),
+
+    /**
      * 按钮是否呈现加载状态
      * 默认值：`false`
      */
@@ -318,6 +326,7 @@ AntdButton.defaultProps = {
     size: 'middle',
     nClicks: 0,
     debounceWait: 0,
+    iconPosition: 'start',
     autoSpin: false
 }
 
