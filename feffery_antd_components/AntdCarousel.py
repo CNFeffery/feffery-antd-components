@@ -16,6 +16,9 @@ Keyword arguments:
 - aria-* (string; optional):
     `aria-*`格式属性通配.
 
+- arrows (boolean; default False):
+    设置是否显示箭头  默认值：`False`.
+
 - autoplay (boolean; default False)
 
 - autoplaySpeed (number; default 3000)
@@ -62,10 +65,10 @@ Keyword arguments:
     _namespace = 'feffery_antd_components'
     _type = 'AntdCarousel'
     @_explicitize_args
-    def __init__(self, children=None, id=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, key=Component.UNDEFINED, autoplay=Component.UNDEFINED, dotPosition=Component.UNDEFINED, easing=Component.UNDEFINED, effect=Component.UNDEFINED, autoplaySpeed=Component.UNDEFINED, speed=Component.UNDEFINED, pauseOnHover=Component.UNDEFINED, infinite=Component.UNDEFINED, lazyLoad=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
-        self._prop_names = ['children', 'id', 'aria-*', 'autoplay', 'autoplaySpeed', 'className', 'data-*', 'dotPosition', 'easing', 'effect', 'infinite', 'key', 'lazyLoad', 'loading_state', 'pauseOnHover', 'speed', 'style']
+    def __init__(self, children=None, id=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, key=Component.UNDEFINED, arrows=Component.UNDEFINED, autoplay=Component.UNDEFINED, dotPosition=Component.UNDEFINED, easing=Component.UNDEFINED, effect=Component.UNDEFINED, autoplaySpeed=Component.UNDEFINED, speed=Component.UNDEFINED, pauseOnHover=Component.UNDEFINED, infinite=Component.UNDEFINED, lazyLoad=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
+        self._prop_names = ['children', 'id', 'aria-*', 'arrows', 'autoplay', 'autoplaySpeed', 'className', 'data-*', 'dotPosition', 'easing', 'effect', 'infinite', 'key', 'lazyLoad', 'loading_state', 'pauseOnHover', 'speed', 'style']
         self._valid_wildcard_attributes =            ['data-', 'aria-']
-        self.available_properties = ['children', 'id', 'aria-*', 'autoplay', 'autoplaySpeed', 'className', 'data-*', 'dotPosition', 'easing', 'effect', 'infinite', 'key', 'lazyLoad', 'loading_state', 'pauseOnHover', 'speed', 'style']
+        self.available_properties = ['children', 'id', 'aria-*', 'arrows', 'autoplay', 'autoplaySpeed', 'className', 'data-*', 'dotPosition', 'easing', 'effect', 'infinite', 'key', 'lazyLoad', 'loading_state', 'pauseOnHover', 'speed', 'style']
         self.available_wildcard_properties =            ['data-', 'aria-']
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()
