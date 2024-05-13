@@ -7,12 +7,9 @@ app = dash.Dash(__name__)
 app.layout = html.Div(
     [
         fac.AntdButton(
-            '测试按钮',
-            icon=fac.AntdIcon(
-                icon='antd-search'
-            ),
-            iconPosition=positon
-        ) for positon in ['start', 'end']
+            '测试',
+            autoInsertSpace=space
+        ) for space in [True, False]
     ],
     style={'padding': '50px 100px'},
 )

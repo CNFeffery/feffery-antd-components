@@ -30,6 +30,7 @@ const AntdButton = (props) => {
         type,
         href,
         target,
+        autoInsertSpace,
         block,
         danger,
         disabled,
@@ -94,6 +95,7 @@ const AntdButton = (props) => {
             type={type}
             href={href}
             target={target}
+            autoInsertSpace={autoInsertSpace}
             block={block}
             danger={danger}
             disabled={
@@ -200,6 +202,12 @@ AntdButton.propTypes = {
      * 默认值：`'_blank'`
      */
     target: PropTypes.string,
+
+    /**
+     * 按钮两个汉字内是否插入空格
+     * 默认值：`true`
+     */
+    autoInsertSpace: PropTypes.bool,
 
     /**
      * 按钮是否渲染为块级元素（宽度撑满父容器）
@@ -318,6 +326,7 @@ AntdButton.propTypes = {
 AntdButton.defaultProps = {
     type: 'default',
     target: '_blank',
+    autoInsertSpace: true,
     block: false,
     danger: false,
     disabled: false,
