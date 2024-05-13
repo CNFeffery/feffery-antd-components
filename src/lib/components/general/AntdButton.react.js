@@ -30,6 +30,7 @@ const AntdButton = (props) => {
         type,
         href,
         target,
+        autoInsertSpace,
         block,
         danger,
         disabled,
@@ -40,6 +41,7 @@ const AntdButton = (props) => {
         clickExecuteJsString,
         debounceWait,
         icon,
+        iconPosition,
         loading,
         autoSpin,
         motionType,
@@ -93,6 +95,7 @@ const AntdButton = (props) => {
             type={type}
             href={href}
             target={target}
+            autoInsertSpace={autoInsertSpace}
             block={block}
             danger={danger}
             disabled={
@@ -108,6 +111,7 @@ const AntdButton = (props) => {
                     size
             }
             icon={icon}
+            iconPosition={iconPosition}
             loading={loading}
             onClick={onClick}
             data-dash-is-loading={
@@ -200,6 +204,12 @@ AntdButton.propTypes = {
     target: PropTypes.string,
 
     /**
+     * 按钮两个汉字内是否插入空格
+     * 默认值：`true`
+     */
+    autoInsertSpace: PropTypes.bool,
+
+    /**
      * 按钮是否渲染为块级元素（宽度撑满父容器）
      * 默认值：`false`
      */
@@ -258,6 +268,12 @@ AntdButton.propTypes = {
     icon: PropTypes.node,
 
     /**
+     * 按钮图标组件的位置，可选项有`'start'`、`'end'`
+     * 默认值：`'start'`
+     */
+    iconPosition: PropTypes.oneOf(['start', 'end']),
+
+    /**
      * 按钮是否呈现加载状态
      * 默认值：`false`
      */
@@ -310,6 +326,7 @@ AntdButton.propTypes = {
 AntdButton.defaultProps = {
     type: 'default',
     target: '_blank',
+    autoInsertSpace: true,
     block: false,
     danger: false,
     disabled: false,
@@ -318,6 +335,7 @@ AntdButton.defaultProps = {
     size: 'middle',
     nClicks: 0,
     debounceWait: 0,
+    iconPosition: 'start',
     autoSpin: false
 }
 
