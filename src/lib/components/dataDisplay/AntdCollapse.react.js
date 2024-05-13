@@ -1,16 +1,21 @@
+// react核心
 import React from 'react';
 import PropTypes from 'prop-types';
+// antd核心
 import { Collapse } from 'antd';
+// 辅助库
 import { parseChildrenToArray } from '../utils';
 import { isString } from 'lodash';
 import { pickBy } from 'ramda';
+// 自定义hooks
 import useCss from '../../hooks/useCss';
 
 const { Panel } = Collapse;
 
-// 定义折叠面板组件AntdCollapse，api参数参考https://ant.design/components/steps-cn/
+/**
+ * 折叠面板组件AntdCollapse
+ */
 const AntdCollapse = (props) => {
-    // 取得必要属性或参数
     let {
         id,
         children,
@@ -78,44 +83,73 @@ const AntdCollapse = (props) => {
     );
 }
 
-// 定义参数或属性
 AntdCollapse.propTypes = {
-    // 组件id
+    /**
+     * 组件唯一id
+     */
     id: PropTypes.string,
 
+    /**
+     * 对当前组件的`key`值进行更新，可实现强制重绘当前组件的效果
+     */
+    key: PropTypes.string,
+
+    /**
+     * 组件型，内嵌元素
+     */
     children: PropTypes.node,
 
-    // css类名
+    /**
+     * 当前组件css样式
+     */
+    style: PropTypes.object,
+
+    /**
+     * 当前组件css类名，支持[动态css](/advanced-classname)
+     */
     className: PropTypes.oneOfType([
         PropTypes.string,
         PropTypes.object
     ]),
 
-    // 自定义css字典
-    style: PropTypes.object,
-
-    // 辅助刷新用唯一标识key值
-    key: PropTypes.string,
-
-    // 设置折叠控件所显示的标题内容
+    /**
+     * 组件型，标题内容
+     */
     title: PropTypes.node,
 
-    // 设置是否打开，默认为true
+    /**
+     * 是否展开
+     * 默认值：`true`
+     */
     isOpen: PropTypes.bool,
 
-    // 设置是否渲染边框
+    /**
+     * 是否渲染边框
+     * 默认值：`true`
+     */
     bordered: PropTypes.bool,
 
-    // 设置是否显示箭头
+    /**
+     * 是否渲染箭头
+     * 默认值：`true`
+     */
     showArrow: PropTypes.bool,
 
-    // 设置是否开启透明面板模式
+    /**
+     * 是否开启透明背景模式
+     * 默认值：`false`
+     */
     ghost: PropTypes.bool,
 
-    // 设置可折叠点击触发区域，'header'表示仅限标题文字区域，'disabled'表示禁用折叠，'icon'表示仅点击图标
+    /**
+     * 折叠交互触发行为，可选项有`'header'`（仅标题区域）、`'disabled'`（禁用折叠）、`'icon'`（仅图标区域）
+     */
     collapsible: PropTypes.oneOf(['header', 'disabled', 'icon']),
 
-    // 设置当折叠面板默认未展开时强制渲染内部元素，默认为false
+    /**
+     * 初始化未展开时，是否强制渲染内部元素
+     * 默认值：`false`
+     */
     forceRender: PropTypes.bool,
 
     /**
@@ -150,13 +184,8 @@ AntdCollapse.propTypes = {
     setProps: PropTypes.func,
 
     /**
-  * Used to allow user interactions in this component to be persisted when
-  * the component - or the page - is refreshed. If `persisted` is truthy and
-  * hasn't changed from its previous value, a `value` that the user has
-  * changed while using the app will keep that change, as long as
-  * the new `value` also matches what was given originally.
-  * Used in conjunction with `persistence_type`.
-  */
+     * 是否开启[属性持久化](/prop-persistence)
+     */
     persistence: PropTypes.oneOfType([
         PropTypes.bool,
         PropTypes.string,
@@ -164,17 +193,14 @@ AntdCollapse.propTypes = {
     ]),
 
     /**
-     * Properties whose user interactions will persist after refreshing the
-     * component or the page. Since only `value` is allowed this prop can
-     * normally be ignored.
+     * 开启属性持久化功能的若干属性名，可选项有`'isOpen'`
+     * 默认值：`['isOpen']`
      */
     persisted_props: PropTypes.arrayOf(PropTypes.oneOf(['isOpen'])),
 
     /**
-     * Where persisted user changes will be stored:
-     * memory: only kept in memory, reset on page refresh.
-     * local: window.localStorage, data is kept after the browser quit.
-     * session: window.sessionStorage, data is cleared once the browser quit.
+     * 属性持久化存储类型，可选项有`'local'`（本地持久化），`'session'`（会话持久化），`'memory'`（内存持久化）
+     * 默认值：`'local'`
      */
     persistence_type: PropTypes.oneOf(['local', 'session', 'memory'])
 };
