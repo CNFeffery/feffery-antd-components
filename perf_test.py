@@ -70,6 +70,7 @@ components = [
     'AntdImageGroup',
     'AntdPopover',
     'AntdQRCode',
+    'AntdRibbon',
 ]
 
 app.layout = html.Div(

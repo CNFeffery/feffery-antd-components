@@ -1,14 +1,19 @@
+// react核心
 import React from 'react';
+// antd核心
 import { Badge } from 'antd';
+// 辅助库
 import { isString } from 'lodash';
 import { pickBy } from 'ramda';
+// 自定义hooks
 import useCss from '../../hooks/useCss';
+// 参数类型
 import { propTypes, defaultProps } from '../../components/dataDisplay/AntdRibbon.react';
 
-
-// 定义缎带组件AntdRibbon，api参数参考https://ant.design/components/badge-cn/#Badge.Ribbon-(4.5.0+)
+/**
+ * 缎带组件AntdRibbon
+ */
 const AntdRibbon = (props) => {
-    // 取得必要属性或参数
     let {
         id,
         children,

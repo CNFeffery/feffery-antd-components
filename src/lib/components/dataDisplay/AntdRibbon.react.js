@@ -3,6 +3,9 @@ import PropTypes from 'prop-types';
 
 const LazyAntdRibbon = React.lazy(() => import(/* webpackChunkName: "data_display" */ '../../fragments/dataDisplay/AntdRibbon.react'));
 
+/**
+ * 缎带组件AntdRibbon
+ */
 const AntdRibbon = (props) => {
     return (
         <Suspense fallback={null}>
@@ -11,33 +14,49 @@ const AntdRibbon = (props) => {
     );
 }
 
-// 定义参数或属性
 AntdRibbon.propTypes = {
-    // 组件id
+    /**
+     * 组件唯一id
+     */
     id: PropTypes.string,
 
-    // 可选，传入要对其添加徽标的目标元素
+    /**
+     * 对当前组件的`key`值进行更新，可实现强制重绘当前组件的效果
+     */
+    key: PropTypes.string,
+
+    /**
+     * 组件型，添加徽标的目标元素
+     */
     children: PropTypes.node,
 
-    // css类名
+    /**
+     * 当前组件css样式
+     */
+    style: PropTypes.object,
+
+    /**
+     * 当前组件css类名，支持[动态css](/advanced-classname)
+     */
     className: PropTypes.oneOfType([
         PropTypes.string,
         PropTypes.object
     ]),
 
-    // 自定义css字典
-    style: PropTypes.object,
-
-    // 辅助刷新用唯一标识key值
-    key: PropTypes.string,
-
-    // 自定义缎带的颜色
+    /**
+     * 缎带颜色
+     */
     color: PropTypes.string,
 
-    // 设置缎带的位置，可选的有'start'与'end'
+    /**
+     * 缎带显示位置，可选项有`'start'`、`'end'`
+     * 默认值：`'end'`
+     */
     placement: PropTypes.oneOf(['start', 'end']),
 
-    // 设置缎带中需要填入的文字
+    /**
+     * 组件型，缎带内容
+     */
     text: PropTypes.node,
 
     /**
