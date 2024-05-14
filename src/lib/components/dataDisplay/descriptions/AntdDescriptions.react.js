@@ -3,6 +3,9 @@ import PropTypes from 'prop-types';
 
 const LazyAntdDescriptions = React.lazy(() => import(/* webpackChunkName: "data_display" */ '../../../fragments/dataDisplay/descriptions/AntdDescriptions.react'));
 
+/**
+ * 描述列表组件AntdDescriptions
+ */
 const AntdDescriptions = (props) => {
     return (
         <Suspense fallback={null}>
@@ -11,58 +14,83 @@ const AntdDescriptions = (props) => {
     );
 }
 
-// 定义参数或属性
 AntdDescriptions.propTypes = {
-    // 组件id
+    /**
+     * 组件唯一id
+     */
     id: PropTypes.string,
 
+    /**
+     * 对当前组件的`key`值进行更新，可实现强制重绘当前组件的效果
+     */
+    key: PropTypes.string,
+
+    /**
+     * 组件型，传入内部各描述列表子项
+     */
     children: PropTypes.node,
 
-    // css类名
+    /**
+     * 当前组件css样式
+     */
+    style: PropTypes.object,
+
+    /**
+     * 当前组件css类名，支持[动态css](/advanced-classname)
+     */
     className: PropTypes.oneOfType([
         PropTypes.string,
         PropTypes.object
     ]),
 
-    // 自定义css字典
-    style: PropTypes.object,
-
-    // 辅助刷新用唯一标识key值
-    key: PropTypes.string,
-
-    // 数据驱动形式的内部子项定义，设置后会忽略children参数
+    /**
+     * 配置描述列表子项，优先级高于`children`
+     */
     items: PropTypes.arrayOf(
         PropTypes.exact({
-            // 设置当前子项标题内容
+            /**
+             * 组件型，子项标题内容
+             */
             label: PropTypes.node,
-
-            // 设置当前子项占位份数，默认为1
+            /**
+             * 子项所占宽度份数
+             * 默认值：`1`
+             */
             span: PropTypes.number,
-
-            // 设置当前子项内容
+            /**
+             * 组件型，子项内容
+             */
             children: PropTypes.node,
-
-            // 设置当前子项标签css样式
+            /**
+             * 子项标签css样式
+             */
             labelStyle: PropTypes.object,
-
-            // 设置当前子项内容css样式
+            /**
+             * 子项内容css样式
+             */
             contentStyle: PropTypes.object,
-
-            // 设置当前子项css样式
+            /**
+             * 子项css样式
+             */
             style: PropTypes.object,
-
-            // 设置当前子项css类名
+            /**
+             * 子项css类名
+             */
             className: PropTypes.string
         })
     ),
 
-    // 设置标题内容
+    /**
+     * 组件型，标题内容
+     */
     title: PropTypes.node,
 
-    // 设置同一行允许放置的字段项数量，默认为3
+    /**
+     * 每行显示的字段项数量，支持响应式
+     * 默认值：`3`
+     */
     column: PropTypes.oneOfType([
         PropTypes.number,
-        // 响应式
         PropTypes.exact({
             xxl: PropTypes.number,
             xl: PropTypes.number,
@@ -73,20 +101,32 @@ AntdDescriptions.propTypes = {
         })
     ]),
 
-    // 设置是否显示边框，默认为false
+    /**
+     * 是否显示边框
+     * 默认值：`false`
+     */
     bordered: PropTypes.bool,
 
-    // 设置整体尺寸规格，可选的有'small'、'default'与'large'
+    /**
+     * 整体尺寸规格，可选项有`'small'`、`'default'`、`'large'`
+     * 默认值：`'default'`
+     */
     size: PropTypes.oneOf(['small', 'default', 'large']),
 
-    // 设置字段标签与字段内容的布局方式，可选的有'horizontal'和'vertical'
-    // 默认为'horizontal'
+    /**
+     * 布局方式，可选项有`'horizontal'`、`'vertical'`
+     * 默认值：`'horizontal'`
+     */
     layout: PropTypes.oneOf(['horizontal', 'vertical']),
 
-    // 设置字段标签的css样式
+    /**
+     * 统一设置字段标签css样式
+     */
     labelStyle: PropTypes.object,
 
-    // 设置字段内容的css样式
+    /**
+     * 统一设置字段内容css样式
+     */
     contentStyle: PropTypes.object,
 
     /**

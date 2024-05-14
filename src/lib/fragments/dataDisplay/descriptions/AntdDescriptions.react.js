@@ -1,15 +1,21 @@
+// react核心
 import React from 'react';
+// antd核心
 import { Descriptions } from 'antd';
+// 辅助库
 import { omit } from 'ramda';
 import { parseChildrenToArray, resolveChildProps } from '../../../components/utils';
 import { isString } from 'lodash';
 import { pickBy } from 'ramda';
+// 自定义hooks
 import useCss from '../../../hooks/useCss';
+// 参数类型
 import { propTypes, defaultProps } from '../../../components/dataDisplay/descriptions/AntdDescriptions.react';
 
-// 定义描述列表组件AntdDescriptions，api参数参考https://ant.design/components/descriptions-cn/
+/**
+ * 描述列表组件AntdDescriptions
+ */
 const AntdDescriptions = (props) => {
-    // 取得必要属性或参数
     let {
         id,
         children,
