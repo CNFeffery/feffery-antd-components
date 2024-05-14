@@ -1,17 +1,23 @@
+// react核心
 import React, { useRef } from 'react';
+// antd核心
 import { Typography } from 'antd';
+// 辅助库
 import { useSize } from 'ahooks';
 import { locale2text } from '../../components/locales.react';
 import { isString } from 'lodash';
 import { pickBy } from 'ramda';
+// 自定义hooks
 import useCss from '../../hooks/useCss';
+// 参数类型
 import { propTypes, defaultProps } from '../../components/dataDisplay/AntdSpoiler.react';
 
 const { Link } = Typography;
 
-// 定义展开收起组件AntdSpoiler
+/**
+ * 展开收起组件AntdSpoiler
+ */
 const AntdSpoiler = (props) => {
-    // 取得必要属性或参数
     let {
         id,
         children,

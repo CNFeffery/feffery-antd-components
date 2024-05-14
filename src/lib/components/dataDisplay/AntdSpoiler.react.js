@@ -3,6 +3,9 @@ import PropTypes from 'prop-types';
 
 const LazyAntdSpoiler = React.lazy(() => import(/* webpackChunkName: "data_display" */ '../../fragments/dataDisplay/AntdSpoiler.react'));
 
+/**
+ * 展开收起组件AntdSpoiler
+ */
 const AntdSpoiler = (props) => {
     return (
         <Suspense fallback={null}>
@@ -11,50 +14,86 @@ const AntdSpoiler = (props) => {
     );
 }
 
-// 定义参数或属性
 AntdSpoiler.propTypes = {
+    /**
+     * 组件唯一id
+     */
     id: PropTypes.string,
 
+    /**
+     * 对当前组件的`key`值进行更新，可实现强制重绘当前组件的效果
+     */
+    key: PropTypes.string,
+
+    /**
+     * 组件型，内嵌元素
+     */
     children: PropTypes.node,
 
+    /**
+     * 当前组件css样式
+     */
+    style: PropTypes.object,
+
+    /**
+     * 当前组件css类名，支持[动态css](/advanced-classname)
+     */
     className: PropTypes.oneOfType([
         PropTypes.string,
         PropTypes.object
     ]),
 
-    style: PropTypes.object,
-
-    // 内容区css类
+    /**
+     * 内容区css类名，支持[动态css](/advanced-classname)
+     */
     contentClassName: PropTypes.oneOfType([
         PropTypes.string,
         PropTypes.object
     ]),
 
-    // 内容区css样式
+    /**
+     * 内容区css样式
+     */
     contentStyle: PropTypes.object,
 
-    // 辅助刷新用唯一标识key值
-    key: PropTypes.string,
-
-    // 设置语言环境，可选的有'zh-cn'、'en-us'
+    /**
+     * 组件文案语种，可选项有`'zh-cn'`、`'en-us'`
+     * 默认值：`'zh-cn'`
+     */
     locale: PropTypes.oneOf(['zh-cn', 'en-us']),
 
-    // 设置展开状态下，收起按钮的文案
+    /**
+     * 组件型，展开状态下，收起按钮的文案内容
+     */
     hideLabel: PropTypes.node,
 
-    // 设置收起状态下，展开按钮的文案
+    /**
+     * 组件型，收起状态下，展开按钮的文案内容
+     */
     showLabel: PropTypes.node,
 
-    // 设置展开/收起按钮的位置，默认为'left'
+    /**
+     * 展开/收起按钮的位置，可选项有`'left'`、`'right'`
+     * 默认值：`'left'`
+     */
     labelPosition: PropTypes.oneOf(['left', 'right']),
 
-    // 设置或监听当前是否处于展开状态，默认为false
+    /**
+     * 监听或设置是否处于展开状态
+     * 默认值：`false`
+     */
     open: PropTypes.bool,
 
-    // 设置收起状态下的内容区域最大像素高度，默认为50
+    /**
+     * 收起状态下，内容区域最大像素高度
+     * 默认值：`50`
+     */
     maxHeight: PropTypes.number,
 
-    // 设置展开收起过渡动画的时长，单位：秒，默认为0.1
+    /**
+     * 展开/收起过渡动画耗时，单位：秒
+     * 默认值：`0.1`
+     */
     transitionDuration: PropTypes.number,
 
     /**
