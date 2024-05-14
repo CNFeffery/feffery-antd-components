@@ -1,16 +1,22 @@
+// react核心
 import React from 'react';
+// antd核心
 import { Statistic } from 'antd';
+// 辅助库
 import dayjs from 'dayjs';
 import { isString } from 'lodash';
 import { pickBy } from 'ramda';
+// 自定义hooks
 import useCss from '../../hooks/useCss';
+// 参数类型
 import { propTypes, defaultProps } from '../../components/dataDisplay/AntdCountdown.react';
 
 const { Countdown } = Statistic;
 
-// 定义倒计时组件AntdCountdown，api参数参考https://ant.design/components/statistic-cn/
+/**
+ * 倒计时组件AntdCountdown
+ */
 const AntdCountdown = (props) => {
-    // 取得必要属性或参数
     let {
         id,
         className,
