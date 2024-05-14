@@ -73,6 +73,7 @@ components = [
     'AntdRibbon',
     'AntdSegmented',
     'AntdSpoiler',
+    'AntdStatistic',
 ]
 
 app.layout = html.Div(

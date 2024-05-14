@@ -1,14 +1,19 @@
+// react核心
 import React from 'react';
 import PropTypes from 'prop-types';
+// antd核心
 import { Statistic, Space, Tooltip } from 'antd';
-import useCss from '../../hooks/useCss';
+import { QuestionCircleOutlined } from "@ant-design/icons";
+// 辅助库
 import { isString, isNumber } from 'lodash';
 import { pickBy } from 'ramda';
-import { QuestionCircleOutlined } from "@ant-design/icons";
+// 自定义hooks
+import useCss from '../../hooks/useCss';
 
-// 定义统计数值组件AntdStatistic，api参数参考https://ant.design/components/statistic-cn/
+/**
+ * 统计数值组件AntdStatistic
+ */
 const AntdStatistic = (props) => {
-    // 取得必要属性或参数
     let {
         id,
         className,
@@ -62,49 +67,73 @@ const AntdStatistic = (props) => {
     );
 }
 
-// 定义参数或属性
 AntdStatistic.propTypes = {
-    // 组件id
+    /**
+     * 组件唯一id
+     */
     id: PropTypes.string,
 
-    // css类名
+    /**
+     * 对当前组件的`key`值进行更新，可实现强制重绘当前组件的效果
+     */
+    key: PropTypes.string,
+
+    /**
+     * 当前组件css样式
+     */
+    style: PropTypes.object,
+
+    /**
+     * 当前组件css类名，支持[动态css](/advanced-classname)
+     */
     className: PropTypes.oneOfType([
         PropTypes.string,
         PropTypes.object
     ]),
 
-    // 自定义css字典
-    style: PropTypes.object,
-
-    // 辅助刷新用唯一标识key值
-    key: PropTypes.string,
-
-    // 设定要显示的数值
+    /**
+     * 支持组件型，要展示的数值
+     */
     value: PropTypes.oneOfType([
         PropTypes.number,
         PropTypes.string,
         PropTypes.node
     ]),
 
-    // 设置是否为数值渲染千分位逗号标识符，默认为true
+    /**
+     * 是否为数值型`value`添加千分位符
+     * 默认值：`true`
+     */
     showGroupSeparator: PropTypes.bool,
 
-    // 设置数值精度，即小数点后位数
+    /**
+     * 针对数值型`value`，设置数值精度
+     */
     precision: PropTypes.number,
 
-    // 设置数值前缀内容
+    /**
+     * 组件型，数值前缀内容
+     */
     prefix: PropTypes.node,
 
-    // 设置数值后缀内容，可选文字模式或图标模式
+    /**
+     * 组件型，数值后缀内容
+     */
     suffix: PropTypes.node,
 
-    // 设置标题文字内容
+    /**
+     * 组件型，标题内容
+     */
     title: PropTypes.node,
 
-    // 为title设置后缀的鼠标悬浮提示框内容，默认不设置则不渲染
+    /**
+     * 为标题内容添加额外鼠标悬停提示信息
+     */
     titleTooltip: PropTypes.string,
 
-    // 设置数值的css样式
+    /**
+     * 数值内容css样式
+     */
     valueStyle: PropTypes.object,
 
     /**
