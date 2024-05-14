@@ -1,10 +1,16 @@
+// react核心
 import React, { useContext } from 'react';
+// antd核心
 import { Empty, ConfigProvider } from 'antd';
+// 辅助库
 import { str2Locale } from '../../components/locales.react';
 import { isString } from 'lodash';
 import { pickBy } from 'ramda';
+// 自定义hooks
 import useCss from '../../hooks/useCss';
+// 上下文
 import PropsContext from '../../contexts/PropsContext';
+// 参数类型
 import { propTypes, defaultProps } from '../../components/dataDisplay/AntdEmpty.react';
 
 
@@ -13,9 +19,10 @@ const builtinImage = new Map([
     ['simple', Empty.PRESENTED_IMAGE_SIMPLE]
 ])
 
-// 定义空状态组件AntdEmpty，api参数参考https://ant.design/components/empty-cn/
+/**
+ * 空状态组件AntdEmpty
+ */
 const AntdEmpty = (props) => {
-    // 取得必要属性或参数
     let {
         id,
         children,

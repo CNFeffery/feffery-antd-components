@@ -3,6 +3,9 @@ import PropTypes from 'prop-types';
 
 const LazyAntdEmpty = React.lazy(() => import(/* webpackChunkName: "data_display" */ '../../fragments/dataDisplay/AntdEmpty.react'));
 
+/**
+ * 空状态组件AntdEmpty
+ */
 const AntdEmpty = (props) => {
     return (
         <Suspense fallback={null}>
@@ -11,35 +14,53 @@ const AntdEmpty = (props) => {
     );
 }
 
-// 定义参数或属性
 AntdEmpty.propTypes = {
-    // 组件id
+    /**
+     * 组件唯一id
+     */
     id: PropTypes.string,
 
+    /**
+     * 对当前组件的`key`值进行更新，可实现强制重绘当前组件的效果
+     */
+    key: PropTypes.string,
+
+    /**
+     * 组件型，内嵌元素
+     */
     children: PropTypes.node,
 
-    // css类名
+    /**
+     * 当前组件css样式
+     */
+    style: PropTypes.object,
+
+    /**
+     * 当前组件css类名，支持[动态css](/advanced-classname)
+     */
     className: PropTypes.oneOfType([
         PropTypes.string,
         PropTypes.object
     ]),
 
-    // 自定义css字典
-    style: PropTypes.object,
-
-    // 辅助刷新用唯一标识key值
-    key: PropTypes.string,
-
-    // 设置语言环境，可选的有'zh-cn'、'en-us'
+    /**
+     * 组件文案语种，可选项有`'zh-cn'`、`'en-us'`
+     * 默认值：`'zh-cn'`
+     */
     locale: PropTypes.oneOf(['zh-cn', 'en-us']),
 
-    // 设置描述信息内容
+    /**
+     * 描述信息内容
+     */
     description: PropTypes.oneOfType([
         PropTypes.node,
         PropTypes.bool
     ]),
 
-    // 设置自定义图片的url地址，默认为内建图片
+    /**
+     * 状态图片地址，也可以使用内置图片，可选项有`'default'`、`'simple'`
+     * 默认值：`'default'`
+     */
     image: PropTypes.oneOfType([
         PropTypes.string,
         PropTypes.oneOf([
@@ -47,7 +68,9 @@ AntdEmpty.propTypes = {
         ])
     ]),
 
-    // 设置自定义图片的css样式
+    /**
+     * 状态图片css样式
+     */
     imageStyle: PropTypes.object,
 
     /**
