@@ -11,25 +11,29 @@ const AntdImageGroup = (props) => {
     );
 }
 
-// 定义参数或属性
 AntdImageGroup.propTypes = {
     /**
-     * 组件id
+     * 组件唯一id
      */
     id: PropTypes.string,
 
     /**
-     * 设置内部需要嵌套展示的若干自由布局AntdImage元素内容
+     * 对当前组件的`key`值进行更新，可实现强制重绘当前组件的效果
+     */
+    key: PropTypes.string,
+
+    /**
+     * 组件型，定义组内需要嵌套的`AntdImage`组件
      */
     children: PropTypes.node,
 
     /**
-     * css样式
+     * 当前组件css样式
      */
     style: PropTypes.object,
 
     /**
-     * css类名
+     * 当前组件css类名，支持[动态css](/advanced-classname)
      */
     className: PropTypes.oneOfType([
         PropTypes.string,
@@ -37,24 +41,19 @@ AntdImageGroup.propTypes = {
     ]),
 
     /**
-     * 强制刷新用
-     */
-    key: PropTypes.string,
-
-    /**
-     * 设置语言环境，可选的有'zh-cn'、'en-us'
-     * 默认：'zh-cn'
+     * 组件文案语种，可选项有`'zh-cn'`、`'en-us'`
+     * 默认值：`'zh-cn'`
      */
     locale: PropTypes.oneOf(['zh-cn', 'en-us']),
 
     /**
-     * 设置图像加载失败时的填充图像地址
+     * 图片加载失败占位图资源地址
      */
     fallback: PropTypes.string,
 
     /**
-     * 配置图片预览相关功能，传入false时会禁用预览功能
-     * 默认：true
+     * 配置图片预览相关功能，传入`false`时会禁用预览功能
+     * 默认值：`true`
      */
     preview: PropTypes.oneOfType([
         PropTypes.bool,
@@ -71,7 +70,7 @@ AntdImageGroup.propTypes = {
     ]),
 
     /**
-     * 设置或监听当前图片组是否处于全屏预览状态
+     * 监听或设置当前图片组是否处于全屏预览状态
      */
     visible: PropTypes.bool,
 

@@ -67,6 +67,7 @@ components = [
     'AntdDescriptionItem',
     'AntdEmpty',
     'AntdImage',
+    'AntdImageGroup',
 ]
 
 app.layout = html.Div(
