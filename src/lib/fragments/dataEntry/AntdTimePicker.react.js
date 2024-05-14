@@ -47,7 +47,8 @@ const AntdTimePicker = (props) => {
         persisted_props,
         persistence_type,
         loading_state,
-        batchPropsNames
+        batchPropsNames,
+        needConfirm
     } = props;
 
     // 批属性监听
@@ -158,6 +159,7 @@ const AntdTimePicker = (props) => {
                     status={status}
                     renderExtraFooter={() => extraFooter}
                     showNow={showNow}
+                    needConfirm={needConfirm}
                     persistence={persistence}
                     persisted_props={persisted_props}
                     persistence_type={persistence_type}

@@ -55,7 +55,8 @@ const AntdDatePicker = (props) => {
         persisted_props,
         persistence_type,
         loading_state,
-        batchPropsNames
+        batchPropsNames,
+        needConfirm
     } = props;
 
     const [rawValue, setRawValue] = useState(null);
@@ -488,6 +489,7 @@ const AntdDatePicker = (props) => {
                     inputReadOnly={readOnly}
                     renderExtraFooter={() => extraFooter}
                     showNow={showToday}
+                    needConfirm={needConfirm}
                     presets={
                         // 处理预设快捷选项列表
                         (presets || []).map(

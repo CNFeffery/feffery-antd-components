@@ -128,6 +128,12 @@ AntdTimeRangePicker.propTypes = {
     'aria-*': PropTypes.string,
 
     /**
+     * 是否需要确认按钮，为`false`时失去焦点即代表选择
+     * 默认为`false`
+     */
+    needConfirm: PropTypes.bool,
+
+    /**
     * Object that holds the loading state object coming from dash-renderer
     */
     loading_state: PropTypes.shape({
@@ -193,6 +199,7 @@ AntdTimeRangePicker.defaultProps = {
     bordered: true,
     size: 'middle',
     format: 'HH:mm:ss',
+    needConfirm: false,
     persisted_props: ['value'],
     persistence_type: 'local',
     locale: 'zh-cn',
