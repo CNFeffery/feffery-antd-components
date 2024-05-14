@@ -57,7 +57,8 @@ const AntdDateRangePicker = (props) => {
         persisted_props,
         persistence_type,
         loading_state,
-        batchPropsNames
+        batchPropsNames,
+        needConfirm
     } = props;
 
     const [rawValue, setRawValue] = useState(null);
@@ -511,6 +512,7 @@ const AntdDateRangePicker = (props) => {
                     onOpenChange={(e) => setProps({ open: e })}
                     inputReadOnly={readOnly}
                     renderExtraFooter={() => extraFooter}
+                    needConfirm={needConfirm}
                     presets={
                         // 处理预设快捷选项列表
                         (presets || []).map(
