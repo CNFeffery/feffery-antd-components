@@ -3,6 +3,9 @@ import PropTypes from 'prop-types';
 
 const LazyAntdImage = React.lazy(() => import(/* webpackChunkName: "data_display" */ '../../fragments/dataDisplay/AntdImage.react'));
 
+/**
+ * 图片组件AntdImage
+ */
 const AntdImage = (props) => {
     return (
         <Suspense fallback={null}>
@@ -11,57 +14,79 @@ const AntdImage = (props) => {
     );
 }
 
-// 定义参数或属性
 AntdImage.propTypes = {
-    // 组件id
+    /**
+     * 组件唯一id
+     */
     id: PropTypes.string,
 
-    // css类名
+    /**
+     * 对当前组件的`key`值进行更新，可实现强制重绘当前组件的效果
+     */
+    key: PropTypes.string,
+
+    /**
+     * 当前组件css样式
+     */
+    style: PropTypes.object,
+
+    /**
+     * 当前组件css类名，支持[动态css](/advanced-classname)
+     */
     className: PropTypes.oneOfType([
         PropTypes.string,
         PropTypes.object
     ]),
 
-    // 自定义css字典
-    style: PropTypes.object,
-
-    // 辅助刷新用唯一标识key值
-    key: PropTypes.string,
-
-    // 设置语言环境，可选的有'zh-cn'、'en-us'
+    /**
+     * 组件文案语种，可选项有`'zh-cn'`、`'en-us'`
+     * 默认值：`'zh-cn'`
+     */
     locale: PropTypes.oneOf(['zh-cn', 'en-us']),
 
-    // 设置图片的描述文字
+    /**
+     * 图片alt信息
+     */
     alt: PropTypes.string,
 
-    // 设置图像宽度
+    /**
+     * 图片宽度
+     */
     width: PropTypes.oneOfType([
         PropTypes.number,
         PropTypes.string
     ]),
 
-    // 设置图像高度
+    /**
+     * 图片高度
+     */
     height: PropTypes.oneOfType([
         PropTypes.number,
         PropTypes.string
     ]),
 
-    // 设置图片源地址，单个字符串传入时为单图片模式
-    // 多个字符串数组传入时为多图片切换模式
+    /**
+     * 配置图片资源地址，当传入数组时为多图片模式
+     */
     src: PropTypes.oneOfType([
         PropTypes.string,
         PropTypes.arrayOf(PropTypes.string)
     ]),
 
-    // 设置图像加载失败时的填充图像，默认为antd自带
+    /**
+     * 图片加载失败占位图资源地址
+     */
     fallback: PropTypes.string,
 
-    // 设置多张图片的展示模式，可选的有'fold'与'unfold'
+    /**
+     * 多图片模式展示方式，可选项有`'fold'`、`'unfold'`
+     * 默认值：`'fold'`
+     */
     multiImageMode: PropTypes.oneOf(['fold', 'unfold']),
 
     /**
-     * 配置图片预览相关功能，传入false时会禁用预览功能
-     * 默认：true
+     * 配置图片预览相关功能，传入`false`时会禁用预览功能
+     * 默认值：`true`
      */
     preview: PropTypes.oneOfType([
         PropTypes.bool,

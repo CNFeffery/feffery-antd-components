@@ -1,13 +1,21 @@
+// react核心
 import React, { useState, useContext } from 'react';
-import useCss from '../../hooks/useCss';
+// antd核心
+import { Image, ConfigProvider } from 'antd';
+// 辅助库
 import { isString } from 'lodash';
 import { pickBy } from 'ramda';
-import { Image, ConfigProvider } from 'antd';
 import { str2Locale } from '../../components/locales.react';
+// 自定义hooks
+import useCss from '../../hooks/useCss';
+// 上下文
 import PropsContext from '../../contexts/PropsContext';
+// 参数类型
 import { propTypes, defaultProps } from '../../components/dataDisplay/AntdImage.react';
 
-// 定义图片组件AntdImage，api参数参考https://ant.design/components/image-cn/
+/**
+ * 图片组件AntdImage
+ */
 const AntdImage = (props) => {
     let {
         id,
