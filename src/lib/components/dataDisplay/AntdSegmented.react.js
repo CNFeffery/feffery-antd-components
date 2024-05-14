@@ -3,6 +3,9 @@ import PropTypes from 'prop-types';
 
 const LazyAntdSegmented = React.lazy(() => import(/* webpackChunkName: "data_display" */ '../../fragments/dataDisplay/AntdSegmented.react'));
 
+/**
+ * 分段控制器组件AntdSegmented
+ */
 const AntdSegmented = (props) => {
     return (
         <Suspense fallback={null}>
@@ -11,76 +14,105 @@ const AntdSegmented = (props) => {
     );
 }
 
-// 定义参数或属性
 AntdSegmented.propTypes = {
-    // 组件id
+    /**
+     * 组件唯一id
+     */
     id: PropTypes.string,
 
-    // css类名
+    /**
+     * 对当前组件的`key`值进行更新，可实现强制重绘当前组件的效果
+     */
+    key: PropTypes.string,
+
+    /**
+     * 当前组件css样式
+     */
+    style: PropTypes.object,
+
+    /**
+     * 当前组件css类名，支持[动态css](/advanced-classname)
+     */
     className: PropTypes.oneOfType([
         PropTypes.string,
         PropTypes.object
     ]),
 
-    // 自定义css字典
-    style: PropTypes.object,
-
-    // 辅助刷新用唯一标识key值
-    key: PropTypes.string,
-
-    // 设置选项参数数组
+    /**
+     * 配置选项相关参数
+     */
     options: PropTypes.arrayOf(
         PropTypes.exact({
-            // 设置选项的标题内容
-            label: PropTypes.oneOfType([
-                PropTypes.string,
-                PropTypes.node
-            ]).isRequired,
-
-            // 设置选项的对应值
+            /**
+             * 组件型，必填，选项标题内容
+             */
+            label: PropTypes.node.isRequired,
+            /**
+             * 必填，选项值
+             */
             value: PropTypes.oneOfType([
                 PropTypes.string,
                 PropTypes.number
             ]).isRequired,
-
-            // 设置是否禁用当前选项
+            /**
+             * 是否禁用当前选项
+             * 默认值：`false`
+             */
             disabled: PropTypes.bool,
-
-            // 传入与AntdIcon相通的icon参数
+            /**
+             * 选项前缀图标，`iconRenderer='AntdIcon'`时同`AntdIcon`，`iconRenderer='fontawesome'`时表示css类名
+             */
             icon: PropTypes.string,
-
-            // 针对icon参数值设置渲染方式，默认为'AntdIcon'即icon等价于AntdIcon的icon参数
-            // 当设置为'fontawesome'时，icon参数对应fontawesome图标的css类名
+            /**
+             * 选项前缀图标类型，可选项有`'AntdIcon'`、`'fontawesome'`
+             * 默认值：`'AntdIcon'`
+             */
             iconRenderer: PropTypes.oneOf(['AntdIcon', 'fontawesome']),
         })
     ),
 
-    // 对应当前已选中的值
+    /**
+     * 监听或设置当前选中值
+     */
     value: PropTypes.oneOfType([
         PropTypes.string,
         PropTypes.number
     ]),
 
-    // 设置初始化状态下被选中的值
+    /**
+     * 设置初始化选中值
+     */
     defaultValue: PropTypes.oneOfType([
         PropTypes.string,
         PropTypes.number
     ]),
 
-    // 设置是否占据父级容器全部宽度，默认为false
+    /**
+     * 是否撑满父容器
+     * 默认值：`false`
+     */
     block: PropTypes.bool,
 
-    // 设置是否禁用整体组件
+    /**
+     * 是否禁用当前组件
+     * 默认值：`false`
+     */
     disabled: PropTypes.bool,
 
-    // 当optionType为'button'时，用于设置按钮的大小规格
-    // 可选的有'large'、'middle'和'small'，默认为'middle'
+    /**
+     * 组件尺寸规格，可选项有`'small'`、`'middle'`、`'large'`
+     * 默认值：`'middle'`
+     */
     size: PropTypes.oneOf(['large', 'middle', 'small']),
 
-    // 用于自定义需要纳入batchProps中的属性名数组
+    /**
+     * 需要纳入[批量属性监听](/batch-props-values)的若干属性名
+     */
     batchPropsNames: PropTypes.arrayOf(PropTypes.string),
 
-    // 打包监听batchPropsNames中定义的属性值变化
+    /**
+     * 监听`batchPropsNames`中指定的若干属性值
+     */
     batchPropsValues: PropTypes.object,
 
     /**
@@ -115,13 +147,8 @@ AntdSegmented.propTypes = {
     setProps: PropTypes.func,
 
     /**
-   * Used to allow user interactions in this component to be persisted when
-   * the component - or the page - is refreshed. If `persisted` is truthy and
-   * hasn't changed from its previous value, a `value` that the user has
-   * changed while using the app will keep that change, as long as
-   * the new `value` also matches what was given originally.
-   * Used in conjunction with `persistence_type`.
-   */
+     * 是否开启[属性持久化](/prop-persistence)
+     */
     persistence: PropTypes.oneOfType([
         PropTypes.bool,
         PropTypes.string,
@@ -129,17 +156,14 @@ AntdSegmented.propTypes = {
     ]),
 
     /**
-     * Properties whose user interactions will persist after refreshing the
-     * component or the page. Since only `value` is allowed this prop can
-     * normally be ignored.
+     * 开启属性持久化功能的若干属性名，可选项有`'value'`
+     * 默认值：`['value']`
      */
     persisted_props: PropTypes.arrayOf(PropTypes.oneOf(['value'])),
 
     /**
-     * Where persisted user changes will be stored:
-     * memory: only kept in memory, reset on page refresh.
-     * local: window.localStorage, data is kept after the browser quit.
-     * session: window.sessionStorage, data is cleared once the browser quit.
+     * 属性持久化存储类型，可选项有`'local'`（本地持久化），`'session'`（会话持久化），`'memory'`（内存持久化）
+     * 默认值：`'local'`
      */
     persistence_type: PropTypes.oneOf(['local', 'session', 'memory'])
 };

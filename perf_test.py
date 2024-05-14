@@ -71,6 +71,7 @@ components = [
     'AntdPopover',
     'AntdQRCode',
     'AntdRibbon',
+    'AntdSegmented',
 ]
 
 app.layout = html.Div(

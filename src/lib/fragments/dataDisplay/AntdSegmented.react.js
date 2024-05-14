@@ -1,16 +1,22 @@
+// react核心
 import React, { useEffect, useContext } from 'react';
+// antd核心
 import { Segmented } from 'antd';
 import AntdIcon from "../../components/general/AntdIcon.react";
+// 辅助库
 import { isString, isUndefined } from 'lodash';
 import { pickBy } from 'ramda';
+// 自定义hooks
 import useCss from '../../hooks/useCss';
+// 上下文
 import PropsContext from '../../contexts/PropsContext';
+// 参数类型
 import { propTypes, defaultProps } from '../../components/dataDisplay/AntdSegmented.react';
 
-// 定义分段控制器组件AntdSegmented，api参数参考https://ant.design/components/segmented-cn/
+/**
+ * 分段控制器组件AntdSegmented
+ */
 const AntdSegmented = (props) => {
-
-    // 取得必要属性或参数
     let {
         id,
         style,
@@ -58,7 +64,6 @@ const AntdSegmented = (props) => {
         setProps({ value: v })
     }
 
-    
     return (
         <Segmented
             // 提取具有data-*或aria-*通配格式的属性

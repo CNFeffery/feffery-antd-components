@@ -145,7 +145,6 @@ AntdComment.propTypes = {
      */
     popupContainer: PropTypes.oneOf(['parent', 'body']),
 
-    // 用于自定义需要纳入batchProps中的属性名数组
     /**
      * 需要纳入[批量属性监听](/batch-props-values)的若干属性名
      */
