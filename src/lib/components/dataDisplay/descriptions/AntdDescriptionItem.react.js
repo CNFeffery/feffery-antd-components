@@ -3,6 +3,9 @@ import PropTypes from 'prop-types';
 
 const LazyAntdDescriptionItem = React.lazy(() => import(/* webpackChunkName: "data_display" */ '../../../fragments/dataDisplay/descriptions/AntdDescriptionItem.react'));
 
+/**
+ * 描述列表子项组件AntdDescriptionItem
+ */
 const AntdDescriptionItem = (props) => {
     return (
         <Suspense fallback={null}>
@@ -11,38 +14,54 @@ const AntdDescriptionItem = (props) => {
     );
 }
 
-// 定义参数或属性
 AntdDescriptionItem.propTypes = {
-    // 组件id
+    /**
+     * 组件唯一id
+     */
     id: PropTypes.string,
 
     /**
-     * The content of the tab - will only be displayed if this tab is selected
+     * 对当前组件的`key`值进行更新，可实现强制重绘当前组件的效果
+     */
+    key: PropTypes.string,
+
+    /**
+     * 组件型，内嵌元素
      */
     children: PropTypes.node,
 
-    // css类名
+    /**
+     * 当前组件css样式
+     */
+    style: PropTypes.object,
+
+    /**
+     * 当前组件css类名，支持[动态css](/advanced-classname)
+     */
     className: PropTypes.oneOfType([
         PropTypes.string,
         PropTypes.object
     ]),
 
-    // 自定义css字典
-    style: PropTypes.object,
-
-    // 辅助刷新用唯一标识key值
-    key: PropTypes.string,
-
-    // 设置内容描述标题内容
+    /**
+     * 组件型，标题内容
+     */
     label: PropTypes.node,
 
-    // 设置当前列表占位份数，默认为1
+    /**
+     * 所占宽度份数
+     * 默认值：`1`
+     */
     span: PropTypes.number,
 
-    // 设置字段标签css样式
+    /**
+     * 标签css样式
+     */
     labelStyle: PropTypes.object,
 
-    // 设置字段内容css样式
+    /**
+     * 内容css样式
+     */
     contentStyle: PropTypes.object,
 
     /**

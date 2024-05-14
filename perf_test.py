@@ -64,6 +64,7 @@ components = [
     'AntdCollapse',
     'AntdComment',
     'AntdDescriptions',
+    'AntdDescriptionItem',
 ]
 
 app.layout = html.Div(

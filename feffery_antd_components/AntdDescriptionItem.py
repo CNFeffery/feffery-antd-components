@@ -5,31 +5,36 @@ from dash.development.base_component import Component, _explicitize_args
 
 class AntdDescriptionItem(Component):
     """An AntdDescriptionItem component.
-
+描述列表子项组件AntdDescriptionItem
 
 Keyword arguments:
 
 - children (a list of or a singular dash component, string or number; optional):
-    The content of the tab - will only be displayed if this tab is
-    selected.
+    组件型，内嵌元素.
 
-- id (string; optional)
+- id (string; optional):
+    组件唯一id.
 
 - aria-* (string; optional):
     `aria-*`格式属性通配.
 
-- className (string | dict; optional)
+- className (string | dict; optional):
+    当前组件css类名，支持[动态css](/advanced-classname).
 
-- contentStyle (dict; optional)
+- contentStyle (dict; optional):
+    内容css样式.
 
 - data-* (string; optional):
     `data-*`格式属性通配.
 
-- key (string; optional)
+- key (string; optional):
+    对当前组件的`key`值进行更新，可实现强制重绘当前组件的效果.
 
-- label (a list of or a singular dash component, string or number; optional)
+- label (a list of or a singular dash component, string or number; optional):
+    组件型，标题内容.
 
-- labelStyle (dict; optional)
+- labelStyle (dict; optional):
+    标签css样式.
 
 - loading_state (dict; optional)
 
@@ -44,15 +49,17 @@ Keyword arguments:
     - prop_name (string; optional):
         Holds which property is loading.
 
-- span (number; default 1)
+- span (number; default 1):
+    所占宽度份数  默认值：`1`.
 
-- style (dict; optional)"""
+- style (dict; optional):
+    当前组件css样式."""
     _children_props = ['label']
     _base_nodes = ['label', 'children']
     _namespace = 'feffery_antd_components'
     _type = 'AntdDescriptionItem'
     @_explicitize_args
-    def __init__(self, children=None, id=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, key=Component.UNDEFINED, label=Component.UNDEFINED, span=Component.UNDEFINED, labelStyle=Component.UNDEFINED, contentStyle=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
+    def __init__(self, children=None, id=Component.UNDEFINED, key=Component.UNDEFINED, style=Component.UNDEFINED, className=Component.UNDEFINED, label=Component.UNDEFINED, span=Component.UNDEFINED, labelStyle=Component.UNDEFINED, contentStyle=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
         self._prop_names = ['children', 'id', 'aria-*', 'className', 'contentStyle', 'data-*', 'key', 'label', 'labelStyle', 'loading_state', 'span', 'style']
         self._valid_wildcard_attributes =            ['data-', 'aria-']
         self.available_properties = ['children', 'id', 'aria-*', 'className', 'contentStyle', 'data-*', 'key', 'label', 'labelStyle', 'loading_state', 'span', 'style']
