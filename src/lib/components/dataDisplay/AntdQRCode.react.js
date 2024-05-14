@@ -3,6 +3,9 @@ import PropTypes from 'prop-types';
 
 const LazyAntdQRCode = React.lazy(() => import(/* webpackChunkName: "data_display" */ '../../fragments/dataDisplay/AntdQRCode.react'));
 
+/**
+ * 二维码组件AntdQRCode
+ */
 const AntdQRCode = (props) => {
     return (
         <Suspense fallback={null}>
@@ -11,97 +14,108 @@ const AntdQRCode = (props) => {
     );
 }
 
-// 定义参数或属性
 AntdQRCode.propTypes = {
-    // 组件id
+    /**
+     * 组件唯一id
+     */
     id: PropTypes.string,
 
-    // css类名
+    /**
+     * 对当前组件的`key`值进行更新，可实现强制重绘当前组件的效果
+     */
+    key: PropTypes.string,
+
+    /**
+     * 当前组件css样式
+     */
+    style: PropTypes.object,
+
+    /**
+     * 当前组件css类名，支持[动态css](/advanced-classname)
+     */
     className: PropTypes.oneOfType([
         PropTypes.string,
         PropTypes.object
     ]),
 
-    // 自定义css字典
-    style: PropTypes.object,
-
-    // 辅助刷新用唯一标识key值
-    key: PropTypes.string,
-
-    // 设置语言环境，可选的有'zh-cn'、'en-us'
+    /**
+     * 组件文案语种，可选项有`'zh-cn'`、`'en-us'`
+     * 默认值：`'zh-cn'`
+     */
     locale: PropTypes.oneOf(['zh-cn', 'en-us']),
 
     /**
-     * 用于设置扫描后的文本
+     * 二维码解析结果
      */
     value: PropTypes.string,
 
     /**
-     * 设置渲染类型，可选的有'canvas'、'primary'
-     * 默认：'canvas'
+     * 渲染方式，可选项有`'canvas'`、`'svg'`
+     * 默认值：`'canvas'`
      */
     type: PropTypes.oneOf(['canvas', 'svg']),
 
     /**
-     * 用于设置二维码中图片的地址（目前只支持图片地址）
+     * 二维码内嵌图片地址
      */
     icon: PropTypes.string,
 
     /**
-     * 设置二维码像素尺寸
-     * 默认：160
+     * 二维码像素边长
+     * 默认值：`160`
      */
     size: PropTypes.number,
 
     /**
-     * 设置二维码中图片的大小
-     * 默认：40
+     * 二维码内嵌图片像素边长
+     * 默认值：`40`
      */
     iconSize: PropTypes.number,
 
     /**
-     * 设置二维码颜色
-     * 默认：'#000'
+     * 二维码颜色
+     * 默认值：`'#000'`
      */
     color: PropTypes.string,
 
     /**
-     * 设置二维码背景颜色
-     * 默认：'transparent'
+     * 二维码背景颜色
+     * 默认值：`'transparent'`
      */
     bgColor: PropTypes.string,
 
     /**
-     * 设置二维码是否有边框
-     * 默认：true
+     * 二维码是否渲染边框
+     * 默认值：`true`
      */
     bordered: PropTypes.bool,
 
     /**
-     * 设置二维码纠错等级，可选的有'L'、'M'、'Q'、'H'
-     * 默认：'M'
+     * 二维码纠错级别，可选项有`'L'`、`'M'`、`'Q'`、`'H'`
+     * 默认值：`'M'`
      */
     errorLevel: PropTypes.oneOf(['L', 'M', 'Q', 'H']),
 
     /**
-     * 设置二维码状态，可选的有'active'、'expired'、'loading'
-     * 默认：'active'
+     * 二维码状态，可选项有`'active'`、`'expired'`、`'loading'`
+     * 默认值：`'active'`
      */
     status: PropTypes.oneOf(['active', 'expired', 'loading']),
 
     /**
-     * 设置当前二维码过期时间，单位：秒，到期后二维码状态将会被强制更新为'expired'
+     * 当前二维码过期时间，单位：秒，到期后二维码状态将会被强制更新为`'expired'`
      */
     expires: PropTypes.number,
 
     /**
-     * 是否在value处于回调更新中时，自动切换到loading状态
-     * 默认：false
+     * 是否在`value`处于回调更新中时，自动切换为`loading`状态
+     * 默认值：`false`
      */
     autoSpin: PropTypes.bool,
 
     /**
-     * 监听当前"点击刷新"按钮累计点击次数，仅在status为'expired'时有意义
+     * 监听当前"点击刷新"按钮累计点击次数，仅在`status`为`'expired'`时有效
+     * 默认值：`0`
      */
     refreshClicks: PropTypes.number,
 

@@ -1,13 +1,19 @@
+// react核心
 import React, { useEffect } from 'react';
+// antd核心
 import { QRCode, ConfigProvider } from 'antd';
-import useCss from '../../hooks/useCss';
+// 辅助库
 import { isString } from 'lodash';
 import { pickBy } from 'ramda';
 import { str2Locale } from '../../components/locales.react';
+// 自定义hooks
+import useCss from '../../hooks/useCss';
+// 参数类型
 import { propTypes, defaultProps } from '../../components/dataDisplay/AntdImage.react';
 
-
-// 定义二维码组件AntdQRCode，api参数参考https://ant.design/components/collapse/#components-collapse-demo-accordion
+/**
+ * 二维码组件AntdQRCode
+ */
 const AntdQRCode = (props) => {
     let {
         id,
