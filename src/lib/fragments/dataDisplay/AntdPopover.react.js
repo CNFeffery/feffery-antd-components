@@ -1,16 +1,21 @@
+// react核心
 import React, { useMemo } from 'react';
+// antd核心
 import { Popover } from 'antd';
 import AntdIcon from '../../components/general/AntdIcon.react';
+// 辅助库
 import { parseChildrenToArray } from '../../components/utils';
 import { isString } from 'lodash';
 import { pickBy } from 'ramda';
+// 自定义hooks
 import useCss from '../../hooks/useCss';
+// 参数类型
 import { propTypes, defaultProps } from '../../components/dataDisplay/AntdPopover.react';
 
-
-// 定义气泡卡片组件Popover，api参数参考https://ant.design/components/popover-cn/
+/**
+ * 气泡卡片组件Popover
+ */
 const AntdPopover = (props) => {
-    // 取得必要属性或参数
     let {
         id,
         children,

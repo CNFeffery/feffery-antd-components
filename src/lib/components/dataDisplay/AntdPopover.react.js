@@ -3,6 +3,9 @@ import PropTypes from 'prop-types';
 
 const LazyAntdPopover = React.lazy(() => import(/* webpackChunkName: "data_display" */ '../../fragments/dataDisplay/AntdPopover.react'));
 
+/**
+ * 气泡卡片组件Popover
+ */
 const AntdPopover = (props) => {
     return (
         <Suspense fallback={null}>
@@ -11,86 +14,131 @@ const AntdPopover = (props) => {
     );
 }
 
-// 定义参数或属性
 AntdPopover.propTypes = {
-    // 组件id
+    /**
+     * 组件唯一id
+     */
     id: PropTypes.string,
 
     /**
-     * The content of the tab - will only be displayed if this tab is selected
+     * 对当前组件的`key`值进行更新，可实现强制重绘当前组件的效果
+     */
+    key: PropTypes.string,
+
+    /**
+     * 组件型，气泡卡片触发目标元素
      */
     children: PropTypes.node,
 
-    // css类名
+    /**
+     * 当前组件css样式
+     */
+    style: PropTypes.object,
+
+    /**
+     * 当前组件css类名，支持[动态css](/advanced-classname)
+     */
     className: PropTypes.oneOfType([
         PropTypes.string,
         PropTypes.object
     ]),
 
-    // 自定义css字典
-    style: PropTypes.object,
-
-    // 辅助刷新用唯一标识key值
-    key: PropTypes.string,
-
-    // 设置显示的气泡卡片标题内容
+    /**
+     * 组件型，标题内容
+     */
     title: PropTypes.node,
 
-    // 设置显示的气泡卡片内容
+    /**
+     * 组件型，内容区元素
+     */
     content: PropTypes.node,
 
-    // 设置气泡框的位置，可选的有'top'、'left'、'right'、'bottom'、'topLeft'
-    // 、'topRight'、'bottomLeft'、'bottomRight'、'leftTop'、'leftBottom'
-    // 、'rightTop'、'rightBottom'，默认为'top'
+    /**
+     * 气泡卡片展开方向，可选项有`'top'`、`'left'`、`'right'`、`'bottom'`、`'topLeft'`、`'topRight'`、`'bottomLeft'`、`'bottomRight'`、`'leftTop'`、`'leftBottom'`、`'rightTop'`、`'rightBottom'`
+     * 默认值：`top'`
+     */
     placement: PropTypes.oneOf([
-        'top', 'left', 'right', 'bottom', 'topLeft', 'topRight', 'bottomLeft',
-        'bottomRight', 'leftTop', 'leftBottom', 'rightTop', 'rightBottom'
+        'top', 'left', 'right', 'bottom', 'topLeft', 'topRight', 'bottomLeft', 'bottomRight', 'leftTop', 'leftBottom', 'rightTop', 'rightBottom'
     ]),
 
-    // 设置背景颜色
+    /**
+     * 背景颜色
+     */
     color: PropTypes.string,
 
-    // 设置鼠标移入后延时多少才显示 Tooltip，单位：秒，默认为0.1
+    /**
+     * 鼠标移入到气泡卡片弹出延时，单位：秒
+     * 默认值：`0.1`
+     */
     mouseEnterDelay: PropTypes.number,
 
-    // 设置鼠标移出后延时多少才隐藏 Tooltip，单位：秒，默认为0.1
+    /**
+     * 鼠标移出到气泡卡片消失延时，单位：秒
+     * 默认值：`0.1`
+     */
     mouseLeaveDelay: PropTypes.number,
 
-    // 设置卡片css类
+    /**
+     * 气泡卡片css类名，支持[动态css](/advanced-classname)
+     */
     overlayClassName: PropTypes.oneOfType([
         PropTypes.string,
         PropTypes.object
     ]),
 
-    // 设置卡片样式
+    /**
+     * 气泡卡片css样式
+     */
     overlayStyle: PropTypes.object,
 
-    // 设置卡片内容区域的样式
+    /**
+     * 内容区css样式
+     */
     overlayInnerStyle: PropTypes.object,
 
-    // 设置触发行为，可选的有'hover'、'focus'、'click'，或是以上多个组成的数组，默认为'hover'
+    /**
+     * 触发方式，可选项有`'hover'`、`'focus'`、`'click'`，可多选
+     * 默认值：`'hover'`
+     */
     trigger: PropTypes.oneOfType([
         PropTypes.oneOf(['hover', 'focus', 'click']),
         PropTypes.arrayOf(PropTypes.oneOf(['hover', 'focus', 'click']))
     ]),
 
-    // 设置悬浮层zIndex
+    /**
+     * 气泡卡片z-index
+     */
     zIndex: PropTypes.number,
 
-    // 设置修改箭头的显示状态以及修改箭头是否指向目标元素中心，默认为'show'
+    /**
+     * 控制气泡卡片附带箭头显示形式，可选项有`'show'`、`'hide'`、`'center'`
+     * 默认值：`'show'`
+     */
     arrow: PropTypes.oneOf(['show', 'hide', 'center']),
 
-    // 用于设置是否始终保持更新内容，默认为false。默认情况下，Tooltip 在关闭时会缓存内容，设置该属性后会始终保持更新。
+    /**
+     * 是否始终保持更新内容
+     * 默认值：`false`
+     */
     fresh: PropTypes.bool,
 
-    // 用于监听或控制当前popover的显隐，默认为false
+    /**
+     * 监听或设置当前气泡卡片的展开状态
+     * 默认值：`false`
+     */
     open: PropTypes.bool,
 
-    // 用于设置是否保持popover显示/隐藏
     // 默认为false
+    /**
+     * 是否保持气泡卡片处于`open`对应状态不变
+     * 默认值：`false`
+     */
     permanent: PropTypes.bool,
 
-    // 设置悬浮层锚定策略，可选的有'parent'、'body'，默认为'body'
+    /**
+     * 气泡卡片展开层锚定策略，可选项有`'parent'`、`'body'`
+     * 默认值：`'body'`
+     */
     popupContainer: PropTypes.oneOf(['parent', 'body']),
 
     /**

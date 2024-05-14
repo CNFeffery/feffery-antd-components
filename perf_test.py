@@ -68,6 +68,7 @@ components = [
     'AntdEmpty',
     'AntdImage',
     'AntdImageGroup',
+    'AntdPopover',
 ]
 
 app.layout = html.Div(
