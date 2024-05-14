@@ -1,30 +1,36 @@
+// react核心
 import React, { useEffect, useContext } from 'react';
-import dayjs from 'dayjs';
-import relativeTime from 'dayjs/plugin/relativeTime';
-import { str2Locale } from '../../components/locales.react';
+// antd核心
 import { Tooltip, Popconfirm, ConfigProvider } from 'antd';
 import { Comment } from '@ant-design/compatible';
 import AntdAvatar from './AntdAvatar.react';
 import { DislikeOutlined, LikeOutlined, DislikeFilled, LikeFilled } from '@ant-design/icons';
+// 辅助库
+import dayjs from 'dayjs';
+import relativeTime from 'dayjs/plugin/relativeTime';
+import { str2Locale } from '../../components/locales.react';
 import { parseChildrenToArray } from '../../components/utils';
 import { isString } from 'lodash';
 import { pickBy } from 'ramda';
+// 自定义hooks
 import useCss from '../../hooks/useCss';
+// 上下文
 import PropsContext from '../../contexts/PropsContext';
+// 参数类型
 import { propTypes, defaultProps } from '../../components/dataDisplay/AntdComment.react';
 
 // 调用dayjs相对时间插件模块
 dayjs.extend(relativeTime)
 
-// 定义评论组件AntdComment，api参数参考https://ant.design/components/comment-cn/
+/**
+ * 评论组件AntdComment
+ */
 const AntdComment = (props) => {
-    // 取得必要属性或参数
     let {
         id,
         children,
         className,
         style,
-        key,
         locale,
         commentId,
         showLikeDislike,
@@ -48,7 +54,7 @@ const AntdComment = (props) => {
         batchPropsNames
     } = props;
 
-    // 批属性监听
+    // 批量属性监听
     useEffect(() => {
         if (batchPropsNames && batchPropsNames.length !== 0) {
             let _batchPropsValues = {};

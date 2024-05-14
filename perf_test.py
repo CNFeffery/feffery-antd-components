@@ -62,6 +62,7 @@ components = [
     'AntdCarousel',
     'AntdCheckableTag',
     'AntdCollapse',
+    'AntdComment',
 ]
 
 app.layout = html.Div(

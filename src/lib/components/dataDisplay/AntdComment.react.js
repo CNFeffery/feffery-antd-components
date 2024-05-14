@@ -3,6 +3,9 @@ import PropTypes from 'prop-types';
 
 const LazyAntdComment = React.lazy(() => import(/* webpackChunkName: "data_display" */ '../../fragments/dataDisplay/AntdComment.react'));
 
+/**
+ * 评论组件AntdComment
+ */
 const AntdComment = (props) => {
     return (
         <Suspense fallback={null}>
@@ -11,86 +14,146 @@ const AntdComment = (props) => {
     );
 }
 
-// 定义参数或属性
 AntdComment.propTypes = {
-    // 组件id
+    /**
+     * 组件唯一id
+     */
     id: PropTypes.string,
 
-    children: PropTypes.node,
+    /**
+     * 对当前组件的`key`值进行更新，可实现强制重绘当前组件的效果
+     */
+    key: PropTypes.string,
 
-    // css类名
+    /**
+     * 当前组件css样式
+     */
+    style: PropTypes.object,
+
+    /**
+     * 当前组件css类名，支持[动态css](/advanced-classname)
+     */
     className: PropTypes.oneOfType([
         PropTypes.string,
         PropTypes.object
     ]),
 
-    // 自定义css字典
-    style: PropTypes.object,
-
-    // 设置语言环境，可选的有'zh-cn'、'en-us'
+    /**
+     * 组件文案语种，可选项有`'zh-cn'`、`'en-us'`
+     * 默认值：`'zh-cn'`
+     */
     locale: PropTypes.oneOf(['zh-cn', 'en-us']),
 
-    // 可选，用于定义评论唯一id，主要用于数据库匹配场景
+    /**
+     * 评论唯一id，可用于数据库匹配等场景
+     */
     commentId: PropTypes.string,
 
-    // 设置评论发布用户名
+    /**
+     * 评论发布用户名
+     */
     authorName: PropTypes.string,
 
-    // 设置评论发布用户名跳转链接
+    /**
+     * 评论发布用户名附带链接地址
+     */
     authorNameHref: PropTypes.string,
 
-    // 设置发布日期时间
+    /**
+     * 必填，配置发布日期时间相关参数
+     */
     publishTime: PropTypes.exact({
-        // 必填参数，设置日期时间值
+        /**
+         * 必填，日期时间字符串
+         */
         value: PropTypes.string.isRequired,
-
-        // 设置日期时间格式字符串
+        /**
+         * 与日期时间字符串匹配的格式
+         */
         format: PropTypes.string
     }).isRequired,
 
-    // 设置是否展示从此刻开始倒推相对时间
+    /**
+     * 是否以相对时间格式呈现发布日期时间
+     */
     fromNow: PropTypes.bool,
 
-    // 设置是否显示“支持/反对”按钮，默认为true
+    /**
+     * 是否显示“支持/反对”按钮
+     * 默认值：`true`
+     */
     showLikeDislike: PropTypes.bool,
 
-    // 设置是否显示“添加回复”按钮，默认为true
+    /**
+     * 是否显示“添加回复”按钮
+     * 默认值：`true`
+     */
     showReply: PropTypes.bool,
 
-    // 设置是否显示“删除”按钮，默认为false
+    /**
+     * 是否显示“删除”按钮
+     * 默认值：`false`
+     */
     showDelete: PropTypes.bool,
 
-    // 设置“添加回复”按钮被点击次数，默认为0
+    /**
+     * 监听“添加回复”按钮累计点击次数
+     * 默认值：`0`
+     */
     replyClicks: PropTypes.number,
 
-    // 设置“删除”按钮被点击次数，默认为0
+    /**
+     * 监听“删除”按钮累计点击次数
+     * 默认值：`0`
+     */
     deleteClicks: PropTypes.number,
 
-    // 设置评论正文内容
+    /**
+     * 组件型，评论正文内容
+     */
     commentContent: PropTypes.node,
 
-    // 设置评论对应点赞次数
+    /**
+     * 监听或设置“支持”次数
+     */
     likesCount: PropTypes.number,
 
-    // 设置评论对应反对次数
+    /**
+     * 监听或设置“反对”次数
+     */
     dislikesCount: PropTypes.number,
 
-    // 对应当前支持/反对状态，可选的有'liked'与'disliked'
+    /**
+     * 监听或设置当前评论“支持/反对”状态，可选项有`'liked'`、`'disliked'`、`'default'`
+     * 默认值：`'default'`
+     */
     action: PropTypes.oneOf(['liked', 'disliked', 'default']),
 
-    // 设置初始化时的支持/反对状态
+    /**
+     * 设置当前评论初始化时的“支持/反对”状态，可选项有`'liked'`、`'disliked'`、`'default'`
+     */
     defaultAction: PropTypes.oneOf(['liked', 'disliked', 'default']),
 
-    // 定义头像参数，与AntdAvatar一致
+    /**
+     * 配置评论用户头像，同`AntdAvatar`
+     */
     avatarProps: PropTypes.object,
 
-    // 设置悬浮层锚定策略，可选的有'parent'、'body'，默认为'body'
+    /**
+     * 相关展开层锚定策略，可选项有`'parent'`、`'body'`
+     * 默认值：`'body'`
+     */
     popupContainer: PropTypes.oneOf(['parent', 'body']),
 
     // 用于自定义需要纳入batchProps中的属性名数组
+    /**
+     * 需要纳入[批量属性监听](/batch-props-values)的若干属性名
+     */
     batchPropsNames: PropTypes.arrayOf(PropTypes.string),
 
-    // 打包监听batchPropsNames中定义的属性值变化
+    /**
+     * 监听`batchPropsNames`中指定的若干属性值
+     */
     batchPropsValues: PropTypes.object,
 
     /**
