@@ -3,6 +3,9 @@ import PropTypes from 'prop-types';
 
 const LazyAntdTimeline = React.lazy(() => import(/* webpackChunkName: "data_display" */ '../../fragments/dataDisplay/AntdTimeline.react'));
 
+/**
+ * 时间轴组件AntdTimeline
+ */
 const AntdTimeline = (props) => {
     return (
         <Suspense fallback={null}>
@@ -11,60 +14,78 @@ const AntdTimeline = (props) => {
     );
 }
 
-// 定义参数或属性
 AntdTimeline.propTypes = {
-    // 组件id
+    /**
+     * 组件唯一id
+     */
     id: PropTypes.string,
 
-    // css类名
+    /**
+     * 对当前组件的`key`值进行更新，可实现强制重绘当前组件的效果
+     */
+    key: PropTypes.string,
+
+    /**
+     * 当前组件css样式
+     */
+    style: PropTypes.object,
+
+    /**
+     * 当前组件css类名，支持[动态css](/advanced-classname)
+     */
     className: PropTypes.oneOfType([
         PropTypes.string,
         PropTypes.object
     ]),
 
-    // 自定义css字典
-    style: PropTypes.object,
-
-    // 辅助刷新用唯一标识key值
-    key: PropTypes.string,
-
-    // 用于按顺序定义时间轴节点信息
+    /**
+     * 必填，定义时间轴节点
+     */
     items: PropTypes.arrayOf(
         PropTypes.exact({
-            // 设置该节点的主体文字内容
+            /**
+             * 组件型，当前节点正文内容
+             */
             content: PropTypes.node,
-
-            // 设置圆圈颜色来表达对应节点的状态，供参考的状态色有：
-            // blue：可表示正在进行或默认状态
-            // green：可表示已完成
-            // red：可表示警告或错误状态
-            // grey：可表示未完成或失效状态
+            /**
+             * 当前节点颜色，可用于表达节点状态，常用方案有`'blue'`（进行中或默认状态）、`'green'`（已完成状态）、`'red'`（警告或错误状态）、`'grey'`（未完成或失效状态）
+             */
             color: PropTypes.string,
-
-            // 用于自定义作为节点图标的元素
+            /**
+             * 组件型，自定义作为图标的元素
+             */
             icon: PropTypes.node,
-
-            // 设置节点在单独另一侧显示的标签内容
+            /**
+             * 组件型，当前节点标签内容
+             */
             label: PropTypes.node,
-
             // 设置节点位置，可选的有'left'和'right'
+            /**
+             * 当前节点位置，可选项有`'left'`、`'right'`
+             */
             position: PropTypes.oneOf(['left', 'right'])
         })
     ).isRequired,
 
-    // 设置时间轴在content的哪一侧，可选的有'left'、'alternate'及'right'
-    // 默认为'right'
+    /**
+     * 时间轴与内容的相对位置，可选项有`'left'`、`'alternate'`、`'right'`
+     */
     mode: PropTypes.oneOf(['left', 'alternate', 'right']),
 
-    // 设置在时间轴尾部添加“加载中”幽灵节点对应的文字说明内容
-    // 默认不设置则不会添加
+    /**
+     * 组件型，设置时间轴末尾额外幽灵节点标题内容，默认不添加
+     */
     pending: PropTypes.node,
 
-    // 设自定义时间轴尾部“加载中”状态所展示的元素内容
+    /**
+     * 组件型，自定义幽灵节点图标
+     */
     pendingDot: PropTypes.node,
 
-    // 设置是否对时间轴逆序排列（默认false顺序下，方向从上往下）
-    // 默认为false
+    /**
+     * 是否逆序排列时间轴
+     * 默认值：`false`
+     */
     reverse: PropTypes.bool,
 
     /**

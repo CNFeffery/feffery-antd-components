@@ -1,13 +1,19 @@
+// react核心
 import React from 'react';
+// antd核心
 import { Timeline } from 'antd';
+// 辅助库
 import { isString } from 'lodash';
 import { pickBy } from 'ramda';
+// 自定义hooks
 import useCss from '../../hooks/useCss';
+// 参数类型
 import { propTypes, defaultProps } from '../../components/dataDisplay/AntdTimeline.react';
 
-// 定义时间轴组件AntdTimeline，api参数参考https://ant.design/components/timeline-cn/
+/**
+ * 时间轴组件AntdTimeline
+ */
 const AntdTimeline = (props) => {
-    // 取得必要属性或参数
     let {
         id,
         className,
