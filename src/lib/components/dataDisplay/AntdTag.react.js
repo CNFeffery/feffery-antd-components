@@ -3,6 +3,9 @@ import PropTypes from 'prop-types';
 
 const LazyAntdTag = React.lazy(() => import(/* webpackChunkName: "data_display" */ '../../fragments/dataDisplay/AntdTag.react'));
 
+/**
+ * 标签组件AntdTag
+ */
 const AntdTag = (props) => {
     return (
         <Suspense fallback={null}>
@@ -11,47 +14,71 @@ const AntdTag = (props) => {
     );
 }
 
-// 定义参数或属性
 AntdTag.propTypes = {
-    // 组件id
+    /**
+     * 组件唯一id
+     */
     id: PropTypes.string,
 
-    // css类名
+    /**
+     * 对当前组件的`key`值进行更新，可实现强制重绘当前组件的效果
+     */
+    key: PropTypes.string,
+
+    /**
+     * 当前组件css样式
+     */
+    style: PropTypes.object,
+
+    /**
+     * 当前组件css类名，支持[动态css](/advanced-classname)
+     */
     className: PropTypes.oneOfType([
         PropTypes.string,
         PropTypes.object
     ]),
 
-    // 自定义css字典
-    style: PropTypes.object,
-
-    // 辅助刷新用唯一标识key值
-    key: PropTypes.string,
-
-    // 设置标签内容
+    /**
+     * 组件型，标签内容
+     */
     content: PropTypes.node,
 
-    // 设置前缀图标元素
+    /**
+     * 组件型，标签前缀图标
+     */
     icon: PropTypes.node,
 
-    // 直接设置标签颜色风格，除了内置的若干色彩主题之外，还可自行传入16进制格式的色彩值
+    /**
+     * 标签颜色，可使用内置的若干种颜色主题，也可使用任何合法的css颜色值
+     */
     color: PropTypes.string,
 
-    // 当标签充当跳转链接的作用时，设置对应的链接url
+    /**
+     * 标签点击跳转链接地址
+     */
     href: PropTypes.string,
 
-    // 当标签充当跳转链接的作用时，设置对应的连接跳转方式，默认为'_blank'
+    /**
+     * 标签链接跳转行为
+     */
     target: PropTypes.string,
 
-    // 设置是否有边框，默认为true
+    /**
+     * 是否渲染边框
+     * 默认值：`true`
+     */
     bordered: PropTypes.bool,
 
-    // 设置是否显示关闭按钮
-    // 默认：false
+    /**
+     * 是否渲染关闭按钮
+     * 默认值：`false`
+     */
     closeIcon: PropTypes.bool,
 
-    // 监听当前标签的关闭按钮累积点击次数
-    // 默认：0
+    /**
+     * `closeIcon=True`时，监听关闭按钮累计点击次数
+     * 默认值：`0`
+     */
     closeCounts: PropTypes.number,
 
     /**

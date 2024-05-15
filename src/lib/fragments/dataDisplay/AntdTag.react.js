@@ -1,13 +1,19 @@
+// react核心
 import React from 'react';
-import useCss from '../../hooks/useCss';
+// antd核心
+import { Tag } from 'antd';
+// 辅助库
 import { isString } from 'lodash';
 import { pickBy } from 'ramda';
-import { Tag } from 'antd';
+// 自定义hooks
+import useCss from '../../hooks/useCss';
+// 参数类型
 import { propTypes, defaultProps } from '../../components/dataDisplay/AntdTag.react';
 
-// 定义标签组件AntdTag，api参数参考https://ant.design/components/tag-cn/
+/**
+ * 标签组件AntdTag
+ */
 const AntdTag = (props) => {
-    // 取得必要属性或参数
     let {
         id,
         className,
