@@ -3,6 +3,9 @@ import PropTypes from 'prop-types';
 
 const LazyAntdTabs = React.lazy(() => import(/* webpackChunkName: "data_display" */ '../../fragments/dataDisplay/AntdTabs.react'));
 
+/**
+ * 标签页组件AntdTabs
+ */
 const AntdTabs = (props) => {
     return (
         <Suspense fallback={null}>
@@ -11,64 +14,100 @@ const AntdTabs = (props) => {
     );
 }
 
-// 定义参数或属性
 AntdTabs.propTypes = {
-    // 组件id
+    /**
+     * 组件唯一id
+     */
     id: PropTypes.string,
 
-    // css类名
+    /**
+     * 对当前组件的`key`值进行更新，可实现强制重绘当前组件的效果
+     */
+    key: PropTypes.string,
+
+    /**
+     * 当前组件css样式
+     */
+    style: PropTypes.object,
+
+    /**
+     * 当前组件css类名，支持[动态css](/advanced-classname)
+     */
     className: PropTypes.oneOfType([
         PropTypes.string,
         PropTypes.object
     ]),
 
-    // 自定义css字典
-    style: PropTypes.object,
+    /**
+     * 标签页类型，可选项有`'line'`、`'card'`、`'editable-card'`
+     * 默认值：`'line'`
+     */
+    type: PropTypes.oneOf(['line', 'card', 'editable-card']),
 
-    // 辅助刷新用唯一标识key值
-    key: PropTypes.string,
-
-    // 用于定义标签页的新写法
+    /**
+     * 定义标签项
+     */
     items: PropTypes.arrayOf(
         PropTypes.exact({
-            // 用于设置标签页标题内容
+            /**
+             * 组件型，标签页标题
+             */
             label: PropTypes.node,
-
-            // 用于设置标签页对应的唯一key
+            /**
+             * 标签页唯一识别id
+             */
             key: PropTypes.string,
-
-            // 用于设置标签页的子元素
+            /**
+             * 组件型，标签页内部元素
+             */
             children: PropTypes.node,
-
-            // 自定义关闭图标，在 type="editable-card" 时有效，设置为null或false时隐藏关闭按钮
+            /**
+             * `'editable-card'`型标签页可用，用于自定义关闭按钮，设置为`None`或`false`时会隐藏默认的关闭按钮
+             */
             closeIcon: PropTypes.oneOfType([
                 PropTypes.bool,
                 PropTypes.node,
             ]),
-
-            // 用于设置当标签页被隐藏时是否销毁 DOM 结构，默认为false
+            /**
+             * 是否在当前标签页隐藏时，自动销毁当前标签页内部元素
+             * 默认值：`false`
+             */
             destroyInactiveTabPane: PropTypes.bool,
-
-            // 用于设置是否禁用当前标签页，默认为false
+            /**
+             * 是否禁用当前标签页
+             * 默认值：`false`
+             */
             disabled: PropTypes.bool,
-
-            // 用于设置当标签页被隐藏时是否强制渲染子元素，默认为false
+            /**
+             * 初始化是否强制渲染当前标签页内部元素
+             * 默认值：`false`
+             */
             forceRender: PropTypes.bool,
-
-            // 设置在'editable-card'模式下，当前标签页是否可被关闭，默认为true
+            /**
+             * `'editable-card'`型标签页可用，控制当前标签页是否可被关闭
+             * 默认值：`true`
+             */
             closable: PropTypes.bool,
-
-            // 为当前标签页标题设置右键菜单相关参数
+            /**
+             * 为当前标签页标题配置右键菜单相关参数
+             */
             contextMenu: PropTypes.arrayOf(
                 PropTypes.exact({
-                    // 为当前右键菜单选项设置唯一key值
+                    /**
+                     * 当前右键菜单项唯一标识id
+                     */
                     key: PropTypes.string,
-                    // 为当前右键菜单项设置标题内容
+                    /**
+                     * 当前右键菜单项标题
+                     */
                     label: PropTypes.string,
-                    // 为当前选项设置前缀图标，同AntdIcon中的icon参数
+                    /**
+                     * 当前右键菜单项前缀图标类型，`iconRenderer`为`'AntdIcon'`时同`AntdIcon`同名参数，`iconRenderer`为`'fontawesome'`时为css类名
+                     */
                     icon: PropTypes.string,
-                    // 针对icon参数值设置渲染方式，默认为'AntdIcon'即icon等价于AntdIcon的icon参数
-                    // 当设置为'fontawesome'时，icon参数对应fontawesome图标的css类名
+                    /**
+                     * 当前右键菜单项前缀图标渲染方式，可选项有`'AntdIcon'`、`'fontawesome'`
+                     */
                     iconRenderer: PropTypes.oneOf(['AntdIcon', 'fontawesome']),
                 })
             )
@@ -76,78 +115,120 @@ AntdTabs.propTypes = {
     ),
 
     /**
-     * 用于按顺序同步记录items中各子项key值数组
+     * 监听当前各标签页`key`值，顺序与`items`一致
      */
     itemKeys: PropTypes.arrayOf(PropTypes.string),
 
-    // 对应当前被选中的标签页面板对应key
+    /**
+     * 监听或设置当前激活的标签页对应`key`值
+     */
     activeKey: PropTypes.string,
 
-    // 设置默认激活的标签页面板对应key
+    /**
+     * 初始化激活的标签页对应`key`值
+     */
     defaultActiveKey: PropTypes.string,
 
-    // 设置需要呈现禁用状态的标签页key值数组，优先级高于items[].disabled
-    // 即当items[].disabled设置为false但对应key在disabledTabKeys中时，仍然会禁用对应的标签页
+    /**
+     * 呈现禁用状态的标签页`key`值数组，优先级高于`items`中各标签页的`disabled`设定
+     */
     disabledTabKeys: PropTypes.arrayOf(PropTypes.string),
 
-    // 设置标签页放置位置，可选的有'top'、'left'、'right'和'bottom'
-    // 默认为'top'
+    /**
+     * 标签页切换控件显示方位，可选项有`'top'`、`'left'`、`'right'`、`'bottom'`
+     * 默认值：`'top'`
+     */
     tabPosition: PropTypes.oneOf(['top', 'left', 'right', 'bottom']),
 
-    // 设置组件大小尺寸，可选的有'small'、'default'和'large'
-    // 默认为'default'
+    /**
+     * 当前组件尺寸规格，可选项有`'small'`、`'default'`、`'large'`
+     * 默认值：'default'
+     */
     size: PropTypes.oneOf(['small', 'default', 'large']),
 
-    // 设置标签页渲染类型，可选的有'line'、'card'和'editable-card'，默认为'line'
-    type: PropTypes.oneOf(['line', 'card', 'editable-card']),
-
-    // 设置是否开启居中布局，默认为false
+    /**
+     * 是否居中显示标签页切换控件
+     * 默认值：`false`
+     */
     centered: PropTypes.bool,
 
-    // 自定义指示条长度，默认与 tab 等宽
-    indicatorSize: PropTypes.exact({
-        // 设置指示条宽度是否从tab宽度减去方式计算，默认为false
-        subTractFromOrigin: PropTypes.bool,
-        // 设置指示条宽度或者减去的宽度
-        width: PropTypes.number
+    /**
+     * 配置指示条长度及对齐方式
+     */
+    indicator: PropTypes.exact({
+        /**
+         * 指示条像素宽度，当传入负数时，表示在完整宽度基础上应减去的像素宽度，默认与标签卡片同宽
+         */
+        size: PropTypes.number,
+        /**
+         * 指示条对齐方式，可选项有`'start'`、`'center'`、`'end'`
+         */
+        align: PropTypes.oneOf(['start', 'center', 'end'])
     }),
 
-    // 设置标签卡之间的像素间距
+    /**
+     * 标签卡片之间的像素间距
+     */
     tabBarGutter: PropTypes.number,
 
-    // 设置标签卡切换是否渲染动画效果，默认为true
+    /**
+     * 标签卡片切换是否添加动画效果
+     * 默认值：`true`
+     */
     inkBarAnimated: PropTypes.bool,
 
-    // 设置标签内容切换是否渲染动画效果，默认为false
+    /**
+     * 标签内容切换是否添加动画效果
+     * 默认值：`false`
+     */
     tabPaneAnimated: PropTypes.bool,
 
-    // 对应最近一次进行删除操作的标签页面板对应key
+    /**
+     * 监听最近一次删除操作对应的标签页`key`值
+     */
     latestDeletePane: PropTypes.string,
 
-    // 设置标签页关闭按钮累积点击次数
-    // 默认：0
+    /**
+     * 标签页关闭按钮累计点击次数
+     * 默认值：`0`
+     */
     tabCloseCounts: PropTypes.number,
 
-    // 用于设置第一方位额外元素
+    /**
+     * 组件型，第一方位额外元素
+     */
     tabBarLeftExtraContent: PropTypes.node,
 
-    // 用于设置第二方位额外元素
+    /**
+     * 组件型，第二方位额外元素
+     */
     tabBarRightExtraContent: PropTypes.node,
 
-    // 监听当前标签页组件中所包含标签页数量
+    /**
+     * 监听标签页数量
+     */
     tabCount: PropTypes.number,
 
-    // 设置标签页不激活时是否自动销毁内部元素
-    // 默认：false
+    /**
+     * 统一设置是否自动销毁取消激活状态的标签页内部元素
+     */
     destroyInactiveTabPane: PropTypes.bool,
 
-    // 当有标签页标题的右键菜单选项被点击时，监听相关的事件信息
+    /**
+     * 监听标签页标题右键菜单项相关点击事件
+     */
     clickedContextMenu: PropTypes.exact({
-        // 记录对应的标签页key值
+        /**
+         * 被点击的右键菜单项对应标签页`key`值
+         */
         tabKey: PropTypes.string,
-        // 记录对应的右键菜单选项key值
+        /**
+         * 被点击的右键菜单项对应`key`值
+         */
         menuKey: PropTypes.string,
-        // 记录事件发生时的时间戳信息
+        /**
+         * 事件对应时间戳信息
+         */
         timestamp: PropTypes.number
     }),
 
@@ -183,13 +264,8 @@ AntdTabs.propTypes = {
     setProps: PropTypes.func,
 
     /**
-  * Used to allow user interactions in this component to be persisted when
-  * the component - or the page - is refreshed. If `persisted` is truthy and
-  * hasn't changed from its previous value, a `value` that the user has
-  * changed while using the app will keep that change, as long as
-  * the new `value` also matches what was given originally.
-  * Used in conjunction with `persistence_type`.
-  */
+     * 是否开启[属性持久化](/prop-persistence)
+     */
     persistence: PropTypes.oneOfType([
         PropTypes.bool,
         PropTypes.string,
@@ -197,17 +273,14 @@ AntdTabs.propTypes = {
     ]),
 
     /**
-     * Properties whose user interactions will persist after refreshing the
-     * component or the page. Since only `value` is allowed this prop can
-     * normally be ignored.
+     * 开启属性持久化功能的若干属性名，可选项有`'activeKey'`
+     * 默认值：`['activeKey']`
      */
     persisted_props: PropTypes.arrayOf(PropTypes.oneOf(['activeKey'])),
 
     /**
-     * Where persisted user changes will be stored:
-     * memory: only kept in memory, reset on page refresh.
-     * local: window.localStorage, data is kept after the browser quit.
-     * session: window.sessionStorage, data is cleared once the browser quit.
+     * 属性持久化存储类型，可选项有`'local'`（本地持久化），`'session'`（会话持久化），`'memory'`（内存持久化）
+     * 默认值：`'local'`
      */
     persistence_type: PropTypes.oneOf(['local', 'session', 'memory'])
 };
@@ -219,9 +292,6 @@ AntdTabs.defaultProps = {
     size: 'default',
     type: 'line',
     centered: false,
-    indicatorSize: {
-        subTractFromOrigin: false
-    },
     inkBarAnimated: true,
     tabPaneAnimated: false,
     destroyInactiveTabPane: false,

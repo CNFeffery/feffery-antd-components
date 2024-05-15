@@ -1,14 +1,20 @@
+// react核心
 import React, { useEffect } from 'react';
+// antd核心
 import { Tabs, Dropdown } from 'antd';
 import AntdIcon from '../../components/general/AntdIcon.react';
+// 辅助库
 import { isString } from 'lodash';
 import { pickBy } from 'ramda';
+// 自定义hooks
 import useCss from '../../hooks/useCss';
+// 参数类型
 import { propTypes, defaultProps } from '../../components/dataDisplay/AntdTabs.react';
 
-// 定义标签页组件AntdTabs，api参数参考https://ant.design/components/tabs-cn/
+/**
+ * 标签页组件AntdTabs
+ */
 const AntdTabs = (props) => {
-    // 取得必要属性或参数
     let {
         id,
         className,
@@ -24,7 +30,7 @@ const AntdTabs = (props) => {
         tabPosition,
         type,
         centered,
-        indicatorSize,
+        indicator,
         tabBarGutter,
         inkBarAnimated,
         tabPaneAnimated,
@@ -162,7 +168,18 @@ const AntdTabs = (props) => {
             tabPosition={tabPosition}
             type={type}
             centered={centered}
-            indicatorSize={indicatorSize.subTractFromOrigin ? (origin) => origin - indicatorSize.width : indicatorSize.width}
+            indicator={{
+                size: (origin) => {
+                    if (indicator.size) {
+                        if (indicator.size < 0) {
+                            return origin + indicator.size;
+                        }
+                        return indicator.size;
+                    }
+                    return origin;
+                },
+                align: indicator?.align
+            }}
             tabBarGutter={tabBarGutter}
             tabBarExtraContent={{
                 left: tabBarLeftExtraContent,

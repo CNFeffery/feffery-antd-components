@@ -5,88 +5,123 @@ from dash.development.base_component import Component, _explicitize_args
 
 class AntdTabs(Component):
     """An AntdTabs component.
-
+标签页组件AntdTabs
 
 Keyword arguments:
 
-- id (string; optional)
+- id (string; optional):
+    组件唯一id.
 
-- activeKey (string; optional)
+- activeKey (string; optional):
+    监听或设置当前激活的标签页对应`key`值.
 
 - aria-* (string; optional):
     `aria-*`格式属性通配.
 
-- centered (boolean; default False)
+- centered (boolean; default False):
+    是否居中显示标签页切换控件  默认值：`False`.
 
-- className (string | dict; optional)
+- className (string | dict; optional):
+    当前组件css类名，支持[动态css](/advanced-classname).
 
-- clickedContextMenu (dict; optional)
+- clickedContextMenu (dict; optional):
+    监听标签页标题右键菜单项相关点击事件.
 
     `clickedContextMenu` is a dict with keys:
 
-    - menuKey (string; optional)
+    - menuKey (string; optional):
+        被点击的右键菜单项对应`key`值.
 
-    - tabKey (string; optional)
+    - tabKey (string; optional):
+        被点击的右键菜单项对应标签页`key`值.
 
-    - timestamp (number; optional)
+    - timestamp (number; optional):
+        事件对应时间戳信息.
 
 - data-* (string; optional):
     `data-*`格式属性通配.
 
-- defaultActiveKey (string; optional)
+- defaultActiveKey (string; optional):
+    初始化激活的标签页对应`key`值.
 
-- destroyInactiveTabPane (boolean; default False)
+- destroyInactiveTabPane (boolean; default False):
+    统一设置是否自动销毁取消激活状态的标签页内部元素.
 
-- disabledTabKeys (list of strings; optional)
+- disabledTabKeys (list of strings; optional):
+    呈现禁用状态的标签页`key`值数组，优先级高于`items`中各标签页的`disabled`设定.
 
-- indicatorSize (dict; default {    subTractFromOrigin: False})
+- indicator (dict; optional):
+    配置指示条长度及对齐方式.
 
-    `indicatorSize` is a dict with keys:
+    `indicator` is a dict with keys:
 
-    - subTractFromOrigin (boolean; optional)
+    - align (a value equal to: 'start', 'center', 'end'; optional):
+        指示条对齐方式，可选项有`'start'`、`'center'`、`'end'`.
 
-    - width (number; optional)
+    - size (number; optional):
+        指示条像素宽度，当传入负数时，表示在完整宽度基础上应减去的像素宽度，默认与标签卡片同宽.
 
-- inkBarAnimated (boolean; default True)
+- inkBarAnimated (boolean; default True):
+    标签卡片切换是否添加动画效果  默认值：`True`.
 
 - itemKeys (list of strings; optional):
-    用于按顺序同步记录items中各子项key值数组.
+    监听当前各标签页`key`值，顺序与`items`一致.
 
-- items (list of dicts; optional)
+- items (list of dicts; optional):
+    定义标签项.
 
     `items` is a list of dicts with keys:
 
-    - children (a list of or a singular dash component, string or number; optional)
+    - children (a list of or a singular dash component, string or number; optional):
+        组件型，标签页内部元素.
 
-    - closable (boolean; optional)
+    - closable (boolean; optional):
+        `'editable-card'`型标签页可用，控制当前标签页是否可被关闭  默认值：`True`.
 
-    - closeIcon (boolean | a list of or a singular dash component, string or number; optional)
+    - closeIcon (boolean | a list of or a singular dash component, string or number; optional):
+        `'editable-card'`型标签页可用，用于自定义关闭按钮，设置为`None`或`False`时会隐藏默认的关闭按钮.
 
-    - contextMenu (list of dicts; optional)
+    - contextMenu (list of dicts; optional):
+        为当前标签页标题配置右键菜单相关参数.
 
         `contextMenu` is a list of dicts with keys:
 
-        - icon (string; optional)
+        - icon (string; optional):
 
-        - iconRenderer (a value equal to: 'AntdIcon', 'fontawesome'; optional)
+            当前右键菜单项前缀图标类型，`iconRenderer`为`'AntdIcon'`时同`AntdIcon`同名参数，`iconRenderer`为`'fontawesome'`时为css类名.
 
-        - key (string; optional)
+        - iconRenderer (a value equal to: 'AntdIcon', 'fontawesome'; optional):
 
-        - label (string; optional)
+            当前右键菜单项前缀图标渲染方式，可选项有`'AntdIcon'`、`'fontawesome'`.
 
-    - destroyInactiveTabPane (boolean; optional)
+        - key (string; optional):
 
-    - disabled (boolean; optional)
+            当前右键菜单项唯一标识id.
 
-    - forceRender (boolean; optional)
+        - label (string; optional):
 
-    - key (string; optional)
+            当前右键菜单项标题.
 
-    - label (a list of or a singular dash component, string or number; optional)
+    - destroyInactiveTabPane (boolean; optional):
+        是否在当前标签页隐藏时，自动销毁当前标签页内部元素  默认值：`False`.
 
-- key (string; optional)
+    - disabled (boolean; optional):
+        是否禁用当前标签页  默认值：`False`.
 
-- latestDeletePane (string; optional)
+    - forceRender (boolean; optional):
+        初始化是否强制渲染当前标签页内部元素  默认值：`False`.
+
+    - key (string; optional):
+        标签页唯一识别id.
+
+    - label (a list of or a singular dash component, string or number; optional):
+        组件型，标签页标题.
+
+- key (string; optional):
+    对当前组件的`key`值进行更新，可实现强制重绘当前组件的效果.
+
+- latestDeletePane (string; optional):
+    监听最近一次删除操作对应的标签页`key`值.
 
 - loading_state (dict; optional)
 
@@ -102,52 +137,54 @@ Keyword arguments:
         Holds which property is loading.
 
 - persisted_props (list of a value equal to: 'activeKey's; default ['activeKey']):
-    Properties whose user interactions will persist after refreshing
-    the  component or the page. Since only `value` is allowed this
-    prop can  normally be ignored.
+    开启属性持久化功能的若干属性名，可选项有`'activeKey'`  默认值：`['activeKey']`.
 
 - persistence (boolean | string | number; optional):
-    Used to allow user interactions in this component to be persisted
-    when  the component - or the page - is refreshed. If `persisted`
-    is truthy and  hasn't changed from its previous value, a `value`
-    that the user has  changed while using the app will keep that
-    change, as long as  the new `value` also matches what was given
-    originally.  Used in conjunction with `persistence_type`.
+    是否开启[属性持久化](/prop-persistence).
 
 - persistence_type (a value equal to: 'local', 'session', 'memory'; default 'local'):
-    Where persisted user changes will be stored:  memory: only kept in
-    memory, reset on page refresh.  local: window.localStorage, data
-    is kept after the browser quit.  session: window.sessionStorage,
-    data is cleared once the browser quit.
+    属性持久化存储类型，可选项有`'local'`（本地持久化），`'session'`（会话持久化），`'memory'`（内存持久化）
+    默认值：`'local'`.
 
-- size (a value equal to: 'small', 'default', 'large'; default 'default')
+- size (a value equal to: 'small', 'default', 'large'; default 'default'):
+    当前组件尺寸规格，可选项有`'small'`、`'default'`、`'large'`  默认值：'default'.
 
-- style (dict; optional)
+- style (dict; optional):
+    当前组件css样式.
 
-- tabBarGutter (number; optional)
+- tabBarGutter (number; optional):
+    标签卡片之间的像素间距.
 
-- tabBarLeftExtraContent (a list of or a singular dash component, string or number; optional)
+- tabBarLeftExtraContent (a list of or a singular dash component, string or number; optional):
+    组件型，第一方位额外元素.
 
-- tabBarRightExtraContent (a list of or a singular dash component, string or number; optional)
+- tabBarRightExtraContent (a list of or a singular dash component, string or number; optional):
+    组件型，第二方位额外元素.
 
-- tabCloseCounts (number; default 0)
+- tabCloseCounts (number; default 0):
+    标签页关闭按钮累计点击次数  默认值：`0`.
 
-- tabCount (number; optional)
+- tabCount (number; optional):
+    监听标签页数量.
 
-- tabPaneAnimated (boolean; default False)
+- tabPaneAnimated (boolean; default False):
+    标签内容切换是否添加动画效果  默认值：`False`.
 
-- tabPosition (a value equal to: 'top', 'left', 'right', 'bottom'; default 'top')
+- tabPosition (a value equal to: 'top', 'left', 'right', 'bottom'; default 'top'):
+    标签页切换控件显示方位，可选项有`'top'`、`'left'`、`'right'`、`'bottom'`
+    默认值：`'top'`.
 
-- type (a value equal to: 'line', 'card', 'editable-card'; default 'line')"""
+- type (a value equal to: 'line', 'card', 'editable-card'; default 'line'):
+    标签页类型，可选项有`'line'`、`'card'`、`'editable-card'`  默认值：`'line'`."""
     _children_props = ['items[].label', 'items[].children', 'items[].closeIcon', 'tabBarLeftExtraContent', 'tabBarRightExtraContent']
     _base_nodes = ['tabBarLeftExtraContent', 'tabBarRightExtraContent', 'children']
     _namespace = 'feffery_antd_components'
     _type = 'AntdTabs'
     @_explicitize_args
-    def __init__(self, id=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, key=Component.UNDEFINED, items=Component.UNDEFINED, itemKeys=Component.UNDEFINED, activeKey=Component.UNDEFINED, defaultActiveKey=Component.UNDEFINED, disabledTabKeys=Component.UNDEFINED, tabPosition=Component.UNDEFINED, size=Component.UNDEFINED, type=Component.UNDEFINED, centered=Component.UNDEFINED, indicatorSize=Component.UNDEFINED, tabBarGutter=Component.UNDEFINED, inkBarAnimated=Component.UNDEFINED, tabPaneAnimated=Component.UNDEFINED, latestDeletePane=Component.UNDEFINED, tabCloseCounts=Component.UNDEFINED, tabBarLeftExtraContent=Component.UNDEFINED, tabBarRightExtraContent=Component.UNDEFINED, tabCount=Component.UNDEFINED, destroyInactiveTabPane=Component.UNDEFINED, clickedContextMenu=Component.UNDEFINED, loading_state=Component.UNDEFINED, persistence=Component.UNDEFINED, persisted_props=Component.UNDEFINED, persistence_type=Component.UNDEFINED, **kwargs):
-        self._prop_names = ['id', 'activeKey', 'aria-*', 'centered', 'className', 'clickedContextMenu', 'data-*', 'defaultActiveKey', 'destroyInactiveTabPane', 'disabledTabKeys', 'indicatorSize', 'inkBarAnimated', 'itemKeys', 'items', 'key', 'latestDeletePane', 'loading_state', 'persisted_props', 'persistence', 'persistence_type', 'size', 'style', 'tabBarGutter', 'tabBarLeftExtraContent', 'tabBarRightExtraContent', 'tabCloseCounts', 'tabCount', 'tabPaneAnimated', 'tabPosition', 'type']
+    def __init__(self, id=Component.UNDEFINED, key=Component.UNDEFINED, style=Component.UNDEFINED, className=Component.UNDEFINED, type=Component.UNDEFINED, items=Component.UNDEFINED, itemKeys=Component.UNDEFINED, activeKey=Component.UNDEFINED, defaultActiveKey=Component.UNDEFINED, disabledTabKeys=Component.UNDEFINED, tabPosition=Component.UNDEFINED, size=Component.UNDEFINED, centered=Component.UNDEFINED, indicator=Component.UNDEFINED, tabBarGutter=Component.UNDEFINED, inkBarAnimated=Component.UNDEFINED, tabPaneAnimated=Component.UNDEFINED, latestDeletePane=Component.UNDEFINED, tabCloseCounts=Component.UNDEFINED, tabBarLeftExtraContent=Component.UNDEFINED, tabBarRightExtraContent=Component.UNDEFINED, tabCount=Component.UNDEFINED, destroyInactiveTabPane=Component.UNDEFINED, clickedContextMenu=Component.UNDEFINED, loading_state=Component.UNDEFINED, persistence=Component.UNDEFINED, persisted_props=Component.UNDEFINED, persistence_type=Component.UNDEFINED, **kwargs):
+        self._prop_names = ['id', 'activeKey', 'aria-*', 'centered', 'className', 'clickedContextMenu', 'data-*', 'defaultActiveKey', 'destroyInactiveTabPane', 'disabledTabKeys', 'indicator', 'inkBarAnimated', 'itemKeys', 'items', 'key', 'latestDeletePane', 'loading_state', 'persisted_props', 'persistence', 'persistence_type', 'size', 'style', 'tabBarGutter', 'tabBarLeftExtraContent', 'tabBarRightExtraContent', 'tabCloseCounts', 'tabCount', 'tabPaneAnimated', 'tabPosition', 'type']
         self._valid_wildcard_attributes =            ['data-', 'aria-']
-        self.available_properties = ['id', 'activeKey', 'aria-*', 'centered', 'className', 'clickedContextMenu', 'data-*', 'defaultActiveKey', 'destroyInactiveTabPane', 'disabledTabKeys', 'indicatorSize', 'inkBarAnimated', 'itemKeys', 'items', 'key', 'latestDeletePane', 'loading_state', 'persisted_props', 'persistence', 'persistence_type', 'size', 'style', 'tabBarGutter', 'tabBarLeftExtraContent', 'tabBarRightExtraContent', 'tabCloseCounts', 'tabCount', 'tabPaneAnimated', 'tabPosition', 'type']
+        self.available_properties = ['id', 'activeKey', 'aria-*', 'centered', 'className', 'clickedContextMenu', 'data-*', 'defaultActiveKey', 'destroyInactiveTabPane', 'disabledTabKeys', 'indicator', 'inkBarAnimated', 'itemKeys', 'items', 'key', 'latestDeletePane', 'loading_state', 'persisted_props', 'persistence', 'persistence_type', 'size', 'style', 'tabBarGutter', 'tabBarLeftExtraContent', 'tabBarRightExtraContent', 'tabCloseCounts', 'tabCount', 'tabPaneAnimated', 'tabPosition', 'type']
         self.available_wildcard_properties =            ['data-', 'aria-']
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()
