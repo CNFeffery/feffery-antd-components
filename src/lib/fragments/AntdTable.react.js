@@ -1,3 +1,4 @@
+// react核心
 import React, {
     Component,
     useContext,
@@ -5,6 +6,7 @@ import React, {
     useEffect,
     useRef
 } from 'react';
+// antd核心
 import {
     Table,
     Checkbox,
@@ -34,18 +36,19 @@ import {
     Progress,
     RingProgress
 } from '@ant-design/plots';
-import Highlighter from 'react-highlight-words';
 import AntdIcon from '../components/general/AntdIcon.react';
 import {
     SearchOutlined,
     QuestionCircleOutlined,
     DownOutlined
 } from '@ant-design/icons';
+// 辅助库
+import Highlighter from 'react-highlight-words';
 import { isNumber, isEqual, isString, isBoolean, isEmpty, omitBy } from 'lodash';
 import { pickBy } from 'ramda';
 import { str2Locale, locale2text } from '../components/locales.react';
+// 参数类型
 import { propTypes, defaultProps } from '../components/dataDisplay/AntdTable.react';
-
 
 const { Text } = Typography;
 
@@ -82,9 +85,10 @@ const preventUpdateProps = [
     'recentlyMouseEnterRow'
 ];
 
-// 定义表格组件AntdTable，部分api参数参考https://ant.design/components/table-cn/
+/**
+ * 表格组件AntdTable
+ */
 class AntdTable extends Component {
-
     constructor(props) {
         super(props)
 
@@ -307,7 +311,6 @@ class AntdTable extends Component {
     }
 
     render() {
-        // 取得必要属性或参数
         let {
             id,
             className,
@@ -2062,7 +2065,6 @@ class AntdTable extends Component {
         );
     }
 }
-
 
 export default AntdTable;
 

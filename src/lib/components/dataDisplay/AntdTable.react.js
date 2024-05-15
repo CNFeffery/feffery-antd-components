@@ -3,6 +3,9 @@ import PropTypes from 'prop-types';
 
 const LazyAntdTable = React.lazy(() => import(/* webpackChunkName: "antd_table" */ '../../fragments/AntdTable.react'));
 
+/**
+ * 表格组件AntdTable
+ */
 const AntdTable = (props) => {
     return (
         <Suspense fallback={null}>
@@ -11,51 +14,71 @@ const AntdTable = (props) => {
     );
 }
 
-
-// 定义参数或属性
 AntdTable.propTypes = {
-    // 组件id
+    /**
+     * 组件唯一id
+     */
     id: PropTypes.string,
 
-    // css类名
-    className: PropTypes.string,
-
-    // 自定义css字典
-    style: PropTypes.object,
-
-    // 辅助刷新用唯一标识key值
+    /**
+     * 对当前组件的`key`值进行更新，可实现强制重绘当前组件的效果
+     */
     key: PropTypes.string,
 
-    // 设置语言环境，可选的有'zh-cn'、'en-us'
+    /**
+     * 当前组件css样式
+     */
+    style: PropTypes.object,
+
+    /**
+     * 当前组件css类名
+     */
+    className: PropTypes.string,
+
+    /**
+     * 组件文案语种，可选项有`'zh-cn'`、`'en-us'`
+     * 默认值：`'zh-cn'`
+     */
     locale: PropTypes.oneOf(['zh-cn', 'en-us']),
 
-    // 当表格悬浮层出现滚轮滑动不跟随情况时，用于传入需要绑定的参照容器id信息辅助定位
+    /**
+     * 当表格渲染在具有滚动条的局部容器中时，指定该容器id，可避免出现部分表格内部展开层随滚动条滚动显示异常的问题
+     */
     containerId: PropTypes.string,
 
-    // 定义字段名称及相关属性
+    /**
+     * 配置字段定义相关参数
+     */
     columns: PropTypes.arrayOf(
-        PropTypes.exact({
-            // 字段对应表头显示的文字内容
+        PropTypes.shape({
+            /**
+             * 必填，当前字段标题
+             */
             title: PropTypes.oneOfType([
                 PropTypes.func,
                 PropTypes.node
             ]).isRequired,
-
-            // 字段id信息
+            /**
+             * 必填，当前字段唯一识别id
+             */
             dataIndex: PropTypes.string.isRequired,
-
-            // 为当前字段设置所属字段组
+            /**
+             * 当前字段所属分组信息，用于渲染多级表头
+             */
             group: PropTypes.oneOfType([
                 PropTypes.string,
                 PropTypes.arrayOf(PropTypes.string)
             ]),
-
-            // 预处理方式
+            /**
+             * 配置字段[再渲染模式](/AntdTable-rerender)相关参数
+             */
             renderOptions: PropTypes.exact({
-
-                // 设置渲染处理类型，可选项有'link'、'ellipsis'、'mini-line'、'mini-bar'、'mini-progress'、'mini-area'、'tags'、'button'
-                // 'copyable'、'status-badge'、'image'、'custom-format'、'ellipsis-copyable'、'corner-mark'、'checkbox'、'switch'
-                // 'row-merge'、'dropdown'、'dropdown-links'、'image-avatar'
+                /**
+                 * 再渲染类型，可选项有`'link'`、`'ellipsis'`、`'copyable'`、`'ellipsis-copyable'`、`'tags'`、`'status-badge'`、`'image'`
+                 * 、`'custom-format'`、`'corner-mark'`、`'row-merge'`、`'dropdown'`、`'dropdown-links'`、`'image-avatar'`
+                 * 、`'mini-line'`、`'mini-bar'`、`'mini-progress'`、`'mini-ring-progress'`、`'mini-area'`
+                 * 、`'button'`、`'checkbox'`、`'switch'`、`'select'`
+                 */
                 renderType: PropTypes.oneOf([
                     // 内容展示类
                     'link', 'ellipsis', 'copyable', 'ellipsis-copyable', 'tags',
@@ -66,74 +89,100 @@ AntdTable.propTypes = {
                     // 监听交互类
                     'button', 'checkbox', 'switch', 'select'
                 ]),
-
-                // 当renderType='link'时，此参数会将传入的字符串作为渲染link的显示文字内容
+                /**
+                 * 当`renderType='link'`时，统一设置渲染链接文本内容
+                 */
                 renderLinkText: PropTypes.string,
-
-                // 当renderType='button'时，此参数用于设置多个按钮之间是否添加分割线
+                /**
+                 * 当`renderType='button'`时，控制多个按钮之间是否添加分割线
+                 */
                 renderButtonSplit: PropTypes.bool,
-
-                // 当renderType='button'时，此参数用于传入与气泡确认卡片相关的参数设置内容
+                /**
+                 * 当`renderType='button'`时，配置气泡确认框相关参数
+                 */
                 renderButtonPopConfirmProps: PropTypes.exact({
-                    // 设置气泡卡片的标题内容
+                    /**
+                     * 气泡确认框标题
+                     */
                     title: PropTypes.string,
-
-                    // 设置气泡卡片的okText内容
+                    /**
+                     * 气泡确认框确认按钮文案
+                     */
                     okText: PropTypes.string,
-
-                    // 设置气泡卡片的cancelText内容
+                    /**
+                     * 气泡确认框取消按钮文案
+                     */
                     cancelText: PropTypes.string
                 }),
-
-                // 当renderType='mini-line'、'mini-area'或'mini-bar'时
-                // 用于设置渲染tooltip所使用到的自定义格式化函数字符串
+                /**
+                 * 当`renderType`为`'mini-line'`、`'mini-area'`、`'mini-bar'`时，设置用于渲染信息卡片的`javascript`函数字符串
+                 */
                 tooltipCustomContent: PropTypes.string,
-
-                // 若当前字段再渲染模式为mini-progress或mini-ring-progress时生效
-                // 用于设置进度为1时的填充色，默认为#52c41a
+                /**
+                 * 当`renderType`为`'mini-progress'`、`'mini-ring-progress'`时，设置进度完成状态下的填充色
+                 * 默认值：`'#52c41a'`
+                 */
                 progressOneHundredPercentColor: PropTypes.string,
-
-                // 若当前字段再渲染模式为mini-ring-progress时生效
-                // 用于设置百分比文字字体像素大小
+                /**
+                 * 当`renderType='mini-ring-progress'`时，设置进度数值像素大小
+                 */
                 ringProgressFontSize: PropTypes.number,
-
-                // 针对dropdown、dropdown-links模式，设置当前字段内dropdown相关参数
+                /**
+                 * 当`renderType`为`'dropdown'`、`'dropdown-links'`时，配置下拉菜单相关参数
+                 */
                 dropdownProps: PropTypes.exact({
-                    // 设置下拉菜单锚点文字标题内容
+                    /**
+                     * 下拉菜单锚点标题内容
+                     */
                     title: PropTypes.string,
-
-                    // 设置下拉框是否显示连接箭头，默认为false
+                    /**
+                     * 下拉菜单是否显示指示箭头
+                     * 默认值：`false`
+                     */
                     arrow: PropTypes.bool,
-
-                    // 是否禁用功能，优先级低于每条记录值内部的设定
+                    /**
+                     * 是否整体禁用下拉菜单功能，优先级低于各记录值内部参数
+                     */
                     disabled: PropTypes.bool,
-
-                    // 设置下拉菜单容器的类名
+                    /**
+                     * 下拉菜单容器css类名
+                     */
                     overlayClassName: PropTypes.string,
-
-                    // 设置下拉菜单容器的样式
+                    /**
+                     * 下拉菜单容器css样式
+                     */
                     overlayStyle: PropTypes.object,
-
-                    // 设置菜单弹出的方位，可选的有'bottomLeft'、'bottomCenter'、'bottomRight'、
-                    // 'topLeft'、'topCenter'与'topRight'
+                    /**
+                     * 下拉菜单展开方向，可选项有`'bottomLeft'`、`'bottomCenter'`、`'bottomRight'`、`'topLeft'`、`'topCenter'`、`'topRight'`
+                     */
                     placement: PropTypes.oneOf([
-                        'bottomLeft', 'bottomCenter', 'bottomRight',
-                        'topLeft', 'topCenter', 'topRight'
+                        'bottomLeft', 'bottomCenter', 'bottomRight', 'topLeft', 'topCenter', 'topRight'
                     ])
                 })
             }),
-
-            // 列固定对齐方式，可选项有'left'、'right'
+            /**
+             * 当前字段冻结方向，可选项有`'left'`、`'right'`
+             */
             fixed: PropTypes.oneOf(['left', 'right']),
-
             // 设置是否可编辑，默认为false
+            /**
+             * 当前字段是否可编辑
+             * 默认值：`false`
+             */
             editable: PropTypes.bool,
-
-            // 配置编辑输入框相关参数
+            /**
+             * 配置可编辑模式下输入框相关参数
+             */
             editOptions: PropTypes.exact({
-                // 设置编辑框模式，默认为'default'，其他可选项有'text-area'
+                /**
+                 * 编辑框模式，可选项有`'default'`、`'text-area'`
+                 * 默认值：`'default'`
+                 */
                 mode: PropTypes.oneOf(['default', 'text-area']),
-                // 当mode='textarea'时，用于配置自适应高度相关功能，默认为false
+                /**
+                 * 当`mode='textarea'`时，配置文本框自适应高度相关功能，同`AntdInput`
+                 * 默认值：`false`
+                 */
                 autoSize: PropTypes.oneOfType([
                     PropTypes.bool,
                     PropTypes.exact({
@@ -141,110 +190,148 @@ AntdTable.propTypes = {
                         maxRows: PropTypes.number
                     })
                 ]),
-                // 可选，限制当前字段下编辑模式输入框的最大输入字符数，默认无限制
+                /**
+                 * 限制当前字段可编辑模式下，输入框内最多可输入的字符数量，默认无限制
+                 */
                 maxLength: PropTypes.number,
-                // 可选，用于在输入框中无内容时设置占位提示内容
+                /**
+                 * 输入框无输入值时的占位提示信息
+                 */
                 placeholder: PropTypes.string
             }),
-
-            // 设置列对齐方式，可选项有'left'、'center'、'right'
-            align: PropTypes.oneOf(['left', 'center', 'right']),
-
-            // 自定义列宽度
-            width: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-
-            // 控制是否隐藏当前字段，设置为true时进行隐藏，默认为false
-            hidden: PropTypes.bool,
-
-            // 为当前字段对应列设置css类名
-            className: PropTypes.string,
-
             /**
-             * 若当前字段通过defaultFilteredValues设置了初始化默认选中筛选值，
-             * 用于设置是否在用户点击重置按钮后恢复默认选中筛选项
-             * 默认：false
+             * 当前字段对齐方式，可选项有`'left'`、`'center'`、`'right'`
+             * 默认值：`'center'`
              */
-            filterResetToDefaultFilteredValue: PropTypes.bool,
+            align: PropTypes.oneOf(['left', 'center', 'right']),
+            /**
+             * 当前字段宽度
+             */
+            width: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+            /**
+             * 是否隐藏当前字段
+             * 默认值：`false`
+             */
+            hidden: PropTypes.bool,
+            /**
+             * 当前字段css类名
+             */
+            className: PropTypes.string,
+            /**
+             * 若当前字段通过参数`defaultFilteredValues`设置了初始化默认选中的筛选值，用于设置是否在用户点击重置按钮后恢复默认选中筛选项
+             * 默认值：`false`
+             */
+            filterResetToDefaultFilteredValue: PropTypes.bool
+            // // 防止状态更新报错占位用，无实际意义
+            // ellipsis: PropTypes.any,
 
-            // 防止状态更新报错占位用，无实际意义
-            ellipsis: PropTypes.any,
+            // // 防止状态更新报错占位用，无实际意义
+            // sorter: PropTypes.any,
 
-            // 防止状态更新报错占位用，无实际意义
-            sorter: PropTypes.any,
+            // // 防止状态更新报错占位用，无实际意义
+            // render: PropTypes.any,
 
-            // 防止状态更新报错占位用，无实际意义
-            render: PropTypes.any,
+            // // 确保onCell属性类型检查通过，无实际意义
+            // onCell: PropTypes.any,
 
-            // 确保onCell属性类型检查通过，无实际意义
-            onCell: PropTypes.any,
-
-            // 备份title信息，无实际意义
-            title_: PropTypes.any
+            // // 备份title信息，无实际意义
+            // title_: PropTypes.any
         })
     ),
 
     /**
      * 是否显示表头
-     * 默认：true
+     * 默认值：`true`
      */
     showHeader: PropTypes.bool,
 
     /**
-     * 当columns中各字段未设置width时，用于控制字段布局方式
-     * 可选的有'auto'、'fixed'
+     * 当`columns`中各字段未设置`width`时，用于控制整体字段宽度分配方式，可选项有`'auto'`、`'fixed'`
      */
     tableLayout: PropTypes.oneOf(['auto', 'fixed']),
 
-    // 定义与columns匹配的行记录数组
+    /**
+     * 定义表格数据源，与`columns`对应
+     */
     data: PropTypes.arrayOf(
         PropTypes.objectOf(
             PropTypes.oneOfType([
-                // 针对向下嵌套children的兼容处理
+                /**
+                 * 通过`children`向下嵌套行记录
+                 */
                 PropTypes.arrayOf(PropTypes.any),
-
-                // 支持自由组件模式
+                /**
+                 * 组件型元素
+                 */
                 PropTypes.node,
-
-                // 常规模式、ellipsis模式、copyable模式、custom-format模式、ellipsis-copyable模式
+                /**
+                 * 常规模式、`'ellipsis'`模式、`'copyable'`模式、`'custom-format'`模式、`'ellipsis-copyable'`模式
+                 */
                 PropTypes.string,
-
-                // 常规模式、ellipsis模式、mini-prorgess模式、mini-ring-progress模式、copyable模式、custom-format模式
-                // 其中mini-prorgess模式、mini-ring-progress模式输入值需在0~1之间
+                /**
+                 * 常规模式、`'ellipsis'`模式、`'mini-prorgess'`模式、`mini-ring-progress`模式、`'copyable'`模式、`'custom-format'`模式，
+                 * 其中`mini-prorgess`模式、`'mini-ring-progress'`模式下输入值需在0~1之间
+                 */
                 PropTypes.number,
-
-                // link模式
+                /**
+                 * `'link'`模式
+                 */
                 PropTypes.exact({
-                    // 自定义链接显示的文字内容，优先级高于renderLinkText参数
+                    /**
+                     * 链接显示的文字内容，优先级高于字段配置信息中的`renderLinkText`参数
+                     */
                     content: PropTypes.string,
-                    // href链接
+                    /**
+                     * 链接地址
+                     */
                     href: PropTypes.string,
-                    // target行为属性，默认为'_blank'
+                    /**
+                     * 链接跳转行为
+                     * 默认值：`'_blank'`
+                     */
                     target: PropTypes.string,
-                    // 设置是否禁用当前链接，默认为false
+                    /**
+                     * 是否禁用当前链接
+                     * 默认值：`false`
+                     */
                     disabled: PropTypes.bool
                 }),
-
-                // mini-line模式、mini-bar模式、mini-area模式
+                /**
+                 * `'mini-line'`模式、`'mini-bar'`模式、`'mini-area'`模式
+                 */
                 PropTypes.arrayOf(PropTypes.number),
-
-                // tags模式
+                /**
+                 * `tags`模式
+                 */
                 PropTypes.oneOfType([
-                    // 单标签
+                    /**
+                     * 渲染单个标签
+                     */
                     PropTypes.exact({
-                        // 标签颜色
+                        /**
+                         * 标签颜色
+                         */
                         color: PropTypes.string,
-                        // 标签内容
+                        /**
+                         * 标签内容
+                         */
                         tag: PropTypes.oneOfType([
                             PropTypes.string,
                             PropTypes.number
                         ])
                     }),
-                    // 多标签
+                    /**
+                     * 渲染多个标签
+                     */
                     PropTypes.arrayOf(
                         PropTypes.exact({
-                            // 标签颜色
+                            /**
+                             * 当前标签颜色
+                             */
                             color: PropTypes.string,
-                            // 标签内容
+                            /**
+                             * 当前标签内容
+                             */
                             tag: PropTypes.oneOfType([
                                 PropTypes.string,
                                 PropTypes.number
@@ -252,193 +339,315 @@ AntdTable.propTypes = {
                         })
                     )
                 ]),
-
-                // button模式
+                /**
+                 * `'button'`模式
+                 */
                 PropTypes.oneOfType([
-                    // 单按钮
+                    /**
+                     * 渲染单个按钮
+                     */
                     PropTypes.exact({
-                        // 设置是否禁用按钮，默认为false
+                        /**
+                         * 同`AntdButton`中的同名参数
+                         */
                         disabled: PropTypes.bool,
-                        // 设置按钮的type属性，同AntdButton
+                        /**
+                         * 同`AntdButton`中的同名参数
+                         */
                         type: PropTypes.oneOf(['primary', 'ghost', 'dashed', 'link', 'text', 'default']),
-                        // 设置按钮的danger属性，同AntdButton
+                        /**
+                         * 同`AntdButton`中的同名参数
+                         */
                         danger: PropTypes.bool,
-                        // 设置按钮的css样式
+                        /**
+                         * 同`AntdButton`中的同名参数
+                         */
                         style: PropTypes.object,
-                        // 设置按钮的文本内容
+                        /**
+                         * 按钮内容
+                         */
                         content: PropTypes.string,
-                        // link类型对应的href
+                        /**
+                         * 同`AntdButton`中的同名参数
+                         */
                         href: PropTypes.string,
-                        // link类型对应的target
+                        /**
+                         * 同`AntdButton`中的同名参数
+                         */
                         target: PropTypes.string,
-                        // 为当前按钮设置前缀图标，同AntdIcon中的同名参数
+                        /**
+                         * 按钮前缀图标类型，`iconRenderer`为`'AntdIcon'`时同`AntdIcon`同名参数，`iconRenderer`为`'fontawesome'`时为css类名
+                         */
                         icon: PropTypes.string,
-                        // 针对icon参数值设置渲染方式，默认为'AntdIcon'即icon等价于AntdIcon的icon参数
-                        // 当设置为'fontawesome'时，icon参数对应fontawesome图标的css类名
+                        /**
+                         * 按钮前缀图标渲染方式，可选项有`'AntdIcon'`、`'fontawesome'`
+                         */
                         iconRenderer: PropTypes.oneOf(['AntdIcon', 'fontawesome']),
-                        // 用于存放任意结构的自定义辅助信息
+                        /**
+                         * 额外补充信息
+                         */
                         custom: PropTypes.any
                     }),
-
-                    // 多按钮
+                    /**
+                     * 渲染多个按钮
+                     */
                     PropTypes.arrayOf(
                         PropTypes.exact({
-                            // 设置是否禁用按钮，默认为false
+                            /**
+                             * 同`AntdButton`中的同名参数
+                             */
                             disabled: PropTypes.bool,
-                            // 设置按钮的type属性，同AntdButton
+                            /**
+                             * 同`AntdButton`中的同名参数
+                             */
                             type: PropTypes.oneOf(['primary', 'ghost', 'dashed', 'link', 'text', 'default']),
-                            // 设置按钮的danger属性，同AntdButton
+                            /**
+                             * 同`AntdButton`中的同名参数
+                             */
                             danger: PropTypes.bool,
-                            // 设置按钮的css样式
+                            /**
+                             * 同`AntdButton`中的同名参数
+                             */
                             style: PropTypes.object,
-                            // 设置按钮的文本内容
+                            /**
+                             * 按钮内容
+                             */
                             content: PropTypes.string,
-                            // link类型对应的href
+                            /**
+                             * 同`AntdButton`中的同名参数
+                             */
                             href: PropTypes.string,
-                            // link类型对应的target
+                            /**
+                             * 同`AntdButton`中的同名参数
+                             */
                             target: PropTypes.string,
-                            // 为当前按钮设置前缀图标，同AntdIcon中的同名参数
+                            /**
+                             * 当前按钮前缀图标类型，`iconRenderer`为`'AntdIcon'`时同`AntdIcon`同名参数，`iconRenderer`为`'fontawesome'`时为css类名
+                             */
                             icon: PropTypes.string,
-                            // 针对icon参数值设置渲染方式，默认为'AntdIcon'即icon等价于AntdIcon的icon参数
-                            // 当设置为'fontawesome'时，icon参数对应fontawesome图标的css类名
+                            /**
+                             * 当前按钮前缀图标渲染方式，可选项有`'AntdIcon'`、`'fontawesome'`
+                             */
                             iconRenderer: PropTypes.oneOf(['AntdIcon', 'fontawesome']),
-                            // 用于存放任意结构的自定义辅助信息
+                            /**
+                             * 额外补充信息
+                             */
                             custom: PropTypes.any
                         })
                     )
                 ]),
-
-                // status-badge模式
+                /**
+                 * `'status-badge'`模式
+                 */
                 PropTypes.exact({
-                    // 设置状态徽标的状态
+                    /**
+                     * 状态徽标状态，可选项有`'success'`、`'processing'`、`'default'`、`'error'`、`'warning'`
+                     */
                     status: PropTypes.oneOf(['success', 'processing', 'default', 'error', 'warning']),
-                    // 设置状态徽标的后缀文字内容
+                    /**
+                     * 状态徽标标签内容
+                     */
                     text: PropTypes.oneOfType([
                         PropTypes.string,
                         PropTypes.number
                     ])
                 }),
-
-                // image模式
+                /**
+                 * `'image'`模式
+                 */
                 PropTypes.exact({
-                    // 设置图片的src属性
+                    /**
+                     * 图片资源地址
+                     */
                     src: PropTypes.string,
-
-                    // 设置图片的高度
+                    /**
+                     * 图片高度
+                     */
                     height: PropTypes.oneOfType([
                         PropTypes.string,
                         PropTypes.number
                     ]),
-
-                    // 设置是否允许预览，默认为true
+                    /**
+                     * 图片是否可交互预览
+                     * 默认值：`true`
+                     */
                     preview: PropTypes.bool
                 }),
-
-                // corner-mark模式
+                /**
+                 * `'corner-mark'`模式
+                 */
                 PropTypes.exact({
-                    // 设置角标的方位，可选的有'top-left'、'top-right'、'bottom-left'、'bottom-right'
+                    /**
+                     * 角标显示方位，可选项有`'top-left'`、`'top-right'`、`'bottom-left'`、`'bottom-right'`
+                     */
                     placement: PropTypes.oneOf(['top-left', 'top-right', 'bottom-left', 'bottom-right']),
-                    // 设置角标的颜色，默认为'#1890ff'
+                    /**
+                     * 角标颜色
+                     * 默认值：`'#1890ff'`
+                     */
                     color: PropTypes.string,
-                    // 设置单元格数值内容
+                    /**
+                     * 单元格数值内容
+                     */
                     content: PropTypes.oneOfType([
                         PropTypes.number,
                         PropTypes.string
                     ]),
-                    // 设置角标x方向像素偏移量
+                    /**
+                     * 角标水平方向像素偏移量
+                     */
                     offsetX: PropTypes.number,
-                    // 设置角标y方向像素偏移量
+                    /**
+                     * 角标竖直方向像素偏移量
+                     */
                     offsetY: PropTypes.number,
-                    // 设置是否隐藏当前角标，默认为false
+                    /**
+                     * 是否隐藏当前角标
+                     * 默认值：`false`
+                     */
                     hide: PropTypes.bool
                 }),
-
-                // checkbox模式
+                /**
+                 * `'checkbox'`模式
+                 */
                 PropTypes.exact({
-                    // 设置初始化勾选状态，必填
+                    /**
+                     * 当前勾选框状态
+                     */
                     checked: PropTypes.bool,
-                    // 设置是否禁用当前checkbox
+                    /**
+                     * 是否禁用当前勾选框
+                     */
                     disabled: PropTypes.bool,
-                    // 设置勾选框文本标签信息
+                    /**
+                     * 当前勾选框标签内容
+                     */
                     label: PropTypes.string,
-                    // 用于存放任意结构的自定义辅助信息
+                    /**
+                     * 额外补充信息
+                     */
                     custom: PropTypes.any
                 }),
-
-                // switch模式
+                /**
+                 * `'switch'`模式
+                 */
                 PropTypes.exact({
-                    // 设置初始化开关状态，必填
+                    /**
+                     * 当前开关状态
+                     */
                     checked: PropTypes.bool,
-                    // 设置是否禁用当前开关
+                    /**
+                     * 是否禁用当前开关
+                     */
                     disabled: PropTypes.bool,
-                    // 设置“开”状态下标签信息
+                    /**
+                     * “开”状态标签内容
+                     */
                     checkedChildren: PropTypes.string,
-                    // 设置“关”状态下标签信息
+                    /**
+                     * “关”状态标签内容
+                     */
                     unCheckedChildren: PropTypes.string,
-                    // 用于存放任意结构的自定义辅助信息
+                    /**
+                     * 额外补充信息
+                     */
                     custom: PropTypes.any
                 }),
-
-                // row-merge模式
+                /**
+                 * `'row-merge'`模式
+                 */
                 PropTypes.exact({
-                    // 设置单元格数值内容
+                    /**
+                     * 单元格数值内容
+                     */
                     content: PropTypes.oneOfType([
                         PropTypes.number,
                         PropTypes.string
                     ]),
-                    // 设置从当前单元格开始向后合并的单元格数量，0则代表不向后合并
+                    /**
+                     * 从当前单元格开始，向后合并的其他单元格数量
+                     */
                     rowSpan: PropTypes.number
                 }),
-
-                // dropdown模式
+                /**
+                 * `'dropdown'`模式
+                 */
                 PropTypes.arrayOf(
                     PropTypes.exact({
-                        // 设置当前链接显示的文字内容
+                        /**
+                         * 当前下拉菜单项锚点内容
+                         */
                         title: PropTypes.string,
-                        // 设置是否禁用当前链接
+                        /**
+                         * 是否禁用当前下拉菜单项
+                         */
                         disabled: PropTypes.bool,
-                        // 设置当前链接的前缀图标，同AntdIcon的icon参数
+                        /**
+                         * 当前按钮前缀图标类型，`iconRenderer`为`'AntdIcon'`时同`AntdIcon`同名参数，`iconRenderer`为`'fontawesome'`时为css类名
+                         */
                         icon: PropTypes.string,
-                        // 针对icon参数值设置渲染方式，默认为'AntdIcon'即icon等价于AntdIcon的icon参数
-                        // 当设置为'fontawesome'时，icon参数对应fontawesome图标的css类名
+                        /**
+                         * 当前按钮前缀图标渲染方式，可选项有`'AntdIcon'`、`'fontawesome'`
+                         */
                         iconRenderer: PropTypes.oneOf(['AntdIcon', 'fontawesome']),
-                        // 设置当前节点是否充当分割线
-                        isDivider: PropTypes.bool,
-                        // 用于存放任意结构的自定义辅助信息
-                        custom: PropTypes.any
-                    })
-                ),
-
-                // dropdown-links模式
-                PropTypes.arrayOf(
-                    PropTypes.exact({
-                        // 设置当前链接显示的文字内容
-                        title: PropTypes.string,
-                        // 设置当前链接url
-                        href: PropTypes.string,
-                        // 设置是否禁用当前链接
-                        disabled: PropTypes.bool,
-                        // 设置当前链接的前缀图标，同AntdIcon的icon参数
-                        icon: PropTypes.string,
-                        // 针对icon参数值设置渲染方式，默认为'AntdIcon'即icon等价于AntdIcon的icon参数
-                        // 当设置为'fontawesome'时，icon参数对应fontawesome图标的css类名
-                        iconRenderer: PropTypes.oneOf(['AntdIcon', 'fontawesome']),
-                        // 设置当前节点是否充当分割线
+                        /**
+                         * 额外补充信息
+                         */
+                        custom: PropTypes.any,
+                        /**
+                         * 当前项是否渲染为分割线
+                         * 默认值：`false`
+                         */
                         isDivider: PropTypes.bool
                     })
                 ),
-
-                // image-avatar模式
+                /**
+                 * `'dropdown-links'`模式
+                 */
+                PropTypes.arrayOf(
+                    PropTypes.exact({
+                        /**
+                         * 当前下拉菜单项锚点内容
+                         */
+                        title: PropTypes.string,
+                        /**
+                         * 当前下拉菜单项链接地址
+                         */
+                        href: PropTypes.string,
+                        /**
+                         * 是否禁用当前下拉菜单项
+                         */
+                        disabled: PropTypes.bool,
+                        /**
+                         * 当前按钮前缀图标类型，`iconRenderer`为`'AntdIcon'`时同`AntdIcon`同名参数，`iconRenderer`为`'fontawesome'`时为css类名
+                         */
+                        icon: PropTypes.string,
+                        /**
+                         * 当前按钮前缀图标渲染方式，可选项有`'AntdIcon'`、`'fontawesome'`
+                         */
+                        iconRenderer: PropTypes.oneOf(['AntdIcon', 'fontawesome']),
+                        /**
+                         * 当前项是否渲染为分割线
+                         * 默认值：`false`
+                         */
+                        isDivider: PropTypes.bool
+                    })
+                ),
+                /**
+                 * `'image-avatar'`模式
+                 */
                 PropTypes.exact({
-                    // 设置当前图片类型的头像资源地址
+                    /**
+                     * 头像图片资源链接
+                     */
                     src: PropTypes.string,
-                    // 设置头像尺寸大小，默认为'default'
+                    /**
+                     * 头像尺寸规格，传入数值型时表示像素大小，传入字符型时可使用内置尺寸规格，可选项有`'small'`、`'default'`、`'large'`，支持响应式
+                     * 默认值：`'default'`
+                     */
                     size: PropTypes.oneOfType([
-                        // 头像像素边长
                         PropTypes.number,
-                        // 固定的规格，可选的有'large'、'small'及'default'
                         PropTypes.oneOf(['large', 'small', 'default']),
-                        // 响应式size
                         PropTypes.exact({
                             xs: PropTypes.number,
                             sm: PropTypes.number,
@@ -448,49 +657,79 @@ AntdTable.propTypes = {
                             xxl: PropTypes.number
                         })
                     ]),
-                    // 设置头像的形状，可选的有'circle'、'square'，默认为'circle'
+                    /**
+                     * 头像形状，可选项有`'circle'`、`'square'`
+                     * 默认值：`'circle'`
+                     */
                     shape: PropTypes.oneOf(['circle', 'square'])
                 }),
-
-                // select模式
+                /**
+                 * `'select'`模式
+                 */
                 PropTypes.exact({
-                    // 设置下拉选择的css类
+                    /**
+                     * 下拉选择css类名
+                     */
                     className: PropTypes.string,
-                    // 设置下拉选择的css样式，其中宽度默认为'100%'
+                    /**
+                     * 下拉选择css样式，其中`width`默认为`'100%'`
+                     */
                     style: PropTypes.object,
-                    // 设置下拉选择选项内容
+                    /**
+                     * 定义下拉选择选项
+                     */
                     options: PropTypes.arrayOf(
                         PropTypes.exact({
-                            // 设置选项内容
+                            /**
+                             * 当前选项标题
+                             */
                             label: PropTypes.string,
-                            // 设置选项内容的值
+                            /**
+                             * 当前选项值
+                             */
                             value: PropTypes.oneOfType([
                                 PropTypes.string,
                                 PropTypes.number
                             ])
                         })
                     ),
-                    // 设置下拉选择菜单像素高度，默认为256
+                    /**
+                     * 下拉选择菜单像素高度
+                     * 默认值：`256`
+                     */
                     listHeight: PropTypes.number,
-                    // 设置选择模式（multiple：多选，tags：自由新增模式。默认为单选）
+                    /**
+                     * 选择模式，可选项有`'multiple'`、`'tags'`，默认为单选模式
+                     */
                     mode: PropTypes.oneOf(['multiple', 'tags']),
-                    // 设置是否禁用当前下拉选择
+                    /**
+                     * 是否禁用当前下拉选择
+                     */
                     disabled: PropTypes.bool,
-                    // 设置下拉选择尺寸规格，可选的有'small'、'middle'及'large'
-                    // 默认为'middle'
+                    /**
+                     * 下拉选择尺寸规格，可选项有`'small'`、`'middle'`、`'large'`
+                     * 默认值：`'middle'`
+                     */
                     size: PropTypes.oneOf([
-                        'small',
-                        'middle',
-                        'large'
+                        'small', 'middle', 'large'
                     ]),
-                    // 设置当前下拉选择组件是否渲染边框，默认为true
+                    /**
+                     * 是否渲染边框
+                     * 默认值：`true`
+                     */
                     bordered: PropTypes.bool,
-                    // 选择框默认文本
+                    /**
+                     * 选择框占位内容
+                     */
                     placeholder: PropTypes.string,
-                    // 用于设置悬浮展开层的方位，可选的有'bottomLeft'、'bottomRight'、'topLeft'、'topRight'
-                    // 默认为'bottomLeft'
+                    /**
+                     * 下拉菜单展开方向，可选项有`'bottomLeft'`、`'bottomRight'`、`'topLeft'`、`'topRight'`
+                     * 默认值：`'bottomLeft'`
+                     */
                     placement: PropTypes.oneOf(['bottomLeft', 'bottomRight', 'topLeft', 'topRight']),
-                    // 对应已被选中的选项值或选项值数组
+                    /**
+                     * 下拉选择已选中值
+                     */
                     value: PropTypes.oneOfType([
                         PropTypes.oneOfType([
                             PropTypes.string,
@@ -503,38 +742,58 @@ AntdTable.propTypes = {
                             ])
                         ),
                     ]),
-                    // 设置最大显示的已选择选项，默认为5，超出部分会自动省略
+                    /**
+                     * 最多显示的已选中选项数量，超出部分将会自动省略
+                     * 默认值：`5`
+                     */
                     maxTagCount: PropTypes.oneOfType([
                         PropTypes.number,
                         PropTypes.oneOf(['responsive'])
                     ]),
-                    // 设置输入框下输入内容进行搜索的字段，可选的有'value'、'label'，默认为'value'
+                    /**
+                     * 选择框内搜索对应的目标字段，可选项有`'value'`、`'label'`
+                     * 默认值：`'value'`
+                     */
                     optionFilterProp: PropTypes.oneOf(['value', 'label']),
-                    // 设置是否渲染内容清空按钮，默认为true
+                    /**
+                     * 是否允许快捷清空已选项
+                     * 默认值：`true`
+                     */
                     allowClear: PropTypes.bool
                 })
             ])
         )
     ),
 
-    // 设置是否为单元格添加边框线，默认为False
+    /**
+     * 是否渲染框线
+     * 默认值：`false`
+     */
     bordered: PropTypes.bool,
 
-    // 设置组件最大高度，每页超出部分将自动转换为竖向滑动浏览方式
+    /**
+     * 表格最大像素高度，当实际表格高度超出限制时，会自动渲染竖直滚动条
+     */
     maxHeight: PropTypes.number,
 
-    // 设置组件最大宽度，每页超出部分将自动转换为横向滑动浏览方式
+    /**
+     * 表格最大宽度，当实际表格宽度超出限制时，会自动渲染水平滚动条
+     */
     maxWidth: PropTypes.number,
 
-    // 设置表格单元格尺寸规格，可选的有'small'、'middle'和'large'
+    /**
+     * 表格单元格尺寸规格，可选项有`'small'`、`'middle'`、`'large'`
+     */
     size: PropTypes.oneOf(['small', 'middle', 'large']),
 
-    // 进阶通用参数
-    // 行选择相关参数
-    // 设置行选择模式，默认不开启，可选的有'checkbox'、'radio'
+    /**
+     * 行选择模式，可选项有`'checkbox'`（多选）、`'radio'`（单选），默认不开启行选择功能
+     */
     rowSelectionType: PropTypes.oneOf(['checkbox', 'radio']),
 
-    // 监听已被选择的行key值数组
+    /**
+     * 监听已选行对应`key`值
+     */
     selectedRowKeys: PropTypes.arrayOf(
         PropTypes.oneOfType([
             PropTypes.string,
@@ -542,20 +801,29 @@ AntdTable.propTypes = {
         ])
     ),
 
-    // 设置行选择框对应的列宽度，默认为32
+    /**
+     * 监听已选行记录
+     */
+    selectedRows: PropTypes.array,
+
+    /**
+     * 行选择控件所在列宽度
+     * 默认值：`32`
+     */
     rowSelectionWidth: PropTypes.oneOfType([
         PropTypes.string,
         PropTypes.number
     ]),
 
-    // 针对嵌套数据行，设置节点与其后代节点之间的勾选行为是否彼此独立不关联
-    // 默认：true
+    /**
+     * 针对嵌套行，各行与其所嵌套的内部行之间的行选择行为是否互相独立
+     * 默认值：`true`
+     */
     rowSelectionCheckStrictly: PropTypes.bool,
 
-    // 记录已被选择的行记录值列表
-    selectedRows: PropTypes.array,
-
-    // 设置不可被选中的行记录key值数组
+    /**
+     * 指定不可被选中的行对应`key`值
+     */
     rowSelectionIgnoreRowKeys: PropTypes.arrayOf(
         PropTypes.oneOfType([
             PropTypes.string,
@@ -563,102 +831,139 @@ AntdTable.propTypes = {
         ])
     ),
 
-    // 设置是否当data更新时，根据当前有效的selectedRowKeys参数对selectedRows进行同步更新
-    // 默认为false
+    /**
+     * 当表格数据源`data`更新时，是否根据当前有效的`selectedRowKeys`参数对`selectedRows`中的数据进行同步更新
+     * 默认值：`false`
+     */
     selectedRowsSyncWithData: PropTypes.bool,
 
-    // 设置粘性表头属性，默认为false
+    /**
+     * 配置粘性表头相关功能
+     * 默认值：`false`
+     */
     sticky: PropTypes.oneOfType([
         PropTypes.bool,
         PropTypes.exact({
             /**
-             * 设置粘性表头垂直方向像素偏移量
+             * 粘性表头竖直方向上的像素偏移量
              */
             offsetHeader: PropTypes.number,
             /**
-             * 设置粘性表头下方横向滚动条像素偏移量
+             * 粘性表头底部横向滚动条竖直方向上的像素偏移量
              */
             offsetScroll: PropTypes.number
         })
     ]),
 
     // 设置是否启用行悬浮事件监听（此功能可能会干扰其他正常表格功能，慎用），默认为false
+    /**
+     * 是否启用行鼠标移入/移出事件监听，开启后可能会影响到部分其他功能，请根据实际情况进行使用
+     * 默认值：`false`
+     */
     enableHoverListen: PropTypes.bool,
 
-    // 记录表头各字段事件
-    // 记录表头各字段鼠标移入事件
+    /**
+     * 当`enableHoverListen=True`时，监听最近一次鼠标移入的字段对应`dataIndex`信息
+     */
     recentlyMouseEnterColumnDataIndex: PropTypes.string,
 
-    // 记录表格数据行事件
-    // 记录最近一次鼠标移入行事件对应行的key
+    /**
+     * 当`enableHoverListen=True`时，监听最近一次鼠标移入的行对应`key`信息
+     */
     recentlyMouseEnterRowKey: PropTypes.oneOfType([
         PropTypes.string,
         PropTypes.number
     ]),
 
-    // 监听最近一次鼠标移入行事件对应行的记录
+    /**
+     * 当`enableHoverListen=True`时，监听最近一次鼠标移入的行数据信息
+     */
     recentlyMouseEnterRow: PropTypes.object,
 
-    // 为每个title设置气泡卡片悬浮说明信息，格式如{字段1: {title: '标题内容', 'content': '说明内容巴拉巴拉巴拉'}}
+    /**
+     * 配置各字段标题额外气泡说明卡片信息相关参数
+     */
     titlePopoverInfo: PropTypes.objectOf(
         PropTypes.exact({
-            // 气泡卡片标题
+            /**
+             * 气泡卡片标题
+             */
             title: PropTypes.string,
-            // 气泡卡片内容
+            /**
+             * 气泡卡片内容
+             */
             content: PropTypes.string,
-            // 气泡卡片弹出方位，可选的有'top'、'left'、'right'、'bottom'、'topLeft'
-            // 、'topRight'、'bottomLeft'、'bottomRight'、'leftTop'、'leftBottom'
-            // 、'rightTop'、'rightBottom'，默认为'bottom'
+            /**
+             * 气泡卡片弹出方位，可选项有`'top'`、`'left'`、`'right'`、`'bottom'`、`'topLeft'`、`'topRight'`、`'bottomLeft'`、`'bottomRight'`、`'leftTop'`、`'leftBottom'`、`'rightTop'`、`'rightBottom'`
+             * 默认值：`'bottom'`
+             */
             placement: PropTypes.oneOf([
-                'top', 'left', 'right', 'bottom', 'topLeft', 'topRight', 'bottomLeft',
-                'bottomRight', 'leftTop', 'leftBottom', 'rightTop', 'rightBottom'
+                'top', 'left', 'right', 'bottom', 'topLeft', 'topRight', 'bottomLeft', 'bottomRight', 'leftTop', 'leftBottom', 'rightTop', 'rightBottom'
             ]),
-            // 设置悬浮层css样式
+            /**
+             * 气泡卡片展开层css样式
+             */
             overlayStyle: PropTypes.object
         })
     ),
 
-    // 为每个字段设置基于【正则表达式】的格式约束，用于在“可编辑单元格”中约束新内容的写入
+    /**
+     * 针对开启了可编辑模式的字段，配置基于正则表达式的输入内容格式校验约束规则
+     */
     columnsFormatConstraint: PropTypes.objectOf(
         PropTypes.exact({
-            // 设置对应字段的正则表达式规则
+            /**
+             * 正则表达式，用于校验输入内容是否符合格式要求
+             */
             rule: PropTypes.string,
-
-            // 设置自定义错误提示内容，默认为'不符合纯汉字输入要求！'
+            /**
+             * 用户输入内容校验失败时的提示说明信息
+             */
             content: PropTypes.string
         })
     ),
 
-    // 定义排序参数
+    /**
+     * 配置表格字段排序相关功能
+     */
     sortOptions: PropTypes.exact({
-        // 定义要参与排序的字段对应的dataIndex，多字段组合排序情况下顺序即为优先级，从高往低
+        /**
+         * 参与排序的若干字段`dataIndex`数组，多字段组合排序时，数组顺序即为组合排序优先级顺序，由高到低
+         */
         sortDataIndexes: PropTypes.arrayOf(PropTypes.string),
-
-        // 设置是否进行多列组合排序，当设置为'auto'时会开启自动组合排序模式，此时组合排序的字段优先级由用户点击排序的字段顺序所动态决定
+        /**
+         * 是否启用多字段组合排序，当设置为`'auto'`时表示自动组合排序，此时组合排序的字段优先级顺序与用户依次点击排序字段的顺序对应
+         * 默认值：`false``
+         */
         multiple: PropTypes.oneOfType([
             PropTypes.bool,
             PropTypes.oneOf(['auto'])
         ]),
-
-        // 为各个字段设置比较模式，可选的有'number'（强制视作数值型）、'custom'（自定义比较模式）
-        // 其中'custom'模式下需要配合sortOptions.customOrders参数进行自定义顺序的定义
+        /**
+         * 为各字段指定排序比较模式，可选项有`'number'`（强制数值型排序）、`'custom'`（自定义排序）
+         */
         forceCompareModes: PropTypes.objectOf(
             PropTypes.oneOf(['number', 'custom'])
         ),
-
-        // 用于配合sortOptions.forceCompareModes中的'custom'模式相关字段进行排序顺序自定义
+        /**
+         * 当`forceCompareModes`为`'custom'`时，用于为相应字段设置自定义排序对应的元素顺序
+         */
         customOrders: PropTypes.objectOf(PropTypes.array)
     }),
 
-    // 定义筛选参数
+    /**
+     * 配置表格字段筛选相关功能
+     */
     filterOptions: PropTypes.objectOf(
         PropTypes.exact({
-            // 设置筛选模式，可选的有'checkbox'、'keyword'、'tree'
-            // 其中'tree'模式需要依赖树形结构参数filterCustomTreeItems
-            // 默认为'checkbox'
+            /**
+             * 筛选模式，可选项有`'checkbox'`、`'keyword'`、`'tree'`，其中`'tree'`模式需要依赖相应的`'filterCustomTreeItems'`参数进行自定义树形菜单结构的构造
+             * 默认值：`'checkbox'`
+             */
             filterMode: PropTypes.oneOf(['checkbox', 'keyword', 'tree']),
-
-            // 'checkbox'模式下可用，用于自定义待筛选项
+            /**
+             * `filterMode`为`'checkbox'`时，用于自定义筛选菜单项
+             */
             filterCustomItems: PropTypes.oneOfType([
                 PropTypes.arrayOf([
                     PropTypes.string,
@@ -666,125 +971,185 @@ AntdTable.propTypes = {
                 ]),
                 PropTypes.any
             ]),
-
-            // 'tree'模式下可用，用于自定义树型筛选菜单结构
+            /**
+             * `filterMode`为`'tree'`时，用于构造自定义树形菜单结构
+             */
             filterCustomTreeItems: PropTypes.arrayOf(PropTypes.object),
-
-            // 'checkbox'模式下可用，用于设置是否允许多选，默认为true
+            /**
+             * `filterMode`为`'checkbox'`时，是否开启多选模式
+             * 默认值：`true`
+             */
             filterMultiple: PropTypes.bool,
-
-            // 'checkbox'模式下可用，用于设置是否开启搜索框，默认为false
+            /**
+             * `filterMode`为`'checkbox'`时，是否开启搜索框
+             * 默认值：`false`
+             */
             filterSearch: PropTypes.bool
         })
     ),
 
     /**
-     * 监听或设置各字段筛选功能初始化时已选中值
+     * 字段筛选相关字段默认选中的筛选值
      */
     defaultFilteredValues: PropTypes.objectOf(PropTypes.array),
 
-    // 翻页相关参数，设置为false时不展示和进行分页
+    /**
+     * 配置表格翻页相关功能，设置为`false`时将关闭分页相关功能
+     */
     pagination: PropTypes.oneOfType([
         PropTypes.exact({
-            // 设置分页组件的位置，可选项有'topLeft'、'topCenter'、'topRight'、'bottomLeft'、'bottomCenter'以及'bottomRight'
+            /**
+             * 分页组件渲染方位，可选项有`'topLeft'`、`'topCenter'`、`'topRight'`、`'bottomLeft'`、`'bottomCenter'`、`'bottomRight'`
+             * 默认值：`'bottomRight'`
+             */
             position: PropTypes.oneOf([
-                'topLeft', 'topCenter', 'topRight',
-                'bottomLeft', 'bottomCenter', 'bottomRight'
+                'topLeft', 'topCenter', 'topRight', 'bottomLeft', 'bottomCenter', 'bottomRight'
             ]),
-
-            // 每页显示的记录行数
+            /**
+             * 监听或设置每页允许显示的最大行记录数量
+             */
             pageSize: PropTypes.number,
-
-            // 当前的页码
+            /**
+             * 监听或设置当前页码
+             */
             current: PropTypes.number,
-
-            // 设置是否展示pageSize切换器，当total大于50时默认为true
+            /**
+             * 是否显示`pageSize`切换控件，当表格总记录数量大于50时默认为`true`
+             */
             showSizeChanger: PropTypes.bool,
-
-            // 设定每页尺寸切换可选的范围
+            /**
+             * `pageSize`切换控件的可选项
+             */
             pageSizeOptions: PropTypes.arrayOf(PropTypes.number),
-
-            // 设置是否显示原生页面悬浮提示title信息，默认为true
+            /**
+             * 各页码在鼠标移入时，是否显示浏览器原生提示信息
+             * 默认值：`true`
+             */
             showTitle: PropTypes.bool,
-
-            // 设置是否渲染快速跳转控件，默认为false
+            /**
+             * 是否渲染快捷跳页控件
+             * 默认值：`false`
+             */
             showQuickJumper: PropTypes.bool,
-
-            // 定义总记录行数显示部分的前缀文字，默认为"共 "
+            /**
+             * 总记录描述文案前缀文字
+             */
             showTotalPrefix: PropTypes.string,
-
-            // 定义总记录行数显示部分的后缀文字，默认为" 条记录"
+            /**
+             * 总记录描述文案后缀文字
+             */
             showTotalSuffix: PropTypes.string,
-
-            // 用于设置是否在数据记录只有一页时自动隐藏分页器，默认为false
+            /**
+             * 是否在数据行数量不足一页时，自动隐藏分页相关控件
+             * 默认值：`false`
+             */
             hideOnSinglePage: PropTypes.bool,
-
-            // 设置是否开启简洁模式
+            /**
+             * 是否开启简洁模式
+             * 默认值：`false`
+             */
             simple: PropTypes.bool,
-
-            // 设置是否禁用分页，默认为false
+            /**
+             * 是否禁用分页相关控件
+             * 默认值：`false`
+             */
             disabled: PropTypes.bool,
-
-            // 设置分页器尺寸，可选的有'default'和'small'，默认为'default'
+            /**
+             * 分页控件尺寸规格，可选项有`'small'`、`'default'`
+             * 默认值：`'default'`
+             */
             size: PropTypes.oneOf(['default', 'small']),
-
-            // 用于在后端分页时手动设置总数据记录数量
+            /**
+             * 手动设置总记录数量，通常配合[服务端数据加载模式](/AntdTable-server-side-mode)使用
+             */
             total: PropTypes.number,
-
-            // 设置是否展示较少的跳页选项
-            // 默认：false
+            /**
+             * 是否优先展示较少的跳页项
+             * 默认值：`false`
+             */
             showLessItems: PropTypes.bool
         }),
         PropTypes.bool
     ]),
 
-    // 经过修改操作后，当前状态下最新的dataSource数据
+    /**
+     * 监听经过编辑修改操作后，最新状态下的表格数据源
+     */
     currentData: PropTypes.array,
 
-    // 经过最近一次修改操作后，被修改的行所对应dataSource中的json字典
+    /**
+     * 监听最近一次编辑修改操作，对应的被修改行记录数据
+     */
     recentlyChangedRow: PropTypes.object,
 
-    // 经过最近一次修改操作后，被修改的行所对应列的dataIndex信息
+    /**
+     * 监听最近一次编辑修改操作，对应的被修改字段`dataIndex`信息
+     */
     recentlyChangedColumn: PropTypes.string,
 
-    // 经过最近一次排序操作后，对应的字段及排序方式信息
+    /**
+     * 监听排序操作相关行为参数
+     */
     sorter: PropTypes.exact({
-        // 对应参与排序的字段数组
+        /**
+         * 监听排序涉及的字段`dataIndex`信息
+         */
         columns: PropTypes.arrayOf(PropTypes.string),
-
-        // 对应参与排序的各个字段的排序方式（ascend：升序，descend：升序）
+        /**
+         * 监听排序涉及的字段对应排序方式，其中`'ascend'`表示升序，`'descend'`表示降序
+         */
         orders: PropTypes.arrayOf(PropTypes.oneOf(['ascend', 'descend']))
     }),
 
-    // 经过最近一次筛选操作后，对应的字段及筛选值信息
+    /**
+     * 监听筛选操作相关行为参数
+     */
     filter: PropTypes.object,
 
     // 设置数据操纵模式，可选的有'client-side'（前端）、'server-side'（后端），默认为'client-side'
+    /**
+     * 表格数据加载控制方式，可选项有`'client-side'`（客户端加载）、`'server-side'`（服务端），其中服务端模式适用于大量数据展示需求，具体请参考[服务端数据加载模式](/AntdTable-server-side-mode)
+     * 默认值：`'client-side'`
+     */
     mode: PropTypes.oneOf(['client-side', 'server-side']),
 
-    // 设置总结栏内容数组，请与每个字段保持一一对应
+    /**
+     * 配置总结栏内容，按数组顺序渲染
+     */
     summaryRowContents: PropTypes.arrayOf(
         PropTypes.exact({
-            // 总结栏单元格内容
+            /**
+             * 组件型，当前总结栏单元格内容
+             */
             content: PropTypes.node,
-
-            // 设置当前值横跨的字段数量，默认为1
+            /**
+             * 当前总结栏单元格横跨占据的字段数量
+             * 默认值：`1`
+             */
             colSpan: PropTypes.number,
-
-            // 设置列对齐方式，可选项有'left'、'center'、'right'
+            /**
+             * 当前总结栏列对齐方式，可选项有`'left'`、`'center'`、`'right'`
+             */
             align: PropTypes.oneOf(['left', 'center', 'right'])
         })
     ),
 
-    // 设置总结栏是否启用fixed功能，默认为false
+    /**
+     * 总结栏是否启用固定布局功能
+     * 默认值：`false`
+     */
     summaryRowFixed: PropTypes.bool,
 
-    // 以对应字段的dataIndex为键，传入js函数字符串，用于自定义逻辑改变每个单元格的style样式
+    /**
+     * 配置各字段条件格式化渲染对应的`javascript`函数字符串
+     */
     conditionalStyleFuncs: PropTypes.objectOf(
         PropTypes.string
     ),
 
-    // 配置行可展开内容，键名为对应行的key，键值为对应行的展开内容
+    /**
+     * 配置各数据行的行展开内容，键为数据行`key`值，值为对应行的展开内容
+     */
     expandedRowKeyToContent: PropTypes.arrayOf(
         PropTypes.exact({
             key: PropTypes.oneOfType([
@@ -795,40 +1160,56 @@ AntdTable.propTypes = {
         })
     ),
 
-    // 设置行展开控件所占的宽度
+    /**
+     * 行展开控件所在列宽度
+     */
     expandedRowWidth: PropTypes.oneOfType([
         PropTypes.string,
         PropTypes.number
     ]),
 
-    // 设置是否允许直接点击行进行展开，默认为false
+    /**
+     * 是否允许通过直接点击行的方式展开对应行
+     * 默认值：`false`
+     */
     expandRowByClick: PropTypes.bool,
 
-    // 设置初始化时处于展开状态的行key值数组
+    /**
+     * 初始化处于展开状态的行对应`key`值
+     */
     defaultExpandedRowKeys: PropTypes.arrayOf(PropTypes.string),
 
-    // 设置或监听处于展开状态的行key值数组
+    /**
+     * 监听或设置处于展开状态的行对应`key`值
+     */
     expandedRowKeys: PropTypes.arrayOf(PropTypes.string),
 
     // 设置启用单元格点击事件监听的字段dataIndex数组，开启后会干扰多种再渲染模式的交互，
     // 以及自定义条件单元格模式，请慎用
-    enableCellClickListenColumns: PropTypes.arrayOf(
-        PropTypes.string
-    ),
+    /**
+     * 是否启用单元格单击、双击、右键相关事件的监听，开启后可能会影响到部分其他功能，请根据实际情况进行使用
+     * 默认值：`false`
+     */
+    enableCellClickListenColumns: PropTypes.arrayOf(PropTypes.string),
 
-    // 记录单元格点击事件
-    // 单击事件
-    // 记录单元格点击事件对应的字段dataIndex信息
+    /**
+     * 当`enableCellClickListenColumns=True`时，监听最近一次单元格单击事件对应的字段`dataIndex`
+     */
     recentlyCellClickColumn: PropTypes.string,
 
-    // 记录单元格点击事件对应的行记录信息
+    /**
+     * 当`enableCellClickListenColumns=True`时，监听最近一次单元格单击事件对应的行记录信息
+     */
     recentlyCellClickRecord: PropTypes.object,
 
-    // 记录单元格单击事件发生的总次数
+    /**
+     * 当`enableCellClickListenColumns=True`时，监听表格单元格单击事件累计发生次数
+     * 默认值：`0`
+     */
     nClicksCell: PropTypes.number,
 
     /**
-     * 监听单元格单击事件详细参数
+     * 当`enableCellClickListenColumns=True`时，监听最近一次表格单元格单击事件详细参数
      */
     cellClickEvent: PropTypes.exact({
         /**
@@ -856,23 +1237,29 @@ AntdTable.propTypes = {
          */
         screenY: PropTypes.number,
         /**
-         * 点击事件对应的时间戳
+         * 事件对应的时间戳
          */
         timestamp: PropTypes.number
     }),
 
-    // 双击事件
-    // 记录单元格点击事件对应的字段dataIndex信息
+    /**
+     * 当`enableCellClickListenColumns=True`时，监听最近一次单元格双击事件对应的字段`dataIndex`
+     */
     recentlyCellDoubleClickColumn: PropTypes.string,
 
-    // 记录单元格点击事件对应的行记录信息
+    /**
+     * 当`enableCellClickListenColumns=True`时，监听最近一次单元格双击事件对应的行记录信息
+     */
     recentlyCellDoubleClickRecord: PropTypes.object,
 
-    // 记录单元格单击事件发生的总次数
+    /**
+     * 当`enableCellClickListenColumns=True`时，监听表格单元格双击事件累计发生次数
+     * 默认值：`0`
+     */
     nDoubleClicksCell: PropTypes.number,
 
     /**
-     * 监听单元格双击事件详细参数
+     * 当`enableCellClickListenColumns=True`时，监听最近一次表格单元格双击事件详细参数
      */
     cellDoubleClickEvent: PropTypes.exact({
         /**
@@ -900,24 +1287,29 @@ AntdTable.propTypes = {
          */
         screenY: PropTypes.number,
         /**
-         * 点击事件对应的时间戳
+         * 事件对应的时间戳
          */
         timestamp: PropTypes.number
     }),
 
-    // 记录单元格右键事件
-    // 右键事件
-    // 记录单元格右键事件对应的字段dataIndex信息
+    /**
+     * 当`enableCellClickListenColumns=True`时，监听最近一次单元格右键事件对应的字段`dataIndex`
+     */
     recentlyContextMenuClickColumn: PropTypes.string,
 
-    // 记录单元格右键事件对应的行记录信息
+    /**
+     * 当`enableCellClickListenColumns=True`时，监听最近一次单元格右键事件对应的行记录信息
+     */
     recentlyContextMenuClickRecord: PropTypes.object,
 
-    // 记录单元格右键事件发生的总次数
+    /**
+     * 当`enableCellClickListenColumns=True`时，监听表格单元格右键事件累计发生次数
+     * 默认值：`0`
+     */
     nContextMenuClicksCell: PropTypes.number,
 
     /**
-     * 监听单元格右键事件详细参数
+     * 当`enableCellClickListenColumns=True`时，监听最近一次表格单元格右键事件详细参数
      */
     cellContextMenuClickEvent: PropTypes.exact({
         /**
@@ -945,92 +1337,135 @@ AntdTable.propTypes = {
          */
         screenY: PropTypes.number,
         /**
-         * 点击事件对应的时间戳
+         * 事件对应的时间戳
          */
         timestamp: PropTypes.number
     }),
 
-    // 自定义空数据状态内容
+    /**
+     * 组件型，自定义空数据状态下，表格内的显示内容
+     */
     emptyContent: PropTypes.node,
 
-    // 设置是否开启单元格渲染优化，默认为false
+    /**
+     * 是否严格启用单元格内容渲染优化，开启后，会基于单元格数据对单元格内容进行渲染优化，减少渲染次数
+     * 默认值：`false`
+     */
     cellUpdateOptimize: PropTypes.bool,
 
-    // 再渲染模式
-    // 迷你图模式相关参数
-    // 为迷你图模式单元格设置像素高度，默认为30
+    /**
+     * 针对再渲染模式中的各迷你图模式，统一设置相关单元格像素高度
+     * 默认值：`30`
+     */
     miniChartHeight: PropTypes.number,
 
-    // 设置迷你图模式是否启用出现动画，默认为false
+    /**
+     * 针对再渲染模式中的各迷你图模式，是否启用出场动画
+     * 默认值：`false`
+     */
     miniChartAnimation: PropTypes.bool,
 
-    // 按钮模式相关参数
-    // button模式下，最近一次点击事件发生的行对应record信息
+    /**
+     * 针对再渲染模式中的`'button'`模式，监听最近一次按钮点击对应的行记录信息
+     */
     recentlyButtonClickedRow: PropTypes.object,
 
-    // 当前生命周期下，button模式对应字段中按钮被点击过的总次数
+    /**
+     * 针对再渲染模式中的`'button'`模式，监听表格中按钮点击累计次数
+     * 默认值：`0`
+     */
     nClicksButton: PropTypes.number,
 
-    // 对应最近一次按钮模式下被点击的按钮文字内容
+    /**
+     * 针对再渲染模式中的`'button'`模式，监听最近一次按钮点击对应的按钮文字内容
+     */
     clickedContent: PropTypes.string,
 
-    // 对应最近一次按钮模式下被点击的按钮数据项对应custom字段内容
+    /**
+     * 针对再渲染模式中的`'button'`模式，监听最近一次按钮点击对应的按钮数据项对应`'custom'`字段内容
+     */
     clickedCustom: PropTypes.any,
 
-    // 对应最近一次按钮模式下被点击的按钮对应列dataIndex
+    /**
+     * 针对再渲染模式中的`'button'`模式，监听最近一次按钮点击对应的字段`dataIndex`
+     */
     recentlyButtonClickedDataIndex: PropTypes.string,
 
-    // 自定义格式模式
-    // 针对custom-format自定义格式化对应的字段，设置针对对应列每个值从原始数值到格式化结果的js函数字符串
-    // 键名为对应字段的dataIndex
+    /**
+     * 针对再渲染模式中的`'custom-format'`模式，键为对应字段`dataIndex`信息，值为对应的预处理`javascript`函数字符串
+     */
     customFormatFuncs: PropTypes.objectOf(
         PropTypes.string
     ),
 
-    // 勾选框模式相关参数
-    // 用于监听最近发生勾选事件的记录行
+    /**
+     * 针对再渲染模式中的`'checkbox'`模式，监听最近发生勾选事件的记录行
+     */
     recentlyCheckedRow: PropTypes.object,
 
-    // 用于监听最近发生勾选事件的勾选框标签内容
+    /**
+     * 针对再渲染模式中的`'checkbox'`模式，监听最近发生勾选事件的勾选框标签内容
+     */
     recentlyCheckedLabel: PropTypes.string,
 
-    // 用于监听最近发生勾选事件的字段dataIndex信息
+    /**
+     * 针对再渲染模式中的`'checkbox'`模式，监听最近发生勾选事件的字段`dataIndex`信息
+     */
     recentlyCheckedDataIndex: PropTypes.string,
 
-    // 用于监听最近发生的勾选行为对应的勾选状态
+    /**
+     * 针对再渲染模式中的`'checkbox'`模式，监听最近发生勾选事件对应的勾选状态
+     */
     recentlyCheckedStatus: PropTypes.bool,
 
-    // 开关模式相关参数
-    // 用于监听最近发生开关切换事件的记录行
+    /**
+     * 针对再渲染模式中的`'switch'`模式，监听最近发生开关切换事件的记录行
+     */
     recentlySwitchRow: PropTypes.object,
 
-    // 用于监听最近发生开关切换事件的字段dataIndex信息
+    /**
+     * 针对再渲染模式中的`'switch'`模式，监听最近发生开关切换事件对应的开关状态
+     */
     recentlySwitchDataIndex: PropTypes.string,
 
-    // 用于监听最近发生的开关切换行为对应的切换后状态
+    /**
+     * 针对再渲染模式中的`'switch'`模式，监听最近发生开关切换事件对应的开关状态
+     */
     recentlySwitchStatus: PropTypes.bool,
 
-    // dropdown再渲染模式
-    // 用于监听表格中dropdown相关累计点击次数
+    /**
+     * 针对再渲染模式中的`'dropdown'`模式，监听表格中各下拉菜单项累计点击次数
+     */
     nClicksDropdownItem: PropTypes.number,
 
-    // 用于监听最近一次被点击的dropdown选项title值
+    /**
+     * 针对再渲染模式中的`'dropdown'`模式，监听最近一次被点击的下拉菜单项`title`值
+     */
     recentlyClickedDropdownItemTitle: PropTypes.string,
 
-    // 用于监听最近一次被点击的dropdown对应的字段dataIndex
+    /**
+     * 针对再渲染模式中的`'dropdown'`模式，监听最近一次被点击的下拉菜单项对应的字段dataIndex
+     */
     recentlyDropdownItemClickedDataIndex: PropTypes.string,
 
-    // 用于监听最近一次被点击的dropdown对应的行记录
+    /**
+     * 针对再渲染模式中的`'dropdown'`模式，监听最近一次被点击的下拉菜单项对应的行记录
+     */
     recentlyDropdownItemClickedRow: PropTypes.object,
 
-    // select再渲染模式
-    // 用于监听最近发生select选值变更对应的记录行
+    /**
+     * 针对再渲染模式中的`'select'`模式，监听最近发生下拉选项值更新的记录行
+     */
     recentlySelectRow: PropTypes.object,
 
-    // 用于监听最近发生select选值变更的字段dataIndex信息
+    /**
+     * 针对再渲染模式中的`'select'`模式，监听最近发生下拉选项值更新对应的字段`dataIndex`
+     */
     recentlySelectDataIndex: PropTypes.string,
 
-    // 用于监听最近发生select选值变更对应的最新value状态
+    /**
+     * 针对再渲染模式中的`'select'`模式，监听最近发生下拉选项值更新对应的选项值
+     */
     recentlySelectValue: PropTypes.oneOfType([
         PropTypes.oneOfType([
             PropTypes.number,
@@ -1044,27 +1479,31 @@ AntdTable.propTypes = {
         )
     ]),
 
-    // 用于设置需要进行隐藏的行对应key值数组，默认为[]
+    /**
+     * 需要进行隐藏的行记录`key`值数组
+     * 默认值：`[]`
+     */
     hiddenRowKeys: PropTypes.arrayOf(PropTypes.string),
 
-    // 用于设置是否针对data参数进行深比较，从而避免React默认的浅比较prop导致部分数据变化情况下未刷新的问题
-    // 开启此功能后，在数据量较大时会对刷新性能造成负面影响
-    // 默认：false
+    /**
+     * 是否在表格底层进行重绘时，通过深度比较数据源`data`变化情况，来进行表格重绘优化，适用于中小数据量表格
+     * 默认值：`false`
+     */
     dataDeepCompare: PropTypes.bool,
 
     /**
      * 是否开启虚拟滚动模式
-     * 默认：false
+     * 默认值：`false`
      */
     virtual: PropTypes.bool,
 
     /**
-     * 自定义整体标题内容
+     * 组件型，表格整体标题内容
      */
     title: PropTypes.node,
 
     /**
-     * 自定义页脚内容
+     * 组件型，表格整体页脚内容
      */
     footer: PropTypes.node,
 
