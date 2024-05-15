@@ -170,7 +170,7 @@ const AntdTabs = (props) => {
             centered={centered}
             indicator={{
                 size: (origin) => {
-                    if (indicator.size) {
+                    if (indicator?.size) {
                         if (indicator.size < 0) {
                             return origin + indicator.size;
                         }

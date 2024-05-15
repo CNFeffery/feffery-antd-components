@@ -76,6 +76,7 @@ components = [
     'AntdStatistic',
     'AntdCountdown',
     'AntdTable',
+    'AntdTabs',
 ]
 
 app.layout = html.Div(
