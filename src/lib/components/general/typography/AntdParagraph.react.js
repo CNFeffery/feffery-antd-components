@@ -167,7 +167,10 @@ AntdParagraph.propTypes = {
             /**
              * 是否可展开
              */
-            expandable: PropTypes.bool,
+            expandable: PropTypes.oneOfType([
+                PropTypes.bool,
+                PropTypes.oneOf(['collapsible'])
+            ]),
             /**
              * 最大显示行数
              */
