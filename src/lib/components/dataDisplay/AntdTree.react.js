@@ -3,6 +3,9 @@ import PropTypes from 'prop-types';
 
 const LazyAntdTree = React.lazy(() => import(/* webpackChunkName: "data_entry" */ '../../fragments/dataDisplay/AntdTree.react'));
 
+/**
+ * 树形控件组件AntdTree
+ */
 const AntdTree = (props) => {
     return (
         <Suspense fallback={null}>
@@ -13,63 +16,87 @@ const AntdTree = (props) => {
 
 // 定义递归PropTypes
 const PropTreeNodeShape = {
-    // 标题
+    /**
+     * 当前节点标题
+     */
     title: PropTypes.string.isRequired,
-
-    // 唯一识别id
+    /**
+     * 当前节点唯一识别id
+     */
     key: PropTypes.string.isRequired,
-
-    // 可选，设置是否禁用
+    /**
+     * 是否禁用当前节点
+     * 默认值：`false`
+     */
     disabled: PropTypes.bool,
-
-    // 为当前选项设置前缀图标，同AntdIcon中的icon参数
+    /**
+     * 当前节点前缀图标类型，`iconRenderer`为`'AntdIcon'`时同`AntdIcon`同名参数，`iconRenderer`为`'fontawesome'`时为css类名
+     */
     icon: PropTypes.string,
-
-    // 针对icon参数值设置渲染方式，默认为'AntdIcon'即icon等价于AntdIcon的icon参数
-    // 当设置为'fontawesome'时，icon参数对应fontawesome图标的css类名
+    /**
+     * 当前节点前缀图标渲染方式，可选项有`'AntdIcon'`、`'fontawesome'`
+     */
     iconRenderer: PropTypes.oneOf(['AntdIcon', 'fontawesome']),
-
-    // 可选，当树为checkable时，设置对应节点是否展示checkbox
+    /**
+     * 当树组件整体的`checkable=True`时，单独控制当前节点是否渲染勾选框
+     */
     checkable: PropTypes.bool,
-
-    // 可选，设置是否禁用checkbox
+    /**
+     * 当树组件整体的`checkable=True`时，控制是否禁用当前节点的勾选框
+     */
     disableCheckbox: PropTypes.bool,
-
-    // 可选，设置对应节点是否可选
+    /**
+     * 当前节点是否可点击选择
+     */
     selectable: PropTypes.bool,
-
-    // 可选，当树为enableNodeFavorites时，设置对应节点是否收藏
+    /**
+     * 当树组件整体的`enableNodeFavorites=True`时，控制是否可对当前节点进行收藏
+     */
     enableFavorites: PropTypes.bool,
-
-    // 设置当前节点css样式
+    /**
+     * 当前节点css样式
+     */
     style: PropTypes.object,
-
-    // 设置当前节点css类
+    /**
+     * 当前节点css类名
+     */
     className: PropTypes.string,
-
-    // 为当前节点设置tooltip额外参数
+    /**
+     * 配置当前节点文字提示相关参数
+     */
     tooltipProps: PropTypes.exact({
-        // 设置当前节点对应的tooltip内容
+        /**
+         * 当前节点文字提示内容
+         */
         title: PropTypes.string,
-
-        // 设置当前节点对应的tooltip展开方位
+        /**
+         * 当前节点文字提示展开方向，可选项有`'top'`、`'left'`、`'right'`、`'bottom'`、`'topLeft'`、`'topRight'`、`'bottomLeft'`、`'bottomRight'`
+         * 默认值：`'top'`
+         */
         placement: PropTypes.oneOf([
-            'top', 'left', 'right', 'bottom', 'topLeft',
-            'topRight', 'bottomLeft', 'bottomRight'
+            'top', 'left', 'right', 'bottom', 'topLeft', 'topRight', 'bottomLeft', 'bottomRight'
         ])
     }),
-
-    // 为当前节点设置右键菜单相关参数
+    /**
+     * 配置当前节点右键菜单相关参数
+     */
     contextMenu: PropTypes.arrayOf(
         PropTypes.exact({
-            // 为当前右键菜单选项设置唯一key值
+            /**
+             * 当前右键菜单项唯一识别id
+             */
             key: PropTypes.string,
-            // 为当前右键菜单项设置标题内容
+            /**
+             * 当前右键菜单项标题内容
+             */
             label: PropTypes.string,
-            // 为当前选项设置前缀图标，同AntdIcon中的icon参数
+            /**
+             * 当前节点前缀图标类型，`iconRenderer`为`'AntdIcon'`时同`AntdIcon`同名参数，`iconRenderer`为`'fontawesome'`时为css类名
+             */
             icon: PropTypes.string,
-            // 针对icon参数值设置渲染方式，默认为'AntdIcon'即icon等价于AntdIcon的icon参数
-            // 当设置为'fontawesome'时，icon参数对应fontawesome图标的css类名
+            /**
+             * 当前节点前缀图标渲染方式，可选项有`'AntdIcon'`、`'fontawesome'`
+             */
             iconRenderer: PropTypes.oneOf(['AntdIcon', 'fontawesome']),
         })
     )
@@ -81,224 +108,352 @@ const treeDataPropTypes = PropTypes.arrayOf(PropTreeNode);
 
 // 定义偏平结构节点类型
 const PropFlatNodeShape = {
-    // 标题
+    /**
+     * 当前节点标题
+     */
     title: PropTypes.string.isRequired,
-
-    // 唯一识别id
+    /**
+     * 当前节点唯一识别id
+     */
     key: PropTypes.string.isRequired,
-
-    // 可选，设置是否禁用
+    /**
+     * 是否禁用当前节点
+     * 默认值：`false`
+     */
     disabled: PropTypes.bool,
-
-    // 为当前选项设置前缀图标，同AntdIcon中的icon参数
+    /**
+     * 当前节点前缀图标类型，`iconRenderer`为`'AntdIcon'`时同`AntdIcon`同名参数，`iconRenderer`为`'fontawesome'`时为css类名
+     */
     icon: PropTypes.string,
-
-    // 针对icon参数值设置渲染方式，默认为'AntdIcon'即icon等价于AntdIcon的icon参数
-    // 当设置为'fontawesome'时，icon参数对应fontawesome图标的css类名
+    /**
+     * 当前节点前缀图标渲染方式，可选项有`'AntdIcon'`、`'fontawesome'`
+     */
     iconRenderer: PropTypes.oneOf(['AntdIcon', 'fontawesome']),
-
-    // 可选，当树为checkable时，设置对应节点是否展示checkbox
+    /**
+     * 当树组件整体的`checkable=True`时，单独控制当前节点是否渲染勾选框
+     */
     checkable: PropTypes.bool,
-
-    // 可选，设置是否禁用checkbox
+    /**
+     * 当树组件整体的`checkable=True`时，控制是否禁用当前节点的勾选框
+     */
     disableCheckbox: PropTypes.bool,
-
-    // 可选，设置对应节点是否可选
+    /**
+     * 当前节点是否可点击选择
+     */
     selectable: PropTypes.bool,
-
-    // 可选，当树为enableNodeFavorites时，设置对应节点是否收藏
+    /**
+     * 当树组件整体的`enableNodeFavorites=True`时，控制是否可对当前节点进行收藏
+     */
     enableFavorites: PropTypes.bool,
-
-    // 可选，设置对应节点的父节点key值
+    /**
+     * 当前节点对应的父节点`key`值
+     */
     parent: PropTypes.string,
-
-    // 设置当前节点css样式
+    /**
+     * 当前节点css样式
+     */
     style: PropTypes.object,
-
-    // 设置当前节点css类
+    /**
+     * 当前节点css类名
+     */
     className: PropTypes.string,
-
-    // 为当前节点设置tooltip额外参数
+    /**
+     * 配置当前节点文字提示相关参数
+     */
     tooltipProps: PropTypes.exact({
-
+        /**
+         * 当前节点文字提示内容
+         */
         title: PropTypes.string,
-
+        /**
+         * 当前节点文字提示展开方向，可选项有`'top'`、`'left'`、`'right'`、`'bottom'`、`'topLeft'`、`'topRight'`、`'bottomLeft'`、`'bottomRight'`
+         * 默认值：`'top'`
+         */
         placement: PropTypes.oneOf([
-            'top', 'left', 'right', 'bottom', 'topLeft',
-            'topRight', 'bottomLeft', 'bottomRight'
+            'top', 'left', 'right', 'bottom', 'topLeft', 'topRight', 'bottomLeft', 'bottomRight'
         ])
     }),
-
-    // 为当前节点设置右键菜单相关参数
+    /**
+     * 配置当前节点右键菜单相关参数
+     */
     contextMenu: PropTypes.arrayOf(
         PropTypes.exact({
-            // 为当前右键菜单选项设置唯一key值
+            /**
+             * 当前右键菜单项唯一识别id
+             */
             key: PropTypes.string,
-            // 为当前右键菜单项设置标题内容
+            /**
+             * 当前右键菜单项标题内容
+             */
             label: PropTypes.string,
-            // 为当前选项设置前缀图标，同AntdIcon中的icon参数
+            /**
+             * 当前节点前缀图标类型，`iconRenderer`为`'AntdIcon'`时同`AntdIcon`同名参数，`iconRenderer`为`'fontawesome'`时为css类名
+             */
             icon: PropTypes.string,
-            // 针对icon参数值设置渲染方式，默认为'AntdIcon'即icon等价于AntdIcon的icon参数
-            // 当设置为'fontawesome'时，icon参数对应fontawesome图标的css类名
+            /**
+             * 当前节点前缀图标渲染方式，可选项有`'AntdIcon'`、`'fontawesome'`
+             */
             iconRenderer: PropTypes.oneOf(['AntdIcon', 'fontawesome']),
         })
     )
 };
 
-// 定义参数或属性
 AntdTree.propTypes = {
-    // 组件id
+    /**
+     * 组件唯一id
+     */
     id: PropTypes.string,
 
-    // css类名
-    className: PropTypes.oneOfType([
-        PropTypes.string,
-        PropTypes.number
-    ]),
-
-    // 自定义css字典
-    style: PropTypes.object,
-
-    // 辅助刷新用唯一标识key值
+    /**
+     * 对当前组件的`key`值进行更新，可实现强制重绘当前组件的效果
+     */
     key: PropTypes.string,
 
-    // 设置treeData模式，可选的有'tree'、'flat'，默认为'tree'
+    /**
+     * 当前组件css样式
+     */
+    style: PropTypes.object,
+
+    /**
+     * 当前组件css类名，支持[动态css](/advanced-classname)
+     */
+    className: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.object
+    ]),
+
+    /**
+     * 对应`treeData`格式的渲染模式，可选项有`'tree'`（树形模式）、`'flat'`（扁平模式）
+     * 默认值：`'tree'`
+     */
     treeDataMode: PropTypes.oneOf(['tree', 'flat']),
 
-    // 组织树形结构的json结构数据
+    /**
+     * 定义树形结构，与`treeDataMode`一致
+     */
     treeData: PropTypes.oneOfType([
-        // 树结构
+        /**
+         * 树形模式对应结构
+         */
         treeDataPropTypes,
-        // 偏平结构
+        /**
+         * 扁平模式对应结构
+         */
         PropTypes.arrayOf(PropFlatNodeShape)
     ]),
 
-    // 用于针对具体key值对应的树节点定义组件型标题内容
-    // 优先级高于treeData中对应节点的title属性
+    /**
+     * 针对树结构中的指定节点，定义作为标题的组件型内容，优先级高于`treeData`中对应的`title`值
+     */
     treeNodeKeyToTitle: PropTypes.objectOf(PropTypes.node),
 
-    // 设置是否渲染icon，默认为false
+    /**
+     * 是否渲染节点额外图标
+     * 默认值：`false`
+     */
     showIcon: PropTypes.bool,
 
-    // 设置是否允许对节点进行选择，默认为true
+    /**
+     * 节点是否可点击选择
+     * 默认值：`true`
+     */
     selectable: PropTypes.bool,
 
-    // 设置是否允许对节点进行多选，默认为false
+    /**
+     * 节点是否允许多选
+     * 默认值：`false`
+     */
     multiple: PropTypes.bool,
 
-    // 设置是否在节点前添加选择框，默认为false
+    /**
+     * 节点是否可勾选
+     * 默认值：`false`
+     */
     checkable: PropTypes.bool,
 
-    // 设置是否默认展开全部节点，默认为false
+    /**
+     * 初始化是否展开全部节点
+     * 默认值：`false`
+     */
     defaultExpandAll: PropTypes.bool,
 
-    // 对应当前已展开节点的key值数组
+    /**
+     * 监听或设置已展开节点`key`值数组
+     */
     expandedKeys: PropTypes.arrayOf(PropTypes.string),
 
-    // 设置初始状态下被展开的节点key数组
+    /**
+     * 初始化已展开节点`key`值数组
+     */
     defaultExpandedKeys: PropTypes.arrayOf(PropTypes.string),
 
-    // 设置是否默认展开父节点，默认为false
+    /**
+     * 初始化是否展开处于展开状态节点的父节点
+     * 默认值：`true`
+     */
     defaultExpandParent: PropTypes.bool,
 
-    // 用于存储当前已被选中的节点key数组
+    /**
+     * 监听或设置已选择节点`key`值数组
+     */
     selectedKeys: PropTypes.arrayOf(PropTypes.string),
 
-    // 设置默认被选择的节点
+    /**
+     * 初始化已选择节点`key`值数组
+     */
     defaultSelectedKeys: PropTypes.arrayOf(PropTypes.string),
 
-    // 用于存储当前已被勾选的节点key数组
+    /**
+     * 监听或设置已勾选节点`key`值数组
+     */
     checkedKeys: PropTypes.arrayOf(PropTypes.string),
 
-    // 设置默认被勾选的节点
+    /**
+     * 初始化已勾选节点`key`值数组
+     */
     defaultCheckedKeys: PropTypes.arrayOf(PropTypes.string),
 
-    // 用于监听当前状态下处于半勾选状态下的节点key数组
+    /**
+     * 监听或设置处于半勾选状态下的节点`key`值数组
+     */
     halfCheckedKeys: PropTypes.arrayOf(PropTypes.string),
 
-    // 设置先辈节点与后代节点之间是否独立选择，默认false
+    /**
+     * 节点与其后代节点之间的选择行为是否彼此独立
+     * 默认值：`false`
+     */
     checkStrictly: PropTypes.bool,
 
-    // 设置是否显示连接线，默认为{ 'showLeafIcon': false }
+    /**
+     * 是否显示连接线
+     */
     showLine: PropTypes.oneOfType([
         PropTypes.bool,
         PropTypes.exact({
+            /**
+             * 叶节点是否渲染前缀图标
+             */
             showLeafIcon: PropTypes.bool
         })
     ]),
 
-    // 设置虚拟滚动模式下的窗口像素高度，不设置时则不会启动虚拟滚动模式
+    /**
+     * 虚拟滚动模式下的组件最大像素高度，未设置时则不启用虚拟滚动功能
+     */
     height: PropTypes.number,
 
-    // 设置是否开启树节点可拖拽模式，默认为false
+    /**
+     * 节点是否可拖拽
+     * 默认值：`false`
+     */
     draggable: PropTypes.bool,
 
-    // 设置拖拽模式下是否仅允许同级拖拽
-    // 默认：false
+    /**
+     * 当`draggable=True`时，是否仅允许同级拖拽
+     * 默认值：`false`
+     */
     dragInSameLevel: PropTypes.bool,
 
-    // 当节点被拖拽时，监听该节点的key值信息
+    /**
+     * 监听最近一次被拖拽节点`key`值信息
+     */
     draggedNodeKey: PropTypes.string,
 
-    // 当有节点的右键菜单选项被点击时，监听相关的事件信息
+    /**
+     * 监听节点右键菜单项点击事件
+     */
     clickedContextMenu: PropTypes.exact({
-        // 记录对应的树节点key值
+        /**
+         * 事件对应节点`key`值
+         */
         nodeKey: PropTypes.string,
-        // 记录对应的右键菜单选项key值
+        /**
+         * 事件对应右键菜单项`key`值
+         */
         menuKey: PropTypes.string,
-        // 记录事件发生时的时间戳信息
+        /**
+         * 事件对应时间戳信息
+         */
         timestamp: PropTypes.number
     }),
 
-    // 设置是否启用树节点收藏功能
-    // 默认：false
+    /**
+     * 是否启用节点收藏功能
+     * 默认值：`false`
+     */
     enableNodeFavorites: PropTypes.bool,
 
-    // 设置或监听已被收藏的节点key值数组
-    // 默认：[]
+    /**
+     * 监听或设置已收藏节点`key`值数组
+     */
     favoritedKeys: PropTypes.arrayOf(PropTypes.string),
 
-    // 用于执行滚动到指定节点的操作，每次执行后，此参数会自动重置为null
+    /**
+     * 执行滚动到指定节点的动作，每次执行完毕后会重置为空值
+     */
     scrollTarget: PropTypes.exact({
-        // 用于设置滚动目标的key值
+        /**
+         * 滚动目标节点`key`值
+         */
         key: PropTypes.string.isRequired,
-        // 用于设置滚动后的节点对齐位置
-        // 可选的有'top'、'bottom'、'auto'
+        /**
+         * 滚动目标节点对齐位置，可选项有`'top'`、`'bottom'`、`'auto'`
+         * 默认值：`'auto'`
+         */
         align: PropTypes.oneOf(['top', 'bottom', 'auto']),
-        // 用于设置滚动后的像素偏移量
+        /**
+         * 滚动后的像素偏移量
+         */
         offset: PropTypes.number
     }),
 
-    // 联动树搜索时使用，用于设置针对树节点title进行搜索的关键词，也可以传入由多个关键词构成的数组
+    /**
+     * 快捷树搜索功能对应的单个关键词，或由多个关键词构成的数组
+     */
     searchKeyword: PropTypes.oneOfType([
         PropTypes.string,
         PropTypes.arrayOf(PropTypes.string)
     ]),
 
-    // 针对searchKeyword，设置是否大小写敏感
-    // 默认：true
+    /**
+     * 针对`searchKeyword`，是否大小写敏感
+     * 默认值：`true`
+     */
     caseSensitive: PropTypes.bool,
 
-    // 配合searchKeyword参数使用，用于设置树节点title命中关键词部分的高亮样式
+    /**
+     * 快捷树搜索关键词匹配部分的高亮样式
+     */
     highlightStyle: PropTypes.object,
 
-    // 节点拓展元素相关功能
-    // 为节点元素设置勾选状态下的后缀元素
+    /**
+     * 组件型，节点勾选状态下的后缀元素
+     */
     nodeCheckedSuffix: PropTypes.node,
 
-    // 为节点元素设置非勾选状态下的后缀元素
+    /**
+     * 组件型，节点非勾选状态下的后缀元素
+     */
     nodeUncheckedSuffix: PropTypes.node,
 
-    // 为节点元素设置勾选状态下的css样式
+    /**
+     * 节点勾选状态下的css样式
+     */
     nodeCheckedStyle: PropTypes.object,
 
-    // 为节点元素设置非勾选状态下的css样式
+    /**
+     * 节点非勾选状态下的css样式
+     */
     nodeUncheckedStyle: PropTypes.object,
 
-    // 用于自定义需要纳入batchProps中的属性名数组
+    /**
+     * 需要纳入[批量属性监听](/batch-props-values)的若干属性名
+     */
     batchPropsNames: PropTypes.arrayOf(PropTypes.string),
 
-    // 打包监听batchPropsNames中定义的属性值变化
+    /**
+     * 监听`batchPropsNames`中指定的若干属性值
+     */
     batchPropsValues: PropTypes.object,
 
     /**
@@ -333,13 +488,8 @@ AntdTree.propTypes = {
     setProps: PropTypes.func,
 
     /**
-   * Used to allow user interactions in this component to be persisted when
-   * the component - or the page - is refreshed. If `persisted` is truthy and
-   * hasn't changed from its previous value, a `value` that the user has
-   * changed while using the app will keep that change, as long as
-   * the new `value` also matches what was given originally.
-   * Used in conjunction with `persistence_type`.
-   */
+     * 是否开启[属性持久化](/prop-persistence)
+     */
     persistence: PropTypes.oneOfType([
         PropTypes.bool,
         PropTypes.string,
@@ -347,17 +497,14 @@ AntdTree.propTypes = {
     ]),
 
     /**
-     * Properties whose user interactions will persist after refreshing the
-     * component or the page. Since only `value` is allowed this prop can
-     * normally be ignored.
+     * 开启属性持久化功能的若干属性名，可选项有`'selectedKeys'`、`'checkedKeys'`、`'expandedKeys'`、`'halfCheckedKeys'`
+     * 默认值：`['selectedKeys', 'checkedKeys', 'expandedKeys', 'halfCheckedKeys']`
      */
     persisted_props: PropTypes.arrayOf(PropTypes.oneOf(['selectedKeys', 'checkedKeys', 'expandedKeys', 'halfCheckedKeys'])),
 
     /**
-     * Where persisted user changes will be stored:
-     * memory: only kept in memory, reset on page refresh.
-     * local: window.localStorage, data is kept after the browser quit.
-     * session: window.sessionStorage, data is cleared once the browser quit.
+     * 属性持久化存储类型，可选项有`'local'`（本地持久化），`'session'`（会话持久化），`'memory'`（内存持久化）
+     * 默认值：`'local'`
      */
     persistence_type: PropTypes.oneOf(['local', 'session', 'memory'])
 };

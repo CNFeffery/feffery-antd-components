@@ -1,11 +1,16 @@
+// react核心
 import React, { useEffect, useRef, useMemo } from 'react';
+// antd核心
 import { Tree, Tooltip, Dropdown, Rate } from 'antd';
 import AntdIcon from '../../components/general/AntdIcon.react';
+// 辅助库
 import Highlighter from 'react-highlight-words';
 import { omitBy, isUndefined, isString, isObject, isArray, cloneDeep } from 'lodash';
 import { pickBy } from 'ramda';
 import { flatToTree } from '../../components/utils';
+// 自定义hooks
 import useCss from '../../hooks/useCss';
+// 参数类型
 import { propTypes, defaultProps } from '../../components/dataDisplay/AntdTree.react';
 
 // 自定义工具函数
@@ -55,10 +60,10 @@ const filterTree = (toFilterData, keyword, caseSensitive) => {
     });
 }
 
-// 定义树形控件AntdTree，api参数参考https://ant.design/components/tree-cn/
+/**
+ * 树形控件组件AntdTree
+ */
 const AntdTree = (props) => {
-
-    // 取得必要属性或参数
     let {
         id,
         className,
