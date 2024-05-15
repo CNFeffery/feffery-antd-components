@@ -79,6 +79,7 @@ components = [
     'AntdTabs',
     'AntdTag',
     'AntdTimeline',
+    'AntdTooltip'
 ]
 
 app.layout = html.Div(

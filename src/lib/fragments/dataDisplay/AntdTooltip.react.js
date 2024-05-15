@@ -1,14 +1,20 @@
+// react核心
 import React, { useMemo } from 'react';
+// antd核心
 import { Tooltip } from 'antd';
+// 辅助库
 import { isString } from 'lodash';
 import { pickBy } from 'ramda';
-import useCss from '../../hooks/useCss';
 import { parseChildrenToArray } from '../../components/utils';
+// 自定义hooks
+import useCss from '../../hooks/useCss';
+// 参数类型
 import { propTypes, defaultProps } from '../../components/dataDisplay/AntdTooltip.react';
 
-// 定义布局组件Tooltip，api参数参考https://ant.design/components/tooltip-cn/
+/**
+ * 文字提示组件AntdTooltip
+ */
 const AntdTooltip = (props) => {
-    // 取得必要属性或参数
     let {
         id,
         children,

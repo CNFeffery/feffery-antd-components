@@ -128,7 +128,6 @@ AntdPopover.propTypes = {
      */
     open: PropTypes.bool,
 
-    // 默认为false
     /**
      * 是否保持气泡卡片处于`open`对应状态不变
      * 默认值：`false`
