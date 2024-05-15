@@ -38,7 +38,7 @@ Keyword arguments:
 
     `ellipsis` is a boolean | dict with keys:
 
-    - expandable (boolean; optional):
+    - expandable (boolean | a value equal to: 'collapsible'; optional):
         是否可展开.
 
     - rows (number; optional):
