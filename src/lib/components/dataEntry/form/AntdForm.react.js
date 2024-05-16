@@ -3,6 +3,9 @@ import PropTypes from 'prop-types';
 
 const LazyAntdForm = React.lazy(() => import(/* webpackChunkName: "data_entry" */ '../../../fragments/dataEntry/form/AntdForm.react'));
 
+/**
+ * 表单组件AntdForm
+ */
 const AntdForm = (props) => {
     return (
         <Suspense fallback={null}>
@@ -11,69 +14,98 @@ const AntdForm = (props) => {
     );
 }
 
-// 定义参数或属性
 AntdForm.propTypes = {
-    // 组件id
+    /**
+     * 组件唯一id
+     */
     id: PropTypes.string,
 
     /**
-     * The content of the tab - will only be displayed if this tab is selected
+     * 对当前组件的`key`值进行更新，可实现强制重绘当前组件的效果
+     */
+    key: PropTypes.string,
+
+    /**
+     * 组件型，内嵌相关`AntdFormItem`组件或常用表单输入类组件
      */
     children: PropTypes.node,
 
-    // css类名
+    /**
+     * 当前组件css样式
+     */
+    style: PropTypes.object,
+
+    /**
+     * 当前组件css类名，支持[动态css](/advanced-classname)
+     */
     className: PropTypes.oneOfType([
         PropTypes.string,
         PropTypes.object
     ]),
 
-    // 自定义css字典
-    style: PropTypes.object,
-
-    // 辅助刷新用唯一标识key值
-    key: PropTypes.string,
-
-    // 设置表单布局模式，可选的有'horizontal'、'vertical'与'inline'，默认为'horizontal'
+    /**
+     * 表单布局模式，可选项有`'horizontal'`、`'vertical'`、`'inline'`
+     * 默认值：`'horizontal'`
+     */
     layout: PropTypes.oneOf(['horizontal', 'vertical', 'inline']),
 
-    // 设置表单项标签列宽相关属性，同AntdCol划分为24份宽度
+    /**
+     * 配置表单项标签部分相关参数
+     */
     labelCol: PropTypes.exact({
-        // 设置span宽度
+        /**
+         * 标签部分所占宽度份数（总份数24）
+         */
         span: PropTypes.number,
-
-        // 设置offset平移宽度
+        /**
+         * 标签部分向右偏移宽度份数
+         */
         offset: PropTypes.number,
-
-        // 同css中的flex属性
+        /**
+         * 同css中的flex属性，用于更灵活的控制标签部分所占宽度
+         */
         flex: PropTypes.oneOfType([
             PropTypes.string,
             PropTypes.number
         ])
     }),
 
-    // 设置表单项列宽相关属性，同AntdCol划分为24份宽度
+    /**
+     * 配置表单项控件部分相关参数
+     */
     wrapperCol: PropTypes.exact({
-        // 设置span宽度
+        /**
+         * 控件部分所占宽度份数（总份数24）
+         */
         span: PropTypes.number,
-
-        // 设置offset平移宽度
+        /**
+         * 控件部分向右偏移宽度份数
+         */
         offset: PropTypes.number,
-
-        // 同css中的flex属性
+        /**
+         * 同css中的flex属性，用于更灵活的控制控件部分所占宽度
+         */
         flex: PropTypes.oneOfType([
             PropTypes.string,
             PropTypes.number
         ])
     }),
 
-    // 设置是否显示表单项标签后的冒号，仅在layout='horizontal'下有效
+    /**
+     * 当`layput='horizontal'`时，控制是否在表单项标签部分末尾添加冒号
+     */
     colon: PropTypes.bool,
 
-    // 设置表单项标签的文本对齐方式，可选的有'left'与'right'，默认为'right'
+    /**
+     * 表单项标签部分文本对齐方式，可选项有`'left'`、`'right'`
+     * 默认值：`'right'`
+     */
     labelAlign: PropTypes.oneOf(['left', 'right']),
 
-    // 设置超长表单项标签是否允许换行
-    // 默认：false
+    /**
+     * 针对超长表单项标签是否允许换行
+     * 默认值：`false`
+     */
     labelWrap: PropTypes.bool,
 
     /**
@@ -83,23 +115,22 @@ AntdForm.propTypes = {
     enableBatchControl: PropTypes.bool,
 
     /**
-     * `enableBatchControl=True`时，可用于监听或设置搜集内部表单输入类组件的输入值变化情况，开启后内部表单输入类组件自身的`defaultValue`、`value`参数将会失效
+     * 当`enableBatchControl=True`时，可用于监听或设置搜集内部表单输入类组件的输入值变化情况，开启后内部表单输入类组件自身的`defaultValue`、`value`参数将会失效
      */
     values: PropTypes.object,
 
     /**
-     * `enableBatchControl=True`时，可用于统一设置内部各AntdFormItem的validateStatus值，键为对应AntdFormItem的label值
-     * 优先级低于各AntdFormItem的validateStatus值
+     * 当`enableBatchControl=True`时，可用于统一设置内部各`AntdFormItem`组件的`validateStatus`值，键为对应`AntdFormItem`组件的`label`值，优先级低于各`AntdFormItem`组件的`validateStatus`值
      */
     validateStatuses: PropTypes.objectOf(
-        PropTypes.oneOf([
-            'success', 'warning', 'error', 'validating'
-        ])
+        /**
+         * 校验状态值，可选项有`'success'`、`'warning'`、`'error'`、`'validating'`
+         */
+        PropTypes.oneOf(['success', 'warning', 'error', 'validating'])
     ),
 
     /**
-     * `enableBatchControl=True`时，可用于统一设置内部各AntdFormItem的help值，键为对应AntdFormItem的label值
-     * 优先级低于各AntdFormItem的help值
+     * 当`enableBatchControl=True`时，可用于统一设置内部各`AntdFormItem`组件的`help`值，键为对应`AntdFormItem`组件的`label`值，优先级低于各`AntdFormItem`组件的`help`值
      */
     helps: PropTypes.objectOf(PropTypes.node),
 

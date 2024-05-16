@@ -5,22 +5,24 @@ from dash.development.base_component import Component, _explicitize_args
 
 class AntdForm(Component):
     """An AntdForm component.
-
+表单组件AntdForm
 
 Keyword arguments:
 
 - children (a list of or a singular dash component, string or number; optional):
-    The content of the tab - will only be displayed if this tab is
-    selected.
+    组件型，内嵌相关`AntdFormItem`组件或常用表单输入类组件.
 
-- id (string; optional)
+- id (string; optional):
+    组件唯一id.
 
 - aria-* (string; optional):
     `aria-*`格式属性通配.
 
-- className (string | dict; optional)
+- className (string | dict; optional):
+    当前组件css类名，支持[动态css](/advanced-classname).
 
-- colon (boolean; default True)
+- colon (boolean; default True):
+    当`layput='horizontal'`时，控制是否在表单项标签部分末尾添加冒号.
 
 - data-* (string; optional):
     `data-*`格式属性通配.
@@ -29,26 +31,34 @@ Keyword arguments:
     是否启用表单批量控制功能，开启后会导致部分性能的损耗  默认值：`False`.
 
 - helps (dict with strings as keys and values of type a list of or a singular dash component, string or number; optional):
-    `enableBatchControl=True`时，可用于统一设置内部各AntdFormItem的help值，键为对应AntdFormItem的label值
-    优先级低于各AntdFormItem的help值.
+    当`enableBatchControl=True`时，可用于统一设置内部各`AntdFormItem`组件的`help`值，键为对应`AntdFormItem`组件的`label`值，优先级低于各`AntdFormItem`组件的`help`值.
 
-- key (string; optional)
+- key (string; optional):
+    对当前组件的`key`值进行更新，可实现强制重绘当前组件的效果.
 
-- labelAlign (a value equal to: 'left', 'right'; default 'right')
+- labelAlign (a value equal to: 'left', 'right'; default 'right'):
+    表单项标签部分文本对齐方式，可选项有`'left'`、`'right'`  默认值：`'right'`.
 
-- labelCol (dict; optional)
+- labelCol (dict; optional):
+    配置表单项标签部分相关参数.
 
     `labelCol` is a dict with keys:
 
-    - flex (string | number; optional)
+    - flex (string | number; optional):
+        同css中的flex属性，用于更灵活的控制标签部分所占宽度.
 
-    - offset (number; optional)
+    - offset (number; optional):
+        标签部分向右偏移宽度份数.
 
-    - span (number; optional)
+    - span (number; optional):
+        标签部分所占宽度份数（总份数24）.
 
-- labelWrap (boolean; default False)
+- labelWrap (boolean; default False):
+    针对超长表单项标签是否允许换行  默认值：`False`.
 
-- layout (a value equal to: 'horizontal', 'vertical', 'inline'; default 'horizontal')
+- layout (a value equal to: 'horizontal', 'vertical', 'inline'; default 'horizontal'):
+    表单布局模式，可选项有`'horizontal'`、`'vertical'`、`'inline'`
+    默认值：`'horizontal'`.
 
 - loading_state (dict; optional)
 
@@ -63,30 +73,34 @@ Keyword arguments:
     - prop_name (string; optional):
         Holds which property is loading.
 
-- style (dict; optional)
+- style (dict; optional):
+    当前组件css样式.
 
 - validateStatuses (dict with strings as keys and values of type a value equal to: 'success', 'warning', 'error', 'validating'; optional):
-    `enableBatchControl=True`时，可用于统一设置内部各AntdFormItem的validateStatus值，键为对应AntdFormItem的label值
-    优先级低于各AntdFormItem的validateStatus值.
+    当`enableBatchControl=True`时，可用于统一设置内部各`AntdFormItem`组件的`validateStatus`值，键为对应`AntdFormItem`组件的`label`值，优先级低于各`AntdFormItem`组件的`validateStatus`值.
 
 - values (dict; optional):
-    `enableBatchControl=True`时，可用于监听或设置搜集内部表单输入类组件的输入值变化情况，开启后内部表单输入类组件自身的`defaultValue`、`value`参数将会失效.
+    当`enableBatchControl=True`时，可用于监听或设置搜集内部表单输入类组件的输入值变化情况，开启后内部表单输入类组件自身的`defaultValue`、`value`参数将会失效.
 
-- wrapperCol (dict; optional)
+- wrapperCol (dict; optional):
+    配置表单项控件部分相关参数.
 
     `wrapperCol` is a dict with keys:
 
-    - flex (string | number; optional)
+    - flex (string | number; optional):
+        同css中的flex属性，用于更灵活的控制控件部分所占宽度.
 
-    - offset (number; optional)
+    - offset (number; optional):
+        控件部分向右偏移宽度份数.
 
-    - span (number; optional)"""
+    - span (number; optional):
+        控件部分所占宽度份数（总份数24）."""
     _children_props = ['helps{}']
     _base_nodes = ['children']
     _namespace = 'feffery_antd_components'
     _type = 'AntdForm'
     @_explicitize_args
-    def __init__(self, children=None, id=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, key=Component.UNDEFINED, layout=Component.UNDEFINED, labelCol=Component.UNDEFINED, wrapperCol=Component.UNDEFINED, colon=Component.UNDEFINED, labelAlign=Component.UNDEFINED, labelWrap=Component.UNDEFINED, enableBatchControl=Component.UNDEFINED, values=Component.UNDEFINED, validateStatuses=Component.UNDEFINED, helps=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
+    def __init__(self, children=None, id=Component.UNDEFINED, key=Component.UNDEFINED, style=Component.UNDEFINED, className=Component.UNDEFINED, layout=Component.UNDEFINED, labelCol=Component.UNDEFINED, wrapperCol=Component.UNDEFINED, colon=Component.UNDEFINED, labelAlign=Component.UNDEFINED, labelWrap=Component.UNDEFINED, enableBatchControl=Component.UNDEFINED, values=Component.UNDEFINED, validateStatuses=Component.UNDEFINED, helps=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
         self._prop_names = ['children', 'id', 'aria-*', 'className', 'colon', 'data-*', 'enableBatchControl', 'helps', 'key', 'labelAlign', 'labelCol', 'labelWrap', 'layout', 'loading_state', 'style', 'validateStatuses', 'values', 'wrapperCol']
         self._valid_wildcard_attributes =            ['data-', 'aria-']
         self.available_properties = ['children', 'id', 'aria-*', 'className', 'colon', 'data-*', 'enableBatchControl', 'helps', 'key', 'labelAlign', 'labelCol', 'labelWrap', 'layout', 'loading_state', 'style', 'validateStatuses', 'values', 'wrapperCol']
