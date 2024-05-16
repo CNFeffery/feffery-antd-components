@@ -1,16 +1,24 @@
+// react核心
 import React, { useContext, useEffect } from 'react';
+// antd核心
 import { Checkbox } from 'antd';
+// 辅助库
 import { isString, isUndefined } from 'lodash';
 import { pickBy } from 'ramda';
+// 自定义hooks
 import useCss from '../../hooks/useCss';
+// 上下文
 import PropsContext from '../../contexts/PropsContext';
 import FormContext from '../../contexts/FormContext';
+// 状态管理
 import useFormStore from '../../store/formStore';
+// 参数类型
 import { propTypes, defaultProps } from '../../components/dataEntry/AntdCheckbox.react';
 
-// 定义选择框组件AntdCheckbox，api参数参考https://ant.design/components/checkbox-cn/
+/**
+ * 选择框组件AntdCheckbox
+ */
 const AntdCheckbox = (props) => {
-    // 取得必要属性或参数
     let {
         id,
         style,
@@ -74,7 +82,6 @@ const AntdCheckbox = (props) => {
         }
     }
 
-    
     return (
         <Checkbox
             // 提取具有data-*或aria-*通配格式的属性

@@ -3,6 +3,9 @@ import PropTypes from 'prop-types';
 
 const LazyAntdCheckbox = React.lazy(() => import(/* webpackChunkName: "data_entry" */ '../../fragments/dataEntry/AntdCheckbox.react'));
 
+/**
+ * 选择框组件AntdCheckbox
+ */
 const AntdCheckbox = (props) => {
     return (
         <Suspense fallback={null}>
@@ -11,52 +14,78 @@ const AntdCheckbox = (props) => {
     );
 }
 
-// 定义参数或属性
 AntdCheckbox.propTypes = {
-    // 组件id
+    /**
+     * 组件唯一id
+     */
     id: PropTypes.string,
 
-    // css类名
+    /**
+     * 对当前组件的`key`值进行更新，可实现强制重绘当前组件的效果
+     */
+    key: PropTypes.string,
+
+    /**
+     * 当前组件css样式
+     */
+    style: PropTypes.object,
+
+    /**
+     * 当前组件css类名，支持[动态css](/advanced-classname)
+     */
     className: PropTypes.oneOfType([
         PropTypes.string,
         PropTypes.object
     ]),
 
-    // 自定义css字典
-    style: PropTypes.object,
-
-    // 辅助刷新用唯一标识key值
-    key: PropTypes.string,
-
     /**
-     * 用于在基于AntdForm的表单值自动搜集功能中，充当当前表单项的字段名
-     * 缺省时会以id作为字段名
+     * 配合`AntdForm`表单批量值搜集/控制功能使用，充当当前表单项的字段名，以`id`作为缺省值
      */
     name: PropTypes.string,
 
-    // 设置是否禁用组件
+    /**
+     * 是否禁用当前组件
+     * 默认值：`false`
+     */
     disabled: PropTypes.bool,
 
-    // 用于设置选项对应显示的文字内容
+    /**
+     * 组件型，标签内容
+     */
     label: PropTypes.node,
 
-    // 用于设置是否自动获取焦点，默认为false
+    /**
+     * 是否自动获取焦点
+     * 默认值：`false`
+     */
     autoFocus: PropTypes.bool,
 
-    // 对应选择框当前是否被选择，默认为false
+    /**
+     * 监听或设置当前选择框是否选中
+     * 默认值：`false`
+     */
     checked: PropTypes.bool,
 
-    // 设置当前选择框是否样式强制为半选状态，默认为false
-    // 此参数仅与样式有关，与勾选状态无关
+    /**
+     * 是否强制渲染为半选中状态，仅影响样式，与选中状态无关
+     * 默认值：`false`
+     */
     indeterminate: PropTypes.bool,
 
-    // 设置是否以只读模式进行渲染，默认为false
+    /**
+     * 是否渲染为只读状态
+     * 默认值：`false`
+     */
     readOnly: PropTypes.bool,
 
-    // 用于自定义需要纳入batchProps中的属性名数组
+    /**
+     * 需要纳入[批量属性监听](/batch-props-values)的若干属性名
+     */
     batchPropsNames: PropTypes.arrayOf(PropTypes.string),
 
-    // 打包监听batchPropsNames中定义的属性值变化
+    /**
+     * 监听`batchPropsNames`中指定的若干属性值
+     */
     batchPropsValues: PropTypes.object,
 
     /**
@@ -91,13 +120,8 @@ AntdCheckbox.propTypes = {
     setProps: PropTypes.func,
 
     /**
-   * Used to allow user interactions in this component to be persisted when
-   * the component - or the page - is refreshed. If `persisted` is truthy and
-   * hasn't changed from its previous value, a `value` that the user has
-   * changed while using the app will keep that change, as long as
-   * the new `value` also matches what was given originally.
-   * Used in conjunction with `persistence_type`.
-   */
+     * 是否开启[属性持久化](/prop-persistence)
+     */
     persistence: PropTypes.oneOfType([
         PropTypes.bool,
         PropTypes.string,
@@ -105,17 +129,14 @@ AntdCheckbox.propTypes = {
     ]),
 
     /**
-     * Properties whose user interactions will persist after refreshing the
-     * component or the page. Since only `value` is allowed this prop can
-     * normally be ignored.
+     * 开启属性持久化功能的若干属性名，可选项有`'checked'`
+     * 默认值：`['checked']`
      */
     persisted_props: PropTypes.arrayOf(PropTypes.oneOf(['checked'])),
 
     /**
-     * Where persisted user changes will be stored:
-     * memory: only kept in memory, reset on page refresh.
-     * local: window.localStorage, data is kept after the browser quit.
-     * session: window.sessionStorage, data is cleared once the browser quit.
+     * 属性持久化存储类型，可选项有`'local'`（本地持久化），`'session'`（会话持久化），`'memory'`（内存持久化）
+     * 默认值：`'local'`
      */
     persistence_type: PropTypes.oneOf(['local', 'session', 'memory'])
 };
