@@ -1,5 +1,8 @@
+// react核心
 import React, { useState, useEffect, useContext } from 'react';
+// antd核心
 import { DatePicker, ConfigProvider } from 'antd';
+// 辅助库
 import dayjs from 'dayjs';
 import isoWeek from 'dayjs/plugin/isoWeek';
 import advancedFormat from 'dayjs/plugin/advancedFormat';
@@ -7,19 +10,24 @@ import { isString, isUndefined, isObject } from 'lodash';
 import { pickBy } from 'ramda';
 import 'dayjs/locale/zh-cn';
 import { str2Locale } from '../../components/locales.react';
+// 自定义hooks
 import useCss from '../../hooks/useCss';
+// 上下文
 import PropsContext from '../../contexts/PropsContext';
 import FormContext from '../../contexts/FormContext';
+// 状态管理
 import useFormStore from '../../store/formStore';
+// 参数类型
 import { propTypes, defaultProps } from '../../components/dataEntry/AntdDatePicker.react';
 
 // 调用dayjs额外插件模块
 dayjs.extend(isoWeek)
 dayjs.extend(advancedFormat)
 
-// 定义日期选择组件AntdDatePicker，api参数参考https://ant.design/components/date-picker-cn/
+/**
+ * 日期选择组件AntdDatePicker
+ */
 const AntdDatePicker = (props) => {
-    // 取得必要属性或参数
     let {
         id,
         className,
@@ -423,7 +431,6 @@ const AntdDatePicker = (props) => {
         }
     }
 
-    
     return (
         <div>
             <ConfigProvider

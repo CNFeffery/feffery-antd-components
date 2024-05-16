@@ -88,6 +88,7 @@ components = [
     'AntdCheckCard',
     'AntdCheckCardGroup',
     'AntdColorPicker',
+    'AntdDatePicker',
 ]
 
 app.layout = html.Div(

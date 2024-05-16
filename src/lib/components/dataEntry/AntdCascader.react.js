@@ -183,9 +183,7 @@ AntdCascader.propTypes = {
      * 选择菜单展开方向，可选项有`'bottomLeft'`、`'bottomRight'`、`'topLeft'`、`'topRight'`
      * 默认值：`'bottomLeft'`
      */
-    placement: PropTypes.oneOf([
-        'bottomLeft', 'bottomRight', 'topLeft', 'topRight'
-    ]),
+    placement: PropTypes.oneOf(['bottomLeft', 'bottomRight', 'topLeft', 'topRight']),
 
     /**
      * 监听或设置已选值
