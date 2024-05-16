@@ -3,6 +3,9 @@ import PropTypes from 'prop-types';
 
 const LazyAntdCalendar = React.lazy(() => import(/* webpackChunkName: "data_entry" */ '../../fragments/dataEntry/AntdCalendar.react'));
 
+/**
+ * 日历组件AntdCalendar
+ */
 const AntdCalendar = (props) => {
     return (
         <Suspense fallback={null}>
@@ -11,42 +14,65 @@ const AntdCalendar = (props) => {
     );
 }
 
-// 定义参数或属性
 AntdCalendar.propTypes = {
-    // 组件id
+    /**
+     * 组件唯一id
+     */
     id: PropTypes.string,
 
-    // css类名
+    /**
+     * 对当前组件的`key`值进行更新，可实现强制重绘当前组件的效果
+     */
+    key: PropTypes.string,
+
+    /**
+     * 当前组件css样式
+     */
+    style: PropTypes.object,
+
+    /**
+     * 当前组件css类名，支持[动态css](/advanced-classname)
+     */
     className: PropTypes.oneOfType([
         PropTypes.string,
         PropTypes.object
     ]),
 
-    // 自定义css字典
-    style: PropTypes.object,
-
-    // 辅助刷新用唯一标识key值
-    key: PropTypes.string,
-
     /**
      * 用于在基于AntdForm的表单值自动搜集功能中，充当当前表单项的字段名
      * 缺省时会以id作为字段名
      */
+    /**
+     * 配合`AntdForm`表单批量值搜集/控制功能使用，充当当前表单项的字段名
+     */
     name: PropTypes.string,
 
-    // 设置语言环境，可选的有'zh-cn'、'en-us'
+    /**
+     * 组件文案语种，可选项有`'zh-cn'`、`'en-us'`
+     * 默认值：`'zh-cn'`
+     */
     locale: PropTypes.oneOf(['zh-cn', 'en-us']),
 
-    // 设置全局日期格式format，优先级低于单个设置的format参数，默认为'YYYY-MM-DD'
+    /**
+     * 日期显示格式，[参考资料](https://day.js.org/docs/en/display/format)
+     * 默认值：`'YYYY-MM-DD'`
+     */
     format: PropTypes.string,
 
-    // 设置日历尺寸规格，可选的有'default'与'large'，默认为default
+    /**
+     * 日历尺寸规格，可选项有`'default'`、`'large'`
+     * 默认值：`'default'`
+     */
     size: PropTypes.oneOf(['default', 'large']),
 
-    // 对应当前面板已选中值
+    /**
+     * 监听或设置当前选中日期值
+     */
     value: PropTypes.string,
 
-    // 设置面板默认日期
+    /**
+     * 初始化选中日期值
+     */
     defaultValue: PropTypes.string,
 
     /**
@@ -81,13 +107,8 @@ AntdCalendar.propTypes = {
     setProps: PropTypes.func,
 
     /**
-  * Used to allow user interactions in this component to be persisted when
-  * the component - or the page - is refreshed. If `persisted` is truthy and
-  * hasn't changed from its previous value, a `value` that the user has
-  * changed while using the app will keep that change, as long as
-  * the new `value` also matches what was given originally.
-  * Used in conjunction with `persistence_type`.
-  */
+     * 是否开启[属性持久化](/prop-persistence)
+     */
     persistence: PropTypes.oneOfType([
         PropTypes.bool,
         PropTypes.string,
@@ -95,17 +116,14 @@ AntdCalendar.propTypes = {
     ]),
 
     /**
-     * Properties whose user interactions will persist after refreshing the
-     * component or the page. Since only `value` is allowed this prop can
-     * normally be ignored.
+     * 开启属性持久化功能的若干属性名，可选项有`'value'`
+     * 默认值：`['value']`
      */
     persisted_props: PropTypes.arrayOf(PropTypes.oneOf(['value'])),
 
     /**
-     * Where persisted user changes will be stored:
-     * memory: only kept in memory, reset on page refresh.
-     * local: window.localStorage, data is kept after the browser quit.
-     * session: window.sessionStorage, data is cleared once the browser quit.
+     * 属性持久化存储类型，可选项有`'local'`（本地持久化），`'session'`（会话持久化），`'memory'`（内存持久化）
+     * 默认值：`'local'`
      */
     persistence_type: PropTypes.oneOf(['local', 'session', 'memory'])
 };
