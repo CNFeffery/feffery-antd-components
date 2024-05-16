@@ -3,6 +3,9 @@ import PropTypes from 'prop-types';
 
 const LazyAntdInput = React.lazy(() => import(/* webpackChunkName: "data_entry" */ '../../fragments/dataEntry/AntdInput.react'));
 
+/**
+ * 输入框组件AntdInput
+ */
 const AntdInput = (props) => {
     return (
         <Suspense fallback={null}>
@@ -11,26 +14,36 @@ const AntdInput = (props) => {
     );
 }
 
-// 定义参数或属性
 AntdInput.propTypes = {
-    // 组件id
+    /**
+     * 组件唯一id
+     */
     id: PropTypes.string,
 
-    // css类名
+    /**
+     * 对当前组件的`key`值进行更新，可实现强制重绘当前组件的效果
+     */
+    key: PropTypes.string,
+
+    /**
+     * 当前组件css样式
+     */
+    style: PropTypes.object,
+
+    /**
+     * 当前组件css类名，支持[动态css](/advanced-classname)
+     */
     className: PropTypes.oneOfType([
         PropTypes.string,
         PropTypes.object
     ]),
-
-    // 自定义css字典
-    style: PropTypes.object,
 
     /**
      * 细分控制子元素css样式
      */
     styles: PropTypes.exact({
         /**
-         * 控制input元素css样式
+         * 控制文本框元素css样式
          */
         input: PropTypes.object,
 
@@ -50,151 +63,221 @@ AntdInput.propTypes = {
         count: PropTypes.object,
 
         /**
-         * 控制textarea元素css样式
+         * 控制文本域元素css样式
          */
         textarea: PropTypes.object
     }),
 
     /**
-     * 细分控制子元素css类
+     * 细分控制子元素css类名
      */
     classNames: PropTypes.exact({
         /**
-         * 控制input元素css类
+         * 控制文本框元素css类名
          */
         input: PropTypes.string,
 
         /**
-         * 控制前缀容器css类
+         * 控制前缀容器css类名
          */
         prefix: PropTypes.string,
 
         /**
-         * 控制后缀容器css类
+         * 控制后缀容器css类名
          */
         suffix: PropTypes.string,
 
         /**
-         * 控制文字计数元素css类
+         * 控制文字计数元素css类名
          */
         count: PropTypes.string,
 
         /**
-         * 控制textarea元素css类
+         * 控制文本域元素css类名
          */
         textarea: PropTypes.string
     }),
 
-    // 辅助刷新用唯一标识key值
-    key: PropTypes.string,
-
     /**
-     * 用于在基于AntdForm的表单值自动搜集功能中，充当当前表单项的字段名
-     * 缺省时会以id作为字段名
+     * 配合`AntdForm`表单批量值搜集/控制功能使用，充当当前表单项的字段名，以`id`作为缺省值
      */
     name: PropTypes.string,
 
-    // 用于设置输入框功能模式类型，可选的有'default'、'search'、'text-area'、'password'，默认为'default'
+    /**
+     * 输入框模式，可选项有`'default'`、`'search'`、`'text-area'`、`'password'`
+     * 默认值：`'default'`
+     */
     mode: PropTypes.oneOf(['default', 'search', 'text-area', 'password']),
 
-    // 设置是否允许自动补全，默认为'on'
+    /**
+     * 是否开启浏览器自带的自动补全功能，可选项有`'off'`、`'on'`
+     * 默认值：`'on'`
+     */
     autoComplete: PropTypes.oneOf(['off', 'on']),
 
-    // 设置是否为禁用状态，默认为false
+    /**
+     * 是否禁用当前组件
+     * 默认值：`false`
+     */
     disabled: PropTypes.bool,
 
-    // 用于设置输入框尺寸，可选的有'small'、'middle'与'large'，默认不填则为'middle'
+    /**
+     * 当前组件尺寸规格，可选项有`'small'`、`'middle'`、`'large'`
+     * 默认值：`'middle'`
+     */
     size: PropTypes.oneOf(['small', 'middle', 'large']),
 
     /**
-     * 设置是否渲染边框，设置为true时等价于variant='outlined'
-     * 默认：true
+     * 是否显示边框，设置为`true`时等价于`variant='outlined'`
+     * 默认值：`true`
      */
     bordered: PropTypes.bool,
 
     /**
-     * 设置形态变体类型，可选的有'outlined'、'borderless'、'filled'
-     * 其中'outlined'等价于bordered=true，优先级高于bordered
+     * 形态变体类型，可选项有`'outlined'`、`'borderless'`、`'filled'`，其中`'outlined'`等价于`bordered=True`，但优先级更高
      */
     variant: PropTypes.oneOf(['outlined', 'borderless', 'filled']),
 
-    // 用于设置占位提示内容
+    /**
+     * 输入框占位文字内容
+     */
     placeholder: PropTypes.string,
 
-    // 记录输入框中的已输入文字内容
+    /**
+     * 监听或设置已输入值
+     */
     value: PropTypes.string,
 
-    // 设置输入框默认填充内容
+    /**
+     * 初始化已输入值
+     */
     defaultValue: PropTypes.string,
 
-    // 当passwordUseMd5=true时，用于记录加密的value值
-    md5Value: PropTypes.string,
-
-    // 记录防抖状态下的已输入文字内容
-    debounceValue: PropTypes.string,
-
-    // password模式设置是否使用md5加密，默认为false
+    /**
+     * 针对`'password'`模式，是否启用md5加密功能
+     * 默认值：`false`
+     */
     passwordUseMd5: PropTypes.bool,
 
-    // 用于配置debounceValue变化更新的防抖等待时长（单位：毫秒），默认为0
+    /**
+     * 当`passwordUseMd5=True`时，监听已输入值md5编码结果
+     */
+    md5Value: PropTypes.string,
+
+    /**
+     * 监听防抖版本的已输入值
+     */
+    debounceValue: PropTypes.string,
+
+    /**
+     * 防抖延时时长，单位：毫秒
+     * 默认值：`0`
+     */
     debounceWait: PropTypes.number,
 
-    // 设置前置标签内容
+    /**
+     * 组件型，前置标签内容
+     */
     addonBefore: PropTypes.node,
 
-    // 设置后置标签内容
+    /**
+     * 组件型，后置标签内容
+     */
     addonAfter: PropTypes.node,
 
-    // 设置框内嵌前缀内容
+    /**
+     * 组件型，前缀内嵌内容
+     */
     prefix: PropTypes.node,
 
-    // 设置框内嵌后缀内容
+    /**
+     * 组件型，后缀内嵌内容
+     */
     suffix: PropTypes.node,
 
-    // 用于约束输入框内容的最大字符约束长度，默认无约束
+    /**
+     * 限制输入框最大可输入字符数量
+     */
     maxLength: PropTypes.number,
 
-    // 设置是否展示字数，默认为false
+    /**
+     * 是否显示已输入字符计数
+     * 默认值：`false`
+     */
     showCount: PropTypes.bool,
 
-    // 当showCount为true时，用于传入正则表达式来自定义字数计算规则
+    /**
+     * 正则表达式，用于配合字符计数相关功能，自定义计数规则
+     */
     countFormat: PropTypes.string,
 
-    // 针对文本域配置自适应高度相关功能，默认为false
+    /**
+     * 针对`'text-area'`模式，配置输入框高度自适应相关功能
+     * 默认值：`false`
+     */
     autoSize: PropTypes.oneOfType([
         PropTypes.bool,
         PropTypes.exact({
+            /**
+             * 输入框最小行数
+             */
             minRows: PropTypes.number,
+            /**
+             * 输入框最大行数
+             */
             maxRows: PropTypes.number
         })
     ]),
 
-    // 记录聚焦于输入框内部时，enter键被点按的次数
+    /**
+     * 监听输入框聚焦状态下，键盘enter键累计点按次数
+     * 默认值：`0`
+     */
     nSubmit: PropTypes.number,
 
-    // 记录search模式下搜索按钮被点按的次数
+    /**
+     * 针对`'search'`模式，监听搜索按钮累计点击次数
+     * 默认值：`0`
+     */
     nClicksSearch: PropTypes.number,
 
-    // 设置校验状态，可选的有'error'、'warning'
+    /**
+     * 控制校验状态，可选项有`'error'`、`'warning'`
+     */
     status: PropTypes.oneOf(['error', 'warning']),
 
-    // 设置是否添加内容清除按钮，默认false
+    /**
+     * 是否允许一键清空已输入值
+     * 默认值：`false`
+     */
     allowClear: PropTypes.bool,
 
-    // 用于设置是否自动获取焦点，默认为false
+    /**
+     * 是否自动获取焦点
+     * 默认值：`false`
+     */
     autoFocus: PropTypes.bool,
 
-    // 设置是否以只读模式进行渲染，默认为false
+    /**
+     * 是否渲染为只读状态
+     * 默认值：`false`
+     */
     readOnly: PropTypes.bool,
 
-    // 设置当输入框内无内容时，强制更新value为null，从而统一''和null混合的情况
-    // 默认为false
+    /**
+     * 当输入框已输入值为空时，是否强制更新`value`为空值，从而统一空字符串与空值混合的情况
+     * 默认值：`false`
+     */
     emptyAsNone: PropTypes.bool,
 
-    // 用于自定义需要纳入batchProps中的属性名数组
+    /**
+     * 需要纳入[批量属性监听](/batch-props-values)的若干属性名
+     */
     batchPropsNames: PropTypes.arrayOf(PropTypes.string),
 
-    // 打包监听batchPropsNames中定义的属性值变化
+    /**
+     * 监听`batchPropsNames`中指定的若干属性值
+     */
     batchPropsValues: PropTypes.object,
 
     /**
@@ -229,13 +312,8 @@ AntdInput.propTypes = {
     setProps: PropTypes.func,
 
     /**
-   * Used to allow user interactions in this component to be persisted when
-   * the component - or the page - is refreshed. If `persisted` is truthy and
-   * hasn't changed from its previous value, a `value` that the user has
-   * changed while using the app will keep that change, as long as
-   * the new `value` also matches what was given originally.
-   * Used in conjunction with `persistence_type`.
-   */
+     * 是否开启[属性持久化](/prop-persistence)
+     */
     persistence: PropTypes.oneOfType([
         PropTypes.bool,
         PropTypes.string,
@@ -243,17 +321,14 @@ AntdInput.propTypes = {
     ]),
 
     /**
-     * Properties whose user interactions will persist after refreshing the
-     * component or the page. Since only `value` is allowed this prop can
-     * normally be ignored.
+     * 开启属性持久化功能的若干属性名，可选项有`'md5Value'`
+     * 默认值：`['md5Value']`
      */
     persisted_props: PropTypes.arrayOf(PropTypes.oneOf(['value', 'md5Value'])),
 
     /**
-     * Where persisted user changes will be stored:
-     * memory: only kept in memory, reset on page refresh.
-     * local: window.localStorage, data is kept after the browser quit.
-     * session: window.sessionStorage, data is cleared once the browser quit.
+     * 属性持久化存储类型，可选项有`'local'`（本地持久化），`'session'`（会话持久化），`'memory'`（内存持久化）
+     * 默认值：`'local'`
      */
     persistence_type: PropTypes.oneOf(['local', 'session', 'memory'])
 };
