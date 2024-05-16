@@ -1,17 +1,25 @@
+// react核心
 import React, { useEffect, useContext } from 'react';
+// antd核心
 import { ColorPicker } from 'antd';
 import { Color } from '@rc-component/color-picker';
-import useCss from '../../hooks/useCss';
+// 辅助库
 import { isString, isUndefined } from 'lodash';
 import { pickBy } from 'ramda';
+// 自定义hooks
+import useCss from '../../hooks/useCss';
+// 上下文
 import PropsContext from '../../contexts/PropsContext';
 import FormContext from '../../contexts/FormContext';
+// 状态管理
 import useFormStore from '../../store/formStore';
+// 参数类型
 import { propTypes, defaultProps } from '../../components/dataEntry/AntdColorPicker.react';
 
-// 定义颜色选择器组件AntdColorPicker，api参数参考https://ant.design/components/color-picker-cn
+/**
+ * 颜色选择器组件AntdColorPicker
+ */
 const AntdColorPicker = (props) => {
-    // 取得必要属性或参数
     let {
         id,
         className,
