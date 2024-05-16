@@ -84,6 +84,7 @@ components = [
     'AntdCalendar',
     'AntdCascader',
     'AntdCheckbox',
+    'AntdCheckboxGroup',
 ]
 
 app.layout = html.Div(
