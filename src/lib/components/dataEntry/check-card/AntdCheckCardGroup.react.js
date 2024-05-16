@@ -3,6 +3,9 @@ import PropTypes from 'prop-types';
 
 const LazyAntdCheckCardGroup = React.lazy(() => import(/* webpackChunkName: "data_entry" */ '../../../fragments/dataEntry/check-card/AntdCheckCardGroup.react'));
 
+/**
+ * 组合选择卡片组件AntdCheckCardGroup
+ */
 const AntdCheckCardGroup = (props) => {
     return (
         <Suspense fallback={null}>
@@ -11,42 +14,61 @@ const AntdCheckCardGroup = (props) => {
     );
 }
 
-// 定义参数或属性
 AntdCheckCardGroup.propTypes = {
-    // 组件id
+    /**
+     * 组件唯一id
+     */
     id: PropTypes.string,
 
-    // 传入内部嵌套的各个AntdCheckCard组件
+    /**
+     * 对当前组件的`key`值进行更新，可实现强制重绘当前组件的效果
+     */
+    key: PropTypes.string,
+
+    /**
+     * 组件型，内嵌若干`AntdCheckCard`相关组件
+     */
     children: PropTypes.node,
 
-    // css类名
+    /**
+     * 当前组件css样式
+     */
+    style: PropTypes.object,
+
+    /**
+     * 当前组件css类名，支持[动态css](/advanced-classname)
+     */
     className: PropTypes.oneOfType([
         PropTypes.string,
         PropTypes.object
     ]),
 
-    // 自定义css字典
-    style: PropTypes.object,
-
-    // 辅助刷新用唯一标识key值
-    key: PropTypes.string,
-
     /**
-     * 用于在基于AntdForm的表单值自动搜集功能中，充当当前表单项的字段名
-     * 缺省时会以id作为字段名
+     * 配合`AntdForm`表单批量值搜集/控制功能使用，充当当前表单项的字段名，以`id`作为缺省值
      */
     name: PropTypes.string,
 
-    // 设置是否允许多选，默认为false
+    /**
+     * 是否开启多选
+     * 默认值：`false`
+     */
     multiple: PropTypes.bool,
 
-    // 设置是否允许当前组合卡片内无选中值，默认为true
+    /**
+     * 是否允许当前组合选择卡片中仅剩的选项被取消选中
+     * 默认值：`true`
+     */
     allowNoValue: PropTypes.bool,
 
-    // 设置是否显示边框，默认为true
+    /**
+     * 是否显示边框
+     * 默认值：`true`
+     */
     bordered: PropTypes.bool,
 
-    // 设置/记录当前选项的选项值
+    /**
+     * 监听或设置已选中卡片值
+     */
     value: PropTypes.oneOfType([
         PropTypes.oneOfType([
             PropTypes.number,
@@ -60,7 +82,9 @@ AntdCheckCardGroup.propTypes = {
         )
     ]),
 
-    // 设置默认选中的选项值
+    /**
+     * 初始化已选中卡片值
+     */
     defaultValue: PropTypes.oneOfType([
         PropTypes.oneOfType([
             PropTypes.number,
@@ -74,15 +98,22 @@ AntdCheckCardGroup.propTypes = {
         )
     ]),
 
-    // 是否禁用当前整组选择卡片，默认为false
+    /**
+     * 是否禁用当前组件
+     * 默认值：`false`
+     */
     disabled: PropTypes.bool,
 
-    // 设置尺寸规格，可选的有'small'、'default'及'large'
-    // 默认为'default'
+    /**
+     * 当前组件尺寸规格，可选项有`'small'`、`'default'`、`'large'`
+     * 默认值：`'default'`
+     */
     size: PropTypes.oneOf(['small', 'default', 'large']),
 
-    // 设置是否以只读模式进行渲染
-    // 默认为false
+    /**
+     * 是否渲染为只读状态
+     * 默认值：`false`
+     */
     readOnly: PropTypes.bool,
 
     /**
@@ -117,13 +148,8 @@ AntdCheckCardGroup.propTypes = {
     setProps: PropTypes.func,
 
     /**
-   * Used to allow user interactions in this component to be persisted when
-   * the component - or the page - is refreshed. If `persisted` is truthy and
-   * hasn't changed from its previous value, a `value` that the user has
-   * changed while using the app will keep that change, as long as
-   * the new `value` also matches what was given originally.
-   * Used in conjunction with `persistence_type`.
-   */
+     * 是否开启[属性持久化](/prop-persistence)
+     */
     persistence: PropTypes.oneOfType([
         PropTypes.bool,
         PropTypes.string,
@@ -131,17 +157,14 @@ AntdCheckCardGroup.propTypes = {
     ]),
 
     /**
-     * Properties whose user interactions will persist after refreshing the
-     * component or the page. Since only `value` is allowed this prop can
-     * normally be ignored.
+     * 开启属性持久化功能的若干属性名，可选项有`'value'`
+     * 默认值：`['value']`
      */
     persisted_props: PropTypes.arrayOf(PropTypes.oneOf(['value'])),
 
     /**
-     * Where persisted user changes will be stored:
-     * memory: only kept in memory, reset on page refresh.
-     * local: window.localStorage, data is kept after the browser quit.
-     * session: window.sessionStorage, data is cleared once the browser quit.
+     * 属性持久化存储类型，可选项有`'local'`（本地持久化），`'session'`（会话持久化），`'memory'`（内存持久化）
+     * 默认值：`'local'`
      */
     persistence_type: PropTypes.oneOf(['local', 'session', 'memory'])
 };

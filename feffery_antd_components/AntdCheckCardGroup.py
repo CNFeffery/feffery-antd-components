@@ -5,31 +5,39 @@ from dash.development.base_component import Component, _explicitize_args
 
 class AntdCheckCardGroup(Component):
     """An AntdCheckCardGroup component.
-
+组合选择卡片组件AntdCheckCardGroup
 
 Keyword arguments:
 
-- children (a list of or a singular dash component, string or number; optional)
+- children (a list of or a singular dash component, string or number; optional):
+    组件型，内嵌若干`AntdCheckCard`相关组件.
 
-- id (string; optional)
+- id (string; optional):
+    组件唯一id.
 
-- allowNoValue (boolean; default True)
+- allowNoValue (boolean; default True):
+    是否允许当前组合选择卡片中仅剩的选项被取消选中  默认值：`True`.
 
 - aria-* (string; optional):
     `aria-*`格式属性通配.
 
-- bordered (boolean; default True)
+- bordered (boolean; default True):
+    是否显示边框  默认值：`True`.
 
-- className (string | dict; optional)
+- className (string | dict; optional):
+    当前组件css类名，支持[动态css](/advanced-classname).
 
 - data-* (string; optional):
     `data-*`格式属性通配.
 
-- defaultValue (number | string | list of number | strings; optional)
+- defaultValue (number | string | list of number | strings; optional):
+    初始化已选中卡片值.
 
-- disabled (boolean; default False)
+- disabled (boolean; default False):
+    是否禁用当前组件  默认值：`False`.
 
-- key (string; optional)
+- key (string; optional):
+    对当前组件的`key`值进行更新，可实现强制重绘当前组件的效果.
 
 - loading_state (dict; optional)
 
@@ -44,43 +52,39 @@ Keyword arguments:
     - prop_name (string; optional):
         Holds which property is loading.
 
-- multiple (boolean; default False)
+- multiple (boolean; default False):
+    是否开启多选  默认值：`False`.
 
 - name (string; optional):
-    用于在基于AntdForm的表单值自动搜集功能中，充当当前表单项的字段名  缺省时会以id作为字段名.
+    配合`AntdForm`表单批量值搜集/控制功能使用，充当当前表单项的字段名，以`id`作为缺省值.
 
 - persisted_props (list of a value equal to: 'value's; default ['value']):
-    Properties whose user interactions will persist after refreshing
-    the  component or the page. Since only `value` is allowed this
-    prop can  normally be ignored.
+    开启属性持久化功能的若干属性名，可选项有`'value'`  默认值：`['value']`.
 
 - persistence (boolean | string | number; optional):
-    Used to allow user interactions in this component to be persisted
-    when  the component - or the page - is refreshed. If `persisted`
-    is truthy and  hasn't changed from its previous value, a `value`
-    that the user has  changed while using the app will keep that
-    change, as long as  the new `value` also matches what was given
-    originally.  Used in conjunction with `persistence_type`.
+    是否开启[属性持久化](/prop-persistence).
 
 - persistence_type (a value equal to: 'local', 'session', 'memory'; default 'local'):
-    Where persisted user changes will be stored:  memory: only kept in
-    memory, reset on page refresh.  local: window.localStorage, data
-    is kept after the browser quit.  session: window.sessionStorage,
-    data is cleared once the browser quit.
+    属性持久化存储类型，可选项有`'local'`（本地持久化），`'session'`（会话持久化），`'memory'`（内存持久化）
+    默认值：`'local'`.
 
-- readOnly (boolean; default False)
+- readOnly (boolean; default False):
+    是否渲染为只读状态  默认值：`False`.
 
-- size (a value equal to: 'small', 'default', 'large'; default 'default')
+- size (a value equal to: 'small', 'default', 'large'; default 'default'):
+    当前组件尺寸规格，可选项有`'small'`、`'default'`、`'large'`  默认值：`'default'`.
 
-- style (dict; optional)
+- style (dict; optional):
+    当前组件css样式.
 
-- value (number | string | list of number | strings; optional)"""
+- value (number | string | list of number | strings; optional):
+    监听或设置已选中卡片值."""
     _children_props = []
     _base_nodes = ['children']
     _namespace = 'feffery_antd_components'
     _type = 'AntdCheckCardGroup'
     @_explicitize_args
-    def __init__(self, children=None, id=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, key=Component.UNDEFINED, name=Component.UNDEFINED, multiple=Component.UNDEFINED, allowNoValue=Component.UNDEFINED, bordered=Component.UNDEFINED, value=Component.UNDEFINED, defaultValue=Component.UNDEFINED, disabled=Component.UNDEFINED, size=Component.UNDEFINED, readOnly=Component.UNDEFINED, loading_state=Component.UNDEFINED, persistence=Component.UNDEFINED, persisted_props=Component.UNDEFINED, persistence_type=Component.UNDEFINED, **kwargs):
+    def __init__(self, children=None, id=Component.UNDEFINED, key=Component.UNDEFINED, style=Component.UNDEFINED, className=Component.UNDEFINED, name=Component.UNDEFINED, multiple=Component.UNDEFINED, allowNoValue=Component.UNDEFINED, bordered=Component.UNDEFINED, value=Component.UNDEFINED, defaultValue=Component.UNDEFINED, disabled=Component.UNDEFINED, size=Component.UNDEFINED, readOnly=Component.UNDEFINED, loading_state=Component.UNDEFINED, persistence=Component.UNDEFINED, persisted_props=Component.UNDEFINED, persistence_type=Component.UNDEFINED, **kwargs):
         self._prop_names = ['children', 'id', 'allowNoValue', 'aria-*', 'bordered', 'className', 'data-*', 'defaultValue', 'disabled', 'key', 'loading_state', 'multiple', 'name', 'persisted_props', 'persistence', 'persistence_type', 'readOnly', 'size', 'style', 'value']
         self._valid_wildcard_attributes =            ['data-', 'aria-']
         self.available_properties = ['children', 'id', 'allowNoValue', 'aria-*', 'bordered', 'className', 'data-*', 'defaultValue', 'disabled', 'key', 'loading_state', 'multiple', 'name', 'persisted_props', 'persistence', 'persistence_type', 'readOnly', 'size', 'style', 'value']

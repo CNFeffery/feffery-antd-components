@@ -1,18 +1,25 @@
+// react核心
 import React, { useEffect, useContext } from 'react';
+// antd核心
 import { CheckCard } from '@ant-design/pro-components';
+// 辅助库
 import { parseChildrenToArray } from '../../../components/utils';
 import { isString, isUndefined } from 'lodash';
 import { pickBy } from 'ramda';
+// 自定义hooks
 import useCss from '../../../hooks/useCss';
+// 上下文
 import PropsContext from '../../../contexts/PropsContext';
 import FormContext from '../../../contexts/FormContext';
+// 状态管理
 import useFormStore from '../../../store/formStore';
+// 参数类型
 import { propTypes, defaultProps } from '../../../components/dataEntry/check-card/AntdCheckCardGroup.react';
 
-// 定义组合选择卡片组件AntdCheckCardGroup，api参数参考https://procomponents.ant.design/components/check-card
+/**
+ * 组合选择卡片组件AntdCheckCardGroup
+ */
 const AntdCheckCardGroup = (props) => {
-
-    // 取得必要属性或参数
     let {
         id,
         children,
