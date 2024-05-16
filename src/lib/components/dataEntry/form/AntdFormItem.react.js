@@ -3,6 +3,9 @@ import PropTypes from 'prop-types';
 
 const LazyAntdFormItem = React.lazy(() => import(/* webpackChunkName: "data_entry" */ '../../../fragments/dataEntry/form/AntdFormItem.react'));
 
+/**
+ * 表单项组件AntdFormItem
+ */
 const AntdFormItem = (props) => {
     return (
         <Suspense fallback={null}>
@@ -11,91 +14,129 @@ const AntdFormItem = (props) => {
     );
 }
 
-// 定义参数或属性
 AntdFormItem.propTypes = {
-    // 组件id
+    /**
+     * 组件唯一id
+     */
     id: PropTypes.string,
 
     /**
-     * The content of the tab - will only be displayed if this tab is selected
+     * 对当前组件的`key`值进行更新，可实现强制重绘当前组件的效果
+     */
+    key: PropTypes.string,
+
+    /**
+     * 组件型，内嵌相关常用表单输入类组件
      */
     children: PropTypes.node,
 
-    // css类名
+    /**
+     * 当前组件css样式
+     */
+    style: PropTypes.object,
+
+    /**
+     * 当前组件css类名，支持[动态css](/advanced-classname)
+     */
     className: PropTypes.oneOfType([
         PropTypes.string,
         PropTypes.object
     ]),
 
-    // 自定义css字典
-    style: PropTypes.object,
-
-    // 辅助刷新用唯一标识key值
-    key: PropTypes.string,
-
-    // 设置是否为标签添加必填*标识，默认为false
+    /**
+     * 是否显示表示必填项的额外“*”标识
+     * 默认值：`false`
+     */
     required: PropTypes.bool,
 
-    // 设置表单项标签列宽相关属性，同AntdCol划分为24份宽度，优先级高于AntdForm
+    /**
+     * 配置表单项标签部分相关参数，优先级高于所属`AntdForm`中的`labelCol`参数
+     */
     labelCol: PropTypes.exact({
-        // 设置span宽度
+        /**
+         * 标签部分所占宽度份数（总份数24）
+         */
         span: PropTypes.number,
-
-        // 设置offset平移宽度
+        /**
+         * 标签部分向右偏移宽度份数
+         */
         offset: PropTypes.number,
-
-        // 同css中的flex属性
+        /**
+         * 同css中的flex属性，用于更灵活的控制标签部分所占宽度
+         */
         flex: PropTypes.oneOfType([
             PropTypes.string,
             PropTypes.number
         ])
     }),
-
-    // 配合label参数，表示是否显示label后面的冒号，默认为true
-    colon: PropTypes.bool,
-
-    // 设置表单项列宽相关属性，同AntdCol划分为24份宽度，优先级高于AntdForm
-    wrapperCol: PropTypes.exact({
-        // 设置span宽度
-        span: PropTypes.number,
-
-        // 设置offset平移宽度
-        offset: PropTypes.number,
-
-        // 同css中的flex属性
-        flex: PropTypes.oneOfType([
-            PropTypes.string,
-            PropTypes.number
-        ])
-    }),
-
-    // 设置表单项标签内容
-    label: PropTypes.node,
-
-    // 设置表单项标签文本对齐方式，可选的为'left'与'right'，默认为'right'
-    labelAlign: PropTypes.oneOf(['left', 'right']),
-
-    // 在label后添加额外tooltip鼠标悬浮提示信息
-    tooltip: PropTypes.node,
-
-    // 设置表单项额外的提示信息
-    extra: PropTypes.node,
-
-    // 设置校验状态，不设置时会根据设置的校验规则自动生成
-    validateStatus: PropTypes.oneOf([
-        'success', 'warning', 'error', 'validating'
-    ]),
 
     /**
-     * 是否配合不同的validateStatus值，呈现对应的状态图标，建议仅用于AntdInput
-     * 默认：false
+     * 配置表单项控件部分相关参数，优先级高于所属`AntdForm`中的`labelCol`参数
+     */
+    wrapperCol: PropTypes.exact({
+        /**
+         * 控件部分所占宽度份数（总份数24）
+         */
+        span: PropTypes.number,
+        /**
+         * 控件部分向右偏移宽度份数
+         */
+        offset: PropTypes.number,
+        /**
+         * 同css中的flex属性，用于更灵活的控制控件部分所占宽度
+         */
+        flex: PropTypes.oneOfType([
+            PropTypes.string,
+            PropTypes.number
+        ])
+    }),
+
+    /**
+     * 当`layput='horizontal'`时，控制是否在表单项标签部分末尾添加冒号，优先级高于所属`AntdForm`中的`colon`参数
+     */
+    colon: PropTypes.bool,
+
+    /**
+     * 组件型，当前表单项标签内容
+     */
+    label: PropTypes.node,
+
+    /**
+     * 表单项标签部分文本对齐方式，可选项有`'left'`、`'right'`，优先级高于所属`AntdForm`中的`labelAlign`参数
+     * 默认值：`'right'`
+     */
+    labelAlign: PropTypes.oneOf(['left', 'right']),
+
+    /**
+     * 组件型，当前表单项标签内容后的额外文字提示信息
+     */
+    tooltip: PropTypes.node,
+
+    /**
+     * 组件型，当前表单项额外提示信息
+     */
+    extra: PropTypes.node,
+
+    /**
+     * 控制校验状态，可选项有`'success'`、`'warning'`、`'error'`、`'validating'`
+     */
+    validateStatus: PropTypes.oneOf(['success', 'warning', 'error', 'validating']),
+
+    /**
+     * 与`validateStatus`设定的状态对应，用于控制是否显示额外的状态图标
+     * 默认值：`false`
      */
     hasFeedback: PropTypes.bool,
 
-    // 设置与validateStatus状态一致的校验提示信息
+    /**
+     * 组件型，与`validateStatus`状态一致的额外说明内容
+     */
     help: PropTypes.node,
 
-    // 设置是否隐藏字段，隐藏后仍然会收集和校验字段，默认为false
+    /**
+     * 是否隐藏当前字段
+     * 默认值：`false`
+     */
     hidden: PropTypes.bool,
 
     /**

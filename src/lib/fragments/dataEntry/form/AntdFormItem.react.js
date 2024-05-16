@@ -1,17 +1,25 @@
+// react核心
 import React, { useContext } from 'react';
+// antd核心
 import { Form } from 'antd';
+// 辅助库
 import { isString } from 'lodash';
 import { pickBy } from 'ramda';
+// 自定义hooks
 import useCss from '../../../hooks/useCss';
+// 上下文
 import FormContext from '../../../contexts/FormContext';
+// 状态管理
 import useFormStore from '../../../store/formStore';
+// 参数类型
 import { propTypes, defaultProps } from '../../../components/dataEntry/form/AntdFormItem.react';
 
 const { Item } = Form;
 
-// 定义表单项组件AntdFormItem，api参数参考https://ant.design/components/form-cn/
+/**
+ * 表单项组件AntdFormItem
+ */
 const AntdFormItem = (props) => {
-    // 取得必要属性或参数
     let {
         id,
         children,

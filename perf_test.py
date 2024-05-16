@@ -91,6 +91,7 @@ components = [
     'AntdDatePicker',
     'AntdDateRangePicker',
     'AntdForm',
+    'AntdFormItem',
 ]
 
 app.layout = html.Div(
