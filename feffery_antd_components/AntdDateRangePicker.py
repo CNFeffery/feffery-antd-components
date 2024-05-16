@@ -5,65 +5,86 @@ from dash.development.base_component import Component, _explicitize_args
 
 class AntdDateRangePicker(Component):
     """An AntdDateRangePicker component.
-
+日期范围选择组件AntdDateRangePicker
 
 Keyword arguments:
 
-- id (string; optional)
+- id (string; optional):
+    组件唯一id.
 
-- allowClear (boolean; default True)
+- allowClear (boolean; default True):
+    是否允许一键清空已选值  默认值：`True`.
 
 - aria-* (string; optional):
     `aria-*`格式属性通配.
 
-- autoFocus (boolean; default False)
+- autoFocus (boolean; default False):
+    是否自动获取焦点  默认值：`False`.
 
-- batchPropsNames (list of strings; optional)
+- batchPropsNames (list of strings; optional):
+    需要纳入[批量属性监听](/batch-props-values)的若干属性名.
 
-- batchPropsValues (dict; optional)
+- batchPropsValues (dict; optional):
+    监听`batchPropsNames`中指定的若干属性值.
 
 - bordered (boolean; default True):
-    设置是否渲染边框，设置为True时等价于variant='outlined'  默认：True.
+    是否显示边框，设置为`True`时等价于`variant='outlined'`  默认值：`True`.
 
-- className (string | dict; optional)
+- className (string | dict; optional):
+    当前组件css类名，支持[动态css](/advanced-classname).
 
 - clickedPreset (dict; optional):
-    配合presets参数，监听最近一次预设子项点击事件相关信息.
+    配合`presets`参数，监听最近一次预设项点击事件相关信息.
 
     `clickedPreset` is a dict with keys:
 
     - timestamp (number; optional):
-        监听事件对应时间戳.
+        事件对应时间戳信息.
 
     - value (string | number; optional):
-        监听事件对应预设子项值.
+        对应预设项值.
 
 - data-* (string; optional):
     `data-*`格式属性通配.
 
-- defaultPickerValue (string; optional)
+- defaultPickerValue (string; optional):
+    选择面板每次展开时默认停留的日期位置，与`format`格式对应.
 
-- defaultValue (list of strings; optional)
+- defaultValue (list of strings; optional):
+    初始化已选值，与`format`格式对应.
 
-- disabled (list of booleans; default [False, False])
+- disabled (list of booleans; default [False, False]):
+    是否禁用当前组件  默认值：`False`.
 
-- disabledDatesStrategy (list of dicts; optional)
+- disabledDatesStrategy (list of dicts; optional):
+    配置日期禁用项策略数组，满足策略中至少一项规则的日期将会被禁止选中.
 
     `disabledDatesStrategy` is a list of dicts with keys:
 
-    - mode (a value equal to: 'eq', 'ne', 'le', 'lt', 'ge', 'gt', 'in', 'not-in', 'in-enumerate-dates', 'not-in-enumerate-dates'; optional)
+    - mode (a value equal to: 'eq', 'ne', 'le', 'lt', 'ge', 'gt', 'in', 'not-in', 'in-enumerate-dates', 'not-in-enumerate-dates'; optional):
+        当前策略类型，可选项有`'eq'`（等于）、`'ne'`（不等于）、`'le'`（小于等于）、`'lt'`（小于）、`'ge'`（大于等于）
+        、`'gt'`（大于）、`'in'`（属于）、`'not-in'`（不属于）、`'in-enumerate-dates'`（属于日期字符串枚举数组），`'not-in-enumerate-dates'`（不属于日期字符串枚举数组）.
 
-    - target (a value equal to: 'day', 'month', 'quarter', 'year', 'dayOfYear', 'dayOfWeek', 'specific-date'; optional)
+    - target (a value equal to: 'day', 'month', 'quarter', 'year', 'dayOfYear', 'dayOfWeek', 'specific-date'; optional):
+        当前策略约束目标，可选项有`'dayOfYear'`（按年份天数）、`'dayOfWeek'`（按周天数）、`'day'`（按日）
+        、`'month'`（按月份）、`'quarter'`（按季度）、`'year'`（按年份）、`'specific-date'`（具体日期）
+        ，其中在`'specific-date'`目标下，`value`值将严格按照`'YYYY-MM-DD'`格式进行解析.
 
-    - value (number | string | list of numbers | list of strings; optional)
+    - value (number | string | list of numbers | list of strings; optional):
+        与策略类型、策略约束目标相对应的实际约束值.
 
-- extraFooter (a list of or a singular dash component, string or number; optional)
+- extraFooter (a list of or a singular dash component, string or number; optional):
+    组件型，底部额外区域内容.
 
-- firstDayOfWeek (number; optional)
+- firstDayOfWeek (number; optional):
+    自定义每周起始日下标.
 
-- format (string; optional)
+- format (string; optional):
+    日期时间显示格式，[参考资料](https://day.js.org/docs/en/display/format)
+    默认值：`'YYYY-MM-DD'`.
 
-- key (string; optional)
+- key (string; optional):
+    对当前组件的`key`值进行更新，可实现强制重绘当前组件的效果.
 
 - loading_state (dict; optional):
     Object that holds the loading state object coming from
@@ -80,84 +101,91 @@ Keyword arguments:
     - prop_name (string; optional):
         Holds which property is loading.
 
-- locale (a value equal to: 'zh-cn', 'en-us'; default 'zh-cn')
+- locale (a value equal to: 'zh-cn', 'en-us'; default 'zh-cn'):
+    组件文案语种，可选项有`'zh-cn'`、`'en-us'`  默认值：`'zh-cn'`.
 
 - name (string; optional):
-    用于在基于AntdForm的表单值自动搜集功能中，充当当前表单项的字段名  缺省时会以id作为字段名.
+    配合`AntdForm`表单批量值搜集/控制功能使用，充当当前表单项的字段名，以`id`作为缺省值.
 
 - needConfirm (boolean; default False):
-    是否需要确认按钮，为`False`时失去焦点即代表选择  默认为`False`.
+    是否需要点击按钮确认选值，传入`False`时失去焦点即代表选择  默认值：`False`.
 
-- open (boolean; optional)
+- open (boolean; optional):
+    监听或设置当前日期范围选择面板是否展开.
 
 - persisted_props (list of a value equal to: 'value's; default ['value']):
-    Properties whose user interactions will persist after refreshing
-    the  component or the page. Since only `value` is allowed this
-    prop can  normally be ignored.
+    开启属性持久化功能的若干属性名，可选项有`'value'`  默认值：`['value']`.
 
 - persistence (boolean | string | number; optional):
-    Used to allow user interactions in this component to be persisted
-    when  the component - or the page - is refreshed. If `persisted`
-    is truthy and  hasn't changed from its previous value, a `value`
-    that the user has  changed while using the app will keep that
-    change, as long as  the new `value` also matches what was given
-    originally.  Used in conjunction with `persistence_type`.
+    是否开启[属性持久化](/prop-persistence).
 
 - persistence_type (a value equal to: 'local', 'session', 'memory'; default 'local'):
-    Where persisted user changes will be stored:  memory: only kept in
-    memory, reset on page refresh.  local: window.localStorage, data
-    is kept after the browser quit.  session: window.sessionStorage,
-    data is cleared once the browser quit.
+    属性持久化存储类型，可选项有`'local'`（本地持久化），`'session'`（会话持久化），`'memory'`（内存持久化）
+    默认值：`'local'`.
 
-- picker (a value equal to: 'date', 'week', 'month', 'quarter', 'year'; default 'date')
+- picker (a value equal to: 'date', 'week', 'month', 'quarter', 'year'; default 'date'):
+    日期选择粒度，可选项有`'date'`、`'week'`、`'month'`、`'quarter'`、`'year'`
+    默认值：`'date'`.
 
-- placeholder (list of strings; optional)
+- placeholder (list of strings; optional):
+    输入框占位文字内容.
 
-- placement (a value equal to: 'bottomLeft', 'bottomRight', 'topLeft', 'topRight'; default 'bottomLeft')
+- placement (a value equal to: 'bottomLeft', 'bottomRight', 'topLeft', 'topRight'; default 'bottomLeft'):
+    选择面板展开方向，可选项有`'bottomLeft'`、`'bottomRight'`、`'topLeft'`、`'topRight'`
+    默认值：`'bottomLeft'`.
 
 - popupClassName (string; optional):
-    设置弹框菜单css类名.
+    展开菜单css类名.
 
-- popupContainer (a value equal to: 'parent', 'body'; default 'body')
+- popupContainer (a value equal to: 'parent', 'body'; default 'body'):
+    相关展开层锚定策略，可选项有`'parent'`、`'body'`  默认值：`'body'`.
 
 - presets (list of dicts; optional):
-    配置预设范围触发列表信息.
+    配置预设项列表.
 
     `presets` is a list of dicts with keys:
 
     - label (a list of or a singular dash component, string or number; optional):
-        组件型，设置当前预设子项元素.
+        组件型，当前预设项标题.
 
     - value (list of strings; optional):
-        设置当前预设子项日期范围字符串数组.
+        当前预设项对应值，与`format`格式对应.
 
-- readOnly (boolean; optional)
+- readOnly (boolean; optional):
+    是否渲染为只读状态  默认值：`False`.
 
-- showTime (dict; default False)
+- showTime (dict; default False):
+    配置时间选择面板相关参数  默认值：`False`.
 
     `showTime` is a boolean | dict with keys:
 
-    - defaultValue (list of strings; optional)
+    - defaultValue (list of strings; optional):
+        时间选择面板初始化选中时间字符串.
 
-    - format (string; optional)
+    - format (string; optional):
+        与`defaultValue`对应的时间格式，[参考资料](https://day.js.org/docs/en/display/format)
+        默认值：`'HH:mm:ss'`.
 
-- size (a value equal to: 'small', 'middle', 'large'; default 'middle')
+- size (a value equal to: 'small', 'middle', 'large'; default 'middle'):
+    当前组件尺寸规格，可选项有`'small'`、`'middle'`、`'large'`  默认值：`'middle'`.
 
-- status (a value equal to: 'error', 'warning'; optional)
+- status (a value equal to: 'error', 'warning'; optional):
+    控制校验状态，可选项有`'error'`、`'warning'`.
 
-- style (dict; optional)
+- style (dict; optional):
+    当前组件css样式.
 
-- value (list of strings; optional)
+- value (list of strings; optional):
+    监听或设置已选值，与`format`格式对应.
 
 - variant (a value equal to: 'outlined', 'borderless', 'filled'; optional):
-    设置形态变体类型，可选的有'outlined'、'borderless'、'filled'
-    其中'outlined'等价于bordered=True，优先级高于bordered."""
+    形态变体类型，可选项有`'outlined'`、`'borderless'`、`'filled'`，其中`'outlined'`等价于`bordered=True`，但优先级更高."""
     _children_props = ['extraFooter', 'presets[].label']
     _base_nodes = ['extraFooter', 'children']
     _namespace = 'feffery_antd_components'
     _type = 'AntdDateRangePicker'
     @_explicitize_args
-    def __init__(self, id=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, popupClassName=Component.UNDEFINED, key=Component.UNDEFINED, name=Component.UNDEFINED, locale=Component.UNDEFINED, format=Component.UNDEFINED, picker=Component.UNDEFINED, firstDayOfWeek=Component.UNDEFINED, disabled=Component.UNDEFINED, showTime=Component.UNDEFINED, size=Component.UNDEFINED, bordered=Component.UNDEFINED, variant=Component.UNDEFINED, placeholder=Component.UNDEFINED, placement=Component.UNDEFINED, value=Component.UNDEFINED, defaultValue=Component.UNDEFINED, defaultPickerValue=Component.UNDEFINED, disabledDatesStrategy=Component.UNDEFINED, open=Component.UNDEFINED, status=Component.UNDEFINED, allowClear=Component.UNDEFINED, autoFocus=Component.UNDEFINED, readOnly=Component.UNDEFINED, extraFooter=Component.UNDEFINED, presets=Component.UNDEFINED, clickedPreset=Component.UNDEFINED, popupContainer=Component.UNDEFINED, batchPropsNames=Component.UNDEFINED, batchPropsValues=Component.UNDEFINED, needConfirm=Component.UNDEFINED, loading_state=Component.UNDEFINED, persistence=Component.UNDEFINED, persisted_props=Component.UNDEFINED, persistence_type=Component.UNDEFINED, **kwargs):
+    def __init__(self, id=Component.UNDEFINED, key=Component.UNDEFINED, style=Component.UNDEFINED, className=Component.UNDEFINED, popupClassName=Component.UNDEFINED, name=Component.UNDEFINED, locale=Component.UNDEFINED, format=Component.UNDEFINED, picker=Component.UNDEFINED, firstDayOfWeek=Component.UNDEFINED, disabled=Component.UNDEFINED, showTime=Component.UNDEFINED, size=Component.UNDEFINED, bordered=Component.UNDEFINED, variant=Component.UNDEFINED, placeholder=Component.UNDEFINED, placement=Component.UNDEFINED, value=Component.UNDEFINED, defaultValue=Component.UNDEFINED, defaultPickerValue=Component.UNDEFINED, disabledDatesStrategy=Component.UNDEFINED, open=Component.UNDEFINED, status=Component.UNDEFINED, allowClear=Component.UNDEFINED, autoFocus=Component.UNDEFINED, readOnly=Component.UNDEFINED, extraFooter=Component.UNDEFINED, presets=Component.UNDEFINED, clickedPreset=Component.UNDEFINED, needConfirm=Component.UNDEFINED, popupContainer=Component.UNDEFINED, batchPropsNames=Component.UNDEFINED, batchPropsValues=Component.UNDEFINED, loading_state=Component.UNDEFINED, persistence=Component.UNDEFINED, persisted_props=Component.UNDEFINED, persistence_type=Component.UNDEFINED, **kwargs):
         self._prop_names = ['id', 'allowClear', 'aria-*', 'autoFocus', 'batchPropsNames', 'batchPropsValues', 'bordered', 'className', 'clickedPreset', 'data-*', 'defaultPickerValue', 'defaultValue', 'disabled', 'disabledDatesStrategy', 'extraFooter', 'firstDayOfWeek', 'format', 'key', 'loading_state', 'locale', 'name', 'needConfirm', 'open', 'persisted_props', 'persistence', 'persistence_type', 'picker', 'placeholder', 'placement', 'popupClassName', 'popupContainer', 'presets', 'readOnly', 'showTime', 'size', 'status', 'style', 'value', 'variant']
         self._valid_wildcard_attributes =            ['data-', 'aria-']
         self.available_properties = ['id', 'allowClear', 'aria-*', 'autoFocus', 'batchPropsNames', 'batchPropsValues', 'bordered', 'className', 'clickedPreset', 'data-*', 'defaultPickerValue', 'defaultValue', 'disabled', 'disabledDatesStrategy', 'extraFooter', 'firstDayOfWeek', 'format', 'key', 'loading_state', 'locale', 'name', 'needConfirm', 'open', 'persisted_props', 'persistence', 'persistence_type', 'picker', 'placeholder', 'placement', 'popupClassName', 'popupContainer', 'presets', 'readOnly', 'showTime', 'size', 'status', 'style', 'value', 'variant']
