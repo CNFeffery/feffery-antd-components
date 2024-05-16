@@ -1,13 +1,20 @@
+// react核心
 import React, { useEffect, useMemo, useContext } from 'react';
+// antd核心
 import { Cascader, ConfigProvider } from 'antd';
+// 辅助库
 import { str2Locale } from '../../components/locales.react';
 import { isUndefined, isString, cloneDeep } from 'lodash';
 import { pickBy } from 'ramda';
 import { flatToTree } from '../../components/utils';
+// 自定义hooks
 import useCss from '../../hooks/useCss';
+// 上下文
 import PropsContext from '../../contexts/PropsContext';
 import FormContext from '../../contexts/FormContext';
+// 状态管理
 import useFormStore from '../../store/formStore';
+// 参数类型
 import { propTypes, defaultProps } from '../../components/dataEntry/AntdCascader.react';
 
 const { SHOW_CHILD, SHOW_PARENT } = Cascader;
@@ -41,9 +48,10 @@ const replaceNodeLabel = (originOptions, optionsNodeKeyToLabel) => {
     return originOptions;
 }
 
-// 定义级联选择组件AntdCascader，api参数参考https://ant.design/components/cascader-cn/
+/**
+ * 级联选择组件AntdCascader
+ */
 const AntdCascader = (props) => {
-    // 取得必要属性或参数
     let {
         id,
         style,
@@ -151,7 +159,7 @@ const AntdCascader = (props) => {
         setProps({ value: e })
     }
 
-    
+
     if (panelMode) {
         return (
             <ConfigProvider locale={str2Locale.get(locale)}>

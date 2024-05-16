@@ -39,11 +39,7 @@ AntdCalendar.propTypes = {
     ]),
 
     /**
-     * 用于在基于AntdForm的表单值自动搜集功能中，充当当前表单项的字段名
-     * 缺省时会以id作为字段名
-     */
-    /**
-     * 配合`AntdForm`表单批量值搜集/控制功能使用，充当当前表单项的字段名
+     * 配合`AntdForm`表单批量值搜集/控制功能使用，充当当前表单项的字段名，以`id`作为缺省值
      */
     name: PropTypes.string,
 

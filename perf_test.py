@@ -82,6 +82,7 @@ components = [
     'AntdTooltip',
     'AntdTree',
     'AntdCalendar',
+    'AntdCascader',
 ]
 
 app.layout = html.Div(

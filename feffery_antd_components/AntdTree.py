@@ -176,7 +176,7 @@ Keyword arguments:
     当前组件css样式.
 
 - treeData (list; optional):
-    定义树形结构，与`treeDataMode`一致.
+    定义构造树所需的数据结构，与`treeDataMode`一致.
 
 - treeDataMode (a value equal to: 'tree', 'flat'; default 'tree'):
     对应`treeData`格式的渲染模式，可选项有`'tree'`（树形模式）、`'flat'`（扁平模式）

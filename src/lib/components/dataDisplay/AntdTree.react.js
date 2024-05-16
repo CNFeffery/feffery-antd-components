@@ -229,7 +229,7 @@ AntdTree.propTypes = {
     treeDataMode: PropTypes.oneOf(['tree', 'flat']),
 
     /**
-     * 定义树形结构，与`treeDataMode`一致
+     * 定义构造树所需的数据结构，与`treeDataMode`一致
      */
     treeData: PropTypes.oneOfType([
         /**
