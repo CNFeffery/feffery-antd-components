@@ -80,7 +80,7 @@ Keyword arguments:
     配合`AntdForm`表单批量值搜集/控制功能使用，充当当前表单项的字段名，以`id`作为缺省值.
 
 - needConfirm (boolean; default False):
-    是否需要确认按钮，为`False`时失去焦点即代表选择  默认为`False`.
+    是否需要确认按钮，为`False`时失去焦点即代表选择  默认值：`False`.
 
 - persisted_props (list of a value equal to: 'value's; default ['value']):
     开启属性持久化功能的若干属性名，可选项有`'value'`  默认值：`['value']`.

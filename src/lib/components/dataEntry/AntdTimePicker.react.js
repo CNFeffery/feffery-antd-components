@@ -190,7 +190,7 @@ AntdTimePicker.propTypes = {
 
     /**
      * 是否需要确认按钮，为`false`时失去焦点即代表选择
-     * 默认为`false`
+     * 默认值：`false`
      */
     needConfirm: PropTypes.bool,
 
