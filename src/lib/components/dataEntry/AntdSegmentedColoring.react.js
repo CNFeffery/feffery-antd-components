@@ -5,6 +5,9 @@ import PropTypes from 'prop-types';
 
 const LazyAntdSegmentedColoring = React.lazy(() => import(/* webpackChunkName: "data_entry" */ '../../fragments/dataEntry/AntdSegmentedColoring.react'));
 
+/**
+ * 分段着色组件AntdSegmentedColoring
+ */
 const AntdSegmentedColoring = (props) => {
     return (
         <Suspense fallback={null}>
@@ -13,89 +16,143 @@ const AntdSegmentedColoring = (props) => {
     );
 }
 
-// 定义参数或属性
 AntdSegmentedColoring.propTypes = {
-    // 组件id
+    /**
+     * 组件唯一id
+     */
     id: PropTypes.string,
 
-    // css类
+    /**
+     * 对当前组件的`key`值进行更新，可实现强制重绘当前组件的效果
+     */
+    key: PropTypes.string,
+
+    /**
+     * 当前组件css样式
+     */
+    style: PropTypes.object,
+
+    /**
+     * 当前组件css类名，支持[动态css](/advanced-classname)
+     */
     className: PropTypes.oneOfType([
         PropTypes.string,
         PropTypes.object
     ]),
 
-    // 自定义css样式
-    style: PropTypes.object,
-
-    key: PropTypes.string,
-
-    // 设置&更新分段断点数组
+    /**
+     * 必填，监听或设置分段断点数组
+     */
     breakpoints: PropTypes.arrayOf(PropTypes.number).isRequired,
 
-    // 设置分段css颜色数组，长度应为breakpoints长度-1
+    /**
+     * 必填，为各分段设置颜色，数组长度应为`breakpoints`长度减1
+     */
     colors: PropTypes.arrayOf(PropTypes.string).isRequired,
 
-    // 设置是否为数字输入框添加增减按钮，默认为true
+    /**
+     * 是否为各分段数值输入框添加增减按钮
+     * 默认值：`true`
+     */
     controls: PropTypes.bool,
 
-    // 设置是否为数字输入框启用键盘上下键改变数值功能，默认为true
+    /**
+     * 是否可通过键盘上下方向键增减各分段数值输入框数值
+     * 默认值：`true`
+     */
     keyboard: PropTypes.bool,
 
-    // 设置数字输入框允许输入的合法数值下限，默认无限制
+    /**
+     * 各分段数值输入框允许输入数值下限，默认无限制
+     */
     min: PropTypes.number,
 
-    // 设置数字输入框允许输入的合法数值上限，默认无限制
+    /**
+     * 各分段数值输入框允许输入数值上限，默认无限制
+     */
     max: PropTypes.number,
 
-    // 设置数字输入框数值变化步长，默认为0.01
+    /**
+     * 各分段数值输入框数值调整步长
+     * 默认值：`0.01`
+     */
     step: PropTypes.number,
 
-    // 设置数字输入框数值精度即小数位数，默认为2
+    /**
+     * 各分段数值输入框数值精度
+     * 默认值：`2`
+     */
     precision: PropTypes.number,
 
-    // 设置整体禁用数字输入框，默认为false
+    /**
+     * 是否禁用当前组件
+     * 默认值：`false`
+     */
     disabled: PropTypes.bool,
 
-    // 设置组件整体尺寸规格，可选的有'large'、'small'及'middle'
-    size: PropTypes.oneOf(['large', 'small', 'middle']),
+    /**
+     * 当前组件尺寸规格，可选项有`'small'`、`'middle'`、`'large'`
+     * 默认值：`'middle'`
+     */
+    size: PropTypes.oneOf(['small', 'middle', 'large']),
 
     /**
-     * 设置是否渲染边框，设置为true时等价于variant='outlined'
-     * 默认：true
+     * 是否显示边框，设置为`true`时等价于`variant='outlined'`
+     * 默认值：`true`
      */
     bordered: PropTypes.bool,
 
     /**
-     * 设置形态变体类型，可选的有'outlined'、'borderless'、'filled'
-     * 其中'outlined'等价于bordered=true，优先级高于bordered
+     * 形态变体类型，可选项有`'outlined'`、`'borderless'`、`'filled'`，其中`'outlined'`等价于`bordered=True`，但优先级更高
      */
     variant: PropTypes.oneOf(['outlined', 'borderless', 'filled']),
 
-    // 为数字输入框设置统一的placeholder信息
+    /**
+     * 各分段数值输入框占位文字内容
+     */
     placeholder: PropTypes.string,
 
-    // 设置是否开启只读模式，默认为false
+    /**
+     * 是否渲染为只读状态
+     * 默认值：`false`
+     */
     readOnly: PropTypes.bool,
 
-    // 设置是否开启纯图例模式，默认为false
+    /**
+     * 是否开启纯图例模式
+     * 默认值：`false`
+     */
     pureLegend: PropTypes.bool,
 
-    // 为数字输入框设置统一的css样式
+    /**
+     * 各分段数值输入框统一css样式
+     */
     inputNumberStyle: PropTypes.object,
 
-    // 设置色块css样式
+    /**
+     * 色块css样式
+     */
     colorBlockStyle: PropTypes.object,
 
-    // 设置色块方位，可选的有'left'、'right'，默认为'right'
+    /**
+     * 色块显示方位，可选项有`'left'`、`'right'`
+     * 默认值：`'right'`
+     */
     colorBlockPosition: PropTypes.oneOf(['left', 'right']),
 
-    // pureLegend模式下，设置文字css样式
+    /**
+     * 当`pureLegend=True`时，设置各分段数值统一css样式
+     */
     pureLegendLabelStyle: PropTypes.object,
 
-    // 用于自定义需要纳入batchProps中的属性名数组
+    /**
+     * 需要纳入[批量属性监听](/batch-props-values)的若干属性名
+     */
     batchPropsNames: PropTypes.arrayOf(PropTypes.string),
 
-    // 打包监听batchPropsNames中定义的属性值变化
+    /**
+     * 监听`batchPropsNames`中指定的若干属性值
+     */
     batchPropsValues: PropTypes.object,
 
     /**

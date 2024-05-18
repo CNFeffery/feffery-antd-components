@@ -1,13 +1,16 @@
-/* eslint-disable no-undefined */
-/* eslint-disable no-unused-vars */
+// react核心
 import React, { useContext, useEffect } from 'react';
+// antd核心
 import { InputNumber, Space, message, Typography } from 'antd';
+// 辅助库
 import { isString, isUndefined } from 'lodash';
 import { pickBy } from 'ramda';
+// 自定义hooks
 import useCss from '../../hooks/useCss';
+// 上下文
 import PropsContext from '../../contexts/PropsContext';
+// 参数类型
 import { propTypes, defaultProps } from '../../components/dataEntry/AntdSegmentedColoring.react';
-
 
 const { Text } = Typography;
 
@@ -17,10 +20,10 @@ const size2size = new Map([
     ["large", "40px"]
 ]);
 
-// 定义分段着色组件AntdSegmentedColoring
+/**
+ * 分段着色组件AntdSegmentedColoring
+ */
 const AntdSegmentedColoring = (props) => {
-
-    // 取得必要属性或参数
     let {
         id,
         key,

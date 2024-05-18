@@ -5,44 +5,57 @@ from dash.development.base_component import Component, _explicitize_args
 
 class AntdSegmentedColoring(Component):
     """An AntdSegmentedColoring component.
-
+分段着色组件AntdSegmentedColoring
 
 Keyword arguments:
 
-- id (string; optional)
+- id (string; optional):
+    组件唯一id.
 
 - aria-* (string; optional):
     `aria-*`格式属性通配.
 
-- batchPropsNames (list of strings; optional)
+- batchPropsNames (list of strings; optional):
+    需要纳入[批量属性监听](/batch-props-values)的若干属性名.
 
-- batchPropsValues (dict; optional)
+- batchPropsValues (dict; optional):
+    监听`batchPropsNames`中指定的若干属性值.
 
 - bordered (boolean; default True):
-    设置是否渲染边框，设置为True时等价于variant='outlined'  默认：True.
+    是否显示边框，设置为`True`时等价于`variant='outlined'`  默认值：`True`.
 
-- breakpoints (list of numbers; required)
+- breakpoints (list of numbers; required):
+    必填，监听或设置分段断点数组.
 
-- className (string | dict; optional)
+- className (string | dict; optional):
+    当前组件css类名，支持[动态css](/advanced-classname).
 
-- colorBlockPosition (a value equal to: 'left', 'right'; default 'right')
+- colorBlockPosition (a value equal to: 'left', 'right'; default 'right'):
+    色块显示方位，可选项有`'left'`、`'right'`  默认值：`'right'`.
 
-- colorBlockStyle (dict; optional)
+- colorBlockStyle (dict; optional):
+    色块css样式.
 
-- colors (list of strings; required)
+- colors (list of strings; required):
+    必填，为各分段设置颜色，数组长度应为`breakpoints`长度减1.
 
-- controls (boolean; default True)
+- controls (boolean; default True):
+    是否为各分段数值输入框添加增减按钮  默认值：`True`.
 
 - data-* (string; optional):
     `data-*`格式属性通配.
 
-- disabled (boolean; default False)
+- disabled (boolean; default False):
+    是否禁用当前组件  默认值：`False`.
 
-- inputNumberStyle (dict; optional)
+- inputNumberStyle (dict; optional):
+    各分段数值输入框统一css样式.
 
-- key (string; optional)
+- key (string; optional):
+    对当前组件的`key`值进行更新，可实现强制重绘当前组件的效果.
 
-- keyboard (boolean; default True)
+- keyboard (boolean; default True):
+    是否可通过键盘上下方向键增减各分段数值输入框数值  默认值：`True`.
 
 - loading_state (dict; optional)
 
@@ -57,35 +70,44 @@ Keyword arguments:
     - prop_name (string; optional):
         Holds which property is loading.
 
-- max (number; optional)
+- max (number; optional):
+    各分段数值输入框允许输入数值上限，默认无限制.
 
-- min (number; optional)
+- min (number; optional):
+    各分段数值输入框允许输入数值下限，默认无限制.
 
-- placeholder (string; optional)
+- placeholder (string; optional):
+    各分段数值输入框占位文字内容.
 
-- precision (number; default 2)
+- precision (number; default 2):
+    各分段数值输入框数值精度  默认值：`2`.
 
-- pureLegend (boolean; default False)
+- pureLegend (boolean; default False):
+    是否开启纯图例模式  默认值：`False`.
 
-- pureLegendLabelStyle (dict; optional)
+- pureLegendLabelStyle (dict; optional):
+    当`pureLegend=True`时，设置各分段数值统一css样式.
 
-- readOnly (boolean; optional)
+- readOnly (boolean; optional):
+    是否渲染为只读状态  默认值：`False`.
 
-- size (a value equal to: 'large', 'small', 'middle'; default 'middle')
+- size (a value equal to: 'small', 'middle', 'large'; default 'middle'):
+    当前组件尺寸规格，可选项有`'small'`、`'middle'`、`'large'`  默认值：`'middle'`.
 
-- step (number; default 0.01)
+- step (number; default 0.01):
+    各分段数值输入框数值调整步长  默认值：`0.01`.
 
-- style (dict; optional)
+- style (dict; optional):
+    当前组件css样式.
 
 - variant (a value equal to: 'outlined', 'borderless', 'filled'; optional):
-    设置形态变体类型，可选的有'outlined'、'borderless'、'filled'
-    其中'outlined'等价于bordered=True，优先级高于bordered."""
+    形态变体类型，可选项有`'outlined'`、`'borderless'`、`'filled'`，其中`'outlined'`等价于`bordered=True`，但优先级更高."""
     _children_props = []
     _base_nodes = ['children']
     _namespace = 'feffery_antd_components'
     _type = 'AntdSegmentedColoring'
     @_explicitize_args
-    def __init__(self, id=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, key=Component.UNDEFINED, breakpoints=Component.REQUIRED, colors=Component.REQUIRED, controls=Component.UNDEFINED, keyboard=Component.UNDEFINED, min=Component.UNDEFINED, max=Component.UNDEFINED, step=Component.UNDEFINED, precision=Component.UNDEFINED, disabled=Component.UNDEFINED, size=Component.UNDEFINED, bordered=Component.UNDEFINED, variant=Component.UNDEFINED, placeholder=Component.UNDEFINED, readOnly=Component.UNDEFINED, pureLegend=Component.UNDEFINED, inputNumberStyle=Component.UNDEFINED, colorBlockStyle=Component.UNDEFINED, colorBlockPosition=Component.UNDEFINED, pureLegendLabelStyle=Component.UNDEFINED, batchPropsNames=Component.UNDEFINED, batchPropsValues=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
+    def __init__(self, id=Component.UNDEFINED, key=Component.UNDEFINED, style=Component.UNDEFINED, className=Component.UNDEFINED, breakpoints=Component.REQUIRED, colors=Component.REQUIRED, controls=Component.UNDEFINED, keyboard=Component.UNDEFINED, min=Component.UNDEFINED, max=Component.UNDEFINED, step=Component.UNDEFINED, precision=Component.UNDEFINED, disabled=Component.UNDEFINED, size=Component.UNDEFINED, bordered=Component.UNDEFINED, variant=Component.UNDEFINED, placeholder=Component.UNDEFINED, readOnly=Component.UNDEFINED, pureLegend=Component.UNDEFINED, inputNumberStyle=Component.UNDEFINED, colorBlockStyle=Component.UNDEFINED, colorBlockPosition=Component.UNDEFINED, pureLegendLabelStyle=Component.UNDEFINED, batchPropsNames=Component.UNDEFINED, batchPropsValues=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
         self._prop_names = ['id', 'aria-*', 'batchPropsNames', 'batchPropsValues', 'bordered', 'breakpoints', 'className', 'colorBlockPosition', 'colorBlockStyle', 'colors', 'controls', 'data-*', 'disabled', 'inputNumberStyle', 'key', 'keyboard', 'loading_state', 'max', 'min', 'placeholder', 'precision', 'pureLegend', 'pureLegendLabelStyle', 'readOnly', 'size', 'step', 'style', 'variant']
         self._valid_wildcard_attributes =            ['data-', 'aria-']
         self.available_properties = ['id', 'aria-*', 'batchPropsNames', 'batchPropsValues', 'bordered', 'breakpoints', 'className', 'colorBlockPosition', 'colorBlockStyle', 'colors', 'controls', 'data-*', 'disabled', 'inputNumberStyle', 'key', 'keyboard', 'loading_state', 'max', 'min', 'placeholder', 'precision', 'pureLegend', 'pureLegendLabelStyle', 'readOnly', 'size', 'step', 'style', 'variant']

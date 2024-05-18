@@ -98,6 +98,7 @@ components = [
     'AntdMentions',
     'AntdRadioGroup',
     'AntdRate',
+    'AntdSegmentedColoring',
 ]
 
 app.layout = html.Div(
