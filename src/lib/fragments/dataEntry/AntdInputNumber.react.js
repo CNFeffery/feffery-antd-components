@@ -1,19 +1,25 @@
+// react核心
 import React, { useEffect, useContext } from 'react';
+// antd核心
 import { InputNumber } from 'antd';
+// 辅助库
 import { useRequest } from 'ahooks';
 import { isString, isUndefined } from 'lodash';
 import { pickBy } from 'ramda';
+// 自定义hooks
 import useCss from '../../hooks/useCss';
+// 上下文
 import PropsContext from '../../contexts/PropsContext';
 import FormContext from '../../contexts/FormContext';
+// 状态管理
 import useFormStore from '../../store/formStore';
+// 参数类型
 import { propTypes, defaultProps } from '../../components/dataEntry/AntdInputNumber.react';
 
-
-// 定义数字输入框组件AntdInputNumber，api参数参考https://ant.design/components/input-number-cn/
+/**
+ * 数值输入框组件AntdInputNumber
+ */
 const AntdInputNumber = (props) => {
-
-    // 取得必要属性或参数
     let {
         id,
         className,
