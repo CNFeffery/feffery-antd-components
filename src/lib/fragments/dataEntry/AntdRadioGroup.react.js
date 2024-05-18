@@ -1,17 +1,24 @@
+// react核心
 import React, { useEffect, useContext } from 'react';
+// antd核心
 import { Radio, Space } from 'antd';
+// 辅助库
 import { isString, isNumber, isUndefined } from 'lodash';
 import { pickBy } from 'ramda';
+// 自定义hooks
 import useCss from '../../hooks/useCss';
+// 上下文
 import PropsContext from '../../contexts/PropsContext';
 import FormContext from '../../contexts/FormContext';
+// 状态管理
 import useFormStore from '../../store/formStore';
+// 参数类型
 import { propTypes, defaultProps } from '../../components/dataEntry/AntdRadioGroup.react';
 
-
-// 定义单选框组件AntdRadioGroup，api参数参考https://ant.design/components/radio-cn/
+/**
+ * 单选框组件AntdRadioGroup
+ */
 const AntdRadioGroup = (props) => {
-    // 取得必要属性或参数
     let {
         id,
         style,
@@ -92,7 +99,7 @@ const AntdRadioGroup = (props) => {
                 options.map(item => ({ label: item, value: item })) :
                 [...options]
         )
-        
+
         return (
             <Radio.Group
                 // 提取具有data-*或aria-*通配格式的属性
@@ -145,7 +152,6 @@ const AntdRadioGroup = (props) => {
         );
     }
 
-    
     return (
         <Radio.Group
             // 提取具有data-*或aria-*通配格式的属性
