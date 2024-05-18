@@ -101,6 +101,7 @@ components = [
     'AntdSegmentedColoring',
     'AntdSelect',
     'AntdSlider',
+    'AntdSwitch',
 ]
 
 app.layout = html.Div(
