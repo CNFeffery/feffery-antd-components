@@ -104,6 +104,7 @@ components = [
     'AntdSwitch',
     'AntdTimePicker',
     'AntdTimeRangePicker',
+    'AntdTransfer',
 ]
 
 app.layout = html.Div(

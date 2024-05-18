@@ -1,18 +1,25 @@
+// react核心
 import React, { useContext, useEffect } from 'react';
+// antd核心
 import { Transfer, ConfigProvider } from 'antd';
+// 辅助库
 import { str2Locale, locale2text } from '../../components/locales.react';
 import { isString, isUndefined } from 'lodash';
 import { pickBy } from 'ramda';
+// 自定义hooks
 import useCss from '../../hooks/useCss';
+// 上下文
 import PropsContext from '../../contexts/PropsContext';
 import FormContext from '../../contexts/FormContext';
+// 状态管理
 import useFormStore from '../../store/formStore';
+// 参数类型
 import { propTypes, defaultProps } from '../../components/dataEntry/AntdTransfer.react';
 
-
-// 定义穿梭框组件AntdTransfer，api参数参考https://ant.design/components/transfer-cn/
+/**
+ * 穿梭框组件AntdTransfer
+ */
 const AntdTransfer = (props) => {
-    // 取得必要属性或参数
     let {
         id,
         className,
@@ -97,7 +104,6 @@ const AntdTransfer = (props) => {
         }
     }
 
-    
     return (
         <ConfigProvider locale={str2Locale.get(locale)}>
             <Transfer
