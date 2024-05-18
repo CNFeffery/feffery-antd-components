@@ -321,8 +321,8 @@ AntdInput.propTypes = {
     ]),
 
     /**
-     * 开启属性持久化功能的若干属性名，可选项有`'md5Value'`
-     * 默认值：`['md5Value']`
+     * 开启属性持久化功能的若干属性名，可选项有`'value'`、`'md5Value'`
+     * 默认值：`['value', 'md5Value']`
      */
     persisted_props: PropTypes.arrayOf(PropTypes.oneOf(['value', 'md5Value'])),
 

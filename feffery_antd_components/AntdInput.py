@@ -133,7 +133,8 @@ Keyword arguments:
     针对`'password'`模式，是否启用md5加密功能  默认值：`False`.
 
 - persisted_props (list of a value equal to: 'value', 'md5Value's; default ['value', 'md5Value']):
-    开启属性持久化功能的若干属性名，可选项有`'md5Value'`  默认值：`['md5Value']`.
+    开启属性持久化功能的若干属性名，可选项有`'value'`、`'md5Value'`  默认值：`['value',
+    'md5Value']`.
 
 - persistence (boolean | string | number; optional):
     是否开启[属性持久化](/prop-persistence).

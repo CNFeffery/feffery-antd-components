@@ -97,6 +97,7 @@ components = [
     'AntdInputNumber',
     'AntdMentions',
     'AntdRadioGroup',
+    'AntdRate',
 ]
 
 app.layout = html.Div(
