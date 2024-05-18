@@ -5,42 +5,50 @@ from dash.development.base_component import Component, _explicitize_args
 
 class AntdSlider(Component):
     """An AntdSlider component.
-
+滑动输入条组件AntdSlider
 
 Keyword arguments:
 
-- id (string; optional)
+- id (string; optional):
+    组件唯一id.
 
 - aria-* (string; optional):
     `aria-*`格式属性通配.
 
-- autoFocus (boolean; default False)
+- autoFocus (boolean; default False):
+    是否允许一键清空已选值  默认值：`True`.
 
-- batchPropsNames (list of strings; optional)
+- batchPropsNames (list of strings; optional):
+    需要纳入[批量属性监听](/batch-props-values)的若干属性名.
 
-- batchPropsValues (dict; optional)
+- batchPropsValues (dict; optional):
+    监听`batchPropsNames`中指定的若干属性值.
 
-- className (string | dict; optional)
+- className (string | dict; optional):
+    当前组件css类名，支持[动态css](/advanced-classname).
 
 - classNames (dict; optional):
-    细分控制子元素css类.
+    细分控制子元素css类名.
 
     `classNames` is a dict with keys:
 
     - rail (string; optional):
-        设置背景条css类.
+        背景条css类名.
 
     - track (string; optional):
-        设置选择条css类.
+        选择条css类名.
 
 - data-* (string; optional):
     `data-*`格式属性通配.
 
-- defaultValue (number | list of numbers; optional)
+- defaultValue (number | list of numbers; optional):
+    初始化已选值.
 
-- disabled (boolean; default False)
+- disabled (boolean; default False):
+    是否禁用当前组件  默认值：`False`.
 
-- key (string; optional)
+- key (string; optional):
+    对当前组件的`key`值进行更新，可实现强制重绘当前组件的效果.
 
 - loading_state (dict; optional)
 
@@ -55,45 +63,45 @@ Keyword arguments:
     - prop_name (string; optional):
         Holds which property is loading.
 
-- marks (dict with strings as keys and values of type string; optional)
+- marks (dict with strings as keys and values of type a list of or a singular dash component, string or number; optional):
+    为部分数值设置刻度信息.
 
-- max (number; default 100)
+- max (number; default 100):
+    必填，可滑动范围上限.
 
-- min (number; default 0)
+- min (number; default 0):
+    必填，可滑动范围下限.
 
 - name (string; optional):
-    用于在基于AntdForm的表单值自动搜集功能中，充当当前表单项的字段名  缺省时会以id作为字段名.
+    配合`AntdForm`表单批量值搜集/控制功能使用，充当当前表单项的字段名，以`id`作为缺省值.
 
 - persisted_props (list of a value equal to: 'value's; default ['value']):
-    Properties whose user interactions will persist after refreshing
-    the  component or the page. Since only `value` is allowed this
-    prop can  normally be ignored.
+    开启属性持久化功能的若干属性名，可选项有`'value'`  默认值：`['value']`.
 
 - persistence (boolean | string | number; optional):
-    Used to allow user interactions in this component to be persisted
-    when  the component - or the page - is refreshed. If `persisted`
-    is truthy and  hasn't changed from its previous value, a `value`
-    that the user has  changed while using the app will keep that
-    change, as long as  the new `value` also matches what was given
-    originally.  Used in conjunction with `persistence_type`.
+    是否开启[属性持久化](/prop-persistence).
 
 - persistence_type (a value equal to: 'local', 'session', 'memory'; default 'local'):
-    Where persisted user changes will be stored:  memory: only kept in
-    memory, reset on page refresh.  local: window.localStorage, data
-    is kept after the browser quit.  session: window.sessionStorage,
-    data is cleared once the browser quit.
+    属性持久化存储类型，可选项有`'local'`（本地持久化），`'session'`（会话持久化），`'memory'`（内存持久化）
+    默认值：`'local'`.
 
-- popupContainer (a value equal to: 'parent', 'body'; default 'body')
+- popupContainer (a value equal to: 'parent', 'body'; default 'body'):
+    相关展开层锚定策略，可选项有`'parent'`、`'body'`  默认值：`'body'`.
 
-- railStyle (dict; optional)
+- railStyle (dict; optional):
+    滑轨部分css样式.
 
-- range (boolean; default False)
+- range (boolean; default False):
+    是否以范围模式显示.
 
-- readOnly (boolean; default False)
+- readOnly (boolean; default False):
+    是否渲染为只读状态  默认值：`False`.
 
-- step (number; default 1)
+- step (number; default 1):
+    滑动步长.
 
-- style (dict; optional)
+- style (dict; optional):
+    当前组件css样式.
 
 - styles (dict; optional):
     细分控制子元素css样式.
@@ -101,26 +109,31 @@ Keyword arguments:
     `styles` is a dict with keys:
 
     - rail (dict; optional):
-        设置背景条css样式.
+        背景条css样式.
 
     - track (dict; optional):
-        设置选择条css样式.
+        选择条css样式.
 
-- tooltipPrefix (string; default '')
+- tooltipPrefix (string; default ''):
+    滑动数值文字提示前缀信息.
 
-- tooltipSuffix (string; default '')
+- tooltipSuffix (string; default ''):
+    滑动数值文字提示后缀信息.
 
-- tooltipVisible (boolean; optional)
+- tooltipVisible (boolean; optional):
+    滑动数值文字提示显示策略，`True`表示持续显示，`False`表示始终不显示.
 
-- value (number | list of numbers; optional)
+- value (number | list of numbers; optional):
+    监听或设置已选值.
 
-- vertical (boolean; default False)"""
-    _children_props = []
+- vertical (boolean; default False):
+    是否以垂直模式显示  默认值：`False`."""
+    _children_props = ['marks{}']
     _base_nodes = ['children']
     _namespace = 'feffery_antd_components'
     _type = 'AntdSlider'
     @_explicitize_args
-    def __init__(self, id=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, railStyle=Component.UNDEFINED, styles=Component.UNDEFINED, classNames=Component.UNDEFINED, key=Component.UNDEFINED, name=Component.UNDEFINED, vertical=Component.UNDEFINED, range=Component.UNDEFINED, min=Component.UNDEFINED, max=Component.UNDEFINED, step=Component.UNDEFINED, marks=Component.UNDEFINED, tooltipVisible=Component.UNDEFINED, tooltipPrefix=Component.UNDEFINED, tooltipSuffix=Component.UNDEFINED, disabled=Component.UNDEFINED, value=Component.UNDEFINED, defaultValue=Component.UNDEFINED, autoFocus=Component.UNDEFINED, popupContainer=Component.UNDEFINED, readOnly=Component.UNDEFINED, batchPropsNames=Component.UNDEFINED, batchPropsValues=Component.UNDEFINED, loading_state=Component.UNDEFINED, persistence=Component.UNDEFINED, persisted_props=Component.UNDEFINED, persistence_type=Component.UNDEFINED, **kwargs):
+    def __init__(self, id=Component.UNDEFINED, key=Component.UNDEFINED, style=Component.UNDEFINED, className=Component.UNDEFINED, railStyle=Component.UNDEFINED, styles=Component.UNDEFINED, classNames=Component.UNDEFINED, name=Component.UNDEFINED, vertical=Component.UNDEFINED, range=Component.UNDEFINED, min=Component.UNDEFINED, max=Component.UNDEFINED, step=Component.UNDEFINED, marks=Component.UNDEFINED, tooltipVisible=Component.UNDEFINED, tooltipPrefix=Component.UNDEFINED, tooltipSuffix=Component.UNDEFINED, disabled=Component.UNDEFINED, value=Component.UNDEFINED, defaultValue=Component.UNDEFINED, autoFocus=Component.UNDEFINED, popupContainer=Component.UNDEFINED, readOnly=Component.UNDEFINED, batchPropsNames=Component.UNDEFINED, batchPropsValues=Component.UNDEFINED, loading_state=Component.UNDEFINED, persistence=Component.UNDEFINED, persisted_props=Component.UNDEFINED, persistence_type=Component.UNDEFINED, **kwargs):
         self._prop_names = ['id', 'aria-*', 'autoFocus', 'batchPropsNames', 'batchPropsValues', 'className', 'classNames', 'data-*', 'defaultValue', 'disabled', 'key', 'loading_state', 'marks', 'max', 'min', 'name', 'persisted_props', 'persistence', 'persistence_type', 'popupContainer', 'railStyle', 'range', 'readOnly', 'step', 'style', 'styles', 'tooltipPrefix', 'tooltipSuffix', 'tooltipVisible', 'value', 'vertical']
         self._valid_wildcard_attributes =            ['data-', 'aria-']
         self.available_properties = ['id', 'aria-*', 'autoFocus', 'batchPropsNames', 'batchPropsValues', 'className', 'classNames', 'data-*', 'defaultValue', 'disabled', 'key', 'loading_state', 'marks', 'max', 'min', 'name', 'persisted_props', 'persistence', 'persistence_type', 'popupContainer', 'railStyle', 'range', 'readOnly', 'step', 'style', 'styles', 'tooltipPrefix', 'tooltipSuffix', 'tooltipVisible', 'value', 'vertical']

@@ -3,6 +3,9 @@ import PropTypes from 'prop-types';
 
 const LazyAntdSlider = React.lazy(() => import(/* webpackChunkName: "data_entry" */ '../../fragments/dataEntry/AntdSlider.react'));
 
+/**
+ * 滑动输入条组件AntdSlider
+ */
 const AntdSlider = (props) => {
     return (
         <Suspense fallback={null}>
@@ -11,21 +14,33 @@ const AntdSlider = (props) => {
     );
 }
 
-// 定义参数或属性
 AntdSlider.propTypes = {
-    // 组件id
+    /**
+     * 组件唯一id
+     */
     id: PropTypes.string,
 
-    // css类名
+    /**
+     * 对当前组件的`key`值进行更新，可实现强制重绘当前组件的效果
+     */
+    key: PropTypes.string,
+
+    /**
+     * 当前组件css样式
+     */
+    style: PropTypes.object,
+
+    /**
+     * 当前组件css类名，支持[动态css](/advanced-classname)
+     */
     className: PropTypes.oneOfType([
         PropTypes.string,
         PropTypes.object
     ]),
 
-    // 自定义css字典
-    style: PropTypes.object,
-
-    // 用于设置slider滑轨的css样式
+    /**
+     * 滑轨部分css样式
+     */
     railStyle: PropTypes.object,
 
     /**
@@ -33,96 +48,128 @@ AntdSlider.propTypes = {
      */
     styles: PropTypes.exact({
         /**
-         * 设置选择条css样式
+         * 选择条css样式
          */
         track: PropTypes.object,
-
         /**
-         * 设置背景条css样式
+         * 背景条css样式
          */
         rail: PropTypes.object
     }),
 
     /**
-     * 细分控制子元素css类
+     * 细分控制子元素css类名
      */
     classNames: PropTypes.exact({
         /**
-         * 设置选择条css类
+         * 选择条css类名
          */
         track: PropTypes.string,
-
         /**
-         * 设置背景条css类
+         * 背景条css类名
          */
         rail: PropTypes.string
     }),
 
-    // 辅助刷新用唯一标识key值
-    key: PropTypes.string,
-
     /**
-     * 用于在基于AntdForm的表单值自动搜集功能中，充当当前表单项的字段名
-     * 缺省时会以id作为字段名
+     * 配合`AntdForm`表单批量值搜集/控制功能使用，充当当前表单项的字段名，以`id`作为缺省值
      */
     name: PropTypes.string,
 
-    // 设置是否以垂直模式显示滑动输入条，默认为false
+    /**
+     * 是否以垂直模式显示
+     * 默认值：`false`
+     */
     vertical: PropTypes.bool,
 
-    // 是否以范围形式进行渲染
+    /**
+     * 是否以范围模式显示
+     */
     range: PropTypes.bool,
 
-    // 设置范围最小值
+    /**
+     * 必填，可滑动范围下限
+     */
     min: PropTypes.number.isRequired,
 
-    // 设置范围最大值
+    /**
+     * 必填，可滑动范围上限
+     */
     max: PropTypes.number.isRequired,
 
-    // 设置步长
+    /**
+     * 滑动步长
+     */
     step: PropTypes.number,
 
-    // 定义特定刻度参数
-    marks: PropTypes.objectOf(PropTypes.string),
+    /**
+     * 为部分数值设置刻度信息
+     */
+    marks: PropTypes.objectOf(PropTypes.node),
 
-    // 用于设置刻度对应的tooltip的显示策略，true代表一直保持显示
-    // false表示即使鼠标悬浮也不显示，默认不设置则只有鼠标悬浮时才会显示
+    /**
+     * 滑动数值文字提示显示策略，`true`表示持续显示，`false`表示始终不显示
+     */
     tooltipVisible: PropTypes.bool,
 
-    //  设置tooltip显示内容前缀文字
+    /**
+     * 滑动数值文字提示前缀信息
+     */
     tooltipPrefix: PropTypes.string,
 
-    // 设置tooltip显示内容后缀文字
+    /**
+     * 滑动数值文字提示后缀信息
+     */
     tooltipSuffix: PropTypes.string,
 
-    // 设置是否禁用整个组件
+    /**
+     * 是否禁用当前组件
+     * 默认值：`false`
+     */
     disabled: PropTypes.bool,
 
-    // 记录用户输入的值或范围
+    /**
+     * 监听或设置已选值
+     */
     value: PropTypes.oneOfType([
         PropTypes.number,
         PropTypes.arrayOf(PropTypes.number)
     ]),
 
-    // 设置默认值或默认范围
+    /**
+     * 初始化已选值
+     */
     defaultValue: PropTypes.oneOfType([
         PropTypes.number,
         PropTypes.arrayOf(PropTypes.number)
     ]),
 
-    // 用于设置是否自动获取焦点，默认为false
+    /**
+     * 是否允许一键清空已选值
+     * 默认值：`true`
+     */
     autoFocus: PropTypes.bool,
 
-    // 设置悬浮层锚定策略，可选的有'parent'、'body'，默认为'body'
+    /**
+     * 相关展开层锚定策略，可选项有`'parent'`、`'body'`
+     * 默认值：`'body'`
+     */
     popupContainer: PropTypes.oneOf(['parent', 'body']),
 
-    // 设置是否以只读模式进行渲染，默认为false
+    /**
+     * 是否渲染为只读状态
+     * 默认值：`false`
+     */
     readOnly: PropTypes.bool,
 
-    // 用于自定义需要纳入batchProps中的属性名数组
+    /**
+     * 需要纳入[批量属性监听](/batch-props-values)的若干属性名
+     */
     batchPropsNames: PropTypes.arrayOf(PropTypes.string),
 
-    // 打包监听batchPropsNames中定义的属性值变化
+    /**
+     * 监听`batchPropsNames`中指定的若干属性值
+     */
     batchPropsValues: PropTypes.object,
 
     /**
@@ -157,13 +204,8 @@ AntdSlider.propTypes = {
     setProps: PropTypes.func,
 
     /**
-   * Used to allow user interactions in this component to be persisted when
-   * the component - or the page - is refreshed. If `persisted` is truthy and
-   * hasn't changed from its previous value, a `value` that the user has
-   * changed while using the app will keep that change, as long as
-   * the new `value` also matches what was given originally.
-   * Used in conjunction with `persistence_type`.
-   */
+     * 是否开启[属性持久化](/prop-persistence)
+     */
     persistence: PropTypes.oneOfType([
         PropTypes.bool,
         PropTypes.string,
@@ -171,17 +213,14 @@ AntdSlider.propTypes = {
     ]),
 
     /**
-     * Properties whose user interactions will persist after refreshing the
-     * component or the page. Since only `value` is allowed this prop can
-     * normally be ignored.
+     * 开启属性持久化功能的若干属性名，可选项有`'value'`
+     * 默认值：`['value']`
      */
     persisted_props: PropTypes.arrayOf(PropTypes.oneOf(['value'])),
 
     /**
-     * Where persisted user changes will be stored:
-     * memory: only kept in memory, reset on page refresh.
-     * local: window.localStorage, data is kept after the browser quit.
-     * session: window.sessionStorage, data is cleared once the browser quit.
+     * 属性持久化存储类型，可选项有`'local'`（本地持久化），`'session'`（会话持久化），`'memory'`（内存持久化）
+     * 默认值：`'local'`
      */
     persistence_type: PropTypes.oneOf(['local', 'session', 'memory'])
 };
