@@ -3,6 +3,9 @@ import PropTypes from 'prop-types';
 
 const LazyAntdMentions = React.lazy(() => import(/* webpackChunkName: "data_entry" */ '../../fragments/dataEntry/AntdMentions.react'));
 
+/**
+ * 提及组件AntdMentions
+ */
 const AntdMentions = (props) => {
     return (
         <Suspense fallback={null}>
@@ -11,106 +14,148 @@ const AntdMentions = (props) => {
     );
 }
 
-// 定义参数或属性
 AntdMentions.propTypes = {
-    // 组件id
+    /**
+     * 组件唯一id
+     */
     id: PropTypes.string,
 
-    // css类名
+    /**
+     * 对当前组件的`key`值进行更新，可实现强制重绘当前组件的效果
+     */
+    key: PropTypes.string,
+
+    /**
+     * 当前组件css样式
+     */
+    style: PropTypes.object,
+
+    /**
+     * 当前组件css类名，支持[动态css](/advanced-classname)
+     */
     className: PropTypes.oneOfType([
         PropTypes.string,
         PropTypes.object
     ]),
 
-    // 自定义css字典
-    style: PropTypes.object,
-
     /**
-     * 设置弹框菜单css类名
+     * 展开菜单css类名
      */
     popupClassName: PropTypes.string,
 
-    // 辅助刷新用唯一标识key值
-    key: PropTypes.string,
-
     /**
-     * 用于在基于AntdForm的表单值自动搜集功能中，充当当前表单项的字段名
-     * 缺省时会以id作为字段名
+     * 配合`AntdForm`表单批量值搜集/控制功能使用，充当当前表单项的字段名，以`id`作为缺省值
      */
     name: PropTypes.string,
 
-    // 设置是否开启自适应内容高度，默认为false
-    // 特别地，还可以传入对象来自行设置最少最多展示的子项行数
+    /**
+     * 配置输入框高度自适应相关功能
+     * 默认值：`false`
+     */
     autoSize: PropTypes.oneOfType([
         PropTypes.bool,
         PropTypes.exact({
-            // 设置最小子项行数
+            /**
+             * 输入框最小行数
+             */
             minRows: PropTypes.number,
-
-            // 设置最大子项行数
+            /**
+             * 输入框最大行数
+             */
             maxRows: PropTypes.number
         })
     ]),
 
-    // 设置触发子项展开的关键字，默认为'@'
+    /**
+     * 触发选择菜单展开的关键字
+     * 默认值：`'@'`
+     */
     prefix: PropTypes.string,
 
-    // 对应当前输入框中文本内容
+    /**
+     * 监听或设置已输入值
+     */
     value: PropTypes.string,
 
-    // 设置默认子项值
+    /**
+     * 初始化已输入值
+     */
     defaultValue: PropTypes.string,
 
-    // 设置待提及的子项名称
+    /**
+     * 必填，配置选择菜单子项
+     */
     options: PropTypes.arrayOf(
         PropTypes.exact({
-            // 子项标签文字
+            /**
+             * 组件型，当前选项标签内容
+             */
             label: PropTypes.node,
-
-            // 子项值
+            /**
+             * 当前选项值
+             */
             value: PropTypes.string
         })
     ).isRequired,
 
-    // 监听已选择子项value值数组
+    /**
+     * 监听输入内容中对应的已选子项值
+     */
     selectedOptions: PropTypes.arrayOf(PropTypes.string),
 
-    // 设置是否禁用，默认为false
+    /**
+     * 是否禁用当前组件
+     * 默认值：`false`
+     */
     disabled: PropTypes.bool,
 
-    // 设置子项弹出层的展示位置，可选的有'top'与'bottom'，默认为'bottom'
+    /**
+     * 选择菜单弹出方向，可选项有`'top'`、`'bottom'`
+     * 默认值：`'bottom'`
+     */
     placement: PropTypes.oneOf(['top', 'bottom']),
 
     /**
-     * 设置是否渲染边框，设置为true时等价于variant='outlined'
-     * 默认：true
+     * 是否显示边框，设置为`true`时等价于`variant='outlined'`
+     * 默认值：`true`
      */
     bordered: PropTypes.bool,
 
     /**
-     * 设置形态变体类型，可选的有'outlined'、'borderless'、'filled'
-     * 其中'outlined'等价于bordered=true，优先级高于bordered
+     * 形态变体类型，可选项有`'outlined'`、`'borderless'`、`'filled'`，其中`'outlined'`等价于`bordered=True`，但优先级更高
      */
     variant: PropTypes.oneOf(['outlined', 'borderless', 'filled']),
 
     /**
-     * 设置占位提示内容
+     * 输入框占位文字内容
      */
     placeholder: PropTypes.string,
 
-    // 设置校验状态，可选的有'error'、'warning'
+    /**
+     * 控制校验状态，可选项有`'error'`、`'warning'`
+     */
     status: PropTypes.oneOf(['error', 'warning']),
 
-    // 用于设置是否自动获取焦点，默认为false
+    /**
+     * 是否自动获取焦点
+     * 默认值：`false`
+     */
     autoFocus: PropTypes.bool,
 
-    // 设置悬浮层锚定策略，可选的有'parent'、'body'，默认为'body'
+    /**
+     * 相关展开层锚定策略，可选项有`'parent'`、`'body'`
+     * 默认值：`'body'`
+     */
     popupContainer: PropTypes.oneOf(['parent', 'body']),
 
-    // 用于自定义需要纳入batchProps中的属性名数组
+    /**
+     * 需要纳入[批量属性监听](/batch-props-values)的若干属性名
+     */
     batchPropsNames: PropTypes.arrayOf(PropTypes.string),
 
-    // 打包监听batchPropsNames中定义的属性值变化
+    /**
+     * 监听`batchPropsNames`中指定的若干属性值
+     */
     batchPropsValues: PropTypes.object,
 
     /**

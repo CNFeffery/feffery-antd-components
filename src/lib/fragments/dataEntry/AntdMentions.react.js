@@ -1,18 +1,26 @@
+// react核心
 import React, { useContext, useEffect } from 'react';
+// antd核心
 import { Mentions } from 'antd';
+// 辅助库
 import { isString, isUndefined } from 'lodash';
 import { pickBy } from 'ramda';
+// 自定义hooks
 import useCss from '../../hooks/useCss';
+// 上下文
 import PropsContext from '../../contexts/PropsContext';
 import FormContext from '../../contexts/FormContext';
+// 状态管理
 import useFormStore from '../../store/formStore';
+// 参数类型
 import { propTypes, defaultProps } from '../../components/dataEntry/AntdMentions.react';
 
 const { Option } = Mentions;
 
-// 定义提及组件AntdMentions，api参数参考https://ant.design/components/mentions-cn/
+/**
+ * 提及组件AntdMentions
+ */
 const AntdMentions = (props) => {
-    // 取得必要属性或参数
     let {
         id,
         className,

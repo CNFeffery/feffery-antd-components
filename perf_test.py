@@ -95,6 +95,7 @@ components = [
     'AntdInput',
     'AntdOTP',
     'AntdInputNumber',
+    'AntdMentions',
 ]
 
 app.layout = html.Div(
