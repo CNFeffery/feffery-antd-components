@@ -93,6 +93,7 @@ components = [
     'AntdForm',
     'AntdFormItem',
     'AntdInput',
+    'AntdOTP',
 ]
 
 app.layout = html.Div(

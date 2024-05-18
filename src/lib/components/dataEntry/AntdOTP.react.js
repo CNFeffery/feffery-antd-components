@@ -3,6 +3,9 @@ import PropTypes from 'prop-types';
 
 const LazyAntdOTP = React.lazy(() => import(/* webpackChunkName: "data_entry" */ '../../fragments/dataEntry/AntdOTP.react'));
 
+/**
+ * 一次性密码框组件AntdOTP
+ */
 const AntdOTP = (props) => {
     return (
         <Suspense fallback={null}>
@@ -36,20 +39,19 @@ AntdOTP.propTypes = {
     ]),
 
     /**
-     * 用于在基于AntdForm的表单值自动搜集功能中，充当当前表单项的字段名
-     * 缺省时会以id作为字段名
+     * 配合`AntdForm`表单批量值搜集/控制功能使用，充当当前表单项的字段名，以`id`作为缺省值
      */
     name: PropTypes.string,
 
     /**
-     * 默认已输入值
-     */
-    defaultValue: PropTypes.string,
-
-    /**
-     * 监听或设置已输入值
+     * 监听或设置已选值
      */
     value: PropTypes.string,
+
+    /**
+     * 初始化已选值
+     */
+    defaultValue: PropTypes.string,
 
     /**
      * 是否禁用当前组件
@@ -58,25 +60,24 @@ AntdOTP.propTypes = {
     disabled: PropTypes.bool,
 
     /**
-     * 可输入元素长度
+     * 单体输入框数量
      * 默认值：`6`
      */
     length: PropTypes.number,
 
     /**
-     * 校验状态，可选项有`'error'`、`'warning'`
+     * 控制校验状态，可选项有`'error'`、`'warning'`
      */
     status: PropTypes.oneOf(['error', 'warning']),
 
     /**
-     * 尺寸规格，可选项有`'small'`、`'middle'`、`'large'`
+     * 当前组件尺寸规格，可选项有`'small'`、`'middle'`、`'large'`
      * 默认值：`'middle'`
      */
     size: PropTypes.oneOf(['small', 'middle', 'large']),
 
     /**
-     * 形态变体，可选项有`'outlined'`、`'borderless'`、`'filled'`
-     * 默认值：`'outlined'`
+     * 形态变体类型，可选项有`'outlined'`、`'borderless'`、`'filled'`，其中`'outlined'`等价于`bordered=True`，但优先级更高
      */
     variant: PropTypes.oneOf(['outlined', 'borderless', 'filled']),
 
@@ -112,13 +113,8 @@ AntdOTP.propTypes = {
     setProps: PropTypes.func,
 
     /**
-   * Used to allow user interactions in this component to be persisted when
-   * the component - or the page - is refreshed. If `persisted` is truthy and
-   * hasn't changed from its previous value, a `value` that the user has
-   * changed while using the app will keep that change, as long as
-   * the new `value` also matches what was given originally.
-   * Used in conjunction with `persistence_type`.
-   */
+     * 是否开启[属性持久化](/prop-persistence)
+     */
     persistence: PropTypes.oneOfType([
         PropTypes.bool,
         PropTypes.string,
@@ -126,17 +122,14 @@ AntdOTP.propTypes = {
     ]),
 
     /**
-     * Properties whose user interactions will persist after refreshing the
-     * component or the page. Since only `value` is allowed this prop can
-     * normally be ignored.
+     * 开启属性持久化功能的若干属性名，可选项有`'value'`
+     * 默认值：`['value']`
      */
     persisted_props: PropTypes.arrayOf(PropTypes.oneOf(['value'])),
 
     /**
-     * Where persisted user changes will be stored:
-     * memory: only kept in memory, reset on page refresh.
-     * local: window.localStorage, data is kept after the browser quit.
-     * session: window.sessionStorage, data is cleared once the browser quit.
+     * 属性持久化存储类型，可选项有`'local'`（本地持久化），`'session'`（会话持久化），`'memory'`（内存持久化）
+     * 默认值：`'local'`
      */
     persistence_type: PropTypes.oneOf(['local', 'session', 'memory'])
 };

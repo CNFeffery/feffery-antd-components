@@ -7,12 +7,12 @@ import { isString, isUndefined } from 'lodash';
 import { pickBy } from 'ramda';
 // 自定义hooks
 import useCss from '../../hooks/useCss';
-// 自定义上下文
+// 上下文
 import PropsContext from '../../contexts/PropsContext';
 import FormContext from '../../contexts/FormContext';
-// 自定义状态
+// 状态管理
 import useFormStore from '../../store/formStore';
-// 组件参数定义
+// 参数类型
 import { propTypes, defaultProps } from '../../components/dataEntry/AntdOTP.react';
 
 const { OTP } = Input;

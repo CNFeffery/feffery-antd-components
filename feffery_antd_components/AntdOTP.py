@@ -5,7 +5,7 @@ from dash.development.base_component import Component, _explicitize_args
 
 class AntdOTP(Component):
     """An AntdOTP component.
-
+一次性密码框组件AntdOTP
 
 Keyword arguments:
 
@@ -22,7 +22,7 @@ Keyword arguments:
     `data-*`格式属性通配.
 
 - defaultValue (string; optional):
-    默认已输入值.
+    初始化已选值.
 
 - disabled (boolean; default False):
     是否禁用当前组件  默认值：`False`.
@@ -31,7 +31,7 @@ Keyword arguments:
     对当前组件的`key`值进行更新，可实现强制重绘当前组件的效果.
 
 - length (number; default 6):
-    可输入元素长度  默认值：`6`.
+    单体输入框数量  默认值：`6`.
 
 - loading_state (dict; optional)
 
@@ -47,47 +47,38 @@ Keyword arguments:
         Holds which property is loading.
 
 - name (string; optional):
-    用于在基于AntdForm的表单值自动搜集功能中，充当当前表单项的字段名  缺省时会以id作为字段名.
+    配合`AntdForm`表单批量值搜集/控制功能使用，充当当前表单项的字段名，以`id`作为缺省值.
 
 - persisted_props (list of a value equal to: 'value's; default ['value']):
-    Properties whose user interactions will persist after refreshing
-    the  component or the page. Since only `value` is allowed this
-    prop can  normally be ignored.
+    开启属性持久化功能的若干属性名，可选项有`'value'`  默认值：`['value']`.
 
 - persistence (boolean | string | number; optional):
-    Used to allow user interactions in this component to be persisted
-    when  the component - or the page - is refreshed. If `persisted`
-    is truthy and  hasn't changed from its previous value, a `value`
-    that the user has  changed while using the app will keep that
-    change, as long as  the new `value` also matches what was given
-    originally.  Used in conjunction with `persistence_type`.
+    是否开启[属性持久化](/prop-persistence).
 
 - persistence_type (a value equal to: 'local', 'session', 'memory'; default 'local'):
-    Where persisted user changes will be stored:  memory: only kept in
-    memory, reset on page refresh.  local: window.localStorage, data
-    is kept after the browser quit.  session: window.sessionStorage,
-    data is cleared once the browser quit.
+    属性持久化存储类型，可选项有`'local'`（本地持久化），`'session'`（会话持久化），`'memory'`（内存持久化）
+    默认值：`'local'`.
 
 - size (a value equal to: 'small', 'middle', 'large'; default 'middle'):
-    尺寸规格，可选项有`'small'`、`'middle'`、`'large'`  默认值：`'middle'`.
+    当前组件尺寸规格，可选项有`'small'`、`'middle'`、`'large'`  默认值：`'middle'`.
 
 - status (a value equal to: 'error', 'warning'; optional):
-    校验状态，可选项有`'error'`、`'warning'`.
+    控制校验状态，可选项有`'error'`、`'warning'`.
 
 - style (dict; optional):
     当前组件css样式.
 
 - value (string; optional):
-    监听或设置已输入值.
+    监听或设置已选值.
 
 - variant (a value equal to: 'outlined', 'borderless', 'filled'; default 'outlined'):
-    形态变体，可选项有`'outlined'`、`'borderless'`、`'filled'`  默认值：`'outlined'`."""
+    形态变体类型，可选项有`'outlined'`、`'borderless'`、`'filled'`，其中`'outlined'`等价于`bordered=True`，但优先级更高."""
     _children_props = []
     _base_nodes = ['children']
     _namespace = 'feffery_antd_components'
     _type = 'AntdOTP'
     @_explicitize_args
-    def __init__(self, id=Component.UNDEFINED, key=Component.UNDEFINED, style=Component.UNDEFINED, className=Component.UNDEFINED, name=Component.UNDEFINED, defaultValue=Component.UNDEFINED, value=Component.UNDEFINED, disabled=Component.UNDEFINED, length=Component.UNDEFINED, status=Component.UNDEFINED, size=Component.UNDEFINED, variant=Component.UNDEFINED, loading_state=Component.UNDEFINED, persistence=Component.UNDEFINED, persisted_props=Component.UNDEFINED, persistence_type=Component.UNDEFINED, **kwargs):
+    def __init__(self, id=Component.UNDEFINED, key=Component.UNDEFINED, style=Component.UNDEFINED, className=Component.UNDEFINED, name=Component.UNDEFINED, value=Component.UNDEFINED, defaultValue=Component.UNDEFINED, disabled=Component.UNDEFINED, length=Component.UNDEFINED, status=Component.UNDEFINED, size=Component.UNDEFINED, variant=Component.UNDEFINED, loading_state=Component.UNDEFINED, persistence=Component.UNDEFINED, persisted_props=Component.UNDEFINED, persistence_type=Component.UNDEFINED, **kwargs):
         self._prop_names = ['id', 'aria-*', 'className', 'data-*', 'defaultValue', 'disabled', 'key', 'length', 'loading_state', 'name', 'persisted_props', 'persistence', 'persistence_type', 'size', 'status', 'style', 'value', 'variant']
         self._valid_wildcard_attributes =            ['data-', 'aria-']
         self.available_properties = ['id', 'aria-*', 'className', 'data-*', 'defaultValue', 'disabled', 'key', 'length', 'loading_state', 'name', 'persisted_props', 'persistence', 'persistence_type', 'size', 'status', 'style', 'value', 'variant']
