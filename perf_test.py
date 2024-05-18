@@ -102,6 +102,7 @@ components = [
     'AntdSelect',
     'AntdSlider',
     'AntdSwitch',
+    'AntdTimePicker',
 ]
 
 app.layout = html.Div(

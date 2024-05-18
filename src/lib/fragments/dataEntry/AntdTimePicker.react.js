@@ -1,19 +1,26 @@
+// react核心
 import React, { useEffect, useContext } from 'react';
+// antd核心
 import { TimePicker, ConfigProvider } from 'antd';
+// 辅助库
 import dayjs from 'dayjs';
 import { isString, isUndefined } from 'lodash';
 import { pickBy } from 'ramda';
 import { str2Locale } from '../../components/locales.react';
+// 自定义hooks
 import useCss from '../../hooks/useCss';
+// 上下文
 import PropsContext from '../../contexts/PropsContext';
 import FormContext from '../../contexts/FormContext';
+// 状态管理
 import useFormStore from '../../store/formStore';
+// 参数类型
 import { propTypes, defaultProps } from '../../components/dataEntry/AntdTimePicker.react';
 
-
-// 定义时间选择组件AntdTimePicker，api参数参考https://ant.design/components/time-picker-cn/
+/**
+ * 时间选择组件AntdTimePicker
+ */
 const AntdTimePicker = (props) => {
-    // 取得必要属性或参数
     let {
         id,
         className,
@@ -105,7 +112,6 @@ const AntdTimePicker = (props) => {
         }
     }
 
-    
     return (
         <div>
             <ConfigProvider locale={str2Locale.get(locale)}>
