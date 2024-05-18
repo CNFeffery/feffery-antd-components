@@ -1,21 +1,28 @@
+// react核心
 import React, { useEffect, useContext } from 'react';
-import { useRequest } from 'ahooks';
+// antd核心
 import { Select, ConfigProvider } from 'antd';
+// 辅助库
+import { useRequest } from 'ahooks';
 import { isUndefined, isString, isNumber } from 'lodash';
 import { pickBy } from 'ramda';
-import useCss from '../../hooks/useCss';
 import { str2Locale } from '../../components/locales.react';
+// 自定义hooks
+import useCss from '../../hooks/useCss';
+// 上下文
 import PropsContext from '../../contexts/PropsContext';
 import FormContext from '../../contexts/FormContext';
+// 状态管理
 import useFormStore from '../../store/formStore';
+// 参数类型
 import { propTypes, defaultProps } from '../../components/dataEntry/AntdSelect.react';
 
 const { Option, OptGroup } = Select;
 
-// 定义下拉选择组件AntdSelect，api参数参考https://ant.design/components/select-cn/
+/**
+ * 下拉选择组件AntdSelect
+ */
 const AntdSelect = (props) => {
-
-    // 取得必要属性或参数
     let {
         id,
         style,
@@ -231,7 +238,6 @@ const AntdSelect = (props) => {
     if (optionFilterProp === 'label') {
         optionFilterProp = 'children'
     }
-
 
     return (
         <ConfigProvider locale={str2Locale.get(locale)}>
