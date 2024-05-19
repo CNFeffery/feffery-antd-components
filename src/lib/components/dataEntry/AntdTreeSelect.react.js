@@ -3,6 +3,9 @@ import PropTypes from 'prop-types';
 
 const LazyAntdTreeSelect = React.lazy(() => import(/* webpackChunkName: "data_entry" */ '../../fragments/dataEntry/AntdTreeSelect.react'));
 
+/**
+ * 树选择组件AntdTreeSelect
+ */
 const AntdTreeSelect = (props) => {
     return (
         <Suspense fallback={null}>
@@ -13,31 +16,40 @@ const AntdTreeSelect = (props) => {
 
 // 定义递归PropTypes
 const PropTreeNodeShape = {
-    // 标题
+    /**
+     * 当前节点标题
+     */
     title: PropTypes.string.isRequired,
-
-    // 唯一识别id
+    /**
+     * 当前节点唯一识别id
+     */
     key: PropTypes.string.isRequired,
-
-    // 节点对应的值，供搜索筛选时进行匹配使用（具有唯一性）
+    /**
+     * 当前节点唯一值
+     */
     value: PropTypes.oneOfType([
         PropTypes.string,
         PropTypes.number
     ]).isRequired,
-
-    // 可选，设置是否禁用
+    /**
+     * 是否禁用当前节点
+     */
     disabled: PropTypes.bool,
-
-    // 可选，当树为treeCheckable时，设置对应节点是否展示checkbox
+    /**
+     * 当`treeCheckable=True`时，控制当前节点是否显示勾选框
+     */
     checkable: PropTypes.bool,
-
-    // 可选，设置是否禁用checkbox
+    /**
+     * 当`treeCheckable=True`时，是否禁用当前节点勾选框
+     */
     disableCheckbox: PropTypes.bool,
-
-    // 可选，设置对应节点是否可选
+    /**
+     * 当前节点是否可选择
+     */
     selectable: PropTypes.bool,
-
-    // 设置是否为叶节点，默认为false
+    /**
+     * 当前节点是否为末端节点
+     */
     isLeaf: PropTypes.bool
 };
 
@@ -47,92 +59,127 @@ const treeDataPropTypes = PropTypes.arrayOf(PropTreeNode);
 
 // 定义扁平结构节点类型
 const PropFlatNodeShape = {
-    // 标题
+    /**
+     * 当前节点标题
+     */
     title: PropTypes.string.isRequired,
-
-    // 唯一识别id
+    /**
+     * 当前节点唯一识别id
+     */
     key: PropTypes.string.isRequired,
-
-    // 节点对应的值，供搜索筛选时进行匹配使用（具有唯一性）
+    /**
+     * 当前节点唯一值
+     */
     value: PropTypes.oneOfType([
         PropTypes.string,
         PropTypes.number
     ]).isRequired,
-
-    // 可选，设置是否禁用
+    /**
+     * 是否禁用当前节点
+     */
     disabled: PropTypes.bool,
-
-    // 可选，当树为treeCheckable时，设置对应节点是否展示checkbox
+    /**
+     * 当`treeCheckable=True`时，控制当前节点是否显示勾选框
+     */
     checkable: PropTypes.bool,
-
-    // 可选，设置是否禁用checkbox
+    /**
+     * 当`treeCheckable=True`时，是否禁用当前节点勾选框
+     */
     disableCheckbox: PropTypes.bool,
-
-    // 可选，设置对应节点是否可选
+    /**
+     * 当前节点是否可选择
+     */
     selectable: PropTypes.bool,
-
-    // 设置是否为叶节点，默认为false
+    /**
+     * 当前节点是否为末端节点
+     */
     isLeaf: PropTypes.bool,
-
-    // 可选，设置对应节点的父节点key值
+    /**
+     * 当前节点所属父节点`key`值
+     */
     parent: PropTypes.string
 };
 
-// 定义参数或属性
 AntdTreeSelect.propTypes = {
-    // 组件id
+    /**
+     * 组件唯一id
+     */
     id: PropTypes.string,
 
-    // css类名
+    /**
+     * 对当前组件的`key`值进行更新，可实现强制重绘当前组件的效果
+     */
+    key: PropTypes.string,
+
+    /**
+     * 当前组件css样式
+     */
+    style: PropTypes.object,
+
+    /**
+     * 当前组件css类名，支持[动态css](/advanced-classname)
+     */
     className: PropTypes.oneOfType([
         PropTypes.string,
         PropTypes.object
     ]),
 
-    // 自定义css字典
-    style: PropTypes.object,
-
     /**
-     * 设置弹框菜单css类名
+     * 展开菜单css类名
      */
     popupClassName: PropTypes.string,
 
-    // 辅助刷新用唯一标识key值
-    key: PropTypes.string,
-
     /**
-     * 用于在基于AntdForm的表单值自动搜集功能中，充当当前表单项的字段名
-     * 缺省时会以id作为字段名
+     * 配合`AntdForm`表单批量值搜集/控制功能使用，充当当前表单项的字段名，以`id`作为缺省值
      */
     name: PropTypes.string,
 
-    // 设置语言环境，可选的有'zh-cn'、'en-us'
+    /**
+     * 组件文案语种，可选项有`'zh-cn'`、`'en-us'`
+     * 默认值：`'zh-cn'`
+     */
     locale: PropTypes.oneOf(['zh-cn', 'en-us']),
 
-    // 设置treeData模式，可选的有'tree'、'flat'，默认为'tree'
+    /**
+     * 对应`treeData`格式的渲染模式，可选项有`'tree'`（树形模式）、`'flat'`（扁平模式）
+     * 默认值：`'tree'`
+     */
     treeDataMode: PropTypes.oneOf(['tree', 'flat']),
 
-    // 组织树形结构的json结构数据
+    /**
+     * 定义构造树所需的数据结构，与`treeDataMode`一致
+     */
     treeData: PropTypes.oneOfType([
-        // 树形结构
+        /**
+         * 树形模式对应结构
+         */
         treeDataPropTypes,
-        // 扁平结构
+        /**
+         * 扁平模式对应结构
+         */
         PropTypes.arrayOf(PropFlatNodeShape)
     ]).isRequired,
 
-    // 用于针对具体key值对应的树节点定义组件型标题内容
-    // 优先级高于treeData中对应节点的title属性
+    /**
+     * 针对树结构中的指定节点，定义作为标题的组件型内容，优先级高于`treeData`中对应的`title`值
+     */
     treeNodeKeyToTitle: PropTypes.objectOf(PropTypes.node),
 
-    // 设置是否禁用整个组件
+    /**
+     * 是否禁用当前组件
+     * 默认值：`false`
+     */
     disabled: PropTypes.bool,
 
-    // 设置选择框大小，可选的有'small'、'middle'及'large'，默认为'middle'
+    /**
+     * 当前组件尺寸规格，可选项有`'small'`、`'middle'`、`'large'`
+     * 默认值：`'middle'`
+     */
     size: PropTypes.oneOf(['small', 'middle', 'large']),
 
     /**
-     * 设置是否渲染边框，设置为true时等价于variant='outlined'
-     * 默认：true
+     * 是否显示边框，设置为`true`时等价于`variant='outlined'`
+     * 默认值：`true`
      */
     bordered: PropTypes.bool,
 
@@ -142,17 +189,26 @@ AntdTreeSelect.propTypes = {
      */
     variant: PropTypes.oneOf(['outlined', 'borderless', 'filled']),
 
-    // 选择框默认文本
+    /**
+     * 输入框占位文字内容
+     */
     placeholder: PropTypes.string,
 
-    // 设置悬浮展开层的方位，可选的有'bottomLeft'、'bottomRight'、'topLeft'、'topRight'
-    // 默认为'bottomLeft'
+    /**
+     * 选择菜单展开方向，可选项有`'bottomLeft'`、`'bottomRight'`、`'topLeft'`、`'topRight'`
+     * 默认值：`'bottomLeft'`
+     */
     placement: PropTypes.oneOf(['bottomLeft', 'bottomRight', 'topLeft', 'topRight']),
 
-    // 设置是否展示连接线，默认为false
+    /**
+     * 是否显示连接线
+     * 默认值：`false`
+     */
     treeLine: PropTypes.bool,
 
-    // 对应已被选中的选项值或选项值数组
+    /**
+     * 监听或设置已选值
+     */
     value: PropTypes.oneOfType([
         PropTypes.string,
         PropTypes.number,
@@ -164,7 +220,9 @@ AntdTreeSelect.propTypes = {
         ),
     ]),
 
-    // 设置默认被选中的选项，默认为空数组
+    /**
+     * 初始化已选值
+     */
     defaultValue: PropTypes.oneOfType([
         PropTypes.string,
         PropTypes.number,
@@ -176,72 +234,125 @@ AntdTreeSelect.propTypes = {
         ),
     ]),
 
-    // 设置最大显示的已选择选项，超出部分会自动省略
+    /**
+     * 当`multiple=True`时，已选值展示的最大数量
+     */
     maxTagCount: PropTypes.oneOfType([
         PropTypes.number,
         PropTypes.oneOf(['responsive'])
     ]),
 
-    // 设置下拉菜单的像素高度，默认256
+    /**
+     * 选择菜单最大像素高度
+     * 默认值：`256`
+     */
     listHeight: PropTypes.number,
 
-    // 设置是否支持多选，默认为false
+    /**
+     * 是否开启多选模式
+     * 默认值：`false`
+     */
     multiple: PropTypes.bool,
 
-    // 设置是否以选择框模式渲染每个节点，默认为false
+    /**
+     * 树节点是否可勾选
+     * 默认值：`false`
+     */
     treeCheckable: PropTypes.bool,
 
-    // 设置是否禁用父子节点间的关联作用，如所有子节点被选中父节点也不会被选中，默认为false
+    /**
+     * 节点与其后代节点之间的选择行为是否彼此独立
+     * 默认值：`false`
+     */
     treeCheckStrictly: PropTypes.bool,
 
-    // 设置初始化时是否展开所有树节点，默认为false
+    /**
+     * 初始化是否展开全部节点
+     * 默认值：`false`
+     */
     treeDefaultExpandAll: PropTypes.bool,
 
-    // 设置初始化时展开的树节点key值数组
+    /**
+     * 初始化已展开节点`key`值数组
+     */
     treeDefaultExpandedKeys: PropTypes.arrayOf(PropTypes.string),
 
-    // 对应当前展开的树节点key值数组
+    /**
+     * 监听或设置已展开节点`key`值数组
+     */
     treeExpandedKeys: PropTypes.arrayOf(PropTypes.string),
 
-    // 设置是否开启虚拟滚动，默认为true
+    /**
+     * 是否开启虚拟滚动
+     * 默认值：`true`
+     */
     virtual: PropTypes.bool,
 
-    // 设置校验状态，可选的有'error'、'warning'
+    /**
+     * 控制校验状态，可选项有`'error'`、`'warning'`
+     */
     status: PropTypes.oneOf(['error', 'warning']),
 
-    // 设置是否渲染内容清空按钮，默认为true
+    /**
+     * 是否允许一键清空已选值
+     * 默认值：`true`
+     */
     allowClear: PropTypes.bool,
 
-    // 设置输入框中搜索时针对的字段，可选的有'title'、'value'，默认为'value'
+    /**
+     * 基于搜索框中输入内容进行搜索的目标字段，可选项有`'value'`、`'title'`
+     * 默认值：`'value'`
+     */
     treeNodeFilterProp: PropTypes.oneOf(['title', 'value']),
 
-    // 用于设置搜索框内容与节点目标值的匹配方式，可选的有'case-insensitive'、'case-sensitive'、'regex'
-    // 默认为'case-insensitive'
+    /**
+     * 搜索匹配模式，可选项有`'case-insensitive'`（大小写不敏感）、`'case-sensitive'`（大小写敏感）、`'regex'`（正则表达式）
+     * 默认值：`'case-insensitive'`
+     */
     treeNodeFilterMode: PropTypes.oneOf(['case-insensitive', 'case-sensitive', 'regex']),
 
-    // 设置当多选模式下值被选择，是否自动清空搜索框，默认为true
+    /**
+     * 当`multiple=true`时，设置是否在选中项后自动清空搜索框中的内容
+     * 默认值：`true`
+     */
     autoClearSearchValue: PropTypes.bool,
 
-    // 用于设置已勾选项回填策略，可选的有'show-all'、'show-parent'、'show-child'
-    // 默认为'show-all'
+    /**
+     * 已选项回填搜索框策略，可选项有`'show-all'`、`'show-parent'`、`'show-child'`
+     * 默认值：`'show-all'`
+     */
     showCheckedStrategy: PropTypes.oneOf(['show-all', 'show-parent', 'show-child']),
 
-    // 可选，自定义悬浮层前缀内容
+    /**
+     * 组件型，选择菜单前缀内容
+     */
     dropdownBefore: PropTypes.node,
 
-    // 可选，自定义悬浮层后缀内容
+    /**
+     * 组件型，选择菜单后缀内容
+     */
     dropdownAfter: PropTypes.node,
 
-    // 设置是否以只读模式进行渲染，底层利用Select的open参数
+    /**
+     * 是否渲染为只读状态
+     * 默认值：`false`
+     */
     readOnly: PropTypes.bool,
 
-    // 设置悬浮层锚定策略，可选的有'parent'、'body'，默认为'body'
+    /**
+     * 相关展开层锚定策略，可选项有`'parent'`、`'body'`
+     * 默认值：`'body'`
+     */
     popupContainer: PropTypes.oneOf(['parent', 'body']),
 
-    // 用于自定义需要纳入batchProps中的属性名数组
+    /**
+     * 需要纳入[批量属性监听](/batch-props-values)的若干属性名
+     */
     batchPropsNames: PropTypes.arrayOf(PropTypes.string),
 
-    // 打包监听batchPropsNames中定义的属性值变化
+    /**
+     * 监听`batchPropsNames`中指定的若干属性值
+     */
     batchPropsValues: PropTypes.object,
 
     /**
@@ -276,13 +387,8 @@ AntdTreeSelect.propTypes = {
     setProps: PropTypes.func,
 
     /**
-   * Used to allow user interactions in this component to be persisted when
-   * the component - or the page - is refreshed. If `persisted` is truthy and
-   * hasn't changed from its previous value, a `value` that the user has
-   * changed while using the app will keep that change, as long as
-   * the new `value` also matches what was given originally.
-   * Used in conjunction with `persistence_type`.
-   */
+     * 是否开启[属性持久化](/prop-persistence)
+     */
     persistence: PropTypes.oneOfType([
         PropTypes.bool,
         PropTypes.string,
@@ -290,17 +396,14 @@ AntdTreeSelect.propTypes = {
     ]),
 
     /**
-     * Properties whose user interactions will persist after refreshing the
-     * component or the page. Since only `value` is allowed this prop can
-     * normally be ignored.
+     * 开启属性持久化功能的若干属性名，可选项有`'value'`
+     * 默认值：`['value']`
      */
     persisted_props: PropTypes.arrayOf(PropTypes.oneOf(['value'])),
 
     /**
-     * Where persisted user changes will be stored:
-     * memory: only kept in memory, reset on page refresh.
-     * local: window.localStorage, data is kept after the browser quit.
-     * session: window.sessionStorage, data is cleared once the browser quit.
+     * 属性持久化存储类型，可选项有`'local'`（本地持久化），`'session'`（会话持久化），`'memory'`（内存持久化）
+     * 默认值：`'local'`
      */
     persistence_type: PropTypes.oneOf(['local', 'session', 'memory'])
 };

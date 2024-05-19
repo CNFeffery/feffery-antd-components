@@ -1,13 +1,20 @@
+// react核心
 import React, { useEffect, useMemo, useContext } from 'react';
+// antd核心
 import { TreeSelect, ConfigProvider } from 'antd';
+// 辅助库
 import { str2Locale } from '../../components/locales.react';
 import { isUndefined, isString, cloneDeep } from 'lodash';
 import { pickBy } from 'ramda';
 import { flatToTree } from '../../components/utils';
+// 自定义hooks
 import useCss from '../../hooks/useCss';
+// 上下文
 import PropsContext from '../../contexts/PropsContext';
 import FormContext from '../../contexts/FormContext';
+// 状态管理
 import useFormStore from '../../store/formStore';
+// 参数类型
 import { propTypes, defaultProps } from '../../components/dataEntry/AntdTreeSelect.react';
 
 const { SHOW_ALL, SHOW_CHILD, SHOW_PARENT } = TreeSelect;
@@ -45,9 +52,10 @@ const replaceNodeTitle = (originTreeData, treeNodeKeyToTitle) => {
     return originTreeData;
 }
 
-// 定义树选择组件AntdTreeSelect，api参数参考https://ant.design/components/tree-select-cn/
+/**
+ * 树选择组件AntdTreeSelect
+ */
 const AntdTreeSelect = (props) => {
-    // 取得必要属性或参数
     let {
         id,
         style,
@@ -162,7 +170,6 @@ const AntdTreeSelect = (props) => {
         }
     }
 
-    
     return (
         <ConfigProvider locale={str2Locale.get(locale)}>
             <TreeSelect
