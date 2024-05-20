@@ -1,15 +1,22 @@
+// react核心
 import React, { useState, useEffect, useContext } from 'react';
-import { v4 as uuidv4 } from 'uuid';
+// antd核心
 import { Upload, message, Modal, ConfigProvider } from 'antd';
 import AntdIcon from '../../components/general/AntdIcon.react';
-import useCss from '../../hooks/useCss';
+// 辅助库
 import { isString, isUndefined } from 'lodash';
+import { v4 as uuidv4 } from 'uuid';
 import { pickBy } from 'ramda';
 import { pick } from 'ramda';
 import { str2Locale, locale2text } from '../../components/locales.react';
+// 自定义hooks
+import useCss from '../../hooks/useCss';
+// 上下文
 import PropsContext from '../../contexts/PropsContext';
 import FormContext from '../../contexts/FormContext';
+// 状态管理
 import useFormStore from '../../store/formStore';
+// 参数类型
 import { propTypes, defaultProps } from '../../components/dataEntry/upload/AntdDraggerUpload.react';
 
 const { Dragger } = Upload;
@@ -38,10 +45,10 @@ const draggerUploadStatus2Style = new Map([
     }]
 ])
 
-// 定义文件拖拽上传组件AntdDraggerUpload，api参数参考https://ant.design/components/upload-cn/
+/**
+ * 文件拖拽上传组件AntdDraggerUpload
+ */
 const AntdDraggerUpload = (props) => {
-
-    // 取得必要属性或参数
     let {
         id,
         className,
@@ -523,7 +530,6 @@ const AntdDraggerUpload = (props) => {
         Object.assign(uploadProps, { accept: '.' + fileTypes.join(',.') })
     }
 
-    
     return (
         <ConfigProvider locale={str2Locale.get(locale)}>
             <div

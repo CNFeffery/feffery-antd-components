@@ -237,7 +237,7 @@ Keyword arguments:
             进度文字前缀内容.
 
         - suffix (string; optional):
-            进度文字后缀内容.
+            进度文字后缀内容  默认值：`'%'`.
 
     - strokeColor (dict; optional):
         进度条颜色.

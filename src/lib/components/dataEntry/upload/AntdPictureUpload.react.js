@@ -251,6 +251,7 @@ AntdPictureUpload.propTypes = {
             prefix: PropTypes.string,
             /**
              * 进度文字后缀内容
+             * 默认值：`'%'`
              */
             suffix: PropTypes.string
         })

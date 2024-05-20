@@ -107,6 +107,7 @@ components = [
     'AntdTransfer',
     'AntdTreeSelect',
     'AntdPictureUpload',
+    'AntdDraggerUpload',
 ]
 
 app.layout = html.Div(
