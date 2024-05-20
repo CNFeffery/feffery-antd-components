@@ -106,6 +106,7 @@ components = [
     'AntdTimeRangePicker',
     'AntdTransfer',
     'AntdTreeSelect',
+    'AntdPictureUpload',
 ]
 
 app.layout = html.Div(
