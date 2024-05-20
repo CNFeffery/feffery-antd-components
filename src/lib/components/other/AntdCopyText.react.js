@@ -1,17 +1,23 @@
+// react核心
 import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
+// antd核心
 import { Typography, ConfigProvider } from 'antd';
+// 辅助库
 import { str2Locale } from '../locales.react';
-import PropsContext from '../../contexts/PropsContext';
 import { isString } from 'lodash';
 import { pickBy } from 'ramda';
+// 自定义hooks
 import useCss from '../../hooks/useCss';
+// 上下文
+import PropsContext from '../../contexts/PropsContext';
 
 const { Text } = Typography;
 
-// 定义文字复制组件AntdCopyText，api参数参考https://ant.design/components/typography-cn/
+/**
+ * 文字复制组件AntdCopyText
+ */
 const AntdCopyText = (props) => {
-    // 取得必要属性或参数
     let {
         id,
         className,
@@ -52,33 +58,49 @@ const AntdCopyText = (props) => {
     );
 }
 
-// 定义参数或属性
 AntdCopyText.propTypes = {
-    // 组件id
+    /**
+     * 组件唯一id
+     */
     id: PropTypes.string,
 
-    // css类名
+    /**
+     * 对当前组件的`key`值进行更新，可实现强制重绘当前组件的效果
+     */
+    key: PropTypes.string,
+
+    /**
+     * 当前组件css样式
+     */
+    style: PropTypes.object,
+
+    /**
+     * 当前组件css类名，支持[动态css](/advanced-classname)
+     */
     className: PropTypes.oneOfType([
         PropTypes.string,
         PropTypes.object
     ]),
 
-    // 自定义css字典
-    style: PropTypes.object,
-
-    // 辅助刷新用唯一标识key值
-    key: PropTypes.string,
-
-    // 设置语言环境，可选的有'zh-cn'、'en-us'
+    /**
+     * 组件文案语种，可选项有`'zh-cn'`、`'en-us'`
+     * 默认值：`'zh-cn'`
+     */
     locale: PropTypes.oneOf(['zh-cn', 'en-us']),
 
-    // 设置点击按钮后复制到粘贴板的文字内容
+    /**
+     * 复制目标内容
+     */
     text: PropTypes.string,
 
-    // 定义复制之前的图标
+    /**
+     * 组件型，未复制状态图标
+     */
     beforeIcon: PropTypes.node,
 
-    // 定义复制之后的图标
+    /**
+     * 组件型，完成复制状态图标
+     */
     afterIcon: PropTypes.node,
 
     /**

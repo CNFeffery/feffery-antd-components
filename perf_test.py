@@ -111,6 +111,7 @@ components = [
     'AntdUpload',
     'AntdWatermark',
     'AntdTour',
+    'AntdCopyText',
 ]
 
 app.layout = html.Div(
