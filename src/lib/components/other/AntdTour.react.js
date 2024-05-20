@@ -1,14 +1,19 @@
+// react核心
 import React from 'react';
 import PropTypes from 'prop-types';
+// antd核心
 import { Tour, ConfigProvider } from 'antd';
-import useCss from '../../hooks/useCss';
+// 辅助库
 import { isString } from 'lodash';
 import { pickBy } from 'ramda';
 import { str2Locale } from '../locales.react';
+// 自定义hooks
+import useCss from '../../hooks/useCss';
 
-// 定义漫游式引导组件AntdTour
+/**
+ * 漫游式引导组件AntdTour
+ */
 const AntdTour = (props) => {
-    // 取得必要属性或参数
     let {
         id,
         className,
@@ -75,133 +80,122 @@ const AntdTour = (props) => {
     );
 }
 
-// 定义参数或属性
 AntdTour.propTypes = {
-    // 组件id
+    /**
+     * 组件唯一id
+     */
     id: PropTypes.string,
 
-    // css类名
+    /**
+     * 对当前组件的`key`值进行更新，可实现强制重绘当前组件的效果
+     */
+    key: PropTypes.string,
+
+    /**
+     * 当前组件css样式
+     */
+    style: PropTypes.object,
+
+    /**
+     * 当前组件css类名，支持[动态css](/advanced-classname)
+     */
     className: PropTypes.oneOfType([
         PropTypes.string,
         PropTypes.object
     ]),
 
-    // 自定义css字典
-    style: PropTypes.object,
-
-    // 辅助刷新用唯一标识key值
-    key: PropTypes.string,
-
-    // 设置语言环境，可选的有'zh-cn'、'en-us'
+    /**
+     * 组件文案语种，可选项有`'zh-cn'`、`'en-us'`
+     * 默认值：`'zh-cn'`
+     */
     locale: PropTypes.oneOf(['zh-cn', 'en-us']),
 
     /**
-     * 用于定义各引导步骤，其中当targetId、targetSelector
-     * 默认：[]
+     * 配置引导步骤
      */
     steps: PropTypes.arrayOf(
         PropTypes.exact({
             /**
-             * 设置当前引导步骤指向的目标元素id，优先级最高
+             * 当前步骤目标元素id，优先级高于`targetSelector`
              */
             targetId: PropTypes.string,
-
             /**
-             * 用于传入js代码字符串进行目标元素的定位，优先级低于targetId
+             * 定位当前步骤目标元素的javascript代码字符串
              */
             targetSelector: PropTypes.string,
-
             /**
-             * 配置当前引导步骤弹框的箭头
-             * 默认：true
+             * 配置当前步骤箭头
+             * 默认值：`true`
              */
             arrow: PropTypes.oneOfType([
                 PropTypes.bool,
                 PropTypes.exact({
                     /**
-                     * 设置箭头是否指向元素中心
+                     * 箭头是否指向目标中心
                      */
                     pointAtCenter: PropTypes.bool
                 })
             ]),
-
             /**
-             * 设置当前引导步骤弹框的封面内容
+             * 组件型，当前步骤弹框的封面内容
              */
             cover: PropTypes.node,
-
             /**
-             * 设置当前引导步骤弹框的标题
+             * 组件型，当前步骤弹框的标题内容
              */
             title: PropTypes.node,
-
             /**
-             * 设置当前引导步骤弹框的描述内容
+             * 组件型，当前步骤弹框的描述内容
              */
             description: PropTypes.node,
-
             /**
              * 设置当前引导步骤弹框相对目标元素的位置
              * 可选的有'center'、'left'、'leftTop'、'leftBottom'、'right'、'rightTop'、'rightBottom'
              * 、'top'、'topLeft'、'topRight'、'bottom'、'bottomLeft'、'bottomRight'
              */
-            placement: PropTypes.oneOf([
-                'center',
-                'left',
-                'leftTop',
-                'leftBottom',
-                'right',
-                'rightTop',
-                'rightBottom',
-                'top',
-                'topLeft',
-                'topRight',
-                'bottom',
-                'bottomLeft',
-                'bottomRight'
-            ]),
-
             /**
-             * 为当前引导步骤设置蒙版层相关配置
-             * 默认：true
+             * 当前步骤弹框展开方向，可选项有`'center'`、`'left'`、`'leftTop'`、`'leftBottom'`、`'right'`、`'rightTop'`、`'rightBottom'`、`'top'`、`'topLeft'`、`'topRight'`、`'bottom'`、`'bottomLeft'`、`'bottomRight'`
+             */
+            placement: PropTypes.oneOf([
+                'center', 'left', 'leftTop', 'leftBottom', 'right', 'rightTop', 'rightBottom', 'top', 'topLeft', 'topRight', 'bottom', 'bottomLeft', 'bottomRight'
+            ]),
+            /**
+             * 配置当前步骤蒙版层
+             * 默认值：`true`
              */
             mask: PropTypes.oneOfType([
                 PropTypes.bool,
                 PropTypes.exact({
                     /**
-                     * 设置蒙版层css样式
+                     * 当前步骤蒙版层css样式
                      */
                     style: PropTypes.object,
-
                     /**
-                     * 设置蒙版层颜色
+                     * 当前步骤蒙版层颜色
                      */
                     color: PropTypes.string
                 })
             ]),
-
             /**
-             * 设置当前引导步骤弹框类型，可选的有'default'、'primary'
-             * 默认：'default'
+             * 当前步骤弹框类型，可选项有`'default'`、`'primary'`
+             * 默认值：`'default'`
              */
             type: PropTypes.oneOf(['default', 'primary']),
-
             /**
-             * 设置当前引导步骤框下一步按钮的相关属性
+             * 配置当前步骤下一步按钮
              */
             nextButtonProps: PropTypes.exact({
                 /**
-                 * 设置按钮子元素
+                 * 组件型，按钮内嵌元素
                  */
                 children: PropTypes.node
             }),
-
             /**
-             * 设置当前引导步骤框上一步按钮的相关属性
+             * 配置当前步骤下一步按钮
              */
             prevButtonProps: PropTypes.exact({
                 /**
-                 * 设置按钮子元素
+                 * 组件型，按钮内嵌元素
                  */
                 children: PropTypes.node
             })
@@ -209,80 +203,66 @@ AntdTour.propTypes = {
     ),
 
     /**
-     * 配置各引导步骤弹框的箭头
-     * 默认：true
+     * 统一配置引导步骤弹框箭头
+     * 默认值：`true`
      */
     arrow: PropTypes.oneOfType([
         PropTypes.bool,
         PropTypes.exact({
             /**
-             * 设置箭头是否指向元素中心
+             * 箭头是否指向目标中心
              */
             pointAtCenter: PropTypes.bool
         })
     ]),
 
     /**
-     * 设置各引导步骤弹框相对于目标元素的位置
-     * 可选的有'center'、'left'、'leftTop'、'leftBottom'、'right'、'rightTop'、'rightBottom'
-     * 、'top'、'topLeft'、'topRight'、'bottom'、'bottomLeft'、'bottomRight'
-     * 默认：'bottom'
+     * 统一配置引导步骤弹框相对于目标元素的展开方向，可选项有`'center'`、`'left'`、`'leftTop'`、`'leftBottom'`、`'right'`、`'rightTop'`、`'rightBottom'`、`'top'`、`'topLeft'`、`'topRight'`、`'bottom'`、`'bottomLeft'`、`'bottomRight'`
+     * 默认值：`'bottom'`
      */
     placement: PropTypes.oneOf([
-        'center',
-        'left',
-        'leftTop',
-        'leftBottom',
-        'right',
-        'rightTop',
-        'rightBottom',
-        'top',
-        'topLeft',
-        'topRight',
-        'bottom',
-        'bottomLeft',
-        'bottomRight'
+        'center', 'left', 'leftTop', 'leftBottom', 'right', 'rightTop', 'rightBottom', 'top', 'topLeft', 'topRight', 'bottom', 'bottomLeft', 'bottomRight'
     ]),
 
     /**
-     * 为各引导步骤条设置蒙版层相关配置
-     * 默认：true
+     * 统一配置引导弹框蒙版
+     * 默认值：`true`
      */
     mask: PropTypes.oneOfType([
         PropTypes.bool,
         PropTypes.exact({
             /**
-             * 设置蒙版层css样式
+             * 蒙版层css样式
              */
             style: PropTypes.object,
 
             /**
-             * 设置蒙版层颜色
+             * 蒙版层颜色
              */
             color: PropTypes.string
         })
     ]),
 
     /**
-     * 为各引导步骤弹框设置类型，可选的有'default'、'primary'
-     * 默认：'default'
+     * 统一设置引导步骤弹框类型，可选项有`'default'`、`'primary'`
+     * 默认值：`'default'`
      */
     type: PropTypes.oneOf(['default', 'primary']),
 
     /**
-     * 设置或监听当前漫游式引导的开关状态
-     * 默认：false
+     * 监听或设置当前漫游式引导的打开状态
+     * 默认值：`false`
      */
     open: PropTypes.bool,
 
     /**
-     * 设置或监听当前漫游式引导所处的步骤序号
+     * 监听或设置当前漫游式引导所在步骤序号
      */
     current: PropTypes.number,
 
     /**
-     * 设置当前漫游式引导的z-index
-     * 默认：1001
+     * 当前漫游式引导z-index
+     * 默认值：`1001`
      */
     zIndex: PropTypes.number,
 

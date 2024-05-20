@@ -5,32 +5,35 @@ from dash.development.base_component import Component, _explicitize_args
 
 class AntdTour(Component):
     """An AntdTour component.
-
+漫游式引导组件AntdTour
 
 Keyword arguments:
 
-- id (string; optional)
+- id (string; optional):
+    组件唯一id.
 
 - aria-* (string; optional):
     `aria-*`格式属性通配.
 
 - arrow (dict; default True):
-    配置各引导步骤弹框的箭头  默认：True.
+    统一配置引导步骤弹框箭头  默认值：`True`.
 
     `arrow` is a boolean | dict with keys:
 
     - pointAtCenter (boolean; optional):
-        设置箭头是否指向元素中心.
+        箭头是否指向目标中心.
 
-- className (string | dict; optional)
+- className (string | dict; optional):
+    当前组件css类名，支持[动态css](/advanced-classname).
 
 - current (number; optional):
-    设置或监听当前漫游式引导所处的步骤序号.
+    监听或设置当前漫游式引导所在步骤序号.
 
 - data-* (string; optional):
     `data-*`格式属性通配.
 
-- key (string; optional)
+- key (string; optional):
+    对当前组件的`key`值进行更新，可实现强制重绘当前组件的效果.
 
 - loading_state (dict; optional)
 
@@ -45,35 +48,34 @@ Keyword arguments:
     - prop_name (string; optional):
         Holds which property is loading.
 
-- locale (a value equal to: 'zh-cn', 'en-us'; default 'zh-cn')
+- locale (a value equal to: 'zh-cn', 'en-us'; default 'zh-cn'):
+    组件文案语种，可选项有`'zh-cn'`、`'en-us'`  默认值：`'zh-cn'`.
 
 - mask (dict; default True):
-    为各引导步骤条设置蒙版层相关配置  默认：True.
+    统一配置引导弹框蒙版  默认值：`True`.
 
     `mask` is a boolean | dict with keys:
 
     - color (string; optional):
-        设置蒙版层颜色.
+        蒙版层颜色.
 
     - style (dict; optional):
-        设置蒙版层css样式.
+        蒙版层css样式.
 
 - open (boolean; default False):
-    设置或监听当前漫游式引导的开关状态  默认：False.
+    监听或设置当前漫游式引导的打开状态  默认值：`False`.
 
 - placement (a value equal to: 'center', 'left', 'leftTop', 'leftBottom', 'right', 'rightTop', 'rightBottom', 'top', 'topLeft', 'topRight', 'bottom', 'bottomLeft', 'bottomRight'; default 'bottom'):
-    设置各引导步骤弹框相对于目标元素的位置
-    可选的有'center'、'left'、'leftTop'、'leftBottom'、'right'、'rightTop'、'rightBottom'
-    、'top'、'topLeft'、'topRight'、'bottom'、'bottomLeft'、'bottomRight'
-    默认：'bottom'.
+    统一配置引导步骤弹框相对于目标元素的展开方向，可选项有`'center'`、`'left'`、`'leftTop'`、`'leftBottom'`、`'right'`、`'rightTop'`、`'rightBottom'`、`'top'`、`'topLeft'`、`'topRight'`、`'bottom'`、`'bottomLeft'`、`'bottomRight'`
+    默认值：`'bottom'`.
 
 - steps (list of dicts; optional):
-    用于定义各引导步骤，其中当targetId、targetSelector  默认：[].
+    配置引导步骤.
 
     `steps` is a list of dicts with keys:
 
     - arrow (dict; optional):
-        配置当前引导步骤弹框的箭头  默认：True.
+        配置当前步骤箭头  默认值：`True`.
 
         `arrow` is a boolean
 
@@ -81,73 +83,72 @@ Keyword arguments:
 
         - pointAtCenter (boolean; optional):
 
-            设置箭头是否指向元素中心.
+            箭头是否指向目标中心.
 
     - cover (a list of or a singular dash component, string or number; optional):
-        设置当前引导步骤弹框的封面内容.
+        组件型，当前步骤弹框的封面内容.
 
     - description (a list of or a singular dash component, string or number; optional):
-        设置当前引导步骤弹框的描述内容.
+        组件型，当前步骤弹框的描述内容.
 
     - mask (dict; optional):
-        为当前引导步骤设置蒙版层相关配置  默认：True.
+        配置当前步骤蒙版层  默认值：`True`.
 
         `mask` is a boolean | dict with keys:
 
         - color (string; optional):
 
-            设置蒙版层颜色.
+            当前步骤蒙版层颜色.
 
         - style (dict; optional):
 
-            设置蒙版层css样式.
+            当前步骤蒙版层css样式.
 
     - nextButtonProps (dict; optional):
-        设置当前引导步骤框下一步按钮的相关属性.
+        配置当前步骤下一步按钮.
 
         `nextButtonProps` is a dict with keys:
 
         - children (a list of or a singular dash component, string or number; optional):
-            设置按钮子元素.
+            组件型，按钮内嵌元素.
 
     - placement (a value equal to: 'center', 'left', 'leftTop', 'leftBottom', 'right', 'rightTop', 'rightBottom', 'top', 'topLeft', 'topRight', 'bottom', 'bottomLeft', 'bottomRight'; optional):
-        设置当前引导步骤弹框相对目标元素的位置
-        可选的有'center'、'left'、'leftTop'、'leftBottom'、'right'、'rightTop'、'rightBottom'
-        、'top'、'topLeft'、'topRight'、'bottom'、'bottomLeft'、'bottomRight'.
+        当前步骤弹框展开方向，可选项有`'center'`、`'left'`、`'leftTop'`、`'leftBottom'`、`'right'`、`'rightTop'`、`'rightBottom'`、`'top'`、`'topLeft'`、`'topRight'`、`'bottom'`、`'bottomLeft'`、`'bottomRight'`.
 
     - prevButtonProps (dict; optional):
-        设置当前引导步骤框上一步按钮的相关属性.
+        配置当前步骤下一步按钮.
 
         `prevButtonProps` is a dict with keys:
 
         - children (a list of or a singular dash component, string or number; optional):
-            设置按钮子元素.
+            组件型，按钮内嵌元素.
 
     - targetId (string; optional):
-        设置当前引导步骤指向的目标元素id，优先级最高.
+        当前步骤目标元素id，优先级高于`targetSelector`.
 
     - targetSelector (string; optional):
-        用于传入js代码字符串进行目标元素的定位，优先级低于targetId.
+        定位当前步骤目标元素的javascript代码字符串.
 
     - title (a list of or a singular dash component, string or number; optional):
-        设置当前引导步骤弹框的标题.
+        组件型，当前步骤弹框的标题内容.
 
     - type (a value equal to: 'default', 'primary'; optional):
-        设置当前引导步骤弹框类型，可选的有'default'、'primary'  默认：'default'.
+        当前步骤弹框类型，可选项有`'default'`、`'primary'`  默认值：`'default'`.
 
-- style (dict; optional)
+- style (dict; optional):
+    当前组件css样式.
 
 - type (a value equal to: 'default', 'primary'; default 'default'):
-    为各引导步骤弹框设置类型，可选的有'default'、'primary'  默认：'default'.
+    统一设置引导步骤弹框类型，可选项有`'default'`、`'primary'`  默认值：`'default'`.
 
 - zIndex (number; default 1001):
-    设置当前漫游式引导的z-index  默认：1001."""
+    当前漫游式引导z-index  默认值：`1001`."""
     _children_props = ['steps[].cover', 'steps[].title', 'steps[].description', 'steps[].nextButtonProps.children', 'steps[].prevButtonProps.children']
     _base_nodes = ['children']
     _namespace = 'feffery_antd_components'
     _type = 'AntdTour'
     @_explicitize_args
-    def __init__(self, id=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, key=Component.UNDEFINED, locale=Component.UNDEFINED, steps=Component.UNDEFINED, arrow=Component.UNDEFINED, placement=Component.UNDEFINED, mask=Component.UNDEFINED, type=Component.UNDEFINED, open=Component.UNDEFINED, current=Component.UNDEFINED, zIndex=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
+    def __init__(self, id=Component.UNDEFINED, key=Component.UNDEFINED, style=Component.UNDEFINED, className=Component.UNDEFINED, locale=Component.UNDEFINED, steps=Component.UNDEFINED, arrow=Component.UNDEFINED, placement=Component.UNDEFINED, mask=Component.UNDEFINED, type=Component.UNDEFINED, open=Component.UNDEFINED, current=Component.UNDEFINED, zIndex=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
         self._prop_names = ['id', 'aria-*', 'arrow', 'className', 'current', 'data-*', 'key', 'loading_state', 'locale', 'mask', 'open', 'placement', 'steps', 'style', 'type', 'zIndex']
         self._valid_wildcard_attributes =            ['data-', 'aria-']
         self.available_properties = ['id', 'aria-*', 'arrow', 'className', 'current', 'data-*', 'key', 'loading_state', 'locale', 'mask', 'open', 'placement', 'steps', 'style', 'type', 'zIndex']
