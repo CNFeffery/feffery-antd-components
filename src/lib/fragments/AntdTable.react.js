@@ -78,6 +78,22 @@ const insertNewColumnNode = (column, group, currentLevel, currentNode) => {
     }
 }
 
+const splitSummaryRowContents = (summaryRowContents, columnCount) => {
+    let summaryGroups = [[]];
+    let currentGroupSpans = 0;
+    for (let item of summaryRowContents) {
+        // 检查当前字段追加到末尾分组后，是否超出总列数
+        if (currentGroupSpans + (item.colSpan || 1) > columnCount) {
+            currentGroupSpans = (item.colSpan || 1);
+            summaryGroups.push([item])
+        } else {
+            currentGroupSpans += (item.colSpan || 1)
+            summaryGroups[summaryGroups.length - 1].push(item)
+        }
+    }
+    return summaryGroups;
+}
+
 // 定义不触发重绘的参数数组
 const preventUpdateProps = [
     'recentlyMouseEnterColumnDataIndex',
@@ -2015,13 +2031,19 @@ class AntdTable extends Component {
                     }
                     summary={summaryRowContents ? () => (
                         <Table.Summary fixed={summaryRowFixed}>
-                            <Table.Summary.Row>
-                                {summaryRowContents.map((item, i) =>
-                                    <Table.Summary.Cell index={i} colSpan={item.colSpan} align={item.align}>
-                                        {item.content}
-                                    </Table.Summary.Cell>
-                                )}
-                            </Table.Summary.Row>
+                            {
+                                splitSummaryRowContents(summaryRowContents, tempColumns.length).map(
+                                    (group, idx) => (
+                                        <Table.Summary.Row key={idx}>
+                                            {group.map((item, i) =>
+                                                <Table.Summary.Cell index={i} colSpan={item.colSpan} align={item.align}>
+                                                    {item.content}
+                                                </Table.Summary.Cell>
+                                            )}
+                                        </Table.Summary.Row>
+                                    )
+                                )
+                            }
                         </Table.Summary>
                     ) : undefined}
                     expandable={

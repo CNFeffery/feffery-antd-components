@@ -164,7 +164,6 @@ AntdTable.propTypes = {
              * 当前字段冻结方向，可选项有`'left'`、`'right'`
              */
             fixed: PropTypes.oneOf(['left', 'right']),
-            // 设置是否可编辑，默认为false
             /**
              * 当前字段是否可编辑
              * 默认值：`false`
@@ -855,7 +854,6 @@ AntdTable.propTypes = {
         })
     ]),
 
-    // 设置是否启用行悬浮事件监听（此功能可能会干扰其他正常表格功能，慎用），默认为false
     /**
      * 是否启用行鼠标移入/移出事件监听，开启后可能会影响到部分其他功能，请根据实际情况进行使用
      * 默认值：`false`
@@ -1106,7 +1104,6 @@ AntdTable.propTypes = {
      */
     filter: PropTypes.object,
 
-    // 设置数据操纵模式，可选的有'client-side'（前端）、'server-side'（后端），默认为'client-side'
     /**
      * 表格数据加载控制方式，可选项有`'client-side'`（客户端加载）、`'server-side'`（服务端），其中服务端模式适用于大量数据展示需求，具体请参考[服务端数据加载模式](/AntdTable-server-side-mode)
      * 默认值：`'client-side'`
@@ -1184,8 +1181,6 @@ AntdTable.propTypes = {
      */
     expandedRowKeys: PropTypes.arrayOf(PropTypes.string),
 
-    // 设置启用单元格点击事件监听的字段dataIndex数组，开启后会干扰多种再渲染模式的交互，
-    // 以及自定义条件单元格模式，请慎用
     /**
      * 是否启用单元格单击、双击、右键相关事件的监听，开启后可能会影响到部分其他功能，请根据实际情况进行使用
      * 默认值：`false`
