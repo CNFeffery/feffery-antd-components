@@ -6,16 +6,8 @@ app = dash.Dash(__name__)
 
 app.layout = html.Div(
     [
-        fac.AntdTabs(
-            items=[
-                {
-                    'label': f'标签页{i}',
-                    'key': f'标签页{i}',
-                }
-                for i in range(1, 6)
-            ],
-            indicator={'align': 'start', 'size': -10},
-        )
+        fac.AntdImage(src='test'),
+        fac.AntdImageGroup([fac.AntdImage(src='test')] * 5),
     ],
     style={'padding': 50},
 )
