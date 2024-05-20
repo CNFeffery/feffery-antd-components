@@ -1,3 +1,4 @@
+// react核心
 import React from 'react';
 import PropTypes from 'prop-types';
 

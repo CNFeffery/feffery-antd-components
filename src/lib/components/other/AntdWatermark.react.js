@@ -1,12 +1,16 @@
+// react核心
 import React from 'react';
 import PropTypes from 'prop-types';
+// antd核心
 import { WaterMark } from '@ant-design/pro-components';
+// 辅助库
 import { parseChildrenToArray } from '../utils';
 import { pickBy } from 'ramda';
 
-// 定义水印组件AntdWatermark，api参数参考https://procomponents.ant.design/components/water-mark
+/**
+ * 水印组件AntdWatermark
+ */
 const AntdWatermark = (props) => {
-    // 取得必要属性或参数
     let {
         id,
         children,
@@ -58,63 +62,97 @@ const AntdWatermark = (props) => {
     );
 }
 
-// 定义参数或属性
 AntdWatermark.propTypes = {
-    // 部件id
+    /**
+     * 组件唯一id
+     */
     id: PropTypes.string,
 
-    // 辅助刷新用唯一标识key值
+    /**
+     * 对当前组件的`key`值进行更新，可实现强制重绘当前组件的效果
+     */
     key: PropTypes.string,
 
     /**
-     * The content of the tab - will only be displayed if this tab is selected
+     * 组件型，内嵌元素
      */
     children: PropTypes.node,
 
-    // css类名
-    className: PropTypes.string,
-
-    // 自定义css字典
+    /**
+     * 当前组件css样式
+     */
     style: PropTypes.object,
 
-    // 设置水印层css类
+    /**
+     * 当前组件css类名
+     */
+    className: PropTypes.string,
+
+    /**
+     * 水印层css类名
+     */
     markClassName: PropTypes.string,
 
-    // 设置水印层css样式
+    /**
+     * 水印层css样式
+     */
     markStyle: PropTypes.object,
 
-    // 设置水印文字内容
+    /**
+     * 配置水印内容，传入数组时渲染多行水印
+     */
     content: PropTypes.oneOfType([
         PropTypes.string,
         PropTypes.arrayOf(PropTypes.string)
     ]),
 
-    // 设置水印旋转角度，默认-22
+    /**
+     * 水印旋转角度
+     * 默认值：`-22`
+     */
     rotate: PropTypes.number,
 
-    // 设置水印z-index
+    /**
+     * 水印z-index
+     */
     zIndex: PropTypes.number,
 
-    // 设置水印文字颜色
+    /**
+     * 文字水印颜色
+     */
     fontColor: PropTypes.string,
 
-    // 设置水印字体像素大小，默认16
+    /**
+     * 文字水印字体大小
+     * 默认值：`16`
+     */
     fontSize: PropTypes.number,
 
-    // 水印之间的水平像素间距，默认为212
+    /**
+     * 水印之间的水平像素间距
+     * 默认值：`212`
+     */
     gapX: PropTypes.number,
 
-    // 水印之间的垂直间距，默认为222
+    /**
+     * 水印之间的垂直像素间距
+     * 默认值：`222`
+     */
     gapY: PropTypes.number,
 
-    // 图片型水印
-    // 用于设置水印图片的地址
+    /**
+     * 图片水印地址
+     */
     image: PropTypes.string,
 
-    // 用于设置水印图片的像素宽度
+    /**
+     * 图片水印像素宽度
+     */
     width: PropTypes.number,
 
-    // 用于设置水印图片的像素高度
+    /**
+     * 图片水印像素高度
+     */
     height: PropTypes.number,
 
     /**

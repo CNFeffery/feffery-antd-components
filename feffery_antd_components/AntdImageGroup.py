@@ -5,7 +5,7 @@ from dash.development.base_component import Component, _explicitize_args
 
 class AntdImageGroup(Component):
     """An AntdImageGroup component.
-
+图片组合组件AntdImageGroup
 
 Keyword arguments:
 

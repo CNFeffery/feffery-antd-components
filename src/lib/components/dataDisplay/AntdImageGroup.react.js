@@ -3,6 +3,9 @@ import PropTypes from 'prop-types';
 
 const LazyAntdImageGroup = React.lazy(() => import(/* webpackChunkName: "data_display" */ '../../fragments/dataDisplay/AntdImageGroup.react'));
 
+/**
+ * 图片组合组件AntdImageGroup
+ */
 const AntdImageGroup = (props) => {
     return (
         <Suspense fallback={null}>
