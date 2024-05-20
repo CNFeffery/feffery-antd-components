@@ -1,17 +1,23 @@
+// react核心
 import React, { useState, useEffect, useContext } from 'react';
-import { v4 as uuidv4 } from 'uuid';
+// antd核心
 import { Upload, message, Button, Modal, ConfigProvider } from 'antd';
 import { UploadOutlined } from '@ant-design/icons';
+// 辅助库
 import { str2Locale, locale2text } from '../../components/locales.react';
 import { isString, isUndefined } from 'lodash';
+import { v4 as uuidv4 } from 'uuid';
 import { pickBy } from 'ramda';
 import { pick } from 'ramda';
+// 自定义hooks
 import useCss from '../../hooks/useCss';
+// 上下文
 import PropsContext from '../../contexts/PropsContext';
 import FormContext from '../../contexts/FormContext';
+// 状态管理
 import useFormStore from '../../store/formStore';
+// 参数类型
 import { propTypes, defaultProps } from '../../components/dataEntry/upload/AntdUpload.react';
-
 
 // 解析历史任务完成时间信息
 const parseHistoryTaskCompleteTime = (e) => {
@@ -37,10 +43,10 @@ const uploadStatus2Style = new Map([
     }]
 ])
 
-// 定义文件上传组件AntdUpload，api参数参考https://ant.design/components/upload-cn/
+/**
+ * 文件上传组件AntdUpload
+ */
 const AntdUpload = (props) => {
-
-    // 取得必要属性或参数
     let {
         id,
         className,
@@ -517,7 +523,6 @@ const AntdUpload = (props) => {
         Object.assign(uploadProps, { accept: '.' + fileTypes.join(',.') })
     }
 
-    
     return (
         <ConfigProvider locale={str2Locale.get(locale)}>
             <div

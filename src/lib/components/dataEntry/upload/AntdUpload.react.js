@@ -3,6 +3,9 @@ import PropTypes from 'prop-types';
 
 const LazyAntdUpload = React.lazy(() => import(/* webpackChunkName: "upload" */ '../../../fragments/upload/AntdUpload.react'));
 
+/**
+ * 文件上传组件AntdUpload
+ */
 const AntdUpload = (props) => {
     return (
         <Suspense fallback={null}>
@@ -11,266 +14,398 @@ const AntdUpload = (props) => {
     );
 }
 
-// 定义参数或属性
 AntdUpload.propTypes = {
-    // 组件id
+    /**
+     * 组件唯一id
+     */
     id: PropTypes.string,
 
-    // css类名
+    /**
+     * 对当前组件的`key`值进行更新，可实现强制重绘当前组件的效果
+     */
+    key: PropTypes.string,
+
+    /**
+     * 当前组件css样式
+     */
+    style: PropTypes.object,
+
+    /**
+     * 当前组件css类名，支持[动态css](/advanced-classname)
+     */
     className: PropTypes.oneOfType([
         PropTypes.string,
         PropTypes.object
     ]),
 
-    // 自定义css字典
-    style: PropTypes.object,
-
-    // 辅助刷新用唯一标识key值
-    key: PropTypes.string,
-
     /**
-     * 用于在基于AntdForm的表单值自动搜集功能中，充当当前表单项的字段名
-     * 缺省时会以id作为字段名
+     * 配合`AntdForm`表单批量值搜集/控制功能使用，充当当前表单项的字段名，以`id`作为缺省值
      */
     name: PropTypes.string,
 
-    // 设置语言环境，可选的有'zh-cn'、'en-us'
+    /**
+     * 组件文案语种，可选项有`'zh-cn'`、`'en-us'`
+     * 默认值：`'zh-cn'`
+     */
     locale: PropTypes.oneOf(['zh-cn', 'en-us']),
 
-    // 设置文件上传服务的接口url
+    /**
+     * 文件上传服务接口地址
+     */
     apiUrl: PropTypes.string,
 
-    // 设置文件上传服务所需额外参数
+    /**
+     * 文件上传服务接口额外参数
+     */
     apiUrlExtraParams: PropTypes.object,
 
-    // 设置文件上传服务额外的headers信息
+    /**
+     * 文件上传服务接口额外headers参数
+     */
     headers: PropTypes.object,
 
-    // 可选，设置上传请求时是否携带凭据信息如cookie，当上传接口与前端页面同域时，该参数设置无效，参考https://juejin.cn/post/7163597193058729998
+    /**
+     * 是否在请求上传服务接口时自动携带cookies等凭据信息
+     * 默认值：`false`
+     */
     withCredentials: PropTypes.bool,
 
     /**
-     * listUploadTaskRecord信息中是否记录浏览器原生originFileObj相关信息
+     * `listUploadTaskRecord`监听结果中是否额外记录浏览器原生`originFileObj`相关信息
      * 默认值：`false`
      */
     withOriginFileObj: PropTypes.bool,
 
-    // 可选，用于设置已上传完成文件的下载接口，get接口，具有参数taskId、filename
+    /**
+     * 对应已上传文件的`GET`类型下载服务接口地址，自带参数`taskId`、`filename`
+     */
     downloadUrl: PropTypes.string,
 
-    // 可选，用于配合downloadUrl参数，设置除参数taskId、filename以外的其他请求参数
+    /**
+     * 配合`downloadUrl`参数，设置文件下载服务接口额外参数
+     */
     downloadUrlExtraParams: PropTypes.object,
 
-    // 可选，用于设置已上传完成文件的自定义后端下载接口，get接口，接口响应必须要有url参数
+    /**
+     * 是否将文件上传接口返回信息中的`url`属性作为下载链接地址
+     * 默认值：`false`
+     */
     downloadUrlFromBackend: PropTypes.bool,
 
-    // 设置已上传文件列表的最大显示长度，默认为3
+    /**
+     * 限制已上传文件列表长度上限
+     */
     fileListMaxLength: PropTypes.number,
 
-    // 设置允许上传的文件后缀名数组
+    /**
+     * 允许上传的文件后缀名列表，默认不限制
+     */
     fileTypes: PropTypes.arrayOf(PropTypes.string),
 
     /**
-     * 自定义下载按钮内容
+     * 组件型，自定义上传按钮内容
      */
     buttonContent: PropTypes.node,
 
     /**
-     * 自定义下载按钮前缀图标
+     * 组件型，自定义上传按钮图标
      */
     buttonIcon: PropTypes.node,
 
-    // 配置上传按钮常用参数
+    /**
+     * 配置上传按钮相关参数
+     */
     buttonProps: PropTypes.exact({
-        // 设置按钮尺寸规格，可选的有'default'/'small'/'large'
+        /**
+         * 按钮尺寸规格，可选项有`'default'`、`'small'`、`'large'`
+         * 默认值：`'default'`
+         */
         size: PropTypes.oneOf(['default', 'small', 'large']),
 
-        // 设置按钮整体风格（可选项有primary、ghost、dashed、link、text、default）
+        /**
+         * 按钮类型，可选项有`'default'`、`'primary'`、`'ghost'`、`'dashed'`、`'link'`、`'text'`
+         * 默认值：`'default'`
+         */
         type: PropTypes.oneOf(['primary', 'ghost', 'dashed', 'link', 'text', 'default']),
 
-        // 设置按钮是否显示为危险状态
+        /**
+         * 按钮是否渲染危险状态
+         * 默认值：`false`
+         */
         danger: PropTypes.bool,
 
-        // 设置按钮是否宽度撑满父元素
-        // 默认：false
+        /**
+         * 按钮是否撑满父元素
+         * 默认值：`false`
+         */
         block: PropTypes.bool,
 
-        // 设置按钮的css样式
+        /**
+         * 按钮css样式
+         */
         style: PropTypes.object,
 
-        // 设置按钮的css类名
+        /**
+         * 按钮css类名
+         */
         className: PropTypes.string
     }),
 
-    // 设置当前组件生命周期内的上传路径id信息，若未传入则会自动生成uuid
+    /**
+     * 自定义当前组件发起文件上传请求时携带的`uploadId`参数，可用于辅助后端创建文件上传所在文件夹
+     */
     uploadId: PropTypes.string,
 
-    // 设置 文件上传尺寸上限，单位：兆
+    /**
+     * 文件上传尺寸上限，单位：兆
+     */
     fileMaxSize: PropTypes.number,
 
-    // 设置是否开启多文件上传模式，默认为false
+    /**
+     * 是否开启多文件上传模式
+     * 默认值：`false`
+     */
     multiple: PropTypes.bool,
 
-    // 设置是否开启文件夹上传模式，默认为false
+    /**
+     * 是否开启文件夹上传模式
+     * 默认值：`false`
+     */
     directory: PropTypes.bool,
 
-    // 自定义上传失败文件鼠标悬浮tooltip文字内容，默认为'上传失败'
+    /**
+     * 文件上传失败消息提示文字内容
+     * 默认值：`'上传失败'`
+     */
     failedTooltipInfo: PropTypes.string,
 
-    // 设置是否显示已上传文件列表，默认为true
+    /**
+     * 是否显示已上传文件列表
+     * 默认值：`true`
+     */
     showUploadList: PropTypes.bool,
 
-    // 设置是否为删除操作添加二次确认模态框，默认为false
+    /**
+     * 是否为已上传文件删除操作添加二次确认模态框
+     * 默认值：`false`
+     */
     confirmBeforeDelete: PropTypes.bool,
 
-    // 用于设置是否启用进度百分比显示，配合progressProps.format实现更多配置功能
-    // 默认为false
+    /**
+     * 是否显示上传进度条
+     * 默认值：`false`
+     */
     showPercent: PropTypes.bool,
 
-    // 用于配置进度条相关参数
+    /**
+     * 配置上传进度条相关参数
+     */
     progressProps: PropTypes.exact({
-        // 设置进度条的颜色，与css接受的颜色值格式相同
+        /**
+         * 进度条颜色
+         */
         strokeColor: PropTypes.oneOfType([
             PropTypes.string,
-            // 配置渐变色
+            /**
+             * 配置渐变色
+             */
             PropTypes.exact({
-                // 配置开始颜色
+                /**
+                 * 渐变色开始颜色
+                 */
                 from: PropTypes.string,
-
-                // 配置结束颜色
+                /**
+                 * 渐变色结束颜色
+                 */
                 to: PropTypes.string
             })
         ]),
-
-        // 配置进度条线像素宽度
+        /**
+         * 进度条像素宽度
+         */
         strokeWidth: PropTypes.number,
-
-        // 自定义提示格式
+        /**
+         * 进度文字格式
+         */
         format: PropTypes.exact({
-            // 设置前缀文字，默认为''
+            /**
+             * 进度文字前缀内容
+             */
             prefix: PropTypes.string,
-
-            // 设置后缀文字，默认为'%'
+            /**
+             * 进度文字后缀内容
+             * 默认值：`'%'`
+             */
             suffix: PropTypes.string
         })
     }),
 
-    // 设置是否在每次文件上传成功后，弹出提示消息，默认为true
+    /**
+     * 是否在每个文件上传成功后，分别弹出消息提示
+     * 默认值：`true`
+     */
     showSuccessMessage: PropTypes.bool,
 
-    // 设置是否在每次文件上传失败后，弹出提示消息，默认为true
+    /**
+     * 是否在每个文件上传失败后，分别弹出消息提示
+     * 默认值：`true`
+     */
     showErrorMessage: PropTypes.bool,
 
-    // 用于在每次文件上传动作完成后，记录相关的信息
+    /**
+     * 监听最近一次文件上传任务相关信息
+     */
     lastUploadTaskRecord: PropTypes.oneOfType([
         // 单文件
         PropTypes.exact({
-            // 记录文件名称
+            /**
+             * 文件名称
+             */
             fileName: PropTypes.string,
-
-            // 记录文件大小
+            /**
+             * 文件大小
+             */
             fileSize: PropTypes.number,
-
-            // 记录完成时间戳信息
+            /**
+             * 上传完成时间戳
+             */
             completeTimestamp: PropTypes.number,
-
-            // 记录此次上传任务的状态信息，'success'表示成功，'failed'表示失败
+            /**
+             * 上传任务状态，`'success'`表示成功，`'failed'`表示失败
+             */
             taskStatus: PropTypes.string,
-
-            // 记录本次任务的id信息，若最近一次任务状态为'failed'，则不会携带此信息
+            /**
+             * 上传任务唯一识别id，当任务状态为`'failed'`时不会携带此信息
+             */
             taskId: PropTypes.string,
-
+            /**
+             * 当前文件的下载链接
+             */
             url: PropTypes.string,
-
-            // 记录本次上传的接口响应信息
+            /**
+             * 上传任务的接口响应信息
+             */
             uploadResponse: PropTypes.any
         }),
-        // 文件夹或多文件上传
         PropTypes.arrayOf(
             PropTypes.exact({
-                // 记录文件名称
+                /**
+                 * 文件名称
+                 */
                 fileName: PropTypes.string,
-
-                // 记录文件大小
+                /**
+                 * 文件大小
+                 */
                 fileSize: PropTypes.number,
-
-                // 记录完成时间戳信息
+                /**
+                 * 上传完成时间戳
+                 */
                 completeTimestamp: PropTypes.number,
-
-                // 记录此次上传任务的状态信息，'success'表示成功，'failed'表示失败
+                /**
+                 * 上传任务状态，`'success'`表示成功，`'failed'`表示失败
+                 */
                 taskStatus: PropTypes.string,
-
-                // 记录本次任务的id信息，若最近一次任务状态为'failed'，则不会携带此信息
+                /**
+                 * 上传任务唯一识别id，当任务状态为`'failed'`时不会携带此信息
+                 */
                 taskId: PropTypes.string,
-
+                /**
+                 * 当前文件的下载链接
+                 */
                 url: PropTypes.string,
-
-                // 记录本次上传的接口响应信息
+                /**
+                 * 上传任务的接口响应信息
+                 */
                 uploadResponse: PropTypes.any
             })
         )
     ]),
 
-    // 用于在每次的上传任务完成后，更新当前文件列表中全部文件的上传信息
+    /**
+     * 监听当前已上传文件列表中上传任务相关信息
+     */
     listUploadTaskRecord: PropTypes.arrayOf(
         PropTypes.exact({
-            // 记录文件名称
-            fileName: PropTypes.string,
-
-            // 记录文件大小
-            fileSize: PropTypes.number,
-
-            // 记录完成时间戳信息
-            completeTimestamp: PropTypes.number,
-
-            // 记录此次上传任务的状态信息，'success'表示成功，'failed'表示失败
-            taskStatus: PropTypes.string,
-
-            // 记录本次任务的id信息，若最近一次任务状态为'failed'，则不会携带此信息
-            taskId: PropTypes.string,
-
-            // 唯一标识当前任务的uuid信息，前端生成与后端无关
-            uid: PropTypes.string,
-
-            url: PropTypes.string,
-
-            // 记录本次上传的接口响应信息
-            uploadResponse: PropTypes.any,
-
             /**
-             * 监听当前文件上传任务对应的originFileObj主要信息
+             * 文件名称
+             */
+            fileName: PropTypes.string,
+            /**
+             * 文件大小
+             */
+            fileSize: PropTypes.number,
+            /**
+             * 上传完成时间戳
+             */
+            completeTimestamp: PropTypes.number,
+            /**
+             * 上传任务状态，`'success'`表示成功，`'failed'`表示失败
+             */
+            taskStatus: PropTypes.string,
+            /**
+             * 上传任务唯一识别id，当任务状态为`'failed'`时不会携带此信息
+             */
+            taskId: PropTypes.string,
+            /**
+             * 当前文件上传唯一识别id，前端自动生成
+             */
+            uid: PropTypes.string,
+            /**
+             * 当前文件下载链接
+             */
+            url: PropTypes.string,
+            /**
+             * 上传任务的接口响应信息
+             */
+            uploadResponse: PropTypes.any,
+            /**
+             * 当`withOriginFileObj=True`时，监听当前文件上传任务对应的`originFileObj`主要信息
              */
             originFileObj: PropTypes.any
         })
     ),
 
-    // 仅作初始化展示用，用于定义组件初始化时已存在在上传列表中的附件信息
+    /**
+     * 初始化文件列表展示信息
+     */
     defaultFileList: PropTypes.arrayOf(
         PropTypes.exact({
-            // 文件名称
+            /**
+             * 当前文件名称
+             */
             name: PropTypes.string,
-
-            // 文件状态，可选的有'done'、'error'、'removed'
+            /**
+             * 当前文件展示状态，可选项有`'done'`、`'error'`、`'removed'`
+             */
             status: PropTypes.oneOf(['done', 'error', 'removed']),
-
-            // 唯一标识当前任务的uuid信息
+            /**
+             * 当前文件唯一识别id
+             */
             uid: PropTypes.any,
-
-            // 可选，用于渲染当前文件的下载链接
+            /**
+             * 当前文件下载链接
+             */
             url: PropTypes.string,
-
-            // 标识当前任务的taskId，若设置，则默认会被作为当前组件的uploadId使用
+            /**
+             * 若传入有效值，将作为当前组件的`uploadId`参数
+             */
             taskId: PropTypes.string,
-
-            // 可选，记录文件大小
+            /**
+             * 当前文件大小
+             */
             fileSize: PropTypes.number
         })
     ),
 
-    // 设置是否禁用当前组件，默认为false
+    /**
+     * 是否禁用当前组件
+     * 默认值：`false`
+     */
     disabled: PropTypes.bool,
 
-    // 设置校验状态，可选的有'error'、'warning'
+    /**
+     * 控制校验状态，可选项有`'error'`、`'warning'`
+     */
     status: PropTypes.oneOf(['error', 'warning']),
 
     /**
