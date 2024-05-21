@@ -103,12 +103,6 @@ const AntdSelect = (props) => {
         }
     }, [name, id])
 
-    // 处理multiple模式下，defaultValue或value为None的显示异常问题 #78
-    if (mode === 'multiple') {
-        defaultValue = defaultValue || []
-        value = value || []
-    }
-
     useEffect(() => {
         // 初始化value
         if (defaultValue && !value) {
@@ -238,7 +232,7 @@ const AntdSelect = (props) => {
     if (optionFilterProp === 'label') {
         optionFilterProp = 'children'
     }
-
+    console.log(value, defaultValue)
     return (
         <ConfigProvider locale={str2Locale.get(locale)}>
             <Select
