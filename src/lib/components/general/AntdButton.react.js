@@ -187,10 +187,10 @@ AntdButton.propTypes = {
     loadingChildren: PropTypes.node,
 
     /**
-     * 按钮类型，可选项有`'default'`、`'primary'`、`'ghost'`、`'dashed'`、`'link'`、`'text'`
+     * 按钮类型，可选项有`'default'`、`'primary'`、`'dashed'`、`'link'`、`'text'`
      * 默认值：`'default'`
      */
-    type: PropTypes.oneOf(['default', 'primary', 'ghost', 'dashed', 'link', 'text']),
+    type: PropTypes.oneOf(['default', 'primary', 'dashed', 'link', 'text']),
 
     /**
      * 按钮点击跳转链接地址

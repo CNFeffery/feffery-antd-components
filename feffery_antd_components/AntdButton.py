@@ -113,8 +113,8 @@ Keyword arguments:
 - target (string; default '_blank'):
     按钮点击跳转链接方式  默认值：`'_blank'`.
 
-- type (a value equal to: 'default', 'primary', 'ghost', 'dashed', 'link', 'text'; default 'default'):
-    按钮类型，可选项有`'default'`、`'primary'`、`'ghost'`、`'dashed'`、`'link'`、`'text'`
+- type (a value equal to: 'default', 'primary', 'dashed', 'link', 'text'; default 'default'):
+    按钮类型，可选项有`'default'`、`'primary'`、`'dashed'`、`'link'`、`'text'`
     默认值：`'default'`."""
     _children_props = ['loadingChildren', 'icon']
     _base_nodes = ['loadingChildren', 'icon', 'children']
