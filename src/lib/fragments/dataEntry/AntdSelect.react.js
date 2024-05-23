@@ -232,7 +232,7 @@ const AntdSelect = (props) => {
     if (optionFilterProp === 'label') {
         optionFilterProp = 'children'
     }
-    console.log(value, defaultValue)
+
     return (
         <ConfigProvider locale={str2Locale.get(locale)}>
             <Select
