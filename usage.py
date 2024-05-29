@@ -6,16 +6,11 @@ app = dash.Dash(__name__)
 
 app.layout = html.Div(
     [
-        fac.AntdTable(
-            columns=[
-                {
-                    'title': '字段1',
-                    'dataIndex': '字段1',
-                }
-            ],
-            data=[{'字段1': 'xxx'}] * 10,
-            bordered=True,
-            rowHoverable=False
+        fac.AntdDrawer(
+            placement='right',
+            width=520,
+            visible=True,
+            loading=True,
         )
     ],
     style={'padding': 50},

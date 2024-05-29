@@ -35,6 +35,7 @@ const AntdDrawer = (props) => {
         maskClosable,
         width,
         zIndex,
+        loading,
         extra,
         footer,
         setProps,
@@ -93,6 +94,7 @@ const AntdDrawer = (props) => {
             maskClosable={maskClosable}
             width={width}
             zIndex={zIndex}
+            loading={loading}
             extra={extra}
             footer={footer}
             onClose={onClose}
@@ -262,6 +264,12 @@ AntdDrawer.propTypes = {
     zIndex: PropTypes.number,
 
     /**
+     * 是否渲染为加载中状态
+     * 默认值：`false`
+     */
+    loading: PropTypes.bool,
+
+    /**
      * 组件型，额外操作区元素
      */
     extra: PropTypes.node,
@@ -324,7 +332,8 @@ AntdDrawer.defaultProps = {
     height: 256,
     mask: true,
     maskClosable: true,
-    zIndex: 1000
+    zIndex: 1000,
+    loading: false
 }
 
 export default AntdDrawer;

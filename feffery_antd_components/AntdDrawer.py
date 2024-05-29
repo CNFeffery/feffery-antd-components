@@ -71,6 +71,9 @@ Keyword arguments:
 - key (string; optional):
     对当前组件的`key`值进行更新，可实现强制重绘当前组件的效果.
 
+- loading (boolean; default False):
+    是否渲染为加载中状态  默认值：`False`.
+
 - loading_state (dict; optional)
 
     `loading_state` is a dict with keys:
@@ -135,10 +138,10 @@ Keyword arguments:
     _namespace = 'feffery_antd_components'
     _type = 'AntdDrawer'
     @_explicitize_args
-    def __init__(self, children=None, id=Component.UNDEFINED, key=Component.UNDEFINED, style=Component.UNDEFINED, className=Component.UNDEFINED, classNames=Component.UNDEFINED, styles=Component.UNDEFINED, rootStyle=Component.UNDEFINED, visible=Component.UNDEFINED, title=Component.UNDEFINED, placement=Component.UNDEFINED, closable=Component.UNDEFINED, forceRender=Component.UNDEFINED, destroyOnClose=Component.UNDEFINED, width=Component.UNDEFINED, height=Component.UNDEFINED, mask=Component.UNDEFINED, maskClosable=Component.UNDEFINED, zIndex=Component.UNDEFINED, extra=Component.UNDEFINED, footer=Component.UNDEFINED, containerId=Component.UNDEFINED, containerSelector=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
-        self._prop_names = ['children', 'id', 'aria-*', 'className', 'classNames', 'closable', 'containerId', 'containerSelector', 'data-*', 'destroyOnClose', 'extra', 'footer', 'forceRender', 'height', 'key', 'loading_state', 'mask', 'maskClosable', 'placement', 'rootStyle', 'style', 'styles', 'title', 'visible', 'width', 'zIndex']
+    def __init__(self, children=None, id=Component.UNDEFINED, key=Component.UNDEFINED, style=Component.UNDEFINED, className=Component.UNDEFINED, classNames=Component.UNDEFINED, styles=Component.UNDEFINED, rootStyle=Component.UNDEFINED, visible=Component.UNDEFINED, title=Component.UNDEFINED, placement=Component.UNDEFINED, closable=Component.UNDEFINED, forceRender=Component.UNDEFINED, destroyOnClose=Component.UNDEFINED, width=Component.UNDEFINED, height=Component.UNDEFINED, mask=Component.UNDEFINED, maskClosable=Component.UNDEFINED, zIndex=Component.UNDEFINED, loading=Component.UNDEFINED, extra=Component.UNDEFINED, footer=Component.UNDEFINED, containerId=Component.UNDEFINED, containerSelector=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
+        self._prop_names = ['children', 'id', 'aria-*', 'className', 'classNames', 'closable', 'containerId', 'containerSelector', 'data-*', 'destroyOnClose', 'extra', 'footer', 'forceRender', 'height', 'key', 'loading', 'loading_state', 'mask', 'maskClosable', 'placement', 'rootStyle', 'style', 'styles', 'title', 'visible', 'width', 'zIndex']
         self._valid_wildcard_attributes =            ['data-', 'aria-']
-        self.available_properties = ['children', 'id', 'aria-*', 'className', 'classNames', 'closable', 'containerId', 'containerSelector', 'data-*', 'destroyOnClose', 'extra', 'footer', 'forceRender', 'height', 'key', 'loading_state', 'mask', 'maskClosable', 'placement', 'rootStyle', 'style', 'styles', 'title', 'visible', 'width', 'zIndex']
+        self.available_properties = ['children', 'id', 'aria-*', 'className', 'classNames', 'closable', 'containerId', 'containerSelector', 'data-*', 'destroyOnClose', 'extra', 'footer', 'forceRender', 'height', 'key', 'loading', 'loading_state', 'mask', 'maskClosable', 'placement', 'rootStyle', 'style', 'styles', 'title', 'visible', 'width', 'zIndex']
         self.available_wildcard_properties =            ['data-', 'aria-']
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()
