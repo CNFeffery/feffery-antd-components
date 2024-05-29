@@ -259,6 +259,11 @@ AntdInput.propTypes = {
     autoFocus: PropTypes.bool,
 
     /**
+     * 监听输入框是否聚焦
+     */
+    focusing: PropTypes.bool,
+
+    /**
      * 是否渲染为只读状态
      * 默认值：`false`
      */

@@ -252,6 +252,8 @@ const AntdInput = (props) => {
                     onDebounceChange(e.target.value)
                 }}
                 onPressEnter={onPressEnter}
+                onFocus={() => setProps({ focusing: true })}
+                onBlur={() => setProps({ focusing: false })}
                 persistence={persistence}
                 persisted_props={persisted_props}
                 persistence_type={persistence_type}
@@ -312,6 +314,8 @@ const AntdInput = (props) => {
                     onDebounceChange(e.target.value)
                 }}
                 onPressEnter={onPressEnter}
+                onFocus={() => setProps({ focusing: true })}
+                onBlur={() => setProps({ focusing: false })}
                 persistence={persistence}
                 persisted_props={persisted_props}
                 persistence_type={persistence_type}
@@ -382,6 +386,8 @@ const AntdInput = (props) => {
                     onDebounceChange(e.target.value)
                 }}
                 onPressEnter={onPressEnter}
+                onFocus={() => setProps({ focusing: true })}
+                onBlur={() => setProps({ focusing: false })}
                 persistence={persistence}
                 persisted_props={persisted_props}
                 persistence_type={persistence_type}
@@ -441,6 +447,8 @@ const AntdInput = (props) => {
                     onDebounceChange(e.target.value)
                 }}
                 onPressEnter={onPressEnter}
+                onFocus={() => setProps({ focusing: true })}
+                onBlur={() => setProps({ focusing: false })}
                 persistence={persistence}
                 persisted_props={persisted_props}
                 persistence_type={persistence_type}
