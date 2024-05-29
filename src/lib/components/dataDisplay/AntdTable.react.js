@@ -245,6 +245,12 @@ AntdTable.propTypes = {
     showHeader: PropTypes.bool,
 
     /**
+     * 表格行是否开启鼠标悬停样式效果
+     * 默认值：`true`
+     */
+    rowHoverable: PropTypes.bool,
+
+    /**
      * 当`columns`中各字段未设置`width`时，用于控制整体字段宽度分配方式，可选项有`'auto'`、`'fixed'`
      */
     tableLayout: PropTypes.oneOf(['auto', 'fixed']),
@@ -1538,6 +1544,7 @@ AntdTable.propTypes = {
 AntdTable.defaultProps = {
     // 通用参数
     showHeader: true,
+    rowHoverable: true,
     locale: 'zh-cn',
     data: [],
     columns: [],

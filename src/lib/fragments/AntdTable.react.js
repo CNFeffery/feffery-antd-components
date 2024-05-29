@@ -336,6 +336,7 @@ class AntdTable extends Component {
             containerId,
             columns,
             showHeader,
+            rowHoverable,
             tableLayout,
             miniChartHeight,
             miniChartAnimation,
@@ -1996,6 +1997,7 @@ class AntdTable extends Component {
                     }
                     columns={tempColumns}
                     showHeader={showHeader}
+                    rowHoverable={rowHoverable}
                     tableLayout={tableLayout}
                     size={size}
                     rowSelection={rowSelection}
