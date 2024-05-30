@@ -530,7 +530,7 @@ Keyword arguments:
         下拉选择css样式，其中`width`默认为`'100%'`.
 
     - value (string | number | list of string | numbers; optional):
-        下拉选择已选中值.
+        下拉选择已选中值. | dict
 
 - data-* (string; optional):
     `data-*`格式属性通配.

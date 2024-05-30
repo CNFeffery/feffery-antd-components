@@ -765,7 +765,11 @@ AntdTable.propTypes = {
                      * 默认值：`true`
                      */
                     allowClear: PropTypes.bool
-                })
+                }),
+                /**
+                 * 兼容携带自定义数据的场景
+                 */
+                PropTypes.object
             ])
         )
     ),
