@@ -1591,9 +1591,7 @@ class AntdTable extends Component {
                 else if (columns[i]['renderOptions']['renderType'] === 'custom-format') {
                     // 若customFormatFuncs对应当前字段的属性值存在
                     if (customFormatFuncs[columns[i]['dataIndex']]) {
-                        columns[i]['render'] = content => (
-                            eval(customFormatFuncs[columns[i]['dataIndex']])(content)
-                        )
+                        columns[i]['render'] = eval(customFormatFuncs[columns[i]['dataIndex']])
                     }
                 }
                 // mini-line模式

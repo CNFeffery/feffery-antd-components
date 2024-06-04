@@ -1,5 +1,6 @@
 import dash
 import json
+import numpy as np
 from dash import html
 import feffery_antd_components as fac
 from dash.dependencies import Input, Output
@@ -9,44 +10,47 @@ app = dash.Dash(__name__)
 app.layout = html.Div(
     [
         fac.AntdTable(
-            id='table',
             columns=[
                 {
-                    'title': f'字段{i}',
-                    'dataIndex': f'字段{i}',
-                }
-                for i in range(1, 6)
+                    'title': '数值测试1',
+                    'dataIndex': '数值测试1',
+                    'width': '50%',
+                    'renderOptions': {
+                        'renderType': 'custom-format'
+                    },
+                },
+                {
+                    'title': '数值测试2',
+                    'dataIndex': '数值测试2',
+                    'width': '50%',
+                    'renderOptions': {
+                        'renderType': 'custom-format'
+                    },
+                },
             ],
             data=[
                 {
-                    **{
-                        f'字段{i}': fac.AntdText('测试')
-                        for i in range(1, 6)
-                    },
-                    '额外数据': {'a': [_] * (_ + 1)},
+                    '数值测试1': np.random.rand(),
+                    '数值测试2': np.random.rand(),
                 }
-                for _ in range(10)
+                for i in range(10)
             ],
-            rowSelectionType='radio',
+            sortOptions={
+                'sortDataIndexes': [
+                    '数值测试1',
+                    '数值测试2',
+                ]
+            },
             bordered=True,
-            tableLayout='fixed',
-        ),
-        html.Pre(id='table-extra-data-test'),
+            customFormatFuncs={
+                '数值测试1': '(x, record) => `${(x*100).toFixed(2)}% ${record["数值测试2"]}`',
+                '数值测试2': '(x) => x <= 0.5 ? `低水平：${x.toFixed(2)}` : `高水平：${x.toFixed(2)}`',
+            },
+            style={'width': '500px'},
+        )
     ],
     style={'padding': 50},
 )
-
-
-@app.callback(
-    Output('table-extra-data-test', 'children'),
-    Input('table', 'selectedRows'),
-    prevent_initial_call=True,
-)
-def demo(selectedRows):
-    return json.dumps(
-        selectedRows, ensure_ascii=False, indent=4
-    )
-
 
 if __name__ == '__main__':
     app.run(debug=True)
