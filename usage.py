@@ -1,9 +1,7 @@
 import dash
-import json
 import numpy as np
 from dash import html
 import feffery_antd_components as fac
-from dash.dependencies import Input, Output
 
 app = dash.Dash(__name__)
 
@@ -43,7 +41,7 @@ app.layout = html.Div(
             },
             bordered=True,
             customFormatFuncs={
-                '数值测试1': '(x, record) => `${(x*100).toFixed(2)}% ${record["数值测试2"]}`',
+                '数值测试1': '(x, record) => `${(x*100).toFixed(2)}% - ${record["数值测试2"].toFixed(2)}`',
                 '数值测试2': '(x) => x <= 0.5 ? `低水平：${x.toFixed(2)}` : `高水平：${x.toFixed(2)}`',
             },
             style={'width': '500px'},
