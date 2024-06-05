@@ -1,6 +1,5 @@
 import React, { Suspense } from 'react';
 import PropTypes from 'prop-types';
-import { Spin } from 'antd';
 
 const LazyAntdSelect = React.lazy(() => import(/* webpackChunkName: "data_entry" */ '../../fragments/dataEntry/AntdSelect.react'));
 
@@ -397,11 +396,6 @@ AntdSelect.defaultProps = {
     debounceWait: 0,
     popupMatchSelectWidth: true,
     popupContainer: 'body',
-    loadingEmptyContent: (
-        <div style={{ display: 'flex', 'justifyContent': 'center' }}>
-            <Spin />
-        </div>
-    ),
     batchPropsNames: []
 }
 

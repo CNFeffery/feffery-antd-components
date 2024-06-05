@@ -1,39 +1,33 @@
+import time
 import dash
 from dash import html
 import feffery_antd_components as fac
+from dash.dependencies import Input, Output
 
 app = dash.Dash(__name__)
 
 app.layout = html.Div(
     [
-        fac.AntdSpace(
-            [
-                fac.AntdMentions(
-                    options=[
-                        {
-                            'label': f'用户{c}',
-                            'value': f'用户{c}',
-                        }
-                        for c in list('abcdef')
-                    ],
-                    disabled=True,
-                    style={'width': 200},
-                ),
-                fac.AntdMentions(
-                    options=[
-                        {
-                            'label': f'用户{c}',
-                            'value': f'用户{c}',
-                        }
-                        for c in list('abcdef')
-                    ],
-                    style={'width': 200},
-                ),
-            ]
+        fac.AntdSelect(
+            id='select-demo',
+            options=[],
+            autoSpin=True,
+            style={'width': 200},
         )
     ],
     style={'padding': 50},
 )
+
+
+@app.callback(
+    Output('select-demo', 'id'),
+    Input('select-demo', 'value'),
+)
+def demo(value):
+    time.sleep(999)
+
+    return dash.no_update
+
 
 if __name__ == '__main__':
     app.run(debug=True)

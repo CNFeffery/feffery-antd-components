@@ -1,7 +1,7 @@
 // react核心
 import React, { useEffect, useContext } from 'react';
 // antd核心
-import { Select, ConfigProvider } from 'antd';
+import { Select, Spin, ConfigProvider } from 'antd';
 // 辅助库
 import { useRequest } from 'ahooks';
 import { isUndefined, isString, isNumber } from 'lodash';
@@ -315,7 +315,18 @@ const AntdSelect = (props) => {
                     onDebounceSearch(e)
                 }}
                 loading={autoSpin && loading_state.is_loading}
-                notFoundContent={autoSpin && loading_state.is_loading ? loadingEmptyContent : emptyContent}
+                notFoundContent={
+                    autoSpin && loading_state.is_loading ?
+                        (
+                            loadingEmptyContent ||
+                            (
+                                <div style={{ display: 'flex', 'justifyContent': 'center' }}>
+                                    <Spin />
+                                </div>
+                            )
+                        ) :
+                        emptyContent
+                }
                 dropdownRender={
                     (dropdownBefore || dropdownAfter) ?
                         (menu) => {

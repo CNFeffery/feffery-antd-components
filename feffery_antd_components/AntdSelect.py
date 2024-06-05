@@ -75,7 +75,7 @@ Keyword arguments:
 - listHeight (number; default 256):
     下拉菜单最大像素高度.
 
-- loadingEmptyContent (a list of or a singular dash component, string or number; default <div style={{ display: 'flex', 'justifyContent': 'center' }}>    <Spin /></div>):
+- loadingEmptyContent (a list of or a singular dash component, string or number; optional):
     组件型，自定义加载中状态下的空数据状态提示内容.
 
 - loading_state (dict; optional)
