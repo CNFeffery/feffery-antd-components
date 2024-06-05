@@ -46,6 +46,9 @@ Keyword arguments:
     - prop_name (string; optional):
         Holds which property is loading.
 
+- nClicks (number; default 0):
+    监听回到顶部按钮累计被点击次数  默认值：`0`.
+
 - style (dict; optional):
     当前组件css样式.
 
@@ -56,10 +59,10 @@ Keyword arguments:
     _namespace = 'feffery_antd_components'
     _type = 'AntdBackTop'
     @_explicitize_args
-    def __init__(self, id=Component.UNDEFINED, key=Component.UNDEFINED, style=Component.UNDEFINED, className=Component.UNDEFINED, duration=Component.UNDEFINED, visibilityHeight=Component.UNDEFINED, containerId=Component.UNDEFINED, containerSelector=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
-        self._prop_names = ['id', 'aria-*', 'className', 'containerId', 'containerSelector', 'data-*', 'duration', 'key', 'loading_state', 'style', 'visibilityHeight']
+    def __init__(self, id=Component.UNDEFINED, key=Component.UNDEFINED, style=Component.UNDEFINED, className=Component.UNDEFINED, duration=Component.UNDEFINED, visibilityHeight=Component.UNDEFINED, containerId=Component.UNDEFINED, containerSelector=Component.UNDEFINED, nClicks=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
+        self._prop_names = ['id', 'aria-*', 'className', 'containerId', 'containerSelector', 'data-*', 'duration', 'key', 'loading_state', 'nClicks', 'style', 'visibilityHeight']
         self._valid_wildcard_attributes =            ['data-', 'aria-']
-        self.available_properties = ['id', 'aria-*', 'className', 'containerId', 'containerSelector', 'data-*', 'duration', 'key', 'loading_state', 'style', 'visibilityHeight']
+        self.available_properties = ['id', 'aria-*', 'className', 'containerId', 'containerSelector', 'data-*', 'duration', 'key', 'loading_state', 'nClicks', 'style', 'visibilityHeight']
         self.available_wildcard_properties =            ['data-', 'aria-']
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()

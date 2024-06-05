@@ -22,6 +22,7 @@ const AntdBackTop = (props) => {
         visibilityHeight,
         containerId,
         containerSelector,
+        nClicks,
         setProps,
         loading_state
     } = props;
@@ -49,6 +50,7 @@ const AntdBackTop = (props) => {
             }
             duration={duration * 1000}
             visibilityHeight={visibilityHeight}
+            onClick={() => setProps({ nClicks: nClicks + 1 })}
             data-dash-is-loading={
                 (loading_state && loading_state.is_loading) || undefined
             } />
@@ -102,6 +104,12 @@ AntdBackTop.propTypes = {
     containerSelector: PropTypes.string,
 
     /**
+     * 监听回到顶部按钮累计被点击次数
+     * 默认值：`0`
+     */
+    nClicks: PropTypes.number,
+
+    /**
      * `data-*`格式属性通配
      */
     'data-*': PropTypes.string,
@@ -136,7 +144,8 @@ AntdBackTop.propTypes = {
 // 设置默认参数
 AntdBackTop.defaultProps = {
     duration: 0.45,
-    visibilityHeight: 400
+    visibilityHeight: 400,
+    nClicks: 0
 }
 
 export default AntdBackTop;

@@ -1,4 +1,3 @@
-import time
 import dash
 from dash import html
 import feffery_antd_components as fac
@@ -8,25 +7,18 @@ app = dash.Dash(__name__)
 
 app.layout = html.Div(
     [
-        fac.AntdSelect(
-            id='select-demo',
-            options=[],
-            autoSpin=True,
-            style={'width': 200},
-        )
+        fac.AntdBackTop(id='input'),
+        fac.AntdText(id='output'),
     ],
-    style={'padding': 50},
+    style={'height': 99999, 'padding': 50},
 )
 
 
 @app.callback(
-    Output('select-demo', 'id'),
-    Input('select-demo', 'value'),
+    Output('output', 'children'), Input('input', 'nClicks')
 )
-def demo(value):
-    time.sleep(999)
-
-    return dash.no_update
+def demo(nClicks):
+    return f'nClicks: {nClicks}'
 
 
 if __name__ == '__main__':
