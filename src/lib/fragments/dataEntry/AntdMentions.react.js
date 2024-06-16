@@ -153,12 +153,6 @@ const AntdMentions = (props) => {
                     context.componentDisabled :
                     disabled
             }
-            // 临时处理antd Mentions禁用状态无效的问题
-            readOnly={
-                context && !isUndefined(context.componentDisabled) ?
-                    context.componentDisabled :
-                    disabled
-            }
             autoFocus={autoFocus}
             status={status}
             onChange={onChange}

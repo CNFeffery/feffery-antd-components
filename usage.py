@@ -1,24 +1,49 @@
 import dash
 from dash import html
 import feffery_antd_components as fac
-from dash.dependencies import Input, Output
 
 app = dash.Dash(__name__)
 
 app.layout = html.Div(
     [
-        fac.AntdBackTop(id='input'),
-        fac.AntdText(id='output'),
+        fac.AntdSpace(
+            [
+                *[
+                    fac.AntdDatePicker(
+                        placement=placement,
+                        placeholder=f'placement="{placement}"',
+                        style={'width': 220},
+                    )
+                    for placement in [
+                        'bottomLeft',
+                        'bottomRight',
+                        'topLeft',
+                        'topRight',
+                    ]
+                ],
+                *[
+                    fac.AntdTimePicker(
+                        placement=placement,
+                        placeholder=f'placement="{placement}"',
+                        style={'width': 220},
+                    )
+                    for placement in [
+                        'bottomLeft',
+                        'bottomRight',
+                        'topLeft',
+                        'topRight',
+                    ]
+                ],
+                fac.AntdMentions(
+                    disabled=True,
+                    options=[{'label': 'a', 'value': 'a'}],
+                ),
+            ],
+            direction='vertical',
+        )
     ],
-    style={'height': 99999, 'padding': 50},
+    style={'padding': 400},
 )
-
-
-@app.callback(
-    Output('output', 'children'), Input('input', 'nClicks')
-)
-def demo(nClicks):
-    return f'nClicks: {nClicks}'
 
 
 if __name__ == '__main__':
