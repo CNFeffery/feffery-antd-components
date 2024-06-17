@@ -363,6 +363,10 @@ AntdPictureUpload.propTypes = {
              */
             taskId: PropTypes.string,
             /**
+             * 当前文件上传唯一识别id，前端自动生成
+             */
+            uid: PropTypes.string,
+            /**
              * 当前文件下载链接
              */
             url: PropTypes.string,

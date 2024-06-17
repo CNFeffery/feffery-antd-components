@@ -198,6 +198,9 @@ Keyword arguments:
     - taskStatus (string; optional):
         上传任务状态，`'success'`表示成功，`'failed'`表示失败.
 
+    - uid (string; optional):
+        当前文件上传唯一识别id，前端自动生成.
+
     - uploadResponse (boolean | number | string | dict | list; optional):
         上传任务的接口响应信息.
 
