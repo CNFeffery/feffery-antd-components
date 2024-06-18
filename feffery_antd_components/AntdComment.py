@@ -9,6 +9,9 @@ class AntdComment(Component):
 
 Keyword arguments:
 
+- children (a list of or a singular dash component, string or number; optional):
+    传入内部嵌套的评论组件.
+
 - id (string; optional):
     组件唯一id.
 
@@ -113,19 +116,19 @@ Keyword arguments:
     _namespace = 'feffery_antd_components'
     _type = 'AntdComment'
     @_explicitize_args
-    def __init__(self, id=Component.UNDEFINED, key=Component.UNDEFINED, style=Component.UNDEFINED, className=Component.UNDEFINED, locale=Component.UNDEFINED, commentId=Component.UNDEFINED, authorName=Component.UNDEFINED, authorNameHref=Component.UNDEFINED, publishTime=Component.REQUIRED, fromNow=Component.UNDEFINED, showLikeDislike=Component.UNDEFINED, showReply=Component.UNDEFINED, showDelete=Component.UNDEFINED, replyClicks=Component.UNDEFINED, deleteClicks=Component.UNDEFINED, commentContent=Component.UNDEFINED, likesCount=Component.UNDEFINED, dislikesCount=Component.UNDEFINED, action=Component.UNDEFINED, defaultAction=Component.UNDEFINED, avatarProps=Component.UNDEFINED, popupContainer=Component.UNDEFINED, batchPropsNames=Component.UNDEFINED, batchPropsValues=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
-        self._prop_names = ['id', 'action', 'aria-*', 'authorName', 'authorNameHref', 'avatarProps', 'batchPropsNames', 'batchPropsValues', 'className', 'commentContent', 'commentId', 'data-*', 'defaultAction', 'deleteClicks', 'dislikesCount', 'fromNow', 'key', 'likesCount', 'loading_state', 'locale', 'popupContainer', 'publishTime', 'replyClicks', 'showDelete', 'showLikeDislike', 'showReply', 'style']
+    def __init__(self, children=None, id=Component.UNDEFINED, key=Component.UNDEFINED, style=Component.UNDEFINED, className=Component.UNDEFINED, locale=Component.UNDEFINED, commentId=Component.UNDEFINED, authorName=Component.UNDEFINED, authorNameHref=Component.UNDEFINED, publishTime=Component.REQUIRED, fromNow=Component.UNDEFINED, showLikeDislike=Component.UNDEFINED, showReply=Component.UNDEFINED, showDelete=Component.UNDEFINED, replyClicks=Component.UNDEFINED, deleteClicks=Component.UNDEFINED, commentContent=Component.UNDEFINED, likesCount=Component.UNDEFINED, dislikesCount=Component.UNDEFINED, action=Component.UNDEFINED, defaultAction=Component.UNDEFINED, avatarProps=Component.UNDEFINED, popupContainer=Component.UNDEFINED, batchPropsNames=Component.UNDEFINED, batchPropsValues=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
+        self._prop_names = ['children', 'id', 'action', 'aria-*', 'authorName', 'authorNameHref', 'avatarProps', 'batchPropsNames', 'batchPropsValues', 'className', 'commentContent', 'commentId', 'data-*', 'defaultAction', 'deleteClicks', 'dislikesCount', 'fromNow', 'key', 'likesCount', 'loading_state', 'locale', 'popupContainer', 'publishTime', 'replyClicks', 'showDelete', 'showLikeDislike', 'showReply', 'style']
         self._valid_wildcard_attributes =            ['data-', 'aria-']
-        self.available_properties = ['id', 'action', 'aria-*', 'authorName', 'authorNameHref', 'avatarProps', 'batchPropsNames', 'batchPropsValues', 'className', 'commentContent', 'commentId', 'data-*', 'defaultAction', 'deleteClicks', 'dislikesCount', 'fromNow', 'key', 'likesCount', 'loading_state', 'locale', 'popupContainer', 'publishTime', 'replyClicks', 'showDelete', 'showLikeDislike', 'showReply', 'style']
+        self.available_properties = ['children', 'id', 'action', 'aria-*', 'authorName', 'authorNameHref', 'avatarProps', 'batchPropsNames', 'batchPropsValues', 'className', 'commentContent', 'commentId', 'data-*', 'defaultAction', 'deleteClicks', 'dislikesCount', 'fromNow', 'key', 'likesCount', 'loading_state', 'locale', 'popupContainer', 'publishTime', 'replyClicks', 'showDelete', 'showLikeDislike', 'showReply', 'style']
         self.available_wildcard_properties =            ['data-', 'aria-']
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()
         _locals.update(kwargs)  # For wildcard attrs and excess named props
-        args = {k: _locals[k] for k in _explicit_args}
+        args = {k: _locals[k] for k in _explicit_args if k != 'children'}
 
         for k in ['publishTime']:
             if k not in args:
                 raise TypeError(
                     'Required argument `' + k + '` was not specified.')
 
-        super(AntdComment, self).__init__(**args)
+        super(AntdComment, self).__init__(children=children, **args)

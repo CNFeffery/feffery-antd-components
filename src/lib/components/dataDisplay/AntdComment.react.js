@@ -21,6 +21,11 @@ AntdComment.propTypes = {
     id: PropTypes.string,
 
     /**
+     * 传入内部嵌套的评论组件
+     */
+    children: PropTypes.node,
+
+    /**
      * 对当前组件的`key`值进行更新，可实现强制重绘当前组件的效果
      */
     key: PropTypes.string,
