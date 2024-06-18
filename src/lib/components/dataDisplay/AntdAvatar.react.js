@@ -95,7 +95,6 @@ AntdAvatar.propTypes = {
 
     /**
      * 配置头像尺寸，可传入数值型代表像素尺寸（支持响应式），或传入字符型使用预设尺寸规格，可选项有`'large'`、`'small'`、`'default'`
-     * 默认值：`'default'`
      */
     size: PropTypes.oneOfType([
         PropTypes.number,
@@ -152,7 +151,6 @@ AntdAvatar.propTypes = {
 AntdAvatar.defaultProps = {
     mode: 'icon',
     gap: 4,
-    size: 'default',
     shape: 'circle',
     iconRenderer: 'AntdIcon'
 }

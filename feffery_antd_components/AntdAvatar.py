@@ -61,9 +61,8 @@ Keyword arguments:
 - shape (a value equal to: 'circle', 'square'; default 'circle'):
     头像形状，可选项有`'circle'`、`'square'`  默认值：`'circle'`.
 
-- size (dict; default 'default'):
-    配置头像尺寸，可传入数值型代表像素尺寸（支持响应式），或传入字符型使用预设尺寸规格，可选项有`'large'`、`'small'`、`'default'`
-    默认值：`'default'`.
+- size (dict; optional):
+    配置头像尺寸，可传入数值型代表像素尺寸（支持响应式），或传入字符型使用预设尺寸规格，可选项有`'large'`、`'small'`、`'default'`.
 
     `size` is a number | a value equal to: 'large', 'small', 'default'
     | dict with keys:
