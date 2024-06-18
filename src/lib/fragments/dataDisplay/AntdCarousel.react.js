@@ -59,7 +59,7 @@ const AntdCarousel = (props) => {
             data-dash-is-loading={
                 (loading_state && loading_state.is_loading) || undefined
             }
-        >{children}</Carousel>
+        >{(Array.isArray(children) ? children : [children]).map((child, i) => <div className='ant-carousel-item-wrapper' key={i}>{child}</div>)}</Carousel>
     );
 }
 

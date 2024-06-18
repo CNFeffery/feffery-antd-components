@@ -5,25 +5,33 @@ import feffery_antd_components as fac
 app = dash.Dash(__name__)
 
 app.layout = html.Div(
-    fac.AntdAvatarGroup(
-        [
-            fac.AntdAvatar(
-                mode='text',
-                text='F',
-                style={'background': background},
-            )
-            for background in [
-                '#d29200',
-                '#ffb900',
-                '#fff100',
-                '#d83b01',
-                '#ea4300',
-                '#00188f',
-                '#004b50',
+    [
+        fac.AntdCarousel(
+            [
+                html.Div(
+                    f'子元素{i}',
+                    style={
+                        'color': 'white',
+                        'fontSize': '36px',
+                        'height': '400px',
+                        'backgroundColor': color,
+                        'display': 'flex',
+                        'justifyContent': 'center',
+                        'alignItems': 'center',
+                    },
+                )
+                for i, color in enumerate(
+                    [
+                        '#0050b3',
+                        '#096dd9',
+                        '#1890ff',
+                        '#69c0ff',
+                        '#91d5ff',
+                    ]
+                )
             ]
-        ],
-        size='large',
-    ),
+        )
+    ],
     style={'padding': 50},
 )
 
