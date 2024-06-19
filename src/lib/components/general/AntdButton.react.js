@@ -45,6 +45,7 @@ const AntdButton = (props) => {
         loading,
         autoSpin,
         motionType,
+        title,
         loading_state
     } = props;
 
@@ -113,6 +114,7 @@ const AntdButton = (props) => {
             icon={icon}
             iconPosition={iconPosition}
             loading={loading}
+            title={title}
             onClick={onClick}
             data-dash-is-loading={
                 (loading_state && loading_state.is_loading) || undefined
@@ -289,6 +291,11 @@ AntdButton.propTypes = {
      * 按钮额外的特殊交互类型，可选项有`'happy-work'`
      */
     motionType: PropTypes.oneOf(['happy-work']),
+
+    /**
+     * 原生按钮title属性
+     */
+    title: PropTypes.string,
 
     /**
      * `data-*`格式属性通配
