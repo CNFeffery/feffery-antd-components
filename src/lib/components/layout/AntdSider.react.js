@@ -25,7 +25,6 @@ const AntdSider = (props) => {
         collapsed,
         collapsedWidth,
         collapsible,
-        defaultCollapsed,
         reverseArrow,
         theme,
         width,
@@ -55,7 +54,6 @@ const AntdSider = (props) => {
             collapsed={collapsed}
             collapsedWidth={collapsedWidth}
             collapsible={collapsible}
-            defaultCollapsed={defaultCollapsed}
             reverseArrow={reverseArrow}
             theme={theme}
             width={width}
@@ -101,14 +99,8 @@ AntdSider.propTypes = {
 
     /**
      * 当前是否收起
-     * 默认值：`false`
      */
     collapsed: PropTypes.bool,
-
-    /**
-     * 初始化是否收起
-     */
-    defaultCollapsed: PropTypes.bool,
 
     // 设置收缩的像素宽度，默认为80即80px，设置为0时会渲染特殊触发组件
     /**
@@ -188,8 +180,6 @@ AntdSider.propTypes = {
 
 // 设置默认参数
 AntdSider.defaultProps = {
-    collapsed: false,
-    defaultCollapsed: false,
     collapsedWidth: 80,
     collapsible: false,
     reverseArrow: false,

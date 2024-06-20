@@ -1,12 +1,30 @@
 import dash
-from dash import html
 import feffery_antd_components as fac
 
 app = dash.Dash(__name__)
 
-app.layout = html.Div(
-    [fac.AntdButton('按钮测试', title='title测试')],
-    style={'padding': 50},
+app.layout = fac.AntdLayout(
+    [
+        fac.AntdSider(
+            collapsible=True,
+            # collapsed=False,
+            style={'backgroundColor': 'rgb(240, 242, 245)'},
+        ),
+        fac.AntdContent(
+            fac.AntdCenter(
+                fac.AntdTitle(
+                    '内容区示例',
+                    level=2,
+                    style={'margin': '0'},
+                ),
+                style={
+                    'height': '100%',
+                },
+            ),
+            style={'backgroundColor': 'white'},
+        ),
+    ],
+    style={'height': '100vh'},
 )
 
 
