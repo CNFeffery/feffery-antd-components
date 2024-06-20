@@ -103,8 +103,8 @@ Keyword arguments:
 - name (string; optional):
     配合`AntdForm`表单批量值搜集/控制功能使用，充当当前表单项的字段名，以`id`作为缺省值.
 
-- optionFilterMode (a value equal to: 'case-insensitive', 'case-sensitive', 'regex'; default 'case-insensitive'):
-    搜索匹配模式，可选项有`'case-insensitive'`（大小写不敏感）、`'case-sensitive'`（大小写敏感）、`'regex'`（正则表达式）
+- optionFilterMode (a value equal to: 'case-insensitive', 'case-sensitive', 'regex', 'remote-match'; default 'case-insensitive'):
+    搜索匹配模式，可选项有`'case-insensitive'`（大小写不敏感）、`'case-sensitive'`（大小写敏感）、`'regex'`（正则表达式）、`'remote-match'`（远程匹配模式）
     默认值：`'case-insensitive'`.
 
 - optionFilterProp (a value equal to: 'value', 'label'; default 'value'):

@@ -232,10 +232,10 @@ AntdSelect.propTypes = {
     searchValue: PropTypes.string,
 
     /**
-     * 搜索匹配模式，可选项有`'case-insensitive'`（大小写不敏感）、`'case-sensitive'`（大小写敏感）、`'regex'`（正则表达式）
+     * 搜索匹配模式，可选项有`'case-insensitive'`（大小写不敏感）、`'case-sensitive'`（大小写敏感）、`'regex'`（正则表达式）、`'remote-match'`（远程匹配模式）
      * 默认值：`'case-insensitive'`
      */
-    optionFilterMode: PropTypes.oneOf(['case-insensitive', 'case-sensitive', 'regex']),
+    optionFilterMode: PropTypes.oneOf(['case-insensitive', 'case-sensitive', 'regex', 'remote-match']),
 
     /**
      * 以防抖延时的方式监听搜索框已输入内容

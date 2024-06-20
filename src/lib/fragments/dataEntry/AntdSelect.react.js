@@ -304,6 +304,9 @@ const AntdSelect = (props) => {
                                     // 忽略非法的正则表达式
                                     return false
                                 }
+                            } else if (optionFilterMode === 'remote-match') {
+                                // remote-match模式下，均返回true
+                                return true
                             }
                         }
                         return false
