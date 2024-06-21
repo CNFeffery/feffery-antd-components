@@ -870,8 +870,8 @@ Keyword arguments:
     - content (a list of or a singular dash component, string or number; optional):
         组件型，当前总结栏单元格内容.
 
-- summaryRowFixed (boolean; default False):
-    总结栏是否启用固定布局功能  默认值：`False`.
+- summaryRowFixed (boolean | a value equal to: 'top', 'bottom'; default False):
+    总结栏是否启用固定布局功能，也可设置为`'top'`、`'bottom'`控制总结栏固定在顶部或底部  默认值：`False`.
 
 - tableLayout (a value equal to: 'auto', 'fixed'; optional):
     当`columns`中各字段未设置`width`时，用于控制整体字段宽度分配方式，可选项有`'auto'`、`'fixed'`.

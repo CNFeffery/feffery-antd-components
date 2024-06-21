@@ -1142,10 +1142,13 @@ AntdTable.propTypes = {
     ),
 
     /**
-     * 总结栏是否启用固定布局功能
+     * 总结栏是否启用固定布局功能，也可设置为`'top'`、`'bottom'`控制总结栏固定在顶部或底部
      * 默认值：`false`
      */
-    summaryRowFixed: PropTypes.bool,
+    summaryRowFixed: PropTypes.oneOfType([
+        PropTypes.bool,
+        PropTypes.oneOf(['top', 'bottom'])
+    ]),
 
     /**
      * 配置各字段条件格式化渲染对应的`javascript`函数字符串
