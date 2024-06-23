@@ -52,6 +52,10 @@ const AntdTooltip = (props) => {
         };
     }, [arrow])
 
+    if (!title) {
+        return <>{parseChildrenToArray(children)}</>
+    }
+
     return (
         <Tooltip
             // 提取具有data-*或aria-*通配格式的属性

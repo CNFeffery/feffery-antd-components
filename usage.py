@@ -7,11 +7,9 @@ app = dash.Dash(__name__)
 
 app.layout = html.Div(
     [
-        fac.AntdPopover(
+        fac.AntdTooltip(
             fac.AntdButton('测试', id='buttom-demo'),
-            id='popover-demo',
-            content='demo',
-            trigger='click',
+            id='tooltip-demo',
         )
     ],
     style={'padding': 100},
@@ -20,7 +18,7 @@ app.layout = html.Div(
 
 app.clientside_callback(
     """(nClicks) => nClicks % 2 === 0 ? "demo" : null""",
-    Output('popover-demo', 'content'),
+    Output('tooltip-demo', 'title'),
     Input('buttom-demo', 'nClicks'),
     prevent_initial_call=True,
 )
