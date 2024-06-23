@@ -56,6 +56,10 @@ const AntdPopover = (props) => {
 
     children = parseChildrenToArray(children)
 
+    if (!content) {
+        return <>{children}</>;
+    }
+
     return (
         <Popover
             // 提取具有data-*或aria-*通配格式的属性
