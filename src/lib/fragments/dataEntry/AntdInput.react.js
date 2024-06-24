@@ -283,6 +283,9 @@ const AntdInput = (props) => {
                         context.componentSize :
                         size
                 }
+                addonBefore={addonBefore}
+                prefix={prefix}
+                suffix={suffix}
                 allowClear={allowClear}
                 autoFocus={autoFocus}
                 variant={(
@@ -439,8 +442,9 @@ const AntdInput = (props) => {
                 }
                 maxLength={maxLength}
                 status={status}
+                addonBefore={addonBefore}
+                addonAfter={addonAfter}
                 prefix={prefix}
-                suffix={suffix}
                 readOnly={readOnly}
                 onChange={(e) => {
                     onChange(e)
