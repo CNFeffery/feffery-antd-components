@@ -16,6 +16,7 @@ const AntdDivider = (props) => {
         id,
         children,
         className,
+        style,
         key,
         direction,
         innerTextOrientation,
@@ -30,13 +31,14 @@ const AntdDivider = (props) => {
     } = props;
 
     if (direction === "horizontal") {
-        
+
         return (
             <Divider
                 // 提取具有data-*或aria-*通配格式的属性
                 {...pickBy((_, k) => k.startsWith('data-') || k.startsWith('aria-'), props)}
                 id={id}
                 style={{
+                    ...style,
                     borderTopColor: lineColor,
                     fontStyle: fontStyle,
                     fontWeight: fontWeight,
@@ -64,13 +66,14 @@ const AntdDivider = (props) => {
             </Divider>
         );
     } else if (direction === "vertical") {
-        
+
         return (
             <Divider
                 // 提取具有data-*或aria-*通配格式的属性
                 {...pickBy((_, k) => k.startsWith('data-') || k.startsWith('aria-'), props)}
                 id={id}
                 style={{
+                    ...style,
                     borderLeftColor: lineColor,
                     fontStyle: fontStyle,
                     fontWeight: fontWeight,
@@ -123,6 +126,11 @@ AntdDivider.propTypes = {
         PropTypes.string,
         PropTypes.object
     ]),
+
+    /**
+     * 当前组件css样式
+     */
+    style: PropTypes.object,
 
     /**
      * 内嵌元素对齐方式，可选项有`'left'`、`'center'`、`'right'`
