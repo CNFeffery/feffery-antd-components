@@ -1,32 +1,62 @@
 import dash
 from dash import html
 import feffery_antd_components as fac
-from dash.dependencies import Input, Output
 
 app = dash.Dash(__name__)
 
 app.layout = html.Div(
     [
-        fac.AntdSlider(
-            id='update-margin',
-            min=0,
-            max=100,
-            value=16,
-            style={'width': 300},
+        fac.AntdTable(
+            columns=[
+                {
+                    'title': 'copyable示例',
+                    'dataIndex': 'copyable示例',
+                    'renderOptions': {
+                        'renderType': 'copyable'
+                    },
+                }
+            ],
+            data=[{'copyable示例': 'bala' * 10}],
+            bordered=True,
+            style={'width': 200},
         ),
-        fac.AntdDivider('分割线测试', id='divider-demo'),
-        '下',
+        fac.AntdTable(
+            columns=[
+                {
+                    'title': 'ellipsis示例',
+                    'dataIndex': 'ellipsis示例',
+                    'renderOptions': {
+                        'renderType': 'ellipsis'
+                    },
+                }
+            ],
+            data=[{'ellipsis示例': 'bala' * 10}],
+            bordered=True,
+            style={'width': 200},
+        ),
+        fac.AntdTable(
+            columns=[
+                {
+                    'title': 'ellipsis-copyable示例',
+                    'dataIndex': 'ellipsis-copyable示例',
+                    'renderOptions': {
+                        'renderType': 'ellipsis-copyable'
+                    },
+                }
+            ],
+            data=[
+                {
+                    'ellipsis-copyable示例': f'内容示例{i}'
+                    * 10
+                }
+                for i in range(1, 4)
+            ],
+            bordered=True,
+            style={'width': 200},
+        ),
     ],
     style={'padding': 100},
 )
-
-
-app.clientside_callback(
-    """(value) => ({ margin: `${value}px 0` })""",
-    Output('divider-demo', 'style'),
-    Input('update-margin', 'value'),
-)
-
 
 if __name__ == '__main__':
     app.run(debug=True)
