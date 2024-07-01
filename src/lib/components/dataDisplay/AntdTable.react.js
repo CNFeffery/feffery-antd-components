@@ -1124,7 +1124,7 @@ AntdTable.propTypes = {
      * 配置总结栏内容，按数组顺序渲染
      */
     summaryRowContents: PropTypes.arrayOf(
-        PropTypes.exact({
+        PropTypes.shape({
             /**
              * 组件型，当前总结栏单元格内容
              */

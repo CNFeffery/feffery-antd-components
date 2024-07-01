@@ -54,6 +54,38 @@ app.layout = html.Div(
             bordered=True,
             style={'width': 200},
         ),
+        fac.AntdTable(
+            columns=[
+                {
+                    'title': f'字段{i}',
+                    'dataIndex': f'字段{i}',
+                    'width': '20%',
+                }
+                for i in range(1, 6)
+            ],
+            data=[
+                {
+                    f'字段{i}': '示例内容'
+                    for i in range(1, 6)
+                }
+            ]
+            * 5,
+            bordered=True,
+            summaryRowContents=[
+                {'content': '第1列总结', 'name': 'xxx'},
+                {
+                    'content': '第2到4列总结',
+                    'colSpan': 3,
+                    'align': 'center',
+                    'name': 'yyy',
+                },
+                {
+                    'content': '第5列总结',
+                    'align': 'right',
+                    'name': 'zzz',
+                },
+            ],
+        ),
     ],
     style={'padding': 100},
 )
