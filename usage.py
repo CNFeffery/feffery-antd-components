@@ -6,85 +6,51 @@ app = dash.Dash(__name__)
 
 app.layout = html.Div(
     [
-        fac.AntdTable(
-            columns=[
-                {
-                    'title': 'copyable示例',
-                    'dataIndex': 'copyable示例',
-                    'renderOptions': {
-                        'renderType': 'copyable'
-                    },
-                }
+        fac.AntdFlex(
+            [
+                fac.AntdButton('Button', type='primary')
+                for i in range(24)
             ],
-            data=[{'copyable示例': 'bala' * 10}],
-            bordered=True,
-            style={'width': 200},
+            gap='small',
+            wrap=True,
         ),
-        fac.AntdTable(
-            columns=[
-                {
-                    'title': 'ellipsis示例',
-                    'dataIndex': 'ellipsis示例',
-                    'renderOptions': {
-                        'renderType': 'ellipsis'
-                    },
-                }
+        fac.AntdFlex(
+            [
+                fac.AntdButton('Button', type='primary')
+                for i in range(24)
             ],
-            data=[{'ellipsis示例': 'bala' * 10}],
-            bordered=True,
-            style={'width': 200},
+            gap='small',
         ),
-        fac.AntdTable(
-            columns=[
-                {
-                    'title': 'ellipsis-copyable示例',
-                    'dataIndex': 'ellipsis-copyable示例',
-                    'renderOptions': {
-                        'renderType': 'ellipsis-copyable'
-                    },
-                }
+        fac.AntdFlex(
+            [
+                fac.AntdQRCode(
+                    value='https://fac.feffery.tech/',
+                    status='active',
+                ),
+                fac.AntdQRCode(
+                    value='https://fac.feffery.tech/',
+                    status='expired',
+                ),
+                fac.AntdQRCode(
+                    value='https://fac.feffery.tech/',
+                    status='loading',
+                ),
+                fac.AntdQRCode(
+                    value='https://fac.feffery.tech/',
+                    status='scanned',
+                ),
+                fac.AntdQRCode(
+                    errorLevel='H',
+                    value='https://fac.feffery.tech/',
+                    icon='https://gw.alipayobjects.com/zos/rmsportal/KDpgvguMpGfqaHPjicRK.svg',
+                    iconSize={
+                        'width': 40,
+                        'height': 60
+                    }
+                ),
             ],
-            data=[
-                {
-                    'ellipsis-copyable示例': f'内容示例{i}'
-                    * 10
-                }
-                for i in range(1, 4)
-            ],
-            bordered=True,
-            style={'width': 200},
-        ),
-        fac.AntdTable(
-            columns=[
-                {
-                    'title': f'字段{i}',
-                    'dataIndex': f'字段{i}',
-                    'width': '20%',
-                }
-                for i in range(1, 6)
-            ],
-            data=[
-                {
-                    f'字段{i}': '示例内容'
-                    for i in range(1, 6)
-                }
-            ]
-            * 5,
-            bordered=True,
-            summaryRowContents=[
-                {'content': '第1列总结', 'name': 'xxx'},
-                {
-                    'content': '第2到4列总结',
-                    'colSpan': 3,
-                    'align': 'center',
-                    'name': 'yyy',
-                },
-                {
-                    'content': '第5列总结',
-                    'align': 'right',
-                    'name': 'zzz',
-                },
-            ],
+            gap='middle',
+            wrap='wrap',
         ),
     ],
     style={'padding': 100},

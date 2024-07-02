@@ -92,10 +92,13 @@ AntdFlex.propTypes = {
     vertical: PropTypes.bool,
 
     /**
-     * 子元素换行显示行为，同css中的flex-wrap
+     * 子元素换行显示行为，同css中的flex-wrap，也可直接传入布尔型设置是否自动换行
      * 默认值：`'nowrap'`
      */
-    wrap: PropTypes.string,
+    wrap: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.bool
+    ]),
 
     /**
      * 子元素在主轴方向上的对齐方式，同css中的justify-content

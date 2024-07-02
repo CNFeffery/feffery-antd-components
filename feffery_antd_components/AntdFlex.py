@@ -58,8 +58,8 @@ Keyword arguments:
 - vertical (boolean; default False):
     是否使用垂直主轴  默认值：`False`.
 
-- wrap (string; default 'nowrap'):
-    子元素换行显示行为，同css中的flex-wrap  默认值：`'nowrap'`."""
+- wrap (string | boolean; default 'nowrap'):
+    子元素换行显示行为，同css中的flex-wrap，也可直接传入布尔型设置是否自动换行  默认值：`'nowrap'`."""
     _children_props = []
     _base_nodes = ['children']
     _namespace = 'feffery_antd_components'
