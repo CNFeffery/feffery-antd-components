@@ -86,7 +86,7 @@ const AntdRadioGroup = (props) => {
             // AntdForm表单批量控制
             if (formId && (name || id)) {
                 // 表单值更新
-                updateItemValue(formId, name || id, e)
+                updateItemValue(formId, name || id, e.target.value)
             }
             setProps({ value: e.target.value })
         }

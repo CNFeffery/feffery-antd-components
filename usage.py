@@ -6,52 +6,17 @@ app = dash.Dash(__name__)
 
 app.layout = html.Div(
     [
-        fac.AntdFlex(
+        fac.AntdForm(
             [
-                fac.AntdButton('Button', type='primary')
-                for i in range(24)
+                fac.AntdRadioGroup(
+                    options=list('abcdef'),
+                    name='单选框测试',
+                )
             ],
-            gap='small',
-            wrap=True,
-        ),
-        fac.AntdFlex(
-            [
-                fac.AntdButton('Button', type='primary')
-                for i in range(24)
-            ],
-            gap='small',
-        ),
-        fac.AntdFlex(
-            [
-                fac.AntdQRCode(
-                    value='https://fac.feffery.tech/',
-                    status='active',
-                ),
-                fac.AntdQRCode(
-                    value='https://fac.feffery.tech/',
-                    status='expired',
-                ),
-                fac.AntdQRCode(
-                    value='https://fac.feffery.tech/',
-                    status='loading',
-                ),
-                fac.AntdQRCode(
-                    value='https://fac.feffery.tech/',
-                    status='scanned',
-                ),
-                fac.AntdQRCode(
-                    errorLevel='H',
-                    value='https://fac.feffery.tech/',
-                    icon='https://gw.alipayobjects.com/zos/rmsportal/KDpgvguMpGfqaHPjicRK.svg',
-                    iconSize={
-                        'width': 40,
-                        'height': 60
-                    }
-                ),
-            ],
-            gap='middle',
-            wrap='wrap',
-        ),
+            id={'type': 'form-test'},
+            enableBatchControl=True,
+            values={'单选框测试': 'c'},
+        )
     ],
     style={'padding': 100},
 )
