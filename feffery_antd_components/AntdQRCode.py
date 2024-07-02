@@ -42,8 +42,14 @@ Keyword arguments:
 - icon (string; optional):
     二维码内嵌图片地址.
 
-- iconSize (number; default 40):
+- iconSize (dict; default 40):
     二维码内嵌图片像素边长  默认值：`40`.
+
+    `iconSize` is a number | dict with keys:
+
+    - height (number; optional)
+
+    - width (number; optional)
 
 - key (string; optional):
     对当前组件的`key`值进行更新，可实现强制重绘当前组件的效果.
@@ -70,8 +76,9 @@ Keyword arguments:
 - size (number; default 160):
     二维码像素边长  默认值：`160`.
 
-- status (a value equal to: 'active', 'expired', 'loading'; default 'active'):
-    二维码状态，可选项有`'active'`、`'expired'`、`'loading'`  默认值：`'active'`.
+- status (a value equal to: 'active', 'expired', 'loading', 'scanned'; default 'active'):
+    二维码状态，可选项有`'active'`、`'expired'`、`'loading'`、`'scanned'`
+    默认值：`'active'`.
 
 - style (dict; optional):
     当前组件css样式.

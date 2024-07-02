@@ -70,7 +70,13 @@ AntdQRCode.propTypes = {
      * 二维码内嵌图片像素边长
      * 默认值：`40`
      */
-    iconSize: PropTypes.number,
+    iconSize: PropTypes.oneOfType([
+        PropTypes.number,
+        PropTypes.exact({
+            width: PropTypes.number,
+            height: PropTypes.number
+        })
+    ]),
 
     /**
      * 二维码颜色
@@ -97,10 +103,10 @@ AntdQRCode.propTypes = {
     errorLevel: PropTypes.oneOf(['L', 'M', 'Q', 'H']),
 
     /**
-     * 二维码状态，可选项有`'active'`、`'expired'`、`'loading'`
+     * 二维码状态，可选项有`'active'`、`'expired'`、`'loading'`、`'scanned'`
      * 默认值：`'active'`
      */
-    status: PropTypes.oneOf(['active', 'expired', 'loading']),
+    status: PropTypes.oneOf(['active', 'expired', 'loading', 'scanned']),
 
     /**
      * 当前二维码过期时间，单位：秒，到期后二维码状态将会被强制更新为`'expired'`

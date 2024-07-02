@@ -21,6 +21,37 @@ app.layout = html.Div(
             ],
             gap='small',
         ),
+        fac.AntdFlex(
+            [
+                fac.AntdQRCode(
+                    value='https://fac.feffery.tech/',
+                    status='active',
+                ),
+                fac.AntdQRCode(
+                    value='https://fac.feffery.tech/',
+                    status='expired',
+                ),
+                fac.AntdQRCode(
+                    value='https://fac.feffery.tech/',
+                    status='loading',
+                ),
+                fac.AntdQRCode(
+                    value='https://fac.feffery.tech/',
+                    status='scanned',
+                ),
+                fac.AntdQRCode(
+                    errorLevel='H',
+                    value='https://fac.feffery.tech/',
+                    icon='https://gw.alipayobjects.com/zos/rmsportal/KDpgvguMpGfqaHPjicRK.svg',
+                    iconSize={
+                        'width': 40,
+                        'height': 60
+                    }
+                ),
+            ],
+            gap='middle',
+            wrap='wrap',
+        ),
     ],
     style={'padding': 100},
 )
