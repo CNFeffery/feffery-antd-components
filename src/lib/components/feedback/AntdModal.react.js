@@ -76,7 +76,7 @@ const AntdModal = (props) => {
         setProps({ closeCounts: closeCounts + 1 })
     };
 
-    
+
     return (
         <ConfigProvider locale={str2Locale.get(locale)}>
             <Modal
@@ -369,13 +369,12 @@ AntdModal.propTypes = {
     confirmLoading: PropTypes.bool,
 
     /**
-     * 卡片显隐动画类型，可选项有`'fade'`、`'zoom'`、`'zoom-big'`、`'zoom-big-fast'`、`'zoom-up'`、`'zoom-down'`、`'zoom-left'`、`'zoom-right'`、`'slide-up'`、`'slide-down'`、`'slide-left'`、`'slide-right'`、`'move-up'`、`'move-down'`、`'move-left'`、`'move-right'`
+     * 卡片显隐动画类型，可选项有`'fade'`、`'zoom'`、`'zoom-up'`、`'zoom-down'`、`'zoom-left'`、`'zoom-right'`、`'slide-up'`、`'slide-down'`、`'move-up'`、`'move-down'`
      * 默认值：`'zoom'`
      */
     transitionType: PropTypes.oneOf([
-        'none', 'fade', 'zoom', 'zoom-big', 'zoom-big-fast', 'slide-up',
-        'slide-down', 'slide-left', 'slide-right', 'move-up', 'move-down',
-        'move-left', 'move-right'
+        'none', 'fade', 'zoom', 'slide-up',
+        'slide-down', 'move-up', 'move-down'
     ]),
 
     /**
