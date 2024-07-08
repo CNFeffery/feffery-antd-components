@@ -66,7 +66,7 @@ const AntdPopupCard = (props) => {
         });
     };
 
-    
+
     return (
         <Modal
             // 提取具有data-*或aria-*通配格式的属性
@@ -220,13 +220,12 @@ AntdPopupCard.propTypes = {
     ]),
 
     /**
-     * 卡片显隐动画类型，可选项有`'fade'`、`'zoom'`、`'zoom-big'`、`'zoom-big-fast'`、`'zoom-up'`、`'zoom-down'`、`'zoom-left'`、`'zoom-right'`、`'slide-up'`、`'slide-down'`、`'slide-left'`、`'slide-right'`、`'move-up'`、`'move-down'`、`'move-left'`、`'move-right'`
+     * 卡片显隐动画类型，可选项有`'none'`、`'fade'`、`'zoom'`、`'slide-up'`、`'slide-down'`、`'move-up'`、`'move-down'`
      * 默认值：`'zoom'`
      */
     transitionType: PropTypes.oneOf([
-        'none', 'fade', 'zoom', 'zoom-big', 'zoom-big-fast', 'slide-up',
-        'slide-down', 'slide-left', 'slide-right', 'move-up', 'move-down',
-        'move-left', 'move-right'
+        'none', 'fade', 'zoom', 'slide-up',
+        'slide-down', 'move-up', 'move-down'
     ]),
 
     /**
