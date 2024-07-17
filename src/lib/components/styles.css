@@ -281,3 +281,63 @@ body {
 .ant-zoom-big-fast-leave {
     animation-timing-function: cubic-bezier(.78, .14, .15, .86)
 }
+
+@keyframes antSlideLeftIn {
+    0% {
+        transform: scaleX(.8);
+        transform-origin: 0 0;
+        opacity: 0
+    }
+
+    to {
+        transform: scaleX(1);
+        transform-origin: 0 0;
+        opacity: 1
+    }
+}
+
+@keyframes antSlideLeftOut {
+    0% {
+        transform: scaleX(1);
+        transform-origin: 0 0;
+        opacity: 1
+    }
+
+    to {
+        transform: scaleX(.8);
+        transform-origin: 0 0;
+        opacity: 0
+    }
+}
+
+.ant-slide-left-appear,
+.ant-slide-left-enter,
+.ant-slide-left-leave {
+    animation-duration: .2s;
+    animation-fill-mode: both;
+    animation-play-state: paused
+}
+
+.ant-slide-left-appear.ant-slide-left-appear-active,
+.ant-slide-left-enter.ant-slide-left-enter-active {
+    animation-name: antSlideLeftIn;
+    animation-play-state: running
+}
+
+.ant-slide-left-leave.ant-slide-left-leave-active {
+    animation-name: antSlideLeftOut;
+    animation-play-state: running;
+    pointer-events: none
+}
+
+.ant-slide-left-appear,
+.ant-slide-left-enter {
+    transform: scale(0);
+    transform-origin: 0 0;
+    opacity: 0;
+    animation-timing-function: cubic-bezier(.23, 1, .32, 1)
+}
+
+.ant-slide-left-leave {
+    animation-timing-function: cubic-bezier(.755, .05, .855, .06)
+}
