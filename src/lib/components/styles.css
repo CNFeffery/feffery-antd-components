@@ -185,3 +185,63 @@ body {
 .headerAndFooterIcon>button {
     display: none;
 }
+
+/* AntdPopupCard、AntdModal内置显隐动效补丁 */
+@keyframes antZoomBigIn {
+    0% {
+        transform: scale(.8);
+        opacity: 0
+    }
+
+    to {
+        transform: scale(1);
+        opacity: 1
+    }
+}
+
+@keyframes antZoomBigOut {
+    0% {
+        transform: scale(1)
+    }
+
+    to {
+        transform: scale(.8);
+        opacity: 0
+    }
+}
+
+.ant-zoom-big-appear,
+.ant-zoom-big-enter,
+.ant-zoom-big-leave {
+    animation-duration: .2s;
+    animation-fill-mode: both;
+    animation-play-state: paused
+}
+
+.ant-zoom-big-appear.ant-zoom-big-appear-active,
+.ant-zoom-big-enter.ant-zoom-big-enter-active {
+    animation-name: antZoomBigIn;
+    animation-play-state: running
+}
+
+.ant-zoom-big-leave.ant-zoom-big-leave-active {
+    animation-name: antZoomBigOut;
+    animation-play-state: running;
+    pointer-events: none
+}
+
+.ant-zoom-big-appear,
+.ant-zoom-big-enter {
+    transform: scale(0);
+    opacity: 0;
+    animation-timing-function: cubic-bezier(.08, .82, .17, 1)
+}
+
+.ant-zoom-big-appear-prepare,
+.ant-zoom-big-enter-prepare {
+    transform: none
+}
+
+.ant-zoom-big-leave {
+    animation-timing-function: cubic-bezier(.78, .14, .15, .86)
+}
