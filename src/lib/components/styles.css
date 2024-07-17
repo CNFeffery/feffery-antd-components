@@ -245,3 +245,39 @@ body {
 .ant-zoom-big-leave {
     animation-timing-function: cubic-bezier(.78, .14, .15, .86)
 }
+
+.ant-zoom-big-fast-appear,
+.ant-zoom-big-fast-enter,
+.ant-zoom-big-fast-leave {
+    animation-duration: .1s;
+    animation-fill-mode: both;
+    animation-play-state: paused
+}
+
+.ant-zoom-big-fast-appear.ant-zoom-big-fast-appear-active,
+.ant-zoom-big-fast-enter.ant-zoom-big-fast-enter-active {
+    animation-name: antZoomBigIn;
+    animation-play-state: running
+}
+
+.ant-zoom-big-fast-leave.ant-zoom-big-fast-leave-active {
+    animation-name: antZoomBigOut;
+    animation-play-state: running;
+    pointer-events: none
+}
+
+.ant-zoom-big-fast-appear,
+.ant-zoom-big-fast-enter {
+    transform: scale(0);
+    opacity: 0;
+    animation-timing-function: cubic-bezier(.08, .82, .17, 1)
+}
+
+.ant-zoom-big-fast-appear-prepare,
+.ant-zoom-big-fast-enter-prepare {
+    transform: none
+}
+
+.ant-zoom-big-fast-leave {
+    animation-timing-function: cubic-bezier(.78, .14, .15, .86)
+}

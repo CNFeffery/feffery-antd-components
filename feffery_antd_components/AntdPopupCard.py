@@ -61,8 +61,8 @@ Keyword arguments:
 - title (a list of or a singular dash component, string or number; optional):
     组件型，标题内容.
 
-- transitionType (a value equal to: 'none', 'fade', 'zoom', 'zoom-big', 'slide-up', 'slide-down', 'move-up', 'move-down'; default 'fade'):
-    卡片显隐动画类型，可选项有`'none'`、`'fade'`、`'zoom'`、`'zoom-big'`、`'slide-up'`、`'slide-down'`、`'move-up'`、`'move-down'`
+- transitionType (a value equal to: 'none', 'fade', 'zoom', 'zoom-big', 'zoom-big-fast', 'slide-up', 'slide-down', 'move-up', 'move-down'; default 'fade'):
+    卡片显隐动画类型，可选项有`'none'`、`'fade'`、`'zoom'`、`'zoom-big'`、`'zoom-big-fast'`、`'slide-up'`、`'slide-down'`、`'move-up'`、`'move-down'`
     默认值：`'zoom'`.
 
 - visible (boolean; default True):

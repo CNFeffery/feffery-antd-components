@@ -220,11 +220,11 @@ AntdPopupCard.propTypes = {
     ]),
 
     /**
-     * 卡片显隐动画类型，可选项有`'none'`、`'fade'`、`'zoom'`、`'zoom-big'`、`'slide-up'`、`'slide-down'`、`'move-up'`、`'move-down'`
+     * 卡片显隐动画类型，可选项有`'none'`、`'fade'`、`'zoom'`、`'zoom-big'`、`'zoom-big-fast'`、`'slide-up'`、`'slide-down'`、`'move-up'`、`'move-down'`
      * 默认值：`'zoom'`
      */
     transitionType: PropTypes.oneOf([
-        'none', 'fade', 'zoom', 'zoom-big', 'slide-up',
+        'none', 'fade', 'zoom', 'zoom-big', 'zoom-big-fast', 'slide-up',
         'slide-down', 'move-up', 'move-down'
     ]),
 

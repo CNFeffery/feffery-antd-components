@@ -11,7 +11,7 @@ app.layout = html.Div(
             [
                 fac.AntdSelect(
                     id='popup-card-transition-type-demo-select',
-                    defaultValue='zoom-big',
+                    defaultValue='zoom-big-fast',
                     allowClear=False,
                     options=[
                         {
