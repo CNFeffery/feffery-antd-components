@@ -10,7 +10,7 @@ app.layout = html.Div(
         fac.AntdSpace(
             [
                 fac.AntdSelect(
-                    id='popup-card-transition-type-demo-select',
+                    id='modal-transition-type-demo-select',
                     defaultValue='move-right',
                     allowClear=False,
                     options=[
@@ -38,14 +38,14 @@ app.layout = html.Div(
                 ),
                 fac.AntdButton(
                     '点击触发',
-                    id='popup-card-transition-type-demo-trigger',
+                    id='modal-transition-type-demo-trigger',
                 ),
             ]
         ),
-        fac.AntdPopupCard(
+        fac.AntdModal(
             fac.AntdParagraph('内容示例' * 20),
-            id='popup-card-transition-type-demo',
-            title='弹出式卡片示例',
+            id='modal-transition-type-demo',
+            title='模态框示例',
             visible=False,
         ),
     ],
@@ -54,25 +54,19 @@ app.layout = html.Div(
 
 
 @app.callback(
-    Output(
-        'popup-card-transition-type-demo', 'transitionType'
-    ),
-    Input(
-        'popup-card-transition-type-demo-select', 'value'
-    ),
+    Output('modal-transition-type-demo', 'transitionType'),
+    Input('modal-transition-type-demo-select', 'value'),
 )
-def popup_card_transition_type_demo(value):
+def modal_transition_type_demo(value):
     return value
 
 
 @app.callback(
-    Output('popup-card-transition-type-demo', 'visible'),
-    Input(
-        'popup-card-transition-type-demo-trigger', 'nClicks'
-    ),
+    Output('modal-transition-type-demo', 'visible'),
+    Input('modal-transition-type-demo-trigger', 'nClicks'),
     prevent_initial_call=True,
 )
-def popup_card_transition_type_demo_visible(nClicks):
+def modal_transition_type_demo_visible(nClicks):
     return True
 
 

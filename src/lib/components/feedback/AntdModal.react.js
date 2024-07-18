@@ -369,12 +369,12 @@ AntdModal.propTypes = {
     confirmLoading: PropTypes.bool,
 
     /**
-     * 卡片显隐动画类型，可选项有`'none'`、`'fade'`、`'zoom'`、`'slide-up'`、`'slide-down'`、`'move-up'`、`'move-down'`
+     * 模态框显隐动画类型，可选项有`'none'`、`'fade'`、`'zoom'`、`'zoom-big'`、`'zoom-big-fast'`、`'slide-up'`、`'slide-down'`、`'slide-left'`、`'slide-right'`、`'move-up'`、`'move-down'`、`'move-left'`、`'move-right'`
      * 默认值：`'zoom'`
      */
     transitionType: PropTypes.oneOf([
-        'none', 'fade', 'zoom', 'slide-up',
-        'slide-down', 'move-up', 'move-down'
+        'none', 'fade', 'zoom', 'zoom-big', 'zoom-big-fast', 'slide-up',
+        'slide-down', 'slide-left', 'slide-right', 'move-up', 'move-down', 'move-left', 'move-right'
     ]),
 
     /**
