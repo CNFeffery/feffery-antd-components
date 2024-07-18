@@ -11,7 +11,7 @@ app.layout = html.Div(
             [
                 fac.AntdSelect(
                     id='popup-card-transition-type-demo-select',
-                    defaultValue='slide-left',
+                    defaultValue='slide-right',
                     allowClear=False,
                     options=[
                         {
