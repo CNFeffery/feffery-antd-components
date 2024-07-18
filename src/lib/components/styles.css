@@ -401,3 +401,61 @@ body {
 .ant-slide-right-leave {
     animation-timing-function: cubic-bezier(.755, .05, .855, .06)
 }
+
+@keyframes antMoveLeftIn {
+    0% {
+        transform: translateX(-100%);
+        transform-origin: 0 0;
+        opacity: 0
+    }
+
+    to {
+        transform: translateX(0);
+        transform-origin: 0 0;
+        opacity: 1
+    }
+}
+
+@keyframes antMoveLeftOut {
+    0% {
+        transform: translateX(0);
+        transform-origin: 0 0;
+        opacity: 1
+    }
+
+    to {
+        transform: translateX(-100%);
+        transform-origin: 0 0;
+        opacity: 0
+    }
+}
+
+.ant-move-left-appear,
+.ant-move-left-enter,
+.ant-move-left-leave {
+    animation-duration: .2s;
+    animation-fill-mode: both;
+    animation-play-state: paused
+}
+
+.ant-move-left-appear.ant-move-left-appear-active,
+.ant-move-left-enter.ant-move-left-enter-active {
+    animation-name: antMoveLeftIn;
+    animation-play-state: running
+}
+
+.ant-move-left-leave.ant-move-left-leave-active {
+    animation-name: antMoveLeftOut;
+    animation-play-state: running;
+    pointer-events: none
+}
+
+.ant-move-left-appear,
+.ant-move-left-enter {
+    opacity: 0;
+    animation-timing-function: cubic-bezier(.08, .82, .17, 1)
+}
+
+.ant-move-left-leave {
+    animation-timing-function: cubic-bezier(.6, .04, .98, .34)
+}
