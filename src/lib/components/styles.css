@@ -459,3 +459,61 @@ body {
 .ant-move-left-leave {
     animation-timing-function: cubic-bezier(.6, .04, .98, .34)
 }
+
+@keyframes antMoveRightIn {
+    0% {
+        transform: translateX(100%);
+        transform-origin: 0 0;
+        opacity: 0
+    }
+
+    to {
+        transform: translateX(0);
+        transform-origin: 0 0;
+        opacity: 1
+    }
+}
+
+@keyframes antMoveRightOut {
+    0% {
+        transform: translateX(0);
+        transform-origin: 0 0;
+        opacity: 1
+    }
+
+    to {
+        transform: translateX(100%);
+        transform-origin: 0 0;
+        opacity: 0
+    }
+}
+
+.ant-move-right-appear,
+.ant-move-right-enter,
+.ant-move-right-leave {
+    animation-duration: .2s;
+    animation-fill-mode: both;
+    animation-play-state: paused
+}
+
+.ant-move-right-appear.ant-move-right-appear-active,
+.ant-move-right-enter.ant-move-right-enter-active {
+    animation-name: antMoveRightIn;
+    animation-play-state: running
+}
+
+.ant-move-right-leave.ant-move-right-leave-active {
+    animation-name: antMoveRightOut;
+    animation-play-state: running;
+    pointer-events: none
+}
+
+.ant-move-right-appear,
+.ant-move-right-enter {
+    opacity: 0;
+    animation-timing-function: cubic-bezier(.08, .82, .17, 1)
+}
+
+.ant-move-right-leave {
+    animation-timing-function: cubic-bezier(.6, .04, .98, .34)
+}
