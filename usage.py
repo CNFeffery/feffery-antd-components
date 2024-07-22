@@ -6,19 +6,16 @@ app = dash.Dash(__name__)
 
 app.layout = html.Div(
     [
-        fac.AntdForm(
-            [
-                fac.AntdRadioGroup(
-                    options=list('abcdef'),
-                    name='单选框测试',
-                )
-            ],
-            id={'type': 'form-test'},
-            enableBatchControl=True,
-            values={'单选框测试': 'c'},
+        fac.AntdPopconfirm(
+            fac.AntdButton('测试'),
+            title='测试',
+            icon='😁',
+            description='测试描述内容' * 2,
+            open=True,
+            permanent=True,
         )
     ],
-    style={'padding': 100},
+    style={'padding': 200},
 )
 
 if __name__ == '__main__':

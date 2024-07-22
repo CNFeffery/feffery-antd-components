@@ -24,6 +24,7 @@ const AntdPopconfirm = (props) => {
         style,
         key,
         locale,
+        icon,
         title,
         description,
         disabled,
@@ -90,6 +91,7 @@ const AntdPopconfirm = (props) => {
                 }
                 style={style}
                 key={key}
+                icon={icon}
                 title={title}
                 description={description}
                 disabled={
@@ -169,6 +171,11 @@ AntdPopconfirm.propTypes = {
      * 默认值：`'zh-cn'`
      */
     locale: PropTypes.oneOf(['zh-cn', 'en-us']),
+
+    /**
+     * 组件型，提示图标
+     */
+    icon: PropTypes.node,
 
     /**
      * 组件型，标题内容

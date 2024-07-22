@@ -72,6 +72,9 @@ Keyword arguments:
 - fresh (boolean; default False):
     是否保持内容更新  默认值：`False`.
 
+- icon (a list of or a singular dash component, string or number; optional):
+    组件型，提示图标.
+
 - key (string; optional):
     对当前组件的`key`值进行更新，可实现强制重绘当前组件的效果.
 
@@ -160,15 +163,15 @@ Keyword arguments:
 
 - zIndex (number; optional):
     气泡确认框z-index."""
-    _children_props = ['title', 'description', 'okText', 'cancelText']
-    _base_nodes = ['title', 'description', 'okText', 'cancelText', 'children']
+    _children_props = ['icon', 'title', 'description', 'okText', 'cancelText']
+    _base_nodes = ['icon', 'title', 'description', 'okText', 'cancelText', 'children']
     _namespace = 'feffery_antd_components'
     _type = 'AntdPopconfirm'
     @_explicitize_args
-    def __init__(self, children=None, id=Component.UNDEFINED, key=Component.UNDEFINED, style=Component.UNDEFINED, className=Component.UNDEFINED, locale=Component.UNDEFINED, title=Component.UNDEFINED, description=Component.UNDEFINED, disabled=Component.UNDEFINED, placement=Component.UNDEFINED, mouseEnterDelay=Component.UNDEFINED, mouseLeaveDelay=Component.UNDEFINED, overlayClassName=Component.UNDEFINED, overlayStyle=Component.UNDEFINED, overlayInnerStyle=Component.UNDEFINED, okText=Component.UNDEFINED, okButtonProps=Component.UNDEFINED, cancelText=Component.UNDEFINED, cancelButtonProps=Component.UNDEFINED, confirmCounts=Component.UNDEFINED, cancelCounts=Component.UNDEFINED, trigger=Component.UNDEFINED, zIndex=Component.UNDEFINED, arrow=Component.UNDEFINED, fresh=Component.UNDEFINED, open=Component.UNDEFINED, permanent=Component.UNDEFINED, popupContainer=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
-        self._prop_names = ['children', 'id', 'aria-*', 'arrow', 'cancelButtonProps', 'cancelCounts', 'cancelText', 'className', 'confirmCounts', 'data-*', 'description', 'disabled', 'fresh', 'key', 'loading_state', 'locale', 'mouseEnterDelay', 'mouseLeaveDelay', 'okButtonProps', 'okText', 'open', 'overlayClassName', 'overlayInnerStyle', 'overlayStyle', 'permanent', 'placement', 'popupContainer', 'style', 'title', 'trigger', 'zIndex']
+    def __init__(self, children=None, id=Component.UNDEFINED, key=Component.UNDEFINED, style=Component.UNDEFINED, className=Component.UNDEFINED, locale=Component.UNDEFINED, icon=Component.UNDEFINED, title=Component.UNDEFINED, description=Component.UNDEFINED, disabled=Component.UNDEFINED, placement=Component.UNDEFINED, mouseEnterDelay=Component.UNDEFINED, mouseLeaveDelay=Component.UNDEFINED, overlayClassName=Component.UNDEFINED, overlayStyle=Component.UNDEFINED, overlayInnerStyle=Component.UNDEFINED, okText=Component.UNDEFINED, okButtonProps=Component.UNDEFINED, cancelText=Component.UNDEFINED, cancelButtonProps=Component.UNDEFINED, confirmCounts=Component.UNDEFINED, cancelCounts=Component.UNDEFINED, trigger=Component.UNDEFINED, zIndex=Component.UNDEFINED, arrow=Component.UNDEFINED, fresh=Component.UNDEFINED, open=Component.UNDEFINED, permanent=Component.UNDEFINED, popupContainer=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
+        self._prop_names = ['children', 'id', 'aria-*', 'arrow', 'cancelButtonProps', 'cancelCounts', 'cancelText', 'className', 'confirmCounts', 'data-*', 'description', 'disabled', 'fresh', 'icon', 'key', 'loading_state', 'locale', 'mouseEnterDelay', 'mouseLeaveDelay', 'okButtonProps', 'okText', 'open', 'overlayClassName', 'overlayInnerStyle', 'overlayStyle', 'permanent', 'placement', 'popupContainer', 'style', 'title', 'trigger', 'zIndex']
         self._valid_wildcard_attributes =            ['data-', 'aria-']
-        self.available_properties = ['children', 'id', 'aria-*', 'arrow', 'cancelButtonProps', 'cancelCounts', 'cancelText', 'className', 'confirmCounts', 'data-*', 'description', 'disabled', 'fresh', 'key', 'loading_state', 'locale', 'mouseEnterDelay', 'mouseLeaveDelay', 'okButtonProps', 'okText', 'open', 'overlayClassName', 'overlayInnerStyle', 'overlayStyle', 'permanent', 'placement', 'popupContainer', 'style', 'title', 'trigger', 'zIndex']
+        self.available_properties = ['children', 'id', 'aria-*', 'arrow', 'cancelButtonProps', 'cancelCounts', 'cancelText', 'className', 'confirmCounts', 'data-*', 'description', 'disabled', 'fresh', 'icon', 'key', 'loading_state', 'locale', 'mouseEnterDelay', 'mouseLeaveDelay', 'okButtonProps', 'okText', 'open', 'overlayClassName', 'overlayInnerStyle', 'overlayStyle', 'permanent', 'placement', 'popupContainer', 'style', 'title', 'trigger', 'zIndex']
         self.available_wildcard_properties =            ['data-', 'aria-']
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()
