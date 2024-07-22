@@ -38,6 +38,7 @@ const AntdPopconfirm = (props) => {
         okButtonProps,
         cancelText,
         cancelButtonProps,
+        showCancel,
         confirmCounts,
         cancelCounts,
         trigger,
@@ -118,6 +119,7 @@ const AntdPopconfirm = (props) => {
                 arrow={arrowPoint}
                 fresh={fresh}
                 open={open}
+                showCancel={showCancel}
                 onOpenChange={
                     permanent ? undefined : (e) => setProps({ open: e })
                 }
@@ -333,6 +335,12 @@ AntdPopconfirm.propTypes = {
     }),
 
     /**
+     * 是否显示取消按钮
+     * 默认值：`true`
+     */
+    showCancel: PropTypes.bool,
+
+    /**
      * 监听确认按钮累计点击次数
      * 默认值：`0`
      */
@@ -428,6 +436,7 @@ AntdPopconfirm.defaultProps = {
     placement: 'top',
     mouseEnterDelay: 0.1,
     mouseLeaveDelay: 0.1,
+    showCancel: true,
     confirmCounts: 0,
     cancelCounts: 0,
     trigger: 'hover',

@@ -13,6 +13,7 @@ app.layout = html.Div(
             description='测试描述内容' * 2,
             open=True,
             permanent=True,
+            showCancel=False,
         )
     ],
     style={'padding': 200},
