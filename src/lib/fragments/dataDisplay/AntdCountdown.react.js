@@ -1,7 +1,8 @@
 // react核心
 import React from 'react';
 // antd核心
-import { Statistic } from 'antd';
+import { Statistic, Space, Tooltip } from 'antd';
+import { QuestionCircleOutlined } from "@ant-design/icons";
 // 辅助库
 import dayjs from 'dayjs';
 import { isString } from 'lodash';
@@ -53,9 +54,9 @@ const AntdCountdown = (props) => {
             title={titleTooltip ?
                 <Space size={5}>
                     {title}
-                    <AntdTooltip title={titleTooltip} >
+                    <Tooltip title={titleTooltip} >
                         <QuestionCircleOutlined />
-                    </AntdTooltip>
+                    </Tooltip>
                 </Space>
                 : title}
             valueStyle={valueStyle}
