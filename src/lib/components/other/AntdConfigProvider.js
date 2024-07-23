@@ -48,9 +48,45 @@ const AntdConfigProvider = (props) => {
         token,
         componentsToken,
         compatibilityMode,
+        enableLayer,
         setProps,
         loading_state
     } = props;
+
+    let configProviderInstance = (
+        <ConfigProvider id={id}
+            key={key}
+            theme={
+                useOldTheme ?
+                    str2oldTheme.get(useOldTheme) :
+                    {
+                        algorithm: (
+                            Array.isArray(algorithm) ?
+                                algorithm.map(e => str2algorithm.get(e)) :
+                                str2algorithm.get(algorithm)
+                        ),
+                        token: omitBy(
+                            {
+                                colorPrimary: primaryColor,
+                                ...token
+                            },
+                            isUndefined
+                        ),
+                        components: omitBy(
+                            {
+                                ...componentsToken
+                            },
+                            isUndefined
+                        )
+                    }
+            }
+            wave={{ disabled: wavesDisabled }}
+            data-dash-is-loading={
+                (loading_state && loading_state.is_loading) || undefined
+            }>
+            {children}
+        </ConfigProvider>
+    )
 
     if (compatibilityMode) {
         return (
@@ -68,88 +104,42 @@ const AntdConfigProvider = (props) => {
                     <App notification={{
                         stack: false
                     }}>
-                        <ConfigProvider id={id}
-                            key={key}
-                            theme={
-                                useOldTheme ?
-                                    str2oldTheme.get(useOldTheme) :
-                                    {
-                                        algorithm: (
-                                            Array.isArray(algorithm) ?
-                                                algorithm.map(e => str2algorithm.get(e)) :
-                                                str2algorithm.get(algorithm)
-                                        ),
-                                        token: omitBy(
-                                            {
-                                                colorPrimary: primaryColor,
-                                                ...token
-                                            },
-                                            isUndefined
-                                        ),
-                                        components: omitBy(
-                                            {
-                                                ...componentsToken
-                                            },
-                                            isUndefined
-                                        )
-                                    }
-                            }
-                            wave={{ disabled: wavesDisabled }}
-                            data-dash-is-loading={
-                                (loading_state && loading_state.is_loading) || undefined
-                            }>
-                            {children}
-                        </ConfigProvider>
+                        {configProviderInstance}
                     </App>
                 </StyleProvider>
             </PropsContext.Provider>
         );
+    } else if (enableLayer) {
+        return (
+            <PropsContext.Provider
+                value={
+                    {
+                        locale,
+                        componentDisabled,
+                        componentSize
+                    }
+                }
+            >
+                <StyleProvider layer>
+                    {configProviderInstance}
+                </StyleProvider>
+            </PropsContext.Provider>
+        );
+    } else {
+        return (
+            <PropsContext.Provider
+                value={
+                    {
+                        locale,
+                        componentDisabled,
+                        componentSize
+                    }
+                }
+            >
+                {configProviderInstance}
+            </PropsContext.Provider>
+        );
     }
-
-    return (
-        <PropsContext.Provider
-            value={
-                {
-                    locale,
-                    componentDisabled,
-                    componentSize
-                }
-            }
-        >
-            <ConfigProvider id={id}
-                key={key}
-                theme={
-                    useOldTheme ?
-                        str2oldTheme.get(useOldTheme) :
-                        {
-                            algorithm: (
-                                Array.isArray(algorithm) ?
-                                    algorithm.map(e => str2algorithm.get(e)) :
-                                    str2algorithm.get(algorithm)
-                            ),
-                            token: omitBy(
-                                {
-                                    colorPrimary: primaryColor,
-                                    ...token
-                                },
-                                isUndefined
-                            ),
-                            components: omitBy(
-                                {
-                                    ...componentsToken
-                                },
-                                isUndefined
-                            )
-                        }
-                }
-                wave={{ disabled: wavesDisabled }}
-                data-dash-is-loading={
-                    (loading_state && loading_state.is_loading) || undefined
-                }>
-                {children}
-            </ConfigProvider>
-        </PropsContext.Provider>
-    );
 }
 
 AntdConfigProvider.propTypes = {
@@ -238,6 +228,12 @@ AntdConfigProvider.propTypes = {
      */
     compatibilityMode: PropTypes.bool,
 
+    /**
+     * 是否启用layer样式降权
+     * 默认值：`false`
+     */
+    enableLayer: PropTypes.bool,
+
     loading_state: PropTypes.shape({
         /**
          * Determines if the component is loading or not
@@ -264,7 +260,8 @@ AntdConfigProvider.propTypes = {
 AntdConfigProvider.defaultProps = {
     algorithm: 'default',
     wavesDisabled: false,
-    compatibilityMode: false
+    compatibilityMode: false,
+    enableLayer: false
 }
 
 export default AntdConfigProvider;

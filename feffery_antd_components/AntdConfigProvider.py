@@ -37,6 +37,9 @@ Keyword arguments:
     - algorithm (boolean; optional):
         是否开启派生样式自动推导运算  默认值：`False`.
 
+- enableLayer (boolean; default False):
+    是否启用layer样式降权  默认值：`False`.
+
 - key (string; optional):
     对当前组件的`key`值进行更新，可实现强制重绘当前组件的效果.
 
@@ -77,10 +80,10 @@ Keyword arguments:
     _namespace = 'feffery_antd_components'
     _type = 'AntdConfigProvider'
     @_explicitize_args
-    def __init__(self, children=None, id=Component.UNDEFINED, key=Component.UNDEFINED, algorithm=Component.UNDEFINED, useOldTheme=Component.UNDEFINED, primaryColor=Component.UNDEFINED, componentDisabled=Component.UNDEFINED, componentSize=Component.UNDEFINED, locale=Component.UNDEFINED, wavesDisabled=Component.UNDEFINED, token=Component.UNDEFINED, componentsToken=Component.UNDEFINED, compatibilityMode=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
-        self._prop_names = ['children', 'id', 'algorithm', 'compatibilityMode', 'componentDisabled', 'componentSize', 'componentsToken', 'key', 'loading_state', 'locale', 'primaryColor', 'token', 'useOldTheme', 'wavesDisabled']
+    def __init__(self, children=None, id=Component.UNDEFINED, key=Component.UNDEFINED, algorithm=Component.UNDEFINED, useOldTheme=Component.UNDEFINED, primaryColor=Component.UNDEFINED, componentDisabled=Component.UNDEFINED, componentSize=Component.UNDEFINED, locale=Component.UNDEFINED, wavesDisabled=Component.UNDEFINED, token=Component.UNDEFINED, componentsToken=Component.UNDEFINED, compatibilityMode=Component.UNDEFINED, enableLayer=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
+        self._prop_names = ['children', 'id', 'algorithm', 'compatibilityMode', 'componentDisabled', 'componentSize', 'componentsToken', 'enableLayer', 'key', 'loading_state', 'locale', 'primaryColor', 'token', 'useOldTheme', 'wavesDisabled']
         self._valid_wildcard_attributes =            []
-        self.available_properties = ['children', 'id', 'algorithm', 'compatibilityMode', 'componentDisabled', 'componentSize', 'componentsToken', 'key', 'loading_state', 'locale', 'primaryColor', 'token', 'useOldTheme', 'wavesDisabled']
+        self.available_properties = ['children', 'id', 'algorithm', 'compatibilityMode', 'componentDisabled', 'componentSize', 'componentsToken', 'enableLayer', 'key', 'loading_state', 'locale', 'primaryColor', 'token', 'useOldTheme', 'wavesDisabled']
         self.available_wildcard_properties =            []
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()
