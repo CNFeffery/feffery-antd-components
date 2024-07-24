@@ -354,7 +354,7 @@ AntdPopconfirm.propTypes = {
 
     /**
      * 气泡确认框触发行为，可选项有`'hover'`、`'focus'`、`'click'`，可多选组合
-     * 默认值：`'hover'`
+     * 默认值：`'click'`
      */
     trigger: PropTypes.oneOfType(
         [
@@ -439,7 +439,7 @@ AntdPopconfirm.defaultProps = {
     showCancel: true,
     confirmCounts: 0,
     cancelCounts: 0,
-    trigger: 'hover',
+    trigger: 'click',
     locale: 'zh-cn',
     popupContainer: 'body',
     arrow: 'show',

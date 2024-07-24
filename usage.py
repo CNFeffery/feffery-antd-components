@@ -6,9 +6,8 @@ app = dash.Dash(__name__)
 
 app.layout = html.Div(
     [
-        fac.AntdConfigProvider(
-            fac.AntdButton('测试', type='primary'),
-            enableLayer=True,
+        fac.AntdPopconfirm(
+            fac.AntdButton('触发'), title='确认继续'
         )
     ],
     style={'padding': 200},

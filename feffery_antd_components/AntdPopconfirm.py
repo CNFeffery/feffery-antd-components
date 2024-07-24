@@ -161,8 +161,8 @@ Keyword arguments:
 - title (a list of or a singular dash component, string or number; optional):
     组件型，标题内容.
 
-- trigger (a value equal to: 'hover', 'focus', 'click' | list of a value equal to: 'hover', 'focus', 'click's; default 'hover'):
-    气泡确认框触发行为，可选项有`'hover'`、`'focus'`、`'click'`，可多选组合  默认值：`'hover'`.
+- trigger (a value equal to: 'hover', 'focus', 'click' | list of a value equal to: 'hover', 'focus', 'click's; default 'click'):
+    气泡确认框触发行为，可选项有`'hover'`、`'focus'`、`'click'`，可多选组合  默认值：`'click'`.
 
 - zIndex (number; optional):
     气泡确认框z-index."""
