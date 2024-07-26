@@ -484,7 +484,10 @@ const AntdDatePicker = (props) => {
                         // 处理时间选择面板在日期选定后的默认选中值
                         isObject(showTime) && showTime.defaultValue ?
                             {
-                                defaultValue: dayjs(dayjs(new Date()).format('YYYY-MM-DD') + ' ' + showTime.defaultValue, 'YYYY-MM-DD' + showTime.format || 'YYYY-MM-DD HH:mm:ss')
+                                defaultValue: dayjs(
+                                    dayjs(new Date()).format('YYYY-MM-DD') + ' ' + showTime.defaultValue,
+                                    'YYYY-MM-DD' + ' ' + (showTime.format || 'HH:mm:ss')
+                                )
                             } :
                             showTime
                     }

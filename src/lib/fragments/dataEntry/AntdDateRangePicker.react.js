@@ -455,11 +455,17 @@ const AntdDateRangePicker = (props) => {
                     picker={picker}
                     showTime={
                         // 处理时间选择面板在日期选定后的默认选中值
-                        isObject(showTime) && showTime.defaultValue ?
+                        isObject(showTime) && showTime.defaultValue && showTime.defaultValue.length === 2 ?
                             {
                                 defaultValue: [
-                                    dayjs(showTime.defaultValue[0], showTime.format || 'HH:mm:ss'),
-                                    dayjs(showTime.defaultValue[1], showTime.format || 'HH:mm:ss')
+                                    dayjs(
+                                        dayjs(new Date()).format('YYYY-MM-DD') + ' ' + showTime.defaultValue[0],
+                                        'YYYY-MM-DD' + ' ' + (showTime.format || 'HH:mm:ss')
+                                    ),
+                                    dayjs(
+                                        dayjs(new Date()).format('YYYY-MM-DD') + ' ' + showTime.defaultValue[1],
+                                        'YYYY-MM-DD' + ' ' + (showTime.format || 'HH:mm:ss')
+                                    )
                                 ]
                             } :
                             showTime
