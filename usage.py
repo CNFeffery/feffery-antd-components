@@ -1,16 +1,39 @@
 import dash
 from dash import html
 import feffery_antd_components as fac
+from dash.dependencies import Input, Output
 
 app = dash.Dash(__name__)
 
 app.layout = html.Div(
     [
-        fac.AntdPopconfirm(
-            fac.AntdButton('触发'), title='确认继续'
-        )
+        fac.AntdSwitch(
+            id='spinning',
+            checked=True,
+            style={
+                'position': 'fixed',
+                'top': 50,
+                'left': 50,
+                'zIndex': 99999,
+            },
+        ),
+        fac.AntdSpin(id='spin', manual=True),
+        fac.AntdSpin(
+            id='spin-fullscreen',
+            manual=True,
+            fullscreen=True,
+        ),
     ],
     style={'padding': 200},
+)
+
+app.clientside_callback(
+    """(checked) => [checked, checked]""",
+    [
+        Output('spin', 'spinning'),
+        Output('spin-fullscreen', 'spinning'),
+    ],
+    Input('spinning', 'checked'),
 )
 
 if __name__ == '__main__':

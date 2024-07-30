@@ -31,6 +31,7 @@ const AntdSpin = (props) => {
         includeProps,
         debug,
         indicator,
+        manual,
         setProps
     } = props;
 
@@ -38,7 +39,8 @@ const AntdSpin = (props) => {
     const timer = useRef();
 
     useEffect(() => {
-        if (loading_state) {
+        // 非手动控制模式下
+        if (!manual && loading_state) {
             if (timer.current) {
                 clearTimeout(timer.current);
             }
@@ -95,7 +97,7 @@ const AntdSpin = (props) => {
                             (wrapperClassName ? useCss(wrapperClassName) : undefined)
                     }
                     style={style}
-                    spinning={showSpinning}
+                    spinning={manual ? spinning : showSpinning}
                     size={size}
                     delay={delay}
                     fullscreen={fullscreen}
@@ -126,7 +128,7 @@ const AntdSpin = (props) => {
                     (wrapperClassName ? useCss(wrapperClassName) : undefined)
             }
             style={style}
-            spinning={showSpinning}
+            spinning={manual ? spinning : showSpinning}
             size={size}
             delay={delay}
             fullscreen={fullscreen}
@@ -233,6 +235,12 @@ AntdSpin.propTypes = {
     indicator: PropTypes.node,
 
     /**
+     * 是否开启手动控制模式，开启后是否处于加载状态将由`spinning`参数控制，与内部元素参与的回调状态无关
+     * 默认值：`false`
+     */
+    manual: PropTypes.bool,
+
+    /**
      * `data-*`格式属性通配
      */
     'data-*': PropTypes.string,
@@ -272,7 +280,8 @@ AntdSpin.defaultProps = {
     listenPropsMode: 'default',
     excludeProps: [],
     includeProps: [],
-    debug: false
+    debug: false,
+    manual: false
 }
 
 export default AntdSpin;

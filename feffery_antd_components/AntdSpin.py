@@ -63,6 +63,10 @@ Keyword arguments:
     - prop_name (string; optional):
         Holds which property is loading.
 
+- manual (boolean; default False):
+    是否开启手动控制模式，开启后是否处于加载状态将由`spinning`参数控制，与内部元素参与的回调状态无关
+    默认值：`False`.
+
 - size (a value equal to: 'small', 'middle', 'large'; default 'middle'):
     默认加载状态图标的尺寸，可选项有`'small'`、`'middle'`、`'large'`  默认值：`'middle'`.
 
@@ -82,10 +86,10 @@ Keyword arguments:
     _namespace = 'feffery_antd_components'
     _type = 'AntdSpin'
     @_explicitize_args
-    def __init__(self, children=None, id=Component.UNDEFINED, key=Component.UNDEFINED, style=Component.UNDEFINED, className=Component.UNDEFINED, wrapperClassName=Component.UNDEFINED, spinning=Component.UNDEFINED, size=Component.UNDEFINED, delay=Component.UNDEFINED, text=Component.UNDEFINED, fullscreen=Component.UNDEFINED, debug=Component.UNDEFINED, listenPropsMode=Component.UNDEFINED, excludeProps=Component.UNDEFINED, includeProps=Component.UNDEFINED, indicator=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
-        self._prop_names = ['children', 'id', 'aria-*', 'className', 'data-*', 'debug', 'delay', 'excludeProps', 'fullscreen', 'includeProps', 'indicator', 'key', 'listenPropsMode', 'loading_state', 'size', 'spinning', 'style', 'text', 'wrapperClassName']
+    def __init__(self, children=None, id=Component.UNDEFINED, key=Component.UNDEFINED, style=Component.UNDEFINED, className=Component.UNDEFINED, wrapperClassName=Component.UNDEFINED, spinning=Component.UNDEFINED, size=Component.UNDEFINED, delay=Component.UNDEFINED, text=Component.UNDEFINED, fullscreen=Component.UNDEFINED, debug=Component.UNDEFINED, listenPropsMode=Component.UNDEFINED, excludeProps=Component.UNDEFINED, includeProps=Component.UNDEFINED, indicator=Component.UNDEFINED, manual=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
+        self._prop_names = ['children', 'id', 'aria-*', 'className', 'data-*', 'debug', 'delay', 'excludeProps', 'fullscreen', 'includeProps', 'indicator', 'key', 'listenPropsMode', 'loading_state', 'manual', 'size', 'spinning', 'style', 'text', 'wrapperClassName']
         self._valid_wildcard_attributes =            ['data-', 'aria-']
-        self.available_properties = ['children', 'id', 'aria-*', 'className', 'data-*', 'debug', 'delay', 'excludeProps', 'fullscreen', 'includeProps', 'indicator', 'key', 'listenPropsMode', 'loading_state', 'size', 'spinning', 'style', 'text', 'wrapperClassName']
+        self.available_properties = ['children', 'id', 'aria-*', 'className', 'data-*', 'debug', 'delay', 'excludeProps', 'fullscreen', 'includeProps', 'indicator', 'key', 'listenPropsMode', 'loading_state', 'manual', 'size', 'spinning', 'style', 'text', 'wrapperClassName']
         self.available_wildcard_properties =            ['data-', 'aria-']
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()
