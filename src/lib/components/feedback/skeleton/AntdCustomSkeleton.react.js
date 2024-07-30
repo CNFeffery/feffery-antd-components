@@ -24,6 +24,7 @@ const AntdCustomSkeleton = (props) => {
         excludeProps,
         includeProps,
         debug,
+        manual,
         loading_state,
         setProps
     } = props;
@@ -33,7 +34,7 @@ const AntdCustomSkeleton = (props) => {
     const delayTimer = useRef();
 
     useEffect(() => {
-        if (loading_state) {
+        if (!manual && loading_state) {
             if (timer.current) {
                 clearTimeout(timer.current);
             }
@@ -82,7 +83,6 @@ const AntdCustomSkeleton = (props) => {
         }
     }, [loading_state]);
 
-
     return (
         <div
             // 提取具有data-*或aria-*通配格式的属性
@@ -98,7 +98,7 @@ const AntdCustomSkeleton = (props) => {
             data-dash-is-loading={
                 (loading_state && loading_state.is_loading) || undefined
             }
-        >{showLoading ? skeletonContent : children}
+        >{(manual ? loading : showLoading) ? skeletonContent : children}
         </div>
     );
 }
@@ -173,6 +173,12 @@ AntdCustomSkeleton.propTypes = {
     includeProps: PropTypes.arrayOf(PropTypes.string),
 
     /**
+     * 是否开启手动控制模式，开启后是否处于加载状态将由`loading`参数控制，与内部元素参与的回调状态无关
+     * 默认值：`false`
+     */
+    manual: PropTypes.bool,
+
+    /**
      * `data-*`格式属性通配
      */
     'data-*': PropTypes.string,
@@ -210,7 +216,8 @@ AntdCustomSkeleton.defaultProps = {
     listenPropsMode: 'default',
     excludeProps: [],
     includeProps: [],
-    debug: false
+    debug: false,
+    manual: false
 }
 
 export default AntdCustomSkeleton;

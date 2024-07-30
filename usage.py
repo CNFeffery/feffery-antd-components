@@ -19,8 +19,57 @@ app.layout = html.Div(
                         'zIndex': 99999,
                     },
                 ),
-                fac.AntdSkeleton(
-                    id='skeleton', manual=True, active=True
+                fac.AntdCustomSkeleton(
+                    id='custom-skeleton',
+                    manual=True,
+                    skeletonContent=html.Div(
+                        [
+                            fac.AntdRow(
+                                [
+                                    fac.AntdCol(
+                                        fac.AntdSkeletonButton(
+                                            block=True,
+                                            active=True,
+                                        ),
+                                        span=6,
+                                        style={
+                                            'padding': '4px'
+                                        },
+                                    )
+                                ]
+                                * 16
+                            ),
+                            fac.AntdSpace(
+                                [
+                                    html.Div(
+                                        fac.AntdSkeletonButton(
+                                            active=True,
+                                            size='small',
+                                            block=True,
+                                        ),
+                                        style={
+                                            'width': '80px'
+                                        },
+                                    ),
+                                    html.Div(
+                                        fac.AntdSkeletonButton(
+                                            active=True,
+                                            size='small',
+                                            block=True,
+                                        ),
+                                        style={
+                                            'width': '60px'
+                                        },
+                                    ),
+                                ],
+                                style={
+                                    'float': 'right',
+                                    'paddingRight': '4px',
+                                    'paddingTop': '15px',
+                                },
+                            ),
+                        ]
+                    ),
                 ),
             ],
             direction='vertical',
@@ -32,7 +81,7 @@ app.layout = html.Div(
 
 app.clientside_callback(
     """(checked) => checked""",
-    Output('skeleton', 'loading'),
+    Output('custom-skeleton', 'loading'),
     Input('spinning', 'checked'),
 )
 
