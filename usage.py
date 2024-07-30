@@ -11,7 +11,7 @@ app.layout = html.Div(
             title='AntdPopupCard示例',
             visible=True,
             loading=True,
-            draggable=True
+            draggable=True,
         )
     ],
     style={'padding': 50},
