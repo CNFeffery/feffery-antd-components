@@ -78,6 +78,9 @@ Keyword arguments:
     - prop_name (string; optional):
         Holds which property is loading.
 
+- manual (boolean; default False):
+    是否开启手动控制模式，开启后是否处于加载状态将由`loading`参数控制，与内部元素参与的回调状态无关  默认值：`False`.
+
 - paragraph (dict; default True):
     配置段落占位图相关参数，设置为`False`时不显示  默认值：`True`.
 
@@ -107,10 +110,10 @@ Keyword arguments:
     _namespace = 'feffery_antd_components'
     _type = 'AntdSkeleton'
     @_explicitize_args
-    def __init__(self, children=None, id=Component.UNDEFINED, key=Component.UNDEFINED, style=Component.UNDEFINED, className=Component.UNDEFINED, loading=Component.UNDEFINED, active=Component.UNDEFINED, delay=Component.UNDEFINED, avatar=Component.UNDEFINED, paragraph=Component.UNDEFINED, title=Component.UNDEFINED, round=Component.UNDEFINED, debug=Component.UNDEFINED, listenPropsMode=Component.UNDEFINED, excludeProps=Component.UNDEFINED, includeProps=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
-        self._prop_names = ['children', 'id', 'active', 'aria-*', 'avatar', 'className', 'data-*', 'debug', 'delay', 'excludeProps', 'includeProps', 'key', 'listenPropsMode', 'loading', 'loading_state', 'paragraph', 'round', 'style', 'title']
+    def __init__(self, children=None, id=Component.UNDEFINED, key=Component.UNDEFINED, style=Component.UNDEFINED, className=Component.UNDEFINED, loading=Component.UNDEFINED, active=Component.UNDEFINED, delay=Component.UNDEFINED, avatar=Component.UNDEFINED, paragraph=Component.UNDEFINED, title=Component.UNDEFINED, round=Component.UNDEFINED, debug=Component.UNDEFINED, listenPropsMode=Component.UNDEFINED, excludeProps=Component.UNDEFINED, includeProps=Component.UNDEFINED, manual=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
+        self._prop_names = ['children', 'id', 'active', 'aria-*', 'avatar', 'className', 'data-*', 'debug', 'delay', 'excludeProps', 'includeProps', 'key', 'listenPropsMode', 'loading', 'loading_state', 'manual', 'paragraph', 'round', 'style', 'title']
         self._valid_wildcard_attributes =            ['data-', 'aria-']
-        self.available_properties = ['children', 'id', 'active', 'aria-*', 'avatar', 'className', 'data-*', 'debug', 'delay', 'excludeProps', 'includeProps', 'key', 'listenPropsMode', 'loading', 'loading_state', 'paragraph', 'round', 'style', 'title']
+        self.available_properties = ['children', 'id', 'active', 'aria-*', 'avatar', 'className', 'data-*', 'debug', 'delay', 'excludeProps', 'includeProps', 'key', 'listenPropsMode', 'loading', 'loading_state', 'manual', 'paragraph', 'round', 'style', 'title']
         self.available_wildcard_properties =            ['data-', 'aria-']
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()

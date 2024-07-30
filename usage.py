@@ -7,33 +7,32 @@ app = dash.Dash(__name__)
 
 app.layout = html.Div(
     [
-        fac.AntdSwitch(
-            id='spinning',
-            checked=True,
-            style={
-                'position': 'fixed',
-                'top': 50,
-                'left': 50,
-                'zIndex': 99999,
-            },
-        ),
-        fac.AntdSpin(id='spin', manual=True, percent=166.6),
-        fac.AntdSpin(
-            id='spin-fullscreen',
-            manual=True,
-            fullscreen=True,
-            percent='auto',
-        ),
+        fac.AntdSpace(
+            [
+                fac.AntdSwitch(
+                    id='spinning',
+                    checked=True,
+                    style={
+                        'position': 'fixed',
+                        'top': 50,
+                        'left': 50,
+                        'zIndex': 99999,
+                    },
+                ),
+                fac.AntdSkeleton(
+                    id='skeleton', manual=True, active=True
+                ),
+            ],
+            direction='vertical',
+            style={'width': '100%'},
+        )
     ],
     style={'padding': 200},
 )
 
 app.clientside_callback(
-    """(checked) => [checked, checked]""",
-    [
-        Output('spin', 'spinning'),
-        Output('spin-fullscreen', 'spinning'),
-    ],
+    """(checked) => checked""",
+    Output('skeleton', 'loading'),
     Input('spinning', 'checked'),
 )
 

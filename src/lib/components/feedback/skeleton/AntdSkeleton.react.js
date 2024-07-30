@@ -30,6 +30,7 @@ const AntdSkeleton = (props) => {
         excludeProps,
         includeProps,
         debug,
+        manual,
         loading_state,
         setProps
     } = props;
@@ -39,7 +40,7 @@ const AntdSkeleton = (props) => {
     const delayTimer = useRef();
 
     useEffect(() => {
-        if (loading_state) {
+        if (!manual && loading_state) {
             if (timer.current) {
                 clearTimeout(timer.current);
             }
@@ -100,7 +101,7 @@ const AntdSkeleton = (props) => {
             }
             style={style}
             key={key}
-            loading={showLoading}
+            loading={manual ? loading : showLoading}
             active={active}
             avatar={avatar}
             paragraph={paragraph}
@@ -264,6 +265,12 @@ AntdSkeleton.propTypes = {
     includeProps: PropTypes.arrayOf(PropTypes.string),
 
     /**
+     * 是否开启手动控制模式，开启后是否处于加载状态将由`loading`参数控制，与内部元素参与的回调状态无关
+     * 默认值：`false`
+     */
+    manual: PropTypes.bool,
+
+    /**
      * `data-*`格式属性通配
      */
     'data-*': PropTypes.string,
@@ -308,7 +315,8 @@ AntdSkeleton.defaultProps = {
     debug: false,
     listenPropsMode: 'default',
     excludeProps: [],
-    includeProps: []
+    includeProps: [],
+    manual: false
 }
 
 export default AntdSkeleton;
