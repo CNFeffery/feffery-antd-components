@@ -6,21 +6,13 @@ app = dash.Dash(__name__)
 
 app.layout = html.Div(
     [
-        fac.AntdSpace(
-            [
-                fac.AntdFormItem(
-                    fac.AntdInput(style={'width': 200}),
-                    label='horizontal',
-                    layout='horizontal',
-                ),
-                fac.AntdFormItem(
-                    fac.AntdInput(style={'width': 200}),
-                    label='vertical',
-                    layout='vertical',
-                ),
-            ],
-            direction='vertical',
-        ),
+        fac.AntdModal(
+            '测试' * 100,
+            title='AntdModal示例',
+            visible=True,
+            loading=True,
+            mask=False,
+        )
     ],
     style={'padding': 50},
 )

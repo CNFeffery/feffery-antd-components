@@ -49,6 +49,7 @@ const AntdModal = (props) => {
         confirmAutoSpin,
         transitionType,
         destroyOnClose,
+        loading,
         loading_state
     } = props;
 
@@ -112,6 +113,7 @@ const AntdModal = (props) => {
                 footer={renderFooter ? undefined : null}
                 confirmLoading={confirmLoading}
                 destroyOnClose={destroyOnClose}
+                loading={loading}
                 data-dash-is-loading={
                     (loading_state && loading_state.is_loading) || undefined
                 }
@@ -384,6 +386,12 @@ AntdModal.propTypes = {
     destroyOnClose: PropTypes.bool,
 
     /**
+     * 是否整体渲染为加载中状态
+     * 默认值：`false`
+     */
+    loading: PropTypes.bool,
+
+    /**
      * `data-*`格式属性通配
      */
     'data-*': PropTypes.string,
@@ -434,7 +442,8 @@ AntdModal.defaultProps = {
     confirmAutoSpin: false,
     transitionType: 'zoom',
     destroyOnClose: true,
-    locale: 'zh-cn'
+    locale: 'zh-cn',
+    loading: false
 }
 
 export default AntdModal;

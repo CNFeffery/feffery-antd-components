@@ -84,6 +84,9 @@ Keyword arguments:
 - keyboard (boolean; default True):
     是否支持键盘esc关闭对话框  默认值：`True`.
 
+- loading (boolean; default False):
+    是否整体渲染为加载中状态  默认值：`False`.
+
 - loadingOkText (a list of or a singular dash component, string or number; optional):
     组件型，`confirmLoading=True`时，确认按钮的内容.
 
@@ -174,10 +177,10 @@ Keyword arguments:
     _namespace = 'feffery_antd_components'
     _type = 'AntdModal'
     @_explicitize_args
-    def __init__(self, children=None, id=Component.UNDEFINED, key=Component.UNDEFINED, style=Component.UNDEFINED, className=Component.UNDEFINED, locale=Component.UNDEFINED, visible=Component.UNDEFINED, title=Component.UNDEFINED, renderFooter=Component.UNDEFINED, okText=Component.UNDEFINED, okButtonProps=Component.UNDEFINED, cancelText=Component.UNDEFINED, cancelButtonProps=Component.UNDEFINED, width=Component.UNDEFINED, centered=Component.UNDEFINED, keyboard=Component.UNDEFINED, closable=Component.UNDEFINED, mask=Component.UNDEFINED, maskClosable=Component.UNDEFINED, okClickClose=Component.UNDEFINED, zIndex=Component.UNDEFINED, maskStyle=Component.UNDEFINED, bodyStyle=Component.UNDEFINED, okCounts=Component.UNDEFINED, cancelCounts=Component.UNDEFINED, closeCounts=Component.UNDEFINED, confirmAutoSpin=Component.UNDEFINED, loadingOkText=Component.UNDEFINED, confirmLoading=Component.UNDEFINED, transitionType=Component.UNDEFINED, destroyOnClose=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
-        self._prop_names = ['children', 'id', 'aria-*', 'bodyStyle', 'cancelButtonProps', 'cancelCounts', 'cancelText', 'centered', 'className', 'closable', 'closeCounts', 'confirmAutoSpin', 'confirmLoading', 'data-*', 'destroyOnClose', 'key', 'keyboard', 'loadingOkText', 'loading_state', 'locale', 'mask', 'maskClosable', 'maskStyle', 'okButtonProps', 'okClickClose', 'okCounts', 'okText', 'renderFooter', 'style', 'title', 'transitionType', 'visible', 'width', 'zIndex']
+    def __init__(self, children=None, id=Component.UNDEFINED, key=Component.UNDEFINED, style=Component.UNDEFINED, className=Component.UNDEFINED, locale=Component.UNDEFINED, visible=Component.UNDEFINED, title=Component.UNDEFINED, renderFooter=Component.UNDEFINED, okText=Component.UNDEFINED, okButtonProps=Component.UNDEFINED, cancelText=Component.UNDEFINED, cancelButtonProps=Component.UNDEFINED, width=Component.UNDEFINED, centered=Component.UNDEFINED, keyboard=Component.UNDEFINED, closable=Component.UNDEFINED, mask=Component.UNDEFINED, maskClosable=Component.UNDEFINED, okClickClose=Component.UNDEFINED, zIndex=Component.UNDEFINED, maskStyle=Component.UNDEFINED, bodyStyle=Component.UNDEFINED, okCounts=Component.UNDEFINED, cancelCounts=Component.UNDEFINED, closeCounts=Component.UNDEFINED, confirmAutoSpin=Component.UNDEFINED, loadingOkText=Component.UNDEFINED, confirmLoading=Component.UNDEFINED, transitionType=Component.UNDEFINED, destroyOnClose=Component.UNDEFINED, loading=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
+        self._prop_names = ['children', 'id', 'aria-*', 'bodyStyle', 'cancelButtonProps', 'cancelCounts', 'cancelText', 'centered', 'className', 'closable', 'closeCounts', 'confirmAutoSpin', 'confirmLoading', 'data-*', 'destroyOnClose', 'key', 'keyboard', 'loading', 'loadingOkText', 'loading_state', 'locale', 'mask', 'maskClosable', 'maskStyle', 'okButtonProps', 'okClickClose', 'okCounts', 'okText', 'renderFooter', 'style', 'title', 'transitionType', 'visible', 'width', 'zIndex']
         self._valid_wildcard_attributes =            ['data-', 'aria-']
-        self.available_properties = ['children', 'id', 'aria-*', 'bodyStyle', 'cancelButtonProps', 'cancelCounts', 'cancelText', 'centered', 'className', 'closable', 'closeCounts', 'confirmAutoSpin', 'confirmLoading', 'data-*', 'destroyOnClose', 'key', 'keyboard', 'loadingOkText', 'loading_state', 'locale', 'mask', 'maskClosable', 'maskStyle', 'okButtonProps', 'okClickClose', 'okCounts', 'okText', 'renderFooter', 'style', 'title', 'transitionType', 'visible', 'width', 'zIndex']
+        self.available_properties = ['children', 'id', 'aria-*', 'bodyStyle', 'cancelButtonProps', 'cancelCounts', 'cancelText', 'centered', 'className', 'closable', 'closeCounts', 'confirmAutoSpin', 'confirmLoading', 'data-*', 'destroyOnClose', 'key', 'keyboard', 'loading', 'loadingOkText', 'loading_state', 'locale', 'mask', 'maskClosable', 'maskStyle', 'okButtonProps', 'okClickClose', 'okCounts', 'okText', 'renderFooter', 'style', 'title', 'transitionType', 'visible', 'width', 'zIndex']
         self.available_wildcard_properties =            ['data-', 'aria-']
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()
