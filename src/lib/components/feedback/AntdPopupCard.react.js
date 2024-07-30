@@ -36,6 +36,7 @@ const AntdPopupCard = (props) => {
         dragClassName,
         zIndex,
         bodyStyle,
+        loading,
         setProps,
         loading_state
     } = props;
@@ -65,7 +66,6 @@ const AntdPopupCard = (props) => {
             bottom: clientHeight - (targetRect.bottom - uiData.y)
         });
     };
-
 
     return (
         <Modal
@@ -164,6 +164,7 @@ const AntdPopupCard = (props) => {
                         <div ref={draggleRef}>{modal}</div>
                     </Draggable>
                 ) : undefined}
+            loading={loading}
             data-dash-is-loading={
                 (loading_state && loading_state.is_loading) || undefined
             }
@@ -266,6 +267,12 @@ AntdPopupCard.propTypes = {
     bodyStyle: PropTypes.object,
 
     /**
+     * 是否整体渲染为加载中状态
+     * 默认值：`false`
+     */
+    loading: PropTypes.bool,
+
+    /**
      * `data-*`格式属性通配
      */
     'data-*': PropTypes.string,
@@ -304,7 +311,8 @@ AntdPopupCard.defaultProps = {
     draggable: false,
     visible: true,
     closable: true,
-    zIndex: 1000
+    zIndex: 1000,
+    loading: false
 }
 
 export default AntdPopupCard;

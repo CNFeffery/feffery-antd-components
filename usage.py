@@ -6,12 +6,12 @@ app = dash.Dash(__name__)
 
 app.layout = html.Div(
     [
-        fac.AntdModal(
+        fac.AntdPopupCard(
             '测试' * 100,
-            title='AntdModal示例',
+            title='AntdPopupCard示例',
             visible=True,
             loading=True,
-            mask=False,
+            draggable=True
         )
     ],
     style={'padding': 50},
