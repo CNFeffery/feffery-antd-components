@@ -32,6 +32,7 @@ const AntdSpin = (props) => {
         debug,
         indicator,
         manual,
+        percent,
         setProps
     } = props;
 
@@ -103,6 +104,7 @@ const AntdSpin = (props) => {
                     fullscreen={fullscreen}
                     tip={text}
                     indicator={indicator}
+                    percent={percent}
                     data-dash-is-loading={
                         (loading_state && loading_state.is_loading) || undefined
                     } />
@@ -134,6 +136,7 @@ const AntdSpin = (props) => {
             fullscreen={fullscreen}
             tip={text}
             indicator={indicator}
+            percent={percent}
             data-dash-is-loading={
                 (loading_state && loading_state.is_loading) || undefined
             } > {children} </Spin>
@@ -239,6 +242,11 @@ AntdSpin.propTypes = {
      * 默认值：`false`
      */
     manual: PropTypes.bool,
+
+    /**
+     * 控制加载中状态下的环状进度渲染形式，传入0到100之间数值型时表示实际进度，传入`'auto'`时会预估一个永远不会停止的进度
+     */
+    percent: PropTypes.oneOfType([PropTypes.number, PropTypes.oneOf(['auto'])]),
 
     /**
      * `data-*`格式属性通配
