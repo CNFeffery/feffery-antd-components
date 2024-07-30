@@ -17,7 +17,7 @@ app.layout = html.Div(
                 'zIndex': 99999,
             },
         ),
-        fac.AntdSpin(id='spin', manual=True, percent=66.6),
+        fac.AntdSpin(id='spin', manual=True, percent=166.6),
         fac.AntdSpin(
             id='spin-fullscreen',
             manual=True,

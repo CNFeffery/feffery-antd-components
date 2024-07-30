@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 // antd核心
 import { Spin } from 'antd';
 // 辅助库
-import { isString } from 'lodash';
+import { isString, isNumber } from 'lodash';
 import { pickBy } from 'ramda';
 // 自定义hooks
 import useCss from '../../hooks/useCss'
@@ -35,6 +35,14 @@ const AntdSpin = (props) => {
         percent,
         setProps
     } = props;
+
+    useEffect(() => {
+        // 检查数值型percent参数是否取值在合法的0到100之间
+        if (isNumber(percent) && (percent < 0 || percent > 100)) {
+            // 抛出中英文错误提示
+            setProps({ _dash_error: new Error('数值型percent取值应在0到100之间！\nThe value of the numerical type "percent" should be between 0 and 100!') });
+        }
+    }, [percent])
 
     const [showSpinning, setShowSpinning] = useState(spinning);
     const timer = useRef();
