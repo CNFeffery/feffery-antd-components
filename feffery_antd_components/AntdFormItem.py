@@ -63,6 +63,9 @@ Keyword arguments:
     - span (number; optional):
         标签部分所占宽度份数（总份数24）.
 
+- layout (a value equal to: 'horizontal', 'vertical'; optional):
+    表单项布局模式，可选项有`'horizontal'`、`'vertical'`.
+
 - loading_state (dict; optional)
 
     `loading_state` is a dict with keys:
@@ -106,10 +109,10 @@ Keyword arguments:
     _namespace = 'feffery_antd_components'
     _type = 'AntdFormItem'
     @_explicitize_args
-    def __init__(self, children=None, id=Component.UNDEFINED, key=Component.UNDEFINED, style=Component.UNDEFINED, className=Component.UNDEFINED, required=Component.UNDEFINED, labelCol=Component.UNDEFINED, wrapperCol=Component.UNDEFINED, colon=Component.UNDEFINED, label=Component.UNDEFINED, labelAlign=Component.UNDEFINED, tooltip=Component.UNDEFINED, extra=Component.UNDEFINED, validateStatus=Component.UNDEFINED, hasFeedback=Component.UNDEFINED, help=Component.UNDEFINED, hidden=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
-        self._prop_names = ['children', 'id', 'aria-*', 'className', 'colon', 'data-*', 'extra', 'hasFeedback', 'help', 'hidden', 'key', 'label', 'labelAlign', 'labelCol', 'loading_state', 'required', 'style', 'tooltip', 'validateStatus', 'wrapperCol']
+    def __init__(self, children=None, id=Component.UNDEFINED, key=Component.UNDEFINED, style=Component.UNDEFINED, className=Component.UNDEFINED, required=Component.UNDEFINED, labelCol=Component.UNDEFINED, wrapperCol=Component.UNDEFINED, colon=Component.UNDEFINED, label=Component.UNDEFINED, labelAlign=Component.UNDEFINED, tooltip=Component.UNDEFINED, extra=Component.UNDEFINED, validateStatus=Component.UNDEFINED, hasFeedback=Component.UNDEFINED, help=Component.UNDEFINED, hidden=Component.UNDEFINED, layout=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
+        self._prop_names = ['children', 'id', 'aria-*', 'className', 'colon', 'data-*', 'extra', 'hasFeedback', 'help', 'hidden', 'key', 'label', 'labelAlign', 'labelCol', 'layout', 'loading_state', 'required', 'style', 'tooltip', 'validateStatus', 'wrapperCol']
         self._valid_wildcard_attributes =            ['data-', 'aria-']
-        self.available_properties = ['children', 'id', 'aria-*', 'className', 'colon', 'data-*', 'extra', 'hasFeedback', 'help', 'hidden', 'key', 'label', 'labelAlign', 'labelCol', 'loading_state', 'required', 'style', 'tooltip', 'validateStatus', 'wrapperCol']
+        self.available_properties = ['children', 'id', 'aria-*', 'className', 'colon', 'data-*', 'extra', 'hasFeedback', 'help', 'hidden', 'key', 'label', 'labelAlign', 'labelCol', 'layout', 'loading_state', 'required', 'style', 'tooltip', 'validateStatus', 'wrapperCol']
         self.available_wildcard_properties =            ['data-', 'aria-']
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()

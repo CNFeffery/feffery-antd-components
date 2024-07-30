@@ -38,6 +38,7 @@ const AntdFormItem = (props) => {
         required,
         validateStatus,
         hasFeedback,
+        layout,
         setProps,
         loading_state
     } = props;
@@ -70,6 +71,7 @@ const AntdFormItem = (props) => {
             hidden={hidden}
             required={required}
             validateStatus={validateStatus || (formId && _validateStatus)}
+            layout={layout}
             data-dash-is-loading={
                 (loading_state && loading_state.is_loading) || undefined
             }>

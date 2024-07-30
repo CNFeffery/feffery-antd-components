@@ -140,6 +140,11 @@ AntdFormItem.propTypes = {
     hidden: PropTypes.bool,
 
     /**
+     * 表单项布局模式，可选项有`'horizontal'`、`'vertical'`
+     */
+    layout: PropTypes.oneOf(['horizontal', 'vertical']),
+
+    /**
      * `data-*`格式属性通配
      */
     'data-*': PropTypes.string,
