@@ -6,12 +6,21 @@ app = dash.Dash(__name__)
 
 app.layout = html.Div(
     [
-        fac.AntdPopupCard(
-            '测试' * 100,
-            title='AntdPopupCard示例',
-            visible=True,
-            loading=True,
-            draggable=True,
+        html.Div(
+            fac.AntdSpin(
+                fac.AntdAlert(
+                    type='info',
+                    showIcon=True,
+                    message='测试信息',
+                ),
+                manual=True,
+                percent='auto',
+                spinning=True,
+                style={
+                    'display': 'inline-block',
+                },
+            ),
+            style={'width': 400},
         )
     ],
     style={'padding': 50},
