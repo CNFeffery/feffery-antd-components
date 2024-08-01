@@ -5,29 +5,7 @@ import feffery_antd_components as fac
 app = dash.Dash(__name__)
 
 app.layout = html.Div(
-    [
-        fac.AntdSpace(
-            [
-                fac.AntdDatePicker(
-                    placeholder='请选择日期时间',
-                    showTime={'defaultValue': '18:33:33'},
-                ),
-                fac.AntdDateRangePicker(
-                    placeholder=[
-                        '开始日期时间',
-                        '结束日期时间',
-                    ],
-                    showTime={
-                        'defaultValue': [
-                            '08:30:00',
-                            '17:30:00',
-                        ]
-                    },
-                    needConfirm=True,
-                ),
-            ]
-        )
-    ],
+    [fac.AntdQRCode(value='测试')],
     style={'padding': 50},
 )
 

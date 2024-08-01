@@ -9,7 +9,7 @@ import { str2Locale } from '../../components/locales.react';
 // 自定义hooks
 import useCss from '../../hooks/useCss';
 // 参数类型
-import { propTypes, defaultProps } from '../../components/dataDisplay/AntdImage.react';
+import { propTypes, defaultProps } from '../../components/dataDisplay/AntdQRCode.react';
 
 /**
  * 二维码组件AntdQRCode
