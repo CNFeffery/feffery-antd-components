@@ -60,6 +60,27 @@ Keyword arguments:
     - mask (a list of or a singular dash component, string or number; optional):
         组件型，用于自定义缩略图遮罩元素.
 
+    - maskClassName (string; optional):
+        缩略图遮罩元素css类名.
+
+    - maxScale (number; optional):
+        最大缩放倍数  默认值：`50`.
+
+    - minScale (number; optional):
+        最小缩放倍数  默认值：`1`.
+
+    - moveable (boolean; optional):
+        预览模式下是否可移动图片.
+
+    - rootClassName (string; optional):
+        缩略图根节点css类名.
+
+    - scaleStep (number; optional):
+        `1+scaleStep`值为每一步缩放的倍数  默认值：`0.5`.
+
+    - src (string; optional):
+        自定义预览图链接地址.
+
     - visible (boolean; optional):
         是否展示预览层.
 
@@ -69,17 +90,20 @@ Keyword arguments:
 - style (dict; optional):
     当前组件css样式.
 
+- toolbarExtra (a list of or a singular dash component, string or number; optional):
+    针对预览模式下的工具栏，末尾扩充自定义工具图标元素.
+
 - width (number | string; optional):
     图片宽度."""
-    _children_props = ['preview.mask']
-    _base_nodes = ['children']
+    _children_props = ['preview.mask', 'toolbarExtra']
+    _base_nodes = ['toolbarExtra', 'children']
     _namespace = 'feffery_antd_components'
     _type = 'AntdImage'
     @_explicitize_args
-    def __init__(self, id=Component.UNDEFINED, key=Component.UNDEFINED, style=Component.UNDEFINED, className=Component.UNDEFINED, locale=Component.UNDEFINED, alt=Component.UNDEFINED, width=Component.UNDEFINED, height=Component.UNDEFINED, src=Component.UNDEFINED, fallback=Component.UNDEFINED, multiImageMode=Component.UNDEFINED, preview=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
-        self._prop_names = ['id', 'alt', 'aria-*', 'className', 'data-*', 'fallback', 'height', 'key', 'loading_state', 'locale', 'multiImageMode', 'preview', 'src', 'style', 'width']
+    def __init__(self, id=Component.UNDEFINED, key=Component.UNDEFINED, style=Component.UNDEFINED, className=Component.UNDEFINED, locale=Component.UNDEFINED, alt=Component.UNDEFINED, width=Component.UNDEFINED, height=Component.UNDEFINED, src=Component.UNDEFINED, fallback=Component.UNDEFINED, multiImageMode=Component.UNDEFINED, preview=Component.UNDEFINED, toolbarExtra=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
+        self._prop_names = ['id', 'alt', 'aria-*', 'className', 'data-*', 'fallback', 'height', 'key', 'loading_state', 'locale', 'multiImageMode', 'preview', 'src', 'style', 'toolbarExtra', 'width']
         self._valid_wildcard_attributes =            ['data-', 'aria-']
-        self.available_properties = ['id', 'alt', 'aria-*', 'className', 'data-*', 'fallback', 'height', 'key', 'loading_state', 'locale', 'multiImageMode', 'preview', 'src', 'style', 'width']
+        self.available_properties = ['id', 'alt', 'aria-*', 'className', 'data-*', 'fallback', 'height', 'key', 'loading_state', 'locale', 'multiImageMode', 'preview', 'src', 'style', 'toolbarExtra', 'width']
         self.available_wildcard_properties =            ['data-', 'aria-']
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()

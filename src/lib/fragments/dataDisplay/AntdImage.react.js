@@ -31,6 +31,7 @@ const AntdImage = (props) => {
         fallback,
         multiImageMode,
         preview,
+        toolbarExtra,
         setProps,
         loading_state
     } = props;
@@ -65,7 +66,7 @@ const AntdImage = (props) => {
                         onClick={() => setVisible(true)}
                     />
                     <div style={{ display: 'none' }}>
-                        <Image.PreviewGroup preview={{ visible, onVisibleChange: vis => setVisible(vis) }}>
+                        <Image.PreviewGroup preview={{ ...preview, visible, onVisibleChange: e => setVisible(e) }}>
                             {src.map(
                                 src_ => <Image src={src_} fallback={fallback || defaultFallback} />
                             )}
@@ -88,7 +89,7 @@ const AntdImage = (props) => {
                         }
                         key={key}>
                         {src.map(
-                            src_ => <Image src={src_} fallback={fallback || defaultFallback} width={width} height={height} />
+                            src_ => <Image src={src_} preview={preview} fallback={fallback || defaultFallback} width={width} height={height} />
                         )}
                     </Image.PreviewGroup>
                 </ConfigProvider>
@@ -117,7 +118,22 @@ const AntdImage = (props) => {
                             {
                                 ...preview,
                                 visible: visible,
-                                onVisibleChange: vis => setVisible(vis)
+                                onVisibleChange: e => setVisible(e),
+                                toolbarRender: (originalNode) => {
+                                    return {
+                                        ...originalNode,
+                                        props: {
+                                            ...originalNode.props,
+                                            children: (
+                                                toolbarExtra &&
+                                                [
+                                                    ...originalNode.props.children,
+                                                    ...(Array.isArray(toolbarExtra) ? toolbarExtra : [toolbarExtra])
+                                                ]
+                                            )
+                                        }
+                                    };
+                                }
                             } :
                             false
                     }

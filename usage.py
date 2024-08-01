@@ -6,21 +6,21 @@ app = dash.Dash(__name__)
 
 app.layout = html.Div(
     [
-        html.Div(
-            fac.AntdSpin(
-                fac.AntdAlert(
-                    type='info',
-                    showIcon=True,
-                    message='测试信息',
+        fac.AntdImage(
+            width=200,
+            src='https://gw.alipayobjects.com/zos/rmsportal/KDpgvguMpGfqaHPjicRK.svg',
+            toolbarExtra=[
+                fac.AntdIcon(
+                    icon='antd-download',
+                    className='ant-image-preview-operations-operation',
+                    style={'marginLeft': 12},
                 ),
-                manual=True,
-                percent='auto',
-                spinning=True,
-                style={
-                    'display': 'inline-block',
-                },
-            ),
-            style={'width': 400},
+                fac.AntdIcon(
+                    icon='antd-bug',
+                    className='ant-image-preview-operations-operation',
+                    style={'marginLeft': 12},
+                ),
+            ],
         )
     ],
     style={'padding': 50},
