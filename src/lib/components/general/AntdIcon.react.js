@@ -55,7 +55,8 @@ const AntdIcon = (props) => {
                         icon.startsWith('di-') ||
                         icon.startsWith('bi-') ||
                         icon.startsWith('bs-') ||
-                        icon.startsWith('gi-')
+                        icon.startsWith('gi-') ||
+                        icon.startsWith('si-')
                     ) ?
                         { ...{ verticalAlign: 'middle', userSelect: 'none' }, ...style } :
                         { ...{ userSelect: 'none' }, ...style }

@@ -5,24 +5,7 @@ import feffery_antd_components as fac
 app = dash.Dash(__name__)
 
 app.layout = html.Div(
-    [
-        fac.AntdImage(
-            width=200,
-            src='https://gw.alipayobjects.com/zos/rmsportal/KDpgvguMpGfqaHPjicRK.svg',
-            toolbarExtra=[
-                fac.AntdIcon(
-                    icon='antd-download',
-                    className='ant-image-preview-operations-operation',
-                    style={'marginLeft': 12},
-                ),
-                fac.AntdIcon(
-                    icon='antd-bug',
-                    className='ant-image-preview-operations-operation',
-                    style={'marginLeft': 12},
-                ),
-            ],
-        )
-    ],
+    [fac.AntdIcon(icon='si-gitee')],
     style={'padding': 50},
 )
 

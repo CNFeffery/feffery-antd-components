@@ -558,6 +558,7 @@ import {
     PiMinus,
     PiPath
 } from 'react-icons/pi/index.esm';
+import { SiGitee } from 'react-icons/si/index.esm'
 
 const str2Icon = new Map([
     ['md-star-half', <MdStarHalf />],
@@ -1103,7 +1104,8 @@ const str2Icon = new Map([
     ['pi-math-operations', <PiMathOperations />],
     ['pi-plus', <PiPlus />],
     ['pi-minus', <PiMinus />],
-    ['pi-path', <PiPath />]
+    ['pi-path', <PiPath />],
+    ['si-gitee', <SiGitee />]
 ])
 
 
