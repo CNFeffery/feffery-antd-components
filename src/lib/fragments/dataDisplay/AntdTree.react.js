@@ -447,12 +447,23 @@ const AntdTree = (props) => {
                                 }}>
                                 {
                                     searchKeyword ?
-                                        <Highlighter
-                                            highlightStyle={highlightStyle}
-                                            searchWords={Array.isArray(searchKeyword) ? searchKeyword : [searchKeyword]}
-                                            autoEscape
-                                            textToHighlight={nodeData.title}
-                                        /> :
+                                        (
+                                            nodeData.tooltipProps ?
+                                                <Tooltip {...nodeData.tooltipProps}>
+                                                    <Highlighter
+                                                        highlightStyle={highlightStyle}
+                                                        searchWords={Array.isArray(searchKeyword) ? searchKeyword : [searchKeyword]}
+                                                        autoEscape
+                                                        textToHighlight={nodeData.title.props.children}
+                                                    />
+                                                </Tooltip> :
+                                                <Highlighter
+                                                    highlightStyle={highlightStyle}
+                                                    searchWords={Array.isArray(searchKeyword) ? searchKeyword : [searchKeyword]}
+                                                    autoEscape
+                                                    textToHighlight={nodeData.title}
+                                                />
+                                        ) :
                                         (
                                             treeNodeKeyToTitle && treeNodeKeyToTitle[nodeData.key] ?
                                                 treeNodeKeyToTitle[nodeData.key] :
