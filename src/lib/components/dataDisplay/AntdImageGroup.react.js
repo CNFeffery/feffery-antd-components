@@ -50,6 +50,11 @@ AntdImageGroup.propTypes = {
     locale: PropTypes.oneOf(['zh-cn', 'en-us']),
 
     /**
+     * 控制图片组合内部实际展示的图片资源地址数组，顺序依次展示
+     */
+    items: PropTypes.arrayOf(PropTypes.string),
+
+    /**
      * 图片加载失败占位图资源地址
      */
     fallback: PropTypes.string,

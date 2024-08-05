@@ -27,6 +27,9 @@ Keyword arguments:
 - fallback (string; optional):
     图片加载失败占位图资源地址.
 
+- items (list of strings; optional):
+    控制图片组合内部实际展示的图片资源地址数组，顺序依次展示.
+
 - key (string; optional):
     对当前组件的`key`值进行更新，可实现强制重绘当前组件的效果.
 
@@ -67,10 +70,10 @@ Keyword arguments:
     _namespace = 'feffery_antd_components'
     _type = 'AntdImageGroup'
     @_explicitize_args
-    def __init__(self, children=None, id=Component.UNDEFINED, key=Component.UNDEFINED, style=Component.UNDEFINED, className=Component.UNDEFINED, locale=Component.UNDEFINED, fallback=Component.UNDEFINED, preview=Component.UNDEFINED, visible=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
-        self._prop_names = ['children', 'id', 'aria-*', 'className', 'data-*', 'fallback', 'key', 'loading_state', 'locale', 'preview', 'style', 'visible']
+    def __init__(self, children=None, id=Component.UNDEFINED, key=Component.UNDEFINED, style=Component.UNDEFINED, className=Component.UNDEFINED, locale=Component.UNDEFINED, items=Component.UNDEFINED, fallback=Component.UNDEFINED, preview=Component.UNDEFINED, visible=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
+        self._prop_names = ['children', 'id', 'aria-*', 'className', 'data-*', 'fallback', 'items', 'key', 'loading_state', 'locale', 'preview', 'style', 'visible']
         self._valid_wildcard_attributes =            ['data-', 'aria-']
-        self.available_properties = ['children', 'id', 'aria-*', 'className', 'data-*', 'fallback', 'key', 'loading_state', 'locale', 'preview', 'style', 'visible']
+        self.available_properties = ['children', 'id', 'aria-*', 'className', 'data-*', 'fallback', 'items', 'key', 'loading_state', 'locale', 'preview', 'style', 'visible']
         self.available_wildcard_properties =            ['data-', 'aria-']
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()

@@ -26,6 +26,7 @@ const AntdImageGroup = (props) => {
         style,
         key,
         locale,
+        items,
         fallback,
         preview,
         visible,
@@ -49,6 +50,7 @@ const AntdImageGroup = (props) => {
                         (className ? useCss(className) : undefined)
                 }
                 key={key}
+                items={items}
                 fallback={fallback || defaultFallback}
                 preview={preview}
                 visible={visible}
