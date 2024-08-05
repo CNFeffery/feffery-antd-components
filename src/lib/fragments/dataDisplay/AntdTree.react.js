@@ -90,6 +90,7 @@ const AntdTree = (props) => {
         height,
         draggable,
         dragInSameLevel,
+        dragDisabledKeys,
         enableNodeFavorites,
         favoritedKeys,
         scrollTarget,
@@ -503,7 +504,17 @@ const AntdTree = (props) => {
             }}
             showLeafIcon={false}
             // 处理树可拖拽特性
-            draggable={draggable && treeDataMode !== 'flat'}
+            draggable={
+                (draggable && treeDataMode !== 'flat') ?
+                    (node) => {
+                        // 检查当前节点是否被禁用拖拽
+                        if (dragDisabledKeys && dragDisabledKeys.includes(node.key)) {
+                            return false;
+                        }
+                        return true;
+                    } :
+                    false
+            }
             blockNode={draggable && treeDataMode !== 'flat'}
             onDrop={draggable && treeDataMode !== 'flat' ? onDrop : undefined}
             persistence={persistence}
