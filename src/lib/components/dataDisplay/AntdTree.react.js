@@ -361,6 +361,12 @@ AntdTree.propTypes = {
     dragDisabledKeys: PropTypes.arrayOf(PropTypes.string),
 
     /**
+     * 禁止进行拖拽放置的节点`key`值数组
+     * 默认值：`[]`
+     */
+    dropDisabledKeys: PropTypes.arrayOf(PropTypes.string),
+
+    /**
      * 监听最近一次被拖拽节点`key`值信息
      */
     draggedNodeKey: PropTypes.string,
@@ -529,6 +535,7 @@ AntdTree.defaultProps = {
     draggable: false,
     dragInSameLevel: false,
     dragDisabledKeys: [],
+    dropDisabledKeys: [],
     caseSensitive: true,
     highlightStyle: {
         fontWeight: 'bold',

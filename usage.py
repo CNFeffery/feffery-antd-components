@@ -69,6 +69,7 @@ app.layout = html.Div(
             defaultExpandAll=True,
             draggable=True,
             dragDisabledKeys=['节点1-1-1', '节点2'],
+            dropDisabledKeys=['根节点'],
         ),
     ],
     style=style(padding=100),

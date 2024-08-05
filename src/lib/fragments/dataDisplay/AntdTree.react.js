@@ -91,6 +91,7 @@ const AntdTree = (props) => {
         draggable,
         dragInSameLevel,
         dragDisabledKeys,
+        dropDisabledKeys,
         enableNodeFavorites,
         favoritedKeys,
         scrollTarget,
@@ -246,6 +247,12 @@ const AntdTree = (props) => {
 
     // 处理树节点拖拽事件，偏平结构模式下不可用
     const onDrop = (info) => {
+
+        // 若当前放置目标节点前后同级不允许被放置
+        if (dropDisabledKeys && dropDisabledKeys.includes(info.node.key)) {
+            // 结束拖拽计算过程
+            return
+        }
 
         // 若仅允许同级拖拽
         if (dragInSameLevel) {
