@@ -30,6 +30,7 @@ const AntdImage = (props) => {
         src,
         fallback,
         multiImageMode,
+        previewVisible,
         preview,
         toolbarExtra,
         setProps,
@@ -38,8 +39,6 @@ const AntdImage = (props) => {
 
     const context = useContext(PropsContext)
     locale = (context && context.locale) || locale
-
-    const [visible, setVisible] = useState(preview?.visible || false);
 
     // 多图片模式时
     if (Array.isArray(src)) {
@@ -61,14 +60,16 @@ const AntdImage = (props) => {
                         preview={{ visible: false }}
                         width={width}
                         height={height}
-                        src={src[0]}
+                        src={src[0]} // 取第一张图片作为触发图片
                         fallback={fallback || defaultFallback}
-                        onClick={() => setVisible(true)}
+                        onClick={() => setProps({ previewVisible: true })} // 点击触发图片进入多图浏览模式
                     />
                     <div style={{ display: 'none' }}>
-                        <Image.PreviewGroup preview={{ ...preview, visible, onVisibleChange: e => setVisible(e) }}>
+                        <Image.PreviewGroup
+                            preview={{ ...preview, visible: previewVisible, onVisibleChange: e => setProps({ previewVisible: e }) }}
+                        >
                             {src.map(
-                                src_ => <Image src={src_} fallback={fallback || defaultFallback} />
+                                item => <Image src={item} fallback={fallback || defaultFallback} />
                             )}
                         </Image.PreviewGroup>
                     </div>
@@ -87,10 +88,18 @@ const AntdImage = (props) => {
                                 className :
                                 (className ? useCss(className) : undefined)
                         }
-                        key={key}>
-                        {src.map(
-                            src_ => <Image src={src_} preview={preview} fallback={fallback || defaultFallback} width={width} height={height} />
-                        )}
+                        key={key}
+                        preview={{ ...preview, visible: previewVisible, onVisibleChange: e => setProps({ previewVisible: e }) }}
+                    >
+                        {
+                            src.map(
+                                item => <Image src={item}
+                                    fallback={fallback || defaultFallback}
+                                    width={width} // 统一宽度
+                                    height={height} // 统一高度
+                                />
+                            )
+                        }
                     </Image.PreviewGroup>
                 </ConfigProvider>
             );
@@ -117,8 +126,8 @@ const AntdImage = (props) => {
                         preview ?
                             {
                                 ...preview,
-                                visible: visible,
-                                onVisibleChange: e => setVisible(e),
+                                visible: previewVisible,
+                                onVisibleChange: e => setProps({ previewVisible: e }),
                                 toolbarRender: (originalNode) => {
                                     return {
                                         ...originalNode,

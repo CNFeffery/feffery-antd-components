@@ -85,16 +85,17 @@ AntdImage.propTypes = {
     multiImageMode: PropTypes.oneOf(['fold', 'unfold']),
 
     /**
+     * 监听或控制当前图片预览层是否处于打开状态
+     */
+    previewVisible: PropTypes.bool,
+
+    /**
      * 配置图片预览相关功能，传入`false`时会禁用预览功能
      * 默认值：`true`
      */
     preview: PropTypes.oneOfType([
         PropTypes.bool,
         PropTypes.exact({
-            /**
-             * 是否展示预览层
-             */
-            visible: PropTypes.bool,
             /**
              * 自定义预览图链接地址
              */
