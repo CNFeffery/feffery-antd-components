@@ -349,6 +349,12 @@ AntdTree.propTypes = {
     draggable: PropTypes.bool,
 
     /**
+     * 开启节点拖拽功能后，是否为节点渲染拖拽图标
+     * 默认值：`true`
+     */
+    showDragIcon: PropTypes.bool,
+
+    /**
      * 当`draggable=True`时，是否仅允许同级拖拽
      * 默认值：`false`
      */
@@ -533,6 +539,7 @@ AntdTree.defaultProps = {
     selectable: true,
     showLine: { 'showLeafIcon': false },
     draggable: false,
+    showDragIcon: true,
     dragInSameLevel: false,
     dragDisabledKeys: [],
     dropDisabledKeys: [],

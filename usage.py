@@ -70,6 +70,7 @@ app.layout = html.Div(
             draggable=True,
             dragDisabledKeys=['节点1-1-1', '节点2'],
             dropDisabledKeys=['根节点'],
+            showDragIcon=False,
         ),
     ],
     style=style(padding=100),

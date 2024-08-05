@@ -89,6 +89,7 @@ const AntdTree = (props) => {
         showIcon,
         height,
         draggable,
+        showDragIcon,
         dragInSameLevel,
         dragDisabledKeys,
         dropDisabledKeys,
@@ -513,12 +514,15 @@ const AntdTree = (props) => {
             // 处理树可拖拽特性
             draggable={
                 (draggable && treeDataMode !== 'flat') ?
-                    (node) => {
-                        // 检查当前节点是否被禁用拖拽
-                        if (dragDisabledKeys && dragDisabledKeys.includes(node.key)) {
-                            return false;
+                    {
+                        icon: showDragIcon,
+                        nodeDraggable: (node) => {
+                            // 检查当前节点是否被禁用拖拽
+                            if (dragDisabledKeys && dragDisabledKeys.includes(node.key)) {
+                                return false;
+                            }
+                            return true;
                         }
-                        return true;
                     } :
                     false
             }
