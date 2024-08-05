@@ -870,6 +870,9 @@ Keyword arguments:
     - content (a list of or a singular dash component, string or number; optional):
         组件型，当前总结栏单元格内容.
 
+    - empty (boolean; optional):
+        标记当前总结栏单元格是否用于空白占位  默认值：`False`.
+
 - summaryRowFixed (boolean | a value equal to: 'top', 'bottom'; default False):
     总结栏是否启用固定布局功能，也可设置为`'top'`、`'bottom'`控制总结栏固定在顶部或底部  默认值：`False`.
 

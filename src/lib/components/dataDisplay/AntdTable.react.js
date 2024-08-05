@@ -1137,7 +1137,12 @@ AntdTable.propTypes = {
             /**
              * 当前总结栏列对齐方式，可选项有`'left'`、`'center'`、`'right'`
              */
-            align: PropTypes.oneOf(['left', 'center', 'right'])
+            align: PropTypes.oneOf(['left', 'center', 'right']),
+            /**
+             * 标记当前总结栏单元格是否用于空白占位
+             * 默认值：`false`
+             */
+            empty: PropTypes.bool
         })
     ),
 

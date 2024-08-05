@@ -1,52 +1,44 @@
 import dash
 from dash import html
 import feffery_antd_components as fac
-from dash.dependencies import Input, Output
 from feffery_dash_utils.style_utils import style
 
 app = dash.Dash(__name__)
 
 app.layout = html.Div(
     [
-        fac.AntdSpace(
-            [
-                fac.AntdSwitch(
-                    id='toggle-preview-visible',
-                    checked=False,
-                ),
-                fac.AntdImage(
-                    id='image-demo',
-                    src=[
-                        'https://gw.alipayobjects.com/zos/antfincdn/aPkFc8Sj7n/method-draw-image.svg',
-                        'https://gw.alipayobjects.com/zos/rmsportal/KDpgvguMpGfqaHPjicRK.svg',
-                    ],
-                    height=200,
-                    multiImageMode='unfold'
-                ),
+        fac.AntdTable(
+            columns=[
+                {
+                    'title': f'字段{i}',
+                    'dataIndex': f'字段{i}',
+                    'width': '20%',
+                }
+                for i in range(1, 6)
+            ],
+            data=[
+                {
+                    f'字段{i}': '示例内容'
+                    for i in range(1, 6)
+                }
             ]
+            * 5,
+            bordered=True,
+            summaryRowContents=[
+                {'empty': True},
+                {'content': '第1列总结'},
+                {
+                    'content': '第2到4列总结',
+                    'colSpan': 3,
+                    'align': 'center',
+                },
+                {'content': '第5列总结', 'align': 'right'},
+            ],
+            rowSelectionType='checkbox',
         )
     ],
     style=style(padding=100),
 )
-
-
-@app.callback(
-    [
-        Output('toggle-preview-visible', 'checked'),
-        Output('image-demo', 'previewVisible'),
-    ],
-    [
-        Input('toggle-preview-visible', 'checked'),
-        Input('image-demo', 'previewVisible'),
-    ],
-    prevent_initial_call=True,
-)
-def demo(checked, previewVisible):
-    if dash.ctx.triggered_id == 'toggle-preview-visible':
-        return dash.no_update, checked
-
-    return previewVisible, dash.no_update
-
 
 if __name__ == '__main__':
     app.run(debug=True)

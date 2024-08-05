@@ -82,8 +82,11 @@ const splitSummaryRowContents = (summaryRowContents, columnCount) => {
     let summaryGroups = [[]];
     let currentGroupSpans = 0;
     for (let item of summaryRowContents) {
-        // 检查当前字段追加到末尾分组后，是否超出总列数
-        if (currentGroupSpans + (item.colSpan || 1) > columnCount) {
+        // 若当前字段用于充当空白占位
+        if (item.empty) {
+            summaryGroups[summaryGroups.length - 1].push(item)
+        } else if (currentGroupSpans + (item.colSpan || 1) > columnCount) {
+            // 检查当前字段追加到末尾分组后，是否超出总列数
             currentGroupSpans = (item.colSpan || 1);
             summaryGroups.push([item])
         } else {
