@@ -1,44 +1,50 @@
-import dash
-from dash import html
+from dash import Dash, html
 import feffery_antd_components as fac
-from feffery_dash_utils.style_utils import style
 
-app = dash.Dash(__name__)
+
+app = Dash(__name__)
+
 
 app.layout = html.Div(
-    [
-        fac.AntdTable(
-            columns=[
-                {
-                    'title': f'字段{i}',
-                    'dataIndex': f'字段{i}',
-                    'width': '20%',
-                }
-                for i in range(1, 6)
-            ],
-            data=[
-                {
-                    f'字段{i}': '示例内容'
-                    for i in range(1, 6)
-                }
-            ]
-            * 5,
-            bordered=True,
-            summaryRowContents=[
-                {'empty': True},
-                {'content': '第1列总结'},
-                {
-                    'content': '第2到4列总结',
-                    'colSpan': 3,
-                    'align': 'center',
+    fac.AntdTable(
+        columns=[
+            {'title': 'Name', 'dataIndex': 'name'},
+            {
+                'title': 'Count',
+                'dataIndex': 'count',
+                'group': 'Race',
+            },
+            {
+                'title': 'Percent',
+                'dataIndex': 'percent',
+                'group': 'Race',
+                'renderOptions': {
+                    'renderType': 'custom-format'
                 },
-                {'content': '第5列总结', 'align': 'right'},
-            ],
-            rowSelectionType='checkbox',
-        )
-    ],
-    style=style(padding=100),
+            },
+        ],
+        data=[
+            {'name': 'Tom', 'count': 30, 'percent': 0.25},
+            {'name': 'Jerry', 'count': 28, 'percent': 0.2},
+            {'name': 'Bruce', 'count': 50, 'percent': 0.1},
+            {'name': 'Sam', 'count': 100, 'percent': 0.3},
+        ],
+        sortOptions={
+            'sortDataIndexes': ['name', 'count', 'percent']
+        },
+        pagination={'hideOnSinglePage': True},
+        customFormatFuncs={
+            'percent': '(x) => `${(x*100).toFixed(2)}%`'
+        },
+    ),
+    style={
+        'display': 'flex',
+        'alignItems': 'center',
+        'justifyContent': 'center',
+        'padding': '20px',
+    },
 )
+
 
 if __name__ == '__main__':
     app.run(debug=True)

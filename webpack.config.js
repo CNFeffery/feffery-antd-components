@@ -80,6 +80,7 @@ module.exports = (env, argv) => {
                         path.resolve('node_modules', '@reactflow'),
                         path.resolve('node_modules', 'yjs'),
                         path.resolve('node_modules', 'parse5'),
+                        path.resolve('node_modules', '@ant-design'),
                     ],
                     use: {
                         loader: 'babel-loader',
