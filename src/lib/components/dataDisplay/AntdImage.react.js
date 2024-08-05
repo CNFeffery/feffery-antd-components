@@ -103,7 +103,7 @@ AntdImage.propTypes = {
             /**
              * 预览模式下是否可移动图片
              */
-            moveable: PropTypes.bool,
+            movable: PropTypes.bool,
             /**
              * 组件型，用于自定义缩略图遮罩元素
              */

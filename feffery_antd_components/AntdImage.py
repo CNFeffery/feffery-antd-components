@@ -69,7 +69,7 @@ Keyword arguments:
     - minScale (number; optional):
         最小缩放倍数  默认值：`1`.
 
-    - moveable (boolean; optional):
+    - movable (boolean; optional):
         预览模式下是否可移动图片.
 
     - rootClassName (string; optional):

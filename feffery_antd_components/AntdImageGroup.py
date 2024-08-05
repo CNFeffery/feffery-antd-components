@@ -57,8 +57,26 @@ Keyword arguments:
     - mask (a list of or a singular dash component, string or number; optional):
         组件型，用于自定义缩略图遮罩元素.
 
-    - visible (boolean; optional):
-        是否展示预览层.
+    - maskClassName (string; optional):
+        缩略图遮罩元素css类名.
+
+    - maxScale (number; optional):
+        最大缩放倍数  默认值：`50`.
+
+    - minScale (number; optional):
+        最小缩放倍数  默认值：`1`.
+
+    - movable (boolean; optional):
+        预览模式下是否可移动图片.
+
+    - rootClassName (string; optional):
+        缩略图根节点css类名.
+
+    - scaleStep (number; optional):
+        `1+scaleStep`值为每一步缩放的倍数  默认值：`0.5`.
+
+    - src (string; optional):
+        自定义预览图链接地址.
 
 - style (dict; optional):
     当前组件css样式.

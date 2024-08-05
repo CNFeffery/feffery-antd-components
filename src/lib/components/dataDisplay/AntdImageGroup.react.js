@@ -67,13 +67,40 @@ AntdImageGroup.propTypes = {
         PropTypes.bool,
         PropTypes.exact({
             /**
-             * 是否展示预览层
+             * 自定义预览图链接地址
              */
-            visible: PropTypes.bool,
+            src: PropTypes.string,
+            /**
+             * 预览模式下是否可移动图片
+             */
+            movable: PropTypes.bool,
             /**
              * 组件型，用于自定义缩略图遮罩元素
              */
-            mask: PropTypes.node
+            mask: PropTypes.node,
+            /**
+             * 缩略图遮罩元素css类名
+             */
+            maskClassName: PropTypes.string,
+            /**
+             * 缩略图根节点css类名
+             */
+            rootClassName: PropTypes.string,
+            /**
+             * `1+scaleStep`值为每一步缩放的倍数
+             * 默认值：`0.5`
+             */
+            scaleStep: PropTypes.number,
+            /**
+             * 最小缩放倍数
+             * 默认值：`1`
+             */
+            minScale: PropTypes.number,
+            /**
+             * 最大缩放倍数
+             * 默认值：`50`
+             */
+            maxScale: PropTypes.number
         })
     ]),
 
