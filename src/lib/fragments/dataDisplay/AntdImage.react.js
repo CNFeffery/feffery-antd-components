@@ -30,6 +30,7 @@ const AntdImage = (props) => {
         src,
         fallback,
         multiImageMode,
+        previewCurrent,
         previewVisible,
         preview,
         toolbarExtra,
@@ -66,7 +67,13 @@ const AntdImage = (props) => {
                     />
                     <div style={{ display: 'none' }}>
                         <Image.PreviewGroup
-                            preview={{ ...preview, visible: previewVisible, onVisibleChange: e => setProps({ previewVisible: e }) }}
+                            preview={{
+                                ...preview,
+                                current: previewCurrent,
+                                visible: previewVisible,
+                                onChange: (e) => setProps({ previewCurrent: e }),
+                                onVisibleChange: e => setProps({ previewVisible: e })
+                            }}
                         >
                             {src.map(
                                 item => <Image src={item} fallback={fallback || defaultFallback} />
@@ -89,7 +96,13 @@ const AntdImage = (props) => {
                                 (className ? useCss(className) : undefined)
                         }
                         key={key}
-                        preview={{ ...preview, visible: previewVisible, onVisibleChange: e => setProps({ previewVisible: e }) }}
+                        preview={{
+                            ...preview,
+                            current: previewCurrent,
+                            visible: previewVisible,
+                            onChange: (e) => setProps({ previewCurrent: e }),
+                            onVisibleChange: e => setProps({ previewVisible: e })
+                        }}
                     >
                         {
                             src.map(
@@ -126,7 +139,9 @@ const AntdImage = (props) => {
                         preview ?
                             {
                                 ...preview,
+                                current: previewCurrent,
                                 visible: previewVisible,
+                                onChange: (e) => setProps({ previewCurrent: e }),
                                 onVisibleChange: e => setProps({ previewVisible: e }),
                                 toolbarRender: (originalNode) => {
                                     return {

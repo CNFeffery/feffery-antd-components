@@ -90,6 +90,11 @@ AntdImage.propTypes = {
     previewVisible: PropTypes.bool,
 
     /**
+     * 监听或控制当前图片预览对应切换到的图片下标
+     */
+    previewCurrent: PropTypes.number,
+
+    /**
      * 配置图片预览相关功能，传入`false`时会禁用预览功能
      * 默认值：`true`
      */

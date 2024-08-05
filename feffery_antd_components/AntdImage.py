@@ -81,6 +81,9 @@ Keyword arguments:
     - src (string; optional):
         自定义预览图链接地址.
 
+- previewCurrent (number; optional):
+    监听或控制当前图片预览对应切换到的图片下标.
+
 - previewVisible (boolean; optional):
     监听或控制当前图片预览层是否处于打开状态.
 
@@ -100,10 +103,10 @@ Keyword arguments:
     _namespace = 'feffery_antd_components'
     _type = 'AntdImage'
     @_explicitize_args
-    def __init__(self, id=Component.UNDEFINED, key=Component.UNDEFINED, style=Component.UNDEFINED, className=Component.UNDEFINED, locale=Component.UNDEFINED, alt=Component.UNDEFINED, width=Component.UNDEFINED, height=Component.UNDEFINED, src=Component.UNDEFINED, fallback=Component.UNDEFINED, multiImageMode=Component.UNDEFINED, previewVisible=Component.UNDEFINED, preview=Component.UNDEFINED, toolbarExtra=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
-        self._prop_names = ['id', 'alt', 'aria-*', 'className', 'data-*', 'fallback', 'height', 'key', 'loading_state', 'locale', 'multiImageMode', 'preview', 'previewVisible', 'src', 'style', 'toolbarExtra', 'width']
+    def __init__(self, id=Component.UNDEFINED, key=Component.UNDEFINED, style=Component.UNDEFINED, className=Component.UNDEFINED, locale=Component.UNDEFINED, alt=Component.UNDEFINED, width=Component.UNDEFINED, height=Component.UNDEFINED, src=Component.UNDEFINED, fallback=Component.UNDEFINED, multiImageMode=Component.UNDEFINED, previewVisible=Component.UNDEFINED, previewCurrent=Component.UNDEFINED, preview=Component.UNDEFINED, toolbarExtra=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
+        self._prop_names = ['id', 'alt', 'aria-*', 'className', 'data-*', 'fallback', 'height', 'key', 'loading_state', 'locale', 'multiImageMode', 'preview', 'previewCurrent', 'previewVisible', 'src', 'style', 'toolbarExtra', 'width']
         self._valid_wildcard_attributes =            ['data-', 'aria-']
-        self.available_properties = ['id', 'alt', 'aria-*', 'className', 'data-*', 'fallback', 'height', 'key', 'loading_state', 'locale', 'multiImageMode', 'preview', 'previewVisible', 'src', 'style', 'toolbarExtra', 'width']
+        self.available_properties = ['id', 'alt', 'aria-*', 'className', 'data-*', 'fallback', 'height', 'key', 'loading_state', 'locale', 'multiImageMode', 'preview', 'previewCurrent', 'previewVisible', 'src', 'style', 'toolbarExtra', 'width']
         self.available_wildcard_properties =            ['data-', 'aria-']
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()
