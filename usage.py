@@ -10,14 +10,18 @@ app.layout = html.Div(
     [
         fac.AntdSpace(
             [
-                fac.AntdText(id='image-demo-current'),
-                fac.AntdImage(
-                    id='image-demo',
-                    src=[
+                fac.AntdText(id='image-group-demo-current'),
+                fac.AntdImageGroup(
+                    fac.AntdImage(
+                        src='https://gw.alipayobjects.com/zos/rmsportal/KDpgvguMpGfqaHPjicRK.svg',
+                        height=300,
+                    ),
+                    id='image-group-demo',
+                    items=[
                         'https://gw.alipayobjects.com/zos/rmsportal/KDpgvguMpGfqaHPjicRK.svg',
                         'https://gw.alipayobjects.com/zos/antfincdn/aPkFc8Sj7n/method-draw-image.svg',
                     ],
-                    previewCurrent=1,
+                    current=1,
                 ),
             ],
             direction='vertical',
@@ -28,11 +32,11 @@ app.layout = html.Div(
 
 
 @app.callback(
-    Output('image-demo-current', 'children'),
-    Input('image-demo', 'previewCurrent'),
+    Output('image-group-demo-current', 'children'),
+    Input('image-group-demo', 'current'),
 )
-def show_preview_current(previewCurrent):
-    return f'previewCurrent: {previewCurrent}'
+def show_preview_current(current):
+    return f'current: {current}'
 
 
 if __name__ == '__main__':

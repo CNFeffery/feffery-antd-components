@@ -110,6 +110,11 @@ AntdImageGroup.propTypes = {
     visible: PropTypes.bool,
 
     /**
+     * 监听或控制当前图片预览对应切换到的图片下标
+     */
+    current: PropTypes.number,
+
+    /**
      * `data-*`格式属性通配
      */
     'data-*': PropTypes.string,

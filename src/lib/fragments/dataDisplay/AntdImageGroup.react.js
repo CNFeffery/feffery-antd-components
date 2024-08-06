@@ -30,6 +30,7 @@ const AntdImageGroup = (props) => {
         fallback,
         preview,
         visible,
+        current,
         setProps,
         loading_state
     } = props;
@@ -52,9 +53,13 @@ const AntdImageGroup = (props) => {
                 key={key}
                 items={items}
                 fallback={fallback || defaultFallback}
-                preview={preview}
-                visible={visible}
-                onVisibleChange={(e) => setProps({ visible: e })}
+                preview={{
+                    ...preview,
+                    visible: visible,
+                    current: current,
+                    onChange: (e) => setProps({ current: e }),
+                    onVisibleChange: (e) => setProps({ visible: e })
+                }}
             >
                 {children}
             </Image.PreviewGroup>

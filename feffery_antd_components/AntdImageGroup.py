@@ -21,6 +21,9 @@ Keyword arguments:
 - className (string | dict; optional):
     当前组件css类名，支持[动态css](/advanced-classname).
 
+- current (number; optional):
+    监听或控制当前图片预览对应切换到的图片下标.
+
 - data-* (string; optional):
     `data-*`格式属性通配.
 
@@ -88,10 +91,10 @@ Keyword arguments:
     _namespace = 'feffery_antd_components'
     _type = 'AntdImageGroup'
     @_explicitize_args
-    def __init__(self, children=None, id=Component.UNDEFINED, key=Component.UNDEFINED, style=Component.UNDEFINED, className=Component.UNDEFINED, locale=Component.UNDEFINED, items=Component.UNDEFINED, fallback=Component.UNDEFINED, preview=Component.UNDEFINED, visible=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
-        self._prop_names = ['children', 'id', 'aria-*', 'className', 'data-*', 'fallback', 'items', 'key', 'loading_state', 'locale', 'preview', 'style', 'visible']
+    def __init__(self, children=None, id=Component.UNDEFINED, key=Component.UNDEFINED, style=Component.UNDEFINED, className=Component.UNDEFINED, locale=Component.UNDEFINED, items=Component.UNDEFINED, fallback=Component.UNDEFINED, preview=Component.UNDEFINED, visible=Component.UNDEFINED, current=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
+        self._prop_names = ['children', 'id', 'aria-*', 'className', 'current', 'data-*', 'fallback', 'items', 'key', 'loading_state', 'locale', 'preview', 'style', 'visible']
         self._valid_wildcard_attributes =            ['data-', 'aria-']
-        self.available_properties = ['children', 'id', 'aria-*', 'className', 'data-*', 'fallback', 'items', 'key', 'loading_state', 'locale', 'preview', 'style', 'visible']
+        self.available_properties = ['children', 'id', 'aria-*', 'className', 'current', 'data-*', 'fallback', 'items', 'key', 'loading_state', 'locale', 'preview', 'style', 'visible']
         self.available_wildcard_properties =            ['data-', 'aria-']
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()
