@@ -960,6 +960,18 @@ AntdTable.propTypes = {
     }),
 
     /**
+     * 针对可排序字段是否在鼠标移入表头后展示额外信息提示
+     * 默认值：`true`
+     */
+    showSorterTooltip: PropTypes.bool,
+
+    /**
+     * 控制可排序字段表头额外信息提示的鼠标移入触发目标，可选项有`'full-header'`、`'sorter-icon'`
+     * 默认值：`'full-header'`
+     */
+    showSorterTooltipTarget: PropTypes.oneOf(['full-header', 'sorter-icon']),
+
+    /**
      * 配置表格字段筛选相关功能
      */
     filterOptions: PropTypes.objectOf(
@@ -1564,6 +1576,8 @@ AntdTable.defaultProps = {
     bordered: false,
     // 进阶通用参数
     sortOptions: {},
+    showSorterTooltip: true,
+    showSorterTooltipTarget: 'full-header',
     filterOptions: {},
     defaultFilteredValues: {},
     mode: 'client-side',

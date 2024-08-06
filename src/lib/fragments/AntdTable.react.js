@@ -354,6 +354,8 @@ class AntdTable extends Component {
             enableHoverListen,
             data,
             sortOptions,
+            showSorterTooltip,
+            showSorterTooltipTarget,
             filterOptions,
             defaultFilteredValues,
             pagination,
@@ -2087,6 +2089,7 @@ class AntdTable extends Component {
                                     document.body
                             ) :
                             undefined}
+                    showSorterTooltip={showSorterTooltip && showSorterTooltipTarget ? { target: showSorterTooltipTarget } : showSorterTooltip}
                 />
             </ConfigProvider>
         );

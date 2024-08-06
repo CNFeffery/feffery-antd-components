@@ -1,6 +1,6 @@
+import random
 from dash import Dash, html
 import feffery_antd_components as fac
-from dash.dependencies import Input, Output
 
 
 app = Dash(__name__)
@@ -8,36 +8,37 @@ app = Dash(__name__)
 
 app.layout = html.Div(
     [
-        fac.AntdSpace(
-            [
-                fac.AntdText(id='image-group-demo-current'),
-                fac.AntdImageGroup(
-                    fac.AntdImage(
-                        src='https://gw.alipayobjects.com/zos/rmsportal/KDpgvguMpGfqaHPjicRK.svg',
-                        height=300,
-                    ),
-                    id='image-group-demo',
-                    items=[
-                        'https://gw.alipayobjects.com/zos/rmsportal/KDpgvguMpGfqaHPjicRK.svg',
-                        'https://gw.alipayobjects.com/zos/antfincdn/aPkFc8Sj7n/method-draw-image.svg',
-                    ],
-                    current=1,
-                ),
+        fac.AntdTable(
+            columns=[
+                {
+                    'title': f'字段{i}',
+                    'dataIndex': f'字段{i}',
+                    'width': '20%',
+                }
+                for i in range(1, 6)
             ],
-            direction='vertical',
+            data=[
+                {
+                    f'字段{j}': random.randint(1, 4)
+                    for j in range(1, 6)
+                }
+                for i in range(10)
+            ],
+            bordered=True,
+            sortOptions={
+                'sortDataIndexes': [
+                    '字段1',
+                    '字段2',
+                    '字段4',
+                    '字段5',
+                ],
+                'multiple': True,
+            },
+            showSorterTooltipTarget='sorter-icon',
         )
     ],
     style={'padding': 100},
 )
-
-
-@app.callback(
-    Output('image-group-demo-current', 'children'),
-    Input('image-group-demo', 'current'),
-)
-def show_preview_current(current):
-    return f'current: {current}'
-
 
 if __name__ == '__main__':
     app.run(debug=True)
