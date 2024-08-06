@@ -53,10 +53,10 @@ const AntdTour = (props) => {
                             ...item,
                             target: (
                                 item.targetId ?
-                                    document.getElementById(item.targetId) :
+                                    () => document.getElementById(item.targetId) :
                                     (
                                         item.targetSelector ?
-                                            document.querySelector(item.targetSelector) :
+                                            () => document.querySelector(item.targetSelector) :
                                             null
                                     )
                             )
@@ -149,12 +149,7 @@ AntdTour.propTypes = {
              */
             description: PropTypes.node,
             /**
-             * 设置当前引导步骤弹框相对目标元素的位置
-             * 可选的有'center'、'left'、'leftTop'、'leftBottom'、'right'、'rightTop'、'rightBottom'
-             * 、'top'、'topLeft'、'topRight'、'bottom'、'bottomLeft'、'bottomRight'
-             */
-            /**
-             * 当前步骤弹框展开方向，可选项有`'center'`、`'left'`、`'leftTop'`、`'leftBottom'`、`'right'`、`'rightTop'`、`'rightBottom'`、`'top'`、`'topLeft'`、`'topRight'`、`'bottom'`、`'bottomLeft'`、`'bottomRight'`
+             * 当前引导步骤弹框相对目标元素的位置，可选项有`'center'`、`'left'`、`'leftTop'`、`'leftBottom'`、`'right'`、`'rightTop'`、`'rightBottom'`、`'top'`、`'topLeft'`、`'topRight'`、`'bottom'`、`'bottomLeft'`、`'bottomRight'`
              */
             placement: PropTypes.oneOf([
                 'center', 'left', 'leftTop', 'leftBottom', 'right', 'rightTop', 'rightBottom', 'top', 'topLeft', 'topRight', 'bottom', 'bottomLeft', 'bottomRight'
@@ -191,7 +186,7 @@ AntdTour.propTypes = {
                 children: PropTypes.node
             }),
             /**
-             * 配置当前步骤下一步按钮
+             * 配置当前步骤上一步按钮
              */
             prevButtonProps: PropTypes.exact({
                 /**
@@ -235,7 +230,6 @@ AntdTour.propTypes = {
              * 蒙版层css样式
              */
             style: PropTypes.object,
-
             /**
              * 蒙版层颜色
              */
