@@ -72,6 +72,30 @@ AntdCalendar.propTypes = {
     defaultValue: PropTypes.string,
 
     /**
+     * 自定义对应月份、日期的单元格显示内容
+     */
+    customCells: PropTypes.arrayOf(
+        PropTypes.exact({
+            /**
+             * 必填，当前项对应类型，可选项有`'month'`、`'date'`
+             */
+            type: PropTypes.oneOf(['month', 'date']).isRequired,
+            /**
+             * 当前项匹配的月份值
+             */
+            month: PropTypes.number,
+            /**
+             * 当前项匹配的日期值
+             */
+            date: PropTypes.number,
+            /**
+             * 自定义内容
+             */
+            content: PropTypes.node
+        })
+    ),
+
+    /**
      * `data-*`格式属性通配
      */
     'data-*': PropTypes.string,

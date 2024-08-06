@@ -7,92 +7,33 @@ app = Dash(__name__)
 
 app.layout = html.Div(
     [
-        fac.AntdTour(
-            steps=[
+        fac.AntdCalendar(
+            size='large',
+            customCells=[
                 {
-                    'targetId': 'step1',
-                    'placement': 'right',
-                    'title': '第一步',
-                    'description': '这是第一步',
+                    'type': 'date',
+                    'month': 8,
+                    'date': 1,
+                    'content': fac.AntdTag(
+                        content='建军节', color='red'
+                    ),
                 },
                 {
-                    'targetId': 'step2',
-                    'placement': 'left',
-                    'title': '第二步',
-                    'description': '这是第二步',
+                    'type': 'month',
+                    'month': 7,
+                    'content': fac.AntdTag(
+                        content='暑假', color='red'
+                    ),
                 },
                 {
-                    'targetId': 'step3',
-                    'placement': 'right',
-                    'title': '第三步',
-                    'description': '这是第三步',
-                },
-                {
-                    'targetId': 'step4',
-                    'placement': 'left',
-                    'title': '第四步',
-                    'description': '这是第四步',
-                },
-                {
-                    'targetId': 'step5',
-                    'placement': 'top',
-                    'title': '第五步',
-                    'description': '这是第五步',
+                    'type': 'month',
+                    'month': 8,
+                    'content': fac.AntdTag(
+                        content='暑假', color='red'
+                    ),
                 },
             ],
-            open=True,
-            type='primary',
-        ),
-        fac.Fragment(
-            [
-                fac.AntdButton(
-                    '按钮1',
-                    id='step1',
-                    style={
-                        'position': 'fixed',
-                        'left': 50,
-                        'top': 50,
-                    },
-                ),
-                fac.AntdButton(
-                    '按钮2',
-                    id='step2',
-                    style={
-                        'position': 'fixed',
-                        'right': 50,
-                        'top': 50,
-                    },
-                ),
-                fac.AntdButton(
-                    '按钮3',
-                    id='step3',
-                    style={
-                        'position': 'fixed',
-                        'left': 50,
-                        'bottom': 50,
-                    },
-                ),
-                fac.AntdButton(
-                    '按钮4',
-                    id='step4',
-                    style={
-                        'position': 'fixed',
-                        'right': 50,
-                        'bottom': 50,
-                    },
-                ),
-                fac.AntdButton(
-                    '按钮5',
-                    id='step5',
-                    style={
-                        'position': 'fixed',
-                        'left': '50%',
-                        'top': '50%',
-                        'transform': 'translate(-50%, -50%)',
-                    },
-                ),
-            ]
-        ),
+        )
     ],
     style={'padding': 100},
 )
