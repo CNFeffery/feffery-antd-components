@@ -67,8 +67,8 @@ Keyword arguments:
 - message (string; optional):
     通知提醒主要信息.
 
-- placement (a value equal to: 'topLeft', 'topRight', 'bottomLeft', 'bottomRight'; default 'topRight'):
-    通知提醒框在屏幕中的弹出位置，可选项有`'topLeft'`、`'topRight'`、`'bottomLeft'`、`'bottomRight'`
+- placement (a value equal to: 'top', 'bottom', 'topLeft', 'topRight', 'bottomLeft', 'bottomRight'; default 'topRight'):
+    通知提醒框在屏幕中的弹出位置，可选项有`'top'`、`'bottom'`、`'topLeft'`、`'topRight'`、`'bottomLeft'`、`'bottomRight'`
     默认值：`'topRight'`.
 
 - style (dict; optional):

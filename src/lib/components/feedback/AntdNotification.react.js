@@ -134,10 +134,10 @@ AntdNotification.propTypes = {
     type: PropTypes.oneOf(['default', 'success', 'error', 'info', 'warning']),
 
     /**
-     * 通知提醒框在屏幕中的弹出位置，可选项有`'topLeft'`、`'topRight'`、`'bottomLeft'`、`'bottomRight'`
+     * 通知提醒框在屏幕中的弹出位置，可选项有`'top'`、`'bottom'`、`'topLeft'`、`'topRight'`、`'bottomLeft'`、`'bottomRight'`
      * 默认值：`'topRight'`
      */
-    placement: PropTypes.oneOf(['topLeft', 'topRight', 'bottomLeft', 'bottomRight']),
+    placement: PropTypes.oneOf(['top', 'bottom', 'topLeft', 'topRight', 'bottomLeft', 'bottomRight']),
 
     /**
      * 当通知从顶部弹出时，设置距离顶部的像素距离
