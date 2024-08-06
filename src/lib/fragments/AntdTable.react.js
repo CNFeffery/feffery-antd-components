@@ -1980,8 +1980,6 @@ class AntdTable extends Component {
             tempColumns = [...columns]
         }
 
-        console.log('tempColumns: ', tempColumns)
-
         return (
             <ConfigProvider
                 locale={str2Locale.get(locale)}
