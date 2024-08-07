@@ -1,6 +1,6 @@
-from dash import Dash, html, no_update, ctx
-from dash.dependencies import Input, Output, ALL
+from dash import Dash, html
 import feffery_antd_components as fac
+from dash.dependencies import Input, Output
 
 
 app = Dash(__name__)
@@ -10,94 +10,32 @@ app.layout = html.Div(
     [
         fac.AntdSpace(
             [
-                fac.AntdButton(
-                    'top',
-                    id={
-                        'type': 'placement-trigger-notification',
-                        'index': 'top',
-                    },
-                    type='primary',
-                ),
-                fac.AntdButton(
-                    'bottom',
-                    id={
-                        'type': 'placement-trigger-notification',
-                        'index': 'bottom',
-                    },
-                    type='primary',
-                ),
-            ],
-        ),
-        fac.AntdDivider(),
-        fac.AntdSpace(
-            [
-                fac.AntdButton(
-                    'topLeft',
-                    id={
-                        'type': 'placement-trigger-notification',
-                        'index': 'topLeft',
-                    },
-                    type='primary',
-                ),
-                fac.AntdButton(
-                    'topRight',
-                    id={
-                        'type': 'placement-trigger-notification',
-                        'index': 'topRight',
-                    },
-                    type='primary',
+                fac.AntdText(id='image-demo-current'),
+                fac.AntdImage(
+                    id='image-demo',
+                    src=[
+                        'https://gw.alipayobjects.com/zos/rmsportal/KDpgvguMpGfqaHPjicRK.svg',
+                        'https://gw.alipayobjects.com/zos/antfincdn/aPkFc8Sj7n/method-draw-image.svg',
+                    ],
+                    multiImageMode='unfold',
+                    height=300,
+                    toolbarExtra=[
+                        fac.AntdIcon(
+                            icon='antd-download',
+                            className='ant-image-preview-operations-operation',
+                            style={
+                                'margin-inline-start': 12
+                            },
+                        )
+                    ],
+                    previewVisible=True,
                 ),
             ],
-        ),
-        fac.AntdDivider(),
-        fac.AntdSpace(
-            [
-                fac.AntdButton(
-                    'bottomLeft',
-                    id={
-                        'type': 'placement-trigger-notification',
-                        'index': 'bottomLeft',
-                    },
-                    type='primary',
-                ),
-                fac.AntdButton(
-                    'bottomRight',
-                    id={
-                        'type': 'placement-trigger-notification',
-                        'index': 'bottomRight',
-                    },
-                    type='primary',
-                ),
-            ],
-        ),
-        html.Div(id='notification-placement-demo'),
+            direction='vertical',
+        )
     ],
     style={'padding': 100},
 )
-
-
-@app.callback(
-    Output('notification-placement-demo', 'children'),
-    Input(
-        {
-            'type': 'placement-trigger-notification',
-            'index': ALL,
-        },
-        'nClicks',
-    ),
-    prevent_initial_call=True,
-)
-def notification_placement_demo(nClicks):
-    triggered_index = ctx.triggered_id.index
-    if nClicks:
-        return fac.AntdNotification(
-            message=f'{triggered_index.capitalize()} notification',
-            description=f'This is the content of the {triggered_index} notification. '
-            * 3,
-            placement=triggered_index,
-        )
-
-    return no_update
 
 
 if __name__ == '__main__':

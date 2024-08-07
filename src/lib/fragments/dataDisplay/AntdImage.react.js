@@ -72,7 +72,22 @@ const AntdImage = (props) => {
                                 current: previewCurrent,
                                 visible: previewVisible,
                                 onChange: (e) => setProps({ previewCurrent: e }),
-                                onVisibleChange: e => setProps({ previewVisible: e })
+                                onVisibleChange: e => setProps({ previewVisible: e }),
+                                toolbarRender: (originalNode) => {
+                                    return {
+                                        ...originalNode,
+                                        props: {
+                                            ...originalNode.props,
+                                            children: (
+                                                toolbarExtra &&
+                                                [
+                                                    ...originalNode.props.children,
+                                                    ...(Array.isArray(toolbarExtra) ? toolbarExtra : [toolbarExtra])
+                                                ]
+                                            )
+                                        }
+                                    };
+                                }
                             }}
                         >
                             {src.map(
@@ -101,7 +116,22 @@ const AntdImage = (props) => {
                             current: previewCurrent,
                             visible: previewVisible,
                             onChange: (e) => setProps({ previewCurrent: e }),
-                            onVisibleChange: e => setProps({ previewVisible: e })
+                            onVisibleChange: e => setProps({ previewVisible: e }),
+                            toolbarRender: (originalNode) => {
+                                return {
+                                    ...originalNode,
+                                    props: {
+                                        ...originalNode.props,
+                                        children: (
+                                            toolbarExtra &&
+                                            [
+                                                ...originalNode.props.children,
+                                                ...(Array.isArray(toolbarExtra) ? toolbarExtra : [toolbarExtra])
+                                            ]
+                                        )
+                                    }
+                                };
+                            }
                         }}
                     >
                         {
