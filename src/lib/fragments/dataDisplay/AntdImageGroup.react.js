@@ -31,6 +31,7 @@ const AntdImageGroup = (props) => {
         preview,
         visible,
         current,
+        toolbarExtra,
         setProps,
         loading_state
     } = props;
@@ -58,7 +59,22 @@ const AntdImageGroup = (props) => {
                     visible: visible,
                     current: current,
                     onChange: (e) => setProps({ current: e }),
-                    onVisibleChange: (e) => setProps({ visible: e })
+                    onVisibleChange: (e) => setProps({ visible: e }),
+                    toolbarRender: (originalNode) => {
+                        return {
+                            ...originalNode,
+                            props: {
+                                ...originalNode.props,
+                                children: (
+                                    toolbarExtra &&
+                                    [
+                                        ...originalNode.props.children,
+                                        ...(Array.isArray(toolbarExtra) ? toolbarExtra : [toolbarExtra])
+                                    ]
+                                )
+                            }
+                        };
+                    }
                 }}
             >
                 {children}

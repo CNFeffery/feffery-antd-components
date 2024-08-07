@@ -115,6 +115,11 @@ AntdImageGroup.propTypes = {
     current: PropTypes.number,
 
     /**
+     * 针对预览模式下的工具栏，末尾扩充自定义工具图标元素
+     */
+    toolbarExtra: PropTypes.node,
+
+    /**
      * `data-*`格式属性通配
      */
     'data-*': PropTypes.string,
