@@ -78,17 +78,23 @@ const insertNewColumnNode = (column, group, currentLevel, currentNode) => {
     }
 }
 
-const splitSummaryRowContents = (summaryRowContents, columnCount) => {
-    let summaryGroups = [[]];
+const splitSummaryRowContents = (summaryRowContents, columnCount, blankColumns) => {
+    let summaryGroups = (
+        blankColumns > 0 ?
+            [Array.from({ length: blankColumns }, () => ({ empty: true }))] :
+            [[]]
+    );
     let currentGroupSpans = 0;
     for (let item of summaryRowContents) {
-        // 若当前字段用于充当空白占位
-        if (item.empty) {
-            summaryGroups[summaryGroups.length - 1].push(item)
-        } else if (currentGroupSpans + (item.colSpan || 1) > columnCount) {
-            // 检查当前字段追加到末尾分组后，是否超出总列数
+        // 检查当前字段追加到末尾分组后，是否超出总列数
+        if (currentGroupSpans + (item.colSpan || 1) > columnCount) {
             currentGroupSpans = (item.colSpan || 1);
-            summaryGroups.push([item])
+            // 处理前置空白列填充
+            if (blankColumns > 0) {
+                summaryGroups.push([...Array.from({ length: 3 }, () => ({ empty: true })), item])
+            } else {
+                summaryGroups.push([item])
+            }
         } else {
             currentGroupSpans += (item.colSpan || 1)
             summaryGroups[summaryGroups.length - 1].push(item)
@@ -367,6 +373,7 @@ class AntdTable extends Component {
             nClicksButton,
             nDoubleClicksCell,
             summaryRowContents,
+            summaryRowBlankColumns,
             summaryRowFixed,
             customFormatFuncs,
             conditionalStyleFuncs,
@@ -2037,13 +2044,21 @@ class AntdTable extends Component {
                     summary={summaryRowContents ? () => (
                         <Table.Summary fixed={summaryRowFixed}>
                             {
-                                splitSummaryRowContents(summaryRowContents, tempColumns.length).map(
+                                splitSummaryRowContents(summaryRowContents, tempColumns.length, summaryRowBlankColumns).map(
                                     (group, idx) => (
                                         <Table.Summary.Row key={idx}>
                                             {group.map((item, i) =>
-                                                <Table.Summary.Cell index={i} colSpan={item.colSpan} align={item.align}>
-                                                    {item.content}
-                                                </Table.Summary.Cell>
+                                            (
+                                                item.empty ?
+                                                    (
+                                                        <Table.Summary.Cell index={i} />
+                                                    ) :
+                                                    (
+                                                        <Table.Summary.Cell index={i} colSpan={item.colSpan} align={item.align}>
+                                                            {item.content}
+                                                        </Table.Summary.Cell>
+                                                    )
+                                            )
                                             )}
                                         </Table.Summary.Row>
                                     )
