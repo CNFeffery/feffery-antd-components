@@ -115,6 +115,12 @@ AntdImageGroup.propTypes = {
     current: PropTypes.number,
 
     /**
+     * 是否关闭基于`current`的当前图片下标受控功能
+     * 默认值：`true`
+     */
+    disableCurrent: PropTypes.bool,
+
+    /**
      * 针对预览模式下的工具栏，末尾扩充自定义工具图标元素
      */
     toolbarExtra: PropTypes.node,
@@ -154,7 +160,8 @@ AntdImageGroup.propTypes = {
 // 设置默认参数
 AntdImageGroup.defaultProps = {
     preview: true,
-    locale: 'zh-cn'
+    locale: 'zh-cn',
+    disableCurrent: true
 }
 
 export default AntdImageGroup;

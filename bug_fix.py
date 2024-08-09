@@ -6,27 +6,41 @@ app = dash.Dash(__name__)
 
 app.layout = html.Div(
     [
-        fac.AntdSpace(
-            [
-                fac.AntdDatePicker(
-                    placeholder='请选择日期时间',
-                    showTime={'defaultValue': '18:33:33'},
-                ),
-                fac.AntdDateRangePicker(
-                    placeholder=[
-                        '开始日期时间',
-                        '结束日期时间',
-                    ],
-                    showTime={
-                        'defaultValue': [
-                            '08:30:00',
-                            '17:30:00',
+        fac.AntdImageGroup(
+            fac.AntdSpace(
+                [
+                    fac.AntdSpace(
+                        [
+                            fac.AntdImage(
+                                src=f'/assets/示例图片{i}.png',
+                                height=100,
+                            )
+                            for i in range(2, 5)
                         ]
-                    },
-                    needConfirm=True,
-                ),
-            ]
-        ),
+                    ),
+                    fac.AntdSpace(
+                        [
+                            fac.AntdImage(
+                                src=f'/assets/示例图片{i}.png',
+                                height=100,
+                            )
+                            for i in range(5, 7)
+                        ]
+                    ),
+                    fac.AntdSpace(
+                        [
+                            fac.AntdImage(
+                                src=f'/assets/示例图片{i}.png',
+                                height=100,
+                            )
+                            for i in range(7, 9)
+                        ]
+                    ),
+                ],
+                direction='vertical',
+                style={'width': '100%'},
+            )
+        )
     ],
     style={'padding': 50},
 )

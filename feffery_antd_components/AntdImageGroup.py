@@ -27,6 +27,9 @@ Keyword arguments:
 - data-* (string; optional):
     `data-*`格式属性通配.
 
+- disableCurrent (boolean; default True):
+    是否关闭基于`current`的当前图片下标受控功能  默认值：`True`.
+
 - fallback (string; optional):
     图片加载失败占位图资源地址.
 
@@ -94,10 +97,10 @@ Keyword arguments:
     _namespace = 'feffery_antd_components'
     _type = 'AntdImageGroup'
     @_explicitize_args
-    def __init__(self, children=None, id=Component.UNDEFINED, key=Component.UNDEFINED, style=Component.UNDEFINED, className=Component.UNDEFINED, locale=Component.UNDEFINED, items=Component.UNDEFINED, fallback=Component.UNDEFINED, preview=Component.UNDEFINED, visible=Component.UNDEFINED, current=Component.UNDEFINED, toolbarExtra=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
-        self._prop_names = ['children', 'id', 'aria-*', 'className', 'current', 'data-*', 'fallback', 'items', 'key', 'loading_state', 'locale', 'preview', 'style', 'toolbarExtra', 'visible']
+    def __init__(self, children=None, id=Component.UNDEFINED, key=Component.UNDEFINED, style=Component.UNDEFINED, className=Component.UNDEFINED, locale=Component.UNDEFINED, items=Component.UNDEFINED, fallback=Component.UNDEFINED, preview=Component.UNDEFINED, visible=Component.UNDEFINED, current=Component.UNDEFINED, disableCurrent=Component.UNDEFINED, toolbarExtra=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
+        self._prop_names = ['children', 'id', 'aria-*', 'className', 'current', 'data-*', 'disableCurrent', 'fallback', 'items', 'key', 'loading_state', 'locale', 'preview', 'style', 'toolbarExtra', 'visible']
         self._valid_wildcard_attributes =            ['data-', 'aria-']
-        self.available_properties = ['children', 'id', 'aria-*', 'className', 'current', 'data-*', 'fallback', 'items', 'key', 'loading_state', 'locale', 'preview', 'style', 'toolbarExtra', 'visible']
+        self.available_properties = ['children', 'id', 'aria-*', 'className', 'current', 'data-*', 'disableCurrent', 'fallback', 'items', 'key', 'loading_state', 'locale', 'preview', 'style', 'toolbarExtra', 'visible']
         self.available_wildcard_properties =            ['data-', 'aria-']
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()

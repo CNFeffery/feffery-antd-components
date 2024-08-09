@@ -31,6 +31,7 @@ const AntdImageGroup = (props) => {
         preview,
         visible,
         current,
+        disableCurrent,
         toolbarExtra,
         setProps,
         loading_state
@@ -57,7 +58,7 @@ const AntdImageGroup = (props) => {
                 preview={{
                     ...preview,
                     visible: visible,
-                    current: current,
+                    current: disableCurrent ? undefined : current,
                     onChange: (e) => setProps({ current: e }),
                     onVisibleChange: (e) => setProps({ visible: e }),
                     toolbarRender: (originalNode) => {
