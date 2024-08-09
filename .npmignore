@@ -39,3 +39,5 @@ FefferyAntdComponents.jl
 .Rbuildignore
 
 /assets
+
+/feffery_antd_components/*.map

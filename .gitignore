@@ -6,6 +6,7 @@
 /dist
 /feffery_antd_components/*.json
 /feffery_antd_components/*.js
+/feffery_antd_components/*.map
 /feffery_antd_components/__pycache__
 /feffery_antd_components.egg-info
 /inst
