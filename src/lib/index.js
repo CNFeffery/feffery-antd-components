@@ -109,7 +109,7 @@ import AntdBackTop from './components/other/AntdBackTop.react';
 import AntdCopyText from './components/other/AntdCopyText.react';
 import AntdTour from './components/other/AntdTour.react';
 import AntdWatermark from './components/other/AntdWatermark.react';
-import AntdConfigProvider from './components/other/AntdConfigProvider';
+import AntdConfigProvider from './components/other/AntdConfigProvider.react';
 import Fragment from './components/other/Fragment.react';
 // 复杂交互
 import AntdDraggablePanel from './components/proEditor/AntdDraggablePanel.react';
