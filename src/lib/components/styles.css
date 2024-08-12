@@ -162,15 +162,6 @@ body {
     height: inherit;
 }
 
-/* 矫正AntdSpin开启percent效果后的指示器位置 */
-.ant-spin-dot-progress {
-    position: absolute;
-    top: 50%;
-    left: 50% !important;
-    transform: translate(-50%, -50%) !important;
-    inset-inline-start: unset !important;
-}
-
 /* 为AntdButton内嵌元素设置间距 */
 .ant-btn>*:not(:last-child) {
     margin-right: 0.25em;
