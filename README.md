@@ -1,6 +1,3 @@
-> [!IMPORTANT]  
-> `0.3.x`[新版文档网站预览版](https://fac-next.feffery.tech/)正在快速更新建设中，欢迎[参与官网建设](https://github.com/CNFeffery/feffery-antd-docs/issues/9)
-
 <p align="center">
 	<img src="./fac-logo.svg" height=300></img>
 </p>
@@ -18,7 +15,7 @@
 
 简体中文 | [English](./README-en_US.md)
 
-`feffery-components`计划子项目，`Plotly Dash`第三方组件库，基于`Antd`，将超多具有丰富功能的通用网页常用交互组件引入`Dash`的生态中 🥳，最新稳定版本：`0.2.11`
+`feffery-components`计划子项目，`Plotly Dash`第三方组件库，基于`Antd`，将超多具有丰富功能的通用网页常用交互组件引入`Dash`的生态中 🥳，最新稳定版本：`0.3.0`
 
 ## 1 最新版本安装方式
 
