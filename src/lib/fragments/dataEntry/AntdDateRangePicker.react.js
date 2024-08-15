@@ -6,6 +6,8 @@ import { DatePicker, ConfigProvider } from 'antd';
 import dayjs from 'dayjs';
 import isoWeek from 'dayjs/plugin/isoWeek';
 import advancedFormat from 'dayjs/plugin/advancedFormat';
+import isSameOrAfter from 'dayjs/plugin/isSameOrAfter';
+import isSameOrBefore from 'dayjs/plugin/isSameOrBefore';
 import 'dayjs/locale/zh-cn';
 import { isString, isUndefined, isObject } from 'lodash';
 import { pickBy } from 'ramda';
@@ -25,6 +27,8 @@ const { RangePicker } = DatePicker;
 // 调用dayjs额外插件模块
 dayjs.extend(isoWeek)
 dayjs.extend(advancedFormat)
+dayjs.extend(isSameOrAfter)
+dayjs.extend(isSameOrBefore)
 
 /**
  * 日期范围选择组件AntdDateRangePicker
