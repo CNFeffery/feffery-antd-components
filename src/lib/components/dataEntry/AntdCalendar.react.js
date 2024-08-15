@@ -96,6 +96,20 @@ AntdCalendar.propTypes = {
     ),
 
     /**
+     * 监听日期单元格点击事件
+     */
+    cellClickEvent: PropTypes.exact({
+        /**
+         * 记录面板类型
+         */
+        type: PropTypes.string,
+        /**
+         * 事件发生时间戳
+         */
+        timestamp: PropTypes.number
+    }),
+
+    /**
      * `data-*`格式属性通配
      */
     'data-*': PropTypes.string,

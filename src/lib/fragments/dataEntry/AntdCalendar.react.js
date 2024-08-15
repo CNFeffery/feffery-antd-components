@@ -70,14 +70,18 @@ const AntdCalendar = (props) => {
         }
     }, [])
 
-    const onSelect = e => {
+    const onSelect = (e, { source }) => {
         // AntdForm表单批量控制
         if (formId && (name || id)) {
             // 表单值更新
             updateItemValue(formId, name || id, e.format(format))
         }
         setProps({
-            value: e.format(format)
+            value: e.format(format),
+            cellClickEvent: {
+                type: source,
+                timestamp: new Date().getTime()
+            }
         })
     };
 

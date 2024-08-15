@@ -15,6 +15,17 @@ Keyword arguments:
 - aria-* (string; optional):
     `aria-*`格式属性通配.
 
+- cellClickEvent (dict; optional):
+    监听日期单元格点击事件.
+
+    `cellClickEvent` is a dict with keys:
+
+    - timestamp (number; optional):
+        事件发生时间戳.
+
+    - type (string; optional):
+        记录面板类型.
+
 - className (string | dict; optional):
     当前组件css类名，支持[动态css](/advanced-classname).
 
@@ -90,10 +101,10 @@ Keyword arguments:
     _namespace = 'feffery_antd_components'
     _type = 'AntdCalendar'
     @_explicitize_args
-    def __init__(self, id=Component.UNDEFINED, key=Component.UNDEFINED, style=Component.UNDEFINED, className=Component.UNDEFINED, name=Component.UNDEFINED, locale=Component.UNDEFINED, format=Component.UNDEFINED, size=Component.UNDEFINED, value=Component.UNDEFINED, defaultValue=Component.UNDEFINED, customCells=Component.UNDEFINED, loading_state=Component.UNDEFINED, persistence=Component.UNDEFINED, persisted_props=Component.UNDEFINED, persistence_type=Component.UNDEFINED, **kwargs):
-        self._prop_names = ['id', 'aria-*', 'className', 'customCells', 'data-*', 'defaultValue', 'format', 'key', 'loading_state', 'locale', 'name', 'persisted_props', 'persistence', 'persistence_type', 'size', 'style', 'value']
+    def __init__(self, id=Component.UNDEFINED, key=Component.UNDEFINED, style=Component.UNDEFINED, className=Component.UNDEFINED, name=Component.UNDEFINED, locale=Component.UNDEFINED, format=Component.UNDEFINED, size=Component.UNDEFINED, value=Component.UNDEFINED, defaultValue=Component.UNDEFINED, customCells=Component.UNDEFINED, cellClickEvent=Component.UNDEFINED, loading_state=Component.UNDEFINED, persistence=Component.UNDEFINED, persisted_props=Component.UNDEFINED, persistence_type=Component.UNDEFINED, **kwargs):
+        self._prop_names = ['id', 'aria-*', 'cellClickEvent', 'className', 'customCells', 'data-*', 'defaultValue', 'format', 'key', 'loading_state', 'locale', 'name', 'persisted_props', 'persistence', 'persistence_type', 'size', 'style', 'value']
         self._valid_wildcard_attributes =            ['data-', 'aria-']
-        self.available_properties = ['id', 'aria-*', 'className', 'customCells', 'data-*', 'defaultValue', 'format', 'key', 'loading_state', 'locale', 'name', 'persisted_props', 'persistence', 'persistence_type', 'size', 'style', 'value']
+        self.available_properties = ['id', 'aria-*', 'cellClickEvent', 'className', 'customCells', 'data-*', 'defaultValue', 'format', 'key', 'loading_state', 'locale', 'name', 'persisted_props', 'persistence', 'persistence_type', 'size', 'style', 'value']
         self.available_wildcard_properties =            ['data-', 'aria-']
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()
