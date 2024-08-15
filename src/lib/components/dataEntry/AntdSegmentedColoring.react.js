@@ -141,6 +141,24 @@ AntdSegmentedColoring.propTypes = {
     colorBlockPosition: PropTypes.oneOf(['left', 'right']),
 
     /**
+     * 监听分段色块点击事件
+     */
+    colorBlockClickEvent: PropTypes.shape({
+        /**
+         * 被点击色块的颜色值
+         */
+        color: PropTypes.string,
+        /**
+         * 被点击色块对应范围值
+         */
+        range: PropTypes.arrayOf(PropTypes.number),
+        /**
+         * 事件对应时间戳
+         */
+        timestamp: PropTypes.number
+    }),
+
+    /**
      * 当`pureLegend=True`时，设置各分段数值统一css样式
      */
     pureLegendLabelStyle: PropTypes.object,

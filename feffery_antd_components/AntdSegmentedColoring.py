@@ -30,6 +30,20 @@ Keyword arguments:
 - className (string | dict; optional):
     当前组件css类名，支持[动态css](/advanced-classname).
 
+- colorBlockClickEvent (dict; optional):
+    监听分段色块点击事件.
+
+    `colorBlockClickEvent` is a dict with keys:
+
+    - color (string; optional):
+        被点击色块的颜色值.
+
+    - range (list of numbers; optional):
+        被点击色块对应范围值.
+
+    - timestamp (number; optional):
+        事件对应时间戳.
+
 - colorBlockPosition (a value equal to: 'left', 'right'; default 'right'):
     色块显示方位，可选项有`'left'`、`'right'`  默认值：`'right'`.
 
@@ -107,10 +121,10 @@ Keyword arguments:
     _namespace = 'feffery_antd_components'
     _type = 'AntdSegmentedColoring'
     @_explicitize_args
-    def __init__(self, id=Component.UNDEFINED, key=Component.UNDEFINED, style=Component.UNDEFINED, className=Component.UNDEFINED, breakpoints=Component.REQUIRED, colors=Component.REQUIRED, controls=Component.UNDEFINED, keyboard=Component.UNDEFINED, min=Component.UNDEFINED, max=Component.UNDEFINED, step=Component.UNDEFINED, precision=Component.UNDEFINED, disabled=Component.UNDEFINED, size=Component.UNDEFINED, bordered=Component.UNDEFINED, variant=Component.UNDEFINED, placeholder=Component.UNDEFINED, readOnly=Component.UNDEFINED, pureLegend=Component.UNDEFINED, inputNumberStyle=Component.UNDEFINED, colorBlockStyle=Component.UNDEFINED, colorBlockPosition=Component.UNDEFINED, pureLegendLabelStyle=Component.UNDEFINED, batchPropsNames=Component.UNDEFINED, batchPropsValues=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
-        self._prop_names = ['id', 'aria-*', 'batchPropsNames', 'batchPropsValues', 'bordered', 'breakpoints', 'className', 'colorBlockPosition', 'colorBlockStyle', 'colors', 'controls', 'data-*', 'disabled', 'inputNumberStyle', 'key', 'keyboard', 'loading_state', 'max', 'min', 'placeholder', 'precision', 'pureLegend', 'pureLegendLabelStyle', 'readOnly', 'size', 'step', 'style', 'variant']
+    def __init__(self, id=Component.UNDEFINED, key=Component.UNDEFINED, style=Component.UNDEFINED, className=Component.UNDEFINED, breakpoints=Component.REQUIRED, colors=Component.REQUIRED, controls=Component.UNDEFINED, keyboard=Component.UNDEFINED, min=Component.UNDEFINED, max=Component.UNDEFINED, step=Component.UNDEFINED, precision=Component.UNDEFINED, disabled=Component.UNDEFINED, size=Component.UNDEFINED, bordered=Component.UNDEFINED, variant=Component.UNDEFINED, placeholder=Component.UNDEFINED, readOnly=Component.UNDEFINED, pureLegend=Component.UNDEFINED, inputNumberStyle=Component.UNDEFINED, colorBlockStyle=Component.UNDEFINED, colorBlockPosition=Component.UNDEFINED, colorBlockClickEvent=Component.UNDEFINED, pureLegendLabelStyle=Component.UNDEFINED, batchPropsNames=Component.UNDEFINED, batchPropsValues=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
+        self._prop_names = ['id', 'aria-*', 'batchPropsNames', 'batchPropsValues', 'bordered', 'breakpoints', 'className', 'colorBlockClickEvent', 'colorBlockPosition', 'colorBlockStyle', 'colors', 'controls', 'data-*', 'disabled', 'inputNumberStyle', 'key', 'keyboard', 'loading_state', 'max', 'min', 'placeholder', 'precision', 'pureLegend', 'pureLegendLabelStyle', 'readOnly', 'size', 'step', 'style', 'variant']
         self._valid_wildcard_attributes =            ['data-', 'aria-']
-        self.available_properties = ['id', 'aria-*', 'batchPropsNames', 'batchPropsValues', 'bordered', 'breakpoints', 'className', 'colorBlockPosition', 'colorBlockStyle', 'colors', 'controls', 'data-*', 'disabled', 'inputNumberStyle', 'key', 'keyboard', 'loading_state', 'max', 'min', 'placeholder', 'precision', 'pureLegend', 'pureLegendLabelStyle', 'readOnly', 'size', 'step', 'style', 'variant']
+        self.available_properties = ['id', 'aria-*', 'batchPropsNames', 'batchPropsValues', 'bordered', 'breakpoints', 'className', 'colorBlockClickEvent', 'colorBlockPosition', 'colorBlockStyle', 'colors', 'controls', 'data-*', 'disabled', 'inputNumberStyle', 'key', 'keyboard', 'loading_state', 'max', 'min', 'placeholder', 'precision', 'pureLegend', 'pureLegendLabelStyle', 'readOnly', 'size', 'step', 'style', 'variant']
         self.available_wildcard_properties =            ['data-', 'aria-']
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()

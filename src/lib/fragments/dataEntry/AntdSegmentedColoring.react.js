@@ -106,6 +106,13 @@ const AntdSegmentedColoring = (props) => {
                     <Space style={{ display: 'flex' }} size={"small"}>
                         {colorBlockPosition === 'left' ?
                             (<div
+                                onClick={() => setProps({
+                                    colorBlockClickEvent: {
+                                        color: colors[i],
+                                        range: [breakpoints[i], breakpoints[i + 1]],
+                                        timestamp: Date.now()
+                                    }
+                                })}
                                 style={{
                                     height: size2size.get(size),
                                     backgroundColor: colors[i],
@@ -213,6 +220,13 @@ const AntdSegmentedColoring = (props) => {
                         }
                         {colorBlockPosition === 'right' ?
                             (<div
+                                onClick={() => setProps({
+                                    colorBlockClickEvent: {
+                                        color: colors[i],
+                                        range: [breakpoints[i], breakpoints[i + 1]],
+                                        timestamp: Date.now()
+                                    }
+                                })}
                                 style={{
                                     height: size2size.get(size),
                                     backgroundColor: colors[i],
