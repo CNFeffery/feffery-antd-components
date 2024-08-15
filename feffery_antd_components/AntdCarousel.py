@@ -67,6 +67,12 @@ Keyword arguments:
 - pauseOnHover (boolean; default False):
     是否在鼠标悬停时暂停轮播  默认值：`False`.
 
+- slidesToScroll (number; default 1):
+    一次轮播划过的子项数量  默认值：`1`.
+
+- slidesToShow (number; default 1):
+    同时展示的子项数量  默认值：`1`.
+
 - speed (number; default 500):
     轮播动画耗时，单位：毫秒  默认值：`500`.
 
@@ -77,10 +83,10 @@ Keyword arguments:
     _namespace = 'feffery_antd_components'
     _type = 'AntdCarousel'
     @_explicitize_args
-    def __init__(self, children=None, id=Component.UNDEFINED, key=Component.UNDEFINED, style=Component.UNDEFINED, className=Component.UNDEFINED, arrows=Component.UNDEFINED, autoplay=Component.UNDEFINED, dotPosition=Component.UNDEFINED, easing=Component.UNDEFINED, effect=Component.UNDEFINED, autoplaySpeed=Component.UNDEFINED, speed=Component.UNDEFINED, pauseOnHover=Component.UNDEFINED, infinite=Component.UNDEFINED, lazyLoad=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
-        self._prop_names = ['children', 'id', 'aria-*', 'arrows', 'autoplay', 'autoplaySpeed', 'className', 'data-*', 'dotPosition', 'easing', 'effect', 'infinite', 'key', 'lazyLoad', 'loading_state', 'pauseOnHover', 'speed', 'style']
+    def __init__(self, children=None, id=Component.UNDEFINED, key=Component.UNDEFINED, style=Component.UNDEFINED, className=Component.UNDEFINED, arrows=Component.UNDEFINED, autoplay=Component.UNDEFINED, dotPosition=Component.UNDEFINED, easing=Component.UNDEFINED, effect=Component.UNDEFINED, autoplaySpeed=Component.UNDEFINED, speed=Component.UNDEFINED, pauseOnHover=Component.UNDEFINED, infinite=Component.UNDEFINED, lazyLoad=Component.UNDEFINED, slidesToShow=Component.UNDEFINED, slidesToScroll=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
+        self._prop_names = ['children', 'id', 'aria-*', 'arrows', 'autoplay', 'autoplaySpeed', 'className', 'data-*', 'dotPosition', 'easing', 'effect', 'infinite', 'key', 'lazyLoad', 'loading_state', 'pauseOnHover', 'slidesToScroll', 'slidesToShow', 'speed', 'style']
         self._valid_wildcard_attributes =            ['data-', 'aria-']
-        self.available_properties = ['children', 'id', 'aria-*', 'arrows', 'autoplay', 'autoplaySpeed', 'className', 'data-*', 'dotPosition', 'easing', 'effect', 'infinite', 'key', 'lazyLoad', 'loading_state', 'pauseOnHover', 'speed', 'style']
+        self.available_properties = ['children', 'id', 'aria-*', 'arrows', 'autoplay', 'autoplaySpeed', 'className', 'data-*', 'dotPosition', 'easing', 'effect', 'infinite', 'key', 'lazyLoad', 'loading_state', 'pauseOnHover', 'slidesToScroll', 'slidesToShow', 'speed', 'style']
         self.available_wildcard_properties =            ['data-', 'aria-']
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()

@@ -30,6 +30,8 @@ const AntdCarousel = (props) => {
         pauseOnHover,
         infinite,
         lazyLoad,
+        slidesToShow,
+        slidesToScroll,
         loading_state,
         setProps
     } = props;
@@ -56,6 +58,8 @@ const AntdCarousel = (props) => {
             pauseOnHover={pauseOnHover}
             infinite={infinite}
             lazyLoad={lazyLoad}
+            slidesToShow={slidesToShow}
+            slidesToScroll={slidesToScroll}
             data-dash-is-loading={
                 (loading_state && loading_state.is_loading) || undefined
             }

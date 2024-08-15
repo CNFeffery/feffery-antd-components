@@ -104,6 +104,18 @@ AntdCarousel.propTypes = {
     lazyLoad: PropTypes.bool,
 
     /**
+     * 同时展示的子项数量
+     * 默认值：`1`
+     */
+    slidesToShow: PropTypes.number,
+
+    /**
+     * 一次轮播划过的子项数量
+     * 默认值：`1`
+     */
+    slidesToScroll: PropTypes.number,
+
+    /**
      * `data-*`格式属性通配
      */
     'data-*': PropTypes.string,
@@ -146,7 +158,9 @@ AntdCarousel.defaultProps = {
     speed: 500,
     pauseOnHover: false,
     infinite: true,
-    lazyLoad: false
+    lazyLoad: false,
+    slidesToShow: 1,
+    slidesToScroll: 1
 }
 
 export default AntdCarousel;
