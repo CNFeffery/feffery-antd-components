@@ -72,8 +72,8 @@ const AntdCalendar = (props) => {
         }
     }, [])
 
-    const onPanelChange = (newValue, mode) => {
-        setMode(mode);
+    const onPanelChange = (newValue, _mode) => {
+        setMode(_mode);
     };
 
     const onSelect = (e, { source }) => {
