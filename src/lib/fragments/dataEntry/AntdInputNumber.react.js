@@ -31,6 +31,7 @@ const AntdInputNumber = (props) => {
         addonAfter,
         autoFocus,
         prefix,
+        suffix,
         bordered,
         variant,
         controls,
@@ -146,6 +147,7 @@ const AntdInputNumber = (props) => {
             addonAfter={addonAfter}
             autoFocus={autoFocus}
             prefix={prefix}
+            suffix={suffix}
             placeholder={placeholder}
             variant={(
                 !variant ?

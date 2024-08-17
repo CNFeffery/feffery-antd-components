@@ -59,6 +59,11 @@ AntdInputNumber.propTypes = {
     prefix: PropTypes.node,
 
     /**
+     * 组件型，后缀内嵌内容
+     */
+    suffix: PropTypes.node,
+
+    /**
      * 是否自动获取焦点
      * 默认值：`false`
      */
