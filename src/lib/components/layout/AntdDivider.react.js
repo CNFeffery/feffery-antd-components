@@ -27,6 +27,7 @@ const AntdDivider = (props) => {
         fontWeight,
         fontFamily,
         fontColor,
+        variant,
         loading_state,
     } = props;
 
@@ -55,6 +56,7 @@ const AntdDivider = (props) => {
                 }
                 key={key}
                 dashed={isDashed}
+                variant={variant}
                 orientation={innerTextOrientation}
                 type={"horizontal"}
                 plain={true}
@@ -90,6 +92,7 @@ const AntdDivider = (props) => {
                 }
                 key={key}
                 dashed={isDashed}
+                variant={variant}
                 orientation={innerTextOrientation}
                 type={"vertical"}
                 plain={true}
@@ -184,6 +187,12 @@ AntdDivider.propTypes = {
     fontColor: PropTypes.string,
 
     /**
+     * 分割线变体，可选项有`'dashed'`（虚线）、`'dotted'`（点线）、`'solid'`（实线）
+     * 默认值：`'solid'`
+     */
+    variant: PropTypes.oneOf(['dashed', 'dotted', 'solid']),
+
+    /**
      * `data-*`格式属性通配
      */
     'data-*': PropTypes.string,
@@ -219,7 +228,8 @@ AntdDivider.propTypes = {
 AntdDivider.defaultProps = {
     innerTextOrientation: 'center',
     isDashed: false,
-    direction: 'horizontal'
+    direction: 'horizontal',
+    variant: 'solid'
 };
 
 export default AntdDivider;
