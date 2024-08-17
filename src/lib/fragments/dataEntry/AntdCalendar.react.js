@@ -1,5 +1,5 @@
 // react核心
-import React, { useEffect, useContext } from 'react';
+import React, { useEffect, useContext, useState } from 'react';
 // antd核心
 import { Calendar, ConfigProvider } from 'antd';
 // 辅助库
@@ -40,6 +40,8 @@ const AntdCalendar = (props) => {
         persistence_type
     } = props;
 
+    const [mode, setMode] = useState('month');
+
     const context = useContext(PropsContext)
     const formId = useContext(FormContext)
 
@@ -70,6 +72,10 @@ const AntdCalendar = (props) => {
         }
     }, [])
 
+    const onPanelChange = (newValue, mode) => {
+        setMode(mode);
+    };
+
     const onSelect = (e, { source }) => {
         // AntdForm表单批量控制
         if (formId && (name || id)) {
@@ -77,12 +83,16 @@ const AntdCalendar = (props) => {
             updateItemValue(formId, name || id, e.format(format))
         }
         setProps({
-            value: e.format(format),
-            cellClickEvent: {
-                type: source,
-                timestamp: new Date().getTime()
-            }
+            value: e.format(format)
         })
+        if ((mode === 'month' && ['date', 'customize'].includes(source)) || (mode === 'year' && ['month', 'customize'].includes(source))) {
+            setProps({
+                cellClickEvent: {
+                    type: source,
+                    timestamp: new Date().getTime()
+                }
+            })
+        }
     };
 
     return (
@@ -108,6 +118,7 @@ const AntdCalendar = (props) => {
                         currentFormValue && dayjs(currentFormValue, format) :
                         value && dayjs(value, format)
                 }
+                onPanelChange={onPanelChange}
                 onSelect={onSelect}
                 fullscreen={size !== 'default'}
                 cellRender={
