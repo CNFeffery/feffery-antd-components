@@ -49,6 +49,9 @@ Keyword arguments:
     - prop_name (string; optional):
         Holds which property is loading.
 
+- percent (number; optional):
+    当前步骤进度，取值应在0到100之间，适用于常规步骤条.
+
 - progressDot (boolean; default False):
     是否渲染为点状步骤条  默认值：`False`.
 
@@ -95,10 +98,10 @@ Keyword arguments:
     _namespace = 'feffery_antd_components'
     _type = 'AntdSteps'
     @_explicitize_args
-    def __init__(self, id=Component.UNDEFINED, key=Component.UNDEFINED, style=Component.UNDEFINED, className=Component.UNDEFINED, steps=Component.REQUIRED, current=Component.UNDEFINED, direction=Component.UNDEFINED, labelPlacement=Component.UNDEFINED, progressDot=Component.UNDEFINED, size=Component.UNDEFINED, status=Component.UNDEFINED, type=Component.UNDEFINED, allowClick=Component.UNDEFINED, responsive=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
-        self._prop_names = ['id', 'allowClick', 'aria-*', 'className', 'current', 'data-*', 'direction', 'key', 'labelPlacement', 'loading_state', 'progressDot', 'responsive', 'size', 'status', 'steps', 'style', 'type']
+    def __init__(self, id=Component.UNDEFINED, key=Component.UNDEFINED, style=Component.UNDEFINED, className=Component.UNDEFINED, steps=Component.REQUIRED, current=Component.UNDEFINED, direction=Component.UNDEFINED, labelPlacement=Component.UNDEFINED, progressDot=Component.UNDEFINED, size=Component.UNDEFINED, status=Component.UNDEFINED, type=Component.UNDEFINED, allowClick=Component.UNDEFINED, responsive=Component.UNDEFINED, percent=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
+        self._prop_names = ['id', 'allowClick', 'aria-*', 'className', 'current', 'data-*', 'direction', 'key', 'labelPlacement', 'loading_state', 'percent', 'progressDot', 'responsive', 'size', 'status', 'steps', 'style', 'type']
         self._valid_wildcard_attributes =            ['data-', 'aria-']
-        self.available_properties = ['id', 'allowClick', 'aria-*', 'className', 'current', 'data-*', 'direction', 'key', 'labelPlacement', 'loading_state', 'progressDot', 'responsive', 'size', 'status', 'steps', 'style', 'type']
+        self.available_properties = ['id', 'allowClick', 'aria-*', 'className', 'current', 'data-*', 'direction', 'key', 'labelPlacement', 'loading_state', 'percent', 'progressDot', 'responsive', 'size', 'status', 'steps', 'style', 'type']
         self.available_wildcard_properties =            ['data-', 'aria-']
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()

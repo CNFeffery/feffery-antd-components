@@ -27,6 +27,7 @@ const AntdSteps = (props) => {
         steps,
         allowClick,
         responsive,
+        percent,
         setProps,
         loading_state
     } = props;
@@ -58,6 +59,7 @@ const AntdSteps = (props) => {
             status={status}
             type={type}
             responsive={responsive}
+            percent={percent}
             onChange={allowClick ? (current) => setProps({ current: current }) : undefined}
             data-dash-is-loading={
                 (loading_state && loading_state.is_loading) || undefined
@@ -174,6 +176,11 @@ AntdSteps.propTypes = {
      * 默认值：`true`
      */
     responsive: PropTypes.bool,
+
+    /**
+     * 当前步骤进度，取值应在0到100之间，适用于常规步骤条
+     */
+    percent: PropTypes.number,
 
     /**
      * `data-*`格式属性通配
