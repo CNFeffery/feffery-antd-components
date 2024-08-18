@@ -7,47 +7,10 @@ app = dash.Dash(__name__)
 
 app.layout = html.Div(
     [
-        html.Div(
-            [
-                fac.AntdDivider(
-                    'Solid',
-                    variant='solid',
-                    lineColor='#7cb305',
-                ),
-                fac.AntdDivider(
-                    'Dotted',
-                    variant='dotted',
-                    lineColor='#7cb305',
-                ),
-                fac.AntdDivider(
-                    'Dashed',
-                    variant='dashed',
-                    lineColor='#7cb305',
-                ),
-            ]
-        ),
-        html.Div(
-            [
-                'Solid',
-                fac.AntdDivider(
-                    direction='vertical',
-                    variant='solid',
-                    lineColor='#7cb305',
-                ),
-                'Dotted',
-                fac.AntdDivider(
-                    direction='vertical',
-                    variant='dotted',
-                    lineColor='#7cb305',
-                ),
-                'Dashed',
-                fac.AntdDivider(
-                    direction='vertical',
-                    variant='dashed',
-                    lineColor='#7cb305',
-                ),
-            ]
-        ),
+        fac.AntdInputNumber(
+            suffix=fac.AntdIcon(icon='antd-control'),
+            style={'width': 200},
+        )
     ],
     style=style(padding=50),
 )
