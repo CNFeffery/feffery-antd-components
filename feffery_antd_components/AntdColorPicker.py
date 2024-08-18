@@ -32,6 +32,9 @@ Keyword arguments:
 - data-* (string; optional):
     `data-*`格式属性通配.
 
+- defaultValue (string; optional):
+    初始化已输入值.
+
 - disabled (boolean; default False):
     是否禁用当前组件  默认值：`False`.
 
@@ -56,6 +59,10 @@ Keyword arguments:
 
     - prop_name (string; optional):
         Holds which property is loading.
+
+- mode (a value equal to: 'single', 'gradient' | list of a value equal to: 'single', 'gradient's; default 'single'):
+    选择器模式，用于配置单色与渐变，可选项有`'single'`、`'gradient'`，支持单选项或多选项组合
+    默认值：`single`.
 
 - name (string; optional):
     配合`AntdForm`表单批量值搜集/控制功能使用，充当当前表单项的字段名，以`id`作为缺省值.
@@ -93,17 +100,17 @@ Keyword arguments:
 - trigger (a value equal to: 'hover', 'click'; default 'click'):
     颜色选择面板触发方式，可选项有`'hover'`、`'click'`  默认值：`'click'`.
 
-- value (string; default '#1677ff'):
+- value (string; optional):
     监听或设置选中颜色值  默认值：`'#1677FF'`."""
     _children_props = ['presets[].label']
     _base_nodes = ['children']
     _namespace = 'feffery_antd_components'
     _type = 'AntdColorPicker'
     @_explicitize_args
-    def __init__(self, id=Component.UNDEFINED, key=Component.UNDEFINED, style=Component.UNDEFINED, className=Component.UNDEFINED, name=Component.UNDEFINED, allowClear=Component.UNDEFINED, arrow=Component.UNDEFINED, value=Component.UNDEFINED, format=Component.UNDEFINED, disabled=Component.UNDEFINED, disabledAlpha=Component.UNDEFINED, open=Component.UNDEFINED, presets=Component.UNDEFINED, placement=Component.UNDEFINED, showText=Component.UNDEFINED, size=Component.UNDEFINED, trigger=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
-        self._prop_names = ['id', 'allowClear', 'aria-*', 'arrow', 'className', 'data-*', 'disabled', 'disabledAlpha', 'format', 'key', 'loading_state', 'name', 'open', 'placement', 'presets', 'showText', 'size', 'style', 'trigger', 'value']
+    def __init__(self, id=Component.UNDEFINED, key=Component.UNDEFINED, style=Component.UNDEFINED, className=Component.UNDEFINED, name=Component.UNDEFINED, allowClear=Component.UNDEFINED, arrow=Component.UNDEFINED, defaultValue=Component.UNDEFINED, value=Component.UNDEFINED, format=Component.UNDEFINED, mode=Component.UNDEFINED, disabled=Component.UNDEFINED, disabledAlpha=Component.UNDEFINED, open=Component.UNDEFINED, presets=Component.UNDEFINED, placement=Component.UNDEFINED, showText=Component.UNDEFINED, size=Component.UNDEFINED, trigger=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
+        self._prop_names = ['id', 'allowClear', 'aria-*', 'arrow', 'className', 'data-*', 'defaultValue', 'disabled', 'disabledAlpha', 'format', 'key', 'loading_state', 'mode', 'name', 'open', 'placement', 'presets', 'showText', 'size', 'style', 'trigger', 'value']
         self._valid_wildcard_attributes =            ['data-', 'aria-']
-        self.available_properties = ['id', 'allowClear', 'aria-*', 'arrow', 'className', 'data-*', 'disabled', 'disabledAlpha', 'format', 'key', 'loading_state', 'name', 'open', 'placement', 'presets', 'showText', 'size', 'style', 'trigger', 'value']
+        self.available_properties = ['id', 'allowClear', 'aria-*', 'arrow', 'className', 'data-*', 'defaultValue', 'disabled', 'disabledAlpha', 'format', 'key', 'loading_state', 'mode', 'name', 'open', 'placement', 'presets', 'showText', 'size', 'style', 'trigger', 'value']
         self.available_wildcard_properties =            ['data-', 'aria-']
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()

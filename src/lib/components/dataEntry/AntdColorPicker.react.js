@@ -65,6 +65,11 @@ AntdColorPicker.propTypes = {
     ]),
 
     /**
+     * 初始化已输入值
+     */
+    defaultValue: PropTypes.string,
+
+    /**
      * 监听或设置选中颜色值
      * 默认值：`'#1677FF'`
      */
@@ -75,6 +80,17 @@ AntdColorPicker.propTypes = {
      * 默认值：`'hex'`
      */
     format: PropTypes.oneOf(['rgb', 'hex', 'hsb']),
+
+    /**
+     * 选择器模式，用于配置单色与渐变，可选项有`'single'`、`'gradient'`，支持单选项或多选项组合
+     * 默认值：`single`
+     */
+    mode: PropTypes.oneOfType([
+        PropTypes.oneOf(['single', 'gradient']),
+        PropTypes.arrayOf(
+            PropTypes.oneOf(['single', 'gradient'])
+        )
+    ]),
 
     /**
      * 是否禁用当前组件
@@ -176,13 +192,13 @@ AntdColorPicker.propTypes = {
 AntdColorPicker.defaultProps = {
     allowClear: false,
     format: 'hex',
+    mode: 'single',
     disabled: false,
     disabledAlpha: true,
     placement: 'bottomLeft',
     showText: false,
     size: 'middle',
-    trigger: 'click',
-    value: '#1677ff'
+    trigger: 'click'
 }
 
 export default AntdColorPicker;

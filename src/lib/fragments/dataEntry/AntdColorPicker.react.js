@@ -1,10 +1,10 @@
 // react核心
-import React, { useEffect, useContext } from 'react';
+import React, { useEffect, useContext, useMemo, useState } from 'react';
 // antd核心
 import { ColorPicker } from 'antd';
 import { Color } from '@rc-component/color-picker';
 // 辅助库
-import { isString, isUndefined } from 'lodash';
+import { has, isArray, isString, isUndefined } from 'lodash';
 import { pickBy } from 'ramda';
 // 自定义hooks
 import useCss from '../../hooks/useCss';
@@ -28,8 +28,10 @@ const AntdColorPicker = (props) => {
         name,
         allowClear,
         arrow,
+        defaultValue,
         value,
         format,
+        mode,
         disabled,
         disabledAlpha,
         open,
@@ -42,6 +44,38 @@ const AntdColorPicker = (props) => {
         loading_state
     } = props;
 
+    const parseLinearGradient = (gradient) => {
+        const matches = gradient.match(/\brgb\([^)]*\)\s*(\d+%?)/g);
+        if (!matches) return [];
+
+        // 处理匹配项，确保每个颜色后面都有百分比  
+        let colors = [];
+        let lastPercent = 0;
+        matches.forEach((match, index) => {
+            const [color, percentStr] = match.split(/\s+/);
+            let percent = parseInt(percentStr.replace('%', ''), 10);
+
+            // 如果百分比缺失，使用上一个百分比或100%（如果是最后一个元素）  
+            if (isNaN(percent)) {
+                percent = (index === matches.length - 1) ? 100 : lastPercent;
+            }
+
+            // 更新最后使用的百分比  
+            lastPercent = percent;
+
+            // 添加到结果数组中  
+            colors.push({ color: color, percent: percent });
+        });
+
+        return colors;
+    }
+
+    const parseValue = (parseString) => {
+        return parseString?.startsWith('linear-gradient') ? parseLinearGradient(parseString) : parseString?.toLowerCase()
+    }
+
+    const [formatColor, setFormatColor] = useState({});
+
     const context = useContext(PropsContext)
     const formId = useContext(FormContext)
 
@@ -50,6 +84,33 @@ const AntdColorPicker = (props) => {
 
     // 收集当前组件相关表单值
     const currentFormValue = useFormStore(state => state.values?.[formId]?.[name || id])
+
+    const _defaultValue = useMemo(() => {
+        return defaultValue ? defaultValue : (mode === 'gradient' ? 'linear-gradient(90deg, rgb(22,119,255) 0%, rgb(22,119,255) 100%)' : '#1677ff')
+    }, [])
+
+    useEffect(() => {
+        // 初始化value
+        if (_defaultValue && !value) {
+            // 当_defaultValue不为空且value为空时，为value初始化_defaultValue对应的value值
+            setProps({
+                value: _defaultValue,
+            })
+        }
+        let _value = parseValue(_defaultValue || value);
+        let color;
+        if (isArray(_value)) {
+            color = _value[0].color
+        } else {
+            color = _value
+        }
+        let _color = new Color(color);
+        setFormatColor({
+            hex: _color.toHexString()?.toLowerCase(),
+            rgb: _color.toRgbString()?.toLowerCase(),
+            hsb: _color.toHsbString()?.toLowerCase()
+        })
+    }, [])
 
     // 处理组件卸载后，对应表单项值的清除
     useEffect(() => {
@@ -63,22 +124,22 @@ const AntdColorPicker = (props) => {
     }, [name, id])
 
     // 每次format发生变更时，同步更新value值
-    useEffect(() => {
+    const onFormatChange = (_format) => {
+        setProps({ format: _format })
         if (value) {
-            let _color = new Color(value)
             setProps({
-                value: (
-                    format === 'hex' ?
-                        _color.toHexString() :
-                        (
-                            format === 'rgb' ?
-                                _color.toRgbString() :
-                                _color.toHsbString()
-                        )
-                ).toLowerCase()
+                value: _format === 'hex' ?
+                    formatColor.hex :
+                    (
+                        _format === 'rgb' ?
+                            formatColor.rgb :
+                            formatColor.hsb
+                    )
             })
         }
-    }, [format])
+    }
+
+    // console.log(value)
 
     return (
         <ColorPicker
@@ -94,12 +155,14 @@ const AntdColorPicker = (props) => {
             key={key}
             allowClear={allowClear}
             arrow={arrow}
+            defaultValue={parseValue(_defaultValue)}
             value={
                 formId && (name || id) ?
-                    currentFormValue?.toLowerCase() || '#1677ff' :
-                    value?.toLowerCase() || '#1677ff'
+                    parseValue(currentFormValue) :
+                    parseValue(value)
             }
             format={format}
+            mode={mode}
             disabled={
                 context && !isUndefined(context.componentDisabled) ?
                     context.componentDisabled :
@@ -112,9 +175,9 @@ const AntdColorPicker = (props) => {
             showText={showText}
             size={size}
             trigger={trigger}
-            onFormatChange={(e) => setProps({ format: e })}
+            onFormatChange={onFormatChange}
             onOpenChange={(e) => setProps({ open: e })}
-            onChangeComplete={(e) => {
+            onChange={(e) => {
                 // AntdForm表单批量控制
                 if (formId && (name || id)) {
                     // 表单值更新
@@ -122,26 +185,40 @@ const AntdColorPicker = (props) => {
                         formId,
                         name || id,
                         (
-                            format === 'hex' ?
-                                e.toHexString() :
+                            has(e, 'colors') ?
+                                e.toCssString() :
                                 (
-                                    format === 'rgb' ?
-                                        e.toRgbString() :
-                                        e.toHsbString()
+                                    format === 'hex' ?
+                                        e.toHexString() :
+                                        (
+                                            format === 'rgb' ?
+                                                e.toRgbString() :
+                                                e.toHsbString()
+                                        )
                                 )
                         )?.toLowerCase()
                     )
                 }
                 setProps({
                     value: (
-                        format === 'hex' ?
-                            e.toHexString() :
+                        has(e, 'colors') ?
+                            e.toCssString() :
                             (
-                                format === 'rgb' ?
-                                    e.toRgbString() :
-                                    e.toHsbString()
+                                format === 'hex' ?
+                                    e.toHexString() :
+                                    (
+                                        format === 'rgb' ?
+                                            e.toRgbString() :
+                                            e.toHsbString()
+                                    )
                             )
                     )?.toLowerCase()
+                })
+                setFormatColor({
+                    hex: e.toHexString()?.toLowerCase(),
+                    rgb: e.toRgbString()?.toLowerCase(),
+                    hsb: e.toHsbString()?.toLowerCase()
+                    ,
                 })
             }}
             onClear={() => {
