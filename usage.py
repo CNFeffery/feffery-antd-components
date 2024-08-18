@@ -7,9 +7,22 @@ app = dash.Dash(__name__)
 
 app.layout = html.Div(
     [
-        fac.AntdInputNumber(
-            suffix=fac.AntdIcon(icon='antd-control'),
-            style={'width': 200},
+        fac.AntdSpace(
+            [
+                fac.AntdColorPicker(
+                    mode='single',
+                    showText=True,
+                ),
+                fac.AntdColorPicker(
+                    mode='gradient',
+                    showText=True,
+                ),
+                fac.AntdColorPicker(
+                    mode=['single', 'gradient'],
+                    showText=True,
+                ),
+            ],
+            direction='vertical',
         )
     ],
     style=style(padding=50),
