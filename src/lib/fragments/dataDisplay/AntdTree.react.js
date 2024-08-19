@@ -86,6 +86,7 @@ const AntdTree = (props) => {
         defaultSelectedKeys,
         multiple,
         showLine,
+        switcherIcon,
         showIcon,
         height,
         draggable,
@@ -350,6 +351,7 @@ const AntdTree = (props) => {
             checkStrictly={checkStrictly}
             multiple={multiple}
             showLine={showLine}
+            switcherIcon={switcherIcon}
             onSelect={listenSelect}
             onCheck={listenCheck}
             onExpand={listenExpand}

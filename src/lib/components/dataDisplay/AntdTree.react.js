@@ -338,6 +338,11 @@ AntdTree.propTypes = {
     ]),
 
     /**
+     * 组件型，自定义树节点的展开/折叠图标
+     */
+    switcherIcon: PropTypes.node,
+
+    /**
      * 虚拟滚动模式下的组件最大像素高度，未设置时则不启用虚拟滚动功能
      */
     height: PropTypes.number,
