@@ -6,44 +6,40 @@ app = dash.Dash(__name__)
 
 app.layout = html.Div(
     [
-        fac.AntdImageGroup(
-            fac.AntdSpace(
-                [
-                    fac.AntdSpace(
-                        [
-                            fac.AntdImage(
-                                src=f'/assets/示例图片{i}.png',
-                                height=100,
-                            )
-                            for i in range(2, 5)
-                        ]
-                    ),
-                    fac.AntdSpace(
-                        [
-                            fac.AntdImage(
-                                src=f'/assets/示例图片{i}.png',
-                                height=100,
-                            )
-                            for i in range(5, 7)
-                        ]
-                    ),
-                    fac.AntdSpace(
-                        [
-                            fac.AntdImage(
-                                src=f'/assets/示例图片{i}.png',
-                                height=100,
-                            )
-                            for i in range(7, 9)
-                        ]
-                    ),
-                ],
-                direction='vertical',
-                style={'width': '100%'},
-            )
+        fac.AntdConfigProvider(
+            fac.AntdButton(
+                '按钮示例',
+                size='large',
+                className={
+                    'background': 'linear-gradient(135deg,#6b73ff,#000dff)',
+                    'color': 'white',
+                    'transition': 'transform 0.2s ease',
+                    # 悬停状态
+                    '&:hover': {
+                        'background': 'linear-gradient(135deg,#6b73ff,#000dff)',
+                        'color': 'white',
+                        'borderColor': 'white',
+                    },
+                    # 聚焦状态
+                    '&:focus': {
+                        'background': 'linear-gradient(135deg,#6b73ff,#000dff)',
+                        'color': 'white',
+                        'borderColor': 'white',
+                    },
+                    # 点击状态
+                    '&:active': {
+                        'background': 'linear-gradient(135deg,#6b73ff,#000dff)',
+                        'color': 'white',
+                        'borderColor': 'white',
+                        'transform': 'translateY(3px)',
+                    },
+                },
+            ),
+            enableLayer=True,
         )
     ],
     style={'padding': 50},
 )
 
 if __name__ == '__main__':
-    app.run(debug=True, dev_tools_serve_dev_bundles=True)
+    app.run(debug=True)
