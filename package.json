@@ -37,6 +37,7 @@
         "antd": "^5.20.1",
         "antd-img-crop": "^4.2.3",
         "color": "^4.2.3",
+        "dayjs": "^1.11.13",
         "is-absolute-url": "4.0.1",
         "md5": "2.3.0",
         "nano-css": "^5.3.5",
