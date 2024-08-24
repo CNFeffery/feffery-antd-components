@@ -39,6 +39,12 @@ AntdColorPicker.propTypes = {
     ]),
 
     /**
+     * 组件文案语种，可选项有`'zh-cn'`、`'en-us'`
+     * 默认值：`'zh-cn'`
+     */
+    locale: PropTypes.oneOf(['zh-cn', 'en-us']),
+
+    /**
      * 配合`AntdForm`表单批量值搜集/控制功能使用，充当当前表单项的字段名，以`id`作为缺省值
      */
     name: PropTypes.string,
@@ -190,6 +196,7 @@ AntdColorPicker.propTypes = {
 
 // 设置默认参数
 AntdColorPicker.defaultProps = {
+    locale: 'zh-cn',
     allowClear: false,
     format: 'hex',
     mode: 'single',

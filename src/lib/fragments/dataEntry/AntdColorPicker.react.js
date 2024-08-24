@@ -1,11 +1,12 @@
 // react核心
 import React, { useEffect, useContext, useMemo, useState } from 'react';
 // antd核心
-import { ColorPicker } from 'antd';
+import { ColorPicker, ConfigProvider } from 'antd';
 import { Color } from '@rc-component/color-picker';
 // 辅助库
 import { has, isArray, isString, isUndefined } from 'lodash';
 import { pickBy } from 'ramda';
+import { str2Locale } from '../../components/locales.react';
 // 自定义hooks
 import useCss from '../../hooks/useCss';
 // 上下文
@@ -25,6 +26,7 @@ const AntdColorPicker = (props) => {
         className,
         style,
         key,
+        locale,
         name,
         allowClear,
         arrow,
@@ -77,6 +79,8 @@ const AntdColorPicker = (props) => {
     const [formatColor, setFormatColor] = useState({});
 
     const context = useContext(PropsContext)
+    locale = (context && context.locale) || locale
+
     const formId = useContext(FormContext)
 
     const updateItemValue = useFormStore((state) => state.updateItemValue)
@@ -139,52 +143,67 @@ const AntdColorPicker = (props) => {
         }
     }
 
-    // console.log(value)
-
     return (
-        <ColorPicker
-            // 提取具有data-*或aria-*通配格式的属性
-            {...pickBy((_, k) => k.startsWith('data-') || k.startsWith('aria-'), props)}
-            id={id}
-            className={
-                isString(className) ?
-                    className :
-                    (className ? useCss(className) : undefined)
-            }
-            style={style}
-            key={key}
-            allowClear={allowClear}
-            arrow={arrow}
-            defaultValue={parseValue(_defaultValue)}
-            value={
-                formId && (name || id) ?
-                    parseValue(currentFormValue) :
-                    parseValue(value)
-            }
-            format={format}
-            mode={mode}
-            disabled={
-                context && !isUndefined(context.componentDisabled) ?
-                    context.componentDisabled :
-                    disabled
-            }
-            disabledAlpha={disabledAlpha}
-            open={open}
-            presets={presets}
-            placement={placement}
-            showText={showText}
-            size={size}
-            trigger={trigger}
-            onFormatChange={onFormatChange}
-            onOpenChange={(e) => setProps({ open: e })}
-            onChange={(e) => {
-                // AntdForm表单批量控制
-                if (formId && (name || id)) {
-                    // 表单值更新
-                    updateItemValue(
-                        formId,
-                        name || id,
-                        (
+        <ConfigProvider locale={locale === 'zh-cn' ? str2Locale.get(locale) : undefined}>
+            <ColorPicker
+                // 提取具有data-*或aria-*通配格式的属性
+                {...pickBy((_, k) => k.startsWith('data-') || k.startsWith('aria-'), props)}
+                id={id}
+                className={
+                    isString(className) ?
+                        className :
+                        (className ? useCss(className) : undefined)
+                }
+                style={style}
+                key={key}
+                allowClear={allowClear}
+                arrow={arrow}
+                defaultValue={parseValue(_defaultValue)}
+                value={
+                    formId && (name || id) ?
+                        parseValue(currentFormValue) :
+                        parseValue(value)
+                }
+                format={format}
+                mode={mode}
+                disabled={
+                    context && !isUndefined(context.componentDisabled) ?
+                        context.componentDisabled :
+                        disabled
+                }
+                disabledAlpha={disabledAlpha}
+                open={open}
+                presets={presets}
+                placement={placement}
+                showText={showText}
+                size={size}
+                trigger={trigger}
+                onFormatChange={onFormatChange}
+                onOpenChange={(e) => setProps({ open: e })}
+                onChange={(e) => {
+                    // AntdForm表单批量控制
+                    if (formId && (name || id)) {
+                        // 表单值更新
+                        updateItemValue(
+                            formId,
+                            name || id,
+                            (
+                                has(e, 'colors') ?
+                                    e.toCssString() :
+                                    (
+                                        format === 'hex' ?
+                                            e.toHexString() :
+                                            (
+                                                format === 'rgb' ?
+                                                    e.toRgbString() :
+                                                    e.toHsbString()
+                                            )
+                                    )
+                            )?.toLowerCase()
+                        )
+                    }
+                    setProps({
+                        value: (
                             has(e, 'colors') ?
                                 e.toCssString() :
                                 (
@@ -197,41 +216,26 @@ const AntdColorPicker = (props) => {
                                         )
                                 )
                         )?.toLowerCase()
-                    )
-                }
-                setProps({
-                    value: (
-                        has(e, 'colors') ?
-                            e.toCssString() :
-                            (
-                                format === 'hex' ?
-                                    e.toHexString() :
-                                    (
-                                        format === 'rgb' ?
-                                            e.toRgbString() :
-                                            e.toHsbString()
-                                    )
-                            )
-                    )?.toLowerCase()
-                })
-                setFormatColor({
-                    hex: e.toHexString()?.toLowerCase(),
-                    rgb: e.toRgbString()?.toLowerCase(),
-                    hsb: e.toHsbString()?.toLowerCase()
-                    ,
-                })
-            }}
-            onClear={() => {
-                // AntdForm表单批量控制
-                if (formId && (name || id)) {
-                    // 表单值更新
-                    updateItemValue(formId, name || id, null)
-                }
-                setProps({ value: null })
-            }}
-            data-dash-is-loading={
-                (loading_state && loading_state.is_loading) || undefined
-            } />
+                    })
+                    setFormatColor({
+                        hex: e.toHexString()?.toLowerCase(),
+                        rgb: e.toRgbString()?.toLowerCase(),
+                        hsb: e.toHsbString()?.toLowerCase()
+                        ,
+                    })
+                }}
+                onClear={() => {
+                    // AntdForm表单批量控制
+                    if (formId && (name || id)) {
+                        // 表单值更新
+                        updateItemValue(formId, name || id, null)
+                    }
+                    setProps({ value: null })
+                }}
+                data-dash-is-loading={
+                    (loading_state && loading_state.is_loading) || undefined
+                } />
+        </ConfigProvider>
     );
 }
 
