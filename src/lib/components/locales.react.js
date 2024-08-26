@@ -57,15 +57,24 @@ const locale2text = {
     AntdTable: {
         'zh-cn': {
             showTotalPrefix: '共 ',
-            showTotalSuffix: ' 条记录'
+            showTotalSuffix: ' 条记录',
+            filterKeywordPlaceholder: '搜索',
+            filterKeywordSearchButtonText: '搜索',
+            filterKeywordResetButtonText: '重置',
         },
         'en-us': {
             showTotalPrefix: 'Total ',
-            showTotalSuffix: ' items'
+            showTotalSuffix: ' items',
+            filterKeywordPlaceholder: 'Search',
+            filterKeywordSearchButtonText: 'Search',
+            filterKeywordResetButtonText: 'Reset',
         },
         'de-de': {
             showTotalPrefix: 'Gesamt ',
-            showTotalSuffix: ' items'
+            showTotalSuffix: ' items',
+            filterKeywordPlaceholder: 'Suche',
+            filterKeywordSearchButtonText: 'Suchen',
+            filterKeywordResetButtonText: 'Zurücksetzen',
         }
     },
     AntdTransfer: {
@@ -102,7 +111,7 @@ const locale2text = {
             buttonContent: 'Klicken, um eine Datei hochzuladen'
         }
     },
-    Comment: {
+    AntdComment: {
         'zh-cn': {
             likeTooltipTitle: '支持',
             dislikeTooltipTitle: '反对',

@@ -198,7 +198,7 @@ class AntdTable extends Component {
                         ref={node => {
                             this.searchInput = node;
                         }}
-                        placeholder={`${props.locale === 'en-us' ? 'Search' : '搜索'} ${title}`}
+                        placeholder={`${locale2text.AntdTable[props.locale].filterKeywordPlaceholder} ${title}`}
                         value={selectedKeys[0]}
                         onChange={e => setSelectedKeys(e.target.value ? [e.target.value] : [])}
                         onPressEnter={() => this.handleSearch(selectedKeys, confirm, dataIndex)}
@@ -212,10 +212,10 @@ class AntdTable extends Component {
                             size="small"
                             style={{ width: 90 }}
                         >
-                            {props.locale === 'en-us' ? 'Search' : '搜索'}
+                            {locale2text.AntdTable[props.locale].filterKeywordSearchButtonText}
                         </Button>
                         <Button onClick={() => this.handleSearchReset(clearFilters)} size="small" style={{ width: 90 }}>
-                            {props.locale === 'en-us' ? 'Reset' : '重置'}
+                            {locale2text.AntdTable[props.locale].filterKeywordResetButtonText}
                         </Button>
                     </Space>
                 </div>

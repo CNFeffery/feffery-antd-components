@@ -107,14 +107,14 @@ const AntdComment = (props) => {
 
     const actions = [
         showLikeDislike ?
-            <Tooltip key="comment-basic-like" title={locale2text.Comment[locale].likeTooltipTitle}>
+            <Tooltip key="comment-basic-like" title={locale2text.AntdComment[locale].likeTooltipTitle}>
                 <span onClick={like}>
                     {action === 'liked' ? <LikeFilled style={{ color: 'rgb(236, 65, 65)' }} /> : <LikeOutlined />}
                     <span className="comment-action">{likesCount}</span>
                 </span>
             </Tooltip> : undefined,
         showLikeDislike ?
-            <Tooltip key="comment-basic-dislike" title={locale2text.Comment[locale].dislikeTooltipTitle}>
+            <Tooltip key="comment-basic-dislike" title={locale2text.AntdComment[locale].dislikeTooltipTitle}>
                 <span onClick={dislike}>
                     {React.createElement(action === 'disliked' ? DislikeFilled : DislikeOutlined)}
                     <span className="comment-action">{dislikesCount}</span>
@@ -123,19 +123,19 @@ const AntdComment = (props) => {
         showReply ?
             <span key="comment-basic-reply-to" onClick={() => {
                 setProps({ replyClicks: replyClicks + 1 })
-            }}>{locale2text.Comment[locale].replayTitle}</span> : undefined,
+            }}>{locale2text.AntdComment[locale].replayTitle}</span> : undefined,
         showDelete ?
             <Popconfirm
-                title={locale2text.Comment[locale].deleteConfirmTitle}
+                title={locale2text.AntdComment[locale].deleteConfirmTitle}
                 onConfirm={() => setProps({ deleteClicks: deleteClicks + 1 })}
-                okText={locale2text.Comment[locale].deleteConfirmOkText}
-                cancelText={locale2text.Comment[locale].deleteConfirmCancelText}
+                okText={locale2text.AntdComment[locale].deleteConfirmOkText}
+                cancelText={locale2text.AntdComment[locale].deleteConfirmCancelText}
                 getPopupContainer={
                     popupContainer === 'parent' ?
                         (triggerNode) => triggerNode.parentNode :
                         undefined
                 }>
-                <span key="comment-basic-delete">{locale2text.Comment[locale].deleteTitle}</span>
+                <span key="comment-basic-delete">{locale2text.AntdComment[locale].deleteTitle}</span>
             </Popconfirm> : undefined
     ];
 
