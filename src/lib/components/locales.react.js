@@ -101,7 +101,36 @@ const locale2text = {
             typeError: ['Hochladen fehlgeschlagen. Das Format von ', ' entspricht nicht den Anforderungen!'],
             buttonContent: 'Klicken, um eine Datei hochzuladen'
         }
+    },
+    Comment: {
+        'zh-cn': {
+            likeTooltipTitle: '支持',
+            dislikeTooltipTitle: '反对',
+            replayTitle: '添加回复',
+            deleteConfirmTitle: '确认删除',
+            deleteConfirmOkText: '确认',
+            deleteConfirmCancelText: '取消',
+            deleteTitle: '删除',
+        },
+        'en-us': {
+            likeTooltipTitle: 'like',
+            dislikeTooltipTitle: 'dislike',
+            replayTitle: 'Add a reply',
+            deleteConfirmTitle: 'Confirm deletion',
+            deleteConfirmOkText: 'Yes',
+            deleteConfirmCancelText: 'No',
+            deleteTitle: 'Delete',
+        },
+        'de-de': {
+            likeTooltipTitle: 'Gefällt mir',
+            dislikeTooltipTitle: 'Gefällt mir nicht',
+            replayTitle: 'Antwort hinzufügen',
+            deleteConfirmTitle: 'Löschen bestätigen',
+            deleteConfirmOkText: 'Ja',
+            deleteConfirmCancelText: 'Nein',
+            deleteTitle: 'Löschen',
+        }
     }
 }
 
-export { str2Locale, locale2text }
+export { str2Locale, locale2text };

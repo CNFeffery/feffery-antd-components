@@ -8,10 +8,11 @@ import { DislikeOutlined, LikeOutlined, DislikeFilled, LikeFilled } from '@ant-d
 // 辅助库
 import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
-import { str2Locale } from '../../components/locales.react';
+import { str2Locale, locale2text } from '../../components/locales.react';
 import { parseChildrenToArray } from '../../components/utils';
 import { isString } from 'lodash';
 import { pickBy } from 'ramda';
+import 'dayjs/locale/de';
 // 自定义hooks
 import useCss from '../../hooks/useCss';
 // 上下文
@@ -74,6 +75,8 @@ const AntdComment = (props) => {
         dayjs.locale('zh-cn');
     } else if (locale === 'en-us') {
         dayjs.locale('en');
+    } else if (locale === 'de-de') {
+        dayjs.locale('de');
     }
 
     children = parseChildrenToArray(children)
@@ -104,14 +107,14 @@ const AntdComment = (props) => {
 
     const actions = [
         showLikeDislike ?
-            <Tooltip key="comment-basic-like" title={locale === "zh-cn" ? "支持" : "like"}>
+            <Tooltip key="comment-basic-like" title={locale2text.Comment[locale].likeTooltipTitle}>
                 <span onClick={like}>
                     {action === 'liked' ? <LikeFilled style={{ color: 'rgb(236, 65, 65)' }} /> : <LikeOutlined />}
                     <span className="comment-action">{likesCount}</span>
                 </span>
             </Tooltip> : undefined,
         showLikeDislike ?
-            <Tooltip key="comment-basic-dislike" title={locale === "zh-cn" ? "反对" : "dislike"}>
+            <Tooltip key="comment-basic-dislike" title={locale2text.Comment[locale].dislikeTooltipTitle}>
                 <span onClick={dislike}>
                     {React.createElement(action === 'disliked' ? DislikeFilled : DislikeOutlined)}
                     <span className="comment-action">{dislikesCount}</span>
@@ -120,19 +123,19 @@ const AntdComment = (props) => {
         showReply ?
             <span key="comment-basic-reply-to" onClick={() => {
                 setProps({ replyClicks: replyClicks + 1 })
-            }}>{locale === 'zh-cn' ? "添加回复" : "Add a reply"}</span> : undefined,
+            }}>{locale2text.Comment[locale].replayTitle}</span> : undefined,
         showDelete ?
             <Popconfirm
-                title={locale === 'zh-cn' ? "确认删除" : "Confirm deletion"}
+                title={locale2text.Comment[locale].deleteConfirmTitle}
                 onConfirm={() => setProps({ deleteClicks: deleteClicks + 1 })}
-                okText={locale === 'zh-cn' ? "确认" : "Yes"}
-                cancelText={locale === 'zh-cn' ? "取消" : "No"}
+                okText={locale2text.Comment[locale].deleteConfirmOkText}
+                cancelText={locale2text.Comment[locale].deleteConfirmCancelText}
                 getPopupContainer={
                     popupContainer === 'parent' ?
                         (triggerNode) => triggerNode.parentNode :
                         undefined
                 }>
-                <span key="comment-basic-delete">{locale === 'zh-cn' ? "删除" : "Delete"}</span>
+                <span key="comment-basic-delete">{locale2text.Comment[locale].deleteTitle}</span>
             </Popconfirm> : undefined
     ];
 
