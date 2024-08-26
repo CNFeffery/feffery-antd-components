@@ -46,6 +46,9 @@ Keyword arguments:
     - prop_name (string; optional):
         Holds which property is loading.
 
+- mask (boolean | string; default False):
+    自定义遮罩字符  默认值：`False`.
+
 - name (string; optional):
     配合`AntdForm`表单批量值搜集/控制功能使用，充当当前表单项的字段名，以`id`作为缺省值.
 
@@ -78,10 +81,10 @@ Keyword arguments:
     _namespace = 'feffery_antd_components'
     _type = 'AntdOTP'
     @_explicitize_args
-    def __init__(self, id=Component.UNDEFINED, key=Component.UNDEFINED, style=Component.UNDEFINED, className=Component.UNDEFINED, name=Component.UNDEFINED, value=Component.UNDEFINED, defaultValue=Component.UNDEFINED, disabled=Component.UNDEFINED, length=Component.UNDEFINED, status=Component.UNDEFINED, size=Component.UNDEFINED, variant=Component.UNDEFINED, loading_state=Component.UNDEFINED, persistence=Component.UNDEFINED, persisted_props=Component.UNDEFINED, persistence_type=Component.UNDEFINED, **kwargs):
-        self._prop_names = ['id', 'aria-*', 'className', 'data-*', 'defaultValue', 'disabled', 'key', 'length', 'loading_state', 'name', 'persisted_props', 'persistence', 'persistence_type', 'size', 'status', 'style', 'value', 'variant']
+    def __init__(self, id=Component.UNDEFINED, key=Component.UNDEFINED, style=Component.UNDEFINED, className=Component.UNDEFINED, name=Component.UNDEFINED, value=Component.UNDEFINED, defaultValue=Component.UNDEFINED, disabled=Component.UNDEFINED, length=Component.UNDEFINED, mask=Component.UNDEFINED, status=Component.UNDEFINED, size=Component.UNDEFINED, variant=Component.UNDEFINED, loading_state=Component.UNDEFINED, persistence=Component.UNDEFINED, persisted_props=Component.UNDEFINED, persistence_type=Component.UNDEFINED, **kwargs):
+        self._prop_names = ['id', 'aria-*', 'className', 'data-*', 'defaultValue', 'disabled', 'key', 'length', 'loading_state', 'mask', 'name', 'persisted_props', 'persistence', 'persistence_type', 'size', 'status', 'style', 'value', 'variant']
         self._valid_wildcard_attributes =            ['data-', 'aria-']
-        self.available_properties = ['id', 'aria-*', 'className', 'data-*', 'defaultValue', 'disabled', 'key', 'length', 'loading_state', 'name', 'persisted_props', 'persistence', 'persistence_type', 'size', 'status', 'style', 'value', 'variant']
+        self.available_properties = ['id', 'aria-*', 'className', 'data-*', 'defaultValue', 'disabled', 'key', 'length', 'loading_state', 'mask', 'name', 'persisted_props', 'persistence', 'persistence_type', 'size', 'status', 'style', 'value', 'variant']
         self.available_wildcard_properties =            ['data-', 'aria-']
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()
