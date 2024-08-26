@@ -1,9 +1,11 @@
 import zhCN from 'antd/lib/locale/zh_CN';
 import enUS from 'antd/lib/locale/en_US';
+import deDE from 'antd/lib/locale/de_DE';
 
 const str2Locale = new Map([
     ['zh-cn', zhCN],
-    ['en-us', enUS]
+    ['en-us', enUS],
+    ['de-de', deDE]
 ])
 
 const locale2text = {
@@ -15,6 +17,10 @@ const locale2text = {
         'en-us': {
             hideLabel: 'Hide',
             showLabel: 'Show more'
+        },
+        'de-de': {
+            hideLabel: 'Verbergen',
+            showLabel: 'Mehr anzeigen'
         }
     },
     AntdPictureUpload: {
@@ -27,6 +33,11 @@ const locale2text = {
             confirmBeforeDeleteTitle: 'Confirm Delete',
             confirmBeforeDeleteOkText: 'Ok',
             confirmBeforeDeleteCancelText: 'Cancel'
+        },
+        'de-de': {
+            confirmBeforeDeleteTitle: 'Löschen bestätigen',
+            confirmBeforeDeleteOkText: 'Ok',
+            confirmBeforeDeleteCancelText: 'Abbrechen'
         }
     },
     AntdPagination: {
@@ -36,6 +47,10 @@ const locale2text = {
         },
         'en-us': {
             showTotalPrefix: 'Total ',
+            showTotalSuffix: ' items'
+        },
+        'de-de': {
+            showTotalPrefix: 'Gesamt ',
             showTotalSuffix: ' items'
         }
     },
@@ -47,6 +62,10 @@ const locale2text = {
         'en-us': {
             showTotalPrefix: 'Total ',
             showTotalSuffix: ' items'
+        },
+        'de-de': {
+            showTotalPrefix: 'Gesamt ',
+            showTotalSuffix: ' items'
         }
     },
     AntdTransfer: {
@@ -55,6 +74,9 @@ const locale2text = {
         },
         'en-us': {
             titles: ['Source', 'Target']
+        },
+        'de-de': {
+            titles: ['Quelle', 'Ziel']
         }
     },
     Upload: {
@@ -71,6 +93,13 @@ const locale2text = {
             sizeError: ['File size exceeds the ', 'MB limit!'],
             typeError: ['Uploading failed, The format of ', ' does not meet requirements!'],
             buttonContent: 'Click to upload file'
+        },
+        'de-de': {
+            uploadSuccess: 'Hochladen erfolgreich!',
+            uploadFailed: 'Hochladen fehlgeschlagen!',
+            sizeError: ['Dateigröße überschreitet das Limit von ', 'MB!'],
+            typeError: ['Hochladen fehlgeschlagen. Das Format von ', ' entspricht nicht den Anforderungen!'],
+            buttonContent: 'Klicken, um eine Datei hochzuladen'
         }
     }
 }
