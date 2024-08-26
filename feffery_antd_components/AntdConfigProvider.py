@@ -56,8 +56,8 @@ Keyword arguments:
     - prop_name (string; optional):
         Holds which property is loading.
 
-- locale (a value equal to: 'zh-cn', 'en-us'; optional):
-    强制设置后代元素的语言，可选项有`'zh-cn'`、`'en-us'`.
+- locale (a value equal to: 'zh-cn', 'en-us', 'de-de'; optional):
+    强制设置后代元素的语言，可选项有`'zh-cn'`（简体中文）、`'en-us'`（英语）、`'de-de'`（德语）.
 
 - primaryColor (string; optional):
     主题色.

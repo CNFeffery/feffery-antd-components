@@ -44,10 +44,10 @@ AntdPictureUpload.propTypes = {
     name: PropTypes.string,
 
     /**
-     * 组件文案语种，可选项有`'zh-cn'`、`'en-us'`
+     * 组件文案语种，可选项有`'zh-cn'`（简体中文）、`'en-us'`（英语）、`'de-de'`（德语）
      * 默认值：`'zh-cn'`
      */
-    locale: PropTypes.oneOf(['zh-cn', 'en-us']),
+    locale: PropTypes.oneOf(['zh-cn', 'en-us', 'de-de']),
 
     /**
      * 文件上传服务接口地址

@@ -46,8 +46,9 @@ Keyword arguments:
     - prop_name (string; optional):
         Holds which property is loading.
 
-- locale (a value equal to: 'zh-cn', 'en-us'; default 'zh-cn'):
-    组件文案语种，可选项有`'zh-cn'`、`'en-us'`  默认值：`'zh-cn'`.
+- locale (a value equal to: 'zh-cn', 'en-us', 'de-de'; default 'zh-cn'):
+    组件文案语种，可选项有`'zh-cn'`（简体中文）、`'en-us'`（英语）、`'de-de'`（德语）
+    默认值：`'zh-cn'`.
 
 - multiImageMode (a value equal to: 'fold', 'unfold'; default 'fold'):
     多图片模式展示方式，可选项有`'fold'`、`'unfold'`  默认值：`'fold'`.

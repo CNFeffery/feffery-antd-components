@@ -188,9 +188,9 @@ AntdConfigProvider.propTypes = {
     componentSize: PropTypes.oneOf(['small', 'middle', 'large']),
 
     /**
-     * 强制设置后代元素的语言，可选项有`'zh-cn'`、`'en-us'`
+     * 强制设置后代元素的语言，可选项有`'zh-cn'`（简体中文）、`'en-us'`（英语）、`'de-de'`（德语）
      */
-    locale: PropTypes.oneOf(['zh-cn', 'en-us']),
+    locale: PropTypes.oneOf(['zh-cn', 'en-us', 'de-de']),
 
     /**
      * 是否禁用内部组件水波纹动效

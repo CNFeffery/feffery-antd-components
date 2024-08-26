@@ -111,7 +111,7 @@ Keyword arguments:
     - prop_name (string; optional):
         Holds which property is loading.
 
-- locale (a value equal to: 'zh-CN', 'en-US'; default 'zh-CN'):
+- locale (a value equal to: 'zh-cn', 'en-us', 'de-de'; default 'zh-CN'):
     设置展示语言，目前只支持中文、英文，  可选的有'zh-CN'与'en-US'，默认为'zh-CN'.
 
 - maxWidth (number; optional):
