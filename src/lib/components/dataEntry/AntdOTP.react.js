@@ -66,6 +66,15 @@ AntdOTP.propTypes = {
     length: PropTypes.number,
 
     /**
+     * 自定义遮罩字符
+     * 默认值：`false`
+     */
+    mask: PropTypes.oneOfType([
+        PropTypes.bool,
+        PropTypes.string
+    ]),
+
+    /**
      * 控制校验状态，可选项有`'error'`、`'warning'`
      */
     status: PropTypes.oneOf(['error', 'warning']),
@@ -138,6 +147,7 @@ AntdOTP.propTypes = {
 AntdOTP.defaultProps = {
     disabled: false,
     length: 6,
+    mask: false,
     size: 'middle',
     variant: 'outlined',
     persisted_props: ['value'],

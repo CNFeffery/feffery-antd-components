@@ -31,6 +31,7 @@ const AntdOTP = (props) => {
         value,
         disabled,
         length,
+        mask,
         status,
         size,
         variant,
@@ -99,6 +100,7 @@ const AntdOTP = (props) => {
                     disabled
             }
             length={length}
+            mask={mask}
             status={status}
             size={
                 context && !isUndefined(context.componentSize) ?
