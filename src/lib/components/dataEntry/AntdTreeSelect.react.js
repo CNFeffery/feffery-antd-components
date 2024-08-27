@@ -235,12 +235,22 @@ AntdTreeSelect.propTypes = {
     ]),
 
     /**
-     * 当`multiple=True`时，已选值展示的最大数量
+     * 当`multiple=True`时，已选值tag展示的最大数量
      */
     maxTagCount: PropTypes.oneOfType([
         PropTypes.number,
         PropTypes.oneOf(['responsive'])
     ]),
+
+    /**
+     * 当`multiple=True`时，隐藏已选值tag时显示的内容
+     */
+    maxTagPlaceholder: PropTypes.node,
+
+    /**
+     * 当`multiple=True`时，最大显示的已选值tag文本长度
+     */
+    maxTagTextLength: PropTypes.number,
 
     /**
      * 选择菜单最大像素高度
