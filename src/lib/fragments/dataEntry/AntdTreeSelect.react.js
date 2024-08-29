@@ -80,6 +80,7 @@ const AntdTreeSelect = (props) => {
         maxTagTextLength,
         multiple,
         size,
+        suffixIcon,
         treeCheckable,
         treeCheckStrictly,
         treeDefaultExpandAll,
@@ -229,6 +230,7 @@ const AntdTreeSelect = (props) => {
                         context.componentSize :
                         size
                 }
+                suffixIcon={suffixIcon}
                 treeCheckable={treeCheckable}
                 showCheckedStrategy={str2ShowCheckedStrategy.get(showCheckedStrategy)}
                 treeCheckStrictly={treeCheckStrictly}

@@ -265,6 +265,11 @@ AntdTreeSelect.propTypes = {
     multiple: PropTypes.bool,
 
     /**
+     * 组件型，自定义的选择框后缀图标
+     */
+    suffixIcon: PropTypes.node,
+
+    /**
      * 树节点是否可勾选
      * 默认值：`false`
      */
