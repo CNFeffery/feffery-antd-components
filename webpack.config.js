@@ -141,7 +141,7 @@ module.exports = (env, argv) => {
         optimization: {
             minimizer: [
                 new TerserPlugin({
-                    sourceMap: true,
+                    sourceMap: false, // 彻底关闭sourcemap生成
                     parallel: true,
                     cache: './.build_cache/terser',
                     terserOptions: {
