@@ -76,8 +76,12 @@ const AntdTreeSelect = (props) => {
         value,
         defaultValue,
         maxTagCount,
+        maxTagPlaceholder,
+        maxTagTextLength,
         multiple,
         size,
+        suffixIcon,
+        switcherIcon,
         treeCheckable,
         treeCheckStrictly,
         treeDefaultExpandAll,
@@ -219,12 +223,16 @@ const AntdTreeSelect = (props) => {
                         value
                 }
                 maxTagCount={maxTagCount}
+                maxTagPlaceholder={maxTagPlaceholder}
+                maxTagTextLength={maxTagTextLength}
                 multiple={multiple}
                 size={
                     context && !isUndefined(context.componentSize) ?
                         context.componentSize :
                         size
                 }
+                suffixIcon={suffixIcon}
+                switcherIcon={switcherIcon}
                 treeCheckable={treeCheckable}
                 showCheckedStrategy={str2ShowCheckedStrategy.get(showCheckedStrategy)}
                 treeCheckStrictly={treeCheckStrictly}

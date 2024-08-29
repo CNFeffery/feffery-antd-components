@@ -235,12 +235,22 @@ AntdTreeSelect.propTypes = {
     ]),
 
     /**
-     * 当`multiple=True`时，已选值展示的最大数量
+     * 当`multiple=True`时，已选值tag展示的最大数量
      */
     maxTagCount: PropTypes.oneOfType([
         PropTypes.number,
         PropTypes.oneOf(['responsive'])
     ]),
+
+    /**
+     * 当`multiple=True`时，隐藏已选值tag时显示的内容
+     */
+    maxTagPlaceholder: PropTypes.node,
+
+    /**
+     * 当`multiple=True`时，最大显示的已选值tag文本长度
+     */
+    maxTagTextLength: PropTypes.number,
 
     /**
      * 选择菜单最大像素高度
@@ -253,6 +263,16 @@ AntdTreeSelect.propTypes = {
      * 默认值：`false`
      */
     multiple: PropTypes.bool,
+
+    /**
+     * 组件型，自定义的选择框后缀图标
+     */
+    suffixIcon: PropTypes.node,
+
+    /**
+     * 组件型，自定义树节点的展开/折叠图标
+     */
+    switcherIcon: PropTypes.node,
 
     /**
      * 树节点是否可勾选
