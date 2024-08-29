@@ -270,6 +270,11 @@ AntdTreeSelect.propTypes = {
     suffixIcon: PropTypes.node,
 
     /**
+     * 组件型，自定义树节点的展开/折叠图标
+     */
+    switcherIcon: PropTypes.node,
+
+    /**
      * 树节点是否可勾选
      * 默认值：`false`
      */

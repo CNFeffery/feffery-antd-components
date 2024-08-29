@@ -81,6 +81,7 @@ const AntdTreeSelect = (props) => {
         multiple,
         size,
         suffixIcon,
+        switcherIcon,
         treeCheckable,
         treeCheckStrictly,
         treeDefaultExpandAll,
@@ -231,6 +232,7 @@ const AntdTreeSelect = (props) => {
                         size
                 }
                 suffixIcon={suffixIcon}
+                switcherIcon={switcherIcon}
                 treeCheckable={treeCheckable}
                 showCheckedStrategy={str2ShowCheckedStrategy.get(showCheckedStrategy)}
                 treeCheckStrictly={treeCheckStrictly}
