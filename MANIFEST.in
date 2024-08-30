@@ -1,4 +1,5 @@
 include feffery_antd_components/*.js
+include feffery_antd_components/*.map
 include *.json
 include README.md
 include LICENSE
