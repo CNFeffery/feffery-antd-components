@@ -144,7 +144,7 @@ const AntdColorPicker = (props) => {
     }
 
     return (
-        <ConfigProvider locale={locale === 'zh-cn' ? str2Locale.get(locale) : undefined}>
+        <ConfigProvider locale={locale !== 'en-us' ? str2Locale.get(locale) : undefined}>
             <ColorPicker
                 // 提取具有data-*或aria-*通配格式的属性
                 {...pickBy((_, k) => k.startsWith('data-') || k.startsWith('aria-'), props)}
