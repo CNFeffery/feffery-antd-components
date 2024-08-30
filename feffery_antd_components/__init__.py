@@ -45,6 +45,13 @@ _js_dist = [
         'external_url': 'https://unpkg.com/{0}@{2}/{1}/{1}.min.js'.format(
             package_name, __name__, __version__),
         'namespace': package_name
+    },
+    {
+        'relative_package_path': 'feffery_antd_components.min.js.map',
+        'external_url': 'https://unpkg.com/{0}@{2}/{1}/{1}.min.js.map'.format(
+            package_name, __name__, __version__),
+        'namespace': package_name,
+        'dynamic': True
     }
 ]
 
@@ -57,6 +64,20 @@ _js_dist.extend(
             ),
             "namespace": package_name,
             "async": True,
+        }
+        for async_resource in async_resources
+    ]
+)
+
+_js_dist.extend(
+    [
+        {
+            "relative_package_path": "async-{}.js.map".format(async_resource),
+            "external_url": ("https://unpkg.com/{0}@{2}" "/{1}/async-{3}.js.map").format(
+                package_name, __name__, __version__, async_resource
+            ),
+            "namespace": package_name,
+            'dynamic': True
         }
         for async_resource in async_resources
     ]

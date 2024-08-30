@@ -55,7 +55,8 @@ module.exports = (env, argv) => {
             library: dashLibraryName,
             libraryTarget: 'window',
         },
-        devtool,
+        // devtool: false, // 开发阶段使用，生成全量source-map
+        devtool, // 发布阶段使用，生成最小化source-map
         externals,
         module: {
             rules: [
@@ -141,7 +142,7 @@ module.exports = (env, argv) => {
         optimization: {
             minimizer: [
                 new TerserPlugin({
-                    sourceMap: false, // 彻底关闭sourcemap生成
+                    sourceMap: true,
                     parallel: true,
                     cache: './.build_cache/terser',
                     terserOptions: {

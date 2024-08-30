@@ -6,36 +6,26 @@ app = dash.Dash(__name__)
 
 app.layout = html.Div(
     [
-        fac.AntdConfigProvider(
-            fac.AntdButton(
-                '按钮示例',
-                size='large',
-                className={
-                    'background': 'linear-gradient(135deg,#6b73ff,#000dff)',
-                    'color': 'white',
-                    'transition': 'transform 0.2s ease',
-                    # 悬停状态
-                    '&:hover': {
-                        'background': 'linear-gradient(135deg,#6b73ff,#000dff)',
-                        'color': 'white',
-                        'borderColor': 'white',
-                    },
-                    # 聚焦状态
-                    '&:focus': {
-                        'background': 'linear-gradient(135deg,#6b73ff,#000dff)',
-                        'color': 'white',
-                        'borderColor': 'white',
-                    },
-                    # 点击状态
-                    '&:active': {
-                        'background': 'linear-gradient(135deg,#6b73ff,#000dff)',
-                        'color': 'white',
-                        'borderColor': 'white',
-                        'transform': 'translateY(3px)',
-                    },
+        fac.AntdAnchor(
+            linkDict=[
+                {
+                    'title': '报告信息',
+                    'href': '#edit_permeate_report_info',
                 },
-            ),
-            enableLayer=True,
+                {
+                    'title': '测试范围',
+                    'href': '#edit_permeate_report_test_range',
+                },
+                {
+                    'title': '客户信息',
+                    'href': '#edit_permeate_report_customer_info',
+                },
+                {
+                    'title': '测试方信息',
+                    'href': '#edit_permeate_report_tester_info',
+                },
+            ],
+            align='left',
         )
     ],
     style={'padding': 50},
