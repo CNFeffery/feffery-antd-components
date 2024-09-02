@@ -311,11 +311,13 @@ const AntdMenu = (props) => {
     useEffect(() => {
         // 当currentKey发生变化时，自动查找currentKey对应的菜单信息
         let currentItem = findByKey(menuItems, currentKey)
-        // 当currentKey发生变化时，自动查找currentKey对应的key路径信息
+        // 当currentKey发生变化时，自动查找currentKey对应的key路径信息和菜单路径信息
         let currentKeyPath = findKeyPath(menuItems, currentKey)
+        let currentItemPath = currentKeyPath?.map(item => findByKey(menuItems, item))
         setProps({
             currentItem: currentItem,
-            currentKeyPath: currentKeyPath
+            currentKeyPath: currentKeyPath,
+            currentItemPath: currentItemPath
         })
     }, [currentKey])
 
@@ -472,6 +474,11 @@ AntdMenu.propTypes = {
      * 监听当前已选中菜单项key值路径信息
      */
     currentKeyPath: PropTypes.array,
+
+    /**
+     * 监听当前已选中菜单项路径信息
+     */
+    currentItemPath: PropTypes.array,
 
     /**
      * 监听或设置当前已展开子菜单项key值
