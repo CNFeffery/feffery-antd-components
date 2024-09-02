@@ -22,6 +22,7 @@ const AntdPagination = (props) => {
         className,
         key,
         locale,
+        align,
         defaultCurrent,
         defaultPageSize,
         current,
@@ -96,6 +97,7 @@ const AntdPagination = (props) => {
                 style={style}
                 key={key}
                 pageSize={pageSize || defaultPageSize}
+                align={align}
                 defaultCurrent={defaultCurrent}
                 defaultPageSize={defaultPageSize}
                 current={current}
@@ -154,6 +156,12 @@ AntdPagination.propTypes = {
      * 默认值：`'zh-cn'`
      */
     locale: PropTypes.oneOf(['zh-cn', 'en-us', 'de-de']),
+
+    /**
+     * 组件尺寸规格，可选项有`'start'`、`'center'`、`'end'`
+     * 默认值：`'start'`
+     */
+    align: PropTypes.oneOf(['start', 'center', 'end']),
 
     /**
      * 初始化时的当前页码
@@ -312,6 +320,7 @@ AntdPagination.propTypes = {
 // 设置默认参数
 AntdPagination.defaultProps = {
     locale: 'zh-cn',
+    align: 'start',
     defaultCurrent: 1,
     defaultPageSize: 10,
     disabled: false,
