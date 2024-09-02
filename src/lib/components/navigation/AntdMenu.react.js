@@ -9,8 +9,8 @@ import {
     MenuFoldOutlined,
 } from '@ant-design/icons';
 // 辅助库
-import { get, isArray, isUndefined, isNull, isString, cloneDeep } from 'lodash';
-import { pickBy } from 'ramda';
+import { get, isArray, isObject, isUndefined, isNull, isString, cloneDeep } from 'lodash';
+import { is, pickBy } from 'ramda';
 import isAbsoluteUrl from 'is-absolute-url';
 // 自定义hooks
 import useCss from '../../hooks/useCss';
@@ -259,6 +259,7 @@ const AntdMenu = (props) => {
         className,
         style,
         key,
+        expandIcon,
         menuItems,
         menuItemKeyToTitle,
         mode,
@@ -348,6 +349,15 @@ const AntdMenu = (props) => {
                     }
                     style={style}
                     key={key}
+                    expandIcon={
+                        React.isValidElement(expandIcon)
+                            ? expandIcon
+                            : (props) => props.isSubMenu
+                                ? (props.isOpen
+                                    ? expandIcon.collapse
+                                    : expandIcon.expand)
+                                : undefined
+                    }
                     mode={mode}
                     theme={theme}
                     selectedKeys={[currentKey]}
@@ -388,6 +398,15 @@ const AntdMenu = (props) => {
                 }
                 style={style}
                 key={key}
+                expandIcon={
+                    React.isValidElement(expandIcon)
+                        ? expandIcon
+                        : (props) => props.isSubMenu
+                            ? (props.isOpen
+                                ? expandIcon.collapse
+                                : expandIcon.expand)
+                            : undefined
+                }
                 mode={mode}
                 theme={theme}
                 selectedKeys={[currentKey]}
@@ -439,6 +458,23 @@ AntdMenu.propTypes = {
     className: PropTypes.oneOfType([
         PropTypes.string,
         PropTypes.object
+    ]),
+
+    /**
+     * 自定义展开图标，建议仅在`mode='inline'`时使用字典类型
+     */
+    expandIcon: PropTypes.oneOfType([
+        PropTypes.node,
+        PropTypes.exact({
+            /**
+             * 展开图标
+             */
+            expand: PropTypes.node,
+            /**
+             * 收起图标
+             */
+            collapse: PropTypes.node
+        })
     ]),
 
     /**
