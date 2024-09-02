@@ -38,6 +38,18 @@ Keyword arguments:
 
 - defaultSelectedKey (string; optional)
 
+- expandIcon (dict; optional):
+    自定义展开图标，建议仅在`mode='inline'`时使用字典类型.
+
+    `expandIcon` is a a list of or a singular dash component, string
+    or number | dict with keys:
+
+    - collapse (a list of or a singular dash component, string or number; optional):
+        收起图标.
+
+    - expand (a list of or a singular dash component, string or number; optional):
+        展开图标.
+
 - inlineCollapsed (boolean; default False):
     当前菜单是否折叠，仅inline模式下有效  默认值：`False`.
 
@@ -100,15 +112,15 @@ Keyword arguments:
 - triggerSubMenuAction (a value equal to: 'hover', 'click'; default 'hover'):
     `SubMenu`展开/关闭的触发行为，可选项有`'hover'`、`'click'`，`mode='inline'`下无效
     默认值：`'hover'`."""
-    _children_props = ['menuItemKeyToTitle{}']
-    _base_nodes = ['children']
+    _children_props = ['expandIcon', 'expandIcon.expand', 'expandIcon.collapse', 'menuItemKeyToTitle{}']
+    _base_nodes = ['expandIcon', 'children']
     _namespace = 'feffery_antd_components'
     _type = 'AntdMenu'
     @_explicitize_args
-    def __init__(self, id=Component.UNDEFINED, key=Component.UNDEFINED, style=Component.UNDEFINED, className=Component.UNDEFINED, menuItems=Component.UNDEFINED, menuItemKeyToTitle=Component.UNDEFINED, mode=Component.UNDEFINED, theme=Component.UNDEFINED, currentKey=Component.UNDEFINED, currentItem=Component.UNDEFINED, currentKeyPath=Component.UNDEFINED, currentItemPath=Component.UNDEFINED, openKeys=Component.UNDEFINED, onlyExpandCurrentSubMenu=Component.UNDEFINED, defaultOpenKeys=Component.UNDEFINED, defaultSelectedKey=Component.UNDEFINED, renderCollapsedButton=Component.UNDEFINED, popupContainer=Component.UNDEFINED, inlineCollapsed=Component.UNDEFINED, inlineIndent=Component.UNDEFINED, triggerSubMenuAction=Component.UNDEFINED, loading_state=Component.UNDEFINED, persistence=Component.UNDEFINED, persisted_props=Component.UNDEFINED, persistence_type=Component.UNDEFINED, **kwargs):
-        self._prop_names = ['id', 'aria-*', 'className', 'currentItem', 'currentItemPath', 'currentKey', 'currentKeyPath', 'data-*', 'defaultOpenKeys', 'defaultSelectedKey', 'inlineCollapsed', 'inlineIndent', 'key', 'loading_state', 'menuItemKeyToTitle', 'menuItems', 'mode', 'onlyExpandCurrentSubMenu', 'openKeys', 'persisted_props', 'persistence', 'persistence_type', 'popupContainer', 'renderCollapsedButton', 'style', 'theme', 'triggerSubMenuAction']
+    def __init__(self, id=Component.UNDEFINED, key=Component.UNDEFINED, style=Component.UNDEFINED, className=Component.UNDEFINED, expandIcon=Component.UNDEFINED, menuItems=Component.UNDEFINED, menuItemKeyToTitle=Component.UNDEFINED, mode=Component.UNDEFINED, theme=Component.UNDEFINED, currentKey=Component.UNDEFINED, currentItem=Component.UNDEFINED, currentKeyPath=Component.UNDEFINED, currentItemPath=Component.UNDEFINED, openKeys=Component.UNDEFINED, onlyExpandCurrentSubMenu=Component.UNDEFINED, defaultOpenKeys=Component.UNDEFINED, defaultSelectedKey=Component.UNDEFINED, renderCollapsedButton=Component.UNDEFINED, popupContainer=Component.UNDEFINED, inlineCollapsed=Component.UNDEFINED, inlineIndent=Component.UNDEFINED, triggerSubMenuAction=Component.UNDEFINED, loading_state=Component.UNDEFINED, persistence=Component.UNDEFINED, persisted_props=Component.UNDEFINED, persistence_type=Component.UNDEFINED, **kwargs):
+        self._prop_names = ['id', 'aria-*', 'className', 'currentItem', 'currentItemPath', 'currentKey', 'currentKeyPath', 'data-*', 'defaultOpenKeys', 'defaultSelectedKey', 'expandIcon', 'inlineCollapsed', 'inlineIndent', 'key', 'loading_state', 'menuItemKeyToTitle', 'menuItems', 'mode', 'onlyExpandCurrentSubMenu', 'openKeys', 'persisted_props', 'persistence', 'persistence_type', 'popupContainer', 'renderCollapsedButton', 'style', 'theme', 'triggerSubMenuAction']
         self._valid_wildcard_attributes =            ['data-', 'aria-']
-        self.available_properties = ['id', 'aria-*', 'className', 'currentItem', 'currentItemPath', 'currentKey', 'currentKeyPath', 'data-*', 'defaultOpenKeys', 'defaultSelectedKey', 'inlineCollapsed', 'inlineIndent', 'key', 'loading_state', 'menuItemKeyToTitle', 'menuItems', 'mode', 'onlyExpandCurrentSubMenu', 'openKeys', 'persisted_props', 'persistence', 'persistence_type', 'popupContainer', 'renderCollapsedButton', 'style', 'theme', 'triggerSubMenuAction']
+        self.available_properties = ['id', 'aria-*', 'className', 'currentItem', 'currentItemPath', 'currentKey', 'currentKeyPath', 'data-*', 'defaultOpenKeys', 'defaultSelectedKey', 'expandIcon', 'inlineCollapsed', 'inlineIndent', 'key', 'loading_state', 'menuItemKeyToTitle', 'menuItems', 'mode', 'onlyExpandCurrentSubMenu', 'openKeys', 'persisted_props', 'persistence', 'persistence_type', 'popupContainer', 'renderCollapsedButton', 'style', 'theme', 'triggerSubMenuAction']
         self.available_wildcard_properties =            ['data-', 'aria-']
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()
