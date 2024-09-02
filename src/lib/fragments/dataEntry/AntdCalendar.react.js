@@ -127,7 +127,15 @@ const AntdCalendar = (props) => {
                             // 尝试搜索命中项
                             let matchCell;
                             if (info.type === 'date') {
-                                matchCell = customCells.filter(item => item.type === 'date' && item.month === current.month() + 1 && item.date === current.date());
+                                matchCell = customCells.filter(item => {
+                                    // 若具有明确月份
+                                    if (item.month) {
+                                        return item.type === 'date' && item.month === current.month() + 1 && item.date === current.date();
+                                    } else {
+                                        // 月份视作通配
+                                        return item.type === 'date' && item.date === current.date()
+                                    }
+                                });
                             } else if (info.type === 'month') {
                                 matchCell = customCells.filter(item => item.type === 'month' && item.month === current.month() + 1);
                             }
