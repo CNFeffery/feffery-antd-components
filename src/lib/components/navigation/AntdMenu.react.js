@@ -9,8 +9,8 @@ import {
     MenuFoldOutlined,
 } from '@ant-design/icons';
 // 辅助库
-import { get, isArray, isObject, isUndefined, isNull, isString, cloneDeep } from 'lodash';
-import { is, pickBy } from 'ramda';
+import { get, isArray, isUndefined, isNull, isString, cloneDeep } from 'lodash';
+import { pickBy } from 'ramda';
 import isAbsoluteUrl from 'is-absolute-url';
 // 自定义hooks
 import useCss from '../../hooks/useCss';
