@@ -130,6 +130,11 @@ AntdDescriptions.propTypes = {
     contentStyle: PropTypes.object,
 
     /**
+     * 组件型，设置操作区域，显示在右上方
+     */
+    extra: PropTypes.node,
+
+    /**
      * `data-*`格式属性通配
      */
     'data-*': PropTypes.string,
