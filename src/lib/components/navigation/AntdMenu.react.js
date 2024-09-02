@@ -272,6 +272,7 @@ const AntdMenu = (props) => {
         popupContainer,
         inlineCollapsed,
         inlineIndent,
+        triggerSubMenuAction,
         setProps,
         persistence,
         persisted_props,
@@ -362,6 +363,7 @@ const AntdMenu = (props) => {
                     }
                     inlineCollapsed={inlineCollapsed}
                     inlineIndent={inlineIndent}
+                    triggerSubMenuAction={triggerSubMenuAction}
                     persistence={persistence}
                     persisted_props={persisted_props}
                     persistence_type={persistence_type}
@@ -401,6 +403,7 @@ const AntdMenu = (props) => {
                 }
                 inlineCollapsed={inlineCollapsed}
                 inlineIndent={inlineIndent}
+                triggerSubMenuAction={triggerSubMenuAction}
                 persistence={persistence}
                 persisted_props={persisted_props}
                 persistence_type={persistence_type}
@@ -524,6 +527,12 @@ AntdMenu.propTypes = {
     inlineIndent: PropTypes.number,
 
     /**
+     * `SubMenu`展开/关闭的触发行为，可选项有`'hover'`、`'click'`，`mode='inline'`下无效
+     * 默认值：`'hover'`
+     */
+    triggerSubMenuAction: PropTypes.oneOf(['hover', 'click']),
+
+    /**
      * `data-*`格式属性通配
      */
     'data-*': PropTypes.string,
@@ -585,6 +594,7 @@ AntdMenu.defaultProps = {
     popupContainer: 'body',
     inlineCollapsed: false,
     inlineIndent: 24,
+    triggerSubMenuAction: 'hover',
     persisted_props: ['currentKey', 'openKeys'],
     persistence_type: 'local'
 }
