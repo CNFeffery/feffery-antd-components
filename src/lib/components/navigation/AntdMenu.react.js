@@ -52,6 +52,22 @@ function findByKey(array, key) {
     return null;
 }
 
+function findKeyPath(array, key, path = []) {
+    for (let item of array) {
+        let currentPath = [...path, item.props.key];
+        if (get(item, 'props.key') === key) {
+            return currentPath;
+        }
+        if (get(item, 'children') && isArray(get(item, 'children'))) {
+            const result = findKeyPath(item.children, key, currentPath);
+            if (result) {
+                return result;
+            }
+        }
+    }
+    return null;
+}
+
 class UtilsLink extends Component {
 
     constructor(props) {
@@ -295,7 +311,12 @@ const AntdMenu = (props) => {
     useEffect(() => {
         // 当currentKey发生变化时，自动查找currentKey对应的菜单信息
         let currentItem = findByKey(menuItems, currentKey)
-        setProps({ currentItem: currentItem })
+        // 当currentKey发生变化时，自动查找currentKey对应的key路径信息
+        let currentKeyPath = findKeyPath(menuItems, currentKey)
+        setProps({
+            currentItem: currentItem,
+            currentKeyPath: currentKeyPath
+        })
     }, [currentKey])
 
     // 基于menuItems推导jsx数据结构
@@ -446,6 +467,11 @@ AntdMenu.propTypes = {
      * 监听当前已选中菜单项信息
      */
     currentItem: PropTypes.object,
+
+    /**
+     * 监听当前已选中菜单项key值路径信息
+     */
+    currentKeyPath: PropTypes.array,
 
     /**
      * 监听或设置当前已展开子菜单项key值
