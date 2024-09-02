@@ -30,6 +30,7 @@ const AntdDescriptions = (props) => {
         layout,
         labelStyle,
         contentStyle,
+        extra,
         setProps,
         loading_state
     } = props;
@@ -60,6 +61,7 @@ const AntdDescriptions = (props) => {
                 layout={layout}
                 labelStyle={labelStyle}
                 contentStyle={contentStyle}
+                extra={extra}
                 data-dash-is-loading={
                     (loading_state && loading_state.is_loading) || undefined
                 }>
@@ -129,6 +131,7 @@ const AntdDescriptions = (props) => {
             layout={layout}
             labelStyle={labelStyle}
             contentStyle={contentStyle}
+            extra={extra}
             data-dash-is-loading={
                 (loading_state && loading_state.is_loading) || undefined
             }>

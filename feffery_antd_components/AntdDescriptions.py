@@ -47,6 +47,9 @@ Keyword arguments:
 - data-* (string; optional):
     `data-*`格式属性通配.
 
+- extra (a list of or a singular dash component, string or number; optional):
+    组件型，设置操作区域，显示在右上方.
+
 - items (list of dicts; optional):
     配置描述列表子项，优先级高于`children`.
 
@@ -103,15 +106,15 @@ Keyword arguments:
 
 - title (a list of or a singular dash component, string or number; optional):
     组件型，标题内容."""
-    _children_props = ['items[].label', 'items[].children', 'title']
-    _base_nodes = ['title', 'children']
+    _children_props = ['items[].label', 'items[].children', 'title', 'extra']
+    _base_nodes = ['title', 'extra', 'children']
     _namespace = 'feffery_antd_components'
     _type = 'AntdDescriptions'
     @_explicitize_args
-    def __init__(self, children=None, id=Component.UNDEFINED, key=Component.UNDEFINED, style=Component.UNDEFINED, className=Component.UNDEFINED, items=Component.UNDEFINED, title=Component.UNDEFINED, column=Component.UNDEFINED, bordered=Component.UNDEFINED, size=Component.UNDEFINED, layout=Component.UNDEFINED, labelStyle=Component.UNDEFINED, contentStyle=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
-        self._prop_names = ['children', 'id', 'aria-*', 'bordered', 'className', 'column', 'contentStyle', 'data-*', 'items', 'key', 'labelStyle', 'layout', 'loading_state', 'size', 'style', 'title']
+    def __init__(self, children=None, id=Component.UNDEFINED, key=Component.UNDEFINED, style=Component.UNDEFINED, className=Component.UNDEFINED, items=Component.UNDEFINED, title=Component.UNDEFINED, column=Component.UNDEFINED, bordered=Component.UNDEFINED, size=Component.UNDEFINED, layout=Component.UNDEFINED, labelStyle=Component.UNDEFINED, contentStyle=Component.UNDEFINED, extra=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
+        self._prop_names = ['children', 'id', 'aria-*', 'bordered', 'className', 'column', 'contentStyle', 'data-*', 'extra', 'items', 'key', 'labelStyle', 'layout', 'loading_state', 'size', 'style', 'title']
         self._valid_wildcard_attributes =            ['data-', 'aria-']
-        self.available_properties = ['children', 'id', 'aria-*', 'bordered', 'className', 'column', 'contentStyle', 'data-*', 'items', 'key', 'labelStyle', 'layout', 'loading_state', 'size', 'style', 'title']
+        self.available_properties = ['children', 'id', 'aria-*', 'bordered', 'className', 'column', 'contentStyle', 'data-*', 'extra', 'items', 'key', 'labelStyle', 'layout', 'loading_state', 'size', 'style', 'title']
         self.available_wildcard_properties =            ['data-', 'aria-']
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()
