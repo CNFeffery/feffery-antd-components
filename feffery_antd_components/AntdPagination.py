@@ -12,6 +12,9 @@ Keyword arguments:
 - id (string; optional):
     组件唯一id.
 
+- align (a value equal to: 'start', 'center', 'end'; default 'start'):
+    组件尺寸规格，可选项有`'start'`、`'center'`、`'end'`  默认值：`'start'`.
+
 - aria-* (string; optional):
     `aria-*`格式属性通配.
 
@@ -112,10 +115,10 @@ Keyword arguments:
     _namespace = 'feffery_antd_components'
     _type = 'AntdPagination'
     @_explicitize_args
-    def __init__(self, id=Component.UNDEFINED, key=Component.UNDEFINED, style=Component.UNDEFINED, className=Component.UNDEFINED, locale=Component.UNDEFINED, defaultCurrent=Component.UNDEFINED, defaultPageSize=Component.UNDEFINED, current=Component.UNDEFINED, disabled=Component.UNDEFINED, hideOnSinglePage=Component.UNDEFINED, pageSize=Component.UNDEFINED, pageSizeOptions=Component.UNDEFINED, showSizeChanger=Component.UNDEFINED, showQuickJumper=Component.UNDEFINED, showTotalPrefix=Component.UNDEFINED, showTotalSuffix=Component.UNDEFINED, simple=Component.UNDEFINED, size=Component.UNDEFINED, total=Component.UNDEFINED, showTotal=Component.UNDEFINED, showLessItems=Component.UNDEFINED, batchPropsNames=Component.UNDEFINED, batchPropsValues=Component.UNDEFINED, loading_state=Component.UNDEFINED, persistence=Component.UNDEFINED, persisted_props=Component.UNDEFINED, persistence_type=Component.UNDEFINED, **kwargs):
-        self._prop_names = ['id', 'aria-*', 'batchPropsNames', 'batchPropsValues', 'className', 'current', 'data-*', 'defaultCurrent', 'defaultPageSize', 'disabled', 'hideOnSinglePage', 'key', 'loading_state', 'locale', 'pageSize', 'pageSizeOptions', 'persisted_props', 'persistence', 'persistence_type', 'showLessItems', 'showQuickJumper', 'showSizeChanger', 'showTotal', 'showTotalPrefix', 'showTotalSuffix', 'simple', 'size', 'style', 'total']
+    def __init__(self, id=Component.UNDEFINED, key=Component.UNDEFINED, style=Component.UNDEFINED, className=Component.UNDEFINED, locale=Component.UNDEFINED, align=Component.UNDEFINED, defaultCurrent=Component.UNDEFINED, defaultPageSize=Component.UNDEFINED, current=Component.UNDEFINED, disabled=Component.UNDEFINED, hideOnSinglePage=Component.UNDEFINED, pageSize=Component.UNDEFINED, pageSizeOptions=Component.UNDEFINED, showSizeChanger=Component.UNDEFINED, showQuickJumper=Component.UNDEFINED, showTotalPrefix=Component.UNDEFINED, showTotalSuffix=Component.UNDEFINED, simple=Component.UNDEFINED, size=Component.UNDEFINED, total=Component.UNDEFINED, showTotal=Component.UNDEFINED, showLessItems=Component.UNDEFINED, batchPropsNames=Component.UNDEFINED, batchPropsValues=Component.UNDEFINED, loading_state=Component.UNDEFINED, persistence=Component.UNDEFINED, persisted_props=Component.UNDEFINED, persistence_type=Component.UNDEFINED, **kwargs):
+        self._prop_names = ['id', 'align', 'aria-*', 'batchPropsNames', 'batchPropsValues', 'className', 'current', 'data-*', 'defaultCurrent', 'defaultPageSize', 'disabled', 'hideOnSinglePage', 'key', 'loading_state', 'locale', 'pageSize', 'pageSizeOptions', 'persisted_props', 'persistence', 'persistence_type', 'showLessItems', 'showQuickJumper', 'showSizeChanger', 'showTotal', 'showTotalPrefix', 'showTotalSuffix', 'simple', 'size', 'style', 'total']
         self._valid_wildcard_attributes =            ['data-', 'aria-']
-        self.available_properties = ['id', 'aria-*', 'batchPropsNames', 'batchPropsValues', 'className', 'current', 'data-*', 'defaultCurrent', 'defaultPageSize', 'disabled', 'hideOnSinglePage', 'key', 'loading_state', 'locale', 'pageSize', 'pageSizeOptions', 'persisted_props', 'persistence', 'persistence_type', 'showLessItems', 'showQuickJumper', 'showSizeChanger', 'showTotal', 'showTotalPrefix', 'showTotalSuffix', 'simple', 'size', 'style', 'total']
+        self.available_properties = ['id', 'align', 'aria-*', 'batchPropsNames', 'batchPropsValues', 'className', 'current', 'data-*', 'defaultCurrent', 'defaultPageSize', 'disabled', 'hideOnSinglePage', 'key', 'loading_state', 'locale', 'pageSize', 'pageSizeOptions', 'persisted_props', 'persistence', 'persistence_type', 'showLessItems', 'showQuickJumper', 'showSizeChanger', 'showTotal', 'showTotalPrefix', 'showTotalSuffix', 'simple', 'size', 'style', 'total']
         self.available_wildcard_properties =            ['data-', 'aria-']
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()
