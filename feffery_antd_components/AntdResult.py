@@ -21,6 +21,9 @@ Keyword arguments:
 - data-* (string; optional):
     `data-*`格式属性通配.
 
+- extra (a list of or a singular dash component, string or number; optional):
+    组件型，操作区域.
+
 - icon (a list of or a singular dash component, string or number; optional):
     组件型，图标内容.
 
@@ -52,15 +55,15 @@ Keyword arguments:
 
 - title (a list of or a singular dash component, string or number; optional):
     组件型，标题内容."""
-    _children_props = ['title', 'subTitle', 'icon']
-    _base_nodes = ['title', 'subTitle', 'icon', 'children']
+    _children_props = ['extra', 'title', 'subTitle', 'icon']
+    _base_nodes = ['extra', 'title', 'subTitle', 'icon', 'children']
     _namespace = 'feffery_antd_components'
     _type = 'AntdResult'
     @_explicitize_args
-    def __init__(self, id=Component.UNDEFINED, key=Component.UNDEFINED, style=Component.UNDEFINED, className=Component.UNDEFINED, status=Component.UNDEFINED, title=Component.UNDEFINED, subTitle=Component.UNDEFINED, icon=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
-        self._prop_names = ['id', 'aria-*', 'className', 'data-*', 'icon', 'key', 'loading_state', 'status', 'style', 'subTitle', 'title']
+    def __init__(self, id=Component.UNDEFINED, key=Component.UNDEFINED, style=Component.UNDEFINED, className=Component.UNDEFINED, extra=Component.UNDEFINED, status=Component.UNDEFINED, title=Component.UNDEFINED, subTitle=Component.UNDEFINED, icon=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
+        self._prop_names = ['id', 'aria-*', 'className', 'data-*', 'extra', 'icon', 'key', 'loading_state', 'status', 'style', 'subTitle', 'title']
         self._valid_wildcard_attributes =            ['data-', 'aria-']
-        self.available_properties = ['id', 'aria-*', 'className', 'data-*', 'icon', 'key', 'loading_state', 'status', 'style', 'subTitle', 'title']
+        self.available_properties = ['id', 'aria-*', 'className', 'data-*', 'extra', 'icon', 'key', 'loading_state', 'status', 'style', 'subTitle', 'title']
         self.available_wildcard_properties =            ['data-', 'aria-']
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()
