@@ -19,6 +19,7 @@ const AntdResult = (props) => {
         className,
         style,
         key,
+        extra,
         status,
         title,
         subTitle,
@@ -46,6 +47,7 @@ const AntdResult = (props) => {
                         <LoadingOutlined style={{ color: '#1890ff' }} /> :
                         undefined)
             }
+            extra={extra}
             status={status}
             title={title}
             subTitle={subTitle}
@@ -79,6 +81,11 @@ AntdResult.propTypes = {
         PropTypes.string,
         PropTypes.object
     ]),
+
+    /**
+     * 组件型，操作区域
+     */
+    extra: PropTypes.node,
 
     /**
      * 状态，可选项有`'success'`、`'error'`、`'info'`、`'warning'`、`'404'`、`'403'`、`'500'`
