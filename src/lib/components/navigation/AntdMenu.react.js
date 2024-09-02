@@ -9,7 +9,7 @@ import {
     MenuFoldOutlined,
 } from '@ant-design/icons';
 // 辅助库
-import { isUndefined, isNull, isString, cloneDeep } from 'lodash';
+import { get, isArray, isUndefined, isNull, isString, cloneDeep } from 'lodash';
 import { pickBy } from 'ramda';
 import isAbsoluteUrl from 'is-absolute-url';
 // 自定义hooks
@@ -35,6 +35,37 @@ function isExternalLink(external_link, href) {
         return isAbsoluteUrl(href);
     }
     return external_link;
+}
+
+function findByKey(array, key) {
+    for (let item of array) {
+        if (get(item, 'props.key') === key) {
+            return item;
+        }
+        if (get(item, 'children') && isArray(get(item, 'children'))) {
+            const result = findByKey(item.children, key);
+            if (result) {
+                return result;
+            }
+        }
+    }
+    return null;
+}
+
+function findKeyPath(array, key, path = []) {
+    for (let item of array) {
+        let currentPath = [...path, item.props.key];
+        if (get(item, 'props.key') === key) {
+            return currentPath;
+        }
+        if (get(item, 'children') && isArray(get(item, 'children'))) {
+            const result = findKeyPath(item.children, key, currentPath);
+            if (result) {
+                return result;
+            }
+        }
+    }
+    return null;
 }
 
 class UtilsLink extends Component {
@@ -277,6 +308,19 @@ const AntdMenu = (props) => {
         }
     }, [])
 
+    useEffect(() => {
+        // 当currentKey发生变化时，自动查找currentKey对应的菜单信息
+        let currentItem = findByKey(menuItems, currentKey)
+        // 当currentKey发生变化时，自动查找currentKey对应的key路径信息和菜单路径信息
+        let currentKeyPath = findKeyPath(menuItems, currentKey)
+        let currentItemPath = currentKeyPath?.map(item => findByKey(menuItems, item))
+        setProps({
+            currentItem: currentItem,
+            currentKeyPath: currentKeyPath,
+            currentItemPath: currentItemPath
+        })
+    }, [currentKey])
+
     // 基于menuItems推导jsx数据结构
     let _menuItems = raw2Jsx(cloneDeep(menuItems), str2Jsx, menuItemKeyToTitle || {})
 
@@ -420,6 +464,21 @@ AntdMenu.propTypes = {
      * 监听或设置当前已选中菜单项key值
      */
     currentKey: PropTypes.string,
+
+    /**
+     * 监听当前已选中菜单项信息
+     */
+    currentItem: PropTypes.object,
+
+    /**
+     * 监听当前已选中菜单项key值路径信息
+     */
+    currentKeyPath: PropTypes.array,
+
+    /**
+     * 监听当前已选中菜单项路径信息
+     */
+    currentItemPath: PropTypes.array,
 
     /**
      * 监听或设置当前已展开子菜单项key值
