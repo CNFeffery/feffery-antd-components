@@ -9,7 +9,7 @@ import {
     MenuFoldOutlined,
 } from '@ant-design/icons';
 // 辅助库
-import { get, isArray, isUndefined, isNull, isString, cloneDeep } from 'lodash';
+import { get, has, isArray, isUndefined, isNull, isString, cloneDeep } from 'lodash';
 import { pickBy } from 'ramda';
 import isAbsoluteUrl from 'is-absolute-url';
 // 自定义hooks
@@ -350,13 +350,13 @@ const AntdMenu = (props) => {
                     style={style}
                     key={key}
                     expandIcon={
-                        React.isValidElement(expandIcon)
-                            ? expandIcon
-                            : (props) => props.isSubMenu
+                        has(expandIcon, 'collapse') && has(expandIcon, 'expand')
+                            ? (props) => props.isSubMenu
                                 ? (props.isOpen
                                     ? expandIcon.collapse
                                     : expandIcon.expand)
                                 : undefined
+                            : expandIcon
                     }
                     mode={mode}
                     theme={theme}
@@ -399,13 +399,13 @@ const AntdMenu = (props) => {
                 style={style}
                 key={key}
                 expandIcon={
-                    React.isValidElement(expandIcon)
-                        ? expandIcon
-                        : (props) => props.isSubMenu
+                    has(expandIcon, 'collapse') && has(expandIcon, 'expand')
+                        ? (props) => props.isSubMenu
                             ? (props.isOpen
                                 ? expandIcon.collapse
                                 : expandIcon.expand)
                             : undefined
+                        : expandIcon
                 }
                 mode={mode}
                 theme={theme}
