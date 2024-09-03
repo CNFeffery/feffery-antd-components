@@ -128,16 +128,36 @@ const AntdCalendar = (props) => {
                             let matchCell;
                             if (info.type === 'date') {
                                 matchCell = customCells.filter(item => {
+                                    // 初始化基础条件
+                                    let conditions = item.type === 'date'
+                                    // 若具有明确年份
+                                    if (item.year) {
+                                        conditions = conditions && item.year === current.year()
+                                    }
                                     // 若具有明确月份
                                     if (item.month) {
-                                        return item.type === 'date' && item.month === current.month() + 1 && item.date === current.date();
-                                    } else {
-                                        // 月份视作通配
-                                        return item.type === 'date' && item.date === current.date()
+                                        conditions = conditions && item.month === current.month() + 1
                                     }
+                                    // 若具有明确日期
+                                    if (item.date) {
+                                        conditions = conditions && item.date === current.date()
+                                    }
+                                    return conditions;
                                 });
                             } else if (info.type === 'month') {
-                                matchCell = customCells.filter(item => item.type === 'month' && item.month === current.month() + 1);
+                                matchCell = customCells.filter(item => {
+                                    // 初始化基础条件
+                                    let conditions = item.type === 'month'
+                                    // 若具有明确年份
+                                    if (item.year) {
+                                        conditions = conditions && item.year === current.year()
+                                    }
+                                    // 若具有明确月份
+                                    if (item.month) {
+                                        conditions = conditions && item.month === current.month() + 1
+                                    }
+                                    return conditions;
+                                });
                             }
                             if (matchCell.length > 0) {
                                 return matchCell[0].content;

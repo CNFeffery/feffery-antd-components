@@ -46,6 +46,9 @@ Keyword arguments:
     - type (a value equal to: 'month', 'date'; required):
         必填，当前项对应类型，可选项有`'month'`、`'date'`.
 
+    - year (number; optional):
+        当前项匹配的年份值.
+
 - data-* (string; optional):
     `data-*`格式属性通配.
 

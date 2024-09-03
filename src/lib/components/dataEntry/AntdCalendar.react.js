@@ -81,6 +81,10 @@ AntdCalendar.propTypes = {
              */
             type: PropTypes.oneOf(['month', 'date']).isRequired,
             /**
+             * 当前项匹配的年份值
+             */
+            year: PropTypes.number,
+            /**
              * 当前项匹配的月份值
              */
             month: PropTypes.number,
