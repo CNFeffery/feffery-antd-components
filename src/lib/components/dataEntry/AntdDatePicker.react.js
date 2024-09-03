@@ -241,32 +241,6 @@ AntdDatePicker.propTypes = {
     needConfirm: PropTypes.bool,
 
     /**
-     * 相关展开层锚定策略，可选项有`'parent'`、`'body'`
-     * 默认值：`'body'`
-     */
-    popupContainer: PropTypes.oneOf(['parent', 'body']),
-
-    /**
-     * 需要纳入[批量属性监听](/batch-props-values)的若干属性名
-     */
-    batchPropsNames: PropTypes.arrayOf(PropTypes.string),
-
-    /**
-     * 监听`batchPropsNames`中指定的若干属性值
-     */
-    batchPropsValues: PropTypes.object,
-
-    /**
-     * `data-*`格式属性通配
-     */
-    'data-*': PropTypes.string,
-
-    /**
-     * `aria-*`格式属性通配
-     */
-    'aria-*': PropTypes.string,
-
-    /**
      * 自定义对应日期的单元格样式
      */
     customCells: PropTypes.arrayOf(
@@ -293,6 +267,32 @@ AntdDatePicker.propTypes = {
             className: PropTypes.string
         })
     ),
+
+    /**
+     * 相关展开层锚定策略，可选项有`'parent'`、`'body'`
+     * 默认值：`'body'`
+     */
+    popupContainer: PropTypes.oneOf(['parent', 'body']),
+
+    /**
+     * 需要纳入[批量属性监听](/batch-props-values)的若干属性名
+     */
+    batchPropsNames: PropTypes.arrayOf(PropTypes.string),
+
+    /**
+     * 监听`batchPropsNames`中指定的若干属性值
+     */
+    batchPropsValues: PropTypes.object,
+
+    /**
+     * `data-*`格式属性通配
+     */
+    'data-*': PropTypes.string,
+
+    /**
+     * `aria-*`格式属性通配
+     */
+    'aria-*': PropTypes.string,
 
     /**
     * Object that holds the loading state object coming from dash-renderer

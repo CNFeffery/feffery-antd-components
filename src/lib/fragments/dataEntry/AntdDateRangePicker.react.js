@@ -65,6 +65,7 @@ const AntdDateRangePicker = (props) => {
         placement,
         extraFooter,
         presets,
+        customCells,
         persistence,
         persisted_props,
         persistence_type,
@@ -541,6 +542,48 @@ const AntdDateRangePicker = (props) => {
                                 }
                             })
                         )
+                    }
+                    cellRender={
+                        customCells ?
+                            (current, info) => {
+                                // 尝试搜索命中项
+                                let matchCell;
+                                // 目前仅作用于日期类型
+                                if (info.type === 'date') {
+                                    matchCell = customCells.filter(item => {
+                                        // 初始化基础条件
+                                        let conditions = true
+                                        // 若具有明确年份
+                                        if (item.year) {
+                                            conditions = conditions && current.year() === item.year
+                                        }
+                                        // 若具有明确月份
+                                        if (item.month) {
+                                            conditions = conditions && current.month() + 1 === item.month
+                                        }
+                                        // 若具有明确日期
+                                        if (item.date) {
+                                            conditions = conditions && current.date() === item.date
+                                        }
+                                        return conditions;
+                                    });
+                                }
+                                if (matchCell.length > 0) {
+                                    return (
+                                        <div className={
+                                            matchCell[0].className ?
+                                                `ant-picker-cell-inner ${matchCell[0].className}` :
+                                                'ant-picker-cell-inner'
+                                        }
+                                            style={matchCell[0].style}
+                                        >
+                                            {current.date()}
+                                        </div>
+                                    );
+                                }
+                                return info.originNode;
+                            } :
+                            undefined
                     }
                     persistence={persistence}
                     persisted_props={persisted_props}

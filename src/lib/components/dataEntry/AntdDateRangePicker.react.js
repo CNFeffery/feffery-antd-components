@@ -245,6 +245,34 @@ AntdDateRangePicker.propTypes = {
     needConfirm: PropTypes.bool,
 
     /**
+     * 自定义对应日期的单元格样式
+     */
+    customCells: PropTypes.arrayOf(
+        PropTypes.exact({
+            /**
+             * 当前项匹配的年份值
+             */
+            year: PropTypes.number,
+            /**
+             * 当前项匹配的月份值
+             */
+            month: PropTypes.number,
+            /**
+             * 当前项匹配的日期值
+             */
+            date: PropTypes.number,
+            /**
+             * 自定义css样式
+             */
+            style: PropTypes.object,
+            /**
+             * 自定义css类名
+             */
+            className: PropTypes.string
+        })
+    ),
+
+    /**
      * 相关展开层锚定策略，可选项有`'parent'`、`'body'`
      * 默认值：`'body'`
      */
