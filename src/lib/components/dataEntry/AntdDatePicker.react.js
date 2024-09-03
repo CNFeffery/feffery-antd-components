@@ -267,6 +267,34 @@ AntdDatePicker.propTypes = {
     'aria-*': PropTypes.string,
 
     /**
+     * 自定义对应日期的单元格样式
+     */
+    customCells: PropTypes.arrayOf(
+        PropTypes.exact({
+            /**
+             * 当前项匹配的年份值
+             */
+            year: PropTypes.number,
+            /**
+             * 当前项匹配的月份值
+             */
+            month: PropTypes.number,
+            /**
+             * 当前项匹配的日期值
+             */
+            date: PropTypes.number,
+            /**
+             * 自定义css样式
+             */
+            style: PropTypes.object,
+            /**
+             * 自定义css类名
+             */
+            className: PropTypes.string
+        })
+    ),
+
+    /**
     * Object that holds the loading state object coming from dash-renderer
     */
     loading_state: PropTypes.shape({

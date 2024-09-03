@@ -44,6 +44,26 @@ Keyword arguments:
     - value (string | number; optional):
         对应预设项值.
 
+- customCells (list of dicts; optional):
+    自定义对应日期的单元格样式.
+
+    `customCells` is a list of dicts with keys:
+
+    - className (string; optional):
+        自定义css类名.
+
+    - date (number; optional):
+        当前项匹配的日期值.
+
+    - month (number; optional):
+        当前项匹配的月份值.
+
+    - style (dict; optional):
+        自定义css样式.
+
+    - year (number; optional):
+        当前项匹配的年份值.
+
 - data-* (string; optional):
     `data-*`格式属性通配.
 
@@ -186,10 +206,10 @@ Keyword arguments:
     _namespace = 'feffery_antd_components'
     _type = 'AntdDatePicker'
     @_explicitize_args
-    def __init__(self, id=Component.UNDEFINED, key=Component.UNDEFINED, style=Component.UNDEFINED, className=Component.UNDEFINED, popupClassName=Component.UNDEFINED, name=Component.UNDEFINED, locale=Component.UNDEFINED, format=Component.UNDEFINED, picker=Component.UNDEFINED, firstDayOfWeek=Component.UNDEFINED, disabled=Component.UNDEFINED, showTime=Component.UNDEFINED, size=Component.UNDEFINED, bordered=Component.UNDEFINED, variant=Component.UNDEFINED, placeholder=Component.UNDEFINED, placement=Component.UNDEFINED, value=Component.UNDEFINED, defaultValue=Component.UNDEFINED, defaultPickerValue=Component.UNDEFINED, disabledDatesStrategy=Component.UNDEFINED, status=Component.UNDEFINED, allowClear=Component.UNDEFINED, autoFocus=Component.UNDEFINED, readOnly=Component.UNDEFINED, extraFooter=Component.UNDEFINED, showToday=Component.UNDEFINED, presets=Component.UNDEFINED, clickedPreset=Component.UNDEFINED, needConfirm=Component.UNDEFINED, popupContainer=Component.UNDEFINED, batchPropsNames=Component.UNDEFINED, batchPropsValues=Component.UNDEFINED, loading_state=Component.UNDEFINED, persistence=Component.UNDEFINED, persisted_props=Component.UNDEFINED, persistence_type=Component.UNDEFINED, **kwargs):
-        self._prop_names = ['id', 'allowClear', 'aria-*', 'autoFocus', 'batchPropsNames', 'batchPropsValues', 'bordered', 'className', 'clickedPreset', 'data-*', 'defaultPickerValue', 'defaultValue', 'disabled', 'disabledDatesStrategy', 'extraFooter', 'firstDayOfWeek', 'format', 'key', 'loading_state', 'locale', 'name', 'needConfirm', 'persisted_props', 'persistence', 'persistence_type', 'picker', 'placeholder', 'placement', 'popupClassName', 'popupContainer', 'presets', 'readOnly', 'showTime', 'showToday', 'size', 'status', 'style', 'value', 'variant']
+    def __init__(self, id=Component.UNDEFINED, key=Component.UNDEFINED, style=Component.UNDEFINED, className=Component.UNDEFINED, popupClassName=Component.UNDEFINED, name=Component.UNDEFINED, locale=Component.UNDEFINED, format=Component.UNDEFINED, picker=Component.UNDEFINED, firstDayOfWeek=Component.UNDEFINED, disabled=Component.UNDEFINED, showTime=Component.UNDEFINED, size=Component.UNDEFINED, bordered=Component.UNDEFINED, variant=Component.UNDEFINED, placeholder=Component.UNDEFINED, placement=Component.UNDEFINED, value=Component.UNDEFINED, defaultValue=Component.UNDEFINED, defaultPickerValue=Component.UNDEFINED, disabledDatesStrategy=Component.UNDEFINED, status=Component.UNDEFINED, allowClear=Component.UNDEFINED, autoFocus=Component.UNDEFINED, readOnly=Component.UNDEFINED, extraFooter=Component.UNDEFINED, showToday=Component.UNDEFINED, presets=Component.UNDEFINED, clickedPreset=Component.UNDEFINED, needConfirm=Component.UNDEFINED, popupContainer=Component.UNDEFINED, batchPropsNames=Component.UNDEFINED, batchPropsValues=Component.UNDEFINED, customCells=Component.UNDEFINED, loading_state=Component.UNDEFINED, persistence=Component.UNDEFINED, persisted_props=Component.UNDEFINED, persistence_type=Component.UNDEFINED, **kwargs):
+        self._prop_names = ['id', 'allowClear', 'aria-*', 'autoFocus', 'batchPropsNames', 'batchPropsValues', 'bordered', 'className', 'clickedPreset', 'customCells', 'data-*', 'defaultPickerValue', 'defaultValue', 'disabled', 'disabledDatesStrategy', 'extraFooter', 'firstDayOfWeek', 'format', 'key', 'loading_state', 'locale', 'name', 'needConfirm', 'persisted_props', 'persistence', 'persistence_type', 'picker', 'placeholder', 'placement', 'popupClassName', 'popupContainer', 'presets', 'readOnly', 'showTime', 'showToday', 'size', 'status', 'style', 'value', 'variant']
         self._valid_wildcard_attributes =            ['data-', 'aria-']
-        self.available_properties = ['id', 'allowClear', 'aria-*', 'autoFocus', 'batchPropsNames', 'batchPropsValues', 'bordered', 'className', 'clickedPreset', 'data-*', 'defaultPickerValue', 'defaultValue', 'disabled', 'disabledDatesStrategy', 'extraFooter', 'firstDayOfWeek', 'format', 'key', 'loading_state', 'locale', 'name', 'needConfirm', 'persisted_props', 'persistence', 'persistence_type', 'picker', 'placeholder', 'placement', 'popupClassName', 'popupContainer', 'presets', 'readOnly', 'showTime', 'showToday', 'size', 'status', 'style', 'value', 'variant']
+        self.available_properties = ['id', 'allowClear', 'aria-*', 'autoFocus', 'batchPropsNames', 'batchPropsValues', 'bordered', 'className', 'clickedPreset', 'customCells', 'data-*', 'defaultPickerValue', 'defaultValue', 'disabled', 'disabledDatesStrategy', 'extraFooter', 'firstDayOfWeek', 'format', 'key', 'loading_state', 'locale', 'name', 'needConfirm', 'persisted_props', 'persistence', 'persistence_type', 'picker', 'placeholder', 'placement', 'popupClassName', 'popupContainer', 'presets', 'readOnly', 'showTime', 'showToday', 'size', 'status', 'style', 'value', 'variant']
         self.available_wildcard_properties =            ['data-', 'aria-']
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()
