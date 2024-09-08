@@ -104,12 +104,23 @@ const AntdTree = (props) => {
         nodeUncheckedSuffix,
         nodeCheckedStyle,
         nodeUncheckedStyle,
+        enableAsyncLoad,
         persistence,
         persisted_props,
         persistence_type,
         loading_state,
         batchPropsNames
     } = props;
+
+    // 异步数据加载标识
+    const dataLoading = useRef(false);
+
+    // 每次treeData更新后，尝试还原dataLoading状态
+    useEffect(() => {
+        if (dataLoading.current) {
+            dataLoading.current = false;
+        }
+    }, [treeData])
 
     // 批属性监听
     useEffect(() => {
@@ -530,6 +541,35 @@ const AntdTree = (props) => {
             }
             blockNode={draggable && treeDataMode !== 'flat'}
             onDrop={draggable && treeDataMode !== 'flat' ? onDrop : undefined}
+            loadData={
+                enableAsyncLoad ?
+                    (node) => {
+                        // 更新最新的异步加载数据目标节点
+                        setProps({
+                            loadingNode: {
+                                key: node.key,
+                                title: node.title
+                            }
+                        })
+                        return new Promise(
+                            (resolve) => {
+                                // 更新数据异步加载标识
+                                dataLoading.current = true;
+                                // 轮询检测是否加载完成
+                                const timer = setInterval(
+                                    () => {
+                                        if (!dataLoading.current) {
+                                            clearInterval(timer);
+                                            resolve();
+                                        }
+                                    },
+                                    200
+                                );
+                            }
+                        )
+                    } :
+                    undefined
+            }
             persistence={persistence}
             persisted_props={persisted_props}
             persistence_type={persistence_type}

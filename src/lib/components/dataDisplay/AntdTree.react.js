@@ -17,7 +17,7 @@ const AntdTree = (props) => {
 // 定义递归PropTypes
 const PropTreeNodeShape = {
     /**
-     * 当前节点标题
+     * 当前节点标题s
      */
     title: PropTypes.string.isRequired,
     /**
@@ -99,7 +99,11 @@ const PropTreeNodeShape = {
              */
             iconRenderer: PropTypes.oneOf(['AntdIcon', 'fontawesome']),
         })
-    )
+    ),
+    /**
+     * 当前节点是否为叶节点
+     */
+    isLeaf: PropTypes.bool
 };
 
 const PropTreeNode = PropTypes.shape(PropTreeNodeShape);
@@ -470,6 +474,17 @@ AntdTree.propTypes = {
     nodeUncheckedStyle: PropTypes.object,
 
     /**
+     * 是否开启子节点异步加载功能，开启后无`children`属性，且未设置`isLeaf`为`true`的节点将可展开并触发`loadingNode`事件更新
+     * 默认值：`false`
+     */
+    enableAsyncLoad: PropTypes.bool,
+
+    /**
+     * 监听触发异步数据加载的节点展开事件信息
+     */
+    loadingNode: PropTypes.object,
+
+    /**
      * 需要纳入[批量属性监听](/batch-props-values)的若干属性名
      */
     batchPropsNames: PropTypes.arrayOf(PropTypes.string),
@@ -557,6 +572,7 @@ AntdTree.defaultProps = {
     },
     enableNodeFavorites: false,
     favoritedKeys: [],
+    enableAsyncLoad: false,
     persisted_props: ['selectedKeys', 'checkedKeys', 'expandedKeys', 'halfCheckedKeys'],
     persistence_type: 'local',
     batchPropsNames: []
