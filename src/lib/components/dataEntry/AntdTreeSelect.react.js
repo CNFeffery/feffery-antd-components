@@ -360,6 +360,11 @@ AntdTreeSelect.propTypes = {
     readOnly: PropTypes.bool,
 
     /**
+     * 监听触发异步数据加载的节点展开事件信息
+     */
+    loadingNode: PropTypes.object,
+
+    /**
      * 相关展开层锚定策略，可选项有`'parent'`、`'body'`
      * 默认值：`'body'`
      */

@@ -1,5 +1,5 @@
 // react核心
-import React, { useEffect, useMemo, useContext } from 'react';
+import React, { useEffect, useMemo, useContext, useRef } from 'react';
 // antd核心
 import { TreeSelect, ConfigProvider } from 'antd';
 // 辅助库
@@ -106,6 +106,16 @@ const AntdTreeSelect = (props) => {
         loading_state,
         batchPropsNames
     } = props;
+
+    // 异步数据加载标识
+    const dataLoading = useRef(false);
+
+    // 每次treeData更新后，尝试还原dataLoading状态
+    useEffect(() => {
+        if (dataLoading.current) {
+            dataLoading.current = false;
+        }
+    }, [treeData])
 
     // 批属性监听
     useEffect(() => {
@@ -304,6 +314,34 @@ const AntdTreeSelect = (props) => {
                         undefined
                 }
                 open={isUndefined(readOnly) || !readOnly ? undefined : false}
+                loadData={
+                    (node) => {
+                        // 更新最新的异步加载数据目标节点
+                        setProps({
+                            loadingNode: {
+                                key: node.key,
+                                title: node.title,
+                                value: node.value
+                            }
+                        })
+                        return new Promise(
+                            (resolve) => {
+                                // 更新数据异步加载标识
+                                dataLoading.current = true;
+                                // 轮询检测是否加载完成
+                                const timer = setInterval(
+                                    () => {
+                                        if (!dataLoading.current) {
+                                            clearInterval(timer);
+                                            resolve();
+                                        }
+                                    },
+                                    200
+                                );
+                            }
+                        )
+                    }
+                }
             />
         </ConfigProvider>
     );
