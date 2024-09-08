@@ -360,6 +360,12 @@ AntdTreeSelect.propTypes = {
     readOnly: PropTypes.bool,
 
     /**
+     * 是否开启子节点异步加载功能，开启后无`children`属性，且未设置`isLeaf`为`true`的节点将可展开并触发`loadingNode`事件更新
+     * 默认值：`false`
+     */
+    enableAsyncLoad: PropTypes.bool,
+
+    /**
      * 监听触发异步数据加载的节点展开事件信息
      */
     loadingNode: PropTypes.object,
@@ -456,6 +462,7 @@ AntdTreeSelect.defaultProps = {
     popupContainer: 'body',
     showCheckedStrategy: 'show-all',
     treeNodeFilterMode: 'case-insensitive',
+    enableAsyncLoad: false,
     batchPropsNames: []
 }
 

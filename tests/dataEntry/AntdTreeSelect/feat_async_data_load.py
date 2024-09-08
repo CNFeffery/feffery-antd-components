@@ -20,8 +20,20 @@ app.layout = html.Div(
                     'key': '节点1',
                     'title': '节点1',
                     'value': '节点1',
-                }
+                },
+                {
+                    'key': '节点2',
+                    'title': '节点2',
+                    'value': '节点2',
+                },
+                {
+                    'key': '节点3',
+                    'title': '节点3',
+                    'value': '节点3',
+                    'isLeaf': True,
+                },
             ],
+            enableAsyncLoad=True,
             style={'width': 300},
         )
     ],

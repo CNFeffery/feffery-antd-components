@@ -100,6 +100,7 @@ const AntdTreeSelect = (props) => {
         showCheckedStrategy,
         dropdownBefore,
         dropdownAfter,
+        enableAsyncLoad,
         persistence,
         persisted_props,
         persistence_type,
@@ -315,32 +316,34 @@ const AntdTreeSelect = (props) => {
                 }
                 open={isUndefined(readOnly) || !readOnly ? undefined : false}
                 loadData={
-                    (node) => {
-                        // 更新最新的异步加载数据目标节点
-                        setProps({
-                            loadingNode: {
-                                key: node.key,
-                                title: node.title,
-                                value: node.value
-                            }
-                        })
-                        return new Promise(
-                            (resolve) => {
-                                // 更新数据异步加载标识
-                                dataLoading.current = true;
-                                // 轮询检测是否加载完成
-                                const timer = setInterval(
-                                    () => {
-                                        if (!dataLoading.current) {
-                                            clearInterval(timer);
-                                            resolve();
-                                        }
-                                    },
-                                    200
-                                );
-                            }
-                        )
-                    }
+                    enableAsyncLoad ?
+                        (node) => {
+                            // 更新最新的异步加载数据目标节点
+                            setProps({
+                                loadingNode: {
+                                    key: node.key,
+                                    title: node.title,
+                                    value: node.value
+                                }
+                            })
+                            return new Promise(
+                                (resolve) => {
+                                    // 更新数据异步加载标识
+                                    dataLoading.current = true;
+                                    // 轮询检测是否加载完成
+                                    const timer = setInterval(
+                                        () => {
+                                            if (!dataLoading.current) {
+                                                clearInterval(timer);
+                                                resolve();
+                                            }
+                                        },
+                                        200
+                                    );
+                                }
+                            )
+                        } :
+                        undefined
                 }
             />
         </ConfigProvider>
