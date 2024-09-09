@@ -1,5 +1,5 @@
 // react核心
-import React, { Component, useEffect } from 'react';
+import React, { Component, useEffect, useMemo } from 'react';
 import PropTypes from 'prop-types';
 // antd核心
 import { Menu, Button } from 'antd';
@@ -68,6 +68,22 @@ function findKeyPath(array, key, path = []) {
     return null;
 }
 
+const getLevelKeys = (items1) => {
+    const key = {};
+    const func = (items2, level = 1) => {
+        items2.forEach((item) => {
+            if (item?.props?.key) {
+                key[item.props.key] = level;
+            }
+            if (item?.children) {
+                func(item.children, level + 1);
+            }
+        });
+    };
+    func(items1);
+    return key;
+};
+
 class UtilsLink extends Component {
 
     constructor(props) {
@@ -133,9 +149,6 @@ const str2Jsx = new Map([
     ['Divider', Divider]
 ])
 
-// 当前的SubMenu节点key值数组
-const rootSubmenuKeys = [];
-
 // 递归推导多层菜单结构
 const raw2Jsx = (obj, str2Jsx, menuItemKeyToTitle) => {
     // 若obj为数组
@@ -148,7 +161,6 @@ const raw2Jsx = (obj, str2Jsx, menuItemKeyToTitle) => {
         if (obj.hasOwnProperty('children')) {
             Object.assign(obj, { children: obj.children.map(obj_ => raw2Jsx(obj_, str2Jsx, menuItemKeyToTitle)) })
             if (obj.component === 'SubMenu') {
-                rootSubmenuKeys.push(obj.props.key)
                 obj = <SubMenu
                     key={obj.props.key}
                     title={menuItemKeyToTitle[obj.props.key] || obj.props.title}
@@ -281,13 +293,27 @@ const AntdMenu = (props) => {
         loading_state
     } = props;
 
+    const levelKeys = useMemo(() => {
+        return getLevelKeys(menuItems);
+    }, [menuItems]);
+
     const onOpenChange = (keys) => {
         if (onlyExpandCurrentSubMenu) {
-            const latestOpenKey = keys.find((key) => openKeys.indexOf(key) === -1);
-            if (latestOpenKey && rootSubmenuKeys.indexOf(latestOpenKey) === -1) {
-                setProps({ openKeys: keys });
+            if (isUndefined(openKeys) || isNull(openKeys)) {
+                openKeys = [];
+            }
+            const currentOpenKey = keys.find((key) => openKeys.indexOf(key) === -1);
+            if (!isUndefined(currentOpenKey)) {
+                const repeatIndex = keys
+                    .filter((key) => key !== currentOpenKey)
+                    .findIndex((key) => levelKeys[key] === levelKeys[currentOpenKey]);
+                setProps({
+                    openKeys: keys
+                        .filter((_, index) => index !== repeatIndex)
+                        .filter((key) => levelKeys[key] <= levelKeys[currentOpenKey]),
+                });
             } else {
-                setProps({ openKeys: latestOpenKey ? [latestOpenKey] : [] });
+                setProps({ openKeys: keys });
             }
         } else {
             setProps({ openKeys: keys });
