@@ -14,7 +14,7 @@
     "scripts": {
         "start": "webpack-serve --config ./webpack.serve.config.js --open",
         "build:js": "webpack --mode production",
-        "build:backends": "dash-generate-components ./src/lib/components feffery_antd_components -p package-info.json --r-prefix 'feffery' --jl-prefix 'feffery'",
+        "build:backends": "dash-generate-components ./src/lib/components feffery_antd_components --keep-prop-order ALL -p package-info.json --r-prefix 'feffery' --jl-prefix 'feffery'",
         "build:backends-activated": "(. venv/bin/activate || venv\\scripts\\activate && npm run build:py_and_r)",
         "build": "npm run build:js && npm run build:backends",
         "build:activated": "npm run build:js && npm run build:backends-activated"

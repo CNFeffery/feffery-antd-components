@@ -12,14 +12,14 @@ Keyword arguments:
 - id (string; optional):
     组件唯一id.
 
-- aria-* (string; optional):
-    `aria-*`格式属性通配.
+- key (string; optional):
+    对当前组件的`key`值进行更新，可实现强制重绘当前组件的效果.
+
+- style (dict; optional):
+    当前组件css样式.
 
 - className (string | dict; optional):
     当前组件css类名，支持[动态css](/advanced-classname).
-
-- data-* (string; optional):
-    `data-*`格式属性通配.
 
 - items (list of dicts; required):
     必填，定义时间轴节点.
@@ -41,22 +41,6 @@ Keyword arguments:
     - position (a value equal to: 'left', 'right'; optional):
         当前节点位置，可选项有`'left'`、`'right'`.
 
-- key (string; optional):
-    对当前组件的`key`值进行更新，可实现强制重绘当前组件的效果.
-
-- loading_state (dict; optional)
-
-    `loading_state` is a dict with keys:
-
-    - component_name (string; optional):
-        Holds the name of the component that is loading.
-
-    - is_loading (boolean; optional):
-        Determines if the component is loading or not.
-
-    - prop_name (string; optional):
-        Holds which property is loading.
-
 - mode (a value equal to: 'left', 'alternate', 'right'; default 'left'):
     时间轴与内容的相对位置，可选项有`'left'`、`'alternate'`、`'right'`.
 
@@ -69,17 +53,33 @@ Keyword arguments:
 - reverse (boolean; default False):
     是否逆序排列时间轴  默认值：`False`.
 
-- style (dict; optional):
-    当前组件css样式."""
+- data-* (string; optional):
+    `data-*`格式属性通配.
+
+- aria-* (string; optional):
+    `aria-*`格式属性通配.
+
+- loading_state (dict; optional)
+
+    `loading_state` is a dict with keys:
+
+    - component_name (string; optional):
+        Holds the name of the component that is loading.
+
+    - is_loading (boolean; optional):
+        Determines if the component is loading or not.
+
+    - prop_name (string; optional):
+        Holds which property is loading."""
     _children_props = ['items[].content', 'items[].icon', 'items[].label', 'pending', 'pendingDot']
     _base_nodes = ['pending', 'pendingDot', 'children']
     _namespace = 'feffery_antd_components'
     _type = 'AntdTimeline'
     @_explicitize_args
     def __init__(self, id=Component.UNDEFINED, key=Component.UNDEFINED, style=Component.UNDEFINED, className=Component.UNDEFINED, items=Component.REQUIRED, mode=Component.UNDEFINED, pending=Component.UNDEFINED, pendingDot=Component.UNDEFINED, reverse=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
-        self._prop_names = ['id', 'aria-*', 'className', 'data-*', 'items', 'key', 'loading_state', 'mode', 'pending', 'pendingDot', 'reverse', 'style']
+        self._prop_names = ['id', 'key', 'style', 'className', 'items', 'mode', 'pending', 'pendingDot', 'reverse', 'data-*', 'aria-*', 'loading_state']
         self._valid_wildcard_attributes =            ['data-', 'aria-']
-        self.available_properties = ['id', 'aria-*', 'className', 'data-*', 'items', 'key', 'loading_state', 'mode', 'pending', 'pendingDot', 'reverse', 'style']
+        self.available_properties = ['id', 'key', 'style', 'className', 'items', 'mode', 'pending', 'pendingDot', 'reverse', 'data-*', 'aria-*', 'loading_state']
         self.available_wildcard_properties =            ['data-', 'aria-']
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()

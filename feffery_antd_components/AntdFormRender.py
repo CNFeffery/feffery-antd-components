@@ -15,119 +15,11 @@ Keyword arguments:
 - className (string | dict; optional):
     css类名.
 
-- colon (boolean; default True):
-    设置是否是否显示label后面的冒号，默认为True.
-
-- column (number; default 1):
-    设置一行展示多少列.
-
-- configProvider (dict; optional):
-    同antd的configProvider.
-
-- disabled (boolean; default False):
-    设置是否禁用全部表单项，默认为False.
-
-- displayType (a value equal to: 'column', 'row', 'inline'; default 'column'):
-    设置表单布局模式，表单元素与 label 同行 or 分两行展示, inline 则整个展示自然顺排，
-    可选的有'column'、'row'与'inline'，默认为'column'.
-
-- fieldCol (number; optional):
-    设置表单控件占位格数.
-
-- footer (dict; optional):
-    设置底部操作区域.
-
-    `footer` is a boolean | dict with keys:
-
-    - reset (dict; optional):
-        设置重置按钮.
-
-        `reset` is a dict with keys:
-
-        - btnProps (dict; optional):
-            设置其他按钮属性，参考 Antd Button Props().
-
-        - hide (boolean; optional):
-            设置是否显示.
-
-        - text (string; optional):
-            设置按钮文字.
-
-    - submit (dict; optional):
-        设置提交按钮.
-
-        `submit` is a dict with keys:
-
-        - btnProps (dict; optional):
-            设置其他按钮属性，参考 Antd Button Props().
-
-        - hide (boolean; optional):
-            设置是否显示.
-
-        - text (string; optional):
-            设置按钮文字. | a list of or a singular dash component, string or number
-
-- globalConfig (dict; optional):
-    设置表单全局配置.
-
-    `globalConfig` is a dict with keys:
-
-    - listOperate (dict; optional):
-        设置列表表单配置.
-
-        `listOperate` is a dict with keys:
-
-        - btnType (a value equal to: 'icon', 'text'; optional):
-            设置列表表单操作按钮样式.
-
-        - hideMove (boolean; optional):
-            设置是否隐藏移动按钮.
-
-    - mustacheDisabled (boolean; optional):
-        设置是否禁用表达式.
+- style (dict; optional):
+    自定义css字典.
 
 - key (string; optional):
     辅助刷新用唯一标识key值.
-
-- labelAlign (a value equal to: 'left', 'right'; default 'right'):
-    设置label标签的文本对齐方式，可选的有'left'和'right'，默认为'right'.
-
-- labelCol (number; optional):
-    设置表单标签占位格数.
-
-- lableWidth (number; optional):
-    设置表单标签固定宽度.
-
-- loading_state (dict; optional)
-
-    `loading_state` is a dict with keys:
-
-    - component_name (string; optional):
-        Holds the name of the component that is loading.
-
-    - is_loading (boolean; optional):
-        Determines if the component is loading or not.
-
-    - prop_name (string; optional):
-        Holds which property is loading.
-
-- locale (a value equal to: 'zh-cn', 'en-us', 'de-de'; default 'zh-CN'):
-    设置展示语言，目前只支持中文、英文，  可选的有'zh-CN'与'en-US'，默认为'zh-CN'.
-
-- maxWidth (number; optional):
-    设置表单项控件的最大宽度.
-
-- readOnly (boolean; default False):
-    设否开启只读模式，一般用于预览展示，全文text展示，默认为False.
-
-- removeHiddenData (boolean; default True):
-    设置提交数据的时候是否去掉已经被隐藏的元素的数据，默认为True.
-
-- resetForm (boolean; optional):
-    控制参数，用于重置表单项校验状态（不能重置表单项包裹的组件的值，需要通过回调重置表单项包裹的组件的值），回调设置为True后会自动变为False.
-
-- resetFormClicks (number; default 0):
-    辅助监听表单重置参数.
 
 - schema (dict; required):
     必填，设置表单的schema.
@@ -565,17 +457,103 @@ Keyword arguments:
     - type (a value equal to: 'object'; optional):
         固定配置为type: 'object'.
 
+- displayType (a value equal to: 'column', 'row', 'inline'; default 'column'):
+    设置表单布局模式，表单元素与 label 同行 or 分两行展示, inline 则整个展示自然顺排，
+    可选的有'column'、'row'与'inline'，默认为'column'.
+
+- labelAlign (a value equal to: 'left', 'right'; default 'right'):
+    设置label标签的文本对齐方式，可选的有'left'和'right'，默认为'right'.
+
+- lableWidth (number; optional):
+    设置表单标签固定宽度.
+
+- maxWidth (number; optional):
+    设置表单项控件的最大宽度.
+
+- labelCol (number; optional):
+    设置表单标签占位格数.
+
+- fieldCol (number; optional):
+    设置表单控件占位格数.
+
+- colon (boolean; default True):
+    设置是否是否显示label后面的冒号，默认为True.
+
+- globalConfig (dict; optional):
+    设置表单全局配置.
+
+    `globalConfig` is a dict with keys:
+
+    - listOperate (dict; optional):
+        设置列表表单配置.
+
+        `listOperate` is a dict with keys:
+
+        - btnType (a value equal to: 'icon', 'text'; optional):
+            设置列表表单操作按钮样式.
+
+        - hideMove (boolean; optional):
+            设置是否隐藏移动按钮.
+
+    - mustacheDisabled (boolean; optional):
+        设置是否禁用表达式.
+
+- watch (dict with strings as keys and values of type string; optional):
+    监听表单的数据变化，属性值需要是字符串格式的js函数.
+
+- removeHiddenData (boolean; default True):
+    设置提交数据的时候是否去掉已经被隐藏的元素的数据，默认为True.
+
+- readOnly (boolean; default False):
+    设否开启只读模式，一般用于预览展示，全文text展示，默认为False.
+
+- column (number; default 1):
+    设置一行展示多少列.
+
+- disabled (boolean; default False):
+    设置是否禁用全部表单项，默认为False.
+
 - scrollToFirstError (boolean; default False):
     设置提交失败是否自动滚动到第一个错误字段，默认为False.
 
-- style (dict; optional):
-    自定义css字典.
+- locale (a value equal to: 'zh-cn', 'en-us', 'de-de'; default 'zh-CN'):
+    设置展示语言，目前只支持中文、英文，  可选的有'zh-CN'与'en-US'，默认为'zh-CN'.
 
-- submitForm (boolean; optional):
-    控制参数，用于提交表单时手动搜集表单的校验结果，回调设置为True后会自动变为False.
+- footer (dict; optional):
+    设置底部操作区域.
 
-- submitFormClicks (number; default 0):
-    辅助监听表单提交参数.
+    `footer` is a boolean | dict with keys:
+
+    - reset (dict; optional):
+        设置重置按钮.
+
+        `reset` is a dict with keys:
+
+        - btnProps (dict; optional):
+            设置其他按钮属性，参考 Antd Button Props().
+
+        - hide (boolean; optional):
+            设置是否显示.
+
+        - text (string; optional):
+            设置按钮文字.
+
+    - submit (dict; optional):
+        设置提交按钮.
+
+        `submit` is a dict with keys:
+
+        - btnProps (dict; optional):
+            设置其他按钮属性，参考 Antd Button Props().
+
+        - hide (boolean; optional):
+            设置是否显示.
+
+        - text (string; optional):
+            设置按钮文字. | a list of or a singular dash component, string or number
+
+- configProvider (dict; optional):
+    同antd的configProvider.
 
 - validateMessages (dict; optional):
     设置默认的校验提示信息.
@@ -670,23 +648,45 @@ Keyword arguments:
 
     - whitespace (string; optional)
 
-- validateStatuses (boolean; optional):
-    监听表单校验结果.
-
 - values (dict; optional):
     设置与监听表单数据.
 
-- watch (dict with strings as keys and values of type string; optional):
-    监听表单的数据变化，属性值需要是字符串格式的js函数."""
+- validateStatuses (boolean; optional):
+    监听表单校验结果.
+
+- submitForm (boolean; optional):
+    控制参数，用于提交表单时手动搜集表单的校验结果，回调设置为True后会自动变为False.
+
+- submitFormClicks (number; default 0):
+    辅助监听表单提交参数.
+
+- resetForm (boolean; optional):
+    控制参数，用于重置表单项校验状态（不能重置表单项包裹的组件的值，需要通过回调重置表单项包裹的组件的值），回调设置为True后会自动变为False.
+
+- resetFormClicks (number; default 0):
+    辅助监听表单重置参数.
+
+- loading_state (dict; optional)
+
+    `loading_state` is a dict with keys:
+
+    - component_name (string; optional):
+        Holds the name of the component that is loading.
+
+    - is_loading (boolean; optional):
+        Determines if the component is loading or not.
+
+    - prop_name (string; optional):
+        Holds which property is loading."""
     _children_props = ['footer']
     _base_nodes = ['footer', 'children']
     _namespace = 'feffery_antd_components'
     _type = 'AntdFormRender'
     @_explicitize_args
     def __init__(self, id=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, key=Component.UNDEFINED, schema=Component.REQUIRED, displayType=Component.UNDEFINED, labelAlign=Component.UNDEFINED, lableWidth=Component.UNDEFINED, maxWidth=Component.UNDEFINED, labelCol=Component.UNDEFINED, fieldCol=Component.UNDEFINED, colon=Component.UNDEFINED, globalConfig=Component.UNDEFINED, watch=Component.UNDEFINED, removeHiddenData=Component.UNDEFINED, readOnly=Component.UNDEFINED, column=Component.UNDEFINED, disabled=Component.UNDEFINED, scrollToFirstError=Component.UNDEFINED, locale=Component.UNDEFINED, footer=Component.UNDEFINED, configProvider=Component.UNDEFINED, validateMessages=Component.UNDEFINED, values=Component.UNDEFINED, validateStatuses=Component.UNDEFINED, submitForm=Component.UNDEFINED, submitFormClicks=Component.UNDEFINED, resetForm=Component.UNDEFINED, resetFormClicks=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
-        self._prop_names = ['id', 'className', 'colon', 'column', 'configProvider', 'disabled', 'displayType', 'fieldCol', 'footer', 'globalConfig', 'key', 'labelAlign', 'labelCol', 'lableWidth', 'loading_state', 'locale', 'maxWidth', 'readOnly', 'removeHiddenData', 'resetForm', 'resetFormClicks', 'schema', 'scrollToFirstError', 'style', 'submitForm', 'submitFormClicks', 'validateMessages', 'validateStatuses', 'values', 'watch']
+        self._prop_names = ['id', 'className', 'style', 'key', 'schema', 'displayType', 'labelAlign', 'lableWidth', 'maxWidth', 'labelCol', 'fieldCol', 'colon', 'globalConfig', 'watch', 'removeHiddenData', 'readOnly', 'column', 'disabled', 'scrollToFirstError', 'locale', 'footer', 'configProvider', 'validateMessages', 'values', 'validateStatuses', 'submitForm', 'submitFormClicks', 'resetForm', 'resetFormClicks', 'loading_state']
         self._valid_wildcard_attributes =            []
-        self.available_properties = ['id', 'className', 'colon', 'column', 'configProvider', 'disabled', 'displayType', 'fieldCol', 'footer', 'globalConfig', 'key', 'labelAlign', 'labelCol', 'lableWidth', 'loading_state', 'locale', 'maxWidth', 'readOnly', 'removeHiddenData', 'resetForm', 'resetFormClicks', 'schema', 'scrollToFirstError', 'style', 'submitForm', 'submitFormClicks', 'validateMessages', 'validateStatuses', 'values', 'watch']
+        self.available_properties = ['id', 'className', 'style', 'key', 'schema', 'displayType', 'labelAlign', 'lableWidth', 'maxWidth', 'labelCol', 'fieldCol', 'colon', 'globalConfig', 'watch', 'removeHiddenData', 'readOnly', 'column', 'disabled', 'scrollToFirstError', 'locale', 'footer', 'configProvider', 'validateMessages', 'values', 'validateStatuses', 'submitForm', 'submitFormClicks', 'resetForm', 'resetFormClicks', 'loading_state']
         self.available_wildcard_properties =            []
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()

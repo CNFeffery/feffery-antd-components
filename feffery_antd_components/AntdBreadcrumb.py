@@ -12,28 +12,14 @@ Keyword arguments:
 - id (string; optional):
     组件唯一id.
 
-- aria-* (string; optional):
-    `aria-*`格式属性通配.
+- key (string; optional):
+    对当前组件的`key`值进行更新，可实现强制重绘当前组件的效果.
+
+- style (dict; optional):
+    当前组件css样式.
 
 - className (string | dict; optional):
     当前组件css类名，支持[动态css](/advanced-classname).
-
-- clickedItem (dict; optional):
-    监听面包屑节点点击事件.
-
-    `clickedItem` is a dict with keys:
-
-    - itemKey (string; optional):
-        被点击节点key值.
-
-    - itemTitle (string; optional):
-        被点击节点标题.
-
-    - timestamp (number; optional):
-        点击事件时间戳.
-
-- data-* (string; optional):
-    `data-*`格式属性通配.
 
 - items (list of dicts; optional):
     面包屑节点数据结构.
@@ -87,8 +73,28 @@ Keyword arguments:
     - title (string; optional):
         节点标题.
 
-- key (string; optional):
-    对当前组件的`key`值进行更新，可实现强制重绘当前组件的效果.
+- separator (a list of or a singular dash component, string or number; default '/'):
+    组件型，分隔符  默认值：`'/'`.
+
+- clickedItem (dict; optional):
+    监听面包屑节点点击事件.
+
+    `clickedItem` is a dict with keys:
+
+    - itemKey (string; optional):
+        被点击节点key值.
+
+    - itemTitle (string; optional):
+        被点击节点标题.
+
+    - timestamp (number; optional):
+        点击事件时间戳.
+
+- data-* (string; optional):
+    `data-*`格式属性通配.
+
+- aria-* (string; optional):
+    `aria-*`格式属性通配.
 
 - loading_state (dict; optional)
 
@@ -101,22 +107,16 @@ Keyword arguments:
         Determines if the component is loading or not.
 
     - prop_name (string; optional):
-        Holds which property is loading.
-
-- separator (a list of or a singular dash component, string or number; default '/'):
-    组件型，分隔符  默认值：`'/'`.
-
-- style (dict; optional):
-    当前组件css样式."""
+        Holds which property is loading."""
     _children_props = ['separator']
     _base_nodes = ['separator', 'children']
     _namespace = 'feffery_antd_components'
     _type = 'AntdBreadcrumb'
     @_explicitize_args
     def __init__(self, id=Component.UNDEFINED, key=Component.UNDEFINED, style=Component.UNDEFINED, className=Component.UNDEFINED, items=Component.UNDEFINED, separator=Component.UNDEFINED, clickedItem=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
-        self._prop_names = ['id', 'aria-*', 'className', 'clickedItem', 'data-*', 'items', 'key', 'loading_state', 'separator', 'style']
+        self._prop_names = ['id', 'key', 'style', 'className', 'items', 'separator', 'clickedItem', 'data-*', 'aria-*', 'loading_state']
         self._valid_wildcard_attributes =            ['data-', 'aria-']
-        self.available_properties = ['id', 'aria-*', 'className', 'clickedItem', 'data-*', 'items', 'key', 'loading_state', 'separator', 'style']
+        self.available_properties = ['id', 'key', 'style', 'className', 'items', 'separator', 'clickedItem', 'data-*', 'aria-*', 'loading_state']
         self.available_wildcard_properties =            ['data-', 'aria-']
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()
