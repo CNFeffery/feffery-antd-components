@@ -6,7 +6,10 @@ from feffery_dash_utils.style_utils import style
 app = dash.Dash(__name__)
 
 app.layout = html.Div(
-    [html.Pre(fac.AntdTable.__doc__)],
+    [
+        fac.AntdButton('按钮实例', type='primary'),
+        html.Pre(fac.AntdTable.__doc__),
+    ],
     style=style(padding=50),
 )
 

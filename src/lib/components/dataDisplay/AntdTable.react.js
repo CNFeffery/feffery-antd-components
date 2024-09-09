@@ -283,20 +283,20 @@ AntdTable.propTypes = {
                  */
                 PropTypes.exact({
                     /**
-                     * 适用于`'link'`模式，链接显示的文字内容，优先级高于字段配置信息中的`renderLinkText`参数
+                     * 链接显示的文字内容，优先级高于字段配置信息中的`renderLinkText`参数
                      */
                     content: PropTypes.string,
                     /**
-                     * 适用于`'link'`模式，链接地址
+                     * 链接地址
                      */
                     href: PropTypes.string,
                     /**
-                     * 适用于`'link'`模式，链接跳转行为
+                     * 链接跳转行为
                      * 默认值：`'_blank'`
                      */
                     target: PropTypes.string,
                     /**
-                     * 适用于`'link'`模式，是否禁用当前链接
+                     * 是否禁用当前链接
                      * 默认值：`false`
                      */
                     disabled: PropTypes.bool
@@ -314,11 +314,11 @@ AntdTable.propTypes = {
                      */
                     PropTypes.exact({
                         /**
-                         * 适用于`'tags'`模式，标签颜色
+                         * 标签颜色
                          */
                         color: PropTypes.string,
                         /**
-                         * 适用于`'tags'`模式，标签内容
+                         * 标签内容
                          */
                         tag: PropTypes.oneOfType([
                             PropTypes.string,
@@ -331,11 +331,11 @@ AntdTable.propTypes = {
                     PropTypes.arrayOf(
                         PropTypes.exact({
                             /**
-                             * 适用于`'tags'`模式，当前标签颜色
+                             * 当前标签颜色
                              */
                             color: PropTypes.string,
                             /**
-                             * 适用于`'tags'`模式，当前标签内容
+                             * 当前标签内容
                              */
                             tag: PropTypes.oneOfType([
                                 PropTypes.string,
@@ -353,43 +353,43 @@ AntdTable.propTypes = {
                      */
                     PropTypes.exact({
                         /**
-                         * 适用于`'button'`模式，同`AntdButton`中的同名参数
+                         * 同`AntdButton`中的同名参数
                          */
                         disabled: PropTypes.bool,
                         /**
-                         * 适用于`'button'`模式，同`AntdButton`中的同名参数
+                         * 同`AntdButton`中的同名参数
                          */
                         type: PropTypes.oneOf(['primary', 'ghost', 'dashed', 'link', 'text', 'default']),
                         /**
-                         * 适用于`'button'`模式，同`AntdButton`中的同名参数
+                         * 同`AntdButton`中的同名参数
                          */
                         danger: PropTypes.bool,
                         /**
-                         * 适用于`'button'`模式，同`AntdButton`中的同名参数
+                         * 同`AntdButton`中的同名参数
                          */
                         style: PropTypes.object,
                         /**
-                         * 适用于`'button'`模式，按钮内容
+                         * 按钮内容
                          */
                         content: PropTypes.string,
                         /**
-                         * 适用于`'button'`模式，同`AntdButton`中的同名参数
+                         * 同`AntdButton`中的同名参数
                          */
                         href: PropTypes.string,
                         /**
-                         * 适用于`'button'`模式，同`AntdButton`中的同名参数
+                         * 同`AntdButton`中的同名参数
                          */
                         target: PropTypes.string,
                         /**
-                         * 适用于`'button'`模式，按钮前缀图标类型，`iconRenderer`为`'AntdIcon'`时同`AntdIcon`同名参数，`iconRenderer`为`'fontawesome'`时为css类名
+                         * 按钮前缀图标类型，`iconRenderer`为`'AntdIcon'`时同`AntdIcon`同名参数，`iconRenderer`为`'fontawesome'`时为css类名
                          */
                         icon: PropTypes.string,
                         /**
-                         * 适用于`'button'`模式，按钮前缀图标渲染方式，可选项有`'AntdIcon'`、`'fontawesome'`
+                         * 按钮前缀图标渲染方式，可选项有`'AntdIcon'`、`'fontawesome'`
                          */
                         iconRenderer: PropTypes.oneOf(['AntdIcon', 'fontawesome']),
                         /**
-                         * 适用于`'button'`模式，额外补充信息
+                         * 额外补充信息
                          */
                         custom: PropTypes.any
                     }),
@@ -399,43 +399,43 @@ AntdTable.propTypes = {
                     PropTypes.arrayOf(
                         PropTypes.exact({
                             /**
-                             * 适用于`'button'`模式，同`AntdButton`中的同名参数
+                             * 同`AntdButton`中的同名参数
                              */
                             disabled: PropTypes.bool,
                             /**
-                             * 适用于`'button'`模式，同`AntdButton`中的同名参数
+                             * 同`AntdButton`中的同名参数
                              */
                             type: PropTypes.oneOf(['primary', 'ghost', 'dashed', 'link', 'text', 'default']),
                             /**
-                             * 适用于`'button'`模式，同`AntdButton`中的同名参数
+                             * 同`AntdButton`中的同名参数
                              */
                             danger: PropTypes.bool,
                             /**
-                             * 适用于`'button'`模式，同`AntdButton`中的同名参数
+                             * 同`AntdButton`中的同名参数
                              */
                             style: PropTypes.object,
                             /**
-                             * 适用于`'button'`模式，按钮内容
+                             * 按钮内容
                              */
                             content: PropTypes.string,
                             /**
-                             * 适用于`'button'`模式，同`AntdButton`中的同名参数
+                             * 同`AntdButton`中的同名参数
                              */
                             href: PropTypes.string,
                             /**
-                             * 适用于`'button'`模式，同`AntdButton`中的同名参数
+                             * 同`AntdButton`中的同名参数
                              */
                             target: PropTypes.string,
                             /**
-                             * 适用于`'button'`模式，当前按钮前缀图标类型，`iconRenderer`为`'AntdIcon'`时同`AntdIcon`同名参数，`iconRenderer`为`'fontawesome'`时为css类名
+                             * 当前按钮前缀图标类型，`iconRenderer`为`'AntdIcon'`时同`AntdIcon`同名参数，`iconRenderer`为`'fontawesome'`时为css类名
                              */
                             icon: PropTypes.string,
                             /**
-                             * 适用于`'button'`模式，当前按钮前缀图标渲染方式，可选项有`'AntdIcon'`、`'fontawesome'`
+                             * 当前按钮前缀图标渲染方式，可选项有`'AntdIcon'`、`'fontawesome'`
                              */
                             iconRenderer: PropTypes.oneOf(['AntdIcon', 'fontawesome']),
                             /**
-                             * 适用于`'button'`模式，额外补充信息
+                             * 额外补充信息
                              */
                             custom: PropTypes.any
                         })
@@ -446,11 +446,11 @@ AntdTable.propTypes = {
                  */
                 PropTypes.exact({
                     /**
-                     * 适用于`'status-badge'`模式，状态徽标状态，可选项有`'success'`、`'processing'`、`'default'`、`'error'`、`'warning'`
+                     * 状态徽标状态，可选项有`'success'`、`'processing'`、`'default'`、`'error'`、`'warning'`
                      */
                     status: PropTypes.oneOf(['success', 'processing', 'default', 'error', 'warning']),
                     /**
-                     * 适用于`'status-badge'`模式，状态徽标标签内容
+                     * 状态徽标标签内容
                      */
                     text: PropTypes.oneOfType([
                         PropTypes.string,
@@ -462,18 +462,18 @@ AntdTable.propTypes = {
                  */
                 PropTypes.exact({
                     /**
-                     * 适用于`'image'`模式，图片资源地址
+                     * 图片资源地址
                      */
                     src: PropTypes.string,
                     /**
-                     * 适用于`'image'`模式，图片高度
+                     * 图片高度
                      */
                     height: PropTypes.oneOfType([
                         PropTypes.string,
                         PropTypes.number
                     ]),
                     /**
-                     * 适用于`'image'`模式，图片是否可交互预览
+                     * 图片是否可交互预览
                      * 默认值：`true`
                      */
                     preview: PropTypes.bool
@@ -483,31 +483,31 @@ AntdTable.propTypes = {
                  */
                 PropTypes.exact({
                     /**
-                     * 适用于`'corner-mark'`模式，角标显示方位，可选项有`'top-left'`、`'top-right'`、`'bottom-left'`、`'bottom-right'`
+                     * 角标显示方位，可选项有`'top-left'`、`'top-right'`、`'bottom-left'`、`'bottom-right'`
                      */
                     placement: PropTypes.oneOf(['top-left', 'top-right', 'bottom-left', 'bottom-right']),
                     /**
-                     * 适用于`'corner-mark'`模式，角标颜色
+                     * 角标颜色
                      * 默认值：`'#1890ff'`
                      */
                     color: PropTypes.string,
                     /**
-                     * 适用于`'corner-mark'`模式，单元格数值内容
+                     * 单元格数值内容
                      */
                     content: PropTypes.oneOfType([
                         PropTypes.number,
                         PropTypes.string
                     ]),
                     /**
-                     * 适用于`'corner-mark'`模式，角标水平方向像素偏移量
+                     * 角标水平方向像素偏移量
                      */
                     offsetX: PropTypes.number,
                     /**
-                     * 适用于`'corner-mark'`模式，角标竖直方向像素偏移量
+                     * 角标竖直方向像素偏移量
                      */
                     offsetY: PropTypes.number,
                     /**
-                     * 适用于`'corner-mark'`模式，是否隐藏当前角标
+                     * 是否隐藏当前角标
                      * 默认值：`false`
                      */
                     hide: PropTypes.bool
@@ -517,19 +517,19 @@ AntdTable.propTypes = {
                  */
                 PropTypes.exact({
                     /**
-                     * 适用于`'checkbox'`模式，当前勾选框状态
+                     * 当前勾选框状态
                      */
                     checked: PropTypes.bool,
                     /**
-                     * 适用于`'checkbox'`模式，是否禁用当前勾选框
+                     * 是否禁用当前勾选框
                      */
                     disabled: PropTypes.bool,
                     /**
-                     * 适用于`'checkbox'`模式，当前勾选框标签内容
+                     * 当前勾选框标签内容
                      */
                     label: PropTypes.string,
                     /**
-                     * 适用于`'checkbox'`模式，额外补充信息
+                     * 额外补充信息
                      */
                     custom: PropTypes.any
                 }),
@@ -538,23 +538,23 @@ AntdTable.propTypes = {
                  */
                 PropTypes.exact({
                     /**
-                     * 适用于`'switch'`模式，当前开关状态
+                     * 当前开关状态
                      */
                     checked: PropTypes.bool,
                     /**
-                     * 适用于`'switch'`模式，是否禁用当前开关
+                     * 是否禁用当前开关
                      */
                     disabled: PropTypes.bool,
                     /**
-                     * 适用于`'switch'`模式，“开”状态标签内容
+                     * “开”状态标签内容
                      */
                     checkedChildren: PropTypes.string,
                     /**
-                     * 适用于`'switch'`模式，“关”状态标签内容
+                     * “关”状态标签内容
                      */
                     unCheckedChildren: PropTypes.string,
                     /**
-                     * 适用于`'switch'`模式，额外补充信息
+                     * 额外补充信息
                      */
                     custom: PropTypes.any
                 }),
@@ -563,14 +563,14 @@ AntdTable.propTypes = {
                  */
                 PropTypes.exact({
                     /**
-                     * 适用于`'row-merge'`模式，单元格数值内容
+                     * 单元格数值内容
                      */
                     content: PropTypes.oneOfType([
                         PropTypes.number,
                         PropTypes.string
                     ]),
                     /**
-                     * 适用于`'row-merge'`模式，从当前单元格开始，向后合并的其他单元格数量
+                     * 从当前单元格开始，向后合并的其他单元格数量
                      */
                     rowSpan: PropTypes.number
                 }),
@@ -580,27 +580,27 @@ AntdTable.propTypes = {
                 PropTypes.arrayOf(
                     PropTypes.exact({
                         /**
-                         * 适用于`'dropdown'`模式，当前下拉菜单项锚点内容
+                         * 当前下拉菜单项锚点内容
                          */
                         title: PropTypes.string,
                         /**
-                         * 适用于`'dropdown'`模式，是否禁用当前下拉菜单项
+                         * 是否禁用当前下拉菜单项
                          */
                         disabled: PropTypes.bool,
                         /**
-                         * 适用于`'dropdown'`模式，当前按钮前缀图标类型，`iconRenderer`为`'AntdIcon'`时同`AntdIcon`同名参数，`iconRenderer`为`'fontawesome'`时为css类名
+                         * 当前按钮前缀图标类型，`iconRenderer`为`'AntdIcon'`时同`AntdIcon`同名参数，`iconRenderer`为`'fontawesome'`时为css类名
                          */
                         icon: PropTypes.string,
                         /**
-                         * 适用于`'dropdown'`模式，当前按钮前缀图标渲染方式，可选项有`'AntdIcon'`、`'fontawesome'`
+                         * 当前按钮前缀图标渲染方式，可选项有`'AntdIcon'`、`'fontawesome'`
                          */
                         iconRenderer: PropTypes.oneOf(['AntdIcon', 'fontawesome']),
                         /**
-                         * 适用于`'dropdown'`模式，额外补充信息
+                         * 额外补充信息
                          */
                         custom: PropTypes.any,
                         /**
-                         * 适用于`'dropdown'`模式，当前项是否渲染为分割线
+                         * 当前项是否渲染为分割线
                          * 默认值：`false`
                          */
                         isDivider: PropTypes.bool
@@ -612,27 +612,27 @@ AntdTable.propTypes = {
                 PropTypes.arrayOf(
                     PropTypes.exact({
                         /**
-                         * 适用于`'dropdown-links'`模式，当前下拉菜单项锚点内容
+                         * 当前下拉菜单项锚点内容
                          */
                         title: PropTypes.string,
                         /**
-                         * 适用于`'dropdown-links'`模式，当前下拉菜单项链接地址
+                         * 当前下拉菜单项链接地址
                          */
                         href: PropTypes.string,
                         /**
-                         * 适用于`'dropdown-links'`模式，是否禁用当前下拉菜单项
+                         * 是否禁用当前下拉菜单项
                          */
                         disabled: PropTypes.bool,
                         /**
-                         * 适用于`'dropdown-links'`模式，当前按钮前缀图标类型，`iconRenderer`为`'AntdIcon'`时同`AntdIcon`同名参数，`iconRenderer`为`'fontawesome'`时为css类名
+                         * 当前按钮前缀图标类型，`iconRenderer`为`'AntdIcon'`时同`AntdIcon`同名参数，`iconRenderer`为`'fontawesome'`时为css类名
                          */
                         icon: PropTypes.string,
                         /**
-                         * 适用于`'dropdown-links'`模式，当前按钮前缀图标渲染方式，可选项有`'AntdIcon'`、`'fontawesome'`
+                         * 当前按钮前缀图标渲染方式，可选项有`'AntdIcon'`、`'fontawesome'`
                          */
                         iconRenderer: PropTypes.oneOf(['AntdIcon', 'fontawesome']),
                         /**
-                         * 适用于`'dropdown-links'`模式，当前项是否渲染为分割线
+                         * 当前项是否渲染为分割线
                          * 默认值：`false`
                          */
                         isDivider: PropTypes.bool
@@ -643,11 +643,11 @@ AntdTable.propTypes = {
                  */
                 PropTypes.exact({
                     /**
-                     * 适用于`'image-avatar'`模式，头像图片资源链接
+                     * 头像图片资源链接
                      */
                     src: PropTypes.string,
                     /**
-                     * 适用于`'image-avatar'`模式，头像尺寸规格，传入数值型时表示像素大小，传入字符型时可使用内置尺寸规格，可选项有`'small'`、`'default'`、`'large'`，支持响应式
+                     * 头像尺寸规格，传入数值型时表示像素大小，传入字符型时可使用内置尺寸规格，可选项有`'small'`、`'default'`、`'large'`，支持响应式
                      * 默认值：`'default'`
                      */
                     size: PropTypes.oneOfType([
@@ -663,7 +663,7 @@ AntdTable.propTypes = {
                         })
                     ]),
                     /**
-                     * 适用于`'image-avatar'`模式，头像形状，可选项有`'circle'`、`'square'`
+                     * 头像形状，可选项有`'circle'`、`'square'`
                      * 默认值：`'circle'`
                      */
                     shape: PropTypes.oneOf(['circle', 'square'])
@@ -673,18 +673,18 @@ AntdTable.propTypes = {
                  */
                 PropTypes.exact({
                     /**
-                     * 适用于`'select'`模式，下拉选择css类名
+                     * 下拉选择css类名
                      */
                     className: PropTypes.string,
                     /**
-                     * 适用于`'select'`模式，下拉选择css样式，其中`width`默认为`'100%'`
+                     * 下拉选择css样式，其中`width`默认为`'100%'`
                      */
                     style: PropTypes.object,
                     /**
-                     * 适用于`'select'`模式，定义下拉选择选项
+                     * 定义下拉选择选项
                      */
                     options: PropTypes.arrayOf(
-                        PropTypes.object({
+                        PropTypes.exact({
                             /**
                              * 当前选项标题
                              */
@@ -699,41 +699,41 @@ AntdTable.propTypes = {
                         })
                     ),
                     /**
-                     * 适用于`'select'`模式，下拉选择菜单像素高度
+                     * 下拉选择菜单像素高度
                      * 默认值：`256`
                      */
                     listHeight: PropTypes.number,
                     /**
-                     * 适用于`'select'`模式，选择模式，可选项有`'multiple'`、`'tags'`，默认为单选模式
+                     * 选择模式，可选项有`'multiple'`、`'tags'`，默认为单选模式
                      */
                     mode: PropTypes.oneOf(['multiple', 'tags']),
                     /**
-                     * 适用于`'select'`模式，是否禁用当前下拉选择
+                     * 是否禁用当前下拉选择
                      */
                     disabled: PropTypes.bool,
                     /**
-                     * 适用于`'select'`模式，下拉选择尺寸规格，可选项有`'small'`、`'middle'`、`'large'`
+                     * 下拉选择尺寸规格，可选项有`'small'`、`'middle'`、`'large'`
                      * 默认值：`'middle'`
                      */
                     size: PropTypes.oneOf([
                         'small', 'middle', 'large'
                     ]),
                     /**
-                     * 适用于`'select'`模式，是否渲染边框
+                     * 是否渲染边框
                      * 默认值：`true`
                      */
                     bordered: PropTypes.bool,
                     /**
-                     * 适用于`'select'`模式，选择框占位内容
+                     * 选择框占位内容
                      */
                     placeholder: PropTypes.string,
                     /**
-                     * 适用于`'select'`模式，下拉菜单展开方向，可选项有`'bottomLeft'`、`'bottomRight'`、`'topLeft'`、`'topRight'`
+                     * 下拉菜单展开方向，可选项有`'bottomLeft'`、`'bottomRight'`、`'topLeft'`、`'topRight'`
                      * 默认值：`'bottomLeft'`
                      */
                     placement: PropTypes.oneOf(['bottomLeft', 'bottomRight', 'topLeft', 'topRight']),
                     /**
-                     * 适用于`'select'`模式，下拉选择已选中值
+                     * 下拉选择已选中值
                      */
                     value: PropTypes.oneOfType([
                         PropTypes.oneOfType([
@@ -748,7 +748,7 @@ AntdTable.propTypes = {
                         ),
                     ]),
                     /**
-                     * 适用于`'select'`模式，最多显示的已选中选项数量，超出部分将会自动省略
+                     * 最多显示的已选中选项数量，超出部分将会自动省略
                      * 默认值：`5`
                      */
                     maxTagCount: PropTypes.oneOfType([
@@ -756,12 +756,12 @@ AntdTable.propTypes = {
                         PropTypes.oneOf(['responsive'])
                     ]),
                     /**
-                     * 适用于`'select'`模式，选择框内搜索对应的目标字段，可选项有`'value'`、`'label'`
+                     * 选择框内搜索对应的目标字段，可选项有`'value'`、`'label'`
                      * 默认值：`'value'`
                      */
                     optionFilterProp: PropTypes.oneOf(['value', 'label']),
                     /**
-                     * 适用于`'select'`模式，是否允许快捷清空已选项
+                     * 是否允许快捷清空已选项
                      * 默认值：`true`
                      */
                     allowClear: PropTypes.bool
