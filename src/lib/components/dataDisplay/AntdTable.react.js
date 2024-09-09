@@ -278,6 +278,7 @@ AntdTable.propTypes = {
                  * 其中`mini-prorgess`模式、`'mini-ring-progress'`模式下输入值需在0~1之间
                  */
                 PropTypes.number,
+                PropTypes.bool,
                 /**
                  * `'link'`模式
                  */

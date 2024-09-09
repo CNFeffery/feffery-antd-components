@@ -168,8 +168,8 @@ Keyword arguments:
 
     `data` is a list of dicts with strings as keys and values of type
     list of boolean | number | string | dict | lists | a list of or a
-    singular dash component, string or number | string | number | dict
-    with keys:
+    singular dash component, string or number | string | number |
+    boolean | dict with keys:
 
     - content (string; optional):
         链接显示的文字内容，优先级高于字段配置信息中的`renderLinkText`参数.
