@@ -32,11 +32,11 @@ Keyword arguments:
 
     `autoSize` is a boolean | dict with keys:
 
-    - maxRows (number; optional):
-        输入框最大行数.
-
     - minRows (number; optional):
         输入框最小行数.
+
+    - maxRows (number; optional):
+        输入框最大行数.
 
 - prefix (string; default '@'):
     触发选择菜单展开的关键字  默认值：`'@'`.
@@ -101,14 +101,14 @@ Keyword arguments:
 
     `loading_state` is a dict with keys:
 
-    - component_name (string; optional):
-        Holds the name of the component that is loading.
-
     - is_loading (boolean; optional):
         Determines if the component is loading or not.
 
     - prop_name (string; optional):
-        Holds which property is loading."""
+        Holds which property is loading.
+
+    - component_name (string; optional):
+        Holds the name of the component that is loading."""
     _children_props = ['options[].label']
     _base_nodes = ['children']
     _namespace = 'feffery_antd_components'

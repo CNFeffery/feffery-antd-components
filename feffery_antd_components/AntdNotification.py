@@ -52,21 +52,21 @@ Keyword arguments:
 
     `closeButton` is a dict with keys:
 
-    - className (string; optional):
-        按钮css类名.
-
     - content (string; optional):
         按钮内容.
-
-    - danger (boolean; optional):
-        按钮是否呈现危险状态  默认值：`False`.
 
     - style (dict; optional):
         按钮css样式.
 
+    - className (string; optional):
+        按钮css类名.
+
     - type (a value equal to: 'default', 'primary', 'ghost', 'dashed', 'link', 'text'; optional):
         按钮类型，可选项有`'default'`、`'primary'`、`'ghost'`、`'dashed'`、`'link'`、`'text'`
         默认值：`'default'`.
+
+    - danger (boolean; optional):
+        按钮是否呈现危险状态  默认值：`False`.
 
 - underCompatibilityMode (boolean; optional):
     当前通知提醒框组件是否位于设置了`compatibilityMode=True`的`AntdConfigProvider`内部.
@@ -75,14 +75,14 @@ Keyword arguments:
 
     `loading_state` is a dict with keys:
 
-    - component_name (string; optional):
-        Holds the name of the component that is loading.
-
     - is_loading (boolean; optional):
         Determines if the component is loading or not.
 
     - prop_name (string; optional):
-        Holds which property is loading."""
+        Holds which property is loading.
+
+    - component_name (string; optional):
+        Holds the name of the component that is loading."""
     _children_props = []
     _base_nodes = ['children']
     _namespace = 'feffery_antd_components'

@@ -33,66 +33,63 @@ Keyword arguments:
 
     `columns` is a list of dicts with keys:
 
-    - align (a value equal to: 'left', 'center', 'right'; optional):
-        当前字段对齐方式，可选项有`'left'`、`'center'`、`'right'`  默认值：`'center'`.
-
-    - className (string; optional):
-        当前字段css类名.
+    - title (a list of or a singular dash component, string or number; required):
+        必填，当前字段标题.
 
     - dataIndex (string; required):
         必填，当前字段唯一识别id.
 
-    - editOptions (dict; optional):
-        配置可编辑模式下输入框相关参数.
-
-        `editOptions` is a dict with keys:
-
-        - autoSize (dict; optional):
-            当`mode='textarea'`时，配置文本框自适应高度相关功能，同`AntdInput`
-            默认值：`False`.
-
-            `autoSize` is a boolean
-
-          Or dict with keys:
-
-    - maxRows (number; optional)
-
-    - minRows (number; optional)
-
-        - maxLength (number; optional):
-            限制当前字段可编辑模式下，输入框内最多可输入的字符数量，默认无限制.
-
-        - mode (a value equal to: 'default', 'text-area'; optional):
-            编辑框模式，可选项有`'default'`、`'text-area'`  默认值：`'default'`.
-
-        - placeholder (string; optional):
-            输入框无输入值时的占位提示信息.
-
-    - editable (boolean; optional):
-        当前字段是否可编辑  默认值：`False`.
-
-    - filterResetToDefaultFilteredValue (boolean; optional):
-        若当前字段通过参数`defaultFilteredValues`设置了初始化默认选中的筛选值，用于设置是否在用户点击重置按钮后恢复默认选中筛选项
-        默认值：`False`.
-
-    - fixed (a value equal to: 'left', 'right'; optional):
-        当前字段冻结方向，可选项有`'left'`、`'right'`.
-
     - group (string | list of strings; optional):
         当前字段所属分组信息，用于渲染多级表头.
-
-    - hidden (boolean; optional):
-        是否隐藏当前字段  默认值：`False`.
 
     - renderOptions (dict; optional):
         配置字段[再渲染模式](/AntdTable-rerender)相关参数.
 
         `renderOptions` is a dict with keys:
 
+        - renderType (a value equal to: 'link', 'ellipsis', 'copyable', 'ellipsis-copyable', 'tags', 'status-badge', 'image', 'custom-format', 'corner-mark', 'row-merge', 'dropdown', 'dropdown-links', 'image-avatar', 'mini-line', 'mini-bar', 'mini-progress', 'mini-ring-progress', 'mini-area', 'button', 'checkbox', 'switch', 'select'; optional):
+            再渲染类型，可选项有`'link'`、`'ellipsis'`、`'copyable'`、`'ellipsis-copyable'`、`'tags'`、`'status-badge'`、`'image'`
+            、`'custom-format'`、`'corner-mark'`、`'row-merge'`、`'dropdown'`、`'dropdown-links'`、`'image-avatar'`
+            、`'mini-line'`、`'mini-bar'`、`'mini-progress'`、`'mini-ring-progress'`、`'mini-area'`
+            、`'button'`、`'checkbox'`、`'switch'`、`'select'`.
+
+        - renderLinkText (string; optional):
+            当`renderType='link'`时，统一设置渲染链接文本内容.
+
+        - renderButtonSplit (boolean; optional):
+            当`renderType='button'`时，控制多个按钮之间是否添加分割线.
+
+        - renderButtonPopConfirmProps (dict; optional):
+            当`renderType='button'`时，配置气泡确认框相关参数.
+
+            `renderButtonPopConfirmProps` is a dict with keys:
+
+            - title (string; optional):
+                气泡确认框标题.
+
+            - okText (string; optional):
+                气泡确认框确认按钮文案.
+
+            - cancelText (string; optional):
+                气泡确认框取消按钮文案.
+
+        - tooltipCustomContent (string; optional):
+            当`renderType`为`'mini-line'`、`'mini-area'`、`'mini-bar'`时，设置用于渲染信息卡片的`javascript`函数字符串.
+
+        - progressOneHundredPercentColor (string; optional):
+            当`renderType`为`'mini-progress'`、`'mini-ring-progress'`时，设置进度完成状态下的填充色
+            默认值：`'#52c41a'`.
+
+        - ringProgressFontSize (number; optional):
+            当`renderType='mini-ring-progress'`时，设置进度数值像素大小.
+
         - dropdownProps (dict; optional):
             当`renderType`为`'dropdown'`、`'dropdown-links'`时，配置下拉菜单相关参数.
 
             `dropdownProps` is a dict with keys:
+
+            - title (string; optional):
+                下拉菜单锚点标题内容.
 
             - arrow (boolean; optional):
                 下拉菜单是否显示指示箭头  默认值：`False`.
@@ -109,50 +106,53 @@ Keyword arguments:
             - placement (a value equal to: 'bottomLeft', 'bottomCenter', 'bottomRight', 'topLeft', 'topCenter', 'topRight'; optional):
                 下拉菜单展开方向，可选项有`'bottomLeft'`、`'bottomCenter'`、`'bottomRight'`、`'topLeft'`、`'topCenter'`、`'topRight'`.
 
-            - title (string; optional):
-                下拉菜单锚点标题内容.
+    - fixed (a value equal to: 'left', 'right'; optional):
+        当前字段冻结方向，可选项有`'left'`、`'right'`.
 
-        - progressOneHundredPercentColor (string; optional):
-            当`renderType`为`'mini-progress'`、`'mini-ring-progress'`时，设置进度完成状态下的填充色
-            默认值：`'#52c41a'`.
+    - editable (boolean; optional):
+        当前字段是否可编辑  默认值：`False`.
 
-        - renderButtonPopConfirmProps (dict; optional):
-            当`renderType='button'`时，配置气泡确认框相关参数.
+    - editOptions (dict; optional):
+        配置可编辑模式下输入框相关参数.
 
-            `renderButtonPopConfirmProps` is a dict with keys:
+        `editOptions` is a dict with keys:
 
-            - cancelText (string; optional):
-                气泡确认框取消按钮文案.
+        - mode (a value equal to: 'default', 'text-area'; optional):
+            编辑框模式，可选项有`'default'`、`'text-area'`  默认值：`'default'`.
 
-            - okText (string; optional):
-                气泡确认框确认按钮文案.
+        - autoSize (dict; optional):
+            当`mode='textarea'`时，配置文本框自适应高度相关功能，同`AntdInput`
+            默认值：`False`.
 
-            - title (string; optional):
-                气泡确认框标题.
+            `autoSize` is a boolean
 
-        - renderButtonSplit (boolean; optional):
-            当`renderType='button'`时，控制多个按钮之间是否添加分割线.
+          Or dict with keys:
 
-        - renderLinkText (string; optional):
-            当`renderType='link'`时，统一设置渲染链接文本内容.
+    - minRows (number; optional)
 
-        - renderType (a value equal to: 'link', 'ellipsis', 'copyable', 'ellipsis-copyable', 'tags', 'status-badge', 'image', 'custom-format', 'corner-mark', 'row-merge', 'dropdown', 'dropdown-links', 'image-avatar', 'mini-line', 'mini-bar', 'mini-progress', 'mini-ring-progress', 'mini-area', 'button', 'checkbox', 'switch', 'select'; optional):
-            再渲染类型，可选项有`'link'`、`'ellipsis'`、`'copyable'`、`'ellipsis-copyable'`、`'tags'`、`'status-badge'`、`'image'`
-            、`'custom-format'`、`'corner-mark'`、`'row-merge'`、`'dropdown'`、`'dropdown-links'`、`'image-avatar'`
-            、`'mini-line'`、`'mini-bar'`、`'mini-progress'`、`'mini-ring-progress'`、`'mini-area'`
-            、`'button'`、`'checkbox'`、`'switch'`、`'select'`.
+    - maxRows (number; optional)
 
-        - ringProgressFontSize (number; optional):
-            当`renderType='mini-ring-progress'`时，设置进度数值像素大小.
+        - maxLength (number; optional):
+            限制当前字段可编辑模式下，输入框内最多可输入的字符数量，默认无限制.
 
-        - tooltipCustomContent (string; optional):
-            当`renderType`为`'mini-line'`、`'mini-area'`、`'mini-bar'`时，设置用于渲染信息卡片的`javascript`函数字符串.
+        - placeholder (string; optional):
+            输入框无输入值时的占位提示信息.
 
-    - title (a list of or a singular dash component, string or number; required):
-        必填，当前字段标题.
+    - align (a value equal to: 'left', 'center', 'right'; optional):
+        当前字段对齐方式，可选项有`'left'`、`'center'`、`'right'`  默认值：`'center'`.
 
     - width (number | string; optional):
         当前字段宽度.
+
+    - hidden (boolean; optional):
+        是否隐藏当前字段  默认值：`False`.
+
+    - className (string; optional):
+        当前字段css类名.
+
+    - filterResetToDefaultFilteredValue (boolean; optional):
+        若当前字段通过参数`defaultFilteredValues`设置了初始化默认选中的筛选值，用于设置是否在用户点击重置按钮后恢复默认选中筛选项
+        默认值：`False`.
 
 - showHeader (boolean; default True):
     是否显示表头  默认值：`True`.
@@ -172,244 +172,227 @@ Keyword arguments:
     boolean | dict with keys:
 
     - content (string; optional):
-        链接显示的文字内容，优先级高于字段配置信息中的`renderLinkText`参数.
-
-    - disabled (boolean; optional):
-        是否禁用当前链接  默认值：`False`.
+        适用于`'link'`模式，链接显示的文字内容，优先级高于字段配置信息中的`renderLinkText`参数.
 
     - href (string; optional):
-        链接地址.
+        适用于`'link'`模式，链接地址.
 
     - target (string; optional):
-        链接跳转行为  默认值：`'_blank'`.
+        适用于`'link'`模式，链接跳转行为  默认值：`'_blank'`.
+
+    - disabled (boolean; optional):
+        适用于`'link'`模式，是否禁用当前链接  默认值：`False`.
 
       Or list of numbers | dict with keys:
 
     - color (string; optional):
-        标签颜色.
+        适用于`'tags'`模式，标签颜色.
 
     - tag (string | number; optional):
-        标签内容. | list of dicts with keys:
+        适用于`'tags'`模式，标签内容. | list of dicts with keys:
 
     - color (string; optional):
-        当前标签颜色.
+        适用于`'tags'`模式，当前标签颜色.
 
     - tag (string | number; optional):
-        当前标签内容. | dict with keys:
-
-    - content (string; optional):
-        按钮内容.
-
-    - custom (boolean | number | string | dict | list; optional):
-        额外补充信息.
-
-    - danger (boolean; optional):
-        同`AntdButton`中的同名参数.
+        适用于`'tags'`模式，当前标签内容. | dict with keys:
 
     - disabled (boolean; optional):
-        同`AntdButton`中的同名参数.
-
-    - href (string; optional):
-        同`AntdButton`中的同名参数.
-
-    - icon (string; optional):
-        按钮前缀图标类型，`iconRenderer`为`'AntdIcon'`时同`AntdIcon`同名参数，`iconRenderer`为`'fontawesome'`时为css类名.
-
-    - iconRenderer (a value equal to: 'AntdIcon', 'fontawesome'; optional):
-        按钮前缀图标渲染方式，可选项有`'AntdIcon'`、`'fontawesome'`.
-
-    - style (dict; optional):
-        同`AntdButton`中的同名参数.
-
-    - target (string; optional):
-        同`AntdButton`中的同名参数.
+        适用于`'button'`模式，同`AntdButton`中的同名参数.
 
     - type (a value equal to: 'primary', 'ghost', 'dashed', 'link', 'text', 'default'; optional):
-        同`AntdButton`中的同名参数. | list of dicts with keys:
-
-    - content (string; optional):
-        按钮内容.
-
-    - custom (boolean | number | string | dict | list; optional):
-        额外补充信息.
+        适用于`'button'`模式，同`AntdButton`中的同名参数.
 
     - danger (boolean; optional):
-        同`AntdButton`中的同名参数.
-
-    - disabled (boolean; optional):
-        同`AntdButton`中的同名参数.
-
-    - href (string; optional):
-        同`AntdButton`中的同名参数.
-
-    - icon (string; optional):
-        当前按钮前缀图标类型，`iconRenderer`为`'AntdIcon'`时同`AntdIcon`同名参数，`iconRenderer`为`'fontawesome'`时为css类名.
-
-    - iconRenderer (a value equal to: 'AntdIcon', 'fontawesome'; optional):
-        当前按钮前缀图标渲染方式，可选项有`'AntdIcon'`、`'fontawesome'`.
+        适用于`'button'`模式，同`AntdButton`中的同名参数.
 
     - style (dict; optional):
-        同`AntdButton`中的同名参数.
+        适用于`'button'`模式，同`AntdButton`中的同名参数.
+
+    - content (string; optional):
+        适用于`'button'`模式，按钮内容.
+
+    - href (string; optional):
+        适用于`'button'`模式，同`AntdButton`中的同名参数.
 
     - target (string; optional):
-        同`AntdButton`中的同名参数.
+        适用于`'button'`模式，同`AntdButton`中的同名参数.
+
+    - icon (string; optional):
+        适用于`'button'`模式，按钮前缀图标类型，`iconRenderer`为`'AntdIcon'`时同`AntdIcon`同名参数，`iconRenderer`为`'fontawesome'`时为css类名.
+
+    - iconRenderer (a value equal to: 'AntdIcon', 'fontawesome'; optional):
+        适用于`'button'`模式，按钮前缀图标渲染方式，可选项有`'AntdIcon'`、`'fontawesome'`.
+
+    - custom (boolean | number | string | dict | list; optional):
+        适用于`'button'`模式，额外补充信息. | list of dicts with keys:
+
+    - disabled (boolean; optional):
+        适用于`'button'`模式，同`AntdButton`中的同名参数.
 
     - type (a value equal to: 'primary', 'ghost', 'dashed', 'link', 'text', 'default'; optional):
-        同`AntdButton`中的同名参数. | dict with keys:
+        适用于`'button'`模式，同`AntdButton`中的同名参数.
+
+    - danger (boolean; optional):
+        适用于`'button'`模式，同`AntdButton`中的同名参数.
+
+    - style (dict; optional):
+        适用于`'button'`模式，同`AntdButton`中的同名参数.
+
+    - content (string; optional):
+        适用于`'button'`模式，按钮内容.
+
+    - href (string; optional):
+        适用于`'button'`模式，同`AntdButton`中的同名参数.
+
+    - target (string; optional):
+        适用于`'button'`模式，同`AntdButton`中的同名参数.
+
+    - icon (string; optional):
+        适用于`'button'`模式，当前按钮前缀图标类型，`iconRenderer`为`'AntdIcon'`时同`AntdIcon`同名参数，`iconRenderer`为`'fontawesome'`时为css类名.
+
+    - iconRenderer (a value equal to: 'AntdIcon', 'fontawesome'; optional):
+        适用于`'button'`模式，当前按钮前缀图标渲染方式，可选项有`'AntdIcon'`、`'fontawesome'`.
+
+    - custom (boolean | number | string | dict | list; optional):
+        适用于`'button'`模式，额外补充信息. | dict with keys:
 
     - status (a value equal to: 'success', 'processing', 'default', 'error', 'warning'; optional):
-        状态徽标状态，可选项有`'success'`、`'processing'`、`'default'`、`'error'`、`'warning'`.
+        适用于`'status-badge'`模式，状态徽标状态，可选项有`'success'`、`'processing'`、`'default'`、`'error'`、`'warning'`.
 
     - text (string | number; optional):
-        状态徽标标签内容. | dict with keys:
-
-    - height (string | number; optional):
-        图片高度.
-
-    - preview (boolean; optional):
-        图片是否可交互预览  默认值：`True`.
+        适用于`'status-badge'`模式，状态徽标标签内容. | dict with keys:
 
     - src (string; optional):
-        图片资源地址. | dict with keys:
+        适用于`'image'`模式，图片资源地址.
 
-    - color (string; optional):
-        角标颜色  默认值：`'#1890ff'`.
+    - height (string | number; optional):
+        适用于`'image'`模式，图片高度.
 
-    - content (number | string; optional):
-        单元格数值内容.
-
-    - hide (boolean; optional):
-        是否隐藏当前角标  默认值：`False`.
-
-    - offsetX (number; optional):
-        角标水平方向像素偏移量.
-
-    - offsetY (number; optional):
-        角标竖直方向像素偏移量.
+    - preview (boolean; optional):
+        适用于`'image'`模式，图片是否可交互预览  默认值：`True`. | dict with keys:
 
     - placement (a value equal to: 'top-left', 'top-right', 'bottom-left', 'bottom-right'; optional):
-        角标显示方位，可选项有`'top-left'`、`'top-right'`、`'bottom-left'`、`'bottom-right'`. | dict with keys:
+        适用于`'corner-mark'`模式，角标显示方位，可选项有`'top-left'`、`'top-right'`、`'bottom-left'`、`'bottom-right'`.
 
-    - checked (boolean; optional):
-        当前勾选框状态.
-
-    - custom (boolean | number | string | dict | list; optional):
-        额外补充信息.
-
-    - disabled (boolean; optional):
-        是否禁用当前勾选框.
-
-    - label (string; optional):
-        当前勾选框标签内容. | dict with keys:
-
-    - checked (boolean; optional):
-        当前开关状态.
-
-    - checkedChildren (string; optional):
-        “开”状态标签内容.
-
-    - custom (boolean | number | string | dict | list; optional):
-        额外补充信息.
-
-    - disabled (boolean; optional):
-        是否禁用当前开关.
-
-    - unCheckedChildren (string; optional):
-        “关”状态标签内容. | dict with keys:
+    - color (string; optional):
+        适用于`'corner-mark'`模式，角标颜色  默认值：`'#1890ff'`.
 
     - content (number | string; optional):
-        单元格数值内容.
+        适用于`'corner-mark'`模式，单元格数值内容.
 
-    - rowSpan (number; optional):
-        从当前单元格开始，向后合并的其他单元格数量. | list of dicts with keys:
+    - offsetX (number; optional):
+        适用于`'corner-mark'`模式，角标水平方向像素偏移量.
+
+    - offsetY (number; optional):
+        适用于`'corner-mark'`模式，角标竖直方向像素偏移量.
+
+    - hide (boolean; optional):
+        适用于`'corner-mark'`模式，是否隐藏当前角标  默认值：`False`. | dict with keys:
+
+    - checked (boolean; optional):
+        适用于`'checkbox'`模式，当前勾选框状态.
+
+    - disabled (boolean; optional):
+        适用于`'checkbox'`模式，是否禁用当前勾选框.
+
+    - label (string; optional):
+        适用于`'checkbox'`模式，当前勾选框标签内容.
 
     - custom (boolean | number | string | dict | list; optional):
-        额外补充信息.
+        适用于`'checkbox'`模式，额外补充信息. | dict with keys:
+
+    - checked (boolean; optional):
+        适用于`'switch'`模式，当前开关状态.
 
     - disabled (boolean; optional):
-        是否禁用当前下拉菜单项.
+        适用于`'switch'`模式，是否禁用当前开关.
 
-    - icon (string; optional):
-        当前按钮前缀图标类型，`iconRenderer`为`'AntdIcon'`时同`AntdIcon`同名参数，`iconRenderer`为`'fontawesome'`时为css类名.
+    - checkedChildren (string; optional):
+        适用于`'switch'`模式，“开”状态标签内容.
 
-    - iconRenderer (a value equal to: 'AntdIcon', 'fontawesome'; optional):
-        当前按钮前缀图标渲染方式，可选项有`'AntdIcon'`、`'fontawesome'`.
+    - unCheckedChildren (string; optional):
+        适用于`'switch'`模式，“关”状态标签内容.
 
-    - isDivider (boolean; optional):
-        当前项是否渲染为分割线  默认值：`False`.
+    - custom (boolean | number | string | dict | list; optional):
+        适用于`'switch'`模式，额外补充信息. | dict with keys:
+
+    - content (number | string; optional):
+        适用于`'row-merge'`模式，单元格数值内容.
+
+    - rowSpan (number; optional):
+        适用于`'row-merge'`模式，从当前单元格开始，向后合并的其他单元格数量. | list of dicts with keys:
 
     - title (string; optional):
-        当前下拉菜单项锚点内容. | list of dicts with keys:
+        适用于`'dropdown'`模式，当前下拉菜单项锚点内容.
 
     - disabled (boolean; optional):
-        是否禁用当前下拉菜单项.
+        适用于`'dropdown'`模式，是否禁用当前下拉菜单项.
+
+    - icon (string; optional):
+        适用于`'dropdown'`模式，当前按钮前缀图标类型，`iconRenderer`为`'AntdIcon'`时同`AntdIcon`同名参数，`iconRenderer`为`'fontawesome'`时为css类名.
+
+    - iconRenderer (a value equal to: 'AntdIcon', 'fontawesome'; optional):
+        适用于`'dropdown'`模式，当前按钮前缀图标渲染方式，可选项有`'AntdIcon'`、`'fontawesome'`.
+
+    - custom (boolean | number | string | dict | list; optional):
+        适用于`'dropdown'`模式，额外补充信息.
+
+    - isDivider (boolean; optional):
+        适用于`'dropdown'`模式，当前项是否渲染为分割线  默认值：`False`. | list of dicts with keys:
+
+    - title (string; optional):
+        适用于`'dropdown-links'`模式，当前下拉菜单项锚点内容.
 
     - href (string; optional):
-        当前下拉菜单项链接地址.
+        适用于`'dropdown-links'`模式，当前下拉菜单项链接地址.
+
+    - disabled (boolean; optional):
+        适用于`'dropdown-links'`模式，是否禁用当前下拉菜单项.
 
     - icon (string; optional):
-        当前按钮前缀图标类型，`iconRenderer`为`'AntdIcon'`时同`AntdIcon`同名参数，`iconRenderer`为`'fontawesome'`时为css类名.
+        适用于`'dropdown-links'`模式，当前按钮前缀图标类型，`iconRenderer`为`'AntdIcon'`时同`AntdIcon`同名参数，`iconRenderer`为`'fontawesome'`时为css类名.
 
     - iconRenderer (a value equal to: 'AntdIcon', 'fontawesome'; optional):
-        当前按钮前缀图标渲染方式，可选项有`'AntdIcon'`、`'fontawesome'`.
+        适用于`'dropdown-links'`模式，当前按钮前缀图标渲染方式，可选项有`'AntdIcon'`、`'fontawesome'`.
 
     - isDivider (boolean; optional):
-        当前项是否渲染为分割线  默认值：`False`.
+        适用于`'dropdown-links'`模式，当前项是否渲染为分割线  默认值：`False`. | dict with keys:
 
-    - title (string; optional):
-        当前下拉菜单项锚点内容. | dict with keys:
-
-    - shape (a value equal to: 'circle', 'square'; optional):
-        头像形状，可选项有`'circle'`、`'square'`  默认值：`'circle'`.
+    - src (string; optional):
+        适用于`'image-avatar'`模式，头像图片资源链接.
 
     - size (dict; optional):
-        头像尺寸规格，传入数值型时表示像素大小，传入字符型时可使用内置尺寸规格，可选项有`'small'`、`'default'`、`'large'`，支持响应式
+        适用于`'image-avatar'`模式，头像尺寸规格，传入数值型时表示像素大小，传入字符型时可使用内置尺寸规格，可选项有`'small'`、`'default'`、`'large'`，支持响应式
         默认值：`'default'`.
 
         `size` is a number | a value equal to: 'large', 'small',
         'default' | dict with keys:
 
-        - lg (number; optional)
-
-        - md (number; optional)
+        - xs (number; optional)
 
         - sm (number; optional)
 
-        - xl (number; optional)
+        - md (number; optional)
 
-        - xs (number; optional)
+        - lg (number; optional)
+
+        - xl (number; optional)
 
         - xxl (number; optional)
 
-    - src (string; optional):
-        头像图片资源链接. | dict with keys:
-
-    - allowClear (boolean; optional):
-        是否允许快捷清空已选项  默认值：`True`.
-
-    - bordered (boolean; optional):
-        是否渲染边框  默认值：`True`.
+    - shape (a value equal to: 'circle', 'square'; optional):
+        适用于`'image-avatar'`模式，头像形状，可选项有`'circle'`、`'square'`
+        默认值：`'circle'`. | dict with keys:
 
     - className (string; optional):
-        下拉选择css类名.
+        适用于`'select'`模式，下拉选择css类名.
 
-    - disabled (boolean; optional):
-        是否禁用当前下拉选择.
-
-    - listHeight (number; optional):
-        下拉选择菜单像素高度  默认值：`256`.
-
-    - maxTagCount (number | a value equal to: 'responsive'; optional):
-        最多显示的已选中选项数量，超出部分将会自动省略  默认值：`5`.
-
-    - mode (a value equal to: 'multiple', 'tags'; optional):
-        选择模式，可选项有`'multiple'`、`'tags'`，默认为单选模式.
-
-    - optionFilterProp (a value equal to: 'value', 'label'; optional):
-        选择框内搜索对应的目标字段，可选项有`'value'`、`'label'`  默认值：`'value'`.
+    - style (dict; optional):
+        适用于`'select'`模式，下拉选择css样式，其中`width`默认为`'100%'`.
 
     - options (list of dicts; optional):
-        定义下拉选择选项.
+        适用于`'select'`模式，定义下拉选择选项.
 
         `options` is a list of dicts with keys:
 
@@ -421,21 +404,41 @@ Keyword arguments:
 
             当前选项值.
 
-    - placeholder (string; optional):
-        选择框占位内容.
+    - listHeight (number; optional):
+        适用于`'select'`模式，下拉选择菜单像素高度  默认值：`256`.
 
-    - placement (a value equal to: 'bottomLeft', 'bottomRight', 'topLeft', 'topRight'; optional):
-        下拉菜单展开方向，可选项有`'bottomLeft'`、`'bottomRight'`、`'topLeft'`、`'topRight'`
-        默认值：`'bottomLeft'`.
+    - mode (a value equal to: 'multiple', 'tags'; optional):
+        适用于`'select'`模式，选择模式，可选项有`'multiple'`、`'tags'`，默认为单选模式.
+
+    - disabled (boolean; optional):
+        适用于`'select'`模式，是否禁用当前下拉选择.
 
     - size (a value equal to: 'small', 'middle', 'large'; optional):
-        下拉选择尺寸规格，可选项有`'small'`、`'middle'`、`'large'`  默认值：`'middle'`.
+        适用于`'select'`模式，下拉选择尺寸规格，可选项有`'small'`、`'middle'`、`'large'`
+        默认值：`'middle'`.
 
-    - style (dict; optional):
-        下拉选择css样式，其中`width`默认为`'100%'`.
+    - bordered (boolean; optional):
+        适用于`'select'`模式，是否渲染边框  默认值：`True`.
+
+    - placeholder (string; optional):
+        适用于`'select'`模式，选择框占位内容.
+
+    - placement (a value equal to: 'bottomLeft', 'bottomRight', 'topLeft', 'topRight'; optional):
+        适用于`'select'`模式，下拉菜单展开方向，可选项有`'bottomLeft'`、`'bottomRight'`、`'topLeft'`、`'topRight'`
+        默认值：`'bottomLeft'`.
 
     - value (string | number | list of string | numbers; optional):
-        下拉选择已选中值. | dict
+        适用于`'select'`模式，下拉选择已选中值.
+
+    - maxTagCount (number | a value equal to: 'responsive'; optional):
+        适用于`'select'`模式，最多显示的已选中选项数量，超出部分将会自动省略  默认值：`5`.
+
+    - optionFilterProp (a value equal to: 'value', 'label'; optional):
+        适用于`'select'`模式，选择框内搜索对应的目标字段，可选项有`'value'`、`'label'`
+        默认值：`'value'`.
+
+    - allowClear (boolean; optional):
+        适用于`'select'`模式，是否允许快捷清空已选项  默认值：`True`. | dict
 
 - bordered (boolean; default False):
     是否渲染框线  默认值：`False`.
@@ -500,18 +503,18 @@ Keyword arguments:
     `titlePopoverInfo` is a dict with strings as keys and values of
     type dict with keys:
 
+    - title (string; optional):
+        气泡卡片标题.
+
     - content (string; optional):
         气泡卡片内容.
-
-    - overlayStyle (dict; optional):
-        气泡卡片展开层css样式.
 
     - placement (a value equal to: 'top', 'left', 'right', 'bottom', 'topLeft', 'topRight', 'bottomLeft', 'bottomRight', 'leftTop', 'leftBottom', 'rightTop', 'rightBottom'; optional):
         气泡卡片弹出方位，可选项有`'top'`、`'left'`、`'right'`、`'bottom'`、`'topLeft'`、`'topRight'`、`'bottomLeft'`、`'bottomRight'`、`'leftTop'`、`'leftBottom'`、`'rightTop'`、`'rightBottom'`
         默认值：`'bottom'`.
 
-    - title (string; optional):
-        气泡卡片标题.
+    - overlayStyle (dict; optional):
+        气泡卡片展开层css样式.
 
 - columnsFormatConstraint (dict; optional):
     针对开启了可编辑模式的字段，配置基于正则表达式的输入内容格式校验约束规则.
@@ -519,29 +522,29 @@ Keyword arguments:
     `columnsFormatConstraint` is a dict with strings as keys and
     values of type dict with keys:
 
-    - content (string; optional):
-        用户输入内容校验失败时的提示说明信息.
-
     - rule (string; optional):
         正则表达式，用于校验输入内容是否符合格式要求.
+
+    - content (string; optional):
+        用户输入内容校验失败时的提示说明信息.
 
 - sortOptions (dict; optional):
     配置表格字段排序相关功能.
 
     `sortOptions` is a dict with keys:
 
-    - customOrders (dict with strings as keys and values of type list; optional):
-        当`forceCompareModes`为`'custom'`时，用于为相应字段设置自定义排序对应的元素顺序.
-
-    - forceCompareModes (dict with strings as keys and values of type a value equal to: 'number', 'custom'; optional):
-        为各字段指定排序比较模式，可选项有`'number'`（强制数值型排序）、`'custom'`（自定义排序）.
+    - sortDataIndexes (list of strings; optional):
+        参与排序的若干字段`dataIndex`数组，多字段组合排序时，数组顺序即为组合排序优先级顺序，由高到低.
 
     - multiple (boolean | a value equal to: 'auto'; optional):
         是否启用多字段组合排序，当设置为`'auto'`时表示自动组合排序，此时组合排序的字段优先级顺序与用户依次点击排序字段的顺序对应
         默认值：`False``.
 
-    - sortDataIndexes (list of strings; optional):
-        参与排序的若干字段`dataIndex`数组，多字段组合排序时，数组顺序即为组合排序优先级顺序，由高到低.
+    - forceCompareModes (dict with strings as keys and values of type a value equal to: 'number', 'custom'; optional):
+        为各字段指定排序比较模式，可选项有`'number'`（强制数值型排序）、`'custom'`（自定义排序）.
+
+    - customOrders (dict with strings as keys and values of type list; optional):
+        当`forceCompareModes`为`'custom'`时，用于为相应字段设置自定义排序对应的元素顺序.
 
 - showSorterTooltip (boolean; default True):
     针对可排序字段是否在鼠标移入表头后展示额外信息提示  默认值：`True`.
@@ -556,15 +559,15 @@ Keyword arguments:
     `filterOptions` is a dict with strings as keys and values of type
     dict with keys:
 
+    - filterMode (a value equal to: 'checkbox', 'keyword', 'tree'; optional):
+        筛选模式，可选项有`'checkbox'`、`'keyword'`、`'tree'`，其中`'tree'`模式需要依赖相应的`'filterCustomTreeItems'`参数进行自定义树形菜单结构的构造
+        默认值：`'checkbox'`.
+
     - filterCustomItems (list | boolean | number | string | dict | list; optional):
         `filterMode`为`'checkbox'`时，用于自定义筛选菜单项.
 
     - filterCustomTreeItems (list of dicts; optional):
         `filterMode`为`'tree'`时，用于构造自定义树形菜单结构.
-
-    - filterMode (a value equal to: 'checkbox', 'keyword', 'tree'; optional):
-        筛选模式，可选项有`'checkbox'`、`'keyword'`、`'tree'`，其中`'tree'`模式需要依赖相应的`'filterCustomTreeItems'`参数进行自定义树形菜单结构的构造
-        默认值：`'checkbox'`.
 
     - filterMultiple (boolean; optional):
         `filterMode`为`'checkbox'`时，是否开启多选模式  默认值：`True`.
@@ -580,36 +583,27 @@ Keyword arguments:
 
     `pagination` is a dict with keys:
 
-    - current (number; optional):
-        监听或设置当前页码.
-
-    - disabled (boolean; optional):
-        是否禁用分页相关控件  默认值：`False`.
-
-    - hideOnSinglePage (boolean; optional):
-        是否在数据行数量不足一页时，自动隐藏分页相关控件  默认值：`False`.
-
-    - pageSize (number; optional):
-        监听或设置每页允许显示的最大行记录数量.
-
-    - pageSizeOptions (list of numbers; optional):
-        `pageSize`切换控件的可选项.
-
     - position (a value equal to: 'topLeft', 'topCenter', 'topRight', 'bottomLeft', 'bottomCenter', 'bottomRight'; optional):
         分页组件渲染方位，可选项有`'topLeft'`、`'topCenter'`、`'topRight'`、`'bottomLeft'`、`'bottomCenter'`、`'bottomRight'`
         默认值：`'bottomRight'`.
 
-    - showLessItems (boolean; optional):
-        是否优先展示较少的跳页项  默认值：`False`.
+    - pageSize (number; optional):
+        监听或设置每页允许显示的最大行记录数量.
 
-    - showQuickJumper (boolean; optional):
-        是否渲染快捷跳页控件  默认值：`False`.
+    - current (number; optional):
+        监听或设置当前页码.
 
     - showSizeChanger (boolean; optional):
         是否显示`pageSize`切换控件，当表格总记录数量大于50时默认为`True`.
 
+    - pageSizeOptions (list of numbers; optional):
+        `pageSize`切换控件的可选项.
+
     - showTitle (boolean; optional):
         各页码在鼠标移入时，是否显示浏览器原生提示信息  默认值：`True`.
+
+    - showQuickJumper (boolean; optional):
+        是否渲染快捷跳页控件  默认值：`False`.
 
     - showTotalPrefix (string; optional):
         总记录描述文案前缀文字.
@@ -617,14 +611,23 @@ Keyword arguments:
     - showTotalSuffix (string; optional):
         总记录描述文案后缀文字.
 
+    - hideOnSinglePage (boolean; optional):
+        是否在数据行数量不足一页时，自动隐藏分页相关控件  默认值：`False`.
+
     - simple (boolean; optional):
         是否开启简洁模式  默认值：`False`.
+
+    - disabled (boolean; optional):
+        是否禁用分页相关控件  默认值：`False`.
 
     - size (a value equal to: 'default', 'small'; optional):
         分页控件尺寸规格，可选项有`'small'`、`'default'`  默认值：`'default'`.
 
     - total (number; optional):
-        手动设置总记录数量，通常配合[服务端数据加载模式](/AntdTable-server-side-mode)使用. | boolean
+        手动设置总记录数量，通常配合[服务端数据加载模式](/AntdTable-server-side-mode)使用.
+
+    - showLessItems (boolean; optional):
+        是否优先展示较少的跳页项  默认值：`False`. | boolean
 
 - currentData (list; optional):
     监听经过编辑修改操作后，最新状态下的表格数据源.
@@ -658,14 +661,14 @@ Keyword arguments:
 
     `summaryRowContents` is a list of dicts with keys:
 
-    - align (a value equal to: 'left', 'center', 'right'; optional):
-        当前总结栏列对齐方式，可选项有`'left'`、`'center'`、`'right'`.
+    - content (a list of or a singular dash component, string or number; optional):
+        组件型，当前总结栏单元格内容.
 
     - colSpan (number; optional):
         当前总结栏单元格横跨占据的字段数量  默认值：`1`.
 
-    - content (a list of or a singular dash component, string or number; optional):
-        组件型，当前总结栏单元格内容.
+    - align (a value equal to: 'left', 'center', 'right'; optional):
+        当前总结栏列对齐方式，可选项有`'left'`、`'center'`、`'right'`.
 
 - summaryRowBlankColumns (number; default 0):
     总结栏每行用于占位的列数，适用于同时使用行选择等功能的场景  默认值：`0`.
@@ -681,9 +684,9 @@ Keyword arguments:
 
     `expandedRowKeyToContent` is a list of dicts with keys:
 
-    - content (a list of or a singular dash component, string or number; optional)
-
     - key (string | number; required)
+
+    - content (a list of or a singular dash component, string or number; optional)
 
 - expandedRowWidth (string | number; optional):
     行展开控件所在列宽度.
@@ -714,17 +717,17 @@ Keyword arguments:
 
     `cellClickEvent` is a dict with keys:
 
-    - clientX (number; optional):
-        以浏览器窗口左上角为原点，记录x坐标.
-
-    - clientY (number; optional):
-        以浏览器窗口左上角为原点，记录y坐标.
-
     - pageX (number; optional):
         以页面整体左上角为原点，记录x坐标.
 
     - pageY (number; optional):
         以页面整体左上角为原点，记录y坐标.
+
+    - clientX (number; optional):
+        以浏览器窗口左上角为原点，记录x坐标.
+
+    - clientY (number; optional):
+        以浏览器窗口左上角为原点，记录y坐标.
 
     - screenX (number; optional):
         以屏幕左上角为原点，记录x坐标.
@@ -749,17 +752,17 @@ Keyword arguments:
 
     `cellDoubleClickEvent` is a dict with keys:
 
-    - clientX (number; optional):
-        以浏览器窗口左上角为原点，记录x坐标.
-
-    - clientY (number; optional):
-        以浏览器窗口左上角为原点，记录y坐标.
-
     - pageX (number; optional):
         以页面整体左上角为原点，记录x坐标.
 
     - pageY (number; optional):
         以页面整体左上角为原点，记录y坐标.
+
+    - clientX (number; optional):
+        以浏览器窗口左上角为原点，记录x坐标.
+
+    - clientY (number; optional):
+        以浏览器窗口左上角为原点，记录y坐标.
 
     - screenX (number; optional):
         以屏幕左上角为原点，记录x坐标.
@@ -784,17 +787,17 @@ Keyword arguments:
 
     `cellContextMenuClickEvent` is a dict with keys:
 
-    - clientX (number; optional):
-        以浏览器窗口左上角为原点，记录x坐标.
-
-    - clientY (number; optional):
-        以浏览器窗口左上角为原点，记录y坐标.
-
     - pageX (number; optional):
         以页面整体左上角为原点，记录x坐标.
 
     - pageY (number; optional):
         以页面整体左上角为原点，记录y坐标.
+
+    - clientX (number; optional):
+        以浏览器窗口左上角为原点，记录x坐标.
+
+    - clientY (number; optional):
+        以浏览器窗口左上角为原点，记录y坐标.
 
     - screenX (number; optional):
         以屏幕左上角为原点，记录x坐标.
@@ -903,14 +906,14 @@ Keyword arguments:
 
     `loading_state` is a dict with keys:
 
-    - component_name (string; optional):
-        Holds the name of the component that is loading.
-
     - is_loading (boolean; optional):
         Determines if the component is loading or not.
 
     - prop_name (string; optional):
-        Holds which property is loading."""
+        Holds which property is loading.
+
+    - component_name (string; optional):
+        Holds the name of the component that is loading."""
     _children_props = ['columns[].title', 'data[]{}', 'summaryRowContents[].content', 'expandedRowKeyToContent[].content', 'emptyContent', 'title', 'footer']
     _base_nodes = ['emptyContent', 'title', 'footer', 'children']
     _namespace = 'feffery_antd_components'

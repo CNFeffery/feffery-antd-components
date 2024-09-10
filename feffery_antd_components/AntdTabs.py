@@ -29,35 +29,17 @@ Keyword arguments:
 
     `items` is a list of dicts with keys:
 
+    - label (a list of or a singular dash component, string or number; optional):
+        组件型，标签页标题.
+
+    - key (string; optional):
+        标签页唯一识别id.
+
     - children (a list of or a singular dash component, string or number; optional):
         组件型，标签页内部元素.
 
-    - closable (boolean; optional):
-        `'editable-card'`型标签页可用，控制当前标签页是否可被关闭  默认值：`True`.
-
     - closeIcon (boolean | a list of or a singular dash component, string or number; optional):
         `'editable-card'`型标签页可用，用于自定义关闭按钮，设置为`None`或`False`时会隐藏默认的关闭按钮.
-
-    - contextMenu (list of dicts; optional):
-        为当前标签页标题配置右键菜单相关参数.
-
-        `contextMenu` is a list of dicts with keys:
-
-        - icon (string; optional):
-
-            当前右键菜单项前缀图标类型，`iconRenderer`为`'AntdIcon'`时同`AntdIcon`同名参数，`iconRenderer`为`'fontawesome'`时为css类名.
-
-        - iconRenderer (a value equal to: 'AntdIcon', 'fontawesome'; optional):
-
-            当前右键菜单项前缀图标渲染方式，可选项有`'AntdIcon'`、`'fontawesome'`.
-
-        - key (string; optional):
-
-            当前右键菜单项唯一标识id.
-
-        - label (string; optional):
-
-            当前右键菜单项标题.
 
     - destroyInactiveTabPane (boolean; optional):
         是否在当前标签页隐藏时，自动销毁当前标签页内部元素  默认值：`False`.
@@ -68,11 +50,29 @@ Keyword arguments:
     - forceRender (boolean; optional):
         初始化是否强制渲染当前标签页内部元素  默认值：`False`.
 
-    - key (string; optional):
-        标签页唯一识别id.
+    - closable (boolean; optional):
+        `'editable-card'`型标签页可用，控制当前标签页是否可被关闭  默认值：`True`.
 
-    - label (a list of or a singular dash component, string or number; optional):
-        组件型，标签页标题.
+    - contextMenu (list of dicts; optional):
+        为当前标签页标题配置右键菜单相关参数.
+
+        `contextMenu` is a list of dicts with keys:
+
+        - key (string; optional):
+
+            当前右键菜单项唯一标识id.
+
+        - label (string; optional):
+
+            当前右键菜单项标题.
+
+        - icon (string; optional):
+
+            当前右键菜单项前缀图标类型，`iconRenderer`为`'AntdIcon'`时同`AntdIcon`同名参数，`iconRenderer`为`'fontawesome'`时为css类名.
+
+        - iconRenderer (a value equal to: 'AntdIcon', 'fontawesome'; optional):
+
+            当前右键菜单项前缀图标渲染方式，可选项有`'AntdIcon'`、`'fontawesome'`.
 
 - itemKeys (list of strings; optional):
     监听当前各标签页`key`值，顺序与`items`一致.
@@ -101,11 +101,11 @@ Keyword arguments:
 
     `indicator` is a dict with keys:
 
-    - align (a value equal to: 'start', 'center', 'end'; optional):
-        指示条对齐方式，可选项有`'start'`、`'center'`、`'end'`.
-
     - size (number; optional):
         指示条像素宽度，当传入负数时，表示在完整宽度基础上应减去的像素宽度，默认与标签卡片同宽.
+
+    - align (a value equal to: 'start', 'center', 'end'; optional):
+        指示条对齐方式，可选项有`'start'`、`'center'`、`'end'`.
 
 - tabBarGutter (number; optional):
     标签卡片之间的像素间距.
@@ -139,11 +139,11 @@ Keyword arguments:
 
     `clickedContextMenu` is a dict with keys:
 
-    - menuKey (string; optional):
-        被点击的右键菜单项对应`key`值.
-
     - tabKey (string; optional):
         被点击的右键菜单项对应标签页`key`值.
+
+    - menuKey (string; optional):
+        被点击的右键菜单项对应`key`值.
 
     - timestamp (number; optional):
         事件对应时间戳信息.
@@ -158,14 +158,14 @@ Keyword arguments:
 
     `loading_state` is a dict with keys:
 
-    - component_name (string; optional):
-        Holds the name of the component that is loading.
-
     - is_loading (boolean; optional):
         Determines if the component is loading or not.
 
     - prop_name (string; optional):
         Holds which property is loading.
+
+    - component_name (string; optional):
+        Holds the name of the component that is loading.
 
 - persistence (boolean | string | number; optional):
     是否开启[属性持久化](/prop-persistence).

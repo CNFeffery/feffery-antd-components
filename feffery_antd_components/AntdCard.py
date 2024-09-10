@@ -35,20 +35,20 @@ Keyword arguments:
 
     `extraLink` is a dict with keys:
 
-    - className (string; optional):
-        链接css类名.
-
     - content (string; optional):
         链接文字内容.
 
     - href (string; optional):
         链接地址.
 
-    - style (dict; optional):
-        链接css样式.
-
     - target (string; optional):
         链接跳转行为.
+
+    - className (string; optional):
+        链接css类名.
+
+    - style (dict; optional):
+        链接css样式.
 
 - extra (a list of or a singular dash component, string or number; optional):
     组件型，卡片右上角额外元素，优先级高于`extraLink`.
@@ -58,14 +58,14 @@ Keyword arguments:
 
     `coverImg` is a dict with keys:
 
+    - src (string; optional):
+        图片资源地址.
+
     - alt (string; optional):
         图片alt信息.
 
     - className (string; optional):
         图片css类名.
-
-    - src (string; optional):
-        图片资源地址.
 
     - style (dict; optional):
         图片css样式.
@@ -98,14 +98,14 @@ Keyword arguments:
 
     `loading_state` is a dict with keys:
 
-    - component_name (string; optional):
-        Holds the name of the component that is loading.
-
     - is_loading (boolean; optional):
         Determines if the component is loading or not.
 
     - prop_name (string; optional):
-        Holds which property is loading."""
+        Holds which property is loading.
+
+    - component_name (string; optional):
+        Holds the name of the component that is loading."""
     _children_props = ['actions', 'title', 'extra']
     _base_nodes = ['actions', 'title', 'extra', 'children']
     _namespace = 'feffery_antd_components'

@@ -32,11 +32,11 @@ Keyword arguments:
 
     `defaultSize` is a dict with keys:
 
-    - height (number | string; optional):
-        设置像素高度数值，或css高度字符串.
-
     - width (number | string; optional):
         设置像素宽度数值，或css宽度字符串.
+
+    - height (number | string; optional):
+        设置像素高度数值，或css高度字符串.
 
 - defaultPosition (dict; optional):
     设置当前面板默认位置.
@@ -99,14 +99,14 @@ Keyword arguments:
 
     `loading_state` is a dict with keys:
 
-    - component_name (string; optional):
-        Holds the name of the component that is loading.
-
     - is_loading (boolean; optional):
         Determines if the component is loading or not.
 
     - prop_name (string; optional):
-        Holds which property is loading."""
+        Holds which property is loading.
+
+    - component_name (string; optional):
+        Holds the name of the component that is loading."""
     _children_props = []
     _base_nodes = ['children']
     _namespace = 'feffery_antd_components'

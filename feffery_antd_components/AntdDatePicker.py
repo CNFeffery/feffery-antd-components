@@ -133,11 +133,11 @@ Keyword arguments:
 
     `clickedPreset` is a dict with keys:
 
-    - timestamp (number; optional):
-        事件对应时间戳信息.
-
     - value (string | number; optional):
         对应预设项值.
+
+    - timestamp (number; optional):
+        事件对应时间戳信息.
 
 - needConfirm (boolean; default False):
     是否需要点击按钮确认选值，传入`False`时失去焦点即代表选择  默认值：`False`.
@@ -147,20 +147,20 @@ Keyword arguments:
 
     `customCells` is a list of dicts with keys:
 
-    - className (string; optional):
-        自定义css类名.
-
-    - date (number; optional):
-        当前项匹配的日期值.
+    - year (number; optional):
+        当前项匹配的年份值.
 
     - month (number; optional):
         当前项匹配的月份值.
 
+    - date (number; optional):
+        当前项匹配的日期值.
+
     - style (dict; optional):
         自定义css样式.
 
-    - year (number; optional):
-        当前项匹配的年份值.
+    - className (string; optional):
+        自定义css类名.
 
 - popupContainer (a value equal to: 'parent', 'body'; default 'body'):
     相关展开层锚定策略，可选项有`'parent'`、`'body'`  默认值：`'body'`.
@@ -183,14 +183,14 @@ Keyword arguments:
 
     `loading_state` is a dict with keys:
 
-    - component_name (string; optional):
-        Holds the name of the component that is loading.
-
     - is_loading (boolean; optional):
         Determines if the component is loading or not.
 
     - prop_name (string; optional):
         Holds which property is loading.
+
+    - component_name (string; optional):
+        Holds the name of the component that is loading.
 
 - persistence (boolean | string | number; optional):
     是否开启[属性持久化](/prop-persistence).
