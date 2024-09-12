@@ -58,7 +58,7 @@ const AntdDateRangePicker = (props) => {
         bordered,
         variant,
         size,
-        defaultPickerValue,
+        pickerValue,
         status,
         popupContainer,
         readOnly,
@@ -143,6 +143,16 @@ const AntdDateRangePicker = (props) => {
         } else if (!showTime && !format) {
             setProps({
                 format: 'YYYY-MM-DD'
+            })
+        }
+
+        // 处理pickerValue缺省赋值
+        if (!pickerValue) {
+            setProps({
+                pickerValue: [
+                    dayjs(new Date()).format(format || (showTime ? 'YYYY-MM-DD HH:mm:ss' : 'YYYY-MM-DD')),
+                    dayjs(new Date()).format(format || (showTime ? 'YYYY-MM-DD HH:mm:ss' : 'YYYY-MM-DD'))
+                ]
             })
         }
     }, [])
@@ -486,17 +496,18 @@ const AntdDateRangePicker = (props) => {
                     allowEmpty={(disabled && disabled.length === 2) ? disabled : undefined}
                     placeholder={(placeholder && placeholder.length === 2) ? placeholder : undefined}
                     onChange={onChange}
+                    onPanelChange={(v, m) => {
+                        setProps({
+                            pickerValue: [(v[0] || v[1]).format(format), (v[0] || v[1]).format(format)]
+                        })
+                    }}
                     variant={(
                         !variant ?
                             (bordered ? 'outlined' : 'borderless') :
                             variant
                     )}
                     disabledDate={disabledDatesStrategy ? checkDisabledDate : undefined}
-                    defaultPickerValue={
-                        defaultPickerValue ?
-                            [dayjs(defaultPickerValue, format), dayjs(defaultPickerValue, format)] :
-                            undefined
-                    }
+                    pickerValue={pickerValue && [dayjs(pickerValue[0], format), dayjs(pickerValue[0], format)]}
                     value={
                         formId && (name || id) ?
                             (
