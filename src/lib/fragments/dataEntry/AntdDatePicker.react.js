@@ -50,7 +50,7 @@ const AntdDatePicker = (props) => {
         autoFocus,
         placeholder,
         disabledDatesStrategy,
-        defaultPickerValue,
+        pickerValue,
         value,
         defaultValue,
         bordered,
@@ -144,10 +144,10 @@ const AntdDatePicker = (props) => {
             })
         }
 
-        // defaultPickerValue为空时默认定位到今日对应面板位置
-        if (!defaultPickerValue) {
+        // 处理pickerValue缺省赋值
+        if (!pickerValue) {
             setProps({
-                defaultPickerValue: dayjs(new Date()).format(format || (showTime ? 'YYYY-MM-DD HH:mm:ss' : 'YYYY-MM-DD'))
+                pickerValue: dayjs(new Date()).format(format || (showTime ? 'YYYY-MM-DD HH:mm:ss' : 'YYYY-MM-DD'))
             })
         }
     }, [])
@@ -455,6 +455,11 @@ const AntdDatePicker = (props) => {
                     key={key}
                     format={format}
                     onChange={onChange}
+                    onPanelChange={(v, m) => {
+                        setProps({
+                            pickerValue: v.format(format)
+                        })
+                    }}
                     picker={picker}
                     calendarStartDay={firstDayOfWeek}
                     disabled={
@@ -474,7 +479,7 @@ const AntdDatePicker = (props) => {
                             size
                     }
                     disabledDate={disabledDatesStrategy ? checkDisabledDate : undefined}
-                    defaultPickerValue={dayjs(defaultPickerValue, format)}
+                    pickerValue={pickerValue && dayjs(pickerValue, format)}
                     value={
                         formId && (name || id) ?
                             (currentFormValue ? dayjs(currentFormValue, format) : undefined) :

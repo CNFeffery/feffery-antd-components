@@ -135,9 +135,9 @@ AntdDatePicker.propTypes = {
     defaultValue: PropTypes.string,
 
     /**
-     * 选择面板每次展开时默认停留的日期位置，与`format`格式对应
+     * 监听或设置面板展开对应日期，与`format`格式对应
      */
-    defaultPickerValue: PropTypes.string,
+    pickerValue: PropTypes.string,
 
     /**
      * 配置日期禁用项策略数组，满足策略中至少一项规则的日期将会被禁止选中
