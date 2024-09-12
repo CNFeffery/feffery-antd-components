@@ -443,10 +443,10 @@ Keyword arguments:
 - bordered (boolean; default False):
     是否渲染框线  默认值：`False`.
 
-- maxHeight (number; optional):
+- maxHeight (number | string; optional):
     表格最大像素高度，当实际表格高度超出限制时，会自动渲染竖直滚动条.
 
-- maxWidth (number; optional):
+- maxWidth (number | string | boolean; optional):
     表格最大宽度，当实际表格宽度超出限制时，会自动渲染水平滚动条.
 
 - scrollToFirstRowOnChange (boolean; default True):

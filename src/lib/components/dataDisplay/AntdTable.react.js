@@ -784,12 +784,19 @@ AntdTable.propTypes = {
     /**
      * 表格最大像素高度，当实际表格高度超出限制时，会自动渲染竖直滚动条
      */
-    maxHeight: PropTypes.number,
+    maxHeight: PropTypes.oneOfType([
+        PropTypes.number,
+        PropTypes.string
+    ]),
 
     /**
      * 表格最大宽度，当实际表格宽度超出限制时，会自动渲染水平滚动条
      */
-    maxWidth: PropTypes.number,
+    maxWidth: PropTypes.oneOfType([
+        PropTypes.number,
+        PropTypes.string,
+        PropTypes.bool
+    ]),
 
     /**
      * 当分页、排序、筛选操作触发表格变化后，是否滚动到表格顶部

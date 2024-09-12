@@ -42,6 +42,8 @@ app.layout = html.Div(
             * 100,
             maxHeight=300,
             scrollToFirstRowOnChange=False,
+            bordered=True,
+            maxWidth='max-content',
         )
     ],
     style={'padding': 100},
