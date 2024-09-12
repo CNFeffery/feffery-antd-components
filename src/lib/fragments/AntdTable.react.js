@@ -368,6 +368,7 @@ class AntdTable extends Component {
             bordered,
             maxHeight,
             maxWidth,
+            scrollToFirstRowOnChange,
             size,
             mode,
             nClicksButton,
@@ -2025,7 +2026,7 @@ class AntdTable extends Component {
                         }
                     }
                     bordered={bordered}
-                    scroll={{ x: maxWidth, y: maxHeight, scrollToFirstRowOnChange: true }}
+                    scroll={{ x: maxWidth, y: maxHeight, scrollToFirstRowOnChange: scrollToFirstRowOnChange }}
                     onChange={this.onPageChange}
                     onRow={
                         enableHoverListen ?

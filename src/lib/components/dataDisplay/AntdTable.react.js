@@ -792,6 +792,12 @@ AntdTable.propTypes = {
     maxWidth: PropTypes.number,
 
     /**
+     * 当分页、排序、筛选操作触发表格变化后，是否滚动到表格顶部
+     * 默认值：`true`
+     */
+    scrollToFirstRowOnChange: PropTypes.bool,
+
+    /**
      * 表格单元格尺寸规格，可选项有`'small'`、`'middle'`、`'large'`
      */
     size: PropTypes.oneOf(['small', 'middle', 'large']),
@@ -1574,6 +1580,7 @@ AntdTable.defaultProps = {
     locale: 'zh-cn',
     data: [],
     columns: [],
+    scrollToFirstRowOnChange: true,
     size: 'middle',
     bordered: false,
     // 进阶通用参数
