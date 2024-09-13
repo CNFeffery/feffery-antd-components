@@ -139,7 +139,7 @@ AntdDateRangePicker.propTypes = {
     /**
      * 监听或设置面板展开对应日期，与`format`格式对应
      */
-    pickerValue: PropTypes.arrayOf(PropTypes.string),
+    pickerValue: PropTypes.string,
 
     /**
      * 配置日期禁用项策略数组，满足策略中至少一项规则的日期将会被禁止选中

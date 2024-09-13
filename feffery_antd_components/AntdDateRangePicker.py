@@ -79,7 +79,7 @@ Keyword arguments:
 - defaultValue (list of strings; optional):
     初始化已选值，与`format`格式对应.
 
-- pickerValue (list of strings; optional):
+- pickerValue (string; optional):
     监听或设置面板展开对应日期，与`format`格式对应.
 
 - disabledDatesStrategy (list of dicts; optional):

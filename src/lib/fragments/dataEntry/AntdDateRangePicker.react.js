@@ -149,10 +149,7 @@ const AntdDateRangePicker = (props) => {
         // 处理pickerValue缺省赋值
         if (!pickerValue) {
             setProps({
-                pickerValue: [
-                    dayjs(new Date()).format(format || (showTime ? 'YYYY-MM-DD HH:mm:ss' : 'YYYY-MM-DD')),
-                    dayjs(new Date()).format(format || (showTime ? 'YYYY-MM-DD HH:mm:ss' : 'YYYY-MM-DD'))
-                ]
+                pickerValue: dayjs(new Date()).format(format || (showTime ? 'YYYY-MM-DD HH:mm:ss' : 'YYYY-MM-DD'))
             })
         }
     }, [])
@@ -498,7 +495,7 @@ const AntdDateRangePicker = (props) => {
                     onChange={onChange}
                     onPanelChange={(v, m) => {
                         setProps({
-                            pickerValue: [(v[0] || v[1]).format(format), (v[0] || v[1]).format(format)]
+                            pickerValue: (v[0] || v[1]).format(format)
                         })
                     }}
                     variant={(
@@ -507,7 +504,7 @@ const AntdDateRangePicker = (props) => {
                             variant
                     )}
                     disabledDate={disabledDatesStrategy ? checkDisabledDate : undefined}
-                    pickerValue={pickerValue && [dayjs(pickerValue[0], format), dayjs(pickerValue[0], format)]}
+                    pickerValue={pickerValue && [dayjs(pickerValue, format), dayjs(pickerValue, format)]}
                     value={
                         formId && (name || id) ?
                             (
