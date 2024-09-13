@@ -844,7 +844,9 @@ class AntdTable extends Component {
                                 defaultFilteredValue: defaultFilteredValues[columns[i].dataIndex],
                                 filters: filterOptions[columns[i].dataIndex].filterCustomItems
                                     .map(value => ({ text: value ? value.toString() : '', value: value })),
-                                onFilter: (value, record) => true // 契合后端刷新模式
+                                onFilter: (value, record) => true, // 契合后端刷新模式
+                                filterMultiple: filterOptions[columns[i].dataIndex].filterMultiple,
+                                filterSearch: filterOptions[columns[i].dataIndex].filterSearch
                             }
                         } else {
                             columns[i] = {
