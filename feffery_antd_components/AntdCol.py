@@ -47,9 +47,6 @@ Keyword arguments:
 
     `xs` is a number | dict with keys:
 
-    - span (number; optional):
-        同span参数.
-
     - offset (number; optional):
         同offset参数.
 
@@ -61,15 +58,15 @@ Keyword arguments:
 
     - push (number; optional):
         同push参数.
+
+    - span (number; optional):
+        同span参数.
 
 - sm (dict; optional):
     配置列在页面宽度大于等于567px时的布局参数，传入数值型时代表span参数，传入字典时分别设置各布局参数.
 
     `sm` is a number | dict with keys:
 
-    - span (number; optional):
-        同span参数.
-
     - offset (number; optional):
         同offset参数.
 
@@ -81,15 +78,15 @@ Keyword arguments:
 
     - push (number; optional):
         同push参数.
+
+    - span (number; optional):
+        同span参数.
 
 - md (dict; optional):
     配置列在页面宽度大于等于768px时的布局参数，传入数值型时代表span参数，传入字典时分别设置各布局参数.
 
     `md` is a number | dict with keys:
 
-    - span (number; optional):
-        同span参数.
-
     - offset (number; optional):
         同offset参数.
 
@@ -101,15 +98,15 @@ Keyword arguments:
 
     - push (number; optional):
         同push参数.
+
+    - span (number; optional):
+        同span参数.
 
 - lg (dict; optional):
     配置列在页面宽度大于等于992px时的布局参数，传入数值型时代表span参数，传入字典时分别设置各布局参数.
 
     `lg` is a number | dict with keys:
 
-    - span (number; optional):
-        同span参数.
-
     - offset (number; optional):
         同offset参数.
 
@@ -121,15 +118,15 @@ Keyword arguments:
 
     - push (number; optional):
         同push参数.
+
+    - span (number; optional):
+        同span参数.
 
 - xl (dict; optional):
     配置列在页面宽度大于等于1200px时的布局参数，传入数值型时代表span参数，传入字典时分别设置各布局参数.
 
     `xl` is a number | dict with keys:
 
-    - span (number; optional):
-        同span参数.
-
     - offset (number; optional):
         同offset参数.
 
@@ -141,15 +138,15 @@ Keyword arguments:
 
     - push (number; optional):
         同push参数.
+
+    - span (number; optional):
+        同span参数.
 
 - xxl (dict; optional):
     配置列在页面宽度大于等于1600px时的布局参数，传入数值型时代表span参数，传入字典时分别设置各布局参数.
 
     `xxl` is a number | dict with keys:
 
-    - span (number; optional):
-        同span参数.
-
     - offset (number; optional):
         同offset参数.
 
@@ -161,6 +158,9 @@ Keyword arguments:
 
     - push (number; optional):
         同push参数.
+
+    - span (number; optional):
+        同span参数.
 
 - data-* (string; optional):
     `data-*`格式属性通配.
@@ -172,14 +172,14 @@ Keyword arguments:
 
     `loading_state` is a dict with keys:
 
+    - component_name (string; optional):
+        Holds the name of the component that is loading.
+
     - is_loading (boolean; optional):
         Determines if the component is loading or not.
 
     - prop_name (string; optional):
-        Holds which property is loading.
-
-    - component_name (string; optional):
-        Holds the name of the component that is loading."""
+        Holds which property is loading."""
     _children_props = []
     _base_nodes = ['children']
     _namespace = 'feffery_antd_components'

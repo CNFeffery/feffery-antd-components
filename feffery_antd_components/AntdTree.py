@@ -110,11 +110,11 @@ Keyword arguments:
 
     `clickedContextMenu` is a dict with keys:
 
-    - nodeKey (string; optional):
-        事件对应节点`key`值.
-
     - menuKey (string; optional):
         事件对应右键菜单项`key`值.
+
+    - nodeKey (string; optional):
+        事件对应节点`key`值.
 
     - timestamp (number; optional):
         事件对应时间戳信息.
@@ -130,11 +130,11 @@ Keyword arguments:
 
     `scrollTarget` is a dict with keys:
 
-    - key (string; required):
-        滚动目标节点`key`值.
-
     - align (a value equal to: 'top', 'bottom', 'auto'; optional):
         滚动目标节点对齐位置，可选项有`'top'`、`'bottom'`、`'auto'`  默认值：`'auto'`.
+
+    - key (string; required):
+        滚动目标节点`key`值.
 
     - offset (number; optional):
         滚动后的像素偏移量.
@@ -183,14 +183,14 @@ Keyword arguments:
 
     `loading_state` is a dict with keys:
 
+    - component_name (string; optional):
+        Holds the name of the component that is loading.
+
     - is_loading (boolean; optional):
         Determines if the component is loading or not.
 
     - prop_name (string; optional):
         Holds which property is loading.
-
-    - component_name (string; optional):
-        Holds the name of the component that is loading.
 
 - persistence (boolean | string | number; optional):
     是否开启[属性持久化](/prop-persistence).

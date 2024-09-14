@@ -103,6 +103,17 @@ Keyword arguments:
 
     `progressProps` is a dict with keys:
 
+    - format (dict; optional):
+        进度文字格式.
+
+        `format` is a dict with keys:
+
+        - prefix (string; optional):
+            进度文字前缀内容.
+
+        - suffix (string; optional):
+            进度文字后缀内容  默认值：`'%'`.
+
     - strokeColor (dict; optional):
         进度条颜色.
 
@@ -121,17 +132,6 @@ Keyword arguments:
     - strokeWidth (number; optional):
         进度条像素宽度.
 
-    - format (dict; optional):
-        进度文字格式.
-
-        `format` is a dict with keys:
-
-        - prefix (string; optional):
-            进度文字前缀内容.
-
-        - suffix (string; optional):
-            进度文字后缀内容  默认值：`'%'`.
-
 - showSuccessMessage (boolean; default True):
     是否在每个文件上传成功后，分别弹出消息提示  默认值：`True`.
 
@@ -143,26 +143,8 @@ Keyword arguments:
 
     `lastUploadTaskRecord` is a dict with keys:
 
-    - fileName (string; optional):
-        文件名称.
-
-    - fileSize (number; optional):
-        文件大小.
-
     - completeTimestamp (number; optional):
         上传完成时间戳.
-
-    - taskStatus (string; optional):
-        上传任务状态，`'success'`表示成功，`'failed'`表示失败.
-
-    - taskId (string; optional):
-        上传任务唯一识别id，当任务状态为`'failed'`时不会携带此信息.
-
-    - url (string; optional):
-        当前文件的下载链接.
-
-    - uploadResponse (boolean | number | string | dict | list; optional):
-        上传任务的接口响应信息. | list of dicts with keys:
 
     - fileName (string; optional):
         文件名称.
@@ -170,57 +152,78 @@ Keyword arguments:
     - fileSize (number; optional):
         文件大小.
 
-    - completeTimestamp (number; optional):
-        上传完成时间戳.
-
-    - taskStatus (string; optional):
-        上传任务状态，`'success'`表示成功，`'failed'`表示失败.
-
     - taskId (string; optional):
         上传任务唯一识别id，当任务状态为`'failed'`时不会携带此信息.
 
-    - url (string; optional):
-        当前文件的下载链接.
+    - taskStatus (string; optional):
+        上传任务状态，`'success'`表示成功，`'failed'`表示失败.
 
     - uploadResponse (boolean | number | string | dict | list; optional):
         上传任务的接口响应信息.
+
+    - url (string; optional):
+        当前文件的下载链接. | list of dicts with keys:
+
+    - completeTimestamp (number; optional):
+        上传完成时间戳.
+
+    - fileName (string; optional):
+        文件名称.
+
+    - fileSize (number; optional):
+        文件大小.
+
+    - taskId (string; optional):
+        上传任务唯一识别id，当任务状态为`'failed'`时不会携带此信息.
+
+    - taskStatus (string; optional):
+        上传任务状态，`'success'`表示成功，`'failed'`表示失败.
+
+    - uploadResponse (boolean | number | string | dict | list; optional):
+        上传任务的接口响应信息.
+
+    - url (string; optional):
+        当前文件的下载链接.
 
 - listUploadTaskRecord (list of dicts; optional):
     监听当前已上传文件列表中上传任务相关信息.
 
     `listUploadTaskRecord` is a list of dicts with keys:
 
+    - completeTimestamp (number; optional):
+        上传完成时间戳.
+
     - fileName (string; optional):
         文件名称.
 
     - fileSize (number; optional):
         文件大小.
 
-    - completeTimestamp (number; optional):
-        上传完成时间戳.
-
-    - taskStatus (string; optional):
-        上传任务状态，`'success'`表示成功，`'failed'`表示失败.
+    - originFileObj (boolean | number | string | dict | list; optional):
+        当`withOriginFileObj=True`时，监听当前文件上传任务对应的`originFileObj`主要信息.
 
     - taskId (string; optional):
         上传任务唯一识别id，当任务状态为`'failed'`时不会携带此信息.
 
+    - taskStatus (string; optional):
+        上传任务状态，`'success'`表示成功，`'failed'`表示失败.
+
     - uid (string; optional):
         当前文件上传唯一识别id，前端自动生成.
-
-    - url (string; optional):
-        当前文件下载链接.
 
     - uploadResponse (boolean | number | string | dict | list; optional):
         上传任务的接口响应信息.
 
-    - originFileObj (boolean | number | string | dict | list; optional):
-        当`withOriginFileObj=True`时，监听当前文件上传任务对应的`originFileObj`主要信息.
+    - url (string; optional):
+        当前文件下载链接.
 
 - defaultFileList (list of dicts; optional):
     初始化文件列表展示信息.
 
     `defaultFileList` is a list of dicts with keys:
+
+    - fileSize (number; optional):
+        当前文件大小.
 
     - name (string; optional):
         当前文件名称.
@@ -228,17 +231,14 @@ Keyword arguments:
     - status (a value equal to: 'done', 'error', 'removed'; optional):
         当前文件展示状态，可选项有`'done'`、`'error'`、`'removed'`.
 
+    - taskId (string; optional):
+        若传入有效值，将作为当前组件的`uploadId`参数.
+
     - uid (boolean | number | string | dict | list; optional):
         当前文件唯一识别id.
 
     - url (string; optional):
         当前文件下载链接.
-
-    - taskId (string; optional):
-        若传入有效值，将作为当前组件的`uploadId`参数.
-
-    - fileSize (number; optional):
-        当前文件大小.
 
 - disabled (boolean; default False):
     是否禁用当前组件  默认值：`False`.
@@ -256,14 +256,14 @@ Keyword arguments:
 
     `loading_state` is a dict with keys:
 
+    - component_name (string; optional):
+        Holds the name of the component that is loading.
+
     - is_loading (boolean; optional):
         Determines if the component is loading or not.
 
     - prop_name (string; optional):
-        Holds which property is loading.
-
-    - component_name (string; optional):
-        Holds the name of the component that is loading."""
+        Holds which property is loading."""
     _children_props = ['icon', 'text', 'hint']
     _base_nodes = ['icon', 'text', 'hint', 'children']
     _namespace = 'feffery_antd_components'

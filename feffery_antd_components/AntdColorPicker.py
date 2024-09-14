@@ -66,14 +66,14 @@ Keyword arguments:
 
     `presets` is a list of dicts with keys:
 
-    - label (a list of or a singular dash component, string or number; optional):
-        组件型，当前预设项标签内容.
-
     - colors (list of strings; optional):
         当前预设项所包含的颜色值数组.
 
     - defaultOpen (boolean; optional):
         当前预设项默认是否展开  默认值：`True`.
+
+    - label (a list of or a singular dash component, string or number; optional):
+        组件型，当前预设项标签内容.
 
 - placement (a value equal to: 'top', 'topLeft', 'topRight', 'bottom', 'bottomLeft', 'bottomRight'; default 'bottomLeft'):
     颜色选择面板展开方向，可选项有`'top'`、`'topLeft'`、`'topRight'`、`'bottom'`、`'bottomLeft'`、`'bottomRight'`
@@ -98,14 +98,14 @@ Keyword arguments:
 
     `loading_state` is a dict with keys:
 
+    - component_name (string; optional):
+        Holds the name of the component that is loading.
+
     - is_loading (boolean; optional):
         Determines if the component is loading or not.
 
     - prop_name (string; optional):
-        Holds which property is loading.
-
-    - component_name (string; optional):
-        Holds the name of the component that is loading."""
+        Holds which property is loading."""
     _children_props = ['presets[].label']
     _base_nodes = ['children']
     _namespace = 'feffery_antd_components'

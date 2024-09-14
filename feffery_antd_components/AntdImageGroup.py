@@ -39,17 +39,20 @@ Keyword arguments:
 
     `preview` is a boolean | dict with keys:
 
-    - src (string; optional):
-        自定义预览图链接地址.
-
-    - movable (boolean; optional):
-        预览模式下是否可移动图片.
-
     - mask (a list of or a singular dash component, string or number; optional):
         组件型，用于自定义缩略图遮罩元素.
 
     - maskClassName (string; optional):
         缩略图遮罩元素css类名.
+
+    - maxScale (number; optional):
+        最大缩放倍数  默认值：`50`.
+
+    - minScale (number; optional):
+        最小缩放倍数  默认值：`1`.
+
+    - movable (boolean; optional):
+        预览模式下是否可移动图片.
 
     - rootClassName (string; optional):
         缩略图根节点css类名.
@@ -57,11 +60,8 @@ Keyword arguments:
     - scaleStep (number; optional):
         `1+scaleStep`值为每一步缩放的倍数  默认值：`0.5`.
 
-    - minScale (number; optional):
-        最小缩放倍数  默认值：`1`.
-
-    - maxScale (number; optional):
-        最大缩放倍数  默认值：`50`.
+    - src (string; optional):
+        自定义预览图链接地址.
 
 - visible (boolean; optional):
     监听或设置当前图片组是否处于全屏预览状态.
@@ -85,14 +85,14 @@ Keyword arguments:
 
     `loading_state` is a dict with keys:
 
+    - component_name (string; optional):
+        Holds the name of the component that is loading.
+
     - is_loading (boolean; optional):
         Determines if the component is loading or not.
 
     - prop_name (string; optional):
-        Holds which property is loading.
-
-    - component_name (string; optional):
-        Holds the name of the component that is loading."""
+        Holds which property is loading."""
     _children_props = ['preview.mask', 'toolbarExtra']
     _base_nodes = ['toolbarExtra', 'children']
     _namespace = 'feffery_antd_components'

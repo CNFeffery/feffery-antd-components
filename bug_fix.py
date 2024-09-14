@@ -6,26 +6,25 @@ app = dash.Dash(__name__)
 
 app.layout = html.Div(
     [
-        fac.AntdAnchor(
-            linkDict=[
-                {
-                    'title': '报告信息',
-                    'href': '#edit_permeate_report_info',
-                },
-                {
-                    'title': '测试范围',
-                    'href': '#edit_permeate_report_test_range',
-                },
-                {
-                    'title': '客户信息',
-                    'href': '#edit_permeate_report_customer_info',
-                },
-                {
-                    'title': '测试方信息',
-                    'href': '#edit_permeate_report_tester_info',
-                },
+        fac.AntdRow(
+            [
+                fac.AntdCol(
+                    fac.AntdCenter(
+                        f'col{i}',
+                        style={
+                            'backgroundColor': '#1677ff'
+                            if i % 2 == 0
+                            else '#1677ffbf',
+                            'color': 'white',
+                            'height': 100,
+                        },
+                    ),
+                    span=6,
+                )
+                for i in range(1, 5)
             ],
-            align='left',
+            gutter=10,
+            align='center',
         )
     ],
     style={'padding': 50},

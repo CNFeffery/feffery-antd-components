@@ -45,12 +45,8 @@ Keyword arguments:
 
     `okButtonProps` is a dict with keys:
 
-    - size (a value equal to: 'small', 'middle', 'large'; optional):
-        按钮尺寸规格，可选项有`'small'`、`'middle'`、`'large'`  默认值：`'middle'`.
-
-    - type (a value equal to: 'primary', 'ghost', 'dashed', 'link', 'text', 'default'; optional):
-        按钮类型，可选项有`'default'`、`'primary'`、`'ghost'`、`'dashed'`、`'link'`、`'text'`
-        默认值：`'default'`.
+    - className (string; optional):
+        按钮css类名.
 
     - danger (boolean; optional):
         按钮是否呈现危险样式  默认值：`False`.
@@ -61,11 +57,15 @@ Keyword arguments:
     - shape (a value equal to: 'circle', 'round'; optional):
         按钮形状，可选项有`'default'`、`'circle'`、`'round'`  默认值：`'default'`.
 
+    - size (a value equal to: 'small', 'middle', 'large'; optional):
+        按钮尺寸规格，可选项有`'small'`、`'middle'`、`'large'`  默认值：`'middle'`.
+
     - style (dict; optional):
         按钮css样式.
 
-    - className (string; optional):
-        按钮css类名.
+    - type (a value equal to: 'primary', 'ghost', 'dashed', 'link', 'text', 'default'; optional):
+        按钮类型，可选项有`'default'`、`'primary'`、`'ghost'`、`'dashed'`、`'link'`、`'text'`
+        默认值：`'default'`.
 
 - cancelText (a list of or a singular dash component, string or number; optional):
     组件型，取消按钮内容.
@@ -75,12 +75,8 @@ Keyword arguments:
 
     `cancelButtonProps` is a dict with keys:
 
-    - size (a value equal to: 'small', 'middle', 'large'; optional):
-        按钮尺寸规格，可选项有`'small'`、`'middle'`、`'large'`  默认值：`'middle'`.
-
-    - type (a value equal to: 'primary', 'ghost', 'dashed', 'link', 'text', 'default'; optional):
-        按钮类型，可选项有`'default'`、`'primary'`、`'ghost'`、`'dashed'`、`'link'`、`'text'`
-        默认值：`'default'`.
+    - className (string; optional):
+        按钮css类名.
 
     - danger (boolean; optional):
         按钮是否呈现危险样式  默认值：`False`.
@@ -91,11 +87,15 @@ Keyword arguments:
     - shape (a value equal to: 'circle', 'round'; optional):
         按钮形状，可选项有`'default'`、`'circle'`、`'round'`  默认值：`'default'`.
 
+    - size (a value equal to: 'small', 'middle', 'large'; optional):
+        按钮尺寸规格，可选项有`'small'`、`'middle'`、`'large'`  默认值：`'middle'`.
+
     - style (dict; optional):
         按钮css样式.
 
-    - className (string; optional):
-        按钮css类名.
+    - type (a value equal to: 'primary', 'ghost', 'dashed', 'link', 'text', 'default'; optional):
+        按钮类型，可选项有`'default'`、`'primary'`、`'ghost'`、`'dashed'`、`'link'`、`'text'`
+        默认值：`'default'`.
 
 - width (number | string; default 520):
     对话框像素宽度  默认值：`520`.
@@ -165,14 +165,14 @@ Keyword arguments:
 
     `loading_state` is a dict with keys:
 
+    - component_name (string; optional):
+        Holds the name of the component that is loading.
+
     - is_loading (boolean; optional):
         Determines if the component is loading or not.
 
     - prop_name (string; optional):
-        Holds which property is loading.
-
-    - component_name (string; optional):
-        Holds the name of the component that is loading."""
+        Holds which property is loading."""
     _children_props = ['title', 'okText', 'cancelText', 'loadingOkText']
     _base_nodes = ['title', 'okText', 'cancelText', 'loadingOkText', 'children']
     _namespace = 'feffery_antd_components'

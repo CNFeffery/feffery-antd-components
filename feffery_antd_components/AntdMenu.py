@@ -27,11 +27,11 @@ Keyword arguments:
     `expandIcon` is a a list of or a singular dash component, string
     or number | dict with keys:
 
-    - expand (a list of or a singular dash component, string or number; optional):
-        展开图标.
-
     - collapse (a list of or a singular dash component, string or number; optional):
         收起图标.
+
+    - expand (a list of or a singular dash component, string or number; optional):
+        展开图标.
 
 - menuItems (list; optional):
     导航菜单数据结构.
@@ -94,14 +94,14 @@ Keyword arguments:
 
     `loading_state` is a dict with keys:
 
+    - component_name (string; optional):
+        Holds the name of the component that is loading.
+
     - is_loading (boolean; optional):
         Determines if the component is loading or not.
 
     - prop_name (string; optional):
         Holds which property is loading.
-
-    - component_name (string; optional):
-        Holds the name of the component that is loading.
 
 - persistence (boolean | string | number; optional):
     是否为当前组件开启持久化功能.

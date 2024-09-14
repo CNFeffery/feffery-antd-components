@@ -44,15 +44,15 @@ Keyword arguments:
     `size` is a number | a value equal to: 'large', 'small', 'default'
     | dict with keys:
 
-    - xs (number; optional)
-
-    - sm (number; optional)
+    - lg (number; optional)
 
     - md (number; optional)
 
-    - lg (number; optional)
+    - sm (number; optional)
 
     - xl (number; optional)
+
+    - xs (number; optional)
 
     - xxl (number; optional)
 
@@ -66,14 +66,14 @@ Keyword arguments:
 
     `loading_state` is a dict with keys:
 
+    - component_name (string; optional):
+        Holds the name of the component that is loading.
+
     - is_loading (boolean; optional):
         Determines if the component is loading or not.
 
     - prop_name (string; optional):
-        Holds which property is loading.
-
-    - component_name (string; optional):
-        Holds the name of the component that is loading."""
+        Holds which property is loading."""
     _children_props = []
     _base_nodes = ['children']
     _namespace = 'feffery_antd_components'

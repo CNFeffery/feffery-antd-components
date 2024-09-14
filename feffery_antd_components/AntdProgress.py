@@ -59,14 +59,14 @@ Keyword arguments:
 
     `format` is a dict with keys:
 
+    - content (a list of or a singular dash component, string or number; optional):
+        组件型，强制设置显示内容.
+
     - prefix (string; optional):
         进度提示前缀文字  默认值：`''`.
 
     - suffix (string; optional):
         进度提示后缀文字  默认值：`'%'`.
-
-    - content (a list of or a singular dash component, string or number; optional):
-        组件型，强制设置显示内容.
 
 - status (a value equal to: 'success', 'exception', 'normal', 'active'; optional):
     进度条状态，可选项有`'success'`、`'exception'`、`'normal'`、`'active'`，其中`'active'`仅在`type='line'`时生效
@@ -118,14 +118,14 @@ Keyword arguments:
 
     `loading_state` is a dict with keys:
 
+    - component_name (string; optional):
+        Holds the name of the component that is loading.
+
     - is_loading (boolean; optional):
         Determines if the component is loading or not.
 
     - prop_name (string; optional):
-        Holds which property is loading.
-
-    - component_name (string; optional):
-        Holds the name of the component that is loading."""
+        Holds which property is loading."""
     _children_props = ['format.content']
     _base_nodes = ['children']
     _namespace = 'feffery_antd_components'

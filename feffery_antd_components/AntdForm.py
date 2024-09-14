@@ -33,28 +33,28 @@ Keyword arguments:
 
     `labelCol` is a dict with keys:
 
-    - span (number; optional):
-        标签部分所占宽度份数（总份数24）.
+    - flex (string | number; optional):
+        同css中的flex属性，用于更灵活的控制标签部分所占宽度.
 
     - offset (number; optional):
         标签部分向右偏移宽度份数.
 
-    - flex (string | number; optional):
-        同css中的flex属性，用于更灵活的控制标签部分所占宽度.
+    - span (number; optional):
+        标签部分所占宽度份数（总份数24）.
 
 - wrapperCol (dict; optional):
     配置表单项控件部分相关参数.
 
     `wrapperCol` is a dict with keys:
 
-    - span (number; optional):
-        控件部分所占宽度份数（总份数24）.
+    - flex (string | number; optional):
+        同css中的flex属性，用于更灵活的控制控件部分所占宽度.
 
     - offset (number; optional):
         控件部分向右偏移宽度份数.
 
-    - flex (string | number; optional):
-        同css中的flex属性，用于更灵活的控制控件部分所占宽度.
+    - span (number; optional):
+        控件部分所占宽度份数（总份数24）.
 
 - colon (boolean; default True):
     当`layput='horizontal'`时，控制是否在表单项标签部分末尾添加冒号.
@@ -87,14 +87,14 @@ Keyword arguments:
 
     `loading_state` is a dict with keys:
 
+    - component_name (string; optional):
+        Holds the name of the component that is loading.
+
     - is_loading (boolean; optional):
         Determines if the component is loading or not.
 
     - prop_name (string; optional):
-        Holds which property is loading.
-
-    - component_name (string; optional):
-        Holds the name of the component that is loading."""
+        Holds which property is loading."""
     _children_props = ['helps{}']
     _base_nodes = ['children']
     _namespace = 'feffery_antd_components'

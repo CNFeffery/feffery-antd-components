@@ -36,19 +36,19 @@ Keyword arguments:
 
     `options` is a list of string | number | dict with keys:
 
+    - colors (list of strings; optional):
+        针对色带特殊渲染模式，设置生成渐变色带所需的色彩值数组.
+
+    - disabled (boolean; optional):
+        是否禁用当前选项  默认值：`False`.
+
     - label (a list of or a singular dash component, string or number; required):
         组件型，当前选项标签内容.
 
     - value (string
 
       Or number; required):
-        当前选项值.
-
-    - disabled (boolean; optional):
-        是否禁用当前选项  默认值：`False`.
-
-    - colors (list of strings; optional):
-        针对色带特殊渲染模式，设置生成渐变色带所需的色彩值数组. | dict with keys:
+        当前选项值. | dict with keys:
 
     - group (a list of or a singular dash component, string or number; optional):
         组件型，当前分组标签内容.
@@ -58,21 +58,21 @@ Keyword arguments:
 
         `options` is a list of dicts with keys:
 
+        - colors (list of strings; optional):
+
+            针对色带特殊渲染模式，设置生成渐变色带所需的色彩值数组.
+
+        - disabled (boolean; optional):
+
+            是否禁用当前选项  默认值：`False`.
+
         - label (a list of or a singular dash component, string or number; required):
 
             组件型，当前选项标签内容.
 
         - value (string | number; required):
 
-            当前选项值.
-
-        - disabled (boolean; optional):
-
-            是否禁用当前选项  默认值：`False`.
-
-        - colors (list of strings; optional):
-
-            针对色带特殊渲染模式，设置生成渐变色带所需的色彩值数组.s
+            当前选项值.s
 
 - listHeight (number; default 256):
     下拉菜单最大像素高度.
@@ -182,14 +182,14 @@ Keyword arguments:
 
     `loading_state` is a dict with keys:
 
+    - component_name (string; optional):
+        Holds the name of the component that is loading.
+
     - is_loading (boolean; optional):
         Determines if the component is loading or not.
 
     - prop_name (string; optional):
         Holds which property is loading.
-
-    - component_name (string; optional):
-        Holds the name of the component that is loading.
 
 - persistence (boolean | string | number; optional):
     是否开启[属性持久化](/prop-persistence).

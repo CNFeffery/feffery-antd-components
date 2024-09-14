@@ -32,26 +32,26 @@ Keyword arguments:
     - className (string | dict; optional):
         当前子项css类名，支持[动态css](/advanced-classname).
 
-    - style (dict; optional):
-        当前子项css样式.
-
-    - key (string | number; required):
-        必填，当前子项唯一key值.
-
     - collapsible (a value equal to: 'header', 'disabled', 'icon'; optional):
         当前子项折叠触发方式，可选项有`'header'`、`'disabled'`、`'icon'`.
-
-    - title (a list of or a singular dash component, string or number; optional):
-        当前子项标题元素.
 
     - extra (a list of or a singular dash component, string or number; optional):
         当前子项右上角额外元素.
 
+    - forceRender (boolean; optional):
+        是否强制渲染内部元素  默认值：`False`.
+
+    - key (string | number; required):
+        必填，当前子项唯一key值.
+
     - showArrow (boolean; optional):
         是否展示当前手风琴项的箭头图标  默认值：`True`.
 
-    - forceRender (boolean; optional):
-        是否强制渲染内部元素  默认值：`False`.
+    - style (dict; optional):
+        当前子项css样式.
+
+    - title (a list of or a singular dash component, string or number; optional):
+        当前子项标题元素.
 
 - accordion (boolean; default True):
     是否开启手风琴模式  默认值：`True`.
@@ -84,14 +84,14 @@ Keyword arguments:
 
     `loading_state` is a dict with keys:
 
+    - component_name (string; optional):
+        Holds the name of the component that is loading.
+
     - is_loading (boolean; optional):
         Determines if the component is loading or not.
 
     - prop_name (string; optional):
-        Holds which property is loading.
-
-    - component_name (string; optional):
-        Holds the name of the component that is loading."""
+        Holds which property is loading."""
     _children_props = ['items[].children', 'items[].title', 'items[].extra']
     _base_nodes = ['children']
     _namespace = 'feffery_antd_components'

@@ -26,12 +26,6 @@ Keyword arguments:
 
     `options` is a list of dicts with keys:
 
-    - label (a list of or a singular dash component, string or number; required):
-        组件型，必填，选项标题内容.
-
-    - value (string | number; required):
-        必填，选项值.
-
     - disabled (boolean; optional):
         是否禁用当前选项  默认值：`False`.
 
@@ -40,6 +34,12 @@ Keyword arguments:
 
     - iconRenderer (a value equal to: 'AntdIcon', 'fontawesome'; optional):
         选项前缀图标类型，可选项有`'AntdIcon'`、`'fontawesome'`  默认值：`'AntdIcon'`.
+
+    - label (a list of or a singular dash component, string or number; required):
+        组件型，必填，选项标题内容.
+
+    - value (string | number; required):
+        必填，选项值.
 
 - value (string | number; optional):
     监听或设置当前选中值.
@@ -72,14 +72,14 @@ Keyword arguments:
 
     `loading_state` is a dict with keys:
 
+    - component_name (string; optional):
+        Holds the name of the component that is loading.
+
     - is_loading (boolean; optional):
         Determines if the component is loading or not.
 
     - prop_name (string; optional):
         Holds which property is loading.
-
-    - component_name (string; optional):
-        Holds the name of the component that is loading.
 
 - persistence (boolean | string | number; optional):
     是否开启[属性持久化](/prop-persistence).

@@ -29,26 +29,26 @@ Keyword arguments:
 
     `items` is a list of dicts with keys:
 
-    - label (a list of or a singular dash component, string or number; optional):
-        组件型，子项标题内容.
-
-    - span (number; optional):
-        子项所占宽度份数  默认值：`1`.
-
     - children (a list of or a singular dash component, string or number; optional):
         组件型，子项内容.
 
-    - labelStyle (dict; optional):
-        子项标签css样式.
+    - className (string; optional):
+        子项css类名.
 
     - contentStyle (dict; optional):
         子项内容css样式.
 
+    - label (a list of or a singular dash component, string or number; optional):
+        组件型，子项标题内容.
+
+    - labelStyle (dict; optional):
+        子项标签css样式.
+
+    - span (number; optional):
+        子项所占宽度份数  默认值：`1`.
+
     - style (dict; optional):
         子项css样式.
-
-    - className (string; optional):
-        子项css类名.
 
 - title (a list of or a singular dash component, string or number; optional):
     组件型，标题内容.
@@ -58,17 +58,17 @@ Keyword arguments:
 
     `column` is a number | dict with keys:
 
-    - xxl (number; optional)
-
-    - xl (number; optional)
-
     - lg (number; optional)
 
     - md (number; optional)
 
     - sm (number; optional)
 
+    - xl (number; optional)
+
     - xs (number; optional)
+
+    - xxl (number; optional)
 
 - bordered (boolean; default False):
     是否显示边框  默认值：`False`.
@@ -98,14 +98,14 @@ Keyword arguments:
 
     `loading_state` is a dict with keys:
 
+    - component_name (string; optional):
+        Holds the name of the component that is loading.
+
     - is_loading (boolean; optional):
         Determines if the component is loading or not.
 
     - prop_name (string; optional):
-        Holds which property is loading.
-
-    - component_name (string; optional):
-        Holds the name of the component that is loading."""
+        Holds which property is loading."""
     _children_props = ['items[].label', 'items[].children', 'title', 'extra']
     _base_nodes = ['title', 'extra', 'children']
     _namespace = 'feffery_antd_components'

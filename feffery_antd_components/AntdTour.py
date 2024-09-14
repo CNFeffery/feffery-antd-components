@@ -30,12 +30,6 @@ Keyword arguments:
 
     `steps` is a list of dicts with keys:
 
-    - targetId (string; optional):
-        当前步骤目标元素id，优先级高于`targetSelector`.
-
-    - targetSelector (string; optional):
-        定位当前步骤目标元素的javascript代码字符串.
-
     - arrow (dict; optional):
         配置当前步骤箭头  默认值：`True`.
 
@@ -50,30 +44,21 @@ Keyword arguments:
     - cover (a list of or a singular dash component, string or number; optional):
         组件型，当前步骤弹框的封面内容.
 
-    - title (a list of or a singular dash component, string or number; optional):
-        组件型，当前步骤弹框的标题内容.
-
     - description (a list of or a singular dash component, string or number; optional):
         组件型，当前步骤弹框的描述内容.
-
-    - placement (a value equal to: 'center', 'left', 'leftTop', 'leftBottom', 'right', 'rightTop', 'rightBottom', 'top', 'topLeft', 'topRight', 'bottom', 'bottomLeft', 'bottomRight'; optional):
-        当前引导步骤弹框相对目标元素的位置，可选项有`'center'`、`'left'`、`'leftTop'`、`'leftBottom'`、`'right'`、`'rightTop'`、`'rightBottom'`、`'top'`、`'topLeft'`、`'topRight'`、`'bottom'`、`'bottomLeft'`、`'bottomRight'`.
 
     - mask (dict; optional):
         配置当前步骤蒙版层  默认值：`True`.
 
         `mask` is a boolean | dict with keys:
 
-        - style (dict; optional):
-
-            当前步骤蒙版层css样式.
-
         - color (string; optional):
 
             当前步骤蒙版层颜色.
 
-    - type (a value equal to: 'default', 'primary'; optional):
-        当前步骤弹框类型，可选项有`'default'`、`'primary'`  默认值：`'default'`.
+        - style (dict; optional):
+
+            当前步骤蒙版层css样式.
 
     - nextButtonProps (dict; optional):
         配置当前步骤下一步按钮.
@@ -83,6 +68,9 @@ Keyword arguments:
         - children (a list of or a singular dash component, string or number; optional):
             组件型，按钮内嵌元素.
 
+    - placement (a value equal to: 'center', 'left', 'leftTop', 'leftBottom', 'right', 'rightTop', 'rightBottom', 'top', 'topLeft', 'topRight', 'bottom', 'bottomLeft', 'bottomRight'; optional):
+        当前引导步骤弹框相对目标元素的位置，可选项有`'center'`、`'left'`、`'leftTop'`、`'leftBottom'`、`'right'`、`'rightTop'`、`'rightBottom'`、`'top'`、`'topLeft'`、`'topRight'`、`'bottom'`、`'bottomLeft'`、`'bottomRight'`.
+
     - prevButtonProps (dict; optional):
         配置当前步骤上一步按钮.
 
@@ -90,6 +78,18 @@ Keyword arguments:
 
         - children (a list of or a singular dash component, string or number; optional):
             组件型，按钮内嵌元素.
+
+    - targetId (string; optional):
+        当前步骤目标元素id，优先级高于`targetSelector`.
+
+    - targetSelector (string; optional):
+        定位当前步骤目标元素的javascript代码字符串.
+
+    - title (a list of or a singular dash component, string or number; optional):
+        组件型，当前步骤弹框的标题内容.
+
+    - type (a value equal to: 'default', 'primary'; optional):
+        当前步骤弹框类型，可选项有`'default'`、`'primary'`  默认值：`'default'`.
 
 - arrow (dict; default True):
     统一配置引导步骤弹框箭头  默认值：`True`.
@@ -108,11 +108,11 @@ Keyword arguments:
 
     `mask` is a boolean | dict with keys:
 
-    - style (dict; optional):
-        蒙版层css样式.
-
     - color (string; optional):
         蒙版层颜色.
+
+    - style (dict; optional):
+        蒙版层css样式.
 
 - type (a value equal to: 'default', 'primary'; default 'default'):
     统一设置引导步骤弹框类型，可选项有`'default'`、`'primary'`  默认值：`'default'`.
@@ -136,14 +136,14 @@ Keyword arguments:
 
     `loading_state` is a dict with keys:
 
+    - component_name (string; optional):
+        Holds the name of the component that is loading.
+
     - is_loading (boolean; optional):
         Determines if the component is loading or not.
 
     - prop_name (string; optional):
-        Holds which property is loading.
-
-    - component_name (string; optional):
-        Holds the name of the component that is loading."""
+        Holds which property is loading."""
     _children_props = ['steps[].cover', 'steps[].title', 'steps[].description', 'steps[].nextButtonProps.children', 'steps[].prevButtonProps.children']
     _base_nodes = ['children']
     _namespace = 'feffery_antd_components'

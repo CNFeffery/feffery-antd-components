@@ -42,9 +42,9 @@ Keyword arguments:
 
     `iconSize` is a number | dict with keys:
 
-    - width (number; optional)
-
     - height (number; optional)
+
+    - width (number; optional)
 
 - color (string; default '#000'):
     二维码颜色  默认值：`'#000'`.
@@ -81,14 +81,14 @@ Keyword arguments:
 
     `loading_state` is a dict with keys:
 
+    - component_name (string; optional):
+        Holds the name of the component that is loading.
+
     - is_loading (boolean; optional):
         Determines if the component is loading or not.
 
     - prop_name (string; optional):
-        Holds which property is loading.
-
-    - component_name (string; optional):
-        Holds the name of the component that is loading."""
+        Holds which property is loading."""
     _children_props = []
     _base_nodes = ['children']
     _namespace = 'feffery_antd_components'

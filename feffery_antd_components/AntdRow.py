@@ -32,20 +32,20 @@ Keyword arguments:
 
     `gutter` is a number | list of numbers | dict with keys:
 
-    - xs (number; optional):
-        页面宽度小于567px时的水平像素间隔.
-
-    - sm (number; optional):
-        页面宽度大于等于567px时的水平像素间隔.
+    - lg (number; optional):
+        页面宽度大于等于992px时的水平像素间隔.
 
     - md (number; optional):
         页面宽度大于等于768px时的水平像素间隔.
 
-    - lg (number; optional):
-        页面宽度大于等于992px时的水平像素间隔.
+    - sm (number; optional):
+        页面宽度大于等于567px时的水平像素间隔.
 
     - xl (number; optional):
         页面宽度大于等于1200px时的水平像素间隔.
+
+    - xs (number; optional):
+        页面宽度小于567px时的水平像素间隔.
 
     - xxl (number; optional):
         页面宽度大于等于1600px时的水平像素间隔.
@@ -67,14 +67,14 @@ Keyword arguments:
 
     `loading_state` is a dict with keys:
 
+    - component_name (string; optional):
+        Holds the name of the component that is loading.
+
     - is_loading (boolean; optional):
         Determines if the component is loading or not.
 
     - prop_name (string; optional):
-        Holds which property is loading.
-
-    - component_name (string; optional):
-        Holds the name of the component that is loading."""
+        Holds which property is loading."""
     _children_props = []
     _base_nodes = ['children']
     _namespace = 'feffery_antd_components'
