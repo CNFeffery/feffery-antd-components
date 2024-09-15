@@ -1,11 +1,24 @@
 // react核心
-import React from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
+// antd核心
+import { theme } from 'antd';
+
+const { useToken } = theme;
 
 /**
  * 空节点组件Fragment
  */
-const Fragment = (props) => (<>{props.children}</>);
+const Fragment = (props) => {
+
+    const { token: _token } = useToken();
+
+    useEffect(() => {
+        props.setProps({ token: _token });
+    }, [_token])
+
+    return (<>{props.children}</>);
+};
 
 // 定义参数或属性
 Fragment.propTypes = {
@@ -23,6 +36,11 @@ Fragment.propTypes = {
      * 组件型，内嵌元素
      */
     children: PropTypes.node,
+
+    /**
+     * 监听当前组件所在作用范围对应的样式`token`参数，需配合上层`AntdConfigProvider`组件使用
+     */
+    token: PropTypes.object,
 
     loading_state: PropTypes.shape({
         /**
