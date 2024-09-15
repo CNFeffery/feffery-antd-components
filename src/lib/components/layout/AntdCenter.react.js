@@ -1,11 +1,15 @@
 // react核心
 import PropTypes from 'prop-types';
+// antd核心
+import { theme } from 'antd';
 // 辅助库
 import { isString } from 'lodash';
 import { pickBy } from 'ramda';
 import { parseChildrenToArray } from '../utils';
 // 自定义hooks
 import useCss from '../../hooks/useCss';
+
+const { useToken } = theme;
 
 /**
  * 居中组件AntdCenter
@@ -21,6 +25,8 @@ const AntdCenter = (props) => {
         setProps,
         loading_state
     } = props;
+
+    const { token } = useToken();
 
     children = parseChildrenToArray(children)
 
@@ -38,6 +44,9 @@ const AntdCenter = (props) => {
                 display: inline ? 'inline-flex' : 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
+                backgroundColor: token.colorBgBase,
+                color: token.colorTextBase,
+                fontSize: token.fontSize,
                 ...style
             }}
             key={key}
