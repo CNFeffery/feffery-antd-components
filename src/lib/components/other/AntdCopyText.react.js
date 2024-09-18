@@ -25,6 +25,7 @@ const AntdCopyText = (props) => {
         key,
         locale,
         text,
+        format,
         beforeIcon,
         afterIcon,
         setProps,
@@ -49,7 +50,8 @@ const AntdCopyText = (props) => {
                 key={key}
                 copyable={{
                     text: text,
-                    icon: [beforeIcon, afterIcon]
+                    icon: [beforeIcon, afterIcon],
+                    format: format,
                 }}
                 data-dash-is-loading={
                     (loading_state && loading_state.is_loading) || undefined
@@ -92,6 +94,12 @@ AntdCopyText.propTypes = {
      * 复制目标内容
      */
     text: PropTypes.string,
+
+    /**
+     * 剪切板内容的类型，可选项有`'text/plain'`、`text/html`
+     * 默认值：`'text/plain'`
+     */
+    format: PropTypes.oneOf(['text/plain', 'text/html']),
 
     /**
      * 组件型，未复制状态图标
@@ -139,7 +147,8 @@ AntdCopyText.propTypes = {
 // 设置默认参数
 AntdCopyText.defaultProps = {
     locale: 'zh-cn',
-    text: ''
+    text: '',
+    format: 'text/plain',
 }
 
 export default AntdCopyText;
