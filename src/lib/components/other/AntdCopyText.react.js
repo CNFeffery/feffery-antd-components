@@ -26,6 +26,7 @@ const AntdCopyText = (props) => {
         locale,
         text,
         format,
+        tooltips,
         beforeIcon,
         afterIcon,
         setProps,
@@ -52,6 +53,7 @@ const AntdCopyText = (props) => {
                     text: text,
                     icon: [beforeIcon, afterIcon],
                     format: format,
+                    tooltips: tooltips
                 }}
                 data-dash-is-loading={
                     (loading_state && loading_state.is_loading) || undefined
@@ -102,6 +104,14 @@ AntdCopyText.propTypes = {
     format: PropTypes.oneOf(['text/plain', 'text/html']),
 
     /**
+     * 设置复制前后的文字提示内容，格式为`[复制前内容, 复制后内容]`，设置为`false`时关闭文字提示
+     */
+    tooltips: PropTypes.oneOfType([
+        PropTypes.arrayOf(PropTypes.node),
+        PropTypes.bool
+    ]),
+
+    /**
      * 组件型，未复制状态图标
      */
     beforeIcon: PropTypes.node,
@@ -120,7 +130,6 @@ AntdCopyText.propTypes = {
      * `aria-*`格式属性通配
      */
     'aria-*': PropTypes.string,
-
 
     loading_state: PropTypes.shape({
         /**
