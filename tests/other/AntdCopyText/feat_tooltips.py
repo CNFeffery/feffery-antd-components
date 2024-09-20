@@ -2,12 +2,9 @@ if True:
     import sys
 
     sys.path.append('../../../')
-    import io
     import dash
-    import pandas as pd
     from dash import html
     import feffery_antd_components as fac
-    from dash.dependencies import Input, Output
     from feffery_dash_utils.style_utils import style
 
 app = dash.Dash(__name__)
