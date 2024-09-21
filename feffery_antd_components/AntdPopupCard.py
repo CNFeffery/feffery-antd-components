@@ -37,6 +37,12 @@ Keyword arguments:
     卡片显隐动画类型，可选项有`'none'`、`'fade'`、`'zoom'`、`'zoom-big'`、`'zoom-big-fast'`、`'slide-up'`、`'slide-down'`、`'slide-left'`、`'slide-right'`、`'move-up'`、`'move-down'`、`'move-left'`、`'move-right'`
     默认值：`'zoom'`.
 
+- forceRender (boolean; default False):
+    是否在初始化卡片未显示时，强制渲染卡片内部元素  默认值：`False`.
+
+- destroyOnClose (boolean; default True):
+    是否在卡片关闭后自动销毁内部元素  默认值：`True`.
+
 - closable (boolean; default True):
     是否显示右上角的关闭按钮  默认值：`True`.
 
@@ -81,10 +87,10 @@ Keyword arguments:
     _namespace = 'feffery_antd_components'
     _type = 'AntdPopupCard'
     @_explicitize_args
-    def __init__(self, children=None, id=Component.UNDEFINED, key=Component.UNDEFINED, style=Component.UNDEFINED, className=Component.UNDEFINED, title=Component.UNDEFINED, visible=Component.UNDEFINED, width=Component.UNDEFINED, transitionType=Component.UNDEFINED, closable=Component.UNDEFINED, closeIconType=Component.UNDEFINED, draggable=Component.UNDEFINED, dragClassName=Component.UNDEFINED, zIndex=Component.UNDEFINED, bodyStyle=Component.UNDEFINED, loading=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
-        self._prop_names = ['id', 'key', 'children', 'style', 'className', 'title', 'visible', 'width', 'transitionType', 'closable', 'closeIconType', 'draggable', 'dragClassName', 'zIndex', 'bodyStyle', 'loading', 'data-*', 'aria-*', 'loading_state']
+    def __init__(self, children=None, id=Component.UNDEFINED, key=Component.UNDEFINED, style=Component.UNDEFINED, className=Component.UNDEFINED, title=Component.UNDEFINED, visible=Component.UNDEFINED, width=Component.UNDEFINED, transitionType=Component.UNDEFINED, forceRender=Component.UNDEFINED, destroyOnClose=Component.UNDEFINED, closable=Component.UNDEFINED, closeIconType=Component.UNDEFINED, draggable=Component.UNDEFINED, dragClassName=Component.UNDEFINED, zIndex=Component.UNDEFINED, bodyStyle=Component.UNDEFINED, loading=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
+        self._prop_names = ['id', 'key', 'children', 'style', 'className', 'title', 'visible', 'width', 'transitionType', 'forceRender', 'destroyOnClose', 'closable', 'closeIconType', 'draggable', 'dragClassName', 'zIndex', 'bodyStyle', 'loading', 'data-*', 'aria-*', 'loading_state']
         self._valid_wildcard_attributes =            ['data-', 'aria-']
-        self.available_properties = ['id', 'key', 'children', 'style', 'className', 'title', 'visible', 'width', 'transitionType', 'closable', 'closeIconType', 'draggable', 'dragClassName', 'zIndex', 'bodyStyle', 'loading', 'data-*', 'aria-*', 'loading_state']
+        self.available_properties = ['id', 'key', 'children', 'style', 'className', 'title', 'visible', 'width', 'transitionType', 'forceRender', 'destroyOnClose', 'closable', 'closeIconType', 'draggable', 'dragClassName', 'zIndex', 'bodyStyle', 'loading', 'data-*', 'aria-*', 'loading_state']
         self.available_wildcard_properties =            ['data-', 'aria-']
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()

@@ -30,6 +30,8 @@ const AntdPopupCard = (props) => {
         title,
         width,
         transitionType,
+        forceRender,
+        destroyOnClose,
         closable,
         closeIconType,
         draggable,
@@ -144,6 +146,8 @@ const AntdPopupCard = (props) => {
                 </div>
             }
             transitionName={transitionType === 'none' ? '' : `ant-${transitionType}`}
+            forceRender={forceRender}
+            destroyOnClose={destroyOnClose}
             width={width}
             open={visible}
             zIndex={zIndex}
@@ -230,6 +234,18 @@ AntdPopupCard.propTypes = {
     ]),
 
     /**
+     * 是否在初始化卡片未显示时，强制渲染卡片内部元素
+     * 默认值：`false`
+     */
+    forceRender: PropTypes.bool,
+
+    /**
+     * 是否在卡片关闭后自动销毁内部元素
+     * 默认值：`true`
+     */
+    destroyOnClose: PropTypes.bool,
+
+    /**
      * 是否显示右上角的关闭按钮
      * 默认值：`true`
      */
@@ -312,7 +328,9 @@ AntdPopupCard.defaultProps = {
     visible: true,
     closable: true,
     zIndex: 1000,
-    loading: false
+    loading: false,
+    forceRender: false,
+    destroyOnClose: true
 }
 
 export default AntdPopupCard;
