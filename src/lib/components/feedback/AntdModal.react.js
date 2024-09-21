@@ -48,6 +48,7 @@ const AntdModal = (props) => {
         confirmLoading,
         confirmAutoSpin,
         transitionType,
+        forceRender,
         destroyOnClose,
         loading,
         loading_state
@@ -112,6 +113,7 @@ const AntdModal = (props) => {
                 afterClose={listenClose}
                 footer={renderFooter ? undefined : null}
                 confirmLoading={confirmLoading}
+                forceRender={forceRender}
                 destroyOnClose={destroyOnClose}
                 loading={loading}
                 data-dash-is-loading={
@@ -380,6 +382,12 @@ AntdModal.propTypes = {
     ]),
 
     /**
+     * 是否在初始化模态框未显示时，强制渲染模态框内部元素
+     * 默认值：`false`
+     */
+    forceRender: PropTypes.bool,
+
+    /**
      * 是否在模态框关闭后自动销毁内部元素
      * 默认值：`true`
      */
@@ -441,6 +449,7 @@ AntdModal.defaultProps = {
     confirmLoading: false,
     confirmAutoSpin: false,
     transitionType: 'zoom',
+    forceRender: false,
     destroyOnClose: true,
     locale: 'zh-cn',
     loading: false
