@@ -19,6 +19,8 @@ import AntdHeader from './components/layout/AntdHeader.react';
 import AntdContent from './components/layout/AntdContent.react';
 import AntdFooter from './components/layout/AntdFooter.react';
 import AntdSider from './components/layout/AntdSider.react';
+import AntdSplitter from './components/layout/splitter/AntdSplitter.react';
+import AntdSplitterPanel from './components/layout/splitter/AntdSplitterPanel.react';
 // 导航
 import AntdAnchor from './components/navigation/AntdAnchor.react';
 import AntdBreadcrumb from './components/navigation/AntdBreadcrumb.react';
@@ -141,6 +143,8 @@ export {
     AntdContent,
     AntdFooter,
     AntdSider,
+    AntdSplitter,
+    AntdSplitterPanel,
     // 导航
     AntdAnchor,
     AntdBreadcrumb,

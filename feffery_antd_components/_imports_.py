@@ -91,6 +91,8 @@ from .AntdSider import AntdSider
 from .AntdSpace import AntdSpace
 from .AntdCol import AntdCol
 from .AntdRow import AntdRow
+from .AntdSplitter import AntdSplitter
+from .AntdSplitterPanel import AntdSplitterPanel
 from .AntdAnchor import AntdAnchor
 from .AntdBreadcrumb import AntdBreadcrumb
 from .AntdDropdown import AntdDropdown
@@ -202,6 +204,8 @@ __all__ = [
     "AntdSpace",
     "AntdCol",
     "AntdRow",
+    "AntdSplitter",
+    "AntdSplitterPanel",
     "AntdAnchor",
     "AntdBreadcrumb",
     "AntdDropdown",
