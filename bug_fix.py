@@ -6,25 +6,19 @@ app = dash.Dash(__name__)
 
 app.layout = html.Div(
     [
-        fac.AntdRow(
+        fac.AntdSpace(
             [
-                fac.AntdCol(
-                    fac.AntdCenter(
-                        f'col{i}',
-                        style={
-                            'backgroundColor': '#1677ff'
-                            if i % 2 == 0
-                            else '#1677ffbf',
-                            'color': 'white',
-                            'height': 100,
-                        },
-                    ),
-                    span=6,
-                )
-                for i in range(1, 5)
+                fac.AntdDateRangePicker(),
+                fac.AntdDateRangePicker(
+                    placeholder=[
+                        '开始日期时间',
+                        '结束日期时间',
+                    ],
+                    showTime=True,
+                    needConfirm=True,
+                ),
             ],
-            gutter=10,
-            align='center',
+            wrap=True,
         )
     ],
     style={'padding': 50},

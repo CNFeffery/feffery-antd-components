@@ -494,9 +494,15 @@ const AntdDateRangePicker = (props) => {
                     placeholder={(placeholder && placeholder.length === 2) ? placeholder : undefined}
                     onChange={onChange}
                     onPanelChange={(v, m) => {
-                        setProps({
-                            pickerValue: (v[0] || v[1]).format(format)
-                        })
+                        if (v.length === 1) {
+                            setProps({
+                                pickerValue: v[0].format(format),
+                            })
+                        } else {
+                            setProps({
+                                pickerValue: [v[0].format(format), v[1].format(format)],
+                            })
+                        }
                     }}
                     variant={(
                         !variant ?
@@ -504,7 +510,13 @@ const AntdDateRangePicker = (props) => {
                             variant
                     )}
                     disabledDate={disabledDatesStrategy ? checkDisabledDate : undefined}
-                    pickerValue={pickerValue && [dayjs(pickerValue, format), dayjs(pickerValue, format)]}
+                    pickerValue={
+                        pickerValue ?
+                            Array.isArray(pickerValue) ?
+                                [dayjs(pickerValue[0], format), dayjs(pickerValue[1], format)] :
+                                [dayjs(pickerValue, format), dayjs(pickerValue, format)] :
+                            undefined
+                    }
                     value={
                         formId && (name || id) ?
                             (
