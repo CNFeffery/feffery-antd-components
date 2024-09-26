@@ -112,6 +112,9 @@ Keyword arguments:
             - title (string; optional):
                 下拉菜单锚点标题内容.
 
+        - miniChartColor (string; optional):
+            当`renderType`为`'mini-line'`、`'mini-area'`、`'mini-bar'`时，设置图表颜色.
+
         - progressOneHundredPercentColor (string; optional):
             当`renderType`为`'mini-progress'`、`'mini-ring-progress'`时，设置进度完成状态下的填充色
             默认值：`'#52c41a'`.

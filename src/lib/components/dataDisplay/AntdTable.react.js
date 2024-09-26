@@ -115,6 +115,10 @@ AntdTable.propTypes = {
                     cancelText: PropTypes.string
                 }),
                 /**
+                 * 当`renderType`为`'mini-line'`、`'mini-area'`、`'mini-bar'`时，设置图表颜色
+                 */
+                miniChartColor: PropTypes.string,
+                /**
                  * 当`renderType`为`'mini-line'`、`'mini-area'`、`'mini-bar'`时，设置用于渲染信息卡片的`javascript`函数字符串
                  */
                 tooltipCustomContent: PropTypes.string,

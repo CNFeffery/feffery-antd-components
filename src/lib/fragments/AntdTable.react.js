@@ -1628,6 +1628,13 @@ class AntdTable extends Component {
                                 }
                             }
                         }
+                        // 检查是否设置了miniChartColor参数
+                        if (columns[i]['renderOptions']?.miniChartColor) {
+                            config = {
+                                ...config,
+                                color: columns[i]['renderOptions'].miniChartColor
+                            }
+                        }
                         return <div style={{ height: miniChartHeight }}><TinyLine {...config} /></div>;
                     }
                 }
@@ -1647,6 +1654,13 @@ class AntdTable extends Component {
                                 tooltip: {
                                     customContent: eval(columns[i]['renderOptions'].tooltipCustomContent)
                                 }
+                            }
+                        }
+                        // 检查是否设置了miniChartColor参数
+                        if (columns[i]['renderOptions']?.miniChartColor) {
+                            config = {
+                                ...config,
+                                color: columns[i]['renderOptions'].miniChartColor
                             }
                         }
                         return <div style={{ height: miniChartHeight }}><TinyColumn {...config} /></div>;
@@ -1711,6 +1725,19 @@ class AntdTable extends Component {
                                 ...config,
                                 tooltip: {
                                     customContent: eval(columns[i]['renderOptions'].tooltipCustomContent)
+                                }
+                            }
+                        }
+                        // 检查是否设置了miniChartColor参数
+                        if (columns[i]['renderOptions']?.miniChartColor) {
+                            config = {
+                                ...config,
+                                areaStyle: {
+                                    fill: columns[i]['renderOptions'].miniChartColor,
+                                    fillOpacity: 0.4
+                                },
+                                line: {
+                                    color: columns[i]['renderOptions'].miniChartColor
                                 }
                             }
                         }
