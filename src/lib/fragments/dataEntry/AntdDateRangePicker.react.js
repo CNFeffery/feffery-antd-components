@@ -442,7 +442,6 @@ const AntdDateRangePicker = (props) => {
         }
     }
 
-
     return (
         <div>
             <ConfigProvider locale={str2Locale.get(locale)}>
@@ -494,15 +493,9 @@ const AntdDateRangePicker = (props) => {
                     placeholder={(placeholder && placeholder.length === 2) ? placeholder : undefined}
                     onChange={onChange}
                     onPanelChange={(v, m) => {
-                        if (v.length === 1) {
-                            setProps({
-                                pickerValue: v[0].format(format),
-                            })
-                        } else {
-                            setProps({
-                                pickerValue: [v[0].format(format), v[1].format(format)],
-                            })
-                        }
+                        setProps({
+                            pickerValue: [v[0].format(format), v[1] && v[1].format(format)],
+                        })
                     }}
                     variant={(
                         !variant ?
@@ -512,9 +505,15 @@ const AntdDateRangePicker = (props) => {
                     disabledDate={disabledDatesStrategy ? checkDisabledDate : undefined}
                     pickerValue={
                         pickerValue ?
-                            Array.isArray(pickerValue) ?
-                                [dayjs(pickerValue[0], format), dayjs(pickerValue[1], format)] :
-                                [dayjs(pickerValue, format), dayjs(pickerValue, format)] :
+                            (
+                                Array.isArray(pickerValue) ?
+                                    (
+                                        pickerValue[1] ?
+                                            [dayjs(pickerValue[0], format), dayjs(pickerValue[1], format)] :
+                                            dayjs(pickerValue[0], format)
+                                    ) :
+                                    dayjs(pickerValue, format)
+                            ) :
                             undefined
                     }
                     value={
