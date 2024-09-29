@@ -26,23 +26,23 @@ Keyword arguments:
 
     `steps` is a list of dicts with keys:
 
-    - description (a list of or a singular dash component, string or number; optional):
-        步骤描述内容.
-
-    - disabled (boolean; optional):
-        是否禁用当前步骤.
-
-    - icon (a list of or a singular dash component, string or number; optional):
-        步骤自定义图标.
-
-    - status (a value equal to: 'wait', 'process', 'finish', 'error'; optional):
-        强制设置当前步骤状态，同参数status.
+    - title (a list of or a singular dash component, string or number; required):
+        步骤标题.
 
     - subTitle (a list of or a singular dash component, string or number; optional):
         步骤子标题.
 
-    - title (a list of or a singular dash component, string or number; required):
-        步骤标题.
+    - description (a list of or a singular dash component, string or number; optional):
+        步骤描述内容.
+
+    - icon (a list of or a singular dash component, string or number; optional):
+        步骤自定义图标.
+
+    - disabled (boolean; optional):
+        是否禁用当前步骤.
+
+    - status (a value equal to: 'wait', 'process', 'finish', 'error'; optional):
+        强制设置当前步骤状态，同参数status.
 
 - current (number; default 0):
     当前所处的步骤序号  默认值：`0`.
@@ -85,14 +85,14 @@ Keyword arguments:
 
     `loading_state` is a dict with keys:
 
-    - component_name (string; optional):
-        Holds the name of the component that is loading.
-
     - is_loading (boolean; optional):
         Determines if the component is loading or not.
 
     - prop_name (string; optional):
-        Holds which property is loading."""
+        Holds which property is loading.
+
+    - component_name (string; optional):
+        Holds the name of the component that is loading."""
     _children_props = ['steps[].title', 'steps[].subTitle', 'steps[].description', 'steps[].icon']
     _base_nodes = ['children']
     _namespace = 'feffery_antd_components'

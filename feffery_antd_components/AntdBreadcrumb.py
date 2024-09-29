@@ -26,8 +26,17 @@ Keyword arguments:
 
     `items` is a list of dicts with keys:
 
+    - title (string; optional):
+        节点标题.
+
+    - key (string; optional):
+        节点唯一key值.
+
     - href (string; optional):
         节点链接地址.
+
+    - target (string; optional):
+        节点链接跳转行为.
 
     - icon (string; optional):
         节点前缀图标名称，与`iconRenderer`方式相关联，`'AntdIcon'`方式下同AntdIcon的icon参数，`'fontawesome'`方式下代表图标的css类名.
@@ -35,21 +44,26 @@ Keyword arguments:
     - iconRenderer (a value equal to: 'AntdIcon', 'fontawesome'; optional):
         前缀图标渲染方式，可选项有`'AntdIcon'`、`'fontawesome'`  默认值：`'AntdIcon'`.
 
-    - key (string; optional):
-        节点唯一key值.
-
     - menuItems (list of dicts; optional):
         为当前节点设置下拉菜单生成所需的数据结构.
 
         `menuItems` is a list of dicts with keys:
 
-        - disabled (boolean; optional):
+        - title (string; optional):
 
-            是否禁用当前下拉菜单节点.
+            下拉菜单节点标题.
 
         - href (string; optional):
 
             下拉菜单节点链接地址.
+
+        - target (string; optional):
+
+            下拉菜单节点链接跳转方式.
+
+        - disabled (boolean; optional):
+
+            是否禁用当前下拉菜单节点.
 
         - icon (string; optional):
 
@@ -59,20 +73,6 @@ Keyword arguments:
 
             前缀图标渲染方式，可选项有`'AntdIcon'`、`'fontawesome'`  默认值：`'AntdIcon'`.
 
-        - target (string; optional):
-
-            下拉菜单节点链接跳转方式.
-
-        - title (string; optional):
-
-            下拉菜单节点标题.
-
-    - target (string; optional):
-        节点链接跳转行为.
-
-    - title (string; optional):
-        节点标题.
-
 - separator (a list of or a singular dash component, string or number; default '/'):
     组件型，分隔符  默认值：`'/'`.
 
@@ -81,11 +81,11 @@ Keyword arguments:
 
     `clickedItem` is a dict with keys:
 
-    - itemKey (string; optional):
-        被点击节点key值.
-
     - itemTitle (string; optional):
         被点击节点标题.
+
+    - itemKey (string; optional):
+        被点击节点key值.
 
     - timestamp (number; optional):
         点击事件时间戳.
@@ -100,14 +100,14 @@ Keyword arguments:
 
     `loading_state` is a dict with keys:
 
-    - component_name (string; optional):
-        Holds the name of the component that is loading.
-
     - is_loading (boolean; optional):
         Determines if the component is loading or not.
 
     - prop_name (string; optional):
-        Holds which property is loading."""
+        Holds which property is loading.
+
+    - component_name (string; optional):
+        Holds the name of the component that is loading."""
     _children_props = ['separator']
     _base_nodes = ['separator', 'children']
     _namespace = 'feffery_antd_components'

@@ -60,20 +60,26 @@ Keyword arguments:
     - aspect (number; optional):
         裁切区域宽高比  默认值：`1`.
 
+    - shape (a value equal to: 'rect', 'round'; optional):
+        裁切区域形状，可选项有`'rect'`、`'round'`  默认值：`'rect'`.
+
     - grid (boolean; optional):
         是否显示裁切区域辅助网格线  默认值：`False`.
 
-    - maxZoom (number; optional):
-        开启缩放功能时，设置最大缩放倍数  默认值：`3`.
+    - quality (number; optional):
+        图片质量，取值应在0到1之间  默认值：`0.4`.
+
+    - zoom (boolean; optional):
+        是否启用图片缩放功能  默认值：`True`.
+
+    - rotate (boolean; optional):
+        是否启用图片旋转功能  默认值：`False`.
 
     - minZoom (number; optional):
         开启缩放功能时，设置最小缩放倍数  默认值：`1`.
 
-    - modalCancel (a list of or a singular dash component, string or number; optional):
-        组件型，图片编辑模态框取消按钮内容  默认值：`'取消'`.
-
-    - modalOk (a list of or a singular dash component, string or number; optional):
-        组件型，图片编辑模态框确认按钮内容  默认值：`'确定'`.
+    - maxZoom (number; optional):
+        开启缩放功能时，设置最大缩放倍数  默认值：`3`.
 
     - modalTitle (a list of or a singular dash component, string or number; optional):
         组件型，图片编辑模态框的标题  默认值：`'编辑图片'`.
@@ -81,17 +87,11 @@ Keyword arguments:
     - modalWidth (number; optional):
         图片编辑模态框像素宽度  默认值：`520`.
 
-    - quality (number; optional):
-        图片质量，取值应在0到1之间  默认值：`0.4`.
+    - modalOk (a list of or a singular dash component, string or number; optional):
+        组件型，图片编辑模态框确认按钮内容  默认值：`'确定'`.
 
-    - rotate (boolean; optional):
-        是否启用图片旋转功能  默认值：`False`.
-
-    - shape (a value equal to: 'rect', 'round'; optional):
-        裁切区域形状，可选项有`'rect'`、`'round'`  默认值：`'rect'`.
-
-    - zoom (boolean; optional):
-        是否启用图片缩放功能  默认值：`True`.
+    - modalCancel (a list of or a singular dash component, string or number; optional):
+        组件型，图片编辑模态框取消按钮内容  默认值：`'取消'`.
 
 - fileListMaxLength (number; optional):
     限制已上传文件列表长度上限.
@@ -129,17 +129,6 @@ Keyword arguments:
 
     `progressProps` is a dict with keys:
 
-    - format (dict; optional):
-        进度文字格式.
-
-        `format` is a dict with keys:
-
-        - prefix (string; optional):
-            进度文字前缀内容.
-
-        - suffix (string; optional):
-            进度文字后缀内容  默认值：`'%'`.
-
     - strokeColor (dict; optional):
         进度条颜色.
 
@@ -158,6 +147,17 @@ Keyword arguments:
     - strokeWidth (number; optional):
         进度条像素宽度.
 
+    - format (dict; optional):
+        进度文字格式.
+
+        `format` is a dict with keys:
+
+        - prefix (string; optional):
+            进度文字前缀内容.
+
+        - suffix (string; optional):
+            进度文字后缀内容  默认值：`'%'`.
+
 - showSuccessMessage (boolean; default True):
     是否在每个文件上传成功后，分别弹出消息提示  默认值：`True`.
 
@@ -169,84 +169,81 @@ Keyword arguments:
 
     `lastUploadTaskRecord` is a dict with keys:
 
-    - completeTimestamp (number; optional):
-        上传完成时间戳.
-
     - fileName (string; optional):
         文件名称.
 
     - fileSize (number; optional):
         文件大小.
 
-    - taskId (string; optional):
-        上传任务唯一识别id，当任务状态为`'failed'`时不会携带此信息.
-
-    - taskStatus (string; optional):
-        上传任务状态，`'success'`表示成功，`'failed'`表示失败.
-
-    - uploadResponse (boolean | number | string | dict | list; optional):
-        上传任务的接口响应信息.
-
-    - url (string; optional):
-        当前文件的下载链接. | list of dicts with keys:
-
     - completeTimestamp (number; optional):
         上传完成时间戳.
 
-    - fileName (string; optional):
-        文件名称.
-
-    - fileSize (number; optional):
-        文件大小.
-
-    - taskId (string; optional):
-        上传任务唯一识别id，当任务状态为`'failed'`时不会携带此信息.
-
     - taskStatus (string; optional):
         上传任务状态，`'success'`表示成功，`'failed'`表示失败.
 
-    - uploadResponse (boolean | number | string | dict | list; optional):
-        上传任务的接口响应信息.
+    - taskId (string; optional):
+        上传任务唯一识别id，当任务状态为`'failed'`时不会携带此信息.
 
     - url (string; optional):
         当前文件的下载链接.
+
+    - uploadResponse (boolean | number | string | dict | list; optional):
+        上传任务的接口响应信息. | list of dicts with keys:
+
+    - fileName (string; optional):
+        文件名称.
+
+    - fileSize (number; optional):
+        文件大小.
+
+    - completeTimestamp (number; optional):
+        上传完成时间戳.
+
+    - taskStatus (string; optional):
+        上传任务状态，`'success'`表示成功，`'failed'`表示失败.
+
+    - taskId (string; optional):
+        上传任务唯一识别id，当任务状态为`'failed'`时不会携带此信息.
+
+    - url (string; optional):
+        当前文件的下载链接.
+
+    - uploadResponse (boolean | number | string | dict | list; optional):
+        上传任务的接口响应信息.
 
 - listUploadTaskRecord (list of dicts; optional):
     监听当前已上传文件列表中上传任务相关信息.
 
     `listUploadTaskRecord` is a list of dicts with keys:
 
-    - completeTimestamp (number; optional):
-        上传完成时间戳.
-
     - fileName (string; optional):
         文件名称.
 
     - fileSize (number; optional):
         文件大小.
 
-    - taskId (string; optional):
-        上传任务唯一识别id，当任务状态为`'failed'`时不会携带此信息.
+    - completeTimestamp (number; optional):
+        上传完成时间戳.
 
     - taskStatus (string; optional):
         上传任务状态，`'success'`表示成功，`'failed'`表示失败.
 
+    - taskId (string; optional):
+        上传任务唯一识别id，当任务状态为`'failed'`时不会携带此信息.
+
     - uid (string; optional):
         当前文件上传唯一识别id，前端自动生成.
 
-    - uploadResponse (boolean | number | string | dict | list; optional):
-        上传任务的接口响应信息.
-
     - url (string; optional):
         当前文件下载链接.
+
+    - uploadResponse (boolean | number | string | dict | list; optional):
+        上传任务的接口响应信息.
 
 - defaultFileList (list of dicts; optional):
     初始化文件列表展示信息.
 
     `defaultFileList` is a list of dicts with keys:
-
-    - fileSize (number; optional):
-        当前文件大小.
 
     - name (string; optional):
         当前文件名称.
@@ -254,14 +251,17 @@ Keyword arguments:
     - status (a value equal to: 'done', 'error', 'removed'; optional):
         当前文件展示状态，可选项有`'done'`、`'error'`、`'removed'`.
 
-    - taskId (string; optional):
-        若传入有效值，将作为当前组件的`uploadId`参数.
-
     - uid (boolean | number | string | dict | list; optional):
         当前文件唯一识别id.
 
     - url (string; optional):
         当前文件下载链接.
+
+    - taskId (string; optional):
+        若传入有效值，将作为当前组件的`uploadId`参数.
+
+    - fileSize (number; optional):
+        当前文件大小.
 
 - disabled (boolean; default False):
     是否禁用当前组件  默认值：`False`.
@@ -279,14 +279,14 @@ Keyword arguments:
 
     `loading_state` is a dict with keys:
 
-    - component_name (string; optional):
-        Holds the name of the component that is loading.
-
     - is_loading (boolean; optional):
         Determines if the component is loading or not.
 
     - prop_name (string; optional):
-        Holds which property is loading."""
+        Holds which property is loading.
+
+    - component_name (string; optional):
+        Holds the name of the component that is loading."""
     _children_props = ['editConfig.modalTitle', 'editConfig.modalOk', 'editConfig.modalCancel', 'buttonContent']
     _base_nodes = ['buttonContent', 'children']
     _namespace = 'feffery_antd_components'

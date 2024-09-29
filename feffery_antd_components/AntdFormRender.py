@@ -26,17 +26,14 @@ Keyword arguments:
 
     `schema` is a dict with keys:
 
-    - column (number; optional):
-        设置表单布局，一行应该有几列，默认为3.
+    - type (a value equal to: 'object'; optional):
+        固定配置为type: 'object'.
 
     - displayType (a value equal to: 'column', 'row', 'inline'; optional):
         设置表单表单项label布局方式，可选的有'column'、'row'与'inline'，默认为'column'.
 
-    - fieldCol (number; optional):
-        设置表单控件占位格数.
-
-    - labelCol (number; optional):
-        设置表单标签占位格数.
+    - column (number; optional):
+        设置表单布局，一行应该有几列，默认为3.
 
     - labelWidth (number; optional):
         设置表单项标签的宽度.
@@ -44,97 +41,161 @@ Keyword arguments:
     - maxWidth (number; optional):
         设置表单项控件的最大宽度.
 
+    - labelCol (number; optional):
+        设置表单标签占位格数.
+
+    - fieldCol (number; optional):
+        设置表单控件占位格数.
+
     - properties (dict; optional):
         设置表单控件.
 
         `properties` is a dict with strings as keys and values of type
         dict with keys:
 
-        - cellSpan (number
+        - type (a value equal to: 'string', 'number', 'boolean', 'array', 'range', 'html', 'block'; optional):
+
+            设置表单字段的类型，可选的有'string'、'number'、'boolean'、'array'、'range'、'html'、'block'.
+
+        - title (string; optional):
+
+            设置表单字段的标签.
+
+        - labelWidth (number
 
               Or string; optional):
 
-            设置表单项跨列展示，目前需配合lableWidth来使用，否则无法与其他表单项在样式上对齐，通过配置单个表单项的labelCol、fieldCol勉强能改善.
+            设置表单项标签的宽度.
 
-        - className (string; optional):
-
-            设置自定义控件class名称.
-
-        - dependencies (list of strings; optional):
-
-            设置表单依赖元素，当依赖的元素更新时，会触发本元素的重新渲染，用于复杂的表单联动.
-
-        - description (string; optional):
-
-            设置副标题描述.
-
-        - disabled (boolean
+        - maxWidth (number
 
       Or string; optional):
 
-            设置是否禁用，默认为False.
-
-        - extra (string; optional):
-
-            设置更多的说明信息，支持html格式，会紧贴在元素下面一行展示.
-
-        - fieldCol (number | string; optional):
-
-            设置表单控件占位格数.
-
-        - format (a value equal to: 'image', 'textarea', 'color', 'email', 'url', 'dateTime', 'date', 'time', 'upload'; optional):
-
-            在已设置的type下，如何处理这个type.
-
-        - hidden (boolean | string; optional):
-
-            设置是否隐藏，默认为False.
+            设置表单项控件的最大宽度.
 
         - labelCol (number | string; optional):
 
             设置表单标签占位格数.
 
-        - labelWidth (number | string; optional):
+        - fieldCol (number | string; optional):
 
-            设置表单项标签的宽度.
+            设置表单控件占位格数.
 
-        - max (number | string; optional):
+        - cellSpan (number | string; optional):
 
-            设置string类型为字符串最大长度；number类型时为最大值；array 类型时为数组最大长度.
+            设置表单项跨列展示，目前需配合lableWidth来使用，否则无法与其他表单项在样式上对齐，通过配置单个表单项的labelCol、fieldCol勉强能改善.
 
-        - maxWidth (number | string; optional):
+        - span (number | string; optional):
 
-            设置表单项控件的最大宽度.
+            设置表单项列宽度，表单布局会被切割成 24 等份，可以通过设置 span 来自定义表单项所占的宽度.
 
-        - min (number | string; optional):
+        - widget (a value equal to: 'input', 'inputNumber', 'select', 'multiSelect', 'radio', 'checkboxes', 'textArea', 'checkbox', 'switch', 'rate', 'slider', 'datePicker', 'dateRange', 'timePicker', 'timeRange', 'cascader', 'treeSelect', 'color', 'imageInput', 'urlInput', 'html'; optional):
 
-            设置string类型为字符串最小长度；number类型时为最小值；array 类型时为数组最小长度.
+            设置指定渲染的控件名称.
 
         - placeholder (string | list of strings; optional):
 
             设置输入内容提示.
 
-        - props (dict; optional):
+        - description (string; optional):
 
-            设置额外属性，如果使用的是antd组件，对应的就是antd组件的其他属性.
+            设置副标题描述.
 
-        - readOnly (boolean | string; optional):
+        - tooltip (dict; optional):
 
-            设置是否为可读模式，默认为False.
+            设置气泡提示，支持html格式，可传入一个antd的tooltip配置对象支持更多配置.
 
-        - readOnlyWidget (string; optional):
+            `tooltip` is a string | dict with keys:
 
-            指定只读渲染组件名称.
+            - title (boolean | number | string | dict | list; optional):
+
+                设置显示的文字内容.
+
+            - placement (a value equal to: 'top', 'left', 'right', 'bottom', 'topLeft', 'topRight', 'bottomLeft', 'bottomRight'; optional):
+
+                设置气泡框的位置，可选的有'top'、'left'、'right'、'bottom'、'topLeft'
+
+                、'topRight'、'bottomLeft'、'bottomRight'、'leftTop'、'leftBottom'
+
+                、'rightTop'、'rightBottom'，默认为'top'.
+
+            - color (string; optional):
+
+                设置背景颜色.
+
+            - mouseEnterDelay (number; optional):
+
+                设置鼠标移入后延时多少才显示 Tooltip，单位：秒，默认为0.1.
+
+            - mouseLeaveDelay (number; optional):
+
+                设置鼠标移出后延时多少才隐藏 Tooltip，单位：秒，默认为0.1.
+
+            - overlayClassName (string | dict; optional):
+
+                设置卡片css类.
+
+            - overlayStyle (dict; optional):
+
+                设置卡片样式.
+
+            - overlayInnerStyle (dict; optional):
+
+                设置卡片内容区域的样式.
+
+            - trigger (a value equal to: 'hover', 'focus', 'click' | list of a value equal to: 'hover', 'focus', 'click's; optional):
+
+                设置触发行为，可选的有'hover'、'focus'、'click'，或是以上多个组成的数组，默认为'hover'.
+
+            - zIndex (number; optional):
+
+                设置悬浮层zIndex.
+
+            - arrow (a value equal to: 'show', 'hide', 'center'; optional):
+
+                设置修改箭头的显示状态以及修改箭头是否指向目标元素中心，默认为'show'.
+
+            - fresh (boolean; optional):
+
+                用于设置是否始终保持更新内容，默认为False。默认情况下，Tooltip
+
+                在关闭时会缓存内容，设置该属性后会始终保持更新。.
+
+            - open (boolean; optional):
+
+                用于监听或控制当前tooltip的显隐，默认为False.
+
+            - autoAdjustOverflow (boolean; optional):
+
+                用于设置气泡被遮挡时自动调整位置,默认为True.
+
+            - defaultOpen (boolean; optional):
+
+                设置默认是否显隐，默认为False.
+
+            - destroyTooltipOnHide (boolean; optional):
+
+                设置关闭后是否销毁Tooltip，默认为False.
+
+        - extra (string; optional):
+
+            设置更多的说明信息，支持html格式，会紧贴在元素下面一行展示.
 
         - required (boolean | string; optional):
 
             设置是否必填，默认为False.
 
-        - reserveLabel (boolean | string; optional):
+        - min (number | string; optional):
 
-            当title未设置时，通过配置reserveLabel:
+            设置string类型为字符串最小长度；number类型时为最小值；array 类型时为数组最小长度.
 
-            True可以保留labelWidth占位，使得输入控件和其他控件上下对齐.
+        - max (number | string; optional):
+
+            设置string类型为字符串最大长度；number类型时为最大值；array 类型时为数组最大长度.
+
+        - format (a value equal to: 'image', 'textarea', 'color', 'email', 'url', 'dateTime', 'date', 'time', 'upload'; optional):
+
+            在已设置的type下，如何处理这个type.
 
         - rules (list of dicts; optional):
 
@@ -198,97 +259,55 @@ Keyword arguments:
 
                 如果字段仅包含空格则校验不通过，只在 type: 'string' 时生效.
 
-        - span (number | string; optional):
+        - hidden (boolean | string; optional):
 
-            设置表单项列宽度，表单布局会被切割成 24 等份，可以通过设置 span 来自定义表单项所占的宽度.
+            设置是否隐藏，默认为False.
+
+        - disabled (boolean | string; optional):
+
+            设置是否禁用，默认为False.
+
+        - readOnly (boolean | string; optional):
+
+            设置是否为可读模式，默认为False.
+
+        - readOnlyWidget (string; optional):
+
+            指定只读渲染组件名称.
+
+        - dependencies (list of strings; optional):
+
+            设置表单依赖元素，当依赖的元素更新时，会触发本元素的重新渲染，用于复杂的表单联动.
+
+        - className (string; optional):
+
+            设置自定义控件class名称.
+
+        - reserveLabel (boolean | string; optional):
+
+            当title未设置时，通过配置reserveLabel:
+
+            True可以保留labelWidth占位，使得输入控件和其他控件上下对齐.
+
+        - props (dict; optional):
+
+            设置额外属性，如果使用的是antd组件，对应的就是antd组件的其他属性. | dict with keys:
+
+        - type (a value equal to: 'object'; optional):
+
+            固定配置为type: 'object'.
 
         - title (string; optional):
 
-            设置表单字段的标签.
+            设置标题.
 
-        - tooltip (dict; optional):
+        - widget (a value equal to: 'collapse', 'card', 'lineTitle', 'subInline'; optional):
 
-            设置气泡提示，支持html格式，可传入一个antd的tooltip配置对象支持更多配置.
+            设置希望使用的嵌套组件名称，可选的有'collapse'、'card'、'lineTitle'、'subInline'，默认为'card'.
 
-            `tooltip` is a string | dict with keys:
+        - properties (dict; optional):
 
-            - arrow (a value equal to: 'show', 'hide', 'center'; optional):
-
-                设置修改箭头的显示状态以及修改箭头是否指向目标元素中心，默认为'show'.
-
-            - autoAdjustOverflow (boolean; optional):
-
-                用于设置气泡被遮挡时自动调整位置,默认为True.
-
-            - color (string; optional):
-
-                设置背景颜色.
-
-            - defaultOpen (boolean; optional):
-
-                设置默认是否显隐，默认为False.
-
-            - destroyTooltipOnHide (boolean; optional):
-
-                设置关闭后是否销毁Tooltip，默认为False.
-
-            - fresh (boolean; optional):
-
-                用于设置是否始终保持更新内容，默认为False。默认情况下，Tooltip
-
-                在关闭时会缓存内容，设置该属性后会始终保持更新。.
-
-            - mouseEnterDelay (number; optional):
-
-                设置鼠标移入后延时多少才显示 Tooltip，单位：秒，默认为0.1.
-
-            - mouseLeaveDelay (number; optional):
-
-                设置鼠标移出后延时多少才隐藏 Tooltip，单位：秒，默认为0.1.
-
-            - open (boolean; optional):
-
-                用于监听或控制当前tooltip的显隐，默认为False.
-
-            - overlayClassName (string | dict; optional):
-
-                设置卡片css类.
-
-            - overlayInnerStyle (dict; optional):
-
-                设置卡片内容区域的样式.
-
-            - overlayStyle (dict; optional):
-
-                设置卡片样式.
-
-            - placement (a value equal to: 'top', 'left', 'right', 'bottom', 'topLeft', 'topRight', 'bottomLeft', 'bottomRight'; optional):
-
-                设置气泡框的位置，可选的有'top'、'left'、'right'、'bottom'、'topLeft'
-
-                、'topRight'、'bottomLeft'、'bottomRight'、'leftTop'、'leftBottom'
-
-                、'rightTop'、'rightBottom'，默认为'top'.
-
-            - title (boolean | number | string | dict | list; optional):
-
-                设置显示的文字内容.
-
-            - trigger (a value equal to: 'hover', 'focus', 'click' | list of a value equal to: 'hover', 'focus', 'click's; optional):
-
-                设置触发行为，可选的有'hover'、'focus'、'click'，或是以上多个组成的数组，默认为'hover'.
-
-            - zIndex (number; optional):
-
-                设置悬浮层zIndex.
-
-        - type (a value equal to: 'string', 'number', 'boolean', 'array', 'range', 'html', 'block'; optional):
-
-            设置表单字段的类型，可选的有'string'、'number'、'boolean'、'array'、'range'、'html'、'block'.
-
-        - widget (a value equal to: 'input', 'inputNumber', 'select', 'multiSelect', 'radio', 'checkboxes', 'textArea', 'checkbox', 'switch', 'rate', 'slider', 'datePicker', 'dateRange', 'timePicker', 'timeRange', 'cascader', 'treeSelect', 'color', 'imageInput', 'urlInput', 'html'; optional):
-
-            设置指定渲染的控件名称. | dict with keys:
+            设置表单元素集合.
 
         - column (number | string; optional):
 
@@ -298,73 +317,15 @@ Keyword arguments:
 
             设置副标题描述.
 
-        - properties (dict; optional):
-
-            设置表单元素集合.
-
-        - props (dict; optional):
-
-            设置额外属性，透传到对应的嵌套组件中.
-
-        - title (string; optional):
-
-            设置标题.
-
         - tooltip (dict; optional):
 
             设置气泡提示，支持html格式，可传入一个antd的tooltip配置对象支持更多配置.
 
             `tooltip` is a string | dict with keys:
 
-            - arrow (a value equal to: 'show', 'hide', 'center'; optional):
+            - title (boolean | number | string | dict | list; optional):
 
-                设置修改箭头的显示状态以及修改箭头是否指向目标元素中心，默认为'show'.
-
-            - autoAdjustOverflow (boolean; optional):
-
-                用于设置气泡被遮挡时自动调整位置,默认为True.
-
-            - color (string; optional):
-
-                设置背景颜色.
-
-            - defaultOpen (boolean; optional):
-
-                设置默认是否显隐，默认为False.
-
-            - destroyTooltipOnHide (boolean; optional):
-
-                设置关闭后是否销毁Tooltip，默认为False.
-
-            - fresh (boolean; optional):
-
-                用于设置是否始终保持更新内容，默认为False。默认情况下，Tooltip
-
-                在关闭时会缓存内容，设置该属性后会始终保持更新。.
-
-            - mouseEnterDelay (number; optional):
-
-                设置鼠标移入后延时多少才显示 Tooltip，单位：秒，默认为0.1.
-
-            - mouseLeaveDelay (number; optional):
-
-                设置鼠标移出后延时多少才隐藏 Tooltip，单位：秒，默认为0.1.
-
-            - open (boolean; optional):
-
-                用于监听或控制当前tooltip的显隐，默认为False.
-
-            - overlayClassName (string | dict; optional):
-
-                设置卡片css类.
-
-            - overlayInnerStyle (dict; optional):
-
-                设置卡片内容区域的样式.
-
-            - overlayStyle (dict; optional):
-
-                设置卡片样式.
+                设置显示的文字内容.
 
             - placement (a value equal to: 'top', 'left', 'right', 'bottom', 'topLeft', 'topRight', 'bottomLeft', 'bottomRight'; optional):
 
@@ -374,9 +335,29 @@ Keyword arguments:
 
                 、'rightTop'、'rightBottom'，默认为'top'.
 
-            - title (boolean | number | string | dict | list; optional):
+            - color (string; optional):
 
-                设置显示的文字内容.
+                设置背景颜色.
+
+            - mouseEnterDelay (number; optional):
+
+                设置鼠标移入后延时多少才显示 Tooltip，单位：秒，默认为0.1.
+
+            - mouseLeaveDelay (number; optional):
+
+                设置鼠标移出后延时多少才隐藏 Tooltip，单位：秒，默认为0.1.
+
+            - overlayClassName (string | dict; optional):
+
+                设置卡片css类.
+
+            - overlayStyle (dict; optional):
+
+                设置卡片样式.
+
+            - overlayInnerStyle (dict; optional):
+
+                设置卡片内容区域的样式.
 
             - trigger (a value equal to: 'hover', 'focus', 'click' | list of a value equal to: 'hover', 'focus', 'click's; optional):
 
@@ -386,17 +367,47 @@ Keyword arguments:
 
                 设置悬浮层zIndex.
 
-        - type (a value equal to: 'object'; optional):
+            - arrow (a value equal to: 'show', 'hide', 'center'; optional):
 
-            固定配置为type: 'object'.
+                设置修改箭头的显示状态以及修改箭头是否指向目标元素中心，默认为'show'.
 
-        - widget (a value equal to: 'collapse', 'card', 'lineTitle', 'subInline'; optional):
+            - fresh (boolean; optional):
 
-            设置希望使用的嵌套组件名称，可选的有'collapse'、'card'、'lineTitle'、'subInline'，默认为'card'. | dict with keys:
+                用于设置是否始终保持更新内容，默认为False。默认情况下，Tooltip
 
-        - items (dict; optional):
+                在关闭时会缓存内容，设置该属性后会始终保持更新。.
 
-            动态项配置，可以是一个嵌套控件.
+            - open (boolean; optional):
+
+                用于监听或控制当前tooltip的显隐，默认为False.
+
+            - autoAdjustOverflow (boolean; optional):
+
+                用于设置气泡被遮挡时自动调整位置,默认为True.
+
+            - defaultOpen (boolean; optional):
+
+                设置默认是否显隐，默认为False.
+
+            - destroyTooltipOnHide (boolean; optional):
+
+                设置关闭后是否销毁Tooltip，默认为False.
+
+        - props (dict; optional):
+
+            设置额外属性，透传到对应的嵌套组件中. | dict with keys:
+
+        - type (a value equal to: 'array'; optional):
+
+            固定配置为type: 'array'.
+
+        - title (string; optional):
+
+            设置标题.
+
+        - widget (a value equal to: 'cardList', 'simpleList', 'tableList', 'drawerList', 'virtualList'; optional):
+
+            设置希望使用的列表组件名称，可选的有'cardList'、'simpleList'、'tableList'、'drawerList'、'virtualList'，默认为'cardList'.
 
         - max (number | string; optional):
 
@@ -412,12 +423,6 @@ Keyword arguments:
 
             `props` is a dict with keys:
 
-            - actionColumnProps (dict; optional):
-
-                设置tableList | drawerList | virtualList 中操作列的属性，参考 Antd
-
-                Table ColumnType。 其中 title 使用 colHeaderText 代替。.
-
             - addBtnProps (dict; optional):
 
                 设置添加按钮属性，参考 Antd Button Props().
@@ -425,6 +430,12 @@ Keyword arguments:
             - delConfirmProps (dict; optional):
 
                 设置删除确认弹窗属性，参考 Antd PopConfirm Props.
+
+            - actionColumnProps (dict; optional):
+
+                设置tableList | drawerList | virtualList 中操作列的属性，参考 Antd
+
+                Table ColumnType。 其中 title 使用 colHeaderText 代替。.
 
             - hideAdd (boolean; optional):
 
@@ -434,28 +445,17 @@ Keyword arguments:
 
                 设置是否隐藏复制按钮.
 
-            - hideDelete (boolean; optional):
-
-                设置是否隐藏删除按钮.
-
             - hideMove (boolean; optional):
 
                 设置是否隐藏移动按钮.
 
-        - title (string; optional):
+            - hideDelete (boolean; optional):
 
-            设置标题.
+                设置是否隐藏删除按钮.
 
-        - type (a value equal to: 'array'; optional):
+        - items (dict; optional):
 
-            固定配置为type: 'array'.
-
-        - widget (a value equal to: 'cardList', 'simpleList', 'tableList', 'drawerList', 'virtualList'; optional):
-
-            设置希望使用的列表组件名称，可选的有'cardList'、'simpleList'、'tableList'、'drawerList'、'virtualList'，默认为'cardList'.
-
-    - type (a value equal to: 'object'; optional):
-        固定配置为type: 'object'.
+            动态项配置，可以是一个嵌套控件.
 
 - displayType (a value equal to: 'column', 'row', 'inline'; default 'column'):
     设置表单布局模式，表单元素与 label 同行 or 分两行展示, inline 则整个展示自然顺排，
@@ -484,6 +484,9 @@ Keyword arguments:
 
     `globalConfig` is a dict with keys:
 
+    - mustacheDisabled (boolean; optional):
+        设置是否禁用表达式.
+
     - listOperate (dict; optional):
         设置列表表单配置.
 
@@ -494,9 +497,6 @@ Keyword arguments:
 
         - hideMove (boolean; optional):
             设置是否隐藏移动按钮.
-
-    - mustacheDisabled (boolean; optional):
-        设置是否禁用表达式.
 
 - watch (dict with strings as keys and values of type string; optional):
     监听表单的数据变化，属性值需要是字符串格式的js函数.
@@ -524,33 +524,33 @@ Keyword arguments:
 
     `footer` is a boolean | dict with keys:
 
-    - reset (dict; optional):
-        设置重置按钮.
-
-        `reset` is a dict with keys:
-
-        - btnProps (dict; optional):
-            设置其他按钮属性，参考 Antd Button Props().
-
-        - hide (boolean; optional):
-            设置是否显示.
-
-        - text (string; optional):
-            设置按钮文字.
-
     - submit (dict; optional):
         设置提交按钮.
 
         `submit` is a dict with keys:
 
-        - btnProps (dict; optional):
-            设置其他按钮属性，参考 Antd Button Props().
+        - text (string; optional):
+            设置按钮文字.
 
         - hide (boolean; optional):
             设置是否显示.
 
+        - btnProps (dict; optional):
+            设置其他按钮属性，参考 Antd Button Props().
+
+    - reset (dict; optional):
+        设置重置按钮.
+
+        `reset` is a dict with keys:
+
         - text (string; optional):
-            设置按钮文字. | a list of or a singular dash component, string or number
+            设置按钮文字.
+
+        - hide (boolean; optional):
+            设置是否显示.
+
+        - btnProps (dict; optional):
+            设置其他按钮属性，参考 Antd Button Props(). | a list of or a singular dash component, string or number
 
 - configProvider (dict; optional):
     同antd的configProvider.
@@ -560,17 +560,11 @@ Keyword arguments:
 
     `validateMessages` is a dict with keys:
 
-    - array (dict; optional)
+    - default (string; optional)
 
-        `array` is a dict with keys:
+    - required (string; optional)
 
-        - len (string; optional)
-
-        - max (string; optional)
-
-        - min (string; optional)
-
-        - range (string; optional)
+    - whitespace (string; optional)
 
     - date (dict; optional)
 
@@ -578,11 +572,51 @@ Keyword arguments:
 
         - format (string; optional)
 
-        - invalid (string; optional)
-
         - parse (string; optional)
 
-    - default (string; optional)
+        - invalid (string; optional)
+
+    - types (dict; optional)
+
+        `types` is a dict with keys:
+
+        - string (string; optional)
+
+        - method (string; optional)
+
+        - array (string; optional)
+
+        - object (string; optional)
+
+        - number (string; optional)
+
+        - date (string; optional)
+
+        - boolean (string; optional)
+
+        - integer (string; optional)
+
+        - float (string; optional)
+
+        - regexp (string; optional)
+
+        - email (string; optional)
+
+        - url (string; optional)
+
+        - hex (string; optional)
+
+    - string (dict; optional)
+
+        `string` is a dict with keys:
+
+        - len (string; optional)
+
+        - min (string; optional)
+
+        - max (string; optional)
+
+        - range (string; optional)
 
     - number (dict; optional)
 
@@ -590,9 +624,21 @@ Keyword arguments:
 
         - len (string; optional)
 
+        - min (string; optional)
+
         - max (string; optional)
 
+        - range (string; optional)
+
+    - array (dict; optional)
+
+        `array` is a dict with keys:
+
+        - len (string; optional)
+
         - min (string; optional)
+
+        - max (string; optional)
 
         - range (string; optional)
 
@@ -601,52 +647,6 @@ Keyword arguments:
         `pattern` is a dict with keys:
 
         - mismatch (string; optional)
-
-    - required (string; optional)
-
-    - string (dict; optional)
-
-        `string` is a dict with keys:
-
-        - len (string; optional)
-
-        - max (string; optional)
-
-        - min (string; optional)
-
-        - range (string; optional)
-
-    - types (dict; optional)
-
-        `types` is a dict with keys:
-
-        - array (string; optional)
-
-        - boolean (string; optional)
-
-        - date (string; optional)
-
-        - email (string; optional)
-
-        - float (string; optional)
-
-        - hex (string; optional)
-
-        - integer (string; optional)
-
-        - method (string; optional)
-
-        - number (string; optional)
-
-        - object (string; optional)
-
-        - regexp (string; optional)
-
-        - string (string; optional)
-
-        - url (string; optional)
-
-    - whitespace (string; optional)
 
 - values (dict; optional):
     设置与监听表单数据.
@@ -670,14 +670,14 @@ Keyword arguments:
 
     `loading_state` is a dict with keys:
 
-    - component_name (string; optional):
-        Holds the name of the component that is loading.
-
     - is_loading (boolean; optional):
         Determines if the component is loading or not.
 
     - prop_name (string; optional):
-        Holds which property is loading."""
+        Holds which property is loading.
+
+    - component_name (string; optional):
+        Holds the name of the component that is loading."""
     _children_props = ['footer']
     _base_nodes = ['footer', 'children']
     _namespace = 'feffery_antd_components'

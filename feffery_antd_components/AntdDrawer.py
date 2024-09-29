@@ -29,40 +29,40 @@ Keyword arguments:
 
     `classNames` is a dict with keys:
 
+    - header (string; optional):
+        头部元素css类名.
+
     - body (string; optional):
         内容元素css类名.
-
-    - content (string; optional):
-        抽屉容器元素css类名.
 
     - footer (string; optional):
         底部元素css类名.
 
-    - header (string; optional):
-        头部元素css类名.
-
     - mask (string; optional):
         遮罩层元素css类名.
+
+    - content (string; optional):
+        抽屉容器元素css类名.
 
 - styles (dict; optional):
     配置各子元素的css样式.
 
     `styles` is a dict with keys:
 
+    - header (dict; optional):
+        头部元素css样式.
+
     - body (dict; optional):
         内容元素css样式.
-
-    - content (dict; optional):
-        抽屉容器元素css样式.
 
     - footer (dict; optional):
         底部元素css样式.
 
-    - header (dict; optional):
-        头部元素css样式.
-
     - mask (dict; optional):
         遮罩层元素css样式.
+
+    - content (dict; optional):
+        抽屉容器元素css样式.
 
 - rootStyle (dict; optional):
     抽屉根节点css样式（包含遮罩层），特殊的，当设置了`containerId`或`containerSelector`时，该参数会自动设置`position`为`absolute`.
@@ -125,14 +125,14 @@ Keyword arguments:
 
     `loading_state` is a dict with keys:
 
-    - component_name (string; optional):
-        Holds the name of the component that is loading.
-
     - is_loading (boolean; optional):
         Determines if the component is loading or not.
 
     - prop_name (string; optional):
-        Holds which property is loading."""
+        Holds which property is loading.
+
+    - component_name (string; optional):
+        Holds the name of the component that is loading."""
     _children_props = ['title', 'extra', 'footer']
     _base_nodes = ['title', 'extra', 'footer', 'children']
     _namespace = 'feffery_antd_components'

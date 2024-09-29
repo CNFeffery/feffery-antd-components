@@ -26,9 +26,6 @@ Keyword arguments:
 
     `styles` is a dict with keys:
 
-    - count (dict; optional):
-        控制文字计数元素css样式.
-
     - input (dict; optional):
         控制文本框元素css样式.
 
@@ -38,6 +35,9 @@ Keyword arguments:
     - suffix (dict; optional):
         控制后缀容器css样式.
 
+    - count (dict; optional):
+        控制文字计数元素css样式.
+
     - textarea (dict; optional):
         控制文本域元素css样式.
 
@@ -45,9 +45,6 @@ Keyword arguments:
     细分控制子元素css类名.
 
     `classNames` is a dict with keys:
-
-    - count (string; optional):
-        控制文字计数元素css类名.
 
     - input (string; optional):
         控制文本框元素css类名.
@@ -57,6 +54,9 @@ Keyword arguments:
 
     - suffix (string; optional):
         控制后缀容器css类名.
+
+    - count (string; optional):
+        控制文字计数元素css类名.
 
     - textarea (string; optional):
         控制文本域元素css类名.
@@ -130,11 +130,11 @@ Keyword arguments:
 
     `autoSize` is a boolean | dict with keys:
 
-    - maxRows (number; optional):
-        输入框最大行数.
-
     - minRows (number; optional):
         输入框最小行数.
+
+    - maxRows (number; optional):
+        输入框最大行数.
 
 - nSubmit (number; default 0):
     监听输入框聚焦状态下，键盘enter键累计点按次数  默认值：`0`.
@@ -176,14 +176,14 @@ Keyword arguments:
 
     `loading_state` is a dict with keys:
 
-    - component_name (string; optional):
-        Holds the name of the component that is loading.
-
     - is_loading (boolean; optional):
         Determines if the component is loading or not.
 
     - prop_name (string; optional):
         Holds which property is loading.
+
+    - component_name (string; optional):
+        Holds the name of the component that is loading.
 
 - persistence (boolean | string | number; optional):
     是否开启[属性持久化](/prop-persistence).

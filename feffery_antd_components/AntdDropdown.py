@@ -41,21 +41,21 @@ Keyword arguments:
 
     `buttonProps` is a dict with keys:
 
-    - className (string; optional):
-        按钮css类名.
-
-    - danger (boolean; optional):
-        按钮是否呈现危险样式  默认值：`False`.
-
     - size (a value equal to: 'small', 'middle', 'large'; optional):
         按钮尺寸规格，可选项有`'small'`、`'middle'`、`'large'`  默认值：`'middle'`.
-
-    - style (dict; optional):
-        按钮css样式.
 
     - type (a value equal to: 'default', 'primary', 'ghost', 'dashed', 'link', 'text'; optional):
         按钮类型，可选项有`'default'`、`'primary'`、`'ghost'`、`'dashed'`、`'link'`、`'text'`
         默认值：`'default'`.
+
+    - danger (boolean; optional):
+        按钮是否呈现危险样式  默认值：`False`.
+
+    - style (dict; optional):
+        按钮css样式.
+
+    - className (string; optional):
+        按钮css类名.
 
 - freePosition (boolean; default False):
     是否开启自由位置模式  默认值：`False`.
@@ -77,11 +77,17 @@ Keyword arguments:
 
     `menuItems` is a list of dicts with keys:
 
-    - disabled (boolean; optional):
-        是否禁用节点  默认值：`False`.
+    - title (a list of or a singular dash component, string or number; optional):
+        组件型，节点标题.
 
     - href (string; optional):
         节点链接地址.
+
+    - target (string; optional):
+        节点链接跳转行为.
+
+    - disabled (boolean; optional):
+        是否禁用节点  默认值：`False`.
 
     - icon (string; optional):
         节点前缀图标名称，与`iconRenderer`方式相关联，`'AntdIcon'`方式下同AntdIcon的icon参数，`'fontawesome'`方式下代表图标的css类名.
@@ -89,17 +95,11 @@ Keyword arguments:
     - iconRenderer (a value equal to: 'AntdIcon', 'fontawesome'; optional):
         前缀图标渲染方式，可选项有`'AntdIcon'`、`'fontawesome'`  默认值：`'AntdIcon'`.
 
-    - isDivider (boolean; optional):
-        节点是否渲染为分割线.
-
     - key (string; optional):
         节点唯一key值.
 
-    - target (string; optional):
-        节点链接跳转行为.
-
-    - title (a list of or a singular dash component, string or number; optional):
-        组件型，节点标题.
+    - isDivider (boolean; optional):
+        节点是否渲染为分割线.
 
 - selectable (boolean; default False):
     菜单项是否可选择  默认值：`False`.
@@ -156,14 +156,14 @@ Keyword arguments:
 
     `loading_state` is a dict with keys:
 
-    - component_name (string; optional):
-        Holds the name of the component that is loading.
-
     - is_loading (boolean; optional):
         Determines if the component is loading or not.
 
     - prop_name (string; optional):
-        Holds which property is loading."""
+        Holds which property is loading.
+
+    - component_name (string; optional):
+        Holds the name of the component that is loading."""
     _children_props = ['menuItems[].title']
     _base_nodes = ['children']
     _namespace = 'feffery_antd_components'
