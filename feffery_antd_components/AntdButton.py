@@ -98,6 +98,12 @@ Keyword arguments:
 - motionType (a value equal to: 'happy-work'; optional):
     按钮额外的特殊交互类型，可选项有`'happy-work'`.
 
+- color (a value equal to: 'default', 'primary', 'danger'; optional):
+    按钮颜色风格，可选项有`'default'`、`'primary'`、`'danger'`.
+
+- variant (a value equal to: 'outlined', 'dashed', 'solid', 'filled', 'text', 'link'; optional):
+    形态变体类型，可选项有`'outlined'`、`'dashed'`、`'solid'`、`'filled'`、`'text'`、`'link'`.
+
 - title (string; optional):
     原生按钮title属性.
 
@@ -124,10 +130,10 @@ Keyword arguments:
     _namespace = 'feffery_antd_components'
     _type = 'AntdButton'
     @_explicitize_args
-    def __init__(self, children=None, id=Component.UNDEFINED, key=Component.UNDEFINED, style=Component.UNDEFINED, className=Component.UNDEFINED, styles=Component.UNDEFINED, classNames=Component.UNDEFINED, loadingChildren=Component.UNDEFINED, type=Component.UNDEFINED, href=Component.UNDEFINED, target=Component.UNDEFINED, autoInsertSpace=Component.UNDEFINED, block=Component.UNDEFINED, danger=Component.UNDEFINED, disabled=Component.UNDEFINED, ghost=Component.UNDEFINED, shape=Component.UNDEFINED, size=Component.UNDEFINED, nClicks=Component.UNDEFINED, clickExecuteJsString=Component.UNDEFINED, debounceWait=Component.UNDEFINED, icon=Component.UNDEFINED, iconPosition=Component.UNDEFINED, loading=Component.UNDEFINED, autoSpin=Component.UNDEFINED, motionType=Component.UNDEFINED, title=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
-        self._prop_names = ['id', 'key', 'children', 'style', 'className', 'styles', 'classNames', 'loadingChildren', 'type', 'href', 'target', 'autoInsertSpace', 'block', 'danger', 'disabled', 'ghost', 'shape', 'size', 'nClicks', 'clickExecuteJsString', 'debounceWait', 'icon', 'iconPosition', 'loading', 'autoSpin', 'motionType', 'title', 'data-*', 'aria-*', 'loading_state']
+    def __init__(self, children=None, id=Component.UNDEFINED, key=Component.UNDEFINED, style=Component.UNDEFINED, className=Component.UNDEFINED, styles=Component.UNDEFINED, classNames=Component.UNDEFINED, loadingChildren=Component.UNDEFINED, type=Component.UNDEFINED, href=Component.UNDEFINED, target=Component.UNDEFINED, autoInsertSpace=Component.UNDEFINED, block=Component.UNDEFINED, danger=Component.UNDEFINED, disabled=Component.UNDEFINED, ghost=Component.UNDEFINED, shape=Component.UNDEFINED, size=Component.UNDEFINED, nClicks=Component.UNDEFINED, clickExecuteJsString=Component.UNDEFINED, debounceWait=Component.UNDEFINED, icon=Component.UNDEFINED, iconPosition=Component.UNDEFINED, loading=Component.UNDEFINED, autoSpin=Component.UNDEFINED, motionType=Component.UNDEFINED, color=Component.UNDEFINED, variant=Component.UNDEFINED, title=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
+        self._prop_names = ['id', 'key', 'children', 'style', 'className', 'styles', 'classNames', 'loadingChildren', 'type', 'href', 'target', 'autoInsertSpace', 'block', 'danger', 'disabled', 'ghost', 'shape', 'size', 'nClicks', 'clickExecuteJsString', 'debounceWait', 'icon', 'iconPosition', 'loading', 'autoSpin', 'motionType', 'color', 'variant', 'title', 'data-*', 'aria-*', 'loading_state']
         self._valid_wildcard_attributes =            ['data-', 'aria-']
-        self.available_properties = ['id', 'key', 'children', 'style', 'className', 'styles', 'classNames', 'loadingChildren', 'type', 'href', 'target', 'autoInsertSpace', 'block', 'danger', 'disabled', 'ghost', 'shape', 'size', 'nClicks', 'clickExecuteJsString', 'debounceWait', 'icon', 'iconPosition', 'loading', 'autoSpin', 'motionType', 'title', 'data-*', 'aria-*', 'loading_state']
+        self.available_properties = ['id', 'key', 'children', 'style', 'className', 'styles', 'classNames', 'loadingChildren', 'type', 'href', 'target', 'autoInsertSpace', 'block', 'danger', 'disabled', 'ghost', 'shape', 'size', 'nClicks', 'clickExecuteJsString', 'debounceWait', 'icon', 'iconPosition', 'loading', 'autoSpin', 'motionType', 'color', 'variant', 'title', 'data-*', 'aria-*', 'loading_state']
         self.available_wildcard_properties =            ['data-', 'aria-']
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()
