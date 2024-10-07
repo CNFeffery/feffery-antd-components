@@ -26,8 +26,8 @@ Keyword arguments:
 
     `options` is a list of dicts with keys:
 
-    - label (a list of or a singular dash component, string or number; required):
-        组件型，必填，选项标题内容.
+    - label (a list of or a singular dash component, string or number; optional):
+        组件型，选项标题内容.
 
     - value (string | number; required):
         必填，选项值.

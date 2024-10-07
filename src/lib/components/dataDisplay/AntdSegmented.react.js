@@ -44,9 +44,9 @@ AntdSegmented.propTypes = {
     options: PropTypes.arrayOf(
         PropTypes.exact({
             /**
-             * 组件型，必填，选项标题内容
+             * 组件型，选项标题内容
              */
-            label: PropTypes.node.isRequired,
+            label: PropTypes.node,
             /**
              * 必填，选项值
              */

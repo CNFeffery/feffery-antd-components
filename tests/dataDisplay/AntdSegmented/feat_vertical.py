@@ -11,7 +11,7 @@ app = dash.Dash(__name__)
 app.layout = fac.AntdCenter(
     fac.AntdSegmented(
         options=[
-            {'label': f'选项{i}', 'value': i, 'icon': icon}
+            {'value': i, 'icon': icon}
             for i, icon in enumerate(
                 [
                     'antd-carry-out',
