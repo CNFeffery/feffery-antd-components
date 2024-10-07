@@ -26,6 +26,7 @@ const AntdSegmented = (props) => {
         defaultValue,
         value,
         block,
+        vertical,
         disabled,
         size,
         setProps,
@@ -100,6 +101,7 @@ const AntdSegmented = (props) => {
             defaultValue={defaultValue}
             value={value}
             block={block}
+            vertical={vertical}
             disabled={
                 context && !isUndefined(context.componentDisabled) ?
                     context.componentDisabled :

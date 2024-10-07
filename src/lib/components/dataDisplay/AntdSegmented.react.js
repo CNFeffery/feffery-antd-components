@@ -94,6 +94,12 @@ AntdSegmented.propTypes = {
     block: PropTypes.bool,
 
     /**
+     * 是否垂直展示
+     * 默认值：`false`
+     */
+    vertical: PropTypes.bool,
+
+    /**
      * 是否禁用当前组件
      * 默认值：`false`
      */
@@ -171,6 +177,7 @@ AntdSegmented.propTypes = {
 // 设置默认参数
 AntdSegmented.defaultProps = {
     block: false,
+    vertical: false,
     disabled: false,
     size: 'middle',
     persisted_props: ['value'],
