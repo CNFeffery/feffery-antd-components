@@ -89,6 +89,7 @@ from .AntdHeader import AntdHeader
 from .AntdLayout import AntdLayout
 from .AntdSider import AntdSider
 from .AntdSpace import AntdSpace
+from .AntdSplitter import AntdSplitter
 from .AntdCol import AntdCol
 from .AntdRow import AntdRow
 from .AntdAnchor import AntdAnchor
@@ -200,6 +201,7 @@ __all__ = [
     "AntdLayout",
     "AntdSider",
     "AntdSpace",
+    "AntdSplitter",
     "AntdCol",
     "AntdRow",
     "AntdAnchor",
