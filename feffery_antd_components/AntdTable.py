@@ -147,6 +147,9 @@ Keyword arguments:
     - width (number | string; optional):
         当前字段宽度.
 
+    - minWidth (number | string; optional):
+        控制当前字段最小宽度，仅当`tableLayout=\"auto\"`时有效.
+
     - hidden (boolean; optional):
         是否隐藏当前字段  默认值：`False`.
 

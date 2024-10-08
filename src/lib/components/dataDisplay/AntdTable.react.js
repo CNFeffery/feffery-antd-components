@@ -212,6 +212,10 @@ AntdTable.propTypes = {
              */
             width: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
             /**
+             * 控制当前字段最小宽度，仅当`tableLayout="auto"`时有效
+             */
+            minWidth: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+            /**
              * 是否隐藏当前字段
              * 默认值：`false`
              */
