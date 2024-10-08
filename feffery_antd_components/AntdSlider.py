@@ -29,22 +29,22 @@ Keyword arguments:
 
     `styles` is a dict with keys:
 
-    - rail (dict; optional):
-        背景条css样式.
-
     - track (dict; optional):
         选择条css样式.
+
+    - rail (dict; optional):
+        背景条css样式.
 
 - classNames (dict; optional):
     细分控制子元素css类名.
 
     `classNames` is a dict with keys:
 
-    - rail (string; optional):
-        背景条css类名.
-
     - track (string; optional):
         选择条css类名.
+
+    - rail (string; optional):
+        背景条css类名.
 
 - name (string; optional):
     配合`AntdForm`表单批量值搜集/控制功能使用，充当当前表单项的字段名，以`id`作为缺省值.
@@ -110,14 +110,14 @@ Keyword arguments:
 
     `loading_state` is a dict with keys:
 
-    - component_name (string; optional):
-        Holds the name of the component that is loading.
-
     - is_loading (boolean; optional):
         Determines if the component is loading or not.
 
     - prop_name (string; optional):
         Holds which property is loading.
+
+    - component_name (string; optional):
+        Holds the name of the component that is loading.
 
 - persistence (boolean | string | number; optional):
     是否开启[属性持久化](/prop-persistence).

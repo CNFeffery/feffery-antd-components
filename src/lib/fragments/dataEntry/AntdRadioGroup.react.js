@@ -31,6 +31,7 @@ const AntdRadioGroup = (props) => {
         direction,
         optionType,
         buttonStyle,
+        block,
         disabled,
         size,
         readOnly,
@@ -123,6 +124,7 @@ const AntdRadioGroup = (props) => {
                         value
                 }
                 buttonStyle={buttonStyle}
+                block={block}
                 disabled={
                     context && !isUndefined(context.componentDisabled) ?
                         context.componentDisabled :
@@ -182,6 +184,7 @@ const AntdRadioGroup = (props) => {
             }
             optionType={optionType}
             buttonStyle={buttonStyle}
+            block={block}
             disabled={
                 context && !isUndefined(context.componentDisabled) ?
                     context.componentDisabled :

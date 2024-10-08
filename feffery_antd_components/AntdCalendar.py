@@ -46,31 +46,31 @@ Keyword arguments:
 
     `customCells` is a list of dicts with keys:
 
-    - content (a list of or a singular dash component, string or number; optional):
-        自定义内容.
-
-    - date (number; optional):
-        当前项匹配的日期值.
-
-    - month (number; optional):
-        当前项匹配的月份值.
-
     - type (a value equal to: 'month', 'date'; required):
         必填，当前项对应类型，可选项有`'month'`、`'date'`.
 
     - year (number; optional):
         当前项匹配的年份值.
 
+    - month (number; optional):
+        当前项匹配的月份值.
+
+    - date (number; optional):
+        当前项匹配的日期值.
+
+    - content (a list of or a singular dash component, string or number; optional):
+        自定义内容.
+
 - cellClickEvent (dict; optional):
     监听日期单元格点击事件.
 
     `cellClickEvent` is a dict with keys:
 
-    - timestamp (number; optional):
-        事件发生时间戳.
-
     - type (string; optional):
         记录面板类型.
+
+    - timestamp (number; optional):
+        事件发生时间戳.
 
 - data-* (string; optional):
     `data-*`格式属性通配.
@@ -82,14 +82,14 @@ Keyword arguments:
 
     `loading_state` is a dict with keys:
 
-    - component_name (string; optional):
-        Holds the name of the component that is loading.
-
     - is_loading (boolean; optional):
         Determines if the component is loading or not.
 
     - prop_name (string; optional):
         Holds which property is loading.
+
+    - component_name (string; optional):
+        Holds the name of the component that is loading.
 
 - persistence (boolean | string | number; optional):
     是否开启[属性持久化](/prop-persistence).

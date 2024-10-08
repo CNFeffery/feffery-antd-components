@@ -24,6 +24,7 @@ const AntdFloatButtonGroup = (props) => {
         type,
         shape,
         trigger,
+        placement,
         open,
         setProps,
         loading_state
@@ -44,6 +45,7 @@ const AntdFloatButtonGroup = (props) => {
             type={type}
             shape={shape}
             trigger={trigger}
+            placement={placement}
             open={open}
             onOpenChange={(e) => setProps({ open: e })}
             data-dash-is-loading={
@@ -113,6 +115,11 @@ AntdFloatButtonGroup.propTypes = {
      * 菜单展开模式触发方式，可选项有`'click'`、`'hover'`
      */
     trigger: PropTypes.oneOf(['click', 'hover']),
+
+    /**
+     * 菜单展开方向，可选项有`'top'`、`'right'`、`'bottom'`、`'left'`
+     */
+    placement: PropTypes.oneOf(['top', 'right', 'bottom', 'left']),
 
     /**
      * 设置或监听当前悬浮按钮组展开状态

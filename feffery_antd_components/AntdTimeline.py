@@ -26,11 +26,11 @@ Keyword arguments:
 
     `items` is a list of dicts with keys:
 
-    - color (string; optional):
-        当前节点颜色，可用于表达节点状态，常用方案有`'blue'`（进行中或默认状态）、`'green'`（已完成状态）、`'red'`（警告或错误状态）、`'grey'`（未完成或失效状态）.
-
     - content (a list of or a singular dash component, string or number; optional):
         组件型，当前节点正文内容.
+
+    - color (string; optional):
+        当前节点颜色，可用于表达节点状态，常用方案有`'blue'`（进行中或默认状态）、`'green'`（已完成状态）、`'red'`（警告或错误状态）、`'grey'`（未完成或失效状态）.
 
     - icon (a list of or a singular dash component, string or number; optional):
         组件型，自定义作为图标的元素.
@@ -63,14 +63,14 @@ Keyword arguments:
 
     `loading_state` is a dict with keys:
 
-    - component_name (string; optional):
-        Holds the name of the component that is loading.
-
     - is_loading (boolean; optional):
         Determines if the component is loading or not.
 
     - prop_name (string; optional):
-        Holds which property is loading."""
+        Holds which property is loading.
+
+    - component_name (string; optional):
+        Holds the name of the component that is loading."""
     _children_props = ['items[].content', 'items[].icon', 'items[].label', 'pending', 'pendingDot']
     _base_nodes = ['pending', 'pendingDot', 'children']
     _namespace = 'feffery_antd_components'

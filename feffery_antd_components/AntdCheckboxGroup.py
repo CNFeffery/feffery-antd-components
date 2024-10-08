@@ -32,14 +32,14 @@ Keyword arguments:
 
     `options` is a list of string | number | dict with keys:
 
-    - disabled (boolean; optional):
-        是否禁用当前选择框  默认值：`False`.
-
     - label (a list of or a singular dash component, string or number; optional):
         组件型，当前选择框标签内容.
 
     - value (string | number; optional):
-        当前选择框对应值.s
+        当前选择框对应值.
+
+    - disabled (boolean; optional):
+        是否禁用当前选择框  默认值：`False`.s
 
 - value (list of string | numbers; optional):
     监听或设置已选值.
@@ -63,14 +63,14 @@ Keyword arguments:
 
     `loading_state` is a dict with keys:
 
-    - component_name (string; optional):
-        Holds the name of the component that is loading.
-
     - is_loading (boolean; optional):
         Determines if the component is loading or not.
 
     - prop_name (string; optional):
         Holds which property is loading.
+
+    - component_name (string; optional):
+        Holds the name of the component that is loading.
 
 - persistence (boolean | string | number; optional):
     是否开启[属性持久化](/prop-persistence).

@@ -45,6 +45,8 @@ const AntdButton = (props) => {
         loading,
         autoSpin,
         motionType,
+        color,
+        variant,
         title,
         loading_state
     } = props;
@@ -114,6 +116,8 @@ const AntdButton = (props) => {
             icon={icon}
             iconPosition={iconPosition}
             loading={loading}
+            color={color}
+            variant={variant}
             title={title}
             onClick={onClick}
             data-dash-is-loading={
@@ -291,6 +295,16 @@ AntdButton.propTypes = {
      * 按钮额外的特殊交互类型，可选项有`'happy-work'`
      */
     motionType: PropTypes.oneOf(['happy-work']),
+
+    /**
+     * 按钮颜色风格，可选项有`'default'`、`'primary'`、`'danger'`
+     */
+    color: PropTypes.oneOf(['default', 'primary', 'danger']),
+
+    /**
+     * 形态变体类型，可选项有`'outlined'`、`'dashed'`、`'solid'`、`'filled'`、`'text'`、`'link'`
+     */
+    variant: PropTypes.oneOf(['outlined', 'dashed', 'solid', 'filled', 'text', 'link']),
 
     /**
      * 原生按钮title属性

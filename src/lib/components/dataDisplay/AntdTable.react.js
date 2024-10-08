@@ -115,6 +115,10 @@ AntdTable.propTypes = {
                     cancelText: PropTypes.string
                 }),
                 /**
+                 * 当`renderType`为`'mini-line'`、`'mini-area'`、`'mini-bar'`时，设置图表颜色
+                 */
+                miniChartColor: PropTypes.string,
+                /**
                  * 当`renderType`为`'mini-line'`、`'mini-area'`、`'mini-bar'`时，设置用于渲染信息卡片的`javascript`函数字符串
                  */
                 tooltipCustomContent: PropTypes.string,
@@ -161,9 +165,12 @@ AntdTable.propTypes = {
                 })
             }),
             /**
-             * 当前字段冻结方向，可选项有`'left'`、`'right'`
+             * 当前字段冻结方向，可选项有`'left'`、`'right'`，设置为`true`时等价于`'left'`
              */
-            fixed: PropTypes.oneOf(['left', 'right']),
+            fixed: PropTypes.oneOfType([
+                PropTypes.oneOf(['left', 'right']),
+                PropTypes.bool
+            ]),
             /**
              * 当前字段是否可编辑
              * 默认值：`false`
@@ -207,6 +214,10 @@ AntdTable.propTypes = {
              * 当前字段宽度
              */
             width: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+            /**
+             * 控制当前字段最小宽度，仅当`tableLayout="auto"`时有效
+             */
+            minWidth: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
             /**
              * 是否隐藏当前字段
              * 默认值：`false`

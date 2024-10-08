@@ -44,9 +44,9 @@ AntdSegmented.propTypes = {
     options: PropTypes.arrayOf(
         PropTypes.exact({
             /**
-             * 组件型，必填，选项标题内容
+             * 组件型，选项标题内容
              */
-            label: PropTypes.node.isRequired,
+            label: PropTypes.node,
             /**
              * 必填，选项值
              */
@@ -92,6 +92,12 @@ AntdSegmented.propTypes = {
      * 默认值：`false`
      */
     block: PropTypes.bool,
+
+    /**
+     * 是否垂直展示
+     * 默认值：`false`
+     */
+    vertical: PropTypes.bool,
 
     /**
      * 是否禁用当前组件
@@ -171,6 +177,7 @@ AntdSegmented.propTypes = {
 // 设置默认参数
 AntdSegmented.defaultProps = {
     block: false,
+    vertical: false,
     disabled: false,
     size: 'middle',
     persisted_props: ['value'],

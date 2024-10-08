@@ -80,6 +80,12 @@ AntdRadioGroup.propTypes = {
     ),
 
     /**
+     * 是否撑满父容器
+     * 默认值：`false`
+     */
+    block: PropTypes.bool,
+
+    /**
      * 是否禁用当前组件
      * 默认值：`false`
      */
@@ -193,6 +199,7 @@ AntdRadioGroup.defaultProps = {
     direction: 'horizontal',
     optionType: 'default',
     buttonStyle: 'outline',
+    block: false,
     disabled: false,
     size: 'middle',
     readOnly: false,

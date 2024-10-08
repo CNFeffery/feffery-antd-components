@@ -442,7 +442,6 @@ const AntdDateRangePicker = (props) => {
         }
     }
 
-
     return (
         <div>
             <ConfigProvider locale={str2Locale.get(locale)}>
@@ -495,7 +494,7 @@ const AntdDateRangePicker = (props) => {
                     onChange={onChange}
                     onPanelChange={(v, m) => {
                         setProps({
-                            pickerValue: (v[0] || v[1]).format(format)
+                            pickerValue: [v[0].format(format), v[1] && v[1].format(format)],
                         })
                     }}
                     variant={(
@@ -504,7 +503,19 @@ const AntdDateRangePicker = (props) => {
                             variant
                     )}
                     disabledDate={disabledDatesStrategy ? checkDisabledDate : undefined}
-                    pickerValue={pickerValue && [dayjs(pickerValue, format), dayjs(pickerValue, format)]}
+                    pickerValue={
+                        pickerValue ?
+                            (
+                                Array.isArray(pickerValue) ?
+                                    (
+                                        pickerValue[1] ?
+                                            [dayjs(pickerValue[0], format), dayjs(pickerValue[1], format)] :
+                                            dayjs(pickerValue[0], format)
+                                    ) :
+                                    dayjs(pickerValue, format)
+                            ) :
+                            undefined
+                    }
                     value={
                         formId && (name || id) ?
                             (

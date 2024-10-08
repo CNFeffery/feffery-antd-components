@@ -42,6 +42,9 @@ Keyword arguments:
 - trigger (a value equal to: 'click', 'hover'; optional):
     菜单展开模式触发方式，可选项有`'click'`、`'hover'`.
 
+- placement (a value equal to: 'top', 'right', 'bottom', 'left'; optional):
+    菜单展开方向，可选项有`'top'`、`'right'`、`'bottom'`、`'left'`.
+
 - open (boolean; optional):
     设置或监听当前悬浮按钮组展开状态.
 
@@ -49,23 +52,23 @@ Keyword arguments:
 
     `loading_state` is a dict with keys:
 
-    - component_name (string; optional):
-        Holds the name of the component that is loading.
-
     - is_loading (boolean; optional):
         Determines if the component is loading or not.
 
     - prop_name (string; optional):
-        Holds which property is loading."""
+        Holds which property is loading.
+
+    - component_name (string; optional):
+        Holds the name of the component that is loading."""
     _children_props = ['icon', 'description', 'tooltip']
     _base_nodes = ['icon', 'description', 'tooltip', 'children']
     _namespace = 'feffery_antd_components'
     _type = 'AntdFloatButtonGroup'
     @_explicitize_args
-    def __init__(self, children=None, id=Component.UNDEFINED, key=Component.UNDEFINED, style=Component.UNDEFINED, className=Component.UNDEFINED, icon=Component.UNDEFINED, description=Component.UNDEFINED, tooltip=Component.UNDEFINED, type=Component.UNDEFINED, shape=Component.UNDEFINED, trigger=Component.UNDEFINED, open=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
-        self._prop_names = ['id', 'key', 'children', 'style', 'className', 'icon', 'description', 'tooltip', 'type', 'shape', 'trigger', 'open', 'loading_state']
+    def __init__(self, children=None, id=Component.UNDEFINED, key=Component.UNDEFINED, style=Component.UNDEFINED, className=Component.UNDEFINED, icon=Component.UNDEFINED, description=Component.UNDEFINED, tooltip=Component.UNDEFINED, type=Component.UNDEFINED, shape=Component.UNDEFINED, trigger=Component.UNDEFINED, placement=Component.UNDEFINED, open=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
+        self._prop_names = ['id', 'key', 'children', 'style', 'className', 'icon', 'description', 'tooltip', 'type', 'shape', 'trigger', 'placement', 'open', 'loading_state']
         self._valid_wildcard_attributes =            []
-        self.available_properties = ['id', 'key', 'children', 'style', 'className', 'icon', 'description', 'tooltip', 'type', 'shape', 'trigger', 'open', 'loading_state']
+        self.available_properties = ['id', 'key', 'children', 'style', 'className', 'icon', 'description', 'tooltip', 'type', 'shape', 'trigger', 'placement', 'open', 'loading_state']
         self.available_wildcard_properties =            []
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()

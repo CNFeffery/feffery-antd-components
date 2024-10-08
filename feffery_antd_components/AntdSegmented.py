@@ -26,6 +26,12 @@ Keyword arguments:
 
     `options` is a list of dicts with keys:
 
+    - label (a list of or a singular dash component, string or number; optional):
+        组件型，选项标题内容.
+
+    - value (string | number; required):
+        必填，选项值.
+
     - disabled (boolean; optional):
         是否禁用当前选项  默认值：`False`.
 
@@ -35,12 +41,6 @@ Keyword arguments:
     - iconRenderer (a value equal to: 'AntdIcon', 'fontawesome'; optional):
         选项前缀图标类型，可选项有`'AntdIcon'`、`'fontawesome'`  默认值：`'AntdIcon'`.
 
-    - label (a list of or a singular dash component, string or number; required):
-        组件型，必填，选项标题内容.
-
-    - value (string | number; required):
-        必填，选项值.
-
 - value (string | number; optional):
     监听或设置当前选中值.
 
@@ -49,6 +49,9 @@ Keyword arguments:
 
 - block (boolean; default False):
     是否撑满父容器  默认值：`False`.
+
+- vertical (boolean; default False):
+    是否垂直展示  默认值：`False`.
 
 - disabled (boolean; default False):
     是否禁用当前组件  默认值：`False`.
@@ -72,14 +75,14 @@ Keyword arguments:
 
     `loading_state` is a dict with keys:
 
-    - component_name (string; optional):
-        Holds the name of the component that is loading.
-
     - is_loading (boolean; optional):
         Determines if the component is loading or not.
 
     - prop_name (string; optional):
         Holds which property is loading.
+
+    - component_name (string; optional):
+        Holds the name of the component that is loading.
 
 - persistence (boolean | string | number; optional):
     是否开启[属性持久化](/prop-persistence).
@@ -95,10 +98,10 @@ Keyword arguments:
     _namespace = 'feffery_antd_components'
     _type = 'AntdSegmented'
     @_explicitize_args
-    def __init__(self, id=Component.UNDEFINED, key=Component.UNDEFINED, style=Component.UNDEFINED, className=Component.UNDEFINED, options=Component.UNDEFINED, value=Component.UNDEFINED, defaultValue=Component.UNDEFINED, block=Component.UNDEFINED, disabled=Component.UNDEFINED, size=Component.UNDEFINED, batchPropsNames=Component.UNDEFINED, batchPropsValues=Component.UNDEFINED, loading_state=Component.UNDEFINED, persistence=Component.UNDEFINED, persisted_props=Component.UNDEFINED, persistence_type=Component.UNDEFINED, **kwargs):
-        self._prop_names = ['id', 'key', 'style', 'className', 'options', 'value', 'defaultValue', 'block', 'disabled', 'size', 'batchPropsNames', 'batchPropsValues', 'data-*', 'aria-*', 'loading_state', 'persistence', 'persisted_props', 'persistence_type']
+    def __init__(self, id=Component.UNDEFINED, key=Component.UNDEFINED, style=Component.UNDEFINED, className=Component.UNDEFINED, options=Component.UNDEFINED, value=Component.UNDEFINED, defaultValue=Component.UNDEFINED, block=Component.UNDEFINED, vertical=Component.UNDEFINED, disabled=Component.UNDEFINED, size=Component.UNDEFINED, batchPropsNames=Component.UNDEFINED, batchPropsValues=Component.UNDEFINED, loading_state=Component.UNDEFINED, persistence=Component.UNDEFINED, persisted_props=Component.UNDEFINED, persistence_type=Component.UNDEFINED, **kwargs):
+        self._prop_names = ['id', 'key', 'style', 'className', 'options', 'value', 'defaultValue', 'block', 'vertical', 'disabled', 'size', 'batchPropsNames', 'batchPropsValues', 'data-*', 'aria-*', 'loading_state', 'persistence', 'persisted_props', 'persistence_type']
         self._valid_wildcard_attributes =            ['data-', 'aria-']
-        self.available_properties = ['id', 'key', 'style', 'className', 'options', 'value', 'defaultValue', 'block', 'disabled', 'size', 'batchPropsNames', 'batchPropsValues', 'data-*', 'aria-*', 'loading_state', 'persistence', 'persisted_props', 'persistence_type']
+        self.available_properties = ['id', 'key', 'style', 'className', 'options', 'value', 'defaultValue', 'block', 'vertical', 'disabled', 'size', 'batchPropsNames', 'batchPropsValues', 'data-*', 'aria-*', 'loading_state', 'persistence', 'persisted_props', 'persistence_type']
         self.available_wildcard_properties =            ['data-', 'aria-']
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()

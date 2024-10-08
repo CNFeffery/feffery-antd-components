@@ -26,11 +26,8 @@ Keyword arguments:
 
     `header` is a dict with keys:
 
-    - children (a list of or a singular dash component, string or number; optional):
-        页首主要区域子元素.
-
-    - className (string; optional):
-        页首css类名.
+    - title (a list of or a singular dash component, string or number; optional):
+        页首标题元素.
 
     - extra (a list of or a singular dash component, string or number; optional):
         页首额外操作区元素.
@@ -38,22 +35,22 @@ Keyword arguments:
     - style (dict; optional):
         页首css样式.
 
-    - themeType (a value equal to: 'ghost', 'block', 'pure'; optional):
-        页首主题类型，可选的有`'ghost'`、`'block'`、`'pure'`.
+    - className (string; optional):
+        页首css类名.
 
-    - title (a list of or a singular dash component, string or number; optional):
-        页首标题元素. | boolean
+    - children (a list of or a singular dash component, string or number; optional):
+        页首主要区域子元素.
+
+    - themeType (a value equal to: 'ghost', 'block', 'pure'; optional):
+        页首主题类型，可选的有`'ghost'`、`'block'`、`'pure'`. | boolean
 
 - footer (dict; optional):
     配置页脚布局内容，设置为`False`时不显示.
 
     `footer` is a dict with keys:
 
-    - children (a list of or a singular dash component, string or number; optional):
-        页脚主要区域子元素.
-
-    - className (string; optional):
-        页脚css类名.
+    - title (a list of or a singular dash component, string or number; optional):
+        页脚标题元素.
 
     - extra (a list of or a singular dash component, string or number; optional):
         页脚额外操作区元素.
@@ -61,11 +58,14 @@ Keyword arguments:
     - style (dict; optional):
         页脚css样式.
 
-    - themeType (a value equal to: 'ghost', 'block', 'pure'; optional):
-        页脚主题类型，可选的有`'ghost'`、`'block'`、`'pure'`.
+    - className (string; optional):
+        页脚css类名.
 
-    - title (a list of or a singular dash component, string or number; optional):
-        页脚标题元素. | boolean
+    - children (a list of or a singular dash component, string or number; optional):
+        页脚主要区域子元素.
+
+    - themeType (a value equal to: 'ghost', 'block', 'pure'; optional):
+        页脚主题类型，可选的有`'ghost'`、`'block'`、`'pure'`. | boolean
 
 - leftPannel (dict; optional):
     配置左侧面板布局内容，设置为`False`时不显示.
@@ -75,26 +75,26 @@ Keyword arguments:
     - children (a list of or a singular dash component, string or number; optional):
         面板子元素内容.
 
-    - className (string; optional):
-        面板css类名.
-
     - direction (a value equal to: 'horizontal', 'vertical'; optional):
         面板方向，可选的有`'horizontal'`、`'vertical'`.
-
-    - maxHeight (number; optional):
-        面板最大像素高度.
-
-    - maxWidth (number; optional):
-        面板最大像素宽度.
-
-    - minHeight (number; optional):
-        面板最小像素高度.
 
     - minWidth (number; optional):
         面板最小像素宽度.
 
+    - minHeight (number; optional):
+        面板最小像素高度.
+
+    - maxWidth (number; optional):
+        面板最大像素宽度.
+
+    - maxHeight (number; optional):
+        面板最大像素高度.
+
     - style (dict; optional):
         面板css样式.
+
+    - className (string; optional):
+        面板css类名.
 
     - themeType (a value equal to: 'ghost', 'block', 'pure'; optional):
         面板主题类型，可选的有`'ghost'`、`'block'`、`'pure'`. | boolean
@@ -107,26 +107,26 @@ Keyword arguments:
     - children (a list of or a singular dash component, string or number; optional):
         面板子元素内容.
 
-    - className (string; optional):
-        面板css类名.
-
     - direction (a value equal to: 'horizontal', 'vertical'; optional):
         面板方向，可选的有`'horizontal'`、`'vertical'`.
-
-    - maxHeight (number; optional):
-        面板最大像素高度.
-
-    - maxWidth (number; optional):
-        面板最大像素宽度.
-
-    - minHeight (number; optional):
-        面板最小像素高度.
 
     - minWidth (number; optional):
         面板最小像素宽度.
 
+    - minHeight (number; optional):
+        面板最小像素高度.
+
+    - maxWidth (number; optional):
+        面板最大像素宽度.
+
+    - maxHeight (number; optional):
+        面板最大像素高度.
+
     - style (dict; optional):
         面板css样式.
+
+    - className (string; optional):
+        面板css类名.
 
     - themeType (a value equal to: 'ghost', 'block', 'pure'; optional):
         面板主题类型，可选的有`'ghost'`、`'block'`、`'pure'`. | boolean
@@ -139,26 +139,26 @@ Keyword arguments:
     - children (a list of or a singular dash component, string or number; optional):
         面板子元素内容.
 
-    - className (string; optional):
-        面板css类名.
-
     - direction (a value equal to: 'horizontal', 'vertical'; optional):
         面板方向，可选的有`'horizontal'`、`'vertical'`.
-
-    - maxHeight (number; optional):
-        面板最大像素高度.
-
-    - maxWidth (number; optional):
-        面板最大像素宽度.
-
-    - minHeight (number; optional):
-        面板最小像素高度.
 
     - minWidth (number; optional):
         面板最小像素宽度.
 
+    - minHeight (number; optional):
+        面板最小像素高度.
+
+    - maxWidth (number; optional):
+        面板最大像素宽度.
+
+    - maxHeight (number; optional):
+        面板最大像素高度.
+
     - style (dict; optional):
         面板css样式.
+
+    - className (string; optional):
+        面板css类名.
 
     - themeType (a value equal to: 'ghost', 'block', 'pure'; optional):
         面板主题类型，可选的有`'ghost'`、`'block'`、`'pure'`. | boolean
@@ -171,26 +171,26 @@ Keyword arguments:
     - children (a list of or a singular dash component, string or number; optional):
         面板子元素内容.
 
-    - className (string; optional):
-        面板css类名.
-
     - direction (a value equal to: 'horizontal', 'vertical'; optional):
         面板方向，可选的有`'horizontal'`、`'vertical'`.
-
-    - maxHeight (number; optional):
-        面板最大像素高度.
-
-    - maxWidth (number; optional):
-        面板最大像素宽度.
-
-    - minHeight (number; optional):
-        面板最小像素高度.
 
     - minWidth (number; optional):
         面板最小像素宽度.
 
+    - minHeight (number; optional):
+        面板最小像素高度.
+
+    - maxWidth (number; optional):
+        面板最大像素宽度.
+
+    - maxHeight (number; optional):
+        面板最大像素高度.
+
     - style (dict; optional):
         面板css样式.
+
+    - className (string; optional):
+        面板css类名.
 
     - themeType (a value equal to: 'ghost', 'block', 'pure'; optional):
         面板主题类型，可选的有`'ghost'`、`'block'`、`'pure'`. | boolean
@@ -211,14 +211,14 @@ Keyword arguments:
 
     `loading_state` is a dict with keys:
 
-    - component_name (string; optional):
-        Holds the name of the component that is loading.
-
     - is_loading (boolean; optional):
         Determines if the component is loading or not.
 
     - prop_name (string; optional):
-        Holds which property is loading."""
+        Holds which property is loading.
+
+    - component_name (string; optional):
+        Holds the name of the component that is loading."""
     _children_props = ['header.title', 'header.extra', 'header.children', 'footer.title', 'footer.extra', 'footer.children', 'leftPannel.children', 'rightPannel.children', 'bottomPannel.children', 'centerPannel.children']
     _base_nodes = ['children']
     _namespace = 'feffery_antd_components'
