@@ -109,8 +109,8 @@ Keyword arguments:
             - placement (a value equal to: 'bottomLeft', 'bottomCenter', 'bottomRight', 'topLeft', 'topCenter', 'topRight'; optional):
                 下拉菜单展开方向，可选项有`'bottomLeft'`、`'bottomCenter'`、`'bottomRight'`、`'topLeft'`、`'topCenter'`、`'topRight'`.
 
-    - fixed (a value equal to: 'left', 'right'; optional):
-        当前字段冻结方向，可选项有`'left'`、`'right'`.
+    - fixed (a value equal to: 'left', 'right' | boolean; optional):
+        当前字段冻结方向，可选项有`'left'`、`'right'`，设置为`True`时等价于`'left'`.
 
     - editable (boolean; optional):
         当前字段是否可编辑  默认值：`False`.

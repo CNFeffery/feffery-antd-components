@@ -165,9 +165,12 @@ AntdTable.propTypes = {
                 })
             }),
             /**
-             * 当前字段冻结方向，可选项有`'left'`、`'right'`
+             * 当前字段冻结方向，可选项有`'left'`、`'right'`，设置为`true`时等价于`'left'`
              */
-            fixed: PropTypes.oneOf(['left', 'right']),
+            fixed: PropTypes.oneOfType([
+                PropTypes.oneOf(['left', 'right']),
+                PropTypes.bool
+            ]),
             /**
              * 当前字段是否可编辑
              * 默认值：`false`
