@@ -71,7 +71,7 @@ from .AntdSkeletonAvatar import AntdSkeletonAvatar as SkeletonAvatar
 from .AntdSkeletonButton import AntdSkeletonButton as SkeletonButton
 from .AntdSkeletonImage import AntdSkeletonImage as SkeletonImage
 from .AntdSkeletonInput import AntdSkeletonInput as SkeletonInput
-# from .AntdFormRender import AntdFormRender
+from .AntdFormRender import AntdFormRender as FormRender
 from .AntdButton import AntdButton as Button
 from .AntdFloatButton import AntdFloatButton as FloatButton
 from .AntdFloatButtonGroup import AntdFloatButtonGroup as FloatButtonGroup
@@ -89,6 +89,7 @@ from .AntdHeader import AntdHeader as Header
 from .AntdLayout import AntdLayout as Layout
 from .AntdSider import AntdSider as Sider
 from .AntdSpace import AntdSpace as Space
+from .AntdSplitter import AntdSplitter as Splitter
 from .AntdCol import AntdCol as Col
 from .AntdRow import AntdRow as Row
 from .AntdAnchor import AntdAnchor as Anchor
@@ -182,7 +183,7 @@ __all__ = [
     "SkeletonButton",
     "SkeletonImage",
     "SkeletonInput",
-    # "AntdFormRender",
+    "FormRender",
     "Button",
     "FloatButton",
     "FloatButtonGroup",
@@ -200,6 +201,7 @@ __all__ = [
     "Layout",
     "Sider",
     "Space",
+    "Splitter",
     "Col",
     "Row",
     "Anchor",
