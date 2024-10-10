@@ -560,6 +560,7 @@ import {
 } from 'react-icons/pi/index.esm';
 import { SiGitee } from 'react-icons/si/index.esm'
 
+// vscode中，使用正则查找目标后，按快捷键alt+shift批量选中匹配项
 const str2Icon = new Map([
     ['md-star-half', <MdStarHalf />],
     ['md-star-border', <MdStarBorder />],
