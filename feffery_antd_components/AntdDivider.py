@@ -55,6 +55,9 @@ Keyword arguments:
     分割线变体，可选项有`'dashed'`（虚线）、`'dotted'`（点线）、`'solid'`（实线）
     默认值：`'solid'`.
 
+- plain (boolean; default True):
+    文字内容是否呈现为常规正文形式  默认值：`True`.
+
 - data-* (string; optional):
     `data-*`格式属性通配.
 
@@ -78,10 +81,10 @@ Keyword arguments:
     _namespace = 'feffery_antd_components'
     _type = 'AntdDivider'
     @_explicitize_args
-    def __init__(self, children=None, id=Component.UNDEFINED, key=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, innerTextOrientation=Component.UNDEFINED, isDashed=Component.UNDEFINED, direction=Component.UNDEFINED, fontSize=Component.UNDEFINED, lineColor=Component.UNDEFINED, fontStyle=Component.UNDEFINED, fontWeight=Component.UNDEFINED, fontFamily=Component.UNDEFINED, fontColor=Component.UNDEFINED, variant=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
-        self._prop_names = ['id', 'key', 'children', 'className', 'style', 'innerTextOrientation', 'isDashed', 'direction', 'fontSize', 'lineColor', 'fontStyle', 'fontWeight', 'fontFamily', 'fontColor', 'variant', 'data-*', 'aria-*', 'loading_state']
+    def __init__(self, children=None, id=Component.UNDEFINED, key=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, innerTextOrientation=Component.UNDEFINED, isDashed=Component.UNDEFINED, direction=Component.UNDEFINED, fontSize=Component.UNDEFINED, lineColor=Component.UNDEFINED, fontStyle=Component.UNDEFINED, fontWeight=Component.UNDEFINED, fontFamily=Component.UNDEFINED, fontColor=Component.UNDEFINED, variant=Component.UNDEFINED, plain=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
+        self._prop_names = ['id', 'key', 'children', 'className', 'style', 'innerTextOrientation', 'isDashed', 'direction', 'fontSize', 'lineColor', 'fontStyle', 'fontWeight', 'fontFamily', 'fontColor', 'variant', 'plain', 'data-*', 'aria-*', 'loading_state']
         self._valid_wildcard_attributes =            ['data-', 'aria-']
-        self.available_properties = ['id', 'key', 'children', 'className', 'style', 'innerTextOrientation', 'isDashed', 'direction', 'fontSize', 'lineColor', 'fontStyle', 'fontWeight', 'fontFamily', 'fontColor', 'variant', 'data-*', 'aria-*', 'loading_state']
+        self.available_properties = ['id', 'key', 'children', 'className', 'style', 'innerTextOrientation', 'isDashed', 'direction', 'fontSize', 'lineColor', 'fontStyle', 'fontWeight', 'fontFamily', 'fontColor', 'variant', 'plain', 'data-*', 'aria-*', 'loading_state']
         self.available_wildcard_properties =            ['data-', 'aria-']
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()

@@ -28,6 +28,7 @@ const AntdDivider = (props) => {
         fontFamily,
         fontColor,
         variant,
+        plain,
         loading_state,
     } = props;
 
@@ -59,7 +60,7 @@ const AntdDivider = (props) => {
                 variant={variant}
                 orientation={innerTextOrientation}
                 type={"horizontal"}
-                plain={true}
+                plain={plain}
                 data-dash-is-loading={
                     (loading_state && loading_state.is_loading) || undefined
                 }
@@ -95,7 +96,7 @@ const AntdDivider = (props) => {
                 variant={variant}
                 orientation={innerTextOrientation}
                 type={"vertical"}
-                plain={true}
+                plain={plain}
                 data-dash-is-loading={
                     (loading_state && loading_state.is_loading) || undefined
                 }
@@ -193,6 +194,12 @@ AntdDivider.propTypes = {
     variant: PropTypes.oneOf(['dashed', 'dotted', 'solid']),
 
     /**
+     * 文字内容是否呈现为常规正文形式
+     * 默认值：`true`
+     */
+    plain: PropTypes.bool,
+
+    /**
      * `data-*`格式属性通配
      */
     'data-*': PropTypes.string,
@@ -229,7 +236,8 @@ AntdDivider.defaultProps = {
     innerTextOrientation: 'center',
     isDashed: false,
     direction: 'horizontal',
-    variant: 'solid'
+    variant: 'solid',
+    plain: true
 };
 
 export default AntdDivider;
