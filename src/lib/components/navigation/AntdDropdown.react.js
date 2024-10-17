@@ -92,6 +92,7 @@ const AntdDropdown = (props) => {
                                 {menuItem.title}
                             </a>
                         ),
+                        extra: menuItem.extra,
                         icon: (
                             menuItem.icon ?
                                 (
@@ -322,6 +323,10 @@ AntdDropdown.propTypes = {
              * 组件型，节点标题
              */
             title: PropTypes.node,
+            /**
+             * 组件型，额外内容
+             */
+            extra: PropTypes.node,
             /**
              * 节点链接地址
              */

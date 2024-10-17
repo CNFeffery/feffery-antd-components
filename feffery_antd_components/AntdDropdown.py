@@ -80,6 +80,9 @@ Keyword arguments:
     - title (a list of or a singular dash component, string or number; optional):
         组件型，节点标题.
 
+    - extra (a list of or a singular dash component, string or number; optional):
+        组件型，额外内容.
+
     - href (string; optional):
         节点链接地址.
 
@@ -164,7 +167,7 @@ Keyword arguments:
 
     - component_name (string; optional):
         Holds the name of the component that is loading."""
-    _children_props = ['menuItems[].title']
+    _children_props = ['menuItems[].title', 'menuItems[].extra']
     _base_nodes = ['children']
     _namespace = 'feffery_antd_components'
     _type = 'AntdDropdown'
