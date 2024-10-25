@@ -92,11 +92,6 @@ const AntdTabs = (props) => {
         )
     }
 
-    // 当标签页内容、前缀后额外内容均为空时，返回空节点
-    if (items.length === 0 && !tabBarLeftExtraContent && !tabBarRightExtraContent) {
-        return <></>;
-    }
-
     return (
         <Tabs
             // 提取具有data-*或aria-*通配格式的属性
