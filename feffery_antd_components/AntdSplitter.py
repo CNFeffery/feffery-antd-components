@@ -25,35 +25,35 @@ Keyword arguments:
     布局方向，可选项有`'horizontal'`、`'vertical'`  默认值：`'horizontal'`.
 
 - items (list of dicts; required):
-    配置分隔面板子项，优先级高于`children`.
+    配置分隔面板子项.
 
     `items` is a list of dicts with keys:
 
     - key (string; optional):
-        面板key.
+        当前子项唯一识别`key`.
 
     - children (a list of or a singular dash component, string or number; optional):
         组件型，内嵌元素.
 
     - style (dict; optional):
-        当前组件css样式.
+        当前子项`css`样式.
 
-    - className (string
+    - className (string; optional):
+        当前子项`css`类名.
 
-      Or dict; optional):
-        当前组件css类名，支持[动态css](/advanced-classname).
+    - defaultSize (number
 
-    - defaultSize (number | string; optional):
-        初始面板大小，支持数字`px`或者文字`'百分比%'`类型.
-
-    - min (number | string; optional):
-        最小阈值，支持数字`px`或者文字`'百分比%'`类型.
-
-    - max (number | string; optional):
-        最大阈值，支持数字`px`或者文字`'百分比%'`类型.
+      Or string; optional):
+        初始面板尺寸，支持数字`px`或者文字`'百分比%'`类型.
 
     - size (number | string; optional):
-        面板大小，支持数字`px`或者文字`'百分比%'`类型.
+        面板尺寸，支持数字`px`或者文字`'百分比%'`类型.
+
+    - min (number | string; optional):
+        最小尺寸，支持数字`px`或者文字`'百分比%'`类型.
+
+    - max (number | string; optional):
+        最大尺寸，支持数字`px`或者文字`'百分比%'`类型.
 
     - collapsible (dict; optional):
         是否可折叠  默认值：`False`.
@@ -66,17 +66,6 @@ Keyword arguments:
 
     - resizable (boolean; optional):
         是否开启拖拽伸缩  默认值：`True`.
-
-- currentSizes (list of dicts; optional):
-    监听当前面板大小变化信息.
-
-    `currentSizes` is a list of dicts with keys:
-
-    - key (string; optional):
-        面板key.
-
-    - size (number | string; optional):
-        面板大小.
 
 - data-* (string; optional):
     `data-*`格式属性通配.
@@ -101,10 +90,10 @@ Keyword arguments:
     _namespace = 'feffery_antd_components'
     _type = 'AntdSplitter'
     @_explicitize_args
-    def __init__(self, id=Component.UNDEFINED, key=Component.UNDEFINED, style=Component.UNDEFINED, className=Component.UNDEFINED, layout=Component.UNDEFINED, items=Component.REQUIRED, currentSizes=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
-        self._prop_names = ['id', 'key', 'style', 'className', 'layout', 'items', 'currentSizes', 'data-*', 'aria-*', 'loading_state']
+    def __init__(self, id=Component.UNDEFINED, key=Component.UNDEFINED, style=Component.UNDEFINED, className=Component.UNDEFINED, layout=Component.UNDEFINED, items=Component.REQUIRED, loading_state=Component.UNDEFINED, **kwargs):
+        self._prop_names = ['id', 'key', 'style', 'className', 'layout', 'items', 'data-*', 'aria-*', 'loading_state']
         self._valid_wildcard_attributes =            ['data-', 'aria-']
-        self.available_properties = ['id', 'key', 'style', 'className', 'layout', 'items', 'currentSizes', 'data-*', 'aria-*', 'loading_state']
+        self.available_properties = ['id', 'key', 'style', 'className', 'layout', 'items', 'data-*', 'aria-*', 'loading_state']
         self.available_wildcard_properties =            ['data-', 'aria-']
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()

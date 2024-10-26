@@ -1,5 +1,5 @@
 // react核心
-import React, { useEffect, useMemo, useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 // antd核心
 import { Splitter } from 'antd';
@@ -20,27 +20,9 @@ const AntdSplitter = (props) => {
         key,
         layout,
         items,
-        currentSizes,
         setProps,
         loading_state
     } = props;
-
-    const [sizes, setSizes] = useState(items.map(item => item.size));
-
-    const _items = useMemo(() => {
-        return items.map((item, index) => sizes ? <Splitter.Panel {...item} size={sizes[index]} /> : <Splitter.Panel {...item} />)
-    }, [sizes])
-
-    useEffect(() => {
-        let currentSizes = _items.map(
-            (item, index) => { return { key: item.key, size: sizes[index] } }
-        )
-        setProps({ currentSizes: currentSizes })
-    }, [_items])
-
-    const onResize = (_sizes) => {
-        setSizes(_sizes);
-    }
 
     return (
         <Splitter
@@ -55,11 +37,16 @@ const AntdSplitter = (props) => {
             style={style}
             key={key}
             layout={layout}
-            onResize={onResize}
             data-dash-is-loading={
                 (loading_state && loading_state.is_loading) || undefined
             }>
-            {_items}
+            {
+                (items || []).map(
+                    (item, index) => (
+                        <Splitter.Panel key={index} {...item} />
+                    )
+                )
+            }
         </Splitter>
     );
 }
@@ -95,64 +82,54 @@ AntdSplitter.propTypes = {
     layout: PropTypes.oneOf(['horizontal', 'vertical']),
 
     /**
-     * 配置分隔面板子项，优先级高于`children`
+     * 配置分隔面板子项
      */
     items: PropTypes.arrayOf(
         PropTypes.shape({
             /**
-             * 面板key
+             * 当前子项唯一识别`key`
              */
             key: PropTypes.string,
             /**
              * 组件型，内嵌元素
              */
             children: PropTypes.node,
-
             /**
-             * 当前组件css样式
+             * 当前子项`css`样式
              */
             style: PropTypes.object,
-
             /**
-             * 当前组件css类名，支持[动态css](/advanced-classname)
+             * 当前子项`css`类名
              */
-            className: PropTypes.oneOfType([
-                PropTypes.string,
-                PropTypes.object
-            ]),
-
+            className: PropTypes.string,
             /**
-             * 初始面板大小，支持数字`px`或者文字`'百分比%'`类型
+             * 初始面板尺寸，支持数字`px`或者文字`'百分比%'`类型
              */
             defaultSize: PropTypes.oneOfType([
                 PropTypes.number,
                 PropTypes.string
             ]),
-
             /**
-             * 最小阈值，支持数字`px`或者文字`'百分比%'`类型
-             */
-            min: PropTypes.oneOfType([
-                PropTypes.number,
-                PropTypes.string
-            ]),
-
-            /**
-             * 最大阈值，支持数字`px`或者文字`'百分比%'`类型
-             */
-            max: PropTypes.oneOfType([
-                PropTypes.number,
-                PropTypes.string
-            ]),
-
-            /**
-             * 面板大小，支持数字`px`或者文字`'百分比%'`类型
+             * 面板尺寸，支持数字`px`或者文字`'百分比%'`类型
              */
             size: PropTypes.oneOfType([
                 PropTypes.number,
                 PropTypes.string
             ]),
-
+            /**
+             * 最小尺寸，支持数字`px`或者文字`'百分比%'`类型
+             */
+            min: PropTypes.oneOfType([
+                PropTypes.number,
+                PropTypes.string
+            ]),
+            /**
+             * 最大尺寸，支持数字`px`或者文字`'百分比%'`类型
+             */
+            max: PropTypes.oneOfType([
+                PropTypes.number,
+                PropTypes.string
+            ]),
             /**
              * 是否可折叠
              * 默认值：`false`
@@ -164,7 +141,6 @@ AntdSplitter.propTypes = {
                     end: PropTypes.bool
                 })
             ]),
-
             /**
              * 是否开启拖拽伸缩
              * 默认值：`true`
@@ -172,24 +148,6 @@ AntdSplitter.propTypes = {
             resizable: PropTypes.bool,
         })
     ).isRequired,
-
-    /**
-     * 监听当前面板大小变化信息
-     */
-    currentSizes: PropTypes.arrayOf(PropTypes.exact({
-        /**
-         * 面板key
-         */
-        key: PropTypes.string,
-        /**
-         * 面板大小
-         */
-        size: PropTypes.oneOfType([
-            PropTypes.number,
-            PropTypes.string
-        ])
-    })),
-
 
     /**
      * `data-*`格式属性通配
@@ -223,7 +181,6 @@ AntdSplitter.propTypes = {
     setProps: PropTypes.func
 };
 
-// 设置默认参数
 AntdSplitter.defaultProps = {
     layout: 'horizontal',
 }
