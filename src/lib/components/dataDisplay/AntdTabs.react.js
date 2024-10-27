@@ -233,6 +233,11 @@ AntdTabs.propTypes = {
     }),
 
     /**
+     * 当`items`为空或长度为`0`时，替代进行占位显示的内容
+     */
+    placeholder: PropTypes.node,
+
+    /**
      * `data-*`格式属性通配
      */
     'data-*': PropTypes.string,
