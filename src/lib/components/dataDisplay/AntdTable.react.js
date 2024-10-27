@@ -1590,7 +1590,6 @@ AntdTable.propTypes = {
     setProps: PropTypes.func
 };
 
-// 设置默认参数
 AntdTable.defaultProps = {
     // 通用参数
     showHeader: true,

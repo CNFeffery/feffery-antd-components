@@ -1923,7 +1923,7 @@ class AntdTable extends Component {
                                         onClick: e => {
                                             setProps({
                                                 recentlyCellClickColumn: item.dataIndex,
-                                                recentlyCellClickRecord: record,
+                                                recentlyCellClickRecord: omitBy(record, value => value?.$$typeof),
                                                 nClicksCell: nClicksCell + 1,
                                                 cellClickEvent: {
                                                     pageX: e.pageX,
@@ -1939,7 +1939,7 @@ class AntdTable extends Component {
                                         onDoubleClick: e => {
                                             setProps({
                                                 recentlyCellDoubleClickColumn: item.dataIndex,
-                                                recentlyCellDoubleClickRecord: record,
+                                                recentlyCellDoubleClickRecord: omitBy(record, value => value?.$$typeof),
                                                 nDoubleClicksCell: nDoubleClicksCell + 1,
                                                 cellDoubleClickEvent: {
                                                     pageX: e.pageX,
@@ -1957,7 +1957,7 @@ class AntdTable extends Component {
                                             e.preventDefault()
                                             setProps({
                                                 recentlyContextMenuClickColumn: item.dataIndex,
-                                                recentlyContextMenuClickRecord: record,
+                                                recentlyContextMenuClickRecord: omitBy(record, value => value?.$$typeof),
                                                 nContextMenuClicksCell: nContextMenuClicksCell + 1,
                                                 cellContextMenuClickEvent: {
                                                     pageX: e.pageX,
