@@ -37,7 +37,6 @@ const AntdConfigProvider = (props) => {
     let {
         id,
         children,
-        key,
         algorithm,
         useOldTheme,
         primaryColor,
@@ -55,7 +54,6 @@ const AntdConfigProvider = (props) => {
 
     let configProviderInstance = (
         <ConfigProvider id={id}
-            key={key}
             theme={
                 useOldTheme ?
                     str2oldTheme.get(useOldTheme) :

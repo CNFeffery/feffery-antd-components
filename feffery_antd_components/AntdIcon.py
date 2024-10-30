@@ -21,8 +21,15 @@ Keyword arguments:
 - className (string | dict; optional):
     当前组件css类名，支持[动态css](/advanced-classname).
 
+- mode (a value equal to: 'default', 'iconfont'; default 'default'):
+    图标调用模式，可选项有`'default'`（内置图标）、`'iconfont'`（阿里巴巴矢量图标）
+    默认值：`'default'`.
+
 - icon (string; optional):
-    图标名称.
+    当`mode='default'`时，设置内置图标名称，当`mode='iconfont'`时，设置自定义源图标名称.
+
+- scriptUrl (string | list of strings; optional):
+    当`mode='iconfont'`时，设置单个或多个阿里巴巴矢量图标源（在iconfont.cn上制作）.
 
 - nClicks (number; default 0):
     图标累计点击次数，用于监听图标点击行为  默认值：`0`.
@@ -53,10 +60,10 @@ Keyword arguments:
     _namespace = 'feffery_antd_components'
     _type = 'AntdIcon'
     @_explicitize_args
-    def __init__(self, id=Component.UNDEFINED, key=Component.UNDEFINED, style=Component.UNDEFINED, className=Component.UNDEFINED, icon=Component.UNDEFINED, nClicks=Component.UNDEFINED, debounceWait=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
-        self._prop_names = ['id', 'key', 'style', 'className', 'icon', 'nClicks', 'debounceWait', 'data-*', 'aria-*', 'loading_state']
+    def __init__(self, id=Component.UNDEFINED, key=Component.UNDEFINED, style=Component.UNDEFINED, className=Component.UNDEFINED, mode=Component.UNDEFINED, icon=Component.UNDEFINED, scriptUrl=Component.UNDEFINED, nClicks=Component.UNDEFINED, debounceWait=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
+        self._prop_names = ['id', 'key', 'style', 'className', 'mode', 'icon', 'scriptUrl', 'nClicks', 'debounceWait', 'data-*', 'aria-*', 'loading_state']
         self._valid_wildcard_attributes =            ['data-', 'aria-']
-        self.available_properties = ['id', 'key', 'style', 'className', 'icon', 'nClicks', 'debounceWait', 'data-*', 'aria-*', 'loading_state']
+        self.available_properties = ['id', 'key', 'style', 'className', 'mode', 'icon', 'scriptUrl', 'nClicks', 'debounceWait', 'data-*', 'aria-*', 'loading_state']
         self.available_wildcard_properties =            ['data-', 'aria-']
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()

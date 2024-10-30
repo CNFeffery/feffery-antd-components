@@ -2,6 +2,7 @@
 import PropTypes from 'prop-types';
 // antd核心
 import { str2Icon } from '../icons.react';
+import { createFromIconfontCN } from '@ant-design/icons';
 // 辅助库
 import { isString } from 'lodash';
 import { pickBy } from 'ramda';
@@ -16,7 +17,9 @@ const AntdIcon = (props) => {
     let {
         id,
         className,
+        mode,
         icon,
+        scriptUrl,
         style,
         key,
         nClicks,
@@ -38,37 +41,67 @@ const AntdIcon = (props) => {
     )
 
     if (icon) {
-        return (
-            <span
-                // 提取具有data-*或aria-*通配格式的属性
-                {...pickBy((_, k) => k.startsWith('data-') || k.startsWith('aria-'), props)}
-                id={id}
-                className={
-                    isString(className) ?
-                        className :
-                        (className ? useCss(className) : undefined)
-                }
-                style={
-                    (
-                        icon.startsWith('fc-') ||
-                        icon.startsWith('md-') ||
-                        icon.startsWith('di-') ||
-                        icon.startsWith('bi-') ||
-                        icon.startsWith('bs-') ||
-                        icon.startsWith('gi-') ||
-                        icon.startsWith('si-')
-                    ) ?
-                        { ...{ verticalAlign: 'middle', userSelect: 'none' }, ...style } :
+        // 内置图标模式
+        if (mode === 'default' || !mode) {
+            return (
+                <span
+                    // 提取具有data-*或aria-*通配格式的属性
+                    {...pickBy((_, k) => k.startsWith('data-') || k.startsWith('aria-'), props)}
+                    id={id}
+                    className={
+                        isString(className) ?
+                            className :
+                            (className ? useCss(className) : undefined)
+                    }
+                    style={
+                        (
+                            icon.startsWith('fc-') ||
+                            icon.startsWith('md-') ||
+                            icon.startsWith('di-') ||
+                            icon.startsWith('bi-') ||
+                            icon.startsWith('bs-') ||
+                            icon.startsWith('gi-') ||
+                            icon.startsWith('si-')
+                        ) ?
+                            { ...{ verticalAlign: 'middle', userSelect: 'none' }, ...style } :
+                            { ...{ userSelect: 'none' }, ...style }
+                    }
+                    key={key}
+                    onClick={onClick}
+                    data-dash-is-loading={
+                        (loading_state && loading_state.is_loading) || undefined
+                    }>
+                    {str2Icon.get(icon)}
+                </span>
+            );
+        }
+        // 阿里巴巴矢量图标模式
+        else if (mode === 'iconfont') {
+            const IconFont = createFromIconfontCN({
+                scriptUrl: scriptUrl,
+            });
+            return (
+                <span
+                    // 提取具有data-*或aria-*通配格式的属性
+                    {...pickBy((_, k) => k.startsWith('data-') || k.startsWith('aria-'), props)}
+                    id={id}
+                    className={
+                        isString(className) ?
+                            className :
+                            (className ? useCss(className) : undefined)
+                    }
+                    style={
                         { ...{ userSelect: 'none' }, ...style }
-                }
-                key={key}
-                onClick={onClick}
-                data-dash-is-loading={
-                    (loading_state && loading_state.is_loading) || undefined
-                }>
-                {str2Icon.get(icon)}
-            </span>
-        );
+                    }
+                    key={key}
+                    onClick={onClick}
+                    data-dash-is-loading={
+                        (loading_state && loading_state.is_loading) || undefined
+                    }>
+                    <IconFont type={icon} />
+                </span>
+            );
+        }
     }
     return null;
 }
@@ -98,9 +131,23 @@ AntdIcon.propTypes = {
     ]),
 
     /**
-     * 图标名称
+     * 图标调用模式，可选项有`'default'`（内置图标）、`'iconfont'`（阿里巴巴矢量图标）
+     * 默认值：`'default'`
+     */
+    mode: PropTypes.oneOf(['default', 'iconfont']),
+
+    /**
+     * 当`mode='default'`时，设置内置图标名称，当`mode='iconfont'`时，设置自定义源图标名称
      */
     icon: PropTypes.string,
+
+    /**
+     * 当`mode='iconfont'`时，设置单个或多个阿里巴巴矢量图标源（在iconfont.cn上制作）
+     */
+    scriptUrl: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.arrayOf(PropTypes.string)
+    ]),
 
     /**
      * 图标累计点击次数，用于监听图标点击行为
@@ -148,6 +195,7 @@ AntdIcon.propTypes = {
 
 // 设置默认参数
 AntdIcon.defaultProps = {
+    mode: 'default',
     nClicks: 0,
     debounceWait: 0
 }
