@@ -22,6 +22,7 @@ const AntdCenter = (props) => {
         style,
         key,
         inline,
+        inheritStyleToken,
         setProps,
         loading_state
     } = props;
@@ -44,9 +45,15 @@ const AntdCenter = (props) => {
                 display: inline ? 'inline-flex' : 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
-                backgroundColor: token.colorBgBase,
-                color: token.colorTextBase,
-                fontSize: token.fontSize,
+                ...(
+                    inheritStyleToken ?
+                        {
+                            backgroundColor: token.colorBgBase,
+                            color: token.colorTextBase,
+                            fontSize: token.fontSize,
+                        } :
+                        {}
+                ),
                 ...style
             }}
             key={key}
@@ -94,6 +101,12 @@ AntdCenter.propTypes = {
     inline: PropTypes.bool,
 
     /**
+     * 是否在背景色、字体颜色、字体大小等样式上联动`AntdConfigProvider`相关设置
+     * 默认值：`false`
+     */
+    inheritStyleToken: PropTypes.bool,
+
+    /**
      * `data-*`格式属性通配
      */
     'data-*': PropTypes.string,
@@ -127,7 +140,8 @@ AntdCenter.propTypes = {
 
 // 设置默认参数
 AntdCenter.defaultProps = {
-    inline: false
+    inline: false,
+    inheritStyleToken: false
 }
 
 export default AntdCenter;

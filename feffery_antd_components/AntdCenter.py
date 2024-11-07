@@ -27,6 +27,9 @@ Keyword arguments:
 - inline (boolean; default False):
     是否渲染为行内元素  默认值：`False`.
 
+- inheritStyleToken (boolean; default False):
+    是否在背景色、字体颜色、字体大小等样式上联动`AntdConfigProvider`相关设置  默认值：`False`.
+
 - data-* (string; optional):
     `data-*`格式属性通配.
 
@@ -50,10 +53,10 @@ Keyword arguments:
     _namespace = 'feffery_antd_components'
     _type = 'AntdCenter'
     @_explicitize_args
-    def __init__(self, children=None, id=Component.UNDEFINED, key=Component.UNDEFINED, style=Component.UNDEFINED, className=Component.UNDEFINED, inline=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
-        self._prop_names = ['id', 'key', 'children', 'style', 'className', 'inline', 'data-*', 'aria-*', 'loading_state']
+    def __init__(self, children=None, id=Component.UNDEFINED, key=Component.UNDEFINED, style=Component.UNDEFINED, className=Component.UNDEFINED, inline=Component.UNDEFINED, inheritStyleToken=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
+        self._prop_names = ['id', 'key', 'children', 'style', 'className', 'inline', 'inheritStyleToken', 'data-*', 'aria-*', 'loading_state']
         self._valid_wildcard_attributes =            ['data-', 'aria-']
-        self.available_properties = ['id', 'key', 'children', 'style', 'className', 'inline', 'data-*', 'aria-*', 'loading_state']
+        self.available_properties = ['id', 'key', 'children', 'style', 'className', 'inline', 'inheritStyleToken', 'data-*', 'aria-*', 'loading_state']
         self.available_wildcard_properties =            ['data-', 'aria-']
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()
