@@ -54,14 +54,16 @@ function findByKey(array, key) {
 
 function findKeyPath(array, key, path = []) {
     for (let item of array) {
-        let currentPath = [...path, item.props.key];
-        if (get(item, 'props.key') === key) {
-            return currentPath;
-        }
-        if (get(item, 'children') && isArray(get(item, 'children'))) {
-            const result = findKeyPath(item.children, key, currentPath);
-            if (result) {
-                return result;
+        if (item?.props?.key) {
+            let currentPath = [...path, item.props.key];
+            if (get(item, 'props.key') === key) {
+                return currentPath;
+            }
+            if (get(item, 'children') && isArray(get(item, 'children'))) {
+                const result = findKeyPath(item.children, key, currentPath);
+                if (result) {
+                    return result;
+                }
             }
         }
     }
