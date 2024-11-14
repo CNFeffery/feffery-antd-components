@@ -15,7 +15,7 @@
 
 [简体中文](./README.md) | English
 
-Subproject of `feffery-components` projects, third-party components library of `Plotly Dash`, based on the [Antd](https://github.com/ant-design/ant-design), brings many common and powerful components into `Dash`🥳, latest stable version: `0.3.10`
+Subproject of `feffery-components` projects, third-party components library of `Plotly Dash`, based on the [Antd](https://github.com/ant-design/ant-design), brings many common and powerful components into `Dash`🥳, latest stable version: `0.3.10` (2024-11-01)
 
 ## 1 Install
 
@@ -45,13 +45,19 @@ app = dash.Dash(serve_locally=False)
 
 ## 5 Internationalization
 
-The default language of `fac` is currently simplified Chinese. If you wish to use English, just set `locale='en-us'`, for example：
+Some components in `fac` have built-in copy information, and internationalization settings can be made through the parameter `locale`. The default is `'zh-cn'`, which is Simplified Chinese. You can set it to `'en-us'` and `'de-de'` to use English and German copy, respectively. For example:
 
 ```Python
 fac.AntdDatePicker(locale='en-us')
 ```
 
-<img src="./images/国际化示例.png" height=350></img>
+<img src="./images/国际化示例_en-us.png" height=350></img>
+
+```Python
+fac.AntdDatePicker(locale='de-de')
+```
+
+<img src="./images/国际化示例_de-de.png" height=350></img>
 
 ## 6 Contributors
 

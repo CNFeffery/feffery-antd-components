@@ -15,7 +15,7 @@
 
 简体中文 | [English](./README-en_US.md)
 
-`feffery-components`计划子项目，`Plotly Dash`第三方组件库，基于`Antd`，将超多具有丰富功能的通用网页常用交互组件引入`Dash`的生态中 🥳，最新稳定版本：`0.3.10`
+`feffery-components`计划子项目，`Plotly Dash`第三方组件库，基于`Antd`，将超多具有丰富功能的通用网页常用交互组件引入`Dash`的生态中 🥳，最新稳定版本：`0.3.10`（2024-11-01）
 
 ## 1 最新版本安装方式
 
@@ -46,13 +46,19 @@ app = dash.Dash(serve_locally=False)
 
 ## 5 国际化
 
-`fac`中的部分组件具有自带的文案信息，通过参数`locale`可以进行国际化设置，默认为`'zh-cn'`即简体中文，你可以设置为`'en-us'`来使用英文文案，譬如：
+`fac`中的部分组件具有自带的文案信息，通过参数`locale`可以进行国际化设置，默认为`'zh-cn'`即简体中文，你可以设置为`'en-us'`和`'de-de'`来使用英文文案和德语文案，譬如：
 
 ```Python
 fac.AntdDatePicker(locale='en-us')
 ```
 
-<img src="./images/国际化示例.png" height=350></img>
+<img src="./images/国际化示例_en-us.png" height=350></img>
+
+```Python
+fac.AntdDatePicker(locale='de-de')
+```
+
+<img src="./images/国际化示例_de-de.png" height=350></img>
 
 ## 6 贡献者
 
