@@ -61,6 +61,10 @@ module.exports = (env, argv) => {
         module: {
             rules: [
                 {
+                    test: /\.(woff2|woff|ttf|otf|svg|eot)$/,
+                    use: ["url-loader"],
+                },
+                {
                     test: /\.jsx?$/,
                     exclude: /node_modules/,
                     use: {
@@ -81,6 +85,9 @@ module.exports = (env, argv) => {
                         path.resolve('node_modules', 'yjs'),
                         path.resolve('node_modules', 'parse5'),
                         path.resolve('node_modules', '@ant-design'),
+                        path.resolve('node_modules', '@oceanbase'),
+                        path.resolve('node_modules', 'query-string'),
+                        path.resolve('node_modules', 'filter-obj'),
                     ],
                     use: {
                         loader: 'babel-loader',

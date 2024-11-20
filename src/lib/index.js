@@ -108,6 +108,7 @@ import AntdSpin from './components/feedback/AntdSpin.react';
 import AntdAffix from './components/other/AntdAffix.react';
 import AntdBackTop from './components/other/AntdBackTop.react';
 import AntdCopyText from './components/other/AntdCopyText.react';
+import AntdDocDialog from './components/other/AntdDocDialog.react';
 import AntdTour from './components/other/AntdTour.react';
 import AntdWatermark from './components/other/AntdWatermark.react';
 import AntdConfigProvider from './components/other/AntdConfigProvider.react';
@@ -231,6 +232,7 @@ export {
     AntdAffix,
     AntdBackTop,
     AntdCopyText,
+    AntdDocDialog,
     AntdTour,
     AntdWatermark,
     AntdConfigProvider,
