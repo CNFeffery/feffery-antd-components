@@ -85,7 +85,8 @@ const AntdDateRangePicker = (props) => {
                 setRawValue(null);
             }
         } else {
-            if (value) {
+            // 若value新赋值有效
+            if (value && value.length > 0 && value.every(v => v)) {
                 setRawValue([dayjs(value[0], format), dayjs(value[1], format)]);
             } else {
                 setRawValue(null);
