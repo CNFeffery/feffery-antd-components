@@ -286,6 +286,11 @@ AntdSelect.propTypes = {
     prefix: PropTypes.node,
 
     /**
+     * 自定义选择框后缀图标内容
+     */
+    suffixIcon: PropTypes.node,
+
+    /**
      * 是否允许一键清空已选值
      * 默认值：`true`
      */
