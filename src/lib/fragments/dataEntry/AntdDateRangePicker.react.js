@@ -66,6 +66,7 @@ const AntdDateRangePicker = (props) => {
         extraFooter,
         presets,
         customCells,
+        prefix,
         persistence,
         persisted_props,
         persistence_type,
@@ -605,6 +606,7 @@ const AntdDateRangePicker = (props) => {
                             } :
                             undefined
                     }
+                    prefix={prefix}
                     persistence={persistence}
                     persisted_props={persisted_props}
                     persistence_type={persistence_type}
