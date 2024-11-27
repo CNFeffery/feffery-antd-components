@@ -50,6 +50,7 @@ const AntdTimePicker = (props) => {
         readOnly,
         extraFooter,
         showNow,
+        prefix,
         persistence,
         persisted_props,
         persistence_type,
@@ -166,6 +167,7 @@ const AntdTimePicker = (props) => {
                     renderExtraFooter={() => extraFooter}
                     showNow={showNow}
                     needConfirm={needConfirm}
+                    prefix={prefix}
                     persistence={persistence}
                     persisted_props={persisted_props}
                     persistence_type={persistence_type}
