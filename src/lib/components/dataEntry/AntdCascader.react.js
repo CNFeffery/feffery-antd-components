@@ -273,6 +273,11 @@ AntdCascader.propTypes = {
     prefix: PropTypes.node,
 
     /**
+     * 自定义选择框后缀图标内容
+     */
+    suffixIcon: PropTypes.node,
+
+    /**
      * 是否渲染为只读状态
      * 默认值：`false`
      */

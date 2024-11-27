@@ -83,6 +83,7 @@ const AntdCascader = (props) => {
         showCheckedStrategy,
         popupContainer,
         prefix,
+        suffixIcon,
         readOnly,
         setProps,
         persistence,
@@ -223,7 +224,6 @@ const AntdCascader = (props) => {
                                     (label) => label[0]
                             )
                     }
-                    prefix={prefix}
                     showSearch={{ filter }}
                     onChange={onSelect}
                     data-dash-is-loading={
@@ -306,6 +306,7 @@ const AntdCascader = (props) => {
                         )
                 }
                 prefix={prefix}
+                suffixIcon={suffixIcon}
                 showSearch={{ filter }}
                 onChange={onSelect}
                 data-dash-is-loading={
