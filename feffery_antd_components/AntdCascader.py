@@ -96,6 +96,9 @@ Keyword arguments:
 - showCheckedStrategy (a value equal to: 'show-parent', 'show-child'; optional):
     已选项回填策略，可选项有`'show-parent'`、`'show-child'`.
 
+- prefix (a list of or a singular dash component, string or number; optional):
+    组件型，前缀内嵌内容.
+
 - readOnly (boolean; optional):
     是否渲染为只读状态  默认值：`False`.
 
@@ -136,15 +139,15 @@ Keyword arguments:
 - persistence_type (a value equal to: 'local', 'session', 'memory'; default 'local'):
     属性持久化存储类型，可选项有`'local'`（本地持久化），`'session'`（会话持久化），`'memory'`（内存持久化）
     默认值：`'local'`."""
-    _children_props = ['optionsNodeKeyToLabel{}']
-    _base_nodes = ['children']
+    _children_props = ['optionsNodeKeyToLabel{}', 'prefix']
+    _base_nodes = ['prefix', 'children']
     _namespace = 'feffery_antd_components'
     _type = 'AntdCascader'
     @_explicitize_args
-    def __init__(self, id=Component.UNDEFINED, key=Component.UNDEFINED, style=Component.UNDEFINED, className=Component.UNDEFINED, popupClassName=Component.UNDEFINED, name=Component.UNDEFINED, locale=Component.UNDEFINED, optionsMode=Component.UNDEFINED, options=Component.REQUIRED, optionsNodeKeyToLabel=Component.UNDEFINED, optionFilterProp=Component.UNDEFINED, panelMode=Component.UNDEFINED, disabled=Component.UNDEFINED, changeOnSelect=Component.UNDEFINED, size=Component.UNDEFINED, bordered=Component.UNDEFINED, variant=Component.UNDEFINED, placeholder=Component.UNDEFINED, placement=Component.UNDEFINED, value=Component.UNDEFINED, defaultValue=Component.UNDEFINED, multiple=Component.UNDEFINED, maxTagCount=Component.UNDEFINED, expandTrigger=Component.UNDEFINED, status=Component.UNDEFINED, allowClear=Component.UNDEFINED, autoFocus=Component.UNDEFINED, showCheckedStrategy=Component.UNDEFINED, readOnly=Component.UNDEFINED, popupContainer=Component.UNDEFINED, batchPropsNames=Component.UNDEFINED, batchPropsValues=Component.UNDEFINED, loading_state=Component.UNDEFINED, persistence=Component.UNDEFINED, persisted_props=Component.UNDEFINED, persistence_type=Component.UNDEFINED, **kwargs):
-        self._prop_names = ['id', 'key', 'style', 'className', 'popupClassName', 'name', 'locale', 'optionsMode', 'options', 'optionsNodeKeyToLabel', 'optionFilterProp', 'panelMode', 'disabled', 'changeOnSelect', 'size', 'bordered', 'variant', 'placeholder', 'placement', 'value', 'defaultValue', 'multiple', 'maxTagCount', 'expandTrigger', 'status', 'allowClear', 'autoFocus', 'showCheckedStrategy', 'readOnly', 'popupContainer', 'batchPropsNames', 'batchPropsValues', 'data-*', 'aria-*', 'loading_state', 'persistence', 'persisted_props', 'persistence_type']
+    def __init__(self, id=Component.UNDEFINED, key=Component.UNDEFINED, style=Component.UNDEFINED, className=Component.UNDEFINED, popupClassName=Component.UNDEFINED, name=Component.UNDEFINED, locale=Component.UNDEFINED, optionsMode=Component.UNDEFINED, options=Component.REQUIRED, optionsNodeKeyToLabel=Component.UNDEFINED, optionFilterProp=Component.UNDEFINED, panelMode=Component.UNDEFINED, disabled=Component.UNDEFINED, changeOnSelect=Component.UNDEFINED, size=Component.UNDEFINED, bordered=Component.UNDEFINED, variant=Component.UNDEFINED, placeholder=Component.UNDEFINED, placement=Component.UNDEFINED, value=Component.UNDEFINED, defaultValue=Component.UNDEFINED, multiple=Component.UNDEFINED, maxTagCount=Component.UNDEFINED, expandTrigger=Component.UNDEFINED, status=Component.UNDEFINED, allowClear=Component.UNDEFINED, autoFocus=Component.UNDEFINED, showCheckedStrategy=Component.UNDEFINED, prefix=Component.UNDEFINED, readOnly=Component.UNDEFINED, popupContainer=Component.UNDEFINED, batchPropsNames=Component.UNDEFINED, batchPropsValues=Component.UNDEFINED, loading_state=Component.UNDEFINED, persistence=Component.UNDEFINED, persisted_props=Component.UNDEFINED, persistence_type=Component.UNDEFINED, **kwargs):
+        self._prop_names = ['id', 'key', 'style', 'className', 'popupClassName', 'name', 'locale', 'optionsMode', 'options', 'optionsNodeKeyToLabel', 'optionFilterProp', 'panelMode', 'disabled', 'changeOnSelect', 'size', 'bordered', 'variant', 'placeholder', 'placement', 'value', 'defaultValue', 'multiple', 'maxTagCount', 'expandTrigger', 'status', 'allowClear', 'autoFocus', 'showCheckedStrategy', 'prefix', 'readOnly', 'popupContainer', 'batchPropsNames', 'batchPropsValues', 'data-*', 'aria-*', 'loading_state', 'persistence', 'persisted_props', 'persistence_type']
         self._valid_wildcard_attributes =            ['data-', 'aria-']
-        self.available_properties = ['id', 'key', 'style', 'className', 'popupClassName', 'name', 'locale', 'optionsMode', 'options', 'optionsNodeKeyToLabel', 'optionFilterProp', 'panelMode', 'disabled', 'changeOnSelect', 'size', 'bordered', 'variant', 'placeholder', 'placement', 'value', 'defaultValue', 'multiple', 'maxTagCount', 'expandTrigger', 'status', 'allowClear', 'autoFocus', 'showCheckedStrategy', 'readOnly', 'popupContainer', 'batchPropsNames', 'batchPropsValues', 'data-*', 'aria-*', 'loading_state', 'persistence', 'persisted_props', 'persistence_type']
+        self.available_properties = ['id', 'key', 'style', 'className', 'popupClassName', 'name', 'locale', 'optionsMode', 'options', 'optionsNodeKeyToLabel', 'optionFilterProp', 'panelMode', 'disabled', 'changeOnSelect', 'size', 'bordered', 'variant', 'placeholder', 'placement', 'value', 'defaultValue', 'multiple', 'maxTagCount', 'expandTrigger', 'status', 'allowClear', 'autoFocus', 'showCheckedStrategy', 'prefix', 'readOnly', 'popupContainer', 'batchPropsNames', 'batchPropsValues', 'data-*', 'aria-*', 'loading_state', 'persistence', 'persisted_props', 'persistence_type']
         self.available_wildcard_properties =            ['data-', 'aria-']
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()

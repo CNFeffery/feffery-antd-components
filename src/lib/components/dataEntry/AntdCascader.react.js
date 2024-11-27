@@ -268,6 +268,11 @@ AntdCascader.propTypes = {
     showCheckedStrategy: PropTypes.oneOf(['show-parent', 'show-child']),
 
     /**
+     * 组件型，前缀内嵌内容
+     */
+    prefix: PropTypes.node,
+
+    /**
      * 是否渲染为只读状态
      * 默认值：`false`
      */

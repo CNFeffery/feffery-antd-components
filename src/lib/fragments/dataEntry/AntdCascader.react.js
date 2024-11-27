@@ -82,6 +82,7 @@ const AntdCascader = (props) => {
         autoFocus,
         showCheckedStrategy,
         popupContainer,
+        prefix,
         readOnly,
         setProps,
         persistence,
@@ -159,7 +160,6 @@ const AntdCascader = (props) => {
         setProps({ value: e })
     }
 
-
     if (panelMode) {
         return (
             <ConfigProvider locale={str2Locale.get(locale)}>
@@ -223,6 +223,7 @@ const AntdCascader = (props) => {
                                     (label) => label[0]
                             )
                     }
+                    prefix={prefix}
                     showSearch={{ filter }}
                     onChange={onSelect}
                     data-dash-is-loading={
@@ -304,6 +305,7 @@ const AntdCascader = (props) => {
                                 (label) => label[0]
                         )
                 }
+                prefix={prefix}
                 showSearch={{ filter }}
                 onChange={onSelect}
                 data-dash-is-loading={
