@@ -91,7 +91,7 @@ const splitSummaryRowContents = (summaryRowContents, columnCount, blankColumns) 
             currentGroupSpans = (item.colSpan || 1);
             // 处理前置空白列填充
             if (blankColumns > 0) {
-                summaryGroups.push([...Array.from({ length: 3 }, () => ({ empty: true })), item])
+                summaryGroups.push([...Array.from({ length: blankColumns }, () => ({ empty: true })), item])
             } else {
                 summaryGroups.push([item])
             }
