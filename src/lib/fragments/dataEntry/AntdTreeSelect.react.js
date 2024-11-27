@@ -80,6 +80,7 @@ const AntdTreeSelect = (props) => {
         maxTagTextLength,
         multiple,
         size,
+        prefix,
         suffixIcon,
         switcherIcon,
         treeCheckable,
@@ -242,6 +243,7 @@ const AntdTreeSelect = (props) => {
                         context.componentSize :
                         size
                 }
+                prefix={prefix}
                 suffixIcon={suffixIcon}
                 switcherIcon={switcherIcon}
                 treeCheckable={treeCheckable}
