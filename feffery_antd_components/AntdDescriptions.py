@@ -32,8 +32,8 @@ Keyword arguments:
     - label (a list of or a singular dash component, string or number; optional):
         组件型，子项标题内容.
 
-    - span (number; optional):
-        子项所占宽度份数  默认值：`1`.
+    - span (number | a value equal to: 'filled'; optional):
+        子项所占宽度份数，当设置为`'filled'`时会自适应占满当前行剩余可用空间  默认值：`1`.
 
     - children (a list of or a singular dash component, string or number; optional):
         组件型，子项内容.

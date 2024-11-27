@@ -53,10 +53,13 @@ AntdDescriptions.propTypes = {
              */
             label: PropTypes.node,
             /**
-             * 子项所占宽度份数
+             * 子项所占宽度份数，当设置为`'filled'`时会自适应占满当前行剩余可用空间
              * 默认值：`1`
              */
-            span: PropTypes.number,
+            span: PropTypes.oneOfType([
+                PropTypes.number,
+                PropTypes.oneOf(['filled'])
+            ]),
             /**
              * 组件型，子项内容
              */
