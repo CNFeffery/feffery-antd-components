@@ -50,6 +50,7 @@ const AntdTimeRangePicker = (props) => {
         open,
         status,
         prefix,
+        suffixIcon,
         popupContainer,
         readOnly,
         extraFooter,
@@ -195,6 +196,7 @@ const AntdTimeRangePicker = (props) => {
                         (loading_state && loading_state.is_loading) || undefined
                     }
                     prefix={prefix}
+                    suffixIcon={suffixIcon}
                     getPopupContainer={
                         popupContainer === 'parent' ?
                             (triggerNode) => triggerNode.parentNode :
