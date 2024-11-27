@@ -274,6 +274,11 @@ AntdDatePicker.propTypes = {
     prefix: PropTypes.node,
 
     /**
+     * 自定义选择框后缀图标内容
+     */
+    suffixIcon: PropTypes.node,
+
+    /**
      * 相关展开层锚定策略，可选项有`'parent'`、`'body'`
      * 默认值：`'body'`
      */
