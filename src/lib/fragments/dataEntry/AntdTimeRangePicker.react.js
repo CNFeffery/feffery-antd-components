@@ -49,6 +49,7 @@ const AntdTimeRangePicker = (props) => {
         size,
         open,
         status,
+        prefix,
         popupContainer,
         readOnly,
         extraFooter,
@@ -193,6 +194,7 @@ const AntdTimeRangePicker = (props) => {
                     data-dash-is-loading={
                         (loading_state && loading_state.is_loading) || undefined
                     }
+                    prefix={prefix}
                     getPopupContainer={
                         popupContainer === 'parent' ?
                             (triggerNode) => triggerNode.parentNode :

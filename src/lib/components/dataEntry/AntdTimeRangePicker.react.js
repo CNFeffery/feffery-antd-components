@@ -162,6 +162,11 @@ AntdTimeRangePicker.propTypes = {
     extraFooter: PropTypes.node,
 
     /**
+     * 组件型，前缀内嵌内容
+     */
+    prefix: PropTypes.node,
+
+    /**
      * 相关展开层锚定策略，可选项有`'parent'`、`'body'`
      * 默认值：`'body'`
      */
