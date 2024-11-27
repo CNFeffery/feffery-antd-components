@@ -21,7 +21,7 @@ AntdSelect.propTypes = {
     id: PropTypes.string,
 
     /**
-     * 对当前组件的`key`值进行更新，可实现强制重绘当前组件的效果
+     * 对当前组件的`key`值进行更新，可实现强制重绘当前组件的效果F
      */
     key: PropTypes.string,
 
@@ -279,6 +279,11 @@ AntdSelect.propTypes = {
      * 组件型，选择菜单后缀内容
      */
     dropdownAfter: PropTypes.node,
+
+    /**
+     * 组件型，前缀内嵌内容
+     */
+    prefix: PropTypes.node,
 
     /**
      * 是否允许一键清空已选值

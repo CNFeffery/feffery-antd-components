@@ -58,6 +58,7 @@ const AntdSelect = (props) => {
         loadingEmptyContent,
         dropdownBefore,
         dropdownAfter,
+        prefix,
         popupContainer,
         readOnly,
         popupMatchSelectWidth,
@@ -342,6 +343,7 @@ const AntdSelect = (props) => {
                             );
                         } : undefined
                 }
+                prefix={prefix}
                 persistence={persistence}
                 persisted_props={persisted_props}
                 persistence_type={persistence_type}
