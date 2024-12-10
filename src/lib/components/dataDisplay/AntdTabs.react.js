@@ -176,6 +176,11 @@ AntdTabs.propTypes = {
     tabBarGutter: PropTypes.number,
 
     /**
+     * 标签卡片css样式
+     */
+    tabBarStyle: PropTypes.object,
+
+    /**
      * 标签卡片切换是否添加动画效果
      * 默认值：`true`
      */

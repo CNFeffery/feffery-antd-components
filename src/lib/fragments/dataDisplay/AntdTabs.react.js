@@ -32,6 +32,7 @@ const AntdTabs = (props) => {
         centered,
         indicator,
         tabBarGutter,
+        tabBarStyle,
         inkBarAnimated,
         tabPaneAnimated,
         destroyInactiveTabPane,
@@ -180,6 +181,7 @@ const AntdTabs = (props) => {
                     align: indicator?.align
                 }}
                 tabBarGutter={tabBarGutter}
+                tabBarStyle={tabBarStyle}
                 tabBarExtraContent={{
                     left: tabBarLeftExtraContent,
                     right: tabBarRightExtraContent

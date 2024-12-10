@@ -113,6 +113,9 @@ Keyword arguments:
 - tabBarGutter (number; optional):
     标签卡片之间的像素间距.
 
+- tabBarStyle (dict; optional):
+    标签卡片css样式.
+
 - inkBarAnimated (boolean; default True):
     标签卡片切换是否添加动画效果  默认值：`True`.
 
@@ -187,10 +190,10 @@ Keyword arguments:
     _namespace = 'feffery_antd_components'
     _type = 'AntdTabs'
     @_explicitize_args
-    def __init__(self, id=Component.UNDEFINED, key=Component.UNDEFINED, style=Component.UNDEFINED, className=Component.UNDEFINED, type=Component.UNDEFINED, items=Component.UNDEFINED, itemKeys=Component.UNDEFINED, activeKey=Component.UNDEFINED, defaultActiveKey=Component.UNDEFINED, disabledTabKeys=Component.UNDEFINED, tabPosition=Component.UNDEFINED, size=Component.UNDEFINED, centered=Component.UNDEFINED, indicator=Component.UNDEFINED, tabBarGutter=Component.UNDEFINED, inkBarAnimated=Component.UNDEFINED, tabPaneAnimated=Component.UNDEFINED, latestDeletePane=Component.UNDEFINED, tabCloseCounts=Component.UNDEFINED, tabBarLeftExtraContent=Component.UNDEFINED, tabBarRightExtraContent=Component.UNDEFINED, tabCount=Component.UNDEFINED, destroyInactiveTabPane=Component.UNDEFINED, clickedContextMenu=Component.UNDEFINED, placeholder=Component.UNDEFINED, loading_state=Component.UNDEFINED, persistence=Component.UNDEFINED, persisted_props=Component.UNDEFINED, persistence_type=Component.UNDEFINED, **kwargs):
-        self._prop_names = ['id', 'key', 'style', 'className', 'type', 'items', 'itemKeys', 'activeKey', 'defaultActiveKey', 'disabledTabKeys', 'tabPosition', 'size', 'centered', 'indicator', 'tabBarGutter', 'inkBarAnimated', 'tabPaneAnimated', 'latestDeletePane', 'tabCloseCounts', 'tabBarLeftExtraContent', 'tabBarRightExtraContent', 'tabCount', 'destroyInactiveTabPane', 'clickedContextMenu', 'placeholder', 'data-*', 'aria-*', 'loading_state', 'persistence', 'persisted_props', 'persistence_type']
+    def __init__(self, id=Component.UNDEFINED, key=Component.UNDEFINED, style=Component.UNDEFINED, className=Component.UNDEFINED, type=Component.UNDEFINED, items=Component.UNDEFINED, itemKeys=Component.UNDEFINED, activeKey=Component.UNDEFINED, defaultActiveKey=Component.UNDEFINED, disabledTabKeys=Component.UNDEFINED, tabPosition=Component.UNDEFINED, size=Component.UNDEFINED, centered=Component.UNDEFINED, indicator=Component.UNDEFINED, tabBarGutter=Component.UNDEFINED, tabBarStyle=Component.UNDEFINED, inkBarAnimated=Component.UNDEFINED, tabPaneAnimated=Component.UNDEFINED, latestDeletePane=Component.UNDEFINED, tabCloseCounts=Component.UNDEFINED, tabBarLeftExtraContent=Component.UNDEFINED, tabBarRightExtraContent=Component.UNDEFINED, tabCount=Component.UNDEFINED, destroyInactiveTabPane=Component.UNDEFINED, clickedContextMenu=Component.UNDEFINED, placeholder=Component.UNDEFINED, loading_state=Component.UNDEFINED, persistence=Component.UNDEFINED, persisted_props=Component.UNDEFINED, persistence_type=Component.UNDEFINED, **kwargs):
+        self._prop_names = ['id', 'key', 'style', 'className', 'type', 'items', 'itemKeys', 'activeKey', 'defaultActiveKey', 'disabledTabKeys', 'tabPosition', 'size', 'centered', 'indicator', 'tabBarGutter', 'tabBarStyle', 'inkBarAnimated', 'tabPaneAnimated', 'latestDeletePane', 'tabCloseCounts', 'tabBarLeftExtraContent', 'tabBarRightExtraContent', 'tabCount', 'destroyInactiveTabPane', 'clickedContextMenu', 'placeholder', 'data-*', 'aria-*', 'loading_state', 'persistence', 'persisted_props', 'persistence_type']
         self._valid_wildcard_attributes =            ['data-', 'aria-']
-        self.available_properties = ['id', 'key', 'style', 'className', 'type', 'items', 'itemKeys', 'activeKey', 'defaultActiveKey', 'disabledTabKeys', 'tabPosition', 'size', 'centered', 'indicator', 'tabBarGutter', 'inkBarAnimated', 'tabPaneAnimated', 'latestDeletePane', 'tabCloseCounts', 'tabBarLeftExtraContent', 'tabBarRightExtraContent', 'tabCount', 'destroyInactiveTabPane', 'clickedContextMenu', 'placeholder', 'data-*', 'aria-*', 'loading_state', 'persistence', 'persisted_props', 'persistence_type']
+        self.available_properties = ['id', 'key', 'style', 'className', 'type', 'items', 'itemKeys', 'activeKey', 'defaultActiveKey', 'disabledTabKeys', 'tabPosition', 'size', 'centered', 'indicator', 'tabBarGutter', 'tabBarStyle', 'inkBarAnimated', 'tabPaneAnimated', 'latestDeletePane', 'tabCloseCounts', 'tabBarLeftExtraContent', 'tabBarRightExtraContent', 'tabCount', 'destroyInactiveTabPane', 'clickedContextMenu', 'placeholder', 'data-*', 'aria-*', 'loading_state', 'persistence', 'persisted_props', 'persistence_type']
         self.available_wildcard_properties =            ['data-', 'aria-']
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()
