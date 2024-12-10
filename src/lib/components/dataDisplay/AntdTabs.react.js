@@ -62,6 +62,10 @@ AntdTabs.propTypes = {
              */
             children: PropTypes.node,
             /**
+             * 组件型，标签页图标元素
+             */
+            icon: PropTypes.node,
+            /**
              * `'editable-card'`型标签页可用，用于自定义关闭按钮，设置为`None`或`false`时会隐藏默认的关闭按钮
              */
             closeIcon: PropTypes.oneOfType([

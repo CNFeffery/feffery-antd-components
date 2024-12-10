@@ -38,6 +38,9 @@ Keyword arguments:
     - children (a list of or a singular dash component, string or number; optional):
         组件型，标签页内部元素.
 
+    - icon (a list of or a singular dash component, string or number; optional):
+        组件型，标签页图标元素.
+
     - closeIcon (boolean | a list of or a singular dash component, string or number; optional):
         `'editable-card'`型标签页可用，用于自定义关闭按钮，设置为`None`或`False`时会隐藏默认的关闭按钮.
 
@@ -179,7 +182,7 @@ Keyword arguments:
 - persistence_type (a value equal to: 'local', 'session', 'memory'; default 'local'):
     属性持久化存储类型，可选项有`'local'`（本地持久化），`'session'`（会话持久化），`'memory'`（内存持久化）
     默认值：`'local'`."""
-    _children_props = ['items[].label', 'items[].children', 'items[].closeIcon', 'tabBarLeftExtraContent', 'tabBarRightExtraContent', 'placeholder']
+    _children_props = ['items[].label', 'items[].children', 'items[].icon', 'items[].closeIcon', 'tabBarLeftExtraContent', 'tabBarRightExtraContent', 'placeholder']
     _base_nodes = ['tabBarLeftExtraContent', 'tabBarRightExtraContent', 'placeholder', 'children']
     _namespace = 'feffery_antd_components'
     _type = 'AntdTabs'
