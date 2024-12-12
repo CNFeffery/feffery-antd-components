@@ -1801,6 +1801,14 @@ class AntdTable extends Component {
                                             onMouseEnter: event => { setProps({ recentlyMouseEnterColumnDataIndex: e.dataIndex }) }
                                         } :
                                         {}
+                                ),
+                                // 独立控制表头对齐
+                                ...(
+                                    e.headerAlign ?
+                                        {
+                                            style: { textAlign: e.headerAlign }
+                                        } :
+                                        {}
                                 )
                             };
                         }

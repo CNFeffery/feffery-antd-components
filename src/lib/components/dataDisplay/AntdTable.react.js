@@ -215,6 +215,11 @@ AntdTable.propTypes = {
              */
             align: PropTypes.oneOf(['left', 'center', 'right']),
             /**
+             * 当前表头对齐方式，默认跟随当前字段对齐方式，可选项有`'left'`、`'center'`、`'right'`
+             * 默认值：`'center'`
+             */
+            headerAlign: PropTypes.oneOf(['left', 'center', 'right']),
+            /**
              * 当前字段宽度
              */
             width: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),

@@ -147,6 +147,10 @@ Keyword arguments:
     - align (a value equal to: 'left', 'center', 'right'; optional):
         当前字段对齐方式，可选项有`'left'`、`'center'`、`'right'`  默认值：`'center'`.
 
+    - headerAlign (a value equal to: 'left', 'center', 'right'; optional):
+        当前表头对齐方式，默认跟随当前字段对齐方式，可选项有`'left'`、`'center'`、`'right'`
+        默认值：`'center'`.
+
     - width (number | string; optional):
         当前字段宽度.
 
