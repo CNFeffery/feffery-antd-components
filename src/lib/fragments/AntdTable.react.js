@@ -393,6 +393,7 @@ class AntdTable extends Component {
             virtual,
             title,
             footer,
+            loading,
             setProps,
             loading_state
         } = this.props;
@@ -2136,6 +2137,7 @@ class AntdTable extends Component {
                     data-dash-is-loading={
                         (loading_state && loading_state.is_loading) || undefined
                     }
+                    loading={loading}
                     getPopupContainer={
                         containerId ?
                             () => (

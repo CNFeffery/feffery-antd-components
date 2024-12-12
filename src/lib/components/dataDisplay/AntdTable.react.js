@@ -1568,6 +1568,12 @@ AntdTable.propTypes = {
     footer: PropTypes.node,
 
     /**
+     * 是否启用表格自带加载中状态
+     * 默认值：`false`
+     */
+    loading: PropTypes.bool,
+
+    /**
      * `data-*`格式属性通配
      */
     'data-*': PropTypes.string,
@@ -1609,6 +1615,7 @@ AntdTable.defaultProps = {
     scrollToFirstRowOnChange: true,
     size: 'middle',
     bordered: false,
+    loading: false,
     // 进阶通用参数
     sortOptions: {},
     showSorterTooltip: true,
