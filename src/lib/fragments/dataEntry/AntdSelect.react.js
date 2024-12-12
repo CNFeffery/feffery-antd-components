@@ -62,6 +62,7 @@ const AntdSelect = (props) => {
         suffixIcon,
         popupContainer,
         readOnly,
+        maxCount,
         popupMatchSelectWidth,
         loading_state,
         persistence,
@@ -358,6 +359,7 @@ const AntdSelect = (props) => {
                         undefined
                 }
                 open={isUndefined(readOnly) || !readOnly ? undefined : false}
+                maxCount={maxCount}
                 popupMatchSelectWidth={popupMatchSelectWidth}
             >
                 {optionsJsx}

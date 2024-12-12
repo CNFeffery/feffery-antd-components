@@ -315,6 +315,11 @@ AntdSelect.propTypes = {
     readOnly: PropTypes.bool,
 
     /**
+     * `'multiple'`及 `'tags'`模式下有效，限制已选项数量上限
+     */
+    maxCount: PropTypes.number,
+
+    /**
      * 相关展开层锚定策略，可选项有`'parent'`、`'body'`
      * 默认值：`'body'`
      */

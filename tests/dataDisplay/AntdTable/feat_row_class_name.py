@@ -6,7 +6,6 @@ if True:
     import random
     from dash import html
     import feffery_antd_components as fac
-    from feffery_dash_utils.style_utils import style
 
 app = dash.Dash(__name__)
 
