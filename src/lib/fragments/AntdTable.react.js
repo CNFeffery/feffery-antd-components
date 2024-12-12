@@ -394,6 +394,7 @@ class AntdTable extends Component {
             title,
             footer,
             loading,
+            rowClassName,
             setProps,
             loading_state
         } = this.props;
@@ -2043,7 +2044,11 @@ class AntdTable extends Component {
                     style={style}
                     key={key}
                     components={components}
-                    rowClassName={atLeastOneColumnEditable ? () => 'editable-row' : undefined}
+                    rowClassName={
+                        rowClassName ?
+                            (atLeastOneColumnEditable ? () => `editable-row ${rowClassName}` : rowClassName) :
+                            (atLeastOneColumnEditable ? () => 'editable-row' : undefined)
+                    }
                     dataSource={
                         // 根据hiddenRowKeys参数情况进行指定行记录的隐藏
                         data.filter(e => !hiddenRowKeys.includes(e.key))

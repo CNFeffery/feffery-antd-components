@@ -1574,6 +1574,11 @@ AntdTable.propTypes = {
     loading: PropTypes.bool,
 
     /**
+     * 表格行css类名
+     */
+    rowClassName: PropTypes.string,
+
+    /**
      * `data-*`格式属性通配
      */
     'data-*': PropTypes.string,
