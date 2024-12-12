@@ -529,6 +529,7 @@ class AntdTable extends Component {
             let childNode = children;
 
             if (editable) {
+                let recordDisabled = (columns.filter(e => e.dataIndex === dataIndex)[0].editOptions?.disabledKeys || []).includes(record.key)
                 childNode = editing ? (
                     <Form.Item
                         style={{
@@ -556,6 +557,7 @@ class AntdTable extends Component {
                                             cursor: 'end',
                                         })
                                     }}
+                                    disabled={recordDisabled}
                                 /> :
                                 <Input
                                     maxLength={columns.filter(e => e.dataIndex === dataIndex)[0].editOptions?.maxLength}
@@ -563,6 +565,7 @@ class AntdTable extends Component {
                                     ref={inputRef}
                                     onPressEnter={save}
                                     onBlur={save}
+                                    disabled={recordDisabled}
                                 />
                         }
                     </Form.Item>
@@ -570,9 +573,10 @@ class AntdTable extends Component {
                     <div
                         className="editable-cell-value-wrap"
                         style={{
-                            whiteSpace: 'break-spaces'
+                            whiteSpace: 'break-spaces',
+                            ...(recordDisabled ? { cursor: 'no-drop' } : {})
                         }}
-                        onClick={toggleEdit}
+                        onClick={recordDisabled ? undefined : toggleEdit}
                     >
                         {(children[1] || children[1] === 0) ? children : ' '}
                     </div>

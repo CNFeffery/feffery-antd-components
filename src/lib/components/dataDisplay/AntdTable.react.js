@@ -203,7 +203,11 @@ AntdTable.propTypes = {
                 /**
                  * 输入框无输入值时的占位提示信息
                  */
-                placeholder: PropTypes.string
+                placeholder: PropTypes.string,
+                /**
+                 * 当前字段下需进行输入框禁用的行记录`key`值列表
+                 */
+                disabledKeys: PropTypes.arrayOf(PropTypes.string),
             }),
             /**
              * 当前字段对齐方式，可选项有`'left'`、`'center'`、`'right'`

@@ -141,6 +141,9 @@ Keyword arguments:
         - placeholder (string; optional):
             输入框无输入值时的占位提示信息.
 
+        - disabledKeys (list of strings; optional):
+            当前字段下需进行输入框禁用的行记录`key`值列表.
+
     - align (a value equal to: 'left', 'center', 'right'; optional):
         当前字段对齐方式，可选项有`'left'`、`'center'`、`'right'`  默认值：`'center'`.
 
