@@ -76,7 +76,7 @@ const AntdCheckbox = (props) => {
             // AntdForm表单批量控制
             if (formId && (name || id)) {
                 // 表单值更新
-                updateItemValue(formId, name || id, e)
+                updateItemValue(formId, name || id, e.target.checked)
             }
             setProps({ checked: e.target.checked })
         }
