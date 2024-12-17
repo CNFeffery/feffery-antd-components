@@ -252,8 +252,8 @@ const AntdTreeSelect = (props) => {
                 treeDefaultExpandAll={treeDefaultExpandAll}
                 treeDefaultExpandedKeys={treeDefaultExpandedKeys}
                 treeExpandedKeys={treeExpandedKeys}
-                onChange={updateSelectedValue}
-                showSearch={true}
+                onChange={readOnly ? undefined : updateSelectedValue}
+                showSearch={readOnly ? false : true}
                 virtual={virtual}
                 disabled={
                     context && !isUndefined(context.componentDisabled) ?
