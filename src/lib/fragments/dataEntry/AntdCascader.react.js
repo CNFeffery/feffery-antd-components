@@ -224,8 +224,8 @@ const AntdCascader = (props) => {
                                     (label) => label[0]
                             )
                     }
-                    showSearch={{ filter }}
-                    onChange={onSelect}
+                    showSearch={readOnly ? undefined : { filter }}
+                    onChange={readOnly ? undefined : onSelect}
                     data-dash-is-loading={
                         (loading_state && loading_state.is_loading) || undefined
                     }
@@ -307,8 +307,8 @@ const AntdCascader = (props) => {
                 }
                 prefix={prefix}
                 suffixIcon={suffixIcon}
-                showSearch={{ filter }}
-                onChange={onSelect}
+                showSearch={readOnly ? undefined : { filter }}
+                onChange={readOnly ? undefined : onSelect}
                 data-dash-is-loading={
                     (loading_state && loading_state.is_loading) || undefined
                 }
