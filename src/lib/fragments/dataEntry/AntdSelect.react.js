@@ -274,7 +274,7 @@ const AntdSelect = (props) => {
                         currentFormValue :
                         value
                 }
-                onChange={updateSelectedValue}
+                onChange={readOnly ? undefined : updateSelectedValue}
                 maxTagCount={maxTagCount}
                 listHeight={listHeight}
                 disabled={
@@ -282,7 +282,7 @@ const AntdSelect = (props) => {
                         context.componentDisabled :
                         disabled
                 }
-                showSearch={true}
+                showSearch={!readOnly}
                 placement={placement}
                 status={status}
                 optionFilterProp={optionFilterProp}
