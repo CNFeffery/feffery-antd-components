@@ -103,6 +103,39 @@ const splitSummaryRowContents = (summaryRowContents, columnCount, blankColumns) 
     return summaryGroups;
 }
 
+const findItemByKey = (array, key) => {
+    let foundItem = null;
+
+    const search = (item) => {
+        if (item.key === key) {
+            foundItem = item;
+            return true;
+        }
+        return Array.isArray(item.children) && item.children.some(search);
+    };
+
+    array.some(search);
+    return foundItem;
+};
+
+const replaceItemByKey = (array, key, replacement) => {
+    for (let i = 0; i < array.length; i++) {
+        const item = array[i];
+        if (item && item.key === key) {
+            array.splice(i, 1, replacement);
+            return true;
+        }
+
+        if (item && Array.isArray(item.children)) {
+            if (replaceItemByKey(item.children, key, replacement)) {
+                return true;
+            }
+        }
+    }
+
+    return false;
+}
+
 // 定义不触发重绘的参数数组
 const preventUpdateProps = [
     'recentlyMouseEnterColumnDataIndex',
@@ -476,8 +509,7 @@ class AntdTable extends Component {
             const handleSave = (row, setProps, dataSource, setDataSource) => {
 
                 const newData = [...dataSource];
-                const index = newData.findIndex((item) => row.key === item.key);
-                const item = newData[index];
+                const item = findItemByKey(newData, row.key)
 
                 const rowColumns = Object.getOwnPropertyNames(row)
 
@@ -505,7 +537,7 @@ class AntdTable extends Component {
                     }
                 }
 
-                newData.splice(index, 1, { ...item, ...row });
+                replaceItemByKey(newData, row.key, { ...item, ...row })
 
                 setDataSource(newData);
 
