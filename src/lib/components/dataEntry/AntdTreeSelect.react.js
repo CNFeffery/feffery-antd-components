@@ -48,7 +48,7 @@ const PropTreeNodeShape = {
      */
     selectable: PropTypes.bool,
     /**
-     * 当前节点是否为末端节点
+     * 当前节点是否为叶节点（末端节点）
      */
     isLeaf: PropTypes.bool
 };

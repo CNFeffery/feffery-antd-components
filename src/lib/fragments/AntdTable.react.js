@@ -2124,7 +2124,7 @@ class AntdTable extends Component {
                     summary={summaryRowContents ? () => (
                         <Table.Summary fixed={summaryRowFixed}>
                             {
-                                splitSummaryRowContents(summaryRowContents, tempColumns.length, summaryRowBlankColumns).map(
+                                splitSummaryRowContents(summaryRowContents, columns.length, summaryRowBlankColumns).map(
                                     (group, idx) => (
                                         <Table.Summary.Row key={idx}>
                                             {group.map((item, i) =>

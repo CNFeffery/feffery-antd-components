@@ -17,7 +17,7 @@ const AntdTree = (props) => {
 // 定义递归PropTypes
 const PropTreeNodeShape = {
     /**
-     * 当前节点标题s
+     * 当前节点标题
      */
     title: PropTypes.string.isRequired,
     /**
