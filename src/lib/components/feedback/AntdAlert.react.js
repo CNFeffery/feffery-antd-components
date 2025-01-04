@@ -22,6 +22,7 @@ const AntdAlert = (props) => {
         key,
         type,
         showIcon,
+        icon,
         closable,
         message,
         messageRenderMode,
@@ -53,6 +54,7 @@ const AntdAlert = (props) => {
                 type={type}
                 description={description}
                 showIcon={showIcon}
+                icon={icon}
                 closable={closable}
                 action={action}
                 banner={banner}
@@ -84,6 +86,7 @@ const AntdAlert = (props) => {
             type={type}
             description={description}
             showIcon={showIcon}
+            icon={icon}
             closable={closable}
             action={action}
             banner={banner} />
@@ -135,6 +138,11 @@ AntdAlert.propTypes = {
      * 默认值：`false`
      */
     showIcon: PropTypes.bool,
+
+    /**
+     * 组件型，当`showIcon=true`时，用于自定义图标元素
+     */
+    icon: PropTypes.node,
 
     /**
      * 是否可关闭

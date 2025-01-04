@@ -34,6 +34,9 @@ Keyword arguments:
 - showIcon (boolean; default False):
     是否显示额外图标  默认值：`False`.
 
+- icon (a list of or a singular dash component, string or number; optional):
+    组件型，当`showIcon=True`时，用于自定义图标元素.
+
 - closable (boolean; default False):
     是否可关闭  默认值：`False`.
 
@@ -64,15 +67,15 @@ Keyword arguments:
 
     - component_name (string; optional):
         Holds the name of the component that is loading."""
-    _children_props = ['message', 'description', 'action']
-    _base_nodes = ['message', 'description', 'action', 'children']
+    _children_props = ['message', 'description', 'icon', 'action']
+    _base_nodes = ['message', 'description', 'icon', 'action', 'children']
     _namespace = 'feffery_antd_components'
     _type = 'AntdAlert'
     @_explicitize_args
-    def __init__(self, id=Component.UNDEFINED, key=Component.UNDEFINED, style=Component.UNDEFINED, className=Component.UNDEFINED, message=Component.UNDEFINED, description=Component.UNDEFINED, type=Component.UNDEFINED, showIcon=Component.UNDEFINED, closable=Component.UNDEFINED, messageRenderMode=Component.UNDEFINED, action=Component.UNDEFINED, banner=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
-        self._prop_names = ['id', 'key', 'style', 'className', 'message', 'description', 'type', 'showIcon', 'closable', 'messageRenderMode', 'action', 'banner', 'data-*', 'aria-*', 'loading_state']
+    def __init__(self, id=Component.UNDEFINED, key=Component.UNDEFINED, style=Component.UNDEFINED, className=Component.UNDEFINED, message=Component.UNDEFINED, description=Component.UNDEFINED, type=Component.UNDEFINED, showIcon=Component.UNDEFINED, icon=Component.UNDEFINED, closable=Component.UNDEFINED, messageRenderMode=Component.UNDEFINED, action=Component.UNDEFINED, banner=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
+        self._prop_names = ['id', 'key', 'style', 'className', 'message', 'description', 'type', 'showIcon', 'icon', 'closable', 'messageRenderMode', 'action', 'banner', 'data-*', 'aria-*', 'loading_state']
         self._valid_wildcard_attributes =            ['data-', 'aria-']
-        self.available_properties = ['id', 'key', 'style', 'className', 'message', 'description', 'type', 'showIcon', 'closable', 'messageRenderMode', 'action', 'banner', 'data-*', 'aria-*', 'loading_state']
+        self.available_properties = ['id', 'key', 'style', 'className', 'message', 'description', 'type', 'showIcon', 'icon', 'closable', 'messageRenderMode', 'action', 'banner', 'data-*', 'aria-*', 'loading_state']
         self.available_wildcard_properties =            ['data-', 'aria-']
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()
