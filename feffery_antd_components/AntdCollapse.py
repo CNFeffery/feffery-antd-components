@@ -30,6 +30,9 @@ Keyword arguments:
 - isOpen (boolean; default True):
     是否展开  默认值：`True`.
 
+- size (a value equal to: 'large', 'middle', 'small'; default 'middle'):
+    组件尺寸规格，可选项有`'small'`、`'middle'`、`'large'`  默认值：`'middle'`.
+
 - bordered (boolean; default True):
     是否渲染边框  默认值：`True`.
 
@@ -78,10 +81,10 @@ Keyword arguments:
     _namespace = 'feffery_antd_components'
     _type = 'AntdCollapse'
     @_explicitize_args
-    def __init__(self, children=None, id=Component.UNDEFINED, key=Component.UNDEFINED, style=Component.UNDEFINED, className=Component.UNDEFINED, title=Component.UNDEFINED, isOpen=Component.UNDEFINED, bordered=Component.UNDEFINED, showArrow=Component.UNDEFINED, ghost=Component.UNDEFINED, collapsible=Component.UNDEFINED, forceRender=Component.UNDEFINED, loading_state=Component.UNDEFINED, persistence=Component.UNDEFINED, persisted_props=Component.UNDEFINED, persistence_type=Component.UNDEFINED, **kwargs):
-        self._prop_names = ['id', 'key', 'children', 'style', 'className', 'title', 'isOpen', 'bordered', 'showArrow', 'ghost', 'collapsible', 'forceRender', 'data-*', 'aria-*', 'loading_state', 'persistence', 'persisted_props', 'persistence_type']
+    def __init__(self, children=None, id=Component.UNDEFINED, key=Component.UNDEFINED, style=Component.UNDEFINED, className=Component.UNDEFINED, title=Component.UNDEFINED, isOpen=Component.UNDEFINED, size=Component.UNDEFINED, bordered=Component.UNDEFINED, showArrow=Component.UNDEFINED, ghost=Component.UNDEFINED, collapsible=Component.UNDEFINED, forceRender=Component.UNDEFINED, loading_state=Component.UNDEFINED, persistence=Component.UNDEFINED, persisted_props=Component.UNDEFINED, persistence_type=Component.UNDEFINED, **kwargs):
+        self._prop_names = ['id', 'key', 'children', 'style', 'className', 'title', 'isOpen', 'size', 'bordered', 'showArrow', 'ghost', 'collapsible', 'forceRender', 'data-*', 'aria-*', 'loading_state', 'persistence', 'persisted_props', 'persistence_type']
         self._valid_wildcard_attributes =            ['data-', 'aria-']
-        self.available_properties = ['id', 'key', 'children', 'style', 'className', 'title', 'isOpen', 'bordered', 'showArrow', 'ghost', 'collapsible', 'forceRender', 'data-*', 'aria-*', 'loading_state', 'persistence', 'persisted_props', 'persistence_type']
+        self.available_properties = ['id', 'key', 'children', 'style', 'className', 'title', 'isOpen', 'size', 'bordered', 'showArrow', 'ghost', 'collapsible', 'forceRender', 'data-*', 'aria-*', 'loading_state', 'persistence', 'persisted_props', 'persistence_type']
         self.available_wildcard_properties =            ['data-', 'aria-']
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()

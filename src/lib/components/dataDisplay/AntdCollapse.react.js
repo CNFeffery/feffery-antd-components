@@ -1,14 +1,16 @@
 // react核心
-import React from 'react';
+import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 // antd核心
 import { Collapse } from 'antd';
 // 辅助库
 import { parseChildrenToArray } from '../utils';
-import { isString } from 'lodash';
+import { isString, isUndefined } from 'lodash';
 import { pickBy } from 'ramda';
 // 自定义hooks
 import useCss from '../../hooks/useCss';
+// 上下文
+import PropsContext from '../../contexts/PropsContext';
 
 const { Panel } = Collapse;
 
@@ -25,6 +27,7 @@ const AntdCollapse = (props) => {
         title,
         isOpen,
         bordered,
+        size,
         showArrow,
         collapsible,
         ghost,
@@ -37,6 +40,8 @@ const AntdCollapse = (props) => {
     } = props;
 
     children = parseChildrenToArray(children)
+
+    const context = useContext(PropsContext)
 
     return (
         <Collapse
@@ -52,6 +57,11 @@ const AntdCollapse = (props) => {
             style={style}
             key={key}
             bordered={bordered}
+            size={
+                context && !isUndefined(context.componentSize) ?
+                    context.componentSize :
+                    size
+            }
             ghost={ghost}
             collapsible={collapsible}
             onChange={(e) => {
@@ -122,6 +132,12 @@ AntdCollapse.propTypes = {
      * 默认值：`true`
      */
     isOpen: PropTypes.bool,
+
+    /**
+     * 组件尺寸规格，可选项有`'small'`、`'middle'`、`'large'`
+     * 默认值：`'middle'`
+     */
+    size: PropTypes.oneOf(['large', 'middle', 'small']),
 
     /**
      * 是否渲染边框
@@ -209,6 +225,7 @@ AntdCollapse.propTypes = {
 AntdCollapse.defaultProps = {
     isOpen: true,
     bordered: true,
+    size: 'middle',
     showArrow: true,
     ghost: false,
     forceRender: false,
