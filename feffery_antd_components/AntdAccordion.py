@@ -21,6 +21,28 @@ Keyword arguments:
 - className (string | dict; optional):
     当前组件css类名，支持[动态css](/advanced-classname).
 
+- styles (dict; optional):
+    细分控制子元素css样式.
+
+    `styles` is a dict with keys:
+
+    - header (dict; optional):
+        头部元素css样式.
+
+    - body (dict; optional):
+        内容元素css样式.
+
+- classNames (dict; optional):
+    细分控制子元素css类名.
+
+    `classNames` is a dict with keys:
+
+    - header (string; optional):
+        头部元素css类名.
+
+    - body (string; optional):
+        内容元素css类名.
+
 - items (list of dicts; optional):
     定义手风琴子项.
 
@@ -100,10 +122,10 @@ Keyword arguments:
     _namespace = 'feffery_antd_components'
     _type = 'AntdAccordion'
     @_explicitize_args
-    def __init__(self, id=Component.UNDEFINED, key=Component.UNDEFINED, style=Component.UNDEFINED, className=Component.UNDEFINED, items=Component.UNDEFINED, accordion=Component.UNDEFINED, activeKey=Component.UNDEFINED, defaultActiveKey=Component.UNDEFINED, bordered=Component.UNDEFINED, size=Component.UNDEFINED, collapsible=Component.UNDEFINED, expandIconPosition=Component.UNDEFINED, ghost=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
-        self._prop_names = ['id', 'key', 'style', 'className', 'items', 'accordion', 'activeKey', 'defaultActiveKey', 'bordered', 'size', 'collapsible', 'expandIconPosition', 'ghost', 'data-*', 'aria-*', 'loading_state']
+    def __init__(self, id=Component.UNDEFINED, key=Component.UNDEFINED, style=Component.UNDEFINED, className=Component.UNDEFINED, styles=Component.UNDEFINED, classNames=Component.UNDEFINED, items=Component.UNDEFINED, accordion=Component.UNDEFINED, activeKey=Component.UNDEFINED, defaultActiveKey=Component.UNDEFINED, bordered=Component.UNDEFINED, size=Component.UNDEFINED, collapsible=Component.UNDEFINED, expandIconPosition=Component.UNDEFINED, ghost=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
+        self._prop_names = ['id', 'key', 'style', 'className', 'styles', 'classNames', 'items', 'accordion', 'activeKey', 'defaultActiveKey', 'bordered', 'size', 'collapsible', 'expandIconPosition', 'ghost', 'data-*', 'aria-*', 'loading_state']
         self._valid_wildcard_attributes =            ['data-', 'aria-']
-        self.available_properties = ['id', 'key', 'style', 'className', 'items', 'accordion', 'activeKey', 'defaultActiveKey', 'bordered', 'size', 'collapsible', 'expandIconPosition', 'ghost', 'data-*', 'aria-*', 'loading_state']
+        self.available_properties = ['id', 'key', 'style', 'className', 'styles', 'classNames', 'items', 'accordion', 'activeKey', 'defaultActiveKey', 'bordered', 'size', 'collapsible', 'expandIconPosition', 'ghost', 'data-*', 'aria-*', 'loading_state']
         self.available_wildcard_properties =            ['data-', 'aria-']
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()

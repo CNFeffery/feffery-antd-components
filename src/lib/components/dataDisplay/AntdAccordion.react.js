@@ -39,6 +39,34 @@ AntdAccordion.propTypes = {
     ]),
 
     /**
+         * 细分控制子元素css样式
+         */
+    styles: PropTypes.shape({
+        /**
+         * 头部元素css样式
+         */
+        header: PropTypes.object,
+        /**
+         * 内容元素css样式
+         */
+        body: PropTypes.object
+    }),
+
+    /**
+     * 细分控制子元素css类名
+     */
+    classNames: PropTypes.shape({
+        /**
+         * 头部元素css类名
+         */
+        header: PropTypes.string,
+        /**
+         * 内容元素css类名
+         */
+        body: PropTypes.string
+    }),
+
+    /**
      * 定义手风琴子项
      */
     items: PropTypes.arrayOf(
