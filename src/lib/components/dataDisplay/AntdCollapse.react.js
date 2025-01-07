@@ -12,8 +12,6 @@ import useCss from '../../hooks/useCss';
 // 上下文
 import PropsContext from '../../contexts/PropsContext';
 
-const { Panel } = Collapse;
-
 /**
  * 折叠面板组件AntdCollapse
  */
@@ -24,6 +22,8 @@ const AntdCollapse = (props) => {
         className,
         style,
         key,
+        styles,
+        classNames,
         title,
         isOpen,
         bordered,
@@ -53,9 +53,22 @@ const AntdCollapse = (props) => {
                     className :
                     (className ? useCss(className) : undefined)
             }
-            activeKey={isOpen ? ['1'] : []}
             style={style}
             key={key}
+            items={
+                [
+                    {
+                        key: '1',
+                        label: title,
+                        children: children,
+                        showArrow: showArrow,
+                        forceRender: forceRender,
+                        styles: styles,
+                        classNames: classNames
+                    }
+                ]
+            }
+            activeKey={isOpen ? ['1'] : []}
             bordered={bordered}
             size={
                 context && !isUndefined(context.componentSize) ?
@@ -80,16 +93,7 @@ const AntdCollapse = (props) => {
             persistence_type={persistence_type}
             data-dash-is-loading={
                 (loading_state && loading_state.is_loading) || undefined
-            }>
-            <Panel
-                key='1'
-                header={title}
-                showArrow={showArrow}
-                forceRender={forceRender}
-            >
-                {children}
-            </Panel>
-        </Collapse>
+            } />
     );
 }
 
@@ -121,6 +125,34 @@ AntdCollapse.propTypes = {
         PropTypes.string,
         PropTypes.object
     ]),
+
+    /**
+     * 细分控制子元素css样式
+     */
+    styles: PropTypes.shape({
+        /**
+         * 头部元素css样式
+         */
+        header: PropTypes.object,
+        /**
+         * 内容元素css样式
+         */
+        body: PropTypes.object
+    }),
+
+    /**
+     * 细分控制子元素css类名
+     */
+    classNames: PropTypes.shape({
+        /**
+         * 头部元素css类名
+         */
+        header: PropTypes.string,
+        /**
+         * 内容元素css类名
+         */
+        body: PropTypes.string
+    }),
 
     /**
      * 组件型，标题内容
