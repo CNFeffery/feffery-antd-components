@@ -65,6 +65,9 @@ Keyword arguments:
 - bordered (boolean; default True):
     是否渲染边框  默认值：`True`.
 
+- size (a value equal to: 'large', 'middle', 'small'; default 'middle'):
+    组件尺寸规格，可选项有`'small'`、`'middle'`、`'large'`  默认值：`'middle'`.
+
 - collapsible (a value equal to: 'header', 'disabled', 'icon'; optional):
     设置所有子项折叠触发方式，可选项有`'header'`、`'disabled'`、`'icon'`.
 
@@ -97,10 +100,10 @@ Keyword arguments:
     _namespace = 'feffery_antd_components'
     _type = 'AntdAccordion'
     @_explicitize_args
-    def __init__(self, id=Component.UNDEFINED, key=Component.UNDEFINED, style=Component.UNDEFINED, className=Component.UNDEFINED, items=Component.UNDEFINED, accordion=Component.UNDEFINED, activeKey=Component.UNDEFINED, defaultActiveKey=Component.UNDEFINED, bordered=Component.UNDEFINED, collapsible=Component.UNDEFINED, expandIconPosition=Component.UNDEFINED, ghost=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
-        self._prop_names = ['id', 'key', 'style', 'className', 'items', 'accordion', 'activeKey', 'defaultActiveKey', 'bordered', 'collapsible', 'expandIconPosition', 'ghost', 'data-*', 'aria-*', 'loading_state']
+    def __init__(self, id=Component.UNDEFINED, key=Component.UNDEFINED, style=Component.UNDEFINED, className=Component.UNDEFINED, items=Component.UNDEFINED, accordion=Component.UNDEFINED, activeKey=Component.UNDEFINED, defaultActiveKey=Component.UNDEFINED, bordered=Component.UNDEFINED, size=Component.UNDEFINED, collapsible=Component.UNDEFINED, expandIconPosition=Component.UNDEFINED, ghost=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
+        self._prop_names = ['id', 'key', 'style', 'className', 'items', 'accordion', 'activeKey', 'defaultActiveKey', 'bordered', 'size', 'collapsible', 'expandIconPosition', 'ghost', 'data-*', 'aria-*', 'loading_state']
         self._valid_wildcard_attributes =            ['data-', 'aria-']
-        self.available_properties = ['id', 'key', 'style', 'className', 'items', 'accordion', 'activeKey', 'defaultActiveKey', 'bordered', 'collapsible', 'expandIconPosition', 'ghost', 'data-*', 'aria-*', 'loading_state']
+        self.available_properties = ['id', 'key', 'style', 'className', 'items', 'accordion', 'activeKey', 'defaultActiveKey', 'bordered', 'size', 'collapsible', 'expandIconPosition', 'ghost', 'data-*', 'aria-*', 'loading_state']
         self.available_wildcard_properties =            ['data-', 'aria-']
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()

@@ -1,12 +1,14 @@
 // react核心
-import React, { useEffect } from 'react';
+import React, { useEffect, useContext } from 'react';
 // antd核心
 import { Collapse } from 'antd';
 // 辅助库
-import { isString } from 'lodash';
+import { isString, isUndefined } from 'lodash';
 import { pickBy } from 'ramda';
 // 自定义hooks
 import useCss from '../../hooks/useCss';
+// 上下文
+import PropsContext from '../../contexts/PropsContext';
 // 参数类型
 import { propTypes, defaultProps } from '../../components/dataDisplay/AntdAccordion.react';
 
@@ -26,6 +28,7 @@ const AntdAccordion = (props) => {
         activeKey,
         defaultActiveKey,
         bordered,
+        size,
         collapsible,
         expandIconPosition,
         ghost,
@@ -38,6 +41,8 @@ const AntdAccordion = (props) => {
             setProps({ activeKey: defaultActiveKey })
         }
     }, [])
+
+    const context = useContext(PropsContext)
 
     return (
         <Collapse
@@ -55,6 +60,11 @@ const AntdAccordion = (props) => {
             activeKey={activeKey}
             defaultActiveKey={defaultActiveKey}
             bordered={bordered}
+            size={
+                context && !isUndefined(context.componentSize) ?
+                    context.componentSize :
+                    size
+            }
             collapsible={collapsible}
             expandIconPosition={expandIconPosition}
             ghost={ghost}

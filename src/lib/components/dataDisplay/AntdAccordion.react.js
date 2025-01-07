@@ -123,6 +123,12 @@ AntdAccordion.propTypes = {
     bordered: PropTypes.bool,
 
     /**
+     * 组件尺寸规格，可选项有`'small'`、`'middle'`、`'large'`
+     * 默认值：`'middle'`
+     */
+    size: PropTypes.oneOf(['large', 'middle', 'small']),
+
+    /**
      * 设置所有子项折叠触发方式，可选项有`'header'`、`'disabled'`、`'icon'`
      */
     collapsible: PropTypes.oneOf(['header', 'disabled', 'icon']),
@@ -174,6 +180,7 @@ AntdAccordion.propTypes = {
 AntdAccordion.defaultProps = {
     accordion: true,
     bordered: true,
+    size: 'middle',
     expandIconPosition: 'left',
     ghost: false
 }
