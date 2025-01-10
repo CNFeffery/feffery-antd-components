@@ -74,7 +74,7 @@ Keyword arguments:
 - popupContainer (a value equal to: 'parent', 'body'; default 'body'):
     菜单展开层锚定策略，可选项有`'parent'`、`'body'`  默认值：`'body'`.
 
-- inlineCollapsed (boolean; default False):
+- inlineCollapsed (boolean; optional):
     当前菜单是否折叠，仅inline模式下有效  默认值：`False`.
 
 - inlineIndent (number; default 24):

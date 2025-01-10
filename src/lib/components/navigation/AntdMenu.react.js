@@ -656,7 +656,6 @@ AntdMenu.defaultProps = {
     onlyExpandCurrentSubMenu: false,
     renderCollapsedButton: false,
     popupContainer: 'body',
-    inlineCollapsed: false,
     inlineIndent: 24,
     triggerSubMenuAction: 'hover',
     persisted_props: ['currentKey', 'openKeys'],
