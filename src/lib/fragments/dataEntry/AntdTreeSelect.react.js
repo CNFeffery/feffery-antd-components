@@ -75,6 +75,7 @@ const AntdTreeSelect = (props) => {
         placeholder,
         value,
         defaultValue,
+        maxCount,
         maxTagCount,
         maxTagPlaceholder,
         maxTagTextLength,
@@ -234,6 +235,7 @@ const AntdTreeSelect = (props) => {
                         currentFormValue :
                         value
                 }
+                maxCount={maxCount}
                 maxTagCount={maxTagCount}
                 maxTagPlaceholder={maxTagPlaceholder}
                 maxTagTextLength={maxTagTextLength}
