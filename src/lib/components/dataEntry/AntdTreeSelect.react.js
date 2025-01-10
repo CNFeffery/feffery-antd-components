@@ -235,6 +235,12 @@ AntdTreeSelect.propTypes = {
     ]),
 
     /**
+     * 当`multiple=True`时，可选中的最大数量
+     * 如果`showCheckedStrategy='show-all'`且`treeCheckStrictly=False`，或者`showCheckedStrategy='show-parent'`，则`maxCount`无效
+     */
+    maxCount: PropTypes.number,
+
+    /**
      * 当`multiple=True`时，已选值tag展示的最大数量
      */
     maxTagCount: PropTypes.oneOfType([
