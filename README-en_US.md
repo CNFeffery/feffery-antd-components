@@ -15,7 +15,7 @@
 
 [简体中文](./README.md) | English
 
-Subproject of `feffery-components` projects, third-party components library of `Plotly Dash`, based on the [Antd](https://github.com/ant-design/ant-design), brings many common and powerful components into `Dash`🥳, latest stable version: `0.3.13` (2025-01-17)
+Subproject of `feffery-components` projects, third-party components library of `Plotly Dash`, based on the [Antd](https://github.com/ant-design/ant-design), brings many common and powerful components into `Dash`🥳, latest stable version: `0.3.15` (2025-01-30)
 
 ## 1 Install
 
