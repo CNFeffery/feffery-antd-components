@@ -8,6 +8,7 @@ import { isString, isUndefined } from 'lodash';
 import { pickBy } from 'ramda';
 import { useRequest } from 'ahooks';
 import { HappyProvider } from '@ant-design/happy-work-theme';
+import { useLoading } from '../utils';
 // 自定义hooks
 import useCss from '../../hooks/useCss';
 // 自定义上下文
@@ -47,8 +48,7 @@ const AntdButton = (props) => {
         motionType,
         color,
         variant,
-        title,
-        loading_state
+        title
     } = props;
 
     // 使用自定义上下文
@@ -120,9 +120,7 @@ const AntdButton = (props) => {
             variant={variant}
             title={title}
             onClick={onClick}
-            data-dash-is-loading={
-                (loading_state && loading_state.is_loading) || undefined
-            }
+            data-dash-is-loading={useLoading()}
         >
             {loading ? (loadingChildren || children) : children}
         </Button>
@@ -320,21 +318,6 @@ AntdButton.propTypes = {
      * `aria-*`格式属性通配
      */
     'aria-*': PropTypes.string,
-
-    loading_state: PropTypes.shape({
-        /**
-         * Determines if the component is loading or not
-         */
-        is_loading: PropTypes.bool,
-        /**
-         * Holds which property is loading
-         */
-        prop_name: PropTypes.string,
-        /**
-         * Holds the name of the component that is loading
-         */
-        component_name: PropTypes.string
-    }),
 
     /**
      * Dash-assigned callback that should be called to report property changes

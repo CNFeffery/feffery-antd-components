@@ -25,4 +25,6 @@ const parseChildrenToArray = children => {
 
 const resolveChildProps = child => window.dash_component_api.getLayout(child.props.componentPath)?.props;
 
-export { flatToTree, parseChildrenToArray, resolveChildProps };
+const useLoading = () => window.dash_component_api.useDashContext().useLoading();
+
+export { flatToTree, parseChildrenToArray, resolveChildProps, useLoading };
