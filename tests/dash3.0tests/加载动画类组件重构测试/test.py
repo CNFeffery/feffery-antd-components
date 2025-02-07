@@ -15,7 +15,7 @@ app.layout = html.Div(
     html.Div(
         [
             '测试',
-            fac.AntdSkeleton(
+            fac.AntdCustomSkeleton(
                 [
                     html.Div(
                         html.Div(
@@ -28,7 +28,7 @@ app.layout = html.Div(
                     ),
                     html.Div(id='inner-output-test'),
                 ],
-                active=True,
+                skeletonContent='加载中...',
             ),
             html.Div(id='outer-output-test'),
         ],
