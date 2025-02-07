@@ -16,7 +16,12 @@ app.layout = html.Div(
             id='button-demo',
             type='primary',
             **{'data-test': 'test'},
-        )
+        ),
+        fac.AntdTag(
+            content='测试',
+            href='/test',
+            **{'data-test': 'test'},
+        ),
     ],
     style=style(padding=50),
 )

@@ -6,10 +6,44 @@ const LazyAntdTag = React.lazy(() => import(/* webpackChunkName: "data_display" 
 /**
  * 标签组件AntdTag
  */
-const AntdTag = (props) => {
+const AntdTag = ({
+    id,
+    className,
+    style,
+    key,
+    content,
+    icon,
+    color,
+    href,
+    target = '_blank',
+    bordered = true,
+    closeIcon = false,
+    closeCounts = 0,
+    setProps,
+    loading_state,
+    ...others
+}) => {
     return (
         <Suspense fallback={null}>
-            <LazyAntdTag {...props} />
+            <LazyAntdTag {
+                ...{
+                    id,
+                    className,
+                    style,
+                    key,
+                    content,
+                    icon,
+                    color,
+                    href,
+                    target,
+                    bordered,
+                    closeIcon,
+                    closeCounts,
+                    setProps,
+                    loading_state,
+                    ...others
+                }
+            } />
         </Suspense>
     );
 }
@@ -112,14 +146,6 @@ AntdTag.propTypes = {
      */
     setProps: PropTypes.func
 };
-
-// 设置默认参数
-AntdTag.defaultProps = {
-    target: '_blank',
-    bordered: true,
-    closeIcon: false,
-    closeCounts: 0
-}
 
 export default AntdTag;
 
