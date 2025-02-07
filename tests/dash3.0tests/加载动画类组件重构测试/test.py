@@ -15,7 +15,7 @@ app.layout = html.Div(
     html.Div(
         [
             '测试',
-            fac.AntdSpin(
+            fac.AntdSkeleton(
                 [
                     html.Div(
                         html.Div(
@@ -27,7 +27,8 @@ app.layout = html.Div(
                         )
                     ),
                     html.Div(id='inner-output-test'),
-                ]
+                ],
+                active=True,
             ),
             html.Div(id='outer-output-test'),
         ],
