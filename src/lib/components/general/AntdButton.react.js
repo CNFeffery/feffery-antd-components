@@ -17,39 +17,39 @@ import PropsContext from '../../contexts/PropsContext';
 /**
  * 按钮组件AntdButton
  */
-const AntdButton = (props) => {
-    let {
-        id,
-        children,
-        loadingChildren,
-        className,
-        style,
-        styles,
-        classNames,
-        key,
-        setProps,
-        type,
-        href,
-        target,
-        autoInsertSpace,
-        block,
-        danger,
-        disabled,
-        ghost,
-        shape,
-        size,
-        nClicks,
-        clickExecuteJsString,
-        debounceWait,
-        icon,
-        iconPosition,
-        loading,
-        autoSpin,
-        motionType,
-        color,
-        variant,
-        title
-    } = props;
+const AntdButton = ({
+    id,
+    children,
+    loadingChildren,
+    className,
+    style,
+    styles,
+    classNames,
+    key,
+    setProps,
+    type = 'default',
+    href,
+    target = '_blank',
+    autoInsertSpace = true,
+    block = false,
+    danger = false,
+    disabled = false,
+    ghost = false,
+    shape = 'default',
+    size = 'middle',
+    nClicks = 0,
+    clickExecuteJsString,
+    debounceWait = 0,
+    icon,
+    iconPosition = 'start',
+    loading,
+    autoSpin = false,
+    motionType,
+    color,
+    variant,
+    title,
+    ...others
+}) => {
 
     // 使用自定义上下文
     const context = useContext(PropsContext)
@@ -84,7 +84,7 @@ const AntdButton = (props) => {
     const renderElement = (
         <Button
             // 提取具有data-*或aria-*通配格式的属性
-            {...pickBy((_, k) => k.startsWith('data-') || k.startsWith('aria-'), props)}
+            {...pickBy((_, k) => k.startsWith('data-') || k.startsWith('aria-'), others)}
             id={id}
             key={key}
             style={style}
@@ -325,22 +325,5 @@ AntdButton.propTypes = {
      */
     setProps: PropTypes.func
 };
-
-// 设置默认参数
-AntdButton.defaultProps = {
-    type: 'default',
-    target: '_blank',
-    autoInsertSpace: true,
-    block: false,
-    danger: false,
-    disabled: false,
-    ghost: false,
-    shape: 'default',
-    size: 'middle',
-    nClicks: 0,
-    debounceWait: 0,
-    iconPosition: 'start',
-    autoSpin: false
-}
 
 export default AntdButton;
