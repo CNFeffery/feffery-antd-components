@@ -5,12 +5,13 @@ import PropTypes from 'prop-types';
 import { Spin } from 'antd';
 // 辅助库
 import { isString, isNumber } from 'lodash';
-import { pickBy } from 'ramda';
+import { pickBy, equals } from 'ramda';
+import { useLoading, loadingSelector } from '../utils';
 // 自定义hooks
 import useCss from '../../hooks/useCss'
 
 /**
- * 加载动画组件AntdSpid
+ * 加载动画组件AntdSpin
  */
 const AntdSpin = (props) => {
     let {
@@ -24,7 +25,6 @@ const AntdSpin = (props) => {
         size,
         delay,
         fullscreen,
-        loading_state,
         text,
         listenPropsMode,
         excludeProps,
@@ -35,6 +35,10 @@ const AntdSpin = (props) => {
         percent,
         setProps
     } = props;
+
+    const ctx = window.dash_component_api.useDashContext();
+    // 获取内部加载中组件信息
+    const loading_info = ctx.useSelector(loadingSelector(ctx.componentPath), equals);
 
     useEffect(() => {
         // 检查数值型percent参数是否取值在合法的0到100之间
@@ -49,42 +53,42 @@ const AntdSpin = (props) => {
 
     useEffect(() => {
         // 非手动控制模式下
-        if (!manual && loading_state) {
+        if (!manual && loading_info) {
             if (timer.current) {
                 clearTimeout(timer.current);
             }
-            if (loading_state.is_loading && !showSpinning) {
-                // 当listenPropsMode为'default'时-
+            if (loading_info.length > 0 && !showSpinning) {
+                // 当listenPropsMode为'default'时
                 if (listenPropsMode === 'default') {
                     if (debug) {
-                        console.log(loading_state.component_name + '.' + loading_state.prop_name.split('@')[0])
+                        loading_info.forEach(item => console.log(item.id + '.' + item.property))
                     }
                     setShowSpinning(true);
                 } else if (listenPropsMode === 'exclude') {
                     // 当listenPropsMode为'exclude'模式时
-                    // 当前触发loading_state的组件+属性组合不在排除列表中时，激活动画
-                    if (excludeProps.indexOf(loading_state.component_name + '.' + loading_state.prop_name.split('@')[0]) === -1) {
+                    // 当前触发加载状态的组件+属性组合均不在排除列表中时，激活动画
+                    if (loading_info.every(item => excludeProps.indexOf(item.id + '.' + item.property) === -1)) {
                         if (debug) {
-                            console.log(loading_state.component_name + '.' + loading_state.prop_name.split('@')[0])
+                            loading_info.forEach(item => console.log(item.id + '.' + item.property))
                         }
                         setShowSpinning(true);
                     }
                 } else if (listenPropsMode === 'include') {
                     // 当listenPropsMode为'include'模式时
-                    // 当前触发loading_state的组件+属性组合在包含列表中时，激活动画
-                    if (includeProps.indexOf(loading_state.component_name + '.' + loading_state.prop_name.split('@')[0]) !== -1) {
+                    // 当前触发加载状态的组件+属性组合至少有一个在包含列表中时，激活动画
+                    if (loading_info.some(item => includeProps.indexOf(item.id + '.' + item.property) !== -1)) {
                         if (debug) {
-                            console.log(loading_state.component_name + '.' + loading_state.prop_name.split('@')[0])
+                            loading_info.forEach(item => console.log(item.id + '.' + item.property))
                         }
                         setShowSpinning(true);
                     }
                 }
 
-            } else if (!loading_state.is_loading && showSpinning) {
+            } else if (loading_info.length === 0 && showSpinning) {
                 timer.current = setTimeout(() => setShowSpinning(false));
             }
         }
-    }, [loading_state]);
+    }, [loading_info]);
 
     // 修复设置全屏后子元素无法渲染的问题
     if (fullscreen) {
@@ -113,9 +117,7 @@ const AntdSpin = (props) => {
                     tip={text}
                     indicator={indicator}
                     percent={percent}
-                    data-dash-is-loading={
-                        (loading_state && loading_state.is_loading) || undefined
-                    } />
+                    data-dash-is-loading={useLoading()} />
                 {children}
             </>
         );
@@ -145,13 +147,9 @@ const AntdSpin = (props) => {
             tip={text}
             indicator={indicator}
             percent={percent}
-            data-dash-is-loading={
-                (loading_state && loading_state.is_loading) || undefined
-            } > {children} </Spin>
+            data-dash-is-loading={useLoading()} > {children} </Spin>
     );
 }
-
-AntdSpin._dashprivate_isLoadingComponent = true;
 
 AntdSpin.propTypes = {
     /**
@@ -265,21 +263,6 @@ AntdSpin.propTypes = {
      * `aria-*`格式属性通配
      */
     'aria-*': PropTypes.string,
-
-    loading_state: PropTypes.shape({
-        /**
-         * Determines if the component is loading or not
-         */
-        is_loading: PropTypes.bool,
-        /**
-         * Holds which property is loading
-         */
-        prop_name: PropTypes.string,
-        /**
-         * Holds the name of the component that is loading
-         */
-        component_name: PropTypes.string
-    }),
 
     /**
      * Dash-assigned callback that should be called to report property changes
