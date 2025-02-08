@@ -6,10 +6,48 @@ const LazyAntdCheckbox = React.lazy(() => import(/* webpackChunkName: "data_entr
 /**
  * 选择框组件AntdCheckbox
  */
-const AntdCheckbox = (props) => {
+const AntdCheckbox = ({
+    id,
+    style,
+    className,
+    key,
+    name,
+    label,
+    disabled = false,
+    autoFocus = false,
+    checked = false,
+    indeterminate = false,
+    readOnly = false,
+    setProps,
+    persistence,
+    persisted_props = ['checked'],
+    persistence_type = 'local',
+    batchPropsNames = [],
+    ...others
+}) => {
     return (
         <Suspense fallback={null}>
-            <LazyAntdCheckbox {...props} />
+            <LazyAntdCheckbox {
+                ...{
+                    id,
+                    style,
+                    className,
+                    key,
+                    name,
+                    label,
+                    disabled,
+                    autoFocus,
+                    checked,
+                    indeterminate,
+                    readOnly,
+                    setProps,
+                    persistence,
+                    persisted_props,
+                    persistence_type,
+                    batchPropsNames,
+                    ...others
+                }
+            } />
         </Suspense>
     );
 }
@@ -98,21 +136,6 @@ AntdCheckbox.propTypes = {
      */
     'aria-*': PropTypes.string,
 
-    loading_state: PropTypes.shape({
-        /**
-         * Determines if the component is loading or not
-         */
-        is_loading: PropTypes.bool,
-        /**
-         * Holds which property is loading
-         */
-        prop_name: PropTypes.string,
-        /**
-         * Holds the name of the component that is loading
-         */
-        component_name: PropTypes.string
-    }),
-
     /**
      * Dash-assigned callback that should be called to report property changes
      * to Dash, to make them available for callbacks.
@@ -140,18 +163,6 @@ AntdCheckbox.propTypes = {
      */
     persistence_type: PropTypes.oneOf(['local', 'session', 'memory'])
 };
-
-// 设置默认参数
-AntdCheckbox.defaultProps = {
-    persisted_props: ['checked'],
-    persistence_type: 'local',
-    disabled: false,
-    autoFocus: false,
-    checked: false,
-    indeterminate: false,
-    readOnly: false,
-    batchPropsNames: []
-}
 
 export default AntdCheckbox;
 

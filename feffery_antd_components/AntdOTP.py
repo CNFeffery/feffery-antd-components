@@ -1,6 +1,13 @@
 # AUTO GENERATED FILE - DO NOT EDIT
 
+import typing  # noqa: F401
+import numbers # noqa: F401
+from typing_extensions import TypedDict, NotRequired, Literal # noqa: F401
 from dash.development.base_component import Component, _explicitize_args
+try:
+    from dash.development.base_component import ComponentType # noqa: F401
+except ImportError:
+    ComponentType = typing.TypeVar("ComponentType", bound=Component)
 
 
 class AntdOTP(Component):
@@ -54,19 +61,6 @@ Keyword arguments:
 - aria-* (string; optional):
     `aria-*`格式属性通配.
 
-- loading_state (dict; optional)
-
-    `loading_state` is a dict with keys:
-
-    - is_loading (boolean; optional):
-        Determines if the component is loading or not.
-
-    - prop_name (string; optional):
-        Holds which property is loading.
-
-    - component_name (string; optional):
-        Holds the name of the component that is loading.
-
 - persistence (boolean | string | number; optional):
     是否开启[属性持久化](/prop-persistence).
 
@@ -80,11 +74,31 @@ Keyword arguments:
     _base_nodes = ['children']
     _namespace = 'feffery_antd_components'
     _type = 'AntdOTP'
+
     @_explicitize_args
-    def __init__(self, id=Component.UNDEFINED, key=Component.UNDEFINED, style=Component.UNDEFINED, className=Component.UNDEFINED, name=Component.UNDEFINED, value=Component.UNDEFINED, defaultValue=Component.UNDEFINED, disabled=Component.UNDEFINED, length=Component.UNDEFINED, mask=Component.UNDEFINED, status=Component.UNDEFINED, size=Component.UNDEFINED, variant=Component.UNDEFINED, loading_state=Component.UNDEFINED, persistence=Component.UNDEFINED, persisted_props=Component.UNDEFINED, persistence_type=Component.UNDEFINED, **kwargs):
-        self._prop_names = ['id', 'key', 'style', 'className', 'name', 'value', 'defaultValue', 'disabled', 'length', 'mask', 'status', 'size', 'variant', 'data-*', 'aria-*', 'loading_state', 'persistence', 'persisted_props', 'persistence_type']
+    def __init__(
+        self,
+        id: typing.Optional[str] = None,
+        key: typing.Optional[str] = None,
+        style: typing.Optional[dict] = None,
+        className: typing.Optional[typing.Union[str, dict]] = None,
+        name: typing.Optional[str] = None,
+        value: typing.Optional[str] = None,
+        defaultValue: typing.Optional[str] = None,
+        disabled: typing.Optional[bool] = None,
+        length: typing.Optional[typing.Union[int, float, numbers.Number]] = None,
+        mask: typing.Optional[typing.Union[bool, str]] = None,
+        status: typing.Optional[Literal["error", "warning"]] = None,
+        size: typing.Optional[Literal["small", "middle", "large"]] = None,
+        variant: typing.Optional[Literal["outlined", "borderless", "filled"]] = None,
+        persistence: typing.Optional[typing.Union[bool, str, typing.Union[int, float, numbers.Number]]] = None,
+        persisted_props: typing.Optional[typing.Sequence[Literal["value"]]] = None,
+        persistence_type: typing.Optional[Literal["local", "session", "memory"]] = None,
+        **kwargs
+    ):
+        self._prop_names = ['id', 'key', 'style', 'className', 'name', 'value', 'defaultValue', 'disabled', 'length', 'mask', 'status', 'size', 'variant', 'data-*', 'aria-*', 'persistence', 'persisted_props', 'persistence_type']
         self._valid_wildcard_attributes =            ['data-', 'aria-']
-        self.available_properties = ['id', 'key', 'style', 'className', 'name', 'value', 'defaultValue', 'disabled', 'length', 'mask', 'status', 'size', 'variant', 'data-*', 'aria-*', 'loading_state', 'persistence', 'persisted_props', 'persistence_type']
+        self.available_properties = ['id', 'key', 'style', 'className', 'name', 'value', 'defaultValue', 'disabled', 'length', 'mask', 'status', 'size', 'variant', 'data-*', 'aria-*', 'persistence', 'persisted_props', 'persistence_type']
         self.available_wildcard_properties =            ['data-', 'aria-']
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()

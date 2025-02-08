@@ -8,10 +8,66 @@ const LazyAntdSegmentedColoring = React.lazy(() => import(/* webpackChunkName: "
 /**
  * 分段着色组件AntdSegmentedColoring
  */
-const AntdSegmentedColoring = (props) => {
+const AntdSegmentedColoring = ({
+    id,
+    key,
+    className,
+    style,
+    size = 'middle',
+    bordered = true,
+    variant,
+    controls = true,
+    disabled = false,
+    keyboard = true,
+    placeholder,
+    min,
+    max,
+    step = 0.01,
+    precision = 2,
+    readOnly,
+    pureLegend = false,
+    breakpoints,
+    colors,
+    inputNumberStyle,
+    colorBlockPosition = 'right',
+    colorBlockStyle,
+    pureLegendLabelStyle,
+    setProps,
+    batchPropsNames = [],
+    ...others
+}) => {
     return (
         <Suspense fallback={null}>
-            <LazyAntdSegmentedColoring {...props} />
+            <LazyAntdSegmentedColoring {
+                ...{
+                    id,
+                    key,
+                    className,
+                    style,
+                    size,
+                    bordered,
+                    variant,
+                    controls,
+                    disabled,
+                    keyboard,
+                    placeholder,
+                    min,
+                    max,
+                    step,
+                    precision,
+                    readOnly,
+                    pureLegend,
+                    breakpoints,
+                    colors,
+                    inputNumberStyle,
+                    colorBlockPosition,
+                    colorBlockStyle,
+                    pureLegendLabelStyle,
+                    setProps,
+                    batchPropsNames,
+                    ...others
+                }
+            } />
         </Suspense>
     );
 }
@@ -183,41 +239,12 @@ AntdSegmentedColoring.propTypes = {
      */
     'aria-*': PropTypes.string,
 
-    loading_state: PropTypes.shape({
-        /**
-         * Determines if the component is loading or not
-         */
-        is_loading: PropTypes.bool,
-        /**
-         * Holds which property is loading
-         */
-        prop_name: PropTypes.string,
-        /**
-         * Holds the name of the component that is loading
-         */
-        component_name: PropTypes.string
-    }),
-
     /**
      * Dash-assigned callback that should be called to report property changes
      * to Dash, to make them available for callbacks.
      */
     setProps: PropTypes.func
 };
-
-// 设置默认参数
-AntdSegmentedColoring.defaultProps = {
-    size: 'middle',
-    bordered: true,
-    controls: true,
-    disabled: false,
-    keyboard: true,
-    step: 0.01,
-    precision: 2,
-    colorBlockPosition: 'right',
-    pureLegend: false,
-    batchPropsNames: []
-}
 
 export default AntdSegmentedColoring;
 

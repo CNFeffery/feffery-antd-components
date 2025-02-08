@@ -6,10 +6,92 @@ const LazyAntdInput = React.lazy(() => import(/* webpackChunkName: "data_entry" 
 /**
  * 输入框组件AntdInput
  */
-const AntdInput = (props) => {
+const AntdInput = ({
+    id,
+    className,
+    style,
+    styles,
+    classNames,
+    key,
+    name,
+    mode = 'default',
+    passwordUseMd5 = false,
+    autoComplete = 'on',
+    placeholder,
+    value,
+    size = 'middle',
+    addonBefore,
+    addonAfter,
+    prefix,
+    suffix,
+    allowClear = false,
+    autoFocus = false,
+    bordered = true,
+    variant,
+    defaultValue,
+    disabled = false,
+    maxLength,
+    showCount = false,
+    countFormat,
+    nClicksSearch = 0,
+    nSubmit = 0,
+    status,
+    autoSize = false,
+    debounceWait = 0,
+    readOnly,
+    emptyAsNone = false,
+    setProps,
+    persistence,
+    persisted_props = ['value', 'md5Value'],
+    persistence_type = 'local',
+    batchPropsNames = [],
+    ...others
+}) => {
     return (
         <Suspense fallback={null}>
-            <LazyAntdInput {...props} />
+            <LazyAntdInput {
+                ...{
+                    id,
+                    className,
+                    style,
+                    styles,
+                    classNames,
+                    key,
+                    name,
+                    mode,
+                    passwordUseMd5,
+                    autoComplete,
+                    placeholder,
+                    value,
+                    size,
+                    addonBefore,
+                    addonAfter,
+                    prefix,
+                    suffix,
+                    allowClear,
+                    autoFocus,
+                    bordered,
+                    variant,
+                    defaultValue,
+                    disabled,
+                    maxLength,
+                    showCount,
+                    countFormat,
+                    nClicksSearch,
+                    nSubmit,
+                    status,
+                    autoSize,
+                    debounceWait,
+                    readOnly,
+                    emptyAsNone,
+                    setProps,
+                    persistence,
+                    persisted_props,
+                    persistence_type,
+                    batchPropsNames,
+                    ...others
+                }
+            } />
         </Suspense>
     );
 }
@@ -295,21 +377,6 @@ AntdInput.propTypes = {
      */
     'aria-*': PropTypes.string,
 
-    loading_state: PropTypes.shape({
-        /**
-         * Determines if the component is loading or not
-         */
-        is_loading: PropTypes.bool,
-        /**
-         * Holds which property is loading
-         */
-        prop_name: PropTypes.string,
-        /**
-         * Holds the name of the component that is loading
-         */
-        component_name: PropTypes.string
-    }),
-
     /**
      * Dash-assigned callback that should be called to report property changes
      * to Dash, to make them available for callbacks.
@@ -337,27 +404,6 @@ AntdInput.propTypes = {
      */
     persistence_type: PropTypes.oneOf(['local', 'session', 'memory'])
 };
-
-// 设置默认参数
-AntdInput.defaultProps = {
-    mode: 'default',
-    autoComplete: 'on',
-    disabled: false,
-    size: 'middle',
-    bordered: true,
-    showCount: false,
-    passwordUseMd5: false,
-    autoSize: false,
-    nClicksSearch: 0,
-    nSubmit: 0,
-    allowClear: false,
-    autoFocus: false,
-    emptyAsNone: false,
-    debounceWait: 0,
-    persisted_props: ['value', 'md5Value'],
-    persistence_type: 'local',
-    batchPropsNames: []
-}
 
 export default AntdInput;
 

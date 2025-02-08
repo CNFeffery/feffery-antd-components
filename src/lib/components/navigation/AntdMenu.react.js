@@ -12,6 +12,7 @@ import {
 import { get, has, isArray, isUndefined, isNull, isString, cloneDeep } from 'lodash';
 import { pickBy } from 'ramda';
 import isAbsoluteUrl from 'is-absolute-url';
+import { useLoading } from '../utils';
 // 自定义hooks
 import useCss from '../../hooks/useCss';
 
@@ -267,33 +268,32 @@ const raw2Jsx = (obj, str2Jsx, menuItemKeyToTitle) => {
 /**
  * 导航菜单组件AntdMenu
  */
-const AntdMenu = (props) => {
-    let {
-        id,
-        className,
-        style,
-        key,
-        expandIcon,
-        menuItems,
-        menuItemKeyToTitle,
-        mode,
-        theme,
-        defaultOpenKeys,
-        currentKey,
-        openKeys,
-        onlyExpandCurrentSubMenu,
-        defaultSelectedKey,
-        renderCollapsedButton,
-        popupContainer,
-        inlineCollapsed,
-        inlineIndent,
-        triggerSubMenuAction,
-        setProps,
-        persistence,
-        persisted_props,
-        persistence_type,
-        loading_state
-    } = props;
+const AntdMenu = ({
+    id,
+    className,
+    style,
+    key,
+    expandIcon,
+    menuItems,
+    menuItemKeyToTitle,
+    mode = 'vertical',
+    theme = 'light',
+    defaultOpenKeys,
+    currentKey,
+    openKeys,
+    onlyExpandCurrentSubMenu = false,
+    defaultSelectedKey,
+    renderCollapsedButton = false,
+    popupContainer = 'body',
+    inlineCollapsed,
+    inlineIndent = 24,
+    triggerSubMenuAction = 'hover',
+    setProps,
+    persistence,
+    persisted_props = ['currentKey', 'openKeys'],
+    persistence_type = 'local',
+    ...others
+}) => {
 
     const levelKeys = useMemo(() => {
         return getLevelKeys(menuItems);
@@ -368,7 +368,7 @@ const AntdMenu = (props) => {
                 </Button>
                 <Menu
                     // 提取具有data-*或aria-*通配格式的属性
-                    {...pickBy((_, k) => k.startsWith('data-') || k.startsWith('aria-'), props)}
+                    {...pickBy((_, k) => k.startsWith('data-') || k.startsWith('aria-'), others)}
                     id={id}
                     className={
                         isString(className) ?
@@ -405,9 +405,7 @@ const AntdMenu = (props) => {
                     persistence={persistence}
                     persisted_props={persisted_props}
                     persistence_type={persistence_type}
-                    data-dash-is-loading={
-                        (loading_state && loading_state.is_loading) || undefined
-                    }
+                    data-dash-is-loading={useLoading()}
                 >
                     {_menuItems}
                 </Menu>
@@ -417,7 +415,7 @@ const AntdMenu = (props) => {
         return (
             <Menu
                 // 提取具有data-*或aria-*通配格式的属性
-                {...pickBy((_, k) => k.startsWith('data-') || k.startsWith('aria-'), props)}
+                {...pickBy((_, k) => k.startsWith('data-') || k.startsWith('aria-'), others)}
                 id={id}
                 className={
                     isString(className) ?
@@ -454,9 +452,7 @@ const AntdMenu = (props) => {
                 persistence={persistence}
                 persisted_props={persisted_props}
                 persistence_type={persistence_type}
-                data-dash-is-loading={
-                    (loading_state && loading_state.is_loading) || undefined
-                }
+                data-dash-is-loading={useLoading()}
             >
                 {_menuItems}
             </Menu>
@@ -606,21 +602,6 @@ AntdMenu.propTypes = {
      */
     'aria-*': PropTypes.string,
 
-    loading_state: PropTypes.shape({
-        /**
-         * Determines if the component is loading or not
-         */
-        is_loading: PropTypes.bool,
-        /**
-         * Holds which property is loading
-         */
-        prop_name: PropTypes.string,
-        /**
-         * Holds the name of the component that is loading
-         */
-        component_name: PropTypes.string
-    }),
-
     /**
      * Dash-assigned callback that should be called to report property changes
      * to Dash, to make them available for callbacks.
@@ -648,18 +629,5 @@ AntdMenu.propTypes = {
      */
     persistence_type: PropTypes.oneOf(['local', 'session', 'memory'])
 };
-
-// 设置默认参数
-AntdMenu.defaultProps = {
-    mode: 'vertical',
-    theme: 'light',
-    onlyExpandCurrentSubMenu: false,
-    renderCollapsedButton: false,
-    popupContainer: 'body',
-    inlineIndent: 24,
-    triggerSubMenuAction: 'hover',
-    persisted_props: ['currentKey', 'openKeys'],
-    persistence_type: 'local'
-}
 
 export default AntdMenu;

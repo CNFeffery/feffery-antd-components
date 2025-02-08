@@ -5,7 +5,7 @@ import { Layout } from 'antd';
 // 辅助库
 import { isString } from 'lodash';
 import { pickBy } from 'ramda';
-import { parseChildrenToArray } from '../utils';
+import { parseChildrenToArray, useLoading } from '../utils';
 // 自定义hooks
 import useCss from '../../hooks/useCss';
 
@@ -14,24 +14,23 @@ const { Sider } = Layout;
 /**
  * 侧边栏组件AntdSider
  */
-const AntdSider = (props) => {
-    let {
-        id,
-        children,
-        className,
-        style,
-        key,
-        breakpoint,
-        collapsed,
-        collapsedWidth,
-        collapsible,
-        reverseArrow,
-        theme,
-        width,
-        trigger,
-        setProps,
-        loading_state
-    } = props;
+const AntdSider = ({
+    id,
+    children,
+    className,
+    style,
+    key,
+    breakpoint,
+    collapsed,
+    collapsedWidth = 80,
+    collapsible = false,
+    reverseArrow = false,
+    theme = 'dark',
+    width = 200,
+    trigger,
+    setProps,
+    ...others
+}) => {
 
     const onCollapse = collapsed => {
         setProps({ collapsed });
@@ -42,7 +41,7 @@ const AntdSider = (props) => {
     return (
         <Sider
             // 提取具有data-*或aria-*通配格式的属性
-            {...pickBy((_, k) => k.startsWith('data-') || k.startsWith('aria-'), props)}
+            {...pickBy((_, k) => k.startsWith('data-') || k.startsWith('aria-'), others)}
             id={id}
             className={
                 isString(className) ?
@@ -60,9 +59,7 @@ const AntdSider = (props) => {
             trigger={trigger}
             breakpoint={breakpoint}
             onCollapse={onCollapse}
-            data-dash-is-loading={
-                (loading_state && loading_state.is_loading) || undefined
-            }>
+            data-dash-is-loading={useLoading()}>
             {children}
         </Sider>
     );
@@ -156,35 +153,11 @@ AntdSider.propTypes = {
      */
     'aria-*': PropTypes.string,
 
-    loading_state: PropTypes.shape({
-        /**
-         * Determines if the component is loading or not
-         */
-        is_loading: PropTypes.bool,
-        /**
-         * Holds which property is loading
-         */
-        prop_name: PropTypes.string,
-        /**
-         * Holds the name of the component that is loading
-         */
-        component_name: PropTypes.string
-    }),
-
     /**
      * Dash-assigned callback that should be called to report property changes
      * to Dash, to make them available for callbacks.
      */
     setProps: PropTypes.func
 };
-
-// 设置默认参数
-AntdSider.defaultProps = {
-    collapsedWidth: 80,
-    collapsible: false,
-    reverseArrow: false,
-    theme: 'dark',
-    width: 200
-}
 
 export default AntdSider;

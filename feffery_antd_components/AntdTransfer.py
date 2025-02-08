@@ -1,6 +1,13 @@
 # AUTO GENERATED FILE - DO NOT EDIT
 
+import typing  # noqa: F401
+import numbers # noqa: F401
+from typing_extensions import TypedDict, NotRequired, Literal # noqa: F401
 from dash.development.base_component import Component, _explicitize_args
+try:
+    from dash.development.base_component import ComponentType # noqa: F401
+except ImportError:
+    ComponentType = typing.TypeVar("ComponentType", bound=Component)
 
 
 class AntdTransfer(Component):
@@ -131,8 +138,64 @@ Keyword arguments:
     _base_nodes = ['selectionsIcon', 'operations', 'titles', 'children']
     _namespace = 'feffery_antd_components'
     _type = 'AntdTransfer'
+    DataSource = TypedDict(
+        "DataSource",
+            {
+            "key": NotRequired[typing.Union[str, typing.Union[int, float, numbers.Number]]],
+            "title": NotRequired[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]],
+            "disabled": NotRequired[bool]
+        }
+    )
+
+    Pagination = TypedDict(
+        "Pagination",
+            {
+            "pageSize": NotRequired[typing.Union[int, float, numbers.Number]]
+        }
+    )
+
+    LoadingState = TypedDict(
+        "LoadingState",
+            {
+            "is_loading": NotRequired[bool],
+            "prop_name": NotRequired[str],
+            "component_name": NotRequired[str]
+        }
+    )
+
     @_explicitize_args
-    def __init__(self, id=Component.UNDEFINED, key=Component.UNDEFINED, style=Component.UNDEFINED, className=Component.UNDEFINED, name=Component.UNDEFINED, locale=Component.UNDEFINED, dataSource=Component.UNDEFINED, selectionsIcon=Component.UNDEFINED, height=Component.UNDEFINED, pagination=Component.UNDEFINED, oneWay=Component.UNDEFINED, operations=Component.UNDEFINED, showSearch=Component.UNDEFINED, optionFilterMode=Component.UNDEFINED, showSelectAll=Component.UNDEFINED, titles=Component.UNDEFINED, targetKeys=Component.UNDEFINED, moveDirection=Component.UNDEFINED, moveKeys=Component.UNDEFINED, disabled=Component.UNDEFINED, status=Component.UNDEFINED, readOnly=Component.UNDEFINED, batchPropsNames=Component.UNDEFINED, batchPropsValues=Component.UNDEFINED, loading_state=Component.UNDEFINED, persistence=Component.UNDEFINED, persisted_props=Component.UNDEFINED, persistence_type=Component.UNDEFINED, **kwargs):
+    def __init__(
+        self,
+        id: typing.Optional[str] = None,
+        key: typing.Optional[str] = None,
+        style: typing.Optional[dict] = None,
+        className: typing.Optional[typing.Union[str, dict]] = None,
+        name: typing.Optional[str] = None,
+        locale: typing.Optional[Literal["zh-cn", "en-us", "de-de"]] = None,
+        dataSource: typing.Optional[typing.Sequence["DataSource"]] = None,
+        selectionsIcon: typing.Optional[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]] = None,
+        height: typing.Optional[typing.Union[str, typing.Union[int, float, numbers.Number]]] = None,
+        pagination: typing.Optional[typing.Union[bool, "Pagination"]] = None,
+        oneWay: typing.Optional[bool] = None,
+        operations: typing.Optional[typing.Sequence[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]]] = None,
+        showSearch: typing.Optional[bool] = None,
+        optionFilterMode: typing.Optional[Literal["case-insensitive", "case-sensitive", "regex"]] = None,
+        showSelectAll: typing.Optional[bool] = None,
+        titles: typing.Optional[typing.Sequence[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]]] = None,
+        targetKeys: typing.Optional[typing.Sequence[typing.Union[typing.Union[int, float, numbers.Number], str]]] = None,
+        moveDirection: typing.Optional[Literal["left", "right"]] = None,
+        moveKeys: typing.Optional[typing.Sequence[typing.Union[typing.Union[int, float, numbers.Number], str]]] = None,
+        disabled: typing.Optional[bool] = None,
+        status: typing.Optional[Literal["error", "warning"]] = None,
+        readOnly: typing.Optional[bool] = None,
+        batchPropsNames: typing.Optional[typing.Sequence[str]] = None,
+        batchPropsValues: typing.Optional[dict] = None,
+        loading_state: typing.Optional["LoadingState"] = None,
+        persistence: typing.Optional[typing.Union[bool, str, typing.Union[int, float, numbers.Number]]] = None,
+        persisted_props: typing.Optional[typing.Sequence[Literal["targetKeys"]]] = None,
+        persistence_type: typing.Optional[Literal["local", "session", "memory"]] = None,
+        **kwargs
+    ):
         self._prop_names = ['id', 'key', 'style', 'className', 'name', 'locale', 'dataSource', 'selectionsIcon', 'height', 'pagination', 'oneWay', 'operations', 'showSearch', 'optionFilterMode', 'showSelectAll', 'titles', 'targetKeys', 'moveDirection', 'moveKeys', 'disabled', 'status', 'readOnly', 'batchPropsNames', 'batchPropsValues', 'data-*', 'aria-*', 'loading_state', 'persistence', 'persisted_props', 'persistence_type']
         self._valid_wildcard_attributes =            ['data-', 'aria-']
         self.available_properties = ['id', 'key', 'style', 'className', 'name', 'locale', 'dataSource', 'selectionsIcon', 'height', 'pagination', 'oneWay', 'operations', 'showSearch', 'optionFilterMode', 'showSelectAll', 'titles', 'targetKeys', 'moveDirection', 'moveKeys', 'disabled', 'status', 'readOnly', 'batchPropsNames', 'batchPropsValues', 'data-*', 'aria-*', 'loading_state', 'persistence', 'persisted_props', 'persistence_type']

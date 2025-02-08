@@ -6,10 +6,82 @@ const LazyAntdInputNumber = React.lazy(() => import(/* webpackChunkName: "data_e
 /**
  * 数值输入框组件AntdInputNumber
  */
-const AntdInputNumber = (props) => {
+const AntdInputNumber = ({
+    id,
+    className,
+    style,
+    key,
+    name,
+    size = 'middle',
+    addonBefore,
+    addonAfter,
+    autoFocus = false,
+    prefix,
+    suffix,
+    bordered = true,
+    variant,
+    controls = true,
+    value,
+    defaultValue,
+    disabled = false,
+    placeholder,
+    keyboard = true,
+    min,
+    max,
+    step,
+    precision,
+    readOnly,
+    stringMode = false,
+    nSubmit = 0,
+    status,
+    debounceWait = 0,
+    setProps,
+    persistence,
+    persisted_props = ['value'],
+    persistence_type = 'local',
+    batchPropsNames = [],
+    ...others
+}) => {
     return (
         <Suspense fallback={null}>
-            <LazyAntdInputNumber {...props} />
+            <LazyAntdInputNumber {
+                ...{
+                    id,
+                    className,
+                    style,
+                    key,
+                    name,
+                    size,
+                    addonBefore,
+                    addonAfter,
+                    autoFocus,
+                    prefix,
+                    suffix,
+                    bordered,
+                    variant,
+                    controls,
+                    value,
+                    defaultValue,
+                    disabled,
+                    placeholder,
+                    keyboard,
+                    min,
+                    max,
+                    step,
+                    precision,
+                    readOnly,
+                    stringMode,
+                    nSubmit,
+                    status,
+                    debounceWait,
+                    setProps,
+                    persistence,
+                    persisted_props,
+                    persistence_type,
+                    batchPropsNames,
+                    ...others
+                }
+            } />
         </Suspense>
     );
 }
@@ -211,21 +283,6 @@ AntdInputNumber.propTypes = {
      */
     'aria-*': PropTypes.string,
 
-    loading_state: PropTypes.shape({
-        /**
-         * Determines if the component is loading or not
-         */
-        is_loading: PropTypes.bool,
-        /**
-         * Holds which property is loading
-         */
-        prop_name: PropTypes.string,
-        /**
-         * Holds the name of the component that is loading
-         */
-        component_name: PropTypes.string
-    }),
-
     /**
      * Dash-assigned callback that should be called to report property changes
      * to Dash, to make them available for callbacks.
@@ -253,22 +310,6 @@ AntdInputNumber.propTypes = {
      */
     persistence_type: PropTypes.oneOf(['local', 'session', 'memory'])
 };
-
-// 设置默认参数
-AntdInputNumber.defaultProps = {
-    autoFocus: false,
-    controls: true,
-    keyboard: true,
-    stringMode: false,
-    disabled: false,
-    size: 'middle',
-    bordered: true,
-    nSubmit: 0,
-    debounceWait: 0,
-    persisted_props: ['value'],
-    persistence_type: 'local',
-    batchPropsNames: []
-}
 
 export default AntdInputNumber;
 

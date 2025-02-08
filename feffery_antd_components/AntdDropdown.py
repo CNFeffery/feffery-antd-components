@@ -1,6 +1,13 @@
 # AUTO GENERATED FILE - DO NOT EDIT
 
+import typing  # noqa: F401
+import numbers # noqa: F401
+from typing_extensions import TypedDict, NotRequired, Literal # noqa: F401
 from dash.development.base_component import Component, _explicitize_args
+try:
+    from dash.development.base_component import ComponentType # noqa: F401
+except ImportError:
+    ComponentType = typing.TypeVar("ComponentType", bound=Component)
 
 
 class AntdDropdown(Component):
@@ -153,29 +160,76 @@ Keyword arguments:
     `data-*`格式属性通配.
 
 - aria-* (string; optional):
-    `aria-*`格式属性通配.
-
-- loading_state (dict; optional)
-
-    `loading_state` is a dict with keys:
-
-    - is_loading (boolean; optional):
-        Determines if the component is loading or not.
-
-    - prop_name (string; optional):
-        Holds which property is loading.
-
-    - component_name (string; optional):
-        Holds the name of the component that is loading."""
+    `aria-*`格式属性通配."""
     _children_props = ['menuItems[].title', 'menuItems[].extra']
     _base_nodes = ['children']
     _namespace = 'feffery_antd_components'
     _type = 'AntdDropdown'
+    ButtonProps = TypedDict(
+        "ButtonProps",
+            {
+            "size": NotRequired[Literal["small", "middle", "large"]],
+            "type": NotRequired[Literal["default", "primary", "ghost", "dashed", "link", "text"]],
+            "danger": NotRequired[bool],
+            "style": NotRequired[dict],
+            "className": NotRequired[str]
+        }
+    )
+
+    MenuItems = TypedDict(
+        "MenuItems",
+            {
+            "title": NotRequired[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]],
+            "extra": NotRequired[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]],
+            "href": NotRequired[str],
+            "target": NotRequired[str],
+            "disabled": NotRequired[bool],
+            "icon": NotRequired[str],
+            "iconRenderer": NotRequired[Literal["AntdIcon", "fontawesome"]],
+            "key": NotRequired[str],
+            "isDivider": NotRequired[bool]
+        }
+    )
+
     @_explicitize_args
-    def __init__(self, children=None, id=Component.UNDEFINED, key=Component.UNDEFINED, style=Component.UNDEFINED, className=Component.UNDEFINED, wrapperStyle=Component.UNDEFINED, wrapperClassName=Component.UNDEFINED, title=Component.UNDEFINED, buttonMode=Component.UNDEFINED, buttonProps=Component.UNDEFINED, freePosition=Component.UNDEFINED, freePositionStyle=Component.UNDEFINED, freePositionClassName=Component.UNDEFINED, clickedKey=Component.UNDEFINED, nClicks=Component.UNDEFINED, menuItems=Component.UNDEFINED, selectable=Component.UNDEFINED, multiple=Component.UNDEFINED, selectedKeys=Component.UNDEFINED, nonSelectableKeys=Component.UNDEFINED, arrow=Component.UNDEFINED, disabled=Component.UNDEFINED, overlayClassName=Component.UNDEFINED, overlayStyle=Component.UNDEFINED, placement=Component.UNDEFINED, trigger=Component.UNDEFINED, autoAdjustOverflow=Component.UNDEFINED, visible=Component.UNDEFINED, popupContainer=Component.UNDEFINED, batchPropsNames=Component.UNDEFINED, batchPropsValues=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
-        self._prop_names = ['id', 'key', 'children', 'style', 'className', 'wrapperStyle', 'wrapperClassName', 'title', 'buttonMode', 'buttonProps', 'freePosition', 'freePositionStyle', 'freePositionClassName', 'clickedKey', 'nClicks', 'menuItems', 'selectable', 'multiple', 'selectedKeys', 'nonSelectableKeys', 'arrow', 'disabled', 'overlayClassName', 'overlayStyle', 'placement', 'trigger', 'autoAdjustOverflow', 'visible', 'popupContainer', 'batchPropsNames', 'batchPropsValues', 'data-*', 'aria-*', 'loading_state']
+    def __init__(
+        self,
+        children: typing.Optional[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]] = None,
+        id: typing.Optional[str] = None,
+        key: typing.Optional[str] = None,
+        style: typing.Optional[dict] = None,
+        className: typing.Optional[typing.Union[str, dict]] = None,
+        wrapperStyle: typing.Optional[dict] = None,
+        wrapperClassName: typing.Optional[typing.Union[str, dict]] = None,
+        title: typing.Optional[str] = None,
+        buttonMode: typing.Optional[bool] = None,
+        buttonProps: typing.Optional["ButtonProps"] = None,
+        freePosition: typing.Optional[bool] = None,
+        freePositionStyle: typing.Optional[dict] = None,
+        freePositionClassName: typing.Optional[str] = None,
+        clickedKey: typing.Optional[str] = None,
+        nClicks: typing.Optional[typing.Union[int, float, numbers.Number]] = None,
+        menuItems: typing.Optional[typing.Sequence["MenuItems"]] = None,
+        selectable: typing.Optional[bool] = None,
+        multiple: typing.Optional[bool] = None,
+        selectedKeys: typing.Optional[typing.Sequence[str]] = None,
+        nonSelectableKeys: typing.Optional[typing.Sequence[str]] = None,
+        arrow: typing.Optional[bool] = None,
+        disabled: typing.Optional[bool] = None,
+        overlayClassName: typing.Optional[typing.Union[str, dict]] = None,
+        overlayStyle: typing.Optional[dict] = None,
+        placement: typing.Optional[Literal["bottomLeft", "bottomCenter", "bottomRight", "topLeft", "topCenter", "topRight"]] = None,
+        trigger: typing.Optional[Literal["click", "hover"]] = None,
+        autoAdjustOverflow: typing.Optional[bool] = None,
+        visible: typing.Optional[bool] = None,
+        popupContainer: typing.Optional[Literal["parent", "body"]] = None,
+        batchPropsNames: typing.Optional[typing.Sequence[str]] = None,
+        batchPropsValues: typing.Optional[dict] = None,
+        **kwargs
+    ):
+        self._prop_names = ['id', 'key', 'children', 'style', 'className', 'wrapperStyle', 'wrapperClassName', 'title', 'buttonMode', 'buttonProps', 'freePosition', 'freePositionStyle', 'freePositionClassName', 'clickedKey', 'nClicks', 'menuItems', 'selectable', 'multiple', 'selectedKeys', 'nonSelectableKeys', 'arrow', 'disabled', 'overlayClassName', 'overlayStyle', 'placement', 'trigger', 'autoAdjustOverflow', 'visible', 'popupContainer', 'batchPropsNames', 'batchPropsValues', 'data-*', 'aria-*']
         self._valid_wildcard_attributes =            ['data-', 'aria-']
-        self.available_properties = ['id', 'key', 'children', 'style', 'className', 'wrapperStyle', 'wrapperClassName', 'title', 'buttonMode', 'buttonProps', 'freePosition', 'freePositionStyle', 'freePositionClassName', 'clickedKey', 'nClicks', 'menuItems', 'selectable', 'multiple', 'selectedKeys', 'nonSelectableKeys', 'arrow', 'disabled', 'overlayClassName', 'overlayStyle', 'placement', 'trigger', 'autoAdjustOverflow', 'visible', 'popupContainer', 'batchPropsNames', 'batchPropsValues', 'data-*', 'aria-*', 'loading_state']
+        self.available_properties = ['id', 'key', 'children', 'style', 'className', 'wrapperStyle', 'wrapperClassName', 'title', 'buttonMode', 'buttonProps', 'freePosition', 'freePositionStyle', 'freePositionClassName', 'clickedKey', 'nClicks', 'menuItems', 'selectable', 'multiple', 'selectedKeys', 'nonSelectableKeys', 'arrow', 'disabled', 'overlayClassName', 'overlayStyle', 'placement', 'trigger', 'autoAdjustOverflow', 'visible', 'popupContainer', 'batchPropsNames', 'batchPropsValues', 'data-*', 'aria-*']
         self.available_wildcard_properties =            ['data-', 'aria-']
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()

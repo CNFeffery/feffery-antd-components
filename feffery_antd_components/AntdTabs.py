@@ -1,6 +1,13 @@
 # AUTO GENERATED FILE - DO NOT EDIT
 
+import typing  # noqa: F401
+import numbers # noqa: F401
+from typing_extensions import TypedDict, NotRequired, Literal # noqa: F401
 from dash.development.base_component import Component, _explicitize_args
+try:
+    from dash.development.base_component import ComponentType # noqa: F401
+except ImportError:
+    ComponentType = typing.TypeVar("ComponentType", bound=Component)
 
 
 class AntdTabs(Component):
@@ -189,8 +196,93 @@ Keyword arguments:
     _base_nodes = ['tabBarLeftExtraContent', 'tabBarRightExtraContent', 'placeholder', 'children']
     _namespace = 'feffery_antd_components'
     _type = 'AntdTabs'
+    ItemsContextMenu = TypedDict(
+        "ItemsContextMenu",
+            {
+            "key": NotRequired[str],
+            "label": NotRequired[str],
+            "icon": NotRequired[str],
+            "iconRenderer": NotRequired[Literal["AntdIcon", "fontawesome"]]
+        }
+    )
+
+    Items = TypedDict(
+        "Items",
+            {
+            "label": NotRequired[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]],
+            "key": NotRequired[str],
+            "children": NotRequired[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]],
+            "icon": NotRequired[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]],
+            "closeIcon": NotRequired[typing.Union[bool, typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]]],
+            "destroyInactiveTabPane": NotRequired[bool],
+            "disabled": NotRequired[bool],
+            "forceRender": NotRequired[bool],
+            "closable": NotRequired[bool],
+            "contextMenu": NotRequired[typing.Sequence["ItemsContextMenu"]]
+        }
+    )
+
+    Indicator = TypedDict(
+        "Indicator",
+            {
+            "size": NotRequired[typing.Union[int, float, numbers.Number]],
+            "align": NotRequired[Literal["start", "center", "end"]]
+        }
+    )
+
+    ClickedContextMenu = TypedDict(
+        "ClickedContextMenu",
+            {
+            "tabKey": NotRequired[str],
+            "menuKey": NotRequired[str],
+            "timestamp": NotRequired[typing.Union[int, float, numbers.Number]]
+        }
+    )
+
+    LoadingState = TypedDict(
+        "LoadingState",
+            {
+            "is_loading": NotRequired[bool],
+            "prop_name": NotRequired[str],
+            "component_name": NotRequired[str]
+        }
+    )
+
     @_explicitize_args
-    def __init__(self, id=Component.UNDEFINED, key=Component.UNDEFINED, style=Component.UNDEFINED, className=Component.UNDEFINED, type=Component.UNDEFINED, items=Component.UNDEFINED, itemKeys=Component.UNDEFINED, activeKey=Component.UNDEFINED, defaultActiveKey=Component.UNDEFINED, disabledTabKeys=Component.UNDEFINED, tabPosition=Component.UNDEFINED, size=Component.UNDEFINED, centered=Component.UNDEFINED, indicator=Component.UNDEFINED, tabBarGutter=Component.UNDEFINED, tabBarStyle=Component.UNDEFINED, inkBarAnimated=Component.UNDEFINED, tabPaneAnimated=Component.UNDEFINED, latestDeletePane=Component.UNDEFINED, tabCloseCounts=Component.UNDEFINED, tabBarLeftExtraContent=Component.UNDEFINED, tabBarRightExtraContent=Component.UNDEFINED, tabCount=Component.UNDEFINED, destroyInactiveTabPane=Component.UNDEFINED, clickedContextMenu=Component.UNDEFINED, placeholder=Component.UNDEFINED, loading_state=Component.UNDEFINED, persistence=Component.UNDEFINED, persisted_props=Component.UNDEFINED, persistence_type=Component.UNDEFINED, **kwargs):
+    def __init__(
+        self,
+        id: typing.Optional[str] = None,
+        key: typing.Optional[str] = None,
+        style: typing.Optional[dict] = None,
+        className: typing.Optional[typing.Union[str, dict]] = None,
+        type: typing.Optional[Literal["line", "card", "editable-card"]] = None,
+        items: typing.Optional[typing.Sequence["Items"]] = None,
+        itemKeys: typing.Optional[typing.Sequence[str]] = None,
+        activeKey: typing.Optional[str] = None,
+        defaultActiveKey: typing.Optional[str] = None,
+        disabledTabKeys: typing.Optional[typing.Sequence[str]] = None,
+        tabPosition: typing.Optional[Literal["top", "left", "right", "bottom"]] = None,
+        size: typing.Optional[Literal["small", "default", "large"]] = None,
+        centered: typing.Optional[bool] = None,
+        indicator: typing.Optional["Indicator"] = None,
+        tabBarGutter: typing.Optional[typing.Union[int, float, numbers.Number]] = None,
+        tabBarStyle: typing.Optional[dict] = None,
+        inkBarAnimated: typing.Optional[bool] = None,
+        tabPaneAnimated: typing.Optional[bool] = None,
+        latestDeletePane: typing.Optional[str] = None,
+        tabCloseCounts: typing.Optional[typing.Union[int, float, numbers.Number]] = None,
+        tabBarLeftExtraContent: typing.Optional[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]] = None,
+        tabBarRightExtraContent: typing.Optional[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]] = None,
+        tabCount: typing.Optional[typing.Union[int, float, numbers.Number]] = None,
+        destroyInactiveTabPane: typing.Optional[bool] = None,
+        clickedContextMenu: typing.Optional["ClickedContextMenu"] = None,
+        placeholder: typing.Optional[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]] = None,
+        loading_state: typing.Optional["LoadingState"] = None,
+        persistence: typing.Optional[typing.Union[bool, str, typing.Union[int, float, numbers.Number]]] = None,
+        persisted_props: typing.Optional[typing.Sequence[Literal["activeKey"]]] = None,
+        persistence_type: typing.Optional[Literal["local", "session", "memory"]] = None,
+        **kwargs
+    ):
         self._prop_names = ['id', 'key', 'style', 'className', 'type', 'items', 'itemKeys', 'activeKey', 'defaultActiveKey', 'disabledTabKeys', 'tabPosition', 'size', 'centered', 'indicator', 'tabBarGutter', 'tabBarStyle', 'inkBarAnimated', 'tabPaneAnimated', 'latestDeletePane', 'tabCloseCounts', 'tabBarLeftExtraContent', 'tabBarRightExtraContent', 'tabCount', 'destroyInactiveTabPane', 'clickedContextMenu', 'placeholder', 'data-*', 'aria-*', 'loading_state', 'persistence', 'persisted_props', 'persistence_type']
         self._valid_wildcard_attributes =            ['data-', 'aria-']
         self.available_properties = ['id', 'key', 'style', 'className', 'type', 'items', 'itemKeys', 'activeKey', 'defaultActiveKey', 'disabledTabKeys', 'tabPosition', 'size', 'centered', 'indicator', 'tabBarGutter', 'tabBarStyle', 'inkBarAnimated', 'tabPaneAnimated', 'latestDeletePane', 'tabCloseCounts', 'tabBarLeftExtraContent', 'tabBarRightExtraContent', 'tabCount', 'destroyInactiveTabPane', 'clickedContextMenu', 'placeholder', 'data-*', 'aria-*', 'loading_state', 'persistence', 'persisted_props', 'persistence_type']

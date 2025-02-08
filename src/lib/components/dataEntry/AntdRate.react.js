@@ -6,10 +6,52 @@ const LazyAntdRate = React.lazy(() => import(/* webpackChunkName: "data_entry" *
 /**
  * 评分组件AntdRate
  */
-const AntdRate = (props) => {
+const AntdRate = ({
+    id,
+    className,
+    style,
+    key,
+    name,
+    allowClear = true,
+    allowHalf = false,
+    count = 5,
+    disabled = false,
+    autoFocus = false,
+    tooltips,
+    defaultValue = 0,
+    value,
+    setProps,
+    persistence,
+    persisted_props = ['value'],
+    persistence_type = 'local',
+    batchPropsNames = [],
+    ...others
+}) => {
     return (
         <Suspense fallback={null}>
-            <LazyAntdRate {...props} />
+            <LazyAntdRate {
+                ...{
+                    id,
+                    className,
+                    style,
+                    key,
+                    name,
+                    allowClear,
+                    allowHalf,
+                    count,
+                    disabled,
+                    autoFocus,
+                    tooltips,
+                    defaultValue,
+                    value,
+                    setProps,
+                    persistence,
+                    persisted_props,
+                    persistence_type,
+                    batchPropsNames,
+                    ...others
+                }
+            } />
         </Suspense>
     );
 }
@@ -111,21 +153,6 @@ AntdRate.propTypes = {
      */
     'aria-*': PropTypes.string,
 
-    loading_state: PropTypes.shape({
-        /**
-         * Determines if the component is loading or not
-         */
-        is_loading: PropTypes.bool,
-        /**
-         * Holds which property is loading
-         */
-        prop_name: PropTypes.string,
-        /**
-         * Holds the name of the component that is loading
-         */
-        component_name: PropTypes.string
-    }),
-
     /**
      * Dash-assigned callback that should be called to report property changes
      * to Dash, to make them available for callbacks.
@@ -153,19 +180,6 @@ AntdRate.propTypes = {
      */
     persistence_type: PropTypes.oneOf(['local', 'session', 'memory'])
 };
-
-// 设置默认参数
-AntdRate.defaultProps = {
-    allowClear: true,
-    allowHalf: false,
-    count: 5,
-    defaultValue: 0,
-    disabled: false,
-    autoFocus: false,
-    persisted_props: ['value'],
-    persistence_type: 'local',
-    batchPropsNames: []
-}
 
 export default AntdRate;
 

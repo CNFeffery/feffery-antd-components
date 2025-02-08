@@ -6,10 +6,82 @@ const LazyAntdPictureUpload = React.lazy(() => import(/* webpackChunkName: "uplo
 /**
  * 图片上传组件AntdPictureUpload
  */
-const AntdPictureUpload = (props) => {
+const AntdPictureUpload = ({
+    id,
+    className,
+    style,
+    key,
+    name,
+    locale = 'zh-cn',
+    apiUrl,
+    apiUrlExtraParams,
+    headers,
+    withCredentials = false,
+    downloadUrl,
+    downloadUrlExtraParams,
+    downloadUrlFromBackend = false,
+    editable = false,
+    editConfig,
+    uploadId,
+    fileListMaxLength = null,
+    buttonContent,
+    fileTypes = ['tiff', 'bmp', 'gif', 'png', 'jpeg', 'jpg', 'webp', 'ico', 'tif'],
+    fileMaxSize = 10,
+    failedTooltipInfo,
+    showRemoveIcon = true,
+    showPreviewIcon = true,
+    confirmBeforeDelete = false,
+    showPercent = false,
+    progressProps,
+    showSuccessMessage = true,
+    showErrorMessage = true,
+    listUploadTaskRecord = [],
+    defaultFileList,
+    disabled = false,
+    status,
+    setProps,
+    ...others
+}) => {
     return (
         <Suspense fallback={null}>
-            <LazyAntdPictureUpload {...props} />
+            <LazyAntdPictureUpload {
+                ...{
+                    id,
+                    className,
+                    style,
+                    key,
+                    name,
+                    locale,
+                    apiUrl,
+                    apiUrlExtraParams,
+                    headers,
+                    withCredentials,
+                    downloadUrl,
+                    downloadUrlExtraParams,
+                    downloadUrlFromBackend,
+                    editable,
+                    editConfig,
+                    uploadId,
+                    fileListMaxLength,
+                    buttonContent,
+                    fileTypes,
+                    fileMaxSize,
+                    failedTooltipInfo,
+                    showRemoveIcon,
+                    showPreviewIcon,
+                    confirmBeforeDelete,
+                    showPercent,
+                    progressProps,
+                    showSuccessMessage,
+                    showErrorMessage,
+                    listUploadTaskRecord,
+                    defaultFileList,
+                    disabled,
+                    status,
+                    setProps,
+                    ...others
+                }
+            } />
         </Suspense>
     );
 }
@@ -430,47 +502,12 @@ AntdPictureUpload.propTypes = {
      */
     'aria-*': PropTypes.string,
 
-    loading_state: PropTypes.shape({
-        /**
-         * Determines if the component is loading or not
-         */
-        is_loading: PropTypes.bool,
-        /**
-         * Holds which property is loading
-         */
-        prop_name: PropTypes.string,
-        /**
-         * Holds the name of the component that is loading
-         */
-        component_name: PropTypes.string
-    }),
-
     /**
      * Dash-assigned callback that should be called to report property changes
      * to Dash, to make them available for callbacks.
      */
     setProps: PropTypes.func
 };
-
-// 设置默认参数
-AntdPictureUpload.defaultProps = {
-    disabled: false,
-    editable: false,
-    fileTypes: ['tiff', 'bmp', 'gif', 'png', 'jpeg', 'jpg', 'webp', 'ico', 'tif'],
-    fileListMaxLength: null,
-    fileMaxSize: 10,
-    showRemoveIcon: true,
-    showPreviewIcon: true,
-    confirmBeforeDelete: false,
-    showPercent: false,
-    showSuccessMessage: true,
-    showErrorMessage: true,
-    lastUploadTaskRecord: null,
-    listUploadTaskRecord: [],
-    downloadUrlFromBackend: false,
-    withCredentials: false,
-    locale: 'zh-cn'
-}
 
 export default AntdPictureUpload;
 

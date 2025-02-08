@@ -6,10 +6,86 @@ const LazyAntdTimeRangePicker = React.lazy(() => import(/* webpackChunkName: "da
 /**
  * 时间范围选择组件AntdTimeRangePicker
  */
-const AntdTimeRangePicker = (props) => {
+const AntdTimeRangePicker = ({
+    id,
+    className,
+    style,
+    popupClassName,
+    key,
+    name,
+    locale = 'zh-cn',
+    setProps,
+    value,
+    defaultValue,
+    placeholder,
+    placement = 'bottomLeft',
+    disabled = [false, false],
+    hourStep = 1,
+    minuteStep = 1,
+    secondStep = 1,
+    format = 'HH:mm:ss',
+    use12Hours = false,
+    allowClear = true,
+    autoFocus = false,
+    bordered = true,
+    variant,
+    size = 'middle',
+    open,
+    status,
+    prefix,
+    suffixIcon,
+    popupContainer = 'body',
+    readOnly,
+    extraFooter,
+    persistence,
+    persisted_props = ['value'],
+    persistence_type = 'local',
+    batchPropsNames = [],
+    needConfirm = false,
+    ...others
+}) => {
     return (
         <Suspense fallback={null}>
-            <LazyAntdTimeRangePicker {...props} />
+            <LazyAntdTimeRangePicker {
+                ...{
+                    id,
+                    className,
+                    style,
+                    popupClassName,
+                    key,
+                    name,
+                    locale,
+                    setProps,
+                    value,
+                    defaultValue,
+                    placeholder,
+                    placement,
+                    disabled,
+                    hourStep,
+                    minuteStep,
+                    secondStep,
+                    format,
+                    use12Hours,
+                    allowClear,
+                    autoFocus,
+                    bordered,
+                    variant,
+                    size,
+                    open,
+                    status,
+                    prefix,
+                    suffixIcon,
+                    popupContainer,
+                    readOnly,
+                    extraFooter,
+                    persistence,
+                    persisted_props,
+                    persistence_type,
+                    batchPropsNames,
+                    needConfirm,
+                    ...others
+                }
+            } />
         </Suspense>
     );
 }
@@ -204,24 +280,6 @@ AntdTimeRangePicker.propTypes = {
     needConfirm: PropTypes.bool,
 
     /**
-    * Object that holds the loading state object coming from dash-renderer
-    */
-    loading_state: PropTypes.shape({
-        /**
-         * Determines if the component is loading or not
-         */
-        is_loading: PropTypes.bool,
-        /**
-         * Holds which property is loading
-         */
-        prop_name: PropTypes.string,
-        /**
-         * Holds the name of the component that is loading
-         */
-        component_name: PropTypes.string
-    }),
-
-    /**
      * Dash-assigned callback that should be called to report property changes
      * to Dash, to make them available for callbacks.
      */
@@ -248,27 +306,6 @@ AntdTimeRangePicker.propTypes = {
      */
     persistence_type: PropTypes.oneOf(['local', 'session', 'memory'])
 };
-
-// 设置默认参数
-AntdTimeRangePicker.defaultProps = {
-    disabled: [false, false],
-    hourStep: 1,
-    minuteStep: 1,
-    secondStep: 1,
-    use12Hours: false,
-    allowClear: true,
-    autoFocus: false,
-    bordered: true,
-    size: 'middle',
-    format: 'HH:mm:ss',
-    needConfirm: false,
-    persisted_props: ['value'],
-    persistence_type: 'local',
-    locale: 'zh-cn',
-    placement: 'bottomLeft',
-    popupContainer: 'body',
-    batchPropsNames: []
-}
 
 export default AntdTimeRangePicker;
 

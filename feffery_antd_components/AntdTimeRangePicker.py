@@ -1,6 +1,13 @@
 # AUTO GENERATED FILE - DO NOT EDIT
 
+import typing  # noqa: F401
+import numbers # noqa: F401
+from typing_extensions import TypedDict, NotRequired, Literal # noqa: F401
 from dash.development.base_component import Component, _explicitize_args
+try:
+    from dash.development.base_component import ComponentType # noqa: F401
+except ImportError:
+    ComponentType = typing.TypeVar("ComponentType", bound=Component)
 
 
 class AntdTimeRangePicker(Component):
@@ -114,21 +121,6 @@ Keyword arguments:
 - needConfirm (boolean; default False):
     是否需要确认按钮，为`False`时失去焦点即代表选择  默认值：`False`.
 
-- loading_state (dict; optional):
-    Object that holds the loading state object coming from
-    dash-renderer.
-
-    `loading_state` is a dict with keys:
-
-    - is_loading (boolean; optional):
-        Determines if the component is loading or not.
-
-    - prop_name (string; optional):
-        Holds which property is loading.
-
-    - component_name (string; optional):
-        Holds the name of the component that is loading.
-
 - persistence (boolean | string | number; optional):
     是否开启[属性持久化](/prop-persistence).
 
@@ -142,11 +134,50 @@ Keyword arguments:
     _base_nodes = ['extraFooter', 'prefix', 'suffixIcon', 'children']
     _namespace = 'feffery_antd_components'
     _type = 'AntdTimeRangePicker'
+
     @_explicitize_args
-    def __init__(self, id=Component.UNDEFINED, key=Component.UNDEFINED, style=Component.UNDEFINED, className=Component.UNDEFINED, popupClassName=Component.UNDEFINED, name=Component.UNDEFINED, locale=Component.UNDEFINED, format=Component.UNDEFINED, hourStep=Component.UNDEFINED, minuteStep=Component.UNDEFINED, secondStep=Component.UNDEFINED, use12Hours=Component.UNDEFINED, allowClear=Component.UNDEFINED, autoFocus=Component.UNDEFINED, placeholder=Component.UNDEFINED, placement=Component.UNDEFINED, disabled=Component.UNDEFINED, value=Component.UNDEFINED, defaultValue=Component.UNDEFINED, bordered=Component.UNDEFINED, variant=Component.UNDEFINED, size=Component.UNDEFINED, open=Component.UNDEFINED, status=Component.UNDEFINED, readOnly=Component.UNDEFINED, extraFooter=Component.UNDEFINED, prefix=Component.UNDEFINED, suffixIcon=Component.UNDEFINED, popupContainer=Component.UNDEFINED, batchPropsNames=Component.UNDEFINED, batchPropsValues=Component.UNDEFINED, needConfirm=Component.UNDEFINED, loading_state=Component.UNDEFINED, persistence=Component.UNDEFINED, persisted_props=Component.UNDEFINED, persistence_type=Component.UNDEFINED, **kwargs):
-        self._prop_names = ['id', 'key', 'style', 'className', 'popupClassName', 'name', 'locale', 'format', 'hourStep', 'minuteStep', 'secondStep', 'use12Hours', 'allowClear', 'autoFocus', 'placeholder', 'placement', 'disabled', 'value', 'defaultValue', 'bordered', 'variant', 'size', 'open', 'status', 'readOnly', 'extraFooter', 'prefix', 'suffixIcon', 'popupContainer', 'batchPropsNames', 'batchPropsValues', 'data-*', 'aria-*', 'needConfirm', 'loading_state', 'persistence', 'persisted_props', 'persistence_type']
+    def __init__(
+        self,
+        id: typing.Optional[str] = None,
+        key: typing.Optional[str] = None,
+        style: typing.Optional[dict] = None,
+        className: typing.Optional[typing.Union[str, dict]] = None,
+        popupClassName: typing.Optional[str] = None,
+        name: typing.Optional[str] = None,
+        locale: typing.Optional[Literal["zh-cn", "en-us", "de-de"]] = None,
+        format: typing.Optional[str] = None,
+        hourStep: typing.Optional[typing.Union[int, float, numbers.Number]] = None,
+        minuteStep: typing.Optional[typing.Union[int, float, numbers.Number]] = None,
+        secondStep: typing.Optional[typing.Union[int, float, numbers.Number]] = None,
+        use12Hours: typing.Optional[bool] = None,
+        allowClear: typing.Optional[bool] = None,
+        autoFocus: typing.Optional[bool] = None,
+        placeholder: typing.Optional[typing.Sequence[str]] = None,
+        placement: typing.Optional[Literal["bottomLeft", "bottomRight", "topLeft", "topRight"]] = None,
+        disabled: typing.Optional[typing.Sequence[bool]] = None,
+        value: typing.Optional[typing.Sequence[str]] = None,
+        defaultValue: typing.Optional[typing.Sequence[str]] = None,
+        bordered: typing.Optional[bool] = None,
+        variant: typing.Optional[Literal["outlined", "borderless", "filled"]] = None,
+        size: typing.Optional[Literal["small", "middle", "large"]] = None,
+        open: typing.Optional[bool] = None,
+        status: typing.Optional[Literal["error", "warning"]] = None,
+        readOnly: typing.Optional[bool] = None,
+        extraFooter: typing.Optional[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]] = None,
+        prefix: typing.Optional[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]] = None,
+        suffixIcon: typing.Optional[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]] = None,
+        popupContainer: typing.Optional[Literal["parent", "body"]] = None,
+        batchPropsNames: typing.Optional[typing.Sequence[str]] = None,
+        batchPropsValues: typing.Optional[dict] = None,
+        needConfirm: typing.Optional[bool] = None,
+        persistence: typing.Optional[typing.Union[bool, str, typing.Union[int, float, numbers.Number]]] = None,
+        persisted_props: typing.Optional[typing.Sequence[Literal["value"]]] = None,
+        persistence_type: typing.Optional[Literal["local", "session", "memory"]] = None,
+        **kwargs
+    ):
+        self._prop_names = ['id', 'key', 'style', 'className', 'popupClassName', 'name', 'locale', 'format', 'hourStep', 'minuteStep', 'secondStep', 'use12Hours', 'allowClear', 'autoFocus', 'placeholder', 'placement', 'disabled', 'value', 'defaultValue', 'bordered', 'variant', 'size', 'open', 'status', 'readOnly', 'extraFooter', 'prefix', 'suffixIcon', 'popupContainer', 'batchPropsNames', 'batchPropsValues', 'data-*', 'aria-*', 'needConfirm', 'persistence', 'persisted_props', 'persistence_type']
         self._valid_wildcard_attributes =            ['data-', 'aria-']
-        self.available_properties = ['id', 'key', 'style', 'className', 'popupClassName', 'name', 'locale', 'format', 'hourStep', 'minuteStep', 'secondStep', 'use12Hours', 'allowClear', 'autoFocus', 'placeholder', 'placement', 'disabled', 'value', 'defaultValue', 'bordered', 'variant', 'size', 'open', 'status', 'readOnly', 'extraFooter', 'prefix', 'suffixIcon', 'popupContainer', 'batchPropsNames', 'batchPropsValues', 'data-*', 'aria-*', 'needConfirm', 'loading_state', 'persistence', 'persisted_props', 'persistence_type']
+        self.available_properties = ['id', 'key', 'style', 'className', 'popupClassName', 'name', 'locale', 'format', 'hourStep', 'minuteStep', 'secondStep', 'use12Hours', 'allowClear', 'autoFocus', 'placeholder', 'placement', 'disabled', 'value', 'defaultValue', 'bordered', 'variant', 'size', 'open', 'status', 'readOnly', 'extraFooter', 'prefix', 'suffixIcon', 'popupContainer', 'batchPropsNames', 'batchPropsValues', 'data-*', 'aria-*', 'needConfirm', 'persistence', 'persisted_props', 'persistence_type']
         self.available_wildcard_properties =            ['data-', 'aria-']
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()

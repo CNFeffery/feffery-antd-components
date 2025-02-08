@@ -1,11 +1,18 @@
 # AUTO GENERATED FILE - DO NOT EDIT
 
+import typing  # noqa: F401
+import numbers # noqa: F401
+from typing_extensions import TypedDict, NotRequired, Literal # noqa: F401
 from dash.development.base_component import Component, _explicitize_args
+try:
+    from dash.development.base_component import ComponentType # noqa: F401
+except ImportError:
+    ComponentType = typing.TypeVar("ComponentType", bound=Component)
 
 
 class AntdSpin(Component):
     """An AntdSpin component.
-加载动画组件AntdSpid
+加载动画组件AntdSpin
 
 Keyword arguments:
 
@@ -70,29 +77,38 @@ Keyword arguments:
     `data-*`格式属性通配.
 
 - aria-* (string; optional):
-    `aria-*`格式属性通配.
-
-- loading_state (dict; optional)
-
-    `loading_state` is a dict with keys:
-
-    - is_loading (boolean; optional):
-        Determines if the component is loading or not.
-
-    - prop_name (string; optional):
-        Holds which property is loading.
-
-    - component_name (string; optional):
-        Holds the name of the component that is loading."""
+    `aria-*`格式属性通配."""
     _children_props = ['indicator']
     _base_nodes = ['indicator', 'children']
     _namespace = 'feffery_antd_components'
     _type = 'AntdSpin'
+
     @_explicitize_args
-    def __init__(self, children=None, id=Component.UNDEFINED, key=Component.UNDEFINED, style=Component.UNDEFINED, className=Component.UNDEFINED, wrapperClassName=Component.UNDEFINED, spinning=Component.UNDEFINED, size=Component.UNDEFINED, delay=Component.UNDEFINED, text=Component.UNDEFINED, fullscreen=Component.UNDEFINED, debug=Component.UNDEFINED, listenPropsMode=Component.UNDEFINED, excludeProps=Component.UNDEFINED, includeProps=Component.UNDEFINED, indicator=Component.UNDEFINED, manual=Component.UNDEFINED, percent=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
-        self._prop_names = ['id', 'key', 'children', 'style', 'className', 'wrapperClassName', 'spinning', 'size', 'delay', 'text', 'fullscreen', 'debug', 'listenPropsMode', 'excludeProps', 'includeProps', 'indicator', 'manual', 'percent', 'data-*', 'aria-*', 'loading_state']
+    def __init__(
+        self,
+        children: typing.Optional[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]] = None,
+        id: typing.Optional[str] = None,
+        key: typing.Optional[str] = None,
+        style: typing.Optional[dict] = None,
+        className: typing.Optional[typing.Union[str, dict]] = None,
+        wrapperClassName: typing.Optional[typing.Union[str, dict]] = None,
+        spinning: typing.Optional[bool] = None,
+        size: typing.Optional[Literal["small", "middle", "large"]] = None,
+        delay: typing.Optional[typing.Union[int, float, numbers.Number]] = None,
+        text: typing.Optional[str] = None,
+        fullscreen: typing.Optional[bool] = None,
+        debug: typing.Optional[bool] = None,
+        listenPropsMode: typing.Optional[Literal["default", "exclude", "include"]] = None,
+        excludeProps: typing.Optional[typing.Sequence[str]] = None,
+        includeProps: typing.Optional[typing.Sequence[str]] = None,
+        indicator: typing.Optional[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]] = None,
+        manual: typing.Optional[bool] = None,
+        percent: typing.Optional[typing.Union[typing.Union[int, float, numbers.Number], Literal["auto"]]] = None,
+        **kwargs
+    ):
+        self._prop_names = ['id', 'key', 'children', 'style', 'className', 'wrapperClassName', 'spinning', 'size', 'delay', 'text', 'fullscreen', 'debug', 'listenPropsMode', 'excludeProps', 'includeProps', 'indicator', 'manual', 'percent', 'data-*', 'aria-*']
         self._valid_wildcard_attributes =            ['data-', 'aria-']
-        self.available_properties = ['id', 'key', 'children', 'style', 'className', 'wrapperClassName', 'spinning', 'size', 'delay', 'text', 'fullscreen', 'debug', 'listenPropsMode', 'excludeProps', 'includeProps', 'indicator', 'manual', 'percent', 'data-*', 'aria-*', 'loading_state']
+        self.available_properties = ['id', 'key', 'children', 'style', 'className', 'wrapperClassName', 'spinning', 'size', 'delay', 'text', 'fullscreen', 'debug', 'listenPropsMode', 'excludeProps', 'includeProps', 'indicator', 'manual', 'percent', 'data-*', 'aria-*']
         self.available_wildcard_properties =            ['data-', 'aria-']
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()

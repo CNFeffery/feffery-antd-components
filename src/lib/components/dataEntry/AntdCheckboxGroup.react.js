@@ -6,10 +6,44 @@ const LazyAntdCheckboxGroup = React.lazy(() => import(/* webpackChunkName: "data
 /**
  * 组合选择框组件AntdCheckboxGroup
  */
-const AntdCheckboxGroup = (props) => {
+const AntdCheckboxGroup = ({
+    id,
+    style,
+    className,
+    key,
+    name,
+    options,
+    value,
+    disabled = false,
+    readOnly = false,
+    setProps,
+    persistence,
+    persisted_props = ['value'],
+    persistence_type = 'local',
+    batchPropsNames = [],
+    ...others
+}) => {
     return (
         <Suspense fallback={null}>
-            <LazyAntdCheckboxGroup {...props} />
+            <LazyAntdCheckboxGroup {
+                ...{
+                    id,
+                    style,
+                    className,
+                    key,
+                    name,
+                    options,
+                    value,
+                    disabled,
+                    readOnly,
+                    setProps,
+                    persistence,
+                    persisted_props,
+                    persistence_type,
+                    batchPropsNames,
+                    ...others
+                }
+            } />
         </Suspense>
     );
 }
@@ -113,21 +147,6 @@ AntdCheckboxGroup.propTypes = {
      */
     'aria-*': PropTypes.string,
 
-    loading_state: PropTypes.shape({
-        /**
-         * Determines if the component is loading or not
-         */
-        is_loading: PropTypes.bool,
-        /**
-         * Holds which property is loading
-         */
-        prop_name: PropTypes.string,
-        /**
-         * Holds the name of the component that is loading
-         */
-        component_name: PropTypes.string
-    }),
-
     /**
      * Dash-assigned callback that should be called to report property changes
      * to Dash, to make them available for callbacks.
@@ -155,15 +174,6 @@ AntdCheckboxGroup.propTypes = {
      */
     persistence_type: PropTypes.oneOf(['local', 'session', 'memory'])
 };
-
-// 设置默认参数
-AntdCheckboxGroup.defaultProps = {
-    persisted_props: ['value'],
-    persistence_type: 'local',
-    disabled: false,
-    readOnly: false,
-    batchPropsNames: []
-}
 
 export default AntdCheckboxGroup;
 

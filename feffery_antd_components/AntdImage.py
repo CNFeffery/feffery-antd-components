@@ -1,6 +1,13 @@
 # AUTO GENERATED FILE - DO NOT EDIT
 
+import typing  # noqa: F401
+import numbers # noqa: F401
+from typing_extensions import TypedDict, NotRequired, Literal # noqa: F401
 from dash.development.base_component import Component, _explicitize_args
+try:
+    from dash.development.base_component import ComponentType # noqa: F401
+except ImportError:
+    ComponentType = typing.TypeVar("ComponentType", bound=Component)
 
 
 class AntdImage(Component):
@@ -103,8 +110,50 @@ Keyword arguments:
     _base_nodes = ['toolbarExtra', 'children']
     _namespace = 'feffery_antd_components'
     _type = 'AntdImage'
+    Preview = TypedDict(
+        "Preview",
+            {
+            "src": NotRequired[str],
+            "movable": NotRequired[bool],
+            "mask": NotRequired[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]],
+            "maskClassName": NotRequired[str],
+            "rootClassName": NotRequired[str],
+            "scaleStep": NotRequired[typing.Union[int, float, numbers.Number]],
+            "minScale": NotRequired[typing.Union[int, float, numbers.Number]],
+            "maxScale": NotRequired[typing.Union[int, float, numbers.Number]]
+        }
+    )
+
+    LoadingState = TypedDict(
+        "LoadingState",
+            {
+            "is_loading": NotRequired[bool],
+            "prop_name": NotRequired[str],
+            "component_name": NotRequired[str]
+        }
+    )
+
     @_explicitize_args
-    def __init__(self, id=Component.UNDEFINED, key=Component.UNDEFINED, style=Component.UNDEFINED, className=Component.UNDEFINED, locale=Component.UNDEFINED, alt=Component.UNDEFINED, width=Component.UNDEFINED, height=Component.UNDEFINED, src=Component.UNDEFINED, fallback=Component.UNDEFINED, multiImageMode=Component.UNDEFINED, previewVisible=Component.UNDEFINED, previewCurrent=Component.UNDEFINED, preview=Component.UNDEFINED, toolbarExtra=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
+    def __init__(
+        self,
+        id: typing.Optional[str] = None,
+        key: typing.Optional[str] = None,
+        style: typing.Optional[dict] = None,
+        className: typing.Optional[typing.Union[str, dict]] = None,
+        locale: typing.Optional[Literal["zh-cn", "en-us", "de-de"]] = None,
+        alt: typing.Optional[str] = None,
+        width: typing.Optional[typing.Union[typing.Union[int, float, numbers.Number], str]] = None,
+        height: typing.Optional[typing.Union[typing.Union[int, float, numbers.Number], str]] = None,
+        src: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
+        fallback: typing.Optional[str] = None,
+        multiImageMode: typing.Optional[Literal["fold", "unfold"]] = None,
+        previewVisible: typing.Optional[bool] = None,
+        previewCurrent: typing.Optional[typing.Union[int, float, numbers.Number]] = None,
+        preview: typing.Optional[typing.Union[bool, "Preview"]] = None,
+        toolbarExtra: typing.Optional[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]] = None,
+        loading_state: typing.Optional["LoadingState"] = None,
+        **kwargs
+    ):
         self._prop_names = ['id', 'key', 'style', 'className', 'locale', 'alt', 'width', 'height', 'src', 'fallback', 'multiImageMode', 'previewVisible', 'previewCurrent', 'preview', 'toolbarExtra', 'data-*', 'aria-*', 'loading_state']
         self._valid_wildcard_attributes =            ['data-', 'aria-']
         self.available_properties = ['id', 'key', 'style', 'className', 'locale', 'alt', 'width', 'height', 'src', 'fallback', 'multiImageMode', 'previewVisible', 'previewCurrent', 'preview', 'toolbarExtra', 'data-*', 'aria-*', 'loading_state']

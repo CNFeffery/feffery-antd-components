@@ -7,7 +7,7 @@ import { Typography, ConfigProvider } from 'antd';
 import { isString } from 'lodash';
 import { pickBy } from 'ramda';
 import { str2Locale } from '../../locales.react';
-import { parseChildrenToArray } from '../../utils';
+import { parseChildrenToArray, useLoading } from '../../utils';
 // 自定义hooks
 import useCss from '../../../hooks/useCss';
 // 自定义上下文
@@ -18,28 +18,27 @@ const { Title } = Typography;
 /**
  * 标题组件AntdTitle
  */
-const AntdTitle = (props) => {
-    let {
-        id,
-        children,
-        className,
-        style,
-        key,
-        locale,
-        level,
-        code,
-        copyable,
-        strikethrough,
-        disabled,
-        mark,
-        strong,
-        italic,
-        underline,
-        type,
-        keyboard,
-        setProps,
-        loading_state
-    } = props;
+const AntdTitle = ({
+    id,
+    children,
+    className,
+    style,
+    key,
+    locale = 'zh-cn',
+    level = 1,
+    code,
+    copyable,
+    strikethrough,
+    disabled,
+    mark,
+    strong,
+    italic,
+    underline,
+    type,
+    keyboard,
+    setProps,
+    ...others
+}) => {
 
     const context = useContext(PropsContext)
     locale = (context && context.locale) || locale
@@ -50,7 +49,7 @@ const AntdTitle = (props) => {
         <ConfigProvider locale={str2Locale.get(locale)}>
             <Title
                 // 提取具有data-*或aria-*通配格式的属性
-                {...pickBy((_, k) => k.startsWith('data-') || k.startsWith('aria-'), props)}
+                {...pickBy((_, k) => k.startsWith('data-') || k.startsWith('aria-'), others)}
                 id={id}
                 className={
                     isString(className) ?
@@ -70,16 +69,13 @@ const AntdTitle = (props) => {
                 underline={underline}
                 type={type}
                 keyboard={keyboard}
-                data-dash-is-loading={
-                    (loading_state && loading_state.is_loading) || undefined
-                }>
+                data-dash-is-loading={useLoading()}>
                 {children}
             </Title>
         </ConfigProvider>
     );
 }
 
-// 定义参数或属性
 AntdTitle.propTypes = {
     /**
       * 组件唯一id
@@ -181,32 +177,11 @@ AntdTitle.propTypes = {
      */
     'aria-*': PropTypes.string,
 
-    loading_state: PropTypes.shape({
-        /**
-         * Determines if the component is loading or not
-         */
-        is_loading: PropTypes.bool,
-        /**
-         * Holds which property is loading
-         */
-        prop_name: PropTypes.string,
-        /**
-         * Holds the name of the component that is loading
-         */
-        component_name: PropTypes.string
-    }),
-
     /**
      * Dash-assigned callback that should be called to report property changes
      * to Dash, to make them available for callbacks.
      */
     setProps: PropTypes.func
 };
-
-// 设置默认参数
-AntdTitle.defaultProps = {
-    locale: 'zh-cn',
-    level: 1
-}
 
 export default AntdTitle;

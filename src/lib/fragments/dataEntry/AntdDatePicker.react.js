@@ -12,6 +12,7 @@ import { isString, isUndefined, isObject } from 'lodash';
 import { pickBy } from 'ramda';
 import 'dayjs/locale/zh-cn';
 import { str2Locale } from '../../components/locales.react';
+import { useLoading } from '../../components/utils';
 // 自定义hooks
 import useCss from '../../hooks/useCss';
 // 上下文
@@ -69,9 +70,9 @@ const AntdDatePicker = (props) => {
         persistence,
         persisted_props,
         persistence_type,
-        loading_state,
         batchPropsNames,
-        needConfirm
+        needConfirm,
+        ...others
     } = props;
 
     const [rawValue, setRawValue] = useState(null);
@@ -445,7 +446,7 @@ const AntdDatePicker = (props) => {
             >
                 <DatePicker
                     // 提取具有data-*或aria-*通配格式的属性
-                    {...pickBy((_, k) => k.startsWith('data-') || k.startsWith('aria-'), props)}
+                    {...pickBy((_, k) => k.startsWith('data-') || k.startsWith('aria-'), others)}
                     id={id}
                     className={
                         isString(className) ?
@@ -570,9 +571,7 @@ const AntdDatePicker = (props) => {
                     persistence={persistence}
                     persisted_props={persisted_props}
                     persistence_type={persistence_type}
-                    data-dash-is-loading={
-                        (loading_state && loading_state.is_loading) || undefined
-                    }
+                    data-dash-is-loading={useLoading()}
                     getPopupContainer={
                         popupContainer === 'parent' ?
                             (triggerNode) => triggerNode.parentNode :

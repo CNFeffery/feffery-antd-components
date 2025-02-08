@@ -1,6 +1,13 @@
 # AUTO GENERATED FILE - DO NOT EDIT
 
+import typing  # noqa: F401
+import numbers # noqa: F401
+from typing_extensions import TypedDict, NotRequired, Literal # noqa: F401
 from dash.development.base_component import Component, _explicitize_args
+try:
+    from dash.development.base_component import ComponentType # noqa: F401
+except ImportError:
+    ComponentType = typing.TypeVar("ComponentType", bound=Component)
 
 
 class AntdConfigProvider(Component):
@@ -79,8 +86,49 @@ Keyword arguments:
     _base_nodes = ['children']
     _namespace = 'feffery_antd_components'
     _type = 'AntdConfigProvider'
+    Token = TypedDict(
+        "Token",
+            {
+            "motion": NotRequired[bool]
+        }
+    )
+
+    ComponentsToken = TypedDict(
+        "ComponentsToken",
+            {
+            "algorithm": NotRequired[bool]
+        }
+    )
+
+    LoadingState = TypedDict(
+        "LoadingState",
+            {
+            "is_loading": NotRequired[bool],
+            "prop_name": NotRequired[str],
+            "component_name": NotRequired[str]
+        }
+    )
+
     @_explicitize_args
-    def __init__(self, children=None, id=Component.UNDEFINED, key=Component.UNDEFINED, algorithm=Component.UNDEFINED, useOldTheme=Component.UNDEFINED, primaryColor=Component.UNDEFINED, componentDisabled=Component.UNDEFINED, componentSize=Component.UNDEFINED, locale=Component.UNDEFINED, wavesDisabled=Component.UNDEFINED, token=Component.UNDEFINED, componentsToken=Component.UNDEFINED, compatibilityMode=Component.UNDEFINED, enableLayer=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
+    def __init__(
+        self,
+        children: typing.Optional[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]] = None,
+        id: typing.Optional[str] = None,
+        key: typing.Optional[str] = None,
+        algorithm: typing.Optional[typing.Union[Literal["default", "dark", "compact"], typing.Sequence[Literal["default", "dark", "compact"]]]] = None,
+        useOldTheme: typing.Optional[Literal["default", "dark"]] = None,
+        primaryColor: typing.Optional[str] = None,
+        componentDisabled: typing.Optional[bool] = None,
+        componentSize: typing.Optional[Literal["small", "middle", "large"]] = None,
+        locale: typing.Optional[Literal["zh-cn", "en-us", "de-de"]] = None,
+        wavesDisabled: typing.Optional[bool] = None,
+        token: typing.Optional["Token"] = None,
+        componentsToken: typing.Optional[typing.Dict[typing.Union[str, float, int], "ComponentsToken"]] = None,
+        compatibilityMode: typing.Optional[bool] = None,
+        enableLayer: typing.Optional[bool] = None,
+        loading_state: typing.Optional["LoadingState"] = None,
+        **kwargs
+    ):
         self._prop_names = ['id', 'key', 'children', 'algorithm', 'useOldTheme', 'primaryColor', 'componentDisabled', 'componentSize', 'locale', 'wavesDisabled', 'token', 'componentsToken', 'compatibilityMode', 'enableLayer', 'loading_state']
         self._valid_wildcard_attributes =            []
         self.available_properties = ['id', 'key', 'children', 'algorithm', 'useOldTheme', 'primaryColor', 'componentDisabled', 'componentSize', 'locale', 'wavesDisabled', 'token', 'componentsToken', 'compatibilityMode', 'enableLayer', 'loading_state']

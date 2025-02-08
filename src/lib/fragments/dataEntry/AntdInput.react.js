@@ -7,6 +7,7 @@ import md5 from 'md5';
 import { useRequest } from 'ahooks';
 import { isString, isUndefined } from 'lodash';
 import { pickBy } from 'ramda';
+import { useLoading } from '../../components/utils';
 // 自定义hooks
 import useCss from '../../hooks/useCss';
 // 上下文
@@ -58,11 +59,11 @@ const AntdInput = (props) => {
         readOnly,
         emptyAsNone,
         setProps,
-        loading_state,
         persistence,
         persisted_props,
         persistence_type,
-        batchPropsNames
+        batchPropsNames,
+        ...others
     } = props;
 
     // 解决受控value卡部分中文输入法问题
@@ -200,7 +201,7 @@ const AntdInput = (props) => {
         return (
             <Input
                 // 提取具有data-*或aria-*通配格式的属性
-                {...pickBy((_, k) => k.startsWith('data-') || k.startsWith('aria-'), props)}
+                {...pickBy((_, k) => k.startsWith('data-') || k.startsWith('aria-'), others)}
                 id={id}
                 className={
                     isString(className) ?
@@ -257,15 +258,13 @@ const AntdInput = (props) => {
                 persistence={persistence}
                 persisted_props={persisted_props}
                 persistence_type={persistence_type}
-                data-dash-is-loading={
-                    (loading_state && loading_state.is_loading) || undefined
-                } />
+                data-dash-is-loading={useLoading()} />
         );
     } else if (mode === 'search') {
         return (
             <Search
                 // 提取具有data-*或aria-*通配格式的属性
-                {...pickBy((_, k) => k.startsWith('data-') || k.startsWith('aria-'), props)}
+                {...pickBy((_, k) => k.startsWith('data-') || k.startsWith('aria-'), others)}
                 id={id}
                 className={
                     isString(className) ?
@@ -322,15 +321,13 @@ const AntdInput = (props) => {
                 persistence={persistence}
                 persisted_props={persisted_props}
                 persistence_type={persistence_type}
-                data-dash-is-loading={
-                    (loading_state && loading_state.is_loading) || undefined
-                } />
+                data-dash-is-loading={useLoading()} />
         );
     } else if (mode === 'text-area') {
         return (
             <TextArea
                 // 提取具有data-*或aria-*通配格式的属性
-                {...pickBy((_, k) => k.startsWith('data-') || k.startsWith('aria-'), props)}
+                {...pickBy((_, k) => k.startsWith('data-') || k.startsWith('aria-'), others)}
                 id={id}
                 className={
                     isString(className) ?
@@ -394,15 +391,13 @@ const AntdInput = (props) => {
                 persistence={persistence}
                 persisted_props={persisted_props}
                 persistence_type={persistence_type}
-                data-dash-is-loading={
-                    (loading_state && loading_state.is_loading) || undefined
-                } />
+                data-dash-is-loading={useLoading()} />
         );
     } else if (mode === 'password') {
         return (
             <Input.Password
                 // 提取具有data-*或aria-*通配格式的属性
-                {...pickBy((_, k) => k.startsWith('data-') || k.startsWith('aria-'), props)}
+                {...pickBy((_, k) => k.startsWith('data-') || k.startsWith('aria-'), others)}
                 id={id}
                 className={
                     isString(className) ?
@@ -456,9 +451,7 @@ const AntdInput = (props) => {
                 persistence={persistence}
                 persisted_props={persisted_props}
                 persistence_type={persistence_type}
-                data-dash-is-loading={
-                    (loading_state && loading_state.is_loading) || undefined
-                } />
+                data-dash-is-loading={useLoading()} />
         );
     }
 }

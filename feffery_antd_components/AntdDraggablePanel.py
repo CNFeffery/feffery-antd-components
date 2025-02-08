@@ -1,6 +1,13 @@
 # AUTO GENERATED FILE - DO NOT EDIT
 
+import typing  # noqa: F401
+import numbers # noqa: F401
+from typing_extensions import TypedDict, NotRequired, Literal # noqa: F401
 from dash.development.base_component import Component, _explicitize_args
+try:
+    from dash.development.base_component import ComponentType # noqa: F401
+except ImportError:
+    ComponentType = typing.TypeVar("ComponentType", bound=Component)
 
 
 class AntdDraggablePanel(Component):
@@ -111,8 +118,66 @@ Keyword arguments:
     _base_nodes = ['children']
     _namespace = 'feffery_antd_components'
     _type = 'AntdDraggablePanel'
+    DefaultSize = TypedDict(
+        "DefaultSize",
+            {
+            "width": NotRequired[typing.Union[typing.Union[int, float, numbers.Number], str]],
+            "height": NotRequired[typing.Union[typing.Union[int, float, numbers.Number], str]]
+        }
+    )
+
+    DefaultPosition = TypedDict(
+        "DefaultPosition",
+            {
+            "x": NotRequired[typing.Union[int, float, numbers.Number]],
+            "y": NotRequired[typing.Union[int, float, numbers.Number]]
+        }
+    )
+
+    Resize = TypedDict(
+        "Resize",
+            {
+            "bottom": NotRequired[bool],
+            "bottomLeft": NotRequired[bool],
+            "bottomRight": NotRequired[bool],
+            "left": NotRequired[bool],
+            "right": NotRequired[bool],
+            "top": NotRequired[bool],
+            "topLeft": NotRequired[bool],
+            "topRight": NotRequired[bool]
+        }
+    )
+
+    LoadingState = TypedDict(
+        "LoadingState",
+            {
+            "is_loading": NotRequired[bool],
+            "prop_name": NotRequired[str],
+            "component_name": NotRequired[str]
+        }
+    )
+
     @_explicitize_args
-    def __init__(self, children=None, id=Component.UNDEFINED, key=Component.UNDEFINED, style=Component.UNDEFINED, className=Component.UNDEFINED, mode=Component.UNDEFINED, defaultSize=Component.UNDEFINED, defaultPosition=Component.UNDEFINED, placement=Component.UNDEFINED, minWidth=Component.UNDEFINED, minHeight=Component.UNDEFINED, maxWidth=Component.UNDEFINED, maxHeight=Component.UNDEFINED, resize=Component.UNDEFINED, expandable=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
+    def __init__(
+        self,
+        children: typing.Optional[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]] = None,
+        id: typing.Optional[str] = None,
+        key: typing.Optional[str] = None,
+        style: typing.Optional[dict] = None,
+        className: typing.Optional[typing.Union[str, dict]] = None,
+        mode: typing.Optional[Literal["fixed", "float"]] = None,
+        defaultSize: typing.Optional["DefaultSize"] = None,
+        defaultPosition: typing.Optional["DefaultPosition"] = None,
+        placement: typing.Optional[Literal["right", "left", "top", "bottom"]] = None,
+        minWidth: typing.Optional[typing.Union[int, float, numbers.Number]] = None,
+        minHeight: typing.Optional[typing.Union[int, float, numbers.Number]] = None,
+        maxWidth: typing.Optional[typing.Union[int, float, numbers.Number]] = None,
+        maxHeight: typing.Optional[typing.Union[int, float, numbers.Number]] = None,
+        resize: typing.Optional[typing.Union[bool, "Resize"]] = None,
+        expandable: typing.Optional[bool] = None,
+        loading_state: typing.Optional["LoadingState"] = None,
+        **kwargs
+    ):
         self._prop_names = ['id', 'key', 'children', 'style', 'className', 'mode', 'defaultSize', 'defaultPosition', 'placement', 'minWidth', 'minHeight', 'maxWidth', 'maxHeight', 'resize', 'expandable', 'data-*', 'aria-*', 'loading_state']
         self._valid_wildcard_attributes =            ['data-', 'aria-']
         self.available_properties = ['id', 'key', 'children', 'style', 'className', 'mode', 'defaultSize', 'defaultPosition', 'placement', 'minWidth', 'minHeight', 'maxWidth', 'maxHeight', 'resize', 'expandable', 'data-*', 'aria-*', 'loading_state']

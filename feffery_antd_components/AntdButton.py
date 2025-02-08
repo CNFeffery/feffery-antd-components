@@ -1,6 +1,13 @@
 # AUTO GENERATED FILE - DO NOT EDIT
 
+import typing  # noqa: F401
+import numbers # noqa: F401
+from typing_extensions import TypedDict, NotRequired, Literal # noqa: F401
 from dash.development.base_component import Component, _explicitize_args
+try:
+    from dash.development.base_component import ComponentType # noqa: F401
+except ImportError:
+    ComponentType = typing.TypeVar("ComponentType", bound=Component)
 
 
 class AntdButton(Component):
@@ -111,29 +118,62 @@ Keyword arguments:
     `data-*`格式属性通配.
 
 - aria-* (string; optional):
-    `aria-*`格式属性通配.
-
-- loading_state (dict; optional)
-
-    `loading_state` is a dict with keys:
-
-    - is_loading (boolean; optional):
-        Determines if the component is loading or not.
-
-    - prop_name (string; optional):
-        Holds which property is loading.
-
-    - component_name (string; optional):
-        Holds the name of the component that is loading."""
+    `aria-*`格式属性通配."""
     _children_props = ['loadingChildren', 'icon']
     _base_nodes = ['loadingChildren', 'icon', 'children']
     _namespace = 'feffery_antd_components'
     _type = 'AntdButton'
+    Styles = TypedDict(
+        "Styles",
+            {
+            "icon": NotRequired[dict]
+        }
+    )
+
+    ClassNames = TypedDict(
+        "ClassNames",
+            {
+            "icon": NotRequired[str]
+        }
+    )
+
     @_explicitize_args
-    def __init__(self, children=None, id=Component.UNDEFINED, key=Component.UNDEFINED, style=Component.UNDEFINED, className=Component.UNDEFINED, styles=Component.UNDEFINED, classNames=Component.UNDEFINED, loadingChildren=Component.UNDEFINED, type=Component.UNDEFINED, href=Component.UNDEFINED, target=Component.UNDEFINED, autoInsertSpace=Component.UNDEFINED, block=Component.UNDEFINED, danger=Component.UNDEFINED, disabled=Component.UNDEFINED, ghost=Component.UNDEFINED, shape=Component.UNDEFINED, size=Component.UNDEFINED, nClicks=Component.UNDEFINED, clickExecuteJsString=Component.UNDEFINED, debounceWait=Component.UNDEFINED, icon=Component.UNDEFINED, iconPosition=Component.UNDEFINED, loading=Component.UNDEFINED, autoSpin=Component.UNDEFINED, motionType=Component.UNDEFINED, color=Component.UNDEFINED, variant=Component.UNDEFINED, title=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
-        self._prop_names = ['id', 'key', 'children', 'style', 'className', 'styles', 'classNames', 'loadingChildren', 'type', 'href', 'target', 'autoInsertSpace', 'block', 'danger', 'disabled', 'ghost', 'shape', 'size', 'nClicks', 'clickExecuteJsString', 'debounceWait', 'icon', 'iconPosition', 'loading', 'autoSpin', 'motionType', 'color', 'variant', 'title', 'data-*', 'aria-*', 'loading_state']
+    def __init__(
+        self,
+        children: typing.Optional[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]] = None,
+        id: typing.Optional[str] = None,
+        key: typing.Optional[str] = None,
+        style: typing.Optional[dict] = None,
+        className: typing.Optional[typing.Union[str, dict]] = None,
+        styles: typing.Optional["Styles"] = None,
+        classNames: typing.Optional["ClassNames"] = None,
+        loadingChildren: typing.Optional[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]] = None,
+        type: typing.Optional[Literal["default", "primary", "dashed", "link", "text"]] = None,
+        href: typing.Optional[str] = None,
+        target: typing.Optional[str] = None,
+        autoInsertSpace: typing.Optional[bool] = None,
+        block: typing.Optional[bool] = None,
+        danger: typing.Optional[bool] = None,
+        disabled: typing.Optional[bool] = None,
+        ghost: typing.Optional[bool] = None,
+        shape: typing.Optional[Literal["default", "circle", "round"]] = None,
+        size: typing.Optional[Literal["small", "middle", "large"]] = None,
+        nClicks: typing.Optional[typing.Union[int, float, numbers.Number]] = None,
+        clickExecuteJsString: typing.Optional[str] = None,
+        debounceWait: typing.Optional[typing.Union[int, float, numbers.Number]] = None,
+        icon: typing.Optional[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]] = None,
+        iconPosition: typing.Optional[Literal["start", "end"]] = None,
+        loading: typing.Optional[bool] = None,
+        autoSpin: typing.Optional[bool] = None,
+        motionType: typing.Optional[Literal["happy-work"]] = None,
+        color: typing.Optional[Literal["default", "primary", "danger"]] = None,
+        variant: typing.Optional[Literal["outlined", "dashed", "solid", "filled", "text", "link"]] = None,
+        title: typing.Optional[str] = None,
+        **kwargs
+    ):
+        self._prop_names = ['id', 'key', 'children', 'style', 'className', 'styles', 'classNames', 'loadingChildren', 'type', 'href', 'target', 'autoInsertSpace', 'block', 'danger', 'disabled', 'ghost', 'shape', 'size', 'nClicks', 'clickExecuteJsString', 'debounceWait', 'icon', 'iconPosition', 'loading', 'autoSpin', 'motionType', 'color', 'variant', 'title', 'data-*', 'aria-*']
         self._valid_wildcard_attributes =            ['data-', 'aria-']
-        self.available_properties = ['id', 'key', 'children', 'style', 'className', 'styles', 'classNames', 'loadingChildren', 'type', 'href', 'target', 'autoInsertSpace', 'block', 'danger', 'disabled', 'ghost', 'shape', 'size', 'nClicks', 'clickExecuteJsString', 'debounceWait', 'icon', 'iconPosition', 'loading', 'autoSpin', 'motionType', 'color', 'variant', 'title', 'data-*', 'aria-*', 'loading_state']
+        self.available_properties = ['id', 'key', 'children', 'style', 'className', 'styles', 'classNames', 'loadingChildren', 'type', 'href', 'target', 'autoInsertSpace', 'block', 'danger', 'disabled', 'ghost', 'shape', 'size', 'nClicks', 'clickExecuteJsString', 'debounceWait', 'icon', 'iconPosition', 'loading', 'autoSpin', 'motionType', 'color', 'variant', 'title', 'data-*', 'aria-*']
         self.available_wildcard_properties =            ['data-', 'aria-']
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()

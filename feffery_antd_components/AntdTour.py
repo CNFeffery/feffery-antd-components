@@ -1,6 +1,13 @@
 # AUTO GENERATED FILE - DO NOT EDIT
 
+import typing  # noqa: F401
+import numbers # noqa: F401
+from typing_extensions import TypedDict, NotRequired, Literal # noqa: F401
 from dash.development.base_component import Component, _explicitize_args
+try:
+    from dash.development.base_component import ComponentType # noqa: F401
+except ImportError:
+    ComponentType = typing.TypeVar("ComponentType", bound=Component)
 
 
 class AntdTour(Component):
@@ -148,8 +155,95 @@ Keyword arguments:
     _base_nodes = ['children']
     _namespace = 'feffery_antd_components'
     _type = 'AntdTour'
+    StepsArrow = TypedDict(
+        "StepsArrow",
+            {
+            "pointAtCenter": NotRequired[bool]
+        }
+    )
+
+    StepsMask = TypedDict(
+        "StepsMask",
+            {
+            "style": NotRequired[dict],
+            "color": NotRequired[str]
+        }
+    )
+
+    StepsNextButtonProps = TypedDict(
+        "StepsNextButtonProps",
+            {
+            "children": NotRequired[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]]
+        }
+    )
+
+    StepsPrevButtonProps = TypedDict(
+        "StepsPrevButtonProps",
+            {
+            "children": NotRequired[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]]
+        }
+    )
+
+    Steps = TypedDict(
+        "Steps",
+            {
+            "targetId": NotRequired[str],
+            "targetSelector": NotRequired[str],
+            "arrow": NotRequired[typing.Union[bool, "StepsArrow"]],
+            "cover": NotRequired[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]],
+            "title": NotRequired[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]],
+            "description": NotRequired[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]],
+            "placement": NotRequired[Literal["center", "left", "leftTop", "leftBottom", "right", "rightTop", "rightBottom", "top", "topLeft", "topRight", "bottom", "bottomLeft", "bottomRight"]],
+            "mask": NotRequired[typing.Union[bool, "StepsMask"]],
+            "type": NotRequired[Literal["default", "primary"]],
+            "nextButtonProps": NotRequired["StepsNextButtonProps"],
+            "prevButtonProps": NotRequired["StepsPrevButtonProps"]
+        }
+    )
+
+    Arrow = TypedDict(
+        "Arrow",
+            {
+            "pointAtCenter": NotRequired[bool]
+        }
+    )
+
+    Mask = TypedDict(
+        "Mask",
+            {
+            "style": NotRequired[dict],
+            "color": NotRequired[str]
+        }
+    )
+
+    LoadingState = TypedDict(
+        "LoadingState",
+            {
+            "is_loading": NotRequired[bool],
+            "prop_name": NotRequired[str],
+            "component_name": NotRequired[str]
+        }
+    )
+
     @_explicitize_args
-    def __init__(self, id=Component.UNDEFINED, key=Component.UNDEFINED, style=Component.UNDEFINED, className=Component.UNDEFINED, locale=Component.UNDEFINED, steps=Component.UNDEFINED, arrow=Component.UNDEFINED, placement=Component.UNDEFINED, mask=Component.UNDEFINED, type=Component.UNDEFINED, open=Component.UNDEFINED, current=Component.UNDEFINED, zIndex=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
+    def __init__(
+        self,
+        id: typing.Optional[str] = None,
+        key: typing.Optional[str] = None,
+        style: typing.Optional[dict] = None,
+        className: typing.Optional[typing.Union[str, dict]] = None,
+        locale: typing.Optional[Literal["zh-cn", "en-us", "de-de"]] = None,
+        steps: typing.Optional[typing.Sequence["Steps"]] = None,
+        arrow: typing.Optional[typing.Union[bool, "Arrow"]] = None,
+        placement: typing.Optional[Literal["center", "left", "leftTop", "leftBottom", "right", "rightTop", "rightBottom", "top", "topLeft", "topRight", "bottom", "bottomLeft", "bottomRight"]] = None,
+        mask: typing.Optional[typing.Union[bool, "Mask"]] = None,
+        type: typing.Optional[Literal["default", "primary"]] = None,
+        open: typing.Optional[bool] = None,
+        current: typing.Optional[typing.Union[int, float, numbers.Number]] = None,
+        zIndex: typing.Optional[typing.Union[int, float, numbers.Number]] = None,
+        loading_state: typing.Optional["LoadingState"] = None,
+        **kwargs
+    ):
         self._prop_names = ['id', 'key', 'style', 'className', 'locale', 'steps', 'arrow', 'placement', 'mask', 'type', 'open', 'current', 'zIndex', 'data-*', 'aria-*', 'loading_state']
         self._valid_wildcard_attributes =            ['data-', 'aria-']
         self.available_properties = ['id', 'key', 'style', 'className', 'locale', 'steps', 'arrow', 'placement', 'mask', 'type', 'open', 'current', 'zIndex', 'data-*', 'aria-*', 'loading_state']

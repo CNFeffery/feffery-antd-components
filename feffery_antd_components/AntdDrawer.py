@@ -1,6 +1,13 @@
 # AUTO GENERATED FILE - DO NOT EDIT
 
+import typing  # noqa: F401
+import numbers # noqa: F401
+from typing_extensions import TypedDict, NotRequired, Literal # noqa: F401
 from dash.development.base_component import Component, _explicitize_args
+try:
+    from dash.development.base_component import ComponentType # noqa: F401
+except ImportError:
+    ComponentType = typing.TypeVar("ComponentType", bound=Component)
 
 
 class AntdDrawer(Component):
@@ -137,8 +144,67 @@ Keyword arguments:
     _base_nodes = ['title', 'extra', 'footer', 'children']
     _namespace = 'feffery_antd_components'
     _type = 'AntdDrawer'
+    ClassNames = TypedDict(
+        "ClassNames",
+            {
+            "header": NotRequired[str],
+            "body": NotRequired[str],
+            "footer": NotRequired[str],
+            "mask": NotRequired[str],
+            "content": NotRequired[str]
+        }
+    )
+
+    Styles = TypedDict(
+        "Styles",
+            {
+            "header": NotRequired[dict],
+            "body": NotRequired[dict],
+            "footer": NotRequired[dict],
+            "mask": NotRequired[dict],
+            "content": NotRequired[dict]
+        }
+    )
+
+    LoadingState = TypedDict(
+        "LoadingState",
+            {
+            "is_loading": NotRequired[bool],
+            "prop_name": NotRequired[str],
+            "component_name": NotRequired[str]
+        }
+    )
+
     @_explicitize_args
-    def __init__(self, children=None, id=Component.UNDEFINED, key=Component.UNDEFINED, style=Component.UNDEFINED, className=Component.UNDEFINED, classNames=Component.UNDEFINED, styles=Component.UNDEFINED, rootStyle=Component.UNDEFINED, visible=Component.UNDEFINED, title=Component.UNDEFINED, placement=Component.UNDEFINED, closable=Component.UNDEFINED, forceRender=Component.UNDEFINED, destroyOnClose=Component.UNDEFINED, width=Component.UNDEFINED, height=Component.UNDEFINED, mask=Component.UNDEFINED, maskClosable=Component.UNDEFINED, zIndex=Component.UNDEFINED, loading=Component.UNDEFINED, extra=Component.UNDEFINED, footer=Component.UNDEFINED, containerId=Component.UNDEFINED, containerSelector=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
+    def __init__(
+        self,
+        children: typing.Optional[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]] = None,
+        id: typing.Optional[str] = None,
+        key: typing.Optional[str] = None,
+        style: typing.Optional[dict] = None,
+        className: typing.Optional[typing.Union[str, dict]] = None,
+        classNames: typing.Optional["ClassNames"] = None,
+        styles: typing.Optional["Styles"] = None,
+        rootStyle: typing.Optional[dict] = None,
+        visible: typing.Optional[bool] = None,
+        title: typing.Optional[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]] = None,
+        placement: typing.Optional[Literal["left", "right", "top", "bottom"]] = None,
+        closable: typing.Optional[bool] = None,
+        forceRender: typing.Optional[bool] = None,
+        destroyOnClose: typing.Optional[bool] = None,
+        width: typing.Optional[typing.Union[typing.Union[int, float, numbers.Number], str]] = None,
+        height: typing.Optional[typing.Union[typing.Union[int, float, numbers.Number], str]] = None,
+        mask: typing.Optional[bool] = None,
+        maskClosable: typing.Optional[bool] = None,
+        zIndex: typing.Optional[typing.Union[int, float, numbers.Number]] = None,
+        loading: typing.Optional[bool] = None,
+        extra: typing.Optional[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]] = None,
+        footer: typing.Optional[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]] = None,
+        containerId: typing.Optional[str] = None,
+        containerSelector: typing.Optional[str] = None,
+        loading_state: typing.Optional["LoadingState"] = None,
+        **kwargs
+    ):
         self._prop_names = ['id', 'key', 'children', 'style', 'className', 'classNames', 'styles', 'rootStyle', 'visible', 'title', 'placement', 'closable', 'forceRender', 'destroyOnClose', 'width', 'height', 'mask', 'maskClosable', 'zIndex', 'loading', 'extra', 'footer', 'containerId', 'containerSelector', 'data-*', 'aria-*', 'loading_state']
         self._valid_wildcard_attributes =            ['data-', 'aria-']
         self.available_properties = ['id', 'key', 'children', 'style', 'className', 'classNames', 'styles', 'rootStyle', 'visible', 'title', 'placement', 'closable', 'forceRender', 'destroyOnClose', 'width', 'height', 'mask', 'maskClosable', 'zIndex', 'loading', 'extra', 'footer', 'containerId', 'containerSelector', 'data-*', 'aria-*', 'loading_state']

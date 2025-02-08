@@ -5,6 +5,7 @@ import { Anchor } from 'antd';
 // 辅助库
 import { isString } from 'lodash';
 import { pickBy } from 'ramda';
+import { useLoading } from '../utils';
 // 自定义hooks
 import useCss from '../../hooks/useCss';
 
@@ -13,22 +14,21 @@ const { Link } = Anchor;
 /**
  * 锚点组件AntdAnchor
  */
-const AntdAnchor = (props) => {
-    let {
-        id,
-        className,
-        style,
-        key,
-        linkDict,
-        align,
-        containerId,
-        targetOffset,
-        affix,
-        bounds,
-        offsetTop,
-        loading_state,
-        setProps
-    } = props;
+const AntdAnchor = ({
+    id,
+    className,
+    style,
+    key,
+    linkDict,
+    align = 'right',
+    containerId,
+    targetOffset,
+    affix = true,
+    bounds = 5,
+    offsetTop,
+    setProps,
+    ...others
+}) => {
 
     const renderAnchorTree = (obj) => {
         // 当anchorObj类型为对象时
@@ -67,11 +67,9 @@ const AntdAnchor = (props) => {
     return (
         <div
             // 提取具有data-*或aria-*通配格式的属性
-            {...pickBy((_, k) => k.startsWith('data-') || k.startsWith('aria-'), props)}
+            {...pickBy((_, k) => k.startsWith('data-') || k.startsWith('aria-'), others)}
             style={{ float: align }}
-            data-dash-is-loading={
-                (loading_state && loading_state.is_loading) || undefined
-            }
+            data-dash-is-loading={useLoading()}
         >
             {
                 <Anchor
@@ -202,33 +200,11 @@ AntdAnchor.propTypes = {
      */
     'aria-*': PropTypes.string,
 
-    loading_state: PropTypes.shape({
-        /**
-         * Determines if the component is loading or not
-         */
-        is_loading: PropTypes.bool,
-        /**
-         * Holds which property is loading
-         */
-        prop_name: PropTypes.string,
-        /**
-         * Holds the name of the component that is loading
-         */
-        component_name: PropTypes.string
-    }),
-
     /**
      * Dash-assigned callback that should be called to report property changes
      * to Dash, to make them available for callbacks.
      */
     setProps: PropTypes.func
 };
-
-// 设置默认参数
-AntdAnchor.defaultProps = {
-    align: 'right',
-    affix: true,
-    bounds: 5
-}
 
 export default AntdAnchor;

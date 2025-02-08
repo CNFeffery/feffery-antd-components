@@ -1,6 +1,13 @@
 # AUTO GENERATED FILE - DO NOT EDIT
 
+import typing  # noqa: F401
+import numbers # noqa: F401
+from typing_extensions import TypedDict, NotRequired, Literal # noqa: F401
 from dash.development.base_component import Component, _explicitize_args
+try:
+    from dash.development.base_component import ComponentType # noqa: F401
+except ImportError:
+    ComponentType = typing.TypeVar("ComponentType", bound=Component)
 
 
 class AntdTree(Component):
@@ -207,8 +214,94 @@ Keyword arguments:
     _base_nodes = ['switcherIcon', 'nodeCheckedSuffix', 'nodeUncheckedSuffix', 'children']
     _namespace = 'feffery_antd_components'
     _type = 'AntdTree'
+    ShowLine = TypedDict(
+        "ShowLine",
+            {
+            "showLeafIcon": NotRequired[bool]
+        }
+    )
+
+    ClickedContextMenu = TypedDict(
+        "ClickedContextMenu",
+            {
+            "nodeKey": NotRequired[str],
+            "menuKey": NotRequired[str],
+            "timestamp": NotRequired[typing.Union[int, float, numbers.Number]]
+        }
+    )
+
+    ScrollTarget = TypedDict(
+        "ScrollTarget",
+            {
+            "key": str,
+            "align": NotRequired[Literal["top", "bottom", "auto"]],
+            "offset": NotRequired[typing.Union[int, float, numbers.Number]]
+        }
+    )
+
+    LoadingState = TypedDict(
+        "LoadingState",
+            {
+            "is_loading": NotRequired[bool],
+            "prop_name": NotRequired[str],
+            "component_name": NotRequired[str]
+        }
+    )
+
     @_explicitize_args
-    def __init__(self, id=Component.UNDEFINED, key=Component.UNDEFINED, style=Component.UNDEFINED, className=Component.UNDEFINED, treeDataMode=Component.UNDEFINED, treeData=Component.UNDEFINED, treeNodeKeyToTitle=Component.UNDEFINED, showIcon=Component.UNDEFINED, selectable=Component.UNDEFINED, multiple=Component.UNDEFINED, checkable=Component.UNDEFINED, defaultExpandAll=Component.UNDEFINED, expandedKeys=Component.UNDEFINED, defaultExpandedKeys=Component.UNDEFINED, defaultExpandParent=Component.UNDEFINED, selectedKeys=Component.UNDEFINED, defaultSelectedKeys=Component.UNDEFINED, checkedKeys=Component.UNDEFINED, defaultCheckedKeys=Component.UNDEFINED, halfCheckedKeys=Component.UNDEFINED, checkStrictly=Component.UNDEFINED, showLine=Component.UNDEFINED, switcherIcon=Component.UNDEFINED, height=Component.UNDEFINED, draggable=Component.UNDEFINED, showDragIcon=Component.UNDEFINED, dragInSameLevel=Component.UNDEFINED, dragDisabledKeys=Component.UNDEFINED, dropDisabledKeys=Component.UNDEFINED, draggedNodeKey=Component.UNDEFINED, clickedContextMenu=Component.UNDEFINED, enableNodeFavorites=Component.UNDEFINED, favoritedKeys=Component.UNDEFINED, scrollTarget=Component.UNDEFINED, searchKeyword=Component.UNDEFINED, caseSensitive=Component.UNDEFINED, highlightStyle=Component.UNDEFINED, nodeCheckedSuffix=Component.UNDEFINED, nodeUncheckedSuffix=Component.UNDEFINED, nodeCheckedStyle=Component.UNDEFINED, nodeUncheckedStyle=Component.UNDEFINED, enableAsyncLoad=Component.UNDEFINED, loadingNode=Component.UNDEFINED, batchPropsNames=Component.UNDEFINED, batchPropsValues=Component.UNDEFINED, loading_state=Component.UNDEFINED, persistence=Component.UNDEFINED, persisted_props=Component.UNDEFINED, persistence_type=Component.UNDEFINED, **kwargs):
+    def __init__(
+        self,
+        id: typing.Optional[str] = None,
+        key: typing.Optional[str] = None,
+        style: typing.Optional[dict] = None,
+        className: typing.Optional[typing.Union[str, dict]] = None,
+        treeDataMode: typing.Optional[Literal["tree", "flat"]] = None,
+        treeData: typing.Optional[typing.Union[typing.Any, typing.Sequence[typing.Any]]] = None,
+        treeNodeKeyToTitle: typing.Optional[typing.Dict[typing.Union[str, float, int], typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]]] = None,
+        showIcon: typing.Optional[bool] = None,
+        selectable: typing.Optional[bool] = None,
+        multiple: typing.Optional[bool] = None,
+        checkable: typing.Optional[bool] = None,
+        defaultExpandAll: typing.Optional[bool] = None,
+        expandedKeys: typing.Optional[typing.Sequence[str]] = None,
+        defaultExpandedKeys: typing.Optional[typing.Sequence[str]] = None,
+        defaultExpandParent: typing.Optional[bool] = None,
+        selectedKeys: typing.Optional[typing.Sequence[str]] = None,
+        defaultSelectedKeys: typing.Optional[typing.Sequence[str]] = None,
+        checkedKeys: typing.Optional[typing.Sequence[str]] = None,
+        defaultCheckedKeys: typing.Optional[typing.Sequence[str]] = None,
+        halfCheckedKeys: typing.Optional[typing.Sequence[str]] = None,
+        checkStrictly: typing.Optional[bool] = None,
+        showLine: typing.Optional[typing.Union[bool, "ShowLine"]] = None,
+        switcherIcon: typing.Optional[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]] = None,
+        height: typing.Optional[typing.Union[int, float, numbers.Number]] = None,
+        draggable: typing.Optional[bool] = None,
+        showDragIcon: typing.Optional[bool] = None,
+        dragInSameLevel: typing.Optional[bool] = None,
+        dragDisabledKeys: typing.Optional[typing.Sequence[str]] = None,
+        dropDisabledKeys: typing.Optional[typing.Sequence[str]] = None,
+        draggedNodeKey: typing.Optional[str] = None,
+        clickedContextMenu: typing.Optional["ClickedContextMenu"] = None,
+        enableNodeFavorites: typing.Optional[bool] = None,
+        favoritedKeys: typing.Optional[typing.Sequence[str]] = None,
+        scrollTarget: typing.Optional["ScrollTarget"] = None,
+        searchKeyword: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
+        caseSensitive: typing.Optional[bool] = None,
+        highlightStyle: typing.Optional[dict] = None,
+        nodeCheckedSuffix: typing.Optional[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]] = None,
+        nodeUncheckedSuffix: typing.Optional[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]] = None,
+        nodeCheckedStyle: typing.Optional[dict] = None,
+        nodeUncheckedStyle: typing.Optional[dict] = None,
+        enableAsyncLoad: typing.Optional[bool] = None,
+        loadingNode: typing.Optional[dict] = None,
+        batchPropsNames: typing.Optional[typing.Sequence[str]] = None,
+        batchPropsValues: typing.Optional[dict] = None,
+        loading_state: typing.Optional["LoadingState"] = None,
+        persistence: typing.Optional[typing.Union[bool, str, typing.Union[int, float, numbers.Number]]] = None,
+        persisted_props: typing.Optional[typing.Sequence[Literal["selectedKeys", "checkedKeys", "expandedKeys", "halfCheckedKeys"]]] = None,
+        persistence_type: typing.Optional[Literal["local", "session", "memory"]] = None,
+        **kwargs
+    ):
         self._prop_names = ['id', 'key', 'style', 'className', 'treeDataMode', 'treeData', 'treeNodeKeyToTitle', 'showIcon', 'selectable', 'multiple', 'checkable', 'defaultExpandAll', 'expandedKeys', 'defaultExpandedKeys', 'defaultExpandParent', 'selectedKeys', 'defaultSelectedKeys', 'checkedKeys', 'defaultCheckedKeys', 'halfCheckedKeys', 'checkStrictly', 'showLine', 'switcherIcon', 'height', 'draggable', 'showDragIcon', 'dragInSameLevel', 'dragDisabledKeys', 'dropDisabledKeys', 'draggedNodeKey', 'clickedContextMenu', 'enableNodeFavorites', 'favoritedKeys', 'scrollTarget', 'searchKeyword', 'caseSensitive', 'highlightStyle', 'nodeCheckedSuffix', 'nodeUncheckedSuffix', 'nodeCheckedStyle', 'nodeUncheckedStyle', 'enableAsyncLoad', 'loadingNode', 'batchPropsNames', 'batchPropsValues', 'data-*', 'aria-*', 'loading_state', 'persistence', 'persisted_props', 'persistence_type']
         self._valid_wildcard_attributes =            ['data-', 'aria-']
         self.available_properties = ['id', 'key', 'style', 'className', 'treeDataMode', 'treeData', 'treeNodeKeyToTitle', 'showIcon', 'selectable', 'multiple', 'checkable', 'defaultExpandAll', 'expandedKeys', 'defaultExpandedKeys', 'defaultExpandParent', 'selectedKeys', 'defaultSelectedKeys', 'checkedKeys', 'defaultCheckedKeys', 'halfCheckedKeys', 'checkStrictly', 'showLine', 'switcherIcon', 'height', 'draggable', 'showDragIcon', 'dragInSameLevel', 'dragDisabledKeys', 'dropDisabledKeys', 'draggedNodeKey', 'clickedContextMenu', 'enableNodeFavorites', 'favoritedKeys', 'scrollTarget', 'searchKeyword', 'caseSensitive', 'highlightStyle', 'nodeCheckedSuffix', 'nodeUncheckedSuffix', 'nodeCheckedStyle', 'nodeUncheckedStyle', 'enableAsyncLoad', 'loadingNode', 'batchPropsNames', 'batchPropsValues', 'data-*', 'aria-*', 'loading_state', 'persistence', 'persisted_props', 'persistence_type']

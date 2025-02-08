@@ -8,6 +8,7 @@ import { DownOutlined } from '@ant-design/icons';
 // 辅助库
 import { isString, isUndefined } from 'lodash';
 import { pickBy } from 'ramda';
+import { useLoading } from '../utils';
 // 自定义hooks
 import useCss from '../../hooks/useCss';
 // 自定义上下文
@@ -18,40 +19,39 @@ const { Link } = Typography;
 /**
  * 下拉菜单组件AntdDropdown
  */
-const AntdDropdown = (props) => {
-    let {
-        id,
-        children,
-        className,
-        style,
-        wrapperStyle,
-        wrapperClassName,
-        key,
-        title,
-        buttonMode,
-        arrow,
-        disabled,
-        overlayClassName,
-        overlayStyle,
-        placement,
-        trigger,
-        autoAdjustOverflow,
-        visible,
-        menuItems,
-        nClicks,
-        selectable,
-        multiple,
-        selectedKeys,
-        nonSelectableKeys,
-        popupContainer,
-        buttonProps,
-        freePosition,
-        freePositionStyle,
-        freePositionClassName,
-        setProps,
-        loading_state,
-        batchPropsNames
-    } = props;
+const AntdDropdown = ({
+    id,
+    children,
+    className,
+    style,
+    wrapperStyle,
+    wrapperClassName,
+    key,
+    title,
+    buttonMode = false,
+    arrow = false,
+    disabled = false,
+    overlayClassName,
+    overlayStyle,
+    placement,
+    trigger = 'hover',
+    autoAdjustOverflow = true,
+    visible = false,
+    menuItems,
+    nClicks = 0,
+    selectable = false,
+    multiple = false,
+    selectedKeys,
+    nonSelectableKeys = [],
+    popupContainer = 'body',
+    buttonProps,
+    freePosition = false,
+    freePositionStyle,
+    freePositionClassName,
+    setProps,
+    batchPropsNames = [],
+    ...others
+}) => {
 
     // 批属性监听
     useEffect(() => {
@@ -71,7 +71,7 @@ const AntdDropdown = (props) => {
     return (
         <Dropdown
             // 提取具有data-*或aria-*通配格式的属性
-            {...pickBy((_, k) => k.startsWith('data-') || k.startsWith('aria-'), props)}
+            {...pickBy((_, k) => k.startsWith('data-') || k.startsWith('aria-'), others)}
             id={id}
             className={
                 isString(className) ?
@@ -154,9 +154,7 @@ const AntdDropdown = (props) => {
                     (triggerNode) => triggerNode.parentNode :
                     undefined
             }
-            data-dash-is-loading={
-                (loading_state && loading_state.is_loading) || undefined
-            }>
+            data-dash-is-loading={useLoading()}>
             {
                 // 开启自由位置模式
                 freePosition ?
@@ -458,43 +456,11 @@ AntdDropdown.propTypes = {
      */
     'aria-*': PropTypes.string,
 
-    loading_state: PropTypes.shape({
-        /**
-         * Determines if the component is loading or not
-         */
-        is_loading: PropTypes.bool,
-        /**
-         * Holds which property is loading
-         */
-        prop_name: PropTypes.string,
-        /**
-         * Holds the name of the component that is loading
-         */
-        component_name: PropTypes.string
-    }),
-
     /**
      * Dash-assigned callback that should be called to report property changes
      * to Dash, to make them available for callbacks.
      */
     setProps: PropTypes.func
 };
-
-// 设置默认参数
-AntdDropdown.defaultProps = {
-    buttonMode: false,
-    freePosition: false,
-    nClicks: 0,
-    selectable: false,
-    multiple: false,
-    nonSelectableKeys: [],
-    arrow: false,
-    disabled: false,
-    trigger: 'hover',
-    autoAdjustOverflow: true,
-    visible: false,
-    popupContainer: 'body',
-    batchPropsNames: []
-}
 
 export default AntdDropdown;

@@ -6,10 +6,52 @@ const LazyAntdCheckCardGroup = React.lazy(() => import(/* webpackChunkName: "dat
 /**
  * 组合选择卡片组件AntdCheckCardGroup
  */
-const AntdCheckCardGroup = (props) => {
+const AntdCheckCardGroup = ({
+    id,
+    children,
+    className,
+    style,
+    key,
+    name,
+    multiple = false,
+    allowNoValue = true,
+    bordered = true,
+    value,
+    defaultValue,
+    disabled = false,
+    size = 'default',
+    readOnly = false,
+    setProps,
+    persistence,
+    persisted_props = ['value'],
+    persistence_type = 'local',
+    ...others
+}) => {
     return (
         <Suspense fallback={null}>
-            <LazyAntdCheckCardGroup {...props} />
+            <LazyAntdCheckCardGroup {
+                ...{
+                    id,
+                    children,
+                    className,
+                    style,
+                    key,
+                    name,
+                    multiple,
+                    allowNoValue,
+                    bordered,
+                    value,
+                    defaultValue,
+                    disabled,
+                    size,
+                    readOnly,
+                    setProps,
+                    persistence,
+                    persisted_props,
+                    persistence_type,
+                    ...others
+                }
+            } />
         </Suspense>
     );
 }
@@ -126,21 +168,6 @@ AntdCheckCardGroup.propTypes = {
      */
     'aria-*': PropTypes.string,
 
-    loading_state: PropTypes.shape({
-        /**
-         * Determines if the component is loading or not
-         */
-        is_loading: PropTypes.bool,
-        /**
-         * Holds which property is loading
-         */
-        prop_name: PropTypes.string,
-        /**
-         * Holds the name of the component that is loading
-         */
-        component_name: PropTypes.string
-    }),
-
     /**
      * Dash-assigned callback that should be called to report property changes
      * to Dash, to make them available for callbacks.
@@ -168,18 +195,6 @@ AntdCheckCardGroup.propTypes = {
      */
     persistence_type: PropTypes.oneOf(['local', 'session', 'memory'])
 };
-
-// 设置默认参数
-AntdCheckCardGroup.defaultProps = {
-    multiple: false,
-    allowNoValue: true,
-    bordered: true,
-    disabled: false,
-    size: 'default',
-    readOnly: false,
-    persisted_props: ['value'],
-    persistence_type: 'local'
-}
 
 export default AntdCheckCardGroup;
 

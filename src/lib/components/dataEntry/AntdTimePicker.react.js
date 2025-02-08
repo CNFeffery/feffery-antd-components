@@ -6,10 +6,86 @@ const LazyAntdTimePicker = React.lazy(() => import(/* webpackChunkName: "data_en
 /**
  * 时间选择组件AntdTimePicker
  */
-const AntdTimePicker = (props) => {
+const AntdTimePicker = ({
+    id,
+    className,
+    style,
+    popupClassName,
+    key,
+    name,
+    locale = 'zh-cn',
+    setProps,
+    disabled = false,
+    hourStep = 1,
+    minuteStep = 1,
+    secondStep = 1,
+    format = 'HH:mm:ss',
+    value,
+    defaultValue,
+    use12Hours = false,
+    allowClear = true,
+    autoFocus = false,
+    placeholder,
+    placement = 'bottomLeft',
+    bordered = true,
+    variant,
+    size = 'middle',
+    status,
+    popupContainer = 'body',
+    readOnly,
+    extraFooter,
+    showNow = true,
+    prefix,
+    suffixIcon,
+    persistence,
+    persisted_props = ['value'],
+    persistence_type = 'local',
+    batchPropsNames = [],
+    needConfirm = false,
+    ...others
+}) => {
     return (
         <Suspense fallback={null}>
-            <LazyAntdTimePicker {...props} />
+            <LazyAntdTimePicker {
+                ...{
+                    id,
+                    className,
+                    style,
+                    popupClassName,
+                    key,
+                    name,
+                    locale,
+                    setProps,
+                    disabled,
+                    hourStep,
+                    minuteStep,
+                    secondStep,
+                    format,
+                    value,
+                    defaultValue,
+                    use12Hours,
+                    allowClear,
+                    autoFocus,
+                    placeholder,
+                    placement,
+                    bordered,
+                    variant,
+                    size,
+                    status,
+                    popupContainer,
+                    readOnly,
+                    extraFooter,
+                    showNow,
+                    prefix,
+                    suffixIcon,
+                    persistence,
+                    persisted_props,
+                    persistence_type,
+                    batchPropsNames,
+                    needConfirm,
+                    ...others
+                }
+            } />
         </Suspense>
     );
 }
@@ -249,28 +325,6 @@ AntdTimePicker.propTypes = {
      */
     persistence_type: PropTypes.oneOf(['local', 'session', 'memory'])
 };
-
-// 设置默认参数
-AntdTimePicker.defaultProps = {
-    hourStep: 1,
-    minuteStep: 1,
-    secondStep: 1,
-    use12Hours: false,
-    disabled: false,
-    placement: 'bottomLeft',
-    format: 'HH:mm:ss',
-    allowClear: true,
-    autoFocus: false,
-    bordered: true,
-    size: 'middle',
-    showNow: true,
-    needConfirm: false,
-    persisted_props: ['value'],
-    persistence_type: 'local',
-    locale: 'zh-cn',
-    popupContainer: 'body',
-    batchPropsNames: []
-}
 
 export default AntdTimePicker;
 

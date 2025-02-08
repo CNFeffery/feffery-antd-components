@@ -44,7 +44,7 @@ import {
 // 辅助库
 import Highlighter from 'react-highlight-words';
 import { isNumber, isEqual, isString, isBoolean, isEmpty, omitBy } from 'lodash';
-import { pickBy, set } from 'ramda';
+import { pickBy } from 'ramda';
 import { str2Locale, locale2text } from '../components/locales.react';
 // 参数类型
 import { propTypes, defaultProps } from '../components/dataDisplay/AntdTable.react';

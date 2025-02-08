@@ -6,10 +6,56 @@ const LazyAntdRadioGroup = React.lazy(() => import(/* webpackChunkName: "data_en
 /**
  * 单选框组件AntdRadioGroup
  */
-const AntdRadioGroup = (props) => {
+const AntdRadioGroup = ({
+    id,
+    style,
+    className,
+    key,
+    name,
+    options,
+    defaultValue,
+    value,
+    direction = 'horizontal',
+    optionType = 'default',
+    buttonStyle = 'outline',
+    block = false,
+    disabled = false,
+    size = 'middle',
+    readOnly = false,
+    setProps,
+    persistence,
+    persisted_props = ['value'],
+    persistence_type = 'local',
+    batchPropsNames = [],
+    ...others
+}) => {
     return (
         <Suspense fallback={null}>
-            <LazyAntdRadioGroup {...props} />
+            <LazyAntdRadioGroup {
+                ...{
+                    id,
+                    style,
+                    className,
+                    key,
+                    name,
+                    options,
+                    defaultValue,
+                    value,
+                    direction,
+                    optionType,
+                    buttonStyle,
+                    block,
+                    disabled,
+                    size,
+                    readOnly,
+                    setProps,
+                    persistence,
+                    persisted_props,
+                    persistence_type,
+                    batchPropsNames,
+                    ...others
+                }
+            } />
         </Suspense>
     );
 }
@@ -151,21 +197,6 @@ AntdRadioGroup.propTypes = {
      */
     'aria-*': PropTypes.string,
 
-    loading_state: PropTypes.shape({
-        /**
-         * Determines if the component is loading or not
-         */
-        is_loading: PropTypes.bool,
-        /**
-         * Holds which property is loading
-         */
-        prop_name: PropTypes.string,
-        /**
-         * Holds the name of the component that is loading
-         */
-        component_name: PropTypes.string
-    }),
-
     /**
      * Dash-assigned callback that should be called to report property changes
      * to Dash, to make them available for callbacks.
@@ -193,20 +224,6 @@ AntdRadioGroup.propTypes = {
      */
     persistence_type: PropTypes.oneOf(['local', 'session', 'memory'])
 };
-
-// 设置默认参数
-AntdRadioGroup.defaultProps = {
-    direction: 'horizontal',
-    optionType: 'default',
-    buttonStyle: 'outline',
-    block: false,
-    disabled: false,
-    size: 'middle',
-    readOnly: false,
-    persisted_props: ['value'],
-    persistence_type: 'local',
-    batchPropsNames: []
-}
 
 export default AntdRadioGroup;
 

@@ -1,6 +1,13 @@
 # AUTO GENERATED FILE - DO NOT EDIT
 
+import typing  # noqa: F401
+import numbers # noqa: F401
+from typing_extensions import TypedDict, NotRequired, Literal # noqa: F401
 from dash.development.base_component import Component, _explicitize_args
+try:
+    from dash.development.base_component import ComponentType # noqa: F401
+except ImportError:
+    ComponentType = typing.TypeVar("ComponentType", bound=Component)
 
 
 class AntdMentions(Component):
@@ -95,29 +102,57 @@ Keyword arguments:
     `data-*`格式属性通配.
 
 - aria-* (string; optional):
-    `aria-*`格式属性通配.
-
-- loading_state (dict; optional)
-
-    `loading_state` is a dict with keys:
-
-    - is_loading (boolean; optional):
-        Determines if the component is loading or not.
-
-    - prop_name (string; optional):
-        Holds which property is loading.
-
-    - component_name (string; optional):
-        Holds the name of the component that is loading."""
+    `aria-*`格式属性通配."""
     _children_props = ['options[].label']
     _base_nodes = ['children']
     _namespace = 'feffery_antd_components'
     _type = 'AntdMentions'
+    AutoSize = TypedDict(
+        "AutoSize",
+            {
+            "minRows": NotRequired[typing.Union[int, float, numbers.Number]],
+            "maxRows": NotRequired[typing.Union[int, float, numbers.Number]]
+        }
+    )
+
+    Options = TypedDict(
+        "Options",
+            {
+            "label": NotRequired[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]],
+            "value": NotRequired[str]
+        }
+    )
+
     @_explicitize_args
-    def __init__(self, id=Component.UNDEFINED, key=Component.UNDEFINED, style=Component.UNDEFINED, className=Component.UNDEFINED, popupClassName=Component.UNDEFINED, name=Component.UNDEFINED, autoSize=Component.UNDEFINED, prefix=Component.UNDEFINED, value=Component.UNDEFINED, defaultValue=Component.UNDEFINED, options=Component.REQUIRED, selectedOptions=Component.UNDEFINED, disabled=Component.UNDEFINED, placement=Component.UNDEFINED, bordered=Component.UNDEFINED, variant=Component.UNDEFINED, placeholder=Component.UNDEFINED, status=Component.UNDEFINED, autoFocus=Component.UNDEFINED, popupContainer=Component.UNDEFINED, batchPropsNames=Component.UNDEFINED, batchPropsValues=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
-        self._prop_names = ['id', 'key', 'style', 'className', 'popupClassName', 'name', 'autoSize', 'prefix', 'value', 'defaultValue', 'options', 'selectedOptions', 'disabled', 'placement', 'bordered', 'variant', 'placeholder', 'status', 'autoFocus', 'popupContainer', 'batchPropsNames', 'batchPropsValues', 'data-*', 'aria-*', 'loading_state']
+    def __init__(
+        self,
+        id: typing.Optional[str] = None,
+        key: typing.Optional[str] = None,
+        style: typing.Optional[dict] = None,
+        className: typing.Optional[typing.Union[str, dict]] = None,
+        popupClassName: typing.Optional[str] = None,
+        name: typing.Optional[str] = None,
+        autoSize: typing.Optional[typing.Union[bool, "AutoSize"]] = None,
+        prefix: typing.Optional[str] = None,
+        value: typing.Optional[str] = None,
+        defaultValue: typing.Optional[str] = None,
+        options: typing.Optional[typing.Sequence["Options"]] = None,
+        selectedOptions: typing.Optional[typing.Sequence[str]] = None,
+        disabled: typing.Optional[bool] = None,
+        placement: typing.Optional[Literal["top", "bottom"]] = None,
+        bordered: typing.Optional[bool] = None,
+        variant: typing.Optional[Literal["outlined", "borderless", "filled"]] = None,
+        placeholder: typing.Optional[str] = None,
+        status: typing.Optional[Literal["error", "warning"]] = None,
+        autoFocus: typing.Optional[bool] = None,
+        popupContainer: typing.Optional[Literal["parent", "body"]] = None,
+        batchPropsNames: typing.Optional[typing.Sequence[str]] = None,
+        batchPropsValues: typing.Optional[dict] = None,
+        **kwargs
+    ):
+        self._prop_names = ['id', 'key', 'style', 'className', 'popupClassName', 'name', 'autoSize', 'prefix', 'value', 'defaultValue', 'options', 'selectedOptions', 'disabled', 'placement', 'bordered', 'variant', 'placeholder', 'status', 'autoFocus', 'popupContainer', 'batchPropsNames', 'batchPropsValues', 'data-*', 'aria-*']
         self._valid_wildcard_attributes =            ['data-', 'aria-']
-        self.available_properties = ['id', 'key', 'style', 'className', 'popupClassName', 'name', 'autoSize', 'prefix', 'value', 'defaultValue', 'options', 'selectedOptions', 'disabled', 'placement', 'bordered', 'variant', 'placeholder', 'status', 'autoFocus', 'popupContainer', 'batchPropsNames', 'batchPropsValues', 'data-*', 'aria-*', 'loading_state']
+        self.available_properties = ['id', 'key', 'style', 'className', 'popupClassName', 'name', 'autoSize', 'prefix', 'value', 'defaultValue', 'options', 'selectedOptions', 'disabled', 'placement', 'bordered', 'variant', 'placeholder', 'status', 'autoFocus', 'popupContainer', 'batchPropsNames', 'batchPropsValues', 'data-*', 'aria-*']
         self.available_wildcard_properties =            ['data-', 'aria-']
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()

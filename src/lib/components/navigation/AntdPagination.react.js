@@ -7,6 +7,7 @@ import { Pagination, ConfigProvider } from 'antd';
 import { str2Locale, locale2text } from '../locales.react';
 import { isString, isUndefined } from 'lodash';
 import { pickBy } from 'ramda';
+import { useLoading } from '../utils';
 // 自定义hooks
 import useCss from '../../hooks/useCss';
 // 自定义上下文
@@ -15,37 +16,36 @@ import PropsContext from '../../contexts/PropsContext';
 /**
  * 分页组件AntdPagination
  */
-const AntdPagination = (props) => {
-    let {
-        id,
-        style,
-        className,
-        key,
-        locale,
-        align,
-        defaultCurrent,
-        defaultPageSize,
-        current,
-        pageSize,
-        disabled,
-        hideOnSinglePage,
-        pageSizeOptions,
-        showQuickJumper,
-        showSizeChanger,
-        showTotalPrefix,
-        showTotalSuffix,
-        simple,
-        size,
-        total,
-        showTotal,
-        showLessItems,
-        setProps,
-        loading_state,
-        persistence,
-        persisted_props,
-        persistence_type,
-        batchPropsNames
-    } = props;
+const AntdPagination = ({
+    id,
+    style,
+    className,
+    key,
+    locale = 'zh-cn',
+    align = 'start',
+    defaultCurrent = 1,
+    defaultPageSize = 10,
+    current,
+    pageSize,
+    disabled = false,
+    hideOnSinglePage = false,
+    pageSizeOptions,
+    showQuickJumper = false,
+    showSizeChanger = false,
+    showTotalPrefix,
+    showTotalSuffix,
+    simple = false,
+    size = 'default',
+    total,
+    showTotal = true,
+    showLessItems = false,
+    setProps,
+    persistence,
+    persisted_props = ['current', 'pageSize'],
+    persistence_type = 'local',
+    batchPropsNames = [],
+    ...others
+}) => {
 
     // 批属性监听
     useEffect(() => {
@@ -74,7 +74,6 @@ const AntdPagination = (props) => {
     }, [])
 
     const onChange = (page, pageSize) => {
-
         setProps({ current: page, pageSize: pageSize })
     }
 
@@ -87,7 +86,7 @@ const AntdPagination = (props) => {
         <ConfigProvider locale={str2Locale.get(locale)}>
             <Pagination
                 // 提取具有data-*或aria-*通配格式的属性
-                {...pickBy((_, k) => k.startsWith('data-') || k.startsWith('aria-'), props)}
+                {...pickBy((_, k) => k.startsWith('data-') || k.startsWith('aria-'), others)}
                 id={id}
                 className={
                     isString(className) ?
@@ -119,9 +118,7 @@ const AntdPagination = (props) => {
                 persistence={persistence}
                 persisted_props={persisted_props}
                 persistence_type={persistence_type}
-                data-dash-is-loading={
-                    (loading_state && loading_state.is_loading) || undefined
-                }
+                data-dash-is-loading={useLoading()}
             />
         </ConfigProvider>
     );
@@ -274,21 +271,6 @@ AntdPagination.propTypes = {
      */
     'aria-*': PropTypes.string,
 
-    loading_state: PropTypes.shape({
-        /**
-         * Determines if the component is loading or not
-         */
-        is_loading: PropTypes.bool,
-        /**
-         * Holds which property is loading
-         */
-        prop_name: PropTypes.string,
-        /**
-         * Holds the name of the component that is loading
-         */
-        component_name: PropTypes.string
-    }),
-
     /**
      * Dash-assigned callback that should be called to report property changes
      * to Dash, to make them available for callbacks.
@@ -316,24 +298,5 @@ AntdPagination.propTypes = {
      */
     persistence_type: PropTypes.oneOf(['local', 'session', 'memory'])
 };
-
-// 设置默认参数
-AntdPagination.defaultProps = {
-    locale: 'zh-cn',
-    align: 'start',
-    defaultCurrent: 1,
-    defaultPageSize: 10,
-    disabled: false,
-    hideOnSinglePage: false,
-    showSizeChanger: false,
-    showQuickJumper: false,
-    simple: false,
-    size: 'default',
-    showTotal: true,
-    showLessItems: false,
-    persisted_props: ['current', 'pageSize'],
-    persistence_type: 'local',
-    batchPropsNames: []
-}
 
 export default AntdPagination;

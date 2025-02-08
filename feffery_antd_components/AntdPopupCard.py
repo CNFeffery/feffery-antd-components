@@ -1,6 +1,13 @@
 # AUTO GENERATED FILE - DO NOT EDIT
 
+import typing  # noqa: F401
+import numbers # noqa: F401
+from typing_extensions import TypedDict, NotRequired, Literal # noqa: F401
 from dash.development.base_component import Component, _explicitize_args
+try:
+    from dash.development.base_component import ComponentType # noqa: F401
+except ImportError:
+    ComponentType = typing.TypeVar("ComponentType", bound=Component)
 
 
 class AntdPopupCard(Component):
@@ -86,8 +93,39 @@ Keyword arguments:
     _base_nodes = ['title', 'children']
     _namespace = 'feffery_antd_components'
     _type = 'AntdPopupCard'
+    LoadingState = TypedDict(
+        "LoadingState",
+            {
+            "is_loading": NotRequired[bool],
+            "prop_name": NotRequired[str],
+            "component_name": NotRequired[str]
+        }
+    )
+
     @_explicitize_args
-    def __init__(self, children=None, id=Component.UNDEFINED, key=Component.UNDEFINED, style=Component.UNDEFINED, className=Component.UNDEFINED, title=Component.UNDEFINED, visible=Component.UNDEFINED, width=Component.UNDEFINED, transitionType=Component.UNDEFINED, forceRender=Component.UNDEFINED, destroyOnClose=Component.UNDEFINED, closable=Component.UNDEFINED, closeIconType=Component.UNDEFINED, draggable=Component.UNDEFINED, dragClassName=Component.UNDEFINED, zIndex=Component.UNDEFINED, bodyStyle=Component.UNDEFINED, loading=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
+    def __init__(
+        self,
+        children: typing.Optional[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]] = None,
+        id: typing.Optional[str] = None,
+        key: typing.Optional[str] = None,
+        style: typing.Optional[dict] = None,
+        className: typing.Optional[typing.Union[str, dict]] = None,
+        title: typing.Optional[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]] = None,
+        visible: typing.Optional[bool] = None,
+        width: typing.Optional[typing.Union[typing.Union[int, float, numbers.Number], str]] = None,
+        transitionType: typing.Optional[Literal["none", "fade", "zoom", "zoom-big", "zoom-big-fast", "slide-up", "slide-down", "slide-left", "slide-right", "move-up", "move-down", "move-left", "move-right"]] = None,
+        forceRender: typing.Optional[bool] = None,
+        destroyOnClose: typing.Optional[bool] = None,
+        closable: typing.Optional[bool] = None,
+        closeIconType: typing.Optional[Literal["default", "outlined", "two-tone"]] = None,
+        draggable: typing.Optional[bool] = None,
+        dragClassName: typing.Optional[typing.Union[str, dict]] = None,
+        zIndex: typing.Optional[typing.Union[int, float, numbers.Number]] = None,
+        bodyStyle: typing.Optional[dict] = None,
+        loading: typing.Optional[bool] = None,
+        loading_state: typing.Optional["LoadingState"] = None,
+        **kwargs
+    ):
         self._prop_names = ['id', 'key', 'children', 'style', 'className', 'title', 'visible', 'width', 'transitionType', 'forceRender', 'destroyOnClose', 'closable', 'closeIconType', 'draggable', 'dragClassName', 'zIndex', 'bodyStyle', 'loading', 'data-*', 'aria-*', 'loading_state']
         self._valid_wildcard_attributes =            ['data-', 'aria-']
         self.available_properties = ['id', 'key', 'children', 'style', 'className', 'title', 'visible', 'width', 'transitionType', 'forceRender', 'destroyOnClose', 'closable', 'closeIconType', 'draggable', 'dragClassName', 'zIndex', 'bodyStyle', 'loading', 'data-*', 'aria-*', 'loading_state']

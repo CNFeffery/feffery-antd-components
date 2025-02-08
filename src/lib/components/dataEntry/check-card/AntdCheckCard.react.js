@@ -6,10 +6,50 @@ const LazyAntdCheckCard = React.lazy(() => import(/* webpackChunkName: "data_ent
 /**
  * 选择卡片组件AntdCheckCard
  */
-const AntdCheckCard = (props) => {
+const AntdCheckCard = ({
+    id,
+    children,
+    className,
+    style,
+    key,
+    name,
+    checked,
+    bordered = true,
+    value,
+    defaultChecked,
+    disabled = false,
+    size = 'default',
+    readOnly = false,
+    setProps,
+    persistence,
+    persisted_props = ['checked'],
+    persistence_type = 'local',
+    ...others
+}) => {
     return (
         <Suspense fallback={null}>
-            <LazyAntdCheckCard {...props} />
+            <LazyAntdCheckCard {
+                ...{
+                    id,
+                    children,
+                    className,
+                    style,
+                    key,
+                    name,
+                    checked,
+                    bordered,
+                    value,
+                    defaultChecked,
+                    disabled,
+                    size,
+                    readOnly,
+                    setProps,
+                    persistence,
+                    persisted_props,
+                    persistence_type,
+                    ...others
+                }
+            } />
         </Suspense>
     );
 }
@@ -100,21 +140,6 @@ AntdCheckCard.propTypes = {
      */
     'aria-*': PropTypes.string,
 
-    loading_state: PropTypes.shape({
-        /**
-         * Determines if the component is loading or not
-         */
-        is_loading: PropTypes.bool,
-        /**
-         * Holds which property is loading
-         */
-        prop_name: PropTypes.string,
-        /**
-         * Holds the name of the component that is loading
-         */
-        component_name: PropTypes.string
-    }),
-
     /**
      * Dash-assigned callback that should be called to report property changes
      * to Dash, to make them available for callbacks.
@@ -142,16 +167,6 @@ AntdCheckCard.propTypes = {
      */
     persistence_type: PropTypes.oneOf(['local', 'session', 'memory'])
 };
-
-// 设置默认参数
-AntdCheckCard.defaultProps = {
-    bordered: true,
-    disabled: false,
-    size: 'default',
-    readOnly: false,
-    persisted_props: ['checked'],
-    persistence_type: 'local'
-}
 
 export default AntdCheckCard;
 

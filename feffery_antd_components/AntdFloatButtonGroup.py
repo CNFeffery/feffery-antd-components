@@ -1,6 +1,13 @@
 # AUTO GENERATED FILE - DO NOT EDIT
 
+import typing  # noqa: F401
+import numbers # noqa: F401
+from typing_extensions import TypedDict, NotRequired, Literal # noqa: F401
 from dash.development.base_component import Component, _explicitize_args
+try:
+    from dash.development.base_component import ComponentType # noqa: F401
+except ImportError:
+    ComponentType = typing.TypeVar("ComponentType", bound=Component)
 
 
 class AntdFloatButtonGroup(Component):
@@ -48,28 +55,38 @@ Keyword arguments:
 - open (boolean; optional):
     设置或监听当前悬浮按钮组展开状态.
 
-- loading_state (dict; optional)
+- data-* (string; optional):
+    `data-*`格式属性通配.
 
-    `loading_state` is a dict with keys:
-
-    - is_loading (boolean; optional):
-        Determines if the component is loading or not.
-
-    - prop_name (string; optional):
-        Holds which property is loading.
-
-    - component_name (string; optional):
-        Holds the name of the component that is loading."""
+- aria-* (string; optional):
+    `aria-*`格式属性通配."""
     _children_props = ['icon', 'description', 'tooltip']
     _base_nodes = ['icon', 'description', 'tooltip', 'children']
     _namespace = 'feffery_antd_components'
     _type = 'AntdFloatButtonGroup'
+
     @_explicitize_args
-    def __init__(self, children=None, id=Component.UNDEFINED, key=Component.UNDEFINED, style=Component.UNDEFINED, className=Component.UNDEFINED, icon=Component.UNDEFINED, description=Component.UNDEFINED, tooltip=Component.UNDEFINED, type=Component.UNDEFINED, shape=Component.UNDEFINED, trigger=Component.UNDEFINED, placement=Component.UNDEFINED, open=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
-        self._prop_names = ['id', 'key', 'children', 'style', 'className', 'icon', 'description', 'tooltip', 'type', 'shape', 'trigger', 'placement', 'open', 'loading_state']
-        self._valid_wildcard_attributes =            []
-        self.available_properties = ['id', 'key', 'children', 'style', 'className', 'icon', 'description', 'tooltip', 'type', 'shape', 'trigger', 'placement', 'open', 'loading_state']
-        self.available_wildcard_properties =            []
+    def __init__(
+        self,
+        children: typing.Optional[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]] = None,
+        id: typing.Optional[str] = None,
+        key: typing.Optional[str] = None,
+        style: typing.Optional[dict] = None,
+        className: typing.Optional[typing.Union[str, dict]] = None,
+        icon: typing.Optional[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]] = None,
+        description: typing.Optional[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]] = None,
+        tooltip: typing.Optional[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]] = None,
+        type: typing.Optional[Literal["default", "primary"]] = None,
+        shape: typing.Optional[Literal["circle", "square"]] = None,
+        trigger: typing.Optional[Literal["click", "hover"]] = None,
+        placement: typing.Optional[Literal["top", "right", "bottom", "left"]] = None,
+        open: typing.Optional[bool] = None,
+        **kwargs
+    ):
+        self._prop_names = ['id', 'key', 'children', 'style', 'className', 'icon', 'description', 'tooltip', 'type', 'shape', 'trigger', 'placement', 'open', 'data-*', 'aria-*']
+        self._valid_wildcard_attributes =            ['data-', 'aria-']
+        self.available_properties = ['id', 'key', 'children', 'style', 'className', 'icon', 'description', 'tooltip', 'type', 'shape', 'trigger', 'placement', 'open', 'data-*', 'aria-*']
+        self.available_wildcard_properties =            ['data-', 'aria-']
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()
         _locals.update(kwargs)  # For wildcard attrs and excess named props

@@ -1,6 +1,13 @@
 # AUTO GENERATED FILE - DO NOT EDIT
 
+import typing  # noqa: F401
+import numbers # noqa: F401
+from typing_extensions import TypedDict, NotRequired, Literal # noqa: F401
 from dash.development.base_component import Component, _explicitize_args
+try:
+    from dash.development.base_component import ComponentType # noqa: F401
+except ImportError:
+    ComponentType = typing.TypeVar("ComponentType", bound=Component)
 
 
 class AntdTable(Component):
@@ -940,8 +947,363 @@ Keyword arguments:
     _base_nodes = ['emptyContent', 'title', 'footer', 'children']
     _namespace = 'feffery_antd_components'
     _type = 'AntdTable'
+    ColumnsRenderOptionsRenderButtonPopConfirmProps = TypedDict(
+        "ColumnsRenderOptionsRenderButtonPopConfirmProps",
+            {
+            "title": NotRequired[str],
+            "okText": NotRequired[str],
+            "cancelText": NotRequired[str]
+        }
+    )
+
+    ColumnsRenderOptionsDropdownProps = TypedDict(
+        "ColumnsRenderOptionsDropdownProps",
+            {
+            "title": NotRequired[str],
+            "arrow": NotRequired[bool],
+            "disabled": NotRequired[bool],
+            "overlayClassName": NotRequired[str],
+            "overlayStyle": NotRequired[dict],
+            "placement": NotRequired[Literal["bottomLeft", "bottomCenter", "bottomRight", "topLeft", "topCenter", "topRight"]]
+        }
+    )
+
+    ColumnsRenderOptions = TypedDict(
+        "ColumnsRenderOptions",
+            {
+            "renderType": NotRequired[Literal["link", "ellipsis", "copyable", "ellipsis-copyable", "tags", "status-badge", "image", "custom-format", "corner-mark", "row-merge", "dropdown", "dropdown-links", "image-avatar", "mini-line", "mini-bar", "mini-progress", "mini-ring-progress", "mini-area", "button", "checkbox", "switch", "select"]],
+            "renderLinkText": NotRequired[str],
+            "renderButtonSplit": NotRequired[bool],
+            "renderButtonPopConfirmProps": NotRequired["ColumnsRenderOptionsRenderButtonPopConfirmProps"],
+            "miniChartColor": NotRequired[str],
+            "tooltipCustomContent": NotRequired[str],
+            "progressOneHundredPercentColor": NotRequired[str],
+            "ringProgressFontSize": NotRequired[typing.Union[int, float, numbers.Number]],
+            "dropdownProps": NotRequired["ColumnsRenderOptionsDropdownProps"]
+        }
+    )
+
+    ColumnsEditOptionsAutoSize = TypedDict(
+        "ColumnsEditOptionsAutoSize",
+            {
+            "minRows": NotRequired[typing.Union[int, float, numbers.Number]],
+            "maxRows": NotRequired[typing.Union[int, float, numbers.Number]]
+        }
+    )
+
+    ColumnsEditOptions = TypedDict(
+        "ColumnsEditOptions",
+            {
+            "mode": NotRequired[Literal["default", "text-area"]],
+            "autoSize": NotRequired[typing.Union[bool, "ColumnsEditOptionsAutoSize"]],
+            "maxLength": NotRequired[typing.Union[int, float, numbers.Number]],
+            "placeholder": NotRequired[str],
+            "disabledKeys": NotRequired[typing.Sequence[str]]
+        }
+    )
+
+    Columns = TypedDict(
+        "Columns",
+            {
+            "title": typing.Union[typing.Any, typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]],
+            "dataIndex": str,
+            "group": NotRequired[typing.Union[str, typing.Sequence[str]]],
+            "renderOptions": NotRequired["ColumnsRenderOptions"],
+            "fixed": NotRequired[typing.Union[Literal["left", "right"], bool]],
+            "editable": NotRequired[bool],
+            "editOptions": NotRequired["ColumnsEditOptions"],
+            "align": NotRequired[Literal["left", "center", "right"]],
+            "headerAlign": NotRequired[Literal["left", "center", "right"]],
+            "width": NotRequired[typing.Union[typing.Union[int, float, numbers.Number], str]],
+            "minWidth": NotRequired[typing.Union[typing.Union[int, float, numbers.Number], str]],
+            "hidden": NotRequired[bool],
+            "className": NotRequired[str],
+            "filterResetToDefaultFilteredValue": NotRequired[bool]
+        }
+    )
+
+    Data = TypedDict(
+        "Data",
+            {
+            "className": NotRequired[str],
+            "style": NotRequired[dict],
+            "options": NotRequired[typing.Sequence["DataOptions"]],
+            "listHeight": NotRequired[typing.Union[int, float, numbers.Number]],
+            "mode": NotRequired[Literal["multiple", "tags"]],
+            "disabled": NotRequired[bool],
+            "size": NotRequired[Literal["small", "middle", "large"]],
+            "bordered": NotRequired[bool],
+            "placeholder": NotRequired[str],
+            "placement": NotRequired[Literal["bottomLeft", "bottomRight", "topLeft", "topRight"]],
+            "value": NotRequired[typing.Union[typing.Union[str, typing.Union[int, float, numbers.Number]], typing.Sequence[typing.Union[str, typing.Union[int, float, numbers.Number]]]]],
+            "maxTagCount": NotRequired[typing.Union[typing.Union[int, float, numbers.Number], Literal["responsive"]]],
+            "optionFilterProp": NotRequired[Literal["value", "label"]],
+            "allowClear": NotRequired[bool]
+        }
+    )
+
+    DataSize = TypedDict(
+        "DataSize",
+            {
+            "xs": NotRequired[typing.Union[int, float, numbers.Number]],
+            "sm": NotRequired[typing.Union[int, float, numbers.Number]],
+            "md": NotRequired[typing.Union[int, float, numbers.Number]],
+            "lg": NotRequired[typing.Union[int, float, numbers.Number]],
+            "xl": NotRequired[typing.Union[int, float, numbers.Number]],
+            "xxl": NotRequired[typing.Union[int, float, numbers.Number]]
+        }
+    )
+
+    DataOptions = TypedDict(
+        "DataOptions",
+            {
+            "label": NotRequired[str],
+            "value": NotRequired[typing.Union[str, typing.Union[int, float, numbers.Number]]]
+        }
+    )
+
+    Sticky = TypedDict(
+        "Sticky",
+            {
+            "offsetHeader": NotRequired[typing.Union[int, float, numbers.Number]],
+            "offsetScroll": NotRequired[typing.Union[int, float, numbers.Number]]
+        }
+    )
+
+    TitlePopoverInfo = TypedDict(
+        "TitlePopoverInfo",
+            {
+            "title": NotRequired[str],
+            "content": NotRequired[str],
+            "placement": NotRequired[Literal["top", "left", "right", "bottom", "topLeft", "topRight", "bottomLeft", "bottomRight", "leftTop", "leftBottom", "rightTop", "rightBottom"]],
+            "overlayStyle": NotRequired[dict]
+        }
+    )
+
+    ColumnsFormatConstraint = TypedDict(
+        "ColumnsFormatConstraint",
+            {
+            "rule": NotRequired[str],
+            "content": NotRequired[str]
+        }
+    )
+
+    SortOptions = TypedDict(
+        "SortOptions",
+            {
+            "sortDataIndexes": NotRequired[typing.Sequence[str]],
+            "multiple": NotRequired[typing.Union[bool, Literal["auto"]]],
+            "forceCompareModes": NotRequired[typing.Dict[typing.Union[str, float, int], Literal["number", "custom"]]],
+            "customOrders": NotRequired[typing.Dict[typing.Union[str, float, int], typing.Sequence]]
+        }
+    )
+
+    FilterOptions = TypedDict(
+        "FilterOptions",
+            {
+            "filterMode": NotRequired[Literal["checkbox", "keyword", "tree"]],
+            "filterCustomItems": NotRequired[typing.Union[typing.Sequence[typing.Any], typing.Any]],
+            "filterCustomTreeItems": NotRequired[typing.Sequence[dict]],
+            "filterMultiple": NotRequired[bool],
+            "filterSearch": NotRequired[bool]
+        }
+    )
+
+    Pagination = TypedDict(
+        "Pagination",
+            {
+            "position": NotRequired[Literal["topLeft", "topCenter", "topRight", "bottomLeft", "bottomCenter", "bottomRight"]],
+            "pageSize": NotRequired[typing.Union[int, float, numbers.Number]],
+            "current": NotRequired[typing.Union[int, float, numbers.Number]],
+            "showSizeChanger": NotRequired[bool],
+            "pageSizeOptions": NotRequired[typing.Sequence[typing.Union[int, float, numbers.Number]]],
+            "showTitle": NotRequired[bool],
+            "showQuickJumper": NotRequired[bool],
+            "showTotalPrefix": NotRequired[str],
+            "showTotalSuffix": NotRequired[str],
+            "hideOnSinglePage": NotRequired[bool],
+            "simple": NotRequired[bool],
+            "disabled": NotRequired[bool],
+            "size": NotRequired[Literal["default", "small"]],
+            "total": NotRequired[typing.Union[int, float, numbers.Number]],
+            "showLessItems": NotRequired[bool]
+        }
+    )
+
+    Sorter = TypedDict(
+        "Sorter",
+            {
+            "columns": NotRequired[typing.Sequence[str]],
+            "orders": NotRequired[typing.Sequence[Literal["ascend", "descend"]]]
+        }
+    )
+
+    SummaryRowContents = TypedDict(
+        "SummaryRowContents",
+            {
+            "content": NotRequired[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]],
+            "colSpan": NotRequired[typing.Union[int, float, numbers.Number]],
+            "align": NotRequired[Literal["left", "center", "right"]]
+        }
+    )
+
+    ExpandedRowKeyToContent = TypedDict(
+        "ExpandedRowKeyToContent",
+            {
+            "key": typing.Union[str, typing.Union[int, float, numbers.Number]],
+            "content": NotRequired[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]]
+        }
+    )
+
+    CellClickEvent = TypedDict(
+        "CellClickEvent",
+            {
+            "pageX": NotRequired[typing.Union[int, float, numbers.Number]],
+            "pageY": NotRequired[typing.Union[int, float, numbers.Number]],
+            "clientX": NotRequired[typing.Union[int, float, numbers.Number]],
+            "clientY": NotRequired[typing.Union[int, float, numbers.Number]],
+            "screenX": NotRequired[typing.Union[int, float, numbers.Number]],
+            "screenY": NotRequired[typing.Union[int, float, numbers.Number]],
+            "timestamp": NotRequired[typing.Union[int, float, numbers.Number]]
+        }
+    )
+
+    CellDoubleClickEvent = TypedDict(
+        "CellDoubleClickEvent",
+            {
+            "pageX": NotRequired[typing.Union[int, float, numbers.Number]],
+            "pageY": NotRequired[typing.Union[int, float, numbers.Number]],
+            "clientX": NotRequired[typing.Union[int, float, numbers.Number]],
+            "clientY": NotRequired[typing.Union[int, float, numbers.Number]],
+            "screenX": NotRequired[typing.Union[int, float, numbers.Number]],
+            "screenY": NotRequired[typing.Union[int, float, numbers.Number]],
+            "timestamp": NotRequired[typing.Union[int, float, numbers.Number]]
+        }
+    )
+
+    CellContextMenuClickEvent = TypedDict(
+        "CellContextMenuClickEvent",
+            {
+            "pageX": NotRequired[typing.Union[int, float, numbers.Number]],
+            "pageY": NotRequired[typing.Union[int, float, numbers.Number]],
+            "clientX": NotRequired[typing.Union[int, float, numbers.Number]],
+            "clientY": NotRequired[typing.Union[int, float, numbers.Number]],
+            "screenX": NotRequired[typing.Union[int, float, numbers.Number]],
+            "screenY": NotRequired[typing.Union[int, float, numbers.Number]],
+            "timestamp": NotRequired[typing.Union[int, float, numbers.Number]]
+        }
+    )
+
+    LoadingState = TypedDict(
+        "LoadingState",
+            {
+            "is_loading": NotRequired[bool],
+            "prop_name": NotRequired[str],
+            "component_name": NotRequired[str]
+        }
+    )
+
     @_explicitize_args
-    def __init__(self, id=Component.UNDEFINED, key=Component.UNDEFINED, style=Component.UNDEFINED, className=Component.UNDEFINED, locale=Component.UNDEFINED, containerId=Component.UNDEFINED, columns=Component.UNDEFINED, showHeader=Component.UNDEFINED, rowHoverable=Component.UNDEFINED, tableLayout=Component.UNDEFINED, data=Component.UNDEFINED, bordered=Component.UNDEFINED, maxHeight=Component.UNDEFINED, maxWidth=Component.UNDEFINED, scrollToFirstRowOnChange=Component.UNDEFINED, size=Component.UNDEFINED, rowSelectionType=Component.UNDEFINED, selectedRowKeys=Component.UNDEFINED, selectedRows=Component.UNDEFINED, rowSelectionWidth=Component.UNDEFINED, rowSelectionCheckStrictly=Component.UNDEFINED, rowSelectionIgnoreRowKeys=Component.UNDEFINED, selectedRowsSyncWithData=Component.UNDEFINED, sticky=Component.UNDEFINED, enableHoverListen=Component.UNDEFINED, recentlyMouseEnterColumnDataIndex=Component.UNDEFINED, recentlyMouseEnterRowKey=Component.UNDEFINED, recentlyMouseEnterRow=Component.UNDEFINED, titlePopoverInfo=Component.UNDEFINED, columnsFormatConstraint=Component.UNDEFINED, sortOptions=Component.UNDEFINED, showSorterTooltip=Component.UNDEFINED, showSorterTooltipTarget=Component.UNDEFINED, filterOptions=Component.UNDEFINED, defaultFilteredValues=Component.UNDEFINED, pagination=Component.UNDEFINED, currentData=Component.UNDEFINED, recentlyChangedRow=Component.UNDEFINED, recentlyChangedColumn=Component.UNDEFINED, sorter=Component.UNDEFINED, filter=Component.UNDEFINED, mode=Component.UNDEFINED, summaryRowContents=Component.UNDEFINED, summaryRowBlankColumns=Component.UNDEFINED, summaryRowFixed=Component.UNDEFINED, conditionalStyleFuncs=Component.UNDEFINED, expandedRowKeyToContent=Component.UNDEFINED, expandedRowWidth=Component.UNDEFINED, expandRowByClick=Component.UNDEFINED, defaultExpandedRowKeys=Component.UNDEFINED, expandedRowKeys=Component.UNDEFINED, enableCellClickListenColumns=Component.UNDEFINED, recentlyCellClickColumn=Component.UNDEFINED, recentlyCellClickRecord=Component.UNDEFINED, nClicksCell=Component.UNDEFINED, cellClickEvent=Component.UNDEFINED, recentlyCellDoubleClickColumn=Component.UNDEFINED, recentlyCellDoubleClickRecord=Component.UNDEFINED, nDoubleClicksCell=Component.UNDEFINED, cellDoubleClickEvent=Component.UNDEFINED, recentlyContextMenuClickColumn=Component.UNDEFINED, recentlyContextMenuClickRecord=Component.UNDEFINED, nContextMenuClicksCell=Component.UNDEFINED, cellContextMenuClickEvent=Component.UNDEFINED, emptyContent=Component.UNDEFINED, cellUpdateOptimize=Component.UNDEFINED, miniChartHeight=Component.UNDEFINED, miniChartAnimation=Component.UNDEFINED, recentlyButtonClickedRow=Component.UNDEFINED, nClicksButton=Component.UNDEFINED, clickedContent=Component.UNDEFINED, clickedCustom=Component.UNDEFINED, recentlyButtonClickedDataIndex=Component.UNDEFINED, customFormatFuncs=Component.UNDEFINED, recentlyCheckedRow=Component.UNDEFINED, recentlyCheckedLabel=Component.UNDEFINED, recentlyCheckedDataIndex=Component.UNDEFINED, recentlyCheckedStatus=Component.UNDEFINED, recentlySwitchRow=Component.UNDEFINED, recentlySwitchDataIndex=Component.UNDEFINED, recentlySwitchStatus=Component.UNDEFINED, nClicksDropdownItem=Component.UNDEFINED, recentlyClickedDropdownItemTitle=Component.UNDEFINED, recentlyDropdownItemClickedDataIndex=Component.UNDEFINED, recentlyDropdownItemClickedRow=Component.UNDEFINED, recentlySelectRow=Component.UNDEFINED, recentlySelectDataIndex=Component.UNDEFINED, recentlySelectValue=Component.UNDEFINED, hiddenRowKeys=Component.UNDEFINED, dataDeepCompare=Component.UNDEFINED, virtual=Component.UNDEFINED, title=Component.UNDEFINED, footer=Component.UNDEFINED, loading=Component.UNDEFINED, rowClassName=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
+    def __init__(
+        self,
+        id: typing.Optional[str] = None,
+        key: typing.Optional[str] = None,
+        style: typing.Optional[dict] = None,
+        className: typing.Optional[str] = None,
+        locale: typing.Optional[Literal["zh-cn", "en-us", "de-de"]] = None,
+        containerId: typing.Optional[str] = None,
+        columns: typing.Optional[typing.Sequence["Columns"]] = None,
+        showHeader: typing.Optional[bool] = None,
+        rowHoverable: typing.Optional[bool] = None,
+        tableLayout: typing.Optional[Literal["auto", "fixed"]] = None,
+        data: typing.Optional[typing.Sequence[typing.Dict[typing.Union[str, float, int], typing.Union[typing.Sequence[typing.Any], typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]], str, typing.Union[int, float, numbers.Number], bool, "Data", typing.Sequence[typing.Union[int, float, numbers.Number]], typing.Union["Data", typing.Sequence["Data"]], typing.Sequence["Data"], dict]]]] = None,
+        bordered: typing.Optional[bool] = None,
+        maxHeight: typing.Optional[typing.Union[typing.Union[int, float, numbers.Number], str]] = None,
+        maxWidth: typing.Optional[typing.Union[typing.Union[int, float, numbers.Number], str, bool]] = None,
+        scrollToFirstRowOnChange: typing.Optional[bool] = None,
+        size: typing.Optional[Literal["small", "middle", "large"]] = None,
+        rowSelectionType: typing.Optional[Literal["checkbox", "radio"]] = None,
+        selectedRowKeys: typing.Optional[typing.Sequence[typing.Union[str, typing.Union[int, float, numbers.Number]]]] = None,
+        selectedRows: typing.Optional[typing.Sequence] = None,
+        rowSelectionWidth: typing.Optional[typing.Union[str, typing.Union[int, float, numbers.Number]]] = None,
+        rowSelectionCheckStrictly: typing.Optional[bool] = None,
+        rowSelectionIgnoreRowKeys: typing.Optional[typing.Sequence[typing.Union[str, typing.Union[int, float, numbers.Number]]]] = None,
+        selectedRowsSyncWithData: typing.Optional[bool] = None,
+        sticky: typing.Optional[typing.Union[bool, "Sticky"]] = None,
+        enableHoverListen: typing.Optional[bool] = None,
+        recentlyMouseEnterColumnDataIndex: typing.Optional[str] = None,
+        recentlyMouseEnterRowKey: typing.Optional[typing.Union[str, typing.Union[int, float, numbers.Number]]] = None,
+        recentlyMouseEnterRow: typing.Optional[dict] = None,
+        titlePopoverInfo: typing.Optional[typing.Dict[typing.Union[str, float, int], "TitlePopoverInfo"]] = None,
+        columnsFormatConstraint: typing.Optional[typing.Dict[typing.Union[str, float, int], "ColumnsFormatConstraint"]] = None,
+        sortOptions: typing.Optional["SortOptions"] = None,
+        showSorterTooltip: typing.Optional[bool] = None,
+        showSorterTooltipTarget: typing.Optional[Literal["full-header", "sorter-icon"]] = None,
+        filterOptions: typing.Optional[typing.Dict[typing.Union[str, float, int], "FilterOptions"]] = None,
+        defaultFilteredValues: typing.Optional[typing.Dict[typing.Union[str, float, int], typing.Sequence]] = None,
+        pagination: typing.Optional[typing.Union["Pagination", bool]] = None,
+        currentData: typing.Optional[typing.Sequence] = None,
+        recentlyChangedRow: typing.Optional[dict] = None,
+        recentlyChangedColumn: typing.Optional[str] = None,
+        sorter: typing.Optional["Sorter"] = None,
+        filter: typing.Optional[dict] = None,
+        mode: typing.Optional[Literal["client-side", "server-side"]] = None,
+        summaryRowContents: typing.Optional[typing.Sequence["SummaryRowContents"]] = None,
+        summaryRowBlankColumns: typing.Optional[typing.Union[int, float, numbers.Number]] = None,
+        summaryRowFixed: typing.Optional[typing.Union[bool, Literal["top", "bottom"]]] = None,
+        conditionalStyleFuncs: typing.Optional[typing.Dict[typing.Union[str, float, int], str]] = None,
+        expandedRowKeyToContent: typing.Optional[typing.Sequence["ExpandedRowKeyToContent"]] = None,
+        expandedRowWidth: typing.Optional[typing.Union[str, typing.Union[int, float, numbers.Number]]] = None,
+        expandRowByClick: typing.Optional[bool] = None,
+        defaultExpandedRowKeys: typing.Optional[typing.Sequence[str]] = None,
+        expandedRowKeys: typing.Optional[typing.Sequence[str]] = None,
+        enableCellClickListenColumns: typing.Optional[typing.Sequence[str]] = None,
+        recentlyCellClickColumn: typing.Optional[str] = None,
+        recentlyCellClickRecord: typing.Optional[dict] = None,
+        nClicksCell: typing.Optional[typing.Union[int, float, numbers.Number]] = None,
+        cellClickEvent: typing.Optional["CellClickEvent"] = None,
+        recentlyCellDoubleClickColumn: typing.Optional[str] = None,
+        recentlyCellDoubleClickRecord: typing.Optional[dict] = None,
+        nDoubleClicksCell: typing.Optional[typing.Union[int, float, numbers.Number]] = None,
+        cellDoubleClickEvent: typing.Optional["CellDoubleClickEvent"] = None,
+        recentlyContextMenuClickColumn: typing.Optional[str] = None,
+        recentlyContextMenuClickRecord: typing.Optional[dict] = None,
+        nContextMenuClicksCell: typing.Optional[typing.Union[int, float, numbers.Number]] = None,
+        cellContextMenuClickEvent: typing.Optional["CellContextMenuClickEvent"] = None,
+        emptyContent: typing.Optional[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]] = None,
+        cellUpdateOptimize: typing.Optional[bool] = None,
+        miniChartHeight: typing.Optional[typing.Union[int, float, numbers.Number]] = None,
+        miniChartAnimation: typing.Optional[bool] = None,
+        recentlyButtonClickedRow: typing.Optional[dict] = None,
+        nClicksButton: typing.Optional[typing.Union[int, float, numbers.Number]] = None,
+        clickedContent: typing.Optional[str] = None,
+        clickedCustom: typing.Optional[typing.Any] = None,
+        recentlyButtonClickedDataIndex: typing.Optional[str] = None,
+        customFormatFuncs: typing.Optional[typing.Dict[typing.Union[str, float, int], str]] = None,
+        recentlyCheckedRow: typing.Optional[dict] = None,
+        recentlyCheckedLabel: typing.Optional[str] = None,
+        recentlyCheckedDataIndex: typing.Optional[str] = None,
+        recentlyCheckedStatus: typing.Optional[bool] = None,
+        recentlySwitchRow: typing.Optional[dict] = None,
+        recentlySwitchDataIndex: typing.Optional[str] = None,
+        recentlySwitchStatus: typing.Optional[bool] = None,
+        nClicksDropdownItem: typing.Optional[typing.Union[int, float, numbers.Number]] = None,
+        recentlyClickedDropdownItemTitle: typing.Optional[str] = None,
+        recentlyDropdownItemClickedDataIndex: typing.Optional[str] = None,
+        recentlyDropdownItemClickedRow: typing.Optional[dict] = None,
+        recentlySelectRow: typing.Optional[dict] = None,
+        recentlySelectDataIndex: typing.Optional[str] = None,
+        recentlySelectValue: typing.Optional[typing.Union[typing.Union[typing.Union[int, float, numbers.Number], str], typing.Sequence[typing.Union[typing.Union[int, float, numbers.Number], str]]]] = None,
+        hiddenRowKeys: typing.Optional[typing.Sequence[str]] = None,
+        dataDeepCompare: typing.Optional[bool] = None,
+        virtual: typing.Optional[bool] = None,
+        title: typing.Optional[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]] = None,
+        footer: typing.Optional[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]] = None,
+        loading: typing.Optional[bool] = None,
+        rowClassName: typing.Optional[str] = None,
+        loading_state: typing.Optional["LoadingState"] = None,
+        **kwargs
+    ):
         self._prop_names = ['id', 'key', 'style', 'className', 'locale', 'containerId', 'columns', 'showHeader', 'rowHoverable', 'tableLayout', 'data', 'bordered', 'maxHeight', 'maxWidth', 'scrollToFirstRowOnChange', 'size', 'rowSelectionType', 'selectedRowKeys', 'selectedRows', 'rowSelectionWidth', 'rowSelectionCheckStrictly', 'rowSelectionIgnoreRowKeys', 'selectedRowsSyncWithData', 'sticky', 'enableHoverListen', 'recentlyMouseEnterColumnDataIndex', 'recentlyMouseEnterRowKey', 'recentlyMouseEnterRow', 'titlePopoverInfo', 'columnsFormatConstraint', 'sortOptions', 'showSorterTooltip', 'showSorterTooltipTarget', 'filterOptions', 'defaultFilteredValues', 'pagination', 'currentData', 'recentlyChangedRow', 'recentlyChangedColumn', 'sorter', 'filter', 'mode', 'summaryRowContents', 'summaryRowBlankColumns', 'summaryRowFixed', 'conditionalStyleFuncs', 'expandedRowKeyToContent', 'expandedRowWidth', 'expandRowByClick', 'defaultExpandedRowKeys', 'expandedRowKeys', 'enableCellClickListenColumns', 'recentlyCellClickColumn', 'recentlyCellClickRecord', 'nClicksCell', 'cellClickEvent', 'recentlyCellDoubleClickColumn', 'recentlyCellDoubleClickRecord', 'nDoubleClicksCell', 'cellDoubleClickEvent', 'recentlyContextMenuClickColumn', 'recentlyContextMenuClickRecord', 'nContextMenuClicksCell', 'cellContextMenuClickEvent', 'emptyContent', 'cellUpdateOptimize', 'miniChartHeight', 'miniChartAnimation', 'recentlyButtonClickedRow', 'nClicksButton', 'clickedContent', 'clickedCustom', 'recentlyButtonClickedDataIndex', 'customFormatFuncs', 'recentlyCheckedRow', 'recentlyCheckedLabel', 'recentlyCheckedDataIndex', 'recentlyCheckedStatus', 'recentlySwitchRow', 'recentlySwitchDataIndex', 'recentlySwitchStatus', 'nClicksDropdownItem', 'recentlyClickedDropdownItemTitle', 'recentlyDropdownItemClickedDataIndex', 'recentlyDropdownItemClickedRow', 'recentlySelectRow', 'recentlySelectDataIndex', 'recentlySelectValue', 'hiddenRowKeys', 'dataDeepCompare', 'virtual', 'title', 'footer', 'loading', 'rowClassName', 'data-*', 'aria-*', 'loading_state']
         self._valid_wildcard_attributes =            ['data-', 'aria-']
         self.available_properties = ['id', 'key', 'style', 'className', 'locale', 'containerId', 'columns', 'showHeader', 'rowHoverable', 'tableLayout', 'data', 'bordered', 'maxHeight', 'maxWidth', 'scrollToFirstRowOnChange', 'size', 'rowSelectionType', 'selectedRowKeys', 'selectedRows', 'rowSelectionWidth', 'rowSelectionCheckStrictly', 'rowSelectionIgnoreRowKeys', 'selectedRowsSyncWithData', 'sticky', 'enableHoverListen', 'recentlyMouseEnterColumnDataIndex', 'recentlyMouseEnterRowKey', 'recentlyMouseEnterRow', 'titlePopoverInfo', 'columnsFormatConstraint', 'sortOptions', 'showSorterTooltip', 'showSorterTooltipTarget', 'filterOptions', 'defaultFilteredValues', 'pagination', 'currentData', 'recentlyChangedRow', 'recentlyChangedColumn', 'sorter', 'filter', 'mode', 'summaryRowContents', 'summaryRowBlankColumns', 'summaryRowFixed', 'conditionalStyleFuncs', 'expandedRowKeyToContent', 'expandedRowWidth', 'expandRowByClick', 'defaultExpandedRowKeys', 'expandedRowKeys', 'enableCellClickListenColumns', 'recentlyCellClickColumn', 'recentlyCellClickRecord', 'nClicksCell', 'cellClickEvent', 'recentlyCellDoubleClickColumn', 'recentlyCellDoubleClickRecord', 'nDoubleClicksCell', 'cellDoubleClickEvent', 'recentlyContextMenuClickColumn', 'recentlyContextMenuClickRecord', 'nContextMenuClicksCell', 'cellContextMenuClickEvent', 'emptyContent', 'cellUpdateOptimize', 'miniChartHeight', 'miniChartAnimation', 'recentlyButtonClickedRow', 'nClicksButton', 'clickedContent', 'clickedCustom', 'recentlyButtonClickedDataIndex', 'customFormatFuncs', 'recentlyCheckedRow', 'recentlyCheckedLabel', 'recentlyCheckedDataIndex', 'recentlyCheckedStatus', 'recentlySwitchRow', 'recentlySwitchDataIndex', 'recentlySwitchStatus', 'nClicksDropdownItem', 'recentlyClickedDropdownItemTitle', 'recentlyDropdownItemClickedDataIndex', 'recentlyDropdownItemClickedRow', 'recentlySelectRow', 'recentlySelectDataIndex', 'recentlySelectValue', 'hiddenRowKeys', 'dataDeepCompare', 'virtual', 'title', 'footer', 'loading', 'rowClassName', 'data-*', 'aria-*', 'loading_state']

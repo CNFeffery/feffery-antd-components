@@ -7,6 +7,7 @@ import { Color } from '@rc-component/color-picker';
 import { has, isArray, isString, isUndefined } from 'lodash';
 import { pickBy } from 'ramda';
 import { str2Locale } from '../../components/locales.react';
+import { useLoading } from '../../components/utils';
 // 自定义hooks
 import useCss from '../../hooks/useCss';
 // 上下文
@@ -43,7 +44,7 @@ const AntdColorPicker = (props) => {
         size,
         trigger,
         setProps,
-        loading_state
+        ...others
     } = props;
 
     const parseLinearGradient = (gradient) => {
@@ -147,7 +148,7 @@ const AntdColorPicker = (props) => {
         <ConfigProvider locale={locale !== 'en-us' ? str2Locale.get(locale) : undefined}>
             <ColorPicker
                 // 提取具有data-*或aria-*通配格式的属性
-                {...pickBy((_, k) => k.startsWith('data-') || k.startsWith('aria-'), props)}
+                {...pickBy((_, k) => k.startsWith('data-') || k.startsWith('aria-'), others)}
                 id={id}
                 className={
                     isString(className) ?
@@ -232,9 +233,7 @@ const AntdColorPicker = (props) => {
                     }
                     setProps({ value: null })
                 }}
-                data-dash-is-loading={
-                    (loading_state && loading_state.is_loading) || undefined
-                } />
+                data-dash-is-loading={useLoading()} />
         </ConfigProvider>
     );
 }

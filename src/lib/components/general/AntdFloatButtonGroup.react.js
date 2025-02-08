@@ -4,34 +4,36 @@ import PropTypes from 'prop-types';
 import { FloatButton } from 'antd';
 // 辅助库
 import { isString } from 'lodash';
+import { useLoading } from '../utils';
 // 自定义hooks
 import useCss from '../../hooks/useCss';
 
 /**
  * 悬浮按钮组组件AntdFloatButtonGroup
  */
-const AntdFloatButtonGroup = (props) => {
-    // 取得必要属性或参数
-    let {
-        id,
-        children,
-        className,
-        style,
-        key,
-        icon,
-        description,
-        tooltip,
-        type,
-        shape,
-        trigger,
-        placement,
-        open,
-        setProps,
-        loading_state
-    } = props;
+const AntdFloatButtonGroup = ({
+    id,
+    children,
+    className,
+    style,
+    key,
+    icon,
+    description,
+    tooltip,
+    type = 'default',
+    shape = 'circle',
+    trigger,
+    placement,
+    open,
+    setProps,
+    ...others
+}) => {
 
     return (
-        <FloatButton.Group id={id}
+        <FloatButton.Group
+            // 提取具有data-*或aria-*通配格式的属性
+            {...pickBy((_, k) => k.startsWith('data-') || k.startsWith('aria-'), others)}
+            id={id}
             className={
                 isString(className) ?
                     className :
@@ -48,9 +50,7 @@ const AntdFloatButtonGroup = (props) => {
             placement={placement}
             open={open}
             onOpenChange={(e) => setProps({ open: e })}
-            data-dash-is-loading={
-                (loading_state && loading_state.is_loading) || undefined
-            }
+            data-dash-is-loading={useLoading()}
         >{children}</FloatButton.Group>
     );
 }
@@ -126,20 +126,15 @@ AntdFloatButtonGroup.propTypes = {
      */
     open: PropTypes.bool,
 
-    loading_state: PropTypes.shape({
-        /**
-         * Determines if the component is loading or not
-         */
-        is_loading: PropTypes.bool,
-        /**
-         * Holds which property is loading
-         */
-        prop_name: PropTypes.string,
-        /**
-         * Holds the name of the component that is loading
-         */
-        component_name: PropTypes.string
-    }),
+    /**
+     * `data-*`格式属性通配
+     */
+    'data-*': PropTypes.string,
+
+    /**
+     * `aria-*`格式属性通配
+     */
+    'aria-*': PropTypes.string,
 
     /**
      * Dash-assigned callback that should be called to report property changes
@@ -147,11 +142,5 @@ AntdFloatButtonGroup.propTypes = {
      */
     setProps: PropTypes.func
 };
-
-// 设置默认参数
-AntdFloatButtonGroup.defaultProps = {
-    type: 'default',
-    shape: 'circle'
-}
 
 export default AntdFloatButtonGroup;

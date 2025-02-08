@@ -1,6 +1,13 @@
 # AUTO GENERATED FILE - DO NOT EDIT
 
+import typing  # noqa: F401
+import numbers # noqa: F401
+from typing_extensions import TypedDict, NotRequired, Literal # noqa: F401
 from dash.development.base_component import Component, _explicitize_args
+try:
+    from dash.development.base_component import ComponentType # noqa: F401
+except ImportError:
+    ComponentType = typing.TypeVar("ComponentType", bound=Component)
 
 
 class AntdBadge(Component):
@@ -101,8 +108,55 @@ Keyword arguments:
     _base_nodes = ['children']
     _namespace = 'feffery_antd_components'
     _type = 'AntdBadge'
+    Styles = TypedDict(
+        "Styles",
+            {
+            "root": NotRequired[dict],
+            "indicator": NotRequired[dict]
+        }
+    )
+
+    ClassNames = TypedDict(
+        "ClassNames",
+            {
+            "root": NotRequired[str],
+            "indicator": NotRequired[str]
+        }
+    )
+
+    LoadingState = TypedDict(
+        "LoadingState",
+            {
+            "is_loading": NotRequired[bool],
+            "prop_name": NotRequired[str],
+            "component_name": NotRequired[str]
+        }
+    )
+
     @_explicitize_args
-    def __init__(self, children=None, id=Component.UNDEFINED, key=Component.UNDEFINED, style=Component.UNDEFINED, className=Component.UNDEFINED, styles=Component.UNDEFINED, classNames=Component.UNDEFINED, color=Component.UNDEFINED, count=Component.UNDEFINED, dot=Component.UNDEFINED, showZero=Component.UNDEFINED, overflowCount=Component.UNDEFINED, offset=Component.UNDEFINED, status=Component.UNDEFINED, text=Component.UNDEFINED, title=Component.UNDEFINED, size=Component.UNDEFINED, nClicks=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
+    def __init__(
+        self,
+        children: typing.Optional[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]] = None,
+        id: typing.Optional[str] = None,
+        key: typing.Optional[str] = None,
+        style: typing.Optional[dict] = None,
+        className: typing.Optional[typing.Union[str, dict]] = None,
+        styles: typing.Optional["Styles"] = None,
+        classNames: typing.Optional["ClassNames"] = None,
+        color: typing.Optional[str] = None,
+        count: typing.Optional[typing.Union[int, float, numbers.Number]] = None,
+        dot: typing.Optional[bool] = None,
+        showZero: typing.Optional[bool] = None,
+        overflowCount: typing.Optional[typing.Union[int, float, numbers.Number]] = None,
+        offset: typing.Optional[typing.Sequence[typing.Union[int, float, numbers.Number]]] = None,
+        status: typing.Optional[Literal["success", "processing", "default", "error", "warning"]] = None,
+        text: typing.Optional[str] = None,
+        title: typing.Optional[str] = None,
+        size: typing.Optional[Literal["default", "small"]] = None,
+        nClicks: typing.Optional[typing.Union[int, float, numbers.Number]] = None,
+        loading_state: typing.Optional["LoadingState"] = None,
+        **kwargs
+    ):
         self._prop_names = ['id', 'key', 'children', 'style', 'className', 'styles', 'classNames', 'color', 'count', 'dot', 'showZero', 'overflowCount', 'offset', 'status', 'text', 'title', 'size', 'nClicks', 'data-*', 'aria-*', 'loading_state']
         self._valid_wildcard_attributes =            ['data-', 'aria-']
         self.available_properties = ['id', 'key', 'children', 'style', 'className', 'styles', 'classNames', 'color', 'count', 'dot', 'showZero', 'overflowCount', 'offset', 'status', 'text', 'title', 'size', 'nClicks', 'data-*', 'aria-*', 'loading_state']

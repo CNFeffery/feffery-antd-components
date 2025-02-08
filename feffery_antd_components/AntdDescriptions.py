@@ -1,6 +1,13 @@
 # AUTO GENERATED FILE - DO NOT EDIT
 
+import typing  # noqa: F401
+import numbers # noqa: F401
+from typing_extensions import TypedDict, NotRequired, Literal # noqa: F401
 from dash.development.base_component import Component, _explicitize_args
+try:
+    from dash.development.base_component import ComponentType # noqa: F401
+except ImportError:
+    ComponentType = typing.TypeVar("ComponentType", bound=Component)
 
 
 class AntdDescriptions(Component):
@@ -110,8 +117,60 @@ Keyword arguments:
     _base_nodes = ['title', 'extra', 'children']
     _namespace = 'feffery_antd_components'
     _type = 'AntdDescriptions'
+    Items = TypedDict(
+        "Items",
+            {
+            "label": NotRequired[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]],
+            "span": NotRequired[typing.Union[typing.Union[int, float, numbers.Number], Literal["filled"]]],
+            "children": NotRequired[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]],
+            "labelStyle": NotRequired[dict],
+            "contentStyle": NotRequired[dict],
+            "style": NotRequired[dict],
+            "className": NotRequired[str]
+        }
+    )
+
+    Column = TypedDict(
+        "Column",
+            {
+            "xxl": NotRequired[typing.Union[int, float, numbers.Number]],
+            "xl": NotRequired[typing.Union[int, float, numbers.Number]],
+            "lg": NotRequired[typing.Union[int, float, numbers.Number]],
+            "md": NotRequired[typing.Union[int, float, numbers.Number]],
+            "sm": NotRequired[typing.Union[int, float, numbers.Number]],
+            "xs": NotRequired[typing.Union[int, float, numbers.Number]]
+        }
+    )
+
+    LoadingState = TypedDict(
+        "LoadingState",
+            {
+            "is_loading": NotRequired[bool],
+            "prop_name": NotRequired[str],
+            "component_name": NotRequired[str]
+        }
+    )
+
     @_explicitize_args
-    def __init__(self, children=None, id=Component.UNDEFINED, key=Component.UNDEFINED, style=Component.UNDEFINED, className=Component.UNDEFINED, items=Component.UNDEFINED, title=Component.UNDEFINED, column=Component.UNDEFINED, bordered=Component.UNDEFINED, size=Component.UNDEFINED, layout=Component.UNDEFINED, labelStyle=Component.UNDEFINED, contentStyle=Component.UNDEFINED, extra=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
+    def __init__(
+        self,
+        children: typing.Optional[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]] = None,
+        id: typing.Optional[str] = None,
+        key: typing.Optional[str] = None,
+        style: typing.Optional[dict] = None,
+        className: typing.Optional[typing.Union[str, dict]] = None,
+        items: typing.Optional[typing.Sequence["Items"]] = None,
+        title: typing.Optional[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]] = None,
+        column: typing.Optional[typing.Union[typing.Union[int, float, numbers.Number], "Column"]] = None,
+        bordered: typing.Optional[bool] = None,
+        size: typing.Optional[Literal["small", "default", "large"]] = None,
+        layout: typing.Optional[Literal["horizontal", "vertical"]] = None,
+        labelStyle: typing.Optional[dict] = None,
+        contentStyle: typing.Optional[dict] = None,
+        extra: typing.Optional[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]] = None,
+        loading_state: typing.Optional["LoadingState"] = None,
+        **kwargs
+    ):
         self._prop_names = ['id', 'key', 'children', 'style', 'className', 'items', 'title', 'column', 'bordered', 'size', 'layout', 'labelStyle', 'contentStyle', 'extra', 'data-*', 'aria-*', 'loading_state']
         self._valid_wildcard_attributes =            ['data-', 'aria-']
         self.available_properties = ['id', 'key', 'children', 'style', 'className', 'items', 'title', 'column', 'bordered', 'size', 'layout', 'labelStyle', 'contentStyle', 'extra', 'data-*', 'aria-*', 'loading_state']

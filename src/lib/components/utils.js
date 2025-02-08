@@ -26,7 +26,7 @@ const parseChildrenToArray = children => {
 
 const resolveChildProps = child => window.dash_component_api.getLayout(child.props.componentPath)?.props;
 
-const useLoading = () => window.dash_component_api.useDashContext().useLoading();
+const useLoading = () => window.dash_component_api.useDashContext().useLoading() || undefined;
 
 const loadingSelector = (componentPath) => state => {
 

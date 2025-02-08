@@ -1,6 +1,13 @@
 # AUTO GENERATED FILE - DO NOT EDIT
 
+import typing  # noqa: F401
+import numbers # noqa: F401
+from typing_extensions import TypedDict, NotRequired, Literal # noqa: F401
 from dash.development.base_component import Component, _explicitize_args
+try:
+    from dash.development.base_component import ComponentType # noqa: F401
+except ImportError:
+    ComponentType = typing.TypeVar("ComponentType", bound=Component)
 
 
 class AntdWatermark(Component):
@@ -82,8 +89,38 @@ Keyword arguments:
     _base_nodes = ['children']
     _namespace = 'feffery_antd_components'
     _type = 'AntdWatermark'
+    LoadingState = TypedDict(
+        "LoadingState",
+            {
+            "is_loading": NotRequired[bool],
+            "prop_name": NotRequired[str],
+            "component_name": NotRequired[str]
+        }
+    )
+
     @_explicitize_args
-    def __init__(self, children=None, id=Component.UNDEFINED, key=Component.UNDEFINED, style=Component.UNDEFINED, className=Component.UNDEFINED, markClassName=Component.UNDEFINED, markStyle=Component.UNDEFINED, content=Component.UNDEFINED, rotate=Component.UNDEFINED, zIndex=Component.UNDEFINED, fontColor=Component.UNDEFINED, fontSize=Component.UNDEFINED, gapX=Component.UNDEFINED, gapY=Component.UNDEFINED, image=Component.UNDEFINED, width=Component.UNDEFINED, height=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
+    def __init__(
+        self,
+        children: typing.Optional[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]] = None,
+        id: typing.Optional[str] = None,
+        key: typing.Optional[str] = None,
+        style: typing.Optional[dict] = None,
+        className: typing.Optional[str] = None,
+        markClassName: typing.Optional[str] = None,
+        markStyle: typing.Optional[dict] = None,
+        content: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
+        rotate: typing.Optional[typing.Union[int, float, numbers.Number]] = None,
+        zIndex: typing.Optional[typing.Union[int, float, numbers.Number]] = None,
+        fontColor: typing.Optional[str] = None,
+        fontSize: typing.Optional[typing.Union[int, float, numbers.Number]] = None,
+        gapX: typing.Optional[typing.Union[int, float, numbers.Number]] = None,
+        gapY: typing.Optional[typing.Union[int, float, numbers.Number]] = None,
+        image: typing.Optional[str] = None,
+        width: typing.Optional[typing.Union[int, float, numbers.Number]] = None,
+        height: typing.Optional[typing.Union[int, float, numbers.Number]] = None,
+        loading_state: typing.Optional["LoadingState"] = None,
+        **kwargs
+    ):
         self._prop_names = ['id', 'key', 'children', 'style', 'className', 'markClassName', 'markStyle', 'content', 'rotate', 'zIndex', 'fontColor', 'fontSize', 'gapX', 'gapY', 'image', 'width', 'height', 'data-*', 'aria-*', 'loading_state']
         self._valid_wildcard_attributes =            ['data-', 'aria-']
         self.available_properties = ['id', 'key', 'children', 'style', 'className', 'markClassName', 'markStyle', 'content', 'rotate', 'zIndex', 'fontColor', 'fontSize', 'gapX', 'gapY', 'image', 'width', 'height', 'data-*', 'aria-*', 'loading_state']

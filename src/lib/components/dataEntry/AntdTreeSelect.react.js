@@ -6,10 +6,116 @@ const LazyAntdTreeSelect = React.lazy(() => import(/* webpackChunkName: "data_en
 /**
  * 树选择组件AntdTreeSelect
  */
-const AntdTreeSelect = (props) => {
+const AntdTreeSelect = ({
+    id,
+    style,
+    className,
+    popupClassName,
+    key,
+    name,
+    locale = 'zh-cn',
+    treeData,
+    treeNodeKeyToTitle,
+    treeDataMode = 'tree',
+    allowClear = true,
+    bordered = true,
+    variant,
+    treeLine = false,
+    listHeight = 256,
+    placeholder,
+    value,
+    defaultValue,
+    maxCount,
+    maxTagCount,
+    maxTagPlaceholder,
+    maxTagTextLength,
+    multiple = false,
+    size = 'middle',
+    prefix,
+    suffixIcon,
+    switcherIcon,
+    treeCheckable = false,
+    treeCheckStrictly = false,
+    treeDefaultExpandAll = false,
+    treeDefaultExpandedKeys,
+    treeExpandedKeys,
+    virtual = true,
+    disabled = false,
+    placement = 'bottomLeft',
+    status,
+    treeNodeFilterProp = 'value',
+    treeNodeFilterMode = 'case-insensitive',
+    autoClearSearchValue = true,
+    popupContainer = 'body',
+    setProps,
+    readOnly,
+    showCheckedStrategy = 'show-all',
+    dropdownBefore,
+    dropdownAfter,
+    enableAsyncLoad = false,
+    persistence,
+    persisted_props = ['value'],
+    persistence_type = 'local',
+    batchPropsNames = [],
+    ...others
+}) => {
     return (
         <Suspense fallback={null}>
-            <LazyAntdTreeSelect {...props} />
+            <LazyAntdTreeSelect {
+                ...{
+                    id,
+                    style,
+                    className,
+                    popupClassName,
+                    key,
+                    name,
+                    locale,
+                    treeData,
+                    treeNodeKeyToTitle,
+                    treeDataMode,
+                    allowClear,
+                    bordered,
+                    variant,
+                    treeLine,
+                    listHeight,
+                    placeholder,
+                    value,
+                    defaultValue,
+                    maxCount,
+                    maxTagCount,
+                    maxTagPlaceholder,
+                    maxTagTextLength,
+                    multiple,
+                    size,
+                    prefix,
+                    suffixIcon,
+                    switcherIcon,
+                    treeCheckable,
+                    treeCheckStrictly,
+                    treeDefaultExpandAll,
+                    treeDefaultExpandedKeys,
+                    treeExpandedKeys,
+                    virtual,
+                    disabled,
+                    placement,
+                    status,
+                    treeNodeFilterProp,
+                    treeNodeFilterMode,
+                    autoClearSearchValue,
+                    popupContainer,
+                    setProps,
+                    readOnly,
+                    showCheckedStrategy,
+                    dropdownBefore,
+                    dropdownAfter,
+                    enableAsyncLoad,
+                    persistence,
+                    persisted_props,
+                    persistence_type,
+                    batchPropsNames,
+                    ...others
+                }
+            } />
         </Suspense>
     );
 }
@@ -449,33 +555,6 @@ AntdTreeSelect.propTypes = {
      */
     persistence_type: PropTypes.oneOf(['local', 'session', 'memory'])
 };
-
-// 设置默认参数
-AntdTreeSelect.defaultProps = {
-    listHeight: 256,
-    virtual: true,
-    allowClear: true,
-    disabled: false,
-    bordered: true,
-    placement: 'bottomLeft',
-    treeLine: false,
-    multiple: false,
-    size: 'middle',
-    treeCheckable: false,
-    treeCheckStrictly: false,
-    treeDefaultExpandAll: false,
-    autoClearSearchValue: true,
-    persisted_props: ['value'],
-    persistence_type: 'local',
-    locale: 'zh-cn',
-    treeNodeFilterProp: 'value',
-    treeDataMode: 'tree',
-    popupContainer: 'body',
-    showCheckedStrategy: 'show-all',
-    treeNodeFilterMode: 'case-insensitive',
-    enableAsyncLoad: false,
-    batchPropsNames: []
-}
 
 export default AntdTreeSelect;
 

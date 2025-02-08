@@ -20,7 +20,6 @@ const AntdTag = ({
     closeIcon = false,
     closeCounts = 0,
     setProps,
-    loading_state,
     ...others
 }) => {
     return (
@@ -40,7 +39,6 @@ const AntdTag = ({
                     closeIcon,
                     closeCounts,
                     setProps,
-                    loading_state,
                     ...others
                 }
             } />
@@ -124,21 +122,6 @@ AntdTag.propTypes = {
      * `aria-*`格式属性通配
      */
     'aria-*': PropTypes.string,
-
-    loading_state: PropTypes.shape({
-        /**
-         * Determines if the component is loading or not
-         */
-        is_loading: PropTypes.bool,
-        /**
-         * Holds which property is loading
-         */
-        prop_name: PropTypes.string,
-        /**
-         * Holds the name of the component that is loading
-         */
-        component_name: PropTypes.string
-    }),
 
     /**
      * Dash-assigned callback that should be called to report property changes

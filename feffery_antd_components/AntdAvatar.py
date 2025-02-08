@@ -1,6 +1,13 @@
 # AUTO GENERATED FILE - DO NOT EDIT
 
+import typing  # noqa: F401
+import numbers # noqa: F401
+from typing_extensions import TypedDict, NotRequired, Literal # noqa: F401
 from dash.development.base_component import Component, _explicitize_args
+try:
+    from dash.development.base_component import ComponentType # noqa: F401
+except ImportError:
+    ComponentType = typing.TypeVar("ComponentType", bound=Component)
 
 
 class AntdAvatar(Component):
@@ -94,8 +101,49 @@ Keyword arguments:
     _base_nodes = ['children']
     _namespace = 'feffery_antd_components'
     _type = 'AntdAvatar'
+    Size = TypedDict(
+        "Size",
+            {
+            "xs": NotRequired[typing.Union[int, float, numbers.Number]],
+            "sm": NotRequired[typing.Union[int, float, numbers.Number]],
+            "md": NotRequired[typing.Union[int, float, numbers.Number]],
+            "lg": NotRequired[typing.Union[int, float, numbers.Number]],
+            "xl": NotRequired[typing.Union[int, float, numbers.Number]],
+            "xxl": NotRequired[typing.Union[int, float, numbers.Number]]
+        }
+    )
+
+    LoadingState = TypedDict(
+        "LoadingState",
+            {
+            "is_loading": NotRequired[bool],
+            "prop_name": NotRequired[str],
+            "component_name": NotRequired[str]
+        }
+    )
+
     @_explicitize_args
-    def __init__(self, id=Component.UNDEFINED, key=Component.UNDEFINED, style=Component.UNDEFINED, className=Component.UNDEFINED, mode=Component.UNDEFINED, gap=Component.UNDEFINED, text=Component.UNDEFINED, icon=Component.UNDEFINED, iconRenderer=Component.UNDEFINED, alt=Component.UNDEFINED, src=Component.UNDEFINED, srcSet=Component.UNDEFINED, draggable=Component.UNDEFINED, crossOrigin=Component.UNDEFINED, size=Component.UNDEFINED, shape=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
+    def __init__(
+        self,
+        id: typing.Optional[str] = None,
+        key: typing.Optional[str] = None,
+        style: typing.Optional[dict] = None,
+        className: typing.Optional[typing.Union[str, dict]] = None,
+        mode: typing.Optional[Literal["text", "icon", "image"]] = None,
+        gap: typing.Optional[typing.Union[int, float, numbers.Number]] = None,
+        text: typing.Optional[str] = None,
+        icon: typing.Optional[str] = None,
+        iconRenderer: typing.Optional[Literal["AntdIcon", "fontawesome"]] = None,
+        alt: typing.Optional[str] = None,
+        src: typing.Optional[str] = None,
+        srcSet: typing.Optional[str] = None,
+        draggable: typing.Optional[typing.Union[bool, Literal["true", "false"]]] = None,
+        crossOrigin: typing.Optional[Literal["anonymous", "use-credentials", ""]] = None,
+        size: typing.Optional[typing.Union[typing.Union[int, float, numbers.Number], Literal["large", "small", "default"], "Size"]] = None,
+        shape: typing.Optional[Literal["circle", "square"]] = None,
+        loading_state: typing.Optional["LoadingState"] = None,
+        **kwargs
+    ):
         self._prop_names = ['id', 'key', 'style', 'className', 'mode', 'gap', 'text', 'icon', 'iconRenderer', 'alt', 'src', 'srcSet', 'draggable', 'crossOrigin', 'size', 'shape', 'data-*', 'aria-*', 'loading_state']
         self._valid_wildcard_attributes =            ['data-', 'aria-']
         self.available_properties = ['id', 'key', 'style', 'className', 'mode', 'gap', 'text', 'icon', 'iconRenderer', 'alt', 'src', 'srcSet', 'draggable', 'crossOrigin', 'size', 'shape', 'data-*', 'aria-*', 'loading_state']

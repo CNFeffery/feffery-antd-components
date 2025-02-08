@@ -6,10 +6,46 @@ const LazyAntdCalendar = React.lazy(() => import(/* webpackChunkName: "data_entr
 /**
  * 日历组件AntdCalendar
  */
-const AntdCalendar = (props) => {
+const AntdCalendar = ({
+    id,
+    className,
+    style,
+    key,
+    name,
+    locale = 'zh-cn',
+    defaultValue,
+    value,
+    format = 'YYYY-MM-DD',
+    size = 'default',
+    customCells,
+    setProps,
+    persistence,
+    persisted_props = ['value'],
+    persistence_type = 'local',
+    ...others
+}) => {
     return (
         <Suspense fallback={null}>
-            <LazyAntdCalendar {...props} />
+            <LazyAntdCalendar {
+                ...{
+                    id,
+                    className,
+                    style,
+                    key,
+                    name,
+                    locale,
+                    defaultValue,
+                    value,
+                    format,
+                    size,
+                    customCells,
+                    setProps,
+                    persistence,
+                    persisted_props,
+                    persistence_type,
+                    ...others
+                }
+            } />
         </Suspense>
     );
 }
@@ -123,21 +159,6 @@ AntdCalendar.propTypes = {
      */
     'aria-*': PropTypes.string,
 
-    loading_state: PropTypes.shape({
-        /**
-         * Determines if the component is loading or not
-         */
-        is_loading: PropTypes.bool,
-        /**
-         * Holds which property is loading
-         */
-        prop_name: PropTypes.string,
-        /**
-         * Holds the name of the component that is loading
-         */
-        component_name: PropTypes.string
-    }),
-
     /**
      * Dash-assigned callback that should be called to report property changes
      * to Dash, to make them available for callbacks.
@@ -165,15 +186,6 @@ AntdCalendar.propTypes = {
      */
     persistence_type: PropTypes.oneOf(['local', 'session', 'memory'])
 };
-
-// 设置默认参数
-AntdCalendar.defaultProps = {
-    format: 'YYYY-MM-DD',
-    size: 'default',
-    persisted_props: ['value'],
-    persistence_type: 'local',
-    locale: 'zh-cn'
-}
 
 export default AntdCalendar;
 

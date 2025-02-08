@@ -6,10 +6,66 @@ const LazyAntdTransfer = React.lazy(() => import(/* webpackChunkName: "data_entr
 /**
  * 穿梭框组件AntdTransfer
  */
-const AntdTransfer = (props) => {
+const AntdTransfer = ({
+    id,
+    className,
+    style,
+    key,
+    name,
+    locale = 'zh-cn',
+    setProps,
+    dataSource,
+    selectionsIcon,
+    height,
+    pagination = false,
+    oneWay = false,
+    operations = ['', ''],
+    showSearch = false,
+    optionFilterMode = 'case-insensitive',
+    showSelectAll = true,
+    titles,
+    disabled = false,
+    targetKeys = [],
+    status,
+    readOnly = false,
+    persistence,
+    persisted_props = ['targetKeys'],
+    persistence_type = 'local',
+    batchPropsNames = [],
+    ...others
+}) => {
     return (
         <Suspense fallback={null}>
-            <LazyAntdTransfer {...props} />
+            <LazyAntdTransfer {
+                ...{
+                    id,
+                    className,
+                    style,
+                    key,
+                    name,
+                    locale,
+                    setProps,
+                    dataSource,
+                    selectionsIcon,
+                    height,
+                    pagination,
+                    oneWay,
+                    operations,
+                    showSearch,
+                    optionFilterMode,
+                    showSelectAll,
+                    titles,
+                    disabled,
+                    targetKeys,
+                    status,
+                    readOnly,
+                    persistence,
+                    persisted_props,
+                    persistence_type,
+                    batchPropsNames,
+                    ...others
+                }
+            } />
         </Suspense>
     );
 }
@@ -242,23 +298,6 @@ AntdTransfer.propTypes = {
      */
     persistence_type: PropTypes.oneOf(['local', 'session', 'memory'])
 };
-
-// 设置默认参数
-AntdTransfer.defaultProps = {
-    targetKeys: [],
-    pagination: false,
-    oneWay: false,
-    operations: ['', ''],
-    showSearch: false,
-    showSelectAll: true,
-    disabled: false,
-    optionFilterMode: 'case-insensitive',
-    readOnly: false,
-    persisted_props: ['targetKeys'],
-    persistence_type: 'local',
-    locale: 'zh-cn',
-    batchPropsNames: []
-}
 
 export default AntdTransfer;
 
