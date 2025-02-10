@@ -13,28 +13,28 @@ import useCss from '../../hooks/useCss'
 /**
  * 加载动画组件AntdSpin
  */
-const AntdSpin = (props) => {
-    let {
-        id,
-        className,
-        wrapperClassName,
-        style,
-        key,
-        children,
-        spinning,
-        size,
-        delay,
-        fullscreen,
-        text,
-        listenPropsMode,
-        excludeProps,
-        includeProps,
-        debug,
-        indicator,
-        manual,
-        percent,
-        setProps
-    } = props;
+const AntdSpin = ({
+    id,
+    className,
+    wrapperClassName,
+    style,
+    key,
+    children,
+    spinning = false,
+    size = 'middle',
+    delay,
+    fullscreen = false,
+    text,
+    listenPropsMode = 'default',
+    excludeProps = [],
+    includeProps = [],
+    debug = false,
+    indicator,
+    manual = false,
+    percent,
+    setProps,
+    ...others
+}) => {
 
     const ctx = window.dash_component_api.useDashContext();
     // 获取内部加载中组件信息
@@ -96,7 +96,7 @@ const AntdSpin = (props) => {
             <>
                 <Spin
                     // 提取具有data-*或aria-*通配格式的属性
-                    {...pickBy((_, k) => k.startsWith('data-') || k.startsWith('aria-'), props)}
+                    {...pickBy((_, k) => k.startsWith('data-') || k.startsWith('aria-'), others)}
                     id={id}
                     className={
                         isString(className) ?
@@ -126,7 +126,7 @@ const AntdSpin = (props) => {
     return (
         <Spin
             // 提取具有data-*或aria-*通配格式的属性
-            {...pickBy((_, k) => k.startsWith('data-') || k.startsWith('aria-'), props)}
+            {...pickBy((_, k) => k.startsWith('data-') || k.startsWith('aria-'), others)}
             id={id}
             className={
                 isString(className) ?
@@ -270,17 +270,5 @@ AntdSpin.propTypes = {
      */
     setProps: PropTypes.func
 };
-
-// 设置默认参数
-AntdSpin.defaultProps = {
-    size: 'middle',
-    spinning: false,
-    fullscreen: false,
-    listenPropsMode: 'default',
-    excludeProps: [],
-    includeProps: [],
-    debug: false,
-    manual: false
-}
 
 export default AntdSpin;

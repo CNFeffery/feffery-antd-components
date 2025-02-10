@@ -13,35 +13,35 @@ import Draggable from "react-draggable";
 import { isString } from 'lodash';
 import { pickBy } from 'ramda';
 import { v4 as uuidv4 } from 'uuid';
+import { useLoading } from '../utils';
 // 自定义hooks
 import useCss from '../../hooks/useCss';
 
 /**
  * 弹出式卡片组件AntdPopupCard
  */
-const AntdPopupCard = (props) => {
-    const {
-        id,
-        children,
-        className,
-        key,
-        style,
-        visible,
-        title,
-        width,
-        transitionType,
-        forceRender,
-        destroyOnClose,
-        closable,
-        closeIconType,
-        draggable,
-        dragClassName,
-        zIndex,
-        bodyStyle,
-        loading,
-        setProps,
-        loading_state
-    } = props;
+const AntdPopupCard = ({
+    id,
+    children,
+    className,
+    key,
+    style,
+    visible = true,
+    title,
+    width,
+    transitionType = 'fade',
+    forceRender = false,
+    destroyOnClose = true,
+    closable = true,
+    closeIconType = 'default',
+    draggable = false,
+    dragClassName,
+    zIndex = 1000,
+    bodyStyle,
+    loading = false,
+    setProps,
+    ...others
+}) => {
 
     const [handleId, setHandleId] = useState(uuidv4().replace(/\d+/g, ""));
     const [disabled, setDisabled] = useState(false);
@@ -72,7 +72,7 @@ const AntdPopupCard = (props) => {
     return (
         <Modal
             // 提取具有data-*或aria-*通配格式的属性
-            {...pickBy((_, k) => k.startsWith('data-') || k.startsWith('aria-'), props)}
+            {...pickBy((_, k) => k.startsWith('data-') || k.startsWith('aria-'), others)}
             id={id}
             className={
                 isString(className) ?
@@ -169,9 +169,7 @@ const AntdPopupCard = (props) => {
                     </Draggable>
                 ) : undefined}
             loading={loading}
-            data-dash-is-loading={
-                (loading_state && loading_state.is_loading) || undefined
-            }
+            data-dash-is-loading={useLoading()}
         >{children}</Modal>
     );
 }
@@ -302,35 +300,7 @@ AntdPopupCard.propTypes = {
      * Dash-assigned callback that should be called to report property changes
      * to Dash, to make them available for callbacks.
      */
-    setProps: PropTypes.func,
-
-    loading_state: PropTypes.shape({
-        /**
-         * Determines if the component is loading or not
-         */
-        is_loading: PropTypes.bool,
-        /**
-         * Holds which property is loading
-         */
-        prop_name: PropTypes.string,
-        /**
-         * Holds the name of the component that is loading
-         */
-        component_name: PropTypes.string
-    })
+    setProps: PropTypes.func
 };
-
-// 设置默认参数
-AntdPopupCard.defaultProps = {
-    transitionType: 'fade',
-    closeIconType: 'default',
-    draggable: false,
-    visible: true,
-    closable: true,
-    zIndex: 1000,
-    loading: false,
-    forceRender: false,
-    destroyOnClose: true
-}
 
 export default AntdPopupCard;

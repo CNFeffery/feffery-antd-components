@@ -12,21 +12,19 @@ import useCss from '../../hooks/useCss';
 /**
  * 全局提示组件AntdMessage
  */
-const AntdMessage = (props) => {
-    let {
-        className,
-        style,
-        content,
-        type,
-        duration,
-        icon,
-        iconRenderer,
-        top,
-        maxCount,
-        underCompatibilityMode,
-        loading_state,
-        setProps
-    } = props;
+const AntdMessage = ({
+    className,
+    style,
+    content,
+    type = 'default',
+    duration = 3,
+    icon,
+    iconRenderer = 'AntdIcon',
+    top = 8,
+    maxCount,
+    underCompatibilityMode,
+    setProps
+}) => {
 
     const { message: _message } = App.useApp();
 
@@ -164,34 +162,11 @@ AntdMessage.propTypes = {
      */
     underCompatibilityMode: PropTypes.bool,
 
-    loading_state: PropTypes.shape({
-        /**
-         * Determines if the component is loading or not
-         */
-        is_loading: PropTypes.bool,
-        /**
-         * Holds which property is loading
-         */
-        prop_name: PropTypes.string,
-        /**
-         * Holds the name of the component that is loading
-         */
-        component_name: PropTypes.string
-    }),
-
     /**
      * Dash-assigned callback that should be called to report property changes
      * to Dash, to make them available for callbacks.
      */
     setProps: PropTypes.func
 };
-
-// 设置默认参数
-AntdMessage.defaultProps = {
-    type: 'default',
-    duration: 3,
-    top: 8,
-    iconRenderer: 'AntdIcon'
-}
 
 export default AntdMessage;

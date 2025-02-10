@@ -6,41 +6,41 @@ import { Drawer } from 'antd';
 // 辅助库
 import { isString } from 'lodash';
 import { pickBy } from 'ramda';
+import { useLoading } from '../utils';
 // 自定义hooks
 import useCss from '../../hooks/useCss';
 
 /**
  * 抽屉组件AntdDrawer
  */
-const AntdDrawer = (props) => {
-    let {
-        id,
-        children,
-        className,
-        style,
-        rootStyle,
-        classNames,
-        styles,
-        key,
-        visible,
-        title,
-        placement,
-        closable,
-        forceRender,
-        destroyOnClose,
-        containerId,
-        containerSelector,
-        height,
-        mask,
-        maskClosable,
-        width,
-        zIndex,
-        loading,
-        extra,
-        footer,
-        setProps,
-        loading_state
-    } = props;
+const AntdDrawer = ({
+    id,
+    children,
+    className,
+    style,
+    rootStyle,
+    classNames,
+    styles,
+    key,
+    visible = false,
+    title,
+    placement = 'right',
+    closable = true,
+    forceRender = false,
+    destroyOnClose = false,
+    containerId,
+    containerSelector,
+    height = 256,
+    mask = true,
+    maskClosable = true,
+    width = 256,
+    zIndex = 1000,
+    loading = false,
+    extra,
+    footer,
+    setProps,
+    ...others
+}) => {
 
     const onClose = () => {
         setProps({ visible: false })
@@ -49,7 +49,7 @@ const AntdDrawer = (props) => {
     return (
         <Drawer
             // 提取具有data-*或aria-*通配格式的属性
-            {...pickBy((_, k) => k.startsWith('data-') || k.startsWith('aria-'), props)}
+            {...pickBy((_, k) => k.startsWith('data-') || k.startsWith('aria-'), others)}
             id={id}
             key={key}
             className={
@@ -98,9 +98,7 @@ const AntdDrawer = (props) => {
             extra={extra}
             footer={footer}
             onClose={onClose}
-            data-dash-is-loading={
-                (loading_state && loading_state.is_loading) || undefined
-            }
+            data-dash-is-loading={useLoading()}
         >{children}
         </Drawer>
     );
@@ -299,41 +297,11 @@ AntdDrawer.propTypes = {
      */
     'aria-*': PropTypes.string,
 
-    loading_state: PropTypes.shape({
-        /**
-         * Determines if the component is loading or not
-         */
-        is_loading: PropTypes.bool,
-        /**
-         * Holds which property is loading
-         */
-        prop_name: PropTypes.string,
-        /**
-         * Holds the name of the component that is loading
-         */
-        component_name: PropTypes.string
-    }),
-
     /**
      * Dash-assigned callback that should be called to report property changes
      * to Dash, to make them available for callbacks.
      */
     setProps: PropTypes.func
 };
-
-// 设置默认参数
-AntdDrawer.defaultProps = {
-    visible: false,
-    placement: 'right',
-    closable: true,
-    forceRender: false,
-    destroyOnClose: false,
-    width: 256,
-    height: 256,
-    mask: true,
-    maskClosable: true,
-    zIndex: 1000,
-    loading: false
-}
 
 export default AntdDrawer;

@@ -13,27 +13,27 @@ import useCss from '../../../hooks/useCss';
 /**
  * 骨架屏组件AntdSkeleton
  */
-const AntdSkeleton = (props) => {
-    let {
-        id,
-        className,
-        style,
-        key,
-        children,
-        loading,
-        active,
-        delay,
-        avatar,
-        paragraph,
-        round,
-        title,
-        listenPropsMode,
-        excludeProps,
-        includeProps,
-        debug,
-        manual,
-        setProps
-    } = props;
+const AntdSkeleton = ({
+    id,
+    className,
+    style,
+    key,
+    children,
+    loading = false,
+    active = false,
+    delay = 0,
+    avatar = false,
+    paragraph = true,
+    round = false,
+    title = true,
+    listenPropsMode = 'default',
+    excludeProps = [],
+    includeProps = [],
+    debug = false,
+    manual = false,
+    setProps,
+    ...others
+}) => {
 
     const ctx = window.dash_component_api.useDashContext();
     // 获取内部加载中组件信息
@@ -96,7 +96,7 @@ const AntdSkeleton = (props) => {
     return (
         <Skeleton
             // 提取具有data-*或aria-*通配格式的属性
-            {...pickBy((_, k) => k.startsWith('data-') || k.startsWith('aria-'), props)}
+            {...pickBy((_, k) => k.startsWith('data-') || k.startsWith('aria-'), others)}
             id={id}
             className={
                 isString(className) ?
@@ -286,22 +286,5 @@ AntdSkeleton.propTypes = {
      */
     setProps: PropTypes.func
 };
-
-// 设置默认参数
-AntdSkeleton.defaultProps = {
-    loading: false,
-    delay: 0,
-    active: false,
-    delay: 0,
-    avatar: false,
-    paragraph: true,
-    title: true,
-    round: false,
-    debug: false,
-    listenPropsMode: 'default',
-    excludeProps: [],
-    includeProps: [],
-    manual: false
-}
 
 export default AntdSkeleton;

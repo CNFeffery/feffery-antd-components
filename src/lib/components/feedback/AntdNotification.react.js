@@ -11,23 +11,21 @@ import useCss from '../../hooks/useCss';
 /**
  * 通知提醒框组件AntdNotification
  */
-const AntdNotification = (props) => {
-    let {
-        className,
-        style,
-        message,
-        description,
-        type,
-        placement,
-        top,
-        bottom,
-        duration,
-        closable,
-        closeButton,
-        underCompatibilityMode,
-        loading_state,
-        setProps
-    } = props;
+const AntdNotification = ({
+    className,
+    style,
+    message,
+    description,
+    type = 'default',
+    placement = 'topRight',
+    top = 24,
+    bottom = 24,
+    duration = 4.5,
+    closable = true,
+    closeButton,
+    underCompatibilityMode,
+    setProps
+}) => {
 
     const [api, contextHolder] = notification.useNotification({ stack: false });
     const { notification: _notification } = App.useApp();
@@ -196,36 +194,11 @@ AntdNotification.propTypes = {
      */
     underCompatibilityMode: PropTypes.bool,
 
-    loading_state: PropTypes.shape({
-        /**
-         * Determines if the component is loading or not
-         */
-        is_loading: PropTypes.bool,
-        /**
-         * Holds which property is loading
-         */
-        prop_name: PropTypes.string,
-        /**
-         * Holds the name of the component that is loading
-         */
-        component_name: PropTypes.string
-    }),
-
     /**
      * Dash-assigned callback that should be called to report property changes
      * to Dash, to make them available for callbacks.
      */
     setProps: PropTypes.func,
 };
-
-// 设置默认参数
-AntdNotification.defaultProps = {
-    type: 'default',
-    placement: 'topRight',
-    top: 24,
-    bottom: 24,
-    duration: 4.5,
-    closable: true
-}
 
 export default AntdNotification;

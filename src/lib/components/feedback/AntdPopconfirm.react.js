@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import { Popconfirm, ConfigProvider } from 'antd';
 // 辅助库
 import { str2Locale } from '../locales.react';
-import { parseChildrenToArray } from '../utils';
+import { parseChildrenToArray, useLoading } from '../utils';
 import { isString, isUndefined } from 'lodash';
 import { pickBy } from 'ramda';
 // 自定义hooks
@@ -16,41 +16,40 @@ import PropsContext from '../../contexts/PropsContext';
 /**
  * 气泡确认框组件AntdPopconfirm
  */
-const AntdPopconfirm = (props) => {
-    let {
-        id,
-        children,
-        className,
-        style,
-        key,
-        locale,
-        icon,
-        title,
-        description,
-        disabled,
-        placement,
-        mouseEnterDelay,
-        mouseLeaveDelay,
-        overlayClassName,
-        overlayStyle,
-        overlayInnerStyle,
-        okText,
-        okButtonProps,
-        cancelText,
-        cancelButtonProps,
-        showCancel,
-        confirmCounts,
-        cancelCounts,
-        trigger,
-        zIndex,
-        arrow,
-        fresh,
-        open,
-        permanent,
-        popupContainer,
-        setProps,
-        loading_state
-    } = props;
+const AntdPopconfirm = ({
+    id,
+    children,
+    className,
+    style,
+    key,
+    locale = 'zh-cn',
+    icon,
+    title,
+    description,
+    disabled = false,
+    placement = 'top',
+    mouseEnterDelay = 0.1,
+    mouseLeaveDelay = 0.1,
+    overlayClassName,
+    overlayStyle,
+    overlayInnerStyle,
+    okText,
+    okButtonProps,
+    cancelText,
+    cancelButtonProps,
+    showCancel = true,
+    confirmCounts = 0,
+    cancelCounts = 0,
+    trigger = 'click',
+    zIndex,
+    arrow = 'show',
+    fresh = false,
+    open = false,
+    permanent = false,
+    popupContainer = 'body',
+    setProps,
+    ...others
+}) => {
 
     const arrowPoint = useMemo(() => {
         if (arrow === 'hide') {
@@ -83,7 +82,7 @@ const AntdPopconfirm = (props) => {
         <ConfigProvider locale={str2Locale.get(locale)}>
             <Popconfirm
                 // 提取具有data-*或aria-*通配格式的属性
-                {...pickBy((_, k) => k.startsWith('data-') || k.startsWith('aria-'), props)}
+                {...pickBy((_, k) => k.startsWith('data-') || k.startsWith('aria-'), others)}
                 id={id}
                 className={
                     isString(className) ?
@@ -130,9 +129,7 @@ const AntdPopconfirm = (props) => {
                 }
                 onCancel={listenCancel}
                 onConfirm={listenConfirm}
-                data-dash-is-loading={
-                    (loading_state && loading_state.is_loading) || undefined
-                }>
+                data-dash-is-loading={useLoading()}>
                 {children}
             </Popconfirm>
         </ConfigProvider>
@@ -429,23 +426,5 @@ AntdPopconfirm.propTypes = {
      */
     setProps: PropTypes.func
 };
-
-// 设置默认参数
-AntdPopconfirm.defaultProps = {
-    disabled: false,
-    placement: 'top',
-    mouseEnterDelay: 0.1,
-    mouseLeaveDelay: 0.1,
-    showCancel: true,
-    confirmCounts: 0,
-    cancelCounts: 0,
-    trigger: 'click',
-    locale: 'zh-cn',
-    popupContainer: 'body',
-    arrow: 'show',
-    fresh: false,
-    open: false,
-    permanent: false
-}
 
 export default AntdPopconfirm;
