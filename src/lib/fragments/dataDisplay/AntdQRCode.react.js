@@ -6,6 +6,7 @@ import { QRCode, ConfigProvider } from 'antd';
 import { isString } from 'lodash';
 import { pickBy } from 'ramda';
 import { str2Locale } from '../../components/locales.react';
+import { useLoading } from '../../components/utils';
 // 自定义hooks
 import useCss from '../../hooks/useCss';
 // 参数类型
@@ -35,7 +36,7 @@ const AntdQRCode = (props) => {
         autoSpin,
         refreshClicks,
         setProps,
-        loading_state
+        ...others
     } = props;
 
     useEffect(() => {
@@ -55,7 +56,7 @@ const AntdQRCode = (props) => {
         >
             <QRCode
                 // 提取具有data-*或aria-*通配格式的属性
-                {...pickBy((_, k) => k.startsWith('data-') || k.startsWith('aria-'), props)}
+                {...pickBy((_, k) => k.startsWith('data-') || k.startsWith('aria-'), others)}
                 id={id}
                 className={
                     isString(className) ?
@@ -75,9 +76,7 @@ const AntdQRCode = (props) => {
                 errorLevel={errorLevel}
                 status={autoSpin && loading_state?.prop_name?.startsWith('value') ? 'loading' : status}
                 onRefresh={() => setProps({ refreshClicks: refreshClicks + 1 })}
-                data-dash-is-loading={
-                    (loading_state && loading_state.is_loading) || undefined
-                }
+                data-dash-is-loading={useLoading()}
             />
         </ConfigProvider>
     );

@@ -6,10 +6,36 @@ const LazyAntdTimeline = React.lazy(() => import(/* webpackChunkName: "data_disp
 /**
  * 时间轴组件AntdTimeline
  */
-const AntdTimeline = (props) => {
+const AntdTimeline = ({
+    id,
+    className,
+    style,
+    key,
+    items,
+    mode = 'left',
+    pending,
+    pendingDot,
+    reverse = false,
+    setProps,
+    ...others
+}) => {
     return (
         <Suspense fallback={null}>
-            <LazyAntdTimeline {...props} />
+            <LazyAntdTimeline {
+                ...{
+                    id,
+                    className,
+                    style,
+                    key,
+                    items,
+                    mode,
+                    pending,
+                    pendingDot,
+                    reverse,
+                    setProps,
+                    ...others
+                }
+            } />
         </Suspense>
     );
 }
@@ -98,33 +124,12 @@ AntdTimeline.propTypes = {
      */
     'aria-*': PropTypes.string,
 
-    loading_state: PropTypes.shape({
-        /**
-         * Determines if the component is loading or not
-         */
-        is_loading: PropTypes.bool,
-        /**
-         * Holds which property is loading
-         */
-        prop_name: PropTypes.string,
-        /**
-         * Holds the name of the component that is loading
-         */
-        component_name: PropTypes.string
-    }),
-
     /**
      * Dash-assigned callback that should be called to report property changes
      * to Dash, to make them available for callbacks.
      */
     setProps: PropTypes.func
 };
-
-// 设置默认参数
-AntdTimeline.defaultProps = {
-    mode: 'left',
-    reverse: false
-}
 
 export default AntdTimeline;
 

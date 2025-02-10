@@ -5,6 +5,7 @@ import { Timeline } from 'antd';
 // 辅助库
 import { isString } from 'lodash';
 import { pickBy } from 'ramda';
+import { useLoading } from '../../components/utils';
 // 自定义hooks
 import useCss from '../../hooks/useCss';
 // 参数类型
@@ -25,13 +26,13 @@ const AntdTimeline = (props) => {
         pendingDot,
         reverse,
         setProps,
-        loading_state
+        ...others
     } = props;
 
     return (
         <Timeline
             // 提取具有data-*或aria-*通配格式的属性
-            {...pickBy((_, k) => k.startsWith('data-') || k.startsWith('aria-'), props)}
+            {...pickBy((_, k) => k.startsWith('data-') || k.startsWith('aria-'), others)}
             id={id}
             className={
                 isString(className) ?
@@ -55,9 +56,7 @@ const AntdTimeline = (props) => {
                     }
                 )
             )}
-            data-dash-is-loading={
-                (loading_state && loading_state.is_loading) || undefined
-            }
+            data-dash-is-loading={useLoading()}
         >
         </Timeline>
     );

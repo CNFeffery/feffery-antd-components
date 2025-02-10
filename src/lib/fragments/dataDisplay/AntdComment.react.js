@@ -9,7 +9,7 @@ import { DislikeOutlined, LikeOutlined, DislikeFilled, LikeFilled } from '@ant-d
 import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
 import { str2Locale, locale2text } from '../../components/locales.react';
-import { parseChildrenToArray } from '../../components/utils';
+import { parseChildrenToArray, useLoading } from '../../components/utils';
 import { isString } from 'lodash';
 import { pickBy } from 'ramda';
 import 'dayjs/locale/de';
@@ -51,8 +51,8 @@ const AntdComment = (props) => {
         avatarProps,
         popupContainer,
         setProps,
-        loading_state,
-        batchPropsNames
+        batchPropsNames,
+        ...others
     } = props;
 
     // 批量属性监听
@@ -143,7 +143,7 @@ const AntdComment = (props) => {
         <ConfigProvider locale={str2Locale.get(locale)}>
             <Comment
                 // 提取具有data-*或aria-*通配格式的属性
-                {...pickBy((_, k) => k.startsWith('data-') || k.startsWith('aria-'), props)}
+                {...pickBy((_, k) => k.startsWith('data-') || k.startsWith('aria-'), others)}
                 id={id}
                 className={
                     isString(className) ?
@@ -165,9 +165,7 @@ const AntdComment = (props) => {
                             publishTime.value}</span>
                     </Tooltip>
                 }
-                data-dash-is-loading={
-                    (loading_state && loading_state.is_loading) || undefined
-                }
+                data-dash-is-loading={useLoading()}
             >
                 {children}
             </Comment>

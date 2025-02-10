@@ -6,10 +6,32 @@ const LazyAntdCardMeta = React.lazy(() => import(/* webpackChunkName: "data_disp
 /**
  * 结构化卡片组件AntdCardMeta
  */
-const AntdCardMeta = (props) => {
+const AntdCardMeta = ({
+    id,
+    className,
+    style,
+    key,
+    avatar,
+    description,
+    title,
+    setProps,
+    ...others
+}) => {
     return (
         <Suspense fallback={null}>
-            <LazyAntdCardMeta {...props} />
+            <LazyAntdCardMeta {
+                ...{
+                    id,
+                    className,
+                    style,
+                    key,
+                    avatar,
+                    description,
+                    title,
+                    setProps,
+                    ...others
+                }
+            } />
         </Suspense>
     );
 }
@@ -63,30 +85,12 @@ AntdCardMeta.propTypes = {
      */
     'aria-*': PropTypes.string,
 
-    loading_state: PropTypes.shape({
-        /**
-         * Determines if the component is loading or not
-         */
-        is_loading: PropTypes.bool,
-        /**
-         * Holds which property is loading
-         */
-        prop_name: PropTypes.string,
-        /**
-         * Holds the name of the component that is loading
-         */
-        component_name: PropTypes.string
-    }),
-
     /**
      * Dash-assigned callback that should be called to report property changes
      * to Dash, to make them available for callbacks.
      */
     setProps: PropTypes.func
 };
-
-// 设置默认参数
-AntdCardMeta.defaultProps = {}
 
 export default AntdCardMeta;
 

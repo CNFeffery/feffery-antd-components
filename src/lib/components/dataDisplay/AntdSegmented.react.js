@@ -6,10 +6,48 @@ const LazyAntdSegmented = React.lazy(() => import(/* webpackChunkName: "data_dis
 /**
  * 分段控制器组件AntdSegmented
  */
-const AntdSegmented = (props) => {
+const AntdSegmented = ({
+    id,
+    style,
+    className,
+    key,
+    options,
+    defaultValue,
+    value,
+    block = false,
+    vertical = false,
+    disabled = false,
+    size = 'middle',
+    setProps,
+    persistence,
+    persisted_props = ['value'],
+    persistence_type = 'local',
+    batchPropsNames = [],
+    ...others
+}) => {
     return (
         <Suspense fallback={null}>
-            <LazyAntdSegmented {...props} />
+            <LazyAntdSegmented {
+                ...{
+                    id,
+                    style,
+                    className,
+                    key,
+                    options,
+                    defaultValue,
+                    value,
+                    block,
+                    vertical,
+                    disabled,
+                    size,
+                    setProps,
+                    persistence,
+                    persisted_props,
+                    persistence_type,
+                    batchPropsNames,
+                    ...others
+                }
+            } />
         </Suspense>
     );
 }
@@ -173,17 +211,6 @@ AntdSegmented.propTypes = {
      */
     persistence_type: PropTypes.oneOf(['local', 'session', 'memory'])
 };
-
-// 设置默认参数
-AntdSegmented.defaultProps = {
-    block: false,
-    vertical: false,
-    disabled: false,
-    size: 'middle',
-    persisted_props: ['value'],
-    persistence_type: 'local',
-    batchPropsNames: []
-}
 
 export default AntdSegmented;
 

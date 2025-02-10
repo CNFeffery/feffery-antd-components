@@ -4,7 +4,7 @@ import React, { useMemo } from 'react';
 import { Popover } from 'antd';
 import AntdIcon from '../../components/general/AntdIcon.react';
 // 辅助库
-import { parseChildrenToArray } from '../../components/utils';
+import { parseChildrenToArray, useLoading } from '../../components/utils';
 import { isString } from 'lodash';
 import { pickBy } from 'ramda';
 // 自定义hooks
@@ -39,7 +39,7 @@ const AntdPopover = (props) => {
         permanent,
         popupContainer,
         setProps,
-        loading_state
+        ...others
     } = props;
 
     const arrowPoint = useMemo(() => {
@@ -63,7 +63,7 @@ const AntdPopover = (props) => {
     return (
         <Popover
             // 提取具有data-*或aria-*通配格式的属性
-            {...pickBy((_, k) => k.startsWith('data-') || k.startsWith('aria-'), props)}
+            {...pickBy((_, k) => k.startsWith('data-') || k.startsWith('aria-'), others)}
             id={id}
             className={
                 isString(className) ?
@@ -102,9 +102,7 @@ const AntdPopover = (props) => {
                     (triggerNode) => triggerNode.parentNode :
                     undefined
             }
-            data-dash-is-loading={
-                (loading_state && loading_state.is_loading) || undefined
-            }
+            data-dash-is-loading={useLoading()}
         >{children}</Popover>
     );
 }

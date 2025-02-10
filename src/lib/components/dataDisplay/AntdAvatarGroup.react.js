@@ -6,10 +6,38 @@ const LazyAntdAvatarGroup = React.lazy(() => import(/* webpackChunkName: "data_d
 /**
  * 头像组合组件AntdAvatarGroup
  */
-const AntdAvatarGroup = (props) => {
+const AntdAvatarGroup = ({
+    id,
+    children,
+    className,
+    style,
+    key,
+    maxCount,
+    maxPopoverPlacement = 'top',
+    maxPopoverTrigger = 'hover',
+    maxStyle,
+    size = 'default',
+    setProps,
+    ...others
+}) => {
     return (
         <Suspense fallback={null}>
-            <LazyAntdAvatarGroup {...props} />
+            <LazyAntdAvatarGroup {
+                ...{
+                    id,
+                    children,
+                    className,
+                    style,
+                    key,
+                    maxCount,
+                    maxPopoverPlacement,
+                    maxPopoverTrigger,
+                    maxStyle,
+                    size,
+                    setProps,
+                    ...others
+                }
+            } />
         </Suspense>
     );
 }
@@ -91,21 +119,6 @@ AntdAvatarGroup.propTypes = {
      * `aria-*`格式属性通配
      */
     'aria-*': PropTypes.string,
-
-    loading_state: PropTypes.shape({
-        /**
-         * Determines if the component is loading or not
-         */
-        is_loading: PropTypes.bool,
-        /**
-         * Holds which property is loading
-         */
-        prop_name: PropTypes.string,
-        /**
-         * Holds the name of the component that is loading
-         */
-        component_name: PropTypes.string
-    }),
 
     /**
      * Dash-assigned callback that should be called to report property changes

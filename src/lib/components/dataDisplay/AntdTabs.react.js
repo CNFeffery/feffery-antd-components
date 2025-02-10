@@ -6,10 +6,68 @@ const LazyAntdTabs = React.lazy(() => import(/* webpackChunkName: "data_display"
 /**
  * 标签页组件AntdTabs
  */
-const AntdTabs = (props) => {
+const AntdTabs = ({
+    id,
+    className,
+    style,
+    key,
+    items,
+    disabledTabKeys = [],
+    tabBarLeftExtraContent,
+    tabBarRightExtraContent,
+    defaultActiveKey,
+    activeKey,
+    size = 'default',
+    tabPosition = 'top',
+    type = 'line',
+    centered = false,
+    indicator,
+    tabBarGutter,
+    tabBarStyle,
+    inkBarAnimated = true,
+    tabPaneAnimated = false,
+    destroyInactiveTabPane = false,
+    tabCloseCounts = 0,
+    placeholder,
+    setProps,
+    persistence,
+    persisted_props = ['activeKey'],
+    persistence_type = 'local',
+    ...others
+}) => {
     return (
         <Suspense fallback={null}>
-            <LazyAntdTabs {...props} />
+            <LazyAntdTabs {
+                ...{
+                    id,
+                    className,
+                    style,
+                    key,
+                    items,
+                    disabledTabKeys,
+                    tabBarLeftExtraContent,
+                    tabBarRightExtraContent,
+                    defaultActiveKey,
+                    activeKey,
+                    size,
+                    tabPosition,
+                    type,
+                    centered,
+                    indicator,
+                    tabBarGutter,
+                    tabBarStyle,
+                    inkBarAnimated,
+                    tabPaneAnimated,
+                    destroyInactiveTabPane,
+                    tabCloseCounts,
+                    placeholder,
+                    setProps,
+                    persistence,
+                    persisted_props,
+                    persistence_type,
+                    ...others
+                }
+            } />
         </Suspense>
     );
 }
@@ -256,21 +314,6 @@ AntdTabs.propTypes = {
      */
     'aria-*': PropTypes.string,
 
-    loading_state: PropTypes.shape({
-        /**
-         * Determines if the component is loading or not
-         */
-        is_loading: PropTypes.bool,
-        /**
-         * Holds which property is loading
-         */
-        prop_name: PropTypes.string,
-        /**
-         * Holds the name of the component that is loading
-         */
-        component_name: PropTypes.string
-    }),
-
     /**
      * Dash-assigned callback that should be called to report property changes
      * to Dash, to make them available for callbacks.
@@ -298,21 +341,6 @@ AntdTabs.propTypes = {
      */
     persistence_type: PropTypes.oneOf(['local', 'session', 'memory'])
 };
-
-// 设置默认参数
-AntdTabs.defaultProps = {
-    disabledTabKeys: [],
-    tabPosition: 'top',
-    size: 'default',
-    type: 'line',
-    centered: false,
-    inkBarAnimated: true,
-    tabPaneAnimated: false,
-    destroyInactiveTabPane: false,
-    tabCloseCounts: 0,
-    persisted_props: ['activeKey'],
-    persistence_type: 'local'
-}
 
 export default AntdTabs;
 

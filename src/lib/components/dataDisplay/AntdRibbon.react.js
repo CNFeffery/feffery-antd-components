@@ -6,10 +6,34 @@ const LazyAntdRibbon = React.lazy(() => import(/* webpackChunkName: "data_displa
 /**
  * 缎带组件AntdRibbon
  */
-const AntdRibbon = (props) => {
+const AntdRibbon = ({
+    id,
+    children,
+    className,
+    style,
+    key,
+    color,
+    placement = 'end',
+    text,
+    setProps,
+    ...others
+}) => {
     return (
         <Suspense fallback={null}>
-            <LazyAntdRibbon {...props} />
+            <LazyAntdRibbon {
+                ...{
+                    id,
+                    children,
+                    className,
+                    style,
+                    key,
+                    color,
+                    placement,
+                    text,
+                    setProps,
+                    ...others
+                }
+            } />
         </Suspense>
     );
 }
@@ -69,32 +93,12 @@ AntdRibbon.propTypes = {
      */
     'aria-*': PropTypes.string,
 
-    loading_state: PropTypes.shape({
-        /**
-         * Determines if the component is loading or not
-         */
-        is_loading: PropTypes.bool,
-        /**
-         * Holds which property is loading
-         */
-        prop_name: PropTypes.string,
-        /**
-         * Holds the name of the component that is loading
-         */
-        component_name: PropTypes.string
-    }),
-
     /**
      * Dash-assigned callback that should be called to report property changes
      * to Dash, to make them available for callbacks.
      */
     setProps: PropTypes.func
 };
-
-// 设置默认参数
-AntdRibbon.defaultProps = {
-    placement: 'end'
-}
 
 export default AntdRibbon;
 

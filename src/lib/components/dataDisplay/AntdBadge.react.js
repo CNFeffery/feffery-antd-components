@@ -6,10 +6,54 @@ const LazyAntdBadge = React.lazy(() => import(/* webpackChunkName: "data_display
 /**
  * 徽标组件AntdBadge
  */
-const AntdBadge = (props) => {
+const AntdBadge = ({
+    id,
+    children,
+    className,
+    style,
+    styles,
+    classNames,
+    key,
+    color,
+    count,
+    dot = false,
+    offset,
+    overflowCount = 99,
+    showZero = false,
+    status,
+    text,
+    title,
+    size = 'default',
+    nClicks = 0,
+    setProps,
+    ...others
+}) => {
     return (
         <Suspense fallback={null}>
-            <LazyAntdBadge {...props} />
+            <LazyAntdBadge {
+                ...{
+                    id,
+                    children,
+                    className,
+                    style,
+                    styles,
+                    classNames,
+                    key,
+                    color,
+                    count,
+                    dot,
+                    offset,
+                    overflowCount,
+                    showZero,
+                    status,
+                    text,
+                    title,
+                    size,
+                    nClicks,
+                    setProps,
+                    ...others
+                }
+            } />
         </Suspense>
     );
 }
@@ -140,36 +184,12 @@ AntdBadge.propTypes = {
      */
     'aria-*': PropTypes.string,
 
-    loading_state: PropTypes.shape({
-        /**
-         * Determines if the component is loading or not
-         */
-        is_loading: PropTypes.bool,
-        /**
-         * Holds which property is loading
-         */
-        prop_name: PropTypes.string,
-        /**
-         * Holds the name of the component that is loading
-         */
-        component_name: PropTypes.string
-    }),
-
     /**
      * Dash-assigned callback that should be called to report property changes
      * to Dash, to make them available for callbacks.
      */
     setProps: PropTypes.func
 };
-
-// 设置默认参数
-AntdBadge.defaultProps = {
-    nClicks: 0,
-    dot: false,
-    showZero: false,
-    overflowCount: 99,
-    size: 'default'
-}
 
 export default AntdBadge;
 

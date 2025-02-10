@@ -6,6 +6,7 @@ import { Image, ConfigProvider } from 'antd';
 import { isString } from 'lodash';
 import { pickBy } from 'ramda';
 import { str2Locale } from '../../components/locales.react';
+import { useLoading } from '../../components/utils';
 // 自定义hooks
 import useCss from '../../hooks/useCss';
 // 上下文
@@ -34,7 +35,7 @@ const AntdImageGroup = (props) => {
         disableCurrent,
         toolbarExtra,
         setProps,
-        loading_state
+        ...others
     } = props;
 
     const context = useContext(PropsContext)
@@ -44,7 +45,7 @@ const AntdImageGroup = (props) => {
         <ConfigProvider locale={str2Locale.get(locale)}>
             <Image.PreviewGroup
                 // 提取具有data-*或aria-*通配格式的属性
-                {...pickBy((_, k) => k.startsWith('data-') || k.startsWith('aria-'), props)}
+                {...pickBy((_, k) => k.startsWith('data-') || k.startsWith('aria-'), others)}
                 id={id}
                 style={style}
                 className={

@@ -7,6 +7,7 @@ import { useSize } from 'ahooks';
 import { locale2text } from '../../components/locales.react';
 import { isString } from 'lodash';
 import { pickBy } from 'ramda';
+import { useLoading } from '../../components/utils';
 // 自定义hooks
 import useCss from '../../hooks/useCss';
 // 参数类型
@@ -33,8 +34,8 @@ const AntdSpoiler = (props) => {
         open,
         maxHeight,
         transitionDuration,
-        loading_state,
-        setProps
+        setProps,
+        ...others
     } = props;
 
     const ref = useRef(null);
@@ -43,7 +44,7 @@ const AntdSpoiler = (props) => {
     return (
         <div
             // 提取具有data-*或aria-*通配格式的属性
-            {...pickBy((_, k) => k.startsWith('data-') || k.startsWith('aria-'), props)}
+            {...pickBy((_, k) => k.startsWith('data-') || k.startsWith('aria-'), others)}
             id={id}
             key={key}
             className={
@@ -52,9 +53,7 @@ const AntdSpoiler = (props) => {
                     (className ? useCss(className) : undefined)
             }
             style={style}
-            data-dash-is-loading={
-                (loading_state && loading_state.is_loading) || undefined
-            }>
+            data-dash-is-loading={useLoading()}>
             <div
                 className={
                     isString(contentClassName) ?

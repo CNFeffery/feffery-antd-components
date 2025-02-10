@@ -6,10 +6,136 @@ const LazyAntdTable = React.lazy(() => import(/* webpackChunkName: "antd_table" 
 /**
  * 表格组件AntdTable
  */
-const AntdTable = (props) => {
+const AntdTable = ({
+    id,
+    className,
+    style,
+    key,
+    locale = 'zh-cn',
+    containerId,
+    columns = [],
+    showHeader = true,
+    rowHoverable = true,
+    tableLayout,
+    miniChartHeight = 30,
+    miniChartAnimation = false,
+    rowSelectionType,
+    selectedRowKeys,
+    rowSelectionWidth = 32,
+    rowSelectionCheckStrictly,
+    rowSelectionIgnoreRowKeys,
+    sticky = false,
+    titlePopoverInfo,
+    columnsFormatConstraint,
+    enableHoverListen = false,
+    data = [],
+    sortOptions = {},
+    showSorterTooltip = true,
+    showSorterTooltipTarget = 'full-header',
+    filterOptions = {},
+    defaultFilteredValues = {},
+    pagination,
+    bordered = false,
+    maxHeight,
+    maxWidth,
+    scrollToFirstRowOnChange = true,
+    size = 'middle',
+    mode = 'client-side',
+    nClicksButton = 0,
+    nDoubleClicksCell = 0,
+    summaryRowContents,
+    summaryRowBlankColumns = 0,
+    summaryRowFixed = false,
+    customFormatFuncs,
+    conditionalStyleFuncs = {},
+    expandedRowKeyToContent,
+    expandedRowWidth,
+    expandRowByClick = false,
+    defaultExpandedRowKeys,
+    expandedRowKeys,
+    enableCellClickListenColumns = [],
+    nClicksCell = 0,
+    nContextMenuClicksCell = 0,
+    emptyContent,
+    cellUpdateOptimize = false,
+    nClicksDropdownItem = 0,
+    hiddenRowKeys = [],
+    virtual = false,
+    title,
+    footer,
+    loading = false,
+    rowClassName,
+    selectedRowsSyncWithData = false,
+    setProps,
+    ...others
+}) => {
     return (
         <Suspense fallback={null}>
-            <LazyAntdTable {...props} />
+            <LazyAntdTable {
+                ...{
+                    id,
+                    className,
+                    style,
+                    key,
+                    locale,
+                    containerId,
+                    columns,
+                    showHeader,
+                    rowHoverable,
+                    tableLayout,
+                    miniChartHeight,
+                    miniChartAnimation,
+                    rowSelectionType,
+                    selectedRowKeys,
+                    rowSelectionWidth,
+                    rowSelectionCheckStrictly,
+                    rowSelectionIgnoreRowKeys,
+                    sticky,
+                    titlePopoverInfo,
+                    columnsFormatConstraint,
+                    enableHoverListen,
+                    data,
+                    sortOptions,
+                    showSorterTooltip,
+                    showSorterTooltipTarget,
+                    filterOptions,
+                    defaultFilteredValues,
+                    pagination,
+                    bordered,
+                    maxHeight,
+                    maxWidth,
+                    scrollToFirstRowOnChange,
+                    size,
+                    mode,
+                    nClicksButton,
+                    nDoubleClicksCell,
+                    summaryRowContents,
+                    summaryRowBlankColumns,
+                    summaryRowFixed,
+                    customFormatFuncs,
+                    conditionalStyleFuncs,
+                    expandedRowKeyToContent,
+                    expandedRowWidth,
+                    expandRowByClick,
+                    defaultExpandedRowKeys,
+                    expandedRowKeys,
+                    enableCellClickListenColumns,
+                    nClicksCell,
+                    nContextMenuClicksCell,
+                    emptyContent,
+                    cellUpdateOptimize,
+                    nClicksDropdownItem,
+                    hiddenRowKeys,
+                    virtual,
+                    title,
+                    footer,
+                    loading,
+                    rowClassName,
+                    selectedRowsSyncWithData,
+                    setProps,
+                    ...others
+                }
+            } />
         </Suspense>
     );
 }
@@ -1588,69 +1714,11 @@ AntdTable.propTypes = {
      */
     'aria-*': PropTypes.string,
 
-    loading_state: PropTypes.shape({
-        /**
-         * Determines if the component is loading or not
-         */
-        is_loading: PropTypes.bool,
-        /**
-         * Holds which property is loading
-         */
-        prop_name: PropTypes.string,
-        /**
-         * Holds the name of the component that is loading
-         */
-        component_name: PropTypes.string
-    }),
-
     /**
      * Dash-assigned callback that should be called to report property changes
      * to Dash, to make them available for callbacks.
      */
     setProps: PropTypes.func
-};
-
-AntdTable.defaultProps = {
-    // 通用参数
-    showHeader: true,
-    rowHoverable: true,
-    locale: 'zh-cn',
-    data: [],
-    columns: [],
-    scrollToFirstRowOnChange: true,
-    size: 'middle',
-    bordered: false,
-    loading: false,
-    // 进阶通用参数
-    sortOptions: {},
-    showSorterTooltip: true,
-    showSorterTooltipTarget: 'full-header',
-    filterOptions: {},
-    defaultFilteredValues: {},
-    mode: 'client-side',
-    sticky: false,
-    enableHoverListen: false,
-    expandRowByClick: false,
-    enableCellClickListenColumns: [],
-    nClicksCell: 0,
-    nDoubleClicksCell: 0,
-    nContextMenuClicksCell: 0,
-    cellUpdateOptimize: false,
-    summaryRowFixed: false,
-    conditionalStyleFuncs: {},
-    rowSelectionWidth: 32,
-    selectedRowsSyncWithData: false,
-    hiddenRowKeys: [],
-    // 按钮模式相关
-    nClicksButton: 0,
-    // 迷你图相关
-    miniChartHeight: 30,
-    miniChartAnimation: false,
-    // dropdown模式相关
-    nClicksDropdownItem: 0,
-    dataDeepCompare: false,
-    virtual: false,
-    summaryRowBlankColumns: 0
 };
 
 export default AntdTable;

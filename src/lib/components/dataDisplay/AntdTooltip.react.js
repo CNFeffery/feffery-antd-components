@@ -6,10 +6,58 @@ const LazyAntdTooltip = React.lazy(() => import(/* webpackChunkName: "data_displ
 /**
  * 文字提示组件AntdTooltip
  */
-const AntdTooltip = (props) => {
+const AntdTooltip = ({
+    id,
+    children,
+    className,
+    style,
+    key,
+    title,
+    placement = 'top',
+    color,
+    mouseEnterDelay = 0.1,
+    mouseLeaveDelay = 0.1,
+    overlayClassName,
+    overlayStyle,
+    overlayInnerStyle,
+    trigger = 'hover',
+    zIndex,
+    arrow = 'show',
+    fresh = false,
+    open = false,
+    permanent = false,
+    popupContainer = 'body',
+    setProps,
+    ...others
+}) => {
     return (
         <Suspense fallback={null}>
-            <LazyAntdTooltip {...props} />
+            <LazyAntdTooltip {
+                ...{
+                    id,
+                    children,
+                    className,
+                    style,
+                    key,
+                    title,
+                    placement,
+                    color,
+                    mouseEnterDelay,
+                    mouseLeaveDelay,
+                    overlayClassName,
+                    overlayStyle,
+                    overlayInnerStyle,
+                    trigger,
+                    zIndex,
+                    arrow,
+                    fresh,
+                    open,
+                    permanent,
+                    popupContainer,
+                    setProps,
+                    ...others
+                }
+            } />
         </Suspense>
     );
 }
@@ -168,19 +216,6 @@ AntdTooltip.propTypes = {
      */
     setProps: PropTypes.func
 };
-
-// 设置默认参数
-AntdTooltip.defaultProps = {
-    mouseEnterDelay: 0.1,
-    mouseLeaveDelay: 0.1,
-    placement: 'top',
-    trigger: 'hover',
-    popupContainer: 'body',
-    arrow: 'show',
-    fresh: false,
-    open: false,
-    permanent: false
-}
 
 export default AntdTooltip;
 

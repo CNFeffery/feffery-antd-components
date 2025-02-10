@@ -6,10 +6,36 @@ const LazyAntdEmpty = React.lazy(() => import(/* webpackChunkName: "data_display
 /**
  * 空状态组件AntdEmpty
  */
-const AntdEmpty = (props) => {
+const AntdEmpty = ({
+    id,
+    children,
+    className,
+    style,
+    key,
+    locale = 'zh-cn',
+    description,
+    image = 'default',
+    imageStyle,
+    setProps,
+    ...others
+}) => {
     return (
         <Suspense fallback={null}>
-            <LazyAntdEmpty {...props} />
+            <LazyAntdEmpty {
+                ...{
+                    id,
+                    children,
+                    className,
+                    style,
+                    key,
+                    locale,
+                    description,
+                    image,
+                    imageStyle,
+                    setProps,
+                    ...others
+                }
+            } />
         </Suspense>
     );
 }
@@ -83,33 +109,12 @@ AntdEmpty.propTypes = {
      */
     'aria-*': PropTypes.string,
 
-    loading_state: PropTypes.shape({
-        /**
-         * Determines if the component is loading or not
-         */
-        is_loading: PropTypes.bool,
-        /**
-         * Holds which property is loading
-         */
-        prop_name: PropTypes.string,
-        /**
-         * Holds the name of the component that is loading
-         */
-        component_name: PropTypes.string
-    }),
-
     /**
      * Dash-assigned callback that should be called to report property changes
      * to Dash, to make them available for callbacks.
      */
     setProps: PropTypes.func
 };
-
-// 设置默认参数
-AntdEmpty.defaultProps = {
-    locale: 'zh-cn',
-    image: 'default'
-}
 
 export default AntdEmpty;
 

@@ -3,7 +3,7 @@ import React from 'react';
 // 辅助库
 import { isString } from 'lodash';
 import { pickBy } from 'ramda';
-import { parseChildrenToArray } from '../../../components/utils';
+import { parseChildrenToArray, useLoading } from '../../../components/utils';
 // 自定义hooks
 import useCss from '../../../hooks/useCss';
 // 参数类型
@@ -24,7 +24,7 @@ const AntdDescriptionItem = (props) => {
         labelStyle,
         contentStyle,
         setProps,
-        loading_state
+        ...others
     } = props;
 
     children = parseChildrenToArray(children)
@@ -32,7 +32,7 @@ const AntdDescriptionItem = (props) => {
     return (
         <div
             // 提取具有data-*或aria-*通配格式的属性
-            {...pickBy((_, k) => k.startsWith('data-') || k.startsWith('aria-'), props)}
+            {...pickBy((_, k) => k.startsWith('data-') || k.startsWith('aria-'), others)}
             id={id}
             className={
                 isString(className) ?
@@ -45,9 +45,7 @@ const AntdDescriptionItem = (props) => {
             span={span}
             labelStyle={labelStyle}
             contentStyle={contentStyle}
-            data-dash-is-loading={
-                (loading_state && loading_state.is_loading) || undefined
-            }>
+            data-dash-is-loading={useLoading()}>
             {children}
         </div>
     );

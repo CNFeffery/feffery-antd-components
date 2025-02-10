@@ -6,10 +6,54 @@ const LazyAntdQRCode = React.lazy(() => import(/* webpackChunkName: "data_displa
 /**
  * 二维码组件AntdQRCode
  */
-const AntdQRCode = (props) => {
+const AntdQRCode = ({
+    id,
+    className,
+    style,
+    key,
+    locale = 'zh-cn',
+    value,
+    type = 'canvas',
+    icon,
+    size = 160,
+    iconSize = 40,
+    color = '#000',
+    bgColor = 'transparent',
+    bordered = true,
+    errorLevel = 'M',
+    status = 'active',
+    expires,
+    autoSpin = false,
+    refreshClicks = 0,
+    setProps,
+    ...others
+}) => {
     return (
         <Suspense fallback={null}>
-            <LazyAntdQRCode {...props} />
+            <LazyAntdQRCode {
+                ...{
+                    id,
+                    className,
+                    style,
+                    key,
+                    locale,
+                    value,
+                    type,
+                    icon,
+                    size,
+                    iconSize,
+                    color,
+                    bgColor,
+                    bordered,
+                    errorLevel,
+                    status,
+                    expires,
+                    autoSpin,
+                    refreshClicks,
+                    setProps,
+                    ...others
+                }
+            } />
         </Suspense>
     );
 }
@@ -135,42 +179,12 @@ AntdQRCode.propTypes = {
      */
     'aria-*': PropTypes.string,
 
-    loading_state: PropTypes.shape({
-        /**
-         * Determines if the component is loading or not
-         */
-        is_loading: PropTypes.bool,
-        /**
-         * Holds which property is loading
-         */
-        prop_name: PropTypes.string,
-        /**
-         * Holds the name of the component that is loading
-         */
-        component_name: PropTypes.string
-    }),
-
     /**
      * Dash-assigned callback that should be called to report property changes
      * to Dash, to make them available for callbacks.
      */
     setProps: PropTypes.func
 };
-
-// 设置默认参数
-AntdQRCode.defaultProps = {
-    locale: 'zh-cn',
-    type: 'canvas',
-    size: 160,
-    iconSize: 40,
-    color: '#000',
-    bgColor: 'transparent',
-    bordered: true,
-    errorLevel: 'M',
-    status: 'active',
-    autoSpin: false,
-    refreshClicks: 0
-}
 
 export default AntdQRCode;
 

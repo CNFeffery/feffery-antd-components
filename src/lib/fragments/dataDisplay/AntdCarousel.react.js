@@ -5,6 +5,7 @@ import { Carousel } from 'antd';
 // 辅助库
 import { isString } from 'lodash';
 import { pickBy } from 'ramda';
+import { useLoading } from '../../components/utils';
 // 自定义hooks
 import useCss from '../../hooks/useCss';
 // 参数类型
@@ -32,14 +33,14 @@ const AntdCarousel = (props) => {
         lazyLoad,
         slidesToShow,
         slidesToScroll,
-        loading_state,
-        setProps
+        setProps,
+        ...others
     } = props;
 
     return (
         <Carousel
             // 提取具有data-*或aria-*通配格式的属性
-            {...pickBy((_, k) => k.startsWith('data-') || k.startsWith('aria-'), props)}
+            {...pickBy((_, k) => k.startsWith('data-') || k.startsWith('aria-'), others)}
             id={id}
             className={
                 isString(className) ?
@@ -60,9 +61,7 @@ const AntdCarousel = (props) => {
             lazyLoad={lazyLoad}
             slidesToShow={slidesToShow}
             slidesToScroll={slidesToScroll}
-            data-dash-is-loading={
-                (loading_state && loading_state.is_loading) || undefined
-            }
+            data-dash-is-loading={useLoading()}
         >{(Array.isArray(children) ? children : [children]).map((child, i) => <div className='ant-carousel-item-wrapper' key={i}>{child}</div>)}</Carousel>
     );
 }

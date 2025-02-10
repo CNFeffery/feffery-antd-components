@@ -46,6 +46,7 @@ import Highlighter from 'react-highlight-words';
 import { isNumber, isEqual, isString, isBoolean, isEmpty, omitBy } from 'lodash';
 import { pickBy } from 'ramda';
 import { str2Locale, locale2text } from '../components/locales.react';
+import { useLoading } from '../components/utils';
 // 参数类型
 import { propTypes, defaultProps } from '../components/dataDisplay/AntdTable.react';
 
@@ -206,7 +207,7 @@ const AntdTable = (props) => {
         loading,
         rowClassName,
         setProps,
-        loading_state
+        ...others
     } = props;
 
     useEffect(() => {
@@ -2022,7 +2023,7 @@ const AntdTable = (props) => {
         >
             <Table
                 // 提取具有data-*或aria-*通配格式的属性
-                {...pickBy((_, k) => k.startsWith('data-') || k.startsWith('aria-'), props)}
+                {...pickBy((_, k) => k.startsWith('data-') || k.startsWith('aria-'), others)}
                 id={id}
                 className={className}
                 style={style}
@@ -2123,9 +2124,7 @@ const AntdTable = (props) => {
                 virtual={virtual}
                 title={title && (() => title)}
                 footer={footer && (() => footer)}
-                data-dash-is-loading={
-                    (loading_state && loading_state.is_loading) || undefined
-                }
+                data-dash-is-loading={useLoading()}
                 loading={loading}
                 getPopupContainer={
                     containerId ?

@@ -6,10 +6,50 @@ const LazyAntdAvatar = React.lazy(() => import(/* webpackChunkName: "data_displa
 /**
  * 头像组件AntdAvatar
  */
-const AntdAvatar = (props) => {
+const AntdAvatar = ({
+    id,
+    className,
+    style,
+    key,
+    mode = 'icon',
+    text,
+    src,
+    srcSet,
+    draggable,
+    crossOrigin,
+    icon,
+    iconRenderer = 'AntdIcon',
+    alt,
+    gap = 4,
+    size,
+    shape = 'circle',
+    setProps,
+    ...others
+}) => {
     return (
         <Suspense fallback={null}>
-            <LazyAntdAvatar {...props} />
+            <LazyAntdAvatar {
+                ...{
+                    id,
+                    className,
+                    style,
+                    key,
+                    mode,
+                    text,
+                    src,
+                    srcSet,
+                    draggable,
+                    crossOrigin,
+                    icon,
+                    iconRenderer,
+                    alt,
+                    gap,
+                    size,
+                    shape,
+                    setProps,
+                    ...others
+                }
+            } />
         </Suspense>
     );
 }
@@ -125,35 +165,12 @@ AntdAvatar.propTypes = {
      */
     'aria-*': PropTypes.string,
 
-    loading_state: PropTypes.shape({
-        /**
-         * Determines if the component is loading or not
-         */
-        is_loading: PropTypes.bool,
-        /**
-         * Holds which property is loading
-         */
-        prop_name: PropTypes.string,
-        /**
-         * Holds the name of the component that is loading
-         */
-        component_name: PropTypes.string
-    }),
-
     /**
      * Dash-assigned callback that should be called to report property changes
      * to Dash, to make them available for callbacks.
      */
     setProps: PropTypes.func
 };
-
-// 设置默认参数
-AntdAvatar.defaultProps = {
-    mode: 'icon',
-    gap: 4,
-    shape: 'circle',
-    iconRenderer: 'AntdIcon'
-}
 
 export default AntdAvatar;
 

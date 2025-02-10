@@ -6,10 +6,109 @@ const LazyAntdTree = React.lazy(() => import(/* webpackChunkName: "data_entry" *
 /**
  * 树形控件组件AntdTree
  */
-const AntdTree = (props) => {
+const AntdTree = ({
+    id,
+    className,
+    setProps,
+    style,
+    key,
+    treeData,
+    treeNodeKeyToTitle,
+    treeDataMode = 'tree',
+    checkable = false,
+    selectable = true,
+    selectedKeys,
+    expandedKeys,
+    checkedKeys,
+    defaultExpandAll = false,
+    defaultExpandedKeys,
+    defaultExpandParent = false,
+    checkStrictly = false,
+    defaultCheckedKeys,
+    defaultSelectedKeys,
+    multiple = false,
+    showLine = { 'showLeafIcon': false },
+    switcherIcon,
+    showIcon = false,
+    height,
+    draggable = false,
+    showDragIcon = true,
+    dragInSameLevel = false,
+    dragDisabledKeys = [],
+    dropDisabledKeys = [],
+    enableNodeFavorites = false,
+    favoritedKeys = [],
+    scrollTarget,
+    searchKeyword,
+    caseSensitive = true,
+    highlightStyle = {
+        fontWeight: 'bold',
+        backgroundColor: 'transparent',
+        padding: 0,
+        color: '#ff5500'
+    },
+    nodeCheckedSuffix,
+    nodeUncheckedSuffix,
+    nodeCheckedStyle,
+    nodeUncheckedStyle,
+    enableAsyncLoad = false,
+    persistence,
+    persisted_props = ['selectedKeys', 'checkedKeys', 'expandedKeys', 'halfCheckedKeys'],
+    persistence_type = 'local',
+    batchPropsNames = [],
+    ...others
+}) => {
     return (
         <Suspense fallback={null}>
-            <LazyAntdTree {...props} />
+            <LazyAntdTree {
+                ...{
+                    id,
+                    className,
+                    setProps,
+                    style,
+                    key,
+                    treeData,
+                    treeNodeKeyToTitle,
+                    treeDataMode,
+                    checkable,
+                    selectable,
+                    selectedKeys,
+                    expandedKeys,
+                    checkedKeys,
+                    defaultExpandAll,
+                    defaultExpandedKeys,
+                    defaultExpandParent,
+                    checkStrictly,
+                    defaultCheckedKeys,
+                    defaultSelectedKeys,
+                    multiple,
+                    showLine,
+                    switcherIcon,
+                    showIcon,
+                    height,
+                    draggable,
+                    showDragIcon,
+                    dragInSameLevel,
+                    dragDisabledKeys,
+                    dropDisabledKeys,
+                    enableNodeFavorites,
+                    favoritedKeys,
+                    scrollTarget,
+                    searchKeyword,
+                    caseSensitive,
+                    highlightStyle,
+                    nodeCheckedSuffix,
+                    nodeUncheckedSuffix,
+                    nodeCheckedStyle,
+                    nodeUncheckedStyle,
+                    enableAsyncLoad,
+                    persistence,
+                    persisted_props,
+                    persistence_type,
+                    batchPropsNames,
+                    ...others
+                }
+            } />
         </Suspense>
     );
 }
@@ -504,21 +603,6 @@ AntdTree.propTypes = {
      */
     'aria-*': PropTypes.string,
 
-    loading_state: PropTypes.shape({
-        /**
-         * Determines if the component is loading or not
-         */
-        is_loading: PropTypes.bool,
-        /**
-         * Holds which property is loading
-         */
-        prop_name: PropTypes.string,
-        /**
-         * Holds the name of the component that is loading
-         */
-        component_name: PropTypes.string
-    }),
-
     /**
      * Dash-assigned callback that should be called to report property changes
      * to Dash, to make them available for callbacks.
@@ -546,37 +630,6 @@ AntdTree.propTypes = {
      */
     persistence_type: PropTypes.oneOf(['local', 'session', 'memory'])
 };
-
-// 设置默认参数
-AntdTree.defaultProps = {
-    showIcon: false,
-    treeDataMode: 'tree',
-    checkable: false,
-    defaultExpandAll: false,
-    defaultExpandParent: false,
-    checkStrictly: false,
-    multiple: false,
-    selectable: true,
-    showLine: { 'showLeafIcon': false },
-    draggable: false,
-    showDragIcon: true,
-    dragInSameLevel: false,
-    dragDisabledKeys: [],
-    dropDisabledKeys: [],
-    caseSensitive: true,
-    highlightStyle: {
-        fontWeight: 'bold',
-        backgroundColor: 'transparent',
-        padding: 0,
-        color: '#ff5500'
-    },
-    enableNodeFavorites: false,
-    favoritedKeys: [],
-    enableAsyncLoad: false,
-    persisted_props: ['selectedKeys', 'checkedKeys', 'expandedKeys', 'halfCheckedKeys'],
-    persistence_type: 'local',
-    batchPropsNames: []
-}
 
 export default AntdTree;
 

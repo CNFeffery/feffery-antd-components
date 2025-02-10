@@ -6,10 +6,46 @@ const LazyAntdDescriptions = React.lazy(() => import(/* webpackChunkName: "data_
 /**
  * 描述列表组件AntdDescriptions
  */
-const AntdDescriptions = (props) => {
+const AntdDescriptions = ({
+    id,
+    children,
+    className,
+    style,
+    key,
+    items,
+    title,
+    column = 3,
+    bordered = false,
+    size = 'default',
+    layout = 'horizontal',
+    labelStyle,
+    contentStyle,
+    extra,
+    setProps,
+    ...others
+}) => {
     return (
         <Suspense fallback={null}>
-            <LazyAntdDescriptions {...props} />
+            <LazyAntdDescriptions {
+                ...{
+                    id,
+                    children,
+                    className,
+                    style,
+                    key,
+                    items,
+                    title,
+                    column,
+                    bordered,
+                    size,
+                    layout,
+                    labelStyle,
+                    contentStyle,
+                    extra,
+                    setProps,
+                    ...others
+                }
+            } />
         </Suspense>
     );
 }
@@ -147,35 +183,12 @@ AntdDescriptions.propTypes = {
      */
     'aria-*': PropTypes.string,
 
-    loading_state: PropTypes.shape({
-        /**
-         * Determines if the component is loading or not
-         */
-        is_loading: PropTypes.bool,
-        /**
-         * Holds which property is loading
-         */
-        prop_name: PropTypes.string,
-        /**
-         * Holds the name of the component that is loading
-         */
-        component_name: PropTypes.string
-    }),
-
     /**
      * Dash-assigned callback that should be called to report property changes
      * to Dash, to make them available for callbacks.
      */
     setProps: PropTypes.func
 };
-
-// 设置默认参数
-AntdDescriptions.defaultProps = {
-    column: 3,
-    bordered: false,
-    layout: 'horizontal',
-    size: 'default'
-}
 
 export default AntdDescriptions;
 

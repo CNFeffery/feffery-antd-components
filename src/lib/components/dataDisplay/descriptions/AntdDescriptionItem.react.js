@@ -6,10 +6,36 @@ const LazyAntdDescriptionItem = React.lazy(() => import(/* webpackChunkName: "da
 /**
  * 描述列表子项组件AntdDescriptionItem
  */
-const AntdDescriptionItem = (props) => {
+const AntdDescriptionItem = ({
+    id,
+    children,
+    className,
+    style,
+    key,
+    label,
+    span = 1,
+    labelStyle,
+    contentStyle,
+    setProps,
+    ...others
+}) => {
     return (
         <Suspense fallback={null}>
-            <LazyAntdDescriptionItem {...props} />
+            <LazyAntdDescriptionItem {
+                ...{
+                    id,
+                    children,
+                    className,
+                    style,
+                    key,
+                    label,
+                    span,
+                    labelStyle,
+                    contentStyle,
+                    setProps,
+                    ...others
+                }
+            } />
         </Suspense>
     );
 }
@@ -74,32 +100,12 @@ AntdDescriptionItem.propTypes = {
      */
     'aria-*': PropTypes.string,
 
-    loading_state: PropTypes.shape({
-        /**
-         * Determines if the component is loading or not
-         */
-        is_loading: PropTypes.bool,
-        /**
-         * Holds which property is loading
-         */
-        prop_name: PropTypes.string,
-        /**
-         * Holds the name of the component that is loading
-         */
-        component_name: PropTypes.string
-    }),
-
     /**
      * Dash-assigned callback that should be called to report property changes
      * to Dash, to make them available for callbacks.
      */
     setProps: PropTypes.func
 };
-
-// 设置默认参数
-AntdDescriptionItem.defaultProps = {
-    span: 1
-}
 
 export default AntdDescriptionItem;
 
