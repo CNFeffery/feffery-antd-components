@@ -20,8 +20,8 @@ const AntdSegmented = ({
     size = 'middle',
     setProps,
     persistence,
-    persisted_props = ['value'],
-    persistence_type = 'local',
+    persisted_props,
+    persistence_type,
     batchPropsNames = [],
     ...others
 }) => {
@@ -211,6 +211,11 @@ AntdSegmented.propTypes = {
      */
     persistence_type: PropTypes.oneOf(['local', 'session', 'memory'])
 };
+
+AntdSegmented.dashPersistence = {
+    persisted_props: ['value'],
+    persistence_type: 'local'
+}
 
 export default AntdSegmented;
 

@@ -41,8 +41,8 @@ const AntdPagination = ({
     showLessItems = false,
     setProps,
     persistence,
-    persisted_props = ['current', 'pageSize'],
-    persistence_type = 'local',
+    persisted_props,
+    persistence_type,
     batchPropsNames = [],
     ...others
 }) => {
@@ -298,5 +298,10 @@ AntdPagination.propTypes = {
      */
     persistence_type: PropTypes.oneOf(['local', 'session', 'memory'])
 };
+
+AntdPagination.dashPersistence = {
+    persisted_props: ['current', 'pageSize'],
+    persistence_type: 'local'
+}
 
 export default AntdPagination;

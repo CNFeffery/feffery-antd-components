@@ -311,6 +311,11 @@ AntdInputNumber.propTypes = {
     persistence_type: PropTypes.oneOf(['local', 'session', 'memory'])
 };
 
+AntdInputNumber.dashPersistence = {
+    persisted_props: ['value'],
+    persistence_type: 'local'
+}
+
 export default AntdInputNumber;
 
 export const propTypes = AntdInputNumber.propTypes;

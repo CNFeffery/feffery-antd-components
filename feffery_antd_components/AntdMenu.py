@@ -100,11 +100,11 @@ Keyword arguments:
 - persistence (boolean | string | number; optional):
     是否为当前组件开启持久化功能.
 
-- persisted_props (list of a value equal to: 'currentKey', 'openKeys's; default ['currentKey', 'openKeys']):
+- persisted_props (list of a value equal to: 'currentKey', 'openKeys's; optional):
     当前组件启用持久化的属性值数组，可选项有`'currentKey'`、`'openKeys'`
     默认值：`['currentKey', 'openKeys']`.
 
-- persistence_type (a value equal to: 'local', 'session', 'memory'; default 'local'):
+- persistence_type (a value equal to: 'local', 'session', 'memory'; optional):
     当前组件的属性持久化存储类型  默认值：`'local'`."""
     _children_props = ['expandIcon', 'expandIcon.expand', 'expandIcon.collapse', 'menuItemKeyToTitle{}']
     _base_nodes = ['expandIcon', 'children']

@@ -42,8 +42,8 @@ const AntdInput = ({
     emptyAsNone = false,
     setProps,
     persistence,
-    persisted_props = ['value', 'md5Value'],
-    persistence_type = 'local',
+    persisted_props,
+    persistence_type,
     batchPropsNames = [],
     ...others
 }) => {
@@ -404,6 +404,11 @@ AntdInput.propTypes = {
      */
     persistence_type: PropTypes.oneOf(['local', 'session', 'memory'])
 };
+
+AntdInput.dashPersistence = {
+    persisted_props: ['value', 'md5Value'],
+    persistence_type: 'local'
+}
 
 export default AntdInput;
 

@@ -186,28 +186,15 @@ Keyword arguments:
 - aria-* (string; optional):
     `aria-*`格式属性通配.
 
-- loading_state (dict; optional)
-
-    `loading_state` is a dict with keys:
-
-    - is_loading (boolean; optional):
-        Determines if the component is loading or not.
-
-    - prop_name (string; optional):
-        Holds which property is loading.
-
-    - component_name (string; optional):
-        Holds the name of the component that is loading.
-
 - persistence (boolean | string | number; optional):
     是否开启[属性持久化](/prop-persistence).
 
-- persisted_props (list of a value equal to: 'selectedKeys', 'checkedKeys', 'expandedKeys', 'halfCheckedKeys's; default ['selectedKeys', 'checkedKeys', 'expandedKeys', 'halfCheckedKeys']):
+- persisted_props (list of a value equal to: 'selectedKeys', 'checkedKeys', 'expandedKeys', 'halfCheckedKeys's; optional):
     开启属性持久化功能的若干属性名，可选项有`'selectedKeys'`、`'checkedKeys'`、`'expandedKeys'`、`'halfCheckedKeys'`
     默认值：`['selectedKeys', 'checkedKeys', 'expandedKeys',
     'halfCheckedKeys']`.
 
-- persistence_type (a value equal to: 'local', 'session', 'memory'; default 'local'):
+- persistence_type (a value equal to: 'local', 'session', 'memory'; optional):
     属性持久化存储类型，可选项有`'local'`（本地持久化），`'session'`（会话持久化），`'memory'`（内存持久化）
     默认值：`'local'`."""
     _children_props = ['treeNodeKeyToTitle{}', 'switcherIcon', 'nodeCheckedSuffix', 'nodeUncheckedSuffix']
@@ -236,15 +223,6 @@ Keyword arguments:
             "key": str,
             "align": NotRequired[Literal["top", "bottom", "auto"]],
             "offset": NotRequired[typing.Union[int, float, numbers.Number]]
-        }
-    )
-
-    LoadingState = TypedDict(
-        "LoadingState",
-            {
-            "is_loading": NotRequired[bool],
-            "prop_name": NotRequired[str],
-            "component_name": NotRequired[str]
         }
     )
 
@@ -296,15 +274,14 @@ Keyword arguments:
         loadingNode: typing.Optional[dict] = None,
         batchPropsNames: typing.Optional[typing.Sequence[str]] = None,
         batchPropsValues: typing.Optional[dict] = None,
-        loading_state: typing.Optional["LoadingState"] = None,
         persistence: typing.Optional[typing.Union[bool, str, typing.Union[int, float, numbers.Number]]] = None,
         persisted_props: typing.Optional[typing.Sequence[Literal["selectedKeys", "checkedKeys", "expandedKeys", "halfCheckedKeys"]]] = None,
         persistence_type: typing.Optional[Literal["local", "session", "memory"]] = None,
         **kwargs
     ):
-        self._prop_names = ['id', 'key', 'style', 'className', 'treeDataMode', 'treeData', 'treeNodeKeyToTitle', 'showIcon', 'selectable', 'multiple', 'checkable', 'defaultExpandAll', 'expandedKeys', 'defaultExpandedKeys', 'defaultExpandParent', 'selectedKeys', 'defaultSelectedKeys', 'checkedKeys', 'defaultCheckedKeys', 'halfCheckedKeys', 'checkStrictly', 'showLine', 'switcherIcon', 'height', 'draggable', 'showDragIcon', 'dragInSameLevel', 'dragDisabledKeys', 'dropDisabledKeys', 'draggedNodeKey', 'clickedContextMenu', 'enableNodeFavorites', 'favoritedKeys', 'scrollTarget', 'searchKeyword', 'caseSensitive', 'highlightStyle', 'nodeCheckedSuffix', 'nodeUncheckedSuffix', 'nodeCheckedStyle', 'nodeUncheckedStyle', 'enableAsyncLoad', 'loadingNode', 'batchPropsNames', 'batchPropsValues', 'data-*', 'aria-*', 'loading_state', 'persistence', 'persisted_props', 'persistence_type']
+        self._prop_names = ['id', 'key', 'style', 'className', 'treeDataMode', 'treeData', 'treeNodeKeyToTitle', 'showIcon', 'selectable', 'multiple', 'checkable', 'defaultExpandAll', 'expandedKeys', 'defaultExpandedKeys', 'defaultExpandParent', 'selectedKeys', 'defaultSelectedKeys', 'checkedKeys', 'defaultCheckedKeys', 'halfCheckedKeys', 'checkStrictly', 'showLine', 'switcherIcon', 'height', 'draggable', 'showDragIcon', 'dragInSameLevel', 'dragDisabledKeys', 'dropDisabledKeys', 'draggedNodeKey', 'clickedContextMenu', 'enableNodeFavorites', 'favoritedKeys', 'scrollTarget', 'searchKeyword', 'caseSensitive', 'highlightStyle', 'nodeCheckedSuffix', 'nodeUncheckedSuffix', 'nodeCheckedStyle', 'nodeUncheckedStyle', 'enableAsyncLoad', 'loadingNode', 'batchPropsNames', 'batchPropsValues', 'data-*', 'aria-*', 'persistence', 'persisted_props', 'persistence_type']
         self._valid_wildcard_attributes =            ['data-', 'aria-']
-        self.available_properties = ['id', 'key', 'style', 'className', 'treeDataMode', 'treeData', 'treeNodeKeyToTitle', 'showIcon', 'selectable', 'multiple', 'checkable', 'defaultExpandAll', 'expandedKeys', 'defaultExpandedKeys', 'defaultExpandParent', 'selectedKeys', 'defaultSelectedKeys', 'checkedKeys', 'defaultCheckedKeys', 'halfCheckedKeys', 'checkStrictly', 'showLine', 'switcherIcon', 'height', 'draggable', 'showDragIcon', 'dragInSameLevel', 'dragDisabledKeys', 'dropDisabledKeys', 'draggedNodeKey', 'clickedContextMenu', 'enableNodeFavorites', 'favoritedKeys', 'scrollTarget', 'searchKeyword', 'caseSensitive', 'highlightStyle', 'nodeCheckedSuffix', 'nodeUncheckedSuffix', 'nodeCheckedStyle', 'nodeUncheckedStyle', 'enableAsyncLoad', 'loadingNode', 'batchPropsNames', 'batchPropsValues', 'data-*', 'aria-*', 'loading_state', 'persistence', 'persisted_props', 'persistence_type']
+        self.available_properties = ['id', 'key', 'style', 'className', 'treeDataMode', 'treeData', 'treeNodeKeyToTitle', 'showIcon', 'selectable', 'multiple', 'checkable', 'defaultExpandAll', 'expandedKeys', 'defaultExpandedKeys', 'defaultExpandParent', 'selectedKeys', 'defaultSelectedKeys', 'checkedKeys', 'defaultCheckedKeys', 'halfCheckedKeys', 'checkStrictly', 'showLine', 'switcherIcon', 'height', 'draggable', 'showDragIcon', 'dragInSameLevel', 'dragDisabledKeys', 'dropDisabledKeys', 'draggedNodeKey', 'clickedContextMenu', 'enableNodeFavorites', 'favoritedKeys', 'scrollTarget', 'searchKeyword', 'caseSensitive', 'highlightStyle', 'nodeCheckedSuffix', 'nodeUncheckedSuffix', 'nodeCheckedStyle', 'nodeUncheckedStyle', 'enableAsyncLoad', 'loadingNode', 'batchPropsNames', 'batchPropsValues', 'data-*', 'aria-*', 'persistence', 'persisted_props', 'persistence_type']
         self.available_wildcard_properties =            ['data-', 'aria-']
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()

@@ -181,6 +181,11 @@ AntdRate.propTypes = {
     persistence_type: PropTypes.oneOf(['local', 'session', 'memory'])
 };
 
+AntdRate.dashPersistence = {
+    persisted_props: ['value'],
+    persistence_type: 'local'
+}
+
 export default AntdRate;
 
 export const propTypes = AntdRate.propTypes;

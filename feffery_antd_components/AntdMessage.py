@@ -51,32 +51,11 @@ Keyword arguments:
     自定义前缀图标渲染方式，可选项有`'AntdIcon'`、`'fontawesome'`.
 
 - underCompatibilityMode (boolean; optional):
-    当前消息提示组件是否位于设置了`compatibilityMode=True`的`AntdConfigProvider`内部.
-
-- loading_state (dict; optional)
-
-    `loading_state` is a dict with keys:
-
-    - is_loading (boolean; optional):
-        Determines if the component is loading or not.
-
-    - prop_name (string; optional):
-        Holds which property is loading.
-
-    - component_name (string; optional):
-        Holds the name of the component that is loading."""
+    当前消息提示组件是否位于设置了`compatibilityMode=True`的`AntdConfigProvider`内部."""
     _children_props = []
     _base_nodes = ['children']
     _namespace = 'feffery_antd_components'
     _type = 'AntdMessage'
-    LoadingState = TypedDict(
-        "LoadingState",
-            {
-            "is_loading": NotRequired[bool],
-            "prop_name": NotRequired[str],
-            "component_name": NotRequired[str]
-        }
-    )
 
     @_explicitize_args
     def __init__(
@@ -93,12 +72,11 @@ Keyword arguments:
         icon: typing.Optional[str] = None,
         iconRenderer: typing.Optional[Literal["AntdIcon", "fontawesome"]] = None,
         underCompatibilityMode: typing.Optional[bool] = None,
-        loading_state: typing.Optional["LoadingState"] = None,
         **kwargs
     ):
-        self._prop_names = ['id', 'key', 'style', 'className', 'content', 'type', 'duration', 'top', 'maxCount', 'icon', 'iconRenderer', 'underCompatibilityMode', 'loading_state']
+        self._prop_names = ['id', 'key', 'style', 'className', 'content', 'type', 'duration', 'top', 'maxCount', 'icon', 'iconRenderer', 'underCompatibilityMode']
         self._valid_wildcard_attributes =            []
-        self.available_properties = ['id', 'key', 'style', 'className', 'content', 'type', 'duration', 'top', 'maxCount', 'icon', 'iconRenderer', 'underCompatibilityMode', 'loading_state']
+        self.available_properties = ['id', 'key', 'style', 'className', 'content', 'type', 'duration', 'top', 'maxCount', 'icon', 'iconRenderer', 'underCompatibilityMode']
         self.available_wildcard_properties =            []
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()

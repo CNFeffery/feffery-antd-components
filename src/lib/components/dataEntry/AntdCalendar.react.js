@@ -20,8 +20,8 @@ const AntdCalendar = ({
     customCells,
     setProps,
     persistence,
-    persisted_props = ['value'],
-    persistence_type = 'local',
+    persisted_props,
+    persistence_type,
     ...others
 }) => {
     return (
@@ -186,6 +186,11 @@ AntdCalendar.propTypes = {
      */
     persistence_type: PropTypes.oneOf(['local', 'session', 'memory'])
 };
+
+AntdCalendar.dashPersistence = {
+    persisted_props: ['value'],
+    persistence_type: 'local'
+}
 
 export default AntdCalendar;
 

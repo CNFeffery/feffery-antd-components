@@ -906,7 +906,7 @@ Keyword arguments:
 - hiddenRowKeys (list of strings; optional):
     需要进行隐藏的行记录`key`值数组  默认值：`[]`.
 
-- dataDeepCompare (boolean; default False):
+- dataDeepCompare (boolean; optional):
     是否在表格底层进行重绘时，通过深度比较数据源`data`变化情况，来进行表格重绘优化，适用于中小数据量表格
     默认值：`False`.
 
@@ -929,20 +929,7 @@ Keyword arguments:
     `data-*`格式属性通配.
 
 - aria-* (string; optional):
-    `aria-*`格式属性通配.
-
-- loading_state (dict; optional)
-
-    `loading_state` is a dict with keys:
-
-    - is_loading (boolean; optional):
-        Determines if the component is loading or not.
-
-    - prop_name (string; optional):
-        Holds which property is loading.
-
-    - component_name (string; optional):
-        Holds the name of the component that is loading."""
+    `aria-*`格式属性通配."""
     _children_props = ['columns[].title', 'data[]{}', 'summaryRowContents[].content', 'expandedRowKeyToContent[].content', 'emptyContent', 'title', 'footer']
     _base_nodes = ['emptyContent', 'title', 'footer', 'children']
     _namespace = 'feffery_antd_components'
@@ -1194,15 +1181,6 @@ Keyword arguments:
         }
     )
 
-    LoadingState = TypedDict(
-        "LoadingState",
-            {
-            "is_loading": NotRequired[bool],
-            "prop_name": NotRequired[str],
-            "component_name": NotRequired[str]
-        }
-    )
-
     @_explicitize_args
     def __init__(
         self,
@@ -1301,12 +1279,11 @@ Keyword arguments:
         footer: typing.Optional[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]] = None,
         loading: typing.Optional[bool] = None,
         rowClassName: typing.Optional[str] = None,
-        loading_state: typing.Optional["LoadingState"] = None,
         **kwargs
     ):
-        self._prop_names = ['id', 'key', 'style', 'className', 'locale', 'containerId', 'columns', 'showHeader', 'rowHoverable', 'tableLayout', 'data', 'bordered', 'maxHeight', 'maxWidth', 'scrollToFirstRowOnChange', 'size', 'rowSelectionType', 'selectedRowKeys', 'selectedRows', 'rowSelectionWidth', 'rowSelectionCheckStrictly', 'rowSelectionIgnoreRowKeys', 'selectedRowsSyncWithData', 'sticky', 'enableHoverListen', 'recentlyMouseEnterColumnDataIndex', 'recentlyMouseEnterRowKey', 'recentlyMouseEnterRow', 'titlePopoverInfo', 'columnsFormatConstraint', 'sortOptions', 'showSorterTooltip', 'showSorterTooltipTarget', 'filterOptions', 'defaultFilteredValues', 'pagination', 'currentData', 'recentlyChangedRow', 'recentlyChangedColumn', 'sorter', 'filter', 'mode', 'summaryRowContents', 'summaryRowBlankColumns', 'summaryRowFixed', 'conditionalStyleFuncs', 'expandedRowKeyToContent', 'expandedRowWidth', 'expandRowByClick', 'defaultExpandedRowKeys', 'expandedRowKeys', 'enableCellClickListenColumns', 'recentlyCellClickColumn', 'recentlyCellClickRecord', 'nClicksCell', 'cellClickEvent', 'recentlyCellDoubleClickColumn', 'recentlyCellDoubleClickRecord', 'nDoubleClicksCell', 'cellDoubleClickEvent', 'recentlyContextMenuClickColumn', 'recentlyContextMenuClickRecord', 'nContextMenuClicksCell', 'cellContextMenuClickEvent', 'emptyContent', 'cellUpdateOptimize', 'miniChartHeight', 'miniChartAnimation', 'recentlyButtonClickedRow', 'nClicksButton', 'clickedContent', 'clickedCustom', 'recentlyButtonClickedDataIndex', 'customFormatFuncs', 'recentlyCheckedRow', 'recentlyCheckedLabel', 'recentlyCheckedDataIndex', 'recentlyCheckedStatus', 'recentlySwitchRow', 'recentlySwitchDataIndex', 'recentlySwitchStatus', 'nClicksDropdownItem', 'recentlyClickedDropdownItemTitle', 'recentlyDropdownItemClickedDataIndex', 'recentlyDropdownItemClickedRow', 'recentlySelectRow', 'recentlySelectDataIndex', 'recentlySelectValue', 'hiddenRowKeys', 'dataDeepCompare', 'virtual', 'title', 'footer', 'loading', 'rowClassName', 'data-*', 'aria-*', 'loading_state']
+        self._prop_names = ['id', 'key', 'style', 'className', 'locale', 'containerId', 'columns', 'showHeader', 'rowHoverable', 'tableLayout', 'data', 'bordered', 'maxHeight', 'maxWidth', 'scrollToFirstRowOnChange', 'size', 'rowSelectionType', 'selectedRowKeys', 'selectedRows', 'rowSelectionWidth', 'rowSelectionCheckStrictly', 'rowSelectionIgnoreRowKeys', 'selectedRowsSyncWithData', 'sticky', 'enableHoverListen', 'recentlyMouseEnterColumnDataIndex', 'recentlyMouseEnterRowKey', 'recentlyMouseEnterRow', 'titlePopoverInfo', 'columnsFormatConstraint', 'sortOptions', 'showSorterTooltip', 'showSorterTooltipTarget', 'filterOptions', 'defaultFilteredValues', 'pagination', 'currentData', 'recentlyChangedRow', 'recentlyChangedColumn', 'sorter', 'filter', 'mode', 'summaryRowContents', 'summaryRowBlankColumns', 'summaryRowFixed', 'conditionalStyleFuncs', 'expandedRowKeyToContent', 'expandedRowWidth', 'expandRowByClick', 'defaultExpandedRowKeys', 'expandedRowKeys', 'enableCellClickListenColumns', 'recentlyCellClickColumn', 'recentlyCellClickRecord', 'nClicksCell', 'cellClickEvent', 'recentlyCellDoubleClickColumn', 'recentlyCellDoubleClickRecord', 'nDoubleClicksCell', 'cellDoubleClickEvent', 'recentlyContextMenuClickColumn', 'recentlyContextMenuClickRecord', 'nContextMenuClicksCell', 'cellContextMenuClickEvent', 'emptyContent', 'cellUpdateOptimize', 'miniChartHeight', 'miniChartAnimation', 'recentlyButtonClickedRow', 'nClicksButton', 'clickedContent', 'clickedCustom', 'recentlyButtonClickedDataIndex', 'customFormatFuncs', 'recentlyCheckedRow', 'recentlyCheckedLabel', 'recentlyCheckedDataIndex', 'recentlyCheckedStatus', 'recentlySwitchRow', 'recentlySwitchDataIndex', 'recentlySwitchStatus', 'nClicksDropdownItem', 'recentlyClickedDropdownItemTitle', 'recentlyDropdownItemClickedDataIndex', 'recentlyDropdownItemClickedRow', 'recentlySelectRow', 'recentlySelectDataIndex', 'recentlySelectValue', 'hiddenRowKeys', 'dataDeepCompare', 'virtual', 'title', 'footer', 'loading', 'rowClassName', 'data-*', 'aria-*']
         self._valid_wildcard_attributes =            ['data-', 'aria-']
-        self.available_properties = ['id', 'key', 'style', 'className', 'locale', 'containerId', 'columns', 'showHeader', 'rowHoverable', 'tableLayout', 'data', 'bordered', 'maxHeight', 'maxWidth', 'scrollToFirstRowOnChange', 'size', 'rowSelectionType', 'selectedRowKeys', 'selectedRows', 'rowSelectionWidth', 'rowSelectionCheckStrictly', 'rowSelectionIgnoreRowKeys', 'selectedRowsSyncWithData', 'sticky', 'enableHoverListen', 'recentlyMouseEnterColumnDataIndex', 'recentlyMouseEnterRowKey', 'recentlyMouseEnterRow', 'titlePopoverInfo', 'columnsFormatConstraint', 'sortOptions', 'showSorterTooltip', 'showSorterTooltipTarget', 'filterOptions', 'defaultFilteredValues', 'pagination', 'currentData', 'recentlyChangedRow', 'recentlyChangedColumn', 'sorter', 'filter', 'mode', 'summaryRowContents', 'summaryRowBlankColumns', 'summaryRowFixed', 'conditionalStyleFuncs', 'expandedRowKeyToContent', 'expandedRowWidth', 'expandRowByClick', 'defaultExpandedRowKeys', 'expandedRowKeys', 'enableCellClickListenColumns', 'recentlyCellClickColumn', 'recentlyCellClickRecord', 'nClicksCell', 'cellClickEvent', 'recentlyCellDoubleClickColumn', 'recentlyCellDoubleClickRecord', 'nDoubleClicksCell', 'cellDoubleClickEvent', 'recentlyContextMenuClickColumn', 'recentlyContextMenuClickRecord', 'nContextMenuClicksCell', 'cellContextMenuClickEvent', 'emptyContent', 'cellUpdateOptimize', 'miniChartHeight', 'miniChartAnimation', 'recentlyButtonClickedRow', 'nClicksButton', 'clickedContent', 'clickedCustom', 'recentlyButtonClickedDataIndex', 'customFormatFuncs', 'recentlyCheckedRow', 'recentlyCheckedLabel', 'recentlyCheckedDataIndex', 'recentlyCheckedStatus', 'recentlySwitchRow', 'recentlySwitchDataIndex', 'recentlySwitchStatus', 'nClicksDropdownItem', 'recentlyClickedDropdownItemTitle', 'recentlyDropdownItemClickedDataIndex', 'recentlyDropdownItemClickedRow', 'recentlySelectRow', 'recentlySelectDataIndex', 'recentlySelectValue', 'hiddenRowKeys', 'dataDeepCompare', 'virtual', 'title', 'footer', 'loading', 'rowClassName', 'data-*', 'aria-*', 'loading_state']
+        self.available_properties = ['id', 'key', 'style', 'className', 'locale', 'containerId', 'columns', 'showHeader', 'rowHoverable', 'tableLayout', 'data', 'bordered', 'maxHeight', 'maxWidth', 'scrollToFirstRowOnChange', 'size', 'rowSelectionType', 'selectedRowKeys', 'selectedRows', 'rowSelectionWidth', 'rowSelectionCheckStrictly', 'rowSelectionIgnoreRowKeys', 'selectedRowsSyncWithData', 'sticky', 'enableHoverListen', 'recentlyMouseEnterColumnDataIndex', 'recentlyMouseEnterRowKey', 'recentlyMouseEnterRow', 'titlePopoverInfo', 'columnsFormatConstraint', 'sortOptions', 'showSorterTooltip', 'showSorterTooltipTarget', 'filterOptions', 'defaultFilteredValues', 'pagination', 'currentData', 'recentlyChangedRow', 'recentlyChangedColumn', 'sorter', 'filter', 'mode', 'summaryRowContents', 'summaryRowBlankColumns', 'summaryRowFixed', 'conditionalStyleFuncs', 'expandedRowKeyToContent', 'expandedRowWidth', 'expandRowByClick', 'defaultExpandedRowKeys', 'expandedRowKeys', 'enableCellClickListenColumns', 'recentlyCellClickColumn', 'recentlyCellClickRecord', 'nClicksCell', 'cellClickEvent', 'recentlyCellDoubleClickColumn', 'recentlyCellDoubleClickRecord', 'nDoubleClicksCell', 'cellDoubleClickEvent', 'recentlyContextMenuClickColumn', 'recentlyContextMenuClickRecord', 'nContextMenuClicksCell', 'cellContextMenuClickEvent', 'emptyContent', 'cellUpdateOptimize', 'miniChartHeight', 'miniChartAnimation', 'recentlyButtonClickedRow', 'nClicksButton', 'clickedContent', 'clickedCustom', 'recentlyButtonClickedDataIndex', 'customFormatFuncs', 'recentlyCheckedRow', 'recentlyCheckedLabel', 'recentlyCheckedDataIndex', 'recentlyCheckedStatus', 'recentlySwitchRow', 'recentlySwitchDataIndex', 'recentlySwitchStatus', 'nClicksDropdownItem', 'recentlyClickedDropdownItemTitle', 'recentlyDropdownItemClickedDataIndex', 'recentlyDropdownItemClickedRow', 'recentlySelectRow', 'recentlySelectDataIndex', 'recentlySelectValue', 'hiddenRowKeys', 'dataDeepCompare', 'virtual', 'title', 'footer', 'loading', 'rowClassName', 'data-*', 'aria-*']
         self.available_wildcard_properties =            ['data-', 'aria-']
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()

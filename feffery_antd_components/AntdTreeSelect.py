@@ -190,10 +190,10 @@ Keyword arguments:
 - persistence (boolean | string | number; optional):
     是否开启[属性持久化](/prop-persistence).
 
-- persisted_props (list of a value equal to: 'value's; default ['value']):
+- persisted_props (list of a value equal to: 'value's; optional):
     开启属性持久化功能的若干属性名，可选项有`'value'`  默认值：`['value']`.
 
-- persistence_type (a value equal to: 'local', 'session', 'memory'; default 'local'):
+- persistence_type (a value equal to: 'local', 'session', 'memory'; optional):
     属性持久化存储类型，可选项有`'local'`（本地持久化），`'session'`（会话持久化），`'memory'`（内存持久化）
     默认值：`'local'`."""
     _children_props = ['treeNodeKeyToTitle{}', 'maxTagPlaceholder', 'suffixIcon', 'switcherIcon', 'dropdownBefore', 'dropdownAfter', 'prefix']

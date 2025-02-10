@@ -41,8 +41,8 @@ const AntdDateRangePicker = ({
     prefix,
     suffixIcon,
     persistence,
-    persisted_props = ['value'],
-    persistence_type = 'local',
+    persisted_props,
+    persistence_type,
     batchPropsNames = [],
     needConfirm = false,
     ...others
@@ -420,6 +420,11 @@ AntdDateRangePicker.propTypes = {
      */
     setProps: PropTypes.func
 };
+
+AntdDateRangePicker.dashPersistence = {
+    persisted_props: ['value'],
+    persistence_type: 'local'
+}
 
 export default AntdDateRangePicker;
 

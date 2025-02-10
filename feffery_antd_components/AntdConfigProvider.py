@@ -68,20 +68,7 @@ Keyword arguments:
     是否开启针对`88`及以下版本`Chromium`内核浏览器的向下兼容模式  默认值：`False`.
 
 - enableLayer (boolean; default False):
-    是否启用layer样式降权  默认值：`False`.
-
-- loading_state (dict; optional)
-
-    `loading_state` is a dict with keys:
-
-    - is_loading (boolean; optional):
-        Determines if the component is loading or not.
-
-    - prop_name (string; optional):
-        Holds which property is loading.
-
-    - component_name (string; optional):
-        Holds the name of the component that is loading."""
+    是否启用layer样式降权  默认值：`False`."""
     _children_props = []
     _base_nodes = ['children']
     _namespace = 'feffery_antd_components'
@@ -97,15 +84,6 @@ Keyword arguments:
         "ComponentsToken",
             {
             "algorithm": NotRequired[bool]
-        }
-    )
-
-    LoadingState = TypedDict(
-        "LoadingState",
-            {
-            "is_loading": NotRequired[bool],
-            "prop_name": NotRequired[str],
-            "component_name": NotRequired[str]
         }
     )
 
@@ -126,12 +104,11 @@ Keyword arguments:
         componentsToken: typing.Optional[typing.Dict[typing.Union[str, float, int], "ComponentsToken"]] = None,
         compatibilityMode: typing.Optional[bool] = None,
         enableLayer: typing.Optional[bool] = None,
-        loading_state: typing.Optional["LoadingState"] = None,
         **kwargs
     ):
-        self._prop_names = ['id', 'key', 'children', 'algorithm', 'useOldTheme', 'primaryColor', 'componentDisabled', 'componentSize', 'locale', 'wavesDisabled', 'token', 'componentsToken', 'compatibilityMode', 'enableLayer', 'loading_state']
+        self._prop_names = ['id', 'key', 'children', 'algorithm', 'useOldTheme', 'primaryColor', 'componentDisabled', 'componentSize', 'locale', 'wavesDisabled', 'token', 'componentsToken', 'compatibilityMode', 'enableLayer']
         self._valid_wildcard_attributes =            []
-        self.available_properties = ['id', 'key', 'children', 'algorithm', 'useOldTheme', 'primaryColor', 'componentDisabled', 'componentSize', 'locale', 'wavesDisabled', 'token', 'componentsToken', 'compatibilityMode', 'enableLayer', 'loading_state']
+        self.available_properties = ['id', 'key', 'children', 'algorithm', 'useOldTheme', 'primaryColor', 'componentDisabled', 'componentSize', 'locale', 'wavesDisabled', 'token', 'componentsToken', 'compatibilityMode', 'enableLayer']
         self.available_wildcard_properties =            []
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()

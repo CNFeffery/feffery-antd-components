@@ -38,8 +38,8 @@ const AntdTimePicker = ({
     prefix,
     suffixIcon,
     persistence,
-    persisted_props = ['value'],
-    persistence_type = 'local',
+    persisted_props,
+    persistence_type,
     batchPropsNames = [],
     needConfirm = false,
     ...others
@@ -325,6 +325,11 @@ AntdTimePicker.propTypes = {
      */
     persistence_type: PropTypes.oneOf(['local', 'session', 'memory'])
 };
+
+AntdTimePicker.dashPersistence = {
+    persisted_props: ['value'],
+    persistence_type: 'local'
+}
 
 export default AntdTimePicker;
 

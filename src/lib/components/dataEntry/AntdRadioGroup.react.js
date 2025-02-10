@@ -24,8 +24,8 @@ const AntdRadioGroup = ({
     readOnly = false,
     setProps,
     persistence,
-    persisted_props = ['value'],
-    persistence_type = 'local',
+    persisted_props,
+    persistence_type,
     batchPropsNames = [],
     ...others
 }) => {
@@ -224,6 +224,11 @@ AntdRadioGroup.propTypes = {
      */
     persistence_type: PropTypes.oneOf(['local', 'session', 'memory'])
 };
+
+AntdRadioGroup.dashPersistence = {
+    persisted_props: ['value'],
+    persistence_type: 'local'
+}
 
 export default AntdRadioGroup;
 

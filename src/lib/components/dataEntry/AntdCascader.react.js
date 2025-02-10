@@ -41,8 +41,8 @@ const AntdCascader = ({
     readOnly,
     setProps,
     persistence,
-    persisted_props = ['value'],
-    persistence_type = 'local',
+    persisted_props,
+    persistence_type,
     batchPropsNames = [],
     ...others
 }) => {
@@ -416,6 +416,11 @@ AntdCascader.propTypes = {
      */
     persistence_type: PropTypes.oneOf(['local', 'session', 'memory'])
 };
+
+AntdCascader.dashPersistence = {
+    persisted_props: ['value'],
+    persistence_type: 'local'
+}
 
 export default AntdCascader;
 

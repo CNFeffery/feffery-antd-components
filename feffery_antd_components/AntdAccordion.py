@@ -110,20 +110,7 @@ Keyword arguments:
     `data-*`格式属性通配.
 
 - aria-* (string; optional):
-    `aria-*`格式属性通配.
-
-- loading_state (dict; optional)
-
-    `loading_state` is a dict with keys:
-
-    - is_loading (boolean; optional):
-        Determines if the component is loading or not.
-
-    - prop_name (string; optional):
-        Holds which property is loading.
-
-    - component_name (string; optional):
-        Holds the name of the component that is loading."""
+    `aria-*`格式属性通配."""
     _children_props = ['items[].children', 'items[].title', 'items[].extra']
     _base_nodes = ['children']
     _namespace = 'feffery_antd_components'
@@ -159,15 +146,6 @@ Keyword arguments:
         }
     )
 
-    LoadingState = TypedDict(
-        "LoadingState",
-            {
-            "is_loading": NotRequired[bool],
-            "prop_name": NotRequired[str],
-            "component_name": NotRequired[str]
-        }
-    )
-
     @_explicitize_args
     def __init__(
         self,
@@ -186,12 +164,11 @@ Keyword arguments:
         collapsible: typing.Optional[Literal["header", "disabled", "icon"]] = None,
         expandIconPosition: typing.Optional[Literal["left", "right"]] = None,
         ghost: typing.Optional[bool] = None,
-        loading_state: typing.Optional["LoadingState"] = None,
         **kwargs
     ):
-        self._prop_names = ['id', 'key', 'style', 'className', 'styles', 'classNames', 'items', 'accordion', 'activeKey', 'defaultActiveKey', 'bordered', 'size', 'collapsible', 'expandIconPosition', 'ghost', 'data-*', 'aria-*', 'loading_state']
+        self._prop_names = ['id', 'key', 'style', 'className', 'styles', 'classNames', 'items', 'accordion', 'activeKey', 'defaultActiveKey', 'bordered', 'size', 'collapsible', 'expandIconPosition', 'ghost', 'data-*', 'aria-*']
         self._valid_wildcard_attributes =            ['data-', 'aria-']
-        self.available_properties = ['id', 'key', 'style', 'className', 'styles', 'classNames', 'items', 'accordion', 'activeKey', 'defaultActiveKey', 'bordered', 'size', 'collapsible', 'expandIconPosition', 'ghost', 'data-*', 'aria-*', 'loading_state']
+        self.available_properties = ['id', 'key', 'style', 'className', 'styles', 'classNames', 'items', 'accordion', 'activeKey', 'defaultActiveKey', 'bordered', 'size', 'collapsible', 'expandIconPosition', 'ghost', 'data-*', 'aria-*']
         self.available_wildcard_properties =            ['data-', 'aria-']
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()

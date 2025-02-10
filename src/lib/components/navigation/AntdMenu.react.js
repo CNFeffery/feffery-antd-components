@@ -290,8 +290,8 @@ const AntdMenu = ({
     triggerSubMenuAction = 'hover',
     setProps,
     persistence,
-    persisted_props = ['currentKey', 'openKeys'],
-    persistence_type = 'local',
+    persisted_props,
+    persistence_type,
     ...others
 }) => {
 
@@ -629,5 +629,10 @@ AntdMenu.propTypes = {
      */
     persistence_type: PropTypes.oneOf(['local', 'session', 'memory'])
 };
+
+AntdMenu.dashPersistence = {
+    persisted_props: ['currentKey', 'openKeys'],
+    persistence_type: 'local'
+}
 
 export default AntdMenu;

@@ -41,8 +41,8 @@ const AntdDatePicker = ({
     prefix,
     suffixIcon,
     persistence,
-    persisted_props = ['value'],
-    persistence_type = 'local',
+    persisted_props,
+    persistence_type,
     batchPropsNames = [],
     needConfirm = false,
     ...others
@@ -413,6 +413,11 @@ AntdDatePicker.propTypes = {
      */
     persistence_type: PropTypes.oneOf(['local', 'session', 'memory'])
 };
+
+AntdDatePicker.dashPersistence = {
+    persisted_props: ['value'],
+    persistence_type: 'local'
+}
 
 export default AntdDatePicker;
 

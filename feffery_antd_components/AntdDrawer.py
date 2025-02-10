@@ -126,20 +126,7 @@ Keyword arguments:
     `data-*`格式属性通配.
 
 - aria-* (string; optional):
-    `aria-*`格式属性通配.
-
-- loading_state (dict; optional)
-
-    `loading_state` is a dict with keys:
-
-    - is_loading (boolean; optional):
-        Determines if the component is loading or not.
-
-    - prop_name (string; optional):
-        Holds which property is loading.
-
-    - component_name (string; optional):
-        Holds the name of the component that is loading."""
+    `aria-*`格式属性通配."""
     _children_props = ['title', 'extra', 'footer']
     _base_nodes = ['title', 'extra', 'footer', 'children']
     _namespace = 'feffery_antd_components'
@@ -163,15 +150,6 @@ Keyword arguments:
             "footer": NotRequired[dict],
             "mask": NotRequired[dict],
             "content": NotRequired[dict]
-        }
-    )
-
-    LoadingState = TypedDict(
-        "LoadingState",
-            {
-            "is_loading": NotRequired[bool],
-            "prop_name": NotRequired[str],
-            "component_name": NotRequired[str]
         }
     )
 
@@ -202,12 +180,11 @@ Keyword arguments:
         footer: typing.Optional[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]] = None,
         containerId: typing.Optional[str] = None,
         containerSelector: typing.Optional[str] = None,
-        loading_state: typing.Optional["LoadingState"] = None,
         **kwargs
     ):
-        self._prop_names = ['id', 'key', 'children', 'style', 'className', 'classNames', 'styles', 'rootStyle', 'visible', 'title', 'placement', 'closable', 'forceRender', 'destroyOnClose', 'width', 'height', 'mask', 'maskClosable', 'zIndex', 'loading', 'extra', 'footer', 'containerId', 'containerSelector', 'data-*', 'aria-*', 'loading_state']
+        self._prop_names = ['id', 'key', 'children', 'style', 'className', 'classNames', 'styles', 'rootStyle', 'visible', 'title', 'placement', 'closable', 'forceRender', 'destroyOnClose', 'width', 'height', 'mask', 'maskClosable', 'zIndex', 'loading', 'extra', 'footer', 'containerId', 'containerSelector', 'data-*', 'aria-*']
         self._valid_wildcard_attributes =            ['data-', 'aria-']
-        self.available_properties = ['id', 'key', 'children', 'style', 'className', 'classNames', 'styles', 'rootStyle', 'visible', 'title', 'placement', 'closable', 'forceRender', 'destroyOnClose', 'width', 'height', 'mask', 'maskClosable', 'zIndex', 'loading', 'extra', 'footer', 'containerId', 'containerSelector', 'data-*', 'aria-*', 'loading_state']
+        self.available_properties = ['id', 'key', 'children', 'style', 'className', 'classNames', 'styles', 'rootStyle', 'visible', 'title', 'placement', 'closable', 'forceRender', 'destroyOnClose', 'width', 'height', 'mask', 'maskClosable', 'zIndex', 'loading', 'extra', 'footer', 'containerId', 'containerSelector', 'data-*', 'aria-*']
         self.available_wildcard_properties =            ['data-', 'aria-']
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()

@@ -170,26 +170,13 @@ Keyword arguments:
 - aria-* (string; optional):
     `aria-*`格式属性通配.
 
-- loading_state (dict; optional)
-
-    `loading_state` is a dict with keys:
-
-    - is_loading (boolean; optional):
-        Determines if the component is loading or not.
-
-    - prop_name (string; optional):
-        Holds which property is loading.
-
-    - component_name (string; optional):
-        Holds the name of the component that is loading.
-
 - persistence (boolean | string | number; optional):
     是否开启[属性持久化](/prop-persistence).
 
-- persisted_props (list of a value equal to: 'activeKey's; default ['activeKey']):
+- persisted_props (list of a value equal to: 'activeKey's; optional):
     开启属性持久化功能的若干属性名，可选项有`'activeKey'`  默认值：`['activeKey']`.
 
-- persistence_type (a value equal to: 'local', 'session', 'memory'; default 'local'):
+- persistence_type (a value equal to: 'local', 'session', 'memory'; optional):
     属性持久化存储类型，可选项有`'local'`（本地持久化），`'session'`（会话持久化），`'memory'`（内存持久化）
     默认值：`'local'`."""
     _children_props = ['items[].label', 'items[].children', 'items[].icon', 'items[].closeIcon', 'tabBarLeftExtraContent', 'tabBarRightExtraContent', 'placeholder']
@@ -239,15 +226,6 @@ Keyword arguments:
         }
     )
 
-    LoadingState = TypedDict(
-        "LoadingState",
-            {
-            "is_loading": NotRequired[bool],
-            "prop_name": NotRequired[str],
-            "component_name": NotRequired[str]
-        }
-    )
-
     @_explicitize_args
     def __init__(
         self,
@@ -277,15 +255,14 @@ Keyword arguments:
         destroyInactiveTabPane: typing.Optional[bool] = None,
         clickedContextMenu: typing.Optional["ClickedContextMenu"] = None,
         placeholder: typing.Optional[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]] = None,
-        loading_state: typing.Optional["LoadingState"] = None,
         persistence: typing.Optional[typing.Union[bool, str, typing.Union[int, float, numbers.Number]]] = None,
         persisted_props: typing.Optional[typing.Sequence[Literal["activeKey"]]] = None,
         persistence_type: typing.Optional[Literal["local", "session", "memory"]] = None,
         **kwargs
     ):
-        self._prop_names = ['id', 'key', 'style', 'className', 'type', 'items', 'itemKeys', 'activeKey', 'defaultActiveKey', 'disabledTabKeys', 'tabPosition', 'size', 'centered', 'indicator', 'tabBarGutter', 'tabBarStyle', 'inkBarAnimated', 'tabPaneAnimated', 'latestDeletePane', 'tabCloseCounts', 'tabBarLeftExtraContent', 'tabBarRightExtraContent', 'tabCount', 'destroyInactiveTabPane', 'clickedContextMenu', 'placeholder', 'data-*', 'aria-*', 'loading_state', 'persistence', 'persisted_props', 'persistence_type']
+        self._prop_names = ['id', 'key', 'style', 'className', 'type', 'items', 'itemKeys', 'activeKey', 'defaultActiveKey', 'disabledTabKeys', 'tabPosition', 'size', 'centered', 'indicator', 'tabBarGutter', 'tabBarStyle', 'inkBarAnimated', 'tabPaneAnimated', 'latestDeletePane', 'tabCloseCounts', 'tabBarLeftExtraContent', 'tabBarRightExtraContent', 'tabCount', 'destroyInactiveTabPane', 'clickedContextMenu', 'placeholder', 'data-*', 'aria-*', 'persistence', 'persisted_props', 'persistence_type']
         self._valid_wildcard_attributes =            ['data-', 'aria-']
-        self.available_properties = ['id', 'key', 'style', 'className', 'type', 'items', 'itemKeys', 'activeKey', 'defaultActiveKey', 'disabledTabKeys', 'tabPosition', 'size', 'centered', 'indicator', 'tabBarGutter', 'tabBarStyle', 'inkBarAnimated', 'tabPaneAnimated', 'latestDeletePane', 'tabCloseCounts', 'tabBarLeftExtraContent', 'tabBarRightExtraContent', 'tabCount', 'destroyInactiveTabPane', 'clickedContextMenu', 'placeholder', 'data-*', 'aria-*', 'loading_state', 'persistence', 'persisted_props', 'persistence_type']
+        self.available_properties = ['id', 'key', 'style', 'className', 'type', 'items', 'itemKeys', 'activeKey', 'defaultActiveKey', 'disabledTabKeys', 'tabPosition', 'size', 'centered', 'indicator', 'tabBarGutter', 'tabBarStyle', 'inkBarAnimated', 'tabPaneAnimated', 'latestDeletePane', 'tabCloseCounts', 'tabBarLeftExtraContent', 'tabBarRightExtraContent', 'tabCount', 'destroyInactiveTabPane', 'clickedContextMenu', 'placeholder', 'data-*', 'aria-*', 'persistence', 'persisted_props', 'persistence_type']
         self.available_wildcard_properties =            ['data-', 'aria-']
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()

@@ -29,8 +29,8 @@ const AntdTransfer = ({
     status,
     readOnly = false,
     persistence,
-    persisted_props = ['targetKeys'],
-    persistence_type = 'local',
+    persisted_props,
+    persistence_type,
     batchPropsNames = [],
     ...others
 }) => {
@@ -298,6 +298,11 @@ AntdTransfer.propTypes = {
      */
     persistence_type: PropTypes.oneOf(['local', 'session', 'memory'])
 };
+
+AntdTransfer.dashPersistence = {
+    persisted_props: ['targetKeys'],
+    persistence_type: 'local'
+}
 
 export default AntdTransfer;
 

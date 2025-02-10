@@ -20,8 +20,8 @@ const AntdCheckbox = ({
     readOnly = false,
     setProps,
     persistence,
-    persisted_props = ['checked'],
-    persistence_type = 'local',
+    persisted_props,
+    persistence_type,
     batchPropsNames = [],
     ...others
 }) => {
@@ -163,6 +163,11 @@ AntdCheckbox.propTypes = {
      */
     persistence_type: PropTypes.oneOf(['local', 'session', 'memory'])
 };
+
+AntdCheckbox.dashPersistence = {
+    persisted_props: ['checked'],
+    persistence_type: 'local'
+}
 
 export default AntdCheckbox;
 

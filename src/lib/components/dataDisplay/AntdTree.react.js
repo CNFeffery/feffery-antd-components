@@ -53,8 +53,8 @@ const AntdTree = ({
     nodeUncheckedStyle,
     enableAsyncLoad = false,
     persistence,
-    persisted_props = ['selectedKeys', 'checkedKeys', 'expandedKeys', 'halfCheckedKeys'],
-    persistence_type = 'local',
+    persisted_props,
+    persistence_type,
     batchPropsNames = [],
     ...others
 }) => {
@@ -630,6 +630,11 @@ AntdTree.propTypes = {
      */
     persistence_type: PropTypes.oneOf(['local', 'session', 'memory'])
 };
+
+AntdTree.dashPersistence = {
+    persisted_props: ['selectedKeys', 'checkedKeys', 'expandedKeys', 'halfCheckedKeys'],
+    persistence_type: 'local'
+}
 
 export default AntdTree;
 

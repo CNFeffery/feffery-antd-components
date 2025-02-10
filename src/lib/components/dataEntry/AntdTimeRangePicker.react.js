@@ -38,8 +38,8 @@ const AntdTimeRangePicker = ({
     readOnly,
     extraFooter,
     persistence,
-    persisted_props = ['value'],
-    persistence_type = 'local',
+    persisted_props,
+    persistence_type,
     batchPropsNames = [],
     needConfirm = false,
     ...others
@@ -306,6 +306,11 @@ AntdTimeRangePicker.propTypes = {
      */
     persistence_type: PropTypes.oneOf(['local', 'session', 'memory'])
 };
+
+AntdTimeRangePicker.dashPersistence = {
+    persisted_props: ['value'],
+    persistence_type: 'local'
+}
 
 export default AntdTimeRangePicker;
 

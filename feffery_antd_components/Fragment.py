@@ -26,32 +26,11 @@ Keyword arguments:
     组件型，内嵌元素.
 
 - token (dict; optional):
-    监听当前组件所在作用范围对应的样式`token`参数，需配合上层`AntdConfigProvider`组件使用.
-
-- loading_state (dict; optional)
-
-    `loading_state` is a dict with keys:
-
-    - is_loading (boolean; optional):
-        Determines if the component is loading or not.
-
-    - prop_name (string; optional):
-        Holds which property is loading.
-
-    - component_name (string; optional):
-        Holds the name of the component that is loading."""
+    监听当前组件所在作用范围对应的样式`token`参数，需配合上层`AntdConfigProvider`组件使用."""
     _children_props = []
     _base_nodes = ['children']
     _namespace = 'feffery_antd_components'
     _type = 'Fragment'
-    LoadingState = TypedDict(
-        "LoadingState",
-            {
-            "is_loading": NotRequired[bool],
-            "prop_name": NotRequired[str],
-            "component_name": NotRequired[str]
-        }
-    )
 
     @_explicitize_args
     def __init__(
@@ -60,12 +39,11 @@ Keyword arguments:
         id: typing.Optional[str] = None,
         key: typing.Optional[str] = None,
         token: typing.Optional[dict] = None,
-        loading_state: typing.Optional["LoadingState"] = None,
         **kwargs
     ):
-        self._prop_names = ['id', 'key', 'children', 'token', 'loading_state']
+        self._prop_names = ['id', 'key', 'children', 'token']
         self._valid_wildcard_attributes =            []
-        self.available_properties = ['id', 'key', 'children', 'token', 'loading_state']
+        self.available_properties = ['id', 'key', 'children', 'token']
         self.available_wildcard_properties =            []
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()
