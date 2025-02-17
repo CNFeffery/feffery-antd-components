@@ -1,6 +1,13 @@
 # AUTO GENERATED FILE - DO NOT EDIT
 
+import typing  # noqa: F401
+import numbers # noqa: F401
+from typing_extensions import TypedDict, NotRequired, Literal # noqa: F401
 from dash.development.base_component import Component, _explicitize_args
+try:
+    from dash.development.base_component import ComponentType # noqa: F401
+except ImportError:
+    ComponentType = typing.TypeVar("ComponentType", bound=Component)
 
 
 class AntdTreeSelect(Component):
@@ -183,18 +190,82 @@ Keyword arguments:
 - persistence (boolean | string | number; optional):
     是否开启[属性持久化](/prop-persistence).
 
-- persisted_props (list of a value equal to: 'value's; default ['value']):
+- persisted_props (list of a value equal to: 'value's; optional):
     开启属性持久化功能的若干属性名，可选项有`'value'`  默认值：`['value']`.
 
-- persistence_type (a value equal to: 'local', 'session', 'memory'; default 'local'):
+- persistence_type (a value equal to: 'local', 'session', 'memory'; optional):
     属性持久化存储类型，可选项有`'local'`（本地持久化），`'session'`（会话持久化），`'memory'`（内存持久化）
     默认值：`'local'`."""
     _children_props = ['treeNodeKeyToTitle{}', 'maxTagPlaceholder', 'suffixIcon', 'switcherIcon', 'dropdownBefore', 'dropdownAfter', 'prefix']
     _base_nodes = ['maxTagPlaceholder', 'suffixIcon', 'switcherIcon', 'dropdownBefore', 'dropdownAfter', 'prefix', 'children']
     _namespace = 'feffery_antd_components'
     _type = 'AntdTreeSelect'
+    LoadingState = TypedDict(
+        "LoadingState",
+            {
+            "is_loading": NotRequired[bool],
+            "prop_name": NotRequired[str],
+            "component_name": NotRequired[str]
+        }
+    )
+
     @_explicitize_args
-    def __init__(self, id=Component.UNDEFINED, key=Component.UNDEFINED, style=Component.UNDEFINED, className=Component.UNDEFINED, popupClassName=Component.UNDEFINED, name=Component.UNDEFINED, locale=Component.UNDEFINED, treeDataMode=Component.UNDEFINED, treeData=Component.REQUIRED, treeNodeKeyToTitle=Component.UNDEFINED, disabled=Component.UNDEFINED, size=Component.UNDEFINED, bordered=Component.UNDEFINED, variant=Component.UNDEFINED, placeholder=Component.UNDEFINED, placement=Component.UNDEFINED, treeLine=Component.UNDEFINED, value=Component.UNDEFINED, defaultValue=Component.UNDEFINED, maxCount=Component.UNDEFINED, maxTagCount=Component.UNDEFINED, maxTagPlaceholder=Component.UNDEFINED, maxTagTextLength=Component.UNDEFINED, listHeight=Component.UNDEFINED, multiple=Component.UNDEFINED, suffixIcon=Component.UNDEFINED, switcherIcon=Component.UNDEFINED, treeCheckable=Component.UNDEFINED, treeCheckStrictly=Component.UNDEFINED, treeDefaultExpandAll=Component.UNDEFINED, treeDefaultExpandedKeys=Component.UNDEFINED, treeExpandedKeys=Component.UNDEFINED, virtual=Component.UNDEFINED, status=Component.UNDEFINED, allowClear=Component.UNDEFINED, treeNodeFilterProp=Component.UNDEFINED, treeNodeFilterMode=Component.UNDEFINED, autoClearSearchValue=Component.UNDEFINED, showCheckedStrategy=Component.UNDEFINED, dropdownBefore=Component.UNDEFINED, dropdownAfter=Component.UNDEFINED, prefix=Component.UNDEFINED, readOnly=Component.UNDEFINED, enableAsyncLoad=Component.UNDEFINED, loadingNode=Component.UNDEFINED, popupContainer=Component.UNDEFINED, batchPropsNames=Component.UNDEFINED, batchPropsValues=Component.UNDEFINED, loading_state=Component.UNDEFINED, persistence=Component.UNDEFINED, persisted_props=Component.UNDEFINED, persistence_type=Component.UNDEFINED, **kwargs):
+    def __init__(
+        self,
+        id: typing.Optional[str] = None,
+        key: typing.Optional[str] = None,
+        style: typing.Optional[dict] = None,
+        className: typing.Optional[typing.Union[str, dict]] = None,
+        popupClassName: typing.Optional[str] = None,
+        name: typing.Optional[str] = None,
+        locale: typing.Optional[Literal["zh-cn", "en-us", "de-de"]] = None,
+        treeDataMode: typing.Optional[Literal["tree", "flat"]] = None,
+        treeData: typing.Optional[typing.Union[typing.Any, typing.Sequence[typing.Any]]] = None,
+        treeNodeKeyToTitle: typing.Optional[typing.Dict[typing.Union[str, float, int], typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]]] = None,
+        disabled: typing.Optional[bool] = None,
+        size: typing.Optional[Literal["small", "middle", "large"]] = None,
+        bordered: typing.Optional[bool] = None,
+        variant: typing.Optional[Literal["outlined", "borderless", "filled"]] = None,
+        placeholder: typing.Optional[str] = None,
+        placement: typing.Optional[Literal["bottomLeft", "bottomRight", "topLeft", "topRight"]] = None,
+        treeLine: typing.Optional[bool] = None,
+        value: typing.Optional[typing.Union[str, typing.Union[int, float, numbers.Number], typing.Sequence[typing.Union[str, typing.Union[int, float, numbers.Number]]]]] = None,
+        defaultValue: typing.Optional[typing.Union[str, typing.Union[int, float, numbers.Number], typing.Sequence[typing.Union[str, typing.Union[int, float, numbers.Number]]]]] = None,
+        maxCount: typing.Optional[typing.Union[int, float, numbers.Number]] = None,
+        maxTagCount: typing.Optional[typing.Union[typing.Union[int, float, numbers.Number], Literal["responsive"]]] = None,
+        maxTagPlaceholder: typing.Optional[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]] = None,
+        maxTagTextLength: typing.Optional[typing.Union[int, float, numbers.Number]] = None,
+        listHeight: typing.Optional[typing.Union[int, float, numbers.Number]] = None,
+        multiple: typing.Optional[bool] = None,
+        suffixIcon: typing.Optional[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]] = None,
+        switcherIcon: typing.Optional[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]] = None,
+        treeCheckable: typing.Optional[bool] = None,
+        treeCheckStrictly: typing.Optional[bool] = None,
+        treeDefaultExpandAll: typing.Optional[bool] = None,
+        treeDefaultExpandedKeys: typing.Optional[typing.Sequence[str]] = None,
+        treeExpandedKeys: typing.Optional[typing.Sequence[str]] = None,
+        virtual: typing.Optional[bool] = None,
+        status: typing.Optional[Literal["error", "warning"]] = None,
+        allowClear: typing.Optional[bool] = None,
+        treeNodeFilterProp: typing.Optional[Literal["title", "value"]] = None,
+        treeNodeFilterMode: typing.Optional[Literal["case-insensitive", "case-sensitive", "regex"]] = None,
+        autoClearSearchValue: typing.Optional[bool] = None,
+        showCheckedStrategy: typing.Optional[Literal["show-all", "show-parent", "show-child"]] = None,
+        dropdownBefore: typing.Optional[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]] = None,
+        dropdownAfter: typing.Optional[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]] = None,
+        prefix: typing.Optional[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]] = None,
+        readOnly: typing.Optional[bool] = None,
+        enableAsyncLoad: typing.Optional[bool] = None,
+        loadingNode: typing.Optional[dict] = None,
+        popupContainer: typing.Optional[Literal["parent", "body"]] = None,
+        batchPropsNames: typing.Optional[typing.Sequence[str]] = None,
+        batchPropsValues: typing.Optional[dict] = None,
+        loading_state: typing.Optional["LoadingState"] = None,
+        persistence: typing.Optional[typing.Union[bool, str, typing.Union[int, float, numbers.Number]]] = None,
+        persisted_props: typing.Optional[typing.Sequence[Literal["value"]]] = None,
+        persistence_type: typing.Optional[Literal["local", "session", "memory"]] = None,
+        **kwargs
+    ):
         self._prop_names = ['id', 'key', 'style', 'className', 'popupClassName', 'name', 'locale', 'treeDataMode', 'treeData', 'treeNodeKeyToTitle', 'disabled', 'size', 'bordered', 'variant', 'placeholder', 'placement', 'treeLine', 'value', 'defaultValue', 'maxCount', 'maxTagCount', 'maxTagPlaceholder', 'maxTagTextLength', 'listHeight', 'multiple', 'suffixIcon', 'switcherIcon', 'treeCheckable', 'treeCheckStrictly', 'treeDefaultExpandAll', 'treeDefaultExpandedKeys', 'treeExpandedKeys', 'virtual', 'status', 'allowClear', 'treeNodeFilterProp', 'treeNodeFilterMode', 'autoClearSearchValue', 'showCheckedStrategy', 'dropdownBefore', 'dropdownAfter', 'prefix', 'readOnly', 'enableAsyncLoad', 'loadingNode', 'popupContainer', 'batchPropsNames', 'batchPropsValues', 'data-*', 'aria-*', 'loading_state', 'persistence', 'persisted_props', 'persistence_type']
         self._valid_wildcard_attributes =            ['data-', 'aria-']
         self.available_properties = ['id', 'key', 'style', 'className', 'popupClassName', 'name', 'locale', 'treeDataMode', 'treeData', 'treeNodeKeyToTitle', 'disabled', 'size', 'bordered', 'variant', 'placeholder', 'placement', 'treeLine', 'value', 'defaultValue', 'maxCount', 'maxTagCount', 'maxTagPlaceholder', 'maxTagTextLength', 'listHeight', 'multiple', 'suffixIcon', 'switcherIcon', 'treeCheckable', 'treeCheckStrictly', 'treeDefaultExpandAll', 'treeDefaultExpandedKeys', 'treeExpandedKeys', 'virtual', 'status', 'allowClear', 'treeNodeFilterProp', 'treeNodeFilterMode', 'autoClearSearchValue', 'showCheckedStrategy', 'dropdownBefore', 'dropdownAfter', 'prefix', 'readOnly', 'enableAsyncLoad', 'loadingNode', 'popupContainer', 'batchPropsNames', 'batchPropsValues', 'data-*', 'aria-*', 'loading_state', 'persistence', 'persisted_props', 'persistence_type']

@@ -6,10 +6,50 @@ const LazyAntdOTP = React.lazy(() => import(/* webpackChunkName: "data_entry" */
 /**
  * 一次性密码框组件AntdOTP
  */
-const AntdOTP = (props) => {
+const AntdOTP = ({
+    id,
+    className,
+    style,
+    key,
+    name,
+    defaultValue,
+    value,
+    disabled = false,
+    length = 6,
+    mask = false,
+    status,
+    size = 'middle',
+    variant = 'outlined',
+    setProps,
+    persistence,
+    persisted_props,
+    persistence_type,
+    ...others
+}) => {
     return (
         <Suspense fallback={null}>
-            <LazyAntdOTP {...props} />
+            <LazyAntdOTP {
+                ...{
+                    id,
+                    className,
+                    style,
+                    key,
+                    name,
+                    defaultValue,
+                    value,
+                    disabled,
+                    length,
+                    mask,
+                    status,
+                    size,
+                    variant,
+                    setProps,
+                    persistence,
+                    persisted_props,
+                    persistence_type,
+                    ...others
+                }
+            } />
         </Suspense>
     );
 }
@@ -100,21 +140,6 @@ AntdOTP.propTypes = {
      */
     'aria-*': PropTypes.string,
 
-    loading_state: PropTypes.shape({
-        /**
-         * Determines if the component is loading or not
-         */
-        is_loading: PropTypes.bool,
-        /**
-         * Holds which property is loading
-         */
-        prop_name: PropTypes.string,
-        /**
-         * Holds the name of the component that is loading
-         */
-        component_name: PropTypes.string
-    }),
-
     /**
      * Dash-assigned callback that should be called to report property changes
      * to Dash, to make them available for callbacks.
@@ -143,13 +168,7 @@ AntdOTP.propTypes = {
     persistence_type: PropTypes.oneOf(['local', 'session', 'memory'])
 };
 
-// 设置默认参数
-AntdOTP.defaultProps = {
-    disabled: false,
-    length: 6,
-    mask: false,
-    size: 'middle',
-    variant: 'outlined',
+AntdOTP.dashPersistence = {
     persisted_props: ['value'],
     persistence_type: 'local'
 }

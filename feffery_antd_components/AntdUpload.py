@@ -1,6 +1,13 @@
 # AUTO GENERATED FILE - DO NOT EDIT
 
+import typing  # noqa: F401
+import numbers # noqa: F401
+from typing_extensions import TypedDict, NotRequired, Literal # noqa: F401
 from dash.development.base_component import Component, _explicitize_args
+try:
+    from dash.development.base_component import ComponentType # noqa: F401
+except ImportError:
+    ComponentType = typing.TypeVar("ComponentType", bound=Component)
 
 
 class AntdUpload(Component):
@@ -283,8 +290,133 @@ Keyword arguments:
     _base_nodes = ['buttonContent', 'buttonIcon', 'children']
     _namespace = 'feffery_antd_components'
     _type = 'AntdUpload'
+    ButtonProps = TypedDict(
+        "ButtonProps",
+            {
+            "size": NotRequired[Literal["default", "small", "large"]],
+            "type": NotRequired[Literal["primary", "ghost", "dashed", "link", "text", "default"]],
+            "danger": NotRequired[bool],
+            "block": NotRequired[bool],
+            "style": NotRequired[dict],
+            "className": NotRequired[str]
+        }
+    )
+
+    ProgressPropsStrokeColor = TypedDict(
+        "ProgressPropsStrokeColor",
+            {
+            "from": NotRequired[str],
+            "to": NotRequired[str]
+        }
+    )
+
+    ProgressPropsFormat = TypedDict(
+        "ProgressPropsFormat",
+            {
+            "prefix": NotRequired[str],
+            "suffix": NotRequired[str]
+        }
+    )
+
+    ProgressProps = TypedDict(
+        "ProgressProps",
+            {
+            "strokeColor": NotRequired[typing.Union[str, "ProgressPropsStrokeColor"]],
+            "strokeWidth": NotRequired[typing.Union[int, float, numbers.Number]],
+            "format": NotRequired["ProgressPropsFormat"]
+        }
+    )
+
+    LastUploadTaskRecord = TypedDict(
+        "LastUploadTaskRecord",
+            {
+            "fileName": NotRequired[str],
+            "fileSize": NotRequired[typing.Union[int, float, numbers.Number]],
+            "completeTimestamp": NotRequired[typing.Union[int, float, numbers.Number]],
+            "taskStatus": NotRequired[str],
+            "taskId": NotRequired[str],
+            "url": NotRequired[str],
+            "uploadResponse": NotRequired[typing.Any]
+        }
+    )
+
+    ListUploadTaskRecord = TypedDict(
+        "ListUploadTaskRecord",
+            {
+            "fileName": NotRequired[str],
+            "fileSize": NotRequired[typing.Union[int, float, numbers.Number]],
+            "completeTimestamp": NotRequired[typing.Union[int, float, numbers.Number]],
+            "taskStatus": NotRequired[str],
+            "taskId": NotRequired[str],
+            "uid": NotRequired[str],
+            "url": NotRequired[str],
+            "uploadResponse": NotRequired[typing.Any],
+            "originFileObj": NotRequired[typing.Any]
+        }
+    )
+
+    DefaultFileList = TypedDict(
+        "DefaultFileList",
+            {
+            "name": NotRequired[str],
+            "status": NotRequired[Literal["done", "error", "removed"]],
+            "uid": NotRequired[typing.Any],
+            "url": NotRequired[str],
+            "taskId": NotRequired[str],
+            "fileSize": NotRequired[typing.Union[int, float, numbers.Number]]
+        }
+    )
+
+    LoadingState = TypedDict(
+        "LoadingState",
+            {
+            "is_loading": NotRequired[bool],
+            "prop_name": NotRequired[str],
+            "component_name": NotRequired[str]
+        }
+    )
+
     @_explicitize_args
-    def __init__(self, id=Component.UNDEFINED, key=Component.UNDEFINED, style=Component.UNDEFINED, className=Component.UNDEFINED, name=Component.UNDEFINED, locale=Component.UNDEFINED, apiUrl=Component.UNDEFINED, apiUrlExtraParams=Component.UNDEFINED, headers=Component.UNDEFINED, withCredentials=Component.UNDEFINED, withOriginFileObj=Component.UNDEFINED, downloadUrl=Component.UNDEFINED, downloadUrlExtraParams=Component.UNDEFINED, downloadUrlFromBackend=Component.UNDEFINED, fileListMaxLength=Component.UNDEFINED, fileTypes=Component.UNDEFINED, buttonContent=Component.UNDEFINED, buttonIcon=Component.UNDEFINED, buttonProps=Component.UNDEFINED, uploadId=Component.UNDEFINED, fileMaxSize=Component.UNDEFINED, multiple=Component.UNDEFINED, directory=Component.UNDEFINED, failedTooltipInfo=Component.UNDEFINED, showUploadList=Component.UNDEFINED, confirmBeforeDelete=Component.UNDEFINED, showPercent=Component.UNDEFINED, progressProps=Component.UNDEFINED, showSuccessMessage=Component.UNDEFINED, showErrorMessage=Component.UNDEFINED, lastUploadTaskRecord=Component.UNDEFINED, listUploadTaskRecord=Component.UNDEFINED, defaultFileList=Component.UNDEFINED, disabled=Component.UNDEFINED, status=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
+    def __init__(
+        self,
+        id: typing.Optional[str] = None,
+        key: typing.Optional[str] = None,
+        style: typing.Optional[dict] = None,
+        className: typing.Optional[typing.Union[str, dict]] = None,
+        name: typing.Optional[str] = None,
+        locale: typing.Optional[Literal["zh-cn", "en-us", "de-de"]] = None,
+        apiUrl: typing.Optional[str] = None,
+        apiUrlExtraParams: typing.Optional[dict] = None,
+        headers: typing.Optional[dict] = None,
+        withCredentials: typing.Optional[bool] = None,
+        withOriginFileObj: typing.Optional[bool] = None,
+        downloadUrl: typing.Optional[str] = None,
+        downloadUrlExtraParams: typing.Optional[dict] = None,
+        downloadUrlFromBackend: typing.Optional[bool] = None,
+        fileListMaxLength: typing.Optional[typing.Union[int, float, numbers.Number]] = None,
+        fileTypes: typing.Optional[typing.Sequence[str]] = None,
+        buttonContent: typing.Optional[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]] = None,
+        buttonIcon: typing.Optional[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]] = None,
+        buttonProps: typing.Optional["ButtonProps"] = None,
+        uploadId: typing.Optional[str] = None,
+        fileMaxSize: typing.Optional[typing.Union[int, float, numbers.Number]] = None,
+        multiple: typing.Optional[bool] = None,
+        directory: typing.Optional[bool] = None,
+        failedTooltipInfo: typing.Optional[str] = None,
+        showUploadList: typing.Optional[bool] = None,
+        confirmBeforeDelete: typing.Optional[bool] = None,
+        showPercent: typing.Optional[bool] = None,
+        progressProps: typing.Optional["ProgressProps"] = None,
+        showSuccessMessage: typing.Optional[bool] = None,
+        showErrorMessage: typing.Optional[bool] = None,
+        lastUploadTaskRecord: typing.Optional[typing.Union["LastUploadTaskRecord", typing.Sequence["LastUploadTaskRecord"]]] = None,
+        listUploadTaskRecord: typing.Optional[typing.Sequence["ListUploadTaskRecord"]] = None,
+        defaultFileList: typing.Optional[typing.Sequence["DefaultFileList"]] = None,
+        disabled: typing.Optional[bool] = None,
+        status: typing.Optional[Literal["error", "warning"]] = None,
+        loading_state: typing.Optional["LoadingState"] = None,
+        **kwargs
+    ):
         self._prop_names = ['id', 'key', 'style', 'className', 'name', 'locale', 'apiUrl', 'apiUrlExtraParams', 'headers', 'withCredentials', 'withOriginFileObj', 'downloadUrl', 'downloadUrlExtraParams', 'downloadUrlFromBackend', 'fileListMaxLength', 'fileTypes', 'buttonContent', 'buttonIcon', 'buttonProps', 'uploadId', 'fileMaxSize', 'multiple', 'directory', 'failedTooltipInfo', 'showUploadList', 'confirmBeforeDelete', 'showPercent', 'progressProps', 'showSuccessMessage', 'showErrorMessage', 'lastUploadTaskRecord', 'listUploadTaskRecord', 'defaultFileList', 'disabled', 'status', 'data-*', 'aria-*', 'loading_state']
         self._valid_wildcard_attributes =            ['data-', 'aria-']
         self.available_properties = ['id', 'key', 'style', 'className', 'name', 'locale', 'apiUrl', 'apiUrlExtraParams', 'headers', 'withCredentials', 'withOriginFileObj', 'downloadUrl', 'downloadUrlExtraParams', 'downloadUrlFromBackend', 'fileListMaxLength', 'fileTypes', 'buttonContent', 'buttonIcon', 'buttonProps', 'uploadId', 'fileMaxSize', 'multiple', 'directory', 'failedTooltipInfo', 'showUploadList', 'confirmBeforeDelete', 'showPercent', 'progressProps', 'showSuccessMessage', 'showErrorMessage', 'lastUploadTaskRecord', 'listUploadTaskRecord', 'defaultFileList', 'disabled', 'status', 'data-*', 'aria-*', 'loading_state']

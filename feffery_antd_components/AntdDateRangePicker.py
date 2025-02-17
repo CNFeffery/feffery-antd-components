@@ -1,6 +1,13 @@
 # AUTO GENERATED FILE - DO NOT EDIT
 
+import typing  # noqa: F401
+import numbers # noqa: F401
+from typing_extensions import TypedDict, NotRequired, Literal # noqa: F401
 from dash.development.base_component import Component, _explicitize_args
+try:
+    from dash.development.base_component import ComponentType # noqa: F401
+except ImportError:
+    ComponentType = typing.TypeVar("ComponentType", bound=Component)
 
 
 class AntdDateRangePicker(Component):
@@ -183,39 +190,110 @@ Keyword arguments:
 - aria-* (string; optional):
     `aria-*`格式属性通配.
 
-- loading_state (dict; optional):
-    Object that holds the loading state object coming from
-    dash-renderer.
-
-    `loading_state` is a dict with keys:
-
-    - is_loading (boolean; optional):
-        Determines if the component is loading or not.
-
-    - prop_name (string; optional):
-        Holds which property is loading.
-
-    - component_name (string; optional):
-        Holds the name of the component that is loading.
-
 - persistence (boolean | string | number; optional):
     是否开启[属性持久化](/prop-persistence).
 
-- persisted_props (list of a value equal to: 'value's; default ['value']):
+- persisted_props (list of a value equal to: 'value's; optional):
     开启属性持久化功能的若干属性名，可选项有`'value'`  默认值：`['value']`.
 
-- persistence_type (a value equal to: 'local', 'session', 'memory'; default 'local'):
+- persistence_type (a value equal to: 'local', 'session', 'memory'; optional):
     属性持久化存储类型，可选项有`'local'`（本地持久化），`'session'`（会话持久化），`'memory'`（内存持久化）
     默认值：`'local'`."""
     _children_props = ['extraFooter', 'presets[].label', 'prefix', 'suffixIcon']
     _base_nodes = ['extraFooter', 'prefix', 'suffixIcon', 'children']
     _namespace = 'feffery_antd_components'
     _type = 'AntdDateRangePicker'
+    ShowTime = TypedDict(
+        "ShowTime",
+            {
+            "defaultValue": NotRequired[typing.Sequence[str]],
+            "format": NotRequired[str]
+        }
+    )
+
+    DisabledDatesStrategy = TypedDict(
+        "DisabledDatesStrategy",
+            {
+            "mode": NotRequired[Literal["eq", "ne", "le", "lt", "ge", "gt", "in", "not-in", "in-enumerate-dates", "not-in-enumerate-dates"]],
+            "target": NotRequired[Literal["day", "month", "quarter", "year", "dayOfYear", "dayOfWeek", "specific-date"]],
+            "value": NotRequired[typing.Union[typing.Union[int, float, numbers.Number], str, typing.Sequence[typing.Union[int, float, numbers.Number]], typing.Sequence[str]]]
+        }
+    )
+
+    Presets = TypedDict(
+        "Presets",
+            {
+            "label": NotRequired[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]],
+            "value": NotRequired[typing.Sequence[str]]
+        }
+    )
+
+    ClickedPreset = TypedDict(
+        "ClickedPreset",
+            {
+            "value": NotRequired[typing.Union[str, typing.Union[int, float, numbers.Number]]],
+            "timestamp": NotRequired[typing.Union[int, float, numbers.Number]]
+        }
+    )
+
+    CustomCells = TypedDict(
+        "CustomCells",
+            {
+            "year": NotRequired[typing.Union[int, float, numbers.Number]],
+            "month": NotRequired[typing.Union[int, float, numbers.Number]],
+            "date": NotRequired[typing.Union[int, float, numbers.Number]],
+            "style": NotRequired[dict],
+            "className": NotRequired[str]
+        }
+    )
+
     @_explicitize_args
-    def __init__(self, id=Component.UNDEFINED, key=Component.UNDEFINED, style=Component.UNDEFINED, className=Component.UNDEFINED, popupClassName=Component.UNDEFINED, name=Component.UNDEFINED, locale=Component.UNDEFINED, format=Component.UNDEFINED, picker=Component.UNDEFINED, firstDayOfWeek=Component.UNDEFINED, disabled=Component.UNDEFINED, showTime=Component.UNDEFINED, size=Component.UNDEFINED, bordered=Component.UNDEFINED, variant=Component.UNDEFINED, placeholder=Component.UNDEFINED, placement=Component.UNDEFINED, value=Component.UNDEFINED, defaultValue=Component.UNDEFINED, pickerValue=Component.UNDEFINED, disabledDatesStrategy=Component.UNDEFINED, open=Component.UNDEFINED, status=Component.UNDEFINED, allowClear=Component.UNDEFINED, autoFocus=Component.UNDEFINED, readOnly=Component.UNDEFINED, extraFooter=Component.UNDEFINED, presets=Component.UNDEFINED, clickedPreset=Component.UNDEFINED, needConfirm=Component.UNDEFINED, customCells=Component.UNDEFINED, prefix=Component.UNDEFINED, suffixIcon=Component.UNDEFINED, popupContainer=Component.UNDEFINED, batchPropsNames=Component.UNDEFINED, batchPropsValues=Component.UNDEFINED, loading_state=Component.UNDEFINED, persistence=Component.UNDEFINED, persisted_props=Component.UNDEFINED, persistence_type=Component.UNDEFINED, **kwargs):
-        self._prop_names = ['id', 'key', 'style', 'className', 'popupClassName', 'name', 'locale', 'format', 'picker', 'firstDayOfWeek', 'disabled', 'showTime', 'size', 'bordered', 'variant', 'placeholder', 'placement', 'value', 'defaultValue', 'pickerValue', 'disabledDatesStrategy', 'open', 'status', 'allowClear', 'autoFocus', 'readOnly', 'extraFooter', 'presets', 'clickedPreset', 'needConfirm', 'customCells', 'prefix', 'suffixIcon', 'popupContainer', 'batchPropsNames', 'batchPropsValues', 'data-*', 'aria-*', 'loading_state', 'persistence', 'persisted_props', 'persistence_type']
+    def __init__(
+        self,
+        id: typing.Optional[str] = None,
+        key: typing.Optional[str] = None,
+        style: typing.Optional[dict] = None,
+        className: typing.Optional[typing.Union[str, dict]] = None,
+        popupClassName: typing.Optional[str] = None,
+        name: typing.Optional[str] = None,
+        locale: typing.Optional[Literal["zh-cn", "en-us", "de-de"]] = None,
+        format: typing.Optional[str] = None,
+        picker: typing.Optional[Literal["date", "week", "month", "quarter", "year"]] = None,
+        firstDayOfWeek: typing.Optional[typing.Union[int, float, numbers.Number]] = None,
+        disabled: typing.Optional[typing.Sequence[bool]] = None,
+        showTime: typing.Optional[typing.Union[bool, "ShowTime"]] = None,
+        size: typing.Optional[Literal["small", "middle", "large"]] = None,
+        bordered: typing.Optional[bool] = None,
+        variant: typing.Optional[Literal["outlined", "borderless", "filled"]] = None,
+        placeholder: typing.Optional[typing.Sequence[str]] = None,
+        placement: typing.Optional[Literal["bottomLeft", "bottomRight", "topLeft", "topRight"]] = None,
+        value: typing.Optional[typing.Sequence[str]] = None,
+        defaultValue: typing.Optional[typing.Sequence[str]] = None,
+        pickerValue: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
+        disabledDatesStrategy: typing.Optional[typing.Sequence["DisabledDatesStrategy"]] = None,
+        open: typing.Optional[bool] = None,
+        status: typing.Optional[Literal["error", "warning"]] = None,
+        allowClear: typing.Optional[bool] = None,
+        autoFocus: typing.Optional[bool] = None,
+        readOnly: typing.Optional[bool] = None,
+        extraFooter: typing.Optional[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]] = None,
+        presets: typing.Optional[typing.Sequence["Presets"]] = None,
+        clickedPreset: typing.Optional["ClickedPreset"] = None,
+        needConfirm: typing.Optional[bool] = None,
+        customCells: typing.Optional[typing.Sequence["CustomCells"]] = None,
+        prefix: typing.Optional[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]] = None,
+        suffixIcon: typing.Optional[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]] = None,
+        popupContainer: typing.Optional[Literal["parent", "body"]] = None,
+        batchPropsNames: typing.Optional[typing.Sequence[str]] = None,
+        batchPropsValues: typing.Optional[dict] = None,
+        persistence: typing.Optional[typing.Union[bool, str, typing.Union[int, float, numbers.Number]]] = None,
+        persisted_props: typing.Optional[typing.Sequence[Literal["value"]]] = None,
+        persistence_type: typing.Optional[Literal["local", "session", "memory"]] = None,
+        **kwargs
+    ):
+        self._prop_names = ['id', 'key', 'style', 'className', 'popupClassName', 'name', 'locale', 'format', 'picker', 'firstDayOfWeek', 'disabled', 'showTime', 'size', 'bordered', 'variant', 'placeholder', 'placement', 'value', 'defaultValue', 'pickerValue', 'disabledDatesStrategy', 'open', 'status', 'allowClear', 'autoFocus', 'readOnly', 'extraFooter', 'presets', 'clickedPreset', 'needConfirm', 'customCells', 'prefix', 'suffixIcon', 'popupContainer', 'batchPropsNames', 'batchPropsValues', 'data-*', 'aria-*', 'persistence', 'persisted_props', 'persistence_type']
         self._valid_wildcard_attributes =            ['data-', 'aria-']
-        self.available_properties = ['id', 'key', 'style', 'className', 'popupClassName', 'name', 'locale', 'format', 'picker', 'firstDayOfWeek', 'disabled', 'showTime', 'size', 'bordered', 'variant', 'placeholder', 'placement', 'value', 'defaultValue', 'pickerValue', 'disabledDatesStrategy', 'open', 'status', 'allowClear', 'autoFocus', 'readOnly', 'extraFooter', 'presets', 'clickedPreset', 'needConfirm', 'customCells', 'prefix', 'suffixIcon', 'popupContainer', 'batchPropsNames', 'batchPropsValues', 'data-*', 'aria-*', 'loading_state', 'persistence', 'persisted_props', 'persistence_type']
+        self.available_properties = ['id', 'key', 'style', 'className', 'popupClassName', 'name', 'locale', 'format', 'picker', 'firstDayOfWeek', 'disabled', 'showTime', 'size', 'bordered', 'variant', 'placeholder', 'placement', 'value', 'defaultValue', 'pickerValue', 'disabledDatesStrategy', 'open', 'status', 'allowClear', 'autoFocus', 'readOnly', 'extraFooter', 'presets', 'clickedPreset', 'needConfirm', 'customCells', 'prefix', 'suffixIcon', 'popupContainer', 'batchPropsNames', 'batchPropsValues', 'data-*', 'aria-*', 'persistence', 'persisted_props', 'persistence_type']
         self.available_wildcard_properties =            ['data-', 'aria-']
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()

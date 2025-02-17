@@ -1,6 +1,13 @@
 # AUTO GENERATED FILE - DO NOT EDIT
 
+import typing  # noqa: F401
+import numbers # noqa: F401
+from typing_extensions import TypedDict, NotRequired, Literal # noqa: F401
 from dash.development.base_component import Component, _explicitize_args
+try:
+    from dash.development.base_component import ComponentType # noqa: F401
+except ImportError:
+    ComponentType = typing.TypeVar("ComponentType", bound=Component)
 
 
 class AntdWatermark(Component):
@@ -64,29 +71,37 @@ Keyword arguments:
     `data-*`格式属性通配.
 
 - aria-* (string; optional):
-    `aria-*`格式属性通配.
-
-- loading_state (dict; optional)
-
-    `loading_state` is a dict with keys:
-
-    - is_loading (boolean; optional):
-        Determines if the component is loading or not.
-
-    - prop_name (string; optional):
-        Holds which property is loading.
-
-    - component_name (string; optional):
-        Holds the name of the component that is loading."""
+    `aria-*`格式属性通配."""
     _children_props = []
     _base_nodes = ['children']
     _namespace = 'feffery_antd_components'
     _type = 'AntdWatermark'
+
     @_explicitize_args
-    def __init__(self, children=None, id=Component.UNDEFINED, key=Component.UNDEFINED, style=Component.UNDEFINED, className=Component.UNDEFINED, markClassName=Component.UNDEFINED, markStyle=Component.UNDEFINED, content=Component.UNDEFINED, rotate=Component.UNDEFINED, zIndex=Component.UNDEFINED, fontColor=Component.UNDEFINED, fontSize=Component.UNDEFINED, gapX=Component.UNDEFINED, gapY=Component.UNDEFINED, image=Component.UNDEFINED, width=Component.UNDEFINED, height=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
-        self._prop_names = ['id', 'key', 'children', 'style', 'className', 'markClassName', 'markStyle', 'content', 'rotate', 'zIndex', 'fontColor', 'fontSize', 'gapX', 'gapY', 'image', 'width', 'height', 'data-*', 'aria-*', 'loading_state']
+    def __init__(
+        self,
+        children: typing.Optional[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]] = None,
+        id: typing.Optional[str] = None,
+        key: typing.Optional[str] = None,
+        style: typing.Optional[dict] = None,
+        className: typing.Optional[str] = None,
+        markClassName: typing.Optional[str] = None,
+        markStyle: typing.Optional[dict] = None,
+        content: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
+        rotate: typing.Optional[typing.Union[int, float, numbers.Number]] = None,
+        zIndex: typing.Optional[typing.Union[int, float, numbers.Number]] = None,
+        fontColor: typing.Optional[str] = None,
+        fontSize: typing.Optional[typing.Union[int, float, numbers.Number]] = None,
+        gapX: typing.Optional[typing.Union[int, float, numbers.Number]] = None,
+        gapY: typing.Optional[typing.Union[int, float, numbers.Number]] = None,
+        image: typing.Optional[str] = None,
+        width: typing.Optional[typing.Union[int, float, numbers.Number]] = None,
+        height: typing.Optional[typing.Union[int, float, numbers.Number]] = None,
+        **kwargs
+    ):
+        self._prop_names = ['id', 'key', 'children', 'style', 'className', 'markClassName', 'markStyle', 'content', 'rotate', 'zIndex', 'fontColor', 'fontSize', 'gapX', 'gapY', 'image', 'width', 'height', 'data-*', 'aria-*']
         self._valid_wildcard_attributes =            ['data-', 'aria-']
-        self.available_properties = ['id', 'key', 'children', 'style', 'className', 'markClassName', 'markStyle', 'content', 'rotate', 'zIndex', 'fontColor', 'fontSize', 'gapX', 'gapY', 'image', 'width', 'height', 'data-*', 'aria-*', 'loading_state']
+        self.available_properties = ['id', 'key', 'children', 'style', 'className', 'markClassName', 'markStyle', 'content', 'rotate', 'zIndex', 'fontColor', 'fontSize', 'gapX', 'gapY', 'image', 'width', 'height', 'data-*', 'aria-*']
         self.available_wildcard_properties =            ['data-', 'aria-']
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()

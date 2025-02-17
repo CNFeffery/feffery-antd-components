@@ -4,36 +4,35 @@ import PropTypes from 'prop-types';
 // 辅助库
 import { isString } from 'lodash';
 import { pickBy } from 'ramda';
-import { parseChildrenToArray } from '../utils';
+import { parseChildrenToArray, useLoading } from '../utils';
 // 自定义hooks
 import useCss from '../../hooks/useCss';
 
 /**
  * 弹性布局组件AntdFlex
  */
-const AntdFlex = (props) => {
-    let {
-        id,
-        children,
-        className,
-        style,
-        key,
-        vertical,
-        wrap,
-        justify,
-        align,
-        flex,
-        gap,
-        setProps,
-        loading_state
-    } = props;
+const AntdFlex = ({
+    id,
+    children,
+    className,
+    style,
+    key,
+    vertical = false,
+    wrap = 'nowrap',
+    justify = 'normal',
+    align = 'normal',
+    flex = 'normal',
+    gap,
+    setProps,
+    ...others
+}) => {
 
     children = parseChildrenToArray(children)
 
     return (
         <Flex
             // 提取具有data-*或aria-*通配格式的属性
-            {...pickBy((_, k) => k.startsWith('data-') || k.startsWith('aria-'), props)}
+            {...pickBy((_, k) => k.startsWith('data-') || k.startsWith('aria-'), others)}
             id={id}
             className={
                 isString(className) ?
@@ -48,9 +47,7 @@ const AntdFlex = (props) => {
             align={align}
             flex={flex}
             gap={gap}
-            data-dash-is-loading={
-                (loading_state && loading_state.is_loading) || undefined
-            }>
+            data-dash-is-loading={useLoading()}>
             {children}
         </Flex>
     );
@@ -137,35 +134,11 @@ AntdFlex.propTypes = {
      */
     'aria-*': PropTypes.string,
 
-    loading_state: PropTypes.shape({
-        /**
-         * Determines if the component is loading or not
-         */
-        is_loading: PropTypes.bool,
-        /**
-         * Holds which property is loading
-         */
-        prop_name: PropTypes.string,
-        /**
-         * Holds the name of the component that is loading
-         */
-        component_name: PropTypes.string
-    }),
-
     /**
      * Dash-assigned callback that should be called to report property changes
      * to Dash, to make them available for callbacks.
      */
     setProps: PropTypes.func
 };
-
-// 设置默认参数
-AntdFlex.defaultProps = {
-    vertical: false,
-    wrap: 'nowrap',
-    justify: 'normal',
-    align: 'normal',
-    flex: 'normal'
-}
 
 export default AntdFlex;

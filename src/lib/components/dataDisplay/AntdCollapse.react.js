@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 // antd核心
 import { Collapse } from 'antd';
 // 辅助库
-import { parseChildrenToArray } from '../utils';
+import { parseChildrenToArray, useLoading } from '../utils';
 import { isString, isUndefined } from 'lodash';
 import { pickBy } from 'ramda';
 // 自定义hooks
@@ -15,29 +15,28 @@ import PropsContext from '../../contexts/PropsContext';
 /**
  * 折叠面板组件AntdCollapse
  */
-const AntdCollapse = (props) => {
-    let {
-        id,
-        children,
-        className,
-        style,
-        key,
-        styles,
-        classNames,
-        title,
-        isOpen,
-        bordered,
-        size,
-        showArrow,
-        collapsible,
-        ghost,
-        forceRender,
-        setProps,
-        persistence,
-        persisted_props,
-        persistence_type,
-        loading_state
-    } = props;
+const AntdCollapse = ({
+    id,
+    children,
+    className,
+    style,
+    key,
+    styles,
+    classNames,
+    title,
+    isOpen = true,
+    bordered = true,
+    size = 'middle',
+    showArrow = true,
+    collapsible,
+    ghost = false,
+    forceRender = false,
+    setProps,
+    persistence,
+    persisted_props,
+    persistence_type,
+    ...others
+}) => {
 
     children = parseChildrenToArray(children)
 
@@ -46,7 +45,7 @@ const AntdCollapse = (props) => {
     return (
         <Collapse
             // 提取具有data-*或aria-*通配格式的属性
-            {...pickBy((_, k) => k.startsWith('data-') || k.startsWith('aria-'), props)}
+            {...pickBy((_, k) => k.startsWith('data-') || k.startsWith('aria-'), others)}
             id={id}
             className={
                 isString(className) ?
@@ -91,9 +90,7 @@ const AntdCollapse = (props) => {
             persistence={persistence}
             persisted_props={persisted_props}
             persistence_type={persistence_type}
-            data-dash-is-loading={
-                (loading_state && loading_state.is_loading) || undefined
-            } />
+            data-dash-is-loading={useLoading()} />
     );
 }
 
@@ -210,21 +207,6 @@ AntdCollapse.propTypes = {
      */
     'aria-*': PropTypes.string,
 
-    loading_state: PropTypes.shape({
-        /**
-         * Determines if the component is loading or not
-         */
-        is_loading: PropTypes.bool,
-        /**
-         * Holds which property is loading
-         */
-        prop_name: PropTypes.string,
-        /**
-         * Holds the name of the component that is loading
-         */
-        component_name: PropTypes.string
-    }),
-
     /**
      * Dash-assigned callback that should be called to report property changes
      * to Dash, to make them available for callbacks.
@@ -253,14 +235,7 @@ AntdCollapse.propTypes = {
     persistence_type: PropTypes.oneOf(['local', 'session', 'memory'])
 };
 
-// 设置默认参数
-AntdCollapse.defaultProps = {
-    isOpen: true,
-    bordered: true,
-    size: 'middle',
-    showArrow: true,
-    ghost: false,
-    forceRender: false,
+AntdCollapse.dashPersistence = {
     persisted_props: ['isOpen'],
     persistence_type: 'local'
 }

@@ -1,6 +1,13 @@
 # AUTO GENERATED FILE - DO NOT EDIT
 
+import typing  # noqa: F401
+import numbers # noqa: F401
+from typing_extensions import TypedDict, NotRequired, Literal # noqa: F401
 from dash.development.base_component import Component, _explicitize_args
+try:
+    from dash.development.base_component import ComponentType # noqa: F401
+except ImportError:
+    ComponentType = typing.TypeVar("ComponentType", bound=Component)
 
 
 class AntdPopconfirm(Component):
@@ -171,8 +178,77 @@ Keyword arguments:
     _base_nodes = ['icon', 'title', 'description', 'okText', 'cancelText', 'children']
     _namespace = 'feffery_antd_components'
     _type = 'AntdPopconfirm'
+    OkButtonProps = TypedDict(
+        "OkButtonProps",
+            {
+            "size": NotRequired[Literal["small", "middle", "large"]],
+            "type": NotRequired[Literal["primary", "ghost", "dashed", "link", "text", "default"]],
+            "danger": NotRequired[bool],
+            "disabled": NotRequired[bool],
+            "shape": NotRequired[Literal["circle", "round"]],
+            "style": NotRequired[dict],
+            "className": NotRequired[str]
+        }
+    )
+
+    CancelButtonProps = TypedDict(
+        "CancelButtonProps",
+            {
+            "size": NotRequired[Literal["small", "middle", "large"]],
+            "type": NotRequired[Literal["primary", "ghost", "dashed", "link", "text", "default"]],
+            "danger": NotRequired[bool],
+            "disabled": NotRequired[bool],
+            "shape": NotRequired[Literal["circle", "round"]],
+            "style": NotRequired[dict],
+            "className": NotRequired[str]
+        }
+    )
+
+    LoadingState = TypedDict(
+        "LoadingState",
+            {
+            "is_loading": NotRequired[bool],
+            "prop_name": NotRequired[str],
+            "component_name": NotRequired[str]
+        }
+    )
+
     @_explicitize_args
-    def __init__(self, children=None, id=Component.UNDEFINED, key=Component.UNDEFINED, style=Component.UNDEFINED, className=Component.UNDEFINED, locale=Component.UNDEFINED, icon=Component.UNDEFINED, title=Component.UNDEFINED, description=Component.UNDEFINED, disabled=Component.UNDEFINED, placement=Component.UNDEFINED, mouseEnterDelay=Component.UNDEFINED, mouseLeaveDelay=Component.UNDEFINED, overlayClassName=Component.UNDEFINED, overlayStyle=Component.UNDEFINED, overlayInnerStyle=Component.UNDEFINED, okText=Component.UNDEFINED, okButtonProps=Component.UNDEFINED, cancelText=Component.UNDEFINED, cancelButtonProps=Component.UNDEFINED, showCancel=Component.UNDEFINED, confirmCounts=Component.UNDEFINED, cancelCounts=Component.UNDEFINED, trigger=Component.UNDEFINED, zIndex=Component.UNDEFINED, arrow=Component.UNDEFINED, fresh=Component.UNDEFINED, open=Component.UNDEFINED, permanent=Component.UNDEFINED, popupContainer=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
+    def __init__(
+        self,
+        children: typing.Optional[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]] = None,
+        id: typing.Optional[str] = None,
+        key: typing.Optional[str] = None,
+        style: typing.Optional[dict] = None,
+        className: typing.Optional[typing.Union[str, dict]] = None,
+        locale: typing.Optional[Literal["zh-cn", "en-us", "de-de"]] = None,
+        icon: typing.Optional[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]] = None,
+        title: typing.Optional[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]] = None,
+        description: typing.Optional[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]] = None,
+        disabled: typing.Optional[bool] = None,
+        placement: typing.Optional[Literal["top", "left", "right", "bottom", "topLeft", "topRight", "bottomLeft", "bottomRight", "leftTop", "leftBottom", "rightTop", "rightBottom"]] = None,
+        mouseEnterDelay: typing.Optional[typing.Union[int, float, numbers.Number]] = None,
+        mouseLeaveDelay: typing.Optional[typing.Union[int, float, numbers.Number]] = None,
+        overlayClassName: typing.Optional[typing.Union[str, dict]] = None,
+        overlayStyle: typing.Optional[dict] = None,
+        overlayInnerStyle: typing.Optional[dict] = None,
+        okText: typing.Optional[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]] = None,
+        okButtonProps: typing.Optional["OkButtonProps"] = None,
+        cancelText: typing.Optional[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]] = None,
+        cancelButtonProps: typing.Optional["CancelButtonProps"] = None,
+        showCancel: typing.Optional[bool] = None,
+        confirmCounts: typing.Optional[typing.Union[int, float, numbers.Number]] = None,
+        cancelCounts: typing.Optional[typing.Union[int, float, numbers.Number]] = None,
+        trigger: typing.Optional[typing.Union[Literal["hover", "focus", "click"], typing.Sequence[Literal["hover", "focus", "click"]]]] = None,
+        zIndex: typing.Optional[typing.Union[int, float, numbers.Number]] = None,
+        arrow: typing.Optional[Literal["show", "hide", "center"]] = None,
+        fresh: typing.Optional[bool] = None,
+        open: typing.Optional[bool] = None,
+        permanent: typing.Optional[bool] = None,
+        popupContainer: typing.Optional[Literal["parent", "body"]] = None,
+        loading_state: typing.Optional["LoadingState"] = None,
+        **kwargs
+    ):
         self._prop_names = ['id', 'key', 'children', 'style', 'className', 'locale', 'icon', 'title', 'description', 'disabled', 'placement', 'mouseEnterDelay', 'mouseLeaveDelay', 'overlayClassName', 'overlayStyle', 'overlayInnerStyle', 'okText', 'okButtonProps', 'cancelText', 'cancelButtonProps', 'showCancel', 'confirmCounts', 'cancelCounts', 'trigger', 'zIndex', 'arrow', 'fresh', 'open', 'permanent', 'popupContainer', 'data-*', 'aria-*', 'loading_state']
         self._valid_wildcard_attributes =            ['data-', 'aria-']
         self.available_properties = ['id', 'key', 'children', 'style', 'className', 'locale', 'icon', 'title', 'description', 'disabled', 'placement', 'mouseEnterDelay', 'mouseLeaveDelay', 'overlayClassName', 'overlayStyle', 'overlayInnerStyle', 'okText', 'okButtonProps', 'cancelText', 'cancelButtonProps', 'showCancel', 'confirmCounts', 'cancelCounts', 'trigger', 'zIndex', 'arrow', 'fresh', 'open', 'permanent', 'popupContainer', 'data-*', 'aria-*', 'loading_state']

@@ -1,6 +1,13 @@
 # AUTO GENERATED FILE - DO NOT EDIT
 
+import typing  # noqa: F401
+import numbers # noqa: F401
+from typing_extensions import TypedDict, NotRequired, Literal # noqa: F401
 from dash.development.base_component import Component, _explicitize_args
+try:
+    from dash.development.base_component import ComponentType # noqa: F401
+except ImportError:
+    ComponentType = typing.TypeVar("ComponentType", bound=Component)
 
 
 class AntdQRCode(Component):
@@ -75,29 +82,45 @@ Keyword arguments:
     `data-*`格式属性通配.
 
 - aria-* (string; optional):
-    `aria-*`格式属性通配.
-
-- loading_state (dict; optional)
-
-    `loading_state` is a dict with keys:
-
-    - is_loading (boolean; optional):
-        Determines if the component is loading or not.
-
-    - prop_name (string; optional):
-        Holds which property is loading.
-
-    - component_name (string; optional):
-        Holds the name of the component that is loading."""
+    `aria-*`格式属性通配."""
     _children_props = []
     _base_nodes = ['children']
     _namespace = 'feffery_antd_components'
     _type = 'AntdQRCode'
+    IconSize = TypedDict(
+        "IconSize",
+            {
+            "width": NotRequired[typing.Union[int, float, numbers.Number]],
+            "height": NotRequired[typing.Union[int, float, numbers.Number]]
+        }
+    )
+
     @_explicitize_args
-    def __init__(self, id=Component.UNDEFINED, key=Component.UNDEFINED, style=Component.UNDEFINED, className=Component.UNDEFINED, locale=Component.UNDEFINED, value=Component.UNDEFINED, type=Component.UNDEFINED, icon=Component.UNDEFINED, size=Component.UNDEFINED, iconSize=Component.UNDEFINED, color=Component.UNDEFINED, bgColor=Component.UNDEFINED, bordered=Component.UNDEFINED, errorLevel=Component.UNDEFINED, status=Component.UNDEFINED, expires=Component.UNDEFINED, autoSpin=Component.UNDEFINED, refreshClicks=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
-        self._prop_names = ['id', 'key', 'style', 'className', 'locale', 'value', 'type', 'icon', 'size', 'iconSize', 'color', 'bgColor', 'bordered', 'errorLevel', 'status', 'expires', 'autoSpin', 'refreshClicks', 'data-*', 'aria-*', 'loading_state']
+    def __init__(
+        self,
+        id: typing.Optional[str] = None,
+        key: typing.Optional[str] = None,
+        style: typing.Optional[dict] = None,
+        className: typing.Optional[typing.Union[str, dict]] = None,
+        locale: typing.Optional[Literal["zh-cn", "en-us", "de-de"]] = None,
+        value: typing.Optional[str] = None,
+        type: typing.Optional[Literal["canvas", "svg"]] = None,
+        icon: typing.Optional[str] = None,
+        size: typing.Optional[typing.Union[int, float, numbers.Number]] = None,
+        iconSize: typing.Optional[typing.Union[typing.Union[int, float, numbers.Number], "IconSize"]] = None,
+        color: typing.Optional[str] = None,
+        bgColor: typing.Optional[str] = None,
+        bordered: typing.Optional[bool] = None,
+        errorLevel: typing.Optional[Literal["L", "M", "Q", "H"]] = None,
+        status: typing.Optional[Literal["active", "expired", "loading", "scanned"]] = None,
+        expires: typing.Optional[typing.Union[int, float, numbers.Number]] = None,
+        autoSpin: typing.Optional[bool] = None,
+        refreshClicks: typing.Optional[typing.Union[int, float, numbers.Number]] = None,
+        **kwargs
+    ):
+        self._prop_names = ['id', 'key', 'style', 'className', 'locale', 'value', 'type', 'icon', 'size', 'iconSize', 'color', 'bgColor', 'bordered', 'errorLevel', 'status', 'expires', 'autoSpin', 'refreshClicks', 'data-*', 'aria-*']
         self._valid_wildcard_attributes =            ['data-', 'aria-']
-        self.available_properties = ['id', 'key', 'style', 'className', 'locale', 'value', 'type', 'icon', 'size', 'iconSize', 'color', 'bgColor', 'bordered', 'errorLevel', 'status', 'expires', 'autoSpin', 'refreshClicks', 'data-*', 'aria-*', 'loading_state']
+        self.available_properties = ['id', 'key', 'style', 'className', 'locale', 'value', 'type', 'icon', 'size', 'iconSize', 'color', 'bgColor', 'bordered', 'errorLevel', 'status', 'expires', 'autoSpin', 'refreshClicks', 'data-*', 'aria-*']
         self.available_wildcard_properties =            ['data-', 'aria-']
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()

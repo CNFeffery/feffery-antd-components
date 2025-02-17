@@ -6,10 +6,42 @@ const LazyAntdTag = React.lazy(() => import(/* webpackChunkName: "data_display" 
 /**
  * 标签组件AntdTag
  */
-const AntdTag = (props) => {
+const AntdTag = ({
+    id,
+    className,
+    style,
+    key,
+    content,
+    icon,
+    color,
+    href,
+    target = '_blank',
+    bordered = true,
+    closeIcon = false,
+    closeCounts = 0,
+    setProps,
+    ...others
+}) => {
     return (
         <Suspense fallback={null}>
-            <LazyAntdTag {...props} />
+            <LazyAntdTag {
+                ...{
+                    id,
+                    className,
+                    style,
+                    key,
+                    content,
+                    icon,
+                    color,
+                    href,
+                    target,
+                    bordered,
+                    closeIcon,
+                    closeCounts,
+                    setProps,
+                    ...others
+                }
+            } />
         </Suspense>
     );
 }
@@ -91,35 +123,12 @@ AntdTag.propTypes = {
      */
     'aria-*': PropTypes.string,
 
-    loading_state: PropTypes.shape({
-        /**
-         * Determines if the component is loading or not
-         */
-        is_loading: PropTypes.bool,
-        /**
-         * Holds which property is loading
-         */
-        prop_name: PropTypes.string,
-        /**
-         * Holds the name of the component that is loading
-         */
-        component_name: PropTypes.string
-    }),
-
     /**
      * Dash-assigned callback that should be called to report property changes
      * to Dash, to make them available for callbacks.
      */
     setProps: PropTypes.func
 };
-
-// 设置默认参数
-AntdTag.defaultProps = {
-    target: '_blank',
-    bordered: true,
-    closeIcon: false,
-    closeCounts: 0
-}
 
 export default AntdTag;
 

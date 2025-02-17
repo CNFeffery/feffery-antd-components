@@ -4,8 +4,9 @@ import React, { useEffect } from 'react';
 import { QRCode, ConfigProvider } from 'antd';
 // 辅助库
 import { isString } from 'lodash';
-import { pickBy } from 'ramda';
+import { pickBy, equals } from 'ramda';
 import { str2Locale } from '../../components/locales.react';
+import { useLoading, loadingSelector } from '../../components/utils';
 // 自定义hooks
 import useCss from '../../hooks/useCss';
 // 参数类型
@@ -35,8 +36,12 @@ const AntdQRCode = (props) => {
         autoSpin,
         refreshClicks,
         setProps,
-        loading_state
+        ...others
     } = props;
+
+    const ctx = window.dash_component_api.useDashContext();
+    // 获取内部加载中组件信息
+    const loading_info = ctx.useSelector(loadingSelector(ctx.componentPath), equals);
 
     useEffect(() => {
         if (value && expires) {
@@ -55,7 +60,7 @@ const AntdQRCode = (props) => {
         >
             <QRCode
                 // 提取具有data-*或aria-*通配格式的属性
-                {...pickBy((_, k) => k.startsWith('data-') || k.startsWith('aria-'), props)}
+                {...pickBy((_, k) => k.startsWith('data-') || k.startsWith('aria-'), others)}
                 id={id}
                 className={
                     isString(className) ?
@@ -73,11 +78,11 @@ const AntdQRCode = (props) => {
                 bgColor={bgColor}
                 bordered={bordered}
                 errorLevel={errorLevel}
-                status={autoSpin && loading_state?.prop_name?.startsWith('value') ? 'loading' : status}
-                onRefresh={() => setProps({ refreshClicks: refreshClicks + 1 })}
-                data-dash-is-loading={
-                    (loading_state && loading_state.is_loading) || undefined
+                status={
+                    autoSpin && (loading_info.length > 0 && loading_info[0].property === 'value') ? 'loading' : status
                 }
+                onRefresh={() => setProps({ refreshClicks: refreshClicks + 1 })}
+                data-dash-is-loading={useLoading()}
             />
         </ConfigProvider>
     );

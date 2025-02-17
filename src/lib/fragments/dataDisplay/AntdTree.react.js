@@ -7,7 +7,7 @@ import AntdIcon from '../../components/general/AntdIcon.react';
 import Highlighter from 'react-highlight-words';
 import { omitBy, isUndefined, isString, isObject, isArray, cloneDeep } from 'lodash';
 import { pickBy } from 'ramda';
-import { flatToTree } from '../../components/utils';
+import { flatToTree, useLoading } from '../../components/utils';
 // 自定义hooks
 import useCss from '../../hooks/useCss';
 // 参数类型
@@ -108,8 +108,8 @@ const AntdTree = (props) => {
         persistence,
         persisted_props,
         persistence_type,
-        loading_state,
-        batchPropsNames
+        batchPropsNames,
+        ...others
     } = props;
 
     // 异步数据加载标识
@@ -335,7 +335,7 @@ const AntdTree = (props) => {
     return (
         <Tree
             // 提取具有data-*或aria-*通配格式的属性
-            {...pickBy((_, k) => k.startsWith('data-') || k.startsWith('aria-'), props)}
+            {...pickBy((_, k) => k.startsWith('data-') || k.startsWith('aria-'), others)}
             id={id}
             className={
                 isString(className) ?
@@ -573,9 +573,7 @@ const AntdTree = (props) => {
             persistence={persistence}
             persisted_props={persisted_props}
             persistence_type={persistence_type}
-            data-dash-is-loading={
-                (loading_state && loading_state.is_loading) || undefined
-            }
+            data-dash-is-loading={useLoading()}
             {...config}
         />
     );

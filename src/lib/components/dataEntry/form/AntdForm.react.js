@@ -6,10 +6,48 @@ const LazyAntdForm = React.lazy(() => import(/* webpackChunkName: "data_entry" *
 /**
  * 表单组件AntdForm
  */
-const AntdForm = (props) => {
+const AntdForm = ({
+    id,
+    children,
+    className,
+    style,
+    key,
+    labelCol,
+    wrapperCol,
+    colon = true,
+    labelAlign = 'right',
+    labelWrap = false,
+    layout = 'horizontal',
+    enableBatchControl = false,
+    values,
+    validateStatuses,
+    helps,
+    setProps,
+    ...others
+}) => {
     return (
         <Suspense fallback={null}>
-            <LazyAntdForm {...props} />
+            <LazyAntdForm {
+                ...{
+                    id,
+                    children,
+                    className,
+                    style,
+                    key,
+                    labelCol,
+                    wrapperCol,
+                    colon,
+                    labelAlign,
+                    labelWrap,
+                    layout,
+                    enableBatchControl,
+                    values,
+                    validateStatuses,
+                    helps,
+                    setProps,
+                    ...others
+                }
+            } />
         </Suspense>
     );
 }
@@ -144,36 +182,12 @@ AntdForm.propTypes = {
      */
     'aria-*': PropTypes.string,
 
-    loading_state: PropTypes.shape({
-        /**
-         * Determines if the component is loading or not
-         */
-        is_loading: PropTypes.bool,
-        /**
-         * Holds which property is loading
-         */
-        prop_name: PropTypes.string,
-        /**
-         * Holds the name of the component that is loading
-         */
-        component_name: PropTypes.string
-    }),
-
     /**
      * Dash-assigned callback that should be called to report property changes
      * to Dash, to make them available for callbacks.
      */
     setProps: PropTypes.func
 };
-
-// 设置默认参数
-AntdForm.defaultProps = {
-    layout: 'horizontal',
-    colon: true,
-    labelAlign: 'right',
-    labelWrap: false,
-    enableBatchControl: false
-}
 
 export default AntdForm;
 

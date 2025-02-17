@@ -1,6 +1,13 @@
 # AUTO GENERATED FILE - DO NOT EDIT
 
+import typing  # noqa: F401
+import numbers # noqa: F401
+from typing_extensions import TypedDict, NotRequired, Literal # noqa: F401
 from dash.development.base_component import Component, _explicitize_args
+try:
+    from dash.development.base_component import ComponentType # noqa: F401
+except ImportError:
+    ComponentType = typing.TypeVar("ComponentType", bound=Component)
 
 
 class AntdModal(Component):
@@ -162,29 +169,78 @@ Keyword arguments:
     `data-*`格式属性通配.
 
 - aria-* (string; optional):
-    `aria-*`格式属性通配.
-
-- loading_state (dict; optional)
-
-    `loading_state` is a dict with keys:
-
-    - is_loading (boolean; optional):
-        Determines if the component is loading or not.
-
-    - prop_name (string; optional):
-        Holds which property is loading.
-
-    - component_name (string; optional):
-        Holds the name of the component that is loading."""
+    `aria-*`格式属性通配."""
     _children_props = ['title', 'okText', 'cancelText', 'loadingOkText']
     _base_nodes = ['title', 'okText', 'cancelText', 'loadingOkText', 'children']
     _namespace = 'feffery_antd_components'
     _type = 'AntdModal'
+    OkButtonProps = TypedDict(
+        "OkButtonProps",
+            {
+            "size": NotRequired[Literal["small", "middle", "large"]],
+            "type": NotRequired[Literal["primary", "ghost", "dashed", "link", "text", "default"]],
+            "danger": NotRequired[bool],
+            "disabled": NotRequired[bool],
+            "shape": NotRequired[Literal["circle", "round"]],
+            "style": NotRequired[dict],
+            "className": NotRequired[str]
+        }
+    )
+
+    CancelButtonProps = TypedDict(
+        "CancelButtonProps",
+            {
+            "size": NotRequired[Literal["small", "middle", "large"]],
+            "type": NotRequired[Literal["primary", "ghost", "dashed", "link", "text", "default"]],
+            "danger": NotRequired[bool],
+            "disabled": NotRequired[bool],
+            "shape": NotRequired[Literal["circle", "round"]],
+            "style": NotRequired[dict],
+            "className": NotRequired[str]
+        }
+    )
+
     @_explicitize_args
-    def __init__(self, children=None, id=Component.UNDEFINED, key=Component.UNDEFINED, style=Component.UNDEFINED, className=Component.UNDEFINED, locale=Component.UNDEFINED, visible=Component.UNDEFINED, title=Component.UNDEFINED, renderFooter=Component.UNDEFINED, okText=Component.UNDEFINED, okButtonProps=Component.UNDEFINED, cancelText=Component.UNDEFINED, cancelButtonProps=Component.UNDEFINED, width=Component.UNDEFINED, centered=Component.UNDEFINED, keyboard=Component.UNDEFINED, closable=Component.UNDEFINED, mask=Component.UNDEFINED, maskClosable=Component.UNDEFINED, okClickClose=Component.UNDEFINED, zIndex=Component.UNDEFINED, maskStyle=Component.UNDEFINED, bodyStyle=Component.UNDEFINED, okCounts=Component.UNDEFINED, cancelCounts=Component.UNDEFINED, closeCounts=Component.UNDEFINED, confirmAutoSpin=Component.UNDEFINED, loadingOkText=Component.UNDEFINED, confirmLoading=Component.UNDEFINED, transitionType=Component.UNDEFINED, forceRender=Component.UNDEFINED, destroyOnClose=Component.UNDEFINED, loading=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
-        self._prop_names = ['id', 'key', 'children', 'style', 'className', 'locale', 'visible', 'title', 'renderFooter', 'okText', 'okButtonProps', 'cancelText', 'cancelButtonProps', 'width', 'centered', 'keyboard', 'closable', 'mask', 'maskClosable', 'okClickClose', 'zIndex', 'maskStyle', 'bodyStyle', 'okCounts', 'cancelCounts', 'closeCounts', 'confirmAutoSpin', 'loadingOkText', 'confirmLoading', 'transitionType', 'forceRender', 'destroyOnClose', 'loading', 'data-*', 'aria-*', 'loading_state']
+    def __init__(
+        self,
+        children: typing.Optional[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]] = None,
+        id: typing.Optional[str] = None,
+        key: typing.Optional[str] = None,
+        style: typing.Optional[dict] = None,
+        className: typing.Optional[typing.Union[str, dict]] = None,
+        locale: typing.Optional[Literal["zh-cn", "en-us", "de-de"]] = None,
+        visible: typing.Optional[bool] = None,
+        title: typing.Optional[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]] = None,
+        renderFooter: typing.Optional[bool] = None,
+        okText: typing.Optional[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]] = None,
+        okButtonProps: typing.Optional["OkButtonProps"] = None,
+        cancelText: typing.Optional[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]] = None,
+        cancelButtonProps: typing.Optional["CancelButtonProps"] = None,
+        width: typing.Optional[typing.Union[typing.Union[int, float, numbers.Number], str]] = None,
+        centered: typing.Optional[bool] = None,
+        keyboard: typing.Optional[bool] = None,
+        closable: typing.Optional[bool] = None,
+        mask: typing.Optional[bool] = None,
+        maskClosable: typing.Optional[bool] = None,
+        okClickClose: typing.Optional[bool] = None,
+        zIndex: typing.Optional[typing.Union[int, float, numbers.Number]] = None,
+        maskStyle: typing.Optional[dict] = None,
+        bodyStyle: typing.Optional[dict] = None,
+        okCounts: typing.Optional[typing.Union[int, float, numbers.Number]] = None,
+        cancelCounts: typing.Optional[typing.Union[int, float, numbers.Number]] = None,
+        closeCounts: typing.Optional[typing.Union[int, float, numbers.Number]] = None,
+        confirmAutoSpin: typing.Optional[bool] = None,
+        loadingOkText: typing.Optional[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]] = None,
+        confirmLoading: typing.Optional[bool] = None,
+        transitionType: typing.Optional[Literal["none", "fade", "zoom", "zoom-big", "zoom-big-fast", "slide-up", "slide-down", "slide-left", "slide-right", "move-up", "move-down", "move-left", "move-right"]] = None,
+        forceRender: typing.Optional[bool] = None,
+        destroyOnClose: typing.Optional[bool] = None,
+        loading: typing.Optional[bool] = None,
+        **kwargs
+    ):
+        self._prop_names = ['id', 'key', 'children', 'style', 'className', 'locale', 'visible', 'title', 'renderFooter', 'okText', 'okButtonProps', 'cancelText', 'cancelButtonProps', 'width', 'centered', 'keyboard', 'closable', 'mask', 'maskClosable', 'okClickClose', 'zIndex', 'maskStyle', 'bodyStyle', 'okCounts', 'cancelCounts', 'closeCounts', 'confirmAutoSpin', 'loadingOkText', 'confirmLoading', 'transitionType', 'forceRender', 'destroyOnClose', 'loading', 'data-*', 'aria-*']
         self._valid_wildcard_attributes =            ['data-', 'aria-']
-        self.available_properties = ['id', 'key', 'children', 'style', 'className', 'locale', 'visible', 'title', 'renderFooter', 'okText', 'okButtonProps', 'cancelText', 'cancelButtonProps', 'width', 'centered', 'keyboard', 'closable', 'mask', 'maskClosable', 'okClickClose', 'zIndex', 'maskStyle', 'bodyStyle', 'okCounts', 'cancelCounts', 'closeCounts', 'confirmAutoSpin', 'loadingOkText', 'confirmLoading', 'transitionType', 'forceRender', 'destroyOnClose', 'loading', 'data-*', 'aria-*', 'loading_state']
+        self.available_properties = ['id', 'key', 'children', 'style', 'className', 'locale', 'visible', 'title', 'renderFooter', 'okText', 'okButtonProps', 'cancelText', 'cancelButtonProps', 'width', 'centered', 'keyboard', 'closable', 'mask', 'maskClosable', 'okClickClose', 'zIndex', 'maskStyle', 'bodyStyle', 'okCounts', 'cancelCounts', 'closeCounts', 'confirmAutoSpin', 'loadingOkText', 'confirmLoading', 'transitionType', 'forceRender', 'destroyOnClose', 'loading', 'data-*', 'aria-*']
         self.available_wildcard_properties =            ['data-', 'aria-']
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()

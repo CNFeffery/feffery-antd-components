@@ -1,6 +1,13 @@
 # AUTO GENERATED FILE - DO NOT EDIT
 
+import typing  # noqa: F401
+import numbers # noqa: F401
+from typing_extensions import TypedDict, NotRequired, Literal # noqa: F401
 from dash.development.base_component import Component, _explicitize_args
+try:
+    from dash.development.base_component import ComponentType # noqa: F401
+except ImportError:
+    ComponentType = typing.TypeVar("ComponentType", bound=Component)
 
 
 class AntdAccordion(Component):
@@ -103,29 +110,65 @@ Keyword arguments:
     `data-*`格式属性通配.
 
 - aria-* (string; optional):
-    `aria-*`格式属性通配.
-
-- loading_state (dict; optional)
-
-    `loading_state` is a dict with keys:
-
-    - is_loading (boolean; optional):
-        Determines if the component is loading or not.
-
-    - prop_name (string; optional):
-        Holds which property is loading.
-
-    - component_name (string; optional):
-        Holds the name of the component that is loading."""
+    `aria-*`格式属性通配."""
     _children_props = ['items[].children', 'items[].title', 'items[].extra']
     _base_nodes = ['children']
     _namespace = 'feffery_antd_components'
     _type = 'AntdAccordion'
+    Styles = TypedDict(
+        "Styles",
+            {
+            "header": NotRequired[dict],
+            "body": NotRequired[dict]
+        }
+    )
+
+    ClassNames = TypedDict(
+        "ClassNames",
+            {
+            "header": NotRequired[str],
+            "body": NotRequired[str]
+        }
+    )
+
+    Items = TypedDict(
+        "Items",
+            {
+            "children": NotRequired[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]],
+            "className": NotRequired[typing.Union[str, dict]],
+            "style": NotRequired[dict],
+            "key": typing.Union[str, typing.Union[int, float, numbers.Number]],
+            "collapsible": NotRequired[Literal["header", "disabled", "icon"]],
+            "title": NotRequired[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]],
+            "extra": NotRequired[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]],
+            "showArrow": NotRequired[bool],
+            "forceRender": NotRequired[bool]
+        }
+    )
+
     @_explicitize_args
-    def __init__(self, id=Component.UNDEFINED, key=Component.UNDEFINED, style=Component.UNDEFINED, className=Component.UNDEFINED, styles=Component.UNDEFINED, classNames=Component.UNDEFINED, items=Component.UNDEFINED, accordion=Component.UNDEFINED, activeKey=Component.UNDEFINED, defaultActiveKey=Component.UNDEFINED, bordered=Component.UNDEFINED, size=Component.UNDEFINED, collapsible=Component.UNDEFINED, expandIconPosition=Component.UNDEFINED, ghost=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
-        self._prop_names = ['id', 'key', 'style', 'className', 'styles', 'classNames', 'items', 'accordion', 'activeKey', 'defaultActiveKey', 'bordered', 'size', 'collapsible', 'expandIconPosition', 'ghost', 'data-*', 'aria-*', 'loading_state']
+    def __init__(
+        self,
+        id: typing.Optional[str] = None,
+        key: typing.Optional[str] = None,
+        style: typing.Optional[dict] = None,
+        className: typing.Optional[typing.Union[str, dict]] = None,
+        styles: typing.Optional["Styles"] = None,
+        classNames: typing.Optional["ClassNames"] = None,
+        items: typing.Optional[typing.Sequence["Items"]] = None,
+        accordion: typing.Optional[bool] = None,
+        activeKey: typing.Optional[typing.Union[str, typing.Sequence[str], typing.Union[int, float, numbers.Number], typing.Sequence[typing.Union[int, float, numbers.Number]]]] = None,
+        defaultActiveKey: typing.Optional[typing.Union[str, typing.Sequence[str], typing.Union[int, float, numbers.Number], typing.Sequence[typing.Union[int, float, numbers.Number]]]] = None,
+        bordered: typing.Optional[bool] = None,
+        size: typing.Optional[Literal["large", "middle", "small"]] = None,
+        collapsible: typing.Optional[Literal["header", "disabled", "icon"]] = None,
+        expandIconPosition: typing.Optional[Literal["left", "right"]] = None,
+        ghost: typing.Optional[bool] = None,
+        **kwargs
+    ):
+        self._prop_names = ['id', 'key', 'style', 'className', 'styles', 'classNames', 'items', 'accordion', 'activeKey', 'defaultActiveKey', 'bordered', 'size', 'collapsible', 'expandIconPosition', 'ghost', 'data-*', 'aria-*']
         self._valid_wildcard_attributes =            ['data-', 'aria-']
-        self.available_properties = ['id', 'key', 'style', 'className', 'styles', 'classNames', 'items', 'accordion', 'activeKey', 'defaultActiveKey', 'bordered', 'size', 'collapsible', 'expandIconPosition', 'ghost', 'data-*', 'aria-*', 'loading_state']
+        self.available_properties = ['id', 'key', 'style', 'className', 'styles', 'classNames', 'items', 'accordion', 'activeKey', 'defaultActiveKey', 'bordered', 'size', 'collapsible', 'expandIconPosition', 'ghost', 'data-*', 'aria-*']
         self.available_wildcard_properties =            ['data-', 'aria-']
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()

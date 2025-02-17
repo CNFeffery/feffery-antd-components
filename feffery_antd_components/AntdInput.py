@@ -1,6 +1,13 @@
 # AUTO GENERATED FILE - DO NOT EDIT
 
+import typing  # noqa: F401
+import numbers # noqa: F401
+from typing_extensions import TypedDict, NotRequired, Literal # noqa: F401
 from dash.development.base_component import Component, _explicitize_args
+try:
+    from dash.development.base_component import ComponentType # noqa: F401
+except ImportError:
+    ComponentType = typing.TypeVar("ComponentType", bound=Component)
 
 
 class AntdInput(Component):
@@ -172,38 +179,99 @@ Keyword arguments:
 - aria-* (string; optional):
     `aria-*`格式属性通配.
 
-- loading_state (dict; optional)
-
-    `loading_state` is a dict with keys:
-
-    - is_loading (boolean; optional):
-        Determines if the component is loading or not.
-
-    - prop_name (string; optional):
-        Holds which property is loading.
-
-    - component_name (string; optional):
-        Holds the name of the component that is loading.
-
 - persistence (boolean | string | number; optional):
     是否开启[属性持久化](/prop-persistence).
 
-- persisted_props (list of a value equal to: 'value', 'md5Value's; default ['value', 'md5Value']):
+- persisted_props (list of a value equal to: 'value', 'md5Value's; optional):
     开启属性持久化功能的若干属性名，可选项有`'value'`、`'md5Value'`  默认值：`['value',
     'md5Value']`.
 
-- persistence_type (a value equal to: 'local', 'session', 'memory'; default 'local'):
+- persistence_type (a value equal to: 'local', 'session', 'memory'; optional):
     属性持久化存储类型，可选项有`'local'`（本地持久化），`'session'`（会话持久化），`'memory'`（内存持久化）
     默认值：`'local'`."""
     _children_props = ['addonBefore', 'addonAfter', 'prefix', 'suffix']
     _base_nodes = ['addonBefore', 'addonAfter', 'prefix', 'suffix', 'children']
     _namespace = 'feffery_antd_components'
     _type = 'AntdInput'
+    Styles = TypedDict(
+        "Styles",
+            {
+            "input": NotRequired[dict],
+            "prefix": NotRequired[dict],
+            "suffix": NotRequired[dict],
+            "count": NotRequired[dict],
+            "textarea": NotRequired[dict]
+        }
+    )
+
+    ClassNames = TypedDict(
+        "ClassNames",
+            {
+            "input": NotRequired[str],
+            "prefix": NotRequired[str],
+            "suffix": NotRequired[str],
+            "count": NotRequired[str],
+            "textarea": NotRequired[str]
+        }
+    )
+
+    AutoSize = TypedDict(
+        "AutoSize",
+            {
+            "minRows": NotRequired[typing.Union[int, float, numbers.Number]],
+            "maxRows": NotRequired[typing.Union[int, float, numbers.Number]]
+        }
+    )
+
     @_explicitize_args
-    def __init__(self, id=Component.UNDEFINED, key=Component.UNDEFINED, style=Component.UNDEFINED, className=Component.UNDEFINED, styles=Component.UNDEFINED, classNames=Component.UNDEFINED, name=Component.UNDEFINED, mode=Component.UNDEFINED, autoComplete=Component.UNDEFINED, disabled=Component.UNDEFINED, size=Component.UNDEFINED, bordered=Component.UNDEFINED, variant=Component.UNDEFINED, placeholder=Component.UNDEFINED, value=Component.UNDEFINED, defaultValue=Component.UNDEFINED, passwordUseMd5=Component.UNDEFINED, md5Value=Component.UNDEFINED, debounceValue=Component.UNDEFINED, debounceWait=Component.UNDEFINED, addonBefore=Component.UNDEFINED, addonAfter=Component.UNDEFINED, prefix=Component.UNDEFINED, suffix=Component.UNDEFINED, maxLength=Component.UNDEFINED, showCount=Component.UNDEFINED, countFormat=Component.UNDEFINED, autoSize=Component.UNDEFINED, nSubmit=Component.UNDEFINED, nClicksSearch=Component.UNDEFINED, status=Component.UNDEFINED, allowClear=Component.UNDEFINED, autoFocus=Component.UNDEFINED, focusing=Component.UNDEFINED, readOnly=Component.UNDEFINED, emptyAsNone=Component.UNDEFINED, batchPropsNames=Component.UNDEFINED, batchPropsValues=Component.UNDEFINED, loading_state=Component.UNDEFINED, persistence=Component.UNDEFINED, persisted_props=Component.UNDEFINED, persistence_type=Component.UNDEFINED, **kwargs):
-        self._prop_names = ['id', 'key', 'style', 'className', 'styles', 'classNames', 'name', 'mode', 'autoComplete', 'disabled', 'size', 'bordered', 'variant', 'placeholder', 'value', 'defaultValue', 'passwordUseMd5', 'md5Value', 'debounceValue', 'debounceWait', 'addonBefore', 'addonAfter', 'prefix', 'suffix', 'maxLength', 'showCount', 'countFormat', 'autoSize', 'nSubmit', 'nClicksSearch', 'status', 'allowClear', 'autoFocus', 'focusing', 'readOnly', 'emptyAsNone', 'batchPropsNames', 'batchPropsValues', 'data-*', 'aria-*', 'loading_state', 'persistence', 'persisted_props', 'persistence_type']
+    def __init__(
+        self,
+        id: typing.Optional[str] = None,
+        key: typing.Optional[str] = None,
+        style: typing.Optional[dict] = None,
+        className: typing.Optional[typing.Union[str, dict]] = None,
+        styles: typing.Optional["Styles"] = None,
+        classNames: typing.Optional["ClassNames"] = None,
+        name: typing.Optional[str] = None,
+        mode: typing.Optional[Literal["default", "search", "text-area", "password"]] = None,
+        autoComplete: typing.Optional[Literal["off", "on"]] = None,
+        disabled: typing.Optional[bool] = None,
+        size: typing.Optional[Literal["small", "middle", "large"]] = None,
+        bordered: typing.Optional[bool] = None,
+        variant: typing.Optional[Literal["outlined", "borderless", "filled"]] = None,
+        placeholder: typing.Optional[str] = None,
+        value: typing.Optional[str] = None,
+        defaultValue: typing.Optional[str] = None,
+        passwordUseMd5: typing.Optional[bool] = None,
+        md5Value: typing.Optional[str] = None,
+        debounceValue: typing.Optional[str] = None,
+        debounceWait: typing.Optional[typing.Union[int, float, numbers.Number]] = None,
+        addonBefore: typing.Optional[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]] = None,
+        addonAfter: typing.Optional[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]] = None,
+        prefix: typing.Optional[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]] = None,
+        suffix: typing.Optional[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]] = None,
+        maxLength: typing.Optional[typing.Union[int, float, numbers.Number]] = None,
+        showCount: typing.Optional[bool] = None,
+        countFormat: typing.Optional[str] = None,
+        autoSize: typing.Optional[typing.Union[bool, "AutoSize"]] = None,
+        nSubmit: typing.Optional[typing.Union[int, float, numbers.Number]] = None,
+        nClicksSearch: typing.Optional[typing.Union[int, float, numbers.Number]] = None,
+        status: typing.Optional[Literal["error", "warning"]] = None,
+        allowClear: typing.Optional[bool] = None,
+        autoFocus: typing.Optional[bool] = None,
+        focusing: typing.Optional[bool] = None,
+        readOnly: typing.Optional[bool] = None,
+        emptyAsNone: typing.Optional[bool] = None,
+        batchPropsNames: typing.Optional[typing.Sequence[str]] = None,
+        batchPropsValues: typing.Optional[dict] = None,
+        persistence: typing.Optional[typing.Union[bool, str, typing.Union[int, float, numbers.Number]]] = None,
+        persisted_props: typing.Optional[typing.Sequence[Literal["value", "md5Value"]]] = None,
+        persistence_type: typing.Optional[Literal["local", "session", "memory"]] = None,
+        **kwargs
+    ):
+        self._prop_names = ['id', 'key', 'style', 'className', 'styles', 'classNames', 'name', 'mode', 'autoComplete', 'disabled', 'size', 'bordered', 'variant', 'placeholder', 'value', 'defaultValue', 'passwordUseMd5', 'md5Value', 'debounceValue', 'debounceWait', 'addonBefore', 'addonAfter', 'prefix', 'suffix', 'maxLength', 'showCount', 'countFormat', 'autoSize', 'nSubmit', 'nClicksSearch', 'status', 'allowClear', 'autoFocus', 'focusing', 'readOnly', 'emptyAsNone', 'batchPropsNames', 'batchPropsValues', 'data-*', 'aria-*', 'persistence', 'persisted_props', 'persistence_type']
         self._valid_wildcard_attributes =            ['data-', 'aria-']
-        self.available_properties = ['id', 'key', 'style', 'className', 'styles', 'classNames', 'name', 'mode', 'autoComplete', 'disabled', 'size', 'bordered', 'variant', 'placeholder', 'value', 'defaultValue', 'passwordUseMd5', 'md5Value', 'debounceValue', 'debounceWait', 'addonBefore', 'addonAfter', 'prefix', 'suffix', 'maxLength', 'showCount', 'countFormat', 'autoSize', 'nSubmit', 'nClicksSearch', 'status', 'allowClear', 'autoFocus', 'focusing', 'readOnly', 'emptyAsNone', 'batchPropsNames', 'batchPropsValues', 'data-*', 'aria-*', 'loading_state', 'persistence', 'persisted_props', 'persistence_type']
+        self.available_properties = ['id', 'key', 'style', 'className', 'styles', 'classNames', 'name', 'mode', 'autoComplete', 'disabled', 'size', 'bordered', 'variant', 'placeholder', 'value', 'defaultValue', 'passwordUseMd5', 'md5Value', 'debounceValue', 'debounceWait', 'addonBefore', 'addonAfter', 'prefix', 'suffix', 'maxLength', 'showCount', 'countFormat', 'autoSize', 'nSubmit', 'nClicksSearch', 'status', 'allowClear', 'autoFocus', 'focusing', 'readOnly', 'emptyAsNone', 'batchPropsNames', 'batchPropsValues', 'data-*', 'aria-*', 'persistence', 'persisted_props', 'persistence_type']
         self.available_wildcard_properties =            ['data-', 'aria-']
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()

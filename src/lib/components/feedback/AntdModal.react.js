@@ -7,6 +7,7 @@ import { Modal, ConfigProvider } from 'antd';
 import { str2Locale } from '../locales.react';
 import { isString } from 'lodash';
 import { pickBy } from 'ramda';
+import { useLoading } from '../utils';
 // 自定义hooks
 import useCss from '../../hooks/useCss';
 // 自定义上下文
@@ -15,44 +16,43 @@ import PropsContext from '../../contexts/PropsContext';
 /**
  * 对话框组件AntdModal
  */
-const AntdModal = (props) => {
-    let {
-        id,
-        children,
-        className,
-        key,
-        style,
-        locale,
-        setProps,
-        title,
-        visible,
-        renderFooter,
-        okButtonProps,
-        cancelButtonProps,
-        okText,
-        loadingOkText,
-        cancelText,
-        width,
-        centered,
-        keyboard,
-        closable,
-        mask,
-        maskClosable,
-        okClickClose,
-        zIndex,
-        maskStyle,
-        bodyStyle,
-        okCounts,
-        cancelCounts,
-        closeCounts,
-        confirmLoading,
-        confirmAutoSpin,
-        transitionType,
-        forceRender,
-        destroyOnClose,
-        loading,
-        loading_state
-    } = props;
+const AntdModal = ({
+    id,
+    children,
+    className,
+    key,
+    style,
+    locale = 'zh-cn',
+    setProps,
+    title,
+    visible = false,
+    renderFooter = false,
+    okButtonProps,
+    cancelButtonProps,
+    okText,
+    loadingOkText,
+    cancelText,
+    width = 520,
+    centered = false,
+    keyboard = true,
+    closable = true,
+    mask = true,
+    maskClosable = true,
+    okClickClose = true,
+    zIndex = 1000,
+    maskStyle,
+    bodyStyle,
+    okCounts = 0,
+    cancelCounts = 0,
+    closeCounts = 0,
+    confirmLoading = false,
+    confirmAutoSpin = false,
+    transitionType = 'zoom',
+    forceRender = false,
+    destroyOnClose = true,
+    loading = false,
+    ...others
+}) => {
 
     const context = useContext(PropsContext)
     locale = (context && context.locale) || locale
@@ -83,7 +83,7 @@ const AntdModal = (props) => {
         <ConfigProvider locale={str2Locale.get(locale)}>
             <Modal
                 // 提取具有data-*或aria-*通配格式的属性
-                {...pickBy((_, k) => k.startsWith('data-') || k.startsWith('aria-'), props)}
+                {...pickBy((_, k) => k.startsWith('data-') || k.startsWith('aria-'), others)}
                 id={id}
                 className={
                     isString(className) ?
@@ -116,9 +116,7 @@ const AntdModal = (props) => {
                 forceRender={forceRender}
                 destroyOnClose={destroyOnClose}
                 loading={loading}
-                data-dash-is-loading={
-                    (loading_state && loading_state.is_loading) || undefined
-                }
+                data-dash-is-loading={useLoading()}
             >{children}</Modal>
         </ConfigProvider>
     );
@@ -413,46 +411,7 @@ AntdModal.propTypes = {
      * Dash-assigned callback that should be called to report property changes
      * to Dash, to make them available for callbacks.
      */
-    setProps: PropTypes.func,
-
-    loading_state: PropTypes.shape({
-        /**
-         * Determines if the component is loading or not
-         */
-        is_loading: PropTypes.bool,
-        /**
-         * Holds which property is loading
-         */
-        prop_name: PropTypes.string,
-        /**
-         * Holds the name of the component that is loading
-         */
-        component_name: PropTypes.string
-    }),
+    setProps: PropTypes.func
 };
-
-// 设置默认参数
-AntdModal.defaultProps = {
-    visible: false,
-    renderFooter: false,
-    width: 520,
-    centered: false,
-    keyboard: true,
-    closable: true,
-    mask: true,
-    maskClosable: true,
-    okClickClose: true,
-    zIndex: 1000,
-    okCounts: 0,
-    cancelCounts: 0,
-    closeCounts: 0,
-    confirmLoading: false,
-    confirmAutoSpin: false,
-    transitionType: 'zoom',
-    forceRender: false,
-    destroyOnClose: true,
-    locale: 'zh-cn',
-    loading: false
-}
 
 export default AntdModal;

@@ -3,7 +3,7 @@ import React, { useEffect, useContext } from 'react';
 // antd核心
 import { CheckCard } from '@ant-design/pro-components';
 // 辅助库
-import { parseChildrenToArray } from '../../../components/utils';
+import { parseChildrenToArray, useLoading } from '../../../components/utils';
 import { isString, isUndefined } from 'lodash';
 import { pickBy } from 'ramda';
 // 自定义hooks
@@ -36,10 +36,10 @@ const AntdCheckCardGroup = (props) => {
         size,
         readOnly,
         setProps,
-        loading_state,
         persistence,
         persisted_props,
-        persistence_type
+        persistence_type,
+        ...others
     } = props;
 
     const context = useContext(PropsContext)
@@ -79,7 +79,7 @@ const AntdCheckCardGroup = (props) => {
     return (
         <CheckCard.Group
             // 提取具有data-*或aria-*通配格式的属性
-            {...pickBy((_, k) => k.startsWith('data-') || k.startsWith('aria-'), props)}
+            {...pickBy((_, k) => k.startsWith('data-') || k.startsWith('aria-'), others)}
             id={id}
             className={
                 isString(className) ?
@@ -113,9 +113,7 @@ const AntdCheckCardGroup = (props) => {
             persistence={persistence}
             persisted_props={persisted_props}
             persistence_type={persistence_type}
-            data-dash-is-loading={
-                (loading_state && loading_state.is_loading) || undefined
-            } >
+            data-dash-is-loading={useLoading()} >
             {children}
         </ CheckCard.Group>
     );

@@ -1,6 +1,13 @@
 # AUTO GENERATED FILE - DO NOT EDIT
 
+import typing  # noqa: F401
+import numbers # noqa: F401
+from typing_extensions import TypedDict, NotRequired, Literal # noqa: F401
 from dash.development.base_component import Component, _explicitize_args
+try:
+    from dash.development.base_component import ComponentType # noqa: F401
+except ImportError:
+    ComponentType = typing.TypeVar("ComponentType", bound=Component)
 
 
 class AntdProgress(Component):
@@ -112,29 +119,71 @@ Keyword arguments:
     `data-*`格式属性通配.
 
 - aria-* (string; optional):
-    `aria-*`格式属性通配.
-
-- loading_state (dict; optional)
-
-    `loading_state` is a dict with keys:
-
-    - is_loading (boolean; optional):
-        Determines if the component is loading or not.
-
-    - prop_name (string; optional):
-        Holds which property is loading.
-
-    - component_name (string; optional):
-        Holds the name of the component that is loading."""
+    `aria-*`格式属性通配."""
     _children_props = ['format.content']
     _base_nodes = ['children']
     _namespace = 'feffery_antd_components'
     _type = 'AntdProgress'
+    SuccessStrokeColor = TypedDict(
+        "SuccessStrokeColor",
+            {
+            "from": NotRequired[str],
+            "to": NotRequired[str]
+        }
+    )
+
+    Success = TypedDict(
+        "Success",
+            {
+            "percent": NotRequired[typing.Union[int, float, numbers.Number]],
+            "strokeColor": NotRequired[typing.Union[str, "SuccessStrokeColor"]]
+        }
+    )
+
+    Format = TypedDict(
+        "Format",
+            {
+            "prefix": NotRequired[str],
+            "suffix": NotRequired[str],
+            "content": NotRequired[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]]
+        }
+    )
+
+    StrokeColor = TypedDict(
+        "StrokeColor",
+            {
+            "from": NotRequired[str],
+            "to": NotRequired[str]
+        }
+    )
+
     @_explicitize_args
-    def __init__(self, id=Component.UNDEFINED, key=Component.UNDEFINED, style=Component.UNDEFINED, className=Component.UNDEFINED, type=Component.UNDEFINED, size=Component.UNDEFINED, percent=Component.UNDEFINED, success=Component.UNDEFINED, format=Component.UNDEFINED, status=Component.UNDEFINED, showInfo=Component.UNDEFINED, strokeColor=Component.UNDEFINED, strokeLinecap=Component.UNDEFINED, strokeWidth=Component.UNDEFINED, trailColor=Component.UNDEFINED, width=Component.UNDEFINED, gapDegree=Component.UNDEFINED, gapPosition=Component.UNDEFINED, steps=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
-        self._prop_names = ['id', 'key', 'style', 'className', 'type', 'size', 'percent', 'success', 'format', 'status', 'showInfo', 'strokeColor', 'strokeLinecap', 'strokeWidth', 'trailColor', 'width', 'gapDegree', 'gapPosition', 'steps', 'data-*', 'aria-*', 'loading_state']
+    def __init__(
+        self,
+        id: typing.Optional[str] = None,
+        key: typing.Optional[str] = None,
+        style: typing.Optional[dict] = None,
+        className: typing.Optional[typing.Union[str, dict]] = None,
+        type: typing.Optional[Literal["line", "circle", "dashboard"]] = None,
+        size: typing.Optional[typing.Union[typing.Union[int, float, numbers.Number], typing.Sequence[typing.Union[int, float, numbers.Number]], Literal["small", "default"]]] = None,
+        percent: typing.Optional[typing.Union[int, float, numbers.Number]] = None,
+        success: typing.Optional["Success"] = None,
+        format: typing.Optional["Format"] = None,
+        status: typing.Optional[Literal["success", "exception", "normal", "active"]] = None,
+        showInfo: typing.Optional[bool] = None,
+        strokeColor: typing.Optional[typing.Union[str, "StrokeColor"]] = None,
+        strokeLinecap: typing.Optional[Literal["round", "butt", "square"]] = None,
+        strokeWidth: typing.Optional[typing.Union[int, float, numbers.Number]] = None,
+        trailColor: typing.Optional[str] = None,
+        width: typing.Optional[typing.Union[int, float, numbers.Number]] = None,
+        gapDegree: typing.Optional[typing.Union[int, float, numbers.Number]] = None,
+        gapPosition: typing.Optional[Literal["top", "bottom", "left", "right"]] = None,
+        steps: typing.Optional[typing.Union[int, float, numbers.Number]] = None,
+        **kwargs
+    ):
+        self._prop_names = ['id', 'key', 'style', 'className', 'type', 'size', 'percent', 'success', 'format', 'status', 'showInfo', 'strokeColor', 'strokeLinecap', 'strokeWidth', 'trailColor', 'width', 'gapDegree', 'gapPosition', 'steps', 'data-*', 'aria-*']
         self._valid_wildcard_attributes =            ['data-', 'aria-']
-        self.available_properties = ['id', 'key', 'style', 'className', 'type', 'size', 'percent', 'success', 'format', 'status', 'showInfo', 'strokeColor', 'strokeLinecap', 'strokeWidth', 'trailColor', 'width', 'gapDegree', 'gapPosition', 'steps', 'data-*', 'aria-*', 'loading_state']
+        self.available_properties = ['id', 'key', 'style', 'className', 'type', 'size', 'percent', 'success', 'format', 'status', 'showInfo', 'strokeColor', 'strokeLinecap', 'strokeWidth', 'trailColor', 'width', 'gapDegree', 'gapPosition', 'steps', 'data-*', 'aria-*']
         self.available_wildcard_properties =            ['data-', 'aria-']
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()

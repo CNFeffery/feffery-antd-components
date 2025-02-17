@@ -6,41 +6,41 @@ import { Progress } from 'antd';
 // 辅助库
 import { isString } from 'lodash';
 import { pickBy } from 'ramda';
+import { useLoading } from '../utils';
 // 自定义hooks
 import useCss from '../../hooks/useCss';
 
 /**
  * 进度条组件AntdProgress
  */
-const AntdProgress = (props) => {
-    let {
-        id,
-        className,
-        style,
-        key,
-        type,
-        size,
-        percent,
-        success,
-        format,
-        status,
-        showInfo,
-        strokeColor,
-        strokeLinecap,
-        strokeWidth,
-        trailColor,
-        width,
-        gapDegree,
-        gapPosition,
-        steps,
-        loading_state,
-        setProps
-    } = props;
+const AntdProgress = ({
+    id,
+    className,
+    style,
+    key,
+    type = 'line',
+    size = 'default',
+    percent = 0,
+    success,
+    format,
+    status,
+    showInfo = true,
+    strokeColor,
+    strokeLinecap,
+    strokeWidth,
+    trailColor,
+    width = 132,
+    gapDegree,
+    gapPosition = 'bottom',
+    steps,
+    setProps,
+    ...others
+}) => {
 
     return (
         <Progress
             // 提取具有data-*或aria-*通配格式的属性
-            {...pickBy((_, k) => k.startsWith('data-') || k.startsWith('aria-'), props)}
+            {...pickBy((_, k) => k.startsWith('data-') || k.startsWith('aria-'), others)}
             id={id}
             className={
                 isString(className) ?
@@ -77,9 +77,7 @@ const AntdProgress = (props) => {
             gapDegree={gapDegree}
             gapPosition={gapPosition}
             steps={steps}
-            data-dash-is-loading={
-                (loading_state && loading_state.is_loading) || undefined
-            }
+            data-dash-is-loading={useLoading()}
         ></Progress>
     );
 }
@@ -257,36 +255,11 @@ AntdProgress.propTypes = {
      */
     'aria-*': PropTypes.string,
 
-    loading_state: PropTypes.shape({
-        /**
-         * Determines if the component is loading or not
-         */
-        is_loading: PropTypes.bool,
-        /**
-         * Holds which property is loading
-         */
-        prop_name: PropTypes.string,
-        /**
-         * Holds the name of the component that is loading
-         */
-        component_name: PropTypes.string
-    }),
-
     /**
      * Dash-assigned callback that should be called to report property changes
      * to Dash, to make them available for callbacks.
      */
     setProps: PropTypes.func
 };
-
-// 设置默认参数
-AntdProgress.defaultProps = {
-    type: 'line',
-    size: 'default',
-    percent: 0,
-    showInfo: true,
-    width: 132,
-    gapPosition: 'bottom'
-}
 
 export default AntdProgress;

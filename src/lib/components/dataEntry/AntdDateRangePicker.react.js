@@ -6,10 +6,92 @@ const LazyAntdDateRangePicker = React.lazy(() => import(/* webpackChunkName: "da
 /**
  * 日期范围选择组件AntdDateRangePicker
  */
-const AntdDateRangePicker = (props) => {
+const AntdDateRangePicker = ({
+    id,
+    className,
+    style,
+    popupClassName,
+    key,
+    name,
+    locale = 'zh-cn',
+    setProps,
+    picker = 'date',
+    firstDayOfWeek,
+    format,
+    showTime = false,
+    allowClear = true,
+    autoFocus = false,
+    value,
+    disabledDatesStrategy,
+    open,
+    defaultValue,
+    placeholder,
+    disabled = [false, false],
+    bordered = true,
+    variant,
+    size = 'middle',
+    pickerValue,
+    status,
+    popupContainer = 'body',
+    readOnly,
+    placement = 'bottomLeft',
+    extraFooter,
+    presets,
+    customCells,
+    prefix,
+    suffixIcon,
+    persistence,
+    persisted_props,
+    persistence_type,
+    batchPropsNames = [],
+    needConfirm = false,
+    ...others
+}) => {
     return (
         <Suspense fallback={null}>
-            <LazyAntdDateRangePicker {...props} />
+            <LazyAntdDateRangePicker {
+                ...{
+                    id,
+                    className,
+                    style,
+                    popupClassName,
+                    key,
+                    name,
+                    locale,
+                    setProps,
+                    picker,
+                    firstDayOfWeek,
+                    format,
+                    showTime,
+                    allowClear,
+                    autoFocus,
+                    value,
+                    disabledDatesStrategy,
+                    open,
+                    defaultValue,
+                    placeholder,
+                    disabled,
+                    bordered,
+                    variant,
+                    size,
+                    pickerValue,
+                    status,
+                    popupContainer,
+                    readOnly,
+                    placement,
+                    extraFooter,
+                    presets,
+                    customCells,
+                    prefix,
+                    suffixIcon,
+                    persistence,
+                    persisted_props,
+                    persistence_type,
+                    batchPropsNames,
+                    needConfirm,
+                    ...others
+                }
+            } />
         </Suspense>
     );
 }
@@ -312,24 +394,6 @@ AntdDateRangePicker.propTypes = {
     'aria-*': PropTypes.string,
 
     /**
-    * Object that holds the loading state object coming from dash-renderer
-    */
-    loading_state: PropTypes.shape({
-        /**
-         * Determines if the component is loading or not
-         */
-        is_loading: PropTypes.bool,
-        /**
-         * Holds which property is loading
-         */
-        prop_name: PropTypes.string,
-        /**
-         * Holds the name of the component that is loading
-         */
-        component_name: PropTypes.string
-    }),
-
-    /**
      * 是否开启[属性持久化](/prop-persistence)
      */
     persistence: PropTypes.oneOfType([
@@ -357,22 +421,9 @@ AntdDateRangePicker.propTypes = {
     setProps: PropTypes.func
 };
 
-// 设置默认参数
-AntdDateRangePicker.defaultProps = {
-    picker: 'date',
-    disabled: [false, false],
-    showTime: false,
-    size: 'middle',
-    bordered: true,
-    allowClear: true,
-    autoFocus: false,
-    needConfirm: false,
+AntdDateRangePicker.dashPersistence = {
     persisted_props: ['value'],
-    persistence_type: 'local',
-    locale: 'zh-cn',
-    placement: 'bottomLeft',
-    popupContainer: 'body',
-    batchPropsNames: []
+    persistence_type: 'local'
 }
 
 export default AntdDateRangePicker;

@@ -5,6 +5,7 @@ import { Tag } from 'antd';
 // 辅助库
 import { isString } from 'lodash';
 import { pickBy } from 'ramda';
+import { useLoading } from '../../components/utils';
 // 自定义hooks
 import useCss from '../../hooks/useCss';
 // 参数类型
@@ -28,13 +29,13 @@ const AntdTag = (props) => {
         closeIcon,
         closeCounts,
         setProps,
-        loading_state
+        ...others
     } = props;
 
     return (
         <Tag
             // 提取具有data-*或aria-*通配格式的属性
-            {...pickBy((_, k) => k.startsWith('data-') || k.startsWith('aria-'), props)}
+            {...pickBy((_, k) => k.startsWith('data-') || k.startsWith('aria-'), others)}
             id={id}
             key={key}
             className={
@@ -54,9 +55,7 @@ const AntdTag = (props) => {
                     closeCounts: closeCounts + 1
                 })
             }}
-            data-dash-is-loading={
-                (loading_state && loading_state.is_loading) || undefined
-            }>
+            data-dash-is-loading={useLoading()}>
             {href ? <a href={href} target={target}>{content}</a> : content}
         </Tag>
     );

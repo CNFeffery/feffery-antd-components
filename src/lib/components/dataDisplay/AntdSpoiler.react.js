@@ -6,10 +6,46 @@ const LazyAntdSpoiler = React.lazy(() => import(/* webpackChunkName: "data_displ
 /**
  * 展开收起组件AntdSpoiler
  */
-const AntdSpoiler = (props) => {
+const AntdSpoiler = ({
+    id,
+    children,
+    className,
+    style,
+    key,
+    locale = 'zh-cn',
+    contentClassName,
+    contentStyle,
+    hideLabel,
+    showLabel,
+    labelPosition = 'left',
+    open = false,
+    maxHeight = 50,
+    transitionDuration = 0.1,
+    setProps,
+    ...others
+}) => {
     return (
         <Suspense fallback={null}>
-            <LazyAntdSpoiler {...props} />
+            <LazyAntdSpoiler {
+                ...{
+                    id,
+                    children,
+                    className,
+                    style,
+                    key,
+                    locale,
+                    contentClassName,
+                    contentStyle,
+                    hideLabel,
+                    showLabel,
+                    labelPosition,
+                    open,
+                    maxHeight,
+                    transitionDuration,
+                    setProps,
+                    ...others
+                }
+            } />
         </Suspense>
     );
 }
@@ -106,35 +142,11 @@ AntdSpoiler.propTypes = {
      */
     'aria-*': PropTypes.string,
 
-    loading_state: PropTypes.shape({
-        /**
-         * Determines if the component is loading or not
-         */
-        is_loading: PropTypes.bool,
-        /**
-         * Holds which property is loading
-         */
-        prop_name: PropTypes.string,
-        /**
-         * Holds the name of the component that is loading
-         */
-        component_name: PropTypes.string
-    }),
-
     /**
      * Dash-assigned callback that should be called to report property changes
      * to Dash, to make them available for callbacks.
      */
     setProps: PropTypes.func
-}
-
-// 设置默认参数
-AntdSpoiler.defaultProps = {
-    locale: 'zh-cn',
-    open: false,
-    maxHeight: 50,
-    transitionDuration: 0.1,
-    labelPosition: 'left'
 }
 
 export default AntdSpoiler;

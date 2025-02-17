@@ -9,6 +9,7 @@ import { isString, isUndefined } from 'lodash';
 import { v4 as uuidv4 } from 'uuid';
 import { pickBy } from 'ramda';
 import { pick } from 'ramda';
+import { useLoading } from '../../components/utils';
 // 自定义hooks
 import useCss from '../../hooks/useCss';
 // 上下文
@@ -82,8 +83,8 @@ const AntdUpload = (props) => {
         defaultFileList,
         disabled,
         status,
-        loading_state,
-        setProps
+        setProps,
+        ...others
     } = props;
 
     const context = useContext(PropsContext)
@@ -527,7 +528,7 @@ const AntdUpload = (props) => {
         <ConfigProvider locale={str2Locale.get(locale)}>
             <div
                 // 提取具有data-*或aria-*通配格式的属性
-                {...pickBy((_, k) => k.startsWith('data-') || k.startsWith('aria-'), props)}
+                {...pickBy((_, k) => k.startsWith('data-') || k.startsWith('aria-'), others)}
                 id={id}
                 className={
                     isString(className) ?
@@ -584,9 +585,7 @@ const AntdUpload = (props) => {
                             } :
                             undefined
                     }
-                    data-dash-is-loading={
-                        (loading_state && loading_state.is_loading) || undefined
-                    }>
+                    data-dash-is-loading={useLoading()}>
                     <Button icon={buttonIcon || <UploadOutlined />}
                         disabled={
                             context && !isUndefined(context.componentDisabled) ?

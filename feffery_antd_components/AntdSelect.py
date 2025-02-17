@@ -1,6 +1,13 @@
 # AUTO GENERATED FILE - DO NOT EDIT
 
+import typing  # noqa: F401
+import numbers # noqa: F401
+from typing_extensions import TypedDict, NotRequired, Literal # noqa: F401
 from dash.development.base_component import Component, _explicitize_args
+try:
+    from dash.development.base_component import ComponentType # noqa: F401
+except ImportError:
+    ComponentType = typing.TypeVar("ComponentType", bound=Component)
 
 
 class AntdSelect(Component):
@@ -86,7 +93,7 @@ Keyword arguments:
 - mode (a value equal to: 'multiple', 'tags'; optional):
     选择模式，可选项有`'multiple'`（多选）、`'tags'`（自由新增）.
 
-- disabled (boolean; default False):
+- disabled (boolean; optional):
     是否禁用当前组件  默认值：`False`.
 
 - size (a value equal to: 'small', 'middle', 'large'; default 'middle'):
@@ -187,37 +194,91 @@ Keyword arguments:
 - aria-* (string; optional):
     `aria-*`格式属性通配.
 
-- loading_state (dict; optional)
-
-    `loading_state` is a dict with keys:
-
-    - is_loading (boolean; optional):
-        Determines if the component is loading or not.
-
-    - prop_name (string; optional):
-        Holds which property is loading.
-
-    - component_name (string; optional):
-        Holds the name of the component that is loading.
-
 - persistence (boolean | string | number; optional):
     是否开启[属性持久化](/prop-persistence).
 
-- persisted_props (list of a value equal to: 'value's; default ['value']):
+- persisted_props (list of a value equal to: 'value's; optional):
     开启属性持久化功能的若干属性名，可选项有`'value'`  默认值：`['value']`.
 
-- persistence_type (a value equal to: 'local', 'session', 'memory'; default 'local'):
+- persistence_type (a value equal to: 'local', 'session', 'memory'; optional):
     属性持久化存储类型，可选项有`'local'`（本地持久化），`'session'`（会话持久化），`'memory'`（内存持久化）
     默认值：`'local'`."""
     _children_props = ['options[].label', 'options[].group', 'options[].options[].label', 'emptyContent', 'loadingEmptyContent', 'dropdownBefore', 'dropdownAfter', 'prefix', 'suffixIcon']
     _base_nodes = ['emptyContent', 'loadingEmptyContent', 'dropdownBefore', 'dropdownAfter', 'prefix', 'suffixIcon', 'children']
     _namespace = 'feffery_antd_components'
     _type = 'AntdSelect'
+    Options = TypedDict(
+        "Options",
+            {
+            "group": NotRequired[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]],
+            "options": NotRequired[typing.Sequence["OptionsOptions"]]
+        }
+    )
+
+    OptionsOptions = TypedDict(
+        "OptionsOptions",
+            {
+            "label": typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]],
+            "value": typing.Union[str, typing.Union[int, float, numbers.Number]],
+            "disabled": NotRequired[bool],
+            "colors": NotRequired[typing.Sequence[str]]
+        }
+    )
+
     @_explicitize_args
-    def __init__(self, id=Component.UNDEFINED, key=Component.UNDEFINED, style=Component.UNDEFINED, className=Component.UNDEFINED, popupClassName=Component.UNDEFINED, name=Component.UNDEFINED, locale=Component.UNDEFINED, options=Component.UNDEFINED, listHeight=Component.UNDEFINED, colorsMode=Component.UNDEFINED, colorsNameWidth=Component.UNDEFINED, mode=Component.UNDEFINED, disabled=Component.UNDEFINED, size=Component.UNDEFINED, bordered=Component.UNDEFINED, variant=Component.UNDEFINED, placeholder=Component.UNDEFINED, placement=Component.UNDEFINED, value=Component.UNDEFINED, defaultValue=Component.UNDEFINED, maxTagCount=Component.UNDEFINED, status=Component.UNDEFINED, optionFilterProp=Component.UNDEFINED, searchValue=Component.UNDEFINED, optionFilterMode=Component.UNDEFINED, debounceSearchValue=Component.UNDEFINED, debounceWait=Component.UNDEFINED, autoSpin=Component.UNDEFINED, autoClearSearchValue=Component.UNDEFINED, emptyContent=Component.UNDEFINED, loadingEmptyContent=Component.UNDEFINED, dropdownBefore=Component.UNDEFINED, dropdownAfter=Component.UNDEFINED, prefix=Component.UNDEFINED, suffixIcon=Component.UNDEFINED, allowClear=Component.UNDEFINED, autoFocus=Component.UNDEFINED, popupMatchSelectWidth=Component.UNDEFINED, readOnly=Component.UNDEFINED, maxCount=Component.UNDEFINED, popupContainer=Component.UNDEFINED, batchPropsNames=Component.UNDEFINED, batchPropsValues=Component.UNDEFINED, loading_state=Component.UNDEFINED, persistence=Component.UNDEFINED, persisted_props=Component.UNDEFINED, persistence_type=Component.UNDEFINED, **kwargs):
-        self._prop_names = ['id', 'key', 'style', 'className', 'popupClassName', 'name', 'locale', 'options', 'listHeight', 'colorsMode', 'colorsNameWidth', 'mode', 'disabled', 'size', 'bordered', 'variant', 'placeholder', 'placement', 'value', 'defaultValue', 'maxTagCount', 'status', 'optionFilterProp', 'searchValue', 'optionFilterMode', 'debounceSearchValue', 'debounceWait', 'autoSpin', 'autoClearSearchValue', 'emptyContent', 'loadingEmptyContent', 'dropdownBefore', 'dropdownAfter', 'prefix', 'suffixIcon', 'allowClear', 'autoFocus', 'popupMatchSelectWidth', 'readOnly', 'maxCount', 'popupContainer', 'batchPropsNames', 'batchPropsValues', 'data-*', 'aria-*', 'loading_state', 'persistence', 'persisted_props', 'persistence_type']
+    def __init__(
+        self,
+        id: typing.Optional[str] = None,
+        key: typing.Optional[str] = None,
+        style: typing.Optional[dict] = None,
+        className: typing.Optional[typing.Union[str, dict]] = None,
+        popupClassName: typing.Optional[str] = None,
+        name: typing.Optional[str] = None,
+        locale: typing.Optional[Literal["zh-cn", "en-us", "de-de"]] = None,
+        options: typing.Optional[typing.Sequence[typing.Union[str, typing.Union[int, float, numbers.Number], "Options"]]] = None,
+        listHeight: typing.Optional[typing.Union[int, float, numbers.Number]] = None,
+        colorsMode: typing.Optional[Literal["sequential", "diverging"]] = None,
+        colorsNameWidth: typing.Optional[typing.Union[int, float, numbers.Number]] = None,
+        mode: typing.Optional[Literal["multiple", "tags"]] = None,
+        disabled: typing.Optional[bool] = None,
+        size: typing.Optional[Literal["small", "middle", "large"]] = None,
+        bordered: typing.Optional[bool] = None,
+        variant: typing.Optional[Literal["outlined", "borderless", "filled"]] = None,
+        placeholder: typing.Optional[str] = None,
+        placement: typing.Optional[Literal["bottomLeft", "bottomRight", "topLeft", "topRight"]] = None,
+        value: typing.Optional[typing.Union[typing.Union[str, typing.Union[int, float, numbers.Number]], typing.Sequence[typing.Union[str, typing.Union[int, float, numbers.Number]]]]] = None,
+        defaultValue: typing.Optional[typing.Union[typing.Union[str, typing.Union[int, float, numbers.Number]], typing.Sequence[typing.Union[str, typing.Union[int, float, numbers.Number]]]]] = None,
+        maxTagCount: typing.Optional[typing.Union[typing.Union[int, float, numbers.Number], Literal["responsive"]]] = None,
+        status: typing.Optional[Literal["error", "warning"]] = None,
+        optionFilterProp: typing.Optional[Literal["value", "label"]] = None,
+        searchValue: typing.Optional[str] = None,
+        optionFilterMode: typing.Optional[Literal["case-insensitive", "case-sensitive", "regex", "remote-match"]] = None,
+        debounceSearchValue: typing.Optional[str] = None,
+        debounceWait: typing.Optional[typing.Union[int, float, numbers.Number]] = None,
+        autoSpin: typing.Optional[bool] = None,
+        autoClearSearchValue: typing.Optional[bool] = None,
+        emptyContent: typing.Optional[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]] = None,
+        loadingEmptyContent: typing.Optional[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]] = None,
+        dropdownBefore: typing.Optional[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]] = None,
+        dropdownAfter: typing.Optional[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]] = None,
+        prefix: typing.Optional[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]] = None,
+        suffixIcon: typing.Optional[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]] = None,
+        allowClear: typing.Optional[bool] = None,
+        autoFocus: typing.Optional[bool] = None,
+        popupMatchSelectWidth: typing.Optional[bool] = None,
+        readOnly: typing.Optional[bool] = None,
+        maxCount: typing.Optional[typing.Union[int, float, numbers.Number]] = None,
+        popupContainer: typing.Optional[Literal["parent", "body"]] = None,
+        batchPropsNames: typing.Optional[typing.Sequence[str]] = None,
+        batchPropsValues: typing.Optional[dict] = None,
+        persistence: typing.Optional[typing.Union[bool, str, typing.Union[int, float, numbers.Number]]] = None,
+        persisted_props: typing.Optional[typing.Sequence[Literal["value"]]] = None,
+        persistence_type: typing.Optional[Literal["local", "session", "memory"]] = None,
+        **kwargs
+    ):
+        self._prop_names = ['id', 'key', 'style', 'className', 'popupClassName', 'name', 'locale', 'options', 'listHeight', 'colorsMode', 'colorsNameWidth', 'mode', 'disabled', 'size', 'bordered', 'variant', 'placeholder', 'placement', 'value', 'defaultValue', 'maxTagCount', 'status', 'optionFilterProp', 'searchValue', 'optionFilterMode', 'debounceSearchValue', 'debounceWait', 'autoSpin', 'autoClearSearchValue', 'emptyContent', 'loadingEmptyContent', 'dropdownBefore', 'dropdownAfter', 'prefix', 'suffixIcon', 'allowClear', 'autoFocus', 'popupMatchSelectWidth', 'readOnly', 'maxCount', 'popupContainer', 'batchPropsNames', 'batchPropsValues', 'data-*', 'aria-*', 'persistence', 'persisted_props', 'persistence_type']
         self._valid_wildcard_attributes =            ['data-', 'aria-']
-        self.available_properties = ['id', 'key', 'style', 'className', 'popupClassName', 'name', 'locale', 'options', 'listHeight', 'colorsMode', 'colorsNameWidth', 'mode', 'disabled', 'size', 'bordered', 'variant', 'placeholder', 'placement', 'value', 'defaultValue', 'maxTagCount', 'status', 'optionFilterProp', 'searchValue', 'optionFilterMode', 'debounceSearchValue', 'debounceWait', 'autoSpin', 'autoClearSearchValue', 'emptyContent', 'loadingEmptyContent', 'dropdownBefore', 'dropdownAfter', 'prefix', 'suffixIcon', 'allowClear', 'autoFocus', 'popupMatchSelectWidth', 'readOnly', 'maxCount', 'popupContainer', 'batchPropsNames', 'batchPropsValues', 'data-*', 'aria-*', 'loading_state', 'persistence', 'persisted_props', 'persistence_type']
+        self.available_properties = ['id', 'key', 'style', 'className', 'popupClassName', 'name', 'locale', 'options', 'listHeight', 'colorsMode', 'colorsNameWidth', 'mode', 'disabled', 'size', 'bordered', 'variant', 'placeholder', 'placement', 'value', 'defaultValue', 'maxTagCount', 'status', 'optionFilterProp', 'searchValue', 'optionFilterMode', 'debounceSearchValue', 'debounceWait', 'autoSpin', 'autoClearSearchValue', 'emptyContent', 'loadingEmptyContent', 'dropdownBefore', 'dropdownAfter', 'prefix', 'suffixIcon', 'allowClear', 'autoFocus', 'popupMatchSelectWidth', 'readOnly', 'maxCount', 'popupContainer', 'batchPropsNames', 'batchPropsValues', 'data-*', 'aria-*', 'persistence', 'persisted_props', 'persistence_type']
         self.available_wildcard_properties =            ['data-', 'aria-']
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()

@@ -1,6 +1,13 @@
 # AUTO GENERATED FILE - DO NOT EDIT
 
+import typing  # noqa: F401
+import numbers # noqa: F401
+from typing_extensions import TypedDict, NotRequired, Literal # noqa: F401
 from dash.development.base_component import Component, _explicitize_args
+try:
+    from dash.development.base_component import ComponentType # noqa: F401
+except ImportError:
+    ComponentType = typing.TypeVar("ComponentType", bound=Component)
 
 
 class AntdDivider(Component):
@@ -62,29 +69,36 @@ Keyword arguments:
     `data-*`格式属性通配.
 
 - aria-* (string; optional):
-    `aria-*`格式属性通配.
-
-- loading_state (dict; optional)
-
-    `loading_state` is a dict with keys:
-
-    - is_loading (boolean; optional):
-        Determines if the component is loading or not.
-
-    - prop_name (string; optional):
-        Holds which property is loading.
-
-    - component_name (string; optional):
-        Holds the name of the component that is loading."""
+    `aria-*`格式属性通配."""
     _children_props = []
     _base_nodes = ['children']
     _namespace = 'feffery_antd_components'
     _type = 'AntdDivider'
+
     @_explicitize_args
-    def __init__(self, children=None, id=Component.UNDEFINED, key=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, innerTextOrientation=Component.UNDEFINED, isDashed=Component.UNDEFINED, direction=Component.UNDEFINED, fontSize=Component.UNDEFINED, lineColor=Component.UNDEFINED, fontStyle=Component.UNDEFINED, fontWeight=Component.UNDEFINED, fontFamily=Component.UNDEFINED, fontColor=Component.UNDEFINED, variant=Component.UNDEFINED, plain=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
-        self._prop_names = ['id', 'key', 'children', 'className', 'style', 'innerTextOrientation', 'isDashed', 'direction', 'fontSize', 'lineColor', 'fontStyle', 'fontWeight', 'fontFamily', 'fontColor', 'variant', 'plain', 'data-*', 'aria-*', 'loading_state']
+    def __init__(
+        self,
+        children: typing.Optional[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]] = None,
+        id: typing.Optional[str] = None,
+        key: typing.Optional[str] = None,
+        className: typing.Optional[typing.Union[str, dict]] = None,
+        style: typing.Optional[dict] = None,
+        innerTextOrientation: typing.Optional[Literal["left", "center", "right"]] = None,
+        isDashed: typing.Optional[bool] = None,
+        direction: typing.Optional[Literal["horizontal", "vertical"]] = None,
+        fontSize: typing.Optional[typing.Union[str, typing.Union[int, float, numbers.Number]]] = None,
+        lineColor: typing.Optional[str] = None,
+        fontStyle: typing.Optional[str] = None,
+        fontWeight: typing.Optional[str] = None,
+        fontFamily: typing.Optional[str] = None,
+        fontColor: typing.Optional[str] = None,
+        variant: typing.Optional[Literal["dashed", "dotted", "solid"]] = None,
+        plain: typing.Optional[bool] = None,
+        **kwargs
+    ):
+        self._prop_names = ['id', 'key', 'children', 'className', 'style', 'innerTextOrientation', 'isDashed', 'direction', 'fontSize', 'lineColor', 'fontStyle', 'fontWeight', 'fontFamily', 'fontColor', 'variant', 'plain', 'data-*', 'aria-*']
         self._valid_wildcard_attributes =            ['data-', 'aria-']
-        self.available_properties = ['id', 'key', 'children', 'className', 'style', 'innerTextOrientation', 'isDashed', 'direction', 'fontSize', 'lineColor', 'fontStyle', 'fontWeight', 'fontFamily', 'fontColor', 'variant', 'plain', 'data-*', 'aria-*', 'loading_state']
+        self.available_properties = ['id', 'key', 'children', 'className', 'style', 'innerTextOrientation', 'isDashed', 'direction', 'fontSize', 'lineColor', 'fontStyle', 'fontWeight', 'fontFamily', 'fontColor', 'variant', 'plain', 'data-*', 'aria-*']
         self.available_wildcard_properties =            ['data-', 'aria-']
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()

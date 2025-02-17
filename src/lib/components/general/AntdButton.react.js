@@ -8,6 +8,7 @@ import { isString, isUndefined } from 'lodash';
 import { pickBy } from 'ramda';
 import { useRequest } from 'ahooks';
 import { HappyProvider } from '@ant-design/happy-work-theme';
+import { useLoading } from '../utils';
 // 自定义hooks
 import useCss from '../../hooks/useCss';
 // 自定义上下文
@@ -16,40 +17,39 @@ import PropsContext from '../../contexts/PropsContext';
 /**
  * 按钮组件AntdButton
  */
-const AntdButton = (props) => {
-    let {
-        id,
-        children,
-        loadingChildren,
-        className,
-        style,
-        styles,
-        classNames,
-        key,
-        setProps,
-        type,
-        href,
-        target,
-        autoInsertSpace,
-        block,
-        danger,
-        disabled,
-        ghost,
-        shape,
-        size,
-        nClicks,
-        clickExecuteJsString,
-        debounceWait,
-        icon,
-        iconPosition,
-        loading,
-        autoSpin,
-        motionType,
-        color,
-        variant,
-        title,
-        loading_state
-    } = props;
+const AntdButton = ({
+    id,
+    children,
+    loadingChildren,
+    className,
+    style,
+    styles,
+    classNames,
+    key,
+    setProps,
+    type = 'default',
+    href,
+    target = '_blank',
+    autoInsertSpace = true,
+    block = false,
+    danger = false,
+    disabled = false,
+    ghost = false,
+    shape = 'default',
+    size = 'middle',
+    nClicks = 0,
+    clickExecuteJsString,
+    debounceWait = 0,
+    icon,
+    iconPosition = 'start',
+    loading,
+    autoSpin = false,
+    motionType,
+    color,
+    variant,
+    title,
+    ...others
+}) => {
 
     // 使用自定义上下文
     const context = useContext(PropsContext)
@@ -84,7 +84,7 @@ const AntdButton = (props) => {
     const renderElement = (
         <Button
             // 提取具有data-*或aria-*通配格式的属性
-            {...pickBy((_, k) => k.startsWith('data-') || k.startsWith('aria-'), props)}
+            {...pickBy((_, k) => k.startsWith('data-') || k.startsWith('aria-'), others)}
             id={id}
             key={key}
             style={style}
@@ -120,9 +120,7 @@ const AntdButton = (props) => {
             variant={variant}
             title={title}
             onClick={onClick}
-            data-dash-is-loading={
-                (loading_state && loading_state.is_loading) || undefined
-            }
+            data-dash-is-loading={useLoading()}
         >
             {loading ? (loadingChildren || children) : children}
         </Button>
@@ -321,43 +319,11 @@ AntdButton.propTypes = {
      */
     'aria-*': PropTypes.string,
 
-    loading_state: PropTypes.shape({
-        /**
-         * Determines if the component is loading or not
-         */
-        is_loading: PropTypes.bool,
-        /**
-         * Holds which property is loading
-         */
-        prop_name: PropTypes.string,
-        /**
-         * Holds the name of the component that is loading
-         */
-        component_name: PropTypes.string
-    }),
-
     /**
      * Dash-assigned callback that should be called to report property changes
      * to Dash, to make them available for callbacks.
      */
     setProps: PropTypes.func
 };
-
-// 设置默认参数
-AntdButton.defaultProps = {
-    type: 'default',
-    target: '_blank',
-    autoInsertSpace: true,
-    block: false,
-    danger: false,
-    disabled: false,
-    ghost: false,
-    shape: 'default',
-    size: 'middle',
-    nClicks: 0,
-    debounceWait: 0,
-    iconPosition: 'start',
-    autoSpin: false
-}
 
 export default AntdButton;

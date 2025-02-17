@@ -5,36 +5,35 @@ import { PageHeader } from '@ant-design/pro-components';
 // 辅助库
 import { isString } from 'lodash';
 import { pickBy } from 'ramda';
-import { parseChildrenToArray } from '../utils';
+import { parseChildrenToArray, useLoading } from '../utils';
 // 自定义hooks
 import useCss from '../../hooks/useCss';
 
 /**
  * 页头组件AntdPageHeader
  */
-const AntdPageHeader = (props) => {
-    let {
-        id,
-        children,
-        className,
-        style,
-        key,
-        title,
-        subTitle,
-        showBackIcon,
-        historyBackDisabled,
-        backClicks,
-        ghost,
-        setProps,
-        loading_state
-    } = props;
+const AntdPageHeader = ({
+    id,
+    children,
+    className,
+    style,
+    key,
+    title,
+    subTitle,
+    showBackIcon = true,
+    historyBackDisabled = false,
+    backClicks = 0,
+    ghost = false,
+    setProps,
+    ...others
+}) => {
 
     children = parseChildrenToArray(children)
 
     return (
         <PageHeader
             // 提取具有data-*或aria-*通配格式的属性
-            {...pickBy((_, k) => k.startsWith('data-') || k.startsWith('aria-'), props)}
+            {...pickBy((_, k) => k.startsWith('data-') || k.startsWith('aria-'), others)}
             id={id}
             className={
                 isString(className) ?
@@ -52,9 +51,7 @@ const AntdPageHeader = (props) => {
                     () => setProps({ backClicks: backClicks + 1 }) :
                     () => window.history.back()
             }
-            data-dash-is-loading={
-                (loading_state && loading_state.is_loading) || undefined
-            }>
+            data-dash-is-loading={useLoading()}>
             {children}
         </PageHeader>
     );
@@ -133,34 +130,11 @@ AntdPageHeader.propTypes = {
      */
     'aria-*': PropTypes.string,
 
-    loading_state: PropTypes.shape({
-        /**
-         * Determines if the component is loading or not
-         */
-        is_loading: PropTypes.bool,
-        /**
-         * Holds which property is loading
-         */
-        prop_name: PropTypes.string,
-        /**
-         * Holds the name of the component that is loading
-         */
-        component_name: PropTypes.string
-    }),
-
     /**
      * Dash-assigned callback that should be called to report property changes
      * to Dash, to make them available for callbacks.
      */
     setProps: PropTypes.func
 };
-
-// 设置默认参数
-AntdPageHeader.defaultProps = {
-    showBackIcon: true,
-    historyBackDisabled: false,
-    backClicks: 0,
-    ghost: false
-}
 
 export default AntdPageHeader;

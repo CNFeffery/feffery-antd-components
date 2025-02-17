@@ -6,6 +6,7 @@ import { Transfer, ConfigProvider } from 'antd';
 import { str2Locale, locale2text } from '../../components/locales.react';
 import { isString, isUndefined } from 'lodash';
 import { pickBy } from 'ramda';
+import { useLoading } from '../../components/utils';
 // 自定义hooks
 import useCss from '../../hooks/useCss';
 // 上下文
@@ -45,8 +46,8 @@ const AntdTransfer = (props) => {
         persistence,
         persisted_props,
         persistence_type,
-        loading_state,
-        batchPropsNames
+        batchPropsNames,
+        ...others
     } = props;
 
     // 批属性监听
@@ -108,7 +109,7 @@ const AntdTransfer = (props) => {
         <ConfigProvider locale={str2Locale.get(locale)}>
             <Transfer
                 // 提取具有data-*或aria-*通配格式的属性
-                {...pickBy((_, k) => k.startsWith('data-') || k.startsWith('aria-'), props)}
+                {...pickBy((_, k) => k.startsWith('data-') || k.startsWith('aria-'), others)}
                 id={id}
                 style={style}
                 className={
@@ -173,9 +174,7 @@ const AntdTransfer = (props) => {
                     height: height,
                     width: '100%'
                 }}
-                data-dash-is-loading={
-                    (loading_state && loading_state.is_loading) || undefined
-                }
+                data-dash-is-loading={useLoading()}
             />
         </ConfigProvider>
     );

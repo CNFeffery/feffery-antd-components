@@ -5,39 +5,38 @@ import { Divider } from "antd";
 // 辅助库
 import { isString } from "lodash";
 import { pickBy } from 'ramda';
+import { useLoading } from "../utils";
 // 自定义hooks
 import useCss from "../../hooks/useCss";
 
 /**
  * 分割线组件AntdDivider
  */
-const AntdDivider = (props) => {
-    let {
-        id,
-        children,
-        className,
-        style,
-        key,
-        direction,
-        innerTextOrientation,
-        isDashed,
-        lineColor,
-        fontSize,
-        fontStyle,
-        fontWeight,
-        fontFamily,
-        fontColor,
-        variant,
-        plain,
-        loading_state,
-    } = props;
+const AntdDivider = ({
+    id,
+    children,
+    className,
+    style,
+    key,
+    direction = 'horizontal',
+    innerTextOrientation = 'center',
+    isDashed = false,
+    lineColor,
+    fontSize,
+    fontStyle,
+    fontWeight,
+    fontFamily,
+    fontColor,
+    variant = 'solid',
+    plain = true,
+    ...others
+}) => {
 
     if (direction === "horizontal") {
-
         return (
             <Divider
                 // 提取具有data-*或aria-*通配格式的属性
-                {...pickBy((_, k) => k.startsWith('data-') || k.startsWith('aria-'), props)}
+                {...pickBy((_, k) => k.startsWith('data-') || k.startsWith('aria-'), others)}
                 id={id}
                 style={{
                     ...style,
@@ -61,19 +60,16 @@ const AntdDivider = (props) => {
                 orientation={innerTextOrientation}
                 type={"horizontal"}
                 plain={plain}
-                data-dash-is-loading={
-                    (loading_state && loading_state.is_loading) || undefined
-                }
+                data-dash-is-loading={useLoading()}
             >
                 {children}
             </Divider>
         );
     } else if (direction === "vertical") {
-
         return (
             <Divider
                 // 提取具有data-*或aria-*通配格式的属性
-                {...pickBy((_, k) => k.startsWith('data-') || k.startsWith('aria-'), props)}
+                {...pickBy((_, k) => k.startsWith('data-') || k.startsWith('aria-'), others)}
                 id={id}
                 style={{
                     ...style,
@@ -97,9 +93,7 @@ const AntdDivider = (props) => {
                 orientation={innerTextOrientation}
                 type={"vertical"}
                 plain={plain}
-                data-dash-is-loading={
-                    (loading_state && loading_state.is_loading) || undefined
-                }
+                data-dash-is-loading={useLoading()}
             >
                 {children}
             </Divider>
@@ -209,35 +203,11 @@ AntdDivider.propTypes = {
      */
     'aria-*': PropTypes.string,
 
-    loading_state: PropTypes.shape({
-        /**
-         * Determines if the component is loading or not
-         */
-        is_loading: PropTypes.bool,
-        /**
-         * Holds which property is loading
-         */
-        prop_name: PropTypes.string,
-        /**
-         * Holds the name of the component that is loading
-         */
-        component_name: PropTypes.string,
-    }),
-
     /**
      * Dash-assigned callback that should be called to report property changes
      * to Dash, to make them available for callbacks.
      */
     setProps: PropTypes.func,
-};
-
-// 设置默认参数
-AntdDivider.defaultProps = {
-    innerTextOrientation: 'center',
-    isDashed: false,
-    direction: 'horizontal',
-    variant: 'solid',
-    plain: true
 };
 
 export default AntdDivider;

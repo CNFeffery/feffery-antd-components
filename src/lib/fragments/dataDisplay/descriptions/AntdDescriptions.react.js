@@ -4,7 +4,7 @@ import React from 'react';
 import { Descriptions } from 'antd';
 // 辅助库
 import { omit } from 'ramda';
-import { parseChildrenToArray, resolveChildProps } from '../../../components/utils';
+import { parseChildrenToArray, resolveChildProps, useLoading } from '../../../components/utils';
 import { isString } from 'lodash';
 import { pickBy } from 'ramda';
 // 自定义hooks
@@ -32,7 +32,7 @@ const AntdDescriptions = (props) => {
         contentStyle,
         extra,
         setProps,
-        loading_state
+        ...others
     } = props;
 
     let size2size = new Map([
@@ -45,7 +45,7 @@ const AntdDescriptions = (props) => {
         return (
             <Descriptions
                 // 提取具有data-*或aria-*通配格式的属性
-                {...pickBy((_, k) => k.startsWith('data-') || k.startsWith('aria-'), props)}
+                {...pickBy((_, k) => k.startsWith('data-') || k.startsWith('aria-'), others)}
                 id={id}
                 className={
                     isString(className) ?
@@ -62,9 +62,7 @@ const AntdDescriptions = (props) => {
                 labelStyle={labelStyle}
                 contentStyle={contentStyle}
                 extra={extra}
-                data-dash-is-loading={
-                    (loading_state && loading_state.is_loading) || undefined
-                }>
+                data-dash-is-loading={useLoading()}>
                 {
                     items.map(
                         (item, index) => <Descriptions.Item key={index} {...item} />
@@ -88,7 +86,6 @@ const AntdDescriptions = (props) => {
                 span,
                 labelStyle,
                 contentStyle,
-                loading_state,
                 ...otherProps
             } = childProps;
 
@@ -101,7 +98,6 @@ const AntdDescriptions = (props) => {
                     span={span}
                     labelStyle={labelStyle}
                     contentStyle={contentStyle}
-                    loading_state={loading_state}
                     {...omit(
                         ['setProps', 'persistence', 'persistence_type', 'persisted_props'],
                         otherProps
@@ -115,7 +111,7 @@ const AntdDescriptions = (props) => {
     return (
         <Descriptions
             // 提取具有data-*或aria-*通配格式的属性
-            {...pickBy((_, k) => k.startsWith('data-') || k.startsWith('aria-'), props)}
+            {...pickBy((_, k) => k.startsWith('data-') || k.startsWith('aria-'), others)}
             id={id}
             className={
                 isString(className) ?
@@ -132,9 +128,7 @@ const AntdDescriptions = (props) => {
             labelStyle={labelStyle}
             contentStyle={contentStyle}
             extra={extra}
-            data-dash-is-loading={
-                (loading_state && loading_state.is_loading) || undefined
-            }>
+            data-dash-is-loading={useLoading()}>
             {descriptionItems}
         </Descriptions>
     );

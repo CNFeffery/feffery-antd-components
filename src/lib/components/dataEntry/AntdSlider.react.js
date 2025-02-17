@@ -6,10 +6,72 @@ const LazyAntdSlider = React.lazy(() => import(/* webpackChunkName: "data_entry"
 /**
  * 滑动输入条组件AntdSlider
  */
-const AntdSlider = (props) => {
+const AntdSlider = ({
+    id,
+    name,
+    className,
+    style,
+    railStyle,
+    styles,
+    classNames,
+    key,
+    value,
+    defaultValue,
+    disabled = false,
+    autoFocus = false,
+    vertical = false,
+    range = false,
+    min = 0,
+    max = 100,
+    step = 1,
+    marks,
+    tooltipVisible,
+    tooltipPrefix = '',
+    tooltipSuffix = '',
+    popupContainer = 'body',
+    readOnly = false,
+    setProps,
+    persistence,
+    persisted_props,
+    persistence_type,
+    batchPropsNames = [],
+    ...others
+}) => {
     return (
         <Suspense fallback={null}>
-            <LazyAntdSlider {...props} />
+            <LazyAntdSlider {
+                ...{
+                    id,
+                    name,
+                    className,
+                    style,
+                    railStyle,
+                    styles,
+                    classNames,
+                    key,
+                    value,
+                    defaultValue,
+                    disabled,
+                    autoFocus,
+                    vertical,
+                    range,
+                    min,
+                    max,
+                    step,
+                    marks,
+                    tooltipVisible,
+                    tooltipPrefix,
+                    tooltipSuffix,
+                    popupContainer,
+                    readOnly,
+                    setProps,
+                    persistence,
+                    persisted_props,
+                    persistence_type,
+                    batchPropsNames,
+                    ...others
+                }
+            } />
         </Suspense>
     );
 }
@@ -182,21 +244,6 @@ AntdSlider.propTypes = {
      */
     'aria-*': PropTypes.string,
 
-    loading_state: PropTypes.shape({
-        /**
-         * Determines if the component is loading or not
-         */
-        is_loading: PropTypes.bool,
-        /**
-         * Holds which property is loading
-         */
-        prop_name: PropTypes.string,
-        /**
-         * Holds the name of the component that is loading
-         */
-        component_name: PropTypes.string
-    }),
-
     /**
      * Dash-assigned callback that should be called to report property changes
      * to Dash, to make them available for callbacks.
@@ -225,22 +272,9 @@ AntdSlider.propTypes = {
     persistence_type: PropTypes.oneOf(['local', 'session', 'memory'])
 };
 
-// 设置默认参数
-AntdSlider.defaultProps = {
-    vertical: false,
-    range: false,
-    min: 0,
-    max: 100,
-    step: 1,
-    tooltipPrefix: '',
-    tooltipSuffix: '',
-    disabled: false,
-    popupContainer: 'body',
-    readOnly: false,
-    autoFocus: false,
+AntdSlider.dashPersistence = {
     persisted_props: ['value'],
-    persistence_type: 'local',
-    batchPropsNames: []
+    persistence_type: 'local'
 }
 
 export default AntdSlider;

@@ -6,10 +6,42 @@ const LazyAntdCountdown = React.lazy(() => import(/* webpackChunkName: "data_dis
 /**
  * 倒计时组件AntdCountdown
  */
-const AntdCountdown = (props) => {
+const AntdCountdown = ({
+    id,
+    className,
+    style,
+    key,
+    value,
+    valueFormat = 'YYYY-MM-DD hh:mm:ss',
+    format,
+    prefix,
+    suffix,
+    title,
+    titleTooltip,
+    valueStyle,
+    setProps,
+    ...others
+}) => {
     return (
         <Suspense fallback={null}>
-            <LazyAntdCountdown {...props} />
+            <LazyAntdCountdown {
+                ...{
+                    id,
+                    className,
+                    style,
+                    key,
+                    value,
+                    valueFormat,
+                    format,
+                    prefix,
+                    suffix,
+                    title,
+                    titleTooltip,
+                    valueStyle,
+                    setProps,
+                    ...others
+                }
+            } />
         </Suspense>
     );
 }
@@ -89,32 +121,12 @@ AntdCountdown.propTypes = {
      */
     'aria-*': PropTypes.string,
 
-    loading_state: PropTypes.shape({
-        /**
-         * Determines if the component is loading or not
-         */
-        is_loading: PropTypes.bool,
-        /**
-         * Holds which property is loading
-         */
-        prop_name: PropTypes.string,
-        /**
-         * Holds the name of the component that is loading
-         */
-        component_name: PropTypes.string
-    }),
-
     /**
      * Dash-assigned callback that should be called to report property changes
      * to Dash, to make them available for callbacks.
      */
     setProps: PropTypes.func
 };
-
-// 设置默认参数
-AntdCountdown.defaultProps = {
-    valueFormat: 'YYYY-MM-DD hh:mm:ss'
-}
 
 export default AntdCountdown;
 

@@ -6,10 +6,104 @@ const LazyAntdSelect = React.lazy(() => import(/* webpackChunkName: "data_entry"
 /**
  * 下拉选择组件AntdSelect
  */
-const AntdSelect = (props) => {
+const AntdSelect = ({
+    id,
+    style,
+    className,
+    popupClassName,
+    key,
+    name,
+    locale = 'zh-cn',
+    setProps,
+    placeholder,
+    size = 'middle',
+    bordered = true,
+    variant,
+    options = [],
+    colorsNameWidth = 40,
+    allowClear = true,
+    autoFocus = false,
+    disabled,
+    value,
+    mode,
+    defaultValue,
+    maxTagCount = 5,
+    listHeight = 256,
+    colorsMode = 'sequential',
+    placement = 'bottomLeft',
+    status,
+    optionFilterProp = 'value',
+    optionFilterMode = 'case-insensitive',
+    autoSpin = false,
+    debounceWait = 0,
+    autoClearSearchValue = true,
+    emptyContent,
+    loadingEmptyContent,
+    dropdownBefore,
+    dropdownAfter,
+    prefix,
+    suffixIcon,
+    popupContainer = 'body',
+    readOnly,
+    maxCount,
+    popupMatchSelectWidth = true,
+    persistence,
+    persisted_props,
+    persistence_type,
+    batchPropsNames = [],
+    ...others
+}) => {
     return (
         <Suspense fallback={null}>
-            <LazyAntdSelect {...props} />
+            <LazyAntdSelect {
+                ...{
+                    id,
+                    style,
+                    className,
+                    popupClassName,
+                    key,
+                    name,
+                    locale,
+                    setProps,
+                    placeholder,
+                    size,
+                    bordered,
+                    variant,
+                    options,
+                    colorsNameWidth,
+                    allowClear,
+                    autoFocus,
+                    disabled,
+                    value,
+                    mode,
+                    defaultValue,
+                    maxTagCount,
+                    listHeight,
+                    colorsMode,
+                    placement,
+                    status,
+                    optionFilterProp,
+                    optionFilterMode,
+                    autoSpin,
+                    debounceWait,
+                    autoClearSearchValue,
+                    emptyContent,
+                    loadingEmptyContent,
+                    dropdownBefore,
+                    dropdownAfter,
+                    prefix,
+                    suffixIcon,
+                    popupContainer,
+                    readOnly,
+                    maxCount,
+                    popupMatchSelectWidth,
+                    persistence,
+                    persisted_props,
+                    persistence_type,
+                    batchPropsNames,
+                    ...others
+                }
+            } />
         </Suspense>
     );
 }
@@ -345,21 +439,6 @@ AntdSelect.propTypes = {
      */
     'aria-*': PropTypes.string,
 
-    loading_state: PropTypes.shape({
-        /**
-         * Determines if the component is loading or not
-         */
-        is_loading: PropTypes.bool,
-        /**
-         * Holds which property is loading
-         */
-        prop_name: PropTypes.string,
-        /**
-         * Holds the name of the component that is loading
-         */
-        component_name: PropTypes.string
-    }),
-
     /**
      * Dash-assigned callback that should be called to report property changes
      * to Dash, to make them available for callbacks.
@@ -388,30 +467,9 @@ AntdSelect.propTypes = {
     persistence_type: PropTypes.oneOf(['local', 'session', 'memory'])
 };
 
-// 设置默认参数
-AntdSelect.defaultProps = {
-    allowClear: true,
-    autoFocus: false,
-    disabled: false,
-    size: 'middle',
-    bordered: true,
-    maxTagCount: 5,
-    listHeight: 256,
-    placement: 'bottomLeft',
-    options: [],
-    colorsNameWidth: 40,
-    colorsMode: 'sequential',
-    autoClearSearchValue: true,
+AntdSelect.dashPersistence = {
     persisted_props: ['value'],
-    persistence_type: 'local',
-    locale: 'zh-cn',
-    optionFilterProp: 'value',
-    optionFilterMode: 'case-insensitive',
-    autoSpin: false,
-    debounceWait: 0,
-    popupMatchSelectWidth: true,
-    popupContainer: 'body',
-    batchPropsNames: []
+    persistence_type: 'local'
 }
 
 export default AntdSelect;

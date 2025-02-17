@@ -6,10 +6,46 @@ const LazyAntdImage = React.lazy(() => import(/* webpackChunkName: "data_display
 /**
  * 图片组件AntdImage
  */
-const AntdImage = (props) => {
+const AntdImage = ({
+    id,
+    className,
+    style,
+    key,
+    locale = 'zh-cn',
+    width,
+    height,
+    src,
+    fallback,
+    multiImageMode = 'fold',
+    previewCurrent,
+    previewVisible,
+    preview = true,
+    toolbarExtra,
+    setProps,
+    ...others
+}) => {
     return (
         <Suspense fallback={null}>
-            <LazyAntdImage {...props} />
+            <LazyAntdImage {
+                ...{
+                    id,
+                    className,
+                    style,
+                    key,
+                    locale,
+                    width,
+                    height,
+                    src,
+                    fallback,
+                    multiImageMode,
+                    previewCurrent,
+                    previewVisible,
+                    preview,
+                    toolbarExtra,
+                    setProps,
+                    ...others
+                }
+            } />
         </Suspense>
     );
 }
@@ -154,34 +190,12 @@ AntdImage.propTypes = {
      */
     'aria-*': PropTypes.string,
 
-    loading_state: PropTypes.shape({
-        /**
-         * Determines if the component is loading or not
-         */
-        is_loading: PropTypes.bool,
-        /**
-         * Holds which property is loading
-         */
-        prop_name: PropTypes.string,
-        /**
-         * Holds the name of the component that is loading
-         */
-        component_name: PropTypes.string
-    }),
-
     /**
      * Dash-assigned callback that should be called to report property changes
      * to Dash, to make them available for callbacks.
      */
     setProps: PropTypes.func
 };
-
-// 设置默认参数
-AntdImage.defaultProps = {
-    preview: true,
-    multiImageMode: 'fold',
-    locale: 'zh-cn'
-}
 
 export default AntdImage;
 

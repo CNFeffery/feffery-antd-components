@@ -6,10 +6,90 @@ const LazyAntdDraggerUpload = React.lazy(() => import(/* webpackChunkName: "uplo
 /**
  * 文件拖拽上传组件AntdDraggerUpload
  */
-const AntdDraggerUpload = (props) => {
+const AntdDraggerUpload = ({
+    id,
+    className,
+    style,
+    draggerClassName,
+    draggerStyle,
+    key,
+    name,
+    locale = 'zh-cn',
+    apiUrl,
+    apiUrlExtraParams,
+    headers,
+    withCredentials = false,
+    withOriginFileObj = false,
+    downloadUrl,
+    downloadUrlExtraParams,
+    downloadUrlFromBackend = false,
+    icon,
+    text,
+    hint,
+    uploadId,
+    fileListMaxLength = null,
+    fileTypes,
+    fileMaxSize = 500,
+    showUploadList = true,
+    multiple = false,
+    directory = false,
+    failedTooltipInfo,
+    confirmBeforeDelete = false,
+    showPercent = false,
+    progressProps,
+    showSuccessMessage = true,
+    showErrorMessage = true,
+    listUploadTaskRecord = [],
+    defaultFileList,
+    disabled = false,
+    status,
+    setProps,
+    ...others
+}) => {
     return (
         <Suspense fallback={null}>
-            <LazyAntdDraggerUpload {...props} />
+            <LazyAntdDraggerUpload {
+                ...{
+                    id,
+                    className,
+                    style,
+                    draggerClassName,
+                    draggerStyle,
+                    key,
+                    name,
+                    locale,
+                    apiUrl,
+                    apiUrlExtraParams,
+                    headers,
+                    withCredentials,
+                    withOriginFileObj,
+                    downloadUrl,
+                    downloadUrlExtraParams,
+                    downloadUrlFromBackend,
+                    icon,
+                    text,
+                    hint,
+                    uploadId,
+                    fileListMaxLength,
+                    fileTypes,
+                    fileMaxSize,
+                    showUploadList,
+                    multiple,
+                    directory,
+                    failedTooltipInfo,
+                    confirmBeforeDelete,
+                    showPercent,
+                    progressProps,
+                    showSuccessMessage,
+                    showErrorMessage,
+                    listUploadTaskRecord,
+                    defaultFileList,
+                    disabled,
+                    status,
+                    setProps,
+                    ...others
+                }
+            } />
         </Suspense>
     );
 }
@@ -396,47 +476,12 @@ AntdDraggerUpload.propTypes = {
      */
     'aria-*': PropTypes.string,
 
-    loading_state: PropTypes.shape({
-        /**
-         * Determines if the component is loading or not
-         */
-        is_loading: PropTypes.bool,
-        /**
-         * Holds which property is loading
-         */
-        prop_name: PropTypes.string,
-        /**
-         * Holds the name of the component that is loading
-         */
-        component_name: PropTypes.string
-    }),
-
     /**
      * Dash-assigned callback that should be called to report property changes
      * to Dash, to make them available for callbacks.
      */
     setProps: PropTypes.func
 };
-
-// 设置默认参数
-AntdDraggerUpload.defaultProps = {
-    disabled: false,
-    multiple: false,
-    directory: false,
-    showUploadList: true,
-    fileListMaxLength: null,
-    fileMaxSize: 500,
-    confirmBeforeDelete: false,
-    showPercent: false,
-    showSuccessMessage: true,
-    showErrorMessage: true,
-    lastUploadTaskRecord: null,
-    listUploadTaskRecord: [],
-    downloadUrlFromBackend: false,
-    withCredentials: false,
-    withOriginFileObj: false,
-    locale: 'zh-cn'
-}
 
 export default AntdDraggerUpload;
 

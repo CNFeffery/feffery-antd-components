@@ -6,10 +6,92 @@ const LazyAntdDatePicker = React.lazy(() => import(/* webpackChunkName: "data_en
 /**
  * 日期选择组件AntdDatePicker
  */
-const AntdDatePicker = (props) => {
+const AntdDatePicker = ({
+    id,
+    className,
+    style,
+    popupClassName,
+    key,
+    name,
+    locale = 'zh-cn',
+    setProps,
+    picker = 'date',
+    format,
+    firstDayOfWeek,
+    disabled = false,
+    showTime = false,
+    allowClear = true,
+    autoFocus = false,
+    placeholder,
+    disabledDatesStrategy,
+    pickerValue,
+    value,
+    defaultValue,
+    bordered = true,
+    variant,
+    size = 'middle',
+    status,
+    popupContainer = 'body',
+    readOnly,
+    placement = 'bottomLeft',
+    extraFooter,
+    showToday = true,
+    presets,
+    customCells,
+    prefix,
+    suffixIcon,
+    persistence,
+    persisted_props,
+    persistence_type,
+    batchPropsNames = [],
+    needConfirm = false,
+    ...others
+}) => {
     return (
         <Suspense fallback={null}>
-            <LazyAntdDatePicker {...props} />
+            <LazyAntdDatePicker {
+                ...{
+                    id,
+                    className,
+                    style,
+                    popupClassName,
+                    key,
+                    name,
+                    locale,
+                    setProps,
+                    picker,
+                    format,
+                    firstDayOfWeek,
+                    disabled,
+                    showTime,
+                    allowClear,
+                    autoFocus,
+                    placeholder,
+                    disabledDatesStrategy,
+                    pickerValue,
+                    value,
+                    defaultValue,
+                    bordered,
+                    variant,
+                    size,
+                    status,
+                    popupContainer,
+                    readOnly,
+                    placement,
+                    extraFooter,
+                    showToday,
+                    presets,
+                    customCells,
+                    prefix,
+                    suffixIcon,
+                    persistence,
+                    persisted_props,
+                    persistence_type,
+                    batchPropsNames,
+                    needConfirm,
+                    ...others
+                }
+            } />
         </Suspense>
     );
 }
@@ -305,24 +387,6 @@ AntdDatePicker.propTypes = {
     'aria-*': PropTypes.string,
 
     /**
-    * Object that holds the loading state object coming from dash-renderer
-    */
-    loading_state: PropTypes.shape({
-        /**
-         * Determines if the component is loading or not
-         */
-        is_loading: PropTypes.bool,
-        /**
-         * Holds which property is loading
-         */
-        prop_name: PropTypes.string,
-        /**
-         * Holds the name of the component that is loading
-         */
-        component_name: PropTypes.string
-    }),
-
-    /**
      * Dash-assigned callback that should be called to report property changes
      * to Dash, to make them available for callbacks.
      */
@@ -350,23 +414,9 @@ AntdDatePicker.propTypes = {
     persistence_type: PropTypes.oneOf(['local', 'session', 'memory'])
 };
 
-// 设置默认参数
-AntdDatePicker.defaultProps = {
-    picker: 'date',
-    disabled: false,
-    showTime: false,
-    size: 'middle',
-    bordered: true,
-    allowClear: true,
-    autoFocus: false,
-    locale: 'zh-cn',
-    placement: 'bottomLeft',
-    showToday: true,
-    needConfirm: false,
-    popupContainer: 'body',
+AntdDatePicker.dashPersistence = {
     persisted_props: ['value'],
-    persistence_type: 'local',
-    batchPropsNames: []
+    persistence_type: 'local'
 }
 
 export default AntdDatePicker;

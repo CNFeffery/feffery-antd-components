@@ -1,6 +1,13 @@
 # AUTO GENERATED FILE - DO NOT EDIT
 
+import typing  # noqa: F401
+import numbers # noqa: F401
+from typing_extensions import TypedDict, NotRequired, Literal # noqa: F401
 from dash.development.base_component import Component, _explicitize_args
+try:
+    from dash.development.base_component import ComponentType # noqa: F401
+except ImportError:
+    ComponentType = typing.TypeVar("ComponentType", bound=Component)
 
 
 class AntdComment(Component):
@@ -116,8 +123,54 @@ Keyword arguments:
     _base_nodes = ['commentContent', 'children']
     _namespace = 'feffery_antd_components'
     _type = 'AntdComment'
+    PublishTime = TypedDict(
+        "PublishTime",
+            {
+            "value": str,
+            "format": NotRequired[str]
+        }
+    )
+
+    LoadingState = TypedDict(
+        "LoadingState",
+            {
+            "is_loading": NotRequired[bool],
+            "prop_name": NotRequired[str],
+            "component_name": NotRequired[str]
+        }
+    )
+
     @_explicitize_args
-    def __init__(self, children=None, id=Component.UNDEFINED, key=Component.UNDEFINED, style=Component.UNDEFINED, className=Component.UNDEFINED, locale=Component.UNDEFINED, commentId=Component.UNDEFINED, authorName=Component.UNDEFINED, authorNameHref=Component.UNDEFINED, publishTime=Component.REQUIRED, fromNow=Component.UNDEFINED, showLikeDislike=Component.UNDEFINED, showReply=Component.UNDEFINED, showDelete=Component.UNDEFINED, replyClicks=Component.UNDEFINED, deleteClicks=Component.UNDEFINED, commentContent=Component.UNDEFINED, likesCount=Component.UNDEFINED, dislikesCount=Component.UNDEFINED, action=Component.UNDEFINED, defaultAction=Component.UNDEFINED, avatarProps=Component.UNDEFINED, popupContainer=Component.UNDEFINED, batchPropsNames=Component.UNDEFINED, batchPropsValues=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
+    def __init__(
+        self,
+        children: typing.Optional[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]] = None,
+        id: typing.Optional[str] = None,
+        key: typing.Optional[str] = None,
+        style: typing.Optional[dict] = None,
+        className: typing.Optional[typing.Union[str, dict]] = None,
+        locale: typing.Optional[Literal["zh-cn", "en-us", "de-de"]] = None,
+        commentId: typing.Optional[str] = None,
+        authorName: typing.Optional[str] = None,
+        authorNameHref: typing.Optional[str] = None,
+        publishTime: typing.Optional["PublishTime"] = None,
+        fromNow: typing.Optional[bool] = None,
+        showLikeDislike: typing.Optional[bool] = None,
+        showReply: typing.Optional[bool] = None,
+        showDelete: typing.Optional[bool] = None,
+        replyClicks: typing.Optional[typing.Union[int, float, numbers.Number]] = None,
+        deleteClicks: typing.Optional[typing.Union[int, float, numbers.Number]] = None,
+        commentContent: typing.Optional[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]] = None,
+        likesCount: typing.Optional[typing.Union[int, float, numbers.Number]] = None,
+        dislikesCount: typing.Optional[typing.Union[int, float, numbers.Number]] = None,
+        action: typing.Optional[Literal["liked", "disliked", "default"]] = None,
+        defaultAction: typing.Optional[Literal["liked", "disliked", "default"]] = None,
+        avatarProps: typing.Optional[dict] = None,
+        popupContainer: typing.Optional[Literal["parent", "body"]] = None,
+        batchPropsNames: typing.Optional[typing.Sequence[str]] = None,
+        batchPropsValues: typing.Optional[dict] = None,
+        loading_state: typing.Optional["LoadingState"] = None,
+        **kwargs
+    ):
         self._prop_names = ['id', 'children', 'key', 'style', 'className', 'locale', 'commentId', 'authorName', 'authorNameHref', 'publishTime', 'fromNow', 'showLikeDislike', 'showReply', 'showDelete', 'replyClicks', 'deleteClicks', 'commentContent', 'likesCount', 'dislikesCount', 'action', 'defaultAction', 'avatarProps', 'popupContainer', 'batchPropsNames', 'batchPropsValues', 'data-*', 'aria-*', 'loading_state']
         self._valid_wildcard_attributes =            ['data-', 'aria-']
         self.available_properties = ['id', 'children', 'key', 'style', 'className', 'locale', 'commentId', 'authorName', 'authorNameHref', 'publishTime', 'fromNow', 'showLikeDislike', 'showReply', 'showDelete', 'replyClicks', 'deleteClicks', 'commentContent', 'likesCount', 'dislikesCount', 'action', 'defaultAction', 'avatarProps', 'popupContainer', 'batchPropsNames', 'batchPropsValues', 'data-*', 'aria-*', 'loading_state']

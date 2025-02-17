@@ -6,10 +6,64 @@ const LazyAntdComment = React.lazy(() => import(/* webpackChunkName: "data_displ
 /**
  * 评论组件AntdComment
  */
-const AntdComment = (props) => {
+const AntdComment = ({
+    id,
+    children,
+    className,
+    style,
+    locale = 'zh-cn',
+    commentId,
+    showLikeDislike = true,
+    showReply = true,
+    showDelete = false,
+    replyClicks = 0,
+    deleteClicks = 0,
+    authorName,
+    authorNameHref,
+    publishTime,
+    fromNow = false,
+    commentContent,
+    likesCount = 0,
+    dislikesCount = 0,
+    action,
+    defaultAction,
+    avatarProps,
+    popupContainer = 'body',
+    setProps,
+    batchPropsNames = [],
+    ...others
+}) => {
     return (
         <Suspense fallback={null}>
-            <LazyAntdComment {...props} />
+            <LazyAntdComment {
+                ...{
+                    id,
+                    children,
+                    className,
+                    style,
+                    locale,
+                    commentId,
+                    showLikeDislike,
+                    showReply,
+                    showDelete,
+                    replyClicks,
+                    deleteClicks,
+                    authorName,
+                    authorNameHref,
+                    publishTime,
+                    fromNow,
+                    commentContent,
+                    likesCount,
+                    dislikesCount,
+                    action,
+                    defaultAction,
+                    avatarProps,
+                    popupContainer,
+                    setProps,
+                    batchPropsNames,
+                    ...others
+                }
+            } />
         </Suspense>
     );
 }
@@ -191,20 +245,6 @@ AntdComment.propTypes = {
      */
     setProps: PropTypes.func
 };
-
-AntdComment.defaultProps = {
-    showLikeDislike: true,
-    showReply: true,
-    showDelete: false,
-    likesCount: 0,
-    dislikesCount: 0,
-    deleteClicks: 0,
-    fromNow: false,
-    replyClicks: 0,
-    locale: 'zh-cn',
-    popupContainer: 'body',
-    batchPropsNames: []
-}
 
 export default AntdComment;
 

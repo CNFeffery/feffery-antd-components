@@ -12,6 +12,7 @@ import {
 import { StyleProvider, legacyLogicalPropertiesTransformer } from '@ant-design/cssinjs'
 // 辅助库
 import { isUndefined, omitBy } from 'lodash';
+import { useLoading } from '../utils';
 // 自定义上下文
 import PropsContext from '../../contexts/PropsContext';
 
@@ -33,24 +34,22 @@ const str2oldTheme = new Map(
 /**
  * 参数配置组件AntdConfigProvider
  */
-const AntdConfigProvider = (props) => {
-    let {
-        id,
-        children,
-        algorithm,
-        useOldTheme,
-        primaryColor,
-        componentDisabled,
-        componentSize,
-        locale,
-        wavesDisabled,
-        token,
-        componentsToken,
-        compatibilityMode,
-        enableLayer,
-        setProps,
-        loading_state
-    } = props;
+const AntdConfigProvider = ({
+    id,
+    children,
+    algorithm = 'default',
+    useOldTheme,
+    primaryColor,
+    componentDisabled,
+    componentSize,
+    locale,
+    wavesDisabled = false,
+    token,
+    componentsToken,
+    compatibilityMode = false,
+    enableLayer = false,
+    setProps
+}) => {
 
     let configProviderInstance = (
         <ConfigProvider id={id}
@@ -79,9 +78,7 @@ const AntdConfigProvider = (props) => {
                     }
             }
             wave={{ disabled: wavesDisabled }}
-            data-dash-is-loading={
-                (loading_state && loading_state.is_loading) || undefined
-            }>
+            data-dash-is-loading={useLoading()}>
             {children}
         </ConfigProvider>
     )
@@ -232,34 +229,11 @@ AntdConfigProvider.propTypes = {
      */
     enableLayer: PropTypes.bool,
 
-    loading_state: PropTypes.shape({
-        /**
-         * Determines if the component is loading or not
-         */
-        is_loading: PropTypes.bool,
-        /**
-         * Holds which property is loading
-         */
-        prop_name: PropTypes.string,
-        /**
-         * Holds the name of the component that is loading
-         */
-        component_name: PropTypes.string
-    }),
-
     /**
      * Dash-assigned callback that should be called to report property changes
      * to Dash, to make them available for callbacks.
      */
     setProps: PropTypes.func
 };
-
-// 设置默认参数
-AntdConfigProvider.defaultProps = {
-    algorithm: 'default',
-    wavesDisabled: false,
-    compatibilityMode: false,
-    enableLayer: false
-}
 
 export default AntdConfigProvider;

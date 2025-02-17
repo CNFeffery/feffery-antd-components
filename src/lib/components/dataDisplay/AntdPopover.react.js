@@ -6,10 +6,60 @@ const LazyAntdPopover = React.lazy(() => import(/* webpackChunkName: "data_displ
 /**
  * 气泡卡片组件Popover
  */
-const AntdPopover = (props) => {
+const AntdPopover = ({
+    id,
+    children,
+    className,
+    style,
+    key,
+    title,
+    content,
+    placement = 'top',
+    color,
+    mouseEnterDelay = 0.1,
+    mouseLeaveDelay = 0.1,
+    overlayClassName,
+    overlayStyle,
+    overlayInnerStyle,
+    trigger = 'hover',
+    zIndex,
+    arrow = 'show',
+    fresh = false,
+    open = false,
+    permanent = false,
+    popupContainer = 'body',
+    setProps,
+    ...others
+}) => {
     return (
         <Suspense fallback={null}>
-            <LazyAntdPopover {...props} />
+            <LazyAntdPopover {
+                ...{
+                    id,
+                    children,
+                    className,
+                    style,
+                    key,
+                    title,
+                    content,
+                    placement,
+                    color,
+                    mouseEnterDelay,
+                    mouseLeaveDelay,
+                    overlayClassName,
+                    overlayStyle,
+                    overlayInnerStyle,
+                    trigger,
+                    zIndex,
+                    arrow,
+                    fresh,
+                    open,
+                    permanent,
+                    popupContainer,
+                    setProps,
+                    ...others
+                }
+            } />
         </Suspense>
     );
 }
@@ -150,40 +200,12 @@ AntdPopover.propTypes = {
      */
     'aria-*': PropTypes.string,
 
-    loading_state: PropTypes.shape({
-        /**
-         * Determines if the component is loading or not
-         */
-        is_loading: PropTypes.bool,
-        /**
-         * Holds which property is loading
-         */
-        prop_name: PropTypes.string,
-        /**
-         * Holds the name of the component that is loading
-         */
-        component_name: PropTypes.string
-    }),
-
     /**
      * Dash-assigned callback that should be called to report property changes
      * to Dash, to make them available for callbacks.
      */
     setProps: PropTypes.func
 };
-
-// 设置默认参数
-AntdPopover.defaultProps = {
-    mouseEnterDelay: 0.1,
-    mouseLeaveDelay: 0.1,
-    placement: 'top',
-    trigger: 'hover',
-    arrow: 'show',
-    fresh: false,
-    popupContainer: 'body',
-    open: false,
-    permanent: false
-}
 
 export default AntdPopover;
 

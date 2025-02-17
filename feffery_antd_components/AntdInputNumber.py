@@ -1,6 +1,13 @@
 # AUTO GENERATED FILE - DO NOT EDIT
 
+import typing  # noqa: F401
+import numbers # noqa: F401
+from typing_extensions import TypedDict, NotRequired, Literal # noqa: F401
 from dash.development.base_component import Component, _explicitize_args
+try:
+    from dash.development.base_component import ComponentType # noqa: F401
+except ImportError:
+    ComponentType = typing.TypeVar("ComponentType", bound=Component)
 
 
 class AntdInputNumber(Component):
@@ -109,19 +116,6 @@ Keyword arguments:
 - aria-* (string; optional):
     `aria-*`格式属性通配.
 
-- loading_state (dict; optional)
-
-    `loading_state` is a dict with keys:
-
-    - is_loading (boolean; optional):
-        Determines if the component is loading or not.
-
-    - prop_name (string; optional):
-        Holds which property is loading.
-
-    - component_name (string; optional):
-        Holds the name of the component that is loading.
-
 - persistence (boolean | string | number; optional):
     是否开启[属性持久化](/prop-persistence).
 
@@ -135,11 +129,49 @@ Keyword arguments:
     _base_nodes = ['addonBefore', 'addonAfter', 'prefix', 'suffix', 'children']
     _namespace = 'feffery_antd_components'
     _type = 'AntdInputNumber'
+
     @_explicitize_args
-    def __init__(self, id=Component.UNDEFINED, key=Component.UNDEFINED, style=Component.UNDEFINED, className=Component.UNDEFINED, name=Component.UNDEFINED, addonBefore=Component.UNDEFINED, addonAfter=Component.UNDEFINED, prefix=Component.UNDEFINED, suffix=Component.UNDEFINED, autoFocus=Component.UNDEFINED, controls=Component.UNDEFINED, keyboard=Component.UNDEFINED, min=Component.UNDEFINED, max=Component.UNDEFINED, step=Component.UNDEFINED, precision=Component.UNDEFINED, stringMode=Component.UNDEFINED, disabled=Component.UNDEFINED, size=Component.UNDEFINED, bordered=Component.UNDEFINED, variant=Component.UNDEFINED, placeholder=Component.UNDEFINED, value=Component.UNDEFINED, defaultValue=Component.UNDEFINED, debounceValue=Component.UNDEFINED, debounceWait=Component.UNDEFINED, nSubmit=Component.UNDEFINED, status=Component.UNDEFINED, readOnly=Component.UNDEFINED, batchPropsNames=Component.UNDEFINED, batchPropsValues=Component.UNDEFINED, loading_state=Component.UNDEFINED, persistence=Component.UNDEFINED, persisted_props=Component.UNDEFINED, persistence_type=Component.UNDEFINED, **kwargs):
-        self._prop_names = ['id', 'key', 'style', 'className', 'name', 'addonBefore', 'addonAfter', 'prefix', 'suffix', 'autoFocus', 'controls', 'keyboard', 'min', 'max', 'step', 'precision', 'stringMode', 'disabled', 'size', 'bordered', 'variant', 'placeholder', 'value', 'defaultValue', 'debounceValue', 'debounceWait', 'nSubmit', 'status', 'readOnly', 'batchPropsNames', 'batchPropsValues', 'data-*', 'aria-*', 'loading_state', 'persistence', 'persisted_props', 'persistence_type']
+    def __init__(
+        self,
+        id: typing.Optional[str] = None,
+        key: typing.Optional[str] = None,
+        style: typing.Optional[dict] = None,
+        className: typing.Optional[typing.Union[str, dict]] = None,
+        name: typing.Optional[str] = None,
+        addonBefore: typing.Optional[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]] = None,
+        addonAfter: typing.Optional[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]] = None,
+        prefix: typing.Optional[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]] = None,
+        suffix: typing.Optional[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]] = None,
+        autoFocus: typing.Optional[bool] = None,
+        controls: typing.Optional[bool] = None,
+        keyboard: typing.Optional[bool] = None,
+        min: typing.Optional[typing.Union[typing.Union[int, float, numbers.Number], str]] = None,
+        max: typing.Optional[typing.Union[typing.Union[int, float, numbers.Number], str]] = None,
+        step: typing.Optional[typing.Union[typing.Union[int, float, numbers.Number], str]] = None,
+        precision: typing.Optional[typing.Union[int, float, numbers.Number]] = None,
+        stringMode: typing.Optional[bool] = None,
+        disabled: typing.Optional[bool] = None,
+        size: typing.Optional[Literal["small", "middle", "large"]] = None,
+        bordered: typing.Optional[bool] = None,
+        variant: typing.Optional[Literal["outlined", "borderless", "filled"]] = None,
+        placeholder: typing.Optional[str] = None,
+        value: typing.Optional[typing.Union[typing.Union[int, float, numbers.Number], str]] = None,
+        defaultValue: typing.Optional[typing.Union[typing.Union[int, float, numbers.Number], str]] = None,
+        debounceValue: typing.Optional[typing.Union[typing.Union[int, float, numbers.Number], str]] = None,
+        debounceWait: typing.Optional[typing.Union[int, float, numbers.Number]] = None,
+        nSubmit: typing.Optional[typing.Union[int, float, numbers.Number]] = None,
+        status: typing.Optional[Literal["error", "warning"]] = None,
+        readOnly: typing.Optional[bool] = None,
+        batchPropsNames: typing.Optional[typing.Sequence[str]] = None,
+        batchPropsValues: typing.Optional[dict] = None,
+        persistence: typing.Optional[typing.Union[bool, str, typing.Union[int, float, numbers.Number]]] = None,
+        persisted_props: typing.Optional[typing.Sequence[Literal["value"]]] = None,
+        persistence_type: typing.Optional[Literal["local", "session", "memory"]] = None,
+        **kwargs
+    ):
+        self._prop_names = ['id', 'key', 'style', 'className', 'name', 'addonBefore', 'addonAfter', 'prefix', 'suffix', 'autoFocus', 'controls', 'keyboard', 'min', 'max', 'step', 'precision', 'stringMode', 'disabled', 'size', 'bordered', 'variant', 'placeholder', 'value', 'defaultValue', 'debounceValue', 'debounceWait', 'nSubmit', 'status', 'readOnly', 'batchPropsNames', 'batchPropsValues', 'data-*', 'aria-*', 'persistence', 'persisted_props', 'persistence_type']
         self._valid_wildcard_attributes =            ['data-', 'aria-']
-        self.available_properties = ['id', 'key', 'style', 'className', 'name', 'addonBefore', 'addonAfter', 'prefix', 'suffix', 'autoFocus', 'controls', 'keyboard', 'min', 'max', 'step', 'precision', 'stringMode', 'disabled', 'size', 'bordered', 'variant', 'placeholder', 'value', 'defaultValue', 'debounceValue', 'debounceWait', 'nSubmit', 'status', 'readOnly', 'batchPropsNames', 'batchPropsValues', 'data-*', 'aria-*', 'loading_state', 'persistence', 'persisted_props', 'persistence_type']
+        self.available_properties = ['id', 'key', 'style', 'className', 'name', 'addonBefore', 'addonAfter', 'prefix', 'suffix', 'autoFocus', 'controls', 'keyboard', 'min', 'max', 'step', 'precision', 'stringMode', 'disabled', 'size', 'bordered', 'variant', 'placeholder', 'value', 'defaultValue', 'debounceValue', 'debounceWait', 'nSubmit', 'status', 'readOnly', 'batchPropsNames', 'batchPropsValues', 'data-*', 'aria-*', 'persistence', 'persisted_props', 'persistence_type']
         self.available_wildcard_properties =            ['data-', 'aria-']
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()

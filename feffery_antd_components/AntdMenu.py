@@ -1,6 +1,13 @@
 # AUTO GENERATED FILE - DO NOT EDIT
 
+import typing  # noqa: F401
+import numbers # noqa: F401
+from typing_extensions import TypedDict, NotRequired, Literal # noqa: F401
 from dash.development.base_component import Component, _explicitize_args
+try:
+    from dash.development.base_component import ComponentType # noqa: F401
+except ImportError:
+    ComponentType = typing.TypeVar("ComponentType", bound=Component)
 
 
 class AntdMenu(Component):
@@ -90,37 +97,60 @@ Keyword arguments:
 - aria-* (string; optional):
     `aria-*`格式属性通配.
 
-- loading_state (dict; optional)
-
-    `loading_state` is a dict with keys:
-
-    - is_loading (boolean; optional):
-        Determines if the component is loading or not.
-
-    - prop_name (string; optional):
-        Holds which property is loading.
-
-    - component_name (string; optional):
-        Holds the name of the component that is loading.
-
 - persistence (boolean | string | number; optional):
     是否为当前组件开启持久化功能.
 
-- persisted_props (list of a value equal to: 'currentKey', 'openKeys's; default ['currentKey', 'openKeys']):
+- persisted_props (list of a value equal to: 'currentKey', 'openKeys's; optional):
     当前组件启用持久化的属性值数组，可选项有`'currentKey'`、`'openKeys'`
     默认值：`['currentKey', 'openKeys']`.
 
-- persistence_type (a value equal to: 'local', 'session', 'memory'; default 'local'):
+- persistence_type (a value equal to: 'local', 'session', 'memory'; optional):
     当前组件的属性持久化存储类型  默认值：`'local'`."""
     _children_props = ['expandIcon', 'expandIcon.expand', 'expandIcon.collapse', 'menuItemKeyToTitle{}']
     _base_nodes = ['expandIcon', 'children']
     _namespace = 'feffery_antd_components'
     _type = 'AntdMenu'
+    ExpandIcon = TypedDict(
+        "ExpandIcon",
+            {
+            "expand": NotRequired[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]],
+            "collapse": NotRequired[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]]
+        }
+    )
+
     @_explicitize_args
-    def __init__(self, id=Component.UNDEFINED, key=Component.UNDEFINED, style=Component.UNDEFINED, className=Component.UNDEFINED, expandIcon=Component.UNDEFINED, menuItems=Component.UNDEFINED, menuItemKeyToTitle=Component.UNDEFINED, mode=Component.UNDEFINED, theme=Component.UNDEFINED, currentKey=Component.UNDEFINED, currentItem=Component.UNDEFINED, currentKeyPath=Component.UNDEFINED, currentItemPath=Component.UNDEFINED, openKeys=Component.UNDEFINED, onlyExpandCurrentSubMenu=Component.UNDEFINED, defaultOpenKeys=Component.UNDEFINED, defaultSelectedKey=Component.UNDEFINED, renderCollapsedButton=Component.UNDEFINED, popupContainer=Component.UNDEFINED, inlineCollapsed=Component.UNDEFINED, inlineIndent=Component.UNDEFINED, triggerSubMenuAction=Component.UNDEFINED, loading_state=Component.UNDEFINED, persistence=Component.UNDEFINED, persisted_props=Component.UNDEFINED, persistence_type=Component.UNDEFINED, **kwargs):
-        self._prop_names = ['id', 'key', 'style', 'className', 'expandIcon', 'menuItems', 'menuItemKeyToTitle', 'mode', 'theme', 'currentKey', 'currentItem', 'currentKeyPath', 'currentItemPath', 'openKeys', 'onlyExpandCurrentSubMenu', 'defaultOpenKeys', 'defaultSelectedKey', 'renderCollapsedButton', 'popupContainer', 'inlineCollapsed', 'inlineIndent', 'triggerSubMenuAction', 'data-*', 'aria-*', 'loading_state', 'persistence', 'persisted_props', 'persistence_type']
+    def __init__(
+        self,
+        id: typing.Optional[str] = None,
+        key: typing.Optional[str] = None,
+        style: typing.Optional[dict] = None,
+        className: typing.Optional[typing.Union[str, dict]] = None,
+        expandIcon: typing.Optional[typing.Union[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]], "ExpandIcon"]] = None,
+        menuItems: typing.Optional[typing.Sequence] = None,
+        menuItemKeyToTitle: typing.Optional[typing.Dict[typing.Union[str, float, int], typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]]] = None,
+        mode: typing.Optional[Literal["vertical", "horizontal", "inline"]] = None,
+        theme: typing.Optional[Literal["light", "dark"]] = None,
+        currentKey: typing.Optional[str] = None,
+        currentItem: typing.Optional[dict] = None,
+        currentKeyPath: typing.Optional[typing.Sequence] = None,
+        currentItemPath: typing.Optional[typing.Sequence] = None,
+        openKeys: typing.Optional[typing.Sequence[str]] = None,
+        onlyExpandCurrentSubMenu: typing.Optional[bool] = None,
+        defaultOpenKeys: typing.Optional[typing.Sequence[str]] = None,
+        defaultSelectedKey: typing.Optional[str] = None,
+        renderCollapsedButton: typing.Optional[bool] = None,
+        popupContainer: typing.Optional[Literal["parent", "body"]] = None,
+        inlineCollapsed: typing.Optional[bool] = None,
+        inlineIndent: typing.Optional[typing.Union[int, float, numbers.Number]] = None,
+        triggerSubMenuAction: typing.Optional[Literal["hover", "click"]] = None,
+        persistence: typing.Optional[typing.Union[bool, str, typing.Union[int, float, numbers.Number]]] = None,
+        persisted_props: typing.Optional[typing.Sequence[Literal["currentKey", "openKeys"]]] = None,
+        persistence_type: typing.Optional[Literal["local", "session", "memory"]] = None,
+        **kwargs
+    ):
+        self._prop_names = ['id', 'key', 'style', 'className', 'expandIcon', 'menuItems', 'menuItemKeyToTitle', 'mode', 'theme', 'currentKey', 'currentItem', 'currentKeyPath', 'currentItemPath', 'openKeys', 'onlyExpandCurrentSubMenu', 'defaultOpenKeys', 'defaultSelectedKey', 'renderCollapsedButton', 'popupContainer', 'inlineCollapsed', 'inlineIndent', 'triggerSubMenuAction', 'data-*', 'aria-*', 'persistence', 'persisted_props', 'persistence_type']
         self._valid_wildcard_attributes =            ['data-', 'aria-']
-        self.available_properties = ['id', 'key', 'style', 'className', 'expandIcon', 'menuItems', 'menuItemKeyToTitle', 'mode', 'theme', 'currentKey', 'currentItem', 'currentKeyPath', 'currentItemPath', 'openKeys', 'onlyExpandCurrentSubMenu', 'defaultOpenKeys', 'defaultSelectedKey', 'renderCollapsedButton', 'popupContainer', 'inlineCollapsed', 'inlineIndent', 'triggerSubMenuAction', 'data-*', 'aria-*', 'loading_state', 'persistence', 'persisted_props', 'persistence_type']
+        self.available_properties = ['id', 'key', 'style', 'className', 'expandIcon', 'menuItems', 'menuItemKeyToTitle', 'mode', 'theme', 'currentKey', 'currentItem', 'currentKeyPath', 'currentItemPath', 'openKeys', 'onlyExpandCurrentSubMenu', 'defaultOpenKeys', 'defaultSelectedKey', 'renderCollapsedButton', 'popupContainer', 'inlineCollapsed', 'inlineIndent', 'triggerSubMenuAction', 'data-*', 'aria-*', 'persistence', 'persisted_props', 'persistence_type']
         self.available_wildcard_properties =            ['data-', 'aria-']
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()

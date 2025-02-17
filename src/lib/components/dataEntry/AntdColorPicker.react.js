@@ -6,10 +6,58 @@ const LazyAntdColorPicker = React.lazy(() => import(/* webpackChunkName: "data_e
 /**
  * 颜色选择器组件AntdColorPicker
  */
-const AntdColorPicker = (props) => {
+const AntdColorPicker = ({
+    id,
+    className,
+    style,
+    key,
+    locale = 'zh-cn',
+    name,
+    allowClear = false,
+    arrow,
+    defaultValue,
+    value,
+    format = 'hex',
+    mode = 'single',
+    disabled = false,
+    disabledAlpha = true,
+    open,
+    presets,
+    placement = 'bottomLeft',
+    showText = false,
+    size = 'middle',
+    trigger = 'click',
+    setProps,
+    ...others
+}) => {
     return (
         <Suspense fallback={null}>
-            <LazyAntdColorPicker {...props} />
+            <LazyAntdColorPicker {
+                ...{
+                    id,
+                    className,
+                    style,
+                    key,
+                    locale,
+                    name,
+                    allowClear,
+                    arrow,
+                    defaultValue,
+                    value,
+                    format,
+                    mode,
+                    disabled,
+                    disabledAlpha,
+                    open,
+                    presets,
+                    placement,
+                    showText,
+                    size,
+                    trigger,
+                    setProps,
+                    ...others
+                }
+            } />
         </Suspense>
     );
 }
@@ -172,41 +220,12 @@ AntdColorPicker.propTypes = {
      */
     'aria-*': PropTypes.string,
 
-    loading_state: PropTypes.shape({
-        /**
-         * Determines if the component is loading or not
-         */
-        is_loading: PropTypes.bool,
-        /**
-         * Holds which property is loading
-         */
-        prop_name: PropTypes.string,
-        /**
-         * Holds the name of the component that is loading
-         */
-        component_name: PropTypes.string
-    }),
-
     /**
      * Dash-assigned callback that should be called to report property changes
      * to Dash, to make them available for callbacks.
      */
     setProps: PropTypes.func
 };
-
-// 设置默认参数
-AntdColorPicker.defaultProps = {
-    locale: 'zh-cn',
-    allowClear: false,
-    format: 'hex',
-    mode: 'single',
-    disabled: false,
-    disabledAlpha: true,
-    placement: 'bottomLeft',
-    showText: false,
-    size: 'middle',
-    trigger: 'click'
-}
 
 export default AntdColorPicker;
 

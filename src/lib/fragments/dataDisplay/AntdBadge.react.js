@@ -5,6 +5,7 @@ import { Badge } from 'antd';
 // 辅助库
 import { isString } from 'lodash';
 import { pickBy } from 'ramda';
+import { useLoading } from '../../components/utils';
 // 自定义hooks
 import useCss from '../../hooks/useCss';
 // 参数类型
@@ -33,14 +34,14 @@ const AntdBadge = (props) => {
         title,
         size,
         nClicks,
-        loading_state,
-        setProps
+        setProps,
+        ...others
     } = props;
 
     return (
         <Badge
             // 提取具有data-*或aria-*通配格式的属性
-            {...pickBy((_, k) => k.startsWith('data-') || k.startsWith('aria-'), props)}
+            {...pickBy((_, k) => k.startsWith('data-') || k.startsWith('aria-'), others)}
             id={id}
             className={
                 isString(className) ?
@@ -62,9 +63,7 @@ const AntdBadge = (props) => {
             title={title}
             size={size}
             onClick={() => setProps({ nClicks: nClicks + 1 })}
-            data-dash-is-loading={
-                (loading_state && loading_state.is_loading) || undefined
-            }
+            data-dash-is-loading={useLoading()}
         >{children}</Badge>
     );
 }

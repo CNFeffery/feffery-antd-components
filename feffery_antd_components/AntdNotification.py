@@ -1,6 +1,13 @@
 # AUTO GENERATED FILE - DO NOT EDIT
 
+import typing  # noqa: F401
+import numbers # noqa: F401
+from typing_extensions import TypedDict, NotRequired, Literal # noqa: F401
 from dash.development.base_component import Component, _explicitize_args
+try:
+    from dash.development.base_component import ComponentType # noqa: F401
+except ImportError:
+    ComponentType = typing.TypeVar("ComponentType", bound=Component)
 
 
 class AntdNotification(Component):
@@ -69,29 +76,44 @@ Keyword arguments:
         按钮是否呈现危险状态  默认值：`False`.
 
 - underCompatibilityMode (boolean; optional):
-    当前通知提醒框组件是否位于设置了`compatibilityMode=True`的`AntdConfigProvider`内部.
-
-- loading_state (dict; optional)
-
-    `loading_state` is a dict with keys:
-
-    - is_loading (boolean; optional):
-        Determines if the component is loading or not.
-
-    - prop_name (string; optional):
-        Holds which property is loading.
-
-    - component_name (string; optional):
-        Holds the name of the component that is loading."""
+    当前通知提醒框组件是否位于设置了`compatibilityMode=True`的`AntdConfigProvider`内部."""
     _children_props = []
     _base_nodes = ['children']
     _namespace = 'feffery_antd_components'
     _type = 'AntdNotification'
+    CloseButton = TypedDict(
+        "CloseButton",
+            {
+            "content": NotRequired[str],
+            "style": NotRequired[dict],
+            "className": NotRequired[str],
+            "type": NotRequired[Literal["default", "primary", "ghost", "dashed", "link", "text"]],
+            "danger": NotRequired[bool]
+        }
+    )
+
     @_explicitize_args
-    def __init__(self, id=Component.UNDEFINED, key=Component.UNDEFINED, style=Component.UNDEFINED, className=Component.UNDEFINED, message=Component.UNDEFINED, description=Component.UNDEFINED, type=Component.UNDEFINED, placement=Component.UNDEFINED, top=Component.UNDEFINED, bottom=Component.UNDEFINED, duration=Component.UNDEFINED, closable=Component.UNDEFINED, closeButton=Component.UNDEFINED, underCompatibilityMode=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
-        self._prop_names = ['id', 'key', 'style', 'className', 'message', 'description', 'type', 'placement', 'top', 'bottom', 'duration', 'closable', 'closeButton', 'underCompatibilityMode', 'loading_state']
+    def __init__(
+        self,
+        id: typing.Optional[str] = None,
+        key: typing.Optional[str] = None,
+        style: typing.Optional[dict] = None,
+        className: typing.Optional[typing.Union[str, dict]] = None,
+        message: typing.Optional[str] = None,
+        description: typing.Optional[str] = None,
+        type: typing.Optional[Literal["default", "success", "error", "info", "warning"]] = None,
+        placement: typing.Optional[Literal["top", "bottom", "topLeft", "topRight", "bottomLeft", "bottomRight"]] = None,
+        top: typing.Optional[typing.Union[int, float, numbers.Number]] = None,
+        bottom: typing.Optional[typing.Union[int, float, numbers.Number]] = None,
+        duration: typing.Optional[typing.Union[int, float, numbers.Number]] = None,
+        closable: typing.Optional[bool] = None,
+        closeButton: typing.Optional["CloseButton"] = None,
+        underCompatibilityMode: typing.Optional[bool] = None,
+        **kwargs
+    ):
+        self._prop_names = ['id', 'key', 'style', 'className', 'message', 'description', 'type', 'placement', 'top', 'bottom', 'duration', 'closable', 'closeButton', 'underCompatibilityMode']
         self._valid_wildcard_attributes =            []
-        self.available_properties = ['id', 'key', 'style', 'className', 'message', 'description', 'type', 'placement', 'top', 'bottom', 'duration', 'closable', 'closeButton', 'underCompatibilityMode', 'loading_state']
+        self.available_properties = ['id', 'key', 'style', 'className', 'message', 'description', 'type', 'placement', 'top', 'bottom', 'duration', 'closable', 'closeButton', 'underCompatibilityMode']
         self.available_wildcard_properties =            []
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()

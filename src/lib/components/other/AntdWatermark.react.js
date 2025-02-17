@@ -4,40 +4,39 @@ import PropTypes from 'prop-types';
 // antd核心
 import { WaterMark } from '@ant-design/pro-components';
 // 辅助库
-import { parseChildrenToArray } from '../utils';
+import { parseChildrenToArray, useLoading } from '../utils';
 import { pickBy } from 'ramda';
 
 /**
  * 水印组件AntdWatermark
  */
-const AntdWatermark = (props) => {
-    let {
-        id,
-        children,
-        className,
-        style,
-        markClassName,
-        markStyle,
-        key,
-        content,
-        rotate,
-        zIndex,
-        fontColor,
-        fontSize,
-        gapX,
-        gapY,
-        image,
-        width,
-        height,
-        loading_state
-    } = props;
+const AntdWatermark = ({
+    id,
+    children,
+    className,
+    style,
+    markClassName,
+    markStyle,
+    key,
+    content,
+    rotate = -22,
+    zIndex,
+    fontColor,
+    fontSize = 16,
+    gapX = 212,
+    gapY = 222,
+    image,
+    width,
+    height,
+    ...others
+}) => {
 
     children = parseChildrenToArray(children)
 
     return (
         <WaterMark
             // 提取具有data-*或aria-*通配格式的属性
-            {...pickBy((_, k) => k.startsWith('data-') || k.startsWith('aria-'), props)}
+            {...pickBy((_, k) => k.startsWith('data-') || k.startsWith('aria-'), others)}
             id={id}
             className={className}
             style={style}
@@ -54,9 +53,7 @@ const AntdWatermark = (props) => {
             image={image}
             width={width}
             height={height}
-            data-dash-is-loading={
-                (loading_state && loading_state.is_loading) || undefined
-            }>
+            data-dash-is-loading={useLoading()}>
             {children}
         </WaterMark>
     );
@@ -165,34 +162,11 @@ AntdWatermark.propTypes = {
      */
     'aria-*': PropTypes.string,
 
-    loading_state: PropTypes.shape({
-        /**
-         * Determines if the component is loading or not
-         */
-        is_loading: PropTypes.bool,
-        /**
-         * Holds which property is loading
-         */
-        prop_name: PropTypes.string,
-        /**
-         * Holds the name of the component that is loading
-         */
-        component_name: PropTypes.string
-    }),
-
     /**
      * Dash-assigned callback that should be called to report property changes
      * to Dash, to make them available for callbacks.
      */
     setProps: PropTypes.func
 };
-
-// 设置默认参数
-AntdWatermark.defaultProps = {
-    rotate: -22,
-    fontSize: 16,
-    gapX: 212,
-    gapY: 222
-}
 
 export default AntdWatermark;

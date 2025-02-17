@@ -1,6 +1,13 @@
 # AUTO GENERATED FILE - DO NOT EDIT
 
+import typing  # noqa: F401
+import numbers # noqa: F401
+from typing_extensions import TypedDict, NotRequired, Literal # noqa: F401
 from dash.development.base_component import Component, _explicitize_args
+try:
+    from dash.development.base_component import ComponentType # noqa: F401
+except ImportError:
+    ComponentType = typing.TypeVar("ComponentType", bound=Component)
 
 
 class AntdCarousel(Component):
@@ -64,29 +71,37 @@ Keyword arguments:
     `data-*`格式属性通配.
 
 - aria-* (string; optional):
-    `aria-*`格式属性通配.
-
-- loading_state (dict; optional)
-
-    `loading_state` is a dict with keys:
-
-    - is_loading (boolean; optional):
-        Determines if the component is loading or not.
-
-    - prop_name (string; optional):
-        Holds which property is loading.
-
-    - component_name (string; optional):
-        Holds the name of the component that is loading."""
+    `aria-*`格式属性通配."""
     _children_props = []
     _base_nodes = ['children']
     _namespace = 'feffery_antd_components'
     _type = 'AntdCarousel'
+
     @_explicitize_args
-    def __init__(self, children=None, id=Component.UNDEFINED, key=Component.UNDEFINED, style=Component.UNDEFINED, className=Component.UNDEFINED, arrows=Component.UNDEFINED, autoplay=Component.UNDEFINED, dotPosition=Component.UNDEFINED, easing=Component.UNDEFINED, effect=Component.UNDEFINED, autoplaySpeed=Component.UNDEFINED, speed=Component.UNDEFINED, pauseOnHover=Component.UNDEFINED, infinite=Component.UNDEFINED, lazyLoad=Component.UNDEFINED, slidesToShow=Component.UNDEFINED, slidesToScroll=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
-        self._prop_names = ['id', 'key', 'children', 'style', 'className', 'arrows', 'autoplay', 'dotPosition', 'easing', 'effect', 'autoplaySpeed', 'speed', 'pauseOnHover', 'infinite', 'lazyLoad', 'slidesToShow', 'slidesToScroll', 'data-*', 'aria-*', 'loading_state']
+    def __init__(
+        self,
+        children: typing.Optional[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]] = None,
+        id: typing.Optional[str] = None,
+        key: typing.Optional[str] = None,
+        style: typing.Optional[dict] = None,
+        className: typing.Optional[typing.Union[str, dict]] = None,
+        arrows: typing.Optional[bool] = None,
+        autoplay: typing.Optional[bool] = None,
+        dotPosition: typing.Optional[Literal["top", "bottom", "left", "right"]] = None,
+        easing: typing.Optional[str] = None,
+        effect: typing.Optional[Literal["scrollx", "fade"]] = None,
+        autoplaySpeed: typing.Optional[typing.Union[int, float, numbers.Number]] = None,
+        speed: typing.Optional[typing.Union[int, float, numbers.Number]] = None,
+        pauseOnHover: typing.Optional[bool] = None,
+        infinite: typing.Optional[bool] = None,
+        lazyLoad: typing.Optional[bool] = None,
+        slidesToShow: typing.Optional[typing.Union[int, float, numbers.Number]] = None,
+        slidesToScroll: typing.Optional[typing.Union[int, float, numbers.Number]] = None,
+        **kwargs
+    ):
+        self._prop_names = ['id', 'key', 'children', 'style', 'className', 'arrows', 'autoplay', 'dotPosition', 'easing', 'effect', 'autoplaySpeed', 'speed', 'pauseOnHover', 'infinite', 'lazyLoad', 'slidesToShow', 'slidesToScroll', 'data-*', 'aria-*']
         self._valid_wildcard_attributes =            ['data-', 'aria-']
-        self.available_properties = ['id', 'key', 'children', 'style', 'className', 'arrows', 'autoplay', 'dotPosition', 'easing', 'effect', 'autoplaySpeed', 'speed', 'pauseOnHover', 'infinite', 'lazyLoad', 'slidesToShow', 'slidesToScroll', 'data-*', 'aria-*', 'loading_state']
+        self.available_properties = ['id', 'key', 'children', 'style', 'className', 'arrows', 'autoplay', 'dotPosition', 'easing', 'effect', 'autoplaySpeed', 'speed', 'pauseOnHover', 'infinite', 'lazyLoad', 'slidesToShow', 'slidesToScroll', 'data-*', 'aria-*']
         self.available_wildcard_properties =            ['data-', 'aria-']
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()

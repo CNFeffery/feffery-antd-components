@@ -6,31 +6,31 @@ import { BackTop } from 'antd';
 // 辅助库
 import { isString } from 'lodash';
 import { pickBy } from 'ramda';
+import { useLoading } from '../utils';
 // 自定义hooks
 import useCss from '../../hooks/useCss';
 
 /**
  * 回到顶部组件AntdBackTop
  */
-const AntdBackTop = (props) => {
-    let {
-        id,
-        className,
-        style,
-        key,
-        duration,
-        visibilityHeight,
-        containerId,
-        containerSelector,
-        nClicks,
-        setProps,
-        loading_state
-    } = props;
+const AntdBackTop = ({
+    id,
+    className,
+    style,
+    key,
+    duration = 0.45,
+    visibilityHeight = 400,
+    containerId,
+    containerSelector,
+    nClicks = 0,
+    setProps,
+    ...others
+}) => {
 
     return (
         <BackTop
             // 提取具有data-*或aria-*通配格式的属性
-            {...pickBy((_, k) => k.startsWith('data-') || k.startsWith('aria-'), props)}
+            {...pickBy((_, k) => k.startsWith('data-') || k.startsWith('aria-'), others)}
             id={id}
             className={
                 isString(className) ?
@@ -51,9 +51,7 @@ const AntdBackTop = (props) => {
             duration={duration * 1000}
             visibilityHeight={visibilityHeight}
             onClick={() => setProps({ nClicks: nClicks + 1 })}
-            data-dash-is-loading={
-                (loading_state && loading_state.is_loading) || undefined
-            } />
+            data-dash-is-loading={useLoading()} />
     );
 }
 
@@ -119,33 +117,11 @@ AntdBackTop.propTypes = {
      */
     'aria-*': PropTypes.string,
 
-    loading_state: PropTypes.shape({
-        /**
-         * Determines if the component is loading or not
-         */
-        is_loading: PropTypes.bool,
-        /**
-         * Holds which property is loading
-         */
-        prop_name: PropTypes.string,
-        /**
-         * Holds the name of the component that is loading
-         */
-        component_name: PropTypes.string
-    }),
-
     /**
      * Dash-assigned callback that should be called to report property changes
      * to Dash, to make them available for callbacks.
      */
     setProps: PropTypes.func
 };
-
-// 设置默认参数
-AntdBackTop.defaultProps = {
-    duration: 0.45,
-    visibilityHeight: 400,
-    nClicks: 0
-}
 
 export default AntdBackTop;

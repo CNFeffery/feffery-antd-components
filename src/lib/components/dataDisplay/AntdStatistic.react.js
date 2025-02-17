@@ -7,34 +7,34 @@ import { QuestionCircleOutlined } from "@ant-design/icons";
 // 辅助库
 import { isString, isNumber } from 'lodash';
 import { pickBy } from 'ramda';
+import { useLoading } from '../utils';
 // 自定义hooks
 import useCss from '../../hooks/useCss';
 
 /**
  * 统计数值组件AntdStatistic
  */
-const AntdStatistic = (props) => {
-    let {
-        id,
-        className,
-        style,
-        key,
-        value,
-        showGroupSeparator,
-        precision,
-        prefix,
-        suffix,
-        title,
-        titleTooltip,
-        valueStyle,
-        setProps,
-        loading_state
-    } = props;
+const AntdStatistic = ({
+    id,
+    className,
+    style,
+    key,
+    value,
+    showGroupSeparator = true,
+    precision,
+    prefix,
+    suffix,
+    title,
+    titleTooltip,
+    valueStyle,
+    setProps,
+    ...others
+}) => {
 
     return (
         <Statistic
             // 提取具有data-*或aria-*通配格式的属性
-            {...pickBy((_, k) => k.startsWith('data-') || k.startsWith('aria-'), props)}
+            {...pickBy((_, k) => k.startsWith('data-') || k.startsWith('aria-'), others)}
             id={id}
             className={
                 isString(className) ?
@@ -60,9 +60,7 @@ const AntdStatistic = (props) => {
                 </Space>
                 : title}
             valueStyle={valueStyle}
-            data-dash-is-loading={
-                (loading_state && loading_state.is_loading) || undefined
-            }
+            data-dash-is-loading={useLoading()}
         />
     );
 }
@@ -167,10 +165,5 @@ AntdStatistic.propTypes = {
      */
     setProps: PropTypes.func
 };
-
-// 设置默认参数
-AntdStatistic.defaultProps = {
-    showGroupSeparator: true
-}
 
 export default AntdStatistic;

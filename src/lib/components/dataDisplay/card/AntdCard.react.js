@@ -3,10 +3,50 @@ import PropTypes from 'prop-types';
 
 const LazyAntdCard = React.lazy(() => import(/* webpackChunkName: "data_display" */ '../../../fragments/dataDisplay/card/AntdCard.react'));
 
-const AntdCard = (props) => {
+const AntdCard = ({
+    id,
+    children,
+    className,
+    style,
+    key,
+    actions,
+    extraLink,
+    extra,
+    coverImg,
+    bodyStyle,
+    headStyle,
+    bordered = true,
+    hoverable = false,
+    size = 'default',
+    title,
+    nClicks = 0,
+    setProps,
+    ...others
+}) => {
     return (
         <Suspense fallback={null}>
-            <LazyAntdCard {...props} />
+            <LazyAntdCard {
+                ...{
+                    id,
+                    children,
+                    className,
+                    style,
+                    key,
+                    actions,
+                    extraLink,
+                    extra,
+                    coverImg,
+                    bodyStyle,
+                    headStyle,
+                    bordered,
+                    hoverable,
+                    size,
+                    title,
+                    nClicks,
+                    setProps,
+                    ...others
+                }
+            } />
         </Suspense>
     );
 }
@@ -147,35 +187,12 @@ AntdCard.propTypes = {
      */
     'aria-*': PropTypes.string,
 
-    loading_state: PropTypes.shape({
-        /**
-         * Determines if the component is loading or not
-         */
-        is_loading: PropTypes.bool,
-        /**
-         * Holds which property is loading
-         */
-        prop_name: PropTypes.string,
-        /**
-         * Holds the name of the component that is loading
-         */
-        component_name: PropTypes.string
-    }),
-
     /**
      * Dash-assigned callback that should be called to report property changes
      * to Dash, to make them available for callbacks.
      */
     setProps: PropTypes.func
 };
-
-// 设置默认参数
-AntdCard.defaultProps = {
-    bordered: true,
-    hoverable: false,
-    size: 'default',
-    nClicks: 0
-}
 
 export default AntdCard;
 

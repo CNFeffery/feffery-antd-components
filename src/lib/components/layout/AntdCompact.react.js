@@ -5,7 +5,7 @@ import { Space } from 'antd';
 // 辅助库
 import { isString } from 'lodash';
 import { pickBy } from 'ramda';
-import { parseChildrenToArray } from '../utils';
+import { parseChildrenToArray, useLoading } from '../utils';
 // 自定义hooks
 import useCss from '../../hooks/useCss';
 
@@ -14,25 +14,24 @@ const { Compact } = Space;
 /**
  * 紧凑排列组件AntdCompact
  */
-const AntdCompact = (props) => {
-    let {
-        id,
-        children,
-        className,
-        style,
-        key,
-        direction,
-        block,
-        setProps,
-        loading_state
-    } = props;
+const AntdCompact = ({
+    id,
+    children,
+    className,
+    style,
+    key,
+    direction = 'horizontal',
+    block = false,
+    setProps,
+    ...others
+}) => {
 
     children = parseChildrenToArray(children)
 
     return (
         <Compact
             // 提取具有data-*或aria-*通配格式的属性
-            {...pickBy((_, k) => k.startsWith('data-') || k.startsWith('aria-'), props)}
+            {...pickBy((_, k) => k.startsWith('data-') || k.startsWith('aria-'), others)}
             id={id}
             className={
                 isString(className) ?
@@ -43,9 +42,7 @@ const AntdCompact = (props) => {
             key={key}
             direction={direction}
             block={block}
-            data-dash-is-loading={
-                (loading_state && loading_state.is_loading) || undefined
-            }>
+            data-dash-is-loading={useLoading()}>
             {children}
         </Compact>
     );
@@ -102,32 +99,11 @@ AntdCompact.propTypes = {
      */
     'aria-*': PropTypes.string,
 
-    loading_state: PropTypes.shape({
-        /**
-         * Determines if the component is loading or not
-         */
-        is_loading: PropTypes.bool,
-        /**
-         * Holds which property is loading
-         */
-        prop_name: PropTypes.string,
-        /**
-         * Holds the name of the component that is loading
-         */
-        component_name: PropTypes.string
-    }),
-
     /**
      * Dash-assigned callback that should be called to report property changes
      * to Dash, to make them available for callbacks.
      */
     setProps: PropTypes.func
 };
-
-// 设置默认参数
-AntdCompact.defaultProps = {
-    direction: 'horizontal',
-    block: false
-}
 
 export default AntdCompact;

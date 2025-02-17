@@ -6,10 +6,34 @@ const LazyAntdCheckableTag = React.lazy(() => import(/* webpackChunkName: "data_
 /**
  * 可选择标签AntdCheckableTag
  */
-const AntdCheckableTag = (props) => {
+const AntdCheckableTag = ({
+    id,
+    className,
+    style,
+    key,
+    content,
+    checkedContent,
+    unCheckedContent,
+    checked = false,
+    setProps,
+    ...others
+}) => {
     return (
         <Suspense fallback={null}>
-            <LazyAntdCheckableTag {...props} />
+            <LazyAntdCheckableTag {
+                ...{
+                    id,
+                    className,
+                    style,
+                    key,
+                    content,
+                    checkedContent,
+                    unCheckedContent,
+                    checked,
+                    setProps,
+                    ...others
+                }
+            } />
         </Suspense>
     );
 }
@@ -69,32 +93,12 @@ AntdCheckableTag.propTypes = {
      */
     'aria-*': PropTypes.string,
 
-    loading_state: PropTypes.shape({
-        /**
-         * Determines if the component is loading or not
-         */
-        is_loading: PropTypes.bool,
-        /**
-         * Holds which property is loading
-         */
-        prop_name: PropTypes.string,
-        /**
-         * Holds the name of the component that is loading
-         */
-        component_name: PropTypes.string
-    }),
-
     /**
      * Dash-assigned callback that should be called to report property changes
      * to Dash, to make them available for callbacks.
      */
     setProps: PropTypes.func
 };
-
-// 设置默认参数
-AntdCheckableTag.defaultProps = {
-    checked: false
-}
 
 export default AntdCheckableTag;
 

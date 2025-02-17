@@ -8,36 +8,36 @@ import TextLoop from 'react-text-loop'
 import Marquee from 'react-fast-marquee';
 import { isString } from 'lodash';
 import { pickBy } from 'ramda';
+import { useLoading } from '../utils';
 // 自定义hooks
 import useCss from '../../hooks/useCss';
 
 /**
  * 警告提示组件AntdAlert
  */
-const AntdAlert = (props) => {
-    let {
-        id,
-        className,
-        style,
-        key,
-        type,
-        showIcon,
-        icon,
-        closable,
-        message,
-        messageRenderMode,
-        description,
-        action,
-        banner,
-        setProps,
-        loading_state
-    } = props;
+const AntdAlert = ({
+    id,
+    className,
+    style,
+    key,
+    type = 'info',
+    showIcon = false,
+    icon,
+    closable = false,
+    message,
+    messageRenderMode = 'default',
+    description,
+    action,
+    banner = false,
+    setProps,
+    ...others
+}) => {
 
     if (messageRenderMode === 'loop-text' && Array.isArray(message)) {
         return (
             <Alert
                 // 提取具有data-*或aria-*通配格式的属性
-                {...pickBy((_, k) => k.startsWith('data-') || k.startsWith('aria-'), props)}
+                {...pickBy((_, k) => k.startsWith('data-') || k.startsWith('aria-'), others)}
                 id={id}
                 className={
                     isString(className) ?
@@ -58,16 +58,14 @@ const AntdAlert = (props) => {
                 closable={closable}
                 action={action}
                 banner={banner}
-                data-dash-is-loading={
-                    (loading_state && loading_state.is_loading) || undefined
-                } />
+                data-dash-is-loading={useLoading()} />
         );
     }
 
     return (
         <Alert
             // 提取具有data-*或aria-*通配格式的属性
-            {...pickBy((_, k) => k.startsWith('data-') || k.startsWith('aria-'), props)}
+            {...pickBy((_, k) => k.startsWith('data-') || k.startsWith('aria-'), others)}
             id={id}
             className={
                 isString(className) ?
@@ -89,7 +87,8 @@ const AntdAlert = (props) => {
             icon={icon}
             closable={closable}
             action={action}
-            banner={banner} />
+            banner={banner}
+            data-dash-is-loading={useLoading()} />
     );
 }
 
@@ -181,31 +180,7 @@ AntdAlert.propTypes = {
      * Dash-assigned callback that should be called to report property changes
      * to Dash, to make them available for callbacks.
      */
-    setProps: PropTypes.func,
-
-    loading_state: PropTypes.shape({
-        /**
-         * Determines if the component is loading or not
-         */
-        is_loading: PropTypes.bool,
-        /**
-         * Holds which property is loading
-         */
-        prop_name: PropTypes.string,
-        /**
-         * Holds the name of the component that is loading
-         */
-        component_name: PropTypes.string
-    })
+    setProps: PropTypes.func
 };
-
-// 设置默认参数
-AntdAlert.defaultProps = {
-    type: 'info',
-    showIcon: false,
-    closable: false,
-    messageRenderMode: 'default',
-    banner: false
-}
 
 export default AntdAlert;

@@ -7,26 +7,26 @@ import { createFromIconfontCN } from '@ant-design/icons';
 import { isString } from 'lodash';
 import { pickBy } from 'ramda';
 import { useRequest } from 'ahooks';
+import { useLoading } from '../utils';
 // 自定义hooks
 import useCss from '../../hooks/useCss';
 
 /**
  * 图标组件AntdIcon
  */
-const AntdIcon = (props) => {
-    let {
-        id,
-        className,
-        mode,
-        icon,
-        scriptUrl,
-        style,
-        key,
-        nClicks,
-        debounceWait,
-        loading_state,
-        setProps
-    } = props;
+const AntdIcon = ({
+    id,
+    className,
+    mode = 'default',
+    icon,
+    scriptUrl,
+    style,
+    key,
+    nClicks = 0,
+    debounceWait = 0,
+    setProps,
+    ...others
+}) => {
 
     const { run: onClick } = useRequest(
         () => {
@@ -46,7 +46,7 @@ const AntdIcon = (props) => {
             return (
                 <span
                     // 提取具有data-*或aria-*通配格式的属性
-                    {...pickBy((_, k) => k.startsWith('data-') || k.startsWith('aria-'), props)}
+                    {...pickBy((_, k) => k.startsWith('data-') || k.startsWith('aria-'), others)}
                     id={id}
                     className={
                         isString(className) ?
@@ -68,9 +68,7 @@ const AntdIcon = (props) => {
                     }
                     key={key}
                     onClick={onClick}
-                    data-dash-is-loading={
-                        (loading_state && loading_state.is_loading) || undefined
-                    }>
+                    data-dash-is-loading={useLoading()}>
                     {str2Icon.get(icon)}
                 </span>
             );
@@ -83,7 +81,7 @@ const AntdIcon = (props) => {
             return (
                 <span
                     // 提取具有data-*或aria-*通配格式的属性
-                    {...pickBy((_, k) => k.startsWith('data-') || k.startsWith('aria-'), props)}
+                    {...pickBy((_, k) => k.startsWith('data-') || k.startsWith('aria-'), others)}
                     id={id}
                     className={
                         isString(className) ?
@@ -95,9 +93,7 @@ const AntdIcon = (props) => {
                     }
                     key={key}
                     onClick={onClick}
-                    data-dash-is-loading={
-                        (loading_state && loading_state.is_loading) || undefined
-                    }>
+                    data-dash-is-loading={useLoading()}>
                     <IconFont type={icon} />
                 </span>
             );
@@ -171,33 +167,11 @@ AntdIcon.propTypes = {
      */
     'aria-*': PropTypes.string,
 
-    loading_state: PropTypes.shape({
-        /**
-         * Determines if the component is loading or not
-         */
-        is_loading: PropTypes.bool,
-        /**
-         * Holds which property is loading
-         */
-        prop_name: PropTypes.string,
-        /**
-         * Holds the name of the component that is loading
-         */
-        component_name: PropTypes.string
-    }),
-
     /**
      * Dash-assigned callback that should be called to report property changes
      * to Dash, to make them available for callbacks.
      */
     setProps: PropTypes.func
 };
-
-// 设置默认参数
-AntdIcon.defaultProps = {
-    mode: 'default',
-    nClicks: 0,
-    debounceWait: 0
-}
 
 export default AntdIcon;

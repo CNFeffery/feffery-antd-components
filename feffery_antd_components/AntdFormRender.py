@@ -1,6 +1,13 @@
 # AUTO GENERATED FILE - DO NOT EDIT
 
+import typing  # noqa: F401
+import numbers # noqa: F401
+from typing_extensions import TypedDict, NotRequired, Literal # noqa: F401
 from dash.development.base_component import Component, _explicitize_args
+try:
+    from dash.development.base_component import ComponentType # noqa: F401
+except ImportError:
+    ComponentType = typing.TypeVar("ComponentType", bound=Component)
 
 
 class AntdFormRender(Component):
@@ -682,8 +689,254 @@ Keyword arguments:
     _base_nodes = ['footer', 'children']
     _namespace = 'feffery_antd_components'
     _type = 'AntdFormRender'
+    SchemaPropertiesTooltip = TypedDict(
+        "SchemaPropertiesTooltip",
+            {
+            "title": NotRequired[typing.Any],
+            "placement": NotRequired[Literal["top", "left", "right", "bottom", "topLeft", "topRight", "bottomLeft", "bottomRight"]],
+            "color": NotRequired[str],
+            "mouseEnterDelay": NotRequired[typing.Union[int, float, numbers.Number]],
+            "mouseLeaveDelay": NotRequired[typing.Union[int, float, numbers.Number]],
+            "overlayClassName": NotRequired[typing.Union[str, dict]],
+            "overlayStyle": NotRequired[dict],
+            "overlayInnerStyle": NotRequired[dict],
+            "trigger": NotRequired[typing.Union[Literal["hover", "focus", "click"], typing.Sequence[Literal["hover", "focus", "click"]]]],
+            "zIndex": NotRequired[typing.Union[int, float, numbers.Number]],
+            "arrow": NotRequired[Literal["show", "hide", "center"]],
+            "fresh": NotRequired[bool],
+            "open": NotRequired[bool],
+            "autoAdjustOverflow": NotRequired[bool],
+            "defaultOpen": NotRequired[bool],
+            "destroyTooltipOnHide": NotRequired[bool]
+        }
+    )
+
+    SchemaPropertiesRules = TypedDict(
+        "SchemaPropertiesRules",
+            {
+            "defaultField": NotRequired[dict],
+            "enum": NotRequired[typing.Any],
+            "fields": NotRequired[typing.Any],
+            "len": NotRequired[typing.Union[int, float, numbers.Number]],
+            "max": NotRequired[typing.Union[int, float, numbers.Number]],
+            "message": NotRequired[str],
+            "min": NotRequired[typing.Union[int, float, numbers.Number]],
+            "pattern": NotRequired[typing.Union[str, typing.Any]],
+            "required": NotRequired[bool],
+            "type": NotRequired[Literal["string", "number", "boolean", "method", "regexp", "integer", "float", "array", "object", "enum", "date", "url", "hex", "email", "any"]],
+            "validateTrigger": NotRequired[Literal["onChange", "onBlur", "onFocus"]],
+            "validator": NotRequired[str],
+            "warningOnly": NotRequired[bool],
+            "whitespace": NotRequired[bool]
+        }
+    )
+
+    SchemaProperties = TypedDict(
+        "SchemaProperties",
+            {
+            "type": NotRequired[Literal["array"]],
+            "title": NotRequired[str],
+            "widget": NotRequired[Literal["cardList", "simpleList", "tableList", "drawerList", "virtualList"]],
+            "max": NotRequired[typing.Union[typing.Union[int, float, numbers.Number], str]],
+            "min": NotRequired[typing.Union[typing.Union[int, float, numbers.Number], str]],
+            "props": NotRequired["SchemaPropertiesProps"],
+            "items": NotRequired[dict]
+        }
+    )
+
+    SchemaPropertiesProps = TypedDict(
+        "SchemaPropertiesProps",
+            {
+            "addBtnProps": NotRequired[dict],
+            "delConfirmProps": NotRequired[dict],
+            "actionColumnProps": NotRequired[dict],
+            "hideAdd": NotRequired[bool],
+            "hideCopy": NotRequired[bool],
+            "hideMove": NotRequired[bool],
+            "hideDelete": NotRequired[bool]
+        }
+    )
+
+    Schema = TypedDict(
+        "Schema",
+            {
+            "type": NotRequired[Literal["object"]],
+            "displayType": NotRequired[Literal["column", "row", "inline"]],
+            "column": NotRequired[typing.Union[int, float, numbers.Number]],
+            "labelWidth": NotRequired[typing.Union[int, float, numbers.Number]],
+            "maxWidth": NotRequired[typing.Union[int, float, numbers.Number]],
+            "labelCol": NotRequired[typing.Union[int, float, numbers.Number]],
+            "fieldCol": NotRequired[typing.Union[int, float, numbers.Number]],
+            "properties": NotRequired[typing.Dict[typing.Union[str, float, int], typing.Union["SchemaProperties"]]]
+        }
+    )
+
+    GlobalConfigListOperate = TypedDict(
+        "GlobalConfigListOperate",
+            {
+            "btnType": NotRequired[Literal["icon", "text"]],
+            "hideMove": NotRequired[bool]
+        }
+    )
+
+    GlobalConfig = TypedDict(
+        "GlobalConfig",
+            {
+            "mustacheDisabled": NotRequired[bool],
+            "listOperate": NotRequired["GlobalConfigListOperate"]
+        }
+    )
+
+    FooterSubmit = TypedDict(
+        "FooterSubmit",
+            {
+            "text": NotRequired[str],
+            "hide": NotRequired[bool],
+            "btnProps": NotRequired[dict]
+        }
+    )
+
+    FooterReset = TypedDict(
+        "FooterReset",
+            {
+            "text": NotRequired[str],
+            "hide": NotRequired[bool],
+            "btnProps": NotRequired[dict]
+        }
+    )
+
+    Footer = TypedDict(
+        "Footer",
+            {
+            "submit": NotRequired["FooterSubmit"],
+            "reset": NotRequired["FooterReset"]
+        }
+    )
+
+    ValidateMessagesDate = TypedDict(
+        "ValidateMessagesDate",
+            {
+            "format": NotRequired[str],
+            "parse": NotRequired[str],
+            "invalid": NotRequired[str]
+        }
+    )
+
+    ValidateMessagesTypes = TypedDict(
+        "ValidateMessagesTypes",
+            {
+            "string": NotRequired[str],
+            "method": NotRequired[str],
+            "array": NotRequired[str],
+            "object": NotRequired[str],
+            "number": NotRequired[str],
+            "date": NotRequired[str],
+            "boolean": NotRequired[str],
+            "integer": NotRequired[str],
+            "float": NotRequired[str],
+            "regexp": NotRequired[str],
+            "email": NotRequired[str],
+            "url": NotRequired[str],
+            "hex": NotRequired[str]
+        }
+    )
+
+    ValidateMessagesString = TypedDict(
+        "ValidateMessagesString",
+            {
+            "len": NotRequired[str],
+            "min": NotRequired[str],
+            "max": NotRequired[str],
+            "range": NotRequired[str]
+        }
+    )
+
+    ValidateMessagesNumber = TypedDict(
+        "ValidateMessagesNumber",
+            {
+            "len": NotRequired[str],
+            "min": NotRequired[str],
+            "max": NotRequired[str],
+            "range": NotRequired[str]
+        }
+    )
+
+    ValidateMessagesArray = TypedDict(
+        "ValidateMessagesArray",
+            {
+            "len": NotRequired[str],
+            "min": NotRequired[str],
+            "max": NotRequired[str],
+            "range": NotRequired[str]
+        }
+    )
+
+    ValidateMessagesPattern = TypedDict(
+        "ValidateMessagesPattern",
+            {
+            "mismatch": NotRequired[str]
+        }
+    )
+
+    ValidateMessages = TypedDict(
+        "ValidateMessages",
+            {
+            "default": NotRequired[str],
+            "required": NotRequired[str],
+            "whitespace": NotRequired[str],
+            "date": NotRequired["ValidateMessagesDate"],
+            "types": NotRequired["ValidateMessagesTypes"],
+            "string": NotRequired["ValidateMessagesString"],
+            "number": NotRequired["ValidateMessagesNumber"],
+            "array": NotRequired["ValidateMessagesArray"],
+            "pattern": NotRequired["ValidateMessagesPattern"]
+        }
+    )
+
+    LoadingState = TypedDict(
+        "LoadingState",
+            {
+            "is_loading": NotRequired[bool],
+            "prop_name": NotRequired[str],
+            "component_name": NotRequired[str]
+        }
+    )
+
     @_explicitize_args
-    def __init__(self, id=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, key=Component.UNDEFINED, schema=Component.REQUIRED, displayType=Component.UNDEFINED, labelAlign=Component.UNDEFINED, lableWidth=Component.UNDEFINED, maxWidth=Component.UNDEFINED, labelCol=Component.UNDEFINED, fieldCol=Component.UNDEFINED, colon=Component.UNDEFINED, globalConfig=Component.UNDEFINED, watch=Component.UNDEFINED, removeHiddenData=Component.UNDEFINED, readOnly=Component.UNDEFINED, column=Component.UNDEFINED, disabled=Component.UNDEFINED, scrollToFirstError=Component.UNDEFINED, locale=Component.UNDEFINED, footer=Component.UNDEFINED, configProvider=Component.UNDEFINED, validateMessages=Component.UNDEFINED, values=Component.UNDEFINED, validateStatuses=Component.UNDEFINED, submitForm=Component.UNDEFINED, submitFormClicks=Component.UNDEFINED, resetForm=Component.UNDEFINED, resetFormClicks=Component.UNDEFINED, loading_state=Component.UNDEFINED, **kwargs):
+    def __init__(
+        self,
+        id: typing.Optional[str] = None,
+        className: typing.Optional[typing.Union[str, dict]] = None,
+        style: typing.Optional[dict] = None,
+        key: typing.Optional[str] = None,
+        schema: typing.Optional["Schema"] = None,
+        displayType: typing.Optional[Literal["column", "row", "inline"]] = None,
+        labelAlign: typing.Optional[Literal["left", "right"]] = None,
+        lableWidth: typing.Optional[typing.Union[int, float, numbers.Number]] = None,
+        maxWidth: typing.Optional[typing.Union[int, float, numbers.Number]] = None,
+        labelCol: typing.Optional[typing.Union[int, float, numbers.Number]] = None,
+        fieldCol: typing.Optional[typing.Union[int, float, numbers.Number]] = None,
+        colon: typing.Optional[bool] = None,
+        globalConfig: typing.Optional["GlobalConfig"] = None,
+        watch: typing.Optional[typing.Dict[typing.Union[str, float, int], str]] = None,
+        removeHiddenData: typing.Optional[bool] = None,
+        readOnly: typing.Optional[bool] = None,
+        column: typing.Optional[typing.Union[int, float, numbers.Number]] = None,
+        disabled: typing.Optional[bool] = None,
+        scrollToFirstError: typing.Optional[bool] = None,
+        locale: typing.Optional[Literal["zh-cn", "en-us", "de-de"]] = None,
+        footer: typing.Optional[typing.Union[bool, "Footer", typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]]] = None,
+        configProvider: typing.Optional[dict] = None,
+        validateMessages: typing.Optional["ValidateMessages"] = None,
+        values: typing.Optional[dict] = None,
+        validateStatuses: typing.Optional[bool] = None,
+        submitForm: typing.Optional[bool] = None,
+        submitFormClicks: typing.Optional[typing.Union[int, float, numbers.Number]] = None,
+        resetForm: typing.Optional[bool] = None,
+        resetFormClicks: typing.Optional[typing.Union[int, float, numbers.Number]] = None,
+        loading_state: typing.Optional["LoadingState"] = None,
+        **kwargs
+    ):
         self._prop_names = ['id', 'className', 'style', 'key', 'schema', 'displayType', 'labelAlign', 'lableWidth', 'maxWidth', 'labelCol', 'fieldCol', 'colon', 'globalConfig', 'watch', 'removeHiddenData', 'readOnly', 'column', 'disabled', 'scrollToFirstError', 'locale', 'footer', 'configProvider', 'validateMessages', 'values', 'validateStatuses', 'submitForm', 'submitFormClicks', 'resetForm', 'resetFormClicks', 'loading_state']
         self._valid_wildcard_attributes =            []
         self.available_properties = ['id', 'className', 'style', 'key', 'schema', 'displayType', 'labelAlign', 'lableWidth', 'maxWidth', 'labelCol', 'fieldCol', 'colon', 'globalConfig', 'watch', 'removeHiddenData', 'readOnly', 'column', 'disabled', 'scrollToFirstError', 'locale', 'footer', 'configProvider', 'validateMessages', 'values', 'validateStatuses', 'submitForm', 'submitFormClicks', 'resetForm', 'resetFormClicks', 'loading_state']

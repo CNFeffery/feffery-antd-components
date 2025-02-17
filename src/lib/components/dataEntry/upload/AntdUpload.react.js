@@ -6,10 +6,86 @@ const LazyAntdUpload = React.lazy(() => import(/* webpackChunkName: "upload" */ 
 /**
  * 文件上传组件AntdUpload
  */
-const AntdUpload = (props) => {
+const AntdUpload = ({
+    id,
+    className,
+    style,
+    key,
+    name,
+    locale = 'zh-cn',
+    apiUrl,
+    apiUrlExtraParams,
+    headers,
+    withCredentials = false,
+    withOriginFileObj = false,
+    downloadUrl,
+    downloadUrlExtraParams = {},
+    downloadUrlFromBackend = false,
+    uploadId,
+    fileListMaxLength = null,
+    buttonContent,
+    buttonIcon,
+    buttonProps,
+    fileTypes,
+    fileMaxSize = 500,
+    showUploadList = true,
+    multiple = false,
+    directory = false,
+    failedTooltipInfo,
+    confirmBeforeDelete = false,
+    showPercent = false,
+    progressProps,
+    showSuccessMessage = true,
+    showErrorMessage = true,
+    listUploadTaskRecord = [],
+    defaultFileList,
+    disabled = false,
+    status,
+    setProps,
+    ...others
+}) => {
     return (
         <Suspense fallback={null}>
-            <LazyAntdUpload {...props} />
+            <LazyAntdUpload {
+                ...{
+                    id,
+                    className,
+                    style,
+                    key,
+                    name,
+                    locale,
+                    apiUrl,
+                    apiUrlExtraParams,
+                    headers,
+                    withCredentials,
+                    withOriginFileObj,
+                    downloadUrl,
+                    downloadUrlExtraParams,
+                    downloadUrlFromBackend,
+                    uploadId,
+                    fileListMaxLength,
+                    buttonContent,
+                    buttonIcon,
+                    buttonProps,
+                    fileTypes,
+                    fileMaxSize,
+                    showUploadList,
+                    multiple,
+                    directory,
+                    failedTooltipInfo,
+                    confirmBeforeDelete,
+                    showPercent,
+                    progressProps,
+                    showSuccessMessage,
+                    showErrorMessage,
+                    listUploadTaskRecord,
+                    defaultFileList,
+                    disabled,
+                    status,
+                    setProps,
+                    ...others
+                }
+            } />
         </Suspense>
     );
 }
@@ -439,27 +515,6 @@ AntdUpload.propTypes = {
      */
     setProps: PropTypes.func
 };
-
-// 设置默认参数
-AntdUpload.defaultProps = {
-    disabled: false,
-    multiple: false,
-    directory: false,
-    showUploadList: true,
-    fileListMaxLength: null,
-    fileMaxSize: 500,
-    confirmBeforeDelete: false,
-    showPercent: false,
-    showSuccessMessage: true,
-    showErrorMessage: true,
-    lastUploadTaskRecord: null,
-    listUploadTaskRecord: [],
-    downloadUrlExtraParams: {},
-    downloadUrlFromBackend: false,
-    withCredentials: false,
-    withOriginFileObj: false,
-    locale: 'zh-cn'
-}
 
 export default AntdUpload;
 

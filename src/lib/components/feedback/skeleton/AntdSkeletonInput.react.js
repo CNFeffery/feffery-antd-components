@@ -6,28 +6,28 @@ import { Skeleton } from 'antd';
 // 辅助库
 import { isString } from 'lodash';
 import { pickBy } from 'ramda';
+import { useLoading } from '../../utils';
 // 自定义hooks
 import useCss from '../../../hooks/useCss';
 
 /**
  * 骨骼屏输入框占位图组件AntdSkeletonInput
  */
-const AntdSkeletonInput = (props) => {
-    const {
-        id,
-        style,
-        className,
-        key,
-        active,
-        size,
-        loading_state,
-        setProps
-    } = props;
+const AntdSkeletonInput = ({
+    id,
+    style,
+    className,
+    key,
+    active = false,
+    size = 'default',
+    setProps,
+    ...others
+}) => {
 
     return (
         <Skeleton.Input
             // 提取具有data-*或aria-*通配格式的属性
-            {...pickBy((_, k) => k.startsWith('data-') || k.startsWith('aria-'), props)}
+            {...pickBy((_, k) => k.startsWith('data-') || k.startsWith('aria-'), others)}
             id={id}
             style={style}
             className={
@@ -38,9 +38,7 @@ const AntdSkeletonInput = (props) => {
             key={key}
             active={active}
             size={size}
-            data-dash-is-loading={
-                (loading_state && loading_state.is_loading) || undefined
-            }
+            data-dash-is-loading={useLoading()}
         />
     );
 }
@@ -91,32 +89,11 @@ AntdSkeletonInput.propTypes = {
      */
     'aria-*': PropTypes.string,
 
-    loading_state: PropTypes.shape({
-        /**
-         * Determines if the component is loading or not
-         */
-        is_loading: PropTypes.bool,
-        /**
-         * Holds which property is loading
-         */
-        prop_name: PropTypes.string,
-        /**
-         * Holds the name of the component that is loading
-         */
-        component_name: PropTypes.string
-    }),
-
     /**
      * Dash-assigned callback that should be called to report property changes
      * to Dash, to make them available for callbacks.
      */
     setProps: PropTypes.func
 };
-
-// 设置默认参数
-AntdSkeletonInput.defaultProps = {
-    active: false,
-    size: 'default'
-}
 
 export default AntdSkeletonInput;

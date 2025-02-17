@@ -5,34 +5,33 @@ import { Row } from 'antd';
 // 辅助库
 import { isString } from 'lodash';
 import { pickBy } from 'ramda';
-import { parseChildrenToArray } from '../../utils';
+import { parseChildrenToArray, useLoading } from '../../utils';
 // 自定义hooks
 import useCss from '../../../hooks/useCss';
 
 /**
  * 行组件AntdRow
  */
-const AntdRow = (props) => {
-    let {
-        id,
-        children,
-        className,
-        style,
-        key,
-        align,
-        gutter,
-        justify,
-        wrap,
-        setProps,
-        loading_state
-    } = props;
+const AntdRow = ({
+    id,
+    children,
+    className,
+    style,
+    key,
+    align = 'top',
+    gutter = 0,
+    justify = 'start',
+    wrap = true,
+    setProps,
+    ...others
+}) => {
 
     children = parseChildrenToArray(children)
 
     return (
         <Row
             // 提取具有data-*或aria-*通配格式的属性
-            {...pickBy((_, k) => k.startsWith('data-') || k.startsWith('aria-'), props)}
+            {...pickBy((_, k) => k.startsWith('data-') || k.startsWith('aria-'), others)}
             id={id}
             className={
                 isString(className) ?
@@ -45,9 +44,7 @@ const AntdRow = (props) => {
             gutter={gutter}
             justify={justify}
             wrap={wrap}
-            data-dash-is-loading={
-                (loading_state && loading_state.is_loading) || undefined
-            }>
+            data-dash-is-loading={useLoading()}>
             {children}
         </Row>
     );
@@ -146,34 +143,11 @@ AntdRow.propTypes = {
      */
     'aria-*': PropTypes.string,
 
-    loading_state: PropTypes.shape({
-        /**
-         * Determines if the component is loading or not
-         */
-        is_loading: PropTypes.bool,
-        /**
-         * Holds which property is loading
-         */
-        prop_name: PropTypes.string,
-        /**
-         * Holds the name of the component that is loading
-         */
-        component_name: PropTypes.string
-    }),
-
     /**
      * Dash-assigned callback that should be called to report property changes
      * to Dash, to make them available for callbacks.
      */
     setProps: PropTypes.func
 };
-
-// 设置默认参数
-AntdRow.defaultProps = {
-    align: 'top',
-    gutter: 0,
-    justify: 'start',
-    wrap: true
-}
 
 export default AntdRow;

@@ -6,10 +6,54 @@ const LazyAntdFormItem = React.lazy(() => import(/* webpackChunkName: "data_entr
 /**
  * 表单项组件AntdFormItem
  */
-const AntdFormItem = (props) => {
+const AntdFormItem = ({
+    id,
+    children,
+    className,
+    style,
+    key,
+    labelCol,
+    colon,
+    wrapperCol,
+    label,
+    labelAlign,
+    tooltip,
+    extra,
+    help,
+    hidden = false,
+    required = false,
+    validateStatus,
+    hasFeedback = false,
+    layout,
+    setProps,
+    ...others
+}) => {
     return (
         <Suspense fallback={null}>
-            <LazyAntdFormItem {...props} />
+            <LazyAntdFormItem {
+                ...{
+                    id,
+                    children,
+                    className,
+                    style,
+                    key,
+                    labelCol,
+                    colon,
+                    wrapperCol,
+                    label,
+                    labelAlign,
+                    tooltip,
+                    extra,
+                    help,
+                    hidden,
+                    required,
+                    validateStatus,
+                    hasFeedback,
+                    layout,
+                    setProps,
+                    ...others
+                }
+            } />
         </Suspense>
     );
 }
@@ -154,34 +198,12 @@ AntdFormItem.propTypes = {
      */
     'aria-*': PropTypes.string,
 
-    loading_state: PropTypes.shape({
-        /**
-         * Determines if the component is loading or not
-         */
-        is_loading: PropTypes.bool,
-        /**
-         * Holds which property is loading
-         */
-        prop_name: PropTypes.string,
-        /**
-         * Holds the name of the component that is loading
-         */
-        component_name: PropTypes.string
-    }),
-
     /**
      * Dash-assigned callback that should be called to report property changes
      * to Dash, to make them available for callbacks.
      */
     setProps: PropTypes.func
 };
-
-// 设置默认参数
-AntdFormItem.defaultProps = {
-    required: false,
-    hidden: false,
-    hasFeedback: false
-}
 
 export default AntdFormItem;
 

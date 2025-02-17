@@ -6,10 +6,52 @@ const LazyAntdSwitch = React.lazy(() => import(/* webpackChunkName: "data_entry"
 /**
  * 开关组件AntdSwitch
  */
-const AntdSwitch = (props) => {
+const AntdSwitch = ({
+    id,
+    style,
+    className,
+    key,
+    name,
+    disabled = false,
+    autoFocus = false,
+    checked,
+    checkedChildren,
+    unCheckedChildren,
+    size = 'default',
+    loading = false,
+    readOnly = false,
+    setProps,
+    persistence,
+    persisted_props,
+    persistence_type,
+    batchPropsNames = [],
+    ...others
+}) => {
     return (
         <Suspense fallback={null}>
-            <LazyAntdSwitch {...props} />
+            <LazyAntdSwitch {
+                ...{
+                    id,
+                    style,
+                    className,
+                    key,
+                    name,
+                    disabled,
+                    autoFocus,
+                    checked,
+                    checkedChildren,
+                    unCheckedChildren,
+                    size,
+                    loading,
+                    readOnly,
+                    setProps,
+                    persistence,
+                    persisted_props,
+                    persistence_type,
+                    batchPropsNames,
+                    ...others
+                }
+            } />
         </Suspense>
     );
 }
@@ -150,16 +192,9 @@ AntdSwitch.propTypes = {
     persistence_type: PropTypes.oneOf(['local', 'session', 'memory'])
 };
 
-// 设置默认参数
-AntdSwitch.defaultProps = {
-    disabled: false,
-    autoFocus: false,
-    size: 'default',
-    loading: false,
-    readOnly: false,
+AntdSwitch.dashPersistence = {
     persisted_props: ['checked'],
-    persistence_type: 'local',
-    batchPropsNames: []
+    persistence_type: 'local'
 }
 
 export default AntdSwitch;
