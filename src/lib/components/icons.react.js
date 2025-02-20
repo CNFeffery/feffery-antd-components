@@ -250,7 +250,9 @@ import {
     StepBackwardOutlined,
     StepForwardOutlined,
     FastForwardOutlined,
-    FastBackwardOutlined
+    FastBackwardOutlined,
+    SunOutlined,
+    MoonOutlined
 } from '@ant-design/icons';
 import {
     BsAlarm,
@@ -814,6 +816,8 @@ const str2Icon = new Map([
     ['antd-step-forward', <StepForwardOutlined />],
     ['antd-fast-forward', <FastForwardOutlined />],
     ['antd-fast-backward', <FastBackwardOutlined />],
+    ['antd-sun', <SunOutlined />],
+    ['antd-moon', <MoonOutlined />],
     ['md-star-half', <MdStarHalf />],
     ['md-star-border', <MdStarBorder />],
     ['md-star', <MdStar />],
