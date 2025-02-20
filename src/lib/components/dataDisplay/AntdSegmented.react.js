@@ -15,6 +15,7 @@ const AntdSegmented = ({
     defaultValue,
     value,
     block = false,
+    shape = 'default',
     vertical = false,
     disabled = false,
     size = 'middle',
@@ -37,6 +38,7 @@ const AntdSegmented = ({
                     defaultValue,
                     value,
                     block,
+                    shape,
                     vertical,
                     disabled,
                     size,
@@ -130,6 +132,12 @@ AntdSegmented.propTypes = {
      * 默认值：`false`
      */
     block: PropTypes.bool,
+
+    /**
+     * 形状，可选项有`'default'`、`'round'`
+     * 默认值：`'default'`
+     */
+    shape: PropTypes.oneOf(['default', 'round']),
 
     /**
      * 是否垂直展示
