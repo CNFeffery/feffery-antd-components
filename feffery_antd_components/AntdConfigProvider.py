@@ -91,7 +91,7 @@ Keyword arguments:
     def __init__(
         self,
         children: typing.Optional[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]] = None,
-        id: typing.Optional[str] = None,
+        id: typing.Optional[typing.Union[str, dict]] = None,
         key: typing.Optional[str] = None,
         algorithm: typing.Optional[typing.Union[Literal["default", "dark", "compact"], typing.Sequence[Literal["default", "dark", "compact"]]]] = None,
         useOldTheme: typing.Optional[Literal["default", "dark"]] = None,

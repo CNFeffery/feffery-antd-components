@@ -52,8 +52,8 @@ Keyword arguments:
 - size (a value equal to: 'small', 'middle', 'large'; default 'middle'):
     当前组件尺寸规格，可选项有`'small'`、`'middle'`、`'large'`  默认值：`'middle'`.
 
-- variant (a value equal to: 'outlined', 'borderless', 'filled'; default 'outlined'):
-    形态变体类型，可选项有`'outlined'`、`'borderless'`、`'filled'`，其中`'outlined'`等价于`bordered=True`，但优先级更高.
+- variant (a value equal to: 'outlined', 'borderless', 'filled', 'underlined'; default 'outlined'):
+    形态变体类型，可选项有`'outlined'`、`'borderless'`、`'filled'`、`'underlined'`，其中`'outlined'`等价于`bordered=True`，但优先级更高.
 
 - data-* (string; optional):
     `data-*`格式属性通配.
@@ -78,7 +78,7 @@ Keyword arguments:
     @_explicitize_args
     def __init__(
         self,
-        id: typing.Optional[str] = None,
+        id: typing.Optional[typing.Union[str, dict]] = None,
         key: typing.Optional[str] = None,
         style: typing.Optional[dict] = None,
         className: typing.Optional[typing.Union[str, dict]] = None,
@@ -90,7 +90,7 @@ Keyword arguments:
         mask: typing.Optional[typing.Union[bool, str]] = None,
         status: typing.Optional[Literal["error", "warning"]] = None,
         size: typing.Optional[Literal["small", "middle", "large"]] = None,
-        variant: typing.Optional[Literal["outlined", "borderless", "filled"]] = None,
+        variant: typing.Optional[Literal["outlined", "borderless", "filled", "underlined"]] = None,
         persistence: typing.Optional[typing.Union[bool, str, typing.Union[int, float, numbers.Number]]] = None,
         persisted_props: typing.Optional[typing.Sequence[Literal["value"]]] = None,
         persistence_type: typing.Optional[Literal["local", "session", "memory"]] = None,

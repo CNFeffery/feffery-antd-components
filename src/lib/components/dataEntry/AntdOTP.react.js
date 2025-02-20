@@ -126,9 +126,9 @@ AntdOTP.propTypes = {
     size: PropTypes.oneOf(['small', 'middle', 'large']),
 
     /**
-     * 形态变体类型，可选项有`'outlined'`、`'borderless'`、`'filled'`，其中`'outlined'`等价于`bordered=True`，但优先级更高
+     * 形态变体类型，可选项有`'outlined'`、`'borderless'`、`'filled'`、`'underlined'`，其中`'outlined'`等价于`bordered=True`，但优先级更高
      */
-    variant: PropTypes.oneOf(['outlined', 'borderless', 'filled']),
+    variant: PropTypes.oneOf(['outlined', 'borderless', 'filled', 'underlined']),
 
     /**
      * `data-*`格式属性通配

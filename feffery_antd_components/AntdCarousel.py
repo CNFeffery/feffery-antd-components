@@ -34,8 +34,13 @@ Keyword arguments:
 - arrows (boolean; default False):
     是否显示箭头  默认值：`False`.
 
-- autoplay (boolean; default False):
-    是否自动轮播  默认值：`False`.
+- autoplay (dict; default False):
+    是否自动轮播，可传入字典型进行更多配置  默认值：`False`.
+
+    `autoplay` is a boolean | dict with keys:
+
+    - dotDuration (boolean; optional):
+        是否展示指示点进度条.
 
 - dotPosition (a value equal to: 'top', 'bottom', 'left', 'right'; default 'bottom'):
     面板指示器位置，可选项有`'top'`、`'bottom'`、`'left'`、`'right'`  默认值：`'bottom'`.
@@ -76,17 +81,23 @@ Keyword arguments:
     _base_nodes = ['children']
     _namespace = 'feffery_antd_components'
     _type = 'AntdCarousel'
+    Autoplay = TypedDict(
+        "Autoplay",
+            {
+            "dotDuration": NotRequired[bool]
+        }
+    )
 
     @_explicitize_args
     def __init__(
         self,
         children: typing.Optional[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]] = None,
-        id: typing.Optional[str] = None,
+        id: typing.Optional[typing.Union[str, dict]] = None,
         key: typing.Optional[str] = None,
         style: typing.Optional[dict] = None,
         className: typing.Optional[typing.Union[str, dict]] = None,
         arrows: typing.Optional[bool] = None,
-        autoplay: typing.Optional[bool] = None,
+        autoplay: typing.Optional[typing.Union[bool, "Autoplay"]] = None,
         dotPosition: typing.Optional[Literal["top", "bottom", "left", "right"]] = None,
         easing: typing.Optional[str] = None,
         effect: typing.Optional[Literal["scrollx", "fade"]] = None,

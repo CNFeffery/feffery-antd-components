@@ -79,8 +79,8 @@ Keyword arguments:
 - bordered (boolean; default True):
     是否显示边框，设置为`True`时等价于`variant='outlined'`  默认值：`True`.
 
-- variant (a value equal to: 'outlined', 'borderless', 'filled'; optional):
-    形态变体类型，可选项有`'outlined'`、`'borderless'`、`'filled'`，其中`'outlined'`等价于`bordered=True`，但优先级更高.
+- variant (a value equal to: 'outlined', 'borderless', 'filled', 'underlined'; optional):
+    形态变体类型，可选项有`'outlined'`、`'borderless'`、`'filled'`、`'underlined'`，其中`'outlined'`等价于`bordered=True`，但优先级更高.
 
 - size (a value equal to: 'small', 'middle', 'large'; default 'middle'):
     当前组件尺寸规格，可选项有`'small'`、`'middle'`、`'large'`  默认值：`'middle'`.
@@ -138,7 +138,7 @@ Keyword arguments:
     @_explicitize_args
     def __init__(
         self,
-        id: typing.Optional[str] = None,
+        id: typing.Optional[typing.Union[str, dict]] = None,
         key: typing.Optional[str] = None,
         style: typing.Optional[dict] = None,
         className: typing.Optional[typing.Union[str, dict]] = None,
@@ -158,7 +158,7 @@ Keyword arguments:
         value: typing.Optional[typing.Sequence[str]] = None,
         defaultValue: typing.Optional[typing.Sequence[str]] = None,
         bordered: typing.Optional[bool] = None,
-        variant: typing.Optional[Literal["outlined", "borderless", "filled"]] = None,
+        variant: typing.Optional[Literal["outlined", "borderless", "filled", "underlined"]] = None,
         size: typing.Optional[Literal["small", "middle", "large"]] = None,
         open: typing.Optional[bool] = None,
         status: typing.Optional[Literal["error", "warning"]] = None,

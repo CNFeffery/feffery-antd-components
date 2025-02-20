@@ -57,6 +57,9 @@ Keyword arguments:
 - block (boolean; default False):
     是否撑满父容器  默认值：`False`.
 
+- shape (a value equal to: 'default', 'round'; default 'default'):
+    形状，可选项有`'default'`、`'round'`  默认值：`'default'`.
+
 - vertical (boolean; default False):
     是否垂直展示  默认值：`False`.
 
@@ -127,7 +130,7 @@ Keyword arguments:
     @_explicitize_args
     def __init__(
         self,
-        id: typing.Optional[str] = None,
+        id: typing.Optional[typing.Union[str, dict]] = None,
         key: typing.Optional[str] = None,
         style: typing.Optional[dict] = None,
         className: typing.Optional[typing.Union[str, dict]] = None,
@@ -135,6 +138,7 @@ Keyword arguments:
         value: typing.Optional[typing.Union[str, typing.Union[int, float, numbers.Number]]] = None,
         defaultValue: typing.Optional[typing.Union[str, typing.Union[int, float, numbers.Number]]] = None,
         block: typing.Optional[bool] = None,
+        shape: typing.Optional[Literal["default", "round"]] = None,
         vertical: typing.Optional[bool] = None,
         disabled: typing.Optional[bool] = None,
         size: typing.Optional[Literal["large", "middle", "small"]] = None,
@@ -146,9 +150,9 @@ Keyword arguments:
         persistence_type: typing.Optional[Literal["local", "session", "memory"]] = None,
         **kwargs
     ):
-        self._prop_names = ['id', 'key', 'style', 'className', 'options', 'value', 'defaultValue', 'block', 'vertical', 'disabled', 'size', 'batchPropsNames', 'batchPropsValues', 'data-*', 'aria-*', 'loading_state', 'persistence', 'persisted_props', 'persistence_type']
+        self._prop_names = ['id', 'key', 'style', 'className', 'options', 'value', 'defaultValue', 'block', 'shape', 'vertical', 'disabled', 'size', 'batchPropsNames', 'batchPropsValues', 'data-*', 'aria-*', 'loading_state', 'persistence', 'persisted_props', 'persistence_type']
         self._valid_wildcard_attributes =            ['data-', 'aria-']
-        self.available_properties = ['id', 'key', 'style', 'className', 'options', 'value', 'defaultValue', 'block', 'vertical', 'disabled', 'size', 'batchPropsNames', 'batchPropsValues', 'data-*', 'aria-*', 'loading_state', 'persistence', 'persisted_props', 'persistence_type']
+        self.available_properties = ['id', 'key', 'style', 'className', 'options', 'value', 'defaultValue', 'block', 'shape', 'vertical', 'disabled', 'size', 'batchPropsNames', 'batchPropsValues', 'data-*', 'aria-*', 'loading_state', 'persistence', 'persisted_props', 'persistence_type']
         self.available_wildcard_properties =            ['data-', 'aria-']
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()
