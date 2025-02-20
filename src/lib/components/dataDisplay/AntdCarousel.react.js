@@ -92,10 +92,18 @@ AntdCarousel.propTypes = {
     arrows: PropTypes.bool,
 
     /**
-     * 是否自动轮播
+     * 是否自动轮播，可传入字典型进行更多配置
      * 默认值：`false`
      */
-    autoplay: PropTypes.bool,
+    autoplay: PropTypes.oneOfType([
+        PropTypes.bool,
+        PropTypes.shape({
+            /**
+             * 是否展示指示点进度条
+             */
+            dotDuration: PropTypes.bool
+        })
+    ]),
 
     /**
      * 面板指示器位置，可选项有`'top'`、`'bottom'`、`'left'`、`'right'`
