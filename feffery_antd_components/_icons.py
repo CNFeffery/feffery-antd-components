@@ -251,6 +251,8 @@ all_icons = [
     'antd-step-forward',
     'antd-fast-forward',
     'antd-fast-backward',
+    'antd-sun',
+    'antd-mooon',
     'md-star-half',
     'md-star-border',
     'md-star',
