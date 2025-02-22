@@ -48,6 +48,9 @@ Keyword arguments:
 
     `buttonProps` is a dict with keys:
 
+    - icon (a list of or a singular dash component, string or number; optional):
+        组件型，按钮图标元素.
+
     - size (a value equal to: 'small', 'middle', 'large'; optional):
         按钮尺寸规格，可选项有`'small'`、`'middle'`、`'large'`  默认值：`'middle'`.
 
@@ -161,13 +164,14 @@ Keyword arguments:
 
 - aria-* (string; optional):
     `aria-*`格式属性通配."""
-    _children_props = ['menuItems[].title', 'menuItems[].extra']
+    _children_props = ['buttonProps.icon', 'menuItems[].title', 'menuItems[].extra']
     _base_nodes = ['children']
     _namespace = 'feffery_antd_components'
     _type = 'AntdDropdown'
     ButtonProps = TypedDict(
         "ButtonProps",
             {
+            "icon": NotRequired[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]],
             "size": NotRequired[Literal["small", "middle", "large"]],
             "type": NotRequired[Literal["default", "primary", "ghost", "dashed", "link", "text"]],
             "danger": NotRequired[bool],

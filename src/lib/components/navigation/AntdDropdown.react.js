@@ -261,6 +261,10 @@ AntdDropdown.propTypes = {
      */
     buttonProps: PropTypes.exact({
         /**
+         * 组件型，按钮图标元素
+         */
+        icon: PropTypes.node,
+        /**
          * 按钮尺寸规格，可选项有`'small'`、`'middle'`、`'large'`
          * 默认值：`'middle'`
          */
