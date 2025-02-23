@@ -32,8 +32,7 @@ def new_notification(nClicks):
     return fac.AntdNotification(
         message='通知标题',
         description='通知描述',
-        showProgress=True,
-        pauseOnHover=nClicks % 2 == 0,
+        stack=True,
     )
 
 

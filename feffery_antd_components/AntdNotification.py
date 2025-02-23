@@ -81,6 +81,9 @@ Keyword arguments:
     - danger (boolean; optional):
         按钮是否呈现危险状态  默认值：`False`.
 
+- stack (boolean; default False):
+    是否开启多通知自动折叠堆叠功能  默认值：`False`.
+
 - underCompatibilityMode (boolean; optional):
     当前通知提醒框组件是否位于设置了`compatibilityMode=True`的`AntdConfigProvider`内部."""
     _children_props = []
@@ -116,12 +119,13 @@ Keyword arguments:
         pauseOnHover: typing.Optional[bool] = None,
         closable: typing.Optional[bool] = None,
         closeButton: typing.Optional["CloseButton"] = None,
+        stack: typing.Optional[bool] = None,
         underCompatibilityMode: typing.Optional[bool] = None,
         **kwargs
     ):
-        self._prop_names = ['id', 'key', 'style', 'className', 'message', 'description', 'type', 'placement', 'top', 'bottom', 'duration', 'showProgress', 'pauseOnHover', 'closable', 'closeButton', 'underCompatibilityMode']
+        self._prop_names = ['id', 'key', 'style', 'className', 'message', 'description', 'type', 'placement', 'top', 'bottom', 'duration', 'showProgress', 'pauseOnHover', 'closable', 'closeButton', 'stack', 'underCompatibilityMode']
         self._valid_wildcard_attributes =            []
-        self.available_properties = ['id', 'key', 'style', 'className', 'message', 'description', 'type', 'placement', 'top', 'bottom', 'duration', 'showProgress', 'pauseOnHover', 'closable', 'closeButton', 'underCompatibilityMode']
+        self.available_properties = ['id', 'key', 'style', 'className', 'message', 'description', 'type', 'placement', 'top', 'bottom', 'duration', 'showProgress', 'pauseOnHover', 'closable', 'closeButton', 'stack', 'underCompatibilityMode']
         self.available_wildcard_properties =            []
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()

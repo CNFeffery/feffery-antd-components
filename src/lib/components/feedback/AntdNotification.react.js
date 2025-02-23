@@ -25,11 +25,12 @@ const AntdNotification = ({
     pauseOnHover = true,
     closable = true,
     closeButton,
+    stack = false,
     underCompatibilityMode,
     setProps
 }) => {
 
-    const [api, contextHolder] = notification.useNotification({ stack: false });
+    const [api, contextHolder] = notification.useNotification({ stack: stack });
     const { notification: _notification } = App.useApp();
 
     let config = {
@@ -203,6 +204,12 @@ AntdNotification.propTypes = {
          */
         danger: PropTypes.bool
     }),
+
+    /**
+     * 是否开启多通知自动折叠堆叠功能
+     * 默认值：`false`
+     */
+    stack: PropTypes.bool,
 
     /**
      * 当前通知提醒框组件是否位于设置了`compatibilityMode=true`的`AntdConfigProvider`内部
