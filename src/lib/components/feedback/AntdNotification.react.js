@@ -21,6 +21,8 @@ const AntdNotification = ({
     top = 24,
     bottom = 24,
     duration = 4.5,
+    showProgress = false,
+    pauseOnHover = true,
     closable = true,
     closeButton,
     underCompatibilityMode,
@@ -43,6 +45,8 @@ const AntdNotification = ({
         top: top,
         bottom: bottom,
         duration: duration,
+        showProgress: showProgress,
+        pauseOnHover: pauseOnHover,
         closeIcon: (
             closable ?
                 undefined :
@@ -90,7 +94,6 @@ const AntdNotification = ({
     return <>{contextHolder}</>;
 }
 
-// 定义参数或属性
 AntdNotification.propTypes = {
     /**
      * 组件唯一id
@@ -154,6 +157,18 @@ AntdNotification.propTypes = {
      * 默认值：`4.5`
      */
     duration: PropTypes.number,
+
+    /**
+     * 是否显示自动关闭进度条
+     * 默认值：`false`
+     */
+    showProgress: PropTypes.bool,
+
+    /**
+     * `showProgress=True`时，是否在鼠标移入时暂停进度条倒计时
+     * 默认值：`true`
+     */
+    pauseOnHover: PropTypes.bool,
 
     /**
      * 是否显示关闭按钮

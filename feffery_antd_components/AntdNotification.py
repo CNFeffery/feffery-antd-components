@@ -51,6 +51,12 @@ Keyword arguments:
 - duration (number; default 4.5):
     通知从显示到自动消失的时长，单位：秒，当传入`None`时会一直显示  默认值：`4.5`.
 
+- showProgress (boolean; default False):
+    是否显示自动关闭进度条  默认值：`False`.
+
+- pauseOnHover (boolean; default True):
+    `showProgress=True`时，是否在鼠标移入时暂停进度条倒计时  默认值：`True`.
+
 - closable (boolean; default True):
     是否显示关闭按钮  默认值：`True`.
 
@@ -106,14 +112,16 @@ Keyword arguments:
         top: typing.Optional[typing.Union[int, float, numbers.Number]] = None,
         bottom: typing.Optional[typing.Union[int, float, numbers.Number]] = None,
         duration: typing.Optional[typing.Union[int, float, numbers.Number]] = None,
+        showProgress: typing.Optional[bool] = None,
+        pauseOnHover: typing.Optional[bool] = None,
         closable: typing.Optional[bool] = None,
         closeButton: typing.Optional["CloseButton"] = None,
         underCompatibilityMode: typing.Optional[bool] = None,
         **kwargs
     ):
-        self._prop_names = ['id', 'key', 'style', 'className', 'message', 'description', 'type', 'placement', 'top', 'bottom', 'duration', 'closable', 'closeButton', 'underCompatibilityMode']
+        self._prop_names = ['id', 'key', 'style', 'className', 'message', 'description', 'type', 'placement', 'top', 'bottom', 'duration', 'showProgress', 'pauseOnHover', 'closable', 'closeButton', 'underCompatibilityMode']
         self._valid_wildcard_attributes =            []
-        self.available_properties = ['id', 'key', 'style', 'className', 'message', 'description', 'type', 'placement', 'top', 'bottom', 'duration', 'closable', 'closeButton', 'underCompatibilityMode']
+        self.available_properties = ['id', 'key', 'style', 'className', 'message', 'description', 'type', 'placement', 'top', 'bottom', 'duration', 'showProgress', 'pauseOnHover', 'closable', 'closeButton', 'underCompatibilityMode']
         self.available_wildcard_properties =            []
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()
