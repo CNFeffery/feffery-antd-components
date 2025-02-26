@@ -922,8 +922,13 @@ Keyword arguments:
 - loading (boolean; default False):
     是否启用表格自带加载中状态  默认值：`False`.
 
-- rowClassName (string; optional):
-    表格行css类名.
+- rowClassName (dict; optional):
+    表格行css类名，支持通过`func`字段定义`javascript`函数动态计算.
+
+    `rowClassName` is a string | dict with keys:
+
+    - func (string; optional):
+        字符串形式的`javascript`函数.
 
 - data-* (string; optional):
     `data-*`格式属性通配.
@@ -1181,6 +1186,13 @@ Keyword arguments:
         }
     )
 
+    RowClassName = TypedDict(
+        "RowClassName",
+            {
+            "func": NotRequired[str]
+        }
+    )
+
     @_explicitize_args
     def __init__(
         self,
@@ -1278,7 +1290,7 @@ Keyword arguments:
         title: typing.Optional[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]] = None,
         footer: typing.Optional[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]] = None,
         loading: typing.Optional[bool] = None,
-        rowClassName: typing.Optional[str] = None,
+        rowClassName: typing.Optional[typing.Union[str, "RowClassName"]] = None,
         **kwargs
     ):
         self._prop_names = ['id', 'key', 'style', 'className', 'locale', 'containerId', 'columns', 'showHeader', 'rowHoverable', 'tableLayout', 'data', 'bordered', 'maxHeight', 'maxWidth', 'scrollToFirstRowOnChange', 'size', 'rowSelectionType', 'selectedRowKeys', 'selectedRows', 'rowSelectionWidth', 'rowSelectionCheckStrictly', 'rowSelectionIgnoreRowKeys', 'selectedRowsSyncWithData', 'sticky', 'enableHoverListen', 'recentlyMouseEnterColumnDataIndex', 'recentlyMouseEnterRowKey', 'recentlyMouseEnterRow', 'titlePopoverInfo', 'columnsFormatConstraint', 'sortOptions', 'showSorterTooltip', 'showSorterTooltipTarget', 'filterOptions', 'defaultFilteredValues', 'pagination', 'currentData', 'recentlyChangedRow', 'recentlyChangedColumn', 'sorter', 'filter', 'mode', 'summaryRowContents', 'summaryRowBlankColumns', 'summaryRowFixed', 'conditionalStyleFuncs', 'expandedRowKeyToContent', 'expandedRowWidth', 'expandRowByClick', 'defaultExpandedRowKeys', 'expandedRowKeys', 'enableCellClickListenColumns', 'recentlyCellClickColumn', 'recentlyCellClickRecord', 'nClicksCell', 'cellClickEvent', 'recentlyCellDoubleClickColumn', 'recentlyCellDoubleClickRecord', 'nDoubleClicksCell', 'cellDoubleClickEvent', 'recentlyContextMenuClickColumn', 'recentlyContextMenuClickRecord', 'nContextMenuClicksCell', 'cellContextMenuClickEvent', 'emptyContent', 'cellUpdateOptimize', 'miniChartHeight', 'miniChartAnimation', 'recentlyButtonClickedRow', 'nClicksButton', 'clickedContent', 'clickedCustom', 'recentlyButtonClickedDataIndex', 'customFormatFuncs', 'recentlyCheckedRow', 'recentlyCheckedLabel', 'recentlyCheckedDataIndex', 'recentlyCheckedStatus', 'recentlySwitchRow', 'recentlySwitchDataIndex', 'recentlySwitchStatus', 'nClicksDropdownItem', 'recentlyClickedDropdownItemTitle', 'recentlyDropdownItemClickedDataIndex', 'recentlyDropdownItemClickedRow', 'recentlySelectRow', 'recentlySelectDataIndex', 'recentlySelectValue', 'hiddenRowKeys', 'dataDeepCompare', 'virtual', 'title', 'footer', 'loading', 'rowClassName', 'data-*', 'aria-*']

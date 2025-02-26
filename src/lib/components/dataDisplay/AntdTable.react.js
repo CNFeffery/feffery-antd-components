@@ -1,5 +1,5 @@
 import React, { Suspense } from 'react';
-import PropTypes from 'prop-types';
+import PropTypes, { func } from 'prop-types';
 
 const LazyAntdTable = React.lazy(() => import(/* webpackChunkName: "antd_table" */ '../../fragments/AntdTable.react'));
 
@@ -1700,9 +1700,17 @@ AntdTable.propTypes = {
     loading: PropTypes.bool,
 
     /**
-     * 表格行css类名
+     * 表格行css类名，支持通过`func`字段定义`javascript`函数动态计算
      */
-    rowClassName: PropTypes.string,
+    rowClassName: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.shape({
+            /**
+             * 字符串形式的`javascript`函数
+             */
+            func: PropTypes.string
+        })
+    ]),
 
     /**
      * `data-*`格式属性通配

@@ -2031,7 +2031,17 @@ const AntdTable = (props) => {
                 components={components}
                 rowClassName={
                     rowClassName ?
-                        (atLeastOneColumnEditable ? () => `editable-row ${rowClassName}` : rowClassName) :
+                        (record, index) => {
+                            // 初始化rowClassName返回值
+                            let _rowClassName = atLeastOneColumnEditable ? 'editable-row' : '';
+                            // 若rowClassName参数通过func进行javascript函数定义
+                            if (rowClassName.func) {
+                                _rowClassName += ` ${eval(rowClassName.func)(record, index)}`
+                            } else {
+                                _rowClassName += ` ${rowClassName}`
+                            }
+                            return _rowClassName.trimStart()
+                        } :
                         (atLeastOneColumnEditable ? () => 'editable-row' : undefined)
                 }
                 dataSource={
