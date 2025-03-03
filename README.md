@@ -65,3 +65,17 @@ fac.AntdDatePicker(locale='de-de')
 <a href = "https://github.com/CNFeffery/feffery-antd-components/graphs/contributors">
   <img src = "https://contrib.rocks/image?repo=CNFeffery/feffery-antd-components"/>
 </a>
+
+## 7 更多应用开发教程
+
+> 微信公众号「玩转 Dash」，欢迎扫码关注 👇
+
+<p align="center" >
+  <img src="./images/公众号.png" height=220 />
+</p>
+
+> 「玩转 Dash」知识星球，海量教程案例模板资源，专业的答疑咨询服务，欢迎扫码加入 👇
+
+<p align="center" >
+  <img src="./images/知识星球.jpg" height=220 />
+</p>
