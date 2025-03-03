@@ -112,6 +112,16 @@ AntdCountdown.propTypes = {
     valueStyle: PropTypes.object,
 
     /**
+     * 监听倒计时结束事件
+     */
+    finishEvent: PropTypes.shape({
+        /**
+         * 事件时间戳
+         */
+        timestamp: PropTypes.number,
+    }),
+
+    /**
      * `data-*`格式属性通配
      */
     'data-*': PropTypes.string,
