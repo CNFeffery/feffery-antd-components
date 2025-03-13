@@ -295,9 +295,9 @@ AntdButton.propTypes = {
     motionType: PropTypes.oneOf(['happy-work']),
 
     /**
-     * 按钮颜色风格，可选项有`'default'`、`'primary'`、`'danger'`
+     * 按钮颜色风格，可选项有`'default'`、`'primary'`、`'danger'`，以及可用的一系列内置颜色：`'blue'`、`'purple'`、`'cyan'`、`'green'`、`'magenta'`、`'pink'`、`'red'`、`'orange'`、`'yellow'`、`'volcano'`、`'geekblue'`、`'lime'`、`'gold'`
      */
-    color: PropTypes.oneOf(['default', 'primary', 'danger']),
+    color: PropTypes.oneOf(['default', 'primary', 'danger', 'blue', 'purple', 'cyan', 'green', 'magenta', 'pink', 'red', 'orange', 'yellow', 'volcano', 'geekblue', 'lime', 'gold']),
 
     /**
      * 形态变体类型，可选项有`'outlined'`、`'dashed'`、`'solid'`、`'filled'`、`'text'`、`'link'`

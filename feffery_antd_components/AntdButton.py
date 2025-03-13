@@ -105,8 +105,8 @@ Keyword arguments:
 - motionType (a value equal to: 'happy-work'; optional):
     按钮额外的特殊交互类型，可选项有`'happy-work'`.
 
-- color (a value equal to: 'default', 'primary', 'danger'; optional):
-    按钮颜色风格，可选项有`'default'`、`'primary'`、`'danger'`.
+- color (a value equal to: 'default', 'primary', 'danger', 'blue', 'purple', 'cyan', 'green', 'magenta', 'pink', 'red', 'orange', 'yellow', 'volcano', 'geekblue', 'lime', 'gold'; optional):
+    按钮颜色风格，可选项有`'default'`、`'primary'`、`'danger'`，以及可用的一系列内置颜色：`'blue'`、`'purple'`、`'cyan'`、`'green'`、`'magenta'`、`'pink'`、`'red'`、`'orange'`、`'yellow'`、`'volcano'`、`'geekblue'`、`'lime'`、`'gold'`.
 
 - variant (a value equal to: 'outlined', 'dashed', 'solid', 'filled', 'text', 'link'; optional):
     形态变体类型，可选项有`'outlined'`、`'dashed'`、`'solid'`、`'filled'`、`'text'`、`'link'`.
@@ -166,7 +166,7 @@ Keyword arguments:
         loading: typing.Optional[bool] = None,
         autoSpin: typing.Optional[bool] = None,
         motionType: typing.Optional[Literal["happy-work"]] = None,
-        color: typing.Optional[Literal["default", "primary", "danger"]] = None,
+        color: typing.Optional[Literal["default", "primary", "danger", "blue", "purple", "cyan", "green", "magenta", "pink", "red", "orange", "yellow", "volcano", "geekblue", "lime", "gold"]] = None,
         variant: typing.Optional[Literal["outlined", "dashed", "solid", "filled", "text", "link"]] = None,
         title: typing.Optional[str] = None,
         **kwargs
