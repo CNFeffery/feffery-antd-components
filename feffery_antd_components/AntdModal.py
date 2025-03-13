@@ -104,8 +104,22 @@ Keyword arguments:
     - className (string; optional):
         按钮css类名.
 
-- width (number | string; default 520):
+- width (dict; default 520):
     对话框像素宽度  默认值：`520`.
+
+    `width` is a number | string | dict with keys:
+
+    - xs (number | string; optional)
+
+    - sm (number | string; optional)
+
+    - md (number | string; optional)
+
+    - lg (number | string; optional)
+
+    - xl (number | string; optional)
+
+    - xxl (number | string; optional)
 
 - centered (boolean; default False):
     是否垂直居中显示对话框  默认值：`False`.
@@ -200,6 +214,18 @@ Keyword arguments:
         }
     )
 
+    Width = TypedDict(
+        "Width",
+            {
+            "xs": NotRequired[typing.Union[typing.Union[int, float, numbers.Number], str]],
+            "sm": NotRequired[typing.Union[typing.Union[int, float, numbers.Number], str]],
+            "md": NotRequired[typing.Union[typing.Union[int, float, numbers.Number], str]],
+            "lg": NotRequired[typing.Union[typing.Union[int, float, numbers.Number], str]],
+            "xl": NotRequired[typing.Union[typing.Union[int, float, numbers.Number], str]],
+            "xxl": NotRequired[typing.Union[typing.Union[int, float, numbers.Number], str]]
+        }
+    )
+
     @_explicitize_args
     def __init__(
         self,
@@ -216,7 +242,7 @@ Keyword arguments:
         okButtonProps: typing.Optional["OkButtonProps"] = None,
         cancelText: typing.Optional[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]] = None,
         cancelButtonProps: typing.Optional["CancelButtonProps"] = None,
-        width: typing.Optional[typing.Union[typing.Union[int, float, numbers.Number], str]] = None,
+        width: typing.Optional[typing.Union[typing.Union[int, float, numbers.Number], str, "Width"]] = None,
         centered: typing.Optional[bool] = None,
         keyboard: typing.Optional[bool] = None,
         closable: typing.Optional[bool] = None,
