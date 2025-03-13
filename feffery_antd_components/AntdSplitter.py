@@ -74,6 +74,9 @@ Keyword arguments:
     - resizable (boolean; optional):
         是否开启拖拽伸缩  默认值：`True`.
 
+- lazy (boolean; default False):
+    是否开启延迟渲染模式，开启后面板将在拖拽调整完成后才进行更新渲染  默认值：`False`.
+
 - data-* (string; optional):
     `data-*`格式属性通配.
 
@@ -116,11 +119,12 @@ Keyword arguments:
         className: typing.Optional[typing.Union[str, dict]] = None,
         layout: typing.Optional[Literal["horizontal", "vertical"]] = None,
         items: typing.Optional[typing.Sequence["Items"]] = None,
+        lazy: typing.Optional[bool] = None,
         **kwargs
     ):
-        self._prop_names = ['id', 'key', 'style', 'className', 'layout', 'items', 'data-*', 'aria-*']
+        self._prop_names = ['id', 'key', 'style', 'className', 'layout', 'items', 'lazy', 'data-*', 'aria-*']
         self._valid_wildcard_attributes =            ['data-', 'aria-']
-        self.available_properties = ['id', 'key', 'style', 'className', 'layout', 'items', 'data-*', 'aria-*']
+        self.available_properties = ['id', 'key', 'style', 'className', 'layout', 'items', 'lazy', 'data-*', 'aria-*']
         self.available_wildcard_properties =            ['data-', 'aria-']
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()

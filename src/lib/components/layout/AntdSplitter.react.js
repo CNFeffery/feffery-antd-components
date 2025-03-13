@@ -20,6 +20,7 @@ const AntdSplitter = ({
     key,
     layout = 'horizontal',
     items,
+    lazy = false,
     setProps,
     ...others
 }) => {
@@ -37,6 +38,7 @@ const AntdSplitter = ({
             style={style}
             key={key}
             layout={layout}
+            lazy={lazy}
             data-dash-is-loading={useLoading()}>
             {
                 (items || []).map(
@@ -146,6 +148,12 @@ AntdSplitter.propTypes = {
             resizable: PropTypes.bool,
         })
     ).isRequired,
+
+    /**
+     * 是否开启延迟渲染模式，开启后面板将在拖拽调整完成后才进行更新渲染
+     * 默认值：`false`
+     */
+    lazy: PropTypes.bool,
 
     /**
      * `data-*`格式属性通配
