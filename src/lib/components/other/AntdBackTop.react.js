@@ -2,13 +2,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 // antd核心
-import { BackTop } from 'antd';
+import { FloatButton } from 'antd';
 // 辅助库
 import { isString } from 'lodash';
 import { pickBy } from 'ramda';
 import { useLoading } from '../utils';
 // 自定义hooks
 import useCss from '../../hooks/useCss';
+
+const { BackTop } = FloatButton;
 
 /**
  * 回到顶部组件AntdBackTop
