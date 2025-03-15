@@ -82,33 +82,37 @@ AntdSegmented.propTypes = {
      * 配置选项相关参数
      */
     options: PropTypes.arrayOf(
-        PropTypes.exact({
-            /**
-             * 组件型，选项标题内容
-             */
-            label: PropTypes.node,
-            /**
-             * 必填，选项值
-             */
-            value: PropTypes.oneOfType([
-                PropTypes.string,
-                PropTypes.number
-            ]).isRequired,
-            /**
-             * 是否禁用当前选项
-             * 默认值：`false`
-             */
-            disabled: PropTypes.bool,
-            /**
-             * 选项前缀图标，`iconRenderer='AntdIcon'`时同`AntdIcon`，`iconRenderer='fontawesome'`时表示css类名
-             */
-            icon: PropTypes.string,
-            /**
-             * 选项前缀图标类型，可选项有`'AntdIcon'`、`'fontawesome'`
-             * 默认值：`'AntdIcon'`
-             */
-            iconRenderer: PropTypes.oneOf(['AntdIcon', 'fontawesome']),
-        })
+        PropTypes.oneOfType([
+            PropTypes.string,
+            PropTypes.number,
+            PropTypes.exact({
+                /**
+                 * 组件型，选项标题内容
+                 */
+                label: PropTypes.node,
+                /**
+                 * 必填，选项值
+                 */
+                value: PropTypes.oneOfType([
+                    PropTypes.string,
+                    PropTypes.number
+                ]).isRequired,
+                /**
+                 * 是否禁用当前选项
+                 * 默认值：`false`
+                 */
+                disabled: PropTypes.bool,
+                /**
+                 * 选项前缀图标，`iconRenderer='AntdIcon'`时同`AntdIcon`，`iconRenderer='fontawesome'`时表示css类名
+                 */
+                icon: PropTypes.string,
+                /**
+                 * 选项前缀图标类型，可选项有`'AntdIcon'`、`'fontawesome'`
+                 * 默认值：`'AntdIcon'`
+                 */
+                iconRenderer: PropTypes.oneOf(['AntdIcon', 'fontawesome']),
+            })
+        ])
     ),
 
     /**

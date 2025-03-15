@@ -31,7 +31,7 @@ Keyword arguments:
 - options (list of dicts; optional):
     配置选项相关参数.
 
-    `options` is a list of dicts with keys:
+    `options` is a list of string | number | dict with keys:
 
     - label (a list of or a singular dash component, string or number; optional):
         组件型，选项标题内容.
@@ -46,7 +46,7 @@ Keyword arguments:
         选项前缀图标，`iconRenderer='AntdIcon'`时同`AntdIcon`，`iconRenderer='fontawesome'`时表示css类名.
 
     - iconRenderer (a value equal to: 'AntdIcon', 'fontawesome'; optional):
-        选项前缀图标类型，可选项有`'AntdIcon'`、`'fontawesome'`  默认值：`'AntdIcon'`.
+        选项前缀图标类型，可选项有`'AntdIcon'`、`'fontawesome'`  默认值：`'AntdIcon'`.s
 
 - value (string | number; optional):
     监听或设置当前选中值.
@@ -134,7 +134,7 @@ Keyword arguments:
         key: typing.Optional[str] = None,
         style: typing.Optional[dict] = None,
         className: typing.Optional[typing.Union[str, dict]] = None,
-        options: typing.Optional[typing.Sequence["Options"]] = None,
+        options: typing.Optional[typing.Sequence[typing.Union[str, typing.Union[int, float, numbers.Number], "Options"]]] = None,
         value: typing.Optional[typing.Union[str, typing.Union[int, float, numbers.Number]]] = None,
         defaultValue: typing.Optional[typing.Union[str, typing.Union[int, float, numbers.Number]]] = None,
         block: typing.Optional[bool] = None,

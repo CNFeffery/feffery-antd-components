@@ -4,7 +4,7 @@ import React, { useEffect, useContext } from 'react';
 import { Segmented } from 'antd';
 import AntdIcon from "../../components/general/AntdIcon.react";
 // 辅助库
-import { isString, isUndefined } from 'lodash';
+import { isString, isUndefined, isNumber } from 'lodash';
 import { pickBy } from 'ramda';
 import { useLoading } from '../../components/utils';
 // 自定义hooks
@@ -80,25 +80,28 @@ const AntdSegmented = (props) => {
             style={style}
             key={key}
             options={
-                options.map(item => {
-                    return {
-                        ...item,
-                        icon: item.icon && (
-                            item.iconRenderer === 'fontawesome' ?
-                                (
-                                    React.createElement(
-                                        'i',
-                                        {
-                                            className: item.icon
-                                        }
+                options.every(item => isNumber(item) || isString(item)) ?
+                    // 快捷方式
+                    options.map(item => ({ label: item, value: item })) :
+                    options.map(item => {
+                        return {
+                            ...item,
+                            icon: item.icon && (
+                                item.iconRenderer === 'fontawesome' ?
+                                    (
+                                        React.createElement(
+                                            'i',
+                                            {
+                                                className: item.icon
+                                            }
+                                        )
+                                    ) :
+                                    (
+                                        <AntdIcon icon={item.icon} />
                                     )
-                                ) :
-                                (
-                                    <AntdIcon icon={item.icon} />
-                                )
-                        )
-                    }
-                })
+                            )
+                        }
+                    })
             }
             defaultValue={defaultValue}
             value={value}
