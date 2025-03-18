@@ -28,9 +28,6 @@ Keyword arguments:
 - className (string | dict; optional):
     当前组件css类名，支持[动态css](/advanced-classname).
 
-- style (dict; optional):
-    当前组件css样式.
-
 - innerTextOrientation (a value equal to: "left", "center", "right"; default 'center'):
     内嵌元素对齐方式，可选项有`'left'`、`'center'`、`'right'`  默认值：`'center'`.
 
@@ -82,7 +79,7 @@ Keyword arguments:
         id: typing.Optional[typing.Union[str, dict]] = None,
         key: typing.Optional[str] = None,
         className: typing.Optional[typing.Union[str, dict]] = None,
-        style: typing.Optional[dict] = None,
+        style: typing.Optional[typing.Any] = None,
         innerTextOrientation: typing.Optional[Literal["left", "center", "right"]] = None,
         isDashed: typing.Optional[bool] = None,
         direction: typing.Optional[Literal["horizontal", "vertical"]] = None,

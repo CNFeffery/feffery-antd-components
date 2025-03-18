@@ -25,9 +25,6 @@ Keyword arguments:
 - children (a list of or a singular dash component, string or number; optional):
     组件型，定义徽标添加目标元素.
 
-- style (dict; optional):
-    当前组件css样式.
-
 - className (string | dict; optional):
     当前组件css类名，支持[动态css](/advanced-classname).
 
@@ -117,7 +114,7 @@ Keyword arguments:
         children: typing.Optional[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]] = None,
         id: typing.Optional[typing.Union[str, dict]] = None,
         key: typing.Optional[str] = None,
-        style: typing.Optional[dict] = None,
+        style: typing.Optional[typing.Any] = None,
         className: typing.Optional[typing.Union[str, dict]] = None,
         styles: typing.Optional["Styles"] = None,
         classNames: typing.Optional["ClassNames"] = None,

@@ -22,9 +22,6 @@ Keyword arguments:
 - className (string | dict; optional):
     css类名.
 
-- style (dict; optional):
-    自定义css字典.
-
 - key (string; optional):
     辅助刷新用唯一标识key值.
 
@@ -907,7 +904,7 @@ Keyword arguments:
         self,
         id: typing.Optional[typing.Union[str, dict]] = None,
         className: typing.Optional[typing.Union[str, dict]] = None,
-        style: typing.Optional[dict] = None,
+        style: typing.Optional[typing.Any] = None,
         key: typing.Optional[str] = None,
         schema: typing.Optional["Schema"] = None,
         displayType: typing.Optional[Literal["column", "row", "inline"]] = None,

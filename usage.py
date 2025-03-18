@@ -3,7 +3,11 @@ from dash import html
 import feffery_antd_components as fac
 from feffery_dash_utils.style_utils import style
 
-app = dash.Dash(__name__)
+app = dash.Dash(
+    __name__,
+    # 静态资源全量加载测试
+    eager_loading=True,
+)
 
 app.layout = fac.AntdConfigProvider(
     html.Div(

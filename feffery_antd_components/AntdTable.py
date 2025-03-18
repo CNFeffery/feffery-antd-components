@@ -22,9 +22,6 @@ Keyword arguments:
 - key (string; optional):
     对当前组件的`key`值进行更新，可实现强制重绘当前组件的效果.
 
-- style (dict; optional):
-    当前组件css样式.
-
 - className (string; optional):
     当前组件css类名.
 
@@ -1198,7 +1195,7 @@ Keyword arguments:
         self,
         id: typing.Optional[typing.Union[str, dict]] = None,
         key: typing.Optional[str] = None,
-        style: typing.Optional[dict] = None,
+        style: typing.Optional[typing.Any] = None,
         className: typing.Optional[str] = None,
         locale: typing.Optional[Literal["zh-cn", "en-us", "de-de"]] = None,
         containerId: typing.Optional[str] = None,

@@ -29,13 +29,10 @@ _current_path = _os.path.dirname(_os.path.abspath(__file__))
 _this_module = _sys.modules[__name__]
 
 async_resources = [
-    'fac-shared',
     'antd_table',
     'upload',
     'data_entry',
     'data_display',
-    'pro_editor',
-    'form_render'
 ]
 
 
