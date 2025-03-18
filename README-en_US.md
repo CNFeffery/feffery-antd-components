@@ -17,6 +17,13 @@
 
 Subproject of `feffery-components` projects, third-party components library of `Plotly Dash`, based on the [Antd](https://github.com/ant-design/ant-design), brings many common and powerful components into `Dash`🥳, latest stable version: `0.3.15` (2025-01-30)
 
+## Dash Version Compatibility Notes
+
+| fac version | Compatible Dash Version |
+| :--------: | :---------------------: |
+| >=0.4.0    |        >=3.0.0          |
+| <0.4.0     |         <3.0.0          |
+
 ## 1 Install
 
 ```bash
