@@ -11,6 +11,8 @@ const AntdDescriptions = ({
     children,
     className,
     style,
+    styles,
+    classNames,
     key,
     items,
     title,
@@ -32,6 +34,8 @@ const AntdDescriptions = ({
                     children,
                     className,
                     style,
+                    styles,
+                    classNames,
                     key,
                     items,
                     title,
@@ -78,6 +82,66 @@ AntdDescriptions.propTypes = {
         PropTypes.string,
         PropTypes.object
     ]),
+
+    /**
+     * 细分控制子元素css样式
+     */
+    styles: PropTypes.exact({
+        /**
+         * 根元素css样式
+         */
+        root: PropTypes.object,
+        /**
+         * 头部元素css样式
+         */
+        header: PropTypes.object,
+        /**
+         * 标题元素css样式
+         */
+        title: PropTypes.object,
+        /**
+         * 额外内容css样式
+         */
+        extra: PropTypes.object,
+        /**
+         * 标签元素css样式
+         */
+        label: PropTypes.object,
+        /**
+         * 内容元素css样式
+         */
+        content: PropTypes.object
+    }),
+
+    /**
+     * 细分控制子元素css类名
+     */
+    classNames: PropTypes.exact({
+        /**
+         * 根元素css类名
+         */
+        root: PropTypes.string,
+        /**
+         * 头部元素css类名
+         */
+        header: PropTypes.string,
+        /**
+         * 标题元素css类名
+         */
+        title: PropTypes.string,
+        /**
+         * 额外内容css类名
+         */
+        extra: PropTypes.string,
+        /**
+         * 标签元素css类名
+         */
+        label: PropTypes.string,
+        /**
+         * 内容元素css类名
+         */
+        content: PropTypes.string
+    }),
 
     /**
      * 配置描述列表子项，优先级高于`children`

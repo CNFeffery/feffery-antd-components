@@ -28,6 +28,52 @@ Keyword arguments:
 - className (string | dict; optional):
     当前组件css类名，支持[动态css](/advanced-classname).
 
+- styles (dict; optional):
+    细分控制子元素css样式.
+
+    `styles` is a dict with keys:
+
+    - root (dict; optional):
+        根元素css样式.
+
+    - header (dict; optional):
+        头部元素css样式.
+
+    - title (dict; optional):
+        标题元素css样式.
+
+    - extra (dict; optional):
+        额外内容css样式.
+
+    - label (dict; optional):
+        标签元素css样式.
+
+    - content (dict; optional):
+        内容元素css样式.
+
+- classNames (dict; optional):
+    细分控制子元素css类名.
+
+    `classNames` is a dict with keys:
+
+    - root (string; optional):
+        根元素css类名.
+
+    - header (string; optional):
+        头部元素css类名.
+
+    - title (string; optional):
+        标题元素css类名.
+
+    - extra (string; optional):
+        额外内容css类名.
+
+    - label (string; optional):
+        标签元素css类名.
+
+    - content (string; optional):
+        内容元素css类名.
+
 - items (list of dicts; optional):
     配置描述列表子项，优先级高于`children`.
 
@@ -101,6 +147,30 @@ Keyword arguments:
     _base_nodes = ['title', 'extra', 'children']
     _namespace = 'feffery_antd_components'
     _type = 'AntdDescriptions'
+    Styles = TypedDict(
+        "Styles",
+            {
+            "root": NotRequired[dict],
+            "header": NotRequired[dict],
+            "title": NotRequired[dict],
+            "extra": NotRequired[dict],
+            "label": NotRequired[dict],
+            "content": NotRequired[dict]
+        }
+    )
+
+    ClassNames = TypedDict(
+        "ClassNames",
+            {
+            "root": NotRequired[str],
+            "header": NotRequired[str],
+            "title": NotRequired[str],
+            "extra": NotRequired[str],
+            "label": NotRequired[str],
+            "content": NotRequired[str]
+        }
+    )
+
     Items = TypedDict(
         "Items",
             {
@@ -134,6 +204,8 @@ Keyword arguments:
         key: typing.Optional[str] = None,
         style: typing.Optional[typing.Any] = None,
         className: typing.Optional[typing.Union[str, dict]] = None,
+        styles: typing.Optional["Styles"] = None,
+        classNames: typing.Optional["ClassNames"] = None,
         items: typing.Optional[typing.Sequence["Items"]] = None,
         title: typing.Optional[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]] = None,
         column: typing.Optional[typing.Union[typing.Union[int, float, numbers.Number], "Column"]] = None,
@@ -145,9 +217,9 @@ Keyword arguments:
         extra: typing.Optional[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]] = None,
         **kwargs
     ):
-        self._prop_names = ['id', 'key', 'children', 'style', 'className', 'items', 'title', 'column', 'bordered', 'size', 'layout', 'labelStyle', 'contentStyle', 'extra', 'data-*', 'aria-*']
+        self._prop_names = ['id', 'key', 'children', 'style', 'className', 'styles', 'classNames', 'items', 'title', 'column', 'bordered', 'size', 'layout', 'labelStyle', 'contentStyle', 'extra', 'data-*', 'aria-*']
         self._valid_wildcard_attributes =            ['data-', 'aria-']
-        self.available_properties = ['id', 'key', 'children', 'style', 'className', 'items', 'title', 'column', 'bordered', 'size', 'layout', 'labelStyle', 'contentStyle', 'extra', 'data-*', 'aria-*']
+        self.available_properties = ['id', 'key', 'children', 'style', 'className', 'styles', 'classNames', 'items', 'title', 'column', 'bordered', 'size', 'layout', 'labelStyle', 'contentStyle', 'extra', 'data-*', 'aria-*']
         self.available_wildcard_properties =            ['data-', 'aria-']
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()

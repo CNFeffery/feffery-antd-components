@@ -77,8 +77,8 @@ AntdAccordion.propTypes = {
     ]),
 
     /**
-         * 细分控制子元素css样式
-         */
+     * 细分控制子元素css样式
+     */
     styles: PropTypes.shape({
         /**
          * 头部元素css样式
