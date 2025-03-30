@@ -110,13 +110,25 @@ AntdSlider.propTypes = {
      */
     styles: PropTypes.exact({
         /**
-         * 选择条css样式
+         * 根元素css样式
+         */
+        root: PropTypes.object,
+        /**
+         * 范围选择下，点和点之间单个选取条css样式
          */
         track: PropTypes.object,
         /**
+         * 范围选择下，整个范围选取条css样式
+         */
+        tracks: PropTypes.object,
+        /**
          * 背景条css样式
          */
-        rail: PropTypes.object
+        rail: PropTypes.object,
+        /**
+         * 抓取点元素css样式
+         */
+        handle: PropTypes.object
     }),
 
     /**
@@ -124,13 +136,25 @@ AntdSlider.propTypes = {
      */
     classNames: PropTypes.exact({
         /**
-         * 选择条css类名
+         * 根元素css类名
+         */
+        root: PropTypes.string,
+        /**
+         * 范围选择下，点和点之间单个选取条css类名
          */
         track: PropTypes.string,
         /**
+         * 范围选择下，整个范围选取条css类名
+         */
+        tracks: PropTypes.string,
+        /**
          * 背景条css类名
          */
-        rail: PropTypes.string
+        rail: PropTypes.string,
+        /**
+         * 抓取点元素css类名
+         */
+        handle: PropTypes.string
     }),
 
     /**

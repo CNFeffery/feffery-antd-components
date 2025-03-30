@@ -33,22 +33,40 @@ Keyword arguments:
 
     `styles` is a dict with keys:
 
+    - root (dict; optional):
+        根元素css样式.
+
     - track (dict; optional):
-        选择条css样式.
+        范围选择下，点和点之间单个选取条css样式.
+
+    - tracks (dict; optional):
+        范围选择下，整个范围选取条css样式.
 
     - rail (dict; optional):
         背景条css样式.
+
+    - handle (dict; optional):
+        抓取点元素css样式.
 
 - classNames (dict; optional):
     细分控制子元素css类名.
 
     `classNames` is a dict with keys:
 
+    - root (string; optional):
+        根元素css类名.
+
     - track (string; optional):
-        选择条css类名.
+        范围选择下，点和点之间单个选取条css类名.
+
+    - tracks (string; optional):
+        范围选择下，整个范围选取条css类名.
 
     - rail (string; optional):
         背景条css类名.
+
+    - handle (string; optional):
+        抓取点元素css类名.
 
 - name (string; optional):
     配合`AntdForm`表单批量值搜集/控制功能使用，充当当前表单项的字段名，以`id`作为缺省值.
@@ -126,16 +144,22 @@ Keyword arguments:
     Styles = TypedDict(
         "Styles",
             {
+            "root": NotRequired[dict],
             "track": NotRequired[dict],
-            "rail": NotRequired[dict]
+            "tracks": NotRequired[dict],
+            "rail": NotRequired[dict],
+            "handle": NotRequired[dict]
         }
     )
 
     ClassNames = TypedDict(
         "ClassNames",
             {
+            "root": NotRequired[str],
             "track": NotRequired[str],
-            "rail": NotRequired[str]
+            "tracks": NotRequired[str],
+            "rail": NotRequired[str],
+            "handle": NotRequired[str]
         }
     )
 
