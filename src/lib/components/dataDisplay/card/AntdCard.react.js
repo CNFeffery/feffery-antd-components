@@ -8,6 +8,8 @@ const AntdCard = ({
     children,
     className,
     style,
+    styles,
+    classNames,
     key,
     actions,
     extraLink,
@@ -31,6 +33,8 @@ const AntdCard = ({
                     children,
                     className,
                     style,
+                    styles,
+                    classNames,
                     key,
                     actions,
                     extraLink,
@@ -79,6 +83,66 @@ AntdCard.propTypes = {
         PropTypes.string,
         PropTypes.object
     ]),
+
+    /**
+     * 细分控制子元素css样式
+     */
+    styles: PropTypes.exact({
+        /**
+         * 设置卡片头部区域css样式
+         */
+        header: PropTypes.object,
+        /**
+         * 设置卡片标题css样式
+         */
+        title: PropTypes.object,
+        /**
+         * 设置卡片右上角的操作区域css样式
+         */
+        extra: PropTypes.object,
+        /**
+         * 设置标题封面css样式
+         */
+        cover: PropTypes.object,
+        /**
+         * 设置卡片内容区域css样式
+         */
+        body: PropTypes.object,
+        /**
+         * 设置卡片底部操作组css样式
+         */
+        actions: PropTypes.object
+    }),
+
+    /**
+     * 细分控制子元素css类名
+     */
+    classNames: PropTypes.exact({
+        /**
+         * 设置卡片头部区域css类名
+         */
+        header: PropTypes.string,
+        /**
+         * 设置卡片标题css类名
+         */
+        title: PropTypes.string,
+        /**
+         * 设置卡片右上角的操作区域css类名
+         */
+        extra: PropTypes.string,
+        /**
+         * 设置标题封面css类名
+         */
+        cover: PropTypes.string,
+        /**
+         * 设置卡片内容区域css类名
+         */
+        body: PropTypes.string,
+        /**
+         * 设置卡片底部操作组css类名
+         */
+        actions: PropTypes.string
+    }),
 
     /**
      * 组件型，底部操作区元素

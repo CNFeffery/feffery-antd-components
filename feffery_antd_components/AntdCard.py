@@ -28,6 +28,52 @@ Keyword arguments:
 - className (string | dict; optional):
     当前组件css类名，支持[动态css](/advanced-classname).
 
+- styles (dict; optional):
+    细分控制子元素css样式.
+
+    `styles` is a dict with keys:
+
+    - header (dict; optional):
+        设置卡片头部区域css样式.
+
+    - title (dict; optional):
+        设置卡片标题css样式.
+
+    - extra (dict; optional):
+        设置卡片右上角的操作区域css样式.
+
+    - cover (dict; optional):
+        设置标题封面css样式.
+
+    - body (dict; optional):
+        设置卡片内容区域css样式.
+
+    - actions (dict; optional):
+        设置卡片底部操作组css样式.
+
+- classNames (dict; optional):
+    细分控制子元素css类名.
+
+    `classNames` is a dict with keys:
+
+    - header (string; optional):
+        设置卡片头部区域css类名.
+
+    - title (string; optional):
+        设置卡片标题css类名.
+
+    - extra (string; optional):
+        设置卡片右上角的操作区域css类名.
+
+    - cover (string; optional):
+        设置标题封面css类名.
+
+    - body (string; optional):
+        设置卡片内容区域css类名.
+
+    - actions (string; optional):
+        设置卡片底部操作组css类名.
+
 - actions (a list of or a singular dash component, string or number; optional):
     组件型，底部操作区元素.
 
@@ -101,6 +147,30 @@ Keyword arguments:
     _base_nodes = ['actions', 'title', 'extra', 'children']
     _namespace = 'feffery_antd_components'
     _type = 'AntdCard'
+    Styles = TypedDict(
+        "Styles",
+            {
+            "header": NotRequired[dict],
+            "title": NotRequired[dict],
+            "extra": NotRequired[dict],
+            "cover": NotRequired[dict],
+            "body": NotRequired[dict],
+            "actions": NotRequired[dict]
+        }
+    )
+
+    ClassNames = TypedDict(
+        "ClassNames",
+            {
+            "header": NotRequired[str],
+            "title": NotRequired[str],
+            "extra": NotRequired[str],
+            "cover": NotRequired[str],
+            "body": NotRequired[str],
+            "actions": NotRequired[str]
+        }
+    )
+
     ExtraLink = TypedDict(
         "ExtraLink",
             {
@@ -130,6 +200,8 @@ Keyword arguments:
         key: typing.Optional[str] = None,
         style: typing.Optional[typing.Any] = None,
         className: typing.Optional[typing.Union[str, dict]] = None,
+        styles: typing.Optional["Styles"] = None,
+        classNames: typing.Optional["ClassNames"] = None,
         actions: typing.Optional[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]] = None,
         title: typing.Optional[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]] = None,
         extraLink: typing.Optional["ExtraLink"] = None,
@@ -143,9 +215,9 @@ Keyword arguments:
         nClicks: typing.Optional[typing.Union[int, float, numbers.Number]] = None,
         **kwargs
     ):
-        self._prop_names = ['id', 'key', 'children', 'style', 'className', 'actions', 'title', 'extraLink', 'extra', 'coverImg', 'bodyStyle', 'headStyle', 'bordered', 'hoverable', 'size', 'nClicks', 'data-*', 'aria-*']
+        self._prop_names = ['id', 'key', 'children', 'style', 'className', 'styles', 'classNames', 'actions', 'title', 'extraLink', 'extra', 'coverImg', 'bodyStyle', 'headStyle', 'bordered', 'hoverable', 'size', 'nClicks', 'data-*', 'aria-*']
         self._valid_wildcard_attributes =            ['data-', 'aria-']
-        self.available_properties = ['id', 'key', 'children', 'style', 'className', 'actions', 'title', 'extraLink', 'extra', 'coverImg', 'bodyStyle', 'headStyle', 'bordered', 'hoverable', 'size', 'nClicks', 'data-*', 'aria-*']
+        self.available_properties = ['id', 'key', 'children', 'style', 'className', 'styles', 'classNames', 'actions', 'title', 'extraLink', 'extra', 'coverImg', 'bodyStyle', 'headStyle', 'bordered', 'hoverable', 'size', 'nClicks', 'data-*', 'aria-*']
         self.available_wildcard_properties =            ['data-', 'aria-']
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()

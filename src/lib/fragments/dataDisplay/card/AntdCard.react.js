@@ -20,6 +20,8 @@ const AntdCard = (props) => {
         children,
         className,
         style,
+        styles,
+        classNames,
         key,
         actions,
         extraLink,
@@ -49,6 +51,8 @@ const AntdCard = (props) => {
                     (className ? useCss(className) : undefined)
             }
             style={style}
+            styles={styles}
+            classNames={classNames}
             key={key}
             bodyStyle={{
                 // 确保网格卡片排布正常
