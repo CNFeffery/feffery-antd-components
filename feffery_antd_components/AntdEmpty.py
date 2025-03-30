@@ -25,6 +25,40 @@ Keyword arguments:
 - children (a list of or a singular dash component, string or number; optional):
     组件型，内嵌元素.
 
+- styles (dict; optional):
+    细分控制子元素css样式.
+
+    `styles` is a dict with keys:
+
+    - root (dict; optional):
+        根元素css样式.
+
+    - image (dict; optional):
+        图标元素css样式.
+
+    - description (dict; optional):
+        描述元素css样式.
+
+    - footer (dict; optional):
+        底部元素css样式.
+
+- classNames (dict; optional):
+    细分控制子元素css类名.
+
+    `classNames` is a dict with keys:
+
+    - root (string; optional):
+        根元素css类名.
+
+    - image (string; optional):
+        图标元素css类名.
+
+    - description (string; optional):
+        描述元素css类名.
+
+    - footer (string; optional):
+        底部元素css类名.
+
 - className (string | dict; optional):
     当前组件css类名，支持[动态css](/advanced-classname).
 
@@ -50,6 +84,25 @@ Keyword arguments:
     _base_nodes = ['description', 'children']
     _namespace = 'feffery_antd_components'
     _type = 'AntdEmpty'
+    Styles = TypedDict(
+        "Styles",
+            {
+            "root": NotRequired[dict],
+            "image": NotRequired[dict],
+            "description": NotRequired[dict],
+            "footer": NotRequired[dict]
+        }
+    )
+
+    ClassNames = TypedDict(
+        "ClassNames",
+            {
+            "root": NotRequired[str],
+            "image": NotRequired[str],
+            "description": NotRequired[str],
+            "footer": NotRequired[str]
+        }
+    )
 
     @_explicitize_args
     def __init__(
@@ -58,6 +111,8 @@ Keyword arguments:
         id: typing.Optional[typing.Union[str, dict]] = None,
         key: typing.Optional[str] = None,
         style: typing.Optional[typing.Any] = None,
+        styles: typing.Optional["Styles"] = None,
+        classNames: typing.Optional["ClassNames"] = None,
         className: typing.Optional[typing.Union[str, dict]] = None,
         locale: typing.Optional[Literal["zh-cn", "en-us", "de-de"]] = None,
         description: typing.Optional[typing.Union[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]], bool]] = None,
@@ -65,9 +120,9 @@ Keyword arguments:
         imageStyle: typing.Optional[dict] = None,
         **kwargs
     ):
-        self._prop_names = ['id', 'key', 'children', 'style', 'className', 'locale', 'description', 'image', 'imageStyle', 'data-*', 'aria-*']
+        self._prop_names = ['id', 'key', 'children', 'style', 'styles', 'classNames', 'className', 'locale', 'description', 'image', 'imageStyle', 'data-*', 'aria-*']
         self._valid_wildcard_attributes =            ['data-', 'aria-']
-        self.available_properties = ['id', 'key', 'children', 'style', 'className', 'locale', 'description', 'image', 'imageStyle', 'data-*', 'aria-*']
+        self.available_properties = ['id', 'key', 'children', 'style', 'styles', 'classNames', 'className', 'locale', 'description', 'image', 'imageStyle', 'data-*', 'aria-*']
         self.available_wildcard_properties =            ['data-', 'aria-']
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()

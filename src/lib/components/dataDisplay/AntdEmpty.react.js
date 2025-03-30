@@ -11,6 +11,8 @@ const AntdEmpty = ({
     children,
     className,
     style,
+    styles,
+    classNames,
     key,
     locale = 'zh-cn',
     description,
@@ -27,6 +29,8 @@ const AntdEmpty = ({
                     children,
                     className,
                     style,
+                    styles,
+                    classNames,
                     key,
                     locale,
                     description,
@@ -60,6 +64,50 @@ AntdEmpty.propTypes = {
      * 当前组件css样式
      */
     style: PropTypes.object,
+
+    /**
+     * 细分控制子元素css样式
+     */
+    styles: PropTypes.exact({
+        /**
+         * 根元素css样式
+         */
+        root: PropTypes.object,
+        /**
+         * 图标元素css样式
+         */
+        image: PropTypes.object,
+        /**
+         * 描述元素css样式
+         */
+        description: PropTypes.object,
+        /**
+         * 底部元素css样式
+         */
+        footer: PropTypes.object
+    }),
+
+    /**
+     * 细分控制子元素css类名
+     */
+    classNames: PropTypes.exact({
+        /**
+         * 根元素css类名
+         */
+        root: PropTypes.string,
+        /**
+         * 图标元素css类名
+         */
+        image: PropTypes.string,
+        /**
+         * 描述元素css类名
+         */
+        description: PropTypes.string,
+        /**
+         * 底部元素css类名
+         */
+        footer: PropTypes.string
+    }),
 
     /**
      * 当前组件css类名，支持[动态css](/advanced-classname)

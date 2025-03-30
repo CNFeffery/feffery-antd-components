@@ -29,6 +29,8 @@ const AntdEmpty = (props) => {
         children,
         className,
         style,
+        styles,
+        classNames,
         key,
         locale,
         description,
@@ -53,6 +55,8 @@ const AntdEmpty = (props) => {
                         (className ? useCss(className) : undefined)
                 }
                 style={style}
+                styles={styles}
+                classNames={classNames}
                 key={key}
                 description={description}
                 image={builtinImage.get(image) || image}
