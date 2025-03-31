@@ -22,6 +22,8 @@ const AntdModal = ({
     className,
     key,
     style,
+    styles,
+    classNames,
     locale = 'zh-cn',
     setProps,
     title,
@@ -91,6 +93,8 @@ const AntdModal = ({
                         (className ? useCss(className) : undefined)
                 }
                 style={style}
+                styles={styles}
+                classNames={classNames}
                 key={key}
                 title={title}
                 open={visible}
@@ -150,6 +154,66 @@ AntdModal.propTypes = {
         PropTypes.string,
         PropTypes.object
     ]),
+
+    /**
+     * 细分控制子元素css样式
+     */
+    styles: PropTypes.exact({
+        /**
+         * 遮罩层元素css样式
+         */
+        mask: PropTypes.object,
+        /**
+         * 容器元素css样式
+         */
+        content: PropTypes.object,
+        /**
+         * 包裹层元素css样式
+         */
+        wrapper: PropTypes.object,
+        /**
+         * 头部元素css样式
+         */
+        header: PropTypes.object,
+        /**
+         * 内容元素css样式
+         */
+        body: PropTypes.object,
+        /**
+         * 底部元素css样式
+         */
+        footer: PropTypes.object
+    }),
+
+    /**
+     * 细分控制子元素css类名
+     */
+    classNames: PropTypes.exact({
+        /**
+         * 遮罩层元素css类名
+         */
+        mask: PropTypes.string,
+        /**
+         * 容器元素css类名
+         */
+        content: PropTypes.string,
+        /**
+         * 包裹层元素css类名
+         */
+        wrapper: PropTypes.string,
+        /**
+         * 头部元素css类名
+         */
+        header: PropTypes.string,
+        /**
+         * 内容元素css类名
+         */
+        body: PropTypes.string,
+        /**
+         * 底部元素css类名
+         */
+        footer: PropTypes.string
+    }),
 
     /**
      * 组件文案语种，可选项有`'zh-cn'`（简体中文）、`'en-us'`（英语）、`'de-de'`（德语）

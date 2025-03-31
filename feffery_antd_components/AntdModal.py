@@ -28,6 +28,52 @@ Keyword arguments:
 - className (string | dict; optional):
     当前组件css类名，支持[动态css](/advanced-classname).
 
+- styles (dict; optional):
+    细分控制子元素css样式.
+
+    `styles` is a dict with keys:
+
+    - mask (dict; optional):
+        遮罩层元素css样式.
+
+    - content (dict; optional):
+        容器元素css样式.
+
+    - wrapper (dict; optional):
+        包裹层元素css样式.
+
+    - header (dict; optional):
+        头部元素css样式.
+
+    - body (dict; optional):
+        内容元素css样式.
+
+    - footer (dict; optional):
+        底部元素css样式.
+
+- classNames (dict; optional):
+    细分控制子元素css类名.
+
+    `classNames` is a dict with keys:
+
+    - mask (string; optional):
+        遮罩层元素css类名.
+
+    - content (string; optional):
+        容器元素css类名.
+
+    - wrapper (string; optional):
+        包裹层元素css类名.
+
+    - header (string; optional):
+        头部元素css类名.
+
+    - body (string; optional):
+        内容元素css类名.
+
+    - footer (string; optional):
+        底部元素css类名.
+
 - locale (a value equal to: 'zh-cn', 'en-us', 'de-de'; default 'zh-cn'):
     组件文案语种，可选项有`'zh-cn'`（简体中文）、`'en-us'`（英语）、`'de-de'`（德语）
     默认值：`'zh-cn'`.
@@ -185,6 +231,30 @@ Keyword arguments:
     _base_nodes = ['title', 'okText', 'cancelText', 'loadingOkText', 'children']
     _namespace = 'feffery_antd_components'
     _type = 'AntdModal'
+    Styles = TypedDict(
+        "Styles",
+            {
+            "mask": NotRequired[dict],
+            "content": NotRequired[dict],
+            "wrapper": NotRequired[dict],
+            "header": NotRequired[dict],
+            "body": NotRequired[dict],
+            "footer": NotRequired[dict]
+        }
+    )
+
+    ClassNames = TypedDict(
+        "ClassNames",
+            {
+            "mask": NotRequired[str],
+            "content": NotRequired[str],
+            "wrapper": NotRequired[str],
+            "header": NotRequired[str],
+            "body": NotRequired[str],
+            "footer": NotRequired[str]
+        }
+    )
+
     OkButtonProps = TypedDict(
         "OkButtonProps",
             {
@@ -231,6 +301,8 @@ Keyword arguments:
         key: typing.Optional[str] = None,
         style: typing.Optional[typing.Any] = None,
         className: typing.Optional[typing.Union[str, dict]] = None,
+        styles: typing.Optional["Styles"] = None,
+        classNames: typing.Optional["ClassNames"] = None,
         locale: typing.Optional[Literal["zh-cn", "en-us", "de-de"]] = None,
         visible: typing.Optional[bool] = None,
         title: typing.Optional[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]] = None,
@@ -261,9 +333,9 @@ Keyword arguments:
         loading: typing.Optional[bool] = None,
         **kwargs
     ):
-        self._prop_names = ['id', 'key', 'children', 'style', 'className', 'locale', 'visible', 'title', 'renderFooter', 'okText', 'okButtonProps', 'cancelText', 'cancelButtonProps', 'width', 'centered', 'keyboard', 'closable', 'mask', 'maskClosable', 'okClickClose', 'zIndex', 'maskStyle', 'bodyStyle', 'okCounts', 'cancelCounts', 'closeCounts', 'confirmAutoSpin', 'loadingOkText', 'confirmLoading', 'transitionType', 'forceRender', 'destroyOnClose', 'loading', 'data-*', 'aria-*']
+        self._prop_names = ['id', 'key', 'children', 'style', 'className', 'styles', 'classNames', 'locale', 'visible', 'title', 'renderFooter', 'okText', 'okButtonProps', 'cancelText', 'cancelButtonProps', 'width', 'centered', 'keyboard', 'closable', 'mask', 'maskClosable', 'okClickClose', 'zIndex', 'maskStyle', 'bodyStyle', 'okCounts', 'cancelCounts', 'closeCounts', 'confirmAutoSpin', 'loadingOkText', 'confirmLoading', 'transitionType', 'forceRender', 'destroyOnClose', 'loading', 'data-*', 'aria-*']
         self._valid_wildcard_attributes =            ['data-', 'aria-']
-        self.available_properties = ['id', 'key', 'children', 'style', 'className', 'locale', 'visible', 'title', 'renderFooter', 'okText', 'okButtonProps', 'cancelText', 'cancelButtonProps', 'width', 'centered', 'keyboard', 'closable', 'mask', 'maskClosable', 'okClickClose', 'zIndex', 'maskStyle', 'bodyStyle', 'okCounts', 'cancelCounts', 'closeCounts', 'confirmAutoSpin', 'loadingOkText', 'confirmLoading', 'transitionType', 'forceRender', 'destroyOnClose', 'loading', 'data-*', 'aria-*']
+        self.available_properties = ['id', 'key', 'children', 'style', 'className', 'styles', 'classNames', 'locale', 'visible', 'title', 'renderFooter', 'okText', 'okButtonProps', 'cancelText', 'cancelButtonProps', 'width', 'centered', 'keyboard', 'closable', 'mask', 'maskClosable', 'okClickClose', 'zIndex', 'maskStyle', 'bodyStyle', 'okCounts', 'cancelCounts', 'closeCounts', 'confirmAutoSpin', 'loadingOkText', 'confirmLoading', 'transitionType', 'forceRender', 'destroyOnClose', 'loading', 'data-*', 'aria-*']
         self.available_wildcard_properties =            ['data-', 'aria-']
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()
