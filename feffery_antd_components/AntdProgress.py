@@ -28,9 +28,18 @@ Keyword arguments:
 - type (a value equal to: 'line', 'circle', 'dashboard'; default 'line'):
     进度条类型，可选项有`'line'`、`'circle'`、`'dashboard'`  默认值：`'line'`.
 
-- size (number | list of numbers | a value equal to: 'small', 'default'; default 'default'):
-    进度条尺寸规格，可选项有`'small'`、`'default'`、`'large'`，传入数值型表示像素尺寸
+- size (dict; default 'default'):
+    进度条尺寸规格，可选项有`'small'`、`'default'`、`'large'`，传入数值型表示像素尺寸，传入字典型可分别控制宽度和高度
     默认值：`'default'`.
+
+    `size` is a number | list of numbers | a value equal to: 'small',
+    'default' | dict with keys:
+
+    - width (number; optional):
+        像素宽度.
+
+    - height (number; optional):
+        像素高度.
 
 - percent (number; default 0):
     进度条进度，取值应在`0`到`100`之间，当`100`时默认会渲染为完成状态  默认值：`0`.
@@ -99,9 +108,6 @@ Keyword arguments:
 - trailColor (string; optional):
     未完成分段部分的颜色，默认无颜色.
 
-- width (number; default 132):
-    进度条画布宽度，`type='circle'`或`type='dashboard'`时有效  默认值：`132`.
-
 - gapDegree (number; optional):
     进度条缺口角度，取值应在`0`到`295`之间，仅`type='dashboard'`时可用  默认值：`75`.
 
@@ -121,6 +127,14 @@ Keyword arguments:
     _base_nodes = ['children']
     _namespace = 'feffery_antd_components'
     _type = 'AntdProgress'
+    Size = TypedDict(
+        "Size",
+            {
+            "width": NotRequired[typing.Union[int, float, numbers.Number]],
+            "height": NotRequired[typing.Union[int, float, numbers.Number]]
+        }
+    )
+
     SuccessStrokeColor = TypedDict(
         "SuccessStrokeColor",
             {
@@ -162,7 +176,7 @@ Keyword arguments:
         style: typing.Optional[typing.Any] = None,
         className: typing.Optional[typing.Union[str, dict]] = None,
         type: typing.Optional[Literal["line", "circle", "dashboard"]] = None,
-        size: typing.Optional[typing.Union[typing.Union[int, float, numbers.Number], typing.Sequence[typing.Union[int, float, numbers.Number]], Literal["small", "default"]]] = None,
+        size: typing.Optional[typing.Union[typing.Union[int, float, numbers.Number], typing.Sequence[typing.Union[int, float, numbers.Number]], Literal["small", "default"], "Size"]] = None,
         percent: typing.Optional[typing.Union[int, float, numbers.Number]] = None,
         success: typing.Optional["Success"] = None,
         format: typing.Optional["Format"] = None,
@@ -172,15 +186,14 @@ Keyword arguments:
         strokeLinecap: typing.Optional[Literal["round", "butt", "square"]] = None,
         strokeWidth: typing.Optional[typing.Union[int, float, numbers.Number]] = None,
         trailColor: typing.Optional[str] = None,
-        width: typing.Optional[typing.Union[int, float, numbers.Number]] = None,
         gapDegree: typing.Optional[typing.Union[int, float, numbers.Number]] = None,
         gapPosition: typing.Optional[Literal["top", "bottom", "left", "right"]] = None,
         steps: typing.Optional[typing.Union[int, float, numbers.Number]] = None,
         **kwargs
     ):
-        self._prop_names = ['id', 'key', 'style', 'className', 'type', 'size', 'percent', 'success', 'format', 'status', 'showInfo', 'strokeColor', 'strokeLinecap', 'strokeWidth', 'trailColor', 'width', 'gapDegree', 'gapPosition', 'steps', 'data-*', 'aria-*']
+        self._prop_names = ['id', 'key', 'style', 'className', 'type', 'size', 'percent', 'success', 'format', 'status', 'showInfo', 'strokeColor', 'strokeLinecap', 'strokeWidth', 'trailColor', 'gapDegree', 'gapPosition', 'steps', 'data-*', 'aria-*']
         self._valid_wildcard_attributes =            ['data-', 'aria-']
-        self.available_properties = ['id', 'key', 'style', 'className', 'type', 'size', 'percent', 'success', 'format', 'status', 'showInfo', 'strokeColor', 'strokeLinecap', 'strokeWidth', 'trailColor', 'width', 'gapDegree', 'gapPosition', 'steps', 'data-*', 'aria-*']
+        self.available_properties = ['id', 'key', 'style', 'className', 'type', 'size', 'percent', 'success', 'format', 'status', 'showInfo', 'strokeColor', 'strokeLinecap', 'strokeWidth', 'trailColor', 'gapDegree', 'gapPosition', 'steps', 'data-*', 'aria-*']
         self.available_wildcard_properties =            ['data-', 'aria-']
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()

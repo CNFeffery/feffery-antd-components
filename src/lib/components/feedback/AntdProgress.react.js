@@ -29,7 +29,6 @@ const AntdProgress = ({
     strokeLinecap,
     strokeWidth,
     trailColor,
-    width = 132,
     gapDegree,
     gapPosition = 'bottom',
     steps,
@@ -73,7 +72,6 @@ const AntdProgress = ({
             strokeLinecap={strokeLinecap}
             strokeWidth={strokeWidth}
             trailColor={trailColor}
-            width={width}
             gapDegree={gapDegree}
             gapPosition={gapPosition}
             steps={steps}
@@ -113,13 +111,23 @@ AntdProgress.propTypes = {
     type: PropTypes.oneOf(['line', 'circle', 'dashboard']),
 
     /**
-     * 进度条尺寸规格，可选项有`'small'`、`'default'`、`'large'`，传入数值型表示像素尺寸
+     * 进度条尺寸规格，可选项有`'small'`、`'default'`、`'large'`，传入数值型表示像素尺寸，传入字典型可分别控制宽度和高度
      * 默认值：`'default'`
      */
     size: PropTypes.oneOfType([
         PropTypes.number,
         PropTypes.arrayOf(PropTypes.number),
         PropTypes.oneOf(['small', 'default']),
+        PropTypes.shape({
+            /**
+             * 像素宽度
+             */
+            width: PropTypes.number,
+            /**
+             * 像素高度
+             */
+            height: PropTypes.number
+        })
     ]),
 
     /**
@@ -221,12 +229,6 @@ AntdProgress.propTypes = {
      * 未完成分段部分的颜色，默认无颜色
      */
     trailColor: PropTypes.string,
-
-    /**
-     * 进度条画布宽度，`type='circle'`或`type='dashboard'`时有效
-     * 默认值：`132`
-     */
-    width: PropTypes.number,
 
     /**
      * 进度条缺口角度，取值应在`0`到`295`之间，仅`type='dashboard'`时可用
