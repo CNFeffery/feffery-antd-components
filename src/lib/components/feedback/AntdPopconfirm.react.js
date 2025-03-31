@@ -21,6 +21,8 @@ const AntdPopconfirm = ({
     children,
     className,
     style,
+    styles,
+    classNames,
     key,
     locale = 'zh-cn',
     icon,
@@ -90,6 +92,8 @@ const AntdPopconfirm = ({
                         (className ? useCss(className) : undefined)
                 }
                 style={style}
+                styles={styles}
+                classNames={classNames}
                 key={key}
                 icon={icon}
                 title={title}
@@ -164,6 +168,34 @@ AntdPopconfirm.propTypes = {
         PropTypes.string,
         PropTypes.object
     ]),
+
+    /**
+     * 细分控制子元素css样式
+     */
+    styles: PropTypes.exact({
+        /**
+         * 根元素（包含箭头、内容元素）css样式
+         */
+        root: PropTypes.object,
+        /**
+         * 内容元素css样式
+         */
+        body: PropTypes.object
+    }),
+
+    /**
+     * 细分控制子元素css类名
+     */
+    classNames: PropTypes.exact({
+        /**
+         * 根元素（包含箭头、内容元素）css类名
+         */
+        root: PropTypes.string,
+        /**
+         * 内容元素css类名
+         */
+        body: PropTypes.string
+    }),
 
     /**
      * 组件文案语种，可选项有`'zh-cn'`（简体中文）、`'en-us'`（英语）、`'de-de'`（德语）
