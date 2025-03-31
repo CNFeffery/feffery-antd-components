@@ -28,6 +28,52 @@ Keyword arguments:
 - className (string | dict; optional):
     当前组件css类名，支持[动态css](/advanced-classname).
 
+- styles (dict; optional):
+    细分控制子元素css样式.
+
+    `styles` is a dict with keys:
+
+    - mask (dict; optional):
+        遮罩层元素css样式.
+
+    - content (dict; optional):
+        容器元素css样式.
+
+    - wrapper (dict; optional):
+        包裹层元素css样式.
+
+    - header (dict; optional):
+        头部元素css样式.
+
+    - body (dict; optional):
+        内容元素css样式.
+
+    - footer (dict; optional):
+        底部元素css样式.
+
+- classNames (dict; optional):
+    细分控制子元素css类名.
+
+    `classNames` is a dict with keys:
+
+    - mask (string; optional):
+        遮罩层元素css类名.
+
+    - content (string; optional):
+        容器元素css类名.
+
+    - wrapper (string; optional):
+        包裹层元素css类名.
+
+    - header (string; optional):
+        头部元素css类名.
+
+    - body (string; optional):
+        内容元素css类名.
+
+    - footer (string; optional):
+        底部元素css类名.
+
 - title (a list of or a singular dash component, string or number; optional):
     组件型，标题内容.
 
@@ -77,6 +123,29 @@ Keyword arguments:
     _base_nodes = ['title', 'children']
     _namespace = 'feffery_antd_components'
     _type = 'AntdPopupCard'
+    Styles = TypedDict(
+        "Styles",
+            {
+            "mask": NotRequired[dict],
+            "content": NotRequired[dict],
+            "wrapper": NotRequired[dict],
+            "header": NotRequired[dict],
+            "body": NotRequired[dict],
+            "footer": NotRequired[dict]
+        }
+    )
+
+    ClassNames = TypedDict(
+        "ClassNames",
+            {
+            "mask": NotRequired[str],
+            "content": NotRequired[str],
+            "wrapper": NotRequired[str],
+            "header": NotRequired[str],
+            "body": NotRequired[str],
+            "footer": NotRequired[str]
+        }
+    )
 
     @_explicitize_args
     def __init__(
@@ -86,6 +155,8 @@ Keyword arguments:
         key: typing.Optional[str] = None,
         style: typing.Optional[typing.Any] = None,
         className: typing.Optional[typing.Union[str, dict]] = None,
+        styles: typing.Optional["Styles"] = None,
+        classNames: typing.Optional["ClassNames"] = None,
         title: typing.Optional[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]] = None,
         visible: typing.Optional[bool] = None,
         width: typing.Optional[typing.Union[typing.Union[int, float, numbers.Number], str]] = None,
@@ -101,9 +172,9 @@ Keyword arguments:
         loading: typing.Optional[bool] = None,
         **kwargs
     ):
-        self._prop_names = ['id', 'key', 'children', 'style', 'className', 'title', 'visible', 'width', 'transitionType', 'forceRender', 'destroyOnClose', 'closable', 'closeIconType', 'draggable', 'dragClassName', 'zIndex', 'bodyStyle', 'loading', 'data-*', 'aria-*']
+        self._prop_names = ['id', 'key', 'children', 'style', 'className', 'styles', 'classNames', 'title', 'visible', 'width', 'transitionType', 'forceRender', 'destroyOnClose', 'closable', 'closeIconType', 'draggable', 'dragClassName', 'zIndex', 'bodyStyle', 'loading', 'data-*', 'aria-*']
         self._valid_wildcard_attributes =            ['data-', 'aria-']
-        self.available_properties = ['id', 'key', 'children', 'style', 'className', 'title', 'visible', 'width', 'transitionType', 'forceRender', 'destroyOnClose', 'closable', 'closeIconType', 'draggable', 'dragClassName', 'zIndex', 'bodyStyle', 'loading', 'data-*', 'aria-*']
+        self.available_properties = ['id', 'key', 'children', 'style', 'className', 'styles', 'classNames', 'title', 'visible', 'width', 'transitionType', 'forceRender', 'destroyOnClose', 'closable', 'closeIconType', 'draggable', 'dragClassName', 'zIndex', 'bodyStyle', 'loading', 'data-*', 'aria-*']
         self.available_wildcard_properties =            ['data-', 'aria-']
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()
