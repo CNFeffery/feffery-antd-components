@@ -39,7 +39,6 @@ const AntdPopupCard = ({
     draggable = false,
     dragClassName,
     zIndex = 1000,
-    bodyStyle,
     loading = false,
     setProps,
     ...others
@@ -155,7 +154,6 @@ const AntdPopupCard = ({
             width={width}
             open={visible}
             zIndex={zIndex}
-            bodyStyle={bodyStyle}
             mask={false}
             maskClosable={false}
             closable={false}
@@ -338,11 +336,6 @@ AntdPopupCard.propTypes = {
      * 默认值：`1000`
      */
     zIndex: PropTypes.number,
-
-    /**
-     * 内容区域css样式
-     */
-    bodyStyle: PropTypes.object,
 
     /**
      * 是否整体渲染为加载中状态
