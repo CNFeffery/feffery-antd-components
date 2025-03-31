@@ -32,9 +32,6 @@ const AntdPopconfirm = ({
     placement = 'top',
     mouseEnterDelay = 0.1,
     mouseLeaveDelay = 0.1,
-    overlayClassName,
-    overlayStyle,
-    overlayInnerStyle,
     okText,
     okButtonProps,
     cancelText,
@@ -106,13 +103,6 @@ const AntdPopconfirm = ({
                 placement={placement}
                 mouseEnterDelay={mouseEnterDelay}
                 mouseLeaveDelay={mouseLeaveDelay}
-                overlayClassName={
-                    isString(overlayClassName) ?
-                        overlayClassName :
-                        (overlayClassName ? useCss(overlayClassName) : undefined)
-                }
-                overlayStyle={overlayStyle}
-                overlayInnerStyle={overlayInnerStyle}
                 trigger={trigger}
                 okText={okText}
                 okButtonProps={okButtonProps}
@@ -244,24 +234,6 @@ AntdPopconfirm.propTypes = {
      * 默认值：`0.1`
      */
     mouseLeaveDelay: PropTypes.number,
-
-    /**
-     * 气泡确认框css类名
-     */
-    overlayClassName: PropTypes.oneOfType([
-        PropTypes.string,
-        PropTypes.object
-    ]),
-
-    /**
-     * 气泡确认框css样式
-     */
-    overlayStyle: PropTypes.object,
-
-    /**
-     * 内容区域css样式
-     */
-    overlayInnerStyle: PropTypes.object,
 
     /**
      * 组件型，确认按钮内容

@@ -76,15 +76,6 @@ Keyword arguments:
 - mouseLeaveDelay (number; default 0.1):
     从鼠标移出挂载元素，到气泡确认框消失的延时，单位：秒  默认值：`0.1`.
 
-- overlayClassName (string | dict; optional):
-    气泡确认框css类名.
-
-- overlayStyle (dict; optional):
-    气泡确认框css样式.
-
-- overlayInnerStyle (dict; optional):
-    内容区域css样式.
-
 - okText (a list of or a singular dash component, string or number; optional):
     组件型，确认按钮内容.
 
@@ -266,9 +257,6 @@ Keyword arguments:
         placement: typing.Optional[Literal["top", "left", "right", "bottom", "topLeft", "topRight", "bottomLeft", "bottomRight", "leftTop", "leftBottom", "rightTop", "rightBottom"]] = None,
         mouseEnterDelay: typing.Optional[typing.Union[int, float, numbers.Number]] = None,
         mouseLeaveDelay: typing.Optional[typing.Union[int, float, numbers.Number]] = None,
-        overlayClassName: typing.Optional[typing.Union[str, dict]] = None,
-        overlayStyle: typing.Optional[dict] = None,
-        overlayInnerStyle: typing.Optional[dict] = None,
         okText: typing.Optional[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]] = None,
         okButtonProps: typing.Optional["OkButtonProps"] = None,
         cancelText: typing.Optional[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]] = None,
@@ -286,9 +274,9 @@ Keyword arguments:
         loading_state: typing.Optional["LoadingState"] = None,
         **kwargs
     ):
-        self._prop_names = ['id', 'key', 'children', 'style', 'className', 'styles', 'classNames', 'locale', 'icon', 'title', 'description', 'disabled', 'placement', 'mouseEnterDelay', 'mouseLeaveDelay', 'overlayClassName', 'overlayStyle', 'overlayInnerStyle', 'okText', 'okButtonProps', 'cancelText', 'cancelButtonProps', 'showCancel', 'confirmCounts', 'cancelCounts', 'trigger', 'zIndex', 'arrow', 'fresh', 'open', 'permanent', 'popupContainer', 'data-*', 'aria-*', 'loading_state']
+        self._prop_names = ['id', 'key', 'children', 'style', 'className', 'styles', 'classNames', 'locale', 'icon', 'title', 'description', 'disabled', 'placement', 'mouseEnterDelay', 'mouseLeaveDelay', 'okText', 'okButtonProps', 'cancelText', 'cancelButtonProps', 'showCancel', 'confirmCounts', 'cancelCounts', 'trigger', 'zIndex', 'arrow', 'fresh', 'open', 'permanent', 'popupContainer', 'data-*', 'aria-*', 'loading_state']
         self._valid_wildcard_attributes =            ['data-', 'aria-']
-        self.available_properties = ['id', 'key', 'children', 'style', 'className', 'styles', 'classNames', 'locale', 'icon', 'title', 'description', 'disabled', 'placement', 'mouseEnterDelay', 'mouseLeaveDelay', 'overlayClassName', 'overlayStyle', 'overlayInnerStyle', 'okText', 'okButtonProps', 'cancelText', 'cancelButtonProps', 'showCancel', 'confirmCounts', 'cancelCounts', 'trigger', 'zIndex', 'arrow', 'fresh', 'open', 'permanent', 'popupContainer', 'data-*', 'aria-*', 'loading_state']
+        self.available_properties = ['id', 'key', 'children', 'style', 'className', 'styles', 'classNames', 'locale', 'icon', 'title', 'description', 'disabled', 'placement', 'mouseEnterDelay', 'mouseLeaveDelay', 'okText', 'okButtonProps', 'cancelText', 'cancelButtonProps', 'showCancel', 'confirmCounts', 'cancelCounts', 'trigger', 'zIndex', 'arrow', 'fresh', 'open', 'permanent', 'popupContainer', 'data-*', 'aria-*', 'loading_state']
         self.available_wildcard_properties =            ['data-', 'aria-']
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()
