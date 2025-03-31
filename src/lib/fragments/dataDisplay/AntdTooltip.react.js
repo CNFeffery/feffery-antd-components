@@ -20,6 +20,8 @@ const AntdTooltip = (props) => {
         children,
         className,
         style,
+        styles,
+        classNames,
         key,
         title,
         placement,
@@ -67,6 +69,8 @@ const AntdTooltip = (props) => {
                     (className ? useCss(className) : undefined)
             }
             style={style}
+            styles={styles}
+            classNames={classNames}
             key={key}
             title={title}
             placement={placement}

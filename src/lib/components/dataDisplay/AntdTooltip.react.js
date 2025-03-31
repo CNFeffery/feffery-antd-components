@@ -11,6 +11,8 @@ const AntdTooltip = ({
     children,
     className,
     style,
+    styles,
+    classNames,
     key,
     title,
     placement = 'top',
@@ -38,6 +40,8 @@ const AntdTooltip = ({
                     children,
                     className,
                     style,
+                    styles,
+                    classNames,
                     key,
                     title,
                     placement,
@@ -90,6 +94,34 @@ AntdTooltip.propTypes = {
         PropTypes.string,
         PropTypes.object
     ]),
+
+    /**
+     * 细分控制子元素css样式
+     */
+    styles: PropTypes.exact({
+        /**
+         * 根元素（包含箭头、内容元素）css样式
+         */
+        root: PropTypes.object,
+        /**
+         * 内容元素css样式
+         */
+        body: PropTypes.object
+    }),
+
+    /**
+     * 细分控制子元素css类名
+     */
+    classNames: PropTypes.exact({
+        /**
+         * 根元素（包含箭头、内容元素）css类名
+         */
+        root: PropTypes.string,
+        /**
+         * 内容元素css类名
+         */
+        body: PropTypes.string
+    }),
 
     /**
      * 组件型，文字提示内容
