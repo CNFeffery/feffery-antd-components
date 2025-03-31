@@ -21,6 +21,8 @@ const AntdPopover = (props) => {
         children,
         className,
         style,
+        styles,
+        classNames,
         key,
         title,
         content,
@@ -71,6 +73,8 @@ const AntdPopover = (props) => {
                     (className ? useCss(className) : undefined)
             }
             style={style}
+            styles={styles}
+            classNames={classNames}
             key={key}
             title={(title && title.content) ?
                 <div>
