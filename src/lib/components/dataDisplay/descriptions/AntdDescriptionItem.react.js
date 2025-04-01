@@ -14,8 +14,6 @@ const AntdDescriptionItem = ({
     key,
     label,
     span = 1,
-    labelStyle,
-    contentStyle,
     setProps,
     ...others
 }) => {
@@ -30,8 +28,6 @@ const AntdDescriptionItem = ({
                     key,
                     label,
                     span,
-                    labelStyle,
-                    contentStyle,
                     setProps,
                     ...others
                 }
@@ -79,16 +75,6 @@ AntdDescriptionItem.propTypes = {
      * 默认值：`1`
      */
     span: PropTypes.number,
-
-    /**
-     * 标签css样式
-     */
-    labelStyle: PropTypes.object,
-
-    /**
-     * 内容css样式
-     */
-    contentStyle: PropTypes.object,
 
     /**
      * `data-*`格式属性通配

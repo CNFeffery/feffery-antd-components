@@ -34,12 +34,6 @@ Keyword arguments:
 - span (number; default 1):
     所占宽度份数  默认值：`1`.
 
-- labelStyle (dict; optional):
-    标签css样式.
-
-- contentStyle (dict; optional):
-    内容css样式.
-
 - data-* (string; optional):
     `data-*`格式属性通配.
 
@@ -60,13 +54,11 @@ Keyword arguments:
         className: typing.Optional[typing.Union[str, dict]] = None,
         label: typing.Optional[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]] = None,
         span: typing.Optional[typing.Union[int, float, numbers.Number]] = None,
-        labelStyle: typing.Optional[dict] = None,
-        contentStyle: typing.Optional[dict] = None,
         **kwargs
     ):
-        self._prop_names = ['id', 'key', 'children', 'style', 'className', 'label', 'span', 'labelStyle', 'contentStyle', 'data-*', 'aria-*']
+        self._prop_names = ['id', 'key', 'children', 'style', 'className', 'label', 'span', 'data-*', 'aria-*']
         self._valid_wildcard_attributes =            ['data-', 'aria-']
-        self.available_properties = ['id', 'key', 'children', 'style', 'className', 'label', 'span', 'labelStyle', 'contentStyle', 'data-*', 'aria-*']
+        self.available_properties = ['id', 'key', 'children', 'style', 'className', 'label', 'span', 'data-*', 'aria-*']
         self.available_wildcard_properties =            ['data-', 'aria-']
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()

@@ -21,8 +21,6 @@ const AntdDescriptionItem = (props) => {
         key,
         label,
         span,
-        labelStyle,
-        contentStyle,
         setProps,
         ...others
     } = props;
@@ -43,8 +41,6 @@ const AntdDescriptionItem = (props) => {
             key={key}
             label={label}
             span={span}
-            labelStyle={labelStyle}
-            contentStyle={contentStyle}
             data-dash-is-loading={useLoading()}>
             {children}
         </div>
