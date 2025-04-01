@@ -20,9 +20,6 @@ const AntdPopover = ({
     color,
     mouseEnterDelay = 0.1,
     mouseLeaveDelay = 0.1,
-    overlayClassName,
-    overlayStyle,
-    overlayInnerStyle,
     trigger = 'hover',
     zIndex,
     arrow = 'show',
@@ -50,9 +47,6 @@ const AntdPopover = ({
                     color,
                     mouseEnterDelay,
                     mouseLeaveDelay,
-                    overlayClassName,
-                    overlayStyle,
-                    overlayInnerStyle,
                     trigger,
                     zIndex,
                     arrow,
@@ -159,24 +153,6 @@ AntdPopover.propTypes = {
      * 默认值：`0.1`
      */
     mouseLeaveDelay: PropTypes.number,
-
-    /**
-     * 气泡卡片css类名，支持[动态css](/advanced-classname)
-     */
-    overlayClassName: PropTypes.oneOfType([
-        PropTypes.string,
-        PropTypes.object
-    ]),
-
-    /**
-     * 气泡卡片css样式
-     */
-    overlayStyle: PropTypes.object,
-
-    /**
-     * 内容区css样式
-     */
-    overlayInnerStyle: PropTypes.object,
 
     /**
      * 触发方式，可选项有`'hover'`、`'focus'`、`'click'`，可多选

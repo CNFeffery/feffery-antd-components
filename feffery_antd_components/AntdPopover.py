@@ -69,15 +69,6 @@ Keyword arguments:
 - mouseLeaveDelay (number; default 0.1):
     鼠标移出到气泡卡片消失延时，单位：秒  默认值：`0.1`.
 
-- overlayClassName (string | dict; optional):
-    气泡卡片css类名，支持[动态css](/advanced-classname).
-
-- overlayStyle (dict; optional):
-    气泡卡片css样式.
-
-- overlayInnerStyle (dict; optional):
-    内容区css样式.
-
 - trigger (a value equal to: 'hover', 'focus', 'click' | list of a value equal to: 'hover', 'focus', 'click's; default 'hover'):
     触发方式，可选项有`'hover'`、`'focus'`、`'click'`，可多选  默认值：`'hover'`.
 
@@ -140,9 +131,6 @@ Keyword arguments:
         color: typing.Optional[str] = None,
         mouseEnterDelay: typing.Optional[typing.Union[int, float, numbers.Number]] = None,
         mouseLeaveDelay: typing.Optional[typing.Union[int, float, numbers.Number]] = None,
-        overlayClassName: typing.Optional[typing.Union[str, dict]] = None,
-        overlayStyle: typing.Optional[dict] = None,
-        overlayInnerStyle: typing.Optional[dict] = None,
         trigger: typing.Optional[typing.Union[Literal["hover", "focus", "click"], typing.Sequence[Literal["hover", "focus", "click"]]]] = None,
         zIndex: typing.Optional[typing.Union[int, float, numbers.Number]] = None,
         arrow: typing.Optional[Literal["show", "hide", "center"]] = None,
@@ -152,9 +140,9 @@ Keyword arguments:
         popupContainer: typing.Optional[Literal["parent", "body"]] = None,
         **kwargs
     ):
-        self._prop_names = ['id', 'key', 'children', 'style', 'className', 'styles', 'classNames', 'title', 'content', 'placement', 'color', 'mouseEnterDelay', 'mouseLeaveDelay', 'overlayClassName', 'overlayStyle', 'overlayInnerStyle', 'trigger', 'zIndex', 'arrow', 'fresh', 'open', 'permanent', 'popupContainer', 'data-*', 'aria-*']
+        self._prop_names = ['id', 'key', 'children', 'style', 'className', 'styles', 'classNames', 'title', 'content', 'placement', 'color', 'mouseEnterDelay', 'mouseLeaveDelay', 'trigger', 'zIndex', 'arrow', 'fresh', 'open', 'permanent', 'popupContainer', 'data-*', 'aria-*']
         self._valid_wildcard_attributes =            ['data-', 'aria-']
-        self.available_properties = ['id', 'key', 'children', 'style', 'className', 'styles', 'classNames', 'title', 'content', 'placement', 'color', 'mouseEnterDelay', 'mouseLeaveDelay', 'overlayClassName', 'overlayStyle', 'overlayInnerStyle', 'trigger', 'zIndex', 'arrow', 'fresh', 'open', 'permanent', 'popupContainer', 'data-*', 'aria-*']
+        self.available_properties = ['id', 'key', 'children', 'style', 'className', 'styles', 'classNames', 'title', 'content', 'placement', 'color', 'mouseEnterDelay', 'mouseLeaveDelay', 'trigger', 'zIndex', 'arrow', 'fresh', 'open', 'permanent', 'popupContainer', 'data-*', 'aria-*']
         self.available_wildcard_properties =            ['data-', 'aria-']
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()

@@ -30,9 +30,6 @@ const AntdPopover = (props) => {
         color,
         mouseEnterDelay,
         mouseLeaveDelay,
-        overlayClassName,
-        overlayStyle,
-        overlayInnerStyle,
         trigger,
         zIndex,
         arrow,
@@ -86,13 +83,6 @@ const AntdPopover = (props) => {
             color={color}
             mouseEnterDelay={mouseEnterDelay}
             mouseLeaveDelay={mouseLeaveDelay}
-            overlayClassName={
-                isString(overlayClassName) ?
-                    overlayClassName :
-                    (overlayClassName ? useCss(overlayClassName) : undefined)
-            }
-            overlayStyle={overlayStyle}
-            overlayInnerStyle={overlayInnerStyle}
             trigger={trigger}
             zIndex={zIndex}
             arrow={arrowPoint}
