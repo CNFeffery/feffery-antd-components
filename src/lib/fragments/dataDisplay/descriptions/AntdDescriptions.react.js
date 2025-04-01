@@ -82,6 +82,8 @@ const AntdDescriptions = (props) => {
                 id,
                 className,
                 style,
+                styles,
+                classNames,
                 label,
                 span,
                 ...otherProps
@@ -92,6 +94,8 @@ const AntdDescriptions = (props) => {
                     id={id}
                     className={className}
                     style={style}
+                    styles={styles}
+                    classNames={classNames}
                     label={label}
                     span={span}
                     {...omit(

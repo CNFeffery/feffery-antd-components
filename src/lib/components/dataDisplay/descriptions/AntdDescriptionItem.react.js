@@ -11,6 +11,8 @@ const AntdDescriptionItem = ({
     children,
     className,
     style,
+    styles,
+    classNames,
     key,
     label,
     span = 1,
@@ -25,6 +27,8 @@ const AntdDescriptionItem = ({
                     children,
                     className,
                     style,
+                    styles,
+                    classNames,
                     key,
                     label,
                     span,
@@ -64,6 +68,34 @@ AntdDescriptionItem.propTypes = {
         PropTypes.string,
         PropTypes.object
     ]),
+
+    /**
+     * 细分控制子元素css样式
+     */
+    styles: PropTypes.exact({
+        /**
+         * 标签元素css样式
+         */
+        label: PropTypes.object,
+        /**
+         * 内容元素css样式
+         */
+        content: PropTypes.object
+    }),
+
+    /**
+     * 细分控制子元素css类名
+     */
+    classNames: PropTypes.exact({
+        /**
+         * 标签元素css类名
+         */
+        label: PropTypes.string,
+        /**
+         * 内容元素css类名
+         */
+        content: PropTypes.string
+    }),
 
     /**
      * 组件型，标题内容

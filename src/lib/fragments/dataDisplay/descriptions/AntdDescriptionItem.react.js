@@ -18,6 +18,8 @@ const AntdDescriptionItem = (props) => {
         children,
         className,
         style,
+        styles,
+        classNames,
         key,
         label,
         span,
@@ -38,6 +40,8 @@ const AntdDescriptionItem = (props) => {
                     (className ? useCss(className) : undefined)
             }
             style={style}
+            styles={styles}
+            classNames={classNames}
             key={key}
             label={label}
             span={span}
