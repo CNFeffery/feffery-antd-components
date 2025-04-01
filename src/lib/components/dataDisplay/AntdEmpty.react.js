@@ -17,7 +17,6 @@ const AntdEmpty = ({
     locale = 'zh-cn',
     description,
     image = 'default',
-    imageStyle,
     setProps,
     ...others
 }) => {
@@ -35,7 +34,6 @@ const AntdEmpty = ({
                     locale,
                     description,
                     image,
-                    imageStyle,
                     setProps,
                     ...others
                 }
@@ -141,11 +139,6 @@ AntdEmpty.propTypes = {
             'default', 'simple'
         ])
     ]),
-
-    /**
-     * 状态图片css样式
-     */
-    imageStyle: PropTypes.object,
 
     /**
      * `data-*`格式属性通配

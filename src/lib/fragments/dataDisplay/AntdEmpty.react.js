@@ -35,7 +35,6 @@ const AntdEmpty = (props) => {
         locale,
         description,
         image,
-        imageStyle,
         setProps,
         ...others
     } = props;
@@ -60,7 +59,6 @@ const AntdEmpty = (props) => {
                 key={key}
                 description={description}
                 image={builtinImage.get(image) || image}
-                imageStyle={imageStyle}
                 data-dash-is-loading={useLoading()} >
                 {children}
             </Empty>

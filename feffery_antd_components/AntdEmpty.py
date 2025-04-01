@@ -72,9 +72,6 @@ Keyword arguments:
 - image (string | a value equal to: 'default', 'simple'; default 'default'):
     状态图片地址，也可以使用内置图片，可选项有`'default'`、`'simple'`  默认值：`'default'`.
 
-- imageStyle (dict; optional):
-    状态图片css样式.
-
 - data-* (string; optional):
     `data-*`格式属性通配.
 
@@ -117,12 +114,11 @@ Keyword arguments:
         locale: typing.Optional[Literal["zh-cn", "en-us", "de-de"]] = None,
         description: typing.Optional[typing.Union[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]], bool]] = None,
         image: typing.Optional[typing.Union[str, Literal["default", "simple"]]] = None,
-        imageStyle: typing.Optional[dict] = None,
         **kwargs
     ):
-        self._prop_names = ['id', 'key', 'children', 'style', 'styles', 'classNames', 'className', 'locale', 'description', 'image', 'imageStyle', 'data-*', 'aria-*']
+        self._prop_names = ['id', 'key', 'children', 'style', 'styles', 'classNames', 'className', 'locale', 'description', 'image', 'data-*', 'aria-*']
         self._valid_wildcard_attributes =            ['data-', 'aria-']
-        self.available_properties = ['id', 'key', 'children', 'style', 'styles', 'classNames', 'className', 'locale', 'description', 'image', 'imageStyle', 'data-*', 'aria-*']
+        self.available_properties = ['id', 'key', 'children', 'style', 'styles', 'classNames', 'className', 'locale', 'description', 'image', 'data-*', 'aria-*']
         self.available_wildcard_properties =            ['data-', 'aria-']
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()
