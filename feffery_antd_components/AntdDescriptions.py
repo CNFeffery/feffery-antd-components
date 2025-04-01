@@ -88,12 +88,6 @@ Keyword arguments:
     - children (a list of or a singular dash component, string or number; optional):
         组件型，子项内容.
 
-    - labelStyle (dict; optional):
-        子项标签css样式.
-
-    - contentStyle (dict; optional):
-        子项内容css样式.
-
     - style (dict; optional):
         子项css样式.
 
@@ -128,12 +122,6 @@ Keyword arguments:
 
 - layout (a value equal to: 'horizontal', 'vertical'; default 'horizontal'):
     布局方式，可选项有`'horizontal'`、`'vertical'`  默认值：`'horizontal'`.
-
-- labelStyle (dict; optional):
-    统一设置字段标签css样式.
-
-- contentStyle (dict; optional):
-    统一设置字段内容css样式.
 
 - extra (a list of or a singular dash component, string or number; optional):
     组件型，设置操作区域，显示在右上方.
@@ -177,8 +165,6 @@ Keyword arguments:
             "label": NotRequired[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]],
             "span": NotRequired[typing.Union[typing.Union[int, float, numbers.Number], Literal["filled"]]],
             "children": NotRequired[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]],
-            "labelStyle": NotRequired[dict],
-            "contentStyle": NotRequired[dict],
             "style": NotRequired[dict],
             "className": NotRequired[str]
         }
@@ -212,14 +198,12 @@ Keyword arguments:
         bordered: typing.Optional[bool] = None,
         size: typing.Optional[Literal["small", "default", "large"]] = None,
         layout: typing.Optional[Literal["horizontal", "vertical"]] = None,
-        labelStyle: typing.Optional[dict] = None,
-        contentStyle: typing.Optional[dict] = None,
         extra: typing.Optional[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]] = None,
         **kwargs
     ):
-        self._prop_names = ['id', 'key', 'children', 'style', 'className', 'styles', 'classNames', 'items', 'title', 'column', 'bordered', 'size', 'layout', 'labelStyle', 'contentStyle', 'extra', 'data-*', 'aria-*']
+        self._prop_names = ['id', 'key', 'children', 'style', 'className', 'styles', 'classNames', 'items', 'title', 'column', 'bordered', 'size', 'layout', 'extra', 'data-*', 'aria-*']
         self._valid_wildcard_attributes =            ['data-', 'aria-']
-        self.available_properties = ['id', 'key', 'children', 'style', 'className', 'styles', 'classNames', 'items', 'title', 'column', 'bordered', 'size', 'layout', 'labelStyle', 'contentStyle', 'extra', 'data-*', 'aria-*']
+        self.available_properties = ['id', 'key', 'children', 'style', 'className', 'styles', 'classNames', 'items', 'title', 'column', 'bordered', 'size', 'layout', 'extra', 'data-*', 'aria-*']
         self.available_wildcard_properties =            ['data-', 'aria-']
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()

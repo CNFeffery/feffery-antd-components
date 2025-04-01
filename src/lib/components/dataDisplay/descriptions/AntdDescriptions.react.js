@@ -20,8 +20,6 @@ const AntdDescriptions = ({
     bordered = false,
     size = 'default',
     layout = 'horizontal',
-    labelStyle,
-    contentStyle,
     extra,
     setProps,
     ...others
@@ -43,8 +41,6 @@ const AntdDescriptions = ({
                     bordered,
                     size,
                     layout,
-                    labelStyle,
-                    contentStyle,
                     extra,
                     setProps,
                     ...others
@@ -165,14 +161,6 @@ AntdDescriptions.propTypes = {
              */
             children: PropTypes.node,
             /**
-             * 子项标签css样式
-             */
-            labelStyle: PropTypes.object,
-            /**
-             * 子项内容css样式
-             */
-            contentStyle: PropTypes.object,
-            /**
              * 子项css样式
              */
             style: PropTypes.object,
@@ -221,16 +209,6 @@ AntdDescriptions.propTypes = {
      * 默认值：`'horizontal'`
      */
     layout: PropTypes.oneOf(['horizontal', 'vertical']),
-
-    /**
-     * 统一设置字段标签css样式
-     */
-    labelStyle: PropTypes.object,
-
-    /**
-     * 统一设置字段内容css样式
-     */
-    contentStyle: PropTypes.object,
 
     /**
      * 组件型，设置操作区域，显示在右上方

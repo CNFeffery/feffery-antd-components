@@ -30,8 +30,6 @@ const AntdDescriptions = (props) => {
         bordered,
         size,
         layout,
-        labelStyle,
-        contentStyle,
         extra,
         setProps,
         ...others
@@ -63,8 +61,6 @@ const AntdDescriptions = (props) => {
                 bordered={bordered}
                 size={size2size.get(size)}
                 layout={layout}
-                labelStyle={labelStyle}
-                contentStyle={contentStyle}
                 extra={extra}
                 data-dash-is-loading={useLoading()}>
                 {
@@ -88,8 +84,6 @@ const AntdDescriptions = (props) => {
                 style,
                 label,
                 span,
-                labelStyle,
-                contentStyle,
                 ...otherProps
             } = childProps;
 
@@ -100,8 +94,6 @@ const AntdDescriptions = (props) => {
                     style={style}
                     label={label}
                     span={span}
-                    labelStyle={labelStyle}
-                    contentStyle={contentStyle}
                     {...omit(
                         ['setProps', 'persistence', 'persistence_type', 'persisted_props'],
                         otherProps
@@ -131,8 +123,6 @@ const AntdDescriptions = (props) => {
             bordered={bordered}
             size={size2size.get(size)}
             layout={layout}
-            labelStyle={labelStyle}
-            contentStyle={contentStyle}
             extra={extra}
             data-dash-is-loading={useLoading()}>
             {descriptionItems}
