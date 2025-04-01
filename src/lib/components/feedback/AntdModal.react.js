@@ -42,8 +42,6 @@ const AntdModal = ({
     maskClosable = true,
     okClickClose = true,
     zIndex = 1000,
-    maskStyle,
-    bodyStyle,
     okCounts = 0,
     cancelCounts = 0,
     closeCounts = 0,
@@ -110,8 +108,6 @@ const AntdModal = ({
                 mask={mask}
                 maskClosable={maskClosable}
                 zIndex={zIndex}
-                maskStyle={maskStyle}
-                bodyStyle={bodyStyle}
                 onOk={listenOk}
                 onCancel={listenCancel}
                 afterClose={listenClose}
@@ -415,16 +411,6 @@ AntdModal.propTypes = {
      * 默认值：`1000`
      */
     zIndex: PropTypes.number,
-
-    /**
-     * 遮罩层css样式
-     */
-    maskStyle: PropTypes.object,
-
-    /**
-     * 内容区域css样式
-     */
-    bodyStyle: PropTypes.object,
 
     /**
      * 监听确认按钮累计点击次数
