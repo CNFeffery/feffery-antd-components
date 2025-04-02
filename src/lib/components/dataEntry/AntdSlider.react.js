@@ -11,7 +11,6 @@ const AntdSlider = ({
     name,
     className,
     style,
-    railStyle,
     styles,
     classNames,
     key,
@@ -45,7 +44,6 @@ const AntdSlider = ({
                     name,
                     className,
                     style,
-                    railStyle,
                     styles,
                     classNames,
                     key,
@@ -99,11 +97,6 @@ AntdSlider.propTypes = {
         PropTypes.string,
         PropTypes.object
     ]),
-
-    /**
-     * 滑轨部分css样式
-     */
-    railStyle: PropTypes.object,
 
     /**
      * 细分控制子元素css样式

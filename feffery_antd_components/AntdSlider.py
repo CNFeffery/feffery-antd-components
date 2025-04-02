@@ -25,9 +25,6 @@ Keyword arguments:
 - className (string | dict; optional):
     当前组件css类名，支持[动态css](/advanced-classname).
 
-- railStyle (dict; optional):
-    滑轨部分css样式.
-
 - styles (dict; optional):
     细分控制子元素css样式.
 
@@ -170,7 +167,6 @@ Keyword arguments:
         key: typing.Optional[str] = None,
         style: typing.Optional[typing.Any] = None,
         className: typing.Optional[typing.Union[str, dict]] = None,
-        railStyle: typing.Optional[dict] = None,
         styles: typing.Optional["Styles"] = None,
         classNames: typing.Optional["ClassNames"] = None,
         name: typing.Optional[str] = None,
@@ -196,9 +192,9 @@ Keyword arguments:
         persistence_type: typing.Optional[Literal["local", "session", "memory"]] = None,
         **kwargs
     ):
-        self._prop_names = ['id', 'key', 'style', 'className', 'railStyle', 'styles', 'classNames', 'name', 'vertical', 'range', 'min', 'max', 'step', 'marks', 'tooltipVisible', 'tooltipPrefix', 'tooltipSuffix', 'disabled', 'value', 'defaultValue', 'autoFocus', 'popupContainer', 'readOnly', 'batchPropsNames', 'batchPropsValues', 'data-*', 'aria-*', 'persistence', 'persisted_props', 'persistence_type']
+        self._prop_names = ['id', 'key', 'style', 'className', 'styles', 'classNames', 'name', 'vertical', 'range', 'min', 'max', 'step', 'marks', 'tooltipVisible', 'tooltipPrefix', 'tooltipSuffix', 'disabled', 'value', 'defaultValue', 'autoFocus', 'popupContainer', 'readOnly', 'batchPropsNames', 'batchPropsValues', 'data-*', 'aria-*', 'persistence', 'persisted_props', 'persistence_type']
         self._valid_wildcard_attributes =            ['data-', 'aria-']
-        self.available_properties = ['id', 'key', 'style', 'className', 'railStyle', 'styles', 'classNames', 'name', 'vertical', 'range', 'min', 'max', 'step', 'marks', 'tooltipVisible', 'tooltipPrefix', 'tooltipSuffix', 'disabled', 'value', 'defaultValue', 'autoFocus', 'popupContainer', 'readOnly', 'batchPropsNames', 'batchPropsValues', 'data-*', 'aria-*', 'persistence', 'persisted_props', 'persistence_type']
+        self.available_properties = ['id', 'key', 'style', 'className', 'styles', 'classNames', 'name', 'vertical', 'range', 'min', 'max', 'step', 'marks', 'tooltipVisible', 'tooltipPrefix', 'tooltipSuffix', 'disabled', 'value', 'defaultValue', 'autoFocus', 'popupContainer', 'readOnly', 'batchPropsNames', 'batchPropsValues', 'data-*', 'aria-*', 'persistence', 'persisted_props', 'persistence_type']
         self.available_wildcard_properties =            ['data-', 'aria-']
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()

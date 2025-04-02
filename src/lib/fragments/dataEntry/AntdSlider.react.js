@@ -25,7 +25,6 @@ const AntdSlider = (props) => {
         name,
         className,
         style,
-        railStyle,
         styles,
         classNames,
         key,
@@ -134,7 +133,6 @@ const AntdSlider = (props) => {
                     (className ? useCss(className) : undefined)
             }
             style={style}
-            railStyle={railStyle}
             styles={styles}
             classNames={classNames}
             key={key}
