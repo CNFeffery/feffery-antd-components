@@ -21,10 +21,7 @@ const AntdAvatarGroup = (props) => {
         className,
         style,
         key,
-        maxCount,
-        maxPopoverPlacement,
-        maxPopoverTrigger,
-        maxStyle,
+        max,
         size,
         setProps,
         ...others
@@ -42,10 +39,7 @@ const AntdAvatarGroup = (props) => {
             }
             style={style}
             key={key}
-            maxCount={maxCount}
-            maxPopoverPlacement={maxPopoverPlacement}
-            maxPopoverTrigger={maxPopoverTrigger}
-            maxStyle={maxStyle}
+            max={max}
             size={size}
             data-dash-is-loading={useLoading()}
         >{children}</Avatar.Group>

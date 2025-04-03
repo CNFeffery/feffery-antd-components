@@ -28,18 +28,29 @@ Keyword arguments:
 - className (string | dict; optional):
     当前组件css类名，支持[动态css](/advanced-classname).
 
-- maxCount (number; optional):
-    最多显示的头像个数，默认无限制.
+- max (dict; optional):
+    配置最多显示功能相关参数.
 
-- maxPopoverPlacement (a value equal to: 'top', 'bottom'; default 'top'):
-    超出`maxCount`数量限制之外的头像气泡卡片弹出方位，可选项有`'top'`、`'bottom'`  默认值：`'top'`.
+    `max` is a dict with keys:
 
-- maxPopoverTrigger (a value equal to: 'hover', 'click'; default 'hover'):
-    超出`maxCount`数量限制之外的头像气泡卡片弹出触发方式，可选项有`'hover'`、`'click'`
-    默认值：`'hover'`.
+    - count (number; optional):
+        最多显示的头像个数，默认无限制.
 
-- maxStyle (dict; optional):
-    头像省略部分css样式.
+    - style (dict; optional):
+        头像省略部分css样式.
+
+    - popover (dict; optional):
+        展开层相关配置参数.
+
+        `popover` is a dict with keys:
+
+        - placement (a value equal to: 'top', 'bottom', 'right'; optional):
+            超出`maxCount`数量限制之外的头像气泡卡片弹出方位，可选项有`'top'`、`'bottom'`、`'right'`
+            默认值：`'top'`.
+
+        - trigger (a value equal to: 'hover', 'click'; optional):
+            超出`maxCount`数量限制之外的头像气泡卡片弹出触发方式，可选项有`'hover'`、`'click'`
+            默认值：`'hover'`.
 
 - size (dict; default 'default'):
     统一设置内部头像尺寸规格，传入数值型表示像素尺寸，传入字符型表示内置规格，可选项有`'large'`、`'small'`、`'default'`，支持响应式断点
@@ -69,6 +80,23 @@ Keyword arguments:
     _base_nodes = ['children']
     _namespace = 'feffery_antd_components'
     _type = 'AntdAvatarGroup'
+    MaxPopover = TypedDict(
+        "MaxPopover",
+            {
+            "placement": NotRequired[Literal["top", "bottom", "right"]],
+            "trigger": NotRequired[Literal["hover", "click"]]
+        }
+    )
+
+    Max = TypedDict(
+        "Max",
+            {
+            "count": NotRequired[typing.Union[int, float, numbers.Number]],
+            "style": NotRequired[dict],
+            "popover": NotRequired["MaxPopover"]
+        }
+    )
+
     Size = TypedDict(
         "Size",
             {
@@ -89,16 +117,13 @@ Keyword arguments:
         key: typing.Optional[str] = None,
         style: typing.Optional[typing.Any] = None,
         className: typing.Optional[typing.Union[str, dict]] = None,
-        maxCount: typing.Optional[typing.Union[int, float, numbers.Number]] = None,
-        maxPopoverPlacement: typing.Optional[Literal["top", "bottom"]] = None,
-        maxPopoverTrigger: typing.Optional[Literal["hover", "click"]] = None,
-        maxStyle: typing.Optional[dict] = None,
+        max: typing.Optional["Max"] = None,
         size: typing.Optional[typing.Union[typing.Union[int, float, numbers.Number], Literal["large", "small", "default"], "Size"]] = None,
         **kwargs
     ):
-        self._prop_names = ['id', 'key', 'children', 'style', 'className', 'maxCount', 'maxPopoverPlacement', 'maxPopoverTrigger', 'maxStyle', 'size', 'data-*', 'aria-*']
+        self._prop_names = ['id', 'key', 'children', 'style', 'className', 'max', 'size', 'data-*', 'aria-*']
         self._valid_wildcard_attributes =            ['data-', 'aria-']
-        self.available_properties = ['id', 'key', 'children', 'style', 'className', 'maxCount', 'maxPopoverPlacement', 'maxPopoverTrigger', 'maxStyle', 'size', 'data-*', 'aria-*']
+        self.available_properties = ['id', 'key', 'children', 'style', 'className', 'max', 'size', 'data-*', 'aria-*']
         self.available_wildcard_properties =            ['data-', 'aria-']
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()

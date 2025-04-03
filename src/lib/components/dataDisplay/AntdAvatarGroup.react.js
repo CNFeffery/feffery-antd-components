@@ -12,10 +12,7 @@ const AntdAvatarGroup = ({
     className,
     style,
     key,
-    maxCount,
-    maxPopoverPlacement = 'top',
-    maxPopoverTrigger = 'hover',
-    maxStyle,
+    max,
     size = 'default',
     setProps,
     ...others
@@ -29,10 +26,7 @@ const AntdAvatarGroup = ({
                     className,
                     style,
                     key,
-                    maxCount,
-                    maxPopoverPlacement,
-                    maxPopoverTrigger,
-                    maxStyle,
+                    max,
                     size,
                     setProps,
                     ...others
@@ -72,26 +66,33 @@ AntdAvatarGroup.propTypes = {
     ]),
 
     /**
-     * 最多显示的头像个数，默认无限制
+     * 配置最多显示功能相关参数
      */
-    maxCount: PropTypes.number,
-
-    /**
-     * 超出`maxCount`数量限制之外的头像气泡卡片弹出方位，可选项有`'top'`、`'bottom'`
-     * 默认值：`'top'`
-     */
-    maxPopoverPlacement: PropTypes.oneOf(['top', 'bottom']),
-
-    /**
-     * 超出`maxCount`数量限制之外的头像气泡卡片弹出触发方式，可选项有`'hover'`、`'click'`
-     * 默认值：`'hover'`
-     */
-    maxPopoverTrigger: PropTypes.oneOf(['hover', 'click']),
-
-    /**
-     * 头像省略部分css样式
-     */
-    maxStyle: PropTypes.object,
+    max: PropTypes.shape({
+        /**
+         * 最多显示的头像个数，默认无限制
+         */
+        count: PropTypes.number,
+        /**
+         * 头像省略部分css样式
+         */
+        style: PropTypes.object,
+        /**
+         * 展开层相关配置参数
+         */
+        popover: PropTypes.shape({
+            /**
+             * 超出`maxCount`数量限制之外的头像气泡卡片弹出方位，可选项有`'top'`、`'bottom'`、`'right'`
+             * 默认值：`'top'`
+             */
+            placement: PropTypes.oneOf(['top', 'bottom', 'right']),
+            /**
+             * 超出`maxCount`数量限制之外的头像气泡卡片弹出触发方式，可选项有`'hover'`、`'click'`
+             * 默认值：`'hover'`
+             */
+            trigger: PropTypes.oneOf(['hover', 'click']),
+        })
+    }),
 
     /**
      * 统一设置内部头像尺寸规格，传入数值型表示像素尺寸，传入字符型表示内置规格，可选项有`'large'`、`'small'`、`'default'`，支持响应式断点
@@ -126,13 +127,6 @@ AntdAvatarGroup.propTypes = {
      */
     setProps: PropTypes.func
 };
-
-// 设置默认参数
-AntdAvatarGroup.defaultProps = {
-    maxPopoverPlacement: 'top',
-    maxPopoverTrigger: 'hover',
-    size: 'default'
-}
 
 export default AntdAvatarGroup;
 
