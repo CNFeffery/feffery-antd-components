@@ -126,9 +126,6 @@ Keyword arguments:
 - headStyle (dict; optional):
     标题css样式.
 
-- bordered (boolean; default True):
-    是否渲染边框  默认值：`True`.
-
 - variant (a value equal to: 'outlined', 'borderless'; default 'outlined'):
     卡片形态变体，可选项有`'outlined'`、`'borderless'`  默认值：`'outlined'`.
 
@@ -212,16 +209,15 @@ Keyword arguments:
         coverImg: typing.Optional["CoverImg"] = None,
         bodyStyle: typing.Optional[dict] = None,
         headStyle: typing.Optional[dict] = None,
-        bordered: typing.Optional[bool] = None,
         variant: typing.Optional[Literal["outlined", "borderless"]] = None,
         hoverable: typing.Optional[bool] = None,
         size: typing.Optional[Literal["default", "small"]] = None,
         nClicks: typing.Optional[typing.Union[int, float, numbers.Number]] = None,
         **kwargs
     ):
-        self._prop_names = ['id', 'key', 'children', 'style', 'className', 'styles', 'classNames', 'actions', 'title', 'extraLink', 'extra', 'coverImg', 'bodyStyle', 'headStyle', 'bordered', 'variant', 'hoverable', 'size', 'nClicks', 'data-*', 'aria-*']
+        self._prop_names = ['id', 'key', 'children', 'style', 'className', 'styles', 'classNames', 'actions', 'title', 'extraLink', 'extra', 'coverImg', 'bodyStyle', 'headStyle', 'variant', 'hoverable', 'size', 'nClicks', 'data-*', 'aria-*']
         self._valid_wildcard_attributes =            ['data-', 'aria-']
-        self.available_properties = ['id', 'key', 'children', 'style', 'className', 'styles', 'classNames', 'actions', 'title', 'extraLink', 'extra', 'coverImg', 'bodyStyle', 'headStyle', 'bordered', 'variant', 'hoverable', 'size', 'nClicks', 'data-*', 'aria-*']
+        self.available_properties = ['id', 'key', 'children', 'style', 'className', 'styles', 'classNames', 'actions', 'title', 'extraLink', 'extra', 'coverImg', 'bodyStyle', 'headStyle', 'variant', 'hoverable', 'size', 'nClicks', 'data-*', 'aria-*']
         self.available_wildcard_properties =            ['data-', 'aria-']
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()
