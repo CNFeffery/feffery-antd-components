@@ -120,12 +120,6 @@ Keyword arguments:
     - style (dict; optional):
         图片css样式.
 
-- bodyStyle (dict; optional):
-    内容区css样式.
-
-- headStyle (dict; optional):
-    标题css样式.
-
 - variant (a value equal to: 'outlined', 'borderless'; default 'outlined'):
     卡片形态变体，可选项有`'outlined'`、`'borderless'`  默认值：`'outlined'`.
 
@@ -207,17 +201,15 @@ Keyword arguments:
         extraLink: typing.Optional["ExtraLink"] = None,
         extra: typing.Optional[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]] = None,
         coverImg: typing.Optional["CoverImg"] = None,
-        bodyStyle: typing.Optional[dict] = None,
-        headStyle: typing.Optional[dict] = None,
         variant: typing.Optional[Literal["outlined", "borderless"]] = None,
         hoverable: typing.Optional[bool] = None,
         size: typing.Optional[Literal["default", "small"]] = None,
         nClicks: typing.Optional[typing.Union[int, float, numbers.Number]] = None,
         **kwargs
     ):
-        self._prop_names = ['id', 'key', 'children', 'style', 'className', 'styles', 'classNames', 'actions', 'title', 'extraLink', 'extra', 'coverImg', 'bodyStyle', 'headStyle', 'variant', 'hoverable', 'size', 'nClicks', 'data-*', 'aria-*']
+        self._prop_names = ['id', 'key', 'children', 'style', 'className', 'styles', 'classNames', 'actions', 'title', 'extraLink', 'extra', 'coverImg', 'variant', 'hoverable', 'size', 'nClicks', 'data-*', 'aria-*']
         self._valid_wildcard_attributes =            ['data-', 'aria-']
-        self.available_properties = ['id', 'key', 'children', 'style', 'className', 'styles', 'classNames', 'actions', 'title', 'extraLink', 'extra', 'coverImg', 'bodyStyle', 'headStyle', 'variant', 'hoverable', 'size', 'nClicks', 'data-*', 'aria-*']
+        self.available_properties = ['id', 'key', 'children', 'style', 'className', 'styles', 'classNames', 'actions', 'title', 'extraLink', 'extra', 'coverImg', 'variant', 'hoverable', 'size', 'nClicks', 'data-*', 'aria-*']
         self.available_wildcard_properties =            ['data-', 'aria-']
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()

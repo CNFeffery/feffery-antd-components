@@ -27,8 +27,6 @@ const AntdCard = (props) => {
         extraLink,
         extra,
         coverImg,
-        bodyStyle,
-        headStyle,
         variant,
         hoverable,
         size,
@@ -51,16 +49,28 @@ const AntdCard = (props) => {
                     (className ? useCss(className) : undefined)
             }
             style={style}
-            styles={styles}
+            styles={
+                styles?.body ?
+                    {
+                        ...styles,
+                        body: {
+                            // 确保网格卡片排布正常
+                            display: 'flex',
+                            flexWrap: 'wrap',
+                            ...styles.body
+                        }
+                    } :
+                    {
+                        body: {
+                            // 确保网格卡片排布正常
+                            display: 'flex',
+                            flexWrap: 'wrap'
+                        },
+                        ...styles
+                    }
+            }
             classNames={classNames}
             key={key}
-            bodyStyle={{
-                // 确保网格卡片排布正常
-                display: 'flex',
-                flexWrap: 'wrap',
-                ...bodyStyle
-            }}
-            headStyle={headStyle}
             actions={actions}
             extra={
                 extra || (

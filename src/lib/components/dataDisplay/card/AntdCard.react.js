@@ -15,8 +15,6 @@ const AntdCard = ({
     extraLink,
     extra,
     coverImg,
-    bodyStyle,
-    headStyle,
     variant = 'outlined',
     hoverable = false,
     size = 'default',
@@ -40,8 +38,6 @@ const AntdCard = ({
                     extraLink,
                     extra,
                     coverImg,
-                    bodyStyle,
-                    headStyle,
                     variant,
                     hoverable,
                     size,
@@ -206,16 +202,6 @@ AntdCard.propTypes = {
          */
         style: PropTypes.object
     }),
-
-    /**
-     * 内容区css样式
-     */
-    bodyStyle: PropTypes.object,
-
-    /**
-     * 标题css样式
-     */
-    headStyle: PropTypes.object,
 
     /**
      * 卡片形态变体，可选项有`'outlined'`、`'borderless'`
