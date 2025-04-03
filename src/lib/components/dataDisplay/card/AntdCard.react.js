@@ -18,6 +18,7 @@ const AntdCard = ({
     bodyStyle,
     headStyle,
     bordered = true,
+    variant = 'outlined',
     hoverable = false,
     size = 'default',
     title,
@@ -43,6 +44,7 @@ const AntdCard = ({
                     bodyStyle,
                     headStyle,
                     bordered,
+                    variant,
                     hoverable,
                     size,
                     title,
@@ -222,6 +224,12 @@ AntdCard.propTypes = {
      * 默认值：`true`
      */
     bordered: PropTypes.bool,
+
+    /**
+     * 卡片形态变体，可选项有`'outlined'`、`'borderless'`
+     * 默认值：`'outlined'`
+     */
+    variant: PropTypes.oneOf(['outlined', 'borderless']),
 
     /**
      * 是否在鼠标悬停时显示特殊样式

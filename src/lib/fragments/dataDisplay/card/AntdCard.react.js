@@ -30,6 +30,7 @@ const AntdCard = (props) => {
         bodyStyle,
         headStyle,
         bordered,
+        variant,
         hoverable,
         size,
         title,
@@ -79,6 +80,7 @@ const AntdCard = (props) => {
                     className={coverImg && coverImg.className} />
             }
             bordered={bordered}
+            variant={variant}
             hoverable={hoverable}
             size={size}
             title={title}
