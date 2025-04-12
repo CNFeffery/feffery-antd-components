@@ -64,6 +64,9 @@ Keyword arguments:
 - height (number; optional):
     图片水印像素高度.
 
+- inherit (boolean; default True):
+    是否将水印传导给`AntdModal`、`AntdDrawer`等弹出类组件  默认值：`True`.
+
 - data-* (string; optional):
     `data-*`格式属性通配.
 
@@ -94,11 +97,12 @@ Keyword arguments:
         image: typing.Optional[str] = None,
         width: typing.Optional[typing.Union[int, float, numbers.Number]] = None,
         height: typing.Optional[typing.Union[int, float, numbers.Number]] = None,
+        inherit: typing.Optional[bool] = None,
         **kwargs
     ):
-        self._prop_names = ['id', 'key', 'children', 'style', 'className', 'markClassName', 'markStyle', 'content', 'rotate', 'zIndex', 'fontColor', 'fontSize', 'gapX', 'gapY', 'image', 'width', 'height', 'data-*', 'aria-*']
+        self._prop_names = ['id', 'key', 'children', 'style', 'className', 'markClassName', 'markStyle', 'content', 'rotate', 'zIndex', 'fontColor', 'fontSize', 'gapX', 'gapY', 'image', 'width', 'height', 'inherit', 'data-*', 'aria-*']
         self._valid_wildcard_attributes =            ['data-', 'aria-']
-        self.available_properties = ['id', 'key', 'children', 'style', 'className', 'markClassName', 'markStyle', 'content', 'rotate', 'zIndex', 'fontColor', 'fontSize', 'gapX', 'gapY', 'image', 'width', 'height', 'data-*', 'aria-*']
+        self.available_properties = ['id', 'key', 'children', 'style', 'className', 'markClassName', 'markStyle', 'content', 'rotate', 'zIndex', 'fontColor', 'fontSize', 'gapX', 'gapY', 'image', 'width', 'height', 'inherit', 'data-*', 'aria-*']
         self.available_wildcard_properties =            ['data-', 'aria-']
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()

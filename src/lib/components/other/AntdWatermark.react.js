@@ -28,6 +28,7 @@ const AntdWatermark = ({
     image,
     width,
     height,
+    inherit = true,
     ...others
 }) => {
 
@@ -53,6 +54,7 @@ const AntdWatermark = ({
             image={image}
             width={width}
             height={height}
+            inherit={inherit}
             data-dash-is-loading={useLoading()}>
             {children}
         </WaterMark>
@@ -151,6 +153,12 @@ AntdWatermark.propTypes = {
      * 图片水印像素高度
      */
     height: PropTypes.number,
+
+    /**
+     * 是否将水印传导给`AntdModal`、`AntdDrawer`等弹出类组件
+     * 默认值：`true`
+     */
+    inherit: PropTypes.bool,
 
     /**
      * `data-*`格式属性通配
