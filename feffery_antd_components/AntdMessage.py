@@ -45,10 +45,7 @@ Keyword arguments:
     自定义前缀图标，同`AntdIcon`的`icon`参数.
 
 - iconRenderer (a value equal to: 'AntdIcon', 'fontawesome'; default 'AntdIcon'):
-    自定义前缀图标渲染方式，可选项有`'AntdIcon'`、`'fontawesome'`.
-
-- underCompatibilityMode (boolean; optional):
-    当前消息提示组件是否位于设置了`compatibilityMode=True`的`AntdConfigProvider`内部."""
+    自定义前缀图标渲染方式，可选项有`'AntdIcon'`、`'fontawesome'`."""
     _children_props = []
     _base_nodes = ['children']
     _namespace = 'feffery_antd_components'
@@ -68,12 +65,11 @@ Keyword arguments:
         maxCount: typing.Optional[typing.Union[int, float, numbers.Number]] = None,
         icon: typing.Optional[str] = None,
         iconRenderer: typing.Optional[Literal["AntdIcon", "fontawesome"]] = None,
-        underCompatibilityMode: typing.Optional[bool] = None,
         **kwargs
     ):
-        self._prop_names = ['id', 'key', 'style', 'className', 'content', 'type', 'duration', 'top', 'maxCount', 'icon', 'iconRenderer', 'underCompatibilityMode']
+        self._prop_names = ['id', 'key', 'style', 'className', 'content', 'type', 'duration', 'top', 'maxCount', 'icon', 'iconRenderer']
         self._valid_wildcard_attributes =            []
-        self.available_properties = ['id', 'key', 'style', 'className', 'content', 'type', 'duration', 'top', 'maxCount', 'icon', 'iconRenderer', 'underCompatibilityMode']
+        self.available_properties = ['id', 'key', 'style', 'className', 'content', 'type', 'duration', 'top', 'maxCount', 'icon', 'iconRenderer']
         self.available_wildcard_properties =            []
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()

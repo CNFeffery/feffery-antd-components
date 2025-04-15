@@ -26,7 +26,6 @@ const AntdNotification = ({
     closable = true,
     closeButton,
     stack = false,
-    underCompatibilityMode,
     setProps
 }) => {
 
@@ -196,11 +195,6 @@ AntdNotification.propTypes = {
      * 默认值：`false`
      */
     stack: PropTypes.bool,
-
-    /**
-     * 当前通知提醒框组件是否位于设置了`compatibilityMode=true`的`AntdConfigProvider`内部
-     */
-    underCompatibilityMode: PropTypes.bool,
 
     /**
      * Dash-assigned callback that should be called to report property changes

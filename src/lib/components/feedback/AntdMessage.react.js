@@ -22,7 +22,6 @@ const AntdMessage = ({
     iconRenderer = 'AntdIcon',
     top = 8,
     maxCount,
-    underCompatibilityMode,
     setProps
 }) => {
 
@@ -134,11 +133,6 @@ AntdMessage.propTypes = {
      * 自定义前缀图标渲染方式，可选项有`'AntdIcon'`、`'fontawesome'`
      */
     iconRenderer: PropTypes.oneOf(['AntdIcon', 'fontawesome']),
-
-    /**
-     * 当前消息提示组件是否位于设置了`compatibilityMode=true`的`AntdConfigProvider`内部
-     */
-    underCompatibilityMode: PropTypes.bool,
 
     /**
      * Dash-assigned callback that should be called to report property changes
