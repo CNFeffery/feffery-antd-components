@@ -2,7 +2,7 @@
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 // antd核心
-import { message, App } from 'antd';
+import { message } from 'antd';
 import AntdIcon from '../general/AntdIcon.react';
 // 辅助库
 import { isString } from 'lodash';
@@ -26,18 +26,6 @@ const AntdMessage = ({
     setProps
 }) => {
 
-    const { message: _message } = App.useApp();
-
-    // 令全局参数初始化时生效
-    useEffect(() => {
-        if (!underCompatibilityMode) {
-            message.config({
-                top: top,
-                maxCount: maxCount
-            });
-        }
-    }, []);
-
     let config = {
         className: (
             isString(className) ?
@@ -46,7 +34,9 @@ const AntdMessage = ({
         ),
         style: style,
         content: content || ' ', // 规避content为空时Objects are not valid as a React child报错问题
-        duration: duration
+        duration: duration,
+        top: top,
+        maxCount: maxCount
     }
 
     if (icon) {
@@ -67,35 +57,23 @@ const AntdMessage = ({
         )
     }
 
+    const [messageApi, contextHolder] = message.useMessage(config);
+
     useEffect(() => {
-        if (underCompatibilityMode) {
-            if (type === 'default') {
-                _message.open(config)
-            } else if (type === 'success') {
-                _message.success(config)
-            } else if (type === 'error') {
-                _message.error(config)
-            } else if (type === 'info') {
-                _message.info(config)
-            } else if (type === 'warning') {
-                _message.warning(config)
-            }
-        } else {
-            if (type === 'default') {
-                message.open(config)
-            } else if (type === 'success') {
-                message.success(config)
-            } else if (type === 'error') {
-                message.error(config)
-            } else if (type === 'info') {
-                message.info(config)
-            } else if (type === 'warning') {
-                message.warning(config)
-            }
+        if (type === 'default') {
+            messageApi.open(config)
+        } else if (type === 'success') {
+            messageApi.success(config)
+        } else if (type === 'error') {
+            messageApi.error(config)
+        } else if (type === 'info') {
+            messageApi.info(config)
+        } else if (type === 'warning') {
+            messageApi.warning(config)
         }
     })
 
-    return <></>;
+    return <>{contextHolder}</>;
 }
 
 AntdMessage.propTypes = {
