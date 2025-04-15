@@ -2,7 +2,7 @@
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 // antd核心
-import { notification, Button, App } from 'antd';
+import { notification, Button } from 'antd';
 // 辅助库
 import { isString, omit } from 'lodash';
 // 自定义hooks
@@ -29,9 +29,6 @@ const AntdNotification = ({
     underCompatibilityMode,
     setProps
 }) => {
-
-    const [api, contextHolder] = notification.useNotification({ stack: stack });
-    const { notification: _notification } = App.useApp();
 
     let config = {
         className: (
@@ -61,34 +58,23 @@ const AntdNotification = ({
                     </Button>
                 ) :
                 undefined
-        )
+        ),
+        stack: stack
     }
 
+    const [notificationApi, contextHolder] = notification.useNotification(config);
+
     useEffect(() => {
-        if (underCompatibilityMode) {
-            if (type === 'default') {
-                _notification.open(config)
-            } else if (type === 'success') {
-                _notification.success(config)
-            } else if (type === 'error') {
-                _notification.error(config)
-            } else if (type === 'info') {
-                _notification.info(config)
-            } else if (type === 'warning') {
-                _notification.warning(config)
-            }
-        } else {
-            if (type === 'default') {
-                api.open(config)
-            } else if (type === 'success') {
-                api.success(config)
-            } else if (type === 'error') {
-                api.error(config)
-            } else if (type === 'info') {
-                api.info(config)
-            } else if (type === 'warning') {
-                api.warning(config)
-            }
+        if (type === 'default') {
+            notificationApi.open(config)
+        } else if (type === 'success') {
+            notificationApi.success(config)
+        } else if (type === 'error') {
+            notificationApi.error(config)
+        } else if (type === 'info') {
+            notificationApi.info(config)
+        } else if (type === 'warning') {
+            notificationApi.warning(config)
         }
     })
 
