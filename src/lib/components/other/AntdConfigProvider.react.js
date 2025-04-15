@@ -2,7 +2,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 // antd核心
-import { ConfigProvider, App, theme } from 'antd';
+import { ConfigProvider, theme } from 'antd';
 import {
     // 默认主题
     defaultTheme,
@@ -96,11 +96,7 @@ const AntdConfigProvider = ({
             >
                 <StyleProvider hashPriority={'high'}
                     transformers={[legacyLogicalPropertiesTransformer]}>
-                    <App notification={{
-                        stack: false
-                    }}>
-                        {configProviderInstance}
-                    </App>
+                    {configProviderInstance}
                 </StyleProvider>
             </PropsContext.Provider>
         );
