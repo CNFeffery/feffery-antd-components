@@ -1,5 +1,5 @@
 import React, { Suspense } from 'react';
-import PropTypes, { func } from 'prop-types';
+import PropTypes from 'prop-types';
 
 const LazyAntdTable = React.lazy(() => import(/* webpackChunkName: "antd_table" */ '../../fragments/AntdTable.react'));
 

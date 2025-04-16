@@ -47,6 +47,8 @@ import { isNumber, isEqual, isString, isBoolean, isEmpty, omitBy } from 'lodash'
 import { pickBy } from 'ramda';
 import { str2Locale, locale2text } from '../components/locales.react';
 import { useLoading } from '../components/utils';
+// 上下文
+import PropsContext from '../contexts/PropsContext';
 // 参数类型
 import { propTypes, defaultProps } from '../components/dataDisplay/AntdTable.react';
 
@@ -209,6 +211,9 @@ const AntdTable = (props) => {
         setProps,
         ...others
     } = props;
+
+    const context = useContext(PropsContext)
+    locale = (context && context.locale) || locale
 
     useEffect(() => {
         // 处理pagination参数的默认值问题
