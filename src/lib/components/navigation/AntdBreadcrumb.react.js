@@ -37,77 +37,80 @@ const AntdBreadcrumb = ({
             }
             style={style}
             key={key}
-            separator={separator}
-            data-dash-is-loading={useLoading()}>
-            {items.map(
-                item => (
-                    <Breadcrumb.Item
-                        overlay={
-                            item.menuItems ? <Menu>
-                                {item.menuItems.map(
-                                    menuItem => (
-                                        <Menu.Item
-                                            icon={
-                                                menuItem.icon ?
-                                                    (
-                                                        menuItem.iconRenderer === 'fontawesome' ?
-                                                            (
-                                                                React.createElement(
-                                                                    'i',
-                                                                    {
-                                                                        className: menuItem.icon,
-                                                                        style: { marginRight: 3 }
-                                                                    }
-                                                                )
-                                                            ) :
-                                                            (
-                                                                <AntdIcon icon={menuItem.icon} style={{ marginRight: 3 }} />
-                                                            )
-                                                    ) : null
-                                            }
-                                            disabled={menuItem.disabled}>
-                                            <a href={menuItem.href}
-                                                target={menuItem.target}>
-                                                {menuItem.title}
-                                            </a>
-                                        </Menu.Item>
-                                    )
-                                )}
-                            </Menu> : null
-                        }
-                        onClick={e => setProps({
+            items={
+                items.map(
+                    item => ({
+                        key: item.key,
+                        title: (
+                            <>
+                                {
+                                    item.icon ? (
+                                        item.iconRenderer === 'fontawesome' ?
+                                            (
+                                                React.createElement(
+                                                    'i',
+                                                    {
+                                                        className: item.icon,
+                                                        style: { marginRight: 3 }
+                                                    }
+                                                )
+                                            ) :
+                                            (
+                                                <AntdIcon icon={item.icon} style={{ marginRight: 3 }} />
+                                            )
+                                    ) : null
+                                }
+                                <a href={item.href} target={item.target}>{item.title}</a>
+                            </>
+                        ),
+                        onClick: (e) => setProps({
                             clickedItem: {
                                 itemTitle: item.title,
                                 itemKey: item.key,
                                 timestamp: Date.now()
                             }
-                        })}
-                    >
-                        {
-                            item.icon ? (
-                                item.iconRenderer === 'fontawesome' ?
-                                    (
-                                        React.createElement(
-                                            'i',
-                                            {
-                                                className: item.icon,
-                                                style: { marginRight: 3 }
-                                            }
+                        }),
+                        menu: (
+                            item.menuItems ?
+                                {
+                                    items: (
+                                        item.menuItems.map(
+                                            menuItem => ({
+                                                key: menuItem.title,
+                                                label: (
+                                                    <>
+                                                        {
+                                                            menuItem.icon ? (
+                                                                menuItem.iconRenderer === 'fontawesome' ?
+                                                                    (
+                                                                        React.createElement(
+                                                                            'i',
+                                                                            {
+                                                                                className: menuItem.icon,
+                                                                                style: { marginRight: 3 }
+                                                                            }
+                                                                        )
+                                                                    ) :
+                                                                    (
+                                                                        <AntdIcon icon={menuItem.icon} style={{ marginRight: 3 }} />
+                                                                    )
+                                                            ) : null
+                                                        }
+                                                        <a href={menuItem.href} target={menuItem.target}>{menuItem.title}</a>
+                                                    </>
+                                                ),
+                                                disabled: menuItem.disabled,
+                                            })
                                         )
-                                    ) :
-                                    (
-                                        <AntdIcon icon={item.icon} style={{ marginRight: 3 }} />
                                     )
-                            ) : null
-                        }
-                        <a href={item.href}
-                            target={item.target}>
-                            {item.title}
-                        </a>
-                    </Breadcrumb.Item>
+                                }
+                                : null
+                        )
+                    })
                 )
-            )}
-        </Breadcrumb>
+            }
+            separator={separator}
+            data-dash-is-loading={useLoading()} />
     );
 }
 
