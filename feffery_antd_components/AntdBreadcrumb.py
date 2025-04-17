@@ -57,6 +57,10 @@ Keyword arguments:
 
             下拉菜单节点标题.
 
+        - key (string; optional):
+
+            下拉菜单节点唯一key值.
+
         - href (string; optional):
 
             下拉菜单节点链接地址.
@@ -86,10 +90,16 @@ Keyword arguments:
     `clickedItem` is a dict with keys:
 
     - itemTitle (string; optional):
-        被点击节点标题.
+        对应节点标题.
 
     - itemKey (string; optional):
-        被点击节点key值.
+        对应节点key值.
+
+    - menuItemTitle (string; optional):
+        对应下拉菜单节点标题.
+
+    - menuItemKey (string; optional):
+        对应下拉菜单节点key值.
 
     - timestamp (number; optional):
         点击事件时间戳.
@@ -107,6 +117,7 @@ Keyword arguments:
         "ItemsMenuItems",
             {
             "title": NotRequired[str],
+            "key": NotRequired[str],
             "href": NotRequired[str],
             "target": NotRequired[str],
             "disabled": NotRequired[bool],
@@ -133,6 +144,8 @@ Keyword arguments:
             {
             "itemTitle": NotRequired[str],
             "itemKey": NotRequired[str],
+            "menuItemTitle": NotRequired[str],
+            "menuItemKey": NotRequired[str],
             "timestamp": NotRequired[typing.Union[int, float, numbers.Number]]
         }
     )

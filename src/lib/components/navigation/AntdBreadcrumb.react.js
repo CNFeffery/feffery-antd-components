@@ -76,7 +76,7 @@ const AntdBreadcrumb = ({
                                     items: (
                                         item.menuItems.map(
                                             menuItem => ({
-                                                key: menuItem.title,
+                                                key: menuItem.title || menuItem.key,
                                                 label: (
                                                     <>
                                                         {
@@ -96,7 +96,19 @@ const AntdBreadcrumb = ({
                                                                     )
                                                             ) : null
                                                         }
-                                                        <a href={menuItem.href} target={menuItem.target}>{menuItem.title}</a>
+                                                        <a href={menuItem.href}
+                                                            target={menuItem.target}
+                                                            onClick={
+                                                                (e) => setProps({
+                                                                    clickedItem: {
+                                                                        itemTitle: item.title,
+                                                                        itemKey: item.key,
+                                                                        menuItemTitle: menuItem.title,
+                                                                        menuItemKey: menuItem.key,
+                                                                        timestamp: Date.now()
+                                                                    }
+                                                                })
+                                                            }>{menuItem.title}</a>
                                                     </>
                                                 ),
                                                 disabled: menuItem.disabled,
@@ -178,6 +190,10 @@ AntdBreadcrumb.propTypes = {
                      */
                     title: PropTypes.string,
                     /**
+                     * 下拉菜单节点唯一key值
+                     */
+                    key: PropTypes.string,
+                    /**
                      * 下拉菜单节点链接地址
                      */
                     href: PropTypes.string,
@@ -212,15 +228,23 @@ AntdBreadcrumb.propTypes = {
     /**
      * 监听面包屑节点点击事件
      */
-    clickedItem: PropTypes.exact({
+    clickedItem: PropTypes.shape({
         /**
-         * 被点击节点标题
+         * 对应节点标题
          */
         itemTitle: PropTypes.string,
         /**
-         * 被点击节点key值
+         * 对应节点key值
          */
         itemKey: PropTypes.string,
+        /**
+         * 对应下拉菜单节点标题
+         */
+        menuItemTitle: PropTypes.string,
+        /**
+         * 对应下拉菜单节点key值
+         */
+        menuItemKey: PropTypes.string,
         /**
          * 点击事件时间戳
          */
