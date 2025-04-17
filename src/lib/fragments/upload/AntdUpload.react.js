@@ -87,7 +87,8 @@ const AntdUpload = (props) => {
         ...others
     } = props;
 
-    const [messageApi, contextHolder] = message.useMessage();
+    const [messageApi, messageContextHolder] = message.useMessage();
+    const [modalApi, modalContextHolder] = Modal.useModal();
 
     const context = useContext(PropsContext)
     const formId = useContext(FormContext)
@@ -543,7 +544,8 @@ const AntdUpload = (props) => {
                     ...style
                 }}
                 key={key}>
-                {contextHolder}
+                {messageContextHolder}
+                {modalContextHolder}
                 <Upload
                     {...uploadProps}
                     className={buttonProps?.block ? 'ant-upload-button-block' : undefined}
@@ -574,14 +576,13 @@ const AntdUpload = (props) => {
                         confirmBeforeDelete ?
                             () => {
                                 return new Promise((resolve, reject) => {
-                                    Modal.confirm({
+                                    modalApi.confirm({
                                         title: locale2text.AntdPictureUpload[locale].confirmBeforeDeleteTitle,
                                         okText: locale2text.AntdPictureUpload[locale].confirmBeforeDeleteOkText,
                                         cancelText: locale2text.AntdPictureUpload[locale].confirmBeforeDeleteCancelText,
                                         onOk: () => {
                                             resolve(true);
                                         },
-
                                     });
                                 });
                             } :

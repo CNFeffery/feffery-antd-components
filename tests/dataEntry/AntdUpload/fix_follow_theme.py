@@ -12,7 +12,12 @@ app = dash.Dash(__name__)
 app.layout = html.Div(
     [
         fac.AntdConfigProvider(
-            [fac.AntdUpload(buttonContent='upload test')],
+            [
+                fac.AntdUpload(
+                    buttonContent='upload test',
+                    confirmBeforeDelete=True,
+                )
+            ],
             algorithm='dark',
         )
     ],
