@@ -3,7 +3,7 @@
 import typing  # noqa: F401
 import numbers # noqa: F401
 from typing_extensions import TypedDict, NotRequired, Literal # noqa: F401
-from dash.development.base_component import Component, _explicitize_args
+from dash.development.base_component import Component
 try:
     from dash.development.base_component import ComponentType # noqa: F401
 except ImportError:
@@ -150,7 +150,8 @@ Keyword arguments:
         }
     )
 
-    @_explicitize_args
+    _explicitize_dash_init = True
+
     def __init__(
         self,
         children: typing.Optional[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]] = None,
@@ -167,11 +168,11 @@ Keyword arguments:
         closable: typing.Optional[bool] = None,
         forceRender: typing.Optional[bool] = None,
         destroyOnClose: typing.Optional[bool] = None,
-        width: typing.Optional[typing.Union[typing.Union[int, float, numbers.Number], str]] = None,
-        height: typing.Optional[typing.Union[typing.Union[int, float, numbers.Number], str]] = None,
+        width: typing.Optional[typing.Union[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex], str]] = None,
+        height: typing.Optional[typing.Union[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex], str]] = None,
         mask: typing.Optional[bool] = None,
         maskClosable: typing.Optional[bool] = None,
-        zIndex: typing.Optional[typing.Union[int, float, numbers.Number]] = None,
+        zIndex: typing.Optional[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]] = None,
         loading: typing.Optional[bool] = None,
         extra: typing.Optional[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]] = None,
         footer: typing.Optional[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]] = None,

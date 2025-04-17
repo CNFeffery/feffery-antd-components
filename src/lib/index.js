@@ -112,9 +112,6 @@ import AntdTour from './components/other/AntdTour.react';
 import AntdWatermark from './components/other/AntdWatermark.react';
 import AntdConfigProvider from './components/other/AntdConfigProvider.react';
 import Fragment from './components/other/Fragment.react';
-// 复杂交互
-// import AntdDraggablePanel from './components/proEditor/AntdDraggablePanel.react';
-// import AntdEditorLayout from './components/proEditor/AntdEditorLayout.react';
 // 表单生成
 // import AntdFormRender from './components/formRender/AntdFormRender.react';
 // css样式
@@ -235,9 +232,6 @@ export {
     AntdWatermark,
     AntdConfigProvider,
     Fragment,
-    // 复杂交互
-    // AntdDraggablePanel,
-    // AntdEditorLayout,
     // 表单生成
     // AntdFormRender
 };

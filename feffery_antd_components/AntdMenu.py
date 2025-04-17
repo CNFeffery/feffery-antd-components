@@ -3,7 +3,7 @@
 import typing  # noqa: F401
 import numbers # noqa: F401
 from typing_extensions import TypedDict, NotRequired, Literal # noqa: F401
-from dash.development.base_component import Component, _explicitize_args
+from dash.development.base_component import Component
 try:
     from dash.development.base_component import ComponentType # noqa: F401
 except ImportError:
@@ -115,7 +115,8 @@ Keyword arguments:
         }
     )
 
-    @_explicitize_args
+    _explicitize_dash_init = True
+
     def __init__(
         self,
         id: typing.Optional[typing.Union[str, dict]] = None,
@@ -138,9 +139,9 @@ Keyword arguments:
         renderCollapsedButton: typing.Optional[bool] = None,
         popupContainer: typing.Optional[Literal["parent", "body"]] = None,
         inlineCollapsed: typing.Optional[bool] = None,
-        inlineIndent: typing.Optional[typing.Union[int, float, numbers.Number]] = None,
+        inlineIndent: typing.Optional[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]] = None,
         triggerSubMenuAction: typing.Optional[Literal["hover", "click"]] = None,
-        persistence: typing.Optional[typing.Union[bool, str, typing.Union[int, float, numbers.Number]]] = None,
+        persistence: typing.Optional[typing.Union[bool, str, typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]]] = None,
         persisted_props: typing.Optional[typing.Sequence[Literal["currentKey", "openKeys"]]] = None,
         persistence_type: typing.Optional[Literal["local", "session", "memory"]] = None,
         **kwargs

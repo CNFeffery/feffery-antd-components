@@ -3,7 +3,7 @@
 import typing  # noqa: F401
 import numbers # noqa: F401
 from typing_extensions import TypedDict, NotRequired, Literal # noqa: F401
-from dash.development.base_component import Component, _explicitize_args
+from dash.development.base_component import Component
 try:
     from dash.development.base_component import ComponentType # noqa: F401
 except ImportError:
@@ -108,7 +108,8 @@ Keyword arguments:
         }
     )
 
-    @_explicitize_args
+    _explicitize_dash_init = True
+
     def __init__(
         self,
         children: typing.Optional[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]] = None,
@@ -119,16 +120,16 @@ Keyword arguments:
         styles: typing.Optional["Styles"] = None,
         classNames: typing.Optional["ClassNames"] = None,
         color: typing.Optional[str] = None,
-        count: typing.Optional[typing.Union[int, float, numbers.Number]] = None,
+        count: typing.Optional[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]] = None,
         dot: typing.Optional[bool] = None,
         showZero: typing.Optional[bool] = None,
-        overflowCount: typing.Optional[typing.Union[int, float, numbers.Number]] = None,
-        offset: typing.Optional[typing.Sequence[typing.Union[int, float, numbers.Number]]] = None,
+        overflowCount: typing.Optional[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]] = None,
+        offset: typing.Optional[typing.Sequence[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]]] = None,
         status: typing.Optional[Literal["success", "processing", "default", "error", "warning"]] = None,
         text: typing.Optional[str] = None,
         title: typing.Optional[str] = None,
         size: typing.Optional[Literal["default", "small"]] = None,
-        nClicks: typing.Optional[typing.Union[int, float, numbers.Number]] = None,
+        nClicks: typing.Optional[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]] = None,
         **kwargs
     ):
         self._prop_names = ['id', 'key', 'children', 'style', 'className', 'styles', 'classNames', 'color', 'count', 'dot', 'showZero', 'overflowCount', 'offset', 'status', 'text', 'title', 'size', 'nClicks', 'data-*', 'aria-*']

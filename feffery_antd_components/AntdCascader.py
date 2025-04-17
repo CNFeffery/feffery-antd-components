@@ -3,7 +3,7 @@
 import typing  # noqa: F401
 import numbers # noqa: F401
 from typing_extensions import TypedDict, NotRequired, Literal # noqa: F401
-from dash.development.base_component import Component, _explicitize_args
+from dash.development.base_component import Component
 try:
     from dash.development.base_component import ComponentType # noqa: F401
 except ImportError:
@@ -138,7 +138,8 @@ Keyword arguments:
     _namespace = 'feffery_antd_components'
     _type = 'AntdCascader'
 
-    @_explicitize_args
+    _explicitize_dash_init = True
+
     def __init__(
         self,
         id: typing.Optional[typing.Union[str, dict]] = None,
@@ -160,10 +161,10 @@ Keyword arguments:
         variant: typing.Optional[Literal["outlined", "borderless", "filled", "underlined"]] = None,
         placeholder: typing.Optional[str] = None,
         placement: typing.Optional[Literal["bottomLeft", "bottomRight", "topLeft", "topRight"]] = None,
-        value: typing.Optional[typing.Union[typing.Sequence[typing.Union[str, typing.Union[int, float, numbers.Number]]], typing.Sequence[typing.Sequence[typing.Union[str, typing.Union[int, float, numbers.Number]]]]]] = None,
-        defaultValue: typing.Optional[typing.Union[typing.Sequence[typing.Union[str, typing.Union[int, float, numbers.Number]]], typing.Sequence[typing.Sequence[typing.Union[str, typing.Union[int, float, numbers.Number]]]]]] = None,
+        value: typing.Optional[typing.Union[typing.Sequence[typing.Union[str, typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]]], typing.Sequence[typing.Sequence[typing.Union[str, typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]]]]]] = None,
+        defaultValue: typing.Optional[typing.Union[typing.Sequence[typing.Union[str, typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]]], typing.Sequence[typing.Sequence[typing.Union[str, typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]]]]]] = None,
         multiple: typing.Optional[bool] = None,
-        maxTagCount: typing.Optional[typing.Union[typing.Union[int, float, numbers.Number], Literal["responsive"]]] = None,
+        maxTagCount: typing.Optional[typing.Union[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex], Literal["responsive"]]] = None,
         expandTrigger: typing.Optional[Literal["click", "hover"]] = None,
         status: typing.Optional[Literal["error", "warning"]] = None,
         allowClear: typing.Optional[bool] = None,
@@ -175,7 +176,7 @@ Keyword arguments:
         popupContainer: typing.Optional[Literal["parent", "body"]] = None,
         batchPropsNames: typing.Optional[typing.Sequence[str]] = None,
         batchPropsValues: typing.Optional[dict] = None,
-        persistence: typing.Optional[typing.Union[bool, str, typing.Union[int, float, numbers.Number]]] = None,
+        persistence: typing.Optional[typing.Union[bool, str, typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]]] = None,
         persisted_props: typing.Optional[typing.Sequence[Literal["value"]]] = None,
         persistence_type: typing.Optional[Literal["local", "session", "memory"]] = None,
         **kwargs

@@ -3,7 +3,7 @@
 import typing  # noqa: F401
 import numbers # noqa: F401
 from typing_extensions import TypedDict, NotRequired, Literal # noqa: F401
-from dash.development.base_component import Component, _explicitize_args
+from dash.development.base_component import Component
 try:
     from dash.development.base_component import ComponentType # noqa: F401
 except ImportError:
@@ -134,7 +134,7 @@ Keyword arguments:
             "children": NotRequired[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]],
             "className": NotRequired[typing.Union[str, dict]],
             "style": NotRequired[dict],
-            "key": typing.Union[str, typing.Union[int, float, numbers.Number]],
+            "key": typing.Union[str, typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]],
             "collapsible": NotRequired[Literal["header", "disabled", "icon"]],
             "title": NotRequired[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]],
             "extra": NotRequired[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]],
@@ -143,7 +143,8 @@ Keyword arguments:
         }
     )
 
-    @_explicitize_args
+    _explicitize_dash_init = True
+
     def __init__(
         self,
         id: typing.Optional[typing.Union[str, dict]] = None,
@@ -154,8 +155,8 @@ Keyword arguments:
         classNames: typing.Optional["ClassNames"] = None,
         items: typing.Optional[typing.Sequence["Items"]] = None,
         accordion: typing.Optional[bool] = None,
-        activeKey: typing.Optional[typing.Union[str, typing.Sequence[str], typing.Union[int, float, numbers.Number], typing.Sequence[typing.Union[int, float, numbers.Number]]]] = None,
-        defaultActiveKey: typing.Optional[typing.Union[str, typing.Sequence[str], typing.Union[int, float, numbers.Number], typing.Sequence[typing.Union[int, float, numbers.Number]]]] = None,
+        activeKey: typing.Optional[typing.Union[str, typing.Sequence[str], typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex], typing.Sequence[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]]]] = None,
+        defaultActiveKey: typing.Optional[typing.Union[str, typing.Sequence[str], typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex], typing.Sequence[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]]]] = None,
         bordered: typing.Optional[bool] = None,
         size: typing.Optional[Literal["large", "middle", "small"]] = None,
         collapsible: typing.Optional[Literal["header", "disabled", "icon"]] = None,

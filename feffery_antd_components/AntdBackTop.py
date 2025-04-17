@@ -3,7 +3,7 @@
 import typing  # noqa: F401
 import numbers # noqa: F401
 from typing_extensions import TypedDict, NotRequired, Literal # noqa: F401
-from dash.development.base_component import Component, _explicitize_args
+from dash.development.base_component import Component
 try:
     from dash.development.base_component import ComponentType # noqa: F401
 except ImportError:
@@ -50,18 +50,19 @@ Keyword arguments:
     _namespace = 'feffery_antd_components'
     _type = 'AntdBackTop'
 
-    @_explicitize_args
+    _explicitize_dash_init = True
+
     def __init__(
         self,
         id: typing.Optional[typing.Union[str, dict]] = None,
         key: typing.Optional[str] = None,
         style: typing.Optional[typing.Any] = None,
         className: typing.Optional[typing.Union[str, dict]] = None,
-        duration: typing.Optional[typing.Union[int, float, numbers.Number]] = None,
-        visibilityHeight: typing.Optional[typing.Union[int, float, numbers.Number]] = None,
+        duration: typing.Optional[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]] = None,
+        visibilityHeight: typing.Optional[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]] = None,
         containerId: typing.Optional[str] = None,
         containerSelector: typing.Optional[str] = None,
-        nClicks: typing.Optional[typing.Union[int, float, numbers.Number]] = None,
+        nClicks: typing.Optional[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]] = None,
         **kwargs
     ):
         self._prop_names = ['id', 'key', 'style', 'className', 'duration', 'visibilityHeight', 'containerId', 'containerSelector', 'nClicks', 'data-*', 'aria-*']

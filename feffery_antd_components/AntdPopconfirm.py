@@ -3,7 +3,7 @@
 import typing  # noqa: F401
 import numbers # noqa: F401
 from typing_extensions import TypedDict, NotRequired, Literal # noqa: F401
-from dash.development.base_component import Component, _explicitize_args
+from dash.development.base_component import Component
 try:
     from dash.development.base_component import ComponentType # noqa: F401
 except ImportError:
@@ -239,7 +239,8 @@ Keyword arguments:
         }
     )
 
-    @_explicitize_args
+    _explicitize_dash_init = True
+
     def __init__(
         self,
         children: typing.Optional[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]] = None,
@@ -255,17 +256,17 @@ Keyword arguments:
         description: typing.Optional[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]] = None,
         disabled: typing.Optional[bool] = None,
         placement: typing.Optional[Literal["top", "left", "right", "bottom", "topLeft", "topRight", "bottomLeft", "bottomRight", "leftTop", "leftBottom", "rightTop", "rightBottom"]] = None,
-        mouseEnterDelay: typing.Optional[typing.Union[int, float, numbers.Number]] = None,
-        mouseLeaveDelay: typing.Optional[typing.Union[int, float, numbers.Number]] = None,
+        mouseEnterDelay: typing.Optional[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]] = None,
+        mouseLeaveDelay: typing.Optional[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]] = None,
         okText: typing.Optional[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]] = None,
         okButtonProps: typing.Optional["OkButtonProps"] = None,
         cancelText: typing.Optional[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]] = None,
         cancelButtonProps: typing.Optional["CancelButtonProps"] = None,
         showCancel: typing.Optional[bool] = None,
-        confirmCounts: typing.Optional[typing.Union[int, float, numbers.Number]] = None,
-        cancelCounts: typing.Optional[typing.Union[int, float, numbers.Number]] = None,
+        confirmCounts: typing.Optional[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]] = None,
+        cancelCounts: typing.Optional[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]] = None,
         trigger: typing.Optional[typing.Union[Literal["hover", "focus", "click"], typing.Sequence[Literal["hover", "focus", "click"]]]] = None,
-        zIndex: typing.Optional[typing.Union[int, float, numbers.Number]] = None,
+        zIndex: typing.Optional[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]] = None,
         arrow: typing.Optional[Literal["show", "hide", "center"]] = None,
         fresh: typing.Optional[bool] = None,
         open: typing.Optional[bool] = None,

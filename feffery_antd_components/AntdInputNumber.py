@@ -3,7 +3,7 @@
 import typing  # noqa: F401
 import numbers # noqa: F401
 from typing_extensions import TypedDict, NotRequired, Literal # noqa: F401
-from dash.development.base_component import Component, _explicitize_args
+from dash.development.base_component import Component
 try:
     from dash.development.base_component import ComponentType # noqa: F401
 except ImportError:
@@ -127,7 +127,8 @@ Keyword arguments:
     _namespace = 'feffery_antd_components'
     _type = 'AntdInputNumber'
 
-    @_explicitize_args
+    _explicitize_dash_init = True
+
     def __init__(
         self,
         id: typing.Optional[typing.Union[str, dict]] = None,
@@ -142,26 +143,26 @@ Keyword arguments:
         autoFocus: typing.Optional[bool] = None,
         controls: typing.Optional[bool] = None,
         keyboard: typing.Optional[bool] = None,
-        min: typing.Optional[typing.Union[typing.Union[int, float, numbers.Number], str]] = None,
-        max: typing.Optional[typing.Union[typing.Union[int, float, numbers.Number], str]] = None,
-        step: typing.Optional[typing.Union[typing.Union[int, float, numbers.Number], str]] = None,
-        precision: typing.Optional[typing.Union[int, float, numbers.Number]] = None,
+        min: typing.Optional[typing.Union[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex], str]] = None,
+        max: typing.Optional[typing.Union[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex], str]] = None,
+        step: typing.Optional[typing.Union[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex], str]] = None,
+        precision: typing.Optional[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]] = None,
         stringMode: typing.Optional[bool] = None,
         disabled: typing.Optional[bool] = None,
         size: typing.Optional[Literal["small", "middle", "large"]] = None,
         bordered: typing.Optional[bool] = None,
         variant: typing.Optional[Literal["outlined", "borderless", "filled", "underlined"]] = None,
         placeholder: typing.Optional[str] = None,
-        value: typing.Optional[typing.Union[typing.Union[int, float, numbers.Number], str]] = None,
-        defaultValue: typing.Optional[typing.Union[typing.Union[int, float, numbers.Number], str]] = None,
-        debounceValue: typing.Optional[typing.Union[typing.Union[int, float, numbers.Number], str]] = None,
-        debounceWait: typing.Optional[typing.Union[int, float, numbers.Number]] = None,
-        nSubmit: typing.Optional[typing.Union[int, float, numbers.Number]] = None,
+        value: typing.Optional[typing.Union[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex], str]] = None,
+        defaultValue: typing.Optional[typing.Union[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex], str]] = None,
+        debounceValue: typing.Optional[typing.Union[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex], str]] = None,
+        debounceWait: typing.Optional[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]] = None,
+        nSubmit: typing.Optional[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]] = None,
         status: typing.Optional[Literal["error", "warning"]] = None,
         readOnly: typing.Optional[bool] = None,
         batchPropsNames: typing.Optional[typing.Sequence[str]] = None,
         batchPropsValues: typing.Optional[dict] = None,
-        persistence: typing.Optional[typing.Union[bool, str, typing.Union[int, float, numbers.Number]]] = None,
+        persistence: typing.Optional[typing.Union[bool, str, typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]]] = None,
         persisted_props: typing.Optional[typing.Sequence[Literal["value"]]] = None,
         persistence_type: typing.Optional[Literal["local", "session", "memory"]] = None,
         **kwargs

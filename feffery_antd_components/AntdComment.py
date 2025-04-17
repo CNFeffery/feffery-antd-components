@@ -3,7 +3,7 @@
 import typing  # noqa: F401
 import numbers # noqa: F401
 from typing_extensions import TypedDict, NotRequired, Literal # noqa: F401
-from dash.development.base_component import Component, _explicitize_args
+from dash.development.base_component import Component
 try:
     from dash.development.base_component import ComponentType # noqa: F401
 except ImportError:
@@ -137,7 +137,8 @@ Keyword arguments:
         }
     )
 
-    @_explicitize_args
+    _explicitize_dash_init = True
+
     def __init__(
         self,
         children: typing.Optional[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]] = None,
@@ -154,11 +155,11 @@ Keyword arguments:
         showLikeDislike: typing.Optional[bool] = None,
         showReply: typing.Optional[bool] = None,
         showDelete: typing.Optional[bool] = None,
-        replyClicks: typing.Optional[typing.Union[int, float, numbers.Number]] = None,
-        deleteClicks: typing.Optional[typing.Union[int, float, numbers.Number]] = None,
+        replyClicks: typing.Optional[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]] = None,
+        deleteClicks: typing.Optional[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]] = None,
         commentContent: typing.Optional[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]] = None,
-        likesCount: typing.Optional[typing.Union[int, float, numbers.Number]] = None,
-        dislikesCount: typing.Optional[typing.Union[int, float, numbers.Number]] = None,
+        likesCount: typing.Optional[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]] = None,
+        dislikesCount: typing.Optional[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]] = None,
         action: typing.Optional[Literal["liked", "disliked", "default"]] = None,
         defaultAction: typing.Optional[Literal["liked", "disliked", "default"]] = None,
         avatarProps: typing.Optional[dict] = None,

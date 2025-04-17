@@ -3,7 +3,7 @@
 import typing  # noqa: F401
 import numbers # noqa: F401
 from typing_extensions import TypedDict, NotRequired, Literal # noqa: F401
-from dash.development.base_component import Component, _explicitize_args
+from dash.development.base_component import Component
 try:
     from dash.development.base_component import ComponentType # noqa: F401
 except ImportError:
@@ -115,26 +115,27 @@ Keyword arguments:
         "ColorBlockClickEvent",
             {
             "color": NotRequired[str],
-            "range": NotRequired[typing.Sequence[typing.Union[int, float, numbers.Number]]],
-            "timestamp": NotRequired[typing.Union[int, float, numbers.Number]]
+            "range": NotRequired[typing.Sequence[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]]],
+            "timestamp": NotRequired[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]]
         }
     )
 
-    @_explicitize_args
+    _explicitize_dash_init = True
+
     def __init__(
         self,
         id: typing.Optional[typing.Union[str, dict]] = None,
         key: typing.Optional[str] = None,
         style: typing.Optional[typing.Any] = None,
         className: typing.Optional[typing.Union[str, dict]] = None,
-        breakpoints: typing.Optional[typing.Sequence[typing.Union[int, float, numbers.Number]]] = None,
+        breakpoints: typing.Optional[typing.Sequence[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]]] = None,
         colors: typing.Optional[typing.Sequence[str]] = None,
         controls: typing.Optional[bool] = None,
         keyboard: typing.Optional[bool] = None,
-        min: typing.Optional[typing.Union[int, float, numbers.Number]] = None,
-        max: typing.Optional[typing.Union[int, float, numbers.Number]] = None,
-        step: typing.Optional[typing.Union[int, float, numbers.Number]] = None,
-        precision: typing.Optional[typing.Union[int, float, numbers.Number]] = None,
+        min: typing.Optional[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]] = None,
+        max: typing.Optional[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]] = None,
+        step: typing.Optional[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]] = None,
+        precision: typing.Optional[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]] = None,
         disabled: typing.Optional[bool] = None,
         size: typing.Optional[Literal["small", "middle", "large"]] = None,
         bordered: typing.Optional[bool] = None,

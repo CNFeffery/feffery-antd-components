@@ -3,7 +3,7 @@
 import typing  # noqa: F401
 import numbers # noqa: F401
 from typing_extensions import TypedDict, NotRequired, Literal # noqa: F401
-from dash.development.base_component import Component, _explicitize_args
+from dash.development.base_component import Component
 try:
     from dash.development.base_component import ComponentType # noqa: F401
 except ImportError:
@@ -72,7 +72,8 @@ Keyword arguments:
     _namespace = 'feffery_antd_components'
     _type = 'AntdDivider'
 
-    @_explicitize_args
+    _explicitize_dash_init = True
+
     def __init__(
         self,
         children: typing.Optional[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]] = None,
@@ -83,7 +84,7 @@ Keyword arguments:
         innerTextOrientation: typing.Optional[Literal["left", "center", "right"]] = None,
         isDashed: typing.Optional[bool] = None,
         direction: typing.Optional[Literal["horizontal", "vertical"]] = None,
-        fontSize: typing.Optional[typing.Union[str, typing.Union[int, float, numbers.Number]]] = None,
+        fontSize: typing.Optional[typing.Union[str, typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]]] = None,
         lineColor: typing.Optional[str] = None,
         fontStyle: typing.Optional[str] = None,
         fontWeight: typing.Optional[str] = None,

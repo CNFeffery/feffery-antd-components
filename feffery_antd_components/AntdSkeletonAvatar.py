@@ -3,7 +3,7 @@
 import typing  # noqa: F401
 import numbers # noqa: F401
 from typing_extensions import TypedDict, NotRequired, Literal # noqa: F401
-from dash.development.base_component import Component, _explicitize_args
+from dash.development.base_component import Component
 try:
     from dash.development.base_component import ComponentType # noqa: F401
 except ImportError:
@@ -45,7 +45,8 @@ Keyword arguments:
     _namespace = 'feffery_antd_components'
     _type = 'AntdSkeletonAvatar'
 
-    @_explicitize_args
+    _explicitize_dash_init = True
+
     def __init__(
         self,
         id: typing.Optional[typing.Union[str, dict]] = None,
@@ -54,7 +55,7 @@ Keyword arguments:
         className: typing.Optional[typing.Union[str, dict]] = None,
         active: typing.Optional[bool] = None,
         shape: typing.Optional[Literal["circle", "square"]] = None,
-        size: typing.Optional[typing.Union[typing.Union[int, float, numbers.Number], Literal["large", "small", "default"]]] = None,
+        size: typing.Optional[typing.Union[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex], Literal["large", "small", "default"]]] = None,
         **kwargs
     ):
         self._prop_names = ['id', 'key', 'style', 'className', 'active', 'shape', 'size', 'data-*', 'aria-*']

@@ -3,7 +3,7 @@
 import typing  # noqa: F401
 import numbers # noqa: F401
 from typing_extensions import TypedDict, NotRequired, Literal # noqa: F401
-from dash.development.base_component import Component, _explicitize_args
+from dash.development.base_component import Component
 try:
     from dash.development.base_component import ComponentType # noqa: F401
 except ImportError:
@@ -278,16 +278,17 @@ Keyword arguments:
     Width = TypedDict(
         "Width",
             {
-            "xs": NotRequired[typing.Union[typing.Union[int, float, numbers.Number], str]],
-            "sm": NotRequired[typing.Union[typing.Union[int, float, numbers.Number], str]],
-            "md": NotRequired[typing.Union[typing.Union[int, float, numbers.Number], str]],
-            "lg": NotRequired[typing.Union[typing.Union[int, float, numbers.Number], str]],
-            "xl": NotRequired[typing.Union[typing.Union[int, float, numbers.Number], str]],
-            "xxl": NotRequired[typing.Union[typing.Union[int, float, numbers.Number], str]]
+            "xs": NotRequired[typing.Union[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex], str]],
+            "sm": NotRequired[typing.Union[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex], str]],
+            "md": NotRequired[typing.Union[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex], str]],
+            "lg": NotRequired[typing.Union[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex], str]],
+            "xl": NotRequired[typing.Union[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex], str]],
+            "xxl": NotRequired[typing.Union[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex], str]]
         }
     )
 
-    @_explicitize_args
+    _explicitize_dash_init = True
+
     def __init__(
         self,
         children: typing.Optional[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]] = None,
@@ -305,17 +306,17 @@ Keyword arguments:
         okButtonProps: typing.Optional["OkButtonProps"] = None,
         cancelText: typing.Optional[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]] = None,
         cancelButtonProps: typing.Optional["CancelButtonProps"] = None,
-        width: typing.Optional[typing.Union[typing.Union[int, float, numbers.Number], str, "Width"]] = None,
+        width: typing.Optional[typing.Union[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex], str, "Width"]] = None,
         centered: typing.Optional[bool] = None,
         keyboard: typing.Optional[bool] = None,
         closable: typing.Optional[bool] = None,
         mask: typing.Optional[bool] = None,
         maskClosable: typing.Optional[bool] = None,
         okClickClose: typing.Optional[bool] = None,
-        zIndex: typing.Optional[typing.Union[int, float, numbers.Number]] = None,
-        okCounts: typing.Optional[typing.Union[int, float, numbers.Number]] = None,
-        cancelCounts: typing.Optional[typing.Union[int, float, numbers.Number]] = None,
-        closeCounts: typing.Optional[typing.Union[int, float, numbers.Number]] = None,
+        zIndex: typing.Optional[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]] = None,
+        okCounts: typing.Optional[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]] = None,
+        cancelCounts: typing.Optional[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]] = None,
+        closeCounts: typing.Optional[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]] = None,
         confirmAutoSpin: typing.Optional[bool] = None,
         loadingOkText: typing.Optional[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]] = None,
         confirmLoading: typing.Optional[bool] = None,

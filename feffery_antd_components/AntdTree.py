@@ -3,7 +3,7 @@
 import typing  # noqa: F401
 import numbers # noqa: F401
 from typing_extensions import TypedDict, NotRequired, Literal # noqa: F401
-from dash.development.base_component import Component, _explicitize_args
+from dash.development.base_component import Component
 try:
     from dash.development.base_component import ComponentType # noqa: F401
 except ImportError:
@@ -210,7 +210,7 @@ Keyword arguments:
             {
             "nodeKey": NotRequired[str],
             "menuKey": NotRequired[str],
-            "timestamp": NotRequired[typing.Union[int, float, numbers.Number]]
+            "timestamp": NotRequired[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]]
         }
     )
 
@@ -219,11 +219,12 @@ Keyword arguments:
             {
             "key": str,
             "align": NotRequired[Literal["top", "bottom", "auto"]],
-            "offset": NotRequired[typing.Union[int, float, numbers.Number]]
+            "offset": NotRequired[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]]
         }
     )
 
-    @_explicitize_args
+    _explicitize_dash_init = True
+
     def __init__(
         self,
         id: typing.Optional[typing.Union[str, dict]] = None,
@@ -249,7 +250,7 @@ Keyword arguments:
         checkStrictly: typing.Optional[bool] = None,
         showLine: typing.Optional[typing.Union[bool, "ShowLine"]] = None,
         switcherIcon: typing.Optional[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]] = None,
-        height: typing.Optional[typing.Union[int, float, numbers.Number]] = None,
+        height: typing.Optional[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]] = None,
         draggable: typing.Optional[bool] = None,
         showDragIcon: typing.Optional[bool] = None,
         dragInSameLevel: typing.Optional[bool] = None,
@@ -271,7 +272,7 @@ Keyword arguments:
         loadingNode: typing.Optional[dict] = None,
         batchPropsNames: typing.Optional[typing.Sequence[str]] = None,
         batchPropsValues: typing.Optional[dict] = None,
-        persistence: typing.Optional[typing.Union[bool, str, typing.Union[int, float, numbers.Number]]] = None,
+        persistence: typing.Optional[typing.Union[bool, str, typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]]] = None,
         persisted_props: typing.Optional[typing.Sequence[Literal["selectedKeys", "checkedKeys", "expandedKeys", "halfCheckedKeys"]]] = None,
         persistence_type: typing.Optional[Literal["local", "session", "memory"]] = None,
         **kwargs

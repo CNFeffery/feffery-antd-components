@@ -3,7 +3,7 @@
 import typing  # noqa: F401
 import numbers # noqa: F401
 from typing_extensions import TypedDict, NotRequired, Literal # noqa: F401
-from dash.development.base_component import Component, _explicitize_args
+from dash.development.base_component import Component
 try:
     from dash.development.base_component import ComponentType # noqa: F401
 except ImportError:
@@ -96,13 +96,14 @@ Keyword arguments:
             "mask": NotRequired[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]],
             "maskClassName": NotRequired[str],
             "rootClassName": NotRequired[str],
-            "scaleStep": NotRequired[typing.Union[int, float, numbers.Number]],
-            "minScale": NotRequired[typing.Union[int, float, numbers.Number]],
-            "maxScale": NotRequired[typing.Union[int, float, numbers.Number]]
+            "scaleStep": NotRequired[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]],
+            "minScale": NotRequired[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]],
+            "maxScale": NotRequired[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]]
         }
     )
 
-    @_explicitize_args
+    _explicitize_dash_init = True
+
     def __init__(
         self,
         children: typing.Optional[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]] = None,
@@ -115,7 +116,7 @@ Keyword arguments:
         fallback: typing.Optional[str] = None,
         preview: typing.Optional[typing.Union[bool, "Preview"]] = None,
         visible: typing.Optional[bool] = None,
-        current: typing.Optional[typing.Union[int, float, numbers.Number]] = None,
+        current: typing.Optional[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]] = None,
         disableCurrent: typing.Optional[bool] = None,
         toolbarExtra: typing.Optional[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]] = None,
         **kwargs

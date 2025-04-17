@@ -3,7 +3,7 @@
 import typing  # noqa: F401
 import numbers # noqa: F401
 from typing_extensions import TypedDict, NotRequired, Literal # noqa: F401
-from dash.development.base_component import Component, _explicitize_args
+from dash.development.base_component import Component
 try:
     from dash.development.base_component import ComponentType # noqa: F401
 except ImportError:
@@ -59,7 +59,8 @@ Keyword arguments:
     _namespace = 'feffery_antd_components'
     _type = 'AntdAnchor'
 
-    @_explicitize_args
+    _explicitize_dash_init = True
+
     def __init__(
         self,
         id: typing.Optional[typing.Union[str, dict]] = None,
@@ -69,10 +70,10 @@ Keyword arguments:
         linkDict: typing.Optional[typing.Any] = None,
         align: typing.Optional[Literal["left", "right"]] = None,
         containerId: typing.Optional[str] = None,
-        targetOffset: typing.Optional[typing.Union[int, float, numbers.Number]] = None,
+        targetOffset: typing.Optional[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]] = None,
         affix: typing.Optional[bool] = None,
-        bounds: typing.Optional[typing.Union[int, float, numbers.Number]] = None,
-        offsetTop: typing.Optional[typing.Union[int, float, numbers.Number]] = None,
+        bounds: typing.Optional[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]] = None,
+        offsetTop: typing.Optional[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]] = None,
         clickedLink: typing.Optional[dict] = None,
         **kwargs
     ):

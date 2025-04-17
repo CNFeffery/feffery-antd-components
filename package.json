@@ -28,7 +28,6 @@
         "@ant-design/happy-work-theme": "^1.0.0",
         "@ant-design/icons": "^5.0.0",
         "@ant-design/pro-components": "^2.6.49",
-        "@ant-design/pro-editor": "1.0.2",
         "@formily/antd-v5": "^1.2.0",
         "@formily/core": "^2.3.1",
         "@formily/react": "^2.3.1",

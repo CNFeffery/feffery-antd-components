@@ -3,7 +3,7 @@
 import typing  # noqa: F401
 import numbers # noqa: F401
 from typing_extensions import TypedDict, NotRequired, Literal # noqa: F401
-from dash.development.base_component import Component, _explicitize_args
+from dash.development.base_component import Component
 try:
     from dash.development.base_component import ComponentType # noqa: F401
 except ImportError:
@@ -216,13 +216,14 @@ Keyword arguments:
         "OptionsOptions",
             {
             "label": typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]],
-            "value": typing.Union[str, typing.Union[int, float, numbers.Number]],
+            "value": typing.Union[str, typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]],
             "disabled": NotRequired[bool],
             "colors": NotRequired[typing.Sequence[str]]
         }
     )
 
-    @_explicitize_args
+    _explicitize_dash_init = True
+
     def __init__(
         self,
         id: typing.Optional[typing.Union[str, dict]] = None,
@@ -232,10 +233,10 @@ Keyword arguments:
         popupClassName: typing.Optional[str] = None,
         name: typing.Optional[str] = None,
         locale: typing.Optional[Literal["zh-cn", "en-us", "de-de"]] = None,
-        options: typing.Optional[typing.Sequence[typing.Union[str, typing.Union[int, float, numbers.Number], "Options"]]] = None,
-        listHeight: typing.Optional[typing.Union[int, float, numbers.Number]] = None,
+        options: typing.Optional[typing.Sequence[typing.Union[str, typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex], "Options"]]] = None,
+        listHeight: typing.Optional[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]] = None,
         colorsMode: typing.Optional[Literal["sequential", "diverging"]] = None,
-        colorsNameWidth: typing.Optional[typing.Union[int, float, numbers.Number]] = None,
+        colorsNameWidth: typing.Optional[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]] = None,
         mode: typing.Optional[Literal["multiple", "tags"]] = None,
         disabled: typing.Optional[bool] = None,
         size: typing.Optional[Literal["small", "middle", "large"]] = None,
@@ -243,15 +244,15 @@ Keyword arguments:
         variant: typing.Optional[Literal["outlined", "borderless", "filled", "underlined"]] = None,
         placeholder: typing.Optional[str] = None,
         placement: typing.Optional[Literal["bottomLeft", "bottomRight", "topLeft", "topRight"]] = None,
-        value: typing.Optional[typing.Union[typing.Union[str, typing.Union[int, float, numbers.Number]], typing.Sequence[typing.Union[str, typing.Union[int, float, numbers.Number]]]]] = None,
-        defaultValue: typing.Optional[typing.Union[typing.Union[str, typing.Union[int, float, numbers.Number]], typing.Sequence[typing.Union[str, typing.Union[int, float, numbers.Number]]]]] = None,
-        maxTagCount: typing.Optional[typing.Union[typing.Union[int, float, numbers.Number], Literal["responsive"]]] = None,
+        value: typing.Optional[typing.Union[typing.Union[str, typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]], typing.Sequence[typing.Union[str, typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]]]]] = None,
+        defaultValue: typing.Optional[typing.Union[typing.Union[str, typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]], typing.Sequence[typing.Union[str, typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]]]]] = None,
+        maxTagCount: typing.Optional[typing.Union[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex], Literal["responsive"]]] = None,
         status: typing.Optional[Literal["error", "warning"]] = None,
         optionFilterProp: typing.Optional[Literal["value", "label"]] = None,
         searchValue: typing.Optional[str] = None,
         optionFilterMode: typing.Optional[Literal["case-insensitive", "case-sensitive", "regex", "remote-match"]] = None,
         debounceSearchValue: typing.Optional[str] = None,
-        debounceWait: typing.Optional[typing.Union[int, float, numbers.Number]] = None,
+        debounceWait: typing.Optional[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]] = None,
         autoSpin: typing.Optional[bool] = None,
         autoClearSearchValue: typing.Optional[bool] = None,
         emptyContent: typing.Optional[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]] = None,
@@ -264,11 +265,11 @@ Keyword arguments:
         autoFocus: typing.Optional[bool] = None,
         popupMatchSelectWidth: typing.Optional[bool] = None,
         readOnly: typing.Optional[bool] = None,
-        maxCount: typing.Optional[typing.Union[int, float, numbers.Number]] = None,
+        maxCount: typing.Optional[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]] = None,
         popupContainer: typing.Optional[Literal["parent", "body"]] = None,
         batchPropsNames: typing.Optional[typing.Sequence[str]] = None,
         batchPropsValues: typing.Optional[dict] = None,
-        persistence: typing.Optional[typing.Union[bool, str, typing.Union[int, float, numbers.Number]]] = None,
+        persistence: typing.Optional[typing.Union[bool, str, typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]]] = None,
         persisted_props: typing.Optional[typing.Sequence[Literal["value"]]] = None,
         persistence_type: typing.Optional[Literal["local", "session", "memory"]] = None,
         **kwargs

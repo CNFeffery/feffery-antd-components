@@ -3,7 +3,7 @@
 import typing  # noqa: F401
 import numbers # noqa: F401
 from typing_extensions import TypedDict, NotRequired, Literal # noqa: F401
-from dash.development.base_component import Component, _explicitize_args
+from dash.development.base_component import Component
 try:
     from dash.development.base_component import ComponentType # noqa: F401
 except ImportError:
@@ -163,7 +163,7 @@ Keyword arguments:
         "Items",
             {
             "label": NotRequired[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]],
-            "span": NotRequired[typing.Union[typing.Union[int, float, numbers.Number], Literal["filled"]]],
+            "span": NotRequired[typing.Union[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex], Literal["filled"]]],
             "children": NotRequired[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]],
             "style": NotRequired[dict],
             "className": NotRequired[str]
@@ -173,16 +173,17 @@ Keyword arguments:
     Column = TypedDict(
         "Column",
             {
-            "xxl": NotRequired[typing.Union[int, float, numbers.Number]],
-            "xl": NotRequired[typing.Union[int, float, numbers.Number]],
-            "lg": NotRequired[typing.Union[int, float, numbers.Number]],
-            "md": NotRequired[typing.Union[int, float, numbers.Number]],
-            "sm": NotRequired[typing.Union[int, float, numbers.Number]],
-            "xs": NotRequired[typing.Union[int, float, numbers.Number]]
+            "xxl": NotRequired[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]],
+            "xl": NotRequired[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]],
+            "lg": NotRequired[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]],
+            "md": NotRequired[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]],
+            "sm": NotRequired[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]],
+            "xs": NotRequired[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]]
         }
     )
 
-    @_explicitize_args
+    _explicitize_dash_init = True
+
     def __init__(
         self,
         children: typing.Optional[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]] = None,
@@ -194,7 +195,7 @@ Keyword arguments:
         classNames: typing.Optional["ClassNames"] = None,
         items: typing.Optional[typing.Sequence["Items"]] = None,
         title: typing.Optional[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]] = None,
-        column: typing.Optional[typing.Union[typing.Union[int, float, numbers.Number], "Column"]] = None,
+        column: typing.Optional[typing.Union[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex], "Column"]] = None,
         bordered: typing.Optional[bool] = None,
         size: typing.Optional[Literal["small", "default", "large"]] = None,
         layout: typing.Optional[Literal["horizontal", "vertical"]] = None,

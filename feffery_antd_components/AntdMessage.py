@@ -3,7 +3,7 @@
 import typing  # noqa: F401
 import numbers # noqa: F401
 from typing_extensions import TypedDict, NotRequired, Literal # noqa: F401
-from dash.development.base_component import Component, _explicitize_args
+from dash.development.base_component import Component
 try:
     from dash.development.base_component import ComponentType # noqa: F401
 except ImportError:
@@ -51,7 +51,8 @@ Keyword arguments:
     _namespace = 'feffery_antd_components'
     _type = 'AntdMessage'
 
-    @_explicitize_args
+    _explicitize_dash_init = True
+
     def __init__(
         self,
         id: typing.Optional[typing.Union[str, dict]] = None,
@@ -60,9 +61,9 @@ Keyword arguments:
         className: typing.Optional[str] = None,
         content: typing.Optional[str] = None,
         type: typing.Optional[Literal["default", "success", "error", "info", "warning"]] = None,
-        duration: typing.Optional[typing.Union[int, float, numbers.Number]] = None,
-        top: typing.Optional[typing.Union[int, float, numbers.Number]] = None,
-        maxCount: typing.Optional[typing.Union[int, float, numbers.Number]] = None,
+        duration: typing.Optional[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]] = None,
+        top: typing.Optional[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]] = None,
+        maxCount: typing.Optional[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]] = None,
         icon: typing.Optional[str] = None,
         iconRenderer: typing.Optional[Literal["AntdIcon", "fontawesome"]] = None,
         **kwargs

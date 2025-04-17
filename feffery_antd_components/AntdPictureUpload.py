@@ -3,7 +3,7 @@
 import typing  # noqa: F401
 import numbers # noqa: F401
 from typing_extensions import TypedDict, NotRequired, Literal # noqa: F401
-from dash.development.base_component import Component, _explicitize_args
+from dash.development.base_component import Component
 try:
     from dash.development.base_component import ComponentType # noqa: F401
 except ImportError:
@@ -285,16 +285,16 @@ Keyword arguments:
     EditConfig = TypedDict(
         "EditConfig",
             {
-            "aspect": NotRequired[typing.Union[int, float, numbers.Number]],
+            "aspect": NotRequired[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]],
             "shape": NotRequired[Literal["rect", "round"]],
             "grid": NotRequired[bool],
-            "quality": NotRequired[typing.Union[int, float, numbers.Number]],
+            "quality": NotRequired[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]],
             "zoom": NotRequired[bool],
             "rotate": NotRequired[bool],
-            "minZoom": NotRequired[typing.Union[int, float, numbers.Number]],
-            "maxZoom": NotRequired[typing.Union[int, float, numbers.Number]],
+            "minZoom": NotRequired[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]],
+            "maxZoom": NotRequired[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]],
             "modalTitle": NotRequired[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]],
-            "modalWidth": NotRequired[typing.Union[int, float, numbers.Number]],
+            "modalWidth": NotRequired[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]],
             "modalOk": NotRequired[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]],
             "modalCancel": NotRequired[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]]
         }
@@ -320,7 +320,7 @@ Keyword arguments:
         "ProgressProps",
             {
             "strokeColor": NotRequired[typing.Union[str, "ProgressPropsStrokeColor"]],
-            "strokeWidth": NotRequired[typing.Union[int, float, numbers.Number]],
+            "strokeWidth": NotRequired[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]],
             "format": NotRequired["ProgressPropsFormat"]
         }
     )
@@ -329,8 +329,8 @@ Keyword arguments:
         "LastUploadTaskRecord",
             {
             "fileName": NotRequired[str],
-            "fileSize": NotRequired[typing.Union[int, float, numbers.Number]],
-            "completeTimestamp": NotRequired[typing.Union[int, float, numbers.Number]],
+            "fileSize": NotRequired[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]],
+            "completeTimestamp": NotRequired[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]],
             "taskStatus": NotRequired[str],
             "taskId": NotRequired[str],
             "url": NotRequired[str],
@@ -342,8 +342,8 @@ Keyword arguments:
         "ListUploadTaskRecord",
             {
             "fileName": NotRequired[str],
-            "fileSize": NotRequired[typing.Union[int, float, numbers.Number]],
-            "completeTimestamp": NotRequired[typing.Union[int, float, numbers.Number]],
+            "fileSize": NotRequired[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]],
+            "completeTimestamp": NotRequired[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]],
             "taskStatus": NotRequired[str],
             "taskId": NotRequired[str],
             "uid": NotRequired[str],
@@ -360,11 +360,12 @@ Keyword arguments:
             "uid": NotRequired[typing.Any],
             "url": NotRequired[str],
             "taskId": NotRequired[str],
-            "fileSize": NotRequired[typing.Union[int, float, numbers.Number]]
+            "fileSize": NotRequired[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]]
         }
     )
 
-    @_explicitize_args
+    _explicitize_dash_init = True
+
     def __init__(
         self,
         id: typing.Optional[typing.Union[str, dict]] = None,
@@ -382,11 +383,11 @@ Keyword arguments:
         downloadUrlFromBackend: typing.Optional[bool] = None,
         editable: typing.Optional[bool] = None,
         editConfig: typing.Optional["EditConfig"] = None,
-        fileListMaxLength: typing.Optional[typing.Union[int, float, numbers.Number]] = None,
+        fileListMaxLength: typing.Optional[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]] = None,
         fileTypes: typing.Optional[typing.Sequence[str]] = None,
         buttonContent: typing.Optional[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]] = None,
         uploadId: typing.Optional[str] = None,
-        fileMaxSize: typing.Optional[typing.Union[int, float, numbers.Number]] = None,
+        fileMaxSize: typing.Optional[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]] = None,
         failedTooltipInfo: typing.Optional[str] = None,
         showRemoveIcon: typing.Optional[bool] = None,
         showPreviewIcon: typing.Optional[bool] = None,

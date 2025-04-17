@@ -3,7 +3,7 @@
 import typing  # noqa: F401
 import numbers # noqa: F401
 from typing_extensions import TypedDict, NotRequired, Literal # noqa: F401
-from dash.development.base_component import Component, _explicitize_args
+from dash.development.base_component import Component
 try:
     from dash.development.base_component import ComponentType # noqa: F401
 except ImportError:
@@ -66,7 +66,8 @@ Keyword arguments:
     _namespace = 'feffery_antd_components'
     _type = 'AntdSpoiler'
 
-    @_explicitize_args
+    _explicitize_dash_init = True
+
     def __init__(
         self,
         children: typing.Optional[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]] = None,
@@ -81,8 +82,8 @@ Keyword arguments:
         showLabel: typing.Optional[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]] = None,
         labelPosition: typing.Optional[Literal["left", "right"]] = None,
         open: typing.Optional[bool] = None,
-        maxHeight: typing.Optional[typing.Union[int, float, numbers.Number]] = None,
-        transitionDuration: typing.Optional[typing.Union[int, float, numbers.Number]] = None,
+        maxHeight: typing.Optional[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]] = None,
+        transitionDuration: typing.Optional[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]] = None,
         **kwargs
     ):
         self._prop_names = ['id', 'key', 'children', 'style', 'className', 'contentClassName', 'contentStyle', 'locale', 'hideLabel', 'showLabel', 'labelPosition', 'open', 'maxHeight', 'transitionDuration', 'data-*', 'aria-*']

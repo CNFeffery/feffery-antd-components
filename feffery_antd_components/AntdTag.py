@@ -3,7 +3,7 @@
 import typing  # noqa: F401
 import numbers # noqa: F401
 from typing_extensions import TypedDict, NotRequired, Literal # noqa: F401
-from dash.development.base_component import Component, _explicitize_args
+from dash.development.base_component import Component
 try:
     from dash.development.base_component import ComponentType # noqa: F401
 except ImportError:
@@ -59,7 +59,8 @@ Keyword arguments:
     _namespace = 'feffery_antd_components'
     _type = 'AntdTag'
 
-    @_explicitize_args
+    _explicitize_dash_init = True
+
     def __init__(
         self,
         id: typing.Optional[typing.Union[str, dict]] = None,
@@ -73,7 +74,7 @@ Keyword arguments:
         target: typing.Optional[str] = None,
         bordered: typing.Optional[bool] = None,
         closeIcon: typing.Optional[bool] = None,
-        closeCounts: typing.Optional[typing.Union[int, float, numbers.Number]] = None,
+        closeCounts: typing.Optional[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]] = None,
         **kwargs
     ):
         self._prop_names = ['id', 'key', 'style', 'className', 'content', 'icon', 'color', 'href', 'target', 'bordered', 'closeIcon', 'closeCounts', 'data-*', 'aria-*']

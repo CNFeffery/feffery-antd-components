@@ -3,7 +3,7 @@
 import typing  # noqa: F401
 import numbers # noqa: F401
 from typing_extensions import TypedDict, NotRequired, Literal # noqa: F401
-from dash.development.base_component import Component, _explicitize_args
+from dash.development.base_component import Component
 try:
     from dash.development.base_component import ComponentType # noqa: F401
 except ImportError:
@@ -692,13 +692,13 @@ Keyword arguments:
             "title": NotRequired[typing.Any],
             "placement": NotRequired[Literal["top", "left", "right", "bottom", "topLeft", "topRight", "bottomLeft", "bottomRight"]],
             "color": NotRequired[str],
-            "mouseEnterDelay": NotRequired[typing.Union[int, float, numbers.Number]],
-            "mouseLeaveDelay": NotRequired[typing.Union[int, float, numbers.Number]],
+            "mouseEnterDelay": NotRequired[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]],
+            "mouseLeaveDelay": NotRequired[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]],
             "overlayClassName": NotRequired[typing.Union[str, dict]],
             "overlayStyle": NotRequired[dict],
             "overlayInnerStyle": NotRequired[dict],
             "trigger": NotRequired[typing.Union[Literal["hover", "focus", "click"], typing.Sequence[Literal["hover", "focus", "click"]]]],
-            "zIndex": NotRequired[typing.Union[int, float, numbers.Number]],
+            "zIndex": NotRequired[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]],
             "arrow": NotRequired[Literal["show", "hide", "center"]],
             "fresh": NotRequired[bool],
             "open": NotRequired[bool],
@@ -714,10 +714,10 @@ Keyword arguments:
             "defaultField": NotRequired[dict],
             "enum": NotRequired[typing.Any],
             "fields": NotRequired[typing.Any],
-            "len": NotRequired[typing.Union[int, float, numbers.Number]],
-            "max": NotRequired[typing.Union[int, float, numbers.Number]],
+            "len": NotRequired[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]],
+            "max": NotRequired[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]],
             "message": NotRequired[str],
-            "min": NotRequired[typing.Union[int, float, numbers.Number]],
+            "min": NotRequired[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]],
             "pattern": NotRequired[typing.Union[str, typing.Any]],
             "required": NotRequired[bool],
             "type": NotRequired[Literal["string", "number", "boolean", "method", "regexp", "integer", "float", "array", "object", "enum", "date", "url", "hex", "email", "any"]],
@@ -734,8 +734,8 @@ Keyword arguments:
             "type": NotRequired[Literal["array"]],
             "title": NotRequired[str],
             "widget": NotRequired[Literal["cardList", "simpleList", "tableList", "drawerList", "virtualList"]],
-            "max": NotRequired[typing.Union[typing.Union[int, float, numbers.Number], str]],
-            "min": NotRequired[typing.Union[typing.Union[int, float, numbers.Number], str]],
+            "max": NotRequired[typing.Union[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex], str]],
+            "min": NotRequired[typing.Union[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex], str]],
             "props": NotRequired["SchemaPropertiesProps"],
             "items": NotRequired[dict]
         }
@@ -759,11 +759,11 @@ Keyword arguments:
             {
             "type": NotRequired[Literal["object"]],
             "displayType": NotRequired[Literal["column", "row", "inline"]],
-            "column": NotRequired[typing.Union[int, float, numbers.Number]],
-            "labelWidth": NotRequired[typing.Union[int, float, numbers.Number]],
-            "maxWidth": NotRequired[typing.Union[int, float, numbers.Number]],
-            "labelCol": NotRequired[typing.Union[int, float, numbers.Number]],
-            "fieldCol": NotRequired[typing.Union[int, float, numbers.Number]],
+            "column": NotRequired[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]],
+            "labelWidth": NotRequired[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]],
+            "maxWidth": NotRequired[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]],
+            "labelCol": NotRequired[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]],
+            "fieldCol": NotRequired[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]],
             "properties": NotRequired[typing.Dict[typing.Union[str, float, int], typing.Union["SchemaProperties"]]]
         }
     )
@@ -899,7 +899,8 @@ Keyword arguments:
         }
     )
 
-    @_explicitize_args
+    _explicitize_dash_init = True
+
     def __init__(
         self,
         id: typing.Optional[typing.Union[str, dict]] = None,
@@ -909,16 +910,16 @@ Keyword arguments:
         schema: typing.Optional["Schema"] = None,
         displayType: typing.Optional[Literal["column", "row", "inline"]] = None,
         labelAlign: typing.Optional[Literal["left", "right"]] = None,
-        lableWidth: typing.Optional[typing.Union[int, float, numbers.Number]] = None,
-        maxWidth: typing.Optional[typing.Union[int, float, numbers.Number]] = None,
-        labelCol: typing.Optional[typing.Union[int, float, numbers.Number]] = None,
-        fieldCol: typing.Optional[typing.Union[int, float, numbers.Number]] = None,
+        lableWidth: typing.Optional[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]] = None,
+        maxWidth: typing.Optional[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]] = None,
+        labelCol: typing.Optional[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]] = None,
+        fieldCol: typing.Optional[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]] = None,
         colon: typing.Optional[bool] = None,
         globalConfig: typing.Optional["GlobalConfig"] = None,
         watch: typing.Optional[typing.Dict[typing.Union[str, float, int], str]] = None,
         removeHiddenData: typing.Optional[bool] = None,
         readOnly: typing.Optional[bool] = None,
-        column: typing.Optional[typing.Union[int, float, numbers.Number]] = None,
+        column: typing.Optional[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]] = None,
         disabled: typing.Optional[bool] = None,
         scrollToFirstError: typing.Optional[bool] = None,
         locale: typing.Optional[Literal["zh-cn", "en-us", "de-de"]] = None,
@@ -928,9 +929,9 @@ Keyword arguments:
         values: typing.Optional[dict] = None,
         validateStatuses: typing.Optional[bool] = None,
         submitForm: typing.Optional[bool] = None,
-        submitFormClicks: typing.Optional[typing.Union[int, float, numbers.Number]] = None,
+        submitFormClicks: typing.Optional[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]] = None,
         resetForm: typing.Optional[bool] = None,
-        resetFormClicks: typing.Optional[typing.Union[int, float, numbers.Number]] = None,
+        resetFormClicks: typing.Optional[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]] = None,
         loading_state: typing.Optional["LoadingState"] = None,
         **kwargs
     ):

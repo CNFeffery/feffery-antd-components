@@ -3,7 +3,7 @@
 import typing  # noqa: F401
 import numbers # noqa: F401
 from typing_extensions import TypedDict, NotRequired, Literal # noqa: F401
-from dash.development.base_component import Component, _explicitize_args
+from dash.development.base_component import Component
 try:
     from dash.development.base_component import ComponentType # noqa: F401
 except ImportError:
@@ -87,12 +87,13 @@ Keyword arguments:
     IconSize = TypedDict(
         "IconSize",
             {
-            "width": NotRequired[typing.Union[int, float, numbers.Number]],
-            "height": NotRequired[typing.Union[int, float, numbers.Number]]
+            "width": NotRequired[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]],
+            "height": NotRequired[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]]
         }
     )
 
-    @_explicitize_args
+    _explicitize_dash_init = True
+
     def __init__(
         self,
         id: typing.Optional[typing.Union[str, dict]] = None,
@@ -103,16 +104,16 @@ Keyword arguments:
         value: typing.Optional[str] = None,
         type: typing.Optional[Literal["canvas", "svg"]] = None,
         icon: typing.Optional[str] = None,
-        size: typing.Optional[typing.Union[int, float, numbers.Number]] = None,
-        iconSize: typing.Optional[typing.Union[typing.Union[int, float, numbers.Number], "IconSize"]] = None,
+        size: typing.Optional[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]] = None,
+        iconSize: typing.Optional[typing.Union[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex], "IconSize"]] = None,
         color: typing.Optional[str] = None,
         bgColor: typing.Optional[str] = None,
         bordered: typing.Optional[bool] = None,
         errorLevel: typing.Optional[Literal["L", "M", "Q", "H"]] = None,
         status: typing.Optional[Literal["active", "expired", "loading", "scanned"]] = None,
-        expires: typing.Optional[typing.Union[int, float, numbers.Number]] = None,
+        expires: typing.Optional[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]] = None,
         autoSpin: typing.Optional[bool] = None,
-        refreshClicks: typing.Optional[typing.Union[int, float, numbers.Number]] = None,
+        refreshClicks: typing.Optional[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]] = None,
         **kwargs
     ):
         self._prop_names = ['id', 'key', 'style', 'className', 'locale', 'value', 'type', 'icon', 'size', 'iconSize', 'color', 'bgColor', 'bordered', 'errorLevel', 'status', 'expires', 'autoSpin', 'refreshClicks', 'data-*', 'aria-*']

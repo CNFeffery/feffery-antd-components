@@ -3,7 +3,7 @@
 import typing  # noqa: F401
 import numbers # noqa: F401
 from typing_extensions import TypedDict, NotRequired, Literal # noqa: F401
-from dash.development.base_component import Component, _explicitize_args
+from dash.development.base_component import Component
 try:
     from dash.development.base_component import ComponentType # noqa: F401
 except ImportError:
@@ -178,70 +178,71 @@ Keyword arguments:
     Xs = TypedDict(
         "Xs",
             {
-            "span": NotRequired[typing.Union[int, float, numbers.Number]],
-            "offset": NotRequired[typing.Union[int, float, numbers.Number]],
-            "order": NotRequired[typing.Union[int, float, numbers.Number]],
-            "pull": NotRequired[typing.Union[int, float, numbers.Number]],
-            "push": NotRequired[typing.Union[int, float, numbers.Number]]
+            "span": NotRequired[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]],
+            "offset": NotRequired[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]],
+            "order": NotRequired[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]],
+            "pull": NotRequired[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]],
+            "push": NotRequired[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]]
         }
     )
 
     Sm = TypedDict(
         "Sm",
             {
-            "span": NotRequired[typing.Union[int, float, numbers.Number]],
-            "offset": NotRequired[typing.Union[int, float, numbers.Number]],
-            "order": NotRequired[typing.Union[int, float, numbers.Number]],
-            "pull": NotRequired[typing.Union[int, float, numbers.Number]],
-            "push": NotRequired[typing.Union[int, float, numbers.Number]]
+            "span": NotRequired[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]],
+            "offset": NotRequired[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]],
+            "order": NotRequired[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]],
+            "pull": NotRequired[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]],
+            "push": NotRequired[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]]
         }
     )
 
     Md = TypedDict(
         "Md",
             {
-            "span": NotRequired[typing.Union[int, float, numbers.Number]],
-            "offset": NotRequired[typing.Union[int, float, numbers.Number]],
-            "order": NotRequired[typing.Union[int, float, numbers.Number]],
-            "pull": NotRequired[typing.Union[int, float, numbers.Number]],
-            "push": NotRequired[typing.Union[int, float, numbers.Number]]
+            "span": NotRequired[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]],
+            "offset": NotRequired[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]],
+            "order": NotRequired[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]],
+            "pull": NotRequired[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]],
+            "push": NotRequired[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]]
         }
     )
 
     Lg = TypedDict(
         "Lg",
             {
-            "span": NotRequired[typing.Union[int, float, numbers.Number]],
-            "offset": NotRequired[typing.Union[int, float, numbers.Number]],
-            "order": NotRequired[typing.Union[int, float, numbers.Number]],
-            "pull": NotRequired[typing.Union[int, float, numbers.Number]],
-            "push": NotRequired[typing.Union[int, float, numbers.Number]]
+            "span": NotRequired[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]],
+            "offset": NotRequired[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]],
+            "order": NotRequired[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]],
+            "pull": NotRequired[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]],
+            "push": NotRequired[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]]
         }
     )
 
     Xl = TypedDict(
         "Xl",
             {
-            "span": NotRequired[typing.Union[int, float, numbers.Number]],
-            "offset": NotRequired[typing.Union[int, float, numbers.Number]],
-            "order": NotRequired[typing.Union[int, float, numbers.Number]],
-            "pull": NotRequired[typing.Union[int, float, numbers.Number]],
-            "push": NotRequired[typing.Union[int, float, numbers.Number]]
+            "span": NotRequired[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]],
+            "offset": NotRequired[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]],
+            "order": NotRequired[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]],
+            "pull": NotRequired[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]],
+            "push": NotRequired[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]]
         }
     )
 
     Xxl = TypedDict(
         "Xxl",
             {
-            "span": NotRequired[typing.Union[int, float, numbers.Number]],
-            "offset": NotRequired[typing.Union[int, float, numbers.Number]],
-            "order": NotRequired[typing.Union[int, float, numbers.Number]],
-            "pull": NotRequired[typing.Union[int, float, numbers.Number]],
-            "push": NotRequired[typing.Union[int, float, numbers.Number]]
+            "span": NotRequired[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]],
+            "offset": NotRequired[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]],
+            "order": NotRequired[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]],
+            "pull": NotRequired[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]],
+            "push": NotRequired[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]]
         }
     )
 
-    @_explicitize_args
+    _explicitize_dash_init = True
+
     def __init__(
         self,
         children: typing.Optional[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]] = None,
@@ -249,18 +250,18 @@ Keyword arguments:
         key: typing.Optional[str] = None,
         style: typing.Optional[typing.Any] = None,
         className: typing.Optional[typing.Union[str, dict]] = None,
-        span: typing.Optional[typing.Union[int, float, numbers.Number]] = None,
-        offset: typing.Optional[typing.Union[int, float, numbers.Number]] = None,
-        order: typing.Optional[typing.Union[int, float, numbers.Number]] = None,
-        pull: typing.Optional[typing.Union[int, float, numbers.Number]] = None,
-        push: typing.Optional[typing.Union[int, float, numbers.Number]] = None,
-        flex: typing.Optional[typing.Union[str, typing.Union[int, float, numbers.Number]]] = None,
-        xs: typing.Optional[typing.Union[typing.Union[int, float, numbers.Number], "Xs"]] = None,
-        sm: typing.Optional[typing.Union[typing.Union[int, float, numbers.Number], "Sm"]] = None,
-        md: typing.Optional[typing.Union[typing.Union[int, float, numbers.Number], "Md"]] = None,
-        lg: typing.Optional[typing.Union[typing.Union[int, float, numbers.Number], "Lg"]] = None,
-        xl: typing.Optional[typing.Union[typing.Union[int, float, numbers.Number], "Xl"]] = None,
-        xxl: typing.Optional[typing.Union[typing.Union[int, float, numbers.Number], "Xxl"]] = None,
+        span: typing.Optional[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]] = None,
+        offset: typing.Optional[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]] = None,
+        order: typing.Optional[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]] = None,
+        pull: typing.Optional[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]] = None,
+        push: typing.Optional[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]] = None,
+        flex: typing.Optional[typing.Union[str, typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]]] = None,
+        xs: typing.Optional[typing.Union[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex], "Xs"]] = None,
+        sm: typing.Optional[typing.Union[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex], "Sm"]] = None,
+        md: typing.Optional[typing.Union[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex], "Md"]] = None,
+        lg: typing.Optional[typing.Union[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex], "Lg"]] = None,
+        xl: typing.Optional[typing.Union[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex], "Xl"]] = None,
+        xxl: typing.Optional[typing.Union[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex], "Xxl"]] = None,
         **kwargs
     ):
         self._prop_names = ['id', 'key', 'children', 'style', 'className', 'span', 'offset', 'order', 'pull', 'push', 'flex', 'xs', 'sm', 'md', 'lg', 'xl', 'xxl', 'data-*', 'aria-*']

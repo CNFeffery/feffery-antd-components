@@ -3,7 +3,7 @@
 import typing  # noqa: F401
 import numbers # noqa: F401
 from typing_extensions import TypedDict, NotRequired, Literal # noqa: F401
-from dash.development.base_component import Component, _explicitize_args
+from dash.development.base_component import Component
 try:
     from dash.development.base_component import ComponentType # noqa: F401
 except ImportError:
@@ -95,7 +95,8 @@ Keyword arguments:
         }
     )
 
-    @_explicitize_args
+    _explicitize_dash_init = True
+
     def __init__(
         self,
         id: typing.Optional[typing.Union[str, dict]] = None,
@@ -106,9 +107,9 @@ Keyword arguments:
         description: typing.Optional[str] = None,
         type: typing.Optional[Literal["default", "success", "error", "info", "warning"]] = None,
         placement: typing.Optional[Literal["top", "bottom", "topLeft", "topRight", "bottomLeft", "bottomRight"]] = None,
-        top: typing.Optional[typing.Union[int, float, numbers.Number]] = None,
-        bottom: typing.Optional[typing.Union[int, float, numbers.Number]] = None,
-        duration: typing.Optional[typing.Union[int, float, numbers.Number]] = None,
+        top: typing.Optional[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]] = None,
+        bottom: typing.Optional[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]] = None,
+        duration: typing.Optional[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]] = None,
         showProgress: typing.Optional[bool] = None,
         pauseOnHover: typing.Optional[bool] = None,
         closable: typing.Optional[bool] = None,

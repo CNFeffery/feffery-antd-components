@@ -181,11 +181,6 @@ body {
     margin-inline-start: 5px;
 }
 
-/* pro-editor样式调整 */
-.headerAndFooterIcon>button {
-    display: none;
-}
-
 /* AntdPopupCard、AntdModal内置显隐动效补丁 */
 @keyframes antZoomBigIn {
     0% {

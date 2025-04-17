@@ -3,7 +3,7 @@
 import typing  # noqa: F401
 import numbers # noqa: F401
 from typing_extensions import TypedDict, NotRequired, Literal # noqa: F401
-from dash.development.base_component import Component, _explicitize_args
+from dash.development.base_component import Component
 try:
     from dash.development.base_component import ComponentType # noqa: F401
 except ImportError:
@@ -138,7 +138,7 @@ Keyword arguments:
     DataSource = TypedDict(
         "DataSource",
             {
-            "key": NotRequired[typing.Union[str, typing.Union[int, float, numbers.Number]]],
+            "key": NotRequired[typing.Union[str, typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]]],
             "title": NotRequired[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]],
             "disabled": NotRequired[bool]
         }
@@ -147,7 +147,7 @@ Keyword arguments:
     Pagination = TypedDict(
         "Pagination",
             {
-            "pageSize": NotRequired[typing.Union[int, float, numbers.Number]]
+            "pageSize": NotRequired[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]]
         }
     )
 
@@ -160,7 +160,8 @@ Keyword arguments:
         }
     )
 
-    @_explicitize_args
+    _explicitize_dash_init = True
+
     def __init__(
         self,
         id: typing.Optional[typing.Union[str, dict]] = None,
@@ -171,7 +172,7 @@ Keyword arguments:
         locale: typing.Optional[Literal["zh-cn", "en-us", "de-de"]] = None,
         dataSource: typing.Optional[typing.Sequence["DataSource"]] = None,
         selectionsIcon: typing.Optional[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]] = None,
-        height: typing.Optional[typing.Union[str, typing.Union[int, float, numbers.Number]]] = None,
+        height: typing.Optional[typing.Union[str, typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]]] = None,
         pagination: typing.Optional[typing.Union[bool, "Pagination"]] = None,
         oneWay: typing.Optional[bool] = None,
         operations: typing.Optional[typing.Sequence[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]]] = None,
@@ -179,16 +180,16 @@ Keyword arguments:
         optionFilterMode: typing.Optional[Literal["case-insensitive", "case-sensitive", "regex"]] = None,
         showSelectAll: typing.Optional[bool] = None,
         titles: typing.Optional[typing.Sequence[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]]] = None,
-        targetKeys: typing.Optional[typing.Sequence[typing.Union[typing.Union[int, float, numbers.Number], str]]] = None,
+        targetKeys: typing.Optional[typing.Sequence[typing.Union[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex], str]]] = None,
         moveDirection: typing.Optional[Literal["left", "right"]] = None,
-        moveKeys: typing.Optional[typing.Sequence[typing.Union[typing.Union[int, float, numbers.Number], str]]] = None,
+        moveKeys: typing.Optional[typing.Sequence[typing.Union[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex], str]]] = None,
         disabled: typing.Optional[bool] = None,
         status: typing.Optional[Literal["error", "warning"]] = None,
         readOnly: typing.Optional[bool] = None,
         batchPropsNames: typing.Optional[typing.Sequence[str]] = None,
         batchPropsValues: typing.Optional[dict] = None,
         loading_state: typing.Optional["LoadingState"] = None,
-        persistence: typing.Optional[typing.Union[bool, str, typing.Union[int, float, numbers.Number]]] = None,
+        persistence: typing.Optional[typing.Union[bool, str, typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]]] = None,
         persisted_props: typing.Optional[typing.Sequence[Literal["targetKeys"]]] = None,
         persistence_type: typing.Optional[Literal["local", "session", "memory"]] = None,
         **kwargs

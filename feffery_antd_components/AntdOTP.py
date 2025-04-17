@@ -3,7 +3,7 @@
 import typing  # noqa: F401
 import numbers # noqa: F401
 from typing_extensions import TypedDict, NotRequired, Literal # noqa: F401
-from dash.development.base_component import Component, _explicitize_args
+from dash.development.base_component import Component
 try:
     from dash.development.base_component import ComponentType # noqa: F401
 except ImportError:
@@ -72,7 +72,8 @@ Keyword arguments:
     _namespace = 'feffery_antd_components'
     _type = 'AntdOTP'
 
-    @_explicitize_args
+    _explicitize_dash_init = True
+
     def __init__(
         self,
         id: typing.Optional[typing.Union[str, dict]] = None,
@@ -83,12 +84,12 @@ Keyword arguments:
         value: typing.Optional[str] = None,
         defaultValue: typing.Optional[str] = None,
         disabled: typing.Optional[bool] = None,
-        length: typing.Optional[typing.Union[int, float, numbers.Number]] = None,
+        length: typing.Optional[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]] = None,
         mask: typing.Optional[typing.Union[bool, str]] = None,
         status: typing.Optional[Literal["error", "warning"]] = None,
         size: typing.Optional[Literal["small", "middle", "large"]] = None,
         variant: typing.Optional[Literal["outlined", "borderless", "filled", "underlined"]] = None,
-        persistence: typing.Optional[typing.Union[bool, str, typing.Union[int, float, numbers.Number]]] = None,
+        persistence: typing.Optional[typing.Union[bool, str, typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]]] = None,
         persisted_props: typing.Optional[typing.Sequence[Literal["value"]]] = None,
         persistence_type: typing.Optional[Literal["local", "session", "memory"]] = None,
         **kwargs

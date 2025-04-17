@@ -3,7 +3,7 @@
 import typing  # noqa: F401
 import numbers # noqa: F401
 from typing_extensions import TypedDict, NotRequired, Literal # noqa: F401
-from dash.development.base_component import Component, _explicitize_args
+from dash.development.base_component import Component
 try:
     from dash.development.base_component import ComponentType # noqa: F401
 except ImportError:
@@ -102,13 +102,14 @@ Keyword arguments:
             "mask": NotRequired[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]],
             "maskClassName": NotRequired[str],
             "rootClassName": NotRequired[str],
-            "scaleStep": NotRequired[typing.Union[int, float, numbers.Number]],
-            "minScale": NotRequired[typing.Union[int, float, numbers.Number]],
-            "maxScale": NotRequired[typing.Union[int, float, numbers.Number]]
+            "scaleStep": NotRequired[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]],
+            "minScale": NotRequired[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]],
+            "maxScale": NotRequired[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]]
         }
     )
 
-    @_explicitize_args
+    _explicitize_dash_init = True
+
     def __init__(
         self,
         id: typing.Optional[typing.Union[str, dict]] = None,
@@ -117,13 +118,13 @@ Keyword arguments:
         className: typing.Optional[typing.Union[str, dict]] = None,
         locale: typing.Optional[Literal["zh-cn", "en-us", "de-de"]] = None,
         alt: typing.Optional[str] = None,
-        width: typing.Optional[typing.Union[typing.Union[int, float, numbers.Number], str]] = None,
-        height: typing.Optional[typing.Union[typing.Union[int, float, numbers.Number], str]] = None,
+        width: typing.Optional[typing.Union[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex], str]] = None,
+        height: typing.Optional[typing.Union[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex], str]] = None,
         src: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
         fallback: typing.Optional[str] = None,
         multiImageMode: typing.Optional[Literal["fold", "unfold"]] = None,
         previewVisible: typing.Optional[bool] = None,
-        previewCurrent: typing.Optional[typing.Union[int, float, numbers.Number]] = None,
+        previewCurrent: typing.Optional[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]] = None,
         preview: typing.Optional[typing.Union[bool, "Preview"]] = None,
         toolbarExtra: typing.Optional[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]] = None,
         **kwargs

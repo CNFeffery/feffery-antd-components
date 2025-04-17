@@ -3,7 +3,7 @@
 import typing  # noqa: F401
 import numbers # noqa: F401
 from typing_extensions import TypedDict, NotRequired, Literal # noqa: F401
-from dash.development.base_component import Component, _explicitize_args
+from dash.development.base_component import Component
 try:
     from dash.development.base_component import ComponentType # noqa: F401
 except ImportError:
@@ -144,7 +144,8 @@ Keyword arguments:
         }
     )
 
-    @_explicitize_args
+    _explicitize_dash_init = True
+
     def __init__(
         self,
         children: typing.Optional[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]] = None,
@@ -156,7 +157,7 @@ Keyword arguments:
         classNames: typing.Optional["ClassNames"] = None,
         title: typing.Optional[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]] = None,
         visible: typing.Optional[bool] = None,
-        width: typing.Optional[typing.Union[typing.Union[int, float, numbers.Number], str]] = None,
+        width: typing.Optional[typing.Union[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex], str]] = None,
         transitionType: typing.Optional[Literal["none", "fade", "zoom", "zoom-big", "zoom-big-fast", "slide-up", "slide-down", "slide-left", "slide-right", "move-up", "move-down", "move-left", "move-right"]] = None,
         forceRender: typing.Optional[bool] = None,
         destroyOnClose: typing.Optional[bool] = None,
@@ -164,7 +165,7 @@ Keyword arguments:
         closeIconType: typing.Optional[Literal["default", "outlined", "two-tone"]] = None,
         draggable: typing.Optional[bool] = None,
         dragClassName: typing.Optional[typing.Union[str, dict]] = None,
-        zIndex: typing.Optional[typing.Union[int, float, numbers.Number]] = None,
+        zIndex: typing.Optional[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]] = None,
         loading: typing.Optional[bool] = None,
         **kwargs
     ):

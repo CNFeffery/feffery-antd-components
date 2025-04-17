@@ -3,7 +3,7 @@
 import typing  # noqa: F401
 import numbers # noqa: F401
 from typing_extensions import TypedDict, NotRequired, Literal # noqa: F401
-from dash.development.base_component import Component, _explicitize_args
+from dash.development.base_component import Component
 try:
     from dash.development.base_component import ComponentType # noqa: F401
 except ImportError:
@@ -85,7 +85,8 @@ Keyword arguments:
         }
     )
 
-    @_explicitize_args
+    _explicitize_dash_init = True
+
     def __init__(
         self,
         children: typing.Optional[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]] = None,
@@ -98,13 +99,13 @@ Keyword arguments:
         dotPosition: typing.Optional[Literal["top", "bottom", "left", "right"]] = None,
         easing: typing.Optional[str] = None,
         effect: typing.Optional[Literal["scrollx", "fade"]] = None,
-        autoplaySpeed: typing.Optional[typing.Union[int, float, numbers.Number]] = None,
-        speed: typing.Optional[typing.Union[int, float, numbers.Number]] = None,
+        autoplaySpeed: typing.Optional[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]] = None,
+        speed: typing.Optional[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]] = None,
         pauseOnHover: typing.Optional[bool] = None,
         infinite: typing.Optional[bool] = None,
         lazyLoad: typing.Optional[bool] = None,
-        slidesToShow: typing.Optional[typing.Union[int, float, numbers.Number]] = None,
-        slidesToScroll: typing.Optional[typing.Union[int, float, numbers.Number]] = None,
+        slidesToShow: typing.Optional[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]] = None,
+        slidesToScroll: typing.Optional[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]] = None,
         **kwargs
     ):
         self._prop_names = ['id', 'key', 'children', 'style', 'className', 'arrows', 'autoplay', 'dotPosition', 'easing', 'effect', 'autoplaySpeed', 'speed', 'pauseOnHover', 'infinite', 'lazyLoad', 'slidesToShow', 'slidesToScroll', 'data-*', 'aria-*']

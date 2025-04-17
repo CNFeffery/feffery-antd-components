@@ -3,7 +3,7 @@
 import typing  # noqa: F401
 import numbers # noqa: F401
 from typing_extensions import TypedDict, NotRequired, Literal # noqa: F401
-from dash.development.base_component import Component, _explicitize_args
+from dash.development.base_component import Component
 try:
     from dash.development.base_component import ComponentType # noqa: F401
 except ImportError:
@@ -56,7 +56,8 @@ Keyword arguments:
     _namespace = 'feffery_antd_components'
     _type = 'AntdFlex'
 
-    @_explicitize_args
+    _explicitize_dash_init = True
+
     def __init__(
         self,
         children: typing.Optional[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]] = None,
@@ -69,7 +70,7 @@ Keyword arguments:
         justify: typing.Optional[str] = None,
         align: typing.Optional[str] = None,
         flex: typing.Optional[str] = None,
-        gap: typing.Optional[typing.Union[str, typing.Union[int, float, numbers.Number], Literal["small", "middle", "large"]]] = None,
+        gap: typing.Optional[typing.Union[str, typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex], Literal["small", "middle", "large"]]] = None,
         **kwargs
     ):
         self._prop_names = ['id', 'key', 'children', 'style', 'className', 'vertical', 'wrap', 'justify', 'align', 'flex', 'gap', 'data-*', 'aria-*']

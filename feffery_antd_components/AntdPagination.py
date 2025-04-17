@@ -3,7 +3,7 @@
 import typing  # noqa: F401
 import numbers # noqa: F401
 from typing_extensions import TypedDict, NotRequired, Literal # noqa: F401
-from dash.development.base_component import Component, _explicitize_args
+from dash.development.base_component import Component
 try:
     from dash.development.base_component import ComponentType # noqa: F401
 except ImportError:
@@ -106,7 +106,8 @@ Keyword arguments:
     _namespace = 'feffery_antd_components'
     _type = 'AntdPagination'
 
-    @_explicitize_args
+    _explicitize_dash_init = True
+
     def __init__(
         self,
         id: typing.Optional[typing.Union[str, dict]] = None,
@@ -115,25 +116,25 @@ Keyword arguments:
         className: typing.Optional[typing.Union[str, dict]] = None,
         locale: typing.Optional[Literal["zh-cn", "en-us", "de-de"]] = None,
         align: typing.Optional[Literal["start", "center", "end"]] = None,
-        defaultCurrent: typing.Optional[typing.Union[int, float, numbers.Number]] = None,
-        defaultPageSize: typing.Optional[typing.Union[int, float, numbers.Number]] = None,
-        current: typing.Optional[typing.Union[int, float, numbers.Number]] = None,
+        defaultCurrent: typing.Optional[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]] = None,
+        defaultPageSize: typing.Optional[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]] = None,
+        current: typing.Optional[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]] = None,
         disabled: typing.Optional[bool] = None,
         hideOnSinglePage: typing.Optional[bool] = None,
-        pageSize: typing.Optional[typing.Union[int, float, numbers.Number]] = None,
-        pageSizeOptions: typing.Optional[typing.Sequence[typing.Union[int, float, numbers.Number]]] = None,
+        pageSize: typing.Optional[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]] = None,
+        pageSizeOptions: typing.Optional[typing.Sequence[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]]] = None,
         showSizeChanger: typing.Optional[bool] = None,
         showQuickJumper: typing.Optional[bool] = None,
         showTotalPrefix: typing.Optional[str] = None,
         showTotalSuffix: typing.Optional[str] = None,
         simple: typing.Optional[bool] = None,
         size: typing.Optional[Literal["default", "small"]] = None,
-        total: typing.Optional[typing.Union[int, float, numbers.Number]] = None,
+        total: typing.Optional[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]] = None,
         showTotal: typing.Optional[bool] = None,
         showLessItems: typing.Optional[bool] = None,
         batchPropsNames: typing.Optional[typing.Sequence[str]] = None,
         batchPropsValues: typing.Optional[dict] = None,
-        persistence: typing.Optional[typing.Union[bool, str, typing.Union[int, float, numbers.Number]]] = None,
+        persistence: typing.Optional[typing.Union[bool, str, typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]]] = None,
         persisted_props: typing.Optional[typing.Sequence[Literal["current", "pageSize"]]] = None,
         persistence_type: typing.Optional[Literal["local", "session", "memory"]] = None,
         **kwargs

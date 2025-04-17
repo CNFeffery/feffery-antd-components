@@ -3,7 +3,7 @@
 import typing  # noqa: F401
 import numbers # noqa: F401
 from typing_extensions import TypedDict, NotRequired, Literal # noqa: F401
-from dash.development.base_component import Component, _explicitize_args
+from dash.development.base_component import Component
 try:
     from dash.development.base_component import ComponentType # noqa: F401
 except ImportError:
@@ -130,8 +130,8 @@ Keyword arguments:
     Size = TypedDict(
         "Size",
             {
-            "width": NotRequired[typing.Union[int, float, numbers.Number]],
-            "height": NotRequired[typing.Union[int, float, numbers.Number]]
+            "width": NotRequired[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]],
+            "height": NotRequired[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]]
         }
     )
 
@@ -146,7 +146,7 @@ Keyword arguments:
     Success = TypedDict(
         "Success",
             {
-            "percent": NotRequired[typing.Union[int, float, numbers.Number]],
+            "percent": NotRequired[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]],
             "strokeColor": NotRequired[typing.Union[str, "SuccessStrokeColor"]]
         }
     )
@@ -168,7 +168,8 @@ Keyword arguments:
         }
     )
 
-    @_explicitize_args
+    _explicitize_dash_init = True
+
     def __init__(
         self,
         id: typing.Optional[typing.Union[str, dict]] = None,
@@ -176,19 +177,19 @@ Keyword arguments:
         style: typing.Optional[typing.Any] = None,
         className: typing.Optional[typing.Union[str, dict]] = None,
         type: typing.Optional[Literal["line", "circle", "dashboard"]] = None,
-        size: typing.Optional[typing.Union[typing.Union[int, float, numbers.Number], typing.Sequence[typing.Union[int, float, numbers.Number]], Literal["small", "default"], "Size"]] = None,
-        percent: typing.Optional[typing.Union[int, float, numbers.Number]] = None,
+        size: typing.Optional[typing.Union[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex], typing.Sequence[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]], Literal["small", "default"], "Size"]] = None,
+        percent: typing.Optional[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]] = None,
         success: typing.Optional["Success"] = None,
         format: typing.Optional["Format"] = None,
         status: typing.Optional[Literal["success", "exception", "normal", "active"]] = None,
         showInfo: typing.Optional[bool] = None,
         strokeColor: typing.Optional[typing.Union[str, "StrokeColor"]] = None,
         strokeLinecap: typing.Optional[Literal["round", "butt", "square"]] = None,
-        strokeWidth: typing.Optional[typing.Union[int, float, numbers.Number]] = None,
+        strokeWidth: typing.Optional[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]] = None,
         trailColor: typing.Optional[str] = None,
-        gapDegree: typing.Optional[typing.Union[int, float, numbers.Number]] = None,
+        gapDegree: typing.Optional[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]] = None,
         gapPosition: typing.Optional[Literal["top", "bottom", "left", "right"]] = None,
-        steps: typing.Optional[typing.Union[int, float, numbers.Number]] = None,
+        steps: typing.Optional[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]] = None,
         **kwargs
     ):
         self._prop_names = ['id', 'key', 'style', 'className', 'type', 'size', 'percent', 'success', 'format', 'status', 'showInfo', 'strokeColor', 'strokeLinecap', 'strokeWidth', 'trailColor', 'gapDegree', 'gapPosition', 'steps', 'data-*', 'aria-*']

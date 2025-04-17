@@ -3,7 +3,7 @@
 import typing  # noqa: F401
 import numbers # noqa: F401
 from typing_extensions import TypedDict, NotRequired, Literal # noqa: F401
-from dash.development.base_component import Component, _explicitize_args
+from dash.development.base_component import Component
 try:
     from dash.development.base_component import ComponentType # noqa: F401
 except ImportError:
@@ -98,16 +98,17 @@ Keyword arguments:
             "children": NotRequired[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]],
             "style": NotRequired[dict],
             "className": NotRequired[str],
-            "defaultSize": NotRequired[typing.Union[typing.Union[int, float, numbers.Number], str]],
-            "size": NotRequired[typing.Union[typing.Union[int, float, numbers.Number], str]],
-            "min": NotRequired[typing.Union[typing.Union[int, float, numbers.Number], str]],
-            "max": NotRequired[typing.Union[typing.Union[int, float, numbers.Number], str]],
+            "defaultSize": NotRequired[typing.Union[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex], str]],
+            "size": NotRequired[typing.Union[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex], str]],
+            "min": NotRequired[typing.Union[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex], str]],
+            "max": NotRequired[typing.Union[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex], str]],
             "collapsible": NotRequired[typing.Union[bool, "ItemsCollapsible"]],
             "resizable": NotRequired[bool]
         }
     )
 
-    @_explicitize_args
+    _explicitize_dash_init = True
+
     def __init__(
         self,
         id: typing.Optional[typing.Union[str, dict]] = None,

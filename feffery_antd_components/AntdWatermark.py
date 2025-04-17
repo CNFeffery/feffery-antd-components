@@ -3,7 +3,7 @@
 import typing  # noqa: F401
 import numbers # noqa: F401
 from typing_extensions import TypedDict, NotRequired, Literal # noqa: F401
-from dash.development.base_component import Component, _explicitize_args
+from dash.development.base_component import Component
 try:
     from dash.development.base_component import ComponentType # noqa: F401
 except ImportError:
@@ -77,7 +77,8 @@ Keyword arguments:
     _namespace = 'feffery_antd_components'
     _type = 'AntdWatermark'
 
-    @_explicitize_args
+    _explicitize_dash_init = True
+
     def __init__(
         self,
         children: typing.Optional[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]] = None,
@@ -88,15 +89,15 @@ Keyword arguments:
         markClassName: typing.Optional[str] = None,
         markStyle: typing.Optional[dict] = None,
         content: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
-        rotate: typing.Optional[typing.Union[int, float, numbers.Number]] = None,
-        zIndex: typing.Optional[typing.Union[int, float, numbers.Number]] = None,
+        rotate: typing.Optional[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]] = None,
+        zIndex: typing.Optional[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]] = None,
         fontColor: typing.Optional[str] = None,
-        fontSize: typing.Optional[typing.Union[int, float, numbers.Number]] = None,
-        gapX: typing.Optional[typing.Union[int, float, numbers.Number]] = None,
-        gapY: typing.Optional[typing.Union[int, float, numbers.Number]] = None,
+        fontSize: typing.Optional[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]] = None,
+        gapX: typing.Optional[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]] = None,
+        gapY: typing.Optional[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]] = None,
         image: typing.Optional[str] = None,
-        width: typing.Optional[typing.Union[int, float, numbers.Number]] = None,
-        height: typing.Optional[typing.Union[int, float, numbers.Number]] = None,
+        width: typing.Optional[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]] = None,
+        height: typing.Optional[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]] = None,
         inherit: typing.Optional[bool] = None,
         **kwargs
     ):

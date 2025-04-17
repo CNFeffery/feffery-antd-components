@@ -3,7 +3,7 @@
 import typing  # noqa: F401
 import numbers # noqa: F401
 from typing_extensions import TypedDict, NotRequired, Literal # noqa: F401
-from dash.development.base_component import Component, _explicitize_args
+from dash.development.base_component import Component
 try:
     from dash.development.base_component import ComponentType # noqa: F401
 except ImportError:
@@ -80,7 +80,8 @@ Keyword arguments:
     _namespace = 'feffery_antd_components'
     _type = 'AntdSpin'
 
-    @_explicitize_args
+    _explicitize_dash_init = True
+
     def __init__(
         self,
         children: typing.Optional[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]] = None,
@@ -91,7 +92,7 @@ Keyword arguments:
         wrapperClassName: typing.Optional[typing.Union[str, dict]] = None,
         spinning: typing.Optional[bool] = None,
         size: typing.Optional[Literal["small", "middle", "large"]] = None,
-        delay: typing.Optional[typing.Union[int, float, numbers.Number]] = None,
+        delay: typing.Optional[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]] = None,
         text: typing.Optional[str] = None,
         fullscreen: typing.Optional[bool] = None,
         debug: typing.Optional[bool] = None,
@@ -100,7 +101,7 @@ Keyword arguments:
         includeProps: typing.Optional[typing.Sequence[str]] = None,
         indicator: typing.Optional[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]] = None,
         manual: typing.Optional[bool] = None,
-        percent: typing.Optional[typing.Union[typing.Union[int, float, numbers.Number], Literal["auto"]]] = None,
+        percent: typing.Optional[typing.Union[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex], Literal["auto"]]] = None,
         **kwargs
     ):
         self._prop_names = ['id', 'key', 'children', 'style', 'className', 'wrapperClassName', 'spinning', 'size', 'delay', 'text', 'fullscreen', 'debug', 'listenPropsMode', 'excludeProps', 'includeProps', 'indicator', 'manual', 'percent', 'data-*', 'aria-*']

@@ -3,7 +3,7 @@
 import typing  # noqa: F401
 import numbers # noqa: F401
 from typing_extensions import TypedDict, NotRequired, Literal # noqa: F401
-from dash.development.base_component import Component, _explicitize_args
+from dash.development.base_component import Component
 try:
     from dash.development.base_component import ComponentType # noqa: F401
 except ImportError:
@@ -78,7 +78,8 @@ Keyword arguments:
     _namespace = 'feffery_antd_components'
     _type = 'AntdRate'
 
-    @_explicitize_args
+    _explicitize_dash_init = True
+
     def __init__(
         self,
         id: typing.Optional[typing.Union[str, dict]] = None,
@@ -88,15 +89,15 @@ Keyword arguments:
         name: typing.Optional[str] = None,
         allowClear: typing.Optional[bool] = None,
         allowHalf: typing.Optional[bool] = None,
-        count: typing.Optional[typing.Union[int, float, numbers.Number]] = None,
+        count: typing.Optional[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]] = None,
         tooltips: typing.Optional[typing.Sequence[str]] = None,
         disabled: typing.Optional[bool] = None,
         autoFocus: typing.Optional[bool] = None,
-        value: typing.Optional[typing.Union[int, float, numbers.Number]] = None,
-        defaultValue: typing.Optional[typing.Union[int, float, numbers.Number]] = None,
+        value: typing.Optional[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]] = None,
+        defaultValue: typing.Optional[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]] = None,
         batchPropsNames: typing.Optional[typing.Sequence[str]] = None,
         batchPropsValues: typing.Optional[dict] = None,
-        persistence: typing.Optional[typing.Union[bool, str, typing.Union[int, float, numbers.Number]]] = None,
+        persistence: typing.Optional[typing.Union[bool, str, typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]]] = None,
         persisted_props: typing.Optional[typing.Sequence[Literal["value"]]] = None,
         persistence_type: typing.Optional[Literal["local", "session", "memory"]] = None,
         **kwargs

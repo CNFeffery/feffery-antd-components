@@ -3,7 +3,7 @@
 import typing  # noqa: F401
 import numbers # noqa: F401
 from typing_extensions import TypedDict, NotRequired, Literal # noqa: F401
-from dash.development.base_component import Component, _explicitize_args
+from dash.development.base_component import Component
 try:
     from dash.development.base_component import ComponentType # noqa: F401
 except ImportError:
@@ -88,16 +88,17 @@ Keyword arguments:
     Size = TypedDict(
         "Size",
             {
-            "xs": NotRequired[typing.Union[int, float, numbers.Number]],
-            "sm": NotRequired[typing.Union[int, float, numbers.Number]],
-            "md": NotRequired[typing.Union[int, float, numbers.Number]],
-            "lg": NotRequired[typing.Union[int, float, numbers.Number]],
-            "xl": NotRequired[typing.Union[int, float, numbers.Number]],
-            "xxl": NotRequired[typing.Union[int, float, numbers.Number]]
+            "xs": NotRequired[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]],
+            "sm": NotRequired[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]],
+            "md": NotRequired[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]],
+            "lg": NotRequired[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]],
+            "xl": NotRequired[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]],
+            "xxl": NotRequired[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]]
         }
     )
 
-    @_explicitize_args
+    _explicitize_dash_init = True
+
     def __init__(
         self,
         id: typing.Optional[typing.Union[str, dict]] = None,
@@ -105,7 +106,7 @@ Keyword arguments:
         style: typing.Optional[typing.Any] = None,
         className: typing.Optional[typing.Union[str, dict]] = None,
         mode: typing.Optional[Literal["text", "icon", "image"]] = None,
-        gap: typing.Optional[typing.Union[int, float, numbers.Number]] = None,
+        gap: typing.Optional[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]] = None,
         text: typing.Optional[str] = None,
         icon: typing.Optional[str] = None,
         iconRenderer: typing.Optional[Literal["AntdIcon", "fontawesome"]] = None,
@@ -114,7 +115,7 @@ Keyword arguments:
         srcSet: typing.Optional[str] = None,
         draggable: typing.Optional[typing.Union[bool, Literal["true", "false"]]] = None,
         crossOrigin: typing.Optional[Literal["anonymous", "use-credentials", ""]] = None,
-        size: typing.Optional[typing.Union[typing.Union[int, float, numbers.Number], Literal["large", "small", "default"], "Size"]] = None,
+        size: typing.Optional[typing.Union[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex], Literal["large", "small", "default"], "Size"]] = None,
         shape: typing.Optional[Literal["circle", "square"]] = None,
         **kwargs
     ):

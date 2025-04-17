@@ -3,7 +3,7 @@
 import typing  # noqa: F401
 import numbers # noqa: F401
 from typing_extensions import TypedDict, NotRequired, Literal # noqa: F401
-from dash.development.base_component import Component, _explicitize_args
+from dash.development.base_component import Component
 try:
     from dash.development.base_component import ComponentType # noqa: F401
 except ImportError:
@@ -100,7 +100,8 @@ Keyword arguments:
         }
     )
 
-    @_explicitize_args
+    _explicitize_dash_init = True
+
     def __init__(
         self,
         id: typing.Optional[typing.Union[str, dict]] = None,
@@ -108,7 +109,7 @@ Keyword arguments:
         style: typing.Optional[typing.Any] = None,
         className: typing.Optional[typing.Union[str, dict]] = None,
         steps: typing.Optional[typing.Sequence["Steps"]] = None,
-        current: typing.Optional[typing.Union[int, float, numbers.Number]] = None,
+        current: typing.Optional[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]] = None,
         direction: typing.Optional[Literal["horizontal", "vertical"]] = None,
         labelPlacement: typing.Optional[Literal["horizontal", "vertical"]] = None,
         progressDot: typing.Optional[bool] = None,
@@ -117,7 +118,7 @@ Keyword arguments:
         type: typing.Optional[Literal["default", "navigation", "inline"]] = None,
         allowClick: typing.Optional[bool] = None,
         responsive: typing.Optional[bool] = None,
-        percent: typing.Optional[typing.Union[int, float, numbers.Number]] = None,
+        percent: typing.Optional[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]] = None,
         **kwargs
     ):
         self._prop_names = ['id', 'key', 'style', 'className', 'steps', 'current', 'direction', 'labelPlacement', 'progressDot', 'size', 'status', 'type', 'allowClick', 'responsive', 'percent', 'data-*', 'aria-*']

@@ -3,7 +3,7 @@
 import typing  # noqa: F401
 import numbers # noqa: F401
 from typing_extensions import TypedDict, NotRequired, Literal # noqa: F401
-from dash.development.base_component import Component, _explicitize_args
+from dash.development.base_component import Component
 try:
     from dash.development.base_component import ComponentType # noqa: F401
 except ImportError:
@@ -215,12 +215,13 @@ Keyword arguments:
     AutoSize = TypedDict(
         "AutoSize",
             {
-            "minRows": NotRequired[typing.Union[int, float, numbers.Number]],
-            "maxRows": NotRequired[typing.Union[int, float, numbers.Number]]
+            "minRows": NotRequired[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]],
+            "maxRows": NotRequired[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]]
         }
     )
 
-    @_explicitize_args
+    _explicitize_dash_init = True
+
     def __init__(
         self,
         id: typing.Optional[typing.Union[str, dict]] = None,
@@ -242,17 +243,17 @@ Keyword arguments:
         passwordUseMd5: typing.Optional[bool] = None,
         md5Value: typing.Optional[str] = None,
         debounceValue: typing.Optional[str] = None,
-        debounceWait: typing.Optional[typing.Union[int, float, numbers.Number]] = None,
+        debounceWait: typing.Optional[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]] = None,
         addonBefore: typing.Optional[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]] = None,
         addonAfter: typing.Optional[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]] = None,
         prefix: typing.Optional[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]] = None,
         suffix: typing.Optional[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]] = None,
-        maxLength: typing.Optional[typing.Union[int, float, numbers.Number]] = None,
+        maxLength: typing.Optional[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]] = None,
         showCount: typing.Optional[bool] = None,
         countFormat: typing.Optional[str] = None,
         autoSize: typing.Optional[typing.Union[bool, "AutoSize"]] = None,
-        nSubmit: typing.Optional[typing.Union[int, float, numbers.Number]] = None,
-        nClicksSearch: typing.Optional[typing.Union[int, float, numbers.Number]] = None,
+        nSubmit: typing.Optional[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]] = None,
+        nClicksSearch: typing.Optional[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]] = None,
         status: typing.Optional[Literal["error", "warning"]] = None,
         allowClear: typing.Optional[bool] = None,
         autoFocus: typing.Optional[bool] = None,
@@ -261,7 +262,7 @@ Keyword arguments:
         emptyAsNone: typing.Optional[bool] = None,
         batchPropsNames: typing.Optional[typing.Sequence[str]] = None,
         batchPropsValues: typing.Optional[dict] = None,
-        persistence: typing.Optional[typing.Union[bool, str, typing.Union[int, float, numbers.Number]]] = None,
+        persistence: typing.Optional[typing.Union[bool, str, typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]]] = None,
         persisted_props: typing.Optional[typing.Sequence[Literal["value", "md5Value"]]] = None,
         persistence_type: typing.Optional[Literal["local", "session", "memory"]] = None,
         **kwargs

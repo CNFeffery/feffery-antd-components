@@ -106,8 +106,6 @@ from .AntdCopyText import AntdCopyText as CopyText
 from .AntdTour import AntdTour as Tour
 from .AntdWatermark import AntdWatermark as Watermark
 from .Fragment import Fragment
-from .AntdDraggablePanel import AntdDraggablePanel as DraggablePanel
-from .AntdEditorLayout import AntdEditorLayout as EditorLayout
 
 __all__ = [
     "Accordion",
@@ -218,6 +216,4 @@ __all__ = [
     "Tour",
     "Watermark",
     "Fragment",
-    "DraggablePanel",
-    "EditorLayout"
 ]

@@ -3,7 +3,7 @@
 import typing  # noqa: F401
 import numbers # noqa: F401
 from typing_extensions import TypedDict, NotRequired, Literal # noqa: F401
-from dash.development.base_component import Component, _explicitize_args
+from dash.development.base_component import Component
 try:
     from dash.development.base_component import ComponentType # noqa: F401
 except ImportError:
@@ -209,7 +209,7 @@ Keyword arguments:
     Indicator = TypedDict(
         "Indicator",
             {
-            "size": NotRequired[typing.Union[int, float, numbers.Number]],
+            "size": NotRequired[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]],
             "align": NotRequired[Literal["start", "center", "end"]]
         }
     )
@@ -219,11 +219,12 @@ Keyword arguments:
             {
             "tabKey": NotRequired[str],
             "menuKey": NotRequired[str],
-            "timestamp": NotRequired[typing.Union[int, float, numbers.Number]]
+            "timestamp": NotRequired[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]]
         }
     )
 
-    @_explicitize_args
+    _explicitize_dash_init = True
+
     def __init__(
         self,
         id: typing.Optional[typing.Union[str, dict]] = None,
@@ -240,19 +241,19 @@ Keyword arguments:
         size: typing.Optional[Literal["small", "default", "large"]] = None,
         centered: typing.Optional[bool] = None,
         indicator: typing.Optional["Indicator"] = None,
-        tabBarGutter: typing.Optional[typing.Union[int, float, numbers.Number]] = None,
+        tabBarGutter: typing.Optional[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]] = None,
         tabBarStyle: typing.Optional[dict] = None,
         inkBarAnimated: typing.Optional[bool] = None,
         tabPaneAnimated: typing.Optional[bool] = None,
         latestDeletePane: typing.Optional[str] = None,
-        tabCloseCounts: typing.Optional[typing.Union[int, float, numbers.Number]] = None,
+        tabCloseCounts: typing.Optional[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]] = None,
         tabBarLeftExtraContent: typing.Optional[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]] = None,
         tabBarRightExtraContent: typing.Optional[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]] = None,
-        tabCount: typing.Optional[typing.Union[int, float, numbers.Number]] = None,
+        tabCount: typing.Optional[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]] = None,
         destroyInactiveTabPane: typing.Optional[bool] = None,
         clickedContextMenu: typing.Optional["ClickedContextMenu"] = None,
         placeholder: typing.Optional[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]] = None,
-        persistence: typing.Optional[typing.Union[bool, str, typing.Union[int, float, numbers.Number]]] = None,
+        persistence: typing.Optional[typing.Union[bool, str, typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]]] = None,
         persisted_props: typing.Optional[typing.Sequence[Literal["activeKey"]]] = None,
         persistence_type: typing.Optional[Literal["local", "session", "memory"]] = None,
         **kwargs
