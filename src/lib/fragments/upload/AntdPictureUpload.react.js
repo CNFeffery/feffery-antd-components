@@ -94,6 +94,9 @@ const AntdPictureUpload = (props) => {
         ...others
     } = props;
 
+    const [messageApi, messageContextHolder] = message.useMessage();
+    const [modalApi, modalContextHolder] = Modal.useModal();
+
     const context = useContext(PropsContext)
     const formId = useContext(FormContext)
 
@@ -196,12 +199,12 @@ const AntdPictureUpload = (props) => {
         beforeUpload: (file) => {
             const sizeCheck = file.size / 1024 / 1024 < fileMaxSize;
             if (!sizeCheck) {
-                message.error(`${file.name}${locale2text.Upload[locale].sizeError[0]}${fileMaxSize}${locale2text.Upload[locale].sizeError[1]}`);
+                messageApi.error(`${file.name}${locale2text.Upload[locale].sizeError[0]}${fileMaxSize}${locale2text.Upload[locale].sizeError[1]}`);
             }
 
             if (fileTypes) {
                 if (fileTypes.indexOf(file.name.split('.')[file.name.split('.').length - 1]) === -1) {
-                    message.error(`${locale2text.Upload[locale].typeError[0]}${file.name}${locale2text.Upload[locale].typeError[1]}`);
+                    messageApi.error(`${locale2text.Upload[locale].typeError[0]}${file.name}${locale2text.Upload[locale].typeError[1]}`);
                 }
 
                 return sizeCheck && fileTypes.indexOf(file.name.split('.')[file.name.split('.').length - 1]) !== -1;
@@ -325,9 +328,9 @@ const AntdPictureUpload = (props) => {
             }
 
             if ((info.file.status === 'done' || info.file.status === 'success') && showSuccessMessage) {
-                message.success(`${info.file.name} ${locale2text.Upload[locale].uploadSuccess}`);
+                messageApi.success(`${info.file.name} ${locale2text.Upload[locale].uploadSuccess}`);
             } else if (info.file.status === 'error' && showErrorMessage) {
-                message.error(`${info.file.name} ${locale2text.Upload[locale].uploadFailed}`);
+                messageApi.error(`${info.file.name} ${locale2text.Upload[locale].uploadFailed}`);
             }
 
             // 获取当前上传文件列表
@@ -419,6 +422,8 @@ const AntdPictureUpload = (props) => {
                         ...style
                     }}
                     key={key}>
+                    {messageContextHolder}
+                    {modalContextHolder}
                     <ImgCrop modalOk={locale === 'zh-cn' ? '确定' : 'OK'}
                         modalCancel={locale === 'zh-cn' ? '取消' : 'Cancel'}
                         {...editConfig}>
@@ -453,7 +458,7 @@ const AntdPictureUpload = (props) => {
                                 confirmBeforeDelete ?
                                     () => {
                                         return new Promise((resolve, reject) => {
-                                            Modal.confirm({
+                                            modalApi.confirm({
                                                 title: locale2text.AntdPictureUpload[locale].confirmBeforeDeleteTitle,
                                                 okText: locale2text.AntdPictureUpload[locale].confirmBeforeDeleteOkText,
                                                 cancelText: locale2text.AntdPictureUpload[locale].confirmBeforeDeleteCancelText,
@@ -501,6 +506,8 @@ const AntdPictureUpload = (props) => {
                     ...style
                 }}
                 key={key}>
+                {messageContextHolder}
+                {modalContextHolder}
                 <Upload {...uploadProps}
                     fileList={fileList}
                     listType="picture-card"
@@ -532,7 +539,7 @@ const AntdPictureUpload = (props) => {
                         confirmBeforeDelete ?
                             () => {
                                 return new Promise((resolve, reject) => {
-                                    Modal.confirm({
+                                    modalApi.confirm({
                                         title: locale2text.AntdPictureUpload[locale].confirmBeforeDeleteTitle,
                                         okText: locale2text.AntdPictureUpload[locale].confirmBeforeDeleteOkText,
                                         cancelText: locale2text.AntdPictureUpload[locale].confirmBeforeDeleteCancelText,
