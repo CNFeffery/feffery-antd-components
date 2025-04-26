@@ -1,13 +1,21 @@
 # AUTO GENERATED FILE - DO NOT EDIT
 
 import typing  # noqa: F401
-import numbers # noqa: F401
 from typing_extensions import TypedDict, NotRequired, Literal # noqa: F401
-from dash.development.base_component import Component
-try:
-    from dash.development.base_component import ComponentType # noqa: F401
-except ImportError:
-    ComponentType = typing.TypeVar("ComponentType", bound=Component)
+from dash.development.base_component import Component, _explicitize_args
+
+ComponentType = typing.Union[
+    str,
+    int,
+    float,
+    Component,
+    None,
+    typing.Sequence[typing.Union[str, int, float, Component, None]],
+]
+
+NumberType = typing.Union[
+    typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex
+]
 
 
 class AntdSegmentedColoring(Component):
@@ -115,12 +123,11 @@ Keyword arguments:
         "ColorBlockClickEvent",
             {
             "color": NotRequired[str],
-            "range": NotRequired[typing.Sequence[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]]],
-            "timestamp": NotRequired[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]]
+            "range": NotRequired[typing.Sequence[NumberType]],
+            "timestamp": NotRequired[NumberType]
         }
     )
 
-    _explicitize_dash_init = True
 
     def __init__(
         self,
@@ -128,14 +135,14 @@ Keyword arguments:
         key: typing.Optional[str] = None,
         style: typing.Optional[typing.Any] = None,
         className: typing.Optional[typing.Union[str, dict]] = None,
-        breakpoints: typing.Optional[typing.Sequence[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]]] = None,
+        breakpoints: typing.Optional[typing.Sequence[NumberType]] = None,
         colors: typing.Optional[typing.Sequence[str]] = None,
         controls: typing.Optional[bool] = None,
         keyboard: typing.Optional[bool] = None,
-        min: typing.Optional[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]] = None,
-        max: typing.Optional[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]] = None,
-        step: typing.Optional[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]] = None,
-        precision: typing.Optional[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]] = None,
+        min: typing.Optional[NumberType] = None,
+        max: typing.Optional[NumberType] = None,
+        step: typing.Optional[NumberType] = None,
+        precision: typing.Optional[NumberType] = None,
         disabled: typing.Optional[bool] = None,
         size: typing.Optional[Literal["small", "middle", "large"]] = None,
         bordered: typing.Optional[bool] = None,
@@ -167,3 +174,5 @@ Keyword arguments:
                     'Required argument `' + k + '` was not specified.')
 
         super(AntdSegmentedColoring, self).__init__(**args)
+
+setattr(AntdSegmentedColoring, "__init__", _explicitize_args(AntdSegmentedColoring.__init__))

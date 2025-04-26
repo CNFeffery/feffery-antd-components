@@ -1,13 +1,21 @@
 # AUTO GENERATED FILE - DO NOT EDIT
 
 import typing  # noqa: F401
-import numbers # noqa: F401
 from typing_extensions import TypedDict, NotRequired, Literal # noqa: F401
-from dash.development.base_component import Component
-try:
-    from dash.development.base_component import ComponentType # noqa: F401
-except ImportError:
-    ComponentType = typing.TypeVar("ComponentType", bound=Component)
+from dash.development.base_component import Component, _explicitize_args
+
+ComponentType = typing.Union[
+    str,
+    int,
+    float,
+    Component,
+    None,
+    typing.Sequence[typing.Union[str, int, float, Component, None]],
+]
+
+NumberType = typing.Union[
+    typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex
+]
 
 
 class AntdPopupCard(Component):
@@ -144,20 +152,19 @@ Keyword arguments:
         }
     )
 
-    _explicitize_dash_init = True
 
     def __init__(
         self,
-        children: typing.Optional[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]] = None,
+        children: typing.Optional[ComponentType] = None,
         id: typing.Optional[typing.Union[str, dict]] = None,
         key: typing.Optional[str] = None,
         style: typing.Optional[typing.Any] = None,
         className: typing.Optional[typing.Union[str, dict]] = None,
         styles: typing.Optional["Styles"] = None,
         classNames: typing.Optional["ClassNames"] = None,
-        title: typing.Optional[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]] = None,
+        title: typing.Optional[ComponentType] = None,
         visible: typing.Optional[bool] = None,
-        width: typing.Optional[typing.Union[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex], str]] = None,
+        width: typing.Optional[typing.Union[NumberType, str]] = None,
         transitionType: typing.Optional[Literal["none", "fade", "zoom", "zoom-big", "zoom-big-fast", "slide-up", "slide-down", "slide-left", "slide-right", "move-up", "move-down", "move-left", "move-right"]] = None,
         forceRender: typing.Optional[bool] = None,
         destroyOnClose: typing.Optional[bool] = None,
@@ -165,7 +172,7 @@ Keyword arguments:
         closeIconType: typing.Optional[Literal["default", "outlined", "two-tone"]] = None,
         draggable: typing.Optional[bool] = None,
         dragClassName: typing.Optional[typing.Union[str, dict]] = None,
-        zIndex: typing.Optional[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]] = None,
+        zIndex: typing.Optional[NumberType] = None,
         loading: typing.Optional[bool] = None,
         **kwargs
     ):
@@ -179,3 +186,5 @@ Keyword arguments:
         args = {k: _locals[k] for k in _explicit_args if k != 'children'}
 
         super(AntdPopupCard, self).__init__(children=children, **args)
+
+setattr(AntdPopupCard, "__init__", _explicitize_args(AntdPopupCard.__init__))

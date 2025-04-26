@@ -1,13 +1,21 @@
 # AUTO GENERATED FILE - DO NOT EDIT
 
 import typing  # noqa: F401
-import numbers # noqa: F401
 from typing_extensions import TypedDict, NotRequired, Literal # noqa: F401
-from dash.development.base_component import Component
-try:
-    from dash.development.base_component import ComponentType # noqa: F401
-except ImportError:
-    ComponentType = typing.TypeVar("ComponentType", bound=Component)
+from dash.development.base_component import Component, _explicitize_args
+
+ComponentType = typing.Union[
+    str,
+    int,
+    float,
+    Component,
+    None,
+    typing.Sequence[typing.Union[str, int, float, Component, None]],
+]
+
+NumberType = typing.Union[
+    typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex
+]
 
 
 class AntdSlider(Component):
@@ -160,7 +168,6 @@ Keyword arguments:
         }
     )
 
-    _explicitize_dash_init = True
 
     def __init__(
         self,
@@ -173,22 +180,22 @@ Keyword arguments:
         name: typing.Optional[str] = None,
         vertical: typing.Optional[bool] = None,
         range: typing.Optional[bool] = None,
-        min: typing.Optional[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]] = None,
-        max: typing.Optional[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]] = None,
-        step: typing.Optional[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]] = None,
-        marks: typing.Optional[typing.Dict[typing.Union[str, float, int], typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]]] = None,
+        min: typing.Optional[NumberType] = None,
+        max: typing.Optional[NumberType] = None,
+        step: typing.Optional[NumberType] = None,
+        marks: typing.Optional[typing.Dict[typing.Union[str, float, int], ComponentType]] = None,
         tooltipVisible: typing.Optional[bool] = None,
         tooltipPrefix: typing.Optional[str] = None,
         tooltipSuffix: typing.Optional[str] = None,
         disabled: typing.Optional[bool] = None,
-        value: typing.Optional[typing.Union[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex], typing.Sequence[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]]]] = None,
-        defaultValue: typing.Optional[typing.Union[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex], typing.Sequence[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]]]] = None,
+        value: typing.Optional[typing.Union[NumberType, typing.Sequence[NumberType]]] = None,
+        defaultValue: typing.Optional[typing.Union[NumberType, typing.Sequence[NumberType]]] = None,
         autoFocus: typing.Optional[bool] = None,
         popupContainer: typing.Optional[Literal["parent", "body"]] = None,
         readOnly: typing.Optional[bool] = None,
         batchPropsNames: typing.Optional[typing.Sequence[str]] = None,
         batchPropsValues: typing.Optional[dict] = None,
-        persistence: typing.Optional[typing.Union[bool, str, typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]]] = None,
+        persistence: typing.Optional[typing.Union[bool, str, NumberType]] = None,
         persisted_props: typing.Optional[typing.Sequence[Literal["value"]]] = None,
         persistence_type: typing.Optional[Literal["local", "session", "memory"]] = None,
         **kwargs
@@ -203,3 +210,5 @@ Keyword arguments:
         args = {k: _locals[k] for k in _explicit_args}
 
         super(AntdSlider, self).__init__(**args)
+
+setattr(AntdSlider, "__init__", _explicitize_args(AntdSlider.__init__))

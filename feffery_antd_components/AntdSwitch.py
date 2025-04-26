@@ -1,13 +1,21 @@
 # AUTO GENERATED FILE - DO NOT EDIT
 
 import typing  # noqa: F401
-import numbers # noqa: F401
 from typing_extensions import TypedDict, NotRequired, Literal # noqa: F401
-from dash.development.base_component import Component
-try:
-    from dash.development.base_component import ComponentType # noqa: F401
-except ImportError:
-    ComponentType = typing.TypeVar("ComponentType", bound=Component)
+from dash.development.base_component import Component, _explicitize_args
+
+ComponentType = typing.Union[
+    str,
+    int,
+    float,
+    Component,
+    None,
+    typing.Sequence[typing.Union[str, int, float, Component, None]],
+]
+
+NumberType = typing.Union[
+    typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex
+]
 
 
 class AntdSwitch(Component):
@@ -99,7 +107,6 @@ Keyword arguments:
         }
     )
 
-    _explicitize_dash_init = True
 
     def __init__(
         self,
@@ -111,15 +118,15 @@ Keyword arguments:
         disabled: typing.Optional[bool] = None,
         autoFocus: typing.Optional[bool] = None,
         checked: typing.Optional[bool] = None,
-        checkedChildren: typing.Optional[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]] = None,
-        unCheckedChildren: typing.Optional[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]] = None,
+        checkedChildren: typing.Optional[ComponentType] = None,
+        unCheckedChildren: typing.Optional[ComponentType] = None,
         size: typing.Optional[Literal["default", "small"]] = None,
         loading: typing.Optional[bool] = None,
         readOnly: typing.Optional[bool] = None,
         batchPropsNames: typing.Optional[typing.Sequence[str]] = None,
         batchPropsValues: typing.Optional[dict] = None,
         loading_state: typing.Optional["LoadingState"] = None,
-        persistence: typing.Optional[typing.Union[bool, str, typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]]] = None,
+        persistence: typing.Optional[typing.Union[bool, str, NumberType]] = None,
         persisted_props: typing.Optional[typing.Sequence[Literal["checked"]]] = None,
         persistence_type: typing.Optional[Literal["local", "session", "memory"]] = None,
         **kwargs
@@ -134,3 +141,5 @@ Keyword arguments:
         args = {k: _locals[k] for k in _explicit_args}
 
         super(AntdSwitch, self).__init__(**args)
+
+setattr(AntdSwitch, "__init__", _explicitize_args(AntdSwitch.__init__))

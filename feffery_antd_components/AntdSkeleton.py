@@ -1,13 +1,21 @@
 # AUTO GENERATED FILE - DO NOT EDIT
 
 import typing  # noqa: F401
-import numbers # noqa: F401
 from typing_extensions import TypedDict, NotRequired, Literal # noqa: F401
-from dash.development.base_component import Component
-try:
-    from dash.development.base_component import ComponentType # noqa: F401
-except ImportError:
-    ComponentType = typing.TypeVar("ComponentType", bound=Component)
+from dash.development.base_component import Component, _explicitize_args
+
+ComponentType = typing.Union[
+    str,
+    int,
+    float,
+    Component,
+    None,
+    typing.Sequence[typing.Union[str, int, float, Component, None]],
+]
+
+NumberType = typing.Union[
+    typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex
+]
 
 
 class AntdSkeleton(Component):
@@ -105,37 +113,36 @@ Keyword arguments:
             {
             "active": NotRequired[bool],
             "shape": NotRequired[Literal["circle", "square"]],
-            "size": NotRequired[typing.Union[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex], Literal["large", "small", "default"]]]
+            "size": NotRequired[typing.Union[NumberType, Literal["large", "small", "default"]]]
         }
     )
 
     Paragraph = TypedDict(
         "Paragraph",
             {
-            "rows": NotRequired[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]],
-            "width": NotRequired[typing.Union[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex], str, typing.Sequence[typing.Union[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex], str]]]]
+            "rows": NotRequired[NumberType],
+            "width": NotRequired[typing.Union[NumberType, str, typing.Sequence[typing.Union[NumberType, str]]]]
         }
     )
 
     Title = TypedDict(
         "Title",
             {
-            "width": NotRequired[typing.Union[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex], str]]
+            "width": NotRequired[typing.Union[NumberType, str]]
         }
     )
 
-    _explicitize_dash_init = True
 
     def __init__(
         self,
-        children: typing.Optional[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]] = None,
+        children: typing.Optional[ComponentType] = None,
         id: typing.Optional[typing.Union[str, dict]] = None,
         key: typing.Optional[str] = None,
         style: typing.Optional[typing.Any] = None,
         className: typing.Optional[typing.Union[str, dict]] = None,
         loading: typing.Optional[bool] = None,
         active: typing.Optional[bool] = None,
-        delay: typing.Optional[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]] = None,
+        delay: typing.Optional[NumberType] = None,
         avatar: typing.Optional[typing.Union[bool, "Avatar"]] = None,
         paragraph: typing.Optional[typing.Union[bool, "Paragraph"]] = None,
         title: typing.Optional[typing.Union[bool, "Title"]] = None,
@@ -157,3 +164,5 @@ Keyword arguments:
         args = {k: _locals[k] for k in _explicit_args if k != 'children'}
 
         super(AntdSkeleton, self).__init__(children=children, **args)
+
+setattr(AntdSkeleton, "__init__", _explicitize_args(AntdSkeleton.__init__))

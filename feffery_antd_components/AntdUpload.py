@@ -1,13 +1,21 @@
 # AUTO GENERATED FILE - DO NOT EDIT
 
 import typing  # noqa: F401
-import numbers # noqa: F401
 from typing_extensions import TypedDict, NotRequired, Literal # noqa: F401
-from dash.development.base_component import Component
-try:
-    from dash.development.base_component import ComponentType # noqa: F401
-except ImportError:
-    ComponentType = typing.TypeVar("ComponentType", bound=Component)
+from dash.development.base_component import Component, _explicitize_args
+
+ComponentType = typing.Union[
+    str,
+    int,
+    float,
+    Component,
+    None,
+    typing.Sequence[typing.Union[str, int, float, Component, None]],
+]
+
+NumberType = typing.Union[
+    typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex
+]
 
 
 class AntdUpload(Component):
@@ -319,7 +327,7 @@ Keyword arguments:
         "ProgressProps",
             {
             "strokeColor": NotRequired[typing.Union[str, "ProgressPropsStrokeColor"]],
-            "strokeWidth": NotRequired[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]],
+            "strokeWidth": NotRequired[NumberType],
             "format": NotRequired["ProgressPropsFormat"]
         }
     )
@@ -328,8 +336,8 @@ Keyword arguments:
         "LastUploadTaskRecord",
             {
             "fileName": NotRequired[str],
-            "fileSize": NotRequired[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]],
-            "completeTimestamp": NotRequired[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]],
+            "fileSize": NotRequired[NumberType],
+            "completeTimestamp": NotRequired[NumberType],
             "taskStatus": NotRequired[str],
             "taskId": NotRequired[str],
             "url": NotRequired[str],
@@ -341,8 +349,8 @@ Keyword arguments:
         "ListUploadTaskRecord",
             {
             "fileName": NotRequired[str],
-            "fileSize": NotRequired[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]],
-            "completeTimestamp": NotRequired[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]],
+            "fileSize": NotRequired[NumberType],
+            "completeTimestamp": NotRequired[NumberType],
             "taskStatus": NotRequired[str],
             "taskId": NotRequired[str],
             "uid": NotRequired[str],
@@ -360,7 +368,7 @@ Keyword arguments:
             "uid": NotRequired[typing.Any],
             "url": NotRequired[str],
             "taskId": NotRequired[str],
-            "fileSize": NotRequired[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]]
+            "fileSize": NotRequired[NumberType]
         }
     )
 
@@ -373,7 +381,6 @@ Keyword arguments:
         }
     )
 
-    _explicitize_dash_init = True
 
     def __init__(
         self,
@@ -391,13 +398,13 @@ Keyword arguments:
         downloadUrl: typing.Optional[str] = None,
         downloadUrlExtraParams: typing.Optional[dict] = None,
         downloadUrlFromBackend: typing.Optional[bool] = None,
-        fileListMaxLength: typing.Optional[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]] = None,
+        fileListMaxLength: typing.Optional[NumberType] = None,
         fileTypes: typing.Optional[typing.Sequence[str]] = None,
-        buttonContent: typing.Optional[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]] = None,
-        buttonIcon: typing.Optional[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]] = None,
+        buttonContent: typing.Optional[ComponentType] = None,
+        buttonIcon: typing.Optional[ComponentType] = None,
         buttonProps: typing.Optional["ButtonProps"] = None,
         uploadId: typing.Optional[str] = None,
-        fileMaxSize: typing.Optional[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]] = None,
+        fileMaxSize: typing.Optional[NumberType] = None,
         multiple: typing.Optional[bool] = None,
         directory: typing.Optional[bool] = None,
         failedTooltipInfo: typing.Optional[str] = None,
@@ -425,3 +432,5 @@ Keyword arguments:
         args = {k: _locals[k] for k in _explicit_args}
 
         super(AntdUpload, self).__init__(**args)
+
+setattr(AntdUpload, "__init__", _explicitize_args(AntdUpload.__init__))

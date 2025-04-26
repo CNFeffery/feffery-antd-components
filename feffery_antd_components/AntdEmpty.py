@@ -1,13 +1,21 @@
 # AUTO GENERATED FILE - DO NOT EDIT
 
 import typing  # noqa: F401
-import numbers # noqa: F401
 from typing_extensions import TypedDict, NotRequired, Literal # noqa: F401
-from dash.development.base_component import Component
-try:
-    from dash.development.base_component import ComponentType # noqa: F401
-except ImportError:
-    ComponentType = typing.TypeVar("ComponentType", bound=Component)
+from dash.development.base_component import Component, _explicitize_args
+
+ComponentType = typing.Union[
+    str,
+    int,
+    float,
+    Component,
+    None,
+    typing.Sequence[typing.Union[str, int, float, Component, None]],
+]
+
+NumberType = typing.Union[
+    typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex
+]
 
 
 class AntdEmpty(Component):
@@ -101,11 +109,10 @@ Keyword arguments:
         }
     )
 
-    _explicitize_dash_init = True
 
     def __init__(
         self,
-        children: typing.Optional[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]] = None,
+        children: typing.Optional[ComponentType] = None,
         id: typing.Optional[typing.Union[str, dict]] = None,
         key: typing.Optional[str] = None,
         style: typing.Optional[typing.Any] = None,
@@ -113,7 +120,7 @@ Keyword arguments:
         classNames: typing.Optional["ClassNames"] = None,
         className: typing.Optional[typing.Union[str, dict]] = None,
         locale: typing.Optional[Literal["zh-cn", "en-us", "de-de"]] = None,
-        description: typing.Optional[typing.Union[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]], bool]] = None,
+        description: typing.Optional[typing.Union[ComponentType, bool]] = None,
         image: typing.Optional[typing.Union[str, Literal["default", "simple"]]] = None,
         **kwargs
     ):
@@ -127,3 +134,5 @@ Keyword arguments:
         args = {k: _locals[k] for k in _explicit_args if k != 'children'}
 
         super(AntdEmpty, self).__init__(children=children, **args)
+
+setattr(AntdEmpty, "__init__", _explicitize_args(AntdEmpty.__init__))

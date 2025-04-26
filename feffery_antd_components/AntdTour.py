@@ -1,13 +1,21 @@
 # AUTO GENERATED FILE - DO NOT EDIT
 
 import typing  # noqa: F401
-import numbers # noqa: F401
 from typing_extensions import TypedDict, NotRequired, Literal # noqa: F401
-from dash.development.base_component import Component
-try:
-    from dash.development.base_component import ComponentType # noqa: F401
-except ImportError:
-    ComponentType = typing.TypeVar("ComponentType", bound=Component)
+from dash.development.base_component import Component, _explicitize_args
+
+ComponentType = typing.Union[
+    str,
+    int,
+    float,
+    Component,
+    None,
+    typing.Sequence[typing.Union[str, int, float, Component, None]],
+]
+
+NumberType = typing.Union[
+    typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex
+]
 
 
 class AntdTour(Component):
@@ -157,14 +165,14 @@ Keyword arguments:
     StepsNextButtonProps = TypedDict(
         "StepsNextButtonProps",
             {
-            "children": NotRequired[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]]
+            "children": NotRequired[ComponentType]
         }
     )
 
     StepsPrevButtonProps = TypedDict(
         "StepsPrevButtonProps",
             {
-            "children": NotRequired[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]]
+            "children": NotRequired[ComponentType]
         }
     )
 
@@ -174,9 +182,9 @@ Keyword arguments:
             "targetId": NotRequired[str],
             "targetSelector": NotRequired[str],
             "arrow": NotRequired[typing.Union[bool, "StepsArrow"]],
-            "cover": NotRequired[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]],
-            "title": NotRequired[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]],
-            "description": NotRequired[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]],
+            "cover": NotRequired[ComponentType],
+            "title": NotRequired[ComponentType],
+            "description": NotRequired[ComponentType],
             "placement": NotRequired[Literal["center", "left", "leftTop", "leftBottom", "right", "rightTop", "rightBottom", "top", "topLeft", "topRight", "bottom", "bottomLeft", "bottomRight"]],
             "mask": NotRequired[typing.Union[bool, "StepsMask"]],
             "type": NotRequired[Literal["default", "primary"]],
@@ -200,7 +208,6 @@ Keyword arguments:
         }
     )
 
-    _explicitize_dash_init = True
 
     def __init__(
         self,
@@ -215,8 +222,8 @@ Keyword arguments:
         mask: typing.Optional[typing.Union[bool, "Mask"]] = None,
         type: typing.Optional[Literal["default", "primary"]] = None,
         open: typing.Optional[bool] = None,
-        current: typing.Optional[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]] = None,
-        zIndex: typing.Optional[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]] = None,
+        current: typing.Optional[NumberType] = None,
+        zIndex: typing.Optional[NumberType] = None,
         **kwargs
     ):
         self._prop_names = ['id', 'key', 'style', 'className', 'locale', 'steps', 'arrow', 'placement', 'mask', 'type', 'open', 'current', 'zIndex', 'data-*', 'aria-*']
@@ -229,3 +236,5 @@ Keyword arguments:
         args = {k: _locals[k] for k in _explicit_args}
 
         super(AntdTour, self).__init__(**args)
+
+setattr(AntdTour, "__init__", _explicitize_args(AntdTour.__init__))

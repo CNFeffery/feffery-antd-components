@@ -1,13 +1,21 @@
 # AUTO GENERATED FILE - DO NOT EDIT
 
 import typing  # noqa: F401
-import numbers # noqa: F401
 from typing_extensions import TypedDict, NotRequired, Literal # noqa: F401
-from dash.development.base_component import Component
-try:
-    from dash.development.base_component import ComponentType # noqa: F401
-except ImportError:
-    ComponentType = typing.TypeVar("ComponentType", bound=Component)
+from dash.development.base_component import Component, _explicitize_args
+
+ComponentType = typing.Union[
+    str,
+    int,
+    float,
+    Component,
+    None,
+    typing.Sequence[typing.Union[str, int, float, Component, None]],
+]
+
+NumberType = typing.Union[
+    typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex
+]
 
 
 class AntdTabs(Component):
@@ -193,11 +201,11 @@ Keyword arguments:
     Items = TypedDict(
         "Items",
             {
-            "label": NotRequired[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]],
+            "label": NotRequired[ComponentType],
             "key": NotRequired[str],
-            "children": NotRequired[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]],
-            "icon": NotRequired[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]],
-            "closeIcon": NotRequired[typing.Union[bool, typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]]],
+            "children": NotRequired[ComponentType],
+            "icon": NotRequired[ComponentType],
+            "closeIcon": NotRequired[typing.Union[bool, ComponentType]],
             "destroyInactiveTabPane": NotRequired[bool],
             "disabled": NotRequired[bool],
             "forceRender": NotRequired[bool],
@@ -209,7 +217,7 @@ Keyword arguments:
     Indicator = TypedDict(
         "Indicator",
             {
-            "size": NotRequired[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]],
+            "size": NotRequired[NumberType],
             "align": NotRequired[Literal["start", "center", "end"]]
         }
     )
@@ -219,11 +227,10 @@ Keyword arguments:
             {
             "tabKey": NotRequired[str],
             "menuKey": NotRequired[str],
-            "timestamp": NotRequired[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]]
+            "timestamp": NotRequired[NumberType]
         }
     )
 
-    _explicitize_dash_init = True
 
     def __init__(
         self,
@@ -241,19 +248,19 @@ Keyword arguments:
         size: typing.Optional[Literal["small", "default", "large"]] = None,
         centered: typing.Optional[bool] = None,
         indicator: typing.Optional["Indicator"] = None,
-        tabBarGutter: typing.Optional[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]] = None,
+        tabBarGutter: typing.Optional[NumberType] = None,
         tabBarStyle: typing.Optional[dict] = None,
         inkBarAnimated: typing.Optional[bool] = None,
         tabPaneAnimated: typing.Optional[bool] = None,
         latestDeletePane: typing.Optional[str] = None,
-        tabCloseCounts: typing.Optional[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]] = None,
-        tabBarLeftExtraContent: typing.Optional[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]] = None,
-        tabBarRightExtraContent: typing.Optional[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]] = None,
-        tabCount: typing.Optional[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]] = None,
+        tabCloseCounts: typing.Optional[NumberType] = None,
+        tabBarLeftExtraContent: typing.Optional[ComponentType] = None,
+        tabBarRightExtraContent: typing.Optional[ComponentType] = None,
+        tabCount: typing.Optional[NumberType] = None,
         destroyInactiveTabPane: typing.Optional[bool] = None,
         clickedContextMenu: typing.Optional["ClickedContextMenu"] = None,
-        placeholder: typing.Optional[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]] = None,
-        persistence: typing.Optional[typing.Union[bool, str, typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]]] = None,
+        placeholder: typing.Optional[ComponentType] = None,
+        persistence: typing.Optional[typing.Union[bool, str, NumberType]] = None,
         persisted_props: typing.Optional[typing.Sequence[Literal["activeKey"]]] = None,
         persistence_type: typing.Optional[Literal["local", "session", "memory"]] = None,
         **kwargs
@@ -268,3 +275,5 @@ Keyword arguments:
         args = {k: _locals[k] for k in _explicit_args}
 
         super(AntdTabs, self).__init__(**args)
+
+setattr(AntdTabs, "__init__", _explicitize_args(AntdTabs.__init__))

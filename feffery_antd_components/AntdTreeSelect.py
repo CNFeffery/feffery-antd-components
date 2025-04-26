@@ -1,13 +1,21 @@
 # AUTO GENERATED FILE - DO NOT EDIT
 
 import typing  # noqa: F401
-import numbers # noqa: F401
 from typing_extensions import TypedDict, NotRequired, Literal # noqa: F401
-from dash.development.base_component import Component
-try:
-    from dash.development.base_component import ComponentType # noqa: F401
-except ImportError:
-    ComponentType = typing.TypeVar("ComponentType", bound=Component)
+from dash.development.base_component import Component, _explicitize_args
+
+ComponentType = typing.Union[
+    str,
+    int,
+    float,
+    Component,
+    None,
+    typing.Sequence[typing.Union[str, int, float, Component, None]],
+]
+
+NumberType = typing.Union[
+    typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex
+]
 
 
 class AntdTreeSelect(Component):
@@ -205,7 +213,6 @@ Keyword arguments:
         }
     )
 
-    _explicitize_dash_init = True
 
     def __init__(
         self,
@@ -218,7 +225,7 @@ Keyword arguments:
         locale: typing.Optional[Literal["zh-cn", "en-us", "de-de"]] = None,
         treeDataMode: typing.Optional[Literal["tree", "flat"]] = None,
         treeData: typing.Optional[typing.Union[typing.Any, typing.Sequence[typing.Any]]] = None,
-        treeNodeKeyToTitle: typing.Optional[typing.Dict[typing.Union[str, float, int], typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]]] = None,
+        treeNodeKeyToTitle: typing.Optional[typing.Dict[typing.Union[str, float, int], ComponentType]] = None,
         disabled: typing.Optional[bool] = None,
         size: typing.Optional[Literal["small", "middle", "large"]] = None,
         bordered: typing.Optional[bool] = None,
@@ -226,16 +233,16 @@ Keyword arguments:
         placeholder: typing.Optional[str] = None,
         placement: typing.Optional[Literal["bottomLeft", "bottomRight", "topLeft", "topRight"]] = None,
         treeLine: typing.Optional[bool] = None,
-        value: typing.Optional[typing.Union[str, typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex], typing.Sequence[typing.Union[str, typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]]]]] = None,
-        defaultValue: typing.Optional[typing.Union[str, typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex], typing.Sequence[typing.Union[str, typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]]]]] = None,
-        maxCount: typing.Optional[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]] = None,
-        maxTagCount: typing.Optional[typing.Union[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex], Literal["responsive"]]] = None,
-        maxTagPlaceholder: typing.Optional[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]] = None,
-        maxTagTextLength: typing.Optional[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]] = None,
-        listHeight: typing.Optional[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]] = None,
+        value: typing.Optional[typing.Union[str, NumberType, typing.Sequence[typing.Union[str, NumberType]]]] = None,
+        defaultValue: typing.Optional[typing.Union[str, NumberType, typing.Sequence[typing.Union[str, NumberType]]]] = None,
+        maxCount: typing.Optional[NumberType] = None,
+        maxTagCount: typing.Optional[typing.Union[NumberType, Literal["responsive"]]] = None,
+        maxTagPlaceholder: typing.Optional[ComponentType] = None,
+        maxTagTextLength: typing.Optional[NumberType] = None,
+        listHeight: typing.Optional[NumberType] = None,
         multiple: typing.Optional[bool] = None,
-        suffixIcon: typing.Optional[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]] = None,
-        switcherIcon: typing.Optional[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]] = None,
+        suffixIcon: typing.Optional[ComponentType] = None,
+        switcherIcon: typing.Optional[ComponentType] = None,
         treeCheckable: typing.Optional[bool] = None,
         treeCheckStrictly: typing.Optional[bool] = None,
         treeDefaultExpandAll: typing.Optional[bool] = None,
@@ -248,9 +255,9 @@ Keyword arguments:
         treeNodeFilterMode: typing.Optional[Literal["case-insensitive", "case-sensitive", "regex"]] = None,
         autoClearSearchValue: typing.Optional[bool] = None,
         showCheckedStrategy: typing.Optional[Literal["show-all", "show-parent", "show-child"]] = None,
-        dropdownBefore: typing.Optional[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]] = None,
-        dropdownAfter: typing.Optional[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]] = None,
-        prefix: typing.Optional[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]] = None,
+        dropdownBefore: typing.Optional[ComponentType] = None,
+        dropdownAfter: typing.Optional[ComponentType] = None,
+        prefix: typing.Optional[ComponentType] = None,
         readOnly: typing.Optional[bool] = None,
         enableAsyncLoad: typing.Optional[bool] = None,
         loadingNode: typing.Optional[dict] = None,
@@ -258,7 +265,7 @@ Keyword arguments:
         batchPropsNames: typing.Optional[typing.Sequence[str]] = None,
         batchPropsValues: typing.Optional[dict] = None,
         loading_state: typing.Optional["LoadingState"] = None,
-        persistence: typing.Optional[typing.Union[bool, str, typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]]] = None,
+        persistence: typing.Optional[typing.Union[bool, str, NumberType]] = None,
         persisted_props: typing.Optional[typing.Sequence[Literal["value"]]] = None,
         persistence_type: typing.Optional[Literal["local", "session", "memory"]] = None,
         **kwargs
@@ -278,3 +285,5 @@ Keyword arguments:
                     'Required argument `' + k + '` was not specified.')
 
         super(AntdTreeSelect, self).__init__(**args)
+
+setattr(AntdTreeSelect, "__init__", _explicitize_args(AntdTreeSelect.__init__))

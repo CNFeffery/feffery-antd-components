@@ -1,13 +1,21 @@
 # AUTO GENERATED FILE - DO NOT EDIT
 
 import typing  # noqa: F401
-import numbers # noqa: F401
 from typing_extensions import TypedDict, NotRequired, Literal # noqa: F401
-from dash.development.base_component import Component
-try:
-    from dash.development.base_component import ComponentType # noqa: F401
-except ImportError:
-    ComponentType = typing.TypeVar("ComponentType", bound=Component)
+from dash.development.base_component import Component, _explicitize_args
+
+ComponentType = typing.Union[
+    str,
+    int,
+    float,
+    Component,
+    None,
+    typing.Sequence[typing.Union[str, int, float, Component, None]],
+]
+
+NumberType = typing.Union[
+    typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex
+]
 
 
 class AntdSelect(Component):
@@ -207,7 +215,7 @@ Keyword arguments:
     Options = TypedDict(
         "Options",
             {
-            "group": NotRequired[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]],
+            "group": NotRequired[ComponentType],
             "options": NotRequired[typing.Sequence["OptionsOptions"]]
         }
     )
@@ -215,14 +223,13 @@ Keyword arguments:
     OptionsOptions = TypedDict(
         "OptionsOptions",
             {
-            "label": typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]],
-            "value": typing.Union[str, typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]],
+            "label": ComponentType,
+            "value": typing.Union[str, NumberType],
             "disabled": NotRequired[bool],
             "colors": NotRequired[typing.Sequence[str]]
         }
     )
 
-    _explicitize_dash_init = True
 
     def __init__(
         self,
@@ -233,10 +240,10 @@ Keyword arguments:
         popupClassName: typing.Optional[str] = None,
         name: typing.Optional[str] = None,
         locale: typing.Optional[Literal["zh-cn", "en-us", "de-de"]] = None,
-        options: typing.Optional[typing.Sequence[typing.Union[str, typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex], "Options"]]] = None,
-        listHeight: typing.Optional[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]] = None,
+        options: typing.Optional[typing.Sequence[typing.Union[str, NumberType, "Options"]]] = None,
+        listHeight: typing.Optional[NumberType] = None,
         colorsMode: typing.Optional[Literal["sequential", "diverging"]] = None,
-        colorsNameWidth: typing.Optional[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]] = None,
+        colorsNameWidth: typing.Optional[NumberType] = None,
         mode: typing.Optional[Literal["multiple", "tags"]] = None,
         disabled: typing.Optional[bool] = None,
         size: typing.Optional[Literal["small", "middle", "large"]] = None,
@@ -244,32 +251,32 @@ Keyword arguments:
         variant: typing.Optional[Literal["outlined", "borderless", "filled", "underlined"]] = None,
         placeholder: typing.Optional[str] = None,
         placement: typing.Optional[Literal["bottomLeft", "bottomRight", "topLeft", "topRight"]] = None,
-        value: typing.Optional[typing.Union[typing.Union[str, typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]], typing.Sequence[typing.Union[str, typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]]]]] = None,
-        defaultValue: typing.Optional[typing.Union[typing.Union[str, typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]], typing.Sequence[typing.Union[str, typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]]]]] = None,
-        maxTagCount: typing.Optional[typing.Union[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex], Literal["responsive"]]] = None,
+        value: typing.Optional[typing.Union[typing.Union[str, NumberType], typing.Sequence[typing.Union[str, NumberType]]]] = None,
+        defaultValue: typing.Optional[typing.Union[typing.Union[str, NumberType], typing.Sequence[typing.Union[str, NumberType]]]] = None,
+        maxTagCount: typing.Optional[typing.Union[NumberType, Literal["responsive"]]] = None,
         status: typing.Optional[Literal["error", "warning"]] = None,
         optionFilterProp: typing.Optional[Literal["value", "label"]] = None,
         searchValue: typing.Optional[str] = None,
         optionFilterMode: typing.Optional[Literal["case-insensitive", "case-sensitive", "regex", "remote-match"]] = None,
         debounceSearchValue: typing.Optional[str] = None,
-        debounceWait: typing.Optional[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]] = None,
+        debounceWait: typing.Optional[NumberType] = None,
         autoSpin: typing.Optional[bool] = None,
         autoClearSearchValue: typing.Optional[bool] = None,
-        emptyContent: typing.Optional[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]] = None,
-        loadingEmptyContent: typing.Optional[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]] = None,
-        dropdownBefore: typing.Optional[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]] = None,
-        dropdownAfter: typing.Optional[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]] = None,
-        prefix: typing.Optional[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]] = None,
-        suffixIcon: typing.Optional[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]] = None,
+        emptyContent: typing.Optional[ComponentType] = None,
+        loadingEmptyContent: typing.Optional[ComponentType] = None,
+        dropdownBefore: typing.Optional[ComponentType] = None,
+        dropdownAfter: typing.Optional[ComponentType] = None,
+        prefix: typing.Optional[ComponentType] = None,
+        suffixIcon: typing.Optional[ComponentType] = None,
         allowClear: typing.Optional[bool] = None,
         autoFocus: typing.Optional[bool] = None,
         popupMatchSelectWidth: typing.Optional[bool] = None,
         readOnly: typing.Optional[bool] = None,
-        maxCount: typing.Optional[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]] = None,
+        maxCount: typing.Optional[NumberType] = None,
         popupContainer: typing.Optional[Literal["parent", "body"]] = None,
         batchPropsNames: typing.Optional[typing.Sequence[str]] = None,
         batchPropsValues: typing.Optional[dict] = None,
-        persistence: typing.Optional[typing.Union[bool, str, typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]]] = None,
+        persistence: typing.Optional[typing.Union[bool, str, NumberType]] = None,
         persisted_props: typing.Optional[typing.Sequence[Literal["value"]]] = None,
         persistence_type: typing.Optional[Literal["local", "session", "memory"]] = None,
         **kwargs
@@ -284,3 +291,5 @@ Keyword arguments:
         args = {k: _locals[k] for k in _explicit_args}
 
         super(AntdSelect, self).__init__(**args)
+
+setattr(AntdSelect, "__init__", _explicitize_args(AntdSelect.__init__))

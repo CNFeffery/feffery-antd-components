@@ -1,13 +1,21 @@
 # AUTO GENERATED FILE - DO NOT EDIT
 
 import typing  # noqa: F401
-import numbers # noqa: F401
 from typing_extensions import TypedDict, NotRequired, Literal # noqa: F401
-from dash.development.base_component import Component
-try:
-    from dash.development.base_component import ComponentType # noqa: F401
-except ImportError:
-    ComponentType = typing.TypeVar("ComponentType", bound=Component)
+from dash.development.base_component import Component, _explicitize_args
+
+ComponentType = typing.Union[
+    str,
+    int,
+    float,
+    Component,
+    None,
+    typing.Sequence[typing.Union[str, int, float, Component, None]],
+]
+
+NumberType = typing.Union[
+    typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex
+]
 
 
 class AntdTimeline(Component):
@@ -69,15 +77,14 @@ Keyword arguments:
     Items = TypedDict(
         "Items",
             {
-            "content": NotRequired[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]],
+            "content": NotRequired[ComponentType],
             "color": NotRequired[str],
-            "icon": NotRequired[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]],
-            "label": NotRequired[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]],
+            "icon": NotRequired[ComponentType],
+            "label": NotRequired[ComponentType],
             "position": NotRequired[Literal["left", "right"]]
         }
     )
 
-    _explicitize_dash_init = True
 
     def __init__(
         self,
@@ -87,8 +94,8 @@ Keyword arguments:
         className: typing.Optional[typing.Union[str, dict]] = None,
         items: typing.Optional[typing.Sequence["Items"]] = None,
         mode: typing.Optional[Literal["left", "alternate", "right"]] = None,
-        pending: typing.Optional[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]] = None,
-        pendingDot: typing.Optional[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]] = None,
+        pending: typing.Optional[ComponentType] = None,
+        pendingDot: typing.Optional[ComponentType] = None,
         reverse: typing.Optional[bool] = None,
         **kwargs
     ):
@@ -107,3 +114,5 @@ Keyword arguments:
                     'Required argument `' + k + '` was not specified.')
 
         super(AntdTimeline, self).__init__(**args)
+
+setattr(AntdTimeline, "__init__", _explicitize_args(AntdTimeline.__init__))

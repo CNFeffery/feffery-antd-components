@@ -1,13 +1,21 @@
 # AUTO GENERATED FILE - DO NOT EDIT
 
 import typing  # noqa: F401
-import numbers # noqa: F401
 from typing_extensions import TypedDict, NotRequired, Literal # noqa: F401
-from dash.development.base_component import Component
-try:
-    from dash.development.base_component import ComponentType # noqa: F401
-except ImportError:
-    ComponentType = typing.TypeVar("ComponentType", bound=Component)
+from dash.development.base_component import Component, _explicitize_args
+
+ComponentType = typing.Union[
+    str,
+    int,
+    float,
+    Component,
+    None,
+    typing.Sequence[typing.Union[str, int, float, Component, None]],
+]
+
+NumberType = typing.Union[
+    typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex
+]
 
 
 class AntdWatermark(Component):
@@ -77,11 +85,10 @@ Keyword arguments:
     _namespace = 'feffery_antd_components'
     _type = 'AntdWatermark'
 
-    _explicitize_dash_init = True
 
     def __init__(
         self,
-        children: typing.Optional[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]] = None,
+        children: typing.Optional[ComponentType] = None,
         id: typing.Optional[typing.Union[str, dict]] = None,
         key: typing.Optional[str] = None,
         style: typing.Optional[typing.Any] = None,
@@ -89,15 +96,15 @@ Keyword arguments:
         markClassName: typing.Optional[str] = None,
         markStyle: typing.Optional[dict] = None,
         content: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
-        rotate: typing.Optional[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]] = None,
-        zIndex: typing.Optional[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]] = None,
+        rotate: typing.Optional[NumberType] = None,
+        zIndex: typing.Optional[NumberType] = None,
         fontColor: typing.Optional[str] = None,
-        fontSize: typing.Optional[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]] = None,
-        gapX: typing.Optional[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]] = None,
-        gapY: typing.Optional[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]] = None,
+        fontSize: typing.Optional[NumberType] = None,
+        gapX: typing.Optional[NumberType] = None,
+        gapY: typing.Optional[NumberType] = None,
         image: typing.Optional[str] = None,
-        width: typing.Optional[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]] = None,
-        height: typing.Optional[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]] = None,
+        width: typing.Optional[NumberType] = None,
+        height: typing.Optional[NumberType] = None,
         inherit: typing.Optional[bool] = None,
         **kwargs
     ):
@@ -111,3 +118,5 @@ Keyword arguments:
         args = {k: _locals[k] for k in _explicit_args if k != 'children'}
 
         super(AntdWatermark, self).__init__(children=children, **args)
+
+setattr(AntdWatermark, "__init__", _explicitize_args(AntdWatermark.__init__))

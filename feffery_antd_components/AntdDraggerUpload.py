@@ -1,13 +1,21 @@
 # AUTO GENERATED FILE - DO NOT EDIT
 
 import typing  # noqa: F401
-import numbers # noqa: F401
 from typing_extensions import TypedDict, NotRequired, Literal # noqa: F401
-from dash.development.base_component import Component
-try:
-    from dash.development.base_component import ComponentType # noqa: F401
-except ImportError:
-    ComponentType = typing.TypeVar("ComponentType", bound=Component)
+from dash.development.base_component import Component, _explicitize_args
+
+ComponentType = typing.Union[
+    str,
+    int,
+    float,
+    Component,
+    None,
+    typing.Sequence[typing.Union[str, int, float, Component, None]],
+]
+
+NumberType = typing.Union[
+    typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex
+]
 
 
 class AntdDraggerUpload(Component):
@@ -279,7 +287,7 @@ Keyword arguments:
         "ProgressProps",
             {
             "strokeColor": NotRequired[typing.Union[str, "ProgressPropsStrokeColor"]],
-            "strokeWidth": NotRequired[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]],
+            "strokeWidth": NotRequired[NumberType],
             "format": NotRequired["ProgressPropsFormat"]
         }
     )
@@ -288,8 +296,8 @@ Keyword arguments:
         "LastUploadTaskRecord",
             {
             "fileName": NotRequired[str],
-            "fileSize": NotRequired[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]],
-            "completeTimestamp": NotRequired[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]],
+            "fileSize": NotRequired[NumberType],
+            "completeTimestamp": NotRequired[NumberType],
             "taskStatus": NotRequired[str],
             "taskId": NotRequired[str],
             "url": NotRequired[str],
@@ -301,8 +309,8 @@ Keyword arguments:
         "ListUploadTaskRecord",
             {
             "fileName": NotRequired[str],
-            "fileSize": NotRequired[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]],
-            "completeTimestamp": NotRequired[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]],
+            "fileSize": NotRequired[NumberType],
+            "completeTimestamp": NotRequired[NumberType],
             "taskStatus": NotRequired[str],
             "taskId": NotRequired[str],
             "uid": NotRequired[str],
@@ -320,11 +328,10 @@ Keyword arguments:
             "uid": NotRequired[typing.Any],
             "url": NotRequired[str],
             "taskId": NotRequired[str],
-            "fileSize": NotRequired[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]]
+            "fileSize": NotRequired[NumberType]
         }
     )
 
-    _explicitize_dash_init = True
 
     def __init__(
         self,
@@ -344,13 +351,13 @@ Keyword arguments:
         downloadUrl: typing.Optional[str] = None,
         downloadUrlExtraParams: typing.Optional[dict] = None,
         downloadUrlFromBackend: typing.Optional[bool] = None,
-        icon: typing.Optional[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]] = None,
-        text: typing.Optional[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]] = None,
-        hint: typing.Optional[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]] = None,
-        fileListMaxLength: typing.Optional[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]] = None,
+        icon: typing.Optional[ComponentType] = None,
+        text: typing.Optional[ComponentType] = None,
+        hint: typing.Optional[ComponentType] = None,
+        fileListMaxLength: typing.Optional[NumberType] = None,
         fileTypes: typing.Optional[typing.Sequence[str]] = None,
         uploadId: typing.Optional[str] = None,
-        fileMaxSize: typing.Optional[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]] = None,
+        fileMaxSize: typing.Optional[NumberType] = None,
         multiple: typing.Optional[bool] = None,
         directory: typing.Optional[bool] = None,
         failedTooltipInfo: typing.Optional[str] = None,
@@ -377,3 +384,5 @@ Keyword arguments:
         args = {k: _locals[k] for k in _explicit_args}
 
         super(AntdDraggerUpload, self).__init__(**args)
+
+setattr(AntdDraggerUpload, "__init__", _explicitize_args(AntdDraggerUpload.__init__))

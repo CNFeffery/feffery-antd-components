@@ -1,13 +1,21 @@
 # AUTO GENERATED FILE - DO NOT EDIT
 
 import typing  # noqa: F401
-import numbers # noqa: F401
 from typing_extensions import TypedDict, NotRequired, Literal # noqa: F401
-from dash.development.base_component import Component
-try:
-    from dash.development.base_component import ComponentType # noqa: F401
-except ImportError:
-    ComponentType = typing.TypeVar("ComponentType", bound=Component)
+from dash.development.base_component import Component, _explicitize_args
+
+ComponentType = typing.Union[
+    str,
+    int,
+    float,
+    Component,
+    None,
+    typing.Sequence[typing.Union[str, int, float, Component, None]],
+]
+
+NumberType = typing.Union[
+    typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex
+]
 
 
 class AntdIcon(Component):
@@ -51,7 +59,6 @@ Keyword arguments:
     _namespace = 'feffery_antd_components'
     _type = 'AntdIcon'
 
-    _explicitize_dash_init = True
 
     def __init__(
         self,
@@ -62,8 +69,8 @@ Keyword arguments:
         mode: typing.Optional[Literal["default", "iconfont"]] = None,
         icon: typing.Optional[str] = None,
         scriptUrl: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
-        nClicks: typing.Optional[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]] = None,
-        debounceWait: typing.Optional[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]] = None,
+        nClicks: typing.Optional[NumberType] = None,
+        debounceWait: typing.Optional[NumberType] = None,
         **kwargs
     ):
         self._prop_names = ['id', 'key', 'style', 'className', 'mode', 'icon', 'scriptUrl', 'nClicks', 'debounceWait', 'data-*', 'aria-*']
@@ -76,3 +83,5 @@ Keyword arguments:
         args = {k: _locals[k] for k in _explicit_args}
 
         super(AntdIcon, self).__init__(**args)
+
+setattr(AntdIcon, "__init__", _explicitize_args(AntdIcon.__init__))

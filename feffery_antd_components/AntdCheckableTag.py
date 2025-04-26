@@ -1,13 +1,21 @@
 # AUTO GENERATED FILE - DO NOT EDIT
 
 import typing  # noqa: F401
-import numbers # noqa: F401
 from typing_extensions import TypedDict, NotRequired, Literal # noqa: F401
-from dash.development.base_component import Component
-try:
-    from dash.development.base_component import ComponentType # noqa: F401
-except ImportError:
-    ComponentType = typing.TypeVar("ComponentType", bound=Component)
+from dash.development.base_component import Component, _explicitize_args
+
+ComponentType = typing.Union[
+    str,
+    int,
+    float,
+    Component,
+    None,
+    typing.Sequence[typing.Union[str, int, float, Component, None]],
+]
+
+NumberType = typing.Union[
+    typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex
+]
 
 
 class AntdCheckableTag(Component):
@@ -47,7 +55,6 @@ Keyword arguments:
     _namespace = 'feffery_antd_components'
     _type = 'AntdCheckableTag'
 
-    _explicitize_dash_init = True
 
     def __init__(
         self,
@@ -55,9 +62,9 @@ Keyword arguments:
         key: typing.Optional[str] = None,
         style: typing.Optional[typing.Any] = None,
         className: typing.Optional[typing.Union[str, dict]] = None,
-        content: typing.Optional[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]] = None,
-        checkedContent: typing.Optional[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]] = None,
-        unCheckedContent: typing.Optional[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]] = None,
+        content: typing.Optional[ComponentType] = None,
+        checkedContent: typing.Optional[ComponentType] = None,
+        unCheckedContent: typing.Optional[ComponentType] = None,
         checked: typing.Optional[bool] = None,
         **kwargs
     ):
@@ -71,3 +78,5 @@ Keyword arguments:
         args = {k: _locals[k] for k in _explicit_args}
 
         super(AntdCheckableTag, self).__init__(**args)
+
+setattr(AntdCheckableTag, "__init__", _explicitize_args(AntdCheckableTag.__init__))

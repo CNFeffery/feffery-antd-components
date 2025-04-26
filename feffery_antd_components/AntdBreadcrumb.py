@@ -1,13 +1,21 @@
 # AUTO GENERATED FILE - DO NOT EDIT
 
 import typing  # noqa: F401
-import numbers # noqa: F401
 from typing_extensions import TypedDict, NotRequired, Literal # noqa: F401
-from dash.development.base_component import Component
-try:
-    from dash.development.base_component import ComponentType # noqa: F401
-except ImportError:
-    ComponentType = typing.TypeVar("ComponentType", bound=Component)
+from dash.development.base_component import Component, _explicitize_args
+
+ComponentType = typing.Union[
+    str,
+    int,
+    float,
+    Component,
+    None,
+    typing.Sequence[typing.Union[str, int, float, Component, None]],
+]
+
+NumberType = typing.Union[
+    typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex
+]
 
 
 class AntdBreadcrumb(Component):
@@ -146,11 +154,10 @@ Keyword arguments:
             "itemKey": NotRequired[str],
             "menuItemTitle": NotRequired[str],
             "menuItemKey": NotRequired[str],
-            "timestamp": NotRequired[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]]
+            "timestamp": NotRequired[NumberType]
         }
     )
 
-    _explicitize_dash_init = True
 
     def __init__(
         self,
@@ -159,7 +166,7 @@ Keyword arguments:
         style: typing.Optional[typing.Any] = None,
         className: typing.Optional[typing.Union[str, dict]] = None,
         items: typing.Optional[typing.Sequence["Items"]] = None,
-        separator: typing.Optional[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]] = None,
+        separator: typing.Optional[ComponentType] = None,
         clickedItem: typing.Optional["ClickedItem"] = None,
         **kwargs
     ):
@@ -173,3 +180,5 @@ Keyword arguments:
         args = {k: _locals[k] for k in _explicit_args}
 
         super(AntdBreadcrumb, self).__init__(**args)
+
+setattr(AntdBreadcrumb, "__init__", _explicitize_args(AntdBreadcrumb.__init__))

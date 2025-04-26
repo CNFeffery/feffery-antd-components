@@ -1,13 +1,21 @@
 # AUTO GENERATED FILE - DO NOT EDIT
 
 import typing  # noqa: F401
-import numbers # noqa: F401
 from typing_extensions import TypedDict, NotRequired, Literal # noqa: F401
-from dash.development.base_component import Component
-try:
-    from dash.development.base_component import ComponentType # noqa: F401
-except ImportError:
-    ComponentType = typing.TypeVar("ComponentType", bound=Component)
+from dash.development.base_component import Component, _explicitize_args
+
+ComponentType = typing.Union[
+    str,
+    int,
+    float,
+    Component,
+    None,
+    typing.Sequence[typing.Union[str, int, float, Component, None]],
+]
+
+NumberType = typing.Union[
+    typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex
+]
 
 
 class AntdAvatar(Component):
@@ -88,16 +96,15 @@ Keyword arguments:
     Size = TypedDict(
         "Size",
             {
-            "xs": NotRequired[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]],
-            "sm": NotRequired[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]],
-            "md": NotRequired[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]],
-            "lg": NotRequired[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]],
-            "xl": NotRequired[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]],
-            "xxl": NotRequired[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]]
+            "xs": NotRequired[NumberType],
+            "sm": NotRequired[NumberType],
+            "md": NotRequired[NumberType],
+            "lg": NotRequired[NumberType],
+            "xl": NotRequired[NumberType],
+            "xxl": NotRequired[NumberType]
         }
     )
 
-    _explicitize_dash_init = True
 
     def __init__(
         self,
@@ -106,7 +113,7 @@ Keyword arguments:
         style: typing.Optional[typing.Any] = None,
         className: typing.Optional[typing.Union[str, dict]] = None,
         mode: typing.Optional[Literal["text", "icon", "image"]] = None,
-        gap: typing.Optional[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]] = None,
+        gap: typing.Optional[NumberType] = None,
         text: typing.Optional[str] = None,
         icon: typing.Optional[str] = None,
         iconRenderer: typing.Optional[Literal["AntdIcon", "fontawesome"]] = None,
@@ -115,7 +122,7 @@ Keyword arguments:
         srcSet: typing.Optional[str] = None,
         draggable: typing.Optional[typing.Union[bool, Literal["true", "false"]]] = None,
         crossOrigin: typing.Optional[Literal["anonymous", "use-credentials", ""]] = None,
-        size: typing.Optional[typing.Union[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex], Literal["large", "small", "default"], "Size"]] = None,
+        size: typing.Optional[typing.Union[NumberType, Literal["large", "small", "default"], "Size"]] = None,
         shape: typing.Optional[Literal["circle", "square"]] = None,
         **kwargs
     ):
@@ -129,3 +136,5 @@ Keyword arguments:
         args = {k: _locals[k] for k in _explicit_args}
 
         super(AntdAvatar, self).__init__(**args)
+
+setattr(AntdAvatar, "__init__", _explicitize_args(AntdAvatar.__init__))

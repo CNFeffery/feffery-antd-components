@@ -1,13 +1,21 @@
 # AUTO GENERATED FILE - DO NOT EDIT
 
 import typing  # noqa: F401
-import numbers # noqa: F401
 from typing_extensions import TypedDict, NotRequired, Literal # noqa: F401
-from dash.development.base_component import Component
-try:
-    from dash.development.base_component import ComponentType # noqa: F401
-except ImportError:
-    ComponentType = typing.TypeVar("ComponentType", bound=Component)
+from dash.development.base_component import Component, _explicitize_args
+
+ComponentType = typing.Union[
+    str,
+    int,
+    float,
+    Component,
+    None,
+    typing.Sequence[typing.Union[str, int, float, Component, None]],
+]
+
+NumberType = typing.Union[
+    typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex
+]
 
 
 class AntdSplitter(Component):
@@ -95,19 +103,18 @@ Keyword arguments:
         "Items",
             {
             "key": NotRequired[str],
-            "children": NotRequired[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]],
+            "children": NotRequired[ComponentType],
             "style": NotRequired[dict],
             "className": NotRequired[str],
-            "defaultSize": NotRequired[typing.Union[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex], str]],
-            "size": NotRequired[typing.Union[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex], str]],
-            "min": NotRequired[typing.Union[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex], str]],
-            "max": NotRequired[typing.Union[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex], str]],
+            "defaultSize": NotRequired[typing.Union[NumberType, str]],
+            "size": NotRequired[typing.Union[NumberType, str]],
+            "min": NotRequired[typing.Union[NumberType, str]],
+            "max": NotRequired[typing.Union[NumberType, str]],
             "collapsible": NotRequired[typing.Union[bool, "ItemsCollapsible"]],
             "resizable": NotRequired[bool]
         }
     )
 
-    _explicitize_dash_init = True
 
     def __init__(
         self,
@@ -135,3 +142,5 @@ Keyword arguments:
                     'Required argument `' + k + '` was not specified.')
 
         super(AntdSplitter, self).__init__(**args)
+
+setattr(AntdSplitter, "__init__", _explicitize_args(AntdSplitter.__init__))

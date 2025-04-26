@@ -1,13 +1,21 @@
 # AUTO GENERATED FILE - DO NOT EDIT
 
 import typing  # noqa: F401
-import numbers # noqa: F401
 from typing_extensions import TypedDict, NotRequired, Literal # noqa: F401
-from dash.development.base_component import Component
-try:
-    from dash.development.base_component import ComponentType # noqa: F401
-except ImportError:
-    ComponentType = typing.TypeVar("ComponentType", bound=Component)
+from dash.development.base_component import Component, _explicitize_args
+
+ComponentType = typing.Union[
+    str,
+    int,
+    float,
+    Component,
+    None,
+    typing.Sequence[typing.Union[str, int, float, Component, None]],
+]
+
+NumberType = typing.Union[
+    typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex
+]
 
 
 class AntdSkeletonAvatar(Component):
@@ -45,7 +53,6 @@ Keyword arguments:
     _namespace = 'feffery_antd_components'
     _type = 'AntdSkeletonAvatar'
 
-    _explicitize_dash_init = True
 
     def __init__(
         self,
@@ -55,7 +62,7 @@ Keyword arguments:
         className: typing.Optional[typing.Union[str, dict]] = None,
         active: typing.Optional[bool] = None,
         shape: typing.Optional[Literal["circle", "square"]] = None,
-        size: typing.Optional[typing.Union[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex], Literal["large", "small", "default"]]] = None,
+        size: typing.Optional[typing.Union[NumberType, Literal["large", "small", "default"]]] = None,
         **kwargs
     ):
         self._prop_names = ['id', 'key', 'style', 'className', 'active', 'shape', 'size', 'data-*', 'aria-*']
@@ -68,3 +75,5 @@ Keyword arguments:
         args = {k: _locals[k] for k in _explicit_args}
 
         super(AntdSkeletonAvatar, self).__init__(**args)
+
+setattr(AntdSkeletonAvatar, "__init__", _explicitize_args(AntdSkeletonAvatar.__init__))

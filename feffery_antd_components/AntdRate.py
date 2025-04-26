@@ -1,13 +1,21 @@
 # AUTO GENERATED FILE - DO NOT EDIT
 
 import typing  # noqa: F401
-import numbers # noqa: F401
 from typing_extensions import TypedDict, NotRequired, Literal # noqa: F401
-from dash.development.base_component import Component
-try:
-    from dash.development.base_component import ComponentType # noqa: F401
-except ImportError:
-    ComponentType = typing.TypeVar("ComponentType", bound=Component)
+from dash.development.base_component import Component, _explicitize_args
+
+ComponentType = typing.Union[
+    str,
+    int,
+    float,
+    Component,
+    None,
+    typing.Sequence[typing.Union[str, int, float, Component, None]],
+]
+
+NumberType = typing.Union[
+    typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex
+]
 
 
 class AntdRate(Component):
@@ -78,7 +86,6 @@ Keyword arguments:
     _namespace = 'feffery_antd_components'
     _type = 'AntdRate'
 
-    _explicitize_dash_init = True
 
     def __init__(
         self,
@@ -89,15 +96,15 @@ Keyword arguments:
         name: typing.Optional[str] = None,
         allowClear: typing.Optional[bool] = None,
         allowHalf: typing.Optional[bool] = None,
-        count: typing.Optional[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]] = None,
+        count: typing.Optional[NumberType] = None,
         tooltips: typing.Optional[typing.Sequence[str]] = None,
         disabled: typing.Optional[bool] = None,
         autoFocus: typing.Optional[bool] = None,
-        value: typing.Optional[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]] = None,
-        defaultValue: typing.Optional[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]] = None,
+        value: typing.Optional[NumberType] = None,
+        defaultValue: typing.Optional[NumberType] = None,
         batchPropsNames: typing.Optional[typing.Sequence[str]] = None,
         batchPropsValues: typing.Optional[dict] = None,
-        persistence: typing.Optional[typing.Union[bool, str, typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]]] = None,
+        persistence: typing.Optional[typing.Union[bool, str, NumberType]] = None,
         persisted_props: typing.Optional[typing.Sequence[Literal["value"]]] = None,
         persistence_type: typing.Optional[Literal["local", "session", "memory"]] = None,
         **kwargs
@@ -112,3 +119,5 @@ Keyword arguments:
         args = {k: _locals[k] for k in _explicit_args}
 
         super(AntdRate, self).__init__(**args)
+
+setattr(AntdRate, "__init__", _explicitize_args(AntdRate.__init__))

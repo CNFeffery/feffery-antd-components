@@ -1,13 +1,21 @@
 # AUTO GENERATED FILE - DO NOT EDIT
 
 import typing  # noqa: F401
-import numbers # noqa: F401
 from typing_extensions import TypedDict, NotRequired, Literal # noqa: F401
-from dash.development.base_component import Component
-try:
-    from dash.development.base_component import ComponentType # noqa: F401
-except ImportError:
-    ComponentType = typing.TypeVar("ComponentType", bound=Component)
+from dash.development.base_component import Component, _explicitize_args
+
+ComponentType = typing.Union[
+    str,
+    int,
+    float,
+    Component,
+    None,
+    typing.Sequence[typing.Union[str, int, float, Component, None]],
+]
+
+NumberType = typing.Union[
+    typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex
+]
 
 
 class AntdSpin(Component):
@@ -80,11 +88,10 @@ Keyword arguments:
     _namespace = 'feffery_antd_components'
     _type = 'AntdSpin'
 
-    _explicitize_dash_init = True
 
     def __init__(
         self,
-        children: typing.Optional[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]] = None,
+        children: typing.Optional[ComponentType] = None,
         id: typing.Optional[typing.Union[str, dict]] = None,
         key: typing.Optional[str] = None,
         style: typing.Optional[typing.Any] = None,
@@ -92,16 +99,16 @@ Keyword arguments:
         wrapperClassName: typing.Optional[typing.Union[str, dict]] = None,
         spinning: typing.Optional[bool] = None,
         size: typing.Optional[Literal["small", "middle", "large"]] = None,
-        delay: typing.Optional[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]] = None,
+        delay: typing.Optional[NumberType] = None,
         text: typing.Optional[str] = None,
         fullscreen: typing.Optional[bool] = None,
         debug: typing.Optional[bool] = None,
         listenPropsMode: typing.Optional[Literal["default", "exclude", "include"]] = None,
         excludeProps: typing.Optional[typing.Sequence[str]] = None,
         includeProps: typing.Optional[typing.Sequence[str]] = None,
-        indicator: typing.Optional[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]] = None,
+        indicator: typing.Optional[ComponentType] = None,
         manual: typing.Optional[bool] = None,
-        percent: typing.Optional[typing.Union[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex], Literal["auto"]]] = None,
+        percent: typing.Optional[typing.Union[NumberType, Literal["auto"]]] = None,
         **kwargs
     ):
         self._prop_names = ['id', 'key', 'children', 'style', 'className', 'wrapperClassName', 'spinning', 'size', 'delay', 'text', 'fullscreen', 'debug', 'listenPropsMode', 'excludeProps', 'includeProps', 'indicator', 'manual', 'percent', 'data-*', 'aria-*']
@@ -114,3 +121,5 @@ Keyword arguments:
         args = {k: _locals[k] for k in _explicit_args if k != 'children'}
 
         super(AntdSpin, self).__init__(children=children, **args)
+
+setattr(AntdSpin, "__init__", _explicitize_args(AntdSpin.__init__))

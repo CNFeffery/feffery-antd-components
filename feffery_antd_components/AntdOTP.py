@@ -1,13 +1,21 @@
 # AUTO GENERATED FILE - DO NOT EDIT
 
 import typing  # noqa: F401
-import numbers # noqa: F401
 from typing_extensions import TypedDict, NotRequired, Literal # noqa: F401
-from dash.development.base_component import Component
-try:
-    from dash.development.base_component import ComponentType # noqa: F401
-except ImportError:
-    ComponentType = typing.TypeVar("ComponentType", bound=Component)
+from dash.development.base_component import Component, _explicitize_args
+
+ComponentType = typing.Union[
+    str,
+    int,
+    float,
+    Component,
+    None,
+    typing.Sequence[typing.Union[str, int, float, Component, None]],
+]
+
+NumberType = typing.Union[
+    typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex
+]
 
 
 class AntdOTP(Component):
@@ -72,7 +80,6 @@ Keyword arguments:
     _namespace = 'feffery_antd_components'
     _type = 'AntdOTP'
 
-    _explicitize_dash_init = True
 
     def __init__(
         self,
@@ -84,12 +91,12 @@ Keyword arguments:
         value: typing.Optional[str] = None,
         defaultValue: typing.Optional[str] = None,
         disabled: typing.Optional[bool] = None,
-        length: typing.Optional[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]] = None,
+        length: typing.Optional[NumberType] = None,
         mask: typing.Optional[typing.Union[bool, str]] = None,
         status: typing.Optional[Literal["error", "warning"]] = None,
         size: typing.Optional[Literal["small", "middle", "large"]] = None,
         variant: typing.Optional[Literal["outlined", "borderless", "filled", "underlined"]] = None,
-        persistence: typing.Optional[typing.Union[bool, str, typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]]] = None,
+        persistence: typing.Optional[typing.Union[bool, str, NumberType]] = None,
         persisted_props: typing.Optional[typing.Sequence[Literal["value"]]] = None,
         persistence_type: typing.Optional[Literal["local", "session", "memory"]] = None,
         **kwargs
@@ -104,3 +111,5 @@ Keyword arguments:
         args = {k: _locals[k] for k in _explicit_args}
 
         super(AntdOTP, self).__init__(**args)
+
+setattr(AntdOTP, "__init__", _explicitize_args(AntdOTP.__init__))

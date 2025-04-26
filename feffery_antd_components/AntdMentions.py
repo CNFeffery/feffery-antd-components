@@ -1,13 +1,21 @@
 # AUTO GENERATED FILE - DO NOT EDIT
 
 import typing  # noqa: F401
-import numbers # noqa: F401
 from typing_extensions import TypedDict, NotRequired, Literal # noqa: F401
-from dash.development.base_component import Component
-try:
-    from dash.development.base_component import ComponentType # noqa: F401
-except ImportError:
-    ComponentType = typing.TypeVar("ComponentType", bound=Component)
+from dash.development.base_component import Component, _explicitize_args
+
+ComponentType = typing.Union[
+    str,
+    int,
+    float,
+    Component,
+    None,
+    typing.Sequence[typing.Union[str, int, float, Component, None]],
+]
+
+NumberType = typing.Union[
+    typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex
+]
 
 
 class AntdMentions(Component):
@@ -107,20 +115,19 @@ Keyword arguments:
     AutoSize = TypedDict(
         "AutoSize",
             {
-            "minRows": NotRequired[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]],
-            "maxRows": NotRequired[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]]
+            "minRows": NotRequired[NumberType],
+            "maxRows": NotRequired[NumberType]
         }
     )
 
     Options = TypedDict(
         "Options",
             {
-            "label": NotRequired[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]],
+            "label": NotRequired[ComponentType],
             "value": NotRequired[str]
         }
     )
 
-    _explicitize_dash_init = True
 
     def __init__(
         self,
@@ -163,3 +170,5 @@ Keyword arguments:
                     'Required argument `' + k + '` was not specified.')
 
         super(AntdMentions, self).__init__(**args)
+
+setattr(AntdMentions, "__init__", _explicitize_args(AntdMentions.__init__))

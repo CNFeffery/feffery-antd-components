@@ -1,13 +1,21 @@
 # AUTO GENERATED FILE - DO NOT EDIT
 
 import typing  # noqa: F401
-import numbers # noqa: F401
 from typing_extensions import TypedDict, NotRequired, Literal # noqa: F401
-from dash.development.base_component import Component
-try:
-    from dash.development.base_component import ComponentType # noqa: F401
-except ImportError:
-    ComponentType = typing.TypeVar("ComponentType", bound=Component)
+from dash.development.base_component import Component, _explicitize_args
+
+ComponentType = typing.Union[
+    str,
+    int,
+    float,
+    Component,
+    None,
+    typing.Sequence[typing.Union[str, int, float, Component, None]],
+]
+
+NumberType = typing.Union[
+    typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex
+]
 
 
 class AntdDateRangePicker(Component):
@@ -213,14 +221,14 @@ Keyword arguments:
             {
             "mode": NotRequired[Literal["eq", "ne", "le", "lt", "ge", "gt", "in", "not-in", "in-enumerate-dates", "not-in-enumerate-dates"]],
             "target": NotRequired[Literal["day", "month", "quarter", "year", "dayOfYear", "dayOfWeek", "specific-date"]],
-            "value": NotRequired[typing.Union[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex], str, typing.Sequence[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]], typing.Sequence[str]]]
+            "value": NotRequired[typing.Union[NumberType, str, typing.Sequence[NumberType], typing.Sequence[str]]]
         }
     )
 
     Presets = TypedDict(
         "Presets",
             {
-            "label": NotRequired[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]],
+            "label": NotRequired[ComponentType],
             "value": NotRequired[typing.Sequence[str]]
         }
     )
@@ -228,23 +236,22 @@ Keyword arguments:
     ClickedPreset = TypedDict(
         "ClickedPreset",
             {
-            "value": NotRequired[typing.Union[str, typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]]],
-            "timestamp": NotRequired[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]]
+            "value": NotRequired[typing.Union[str, NumberType]],
+            "timestamp": NotRequired[NumberType]
         }
     )
 
     CustomCells = TypedDict(
         "CustomCells",
             {
-            "year": NotRequired[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]],
-            "month": NotRequired[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]],
-            "date": NotRequired[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]],
+            "year": NotRequired[NumberType],
+            "month": NotRequired[NumberType],
+            "date": NotRequired[NumberType],
             "style": NotRequired[dict],
             "className": NotRequired[str]
         }
     )
 
-    _explicitize_dash_init = True
 
     def __init__(
         self,
@@ -257,7 +264,7 @@ Keyword arguments:
         locale: typing.Optional[Literal["zh-cn", "en-us", "de-de"]] = None,
         format: typing.Optional[str] = None,
         picker: typing.Optional[Literal["date", "week", "month", "quarter", "year"]] = None,
-        firstDayOfWeek: typing.Optional[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]] = None,
+        firstDayOfWeek: typing.Optional[NumberType] = None,
         disabled: typing.Optional[typing.Sequence[bool]] = None,
         showTime: typing.Optional[typing.Union[bool, "ShowTime"]] = None,
         size: typing.Optional[Literal["small", "middle", "large"]] = None,
@@ -274,17 +281,17 @@ Keyword arguments:
         allowClear: typing.Optional[bool] = None,
         autoFocus: typing.Optional[bool] = None,
         readOnly: typing.Optional[bool] = None,
-        extraFooter: typing.Optional[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]] = None,
+        extraFooter: typing.Optional[ComponentType] = None,
         presets: typing.Optional[typing.Sequence["Presets"]] = None,
         clickedPreset: typing.Optional["ClickedPreset"] = None,
         needConfirm: typing.Optional[bool] = None,
         customCells: typing.Optional[typing.Sequence["CustomCells"]] = None,
-        prefix: typing.Optional[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]] = None,
-        suffixIcon: typing.Optional[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]] = None,
+        prefix: typing.Optional[ComponentType] = None,
+        suffixIcon: typing.Optional[ComponentType] = None,
         popupContainer: typing.Optional[Literal["parent", "body"]] = None,
         batchPropsNames: typing.Optional[typing.Sequence[str]] = None,
         batchPropsValues: typing.Optional[dict] = None,
-        persistence: typing.Optional[typing.Union[bool, str, typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]]] = None,
+        persistence: typing.Optional[typing.Union[bool, str, NumberType]] = None,
         persisted_props: typing.Optional[typing.Sequence[Literal["value"]]] = None,
         persistence_type: typing.Optional[Literal["local", "session", "memory"]] = None,
         **kwargs
@@ -299,3 +306,5 @@ Keyword arguments:
         args = {k: _locals[k] for k in _explicit_args}
 
         super(AntdDateRangePicker, self).__init__(**args)
+
+setattr(AntdDateRangePicker, "__init__", _explicitize_args(AntdDateRangePicker.__init__))

@@ -1,13 +1,21 @@
 # AUTO GENERATED FILE - DO NOT EDIT
 
 import typing  # noqa: F401
-import numbers # noqa: F401
 from typing_extensions import TypedDict, NotRequired, Literal # noqa: F401
-from dash.development.base_component import Component
-try:
-    from dash.development.base_component import ComponentType # noqa: F401
-except ImportError:
-    ComponentType = typing.TypeVar("ComponentType", bound=Component)
+from dash.development.base_component import Component, _explicitize_args
+
+ComponentType = typing.Union[
+    str,
+    int,
+    float,
+    Component,
+    None,
+    typing.Sequence[typing.Union[str, int, float, Component, None]],
+]
+
+NumberType = typing.Union[
+    typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex
+]
 
 
 class AntdResult(Component):
@@ -51,7 +59,6 @@ Keyword arguments:
     _namespace = 'feffery_antd_components'
     _type = 'AntdResult'
 
-    _explicitize_dash_init = True
 
     def __init__(
         self,
@@ -59,11 +66,11 @@ Keyword arguments:
         key: typing.Optional[str] = None,
         style: typing.Optional[typing.Any] = None,
         className: typing.Optional[typing.Union[str, dict]] = None,
-        extra: typing.Optional[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]] = None,
+        extra: typing.Optional[ComponentType] = None,
         status: typing.Optional[Literal["success", "error", "info", "warning", "404", "403", "500", "loading"]] = None,
-        title: typing.Optional[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]] = None,
-        subTitle: typing.Optional[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]] = None,
-        icon: typing.Optional[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]] = None,
+        title: typing.Optional[ComponentType] = None,
+        subTitle: typing.Optional[ComponentType] = None,
+        icon: typing.Optional[ComponentType] = None,
         **kwargs
     ):
         self._prop_names = ['id', 'key', 'style', 'className', 'extra', 'status', 'title', 'subTitle', 'icon', 'data-*', 'aria-*']
@@ -76,3 +83,5 @@ Keyword arguments:
         args = {k: _locals[k] for k in _explicit_args}
 
         super(AntdResult, self).__init__(**args)
+
+setattr(AntdResult, "__init__", _explicitize_args(AntdResult.__init__))

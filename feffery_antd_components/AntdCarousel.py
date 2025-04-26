@@ -1,13 +1,21 @@
 # AUTO GENERATED FILE - DO NOT EDIT
 
 import typing  # noqa: F401
-import numbers # noqa: F401
 from typing_extensions import TypedDict, NotRequired, Literal # noqa: F401
-from dash.development.base_component import Component
-try:
-    from dash.development.base_component import ComponentType # noqa: F401
-except ImportError:
-    ComponentType = typing.TypeVar("ComponentType", bound=Component)
+from dash.development.base_component import Component, _explicitize_args
+
+ComponentType = typing.Union[
+    str,
+    int,
+    float,
+    Component,
+    None,
+    typing.Sequence[typing.Union[str, int, float, Component, None]],
+]
+
+NumberType = typing.Union[
+    typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex
+]
 
 
 class AntdCarousel(Component):
@@ -85,11 +93,10 @@ Keyword arguments:
         }
     )
 
-    _explicitize_dash_init = True
 
     def __init__(
         self,
-        children: typing.Optional[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]] = None,
+        children: typing.Optional[ComponentType] = None,
         id: typing.Optional[typing.Union[str, dict]] = None,
         key: typing.Optional[str] = None,
         style: typing.Optional[typing.Any] = None,
@@ -99,13 +106,13 @@ Keyword arguments:
         dotPosition: typing.Optional[Literal["top", "bottom", "left", "right"]] = None,
         easing: typing.Optional[str] = None,
         effect: typing.Optional[Literal["scrollx", "fade"]] = None,
-        autoplaySpeed: typing.Optional[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]] = None,
-        speed: typing.Optional[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]] = None,
+        autoplaySpeed: typing.Optional[NumberType] = None,
+        speed: typing.Optional[NumberType] = None,
         pauseOnHover: typing.Optional[bool] = None,
         infinite: typing.Optional[bool] = None,
         lazyLoad: typing.Optional[bool] = None,
-        slidesToShow: typing.Optional[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]] = None,
-        slidesToScroll: typing.Optional[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]] = None,
+        slidesToShow: typing.Optional[NumberType] = None,
+        slidesToScroll: typing.Optional[NumberType] = None,
         **kwargs
     ):
         self._prop_names = ['id', 'key', 'children', 'style', 'className', 'arrows', 'autoplay', 'dotPosition', 'easing', 'effect', 'autoplaySpeed', 'speed', 'pauseOnHover', 'infinite', 'lazyLoad', 'slidesToShow', 'slidesToScroll', 'data-*', 'aria-*']
@@ -118,3 +125,5 @@ Keyword arguments:
         args = {k: _locals[k] for k in _explicit_args if k != 'children'}
 
         super(AntdCarousel, self).__init__(children=children, **args)
+
+setattr(AntdCarousel, "__init__", _explicitize_args(AntdCarousel.__init__))

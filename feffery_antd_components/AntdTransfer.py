@@ -1,13 +1,21 @@
 # AUTO GENERATED FILE - DO NOT EDIT
 
 import typing  # noqa: F401
-import numbers # noqa: F401
 from typing_extensions import TypedDict, NotRequired, Literal # noqa: F401
-from dash.development.base_component import Component
-try:
-    from dash.development.base_component import ComponentType # noqa: F401
-except ImportError:
-    ComponentType = typing.TypeVar("ComponentType", bound=Component)
+from dash.development.base_component import Component, _explicitize_args
+
+ComponentType = typing.Union[
+    str,
+    int,
+    float,
+    Component,
+    None,
+    typing.Sequence[typing.Union[str, int, float, Component, None]],
+]
+
+NumberType = typing.Union[
+    typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex
+]
 
 
 class AntdTransfer(Component):
@@ -138,8 +146,8 @@ Keyword arguments:
     DataSource = TypedDict(
         "DataSource",
             {
-            "key": NotRequired[typing.Union[str, typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]]],
-            "title": NotRequired[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]],
+            "key": NotRequired[typing.Union[str, NumberType]],
+            "title": NotRequired[ComponentType],
             "disabled": NotRequired[bool]
         }
     )
@@ -147,7 +155,7 @@ Keyword arguments:
     Pagination = TypedDict(
         "Pagination",
             {
-            "pageSize": NotRequired[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]]
+            "pageSize": NotRequired[NumberType]
         }
     )
 
@@ -160,7 +168,6 @@ Keyword arguments:
         }
     )
 
-    _explicitize_dash_init = True
 
     def __init__(
         self,
@@ -171,25 +178,25 @@ Keyword arguments:
         name: typing.Optional[str] = None,
         locale: typing.Optional[Literal["zh-cn", "en-us", "de-de"]] = None,
         dataSource: typing.Optional[typing.Sequence["DataSource"]] = None,
-        selectionsIcon: typing.Optional[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]] = None,
-        height: typing.Optional[typing.Union[str, typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]]] = None,
+        selectionsIcon: typing.Optional[ComponentType] = None,
+        height: typing.Optional[typing.Union[str, NumberType]] = None,
         pagination: typing.Optional[typing.Union[bool, "Pagination"]] = None,
         oneWay: typing.Optional[bool] = None,
-        operations: typing.Optional[typing.Sequence[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]]] = None,
+        operations: typing.Optional[typing.Sequence[ComponentType]] = None,
         showSearch: typing.Optional[bool] = None,
         optionFilterMode: typing.Optional[Literal["case-insensitive", "case-sensitive", "regex"]] = None,
         showSelectAll: typing.Optional[bool] = None,
-        titles: typing.Optional[typing.Sequence[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]]] = None,
-        targetKeys: typing.Optional[typing.Sequence[typing.Union[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex], str]]] = None,
+        titles: typing.Optional[typing.Sequence[ComponentType]] = None,
+        targetKeys: typing.Optional[typing.Sequence[typing.Union[NumberType, str]]] = None,
         moveDirection: typing.Optional[Literal["left", "right"]] = None,
-        moveKeys: typing.Optional[typing.Sequence[typing.Union[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex], str]]] = None,
+        moveKeys: typing.Optional[typing.Sequence[typing.Union[NumberType, str]]] = None,
         disabled: typing.Optional[bool] = None,
         status: typing.Optional[Literal["error", "warning"]] = None,
         readOnly: typing.Optional[bool] = None,
         batchPropsNames: typing.Optional[typing.Sequence[str]] = None,
         batchPropsValues: typing.Optional[dict] = None,
         loading_state: typing.Optional["LoadingState"] = None,
-        persistence: typing.Optional[typing.Union[bool, str, typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]]] = None,
+        persistence: typing.Optional[typing.Union[bool, str, NumberType]] = None,
         persisted_props: typing.Optional[typing.Sequence[Literal["targetKeys"]]] = None,
         persistence_type: typing.Optional[Literal["local", "session", "memory"]] = None,
         **kwargs
@@ -204,3 +211,5 @@ Keyword arguments:
         args = {k: _locals[k] for k in _explicit_args}
 
         super(AntdTransfer, self).__init__(**args)
+
+setattr(AntdTransfer, "__init__", _explicitize_args(AntdTransfer.__init__))

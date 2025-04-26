@@ -1,13 +1,21 @@
 # AUTO GENERATED FILE - DO NOT EDIT
 
 import typing  # noqa: F401
-import numbers # noqa: F401
 from typing_extensions import TypedDict, NotRequired, Literal # noqa: F401
-from dash.development.base_component import Component
-try:
-    from dash.development.base_component import ComponentType # noqa: F401
-except ImportError:
-    ComponentType = typing.TypeVar("ComponentType", bound=Component)
+from dash.development.base_component import Component, _explicitize_args
+
+ComponentType = typing.Union[
+    str,
+    int,
+    float,
+    Component,
+    None,
+    typing.Sequence[typing.Union[str, int, float, Component, None]],
+]
+
+NumberType = typing.Union[
+    typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex
+]
 
 
 class AntdForm(Component):
@@ -93,26 +101,25 @@ Keyword arguments:
     LabelCol = TypedDict(
         "LabelCol",
             {
-            "span": NotRequired[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]],
-            "offset": NotRequired[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]],
-            "flex": NotRequired[typing.Union[str, typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]]]
+            "span": NotRequired[NumberType],
+            "offset": NotRequired[NumberType],
+            "flex": NotRequired[typing.Union[str, NumberType]]
         }
     )
 
     WrapperCol = TypedDict(
         "WrapperCol",
             {
-            "span": NotRequired[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]],
-            "offset": NotRequired[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]],
-            "flex": NotRequired[typing.Union[str, typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]]]
+            "span": NotRequired[NumberType],
+            "offset": NotRequired[NumberType],
+            "flex": NotRequired[typing.Union[str, NumberType]]
         }
     )
 
-    _explicitize_dash_init = True
 
     def __init__(
         self,
-        children: typing.Optional[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]] = None,
+        children: typing.Optional[ComponentType] = None,
         id: typing.Optional[typing.Union[str, dict]] = None,
         key: typing.Optional[str] = None,
         style: typing.Optional[typing.Any] = None,
@@ -126,7 +133,7 @@ Keyword arguments:
         enableBatchControl: typing.Optional[bool] = None,
         values: typing.Optional[dict] = None,
         validateStatuses: typing.Optional[typing.Dict[typing.Union[str, float, int], Literal["success", "warning", "error", "validating"]]] = None,
-        helps: typing.Optional[typing.Dict[typing.Union[str, float, int], typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]]] = None,
+        helps: typing.Optional[typing.Dict[typing.Union[str, float, int], ComponentType]] = None,
         **kwargs
     ):
         self._prop_names = ['id', 'key', 'children', 'style', 'className', 'layout', 'labelCol', 'wrapperCol', 'colon', 'labelAlign', 'labelWrap', 'enableBatchControl', 'values', 'validateStatuses', 'helps', 'data-*', 'aria-*']
@@ -139,3 +146,5 @@ Keyword arguments:
         args = {k: _locals[k] for k in _explicit_args if k != 'children'}
 
         super(AntdForm, self).__init__(children=children, **args)
+
+setattr(AntdForm, "__init__", _explicitize_args(AntdForm.__init__))

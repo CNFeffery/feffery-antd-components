@@ -1,13 +1,21 @@
 # AUTO GENERATED FILE - DO NOT EDIT
 
 import typing  # noqa: F401
-import numbers # noqa: F401
 from typing_extensions import TypedDict, NotRequired, Literal # noqa: F401
-from dash.development.base_component import Component
-try:
-    from dash.development.base_component import ComponentType # noqa: F401
-except ImportError:
-    ComponentType = typing.TypeVar("ComponentType", bound=Component)
+from dash.development.base_component import Component, _explicitize_args
+
+ComponentType = typing.Union[
+    str,
+    int,
+    float,
+    Component,
+    None,
+    typing.Sequence[typing.Union[str, int, float, Component, None]],
+]
+
+NumberType = typing.Union[
+    typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex
+]
 
 
 class AntdNotification(Component):
@@ -95,7 +103,6 @@ Keyword arguments:
         }
     )
 
-    _explicitize_dash_init = True
 
     def __init__(
         self,
@@ -107,9 +114,9 @@ Keyword arguments:
         description: typing.Optional[str] = None,
         type: typing.Optional[Literal["default", "success", "error", "info", "warning"]] = None,
         placement: typing.Optional[Literal["top", "bottom", "topLeft", "topRight", "bottomLeft", "bottomRight"]] = None,
-        top: typing.Optional[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]] = None,
-        bottom: typing.Optional[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]] = None,
-        duration: typing.Optional[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]] = None,
+        top: typing.Optional[NumberType] = None,
+        bottom: typing.Optional[NumberType] = None,
+        duration: typing.Optional[NumberType] = None,
         showProgress: typing.Optional[bool] = None,
         pauseOnHover: typing.Optional[bool] = None,
         closable: typing.Optional[bool] = None,
@@ -127,3 +134,5 @@ Keyword arguments:
         args = {k: _locals[k] for k in _explicit_args}
 
         super(AntdNotification, self).__init__(**args)
+
+setattr(AntdNotification, "__init__", _explicitize_args(AntdNotification.__init__))

@@ -1,13 +1,21 @@
 # AUTO GENERATED FILE - DO NOT EDIT
 
 import typing  # noqa: F401
-import numbers # noqa: F401
 from typing_extensions import TypedDict, NotRequired, Literal # noqa: F401
-from dash.development.base_component import Component
-try:
-    from dash.development.base_component import ComponentType # noqa: F401
-except ImportError:
-    ComponentType = typing.TypeVar("ComponentType", bound=Component)
+from dash.development.base_component import Component, _explicitize_args
+
+ComponentType = typing.Union[
+    str,
+    int,
+    float,
+    Component,
+    None,
+    typing.Sequence[typing.Union[str, int, float, Component, None]],
+]
+
+NumberType = typing.Union[
+    typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex
+]
 
 
 class AntdMenu(Component):
@@ -110,12 +118,11 @@ Keyword arguments:
     ExpandIcon = TypedDict(
         "ExpandIcon",
             {
-            "expand": NotRequired[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]],
-            "collapse": NotRequired[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]]
+            "expand": NotRequired[ComponentType],
+            "collapse": NotRequired[ComponentType]
         }
     )
 
-    _explicitize_dash_init = True
 
     def __init__(
         self,
@@ -123,9 +130,9 @@ Keyword arguments:
         key: typing.Optional[str] = None,
         style: typing.Optional[typing.Any] = None,
         className: typing.Optional[typing.Union[str, dict]] = None,
-        expandIcon: typing.Optional[typing.Union[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]], "ExpandIcon"]] = None,
+        expandIcon: typing.Optional[typing.Union[ComponentType, "ExpandIcon"]] = None,
         menuItems: typing.Optional[typing.Sequence] = None,
-        menuItemKeyToTitle: typing.Optional[typing.Dict[typing.Union[str, float, int], typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]]] = None,
+        menuItemKeyToTitle: typing.Optional[typing.Dict[typing.Union[str, float, int], ComponentType]] = None,
         mode: typing.Optional[Literal["vertical", "horizontal", "inline"]] = None,
         theme: typing.Optional[Literal["light", "dark"]] = None,
         currentKey: typing.Optional[str] = None,
@@ -139,9 +146,9 @@ Keyword arguments:
         renderCollapsedButton: typing.Optional[bool] = None,
         popupContainer: typing.Optional[Literal["parent", "body"]] = None,
         inlineCollapsed: typing.Optional[bool] = None,
-        inlineIndent: typing.Optional[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]] = None,
+        inlineIndent: typing.Optional[NumberType] = None,
         triggerSubMenuAction: typing.Optional[Literal["hover", "click"]] = None,
-        persistence: typing.Optional[typing.Union[bool, str, typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]]] = None,
+        persistence: typing.Optional[typing.Union[bool, str, NumberType]] = None,
         persisted_props: typing.Optional[typing.Sequence[Literal["currentKey", "openKeys"]]] = None,
         persistence_type: typing.Optional[Literal["local", "session", "memory"]] = None,
         **kwargs
@@ -156,3 +163,5 @@ Keyword arguments:
         args = {k: _locals[k] for k in _explicit_args}
 
         super(AntdMenu, self).__init__(**args)
+
+setattr(AntdMenu, "__init__", _explicitize_args(AntdMenu.__init__))

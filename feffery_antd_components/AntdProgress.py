@@ -1,13 +1,21 @@
 # AUTO GENERATED FILE - DO NOT EDIT
 
 import typing  # noqa: F401
-import numbers # noqa: F401
 from typing_extensions import TypedDict, NotRequired, Literal # noqa: F401
-from dash.development.base_component import Component
-try:
-    from dash.development.base_component import ComponentType # noqa: F401
-except ImportError:
-    ComponentType = typing.TypeVar("ComponentType", bound=Component)
+from dash.development.base_component import Component, _explicitize_args
+
+ComponentType = typing.Union[
+    str,
+    int,
+    float,
+    Component,
+    None,
+    typing.Sequence[typing.Union[str, int, float, Component, None]],
+]
+
+NumberType = typing.Union[
+    typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex
+]
 
 
 class AntdProgress(Component):
@@ -130,8 +138,8 @@ Keyword arguments:
     Size = TypedDict(
         "Size",
             {
-            "width": NotRequired[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]],
-            "height": NotRequired[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]]
+            "width": NotRequired[NumberType],
+            "height": NotRequired[NumberType]
         }
     )
 
@@ -146,7 +154,7 @@ Keyword arguments:
     Success = TypedDict(
         "Success",
             {
-            "percent": NotRequired[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]],
+            "percent": NotRequired[NumberType],
             "strokeColor": NotRequired[typing.Union[str, "SuccessStrokeColor"]]
         }
     )
@@ -156,7 +164,7 @@ Keyword arguments:
             {
             "prefix": NotRequired[str],
             "suffix": NotRequired[str],
-            "content": NotRequired[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]]
+            "content": NotRequired[ComponentType]
         }
     )
 
@@ -168,7 +176,6 @@ Keyword arguments:
         }
     )
 
-    _explicitize_dash_init = True
 
     def __init__(
         self,
@@ -177,19 +184,19 @@ Keyword arguments:
         style: typing.Optional[typing.Any] = None,
         className: typing.Optional[typing.Union[str, dict]] = None,
         type: typing.Optional[Literal["line", "circle", "dashboard"]] = None,
-        size: typing.Optional[typing.Union[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex], typing.Sequence[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]], Literal["small", "default"], "Size"]] = None,
-        percent: typing.Optional[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]] = None,
+        size: typing.Optional[typing.Union[NumberType, typing.Sequence[NumberType], Literal["small", "default"], "Size"]] = None,
+        percent: typing.Optional[NumberType] = None,
         success: typing.Optional["Success"] = None,
         format: typing.Optional["Format"] = None,
         status: typing.Optional[Literal["success", "exception", "normal", "active"]] = None,
         showInfo: typing.Optional[bool] = None,
         strokeColor: typing.Optional[typing.Union[str, "StrokeColor"]] = None,
         strokeLinecap: typing.Optional[Literal["round", "butt", "square"]] = None,
-        strokeWidth: typing.Optional[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]] = None,
+        strokeWidth: typing.Optional[NumberType] = None,
         trailColor: typing.Optional[str] = None,
-        gapDegree: typing.Optional[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]] = None,
+        gapDegree: typing.Optional[NumberType] = None,
         gapPosition: typing.Optional[Literal["top", "bottom", "left", "right"]] = None,
-        steps: typing.Optional[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]] = None,
+        steps: typing.Optional[NumberType] = None,
         **kwargs
     ):
         self._prop_names = ['id', 'key', 'style', 'className', 'type', 'size', 'percent', 'success', 'format', 'status', 'showInfo', 'strokeColor', 'strokeLinecap', 'strokeWidth', 'trailColor', 'gapDegree', 'gapPosition', 'steps', 'data-*', 'aria-*']
@@ -202,3 +209,5 @@ Keyword arguments:
         args = {k: _locals[k] for k in _explicit_args}
 
         super(AntdProgress, self).__init__(**args)
+
+setattr(AntdProgress, "__init__", _explicitize_args(AntdProgress.__init__))

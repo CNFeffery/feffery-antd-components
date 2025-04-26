@@ -1,13 +1,21 @@
 # AUTO GENERATED FILE - DO NOT EDIT
 
 import typing  # noqa: F401
-import numbers # noqa: F401
 from typing_extensions import TypedDict, NotRequired, Literal # noqa: F401
-from dash.development.base_component import Component
-try:
-    from dash.development.base_component import ComponentType # noqa: F401
-except ImportError:
-    ComponentType = typing.TypeVar("ComponentType", bound=Component)
+from dash.development.base_component import Component, _explicitize_args
+
+ComponentType = typing.Union[
+    str,
+    int,
+    float,
+    Component,
+    None,
+    typing.Sequence[typing.Union[str, int, float, Component, None]],
+]
+
+NumberType = typing.Union[
+    typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex
+]
 
 
 class AntdDescriptions(Component):
@@ -162,9 +170,9 @@ Keyword arguments:
     Items = TypedDict(
         "Items",
             {
-            "label": NotRequired[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]],
-            "span": NotRequired[typing.Union[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex], Literal["filled"]]],
-            "children": NotRequired[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]],
+            "label": NotRequired[ComponentType],
+            "span": NotRequired[typing.Union[NumberType, Literal["filled"]]],
+            "children": NotRequired[ComponentType],
             "style": NotRequired[dict],
             "className": NotRequired[str]
         }
@@ -173,20 +181,19 @@ Keyword arguments:
     Column = TypedDict(
         "Column",
             {
-            "xxl": NotRequired[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]],
-            "xl": NotRequired[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]],
-            "lg": NotRequired[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]],
-            "md": NotRequired[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]],
-            "sm": NotRequired[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]],
-            "xs": NotRequired[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]]
+            "xxl": NotRequired[NumberType],
+            "xl": NotRequired[NumberType],
+            "lg": NotRequired[NumberType],
+            "md": NotRequired[NumberType],
+            "sm": NotRequired[NumberType],
+            "xs": NotRequired[NumberType]
         }
     )
 
-    _explicitize_dash_init = True
 
     def __init__(
         self,
-        children: typing.Optional[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]] = None,
+        children: typing.Optional[ComponentType] = None,
         id: typing.Optional[typing.Union[str, dict]] = None,
         key: typing.Optional[str] = None,
         style: typing.Optional[typing.Any] = None,
@@ -194,12 +201,12 @@ Keyword arguments:
         styles: typing.Optional["Styles"] = None,
         classNames: typing.Optional["ClassNames"] = None,
         items: typing.Optional[typing.Sequence["Items"]] = None,
-        title: typing.Optional[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]] = None,
-        column: typing.Optional[typing.Union[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex], "Column"]] = None,
+        title: typing.Optional[ComponentType] = None,
+        column: typing.Optional[typing.Union[NumberType, "Column"]] = None,
         bordered: typing.Optional[bool] = None,
         size: typing.Optional[Literal["small", "default", "large"]] = None,
         layout: typing.Optional[Literal["horizontal", "vertical"]] = None,
-        extra: typing.Optional[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]] = None,
+        extra: typing.Optional[ComponentType] = None,
         **kwargs
     ):
         self._prop_names = ['id', 'key', 'children', 'style', 'className', 'styles', 'classNames', 'items', 'title', 'column', 'bordered', 'size', 'layout', 'extra', 'data-*', 'aria-*']
@@ -212,3 +219,5 @@ Keyword arguments:
         args = {k: _locals[k] for k in _explicit_args if k != 'children'}
 
         super(AntdDescriptions, self).__init__(children=children, **args)
+
+setattr(AntdDescriptions, "__init__", _explicitize_args(AntdDescriptions.__init__))

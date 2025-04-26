@@ -1,13 +1,21 @@
 # AUTO GENERATED FILE - DO NOT EDIT
 
 import typing  # noqa: F401
-import numbers # noqa: F401
 from typing_extensions import TypedDict, NotRequired, Literal # noqa: F401
-from dash.development.base_component import Component
-try:
-    from dash.development.base_component import ComponentType # noqa: F401
-except ImportError:
-    ComponentType = typing.TypeVar("ComponentType", bound=Component)
+from dash.development.base_component import Component, _explicitize_args
+
+ComponentType = typing.Union[
+    str,
+    int,
+    float,
+    Component,
+    None,
+    typing.Sequence[typing.Union[str, int, float, Component, None]],
+]
+
+NumberType = typing.Union[
+    typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex
+]
 
 
 class AntdCopyText(Component):
@@ -54,7 +62,6 @@ Keyword arguments:
     _namespace = 'feffery_antd_components'
     _type = 'AntdCopyText'
 
-    _explicitize_dash_init = True
 
     def __init__(
         self,
@@ -65,9 +72,9 @@ Keyword arguments:
         locale: typing.Optional[Literal["zh-cn", "en-us", "de-de"]] = None,
         text: typing.Optional[str] = None,
         format: typing.Optional[Literal["text/plain", "text/html"]] = None,
-        tooltips: typing.Optional[typing.Union[typing.Sequence[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]], bool]] = None,
-        beforeIcon: typing.Optional[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]] = None,
-        afterIcon: typing.Optional[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]] = None,
+        tooltips: typing.Optional[typing.Union[typing.Sequence[ComponentType], bool]] = None,
+        beforeIcon: typing.Optional[ComponentType] = None,
+        afterIcon: typing.Optional[ComponentType] = None,
         **kwargs
     ):
         self._prop_names = ['id', 'key', 'style', 'className', 'locale', 'text', 'format', 'tooltips', 'beforeIcon', 'afterIcon', 'data-*', 'aria-*']
@@ -80,3 +87,5 @@ Keyword arguments:
         args = {k: _locals[k] for k in _explicit_args}
 
         super(AntdCopyText, self).__init__(**args)
+
+setattr(AntdCopyText, "__init__", _explicitize_args(AntdCopyText.__init__))

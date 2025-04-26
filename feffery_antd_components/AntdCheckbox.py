@@ -1,13 +1,21 @@
 # AUTO GENERATED FILE - DO NOT EDIT
 
 import typing  # noqa: F401
-import numbers # noqa: F401
 from typing_extensions import TypedDict, NotRequired, Literal # noqa: F401
-from dash.development.base_component import Component
-try:
-    from dash.development.base_component import ComponentType # noqa: F401
-except ImportError:
-    ComponentType = typing.TypeVar("ComponentType", bound=Component)
+from dash.development.base_component import Component, _explicitize_args
+
+ComponentType = typing.Union[
+    str,
+    int,
+    float,
+    Component,
+    None,
+    typing.Sequence[typing.Union[str, int, float, Component, None]],
+]
+
+NumberType = typing.Union[
+    typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex
+]
 
 
 class AntdCheckbox(Component):
@@ -72,7 +80,6 @@ Keyword arguments:
     _namespace = 'feffery_antd_components'
     _type = 'AntdCheckbox'
 
-    _explicitize_dash_init = True
 
     def __init__(
         self,
@@ -82,14 +89,14 @@ Keyword arguments:
         className: typing.Optional[typing.Union[str, dict]] = None,
         name: typing.Optional[str] = None,
         disabled: typing.Optional[bool] = None,
-        label: typing.Optional[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]] = None,
+        label: typing.Optional[ComponentType] = None,
         autoFocus: typing.Optional[bool] = None,
         checked: typing.Optional[bool] = None,
         indeterminate: typing.Optional[bool] = None,
         readOnly: typing.Optional[bool] = None,
         batchPropsNames: typing.Optional[typing.Sequence[str]] = None,
         batchPropsValues: typing.Optional[dict] = None,
-        persistence: typing.Optional[typing.Union[bool, str, typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]]] = None,
+        persistence: typing.Optional[typing.Union[bool, str, NumberType]] = None,
         persisted_props: typing.Optional[typing.Sequence[Literal["checked"]]] = None,
         persistence_type: typing.Optional[Literal["local", "session", "memory"]] = None,
         **kwargs
@@ -104,3 +111,5 @@ Keyword arguments:
         args = {k: _locals[k] for k in _explicit_args}
 
         super(AntdCheckbox, self).__init__(**args)
+
+setattr(AntdCheckbox, "__init__", _explicitize_args(AntdCheckbox.__init__))

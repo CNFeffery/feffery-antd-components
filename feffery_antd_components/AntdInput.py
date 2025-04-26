@@ -1,13 +1,21 @@
 # AUTO GENERATED FILE - DO NOT EDIT
 
 import typing  # noqa: F401
-import numbers # noqa: F401
 from typing_extensions import TypedDict, NotRequired, Literal # noqa: F401
-from dash.development.base_component import Component
-try:
-    from dash.development.base_component import ComponentType # noqa: F401
-except ImportError:
-    ComponentType = typing.TypeVar("ComponentType", bound=Component)
+from dash.development.base_component import Component, _explicitize_args
+
+ComponentType = typing.Union[
+    str,
+    int,
+    float,
+    Component,
+    None,
+    typing.Sequence[typing.Union[str, int, float, Component, None]],
+]
+
+NumberType = typing.Union[
+    typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex
+]
 
 
 class AntdInput(Component):
@@ -215,12 +223,11 @@ Keyword arguments:
     AutoSize = TypedDict(
         "AutoSize",
             {
-            "minRows": NotRequired[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]],
-            "maxRows": NotRequired[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]]
+            "minRows": NotRequired[NumberType],
+            "maxRows": NotRequired[NumberType]
         }
     )
 
-    _explicitize_dash_init = True
 
     def __init__(
         self,
@@ -243,17 +250,17 @@ Keyword arguments:
         passwordUseMd5: typing.Optional[bool] = None,
         md5Value: typing.Optional[str] = None,
         debounceValue: typing.Optional[str] = None,
-        debounceWait: typing.Optional[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]] = None,
-        addonBefore: typing.Optional[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]] = None,
-        addonAfter: typing.Optional[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]] = None,
-        prefix: typing.Optional[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]] = None,
-        suffix: typing.Optional[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]] = None,
-        maxLength: typing.Optional[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]] = None,
+        debounceWait: typing.Optional[NumberType] = None,
+        addonBefore: typing.Optional[ComponentType] = None,
+        addonAfter: typing.Optional[ComponentType] = None,
+        prefix: typing.Optional[ComponentType] = None,
+        suffix: typing.Optional[ComponentType] = None,
+        maxLength: typing.Optional[NumberType] = None,
         showCount: typing.Optional[bool] = None,
         countFormat: typing.Optional[str] = None,
         autoSize: typing.Optional[typing.Union[bool, "AutoSize"]] = None,
-        nSubmit: typing.Optional[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]] = None,
-        nClicksSearch: typing.Optional[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]] = None,
+        nSubmit: typing.Optional[NumberType] = None,
+        nClicksSearch: typing.Optional[NumberType] = None,
         status: typing.Optional[Literal["error", "warning"]] = None,
         allowClear: typing.Optional[bool] = None,
         autoFocus: typing.Optional[bool] = None,
@@ -262,7 +269,7 @@ Keyword arguments:
         emptyAsNone: typing.Optional[bool] = None,
         batchPropsNames: typing.Optional[typing.Sequence[str]] = None,
         batchPropsValues: typing.Optional[dict] = None,
-        persistence: typing.Optional[typing.Union[bool, str, typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]]] = None,
+        persistence: typing.Optional[typing.Union[bool, str, NumberType]] = None,
         persisted_props: typing.Optional[typing.Sequence[Literal["value", "md5Value"]]] = None,
         persistence_type: typing.Optional[Literal["local", "session", "memory"]] = None,
         **kwargs
@@ -277,3 +284,5 @@ Keyword arguments:
         args = {k: _locals[k] for k in _explicit_args}
 
         super(AntdInput, self).__init__(**args)
+
+setattr(AntdInput, "__init__", _explicitize_args(AntdInput.__init__))

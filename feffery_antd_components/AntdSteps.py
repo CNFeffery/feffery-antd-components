@@ -1,13 +1,21 @@
 # AUTO GENERATED FILE - DO NOT EDIT
 
 import typing  # noqa: F401
-import numbers # noqa: F401
 from typing_extensions import TypedDict, NotRequired, Literal # noqa: F401
-from dash.development.base_component import Component
-try:
-    from dash.development.base_component import ComponentType # noqa: F401
-except ImportError:
-    ComponentType = typing.TypeVar("ComponentType", bound=Component)
+from dash.development.base_component import Component, _explicitize_args
+
+ComponentType = typing.Union[
+    str,
+    int,
+    float,
+    Component,
+    None,
+    typing.Sequence[typing.Union[str, int, float, Component, None]],
+]
+
+NumberType = typing.Union[
+    typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex
+]
 
 
 class AntdSteps(Component):
@@ -91,16 +99,15 @@ Keyword arguments:
     Steps = TypedDict(
         "Steps",
             {
-            "title": typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]],
-            "subTitle": NotRequired[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]],
-            "description": NotRequired[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]],
-            "icon": NotRequired[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]],
+            "title": ComponentType,
+            "subTitle": NotRequired[ComponentType],
+            "description": NotRequired[ComponentType],
+            "icon": NotRequired[ComponentType],
             "disabled": NotRequired[bool],
             "status": NotRequired[Literal["wait", "process", "finish", "error"]]
         }
     )
 
-    _explicitize_dash_init = True
 
     def __init__(
         self,
@@ -109,7 +116,7 @@ Keyword arguments:
         style: typing.Optional[typing.Any] = None,
         className: typing.Optional[typing.Union[str, dict]] = None,
         steps: typing.Optional[typing.Sequence["Steps"]] = None,
-        current: typing.Optional[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]] = None,
+        current: typing.Optional[NumberType] = None,
         direction: typing.Optional[Literal["horizontal", "vertical"]] = None,
         labelPlacement: typing.Optional[Literal["horizontal", "vertical"]] = None,
         progressDot: typing.Optional[bool] = None,
@@ -118,7 +125,7 @@ Keyword arguments:
         type: typing.Optional[Literal["default", "navigation", "inline"]] = None,
         allowClick: typing.Optional[bool] = None,
         responsive: typing.Optional[bool] = None,
-        percent: typing.Optional[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]] = None,
+        percent: typing.Optional[NumberType] = None,
         **kwargs
     ):
         self._prop_names = ['id', 'key', 'style', 'className', 'steps', 'current', 'direction', 'labelPlacement', 'progressDot', 'size', 'status', 'type', 'allowClick', 'responsive', 'percent', 'data-*', 'aria-*']
@@ -136,3 +143,5 @@ Keyword arguments:
                     'Required argument `' + k + '` was not specified.')
 
         super(AntdSteps, self).__init__(**args)
+
+setattr(AntdSteps, "__init__", _explicitize_args(AntdSteps.__init__))

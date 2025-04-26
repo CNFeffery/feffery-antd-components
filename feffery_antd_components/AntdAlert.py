@@ -1,13 +1,21 @@
 # AUTO GENERATED FILE - DO NOT EDIT
 
 import typing  # noqa: F401
-import numbers # noqa: F401
 from typing_extensions import TypedDict, NotRequired, Literal # noqa: F401
-from dash.development.base_component import Component
-try:
-    from dash.development.base_component import ComponentType # noqa: F401
-except ImportError:
-    ComponentType = typing.TypeVar("ComponentType", bound=Component)
+from dash.development.base_component import Component, _explicitize_args
+
+ComponentType = typing.Union[
+    str,
+    int,
+    float,
+    Component,
+    None,
+    typing.Sequence[typing.Union[str, int, float, Component, None]],
+]
+
+NumberType = typing.Union[
+    typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex
+]
 
 
 class AntdAlert(Component):
@@ -63,7 +71,6 @@ Keyword arguments:
     _namespace = 'feffery_antd_components'
     _type = 'AntdAlert'
 
-    _explicitize_dash_init = True
 
     def __init__(
         self,
@@ -71,14 +78,14 @@ Keyword arguments:
         key: typing.Optional[str] = None,
         style: typing.Optional[typing.Any] = None,
         className: typing.Optional[typing.Union[str, dict]] = None,
-        message: typing.Optional[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]] = None,
-        description: typing.Optional[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]] = None,
+        message: typing.Optional[ComponentType] = None,
+        description: typing.Optional[ComponentType] = None,
         type: typing.Optional[Literal["success", "info", "warning", "error"]] = None,
         showIcon: typing.Optional[bool] = None,
-        icon: typing.Optional[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]] = None,
+        icon: typing.Optional[ComponentType] = None,
         closable: typing.Optional[bool] = None,
         messageRenderMode: typing.Optional[Literal["default", "loop-text", "marquee"]] = None,
-        action: typing.Optional[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]] = None,
+        action: typing.Optional[ComponentType] = None,
         banner: typing.Optional[bool] = None,
         **kwargs
     ):
@@ -92,3 +99,5 @@ Keyword arguments:
         args = {k: _locals[k] for k in _explicit_args}
 
         super(AntdAlert, self).__init__(**args)
+
+setattr(AntdAlert, "__init__", _explicitize_args(AntdAlert.__init__))

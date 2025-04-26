@@ -1,13 +1,21 @@
 # AUTO GENERATED FILE - DO NOT EDIT
 
 import typing  # noqa: F401
-import numbers # noqa: F401
 from typing_extensions import TypedDict, NotRequired, Literal # noqa: F401
-from dash.development.base_component import Component
-try:
-    from dash.development.base_component import ComponentType # noqa: F401
-except ImportError:
-    ComponentType = typing.TypeVar("ComponentType", bound=Component)
+from dash.development.base_component import Component, _explicitize_args
+
+ComponentType = typing.Union[
+    str,
+    int,
+    float,
+    Component,
+    None,
+    typing.Sequence[typing.Union[str, int, float, Component, None]],
+]
+
+NumberType = typing.Union[
+    typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex
+]
 
 
 class AntdAccordion(Component):
@@ -131,19 +139,18 @@ Keyword arguments:
     Items = TypedDict(
         "Items",
             {
-            "children": NotRequired[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]],
+            "children": NotRequired[ComponentType],
             "className": NotRequired[typing.Union[str, dict]],
             "style": NotRequired[dict],
-            "key": typing.Union[str, typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]],
+            "key": typing.Union[str, NumberType],
             "collapsible": NotRequired[Literal["header", "disabled", "icon"]],
-            "title": NotRequired[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]],
-            "extra": NotRequired[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]],
+            "title": NotRequired[ComponentType],
+            "extra": NotRequired[ComponentType],
             "showArrow": NotRequired[bool],
             "forceRender": NotRequired[bool]
         }
     )
 
-    _explicitize_dash_init = True
 
     def __init__(
         self,
@@ -155,8 +162,8 @@ Keyword arguments:
         classNames: typing.Optional["ClassNames"] = None,
         items: typing.Optional[typing.Sequence["Items"]] = None,
         accordion: typing.Optional[bool] = None,
-        activeKey: typing.Optional[typing.Union[str, typing.Sequence[str], typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex], typing.Sequence[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]]]] = None,
-        defaultActiveKey: typing.Optional[typing.Union[str, typing.Sequence[str], typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex], typing.Sequence[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]]]] = None,
+        activeKey: typing.Optional[typing.Union[str, typing.Sequence[str], NumberType, typing.Sequence[NumberType]]] = None,
+        defaultActiveKey: typing.Optional[typing.Union[str, typing.Sequence[str], NumberType, typing.Sequence[NumberType]]] = None,
         bordered: typing.Optional[bool] = None,
         size: typing.Optional[Literal["large", "middle", "small"]] = None,
         collapsible: typing.Optional[Literal["header", "disabled", "icon"]] = None,
@@ -174,3 +181,5 @@ Keyword arguments:
         args = {k: _locals[k] for k in _explicit_args}
 
         super(AntdAccordion, self).__init__(**args)
+
+setattr(AntdAccordion, "__init__", _explicitize_args(AntdAccordion.__init__))

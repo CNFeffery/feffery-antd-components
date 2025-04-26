@@ -1,13 +1,21 @@
 # AUTO GENERATED FILE - DO NOT EDIT
 
 import typing  # noqa: F401
-import numbers # noqa: F401
 from typing_extensions import TypedDict, NotRequired, Literal # noqa: F401
-from dash.development.base_component import Component
-try:
-    from dash.development.base_component import ComponentType # noqa: F401
-except ImportError:
-    ComponentType = typing.TypeVar("ComponentType", bound=Component)
+from dash.development.base_component import Component, _explicitize_args
+
+ComponentType = typing.Union[
+    str,
+    int,
+    float,
+    Component,
+    None,
+    typing.Sequence[typing.Union[str, int, float, Component, None]],
+]
+
+NumberType = typing.Union[
+    typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex
+]
 
 
 class AntdButton(Component):
@@ -134,18 +142,17 @@ Keyword arguments:
         }
     )
 
-    _explicitize_dash_init = True
 
     def __init__(
         self,
-        children: typing.Optional[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]] = None,
+        children: typing.Optional[ComponentType] = None,
         id: typing.Optional[typing.Union[str, dict]] = None,
         key: typing.Optional[str] = None,
         style: typing.Optional[typing.Any] = None,
         className: typing.Optional[typing.Union[str, dict]] = None,
         styles: typing.Optional["Styles"] = None,
         classNames: typing.Optional["ClassNames"] = None,
-        loadingChildren: typing.Optional[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]] = None,
+        loadingChildren: typing.Optional[ComponentType] = None,
         type: typing.Optional[Literal["default", "primary", "dashed", "link", "text"]] = None,
         href: typing.Optional[str] = None,
         target: typing.Optional[str] = None,
@@ -156,10 +163,10 @@ Keyword arguments:
         ghost: typing.Optional[bool] = None,
         shape: typing.Optional[Literal["default", "circle", "round"]] = None,
         size: typing.Optional[Literal["small", "middle", "large"]] = None,
-        nClicks: typing.Optional[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]] = None,
+        nClicks: typing.Optional[NumberType] = None,
         clickExecuteJsString: typing.Optional[str] = None,
-        debounceWait: typing.Optional[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]] = None,
-        icon: typing.Optional[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]] = None,
+        debounceWait: typing.Optional[NumberType] = None,
+        icon: typing.Optional[ComponentType] = None,
         iconPosition: typing.Optional[Literal["start", "end"]] = None,
         loading: typing.Optional[bool] = None,
         autoSpin: typing.Optional[bool] = None,
@@ -179,3 +186,5 @@ Keyword arguments:
         args = {k: _locals[k] for k in _explicit_args if k != 'children'}
 
         super(AntdButton, self).__init__(children=children, **args)
+
+setattr(AntdButton, "__init__", _explicitize_args(AntdButton.__init__))

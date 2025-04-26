@@ -1,13 +1,21 @@
 # AUTO GENERATED FILE - DO NOT EDIT
 
 import typing  # noqa: F401
-import numbers # noqa: F401
 from typing_extensions import TypedDict, NotRequired, Literal # noqa: F401
-from dash.development.base_component import Component
-try:
-    from dash.development.base_component import ComponentType # noqa: F401
-except ImportError:
-    ComponentType = typing.TypeVar("ComponentType", bound=Component)
+from dash.development.base_component import Component, _explicitize_args
+
+ComponentType = typing.Union[
+    str,
+    int,
+    float,
+    Component,
+    None,
+    typing.Sequence[typing.Union[str, int, float, Component, None]],
+]
+
+NumberType = typing.Union[
+    typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex
+]
 
 
 class AntdAnchor(Component):
@@ -59,7 +67,6 @@ Keyword arguments:
     _namespace = 'feffery_antd_components'
     _type = 'AntdAnchor'
 
-    _explicitize_dash_init = True
 
     def __init__(
         self,
@@ -70,10 +77,10 @@ Keyword arguments:
         linkDict: typing.Optional[typing.Any] = None,
         align: typing.Optional[Literal["left", "right"]] = None,
         containerId: typing.Optional[str] = None,
-        targetOffset: typing.Optional[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]] = None,
+        targetOffset: typing.Optional[NumberType] = None,
         affix: typing.Optional[bool] = None,
-        bounds: typing.Optional[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]] = None,
-        offsetTop: typing.Optional[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]] = None,
+        bounds: typing.Optional[NumberType] = None,
+        offsetTop: typing.Optional[NumberType] = None,
         clickedLink: typing.Optional[dict] = None,
         **kwargs
     ):
@@ -87,3 +94,5 @@ Keyword arguments:
         args = {k: _locals[k] for k in _explicit_args}
 
         super(AntdAnchor, self).__init__(**args)
+
+setattr(AntdAnchor, "__init__", _explicitize_args(AntdAnchor.__init__))

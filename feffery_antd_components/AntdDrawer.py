@@ -1,13 +1,21 @@
 # AUTO GENERATED FILE - DO NOT EDIT
 
 import typing  # noqa: F401
-import numbers # noqa: F401
 from typing_extensions import TypedDict, NotRequired, Literal # noqa: F401
-from dash.development.base_component import Component
-try:
-    from dash.development.base_component import ComponentType # noqa: F401
-except ImportError:
-    ComponentType = typing.TypeVar("ComponentType", bound=Component)
+from dash.development.base_component import Component, _explicitize_args
+
+ComponentType = typing.Union[
+    str,
+    int,
+    float,
+    Component,
+    None,
+    typing.Sequence[typing.Union[str, int, float, Component, None]],
+]
+
+NumberType = typing.Union[
+    typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex
+]
 
 
 class AntdDrawer(Component):
@@ -150,11 +158,10 @@ Keyword arguments:
         }
     )
 
-    _explicitize_dash_init = True
 
     def __init__(
         self,
-        children: typing.Optional[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]] = None,
+        children: typing.Optional[ComponentType] = None,
         id: typing.Optional[typing.Union[str, dict]] = None,
         key: typing.Optional[str] = None,
         style: typing.Optional[typing.Any] = None,
@@ -163,19 +170,19 @@ Keyword arguments:
         styles: typing.Optional["Styles"] = None,
         rootStyle: typing.Optional[dict] = None,
         visible: typing.Optional[bool] = None,
-        title: typing.Optional[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]] = None,
+        title: typing.Optional[ComponentType] = None,
         placement: typing.Optional[Literal["left", "right", "top", "bottom"]] = None,
         closable: typing.Optional[bool] = None,
         forceRender: typing.Optional[bool] = None,
         destroyOnClose: typing.Optional[bool] = None,
-        width: typing.Optional[typing.Union[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex], str]] = None,
-        height: typing.Optional[typing.Union[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex], str]] = None,
+        width: typing.Optional[typing.Union[NumberType, str]] = None,
+        height: typing.Optional[typing.Union[NumberType, str]] = None,
         mask: typing.Optional[bool] = None,
         maskClosable: typing.Optional[bool] = None,
-        zIndex: typing.Optional[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]] = None,
+        zIndex: typing.Optional[NumberType] = None,
         loading: typing.Optional[bool] = None,
-        extra: typing.Optional[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]] = None,
-        footer: typing.Optional[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]] = None,
+        extra: typing.Optional[ComponentType] = None,
+        footer: typing.Optional[ComponentType] = None,
         containerId: typing.Optional[str] = None,
         containerSelector: typing.Optional[str] = None,
         **kwargs
@@ -190,3 +197,5 @@ Keyword arguments:
         args = {k: _locals[k] for k in _explicit_args if k != 'children'}
 
         super(AntdDrawer, self).__init__(children=children, **args)
+
+setattr(AntdDrawer, "__init__", _explicitize_args(AntdDrawer.__init__))

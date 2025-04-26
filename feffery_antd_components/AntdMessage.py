@@ -1,13 +1,21 @@
 # AUTO GENERATED FILE - DO NOT EDIT
 
 import typing  # noqa: F401
-import numbers # noqa: F401
 from typing_extensions import TypedDict, NotRequired, Literal # noqa: F401
-from dash.development.base_component import Component
-try:
-    from dash.development.base_component import ComponentType # noqa: F401
-except ImportError:
-    ComponentType = typing.TypeVar("ComponentType", bound=Component)
+from dash.development.base_component import Component, _explicitize_args
+
+ComponentType = typing.Union[
+    str,
+    int,
+    float,
+    Component,
+    None,
+    typing.Sequence[typing.Union[str, int, float, Component, None]],
+]
+
+NumberType = typing.Union[
+    typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex
+]
 
 
 class AntdMessage(Component):
@@ -51,7 +59,6 @@ Keyword arguments:
     _namespace = 'feffery_antd_components'
     _type = 'AntdMessage'
 
-    _explicitize_dash_init = True
 
     def __init__(
         self,
@@ -61,9 +68,9 @@ Keyword arguments:
         className: typing.Optional[str] = None,
         content: typing.Optional[str] = None,
         type: typing.Optional[Literal["default", "success", "error", "info", "warning"]] = None,
-        duration: typing.Optional[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]] = None,
-        top: typing.Optional[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]] = None,
-        maxCount: typing.Optional[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]] = None,
+        duration: typing.Optional[NumberType] = None,
+        top: typing.Optional[NumberType] = None,
+        maxCount: typing.Optional[NumberType] = None,
         icon: typing.Optional[str] = None,
         iconRenderer: typing.Optional[Literal["AntdIcon", "fontawesome"]] = None,
         **kwargs
@@ -78,3 +85,5 @@ Keyword arguments:
         args = {k: _locals[k] for k in _explicit_args}
 
         super(AntdMessage, self).__init__(**args)
+
+setattr(AntdMessage, "__init__", _explicitize_args(AntdMessage.__init__))

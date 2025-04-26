@@ -1,13 +1,21 @@
 # AUTO GENERATED FILE - DO NOT EDIT
 
 import typing  # noqa: F401
-import numbers # noqa: F401
 from typing_extensions import TypedDict, NotRequired, Literal # noqa: F401
-from dash.development.base_component import Component
-try:
-    from dash.development.base_component import ComponentType # noqa: F401
-except ImportError:
-    ComponentType = typing.TypeVar("ComponentType", bound=Component)
+from dash.development.base_component import Component, _explicitize_args
+
+ComponentType = typing.Union[
+    str,
+    int,
+    float,
+    Component,
+    None,
+    typing.Sequence[typing.Union[str, int, float, Component, None]],
+]
+
+NumberType = typing.Union[
+    typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex
+]
 
 
 class AntdRadioGroup(Component):
@@ -99,13 +107,12 @@ Keyword arguments:
     Options = TypedDict(
         "Options",
             {
-            "label": NotRequired[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]],
-            "value": NotRequired[typing.Union[str, typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]]],
+            "label": NotRequired[ComponentType],
+            "value": NotRequired[typing.Union[str, NumberType]],
             "disabled": NotRequired[bool]
         }
     )
 
-    _explicitize_dash_init = True
 
     def __init__(
         self,
@@ -115,18 +122,18 @@ Keyword arguments:
         className: typing.Optional[typing.Union[str, dict]] = None,
         name: typing.Optional[str] = None,
         direction: typing.Optional[Literal["horizontal", "vertical"]] = None,
-        options: typing.Optional[typing.Sequence[typing.Union[str, typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex], "Options"]]] = None,
+        options: typing.Optional[typing.Sequence[typing.Union[str, NumberType, "Options"]]] = None,
         block: typing.Optional[bool] = None,
         disabled: typing.Optional[bool] = None,
         size: typing.Optional[Literal["small", "middle", "large"]] = None,
-        value: typing.Optional[typing.Union[str, typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]]] = None,
-        defaultValue: typing.Optional[typing.Union[str, typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]]] = None,
+        value: typing.Optional[typing.Union[str, NumberType]] = None,
+        defaultValue: typing.Optional[typing.Union[str, NumberType]] = None,
         optionType: typing.Optional[Literal["default", "button"]] = None,
         buttonStyle: typing.Optional[Literal["outline", "solid"]] = None,
         readOnly: typing.Optional[bool] = None,
         batchPropsNames: typing.Optional[typing.Sequence[str]] = None,
         batchPropsValues: typing.Optional[dict] = None,
-        persistence: typing.Optional[typing.Union[bool, str, typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]]] = None,
+        persistence: typing.Optional[typing.Union[bool, str, NumberType]] = None,
         persisted_props: typing.Optional[typing.Sequence[Literal["value"]]] = None,
         persistence_type: typing.Optional[Literal["local", "session", "memory"]] = None,
         **kwargs
@@ -141,3 +148,5 @@ Keyword arguments:
         args = {k: _locals[k] for k in _explicit_args}
 
         super(AntdRadioGroup, self).__init__(**args)
+
+setattr(AntdRadioGroup, "__init__", _explicitize_args(AntdRadioGroup.__init__))

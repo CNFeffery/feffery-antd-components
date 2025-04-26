@@ -1,13 +1,21 @@
 # AUTO GENERATED FILE - DO NOT EDIT
 
 import typing  # noqa: F401
-import numbers # noqa: F401
 from typing_extensions import TypedDict, NotRequired, Literal # noqa: F401
-from dash.development.base_component import Component
-try:
-    from dash.development.base_component import ComponentType # noqa: F401
-except ImportError:
-    ComponentType = typing.TypeVar("ComponentType", bound=Component)
+from dash.development.base_component import Component, _explicitize_args
+
+ComponentType = typing.Union[
+    str,
+    int,
+    float,
+    Component,
+    None,
+    typing.Sequence[typing.Union[str, int, float, Component, None]],
+]
+
+NumberType = typing.Union[
+    typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex
+]
 
 
 class AntdImageGroup(Component):
@@ -93,20 +101,19 @@ Keyword arguments:
             {
             "src": NotRequired[str],
             "movable": NotRequired[bool],
-            "mask": NotRequired[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]],
+            "mask": NotRequired[ComponentType],
             "maskClassName": NotRequired[str],
             "rootClassName": NotRequired[str],
-            "scaleStep": NotRequired[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]],
-            "minScale": NotRequired[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]],
-            "maxScale": NotRequired[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]]
+            "scaleStep": NotRequired[NumberType],
+            "minScale": NotRequired[NumberType],
+            "maxScale": NotRequired[NumberType]
         }
     )
 
-    _explicitize_dash_init = True
 
     def __init__(
         self,
-        children: typing.Optional[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]] = None,
+        children: typing.Optional[ComponentType] = None,
         id: typing.Optional[typing.Union[str, dict]] = None,
         key: typing.Optional[str] = None,
         style: typing.Optional[typing.Any] = None,
@@ -116,9 +123,9 @@ Keyword arguments:
         fallback: typing.Optional[str] = None,
         preview: typing.Optional[typing.Union[bool, "Preview"]] = None,
         visible: typing.Optional[bool] = None,
-        current: typing.Optional[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]] = None,
+        current: typing.Optional[NumberType] = None,
         disableCurrent: typing.Optional[bool] = None,
-        toolbarExtra: typing.Optional[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]] = None,
+        toolbarExtra: typing.Optional[ComponentType] = None,
         **kwargs
     ):
         self._prop_names = ['id', 'key', 'children', 'style', 'className', 'locale', 'items', 'fallback', 'preview', 'visible', 'current', 'disableCurrent', 'toolbarExtra', 'data-*', 'aria-*']
@@ -131,3 +138,5 @@ Keyword arguments:
         args = {k: _locals[k] for k in _explicit_args if k != 'children'}
 
         super(AntdImageGroup, self).__init__(children=children, **args)
+
+setattr(AntdImageGroup, "__init__", _explicitize_args(AntdImageGroup.__init__))

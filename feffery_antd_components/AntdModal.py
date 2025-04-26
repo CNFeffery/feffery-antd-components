@@ -1,13 +1,21 @@
 # AUTO GENERATED FILE - DO NOT EDIT
 
 import typing  # noqa: F401
-import numbers # noqa: F401
 from typing_extensions import TypedDict, NotRequired, Literal # noqa: F401
-from dash.development.base_component import Component
-try:
-    from dash.development.base_component import ComponentType # noqa: F401
-except ImportError:
-    ComponentType = typing.TypeVar("ComponentType", bound=Component)
+from dash.development.base_component import Component, _explicitize_args
+
+ComponentType = typing.Union[
+    str,
+    int,
+    float,
+    Component,
+    None,
+    typing.Sequence[typing.Union[str, int, float, Component, None]],
+]
+
+NumberType = typing.Union[
+    typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex
+]
 
 
 class AntdModal(Component):
@@ -278,20 +286,19 @@ Keyword arguments:
     Width = TypedDict(
         "Width",
             {
-            "xs": NotRequired[typing.Union[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex], str]],
-            "sm": NotRequired[typing.Union[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex], str]],
-            "md": NotRequired[typing.Union[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex], str]],
-            "lg": NotRequired[typing.Union[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex], str]],
-            "xl": NotRequired[typing.Union[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex], str]],
-            "xxl": NotRequired[typing.Union[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex], str]]
+            "xs": NotRequired[typing.Union[NumberType, str]],
+            "sm": NotRequired[typing.Union[NumberType, str]],
+            "md": NotRequired[typing.Union[NumberType, str]],
+            "lg": NotRequired[typing.Union[NumberType, str]],
+            "xl": NotRequired[typing.Union[NumberType, str]],
+            "xxl": NotRequired[typing.Union[NumberType, str]]
         }
     )
 
-    _explicitize_dash_init = True
 
     def __init__(
         self,
-        children: typing.Optional[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]] = None,
+        children: typing.Optional[ComponentType] = None,
         id: typing.Optional[typing.Union[str, dict]] = None,
         key: typing.Optional[str] = None,
         style: typing.Optional[typing.Any] = None,
@@ -300,25 +307,25 @@ Keyword arguments:
         classNames: typing.Optional["ClassNames"] = None,
         locale: typing.Optional[Literal["zh-cn", "en-us", "de-de"]] = None,
         visible: typing.Optional[bool] = None,
-        title: typing.Optional[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]] = None,
+        title: typing.Optional[ComponentType] = None,
         renderFooter: typing.Optional[bool] = None,
-        okText: typing.Optional[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]] = None,
+        okText: typing.Optional[ComponentType] = None,
         okButtonProps: typing.Optional["OkButtonProps"] = None,
-        cancelText: typing.Optional[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]] = None,
+        cancelText: typing.Optional[ComponentType] = None,
         cancelButtonProps: typing.Optional["CancelButtonProps"] = None,
-        width: typing.Optional[typing.Union[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex], str, "Width"]] = None,
+        width: typing.Optional[typing.Union[NumberType, str, "Width"]] = None,
         centered: typing.Optional[bool] = None,
         keyboard: typing.Optional[bool] = None,
         closable: typing.Optional[bool] = None,
         mask: typing.Optional[bool] = None,
         maskClosable: typing.Optional[bool] = None,
         okClickClose: typing.Optional[bool] = None,
-        zIndex: typing.Optional[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]] = None,
-        okCounts: typing.Optional[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]] = None,
-        cancelCounts: typing.Optional[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]] = None,
-        closeCounts: typing.Optional[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]] = None,
+        zIndex: typing.Optional[NumberType] = None,
+        okCounts: typing.Optional[NumberType] = None,
+        cancelCounts: typing.Optional[NumberType] = None,
+        closeCounts: typing.Optional[NumberType] = None,
         confirmAutoSpin: typing.Optional[bool] = None,
-        loadingOkText: typing.Optional[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]] = None,
+        loadingOkText: typing.Optional[ComponentType] = None,
         confirmLoading: typing.Optional[bool] = None,
         transitionType: typing.Optional[Literal["none", "fade", "zoom", "zoom-big", "zoom-big-fast", "slide-up", "slide-down", "slide-left", "slide-right", "move-up", "move-down", "move-left", "move-right"]] = None,
         forceRender: typing.Optional[bool] = None,
@@ -336,3 +343,5 @@ Keyword arguments:
         args = {k: _locals[k] for k in _explicit_args if k != 'children'}
 
         super(AntdModal, self).__init__(children=children, **args)
+
+setattr(AntdModal, "__init__", _explicitize_args(AntdModal.__init__))

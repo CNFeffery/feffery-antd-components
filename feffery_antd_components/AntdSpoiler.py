@@ -1,13 +1,21 @@
 # AUTO GENERATED FILE - DO NOT EDIT
 
 import typing  # noqa: F401
-import numbers # noqa: F401
 from typing_extensions import TypedDict, NotRequired, Literal # noqa: F401
-from dash.development.base_component import Component
-try:
-    from dash.development.base_component import ComponentType # noqa: F401
-except ImportError:
-    ComponentType = typing.TypeVar("ComponentType", bound=Component)
+from dash.development.base_component import Component, _explicitize_args
+
+ComponentType = typing.Union[
+    str,
+    int,
+    float,
+    Component,
+    None,
+    typing.Sequence[typing.Union[str, int, float, Component, None]],
+]
+
+NumberType = typing.Union[
+    typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex
+]
 
 
 class AntdSpoiler(Component):
@@ -66,11 +74,10 @@ Keyword arguments:
     _namespace = 'feffery_antd_components'
     _type = 'AntdSpoiler'
 
-    _explicitize_dash_init = True
 
     def __init__(
         self,
-        children: typing.Optional[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]] = None,
+        children: typing.Optional[ComponentType] = None,
         id: typing.Optional[typing.Union[str, dict]] = None,
         key: typing.Optional[str] = None,
         style: typing.Optional[typing.Any] = None,
@@ -78,12 +85,12 @@ Keyword arguments:
         contentClassName: typing.Optional[typing.Union[str, dict]] = None,
         contentStyle: typing.Optional[dict] = None,
         locale: typing.Optional[Literal["zh-cn", "en-us", "de-de"]] = None,
-        hideLabel: typing.Optional[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]] = None,
-        showLabel: typing.Optional[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]] = None,
+        hideLabel: typing.Optional[ComponentType] = None,
+        showLabel: typing.Optional[ComponentType] = None,
         labelPosition: typing.Optional[Literal["left", "right"]] = None,
         open: typing.Optional[bool] = None,
-        maxHeight: typing.Optional[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]] = None,
-        transitionDuration: typing.Optional[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]] = None,
+        maxHeight: typing.Optional[NumberType] = None,
+        transitionDuration: typing.Optional[NumberType] = None,
         **kwargs
     ):
         self._prop_names = ['id', 'key', 'children', 'style', 'className', 'contentClassName', 'contentStyle', 'locale', 'hideLabel', 'showLabel', 'labelPosition', 'open', 'maxHeight', 'transitionDuration', 'data-*', 'aria-*']
@@ -96,3 +103,5 @@ Keyword arguments:
         args = {k: _locals[k] for k in _explicit_args if k != 'children'}
 
         super(AntdSpoiler, self).__init__(children=children, **args)
+
+setattr(AntdSpoiler, "__init__", _explicitize_args(AntdSpoiler.__init__))

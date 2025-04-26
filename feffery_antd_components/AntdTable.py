@@ -1,13 +1,21 @@
 # AUTO GENERATED FILE - DO NOT EDIT
 
 import typing  # noqa: F401
-import numbers # noqa: F401
 from typing_extensions import TypedDict, NotRequired, Literal # noqa: F401
-from dash.development.base_component import Component
-try:
-    from dash.development.base_component import ComponentType # noqa: F401
-except ImportError:
-    ComponentType = typing.TypeVar("ComponentType", bound=Component)
+from dash.development.base_component import Component, _explicitize_args
+
+ComponentType = typing.Union[
+    str,
+    int,
+    float,
+    Component,
+    None,
+    typing.Sequence[typing.Union[str, int, float, Component, None]],
+]
+
+NumberType = typing.Union[
+    typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex
+]
 
 
 class AntdTable(Component):
@@ -967,7 +975,7 @@ Keyword arguments:
             "miniChartColor": NotRequired[str],
             "tooltipCustomContent": NotRequired[str],
             "progressOneHundredPercentColor": NotRequired[str],
-            "ringProgressFontSize": NotRequired[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]],
+            "ringProgressFontSize": NotRequired[NumberType],
             "dropdownProps": NotRequired["ColumnsRenderOptionsDropdownProps"]
         }
     )
@@ -975,8 +983,8 @@ Keyword arguments:
     ColumnsEditOptionsAutoSize = TypedDict(
         "ColumnsEditOptionsAutoSize",
             {
-            "minRows": NotRequired[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]],
-            "maxRows": NotRequired[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]]
+            "minRows": NotRequired[NumberType],
+            "maxRows": NotRequired[NumberType]
         }
     )
 
@@ -985,7 +993,7 @@ Keyword arguments:
             {
             "mode": NotRequired[Literal["default", "text-area"]],
             "autoSize": NotRequired[typing.Union[bool, "ColumnsEditOptionsAutoSize"]],
-            "maxLength": NotRequired[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]],
+            "maxLength": NotRequired[NumberType],
             "placeholder": NotRequired[str],
             "disabledKeys": NotRequired[typing.Sequence[str]]
         }
@@ -994,7 +1002,7 @@ Keyword arguments:
     Columns = TypedDict(
         "Columns",
             {
-            "title": typing.Union[typing.Any, typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]],
+            "title": typing.Union[typing.Any, ComponentType],
             "dataIndex": str,
             "group": NotRequired[typing.Union[str, typing.Sequence[str]]],
             "renderOptions": NotRequired["ColumnsRenderOptions"],
@@ -1003,8 +1011,8 @@ Keyword arguments:
             "editOptions": NotRequired["ColumnsEditOptions"],
             "align": NotRequired[Literal["left", "center", "right"]],
             "headerAlign": NotRequired[Literal["left", "center", "right"]],
-            "width": NotRequired[typing.Union[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex], str]],
-            "minWidth": NotRequired[typing.Union[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex], str]],
+            "width": NotRequired[typing.Union[NumberType, str]],
+            "minWidth": NotRequired[typing.Union[NumberType, str]],
             "hidden": NotRequired[bool],
             "className": NotRequired[str],
             "filterResetToDefaultFilteredValue": NotRequired[bool]
@@ -1017,15 +1025,15 @@ Keyword arguments:
             "className": NotRequired[str],
             "style": NotRequired[dict],
             "options": NotRequired[typing.Sequence["DataOptions"]],
-            "listHeight": NotRequired[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]],
+            "listHeight": NotRequired[NumberType],
             "mode": NotRequired[Literal["multiple", "tags"]],
             "disabled": NotRequired[bool],
             "size": NotRequired[Literal["small", "middle", "large"]],
             "bordered": NotRequired[bool],
             "placeholder": NotRequired[str],
             "placement": NotRequired[Literal["bottomLeft", "bottomRight", "topLeft", "topRight"]],
-            "value": NotRequired[typing.Union[typing.Union[str, typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]], typing.Sequence[typing.Union[str, typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]]]]],
-            "maxTagCount": NotRequired[typing.Union[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex], Literal["responsive"]]],
+            "value": NotRequired[typing.Union[typing.Union[str, NumberType], typing.Sequence[typing.Union[str, NumberType]]]],
+            "maxTagCount": NotRequired[typing.Union[NumberType, Literal["responsive"]]],
             "optionFilterProp": NotRequired[Literal["value", "label"]],
             "allowClear": NotRequired[bool]
         }
@@ -1034,12 +1042,12 @@ Keyword arguments:
     DataSize = TypedDict(
         "DataSize",
             {
-            "xs": NotRequired[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]],
-            "sm": NotRequired[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]],
-            "md": NotRequired[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]],
-            "lg": NotRequired[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]],
-            "xl": NotRequired[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]],
-            "xxl": NotRequired[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]]
+            "xs": NotRequired[NumberType],
+            "sm": NotRequired[NumberType],
+            "md": NotRequired[NumberType],
+            "lg": NotRequired[NumberType],
+            "xl": NotRequired[NumberType],
+            "xxl": NotRequired[NumberType]
         }
     )
 
@@ -1047,15 +1055,15 @@ Keyword arguments:
         "DataOptions",
             {
             "label": NotRequired[str],
-            "value": NotRequired[typing.Union[str, typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]]]
+            "value": NotRequired[typing.Union[str, NumberType]]
         }
     )
 
     Sticky = TypedDict(
         "Sticky",
             {
-            "offsetHeader": NotRequired[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]],
-            "offsetScroll": NotRequired[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]]
+            "offsetHeader": NotRequired[NumberType],
+            "offsetScroll": NotRequired[NumberType]
         }
     )
 
@@ -1102,10 +1110,10 @@ Keyword arguments:
         "Pagination",
             {
             "position": NotRequired[Literal["topLeft", "topCenter", "topRight", "bottomLeft", "bottomCenter", "bottomRight"]],
-            "pageSize": NotRequired[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]],
-            "current": NotRequired[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]],
+            "pageSize": NotRequired[NumberType],
+            "current": NotRequired[NumberType],
             "showSizeChanger": NotRequired[bool],
-            "pageSizeOptions": NotRequired[typing.Sequence[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]]],
+            "pageSizeOptions": NotRequired[typing.Sequence[NumberType]],
             "showTitle": NotRequired[bool],
             "showQuickJumper": NotRequired[bool],
             "showTotalPrefix": NotRequired[str],
@@ -1114,7 +1122,7 @@ Keyword arguments:
             "simple": NotRequired[bool],
             "disabled": NotRequired[bool],
             "size": NotRequired[Literal["default", "small"]],
-            "total": NotRequired[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]],
+            "total": NotRequired[NumberType],
             "showLessItems": NotRequired[bool]
         }
     )
@@ -1130,8 +1138,8 @@ Keyword arguments:
     SummaryRowContents = TypedDict(
         "SummaryRowContents",
             {
-            "content": NotRequired[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]],
-            "colSpan": NotRequired[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]],
+            "content": NotRequired[ComponentType],
+            "colSpan": NotRequired[NumberType],
             "align": NotRequired[Literal["left", "center", "right"]]
         }
     )
@@ -1139,47 +1147,47 @@ Keyword arguments:
     ExpandedRowKeyToContent = TypedDict(
         "ExpandedRowKeyToContent",
             {
-            "key": typing.Union[str, typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]],
-            "content": NotRequired[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]]
+            "key": typing.Union[str, NumberType],
+            "content": NotRequired[ComponentType]
         }
     )
 
     CellClickEvent = TypedDict(
         "CellClickEvent",
             {
-            "pageX": NotRequired[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]],
-            "pageY": NotRequired[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]],
-            "clientX": NotRequired[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]],
-            "clientY": NotRequired[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]],
-            "screenX": NotRequired[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]],
-            "screenY": NotRequired[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]],
-            "timestamp": NotRequired[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]]
+            "pageX": NotRequired[NumberType],
+            "pageY": NotRequired[NumberType],
+            "clientX": NotRequired[NumberType],
+            "clientY": NotRequired[NumberType],
+            "screenX": NotRequired[NumberType],
+            "screenY": NotRequired[NumberType],
+            "timestamp": NotRequired[NumberType]
         }
     )
 
     CellDoubleClickEvent = TypedDict(
         "CellDoubleClickEvent",
             {
-            "pageX": NotRequired[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]],
-            "pageY": NotRequired[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]],
-            "clientX": NotRequired[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]],
-            "clientY": NotRequired[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]],
-            "screenX": NotRequired[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]],
-            "screenY": NotRequired[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]],
-            "timestamp": NotRequired[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]]
+            "pageX": NotRequired[NumberType],
+            "pageY": NotRequired[NumberType],
+            "clientX": NotRequired[NumberType],
+            "clientY": NotRequired[NumberType],
+            "screenX": NotRequired[NumberType],
+            "screenY": NotRequired[NumberType],
+            "timestamp": NotRequired[NumberType]
         }
     )
 
     CellContextMenuClickEvent = TypedDict(
         "CellContextMenuClickEvent",
             {
-            "pageX": NotRequired[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]],
-            "pageY": NotRequired[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]],
-            "clientX": NotRequired[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]],
-            "clientY": NotRequired[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]],
-            "screenX": NotRequired[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]],
-            "screenY": NotRequired[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]],
-            "timestamp": NotRequired[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]]
+            "pageX": NotRequired[NumberType],
+            "pageY": NotRequired[NumberType],
+            "clientX": NotRequired[NumberType],
+            "clientY": NotRequired[NumberType],
+            "screenX": NotRequired[NumberType],
+            "screenY": NotRequired[NumberType],
+            "timestamp": NotRequired[NumberType]
         }
     )
 
@@ -1190,7 +1198,6 @@ Keyword arguments:
         }
     )
 
-    _explicitize_dash_init = True
 
     def __init__(
         self,
@@ -1204,23 +1211,23 @@ Keyword arguments:
         showHeader: typing.Optional[bool] = None,
         rowHoverable: typing.Optional[bool] = None,
         tableLayout: typing.Optional[Literal["auto", "fixed"]] = None,
-        data: typing.Optional[typing.Sequence[typing.Dict[typing.Union[str, float, int], typing.Union[typing.Sequence[typing.Any], typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]], str, typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex], bool, "Data", typing.Sequence[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]], typing.Union["Data", typing.Sequence["Data"]], typing.Sequence["Data"], dict]]]] = None,
+        data: typing.Optional[typing.Sequence[typing.Dict[typing.Union[str, float, int], typing.Union[typing.Sequence[typing.Any], ComponentType, str, NumberType, bool, "Data", typing.Sequence[NumberType], typing.Union["Data", typing.Sequence["Data"]], typing.Sequence["Data"], dict]]]] = None,
         bordered: typing.Optional[bool] = None,
-        maxHeight: typing.Optional[typing.Union[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex], str]] = None,
-        maxWidth: typing.Optional[typing.Union[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex], str, bool]] = None,
+        maxHeight: typing.Optional[typing.Union[NumberType, str]] = None,
+        maxWidth: typing.Optional[typing.Union[NumberType, str, bool]] = None,
         scrollToFirstRowOnChange: typing.Optional[bool] = None,
         size: typing.Optional[Literal["small", "middle", "large"]] = None,
         rowSelectionType: typing.Optional[Literal["checkbox", "radio"]] = None,
-        selectedRowKeys: typing.Optional[typing.Sequence[typing.Union[str, typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]]]] = None,
+        selectedRowKeys: typing.Optional[typing.Sequence[typing.Union[str, NumberType]]] = None,
         selectedRows: typing.Optional[typing.Sequence] = None,
-        rowSelectionWidth: typing.Optional[typing.Union[str, typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]]] = None,
+        rowSelectionWidth: typing.Optional[typing.Union[str, NumberType]] = None,
         rowSelectionCheckStrictly: typing.Optional[bool] = None,
-        rowSelectionIgnoreRowKeys: typing.Optional[typing.Sequence[typing.Union[str, typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]]]] = None,
+        rowSelectionIgnoreRowKeys: typing.Optional[typing.Sequence[typing.Union[str, NumberType]]] = None,
         selectedRowsSyncWithData: typing.Optional[bool] = None,
         sticky: typing.Optional[typing.Union[bool, "Sticky"]] = None,
         enableHoverListen: typing.Optional[bool] = None,
         recentlyMouseEnterColumnDataIndex: typing.Optional[str] = None,
-        recentlyMouseEnterRowKey: typing.Optional[typing.Union[str, typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]]] = None,
+        recentlyMouseEnterRowKey: typing.Optional[typing.Union[str, NumberType]] = None,
         recentlyMouseEnterRow: typing.Optional[dict] = None,
         titlePopoverInfo: typing.Optional[typing.Dict[typing.Union[str, float, int], "TitlePopoverInfo"]] = None,
         columnsFormatConstraint: typing.Optional[typing.Dict[typing.Union[str, float, int], "ColumnsFormatConstraint"]] = None,
@@ -1237,33 +1244,33 @@ Keyword arguments:
         filter: typing.Optional[dict] = None,
         mode: typing.Optional[Literal["client-side", "server-side"]] = None,
         summaryRowContents: typing.Optional[typing.Sequence["SummaryRowContents"]] = None,
-        summaryRowBlankColumns: typing.Optional[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]] = None,
+        summaryRowBlankColumns: typing.Optional[NumberType] = None,
         summaryRowFixed: typing.Optional[typing.Union[bool, Literal["top", "bottom"]]] = None,
         conditionalStyleFuncs: typing.Optional[typing.Dict[typing.Union[str, float, int], str]] = None,
         expandedRowKeyToContent: typing.Optional[typing.Sequence["ExpandedRowKeyToContent"]] = None,
-        expandedRowWidth: typing.Optional[typing.Union[str, typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]]] = None,
+        expandedRowWidth: typing.Optional[typing.Union[str, NumberType]] = None,
         expandRowByClick: typing.Optional[bool] = None,
         defaultExpandedRowKeys: typing.Optional[typing.Sequence[str]] = None,
         expandedRowKeys: typing.Optional[typing.Sequence[str]] = None,
         enableCellClickListenColumns: typing.Optional[typing.Sequence[str]] = None,
         recentlyCellClickColumn: typing.Optional[str] = None,
         recentlyCellClickRecord: typing.Optional[dict] = None,
-        nClicksCell: typing.Optional[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]] = None,
+        nClicksCell: typing.Optional[NumberType] = None,
         cellClickEvent: typing.Optional["CellClickEvent"] = None,
         recentlyCellDoubleClickColumn: typing.Optional[str] = None,
         recentlyCellDoubleClickRecord: typing.Optional[dict] = None,
-        nDoubleClicksCell: typing.Optional[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]] = None,
+        nDoubleClicksCell: typing.Optional[NumberType] = None,
         cellDoubleClickEvent: typing.Optional["CellDoubleClickEvent"] = None,
         recentlyContextMenuClickColumn: typing.Optional[str] = None,
         recentlyContextMenuClickRecord: typing.Optional[dict] = None,
-        nContextMenuClicksCell: typing.Optional[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]] = None,
+        nContextMenuClicksCell: typing.Optional[NumberType] = None,
         cellContextMenuClickEvent: typing.Optional["CellContextMenuClickEvent"] = None,
-        emptyContent: typing.Optional[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]] = None,
+        emptyContent: typing.Optional[ComponentType] = None,
         cellUpdateOptimize: typing.Optional[bool] = None,
-        miniChartHeight: typing.Optional[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]] = None,
+        miniChartHeight: typing.Optional[NumberType] = None,
         miniChartAnimation: typing.Optional[bool] = None,
         recentlyButtonClickedRow: typing.Optional[dict] = None,
-        nClicksButton: typing.Optional[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]] = None,
+        nClicksButton: typing.Optional[NumberType] = None,
         clickedContent: typing.Optional[str] = None,
         clickedCustom: typing.Optional[typing.Any] = None,
         recentlyButtonClickedDataIndex: typing.Optional[str] = None,
@@ -1275,18 +1282,18 @@ Keyword arguments:
         recentlySwitchRow: typing.Optional[dict] = None,
         recentlySwitchDataIndex: typing.Optional[str] = None,
         recentlySwitchStatus: typing.Optional[bool] = None,
-        nClicksDropdownItem: typing.Optional[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]] = None,
+        nClicksDropdownItem: typing.Optional[NumberType] = None,
         recentlyClickedDropdownItemTitle: typing.Optional[str] = None,
         recentlyDropdownItemClickedDataIndex: typing.Optional[str] = None,
         recentlyDropdownItemClickedRow: typing.Optional[dict] = None,
         recentlySelectRow: typing.Optional[dict] = None,
         recentlySelectDataIndex: typing.Optional[str] = None,
-        recentlySelectValue: typing.Optional[typing.Union[typing.Union[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex], str], typing.Sequence[typing.Union[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex], str]]]] = None,
+        recentlySelectValue: typing.Optional[typing.Union[typing.Union[NumberType, str], typing.Sequence[typing.Union[NumberType, str]]]] = None,
         hiddenRowKeys: typing.Optional[typing.Sequence[str]] = None,
         dataDeepCompare: typing.Optional[bool] = None,
         virtual: typing.Optional[bool] = None,
-        title: typing.Optional[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]] = None,
-        footer: typing.Optional[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]] = None,
+        title: typing.Optional[ComponentType] = None,
+        footer: typing.Optional[ComponentType] = None,
         loading: typing.Optional[bool] = None,
         rowClassName: typing.Optional[typing.Union[str, "RowClassName"]] = None,
         **kwargs
@@ -1301,3 +1308,5 @@ Keyword arguments:
         args = {k: _locals[k] for k in _explicit_args}
 
         super(AntdTable, self).__init__(**args)
+
+setattr(AntdTable, "__init__", _explicitize_args(AntdTable.__init__))

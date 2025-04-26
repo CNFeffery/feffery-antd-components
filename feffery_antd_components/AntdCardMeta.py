@@ -1,13 +1,21 @@
 # AUTO GENERATED FILE - DO NOT EDIT
 
 import typing  # noqa: F401
-import numbers # noqa: F401
 from typing_extensions import TypedDict, NotRequired, Literal # noqa: F401
-from dash.development.base_component import Component
-try:
-    from dash.development.base_component import ComponentType # noqa: F401
-except ImportError:
-    ComponentType = typing.TypeVar("ComponentType", bound=Component)
+from dash.development.base_component import Component, _explicitize_args
+
+ComponentType = typing.Union[
+    str,
+    int,
+    float,
+    Component,
+    None,
+    typing.Sequence[typing.Union[str, int, float, Component, None]],
+]
+
+NumberType = typing.Union[
+    typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex
+]
 
 
 class AntdCardMeta(Component):
@@ -44,7 +52,6 @@ Keyword arguments:
     _namespace = 'feffery_antd_components'
     _type = 'AntdCardMeta'
 
-    _explicitize_dash_init = True
 
     def __init__(
         self,
@@ -52,9 +59,9 @@ Keyword arguments:
         key: typing.Optional[str] = None,
         style: typing.Optional[typing.Any] = None,
         className: typing.Optional[typing.Union[str, dict]] = None,
-        avatar: typing.Optional[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]] = None,
-        description: typing.Optional[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]] = None,
-        title: typing.Optional[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]] = None,
+        avatar: typing.Optional[ComponentType] = None,
+        description: typing.Optional[ComponentType] = None,
+        title: typing.Optional[ComponentType] = None,
         **kwargs
     ):
         self._prop_names = ['id', 'key', 'style', 'className', 'avatar', 'description', 'title', 'data-*', 'aria-*']
@@ -67,3 +74,5 @@ Keyword arguments:
         args = {k: _locals[k] for k in _explicit_args}
 
         super(AntdCardMeta, self).__init__(**args)
+
+setattr(AntdCardMeta, "__init__", _explicitize_args(AntdCardMeta.__init__))

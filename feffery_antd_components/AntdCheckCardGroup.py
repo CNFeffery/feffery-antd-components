@@ -1,13 +1,21 @@
 # AUTO GENERATED FILE - DO NOT EDIT
 
 import typing  # noqa: F401
-import numbers # noqa: F401
 from typing_extensions import TypedDict, NotRequired, Literal # noqa: F401
-from dash.development.base_component import Component
-try:
-    from dash.development.base_component import ComponentType # noqa: F401
-except ImportError:
-    ComponentType = typing.TypeVar("ComponentType", bound=Component)
+from dash.development.base_component import Component, _explicitize_args
+
+ComponentType = typing.Union[
+    str,
+    int,
+    float,
+    Component,
+    None,
+    typing.Sequence[typing.Union[str, int, float, Component, None]],
+]
+
+NumberType = typing.Union[
+    typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex
+]
 
 
 class AntdCheckCardGroup(Component):
@@ -75,11 +83,10 @@ Keyword arguments:
     _namespace = 'feffery_antd_components'
     _type = 'AntdCheckCardGroup'
 
-    _explicitize_dash_init = True
 
     def __init__(
         self,
-        children: typing.Optional[typing.Union[str, int, float, ComponentType, typing.Sequence[typing.Union[str, int, float, ComponentType]]]] = None,
+        children: typing.Optional[ComponentType] = None,
         id: typing.Optional[typing.Union[str, dict]] = None,
         key: typing.Optional[str] = None,
         style: typing.Optional[typing.Any] = None,
@@ -88,12 +95,12 @@ Keyword arguments:
         multiple: typing.Optional[bool] = None,
         allowNoValue: typing.Optional[bool] = None,
         bordered: typing.Optional[bool] = None,
-        value: typing.Optional[typing.Union[typing.Union[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex], str], typing.Sequence[typing.Union[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex], str]]]] = None,
-        defaultValue: typing.Optional[typing.Union[typing.Union[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex], str], typing.Sequence[typing.Union[typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex], str]]]] = None,
+        value: typing.Optional[typing.Union[typing.Union[NumberType, str], typing.Sequence[typing.Union[NumberType, str]]]] = None,
+        defaultValue: typing.Optional[typing.Union[typing.Union[NumberType, str], typing.Sequence[typing.Union[NumberType, str]]]] = None,
         disabled: typing.Optional[bool] = None,
         size: typing.Optional[Literal["small", "default", "large"]] = None,
         readOnly: typing.Optional[bool] = None,
-        persistence: typing.Optional[typing.Union[bool, str, typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]]] = None,
+        persistence: typing.Optional[typing.Union[bool, str, NumberType]] = None,
         persisted_props: typing.Optional[typing.Sequence[Literal["value"]]] = None,
         persistence_type: typing.Optional[Literal["local", "session", "memory"]] = None,
         **kwargs
@@ -108,3 +115,5 @@ Keyword arguments:
         args = {k: _locals[k] for k in _explicit_args if k != 'children'}
 
         super(AntdCheckCardGroup, self).__init__(children=children, **args)
+
+setattr(AntdCheckCardGroup, "__init__", _explicitize_args(AntdCheckCardGroup.__init__))
