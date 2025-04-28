@@ -45,6 +45,9 @@ Keyword arguments:
 - target (string; optional):
     滚动事件监听的特定目标容器id.
 
+- affixed (boolean; optional):
+    监听当前目标是否已触发固定.
+
 - data-* (string; optional):
     `data-*`格式属性通配.
 
@@ -66,11 +69,12 @@ Keyword arguments:
         offsetBottom: typing.Optional[NumberType] = None,
         offsetTop: typing.Optional[NumberType] = None,
         target: typing.Optional[str] = None,
+        affixed: typing.Optional[bool] = None,
         **kwargs
     ):
-        self._prop_names = ['id', 'key', 'children', 'style', 'className', 'offsetBottom', 'offsetTop', 'target', 'data-*', 'aria-*']
+        self._prop_names = ['id', 'key', 'children', 'style', 'className', 'offsetBottom', 'offsetTop', 'target', 'affixed', 'data-*', 'aria-*']
         self._valid_wildcard_attributes =            ['data-', 'aria-']
-        self.available_properties = ['id', 'key', 'children', 'style', 'className', 'offsetBottom', 'offsetTop', 'target', 'data-*', 'aria-*']
+        self.available_properties = ['id', 'key', 'children', 'style', 'className', 'offsetBottom', 'offsetTop', 'target', 'affixed', 'data-*', 'aria-*']
         self.available_wildcard_properties =            ['data-', 'aria-']
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()

@@ -43,6 +43,7 @@ const AntdAffix = ({
             offsetBottom={offsetBottom}
             offsetTop={offsetTop}
             target={() => target ? document.getElementById(target) : window}
+            onChange={(e) => setProps({ affixed: e })}
             data-dash-is-loading={useLoading()}
         >
             {children}
@@ -94,6 +95,11 @@ AntdAffix.propTypes = {
      * 滚动事件监听的特定目标容器id
      */
     target: PropTypes.string,
+
+    /**
+     * 监听当前目标是否已触发固定
+     */
+    affixed: PropTypes.bool,
 
     /**
      * `data-*`格式属性通配
