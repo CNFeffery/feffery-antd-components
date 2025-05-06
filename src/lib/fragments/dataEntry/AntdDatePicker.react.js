@@ -40,6 +40,7 @@ const AntdDatePicker = (props) => {
         popupClassName,
         key,
         name,
+        enableBatchControl,
         locale,
         setProps,
         picker,
@@ -79,7 +80,7 @@ const AntdDatePicker = (props) => {
 
     // 解决value经回调更新后，rawValue未更新的问题
     useEffect(() => {
-        if (formId && (name || id)) {
+        if (formId && (name || id) && enableBatchControl) {
             if (currentFormValue) {
                 setRawValue(dayjs(currentFormValue, format));
             } else {
@@ -122,7 +123,7 @@ const AntdDatePicker = (props) => {
     useEffect(() => {
         return () => {
             // 若上文中存在有效表单id
-            if (formId && (name || id)) {
+            if (formId && (name || id) && enableBatchControl) {
                 // 表单值更新
                 deleteItemValue(formId, name || id)
             }
@@ -171,7 +172,7 @@ const AntdDatePicker = (props) => {
     const onChange = (date, dateString) => {
         if (isString(dateString)) {
             // AntdForm表单批量控制
-            if (formId && (name || id)) {
+            if (formId && (name || id) && enableBatchControl) {
                 // 表单值更新
                 updateItemValue(formId, name || id, dateString)
             }
@@ -484,12 +485,12 @@ const AntdDatePicker = (props) => {
                     disabledDate={disabledDatesStrategy ? checkDisabledDate : undefined}
                     pickerValue={pickerValue && dayjs(pickerValue, format)}
                     value={
-                        formId && (name || id) ?
+                        formId && (name || id) && enableBatchControl ?
                             (currentFormValue ? dayjs(currentFormValue, format) : undefined) :
                             (rawValue || (value ? dayjs(value, format) : undefined))
                     }
                     defaultValue={
-                        formId && (name || id) ?
+                        formId && (name || id) && enableBatchControl ?
                             undefined :
                             (defaultValue ? dayjs(defaultValue, format) : undefined)
                     }

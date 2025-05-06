@@ -27,6 +27,7 @@ const AntdCheckCard = (props) => {
         style,
         key,
         name,
+        enableBatchControl,
         checked,
         bordered,
         value,
@@ -50,7 +51,7 @@ const AntdCheckCard = (props) => {
     // 处理AntdForm表单值搜集功能
     useEffect(() => {
         // 若上文中存在有效表单id
-        if (formId && (name || id)) {
+        if (formId && (name || id) && enableBatchControl) {
             // 表单值更新
             updateItemValue(formId, name || id, checked)
         }
@@ -60,7 +61,7 @@ const AntdCheckCard = (props) => {
     useEffect(() => {
         return () => {
             // 若上文中存在有效表单id
-            if (formId && (name || id)) {
+            if (formId && (name || id) && enableBatchControl) {
                 // 表单值更新
                 deleteItemValue(formId, name || id)
             }

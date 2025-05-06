@@ -12,6 +12,7 @@ const AntdInputNumber = ({
     style,
     key,
     name,
+    enableBatchControl = true,
     size = 'middle',
     addonBefore,
     addonAfter,
@@ -51,6 +52,7 @@ const AntdInputNumber = ({
                     style,
                     key,
                     name,
+                    enableBatchControl,
                     size,
                     addonBefore,
                     addonAfter,
@@ -114,6 +116,12 @@ AntdInputNumber.propTypes = {
      * 配合`AntdForm`表单批量值搜集/控制功能使用，充当当前表单项的字段名，以`id`作为缺省值
      */
     name: PropTypes.string,
+
+    /**
+     * 控制当前组件是否参与有效的`AntdForm`表单批量值搜集/控制功能
+     * 默认值：`true`
+     */
+    enableBatchControl: PropTypes.bool,
 
     /**
      * 组件型，前置标签内容

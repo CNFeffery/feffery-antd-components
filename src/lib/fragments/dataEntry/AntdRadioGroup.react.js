@@ -26,6 +26,7 @@ const AntdRadioGroup = (props) => {
         className,
         key,
         name,
+        enableBatchControl,
         options,
         defaultValue,
         value,
@@ -70,7 +71,7 @@ const AntdRadioGroup = (props) => {
     useEffect(() => {
         return () => {
             // 若上文中存在有效表单id
-            if (formId && (name || id)) {
+            if (formId && (name || id) && enableBatchControl) {
                 // 表单值更新
                 deleteItemValue(formId, name || id)
             }
@@ -86,7 +87,7 @@ const AntdRadioGroup = (props) => {
     const onSelect = (e) => {
         if (!readOnly) {
             // AntdForm表单批量控制
-            if (formId && (name || id)) {
+            if (formId && (name || id) && enableBatchControl) {
                 // 表单值更新
                 updateItemValue(formId, name || id, e.target.value)
             }
@@ -115,12 +116,12 @@ const AntdRadioGroup = (props) => {
                 style={style}
                 key={key}
                 defaultValue={
-                    formId && (name || id) ?
+                    formId && (name || id) && enableBatchControl ?
                         undefined :
                         defaultValue
                 }
                 value={
-                    formId && (name || id) ?
+                    formId && (name || id) && enableBatchControl ?
                         currentFormValue :
                         value
                 }
@@ -172,12 +173,12 @@ const AntdRadioGroup = (props) => {
                     options
             }
             defaultValue={
-                formId && (name || id) ?
+                formId && (name || id) && enableBatchControl ?
                     undefined :
                     defaultValue
             }
             value={
-                formId && (name || id) ?
+                formId && (name || id) && enableBatchControl ?
                     currentFormValue :
                     value
             }

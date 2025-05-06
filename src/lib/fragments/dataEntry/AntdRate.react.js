@@ -26,6 +26,7 @@ const AntdRate = (props) => {
         style,
         key,
         name,
+        enableBatchControl,
         allowClear,
         allowHalf,
         count,
@@ -68,7 +69,7 @@ const AntdRate = (props) => {
     useEffect(() => {
         return () => {
             // 若上文中存在有效表单id
-            if (formId && (name || id)) {
+            if (formId && (name || id) && enableBatchControl) {
                 // 表单值更新
                 deleteItemValue(formId, name || id)
             }
@@ -86,7 +87,7 @@ const AntdRate = (props) => {
     // 监听change事件
     const onChange = e => {
         // AntdForm表单批量控制
-        if (formId && (name || id)) {
+        if (formId && (name || id) && enableBatchControl) {
             // 表单值更新
             updateItemValue(formId, name || id, e)
         }
@@ -116,7 +117,7 @@ const AntdRate = (props) => {
             autoFocus={autoFocus}
             tooltips={tooltips}
             value={
-                formId && (name || id) ?
+                formId && (name || id) && enableBatchControl ?
                     currentFormValue :
                     value
             }

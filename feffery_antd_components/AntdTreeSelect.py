@@ -39,6 +39,9 @@ Keyword arguments:
 - name (string; optional):
     配合`AntdForm`表单批量值搜集/控制功能使用，充当当前表单项的字段名，以`id`作为缺省值.
 
+- enableBatchControl (boolean; default True):
+    控制当前组件是否参与有效的`AntdForm`表单批量值搜集/控制功能  默认值：`True`.
+
 - locale (a value equal to: 'zh-cn', 'en-us', 'de-de'; default 'zh-cn'):
     组件文案语种，可选项有`'zh-cn'`（简体中文）、`'en-us'`（英语）、`'de-de'`（德语）
     默认值：`'zh-cn'`.
@@ -222,6 +225,7 @@ Keyword arguments:
         className: typing.Optional[typing.Union[str, dict]] = None,
         popupClassName: typing.Optional[str] = None,
         name: typing.Optional[str] = None,
+        enableBatchControl: typing.Optional[bool] = None,
         locale: typing.Optional[Literal["zh-cn", "en-us", "de-de"]] = None,
         treeDataMode: typing.Optional[Literal["tree", "flat"]] = None,
         treeData: typing.Optional[typing.Union[typing.Any, typing.Sequence[typing.Any]]] = None,
@@ -270,9 +274,9 @@ Keyword arguments:
         persistence_type: typing.Optional[Literal["local", "session", "memory"]] = None,
         **kwargs
     ):
-        self._prop_names = ['id', 'key', 'style', 'className', 'popupClassName', 'name', 'locale', 'treeDataMode', 'treeData', 'treeNodeKeyToTitle', 'disabled', 'size', 'bordered', 'variant', 'placeholder', 'placement', 'treeLine', 'value', 'defaultValue', 'maxCount', 'maxTagCount', 'maxTagPlaceholder', 'maxTagTextLength', 'listHeight', 'multiple', 'suffixIcon', 'switcherIcon', 'treeCheckable', 'treeCheckStrictly', 'treeDefaultExpandAll', 'treeDefaultExpandedKeys', 'treeExpandedKeys', 'virtual', 'status', 'allowClear', 'treeNodeFilterProp', 'treeNodeFilterMode', 'autoClearSearchValue', 'showCheckedStrategy', 'dropdownBefore', 'dropdownAfter', 'prefix', 'readOnly', 'enableAsyncLoad', 'loadingNode', 'popupContainer', 'batchPropsNames', 'batchPropsValues', 'data-*', 'aria-*', 'loading_state', 'persistence', 'persisted_props', 'persistence_type']
+        self._prop_names = ['id', 'key', 'style', 'className', 'popupClassName', 'name', 'enableBatchControl', 'locale', 'treeDataMode', 'treeData', 'treeNodeKeyToTitle', 'disabled', 'size', 'bordered', 'variant', 'placeholder', 'placement', 'treeLine', 'value', 'defaultValue', 'maxCount', 'maxTagCount', 'maxTagPlaceholder', 'maxTagTextLength', 'listHeight', 'multiple', 'suffixIcon', 'switcherIcon', 'treeCheckable', 'treeCheckStrictly', 'treeDefaultExpandAll', 'treeDefaultExpandedKeys', 'treeExpandedKeys', 'virtual', 'status', 'allowClear', 'treeNodeFilterProp', 'treeNodeFilterMode', 'autoClearSearchValue', 'showCheckedStrategy', 'dropdownBefore', 'dropdownAfter', 'prefix', 'readOnly', 'enableAsyncLoad', 'loadingNode', 'popupContainer', 'batchPropsNames', 'batchPropsValues', 'data-*', 'aria-*', 'loading_state', 'persistence', 'persisted_props', 'persistence_type']
         self._valid_wildcard_attributes =            ['data-', 'aria-']
-        self.available_properties = ['id', 'key', 'style', 'className', 'popupClassName', 'name', 'locale', 'treeDataMode', 'treeData', 'treeNodeKeyToTitle', 'disabled', 'size', 'bordered', 'variant', 'placeholder', 'placement', 'treeLine', 'value', 'defaultValue', 'maxCount', 'maxTagCount', 'maxTagPlaceholder', 'maxTagTextLength', 'listHeight', 'multiple', 'suffixIcon', 'switcherIcon', 'treeCheckable', 'treeCheckStrictly', 'treeDefaultExpandAll', 'treeDefaultExpandedKeys', 'treeExpandedKeys', 'virtual', 'status', 'allowClear', 'treeNodeFilterProp', 'treeNodeFilterMode', 'autoClearSearchValue', 'showCheckedStrategy', 'dropdownBefore', 'dropdownAfter', 'prefix', 'readOnly', 'enableAsyncLoad', 'loadingNode', 'popupContainer', 'batchPropsNames', 'batchPropsValues', 'data-*', 'aria-*', 'loading_state', 'persistence', 'persisted_props', 'persistence_type']
+        self.available_properties = ['id', 'key', 'style', 'className', 'popupClassName', 'name', 'enableBatchControl', 'locale', 'treeDataMode', 'treeData', 'treeNodeKeyToTitle', 'disabled', 'size', 'bordered', 'variant', 'placeholder', 'placement', 'treeLine', 'value', 'defaultValue', 'maxCount', 'maxTagCount', 'maxTagPlaceholder', 'maxTagTextLength', 'listHeight', 'multiple', 'suffixIcon', 'switcherIcon', 'treeCheckable', 'treeCheckStrictly', 'treeDefaultExpandAll', 'treeDefaultExpandedKeys', 'treeExpandedKeys', 'virtual', 'status', 'allowClear', 'treeNodeFilterProp', 'treeNodeFilterMode', 'autoClearSearchValue', 'showCheckedStrategy', 'dropdownBefore', 'dropdownAfter', 'prefix', 'readOnly', 'enableAsyncLoad', 'loadingNode', 'popupContainer', 'batchPropsNames', 'batchPropsValues', 'data-*', 'aria-*', 'loading_state', 'persistence', 'persisted_props', 'persistence_type']
         self.available_wildcard_properties =            ['data-', 'aria-']
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()

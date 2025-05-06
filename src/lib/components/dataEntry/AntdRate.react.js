@@ -12,6 +12,7 @@ const AntdRate = ({
     style,
     key,
     name,
+    enableBatchControl = true,
     allowClear = true,
     allowHalf = false,
     count = 5,
@@ -36,6 +37,7 @@ const AntdRate = ({
                     style,
                     key,
                     name,
+                    enableBatchControl,
                     allowClear,
                     allowHalf,
                     count,
@@ -84,6 +86,12 @@ AntdRate.propTypes = {
      * 配合`AntdForm`表单批量值搜集/控制功能使用，充当当前表单项的字段名，以`id`作为缺省值
      */
     name: PropTypes.string,
+
+    /**
+     * 控制当前组件是否参与有效的`AntdForm`表单批量值搜集/控制功能
+     * 默认值：`true`
+     */
+    enableBatchControl: PropTypes.bool,
 
     /**
      * 是否允许通过再次点击清除已选分值

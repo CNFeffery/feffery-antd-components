@@ -36,6 +36,9 @@ Keyword arguments:
 - name (string; optional):
     配合`AntdForm`表单批量值搜集/控制功能使用，充当当前表单项的字段名，以`id`作为缺省值.
 
+- enableBatchControl (boolean; default True):
+    控制当前组件是否参与有效的`AntdForm`表单批量值搜集/控制功能  默认值：`True`.
+
 - draggerClassName (string | dict; optional):
     拖拽区域css类名，支持[动态css](/advanced-classname).
 
@@ -340,6 +343,7 @@ Keyword arguments:
         style: typing.Optional[typing.Any] = None,
         className: typing.Optional[typing.Union[str, dict]] = None,
         name: typing.Optional[str] = None,
+        enableBatchControl: typing.Optional[bool] = None,
         draggerClassName: typing.Optional[typing.Union[str, dict]] = None,
         draggerStyle: typing.Optional[dict] = None,
         locale: typing.Optional[Literal["zh-cn", "en-us", "de-de"]] = None,
@@ -374,9 +378,9 @@ Keyword arguments:
         status: typing.Optional[Literal["error", "warning"]] = None,
         **kwargs
     ):
-        self._prop_names = ['id', 'key', 'style', 'className', 'name', 'draggerClassName', 'draggerStyle', 'locale', 'apiUrl', 'apiUrlExtraParams', 'headers', 'withCredentials', 'withOriginFileObj', 'downloadUrl', 'downloadUrlExtraParams', 'downloadUrlFromBackend', 'icon', 'text', 'hint', 'fileListMaxLength', 'fileTypes', 'uploadId', 'fileMaxSize', 'multiple', 'directory', 'failedTooltipInfo', 'showUploadList', 'confirmBeforeDelete', 'showPercent', 'progressProps', 'showSuccessMessage', 'showErrorMessage', 'lastUploadTaskRecord', 'listUploadTaskRecord', 'defaultFileList', 'disabled', 'status', 'data-*', 'aria-*']
+        self._prop_names = ['id', 'key', 'style', 'className', 'name', 'enableBatchControl', 'draggerClassName', 'draggerStyle', 'locale', 'apiUrl', 'apiUrlExtraParams', 'headers', 'withCredentials', 'withOriginFileObj', 'downloadUrl', 'downloadUrlExtraParams', 'downloadUrlFromBackend', 'icon', 'text', 'hint', 'fileListMaxLength', 'fileTypes', 'uploadId', 'fileMaxSize', 'multiple', 'directory', 'failedTooltipInfo', 'showUploadList', 'confirmBeforeDelete', 'showPercent', 'progressProps', 'showSuccessMessage', 'showErrorMessage', 'lastUploadTaskRecord', 'listUploadTaskRecord', 'defaultFileList', 'disabled', 'status', 'data-*', 'aria-*']
         self._valid_wildcard_attributes =            ['data-', 'aria-']
-        self.available_properties = ['id', 'key', 'style', 'className', 'name', 'draggerClassName', 'draggerStyle', 'locale', 'apiUrl', 'apiUrlExtraParams', 'headers', 'withCredentials', 'withOriginFileObj', 'downloadUrl', 'downloadUrlExtraParams', 'downloadUrlFromBackend', 'icon', 'text', 'hint', 'fileListMaxLength', 'fileTypes', 'uploadId', 'fileMaxSize', 'multiple', 'directory', 'failedTooltipInfo', 'showUploadList', 'confirmBeforeDelete', 'showPercent', 'progressProps', 'showSuccessMessage', 'showErrorMessage', 'lastUploadTaskRecord', 'listUploadTaskRecord', 'defaultFileList', 'disabled', 'status', 'data-*', 'aria-*']
+        self.available_properties = ['id', 'key', 'style', 'className', 'name', 'enableBatchControl', 'draggerClassName', 'draggerStyle', 'locale', 'apiUrl', 'apiUrlExtraParams', 'headers', 'withCredentials', 'withOriginFileObj', 'downloadUrl', 'downloadUrlExtraParams', 'downloadUrlFromBackend', 'icon', 'text', 'hint', 'fileListMaxLength', 'fileTypes', 'uploadId', 'fileMaxSize', 'multiple', 'directory', 'failedTooltipInfo', 'showUploadList', 'confirmBeforeDelete', 'showPercent', 'progressProps', 'showSuccessMessage', 'showErrorMessage', 'lastUploadTaskRecord', 'listUploadTaskRecord', 'defaultFileList', 'disabled', 'status', 'data-*', 'aria-*']
         self.available_wildcard_properties =            ['data-', 'aria-']
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()

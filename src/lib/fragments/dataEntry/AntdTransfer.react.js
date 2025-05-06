@@ -27,6 +27,7 @@ const AntdTransfer = (props) => {
         style,
         key,
         name,
+        enableBatchControl,
         locale,
         setProps,
         dataSource,
@@ -78,7 +79,7 @@ const AntdTransfer = (props) => {
     useEffect(() => {
         return () => {
             // 若上文中存在有效表单id
-            if (formId && (name || id)) {
+            if (formId && (name || id) && enableBatchControl) {
                 // 表单值更新
                 deleteItemValue(formId, name || id)
             }
@@ -93,7 +94,7 @@ const AntdTransfer = (props) => {
     const listenMove = (nextTargetKeys, moveDirection, moveKeys) => {
         if (!readOnly) {
             // AntdForm表单批量控制
-            if (formId && (name || id)) {
+            if (formId && (name || id) && enableBatchControl) {
                 // 表单值更新
                 updateItemValue(formId, name || id, nextTargetKeys)
             }
@@ -121,7 +122,7 @@ const AntdTransfer = (props) => {
                 dataSource={dataSource}
                 selectionsIcon={selectionsIcon}
                 targetKeys={
-                    formId && (name || id) ?
+                    formId && (name || id) && enableBatchControl ?
                         currentFormValue :
                         targetKeys
                 }

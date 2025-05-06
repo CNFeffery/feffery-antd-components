@@ -54,6 +54,7 @@ const AntdUpload = (props) => {
         style,
         key,
         name,
+        enableBatchControl,
         locale,
         apiUrl,
         apiUrlExtraParams,
@@ -105,7 +106,7 @@ const AntdUpload = (props) => {
     // 针对上传类组件，特殊处理由表单值控制上传列表的清空
     useEffect(() => {
         // 若上文中存在有效表单id
-        if (formId && (name || id)) {
+        if (formId && (name || id) && enableBatchControl) {
             if (!currentFormValue || currentFormValue.length === 0) {
                 // 清空上传列表
                 updateFileList([])
@@ -121,7 +122,7 @@ const AntdUpload = (props) => {
     useEffect(() => {
         return () => {
             // 若上文中存在有效表单id
-            if (formId && (name || id)) {
+            if (formId && (name || id) && enableBatchControl) {
                 // 表单值更新
                 deleteItemValue(formId, name || id)
             }
@@ -235,7 +236,7 @@ const AntdUpload = (props) => {
                         }
                     )
                     // AntdForm表单批量控制
-                    if (formId && (name || id)) {
+                    if (formId && (name || id) && enableBatchControl) {
                         // 表单值更新
                         updateItemValue(formId, name || id, _listUploadTaskRecord)
                     }
@@ -290,7 +291,7 @@ const AntdUpload = (props) => {
                                 )
 
                                 // AntdForm表单批量控制
-                                if (formId && (name || id)) {
+                                if (formId && (name || id) && enableBatchControl) {
                                     // 表单值更新
                                     updateItemValue(formId, name || id, _listUploadTaskRecord)
                                 }
@@ -372,7 +373,7 @@ const AntdUpload = (props) => {
                     )
 
                     // AntdForm表单批量控制
-                    if (formId && (name || id)) {
+                    if (formId && (name || id) && enableBatchControl) {
                         // 表单值更新
                         updateItemValue(formId, name || id, _listUploadTaskRecord)
                     }
@@ -419,7 +420,7 @@ const AntdUpload = (props) => {
                     )
 
                     // AntdForm表单批量控制
-                    if (formId && (name || id)) {
+                    if (formId && (name || id) && enableBatchControl) {
                         // 表单值更新
                         updateItemValue(formId, name || id, _listUploadTaskRecord)
                     }

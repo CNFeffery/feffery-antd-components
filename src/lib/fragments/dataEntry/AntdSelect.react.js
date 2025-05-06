@@ -31,6 +31,7 @@ const AntdSelect = (props) => {
         popupClassName,
         key,
         name,
+        enableBatchControl,
         locale,
         setProps,
         placeholder,
@@ -100,7 +101,7 @@ const AntdSelect = (props) => {
     useEffect(() => {
         return () => {
             // 若上文中存在有效表单id
-            if (formId && (name || id)) {
+            if (formId && (name || id) && enableBatchControl) {
                 // 表单值更新
                 deleteItemValue(formId, name || id)
             }
@@ -118,7 +119,7 @@ const AntdSelect = (props) => {
     // 用于获取用户已选择值的回调函数
     const updateSelectedValue = (e) => {
         // AntdForm表单批量控制
-        if (formId && (name || id)) {
+        if (formId && (name || id) && enableBatchControl) {
             // 表单值更新
             updateItemValue(formId, name || id, e)
         }
@@ -268,12 +269,12 @@ const AntdSelect = (props) => {
                         variant
                 )}
                 defaultValue={
-                    formId && (name || id) ?
+                    formId && (name || id) && enableBatchControl ?
                         undefined :
                         defaultValue
                 }
                 value={
-                    formId && (name || id) ?
+                    formId && (name || id) && enableBatchControl ?
                         currentFormValue :
                         value
                 }

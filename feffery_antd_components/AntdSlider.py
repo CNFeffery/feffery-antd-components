@@ -76,6 +76,9 @@ Keyword arguments:
 - name (string; optional):
     配合`AntdForm`表单批量值搜集/控制功能使用，充当当前表单项的字段名，以`id`作为缺省值.
 
+- enableBatchControl (boolean; default True):
+    控制当前组件是否参与有效的`AntdForm`表单批量值搜集/控制功能  默认值：`True`.
+
 - vertical (boolean; default False):
     是否以垂直模式显示  默认值：`False`.
 
@@ -178,6 +181,7 @@ Keyword arguments:
         styles: typing.Optional["Styles"] = None,
         classNames: typing.Optional["ClassNames"] = None,
         name: typing.Optional[str] = None,
+        enableBatchControl: typing.Optional[bool] = None,
         vertical: typing.Optional[bool] = None,
         range: typing.Optional[bool] = None,
         min: typing.Optional[NumberType] = None,
@@ -200,9 +204,9 @@ Keyword arguments:
         persistence_type: typing.Optional[Literal["local", "session", "memory"]] = None,
         **kwargs
     ):
-        self._prop_names = ['id', 'key', 'style', 'className', 'styles', 'classNames', 'name', 'vertical', 'range', 'min', 'max', 'step', 'marks', 'tooltipVisible', 'tooltipPrefix', 'tooltipSuffix', 'disabled', 'value', 'defaultValue', 'autoFocus', 'popupContainer', 'readOnly', 'batchPropsNames', 'batchPropsValues', 'data-*', 'aria-*', 'persistence', 'persisted_props', 'persistence_type']
+        self._prop_names = ['id', 'key', 'style', 'className', 'styles', 'classNames', 'name', 'enableBatchControl', 'vertical', 'range', 'min', 'max', 'step', 'marks', 'tooltipVisible', 'tooltipPrefix', 'tooltipSuffix', 'disabled', 'value', 'defaultValue', 'autoFocus', 'popupContainer', 'readOnly', 'batchPropsNames', 'batchPropsValues', 'data-*', 'aria-*', 'persistence', 'persisted_props', 'persistence_type']
         self._valid_wildcard_attributes =            ['data-', 'aria-']
-        self.available_properties = ['id', 'key', 'style', 'className', 'styles', 'classNames', 'name', 'vertical', 'range', 'min', 'max', 'step', 'marks', 'tooltipVisible', 'tooltipPrefix', 'tooltipSuffix', 'disabled', 'value', 'defaultValue', 'autoFocus', 'popupContainer', 'readOnly', 'batchPropsNames', 'batchPropsValues', 'data-*', 'aria-*', 'persistence', 'persisted_props', 'persistence_type']
+        self.available_properties = ['id', 'key', 'style', 'className', 'styles', 'classNames', 'name', 'enableBatchControl', 'vertical', 'range', 'min', 'max', 'step', 'marks', 'tooltipVisible', 'tooltipPrefix', 'tooltipSuffix', 'disabled', 'value', 'defaultValue', 'autoFocus', 'popupContainer', 'readOnly', 'batchPropsNames', 'batchPropsValues', 'data-*', 'aria-*', 'persistence', 'persisted_props', 'persistence_type']
         self.available_wildcard_properties =            ['data-', 'aria-']
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()

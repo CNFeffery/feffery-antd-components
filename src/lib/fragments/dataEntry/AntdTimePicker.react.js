@@ -29,6 +29,7 @@ const AntdTimePicker = (props) => {
         popupClassName,
         key,
         name,
+        enableBatchControl,
         locale,
         setProps,
         disabled,
@@ -89,7 +90,7 @@ const AntdTimePicker = (props) => {
     useEffect(() => {
         return () => {
             // 若上文中存在有效表单id
-            if (formId && (name || id)) {
+            if (formId && (name || id) && enableBatchControl) {
                 // 表单值更新
                 deleteItemValue(formId, name || id)
             }
@@ -107,7 +108,7 @@ const AntdTimePicker = (props) => {
     const onChange = (time, timeString) => {
         if (isString(timeString)) {
             // AntdForm表单批量控制
-            if (formId && (name || id)) {
+            if (formId && (name || id) && enableBatchControl) {
                 // 表单值更新
                 updateItemValue(formId, name || id, timeString)
             }
@@ -153,12 +154,12 @@ const AntdTimePicker = (props) => {
                     secondStep={secondStep}
                     format={format}
                     defaultValue={
-                        formId && (name || id) ?
+                        formId && (name || id) && enableBatchControl ?
                             undefined :
                             (defaultValue ? dayjs(defaultValue, format) : undefined)
                     }
                     value={
-                        formId && (name || id) ?
+                        formId && (name || id) && enableBatchControl ?
                             (currentFormValue ? dayjs(currentFormValue, format) : undefined) :
                             (value ? dayjs(value, format) : undefined)
                     }

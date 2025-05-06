@@ -14,6 +14,7 @@ const AntdDraggerUpload = ({
     draggerStyle,
     key,
     name,
+    enableBatchControl = true,
     locale = 'zh-cn',
     apiUrl,
     apiUrlExtraParams,
@@ -57,6 +58,7 @@ const AntdDraggerUpload = ({
                     draggerStyle,
                     key,
                     name,
+                    enableBatchControl,
                     locale,
                     apiUrl,
                     apiUrlExtraParams,
@@ -122,6 +124,12 @@ AntdDraggerUpload.propTypes = {
      * 配合`AntdForm`表单批量值搜集/控制功能使用，充当当前表单项的字段名，以`id`作为缺省值
      */
     name: PropTypes.string,
+
+    /**
+     * 控制当前组件是否参与有效的`AntdForm`表单批量值搜集/控制功能
+     * 默认值：`true`
+     */
+    enableBatchControl: PropTypes.bool,
 
     /**
      * 拖拽区域css类名，支持[动态css](/advanced-classname)

@@ -28,6 +28,7 @@ const AntdCalendar = (props) => {
         style,
         key,
         name,
+        enableBatchControl,
         locale,
         defaultValue,
         value,
@@ -58,7 +59,7 @@ const AntdCalendar = (props) => {
     useEffect(() => {
         return () => {
             // 若上文中存在有效表单id
-            if (formId && (name || id)) {
+            if (formId && (name || id) && enableBatchControl) {
                 // 表单值更新
                 deleteItemValue(formId, name || id)
             }
@@ -79,7 +80,7 @@ const AntdCalendar = (props) => {
 
     const onSelect = (e, { source }) => {
         // AntdForm表单批量控制
-        if (formId && (name || id)) {
+        if (formId && (name || id) && enableBatchControl) {
             // 表单值更新
             updateItemValue(formId, name || id, e.format(format))
         }
@@ -110,12 +111,12 @@ const AntdCalendar = (props) => {
                 style={style}
                 key={key}
                 defaultValue={
-                    formId && (name || id) ?
+                    formId && (name || id) && enableBatchControl ?
                         undefined :
                         defaultValue && dayjs(defaultValue, format)
                 }
                 value={
-                    formId && (name || id) ?
+                    formId && (name || id) && enableBatchControl ?
                         currentFormValue && dayjs(currentFormValue, format) :
                         value && dayjs(value, format)
                 }

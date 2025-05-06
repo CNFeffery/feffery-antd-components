@@ -63,6 +63,7 @@ const AntdTreeSelect = (props) => {
         popupClassName,
         key,
         name,
+        enableBatchControl,
         locale,
         treeData,
         treeNodeKeyToTitle,
@@ -148,7 +149,7 @@ const AntdTreeSelect = (props) => {
     useEffect(() => {
         return () => {
             // 若上文中存在有效表单id
-            if (formId && (name || id)) {
+            if (formId && (name || id) && enableBatchControl) {
                 // 表单值更新
                 deleteItemValue(formId, name || id)
             }
@@ -172,14 +173,14 @@ const AntdTreeSelect = (props) => {
     const updateSelectedValue = (e) => {
         if (treeCheckStrictly) {
             // AntdForm表单批量控制
-            if (formId && (name || id)) {
+            if (formId && (name || id) && enableBatchControl) {
                 // 表单值更新
                 updateItemValue(formId, name || id, e.map(item => item.value))
             }
             setProps({ value: e.map(item => item.value) })
         } else {
             // AntdForm表单批量控制
-            if (formId && (name || id)) {
+            if (formId && (name || id) && enableBatchControl) {
                 // 表单值更新
                 updateItemValue(formId, name || id, e)
             }
@@ -226,12 +227,12 @@ const AntdTreeSelect = (props) => {
                 listHeight={listHeight}
                 placeholder={placeholder}
                 defaultValue={
-                    formId && (name || id) ?
+                    formId && (name || id) && enableBatchControl ?
                         undefined :
                         defaultValue
                 }
                 value={
-                    formId && (name || id) ?
+                    formId && (name || id) && enableBatchControl ?
                         currentFormValue :
                         value
                 }

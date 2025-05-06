@@ -31,6 +31,7 @@ const AntdTimeRangePicker = (props) => {
         popupClassName,
         key,
         name,
+        enableBatchControl,
         locale,
         setProps,
         value,
@@ -91,7 +92,7 @@ const AntdTimeRangePicker = (props) => {
     useEffect(() => {
         return () => {
             // 若上文中存在有效表单id
-            if (formId && (name || id)) {
+            if (formId && (name || id) && enableBatchControl) {
                 // 表单值更新
                 deleteItemValue(formId, name || id)
             }
@@ -108,7 +109,7 @@ const AntdTimeRangePicker = (props) => {
 
     const onChange = (time, timeString) => {
         // AntdForm表单批量控制
-        if (formId && (name || id)) {
+        if (formId && (name || id) && enableBatchControl) {
             // 表单值更新
             if (timeString[0] !== '' && timeString[1] !== '') {
                 updateItemValue(formId, name || id, [timeString[0], timeString[1]])
@@ -167,7 +168,7 @@ const AntdTimeRangePicker = (props) => {
                     allowClear={isUndefined(readOnly) ? allowClear : !readOnly}
                     autoFocus={autoFocus}
                     defaultValue={
-                        formId && (name || id) ?
+                        formId && (name || id) && enableBatchControl ?
                             undefined :
                             (defaultValue && defaultValue.length === 2) ?
                                 [defaultValue[0] !== '' ? dayjs(defaultValue[0], format) : undefined,
@@ -175,7 +176,7 @@ const AntdTimeRangePicker = (props) => {
                                 undefined
                     }
                     value={
-                        formId && (name || id) ?
+                        formId && (name || id) && enableBatchControl ?
                             (
                                 (currentFormValue && currentFormValue.length === 2) ?
                                     [currentFormValue[0] !== '' ? dayjs(currentFormValue[0], format) : undefined,

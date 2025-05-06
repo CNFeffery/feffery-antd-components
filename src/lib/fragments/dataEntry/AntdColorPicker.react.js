@@ -29,6 +29,7 @@ const AntdColorPicker = (props) => {
         key,
         locale,
         name,
+        enableBatchControl,
         allowClear,
         arrow,
         defaultValue,
@@ -121,7 +122,7 @@ const AntdColorPicker = (props) => {
     useEffect(() => {
         return () => {
             // 若上文中存在有效表单id
-            if (formId && (name || id)) {
+            if (formId && (name || id) && enableBatchControl) {
                 // 表单值更新
                 deleteItemValue(formId, name || id)
             }
@@ -161,7 +162,7 @@ const AntdColorPicker = (props) => {
                 arrow={arrow}
                 defaultValue={parseValue(_defaultValue)}
                 value={
-                    formId && (name || id) ?
+                    formId && (name || id) && enableBatchControl ?
                         parseValue(currentFormValue) :
                         parseValue(value)
                 }
@@ -183,7 +184,7 @@ const AntdColorPicker = (props) => {
                 onOpenChange={(e) => setProps({ open: e })}
                 onChange={(e) => {
                     // AntdForm表单批量控制
-                    if (formId && (name || id)) {
+                    if (formId && (name || id) && enableBatchControl) {
                         // 表单值更新
                         updateItemValue(
                             formId,
@@ -227,7 +228,7 @@ const AntdColorPicker = (props) => {
                 }}
                 onClear={() => {
                     // AntdForm表单批量控制
-                    if (formId && (name || id)) {
+                    if (formId && (name || id) && enableBatchControl) {
                         // 表单值更新
                         updateItemValue(formId, name || id, null)
                     }

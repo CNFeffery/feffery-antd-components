@@ -26,6 +26,7 @@ const AntdCheckbox = (props) => {
         className,
         key,
         name,
+        enableBatchControl,
         label,
         disabled,
         autoFocus,
@@ -65,7 +66,7 @@ const AntdCheckbox = (props) => {
     useEffect(() => {
         return () => {
             // 若上文中存在有效表单id
-            if (formId && (name || id)) {
+            if (formId && (name || id) && enableBatchControl) {
                 // 表单值更新
                 deleteItemValue(formId, name || id)
             }
@@ -75,7 +76,7 @@ const AntdCheckbox = (props) => {
     const onChange = (e) => {
         if (!readOnly) {
             // AntdForm表单批量控制
-            if (formId && (name || id)) {
+            if (formId && (name || id) && enableBatchControl) {
                 // 表单值更新
                 updateItemValue(formId, name || id, e.target.checked)
             }
@@ -103,7 +104,7 @@ const AntdCheckbox = (props) => {
             }
             autoFocus={autoFocus}
             checked={
-                formId && (name || id) ?
+                formId && (name || id) && enableBatchControl ?
                     currentFormValue :
                     checked
             }

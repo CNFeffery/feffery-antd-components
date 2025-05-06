@@ -12,6 +12,7 @@ const AntdRadioGroup = ({
     className,
     key,
     name,
+    enableBatchControl = true,
     options,
     defaultValue,
     value,
@@ -38,6 +39,7 @@ const AntdRadioGroup = ({
                     className,
                     key,
                     name,
+                    enableBatchControl,
                     options,
                     defaultValue,
                     value,
@@ -89,8 +91,12 @@ AntdRadioGroup.propTypes = {
      */
     name: PropTypes.string,
 
-    // 设置单选框组方向，可选的有'horizontal'、'vertical'
-    // 默认为'horizontal'
+    /**
+     * 控制当前组件是否参与有效的`AntdForm`表单批量值搜集/控制功能
+     * 默认值：`true`
+     */
+    enableBatchControl: PropTypes.bool,
+
     /**
      * 单选框排列方向，可选项有`'horizontal'`、`'vertical'`
      * 默认值：`'horizontal'`

@@ -39,6 +39,9 @@ Keyword arguments:
 - name (string; optional):
     配合`AntdForm`表单批量值搜集/控制功能使用，充当当前表单项的字段名，以`id`作为缺省值.
 
+- enableBatchControl (boolean; default True):
+    控制当前组件是否参与有效的`AntdForm`表单批量值搜集/控制功能  默认值：`True`.
+
 - locale (a value equal to: 'zh-cn', 'en-us', 'de-de'; default 'zh-cn'):
     组件文案语种，可选项有`'zh-cn'`（简体中文）、`'en-us'`（英语）、`'de-de'`（德语）
     默认值：`'zh-cn'`.
@@ -149,6 +152,7 @@ Keyword arguments:
         className: typing.Optional[typing.Union[str, dict]] = None,
         popupClassName: typing.Optional[str] = None,
         name: typing.Optional[str] = None,
+        enableBatchControl: typing.Optional[bool] = None,
         locale: typing.Optional[Literal["zh-cn", "en-us", "de-de"]] = None,
         format: typing.Optional[str] = None,
         hourStep: typing.Optional[NumberType] = None,
@@ -180,9 +184,9 @@ Keyword arguments:
         persistence_type: typing.Optional[Literal["local", "session", "memory"]] = None,
         **kwargs
     ):
-        self._prop_names = ['id', 'key', 'style', 'className', 'popupClassName', 'name', 'locale', 'format', 'hourStep', 'minuteStep', 'secondStep', 'use12Hours', 'allowClear', 'autoFocus', 'placeholder', 'placement', 'disabled', 'value', 'defaultValue', 'bordered', 'variant', 'size', 'open', 'status', 'readOnly', 'extraFooter', 'prefix', 'suffixIcon', 'popupContainer', 'batchPropsNames', 'batchPropsValues', 'data-*', 'aria-*', 'needConfirm', 'persistence', 'persisted_props', 'persistence_type']
+        self._prop_names = ['id', 'key', 'style', 'className', 'popupClassName', 'name', 'enableBatchControl', 'locale', 'format', 'hourStep', 'minuteStep', 'secondStep', 'use12Hours', 'allowClear', 'autoFocus', 'placeholder', 'placement', 'disabled', 'value', 'defaultValue', 'bordered', 'variant', 'size', 'open', 'status', 'readOnly', 'extraFooter', 'prefix', 'suffixIcon', 'popupContainer', 'batchPropsNames', 'batchPropsValues', 'data-*', 'aria-*', 'needConfirm', 'persistence', 'persisted_props', 'persistence_type']
         self._valid_wildcard_attributes =            ['data-', 'aria-']
-        self.available_properties = ['id', 'key', 'style', 'className', 'popupClassName', 'name', 'locale', 'format', 'hourStep', 'minuteStep', 'secondStep', 'use12Hours', 'allowClear', 'autoFocus', 'placeholder', 'placement', 'disabled', 'value', 'defaultValue', 'bordered', 'variant', 'size', 'open', 'status', 'readOnly', 'extraFooter', 'prefix', 'suffixIcon', 'popupContainer', 'batchPropsNames', 'batchPropsValues', 'data-*', 'aria-*', 'needConfirm', 'persistence', 'persisted_props', 'persistence_type']
+        self.available_properties = ['id', 'key', 'style', 'className', 'popupClassName', 'name', 'enableBatchControl', 'locale', 'format', 'hourStep', 'minuteStep', 'secondStep', 'use12Hours', 'allowClear', 'autoFocus', 'placeholder', 'placement', 'disabled', 'value', 'defaultValue', 'bordered', 'variant', 'size', 'open', 'status', 'readOnly', 'extraFooter', 'prefix', 'suffixIcon', 'popupContainer', 'batchPropsNames', 'batchPropsValues', 'data-*', 'aria-*', 'needConfirm', 'persistence', 'persisted_props', 'persistence_type']
         self.available_wildcard_properties =            ['data-', 'aria-']
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()

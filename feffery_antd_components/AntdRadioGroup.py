@@ -36,6 +36,9 @@ Keyword arguments:
 - name (string; optional):
     配合`AntdForm`表单批量值搜集/控制功能使用，充当当前表单项的字段名，以`id`作为缺省值.
 
+- enableBatchControl (boolean; default True):
+    控制当前组件是否参与有效的`AntdForm`表单批量值搜集/控制功能  默认值：`True`.
+
 - direction (a value equal to: 'horizontal', 'vertical'; default 'horizontal'):
     单选框排列方向，可选项有`'horizontal'`、`'vertical'`  默认值：`'horizontal'`.
 
@@ -121,6 +124,7 @@ Keyword arguments:
         style: typing.Optional[typing.Any] = None,
         className: typing.Optional[typing.Union[str, dict]] = None,
         name: typing.Optional[str] = None,
+        enableBatchControl: typing.Optional[bool] = None,
         direction: typing.Optional[Literal["horizontal", "vertical"]] = None,
         options: typing.Optional[typing.Sequence[typing.Union[str, NumberType, "Options"]]] = None,
         block: typing.Optional[bool] = None,
@@ -138,9 +142,9 @@ Keyword arguments:
         persistence_type: typing.Optional[Literal["local", "session", "memory"]] = None,
         **kwargs
     ):
-        self._prop_names = ['id', 'key', 'style', 'className', 'name', 'direction', 'options', 'block', 'disabled', 'size', 'value', 'defaultValue', 'optionType', 'buttonStyle', 'readOnly', 'batchPropsNames', 'batchPropsValues', 'data-*', 'aria-*', 'persistence', 'persisted_props', 'persistence_type']
+        self._prop_names = ['id', 'key', 'style', 'className', 'name', 'enableBatchControl', 'direction', 'options', 'block', 'disabled', 'size', 'value', 'defaultValue', 'optionType', 'buttonStyle', 'readOnly', 'batchPropsNames', 'batchPropsValues', 'data-*', 'aria-*', 'persistence', 'persisted_props', 'persistence_type']
         self._valid_wildcard_attributes =            ['data-', 'aria-']
-        self.available_properties = ['id', 'key', 'style', 'className', 'name', 'direction', 'options', 'block', 'disabled', 'size', 'value', 'defaultValue', 'optionType', 'buttonStyle', 'readOnly', 'batchPropsNames', 'batchPropsValues', 'data-*', 'aria-*', 'persistence', 'persisted_props', 'persistence_type']
+        self.available_properties = ['id', 'key', 'style', 'className', 'name', 'enableBatchControl', 'direction', 'options', 'block', 'disabled', 'size', 'value', 'defaultValue', 'optionType', 'buttonStyle', 'readOnly', 'batchPropsNames', 'batchPropsValues', 'data-*', 'aria-*', 'persistence', 'persisted_props', 'persistence_type']
         self.available_wildcard_properties =            ['data-', 'aria-']
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()

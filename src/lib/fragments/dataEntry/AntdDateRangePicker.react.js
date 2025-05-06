@@ -42,6 +42,7 @@ const AntdDateRangePicker = (props) => {
         popupClassName,
         key,
         name,
+        enableBatchControl,
         locale,
         setProps,
         picker,
@@ -81,7 +82,7 @@ const AntdDateRangePicker = (props) => {
 
     // 解决value经回调更新后，rawValue未更新的问题
     useEffect(() => {
-        if (formId && (name || id)) {
+        if (formId && (name || id) && enableBatchControl) {
             if (currentFormValue) {
                 setRawValue([dayjs(currentFormValue[0], format), dayjs(currentFormValue[1], format)]);
             } else {
@@ -125,7 +126,7 @@ const AntdDateRangePicker = (props) => {
     useEffect(() => {
         return () => {
             // 若上文中存在有效表单id
-            if (formId && (name || id)) {
+            if (formId && (name || id) && enableBatchControl) {
                 // 表单值更新
                 deleteItemValue(formId, name || id)
             }
@@ -174,7 +175,7 @@ const AntdDateRangePicker = (props) => {
     const onChange = (date, dateString) => {
         if (Array.isArray(dateString)) {
             // AntdForm表单批量控制
-            if (formId && (name || id)) {
+            if (formId && (name || id) && enableBatchControl) {
                 // 表单值更新
                 updateItemValue(formId, name || id, dateString)
             }
@@ -521,7 +522,7 @@ const AntdDateRangePicker = (props) => {
                             undefined
                     }
                     value={
-                        formId && (name || id) ?
+                        formId && (name || id) && enableBatchControl ?
                             (
                                 (currentFormValue && currentFormValue.length === 2) ?
                                     [currentFormValue[0] ? dayjs(currentFormValue[0], format) : undefined,
@@ -539,7 +540,7 @@ const AntdDateRangePicker = (props) => {
                             )
                     }
                     defaultValue={
-                        formId && (name || id) ?
+                        formId && (name || id) && enableBatchControl ?
                             undefined :
                             (
                                 (defaultValue && defaultValue.length === 2) ?
