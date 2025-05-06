@@ -76,6 +76,9 @@ Keyword arguments:
 - name (string; optional):
     配合`AntdForm`表单批量值搜集/控制功能使用，充当当前表单项的字段名，以`id`作为缺省值.
 
+- enableBatchControl (boolean; default True):
+    控制当前组件是否参与有效的`AntdForm`表单批量值搜集/控制功能  默认值：`True`.
+
 - mode (a value equal to: 'default', 'search', 'text-area', 'password'; default 'default'):
     输入框模式，可选项有`'default'`、`'search'`、`'text-area'`、`'password'`
     默认值：`'default'`.
@@ -238,6 +241,7 @@ Keyword arguments:
         styles: typing.Optional["Styles"] = None,
         classNames: typing.Optional["ClassNames"] = None,
         name: typing.Optional[str] = None,
+        enableBatchControl: typing.Optional[bool] = None,
         mode: typing.Optional[Literal["default", "search", "text-area", "password"]] = None,
         autoComplete: typing.Optional[Literal["off", "on"]] = None,
         disabled: typing.Optional[bool] = None,
@@ -274,9 +278,9 @@ Keyword arguments:
         persistence_type: typing.Optional[Literal["local", "session", "memory"]] = None,
         **kwargs
     ):
-        self._prop_names = ['id', 'key', 'style', 'className', 'styles', 'classNames', 'name', 'mode', 'autoComplete', 'disabled', 'size', 'bordered', 'variant', 'placeholder', 'value', 'defaultValue', 'passwordUseMd5', 'md5Value', 'debounceValue', 'debounceWait', 'addonBefore', 'addonAfter', 'prefix', 'suffix', 'maxLength', 'showCount', 'countFormat', 'autoSize', 'nSubmit', 'nClicksSearch', 'status', 'allowClear', 'autoFocus', 'focusing', 'readOnly', 'emptyAsNone', 'batchPropsNames', 'batchPropsValues', 'data-*', 'aria-*', 'persistence', 'persisted_props', 'persistence_type']
+        self._prop_names = ['id', 'key', 'style', 'className', 'styles', 'classNames', 'name', 'enableBatchControl', 'mode', 'autoComplete', 'disabled', 'size', 'bordered', 'variant', 'placeholder', 'value', 'defaultValue', 'passwordUseMd5', 'md5Value', 'debounceValue', 'debounceWait', 'addonBefore', 'addonAfter', 'prefix', 'suffix', 'maxLength', 'showCount', 'countFormat', 'autoSize', 'nSubmit', 'nClicksSearch', 'status', 'allowClear', 'autoFocus', 'focusing', 'readOnly', 'emptyAsNone', 'batchPropsNames', 'batchPropsValues', 'data-*', 'aria-*', 'persistence', 'persisted_props', 'persistence_type']
         self._valid_wildcard_attributes =            ['data-', 'aria-']
-        self.available_properties = ['id', 'key', 'style', 'className', 'styles', 'classNames', 'name', 'mode', 'autoComplete', 'disabled', 'size', 'bordered', 'variant', 'placeholder', 'value', 'defaultValue', 'passwordUseMd5', 'md5Value', 'debounceValue', 'debounceWait', 'addonBefore', 'addonAfter', 'prefix', 'suffix', 'maxLength', 'showCount', 'countFormat', 'autoSize', 'nSubmit', 'nClicksSearch', 'status', 'allowClear', 'autoFocus', 'focusing', 'readOnly', 'emptyAsNone', 'batchPropsNames', 'batchPropsValues', 'data-*', 'aria-*', 'persistence', 'persisted_props', 'persistence_type']
+        self.available_properties = ['id', 'key', 'style', 'className', 'styles', 'classNames', 'name', 'enableBatchControl', 'mode', 'autoComplete', 'disabled', 'size', 'bordered', 'variant', 'placeholder', 'value', 'defaultValue', 'passwordUseMd5', 'md5Value', 'debounceValue', 'debounceWait', 'addonBefore', 'addonAfter', 'prefix', 'suffix', 'maxLength', 'showCount', 'countFormat', 'autoSize', 'nSubmit', 'nClicksSearch', 'status', 'allowClear', 'autoFocus', 'focusing', 'readOnly', 'emptyAsNone', 'batchPropsNames', 'batchPropsValues', 'data-*', 'aria-*', 'persistence', 'persisted_props', 'persistence_type']
         self.available_wildcard_properties =            ['data-', 'aria-']
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()

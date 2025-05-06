@@ -32,6 +32,7 @@ const AntdInput = (props) => {
         classNames,
         key,
         name,
+        enableBatchControl,
         mode,
         passwordUseMd5,
         autoComplete,
@@ -95,7 +96,7 @@ const AntdInput = (props) => {
     useEffect(() => {
         return () => {
             // 若上文中存在有效表单id
-            if (formId && (name || id)) {
+            if (formId && (name || id) && enableBatchControl) {
                 // 表单值更新
                 deleteItemValue(formId, name || id)
             }
@@ -122,7 +123,7 @@ const AntdInput = (props) => {
     // 监听输入内容变化事件
     const onChange = e => {
         // AntdForm表单批量控制
-        if (formId && (name || id)) {
+        if (formId && (name || id) && enableBatchControl) {
             // 表单值更新
             updateItemValue(formId, name || id, e.target.value)
         }
@@ -159,7 +160,7 @@ const AntdInput = (props) => {
     // 解决value经回调更新后，rawValue未更新的问题
     useEffect(() => {
         // AntdForm表单批量控制
-        if (formId && (name || id)) {
+        if (formId && (name || id) && enableBatchControl) {
             setRawValue(currentFormValue);
         } else {
             setRawValue(value);
@@ -215,12 +216,12 @@ const AntdInput = (props) => {
                 placeholder={placeholder}
                 autoComplete={autoComplete}
                 defaultValue={
-                    formId && (name || id) ?
+                    formId && (name || id) && enableBatchControl ?
                         undefined :
                         defaultValue
                 }
                 value={
-                    formId && (name || id) ?
+                    formId && (name || id) && enableBatchControl ?
                         currentFormValue :
                         rawValue || value
                 }
@@ -293,12 +294,12 @@ const AntdInput = (props) => {
                         variant
                 )}
                 defaultValue={
-                    formId && (name || id) ?
+                    formId && (name || id) && enableBatchControl ?
                         undefined :
                         defaultValue
                 }
                 value={
-                    formId && (name || id) ?
+                    formId && (name || id) && enableBatchControl ?
                         currentFormValue :
                         rawValue || value
                 }
@@ -353,12 +354,12 @@ const AntdInput = (props) => {
                         variant
                 )}
                 defaultValue={
-                    formId && (name || id) ?
+                    formId && (name || id) && enableBatchControl ?
                         undefined :
                         defaultValue
                 }
                 value={
-                    formId && (name || id) ?
+                    formId && (name || id) && enableBatchControl ?
                         currentFormValue :
                         rawValue || value
                 }
@@ -426,12 +427,12 @@ const AntdInput = (props) => {
                         disabled
                 }
                 defaultValue={
-                    formId && (name || id) ?
+                    formId && (name || id) && enableBatchControl ?
                         undefined :
                         defaultValue
                 }
                 value={
-                    formId && (name || id) ?
+                    formId && (name || id) && enableBatchControl ?
                         currentFormValue :
                         rawValue || value
                 }
