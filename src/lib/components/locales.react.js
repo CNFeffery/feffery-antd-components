@@ -1,11 +1,13 @@
 import zhCN from 'antd/lib/locale/zh_CN';
 import enUS from 'antd/lib/locale/en_US';
 import deDE from 'antd/lib/locale/de_DE';
+import ruRU from 'antd/lib/locale/ru_RU';
 
 const str2Locale = new Map([
     ['zh-cn', zhCN],
     ['en-us', enUS],
-    ['de-de', deDE]
+    ['de-de', deDE],
+    ['ru-ru', ruRU]
 ])
 
 const locale2text = {
@@ -21,6 +23,10 @@ const locale2text = {
         'de-de': {
             hideLabel: 'Verbergen',
             showLabel: 'Mehr anzeigen'
+        },
+        'ru-ru': {
+            hideLabel: 'Скрыть',
+            showLabel: 'Показать больше'
         }
     },
     AntdPictureUpload: {
@@ -38,6 +44,11 @@ const locale2text = {
             confirmBeforeDeleteTitle: 'Löschen bestätigen',
             confirmBeforeDeleteOkText: 'Ok',
             confirmBeforeDeleteCancelText: 'Abbrechen'
+        },
+        'ru-ru': {
+            confirmBeforeDeleteTitle: 'Подтвердите удаление',
+            confirmBeforeDeleteOkText: 'Ок',
+            confirmBeforeDeleteCancelText: 'Отмена'
         }
     },
     AntdPagination: {
@@ -52,6 +63,10 @@ const locale2text = {
         'de-de': {
             showTotalPrefix: 'Gesamt ',
             showTotalSuffix: ' items'
+        },
+        'ru-ru': {
+            showTotalPrefix: 'Всего ',
+            showTotalSuffix: ' элементов'
         }
     },
     AntdTable: {
@@ -75,6 +90,13 @@ const locale2text = {
             filterKeywordPlaceholder: 'Suche',
             filterKeywordSearchButtonText: 'Suchen',
             filterKeywordResetButtonText: 'Zurücksetzen',
+        },
+        'ru-ru': {
+            showTotalPrefix: 'Всего ',
+            showTotalSuffix: ' элементов',
+            filterKeywordPlaceholder: 'Поиск',
+            filterKeywordSearchButtonText: 'Поиск',
+            filterKeywordResetButtonText: 'Сбросить',
         }
     },
     AntdTransfer: {
@@ -86,6 +108,9 @@ const locale2text = {
         },
         'de-de': {
             titles: ['Quelle', 'Ziel']
+        },
+        'ru-ru': {
+            titles: ['Источник', 'Цель']
         }
     },
     Upload: {
@@ -109,6 +134,13 @@ const locale2text = {
             sizeError: ['Dateigröße überschreitet das Limit von ', 'MB!'],
             typeError: ['Hochladen fehlgeschlagen. Das Format von ', ' entspricht nicht den Anforderungen!'],
             buttonContent: 'Klicken, um eine Datei hochzuladen'
+        },
+        'ru-ru': {
+            uploadSuccess: 'Загрузка успешна!',
+            uploadFailed: 'Ошибка загрузки!',
+            sizeError: ['Размер файла превышает ', 'MB ограничение!'],
+            typeError: ['Ошибка загрузки, формат ', ' не соответствует требованиям!'],
+            buttonContent: 'Нажмите для загрузки файла'
         }
     },
     AntdComment: {
@@ -138,6 +170,15 @@ const locale2text = {
             deleteConfirmOkText: 'Ja',
             deleteConfirmCancelText: 'Nein',
             deleteTitle: 'Löschen',
+        },
+        'ru-ru': {
+            likeTooltipTitle: 'Нравится',
+            dislikeTooltipTitle: 'Не нравится',
+            replayTitle: 'Добавить ответ',
+            deleteConfirmTitle: 'Подтвердите удаление',
+            deleteConfirmOkText: 'Да',
+            deleteConfirmCancelText: 'Нет',
+            deleteTitle: 'Удалить',
         }
     }
 }
