@@ -42,8 +42,8 @@ Keyword arguments:
 - contentStyle (dict; optional):
     内容区css样式.
 
-- locale (a value equal to: 'zh-cn', 'en-us', 'de-de'; default 'zh-cn'):
-    组件文案语种，可选项有`'zh-cn'`（简体中文）、`'en-us'`（英语）、`'de-de'`（德语）
+- locale (a value equal to: 'zh-cn', 'en-us', 'de-de', 'ru-ru'; default 'zh-cn'):
+    组件文案语种，可选项有`'zh-cn'`（简体中文）、`'en-us'`（英语）、`'de-de'`（德语）、`'ru-ru'`（俄语）
     默认值：`'zh-cn'`.
 
 - hideLabel (a list of or a singular dash component, string or number; optional):
@@ -84,7 +84,7 @@ Keyword arguments:
         className: typing.Optional[typing.Union[str, dict]] = None,
         contentClassName: typing.Optional[typing.Union[str, dict]] = None,
         contentStyle: typing.Optional[dict] = None,
-        locale: typing.Optional[Literal["zh-cn", "en-us", "de-de"]] = None,
+        locale: typing.Optional[Literal["zh-cn", "en-us", "de-de", "ru-ru"]] = None,
         hideLabel: typing.Optional[ComponentType] = None,
         showLabel: typing.Optional[ComponentType] = None,
         labelPosition: typing.Optional[Literal["left", "right"]] = None,

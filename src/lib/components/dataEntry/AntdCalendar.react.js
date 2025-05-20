@@ -88,10 +88,10 @@ AntdCalendar.propTypes = {
     enableBatchControl: PropTypes.bool,
 
     /**
-     * 组件文案语种，可选项有`'zh-cn'`（简体中文）、`'en-us'`（英语）、`'de-de'`（德语）
+     * 组件文案语种，可选项有`'zh-cn'`（简体中文）、`'en-us'`（英语）、`'de-de'`（德语）、`'ru-ru'`（俄语）
      * 默认值：`'zh-cn'`
      */
-    locale: PropTypes.oneOf(['zh-cn', 'en-us', 'de-de']),
+    locale: PropTypes.oneOf(['zh-cn', 'en-us', 'de-de', 'ru-ru']),
 
     /**
      * 日期显示格式，[参考资料](https://day.js.org/docs/en/display/format)

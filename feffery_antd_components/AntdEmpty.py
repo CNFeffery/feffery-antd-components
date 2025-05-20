@@ -70,8 +70,8 @@ Keyword arguments:
 - className (string | dict; optional):
     当前组件css类名，支持[动态css](/advanced-classname).
 
-- locale (a value equal to: 'zh-cn', 'en-us', 'de-de'; default 'zh-cn'):
-    组件文案语种，可选项有`'zh-cn'`（简体中文）、`'en-us'`（英语）、`'de-de'`（德语）
+- locale (a value equal to: 'zh-cn', 'en-us', 'de-de', 'ru-ru'; default 'zh-cn'):
+    组件文案语种，可选项有`'zh-cn'`（简体中文）、`'en-us'`（英语）、`'de-de'`（德语）、`'ru-ru'`（俄语）
     默认值：`'zh-cn'`.
 
 - description (a list of or a singular dash component, string or number | boolean; optional):
@@ -119,7 +119,7 @@ Keyword arguments:
         styles: typing.Optional["Styles"] = None,
         classNames: typing.Optional["ClassNames"] = None,
         className: typing.Optional[typing.Union[str, dict]] = None,
-        locale: typing.Optional[Literal["zh-cn", "en-us", "de-de"]] = None,
+        locale: typing.Optional[Literal["zh-cn", "en-us", "de-de", "ru-ru"]] = None,
         description: typing.Optional[typing.Union[ComponentType, bool]] = None,
         image: typing.Optional[typing.Union[str, Literal["default", "simple"]]] = None,
         **kwargs

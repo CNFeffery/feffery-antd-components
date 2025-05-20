@@ -58,8 +58,8 @@ Keyword arguments:
     - body (string; optional):
         内容元素css类名.
 
-- locale (a value equal to: 'zh-cn', 'en-us', 'de-de'; default 'zh-cn'):
-    组件文案语种，可选项有`'zh-cn'`（简体中文）、`'en-us'`（英语）、`'de-de'`（德语）
+- locale (a value equal to: 'zh-cn', 'en-us', 'de-de', 'ru-ru'; default 'zh-cn'):
+    组件文案语种，可选项有`'zh-cn'`（简体中文）、`'en-us'`（英语）、`'de-de'`（德语）、`'ru-ru'`（俄语）
     默认值：`'zh-cn'`.
 
 - icon (a list of or a singular dash component, string or number; optional):
@@ -257,7 +257,7 @@ Keyword arguments:
         className: typing.Optional[typing.Union[str, dict]] = None,
         styles: typing.Optional["Styles"] = None,
         classNames: typing.Optional["ClassNames"] = None,
-        locale: typing.Optional[Literal["zh-cn", "en-us", "de-de"]] = None,
+        locale: typing.Optional[Literal["zh-cn", "en-us", "de-de", "ru-ru"]] = None,
         icon: typing.Optional[ComponentType] = None,
         title: typing.Optional[ComponentType] = None,
         description: typing.Optional[ComponentType] = None,

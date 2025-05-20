@@ -33,8 +33,8 @@ Keyword arguments:
 - className (string | dict; optional):
     当前组件css类名，支持[动态css](/advanced-classname).
 
-- locale (a value equal to: 'zh-cn', 'en-us', 'de-de'; default 'zh-cn'):
-    组件文案语种，可选项有`'zh-cn'`（简体中文）、`'en-us'`（英语）、`'de-de'`（德语）
+- locale (a value equal to: 'zh-cn', 'en-us', 'de-de', 'ru-ru'; default 'zh-cn'):
+    组件文案语种，可选项有`'zh-cn'`（简体中文）、`'en-us'`（英语）、`'de-de'`（德语）、`'ru-ru'`（俄语）
     默认值：`'zh-cn'`.
 
 - steps (list of dicts; optional):
@@ -215,7 +215,7 @@ Keyword arguments:
         key: typing.Optional[str] = None,
         style: typing.Optional[typing.Any] = None,
         className: typing.Optional[typing.Union[str, dict]] = None,
-        locale: typing.Optional[Literal["zh-cn", "en-us", "de-de"]] = None,
+        locale: typing.Optional[Literal["zh-cn", "en-us", "de-de", "ru-ru"]] = None,
         steps: typing.Optional[typing.Sequence["Steps"]] = None,
         arrow: typing.Optional[typing.Union[bool, "Arrow"]] = None,
         placement: typing.Optional[Literal["center", "left", "leftTop", "leftBottom", "right", "rightTop", "rightBottom", "top", "topLeft", "topRight", "bottom", "bottomLeft", "bottomRight"]] = None,

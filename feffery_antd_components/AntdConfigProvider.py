@@ -49,7 +49,7 @@ Keyword arguments:
 - componentSize (a value equal to: 'small', 'middle', 'large'; optional):
     强制设置后代元素的尺寸规格，可选项有`'small'`、`'middle'`、`'large'`，其中`'default'`兼容`'middle'`.
 
-- locale (a value equal to: 'zh-cn', 'en-us', 'de-de'; optional):
+- locale (a value equal to: 'zh-cn', 'en-us', 'de-de', 'ru-ru'; optional):
     强制设置后代元素的语言，可选项有`'zh-cn'`（简体中文）、`'en-us'`（英语）、`'de-de'`（德语）.
 
 - wavesDisabled (boolean; default False):
@@ -106,7 +106,7 @@ Keyword arguments:
         primaryColor: typing.Optional[str] = None,
         componentDisabled: typing.Optional[bool] = None,
         componentSize: typing.Optional[Literal["small", "middle", "large"]] = None,
-        locale: typing.Optional[Literal["zh-cn", "en-us", "de-de"]] = None,
+        locale: typing.Optional[Literal["zh-cn", "en-us", "de-de", "ru-ru"]] = None,
         wavesDisabled: typing.Optional[bool] = None,
         token: typing.Optional["Token"] = None,
         componentsToken: typing.Optional[typing.Dict[typing.Union[str, float, int], "ComponentsToken"]] = None,

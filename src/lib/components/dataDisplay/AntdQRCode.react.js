@@ -83,10 +83,10 @@ AntdQRCode.propTypes = {
     ]),
 
     /**
-     * 组件文案语种，可选项有`'zh-cn'`（简体中文）、`'en-us'`（英语）、`'de-de'`（德语）
+     * 组件文案语种，可选项有`'zh-cn'`（简体中文）、`'en-us'`（英语）、`'de-de'`（德语）、`'ru-ru'`（俄语）
      * 默认值：`'zh-cn'`
      */
-    locale: PropTypes.oneOf(['zh-cn', 'en-us', 'de-de']),
+    locale: PropTypes.oneOf(['zh-cn', 'en-us', 'de-de', 'ru-ru']),
 
     /**
      * 二维码解析结果

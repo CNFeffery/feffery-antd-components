@@ -191,10 +191,10 @@ AntdCascader.propTypes = {
     enableBatchControl: PropTypes.bool,
 
     /**
-     * 组件文案语种，可选项有`'zh-cn'`（简体中文）、`'en-us'`（英语）、`'de-de'`（德语）
+     * 组件文案语种，可选项有`'zh-cn'`（简体中文）、`'en-us'`（英语）、`'de-de'`（德语）、`'ru-ru'`（俄语）
      * 默认值：`'zh-cn'`
      */
-    locale: PropTypes.oneOf(['zh-cn', 'en-us', 'de-de']),
+    locale: PropTypes.oneOf(['zh-cn', 'en-us', 'de-de', 'ru-ru']),
 
     /**
      * 对应`options`格式的渲染模式，可选项有`'tree'`（树形模式）、`'flat'`（扁平模式）

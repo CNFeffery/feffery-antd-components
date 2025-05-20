@@ -768,7 +768,7 @@ AntdFormRender.propTypes = {
      * 设置展示语言，目前只支持中文、英文，
      * 可选的有'zh-CN'与'en-US'，默认为'zh-CN'
      */
-    locale: PropTypes.oneOf(['zh-cn', 'en-us', 'de-de']),
+    locale: PropTypes.oneOf(['zh-cn', 'en-us', 'de-de', 'ru-ru']),
 
     /**
      * 设置底部操作区域

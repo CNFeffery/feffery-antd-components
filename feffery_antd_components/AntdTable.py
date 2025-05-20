@@ -33,8 +33,8 @@ Keyword arguments:
 - className (string; optional):
     当前组件css类名.
 
-- locale (a value equal to: 'zh-cn', 'en-us', 'de-de'; default 'zh-cn'):
-    组件文案语种，可选项有`'zh-cn'`（简体中文）、`'en-us'`（英语）、`'de-de'`（德语）
+- locale (a value equal to: 'zh-cn', 'en-us', 'de-de', 'ru-ru'; default 'zh-cn'):
+    组件文案语种，可选项有`'zh-cn'`（简体中文）、`'en-us'`（英语）、`'de-de'`（德语）、`'ru-ru'`（俄语）
     默认值：`'zh-cn'`.
 
 - containerId (string; optional):
@@ -1205,7 +1205,7 @@ Keyword arguments:
         key: typing.Optional[str] = None,
         style: typing.Optional[typing.Any] = None,
         className: typing.Optional[str] = None,
-        locale: typing.Optional[Literal["zh-cn", "en-us", "de-de"]] = None,
+        locale: typing.Optional[Literal["zh-cn", "en-us", "de-de", "ru-ru"]] = None,
         containerId: typing.Optional[str] = None,
         columns: typing.Optional[typing.Sequence["Columns"]] = None,
         showHeader: typing.Optional[bool] = None,

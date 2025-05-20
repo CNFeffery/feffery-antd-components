@@ -42,8 +42,8 @@ Keyword arguments:
 - enableBatchControl (boolean; default True):
     控制当前组件是否参与有效的`AntdForm`表单批量值搜集/控制功能  默认值：`True`.
 
-- locale (a value equal to: 'zh-cn', 'en-us', 'de-de'; default 'zh-cn'):
-    组件文案语种，可选项有`'zh-cn'`（简体中文）、`'en-us'`（英语）、`'de-de'`（德语）
+- locale (a value equal to: 'zh-cn', 'en-us', 'de-de', 'ru-ru'; default 'zh-cn'):
+    组件文案语种，可选项有`'zh-cn'`（简体中文）、`'en-us'`（英语）、`'de-de'`（德语）、`'ru-ru'`（俄语）
     默认值：`'zh-cn'`.
 
 - treeDataMode (a value equal to: 'tree', 'flat'; default 'tree'):
@@ -226,7 +226,7 @@ Keyword arguments:
         popupClassName: typing.Optional[str] = None,
         name: typing.Optional[str] = None,
         enableBatchControl: typing.Optional[bool] = None,
-        locale: typing.Optional[Literal["zh-cn", "en-us", "de-de"]] = None,
+        locale: typing.Optional[Literal["zh-cn", "en-us", "de-de", "ru-ru"]] = None,
         treeDataMode: typing.Optional[Literal["tree", "flat"]] = None,
         treeData: typing.Optional[typing.Union[typing.Any, typing.Sequence[typing.Any]]] = None,
         treeNodeKeyToTitle: typing.Optional[typing.Dict[typing.Union[str, float, int], ComponentType]] = None,
