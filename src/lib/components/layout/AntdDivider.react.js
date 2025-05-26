@@ -29,6 +29,7 @@ const AntdDivider = ({
     fontColor,
     variant = 'solid',
     plain = true,
+    size,
     ...others
 }) => {
 
@@ -60,6 +61,7 @@ const AntdDivider = ({
                 orientation={innerTextOrientation}
                 type={"horizontal"}
                 plain={plain}
+                size={size}
                 data-dash-is-loading={useLoading()}
             >
                 {children}
@@ -93,6 +95,7 @@ const AntdDivider = ({
                 orientation={innerTextOrientation}
                 type={"vertical"}
                 plain={plain}
+                size={size}
                 data-dash-is-loading={useLoading()}
             >
                 {children}
@@ -192,6 +195,11 @@ AntdDivider.propTypes = {
      * 默认值：`true`
      */
     plain: PropTypes.bool,
+
+    /**
+     * 间距大小，仅当``direction='horizontal'``时有效，可选项有`'small'`、`'middle'`、`'large'`
+     */
+    size: PropTypes.oneOf(['small', 'middle', 'large']),
 
     /**
      * `data-*`格式属性通配

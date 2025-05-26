@@ -70,6 +70,9 @@ Keyword arguments:
 - plain (boolean; default True):
     文字内容是否呈现为常规正文形式  默认值：`True`.
 
+- size (a value equal to: 'small', 'middle', 'large'; optional):
+    间距大小，仅当``direction='horizontal'``时有效，可选项有`'small'`、`'middle'`、`'large'`.
+
 - data-* (string; optional):
     `data-*`格式属性通配.
 
@@ -99,11 +102,12 @@ Keyword arguments:
         fontColor: typing.Optional[str] = None,
         variant: typing.Optional[Literal["dashed", "dotted", "solid"]] = None,
         plain: typing.Optional[bool] = None,
+        size: typing.Optional[Literal["small", "middle", "large"]] = None,
         **kwargs
     ):
-        self._prop_names = ['id', 'key', 'children', 'className', 'style', 'innerTextOrientation', 'isDashed', 'direction', 'fontSize', 'lineColor', 'fontStyle', 'fontWeight', 'fontFamily', 'fontColor', 'variant', 'plain', 'data-*', 'aria-*']
+        self._prop_names = ['id', 'key', 'children', 'className', 'style', 'innerTextOrientation', 'isDashed', 'direction', 'fontSize', 'lineColor', 'fontStyle', 'fontWeight', 'fontFamily', 'fontColor', 'variant', 'plain', 'size', 'data-*', 'aria-*']
         self._valid_wildcard_attributes =            ['data-', 'aria-']
-        self.available_properties = ['id', 'key', 'children', 'className', 'style', 'innerTextOrientation', 'isDashed', 'direction', 'fontSize', 'lineColor', 'fontStyle', 'fontWeight', 'fontFamily', 'fontColor', 'variant', 'plain', 'data-*', 'aria-*']
+        self.available_properties = ['id', 'key', 'children', 'className', 'style', 'innerTextOrientation', 'isDashed', 'direction', 'fontSize', 'lineColor', 'fontStyle', 'fontWeight', 'fontFamily', 'fontColor', 'variant', 'plain', 'size', 'data-*', 'aria-*']
         self.available_wildcard_properties =            ['data-', 'aria-']
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()
