@@ -68,11 +68,12 @@ const AntdImageGroup = (props) => {
                             props: {
                                 ...originalNode.props,
                                 children: (
-                                    toolbarExtra &&
-                                    [
-                                        ...originalNode.props.children,
-                                        ...(Array.isArray(toolbarExtra) ? toolbarExtra : [toolbarExtra])
-                                    ]
+                                    toolbarExtra ?
+                                        [
+                                            ...originalNode.props.children,
+                                            ...(Array.isArray(toolbarExtra) ? toolbarExtra : [toolbarExtra])
+                                        ] :
+                                        originalNode.props.children
                                 )
                             }
                         };
