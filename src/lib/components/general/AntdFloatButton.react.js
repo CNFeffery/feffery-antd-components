@@ -91,7 +91,23 @@ AntdFloatButton.propTypes = {
     /**
      * 组件型，按钮额外气泡卡片内容
      */
-    tooltip: PropTypes.node,
+    tooltip: PropTypes.oneOfType([
+        PropTypes.node,
+        PropTypes.shape({
+            /**
+             * 气泡卡片内容
+             */
+            title: PropTypes.node,
+            /**
+             * 气泡卡片背景色
+             */
+            color: PropTypes.string,
+            /**
+             * 气泡卡片展开方向，可选项有`'top'`、`'left'`、`'right'`、`'bottom'`、`'topLeft'`、`'topRight'`、`'bottomLeft'`、`'bottomRight'`、`'leftTop'`、`'leftBottom'`、`'rightTop'`、`'rightBottom'`
+             */
+            placement: PropTypes.oneOf(['top', 'left', 'right', 'bottom', 'topLeft', 'topRight', 'bottomLeft', 'bottomRight', 'leftTop', 'leftBottom', 'rightTop', 'rightBottom'])
+        })
+    ]),
 
     /**
      * 按钮类型，可选项有`'default'`、`'primary'`

@@ -42,8 +42,20 @@ Keyword arguments:
 - description (a list of or a singular dash component, string or number; optional):
     描述内容.
 
-- tooltip (a list of or a singular dash component, string or number; optional):
+- tooltip (dict; optional):
     气泡卡片内容.
+
+    `tooltip` is a a list of or a singular dash component, string or
+    number | dict with keys:
+
+    - title (a list of or a singular dash component, string or number; optional):
+        气泡卡片内容.
+
+    - color (string; optional):
+        气泡卡片背景色.
+
+    - placement (a value equal to: 'top', 'left', 'right', 'bottom', 'topLeft', 'topRight', 'bottomLeft', 'bottomRight', 'leftTop', 'leftBottom', 'rightTop', 'rightBottom'; optional):
+        气泡卡片展开方向，可选项有`'top'`、`'left'`、`'right'`、`'bottom'`、`'topLeft'`、`'topRight'`、`'bottomLeft'`、`'bottomRight'`、`'leftTop'`、`'leftBottom'`、`'rightTop'`、`'rightBottom'`.
 
 - type (a value equal to: 'default', 'primary'; default 'default'):
     按钮类型，可选项有`'default'`、`'primary'`  默认值：`'default'`.
@@ -65,10 +77,18 @@ Keyword arguments:
 
 - aria-* (string; optional):
     `aria-*`格式属性通配."""
-    _children_props = ['icon', 'description', 'tooltip']
+    _children_props = ['icon', 'description', 'tooltip', 'tooltip.title']
     _base_nodes = ['icon', 'description', 'tooltip', 'children']
     _namespace = 'feffery_antd_components'
     _type = 'AntdFloatButtonGroup'
+    Tooltip = TypedDict(
+        "Tooltip",
+            {
+            "title": NotRequired[ComponentType],
+            "color": NotRequired[str],
+            "placement": NotRequired[Literal["top", "left", "right", "bottom", "topLeft", "topRight", "bottomLeft", "bottomRight", "leftTop", "leftBottom", "rightTop", "rightBottom"]]
+        }
+    )
 
 
     def __init__(
@@ -80,7 +100,7 @@ Keyword arguments:
         className: typing.Optional[typing.Union[str, dict]] = None,
         icon: typing.Optional[ComponentType] = None,
         description: typing.Optional[ComponentType] = None,
-        tooltip: typing.Optional[ComponentType] = None,
+        tooltip: typing.Optional[typing.Union[ComponentType, "Tooltip"]] = None,
         type: typing.Optional[Literal["default", "primary"]] = None,
         shape: typing.Optional[Literal["circle", "square"]] = None,
         trigger: typing.Optional[Literal["click", "hover"]] = None,
