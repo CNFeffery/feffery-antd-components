@@ -479,7 +479,7 @@ const AntdPictureUpload = (props) => {
                         </Upload>
                     </ImgCrop>
                     <Modal
-                        visible={previewVisible}
+                        open={previewVisible}
                         title={previewTitle}
                         footer={null}
                         onCancel={handleCancel}
@@ -560,7 +560,7 @@ const AntdPictureUpload = (props) => {
                     {uploadButton}
                 </Upload>
                 <Modal
-                    visible={previewVisible}
+                    open={previewVisible}
                     title={previewTitle}
                     footer={null}
                     onCancel={handleCancel}
