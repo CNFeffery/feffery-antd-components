@@ -84,6 +84,7 @@ const AntdDraggerUpload = (props) => {
         progressProps,
         showSuccessMessage,
         showErrorMessage,
+        pastable,
         listUploadTaskRecord,
         defaultFileList,
         disabled,
@@ -566,6 +567,7 @@ const AntdDraggerUpload = (props) => {
                     showUploadList={showUploadList}
                     multiple={multiple}
                     directory={directory}
+                    pastable={pastable}
                     disabled={
                         context && !isUndefined(context.componentDisabled) ?
                             context.componentDisabled :

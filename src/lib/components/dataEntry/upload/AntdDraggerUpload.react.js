@@ -40,6 +40,7 @@ const AntdDraggerUpload = ({
     progressProps,
     showSuccessMessage = true,
     showErrorMessage = true,
+    pastable = false,
     listUploadTaskRecord = [],
     defaultFileList,
     disabled = false,
@@ -84,6 +85,7 @@ const AntdDraggerUpload = ({
                     progressProps,
                     showSuccessMessage,
                     showErrorMessage,
+                    pastable,
                     listUploadTaskRecord,
                     defaultFileList,
                     disabled,
@@ -318,6 +320,12 @@ AntdDraggerUpload.propTypes = {
      * 默认值：`true`
      */
     showErrorMessage: PropTypes.bool,
+
+    /**
+     * 是否开启粘贴上传，即本地复制文件后，在页面任意位置粘贴即可完成上传
+     * 默认值：`false`
+     */
+    pastable: PropTypes.bool,
 
     /**
      * 监听最近一次文件上传任务相关信息

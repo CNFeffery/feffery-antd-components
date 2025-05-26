@@ -168,6 +168,9 @@ Keyword arguments:
 - showErrorMessage (boolean; default True):
     是否在每个文件上传失败后，分别弹出消息提示  默认值：`True`.
 
+- pastable (boolean; default False):
+    是否开启粘贴上传，即本地复制文件后，在页面任意位置粘贴即可完成上传  默认值：`False`.
+
 - lastUploadTaskRecord (dict; optional):
     监听最近一次文件上传任务相关信息.
 
@@ -418,6 +421,7 @@ Keyword arguments:
         progressProps: typing.Optional["ProgressProps"] = None,
         showSuccessMessage: typing.Optional[bool] = None,
         showErrorMessage: typing.Optional[bool] = None,
+        pastable: typing.Optional[bool] = None,
         lastUploadTaskRecord: typing.Optional[typing.Union["LastUploadTaskRecord", typing.Sequence["LastUploadTaskRecord"]]] = None,
         listUploadTaskRecord: typing.Optional[typing.Sequence["ListUploadTaskRecord"]] = None,
         defaultFileList: typing.Optional[typing.Sequence["DefaultFileList"]] = None,
@@ -426,9 +430,9 @@ Keyword arguments:
         loading_state: typing.Optional["LoadingState"] = None,
         **kwargs
     ):
-        self._prop_names = ['id', 'key', 'style', 'className', 'name', 'enableBatchControl', 'locale', 'apiUrl', 'apiUrlExtraParams', 'headers', 'withCredentials', 'withOriginFileObj', 'downloadUrl', 'downloadUrlExtraParams', 'downloadUrlFromBackend', 'fileListMaxLength', 'fileTypes', 'buttonContent', 'buttonIcon', 'buttonProps', 'uploadId', 'fileMaxSize', 'multiple', 'directory', 'failedTooltipInfo', 'showUploadList', 'confirmBeforeDelete', 'showPercent', 'progressProps', 'showSuccessMessage', 'showErrorMessage', 'lastUploadTaskRecord', 'listUploadTaskRecord', 'defaultFileList', 'disabled', 'status', 'data-*', 'aria-*', 'loading_state']
+        self._prop_names = ['id', 'key', 'style', 'className', 'name', 'enableBatchControl', 'locale', 'apiUrl', 'apiUrlExtraParams', 'headers', 'withCredentials', 'withOriginFileObj', 'downloadUrl', 'downloadUrlExtraParams', 'downloadUrlFromBackend', 'fileListMaxLength', 'fileTypes', 'buttonContent', 'buttonIcon', 'buttonProps', 'uploadId', 'fileMaxSize', 'multiple', 'directory', 'failedTooltipInfo', 'showUploadList', 'confirmBeforeDelete', 'showPercent', 'progressProps', 'showSuccessMessage', 'showErrorMessage', 'pastable', 'lastUploadTaskRecord', 'listUploadTaskRecord', 'defaultFileList', 'disabled', 'status', 'data-*', 'aria-*', 'loading_state']
         self._valid_wildcard_attributes =            ['data-', 'aria-']
-        self.available_properties = ['id', 'key', 'style', 'className', 'name', 'enableBatchControl', 'locale', 'apiUrl', 'apiUrlExtraParams', 'headers', 'withCredentials', 'withOriginFileObj', 'downloadUrl', 'downloadUrlExtraParams', 'downloadUrlFromBackend', 'fileListMaxLength', 'fileTypes', 'buttonContent', 'buttonIcon', 'buttonProps', 'uploadId', 'fileMaxSize', 'multiple', 'directory', 'failedTooltipInfo', 'showUploadList', 'confirmBeforeDelete', 'showPercent', 'progressProps', 'showSuccessMessage', 'showErrorMessage', 'lastUploadTaskRecord', 'listUploadTaskRecord', 'defaultFileList', 'disabled', 'status', 'data-*', 'aria-*', 'loading_state']
+        self.available_properties = ['id', 'key', 'style', 'className', 'name', 'enableBatchControl', 'locale', 'apiUrl', 'apiUrlExtraParams', 'headers', 'withCredentials', 'withOriginFileObj', 'downloadUrl', 'downloadUrlExtraParams', 'downloadUrlFromBackend', 'fileListMaxLength', 'fileTypes', 'buttonContent', 'buttonIcon', 'buttonProps', 'uploadId', 'fileMaxSize', 'multiple', 'directory', 'failedTooltipInfo', 'showUploadList', 'confirmBeforeDelete', 'showPercent', 'progressProps', 'showSuccessMessage', 'showErrorMessage', 'pastable', 'lastUploadTaskRecord', 'listUploadTaskRecord', 'defaultFileList', 'disabled', 'status', 'data-*', 'aria-*', 'loading_state']
         self.available_wildcard_properties =            ['data-', 'aria-']
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()

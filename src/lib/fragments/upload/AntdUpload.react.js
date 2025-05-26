@@ -80,6 +80,7 @@ const AntdUpload = (props) => {
         progressProps,
         showSuccessMessage,
         showErrorMessage,
+        pastable,
         listUploadTaskRecord,
         defaultFileList,
         disabled,
@@ -554,6 +555,7 @@ const AntdUpload = (props) => {
                     multiple={multiple}
                     showUploadList={showUploadList}
                     directory={directory}
+                    pastable={pastable}
                     disabled={
                         context && !isUndefined(context.componentDisabled) ?
                             context.componentDisabled :

@@ -87,6 +87,7 @@ const AntdPictureUpload = (props) => {
         progressProps,
         showSuccessMessage,
         showErrorMessage,
+        pastable,
         listUploadTaskRecord,
         defaultFileList,
         disabled,
@@ -454,6 +455,7 @@ const AntdPictureUpload = (props) => {
                                 showRemoveIcon,
                                 showPreviewIcon
                             }}
+                            pastable={pastable}
                             onPreview={handlePreview}
                             onRemove={
                                 confirmBeforeDelete ?
@@ -535,6 +537,7 @@ const AntdPictureUpload = (props) => {
                         showRemoveIcon,
                         showPreviewIcon
                     }}
+                    pastable={pastable}
                     onPreview={handlePreview}
                     onRemove={
                         confirmBeforeDelete ?
