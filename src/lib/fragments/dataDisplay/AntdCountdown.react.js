@@ -1,5 +1,3 @@
-// react核心
-import React from 'react';
 // antd核心
 import { Statistic, Space, Tooltip } from 'antd';
 import { QuestionCircleOutlined } from "@ant-design/icons";
@@ -13,7 +11,7 @@ import useCss from '../../hooks/useCss';
 // 参数类型
 import { propTypes, defaultProps } from '../../components/dataDisplay/AntdCountdown.react';
 
-const { Countdown } = Statistic;
+const { Timer } = Statistic;
 
 /**
  * 倒计时组件AntdCountdown
@@ -37,7 +35,7 @@ const AntdCountdown = (props) => {
     } = props;
 
     return (
-        <Countdown
+        <Timer
             // 提取具有data-*或aria-*通配格式的属性
             {...pickBy((_, k) => k.startsWith('data-') || k.startsWith('aria-'), others)}
             id={id}
@@ -48,6 +46,7 @@ const AntdCountdown = (props) => {
             }
             style={style}
             key={key}
+            type={'countdown'} // 指定类型为倒计时
             value={dayjs(value, valueFormat)}
             format={format}
             prefix={prefix}
