@@ -33,22 +33,30 @@ const locale2text = {
         'zh-cn': {
             confirmBeforeDeleteTitle: '确认删除',
             confirmBeforeDeleteOkText: '确认',
-            confirmBeforeDeleteCancelText: '取消'
+            confirmBeforeDeleteCancelText: '取消',
+            imgCropModalOKText: '确认',
+            imgCropModalCancelText: '取消',
         },
         'en-us': {
             confirmBeforeDeleteTitle: 'Confirm Delete',
             confirmBeforeDeleteOkText: 'Ok',
-            confirmBeforeDeleteCancelText: 'Cancel'
+            confirmBeforeDeleteCancelText: 'Cancel',
+            imgCropModalOKText: 'Ok',
+            imgCropModalCancelText: 'Cancel',
         },
         'de-de': {
             confirmBeforeDeleteTitle: 'Löschen bestätigen',
             confirmBeforeDeleteOkText: 'Ok',
-            confirmBeforeDeleteCancelText: 'Abbrechen'
+            confirmBeforeDeleteCancelText: 'Abbrechen',
+            imgCropModalOKText: 'Ok',
+            imgCropModalCancelText: 'Abbrechen',
         },
         'ru-ru': {
             confirmBeforeDeleteTitle: 'Подтвердите удаление',
             confirmBeforeDeleteOkText: 'Ок',
-            confirmBeforeDeleteCancelText: 'Отмена'
+            confirmBeforeDeleteCancelText: 'Отмена',
+            imgCropModalOKText: 'Ок',
+            imgCropModalCancelText: 'Отмена',
         }
     },
     AntdPagination: {

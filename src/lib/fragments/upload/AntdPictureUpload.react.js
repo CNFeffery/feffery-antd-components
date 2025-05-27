@@ -426,8 +426,8 @@ const AntdPictureUpload = (props) => {
                     key={key}>
                     {messageContextHolder}
                     {modalContextHolder}
-                    <ImgCrop modalOk={locale === 'zh-cn' ? '确定' : 'OK'}
-                        modalCancel={locale === 'zh-cn' ? '取消' : 'Cancel'}
+                    <ImgCrop modalOk={locale2text.AntdPictureUpload[locale].imgCropModalOKText}
+                        modalCancel={locale2text.AntdPictureUpload[locale].imgCropModalCancelText}
                         {...editConfig}>
                         <Upload {...uploadProps}
                             fileList={fileList}
