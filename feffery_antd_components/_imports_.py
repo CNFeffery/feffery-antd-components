@@ -7,6 +7,7 @@ from .AntdCheckableTag import AntdCheckableTag
 from .AntdCollapse import AntdCollapse
 from .AntdComment import AntdComment
 from .AntdCountdown import AntdCountdown
+from .AntdCountup import AntdCountup
 from .AntdEmpty import AntdEmpty
 from .AntdImage import AntdImage
 from .AntdImageGroup import AntdImageGroup
@@ -117,6 +118,7 @@ __all__ = [
     "AntdCollapse",
     "AntdComment",
     "AntdCountdown",
+    "AntdCountup",
     "AntdEmpty",
     "AntdImage",
     "AntdImageGroup",

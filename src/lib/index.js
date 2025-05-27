@@ -81,6 +81,7 @@ import AntdSegmented from './components/dataDisplay/AntdSegmented.react';
 import AntdSpoiler from './components/dataDisplay/AntdSpoiler.react';
 import AntdStatistic from './components/dataDisplay/AntdStatistic.react';
 import AntdCountdown from './components/dataDisplay/AntdCountdown.react';
+import AntdCountup from './components/dataDisplay/AntdCountup.react';
 import AntdTable from './components/dataDisplay/AntdTable.react';
 import AntdTabs from './components/dataDisplay/AntdTabs.react';
 import AntdTag from './components/dataDisplay/AntdTag.react';
@@ -201,6 +202,7 @@ export {
     AntdSpoiler,
     AntdStatistic,
     AntdCountdown,
+    AntdCountup,
     AntdTable,
     AntdTabs,
     AntdTag,
