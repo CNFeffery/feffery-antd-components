@@ -228,6 +228,12 @@ Keyword arguments:
     - type (a value equal to: 'primary', 'ghost', 'dashed', 'link', 'text', 'default'; optional):
         适用于`'button'`模式，同`AntdButton`中的同名参数.
 
+    - color (a value equal to: 'default', 'primary', 'danger', 'blue', 'purple', 'cyan', 'green', 'magenta', 'pink', 'red', 'orange', 'yellow', 'volcano', 'geekblue', 'lime', 'gold'; optional):
+        适用于`'button'`模式，同`AntdButton`中的同名参数.
+
+    - variant (a value equal to: 'outlined', 'dashed', 'solid', 'filled', 'text', 'link'; optional):
+        适用于`'button'`模式，同`AntdButton`中的同名参数.
+
     - danger (boolean; optional):
         适用于`'button'`模式，同`AntdButton`中的同名参数.
 

@@ -1404,6 +1404,8 @@ const AntdTable = (props) => {
                                                 <Button
                                                     size={'small'}
                                                     type={content_.type}
+                                                    color={content_.color}
+                                                    variant={content_.variant}
                                                     danger={content_.danger}
                                                     disabled={content_.disabled}
                                                     style={content_.style}
@@ -1459,7 +1461,9 @@ const AntdTable = (props) => {
                             <Button
                                 size={'small'}
                                 type={content.type}
+                                color={content.color}
                                 danger={content.danger}
+                                variant={content.variant}
                                 disabled={content.disabled}
                                 style={content.style}
                                 icon={
@@ -1510,6 +1514,8 @@ const AntdTable = (props) => {
                                                 }}
                                                 size={'small'}
                                                 type={content_.type}
+                                                color={content_.color}
+                                                variant={content_.variant}
                                                 danger={content_.danger}
                                                 disabled={content_.disabled}
                                                 href={content_.href}
@@ -1551,6 +1557,8 @@ const AntdTable = (props) => {
                             }}
                             size={'small'}
                             type={content.type}
+                            color={content.color}
+                            variant={content.variant}
                             danger={content.danger}
                             disabled={content.disabled}
                             href={content.href}

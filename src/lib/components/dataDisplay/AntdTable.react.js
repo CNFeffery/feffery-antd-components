@@ -367,20 +367,6 @@ AntdTable.propTypes = {
              * 默认值：`false`
              */
             filterResetToDefaultFilteredValue: PropTypes.bool
-            // // 防止状态更新报错占位用，无实际意义
-            // ellipsis: PropTypes.any,
-
-            // // 防止状态更新报错占位用，无实际意义
-            // sorter: PropTypes.any,
-
-            // // 防止状态更新报错占位用，无实际意义
-            // render: PropTypes.any,
-
-            // // 确保onCell属性类型检查通过，无实际意义
-            // onCell: PropTypes.any,
-
-            // // 备份title信息，无实际意义
-            // title_: PropTypes.any
         })
     ),
 
@@ -507,6 +493,14 @@ AntdTable.propTypes = {
                          * 适用于`'button'`模式，同`AntdButton`中的同名参数
                          */
                         type: PropTypes.oneOf(['primary', 'ghost', 'dashed', 'link', 'text', 'default']),
+                        /**
+                         * 适用于`'button'`模式，同`AntdButton`中的同名参数
+                         */
+                        color: PropTypes.oneOf(['default', 'primary', 'danger', 'blue', 'purple', 'cyan', 'green', 'magenta', 'pink', 'red', 'orange', 'yellow', 'volcano', 'geekblue', 'lime', 'gold']),
+                        /**
+                         * 适用于`'button'`模式，同`AntdButton`中的同名参数
+                         */
+                        variant: PropTypes.oneOf(['outlined', 'dashed', 'solid', 'filled', 'text', 'link']),
                         /**
                          * 适用于`'button'`模式，同`AntdButton`中的同名参数
                          */
