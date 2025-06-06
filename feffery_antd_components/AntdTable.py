@@ -252,6 +252,20 @@ Keyword arguments:
     - target (string; optional):
         适用于`'button'`模式，同`AntdButton`中的同名参数.
 
+    - popConfirmProps (dict; optional):
+        适用于`'button'`模式，用于为当前按钮配置气泡确认框相关参数，优先级更高.
+
+        `popConfirmProps` is a dict with keys:
+
+        - title (string; optional):
+            气泡确认框标题.
+
+        - okText (string; optional):
+            气泡确认框确认按钮文案.
+
+        - cancelText (string; optional):
+            气泡确认框取消按钮文案.
+
     - icon (string; optional):
         适用于`'button'`模式，按钮前缀图标类型，`iconRenderer`为`'AntdIcon'`时同`AntdIcon`同名参数，`iconRenderer`为`'fontawesome'`时为css类名.
 
@@ -1046,6 +1060,15 @@ Keyword arguments:
             "maxTagCount": NotRequired[typing.Union[NumberType, Literal["responsive"]]],
             "optionFilterProp": NotRequired[Literal["value", "label"]],
             "allowClear": NotRequired[bool]
+        }
+    )
+
+    DataPopConfirmProps = TypedDict(
+        "DataPopConfirmProps",
+            {
+            "title": NotRequired[str],
+            "okText": NotRequired[str],
+            "cancelText": NotRequired[str]
         }
     )
 

@@ -526,6 +526,23 @@ AntdTable.propTypes = {
                          */
                         target: PropTypes.string,
                         /**
+                         * 适用于`'button'`模式，用于为当前按钮配置气泡确认框相关参数，优先级更高
+                         */
+                        popConfirmProps: PropTypes.exact({
+                            /**
+                             * 气泡确认框标题
+                             */
+                            title: PropTypes.string,
+                            /**
+                             * 气泡确认框确认按钮文案
+                             */
+                            okText: PropTypes.string,
+                            /**
+                             * 气泡确认框取消按钮文案
+                             */
+                            cancelText: PropTypes.string
+                        }),
+                        /**
                          * 适用于`'button'`模式，按钮前缀图标类型，`iconRenderer`为`'AntdIcon'`时同`AntdIcon`同名参数，`iconRenderer`为`'fontawesome'`时为css类名
                          */
                         icon: PropTypes.string,

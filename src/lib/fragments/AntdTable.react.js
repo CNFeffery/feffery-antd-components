@@ -1368,135 +1368,77 @@ const AntdTable = (props) => {
             }
             // button模式
             else if (columns[i]['renderOptions']['renderType'] === 'button') {
-                // 当renderOptions参数的renderButtonPopConfirmProps参数存在
-                if (columns[i]['renderOptions']['renderButtonPopConfirmProps']) {
-                    columns[i]['render'] = (content, record) => {
-                        // 根据content是否为数组，来决定渲染单个按钮还是多个按钮
-                        return Array.isArray(content) ? (
-                            <Space split={columns[i]['renderOptions'].renderButtonSplit && <Divider type={"vertical"} />}>
-                                {
-                                    content.map(
-                                        (content_, idx) => (
-                                            <Popconfirm
-                                                key={idx}
-                                                title={columns[i]['renderOptions']['renderButtonPopConfirmProps'].title}
-                                                okText={columns[i]['renderOptions']['renderButtonPopConfirmProps'].okText}
-                                                cancelText={columns[i]['renderOptions']['renderButtonPopConfirmProps'].cancelText}
-                                                disabled={content_.disabled}
-                                                getPopupContainer={containerId ? () => (document.getElementById(containerId) ? document.getElementById(containerId) : document.body) : undefined}
-                                                onConfirm={(e) => {
-                                                    // 阻止事件冒泡
-                                                    e.stopPropagation();
-                                                    setProps({
-                                                        // 忽略组件型字段键值对
-                                                        recentlyButtonClickedRow: omitBy(record, value => value?.$$typeof),
-                                                        nClicksButton: nClicksButton + 1,
-                                                        clickedContent: content_.content,
-                                                        clickedCustom: content_.custom,
-                                                        recentlyButtonClickedDataIndex: columns[i].dataIndex
-                                                    })
-                                                }}
-                                                onCancel={(e) => {
-                                                    // 阻止事件冒泡
-                                                    e.stopPropagation();
-                                                }}>
-                                                <Button
-                                                    size={'small'}
-                                                    type={content_.type}
-                                                    color={content_.color}
-                                                    variant={content_.variant}
-                                                    danger={content_.danger}
+                // 根据参数配置生成按钮
+                columns[i]['render'] = (content, record) => {
+                    // 合并单按钮/多按钮渲染逻辑
+                    content = Array.isArray(content) ? content : [content];
+                    return (
+                        <Space split={columns[i]['renderOptions'].renderButtonSplit && <Divider type={"vertical"} />}>
+                            {
+                                content.map(
+                                    (content_, idx) => {
+                                        // 若当前按钮需要附带气泡确认框
+                                        if (columns[i]['renderOptions']['renderButtonPopConfirmProps'] || content_['popConfirmProps']) {
+                                            let popConfirmProps = columns[i]['renderOptions']['renderButtonPopConfirmProps'] || content_['popConfirmProps'];
+                                            return (
+                                                <Popconfirm
+                                                    key={idx}
+                                                    title={popConfirmProps.title}
+                                                    okText={popConfirmProps.okText}
+                                                    cancelText={popConfirmProps.cancelText}
                                                     disabled={content_.disabled}
-                                                    style={content_.style}
-                                                    icon={
-                                                        content_.icon && (
-                                                            content_.iconRenderer === 'fontawesome' ?
-                                                                (
-                                                                    React.createElement(
-                                                                        'i',
-                                                                        {
-                                                                            className: content_.icon
-                                                                        }
-                                                                    )
-                                                                ) :
-                                                                (
-                                                                    <AntdIcon icon={content_.icon} />
-                                                                )
-                                                        )
-                                                    }
-                                                    onClick={(e) => {
+                                                    getPopupContainer={containerId ? () => (document.getElementById(containerId) ? document.getElementById(containerId) : document.body) : undefined}
+                                                    onConfirm={(e) => {
+                                                        // 阻止事件冒泡
+                                                        e.stopPropagation();
+                                                        setProps({
+                                                            // 忽略组件型字段键值对
+                                                            recentlyButtonClickedRow: omitBy(record, value => value?.$$typeof),
+                                                            nClicksButton: nClicksButton + 1,
+                                                            clickedContent: content_.content,
+                                                            clickedCustom: content_.custom,
+                                                            recentlyButtonClickedDataIndex: columns[i].dataIndex
+                                                        })
+                                                    }}
+                                                    onCancel={(e) => {
                                                         // 阻止事件冒泡
                                                         e.stopPropagation();
                                                     }}>
-                                                    {content_.content}
-                                                </Button>
-                                            </Popconfirm>
-                                        )
-                                    )
-                                }
-                            </Space>
-                        ) : <Popconfirm
-                            title={columns[i]['renderOptions']['renderButtonPopConfirmProps'].title}
-                            okText={columns[i]['renderOptions']['renderButtonPopConfirmProps'].okText}
-                            cancelText={columns[i]['renderOptions']['renderButtonPopConfirmProps'].cancelText}
-                            disabled={content.disabled}
-                            getPopupContainer={containerId ? () => (document.getElementById(containerId) ? document.getElementById(containerId) : document.body) : undefined}
-                            onConfirm={(e) => {
-                                // 阻止事件冒泡
-                                e.stopPropagation();
-                                setProps({
-                                    // 忽略组件型字段键值对
-                                    recentlyButtonClickedRow: omitBy(record, value => value?.$$typeof),
-                                    nClicksButton: nClicksButton + 1,
-                                    clickedContent: content.content,
-                                    clickedCustom: content.custom,
-                                    recentlyButtonClickedDataIndex: columns[i].dataIndex
-                                })
-                            }}
-                            onCancel={(e) => {
-                                // 阻止事件冒泡
-                                e.stopPropagation();
-                            }}>
-                            <Button
-                                size={'small'}
-                                type={content.type}
-                                color={content.color}
-                                danger={content.danger}
-                                variant={content.variant}
-                                disabled={content.disabled}
-                                style={content.style}
-                                icon={
-                                    content.icon && (
-                                        content.iconRenderer === 'fonbtawesome' ?
-                                            (
-                                                React.createElement(
-                                                    'i',
-                                                    {
-                                                        className: content.icon
-                                                    }
-                                                )
-                                            ) :
-                                            (
-                                                <AntdIcon icon={content.icon} />
-                                            )
-                                    )
-                                }
-                                onClick={(e) => {
-                                    // 阻止事件冒泡
-                                    e.stopPropagation();
-                                }}>
-                                {content.content}
-                            </Button>
-                        </Popconfirm>
-                    }
-                } else {
-                    columns[i]['render'] = (content, record) => {
-                        // 根据content是否为数组，来决定渲染单个按钮还是多个按钮
-                        return Array.isArray(content) ? (
-                            <Space split={columns[i]['renderOptions'].renderButtonSplit && <Divider type={"vertical"} />}>
-                                {
-                                    content.map(
-                                        (content_, idx) => (
+                                                    <Button
+                                                        size={'small'}
+                                                        type={content_.type}
+                                                        color={content_.color}
+                                                        variant={content_.variant}
+                                                        danger={content_.danger}
+                                                        disabled={content_.disabled}
+                                                        style={content_.style}
+                                                        icon={
+                                                            content_.icon && (
+                                                                content_.iconRenderer === 'fontawesome' ?
+                                                                    (
+                                                                        React.createElement(
+                                                                            'i',
+                                                                            {
+                                                                                className: content_.icon
+                                                                            }
+                                                                        )
+                                                                    ) :
+                                                                    (
+                                                                        <AntdIcon icon={content_.icon} />
+                                                                    )
+                                                            )
+                                                        }
+                                                        onClick={(e) => {
+                                                            // 阻止事件冒泡
+                                                            e.stopPropagation();
+                                                        }}>
+                                                        {content_.content}
+                                                    </Button>
+                                                </Popconfirm>
+                                            );
+                                        }
+                                        // 否则仅渲染按钮
+                                        return (
                                             <Button
                                                 key={idx}
                                                 onClick={(e) => {
@@ -1538,50 +1480,12 @@ const AntdTable = (props) => {
                                                 }>
                                                 {content_.content}
                                             </Button>
-                                        )
-                                    )
-                                }</Space>
-                        ) : <Button
-                            onClick={(e) => {
-                                // 阻止事件冒泡
-                                e.stopPropagation();
-                                setProps({
-                                    // 忽略组件型字段键值对
-                                    recentlyButtonClickedRow: omitBy(record, value => value?.$$typeof),
-                                    nClicksButton: nClicksButton + 1,
-                                    clickedContent: content.content,
-                                    clickedCustom: content.custom,
-                                    recentlyButtonClickedDataIndex: columns[i].dataIndex
-                                })
-                            }}
-                            size={'small'}
-                            type={content.type}
-                            color={content.color}
-                            variant={content.variant}
-                            danger={content.danger}
-                            disabled={content.disabled}
-                            href={content.href}
-                            target={content.target}
-                            style={content.style}
-                            icon={
-                                content.icon && (
-                                    content.iconRenderer === 'fontawesome' ?
-                                        (
-                                            React.createElement(
-                                                'i',
-                                                {
-                                                    className: content.icon
-                                                }
-                                            )
-                                        ) :
-                                        (
-                                            <AntdIcon icon={content.icon} />
-                                        )
+                                        );
+                                    }
                                 )
-                            }>
-                            {content.content}
-                        </Button>
-                    }
+                            }
+                        </Space>
+                    );
                 }
             }
             // tags模式
