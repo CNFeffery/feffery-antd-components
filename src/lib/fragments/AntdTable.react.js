@@ -251,7 +251,6 @@ const AntdTable = (props) => {
                 currentData: currentData.currentDataSource
             })
         } else if (currentData.action === 'sort') {
-            // 当本次事件由排序操作引发时
             // 当sorter为数组时，即为多字段组合排序方式时
             if (Array.isArray(sorter)) {
                 setProps(

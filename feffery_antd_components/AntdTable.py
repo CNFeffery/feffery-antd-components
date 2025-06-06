@@ -175,6 +175,9 @@ Keyword arguments:
     - className (string; optional):
         当前字段css类名.
 
+    - defaultSortOrder (a value equal to: 'ascend', 'descend'; optional):
+        当前字段初始化时的默认排序状态，可选项有`'ascend'`、`'descend'`.
+
     - filterResetToDefaultFilteredValue (boolean; optional):
         若当前字段通过参数`defaultFilteredValues`设置了初始化默认选中的筛选值，用于设置是否在用户点击重置按钮后恢复默认选中筛选项
         默认值：`False`.
@@ -1021,6 +1024,7 @@ Keyword arguments:
             "minWidth": NotRequired[typing.Union[NumberType, str]],
             "hidden": NotRequired[bool],
             "className": NotRequired[str],
+            "defaultSortOrder": NotRequired[Literal["ascend", "descend"]],
             "filterResetToDefaultFilteredValue": NotRequired[bool]
         }
     )

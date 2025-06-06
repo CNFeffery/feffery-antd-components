@@ -363,6 +363,10 @@ AntdTable.propTypes = {
              */
             className: PropTypes.string,
             /**
+             * 当前字段初始化时的默认排序状态，可选项有`'ascend'`、`'descend'`
+             */
+            defaultSortOrder: PropTypes.oneOf(['ascend', 'descend']),
+            /**
              * 若当前字段通过参数`defaultFilteredValues`设置了初始化默认选中的筛选值，用于设置是否在用户点击重置按钮后恢复默认选中筛选项
              * 默认值：`false`
              */
