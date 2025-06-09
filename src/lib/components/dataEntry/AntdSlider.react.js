@@ -172,7 +172,25 @@ AntdSlider.propTypes = {
     /**
      * 是否以范围模式显示
      */
-    range: PropTypes.bool,
+    range: PropTypes.oneOfType([
+        PropTypes.bool,
+        PropTypes.shape({
+            /**
+             * 是否开启节点动态增减功能
+             * 默认值：`false`
+             */
+            editable: PropTypes.bool,
+            /**
+             * 开启节点动态增减功能后，允许的最小节点数量
+             * 默认值：`0`
+             */
+            minCount: PropTypes.number,
+            /**
+             * 开启节点动态增减功能后，允许的最大节点数量
+             */
+            maxCount: PropTypes.number
+        })
+    ]),
 
     /**
      * 必填，可滑动范围下限

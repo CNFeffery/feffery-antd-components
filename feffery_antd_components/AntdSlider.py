@@ -82,8 +82,19 @@ Keyword arguments:
 - vertical (boolean; default False):
     是否以垂直模式显示  默认值：`False`.
 
-- range (boolean; default False):
+- range (dict; default False):
     是否以范围模式显示.
+
+    `range` is a boolean | dict with keys:
+
+    - editable (boolean; optional):
+        是否开启节点动态增减功能  默认值：`False`.
+
+    - minCount (number; optional):
+        开启节点动态增减功能后，允许的最小节点数量  默认值：`0`.
+
+    - maxCount (number; optional):
+        开启节点动态增减功能后，允许的最大节点数量.
 
 - min (number; default 0):
     必填，可滑动范围下限.
@@ -171,6 +182,15 @@ Keyword arguments:
         }
     )
 
+    Range = TypedDict(
+        "Range",
+            {
+            "editable": NotRequired[bool],
+            "minCount": NotRequired[NumberType],
+            "maxCount": NotRequired[NumberType]
+        }
+    )
+
 
     def __init__(
         self,
@@ -183,7 +203,7 @@ Keyword arguments:
         name: typing.Optional[str] = None,
         enableBatchControl: typing.Optional[bool] = None,
         vertical: typing.Optional[bool] = None,
-        range: typing.Optional[bool] = None,
+        range: typing.Optional[typing.Union[bool, "Range"]] = None,
         min: typing.Optional[NumberType] = None,
         max: typing.Optional[NumberType] = None,
         step: typing.Optional[NumberType] = None,
