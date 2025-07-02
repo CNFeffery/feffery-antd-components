@@ -9,8 +9,6 @@ import { useLoading } from '../utils';
 // 自定义hooks
 import useCss from '../../hooks/useCss';
 
-const { Link } = Anchor;
-
 /**
  * 锚点组件AntdAnchor
  */
@@ -29,33 +27,6 @@ const AntdAnchor = ({
     setProps,
     ...others
 }) => {
-
-    const renderAnchorTree = (obj) => {
-        // 当anchorObj类型为对象时
-        if (obj.hasOwnProperty('href')) {
-            //当anchorObj具有children属性时
-            if (obj.hasOwnProperty('children')) {
-                obj = <Link
-                    href={obj.href}
-                    title={obj.title}
-                    target={obj.target}
-                >
-                    {renderAnchorTree(obj.children)}
-                </Link>
-            } else {
-                obj = <Link
-                    href={obj.href}
-                    title={obj.title}
-                    target={obj.target}
-                />
-            }
-        } else {
-            for (let i = 0; i < obj.length; i++) {
-                obj[i] = renderAnchorTree(obj[i])
-            }
-        }
-        return obj;
-    }
 
     // 监听锚点被点击情况
     const onClick = (e, link) => {
@@ -81,6 +52,7 @@ const AntdAnchor = ({
                     }
                     style={style}
                     key={key}
+                    items={linkDict}
                     onClick={onClick}
                     getContainer={
                         containerId ? (
@@ -93,9 +65,7 @@ const AntdAnchor = ({
                     targetOffset={targetOffset}
                     affix={affix}
                     bounds={bounds}
-                    offsetTop={offsetTop}>
-                    {renderAnchorTree(linkDict)}
-                </Anchor>
+                    offsetTop={offsetTop} />
             }
         </div>
     );
@@ -103,6 +73,10 @@ const AntdAnchor = ({
 
 // 定义递归PropTypes
 const PropLinkNodeShape = {
+    /**
+     * 节点唯一识别id
+     */
+    key: PropTypes.string,
     /**
      * 节点标题
      */
