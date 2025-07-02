@@ -26,6 +26,7 @@ const AntdAnchor = ({
     bounds = 5,
     offsetTop,
     replace = false,
+    currentAnchor,
     setProps,
     ...others
 }) => {
@@ -69,7 +70,10 @@ const AntdAnchor = ({
                     affix={affix}
                     bounds={bounds}
                     offsetTop={offsetTop}
-                    replace={replace} />
+                    replace={replace}
+                    getCurrentAnchor={
+                        currentAnchor ? () => currentAnchor : undefined
+                    } />
             }
         </div>
     );
@@ -174,6 +178,11 @@ AntdAnchor.propTypes = {
      * 默认值：`false`
      */
     replace: PropTypes.bool,
+
+    /**
+     * 强制指定当前处于高亮状态的锚点链接
+     */
+    currentAnchor: PropTypes.string,
 
     /**
      * 监听锚点节点点击事件
