@@ -25,6 +25,7 @@ const AntdAnchor = ({
     affix = true,
     bounds = 5,
     offsetTop,
+    replace = false,
     setProps,
     ...others
 }) => {
@@ -67,7 +68,8 @@ const AntdAnchor = ({
                     targetOffset={targetOffset}
                     affix={affix}
                     bounds={bounds}
-                    offsetTop={offsetTop} />
+                    offsetTop={offsetTop}
+                    replace={replace} />
             }
         </div>
     );
@@ -166,6 +168,12 @@ AntdAnchor.propTypes = {
      * 设置距离窗口顶部触发锚定效果的指定像素偏移量
      */
     offsetTop: PropTypes.number,
+
+    /**
+     * 设置为`true`后，浏览器后退或前进时，不会跳转到锚点地址
+     * 默认值：`false`
+     */
+    replace: PropTypes.bool,
 
     /**
      * 监听锚点节点点击事件

@@ -58,6 +58,9 @@ Keyword arguments:
 - offsetTop (number; optional):
     设置距离窗口顶部触发锚定效果的指定像素偏移量.
 
+- replace (boolean; default False):
+    设置为`True`后，浏览器后退或前进时，不会跳转到锚点地址  默认值：`False`.
+
 - clickedLink (dict; optional):
     监听锚点节点点击事件.
 
@@ -86,12 +89,13 @@ Keyword arguments:
         affix: typing.Optional[bool] = None,
         bounds: typing.Optional[NumberType] = None,
         offsetTop: typing.Optional[NumberType] = None,
+        replace: typing.Optional[bool] = None,
         clickedLink: typing.Optional[dict] = None,
         **kwargs
     ):
-        self._prop_names = ['id', 'key', 'style', 'className', 'linkDict', 'direction', 'align', 'containerId', 'targetOffset', 'affix', 'bounds', 'offsetTop', 'clickedLink', 'data-*', 'aria-*']
+        self._prop_names = ['id', 'key', 'style', 'className', 'linkDict', 'direction', 'align', 'containerId', 'targetOffset', 'affix', 'bounds', 'offsetTop', 'replace', 'clickedLink', 'data-*', 'aria-*']
         self._valid_wildcard_attributes =            ['data-', 'aria-']
-        self.available_properties = ['id', 'key', 'style', 'className', 'linkDict', 'direction', 'align', 'containerId', 'targetOffset', 'affix', 'bounds', 'offsetTop', 'clickedLink', 'data-*', 'aria-*']
+        self.available_properties = ['id', 'key', 'style', 'className', 'linkDict', 'direction', 'align', 'containerId', 'targetOffset', 'affix', 'bounds', 'offsetTop', 'replace', 'clickedLink', 'data-*', 'aria-*']
         self.available_wildcard_properties =            ['data-', 'aria-']
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()
