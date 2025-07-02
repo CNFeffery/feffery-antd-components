@@ -36,6 +36,10 @@ Keyword arguments:
 - linkDict (optional):
     目录层次数据结构.
 
+- direction (a value equal to: 'vertical', 'horizontal'; default 'vertical'):
+    导航方向，可选项有`'vertical'`、`'horizontal'`，其中`'horizontal'`方向下不支持子目录
+    默认值：`'vertical'`.
+
 - align (a value equal to: 'left', 'right'; default 'right'):
     锚点位置，可选项有`'left'`、`'right'`  默认值：`'right'`.
 
@@ -75,6 +79,7 @@ Keyword arguments:
         style: typing.Optional[typing.Any] = None,
         className: typing.Optional[typing.Union[str, dict]] = None,
         linkDict: typing.Optional[typing.Any] = None,
+        direction: typing.Optional[Literal["vertical", "horizontal"]] = None,
         align: typing.Optional[Literal["left", "right"]] = None,
         containerId: typing.Optional[str] = None,
         targetOffset: typing.Optional[NumberType] = None,
@@ -84,9 +89,9 @@ Keyword arguments:
         clickedLink: typing.Optional[dict] = None,
         **kwargs
     ):
-        self._prop_names = ['id', 'key', 'style', 'className', 'linkDict', 'align', 'containerId', 'targetOffset', 'affix', 'bounds', 'offsetTop', 'clickedLink', 'data-*', 'aria-*']
+        self._prop_names = ['id', 'key', 'style', 'className', 'linkDict', 'direction', 'align', 'containerId', 'targetOffset', 'affix', 'bounds', 'offsetTop', 'clickedLink', 'data-*', 'aria-*']
         self._valid_wildcard_attributes =            ['data-', 'aria-']
-        self.available_properties = ['id', 'key', 'style', 'className', 'linkDict', 'align', 'containerId', 'targetOffset', 'affix', 'bounds', 'offsetTop', 'clickedLink', 'data-*', 'aria-*']
+        self.available_properties = ['id', 'key', 'style', 'className', 'linkDict', 'direction', 'align', 'containerId', 'targetOffset', 'affix', 'bounds', 'offsetTop', 'clickedLink', 'data-*', 'aria-*']
         self.available_wildcard_properties =            ['data-', 'aria-']
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()

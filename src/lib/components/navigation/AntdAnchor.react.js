@@ -18,6 +18,7 @@ const AntdAnchor = ({
     style,
     key,
     linkDict,
+    direction = 'vertical',
     align = 'right',
     containerId,
     targetOffset,
@@ -53,6 +54,7 @@ const AntdAnchor = ({
                     style={style}
                     key={key}
                     items={linkDict}
+                    direction={direction}
                     onClick={onClick}
                     getContainer={
                         containerId ? (
@@ -125,6 +127,12 @@ AntdAnchor.propTypes = {
      * 目录层次数据结构
      */
     linkDict: linkDictPropTypes.isRequired,
+
+    /**
+     * 导航方向，可选项有`'vertical'`、`'horizontal'`，其中`'horizontal'`方向下不支持子目录
+     * 默认值：`'vertical'`
+     */
+    direction: PropTypes.oneOf(['vertical', 'horizontal']),
 
     /**
      * 锚点位置，可选项有`'left'`、`'right'`
