@@ -287,4 +287,6 @@ AntdSkeleton.propTypes = {
     setProps: PropTypes.func
 };
 
+AntdSkeleton.dashChildrenUpdate = true;
+
 export default AntdSkeleton;
