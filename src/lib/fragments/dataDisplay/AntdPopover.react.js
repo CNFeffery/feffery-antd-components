@@ -1,5 +1,5 @@
 // react核心
-import React, { useMemo } from 'react';
+import { useMemo } from 'react';
 // antd核心
 import { Popover } from 'antd';
 import AntdIcon from '../../components/general/AntdIcon.react';
