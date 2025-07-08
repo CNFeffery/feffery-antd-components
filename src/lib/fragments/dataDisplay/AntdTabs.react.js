@@ -191,7 +191,7 @@ const AntdTabs = (props) => {
                     inkBar: inkBarAnimated,
                     tabPane: tabPaneAnimated
                 }}
-                destroyInactiveTabPane={destroyInactiveTabPane}
+                destroyOnHidden={destroyInactiveTabPane}
                 hideAdd={true}
                 onChange={onChange}
                 onEdit={onEdit}
