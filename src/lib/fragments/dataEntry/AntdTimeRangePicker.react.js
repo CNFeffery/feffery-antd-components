@@ -191,9 +191,6 @@ const AntdTimeRangePicker = (props) => {
                     status={status}
                     renderExtraFooter={() => extraFooter}
                     needConfirm={needConfirm}
-                    persistence={persistence}
-                    persisted_props={persisted_props}
-                    persistence_type={persistence_type}
                     data-dash-is-loading={useLoading()}
                     prefix={prefix}
                     suffixIcon={suffixIcon}

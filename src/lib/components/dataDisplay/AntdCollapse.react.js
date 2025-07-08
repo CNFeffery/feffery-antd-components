@@ -87,9 +87,6 @@ const AntdCollapse = ({
                     })
                 }
             }}
-            persistence={persistence}
-            persisted_props={persisted_props}
-            persistence_type={persistence_type}
             data-dash-is-loading={useLoading()} />
     );
 }

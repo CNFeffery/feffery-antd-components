@@ -137,9 +137,6 @@ const AntdRadioGroup = (props) => {
                         context.componentSize :
                         size
                 }
-                persistence={persistence}
-                persisted_props={persisted_props}
-                persistence_type={persistence_type}
                 onChange={onSelect}
                 data-dash-is-loading={useLoading()}
             >
@@ -195,9 +192,6 @@ const AntdRadioGroup = (props) => {
                     context.componentSize :
                     size
             }
-            persistence={persistence}
-            persisted_props={persisted_props}
-            persistence_type={persistence_type}
             onChange={onSelect}
             data-dash-is-loading={useLoading()}
         />

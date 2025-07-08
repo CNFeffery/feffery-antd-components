@@ -402,9 +402,6 @@ const AntdMenu = ({
                     inlineCollapsed={inlineCollapsed}
                     inlineIndent={inlineIndent}
                     triggerSubMenuAction={triggerSubMenuAction}
-                    persistence={persistence}
-                    persisted_props={persisted_props}
-                    persistence_type={persistence_type}
                     data-dash-is-loading={useLoading()}
                 >
                     {_menuItems}
@@ -449,9 +446,6 @@ const AntdMenu = ({
                 inlineCollapsed={inlineCollapsed}
                 inlineIndent={inlineIndent}
                 triggerSubMenuAction={triggerSubMenuAction}
-                persistence={persistence}
-                persisted_props={persisted_props}
-                persistence_type={persistence_type}
                 data-dash-is-loading={useLoading()}
             >
                 {_menuItems}

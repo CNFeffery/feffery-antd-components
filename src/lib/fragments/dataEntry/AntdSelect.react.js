@@ -351,9 +351,6 @@ const AntdSelect = (props) => {
                 }
                 prefix={prefix}
                 suffixIcon={suffixIcon}
-                persistence={persistence}
-                persisted_props={persisted_props}
-                persistence_type={persistence_type}
                 data-dash-is-loading={component_loading}
                 getPopupContainer={
                     popupContainer === 'parent' ?

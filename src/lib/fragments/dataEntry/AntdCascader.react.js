@@ -208,9 +208,6 @@ const AntdCascader = (props) => {
                     placement={placement}
                     maxTagCount={maxTagCount}
                     multiple={multiple}
-                    persistence={persistence}
-                    persisted_props={persisted_props}
-                    persistence_type={persistence_type}
                     expandTrigger={expandTrigger}
                     status={status}
                     allowClear={isUndefined(readOnly) ? allowClear : !readOnly}
@@ -287,9 +284,6 @@ const AntdCascader = (props) => {
                 placement={placement}
                 maxTagCount={maxTagCount}
                 multiple={multiple}
-                persistence={persistence}
-                persisted_props={persisted_props}
-                persistence_type={persistence_type}
                 expandTrigger={expandTrigger}
                 status={status}
                 allowClear={isUndefined(readOnly) ? allowClear : !readOnly}

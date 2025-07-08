@@ -195,9 +195,6 @@ const AntdTabs = (props) => {
                 hideAdd={true}
                 onChange={onChange}
                 onEdit={onEdit}
-                persistence={persistence}
-                persisted_props={persisted_props}
-                persistence_type={persistence_type}
                 data-dash-is-loading={useLoading()} />
             {
                 // 子项为空时

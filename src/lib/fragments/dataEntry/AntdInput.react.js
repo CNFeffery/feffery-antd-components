@@ -256,9 +256,6 @@ const AntdInput = (props) => {
                 onPressEnter={onPressEnter}
                 onFocus={() => setProps({ focusing: true })}
                 onBlur={() => setProps({ focusing: false })}
-                persistence={persistence}
-                persisted_props={persisted_props}
-                persistence_type={persistence_type}
                 data-dash-is-loading={useLoading()} />
         );
     } else if (mode === 'search') {
@@ -319,9 +316,6 @@ const AntdInput = (props) => {
                 onPressEnter={onPressEnter}
                 onFocus={() => setProps({ focusing: true })}
                 onBlur={() => setProps({ focusing: false })}
-                persistence={persistence}
-                persisted_props={persisted_props}
-                persistence_type={persistence_type}
                 data-dash-is-loading={useLoading()} />
         );
     } else if (mode === 'text-area') {
@@ -389,9 +383,6 @@ const AntdInput = (props) => {
                 onPressEnter={onPressEnter}
                 onFocus={() => setProps({ focusing: true })}
                 onBlur={() => setProps({ focusing: false })}
-                persistence={persistence}
-                persisted_props={persisted_props}
-                persistence_type={persistence_type}
                 data-dash-is-loading={useLoading()} />
         );
     } else if (mode === 'password') {
@@ -449,9 +440,6 @@ const AntdInput = (props) => {
                 onPressEnter={onPressEnter}
                 onFocus={() => setProps({ focusing: true })}
                 onBlur={() => setProps({ focusing: false })}
-                persistence={persistence}
-                persisted_props={persisted_props}
-                persistence_type={persistence_type}
                 data-dash-is-loading={useLoading()} />
         );
     }

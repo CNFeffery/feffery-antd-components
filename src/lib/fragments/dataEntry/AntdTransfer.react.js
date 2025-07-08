@@ -167,9 +167,6 @@ const AntdTransfer = (props) => {
                         disabled
                 }
                 status={status}
-                persistence={persistence}
-                persisted_props={persisted_props}
-                persistence_type={persistence_type}
                 listStyle={{
                     overflowX: 'auto',
                     height: height,
