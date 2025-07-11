@@ -1373,7 +1373,7 @@ const AntdTable = (props) => {
                     // 合并单按钮/多按钮渲染逻辑
                     content = Array.isArray(content) ? content : [content];
                     return (
-                        <Space split={columns[i]['renderOptions'].renderButtonSplit && <Divider type={"vertical"} />}>
+                        <Space split={columns[i]['renderOptions'].renderButtonSplit && <Divider type={"vertical"} />} wrap={true}>
                             {
                                 content.map(
                                     (content_, idx) => {
