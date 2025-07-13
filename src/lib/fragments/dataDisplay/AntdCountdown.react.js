@@ -3,7 +3,7 @@ import { Statistic, Space, Tooltip } from 'antd';
 import { QuestionCircleOutlined } from "@ant-design/icons";
 // 辅助库
 import dayjs from 'dayjs';
-import { isString } from 'lodash';
+import { isString, isEqual } from 'lodash';
 import { pickBy } from 'ramda';
 import { useLoading } from '../../components/utils';
 // 自定义hooks
@@ -66,7 +66,19 @@ const AntdCountdown = (props) => {
     );
 }
 
-export default AntdCountdown;
+const preventUpdateProps = ['finishEvent'];
+
+export default React.memo(
+    AntdCountdown,
+    (prevProps, nextProps) => {
+        // 计算发生变化的参数名，并排除setProps属性
+        const changedProps = Object.keys(nextProps).filter(key => !isEqual(prevProps[key], nextProps[key]) && key !== 'setProps');
+
+        // changedProps中全部变化的prop都在preventUpdateProps中声明时
+        // 阻止本次重绘
+        return changedProps.every(propName => preventUpdateProps.includes(propName));
+    }
+);
 
 AntdCountdown.defaultProps = defaultProps;
 AntdCountdown.propTypes = propTypes;
