@@ -58,14 +58,6 @@ Keyword arguments:
 - valueStyle (dict; optional):
     数值内容css样式.
 
-- finishEvent (dict; optional):
-    监听倒计时结束事件.
-
-    `finishEvent` is a dict with keys:
-
-    - timestamp (number; optional):
-        事件时间戳.
-
 - data-* (string; optional):
     `data-*`格式属性通配.
 
@@ -75,12 +67,6 @@ Keyword arguments:
     _base_nodes = ['prefix', 'suffix', 'title', 'children']
     _namespace = 'feffery_antd_components'
     _type = 'AntdCountup'
-    FinishEvent = TypedDict(
-        "FinishEvent",
-            {
-            "timestamp": NotRequired[NumberType]
-        }
-    )
 
 
     def __init__(
@@ -97,12 +83,11 @@ Keyword arguments:
         title: typing.Optional[ComponentType] = None,
         titleTooltip: typing.Optional[str] = None,
         valueStyle: typing.Optional[dict] = None,
-        finishEvent: typing.Optional["FinishEvent"] = None,
         **kwargs
     ):
-        self._prop_names = ['id', 'key', 'style', 'className', 'format', 'value', 'valueFormat', 'prefix', 'suffix', 'title', 'titleTooltip', 'valueStyle', 'finishEvent', 'data-*', 'aria-*']
+        self._prop_names = ['id', 'key', 'style', 'className', 'format', 'value', 'valueFormat', 'prefix', 'suffix', 'title', 'titleTooltip', 'valueStyle', 'data-*', 'aria-*']
         self._valid_wildcard_attributes =            ['data-', 'aria-']
-        self.available_properties = ['id', 'key', 'style', 'className', 'format', 'value', 'valueFormat', 'prefix', 'suffix', 'title', 'titleTooltip', 'valueStyle', 'finishEvent', 'data-*', 'aria-*']
+        self.available_properties = ['id', 'key', 'style', 'className', 'format', 'value', 'valueFormat', 'prefix', 'suffix', 'title', 'titleTooltip', 'valueStyle', 'data-*', 'aria-*']
         self.available_wildcard_properties =            ['data-', 'aria-']
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()

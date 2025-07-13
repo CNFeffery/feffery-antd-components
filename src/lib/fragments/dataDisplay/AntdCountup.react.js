@@ -60,7 +60,6 @@ const AntdCountup = (props) => {
                 </Space>
                 : title}
             valueStyle={valueStyle}
-            onFinish={() => setProps({ finishEvent: { timestamp: Date.now() } })}
             data-dash-is-loading={useLoading()}
         />
     );
