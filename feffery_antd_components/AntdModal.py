@@ -160,17 +160,23 @@ Keyword arguments:
 
     `width` is a number | string | dict with keys:
 
-    - xs (number | string; optional)
+    - xs (number | string; optional):
+        对应页面宽度<576px的响应式断点.
 
-    - sm (number | string; optional)
+    - sm (number | string; optional):
+        对应页面宽度≥576px的响应式断点.
 
-    - md (number | string; optional)
+    - md (number | string; optional):
+        对应页面宽度≥768px的响应式断点.
 
-    - lg (number | string; optional)
+    - lg (number | string; optional):
+        对应页面宽度≥992px的响应式断点.
 
-    - xl (number | string; optional)
+    - xl (number | string; optional):
+        对应页面宽度≥1200px的响应式断点.
 
-    - xxl (number | string; optional)
+    - xxl (number | string; optional):
+        对应页面宽度≥1600px的响应式断点.
 
 - centered (boolean; default False):
     是否垂直居中显示对话框  默认值：`False`.

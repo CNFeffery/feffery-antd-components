@@ -343,26 +343,44 @@ AntdModal.propTypes = {
         PropTypes.string,
         // 响应式
         PropTypes.shape({
+            /**
+             * 对应页面宽度<576px的响应式断点
+             */
             xs: PropTypes.oneOfType([
                 PropTypes.number,
                 PropTypes.string
             ]),
+            /**
+             * 对应页面宽度≥576px的响应式断点
+             */
             sm: PropTypes.oneOfType([
                 PropTypes.number,
                 PropTypes.string
             ]),
+            /**
+             * 对应页面宽度≥768px的响应式断点
+             */
             md: PropTypes.oneOfType([
                 PropTypes.number,
                 PropTypes.string
             ]),
+            /**
+             * 对应页面宽度≥992px的响应式断点
+             */
             lg: PropTypes.oneOfType([
                 PropTypes.number,
                 PropTypes.string
             ]),
+            /**
+             * 对应页面宽度≥1200px的响应式断点
+             */
             xl: PropTypes.oneOfType([
                 PropTypes.number,
                 PropTypes.string
             ]),
+            /**
+             * 对应页面宽度≥1600px的响应式断点
+             */
             xxl: PropTypes.oneOfType([
                 PropTypes.number,
                 PropTypes.string
