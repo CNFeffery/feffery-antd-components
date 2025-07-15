@@ -95,7 +95,6 @@ const AntdDivider = ({
                 orientation={innerTextOrientation}
                 type={"vertical"}
                 plain={plain}
-                size={size}
                 data-dash-is-loading={useLoading()}
             >
                 {children}
