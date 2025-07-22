@@ -255,7 +255,7 @@ const AntdSelect = (props) => {
                 popupClassName={popupClassName}
                 key={key}
                 mode={mode}
-                allowClear={isUndefined(readOnly) ? allowClear : !readOnly}
+                allowClear={isUndefined(readOnly) || !readOnly ? allowClear : false}
                 autoFocus={autoFocus}
                 placeholder={placeholder}
                 size={
