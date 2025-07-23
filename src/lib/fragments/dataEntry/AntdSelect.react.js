@@ -1,5 +1,5 @@
 // react核心
-import React, { useEffect, useContext } from 'react';
+import { useEffect, useContext } from 'react';
 // antd核心
 import { Select, Spin, ConfigProvider } from 'antd';
 // 辅助库
