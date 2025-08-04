@@ -34,7 +34,7 @@ Keyword arguments:
     组件型，内嵌元素.
 
 - disabled (boolean; default False):
-    是否禁用当前组件 默认值：`False`."""
+    是否禁用当前特效  默认值：`False`."""
     _children_props = []
     _base_nodes = ['children']
     _namespace = 'feffery_antd_components'

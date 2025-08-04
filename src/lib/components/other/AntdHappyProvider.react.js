@@ -1,5 +1,4 @@
 // react核心
-import React from "react";
 import PropTypes from "prop-types";
 // antd核心
 import { HappyProvider } from "@ant-design/happy-work-theme";
@@ -9,7 +8,10 @@ import { useLoading } from "../utils";
 /**
  * 快乐工作特效组件AntdHappyProvider
  */
-const AntdHappyProvider = ({ id, children, disabled = false, setProps }) => {
+const AntdHappyProvider = ({
+  children,
+  disabled = false
+}) => {
   return (
     <HappyProvider disabled={disabled} data-dash-is-loading={useLoading()}>
       {children}
@@ -34,7 +36,7 @@ AntdHappyProvider.propTypes = {
   children: PropTypes.node,
 
   /**
-   * 是否禁用当前组件
+   * 是否禁用当前特效
    * 默认值：`false`
    */
   disabled: PropTypes.bool,

@@ -1,5 +1,4 @@
 // react核心
-import React from 'react';
 import PropTypes from 'prop-types';
 // antd核心
 import { ConfigProvider, theme } from 'antd';
