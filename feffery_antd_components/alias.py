@@ -104,6 +104,7 @@ from .AntdAffix import AntdAffix as Affix
 from .AntdBackTop import AntdBackTop as BackTop
 from .AntdConfigProvider import AntdConfigProvider as ConfigProvider
 from .AntdCopyText import AntdCopyText as CopyText
+from .AntdHappyProvider import AntdHappyProvider as HappyProvider
 from .AntdTour import AntdTour as Tour
 from .AntdWatermark import AntdWatermark as Watermark
 from .Fragment import Fragment
@@ -215,6 +216,7 @@ __all__ = [
     "BackTop",
     "ConfigProvider",
     "CopyText",
+    "HappyProvider",
     "Tour",
     "Watermark",
     "Fragment",
