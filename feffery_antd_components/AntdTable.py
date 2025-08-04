@@ -272,6 +272,18 @@ Keyword arguments:
     - iconRenderer (a value equal to: 'AntdIcon', 'fontawesome'; optional):
         适用于`'button'`模式，按钮前缀图标渲染方式，可选项有`'AntdIcon'`、`'fontawesome'`.
 
+    - tooltip (dict; optional):
+        适用于`'button'`模式，为当前按钮添加额外的文字提示功能.
+
+        `tooltip` is a dict with keys:
+
+        - title (string; optional):
+            文字提示内容.
+
+        - placement (a value equal to: 'top', 'left', 'right', 'bottom', 'topLeft', 'topRight', 'bottomLeft', 'bottomRight'; optional):
+            文字提示弹出方向，可选项有`'top'`、`'left'`、`'right'`、`'bottom'`、`'topLeft'`、`'topRight'`、`'bottomLeft'`、`'bottomRight'`、`'leftTop'`、`'leftBottom'`、`'rightTop'`、`'rightBottom'`
+            默认值：`'top'`.
+
     - custom (boolean | number | string | dict | list; optional):
         适用于`'button'`模式，额外补充信息. | list of dicts with keys:
 
@@ -1069,6 +1081,14 @@ Keyword arguments:
             "title": NotRequired[str],
             "okText": NotRequired[str],
             "cancelText": NotRequired[str]
+        }
+    )
+
+    DataTooltip = TypedDict(
+        "DataTooltip",
+            {
+            "title": NotRequired[str],
+            "placement": NotRequired[Literal["top", "left", "right", "bottom", "topLeft", "topRight", "bottomLeft", "bottomRight"]]
         }
     )
 

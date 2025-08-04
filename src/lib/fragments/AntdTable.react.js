@@ -26,7 +26,8 @@ import {
     Avatar,
     message,
     Select,
-    Divider
+    Divider,
+    Tooltip
 } from 'antd';
 import {
     TinyLine,
@@ -1380,6 +1381,38 @@ const AntdTable = (props) => {
                                         // 若当前按钮需要附带气泡确认框
                                         if (columns[i]['renderOptions']['renderButtonPopConfirmProps'] || content_['popConfirmProps']) {
                                             let popConfirmProps = columns[i]['renderOptions']['renderButtonPopConfirmProps'] || content_['popConfirmProps'];
+                                            let buttonElement = (
+                                                <Button
+                                                    size={'small'}
+                                                    type={content_.type}
+                                                    color={content_.color}
+                                                    variant={content_.variant}
+                                                    danger={content_.danger}
+                                                    disabled={content_.disabled}
+                                                    style={content_.style}
+                                                    icon={
+                                                        content_.icon && (
+                                                            content_.iconRenderer === 'fontawesome' ?
+                                                                (
+                                                                    React.createElement(
+                                                                        'i',
+                                                                        {
+                                                                            className: content_.icon
+                                                                        }
+                                                                    )
+                                                                ) :
+                                                                (
+                                                                    <AntdIcon icon={content_.icon} />
+                                                                )
+                                                        )
+                                                    }
+                                                    onClick={(e) => {
+                                                        // 阻止事件冒泡
+                                                        e.stopPropagation();
+                                                    }}>
+                                                    {content_.content}
+                                                </Button>
+                                            );
                                             return (
                                                 <Popconfirm
                                                     key={idx}
@@ -1404,41 +1437,21 @@ const AntdTable = (props) => {
                                                         // 阻止事件冒泡
                                                         e.stopPropagation();
                                                     }}>
-                                                    <Button
-                                                        size={'small'}
-                                                        type={content_.type}
-                                                        color={content_.color}
-                                                        variant={content_.variant}
-                                                        danger={content_.danger}
-                                                        disabled={content_.disabled}
-                                                        style={content_.style}
-                                                        icon={
-                                                            content_.icon && (
-                                                                content_.iconRenderer === 'fontawesome' ?
-                                                                    (
-                                                                        React.createElement(
-                                                                            'i',
-                                                                            {
-                                                                                className: content_.icon
-                                                                            }
-                                                                        )
-                                                                    ) :
-                                                                    (
-                                                                        <AntdIcon icon={content_.icon} />
-                                                                    )
+                                                    {
+                                                        content_.tooltip ?
+                                                            (
+                                                                <Tooltip title={content_.tooltip?.title} placement={content_.tooltip?.placement}>
+                                                                    {buttonElement}
+                                                                </Tooltip>
+                                                            ) :
+                                                            (
+                                                                buttonElement
                                                             )
-                                                        }
-                                                        onClick={(e) => {
-                                                            // 阻止事件冒泡
-                                                            e.stopPropagation();
-                                                        }}>
-                                                        {content_.content}
-                                                    </Button>
+                                                    }
                                                 </Popconfirm>
                                             );
                                         }
-                                        // 否则仅渲染按钮
-                                        return (
+                                        let buttonElement = (
                                             <Button
                                                 key={idx}
                                                 onClick={(e) => {
@@ -1480,6 +1493,18 @@ const AntdTable = (props) => {
                                                 }>
                                                 {content_.content}
                                             </Button>
+                                        );
+                                        // 否则仅渲染按钮
+                                        return (
+                                            content_.tooltip ?
+                                                (
+                                                    <Tooltip title={content_.tooltip?.title} placement={content_.tooltip?.placement}>
+                                                        {buttonElement}
+                                                    </Tooltip>
+                                                ) :
+                                                (
+                                                    buttonElement
+                                                )
                                         );
                                     }
                                 )
