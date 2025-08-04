@@ -104,6 +104,7 @@ from .AntdAffix import AntdAffix
 from .AntdBackTop import AntdBackTop
 from .AntdConfigProvider import AntdConfigProvider
 from .AntdCopyText import AntdCopyText
+from .AntdHappyProvider import AntdHappyProvider
 from .AntdTour import AntdTour
 from .AntdWatermark import AntdWatermark
 from .Fragment import Fragment
@@ -215,6 +216,7 @@ __all__ = [
     "AntdBackTop",
     "AntdConfigProvider",
     "AntdCopyText",
+    "AntdHappyProvider",
     "AntdTour",
     "AntdWatermark",
     "Fragment"

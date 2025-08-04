@@ -112,6 +112,7 @@ import AntdCopyText from './components/other/AntdCopyText.react';
 import AntdTour from './components/other/AntdTour.react';
 import AntdWatermark from './components/other/AntdWatermark.react';
 import AntdConfigProvider from './components/other/AntdConfigProvider.react';
+import AntdHappyProvider from './components/other/AntdHappyProvider.react';
 import Fragment from './components/other/Fragment.react';
 // 表单生成
 // import AntdFormRender from './components/formRender/AntdFormRender.react';
@@ -233,6 +234,7 @@ export {
     AntdTour,
     AntdWatermark,
     AntdConfigProvider,
+    AntdHappyProvider,
     Fragment,
     // 表单生成
     // AntdFormRender
