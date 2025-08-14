@@ -196,6 +196,9 @@ Keyword arguments:
 - okClickClose (boolean; default True):
     是否点击确认按钮触发对话框关闭  默认值：`True`.
 
+- preventClose (boolean; default False):
+    是否阻止通过点击关闭图标、点击遮罩层区域、点击取消、按下ESC等方式自动触发的对话框关闭行为  默认值：`False`.
+
 - zIndex (number; default 1000):
     模态框z-index  默认值：`1000`.
 
@@ -326,6 +329,7 @@ Keyword arguments:
         mask: typing.Optional[bool] = None,
         maskClosable: typing.Optional[bool] = None,
         okClickClose: typing.Optional[bool] = None,
+        preventClose: typing.Optional[bool] = None,
         zIndex: typing.Optional[NumberType] = None,
         okCounts: typing.Optional[NumberType] = None,
         cancelCounts: typing.Optional[NumberType] = None,
@@ -339,9 +343,9 @@ Keyword arguments:
         loading: typing.Optional[bool] = None,
         **kwargs
     ):
-        self._prop_names = ['id', 'key', 'children', 'style', 'className', 'styles', 'classNames', 'locale', 'visible', 'title', 'renderFooter', 'okText', 'okButtonProps', 'cancelText', 'cancelButtonProps', 'width', 'centered', 'keyboard', 'closable', 'mask', 'maskClosable', 'okClickClose', 'zIndex', 'okCounts', 'cancelCounts', 'closeCounts', 'confirmAutoSpin', 'loadingOkText', 'confirmLoading', 'transitionType', 'forceRender', 'destroyOnClose', 'loading', 'data-*', 'aria-*']
+        self._prop_names = ['id', 'key', 'children', 'style', 'className', 'styles', 'classNames', 'locale', 'visible', 'title', 'renderFooter', 'okText', 'okButtonProps', 'cancelText', 'cancelButtonProps', 'width', 'centered', 'keyboard', 'closable', 'mask', 'maskClosable', 'okClickClose', 'preventClose', 'zIndex', 'okCounts', 'cancelCounts', 'closeCounts', 'confirmAutoSpin', 'loadingOkText', 'confirmLoading', 'transitionType', 'forceRender', 'destroyOnClose', 'loading', 'data-*', 'aria-*']
         self._valid_wildcard_attributes =            ['data-', 'aria-']
-        self.available_properties = ['id', 'key', 'children', 'style', 'className', 'styles', 'classNames', 'locale', 'visible', 'title', 'renderFooter', 'okText', 'okButtonProps', 'cancelText', 'cancelButtonProps', 'width', 'centered', 'keyboard', 'closable', 'mask', 'maskClosable', 'okClickClose', 'zIndex', 'okCounts', 'cancelCounts', 'closeCounts', 'confirmAutoSpin', 'loadingOkText', 'confirmLoading', 'transitionType', 'forceRender', 'destroyOnClose', 'loading', 'data-*', 'aria-*']
+        self.available_properties = ['id', 'key', 'children', 'style', 'className', 'styles', 'classNames', 'locale', 'visible', 'title', 'renderFooter', 'okText', 'okButtonProps', 'cancelText', 'cancelButtonProps', 'width', 'centered', 'keyboard', 'closable', 'mask', 'maskClosable', 'okClickClose', 'preventClose', 'zIndex', 'okCounts', 'cancelCounts', 'closeCounts', 'confirmAutoSpin', 'loadingOkText', 'confirmLoading', 'transitionType', 'forceRender', 'destroyOnClose', 'loading', 'data-*', 'aria-*']
         self.available_wildcard_properties =            ['data-', 'aria-']
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()

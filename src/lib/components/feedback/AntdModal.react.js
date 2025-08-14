@@ -41,6 +41,7 @@ const AntdModal = ({
     mask = true,
     maskClosable = true,
     okClickClose = true,
+    preventClose = false,
     zIndex = 1000,
     okCounts = 0,
     cancelCounts = 0,
@@ -70,14 +71,18 @@ const AntdModal = ({
 
     // 监听取消按钮点击事件
     const listenCancel = () => {
-        setProps({ visible: false, cancelCounts: cancelCounts + 1 })
+        // 是否阻止默认的各类关闭触发行为生效
+        if (preventClose) {
+            setProps({ cancelCounts: cancelCounts + 1 })
+        } else {
+            setProps({ visible: false, cancelCounts: cancelCounts + 1 })
+        }
     };
 
     // 监听关闭按钮点击事件
     const listenClose = () => {
         setProps({ closeCounts: closeCounts + 1 })
     };
-
 
     return (
         <ConfigProvider locale={str2Locale.get(locale)}>
@@ -423,6 +428,12 @@ AntdModal.propTypes = {
      * 默认值：`true`
      */
     okClickClose: PropTypes.bool,
+
+    /**
+     * 是否阻止通过点击关闭图标、点击遮罩层区域、点击取消、按下ESC等方式自动触发的对话框关闭行为
+     * 默认值：`false`
+     */
+    preventClose: PropTypes.bool,
 
     /**
      * 模态框z-index
