@@ -114,7 +114,7 @@ const AntdModal = ({
                 footer={renderFooter ? undefined : null}
                 confirmLoading={confirmLoading}
                 forceRender={forceRender}
-                destroyOnClose={destroyOnClose}
+                destroyOnHidden={destroyOnClose}
                 loading={loading}
                 data-dash-is-loading={useLoading()}
             >{children}</Modal>
