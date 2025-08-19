@@ -98,6 +98,9 @@ Keyword arguments:
             当`renderType`为`'mini-progress'`时，设置进度条是否附带进度数值信息
             默认值：`False`.
 
+        - progressPercentPrecision (number; optional):
+            当`renderType`为`'mini-progress'`时，设置进度条附带进度数值信息的小数位数，默认保持原始数值的精度.
+
         - progressPercentPosition (dict; optional):
             当`renderType`为`'mini-progress'`时，设置进度条附带进度数值信息显示的位置.
 
@@ -1061,6 +1064,7 @@ Keyword arguments:
             "tooltipCustomContent": NotRequired[str],
             "progressOneHundredPercentColor": NotRequired[str],
             "progressShowPercent": NotRequired[bool],
+            "progressPercentPrecision": NotRequired[NumberType],
             "progressPercentPosition": NotRequired["ColumnsRenderOptionsProgressPercentPosition"],
             "progressStrokeLinecap": NotRequired[Literal["square", "round"]],
             "progressSize": NotRequired[NumberType],

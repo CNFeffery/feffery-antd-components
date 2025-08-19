@@ -44,7 +44,7 @@ import {
 } from '@ant-design/icons';
 // 辅助库
 import Highlighter from 'react-highlight-words';
-import { isNumber, isEqual, isString, isBoolean, isEmpty, omitBy } from 'lodash';
+import { isNumber, isEqual, isString, isBoolean, isEmpty, omitBy, isUndefined } from 'lodash';
 import { pickBy } from 'ramda';
 import { str2Locale, locale2text } from '../components/locales.react';
 import { useLoading } from '../components/utils';
@@ -1601,10 +1601,17 @@ const AntdTable = (props) => {
             // mini-progress模式
             else if (columns[i]['renderOptions']['renderType'] === 'mini-progress') {
                 columns[i]['render'] = data => {
-                    console.log(columns[i]['renderOptions']['progressOneHundredPercentColor'])
                     return (
                         <div style={{ height: miniChartHeight, alignItems: 'center', display: 'flex' }}>
-                            <Progress percent={(data * 100).toFixed(2)}
+                            <Progress percent={(data * 100)}
+                                format={
+                                    (percent) => {
+                                        if (isUndefined(columns[i]['renderOptions']['progressPercentPrecision'])) {
+                                            return percent + '%';
+                                        }
+                                        return percent.toFixed(columns[i]['renderOptions']['progressPercentPrecision']) + '%';
+                                    }
+                                }
                                 strokeColor={
                                     data * 100 === 100 ?
                                         columns[i]['renderOptions']['progressOneHundredPercentColor'] :

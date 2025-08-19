@@ -57,6 +57,16 @@ app.layout = html.Div(
                                 },
                             },
                         },
+                        {
+                            'title': 'mini-progress示例6',
+                            'dataIndex': 'mini-progress示例6',
+                            'renderOptions': {
+                                'renderType': 'mini-progress',
+                                'progressShowPercent': True,
+                                'progressStrokeLinecap': 'round',
+                                'progressPercentPrecision': 2,
+                            },
+                        },
                     ],
                     data=[
                         {
@@ -65,6 +75,8 @@ app.layout = html.Div(
                             'mini-progress示例3': x,
                             'mini-progress示例4': x,
                             'mini-progress示例5': x,
+                            'mini-progress示例6': x
+                            + 0.00123456,
                         }
                         for x in [0, 0.66, 1]
                     ],
