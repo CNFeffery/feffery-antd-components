@@ -92,8 +92,42 @@ Keyword arguments:
             当`renderType`为`'mini-line'`、`'mini-area'`、`'mini-bar'`时，设置用于渲染信息卡片的`javascript`函数字符串.
 
         - progressOneHundredPercentColor (string; optional):
-            当`renderType`为`'mini-progress'`、`'mini-ring-progress'`时，设置进度完成状态下的填充色
-            默认值：`'#52c41a'`.
+            当`renderType`为`'mini-progress'`、`'mini-ring-progress'`时，设置进度完成状态下的填充色.
+
+        - progressShowPercent (boolean; optional):
+            当`renderType`为`'mini-progress'`时，设置进度条是否附带进度数值信息
+            默认值：`False`.
+
+        - progressPercentPosition (dict; optional):
+            当`renderType`为`'mini-progress'`时，设置进度条附带进度数值信息显示的位置.
+
+            `progressPercentPosition` is a dict with keys:
+
+            - align (a value equal to: 'start', 'center', 'end'; optional):
+                对齐方式，可选项有`'start'`、`'center'`、`'end'`.
+
+            - type (a value equal to: 'inner', 'outer'; optional):
+                内外位置，可选项有`'inner'`、`'outer'`.
+
+        - progressStrokeLinecap (a value equal to: 'square', 'round'; optional):
+            当`renderType`为`'mini-progress'`时，设置进度条形状类型，可选项有`'square'`、`'round'`
+            默认值：`'square'`.
+
+        - progressSize (number; optional):
+            当`renderType`为`'mini-progress'`时，设置进度条像素尺寸.
+
+        - progressColor (dict; optional):
+            当`renderType`为`'mini-progress'`时，设置进度条主体部分颜色，支持通过字段`'from'`、`'to'`配置渐变色.
+
+            `progressColor` is a string
+
+          Or dict with keys:
+
+    - from (string; optional):
+        渐变色起始颜色.
+
+    - to (string; optional):
+        渐变色结束颜色.
 
         - ringProgressFontSize (number; optional):
             当`renderType='mini-ring-progress'`时，设置进度数值像素大小.
@@ -988,6 +1022,22 @@ Keyword arguments:
         }
     )
 
+    ColumnsRenderOptionsProgressPercentPosition = TypedDict(
+        "ColumnsRenderOptionsProgressPercentPosition",
+            {
+            "align": NotRequired[Literal["start", "center", "end"]],
+            "type": NotRequired[Literal["inner", "outer"]]
+        }
+    )
+
+    ColumnsRenderOptionsProgressColor = TypedDict(
+        "ColumnsRenderOptionsProgressColor",
+            {
+            "from": NotRequired[str],
+            "to": NotRequired[str]
+        }
+    )
+
     ColumnsRenderOptionsDropdownProps = TypedDict(
         "ColumnsRenderOptionsDropdownProps",
             {
@@ -1010,6 +1060,11 @@ Keyword arguments:
             "miniChartColor": NotRequired[str],
             "tooltipCustomContent": NotRequired[str],
             "progressOneHundredPercentColor": NotRequired[str],
+            "progressShowPercent": NotRequired[bool],
+            "progressPercentPosition": NotRequired["ColumnsRenderOptionsProgressPercentPosition"],
+            "progressStrokeLinecap": NotRequired[Literal["square", "round"]],
+            "progressSize": NotRequired[NumberType],
+            "progressColor": NotRequired[typing.Union[str, "ColumnsRenderOptionsProgressColor"]],
             "ringProgressFontSize": NotRequired[NumberType],
             "dropdownProps": NotRequired["ColumnsRenderOptionsDropdownProps"]
         }

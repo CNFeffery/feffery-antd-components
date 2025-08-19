@@ -27,13 +27,13 @@ import {
     message,
     Select,
     Divider,
-    Tooltip
+    Tooltip,
+    Progress
 } from 'antd';
 import {
     TinyLine,
     TinyArea,
     TinyColumn,
-    Progress,
     RingProgress
 } from '@ant-design/plots';
 import AntdIcon from '../components/general/AntdIcon.react';
@@ -1601,19 +1601,28 @@ const AntdTable = (props) => {
             // mini-progress模式
             else if (columns[i]['renderOptions']['renderType'] === 'mini-progress') {
                 columns[i]['render'] = data => {
-                    let config = {
-                        autoFit: true,
-                        padding: 0,
-                        percent: data,
-                        animation: miniChartAnimation,
-                        color: [
-                            data === 1 ?
-                                (columns[i]['renderOptions']['progressOneHundredPercentColor'] || '#52c41a') :
-                                '#5B8FF9',
-                            '#E8EDF3'
-                        ]
-                    };
-                    return <div style={{ height: miniChartHeight }}><Progress {...config} /></div>;
+                    console.log(columns[i]['renderOptions']['progressOneHundredPercentColor'])
+                    return (
+                        <div style={{ height: miniChartHeight, alignItems: 'center', display: 'flex' }}>
+                            <Progress percent={data * 100}
+                                strokeColor={
+                                    data * 100 === 100 ?
+                                        columns[i]['renderOptions']['progressOneHundredPercentColor'] :
+                                        columns[i]['renderOptions']['progressColor']
+                                }
+                                trailColor={'#E8EDF3'}
+                                status={data * 100 >= 100 ? undefined : 'normal'}
+                                showInfo={Boolean(columns[i]['renderOptions']['progressShowPercent'])}
+                                strokeLinecap={columns[i]['renderOptions']['progressStrokeLinecap'] || 'square'}
+                                size={
+                                    columns[i]['renderOptions']['progressSize'] ?
+                                        ['100%', columns[i]['renderOptions']['progressSize']] :
+                                        ['100%', 15]
+                                }
+                                percentPosition={columns[i]['renderOptions']['progressPercentPosition']}
+                            />
+                        </div>
+                    );
                 }
             }
             // mini-ring-progress模式
