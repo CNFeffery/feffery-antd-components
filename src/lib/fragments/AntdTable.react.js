@@ -1604,7 +1604,7 @@ const AntdTable = (props) => {
                     console.log(columns[i]['renderOptions']['progressOneHundredPercentColor'])
                     return (
                         <div style={{ height: miniChartHeight, alignItems: 'center', display: 'flex' }}>
-                            <Progress percent={data * 100}
+                            <Progress percent={(data * 100).toFixed(2)}
                                 strokeColor={
                                     data * 100 === 100 ?
                                         columns[i]['renderOptions']['progressOneHundredPercentColor'] :
