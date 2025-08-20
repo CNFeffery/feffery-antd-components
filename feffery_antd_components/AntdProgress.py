@@ -110,13 +110,13 @@ Keyword arguments:
 - strokeColor (dict; optional):
     配置进度条颜色，支持渐变色.
 
-    `strokeColor` is a string | dict with keys:
+    `strokeColor` is a string | list of strings | dict with keys:
 
     - from (string; optional):
         渐变色开端颜色.
 
     - to (string; optional):
-        渐变色末端颜色.
+        渐变色末端颜色. | dict with strings as keys and values of type string
 
 - strokeLinecap (a value equal to: 'round', 'butt', 'square'; optional):
     进度条线型，可选项有`'round'`、`'butt'`、`'square'`  默认值：`'round'`.
@@ -226,7 +226,7 @@ Keyword arguments:
         status: typing.Optional[Literal["success", "exception", "normal", "active"]] = None,
         showInfo: typing.Optional[bool] = None,
         percentPosition: typing.Optional["PercentPosition"] = None,
-        strokeColor: typing.Optional[typing.Union[str, "StrokeColor"]] = None,
+        strokeColor: typing.Optional[typing.Union[str, typing.Sequence[str], "StrokeColor", typing.Dict[typing.Union[str, float, int], str]]] = None,
         strokeLinecap: typing.Optional[Literal["round", "butt", "square"]] = None,
         strokeWidth: typing.Optional[NumberType] = None,
         trailColor: typing.Optional[str] = None,

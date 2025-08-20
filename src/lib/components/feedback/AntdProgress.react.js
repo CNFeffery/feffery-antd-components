@@ -222,17 +222,18 @@ AntdProgress.propTypes = {
      */
     strokeColor: PropTypes.oneOfType([
         PropTypes.string,
+        PropTypes.arrayOf(PropTypes.string),
         PropTypes.exact({
             /**
              * 渐变色开端颜色
              */
             from: PropTypes.string,
-
             /**
              * 渐变色末端颜色
              */
             to: PropTypes.string
-        })
+        }),
+        PropTypes.objectOf(PropTypes.string)
     ]),
 
     /**
