@@ -264,9 +264,21 @@ AntdProgress.propTypes = {
     gapPosition: PropTypes.oneOf(['top', 'bottom', 'left', 'right']),
 
     /**
-     * 进度条分段数量
+     * 配置进度条分段数量，针对`'circle'`、`'dashboard'`型进度条支持传入字典型进行更详细的配置
      */
-    steps: PropTypes.number,
+    steps: PropTypes.oneOfType([
+        PropTypes.number,
+        PropTypes.shape({
+            /**
+             * 分段数量
+             */
+            count: PropTypes.number,
+            /**
+             * 分段间隔像素大小
+             */
+            gap: PropTypes.number
+        })
+    ]),
 
     /**
      * `data-*`格式属性通配

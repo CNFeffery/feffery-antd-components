@@ -134,8 +134,16 @@ Keyword arguments:
     仪表盘缺口方向，可选项有`'top'`、`'bottom'`、`'left'`、`'right'`，仅`type='dashboard'`时可用
     默认值：`'bottom'`.
 
-- steps (number; optional):
-    进度条分段数量.
+- steps (dict; optional):
+    配置进度条分段数量，针对`'circle'`、`'dashboard'`型进度条支持传入字典型进行更详细的配置.
+
+    `steps` is a number | dict with keys:
+
+    - count (number; optional):
+        分段数量.
+
+    - gap (number; optional):
+        分段间隔像素大小.
 
 - data-* (string; optional):
     `data-*`格式属性通配.
@@ -195,6 +203,14 @@ Keyword arguments:
         }
     )
 
+    Steps = TypedDict(
+        "Steps",
+            {
+            "count": NotRequired[NumberType],
+            "gap": NotRequired[NumberType]
+        }
+    )
+
 
     def __init__(
         self,
@@ -216,7 +232,7 @@ Keyword arguments:
         trailColor: typing.Optional[str] = None,
         gapDegree: typing.Optional[NumberType] = None,
         gapPosition: typing.Optional[Literal["top", "bottom", "left", "right"]] = None,
-        steps: typing.Optional[NumberType] = None,
+        steps: typing.Optional[typing.Union[NumberType, "Steps"]] = None,
         **kwargs
     ):
         self._prop_names = ['id', 'key', 'style', 'className', 'type', 'size', 'percent', 'success', 'format', 'status', 'showInfo', 'percentPosition', 'strokeColor', 'strokeLinecap', 'strokeWidth', 'trailColor', 'gapDegree', 'gapPosition', 'steps', 'data-*', 'aria-*']
