@@ -118,7 +118,12 @@ AntdProgress.propTypes = {
      */
     size: PropTypes.oneOfType([
         PropTypes.number,
-        PropTypes.arrayOf(PropTypes.number),
+        PropTypes.arrayOf(
+            PropTypes.oneOfType([
+                PropTypes.number,
+                PropTypes.string
+            ])
+        ),
         PropTypes.oneOf(['small', 'default']),
         PropTypes.shape({
             /**

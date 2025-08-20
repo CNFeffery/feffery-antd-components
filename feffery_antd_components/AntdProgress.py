@@ -40,8 +40,8 @@ Keyword arguments:
     进度条尺寸规格，可选项有`'small'`、`'default'`、`'large'`，传入数值型表示像素尺寸，传入字典型可分别控制宽度和高度
     默认值：`'default'`.
 
-    `size` is a number | list of numbers | a value equal to: 'small',
-    'default' | dict with keys:
+    `size` is a number | list of number | strings | a value equal to:
+    'small', 'default' | dict with keys:
 
     - width (number; optional):
         像素宽度.
@@ -203,7 +203,7 @@ Keyword arguments:
         style: typing.Optional[typing.Any] = None,
         className: typing.Optional[typing.Union[str, dict]] = None,
         type: typing.Optional[Literal["line", "circle", "dashboard"]] = None,
-        size: typing.Optional[typing.Union[NumberType, typing.Sequence[NumberType], Literal["small", "default"], "Size"]] = None,
+        size: typing.Optional[typing.Union[NumberType, typing.Sequence[typing.Union[NumberType, str]], Literal["small", "default"], "Size"]] = None,
         percent: typing.Optional[NumberType] = None,
         success: typing.Optional["Success"] = None,
         format: typing.Optional["Format"] = None,
