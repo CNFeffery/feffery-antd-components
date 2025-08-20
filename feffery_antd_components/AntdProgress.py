@@ -96,6 +96,17 @@ Keyword arguments:
 - showInfo (boolean; default True):
     是否显示进度数值或状态图标  默认值：`True`.
 
+- percentPosition (dict; optional):
+    适用于`'line'`型进度条，配置进度条附带进度数值信息显示位置.
+
+    `percentPosition` is a dict with keys:
+
+    - align (a value equal to: 'start', 'center', 'end'; optional):
+        对齐方式，可选项有`'start'`、`'center'`、`'end'`.
+
+    - type (a value equal to: 'inner', 'outer'; optional):
+        内外位置，可选项有`'inner'`、`'outer'`.
+
 - strokeColor (dict; optional):
     配置进度条颜色，支持渐变色.
 
@@ -168,6 +179,14 @@ Keyword arguments:
         }
     )
 
+    PercentPosition = TypedDict(
+        "PercentPosition",
+            {
+            "align": NotRequired[Literal["start", "center", "end"]],
+            "type": NotRequired[Literal["inner", "outer"]]
+        }
+    )
+
     StrokeColor = TypedDict(
         "StrokeColor",
             {
@@ -190,6 +209,7 @@ Keyword arguments:
         format: typing.Optional["Format"] = None,
         status: typing.Optional[Literal["success", "exception", "normal", "active"]] = None,
         showInfo: typing.Optional[bool] = None,
+        percentPosition: typing.Optional["PercentPosition"] = None,
         strokeColor: typing.Optional[typing.Union[str, "StrokeColor"]] = None,
         strokeLinecap: typing.Optional[Literal["round", "butt", "square"]] = None,
         strokeWidth: typing.Optional[NumberType] = None,
@@ -199,9 +219,9 @@ Keyword arguments:
         steps: typing.Optional[NumberType] = None,
         **kwargs
     ):
-        self._prop_names = ['id', 'key', 'style', 'className', 'type', 'size', 'percent', 'success', 'format', 'status', 'showInfo', 'strokeColor', 'strokeLinecap', 'strokeWidth', 'trailColor', 'gapDegree', 'gapPosition', 'steps', 'data-*', 'aria-*']
+        self._prop_names = ['id', 'key', 'style', 'className', 'type', 'size', 'percent', 'success', 'format', 'status', 'showInfo', 'percentPosition', 'strokeColor', 'strokeLinecap', 'strokeWidth', 'trailColor', 'gapDegree', 'gapPosition', 'steps', 'data-*', 'aria-*']
         self._valid_wildcard_attributes =            ['data-', 'aria-']
-        self.available_properties = ['id', 'key', 'style', 'className', 'type', 'size', 'percent', 'success', 'format', 'status', 'showInfo', 'strokeColor', 'strokeLinecap', 'strokeWidth', 'trailColor', 'gapDegree', 'gapPosition', 'steps', 'data-*', 'aria-*']
+        self.available_properties = ['id', 'key', 'style', 'className', 'type', 'size', 'percent', 'success', 'format', 'status', 'showInfo', 'percentPosition', 'strokeColor', 'strokeLinecap', 'strokeWidth', 'trailColor', 'gapDegree', 'gapPosition', 'steps', 'data-*', 'aria-*']
         self.available_wildcard_properties =            ['data-', 'aria-']
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()

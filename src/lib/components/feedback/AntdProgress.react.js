@@ -25,6 +25,7 @@ const AntdProgress = ({
     format,
     status,
     showInfo = true,
+    percentPosition,
     strokeColor,
     strokeLinecap,
     strokeWidth,
@@ -60,6 +61,7 @@ const AntdProgress = ({
                 ) : undefined}
             status={status}
             showInfo={showInfo}
+            percentPosition={percentPosition}
             strokeColor={strokeColor ?
                 (
                     strokeColor.from && strokeColor.to ?
@@ -195,6 +197,20 @@ AntdProgress.propTypes = {
      * 默认值：`true`
      */
     showInfo: PropTypes.bool,
+
+    /**
+     * 适用于`'line'`型进度条，配置进度条附带进度数值信息显示位置
+     */
+    percentPosition: PropTypes.shape({
+        /**
+         * 对齐方式，可选项有`'start'`、`'center'`、`'end'`
+         */
+        align: PropTypes.oneOf(['start', 'center', 'end']),
+        /**
+         * 内外位置，可选项有`'inner'`、`'outer'`
+         */
+        type: PropTypes.oneOf(['inner', 'outer'])
+    }),
 
     /**
      * 配置进度条颜色，支持渐变色
