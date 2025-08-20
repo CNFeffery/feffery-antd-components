@@ -258,6 +258,10 @@ AntdTable.propTypes = {
                  */
                 progressShowPercent: PropTypes.bool,
                 /**
+                 * 当`renderType`为`'mini-progress'`时，设置进度条附带进度数值信息的小数位数，默认保持原始数值的精度
+                 */
+                progressPercentPrecision: PropTypes.number,
+                /**
                  * 当`renderType`为`'mini-progress'`时，设置进度条附带进度数值信息显示的位置
                  */
                 progressPercentPosition: PropTypes.shape({
