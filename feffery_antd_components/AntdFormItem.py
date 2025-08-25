@@ -68,7 +68,7 @@ Keyword arguments:
         同css中的flex属性，用于更灵活的控制控件部分所占宽度.
 
 - colon (boolean; optional):
-    当`layput='horizontal'`时，控制是否在表单项标签部分末尾添加冒号，优先级高于所属`AntdForm`中的`colon`参数.
+    当`layout='horizontal'`时，控制是否在表单项标签部分末尾添加冒号，优先级高于所属`AntdForm`中的`colon`参数.
 
 - label (a list of or a singular dash component, string or number; optional):
     组件型，当前表单项标签内容.

@@ -136,7 +136,7 @@ AntdFormItem.propTypes = {
     }),
 
     /**
-     * 当`layput='horizontal'`时，控制是否在表单项标签部分末尾添加冒号，优先级高于所属`AntdForm`中的`colon`参数
+     * 当`layout='horizontal'`时，控制是否在表单项标签部分末尾添加冒号，优先级高于所属`AntdForm`中的`colon`参数
      */
     colon: PropTypes.bool,
 
