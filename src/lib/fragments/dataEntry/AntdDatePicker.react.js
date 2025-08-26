@@ -79,6 +79,13 @@ const AntdDatePicker = (props) => {
     } = props;
 
     const [rawValue, setRawValue] = useState(null);
+    const [uiClickedDate, setUiClickedDate] = useState(null);
+
+    useEffect(() => {
+        if (clickedDate && clickedDate !== uiClickedDate) {
+            setUiClickedDate(clickedDate);
+        }
+    }, [clickedDate]);
 
     // 解决value经回调更新后，rawValue未更新的问题
     useEffect(() => {
@@ -472,36 +479,37 @@ const AntdDatePicker = (props) => {
     const preSelectCellRender = (current, info) => {
         if (info.type !== 'date') return info.originNode;
         const base = renderBaseDateCell(current, info);
+
         return (
             <div
-                onClick={() => {
-                    const dStr = current.format(format);
+            onClick={() => {
+                const dStr = current.format(format);
 
-                    // Avoid redundant renders
-                    if (dStr === clickedDate) return;
+                // avoid redundant work
+                if (dStr === uiClickedDate) return;
 
-                    // Defer overlay switch until AFTER AntD processes the click
-                    if (typeof window !== 'undefined' && window.requestAnimationFrame) {
-                        window.requestAnimationFrame(() => {
-                            setProps && setProps({ clickedDate: dStr });
-                        });
-                    } else {
-                        setTimeout(() => {
-                            setProps && setProps({ clickedDate: dStr });
-                        }, 0);
-                    }
-                }}
+                // 1) update overlays immediately via local state (no Dash roundtrip)
+                setUiClickedDate(dStr);
+
+                // 2) expose to Dash after AntD commits selection (next frame)
+                if (typeof window !== 'undefined' && window.requestAnimationFrame) {
+                    window.requestAnimationFrame(() => setProps?.({ clickedDate: dStr }));
+                } else {
+                    setTimeout(() => setProps?.({ clickedDate: dStr }), 0);
+                }
+            }}
             >
-                {base}
+            {base}
             </div>
         );
     };
 
     const activeDateStr = useMemo(() => {
-        if (clickedDate) return clickedDate;
-        if (rawValue) return rawValue.format(format);
+        if (uiClickedDate) return uiClickedDate;
+        if (clickedDate)   return clickedDate;
+        if (rawValue)      return rawValue.format(format);
         return undefined;
-    }, [clickedDate, rawValue, format]);
+    }, [uiClickedDate, clickedDate, rawValue, format]);
 
     const activeOverlay = useMemo(() => {
         if (!dateOverlays || !activeDateStr) return undefined;
