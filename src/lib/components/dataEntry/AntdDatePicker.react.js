@@ -46,6 +46,8 @@ const AntdDatePicker = ({
     persistence_type,
     batchPropsNames = [],
     needConfirm = false,
+    clickedDate,
+    dateOverlays,
     ...others
 }) => {
     return (
@@ -91,6 +93,8 @@ const AntdDatePicker = ({
                     persistence_type,
                     batchPropsNames,
                     needConfirm,
+                    clickedDate,
+                    dateOverlays,
                     ...others
                 }
             } />
@@ -323,6 +327,38 @@ AntdDatePicker.propTypes = {
          */
         timestamp: PropTypes.number
     }),
+
+     /**
+     * 最近一次“日期单元格点击”的日期字符串（在确认之前触发；等价于 preSelect）
+     * 与 `format` 一致，默认形如 `'YYYY-MM-DD'`
+     */
+    clickedDate: PropTypes.string,
+
+    /**
+     * 针对特定日期的额外 footer 与 presets 叠加配置
+     * `date` 必须与 `format` 一致（通常为 `'YYYY-MM-DD'`）
+     */
+    dateOverlays: PropTypes.arrayOf(
+        PropTypes.exact({
+            /**
+             * 叠加配置所对应的日期字符串（需与 `format` 一致）
+             */
+            date: PropTypes.string.isRequired,
+            /**
+             * 当该日期为最近一次点击时，底部额外区域渲染内容
+             */
+            extraFooter: PropTypes.node,
+            /**
+             * 当该日期为最近一次点击时，展示的预设项（将覆盖全局 presets）
+             */
+            presets: PropTypes.arrayOf(
+                PropTypes.exact({
+                    label: PropTypes.node,
+                    value: PropTypes.string
+                })
+            )
+        })
+    ),
 
     /**
      * 是否需要点击按钮确认选值，传入`false`时失去焦点即代表选择
