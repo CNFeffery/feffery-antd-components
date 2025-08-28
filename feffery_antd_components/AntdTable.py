@@ -576,6 +576,9 @@ Keyword arguments:
 
     `sticky` is a boolean | dict with keys:
 
+    - belowSelector (string | list of strings; optional):
+        粘贴在其下方的元素的 CSS 选择器.
+
     - offsetHeader (number; optional):
         粘性表头竖直方向上的像素偏移量.
 
@@ -1170,6 +1173,7 @@ Keyword arguments:
     Sticky = TypedDict(
         "Sticky",
             {
+            "belowSelector": NotRequired[typing.Union[str, typing.Sequence[str]]],
             "offsetHeader": NotRequired[NumberType],
             "offsetScroll": NotRequired[NumberType]
         }
