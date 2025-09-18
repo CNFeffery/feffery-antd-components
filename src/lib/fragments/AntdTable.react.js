@@ -48,6 +48,7 @@ import { isNumber, isEqual, isString, isBoolean, isEmpty, omitBy, isUndefined } 
 import { pickBy } from 'ramda';
 import { str2Locale, locale2text } from '../components/locales.react';
 import { useLoading } from '../components/utils';
+import useStickyOffset from '../hooks/useStickyOffset';
 // 上下文
 import PropsContext from '../contexts/PropsContext';
 // 参数类型
@@ -231,6 +232,18 @@ const AntdTable = (props) => {
 
     const [searchText, setSearchText] = useState('');
     const [searchedColumn, setSearchedColumn] = useState('');
+
+    const stickyObj = (sticky && typeof sticky === 'object') ? sticky : {};
+    const belowSelector = stickyObj.belowSelector ?? undefined;
+    const offsetHeader = Number(stickyObj.offsetHeader || 0);
+    const autoMeasuredOffset = belowSelector ? useStickyOffset({ selector: belowSelector, extra: offsetHeader }) : offsetHeader;
+    const { belowSelector: _rm1,
+            offsetHeader: _rm2,
+            ...stickyRest
+        } = stickyObj;
+    const computedSticky = sticky === true || belowSelector || (sticky && typeof sticky === 'object')
+                            ? { ...stickyRest, offsetHeader: autoMeasuredOffset }
+                            : undefined;
 
     const onPageChange = (pagination, filter, sorter, currentData) => {
 
@@ -2011,7 +2024,7 @@ const AntdTable = (props) => {
                 tableLayout={tableLayout}
                 size={size}
                 rowSelection={rowSelection}
-                sticky={sticky}
+                sticky={computedSticky}
                 pagination={
                     // 确保pagination=false生效
                     pagination &&

@@ -1091,6 +1091,13 @@ AntdTable.propTypes = {
         PropTypes.bool,
         PropTypes.exact({
             /**
+             * 粘贴在其下方的元素的 CSS 选择器
+             */
+            belowSelector: PropTypes.oneOfType([
+                PropTypes.string,
+                PropTypes.arrayOf(PropTypes.string)
+            ]),
+            /**
              * 粘性表头竖直方向上的像素偏移量
              */
             offsetHeader: PropTypes.number,
