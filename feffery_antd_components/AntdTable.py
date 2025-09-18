@@ -580,7 +580,7 @@ Keyword arguments:
     `sticky` is a boolean | dict with keys:
 
     - belowSelector (string | list of strings; optional):
-        粘贴在其下方的元素的 CSS 选择器.
+        粘性表头附着目标元素对应的选择器规则字符串，设置后，粘性表头激活后将附着在目标元素下方.
 
     - offsetHeader (number; optional):
         粘性表头竖直方向上的像素偏移量.
