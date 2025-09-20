@@ -238,12 +238,12 @@ const AntdTable = (props) => {
     const offsetHeader = Number(stickyObj.offsetHeader || 0);
     const autoMeasuredOffset = belowSelector ? useStickyOffset({ selector: belowSelector, extra: offsetHeader }) : offsetHeader;
     const { belowSelector: _rm1,
-            offsetHeader: _rm2,
-            ...stickyRest
-        } = stickyObj;
+        offsetHeader: _rm2,
+        ...stickyRest
+    } = stickyObj;
     const computedSticky = sticky === true || belowSelector || (sticky && typeof sticky === 'object')
-                            ? { ...stickyRest, offsetHeader: autoMeasuredOffset }
-                            : undefined;
+        ? { ...stickyRest, offsetHeader: autoMeasuredOffset }
+        : undefined;
 
     const onPageChange = (pagination, filter, sorter, currentData) => {
 
@@ -2128,8 +2128,8 @@ export default React.memo(
             .filter(key => !isEqual(prevProps[key], nextProps[key]))
 
         // 特殊处理：
-        // 当recentlySelectValue发生变动时，阻止本次重绘
-        if (changedProps.includes('recentlySelectValue')) {
+        // 当recentlySelectValue发生变动且不涉及data变动时时，阻止本次重绘
+        if (changedProps.includes('recentlySelectValue') && !changedProps.includes('data')) {
             return true;
         }
 
