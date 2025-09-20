@@ -1,5 +1,5 @@
 // react核心
-import React, { useContext } from 'react';
+import React, { useContext, useMemo } from 'react';
 import PropTypes from 'prop-types';
 // antd核心
 import { Modal, ConfigProvider } from 'antd';
@@ -53,6 +53,7 @@ const AntdModal = ({
     destroyOnClose = true,
     loading = false,
     autoLoading = false,
+    destroyOnCloseParts = false,
     ...others
 }) => {
 
@@ -80,9 +81,38 @@ const AntdModal = ({
         }
     };
 
-    // 监听关闭按钮点击事件
+    // --- destroyOnCloseParts logic ---
+    // 支持：bool | "content" | "title" | ["content","title"] | { content: bool, title: bool }
+    const normalizedDestroy = useMemo(() => {
+        const norm = { content: false, title: false };
+        const val = destroyOnCloseParts;
+        if (val === true) {
+            norm.content = true; norm.title = true;
+        } else if (val === false || val == null) {
+            // keep defaults
+        } else if (typeof val === 'string') {
+            if (val === 'content') norm.content = true;
+            if (val === 'title') norm.title = true;
+        } else if (Array.isArray(val)) {
+            norm.content = val.includes('content');
+            norm.title = val.includes('title');
+        } else if (typeof val === 'object') {
+            norm.content = !!val.content;
+            norm.title = !!val.title;
+        }
+        return norm;
+    }, [destroyOnCloseParts]);
+
     const listenClose = () => {
-        setProps({ closeCounts: closeCounts + 1 })
+        const updates = { closeCounts: closeCounts + 1 };
+        // If specified, selectively destroy parts of the modal content on close.
+        if (normalizedDestroy.content) {
+            updates.children = null;
+        }
+        if (normalizedDestroy.title) {
+            updates.title = null;
+        }
+        setProps(updates);
     };
 
     // --- autoLoading logic ---
@@ -520,6 +550,29 @@ AntdModal.propTypes = {
      * 用途：从后端（如Dash回调）异步注入内容时，避免手动切换loading。
      */
     autoLoading: PropTypes.bool,
+
+    /**
+     * 选择性地在模态框关闭（afterClose）时清理内容/标题
+     * 支持以下类型：
+     * - 布尔：true => 清理内容与标题；false => 不清理
+     * - 字符串："content" 或 "title"
+     * - 数组：["content", "title"] 等任意组合
+     * - 对象：{ content: bool, title: bool }
+     *
+     * 说明：
+     * - 清理内容会将 `children` 置为 null；配合 autoLoading 可在下次打开时再次显示骨架
+     * - 清理标题会将 `title` 置为 null
+     * - 清理发生在 afterClose，不影响关闭动画
+     */
+    destroyOnCloseParts: PropTypes.oneOfType([
+        PropTypes.bool,
+        PropTypes.oneOf(['content', 'title']),
+        PropTypes.arrayOf(PropTypes.oneOf(['content', 'title'])),
+        PropTypes.exact({
+            content: PropTypes.bool,
+            title: PropTypes.bool
+        })
+    ]),
 
     /**
      * `data-*`格式属性通配

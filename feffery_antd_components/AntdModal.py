@@ -237,6 +237,22 @@ Keyword arguments:
     是否在模态框打开且未提供children内容时自动显示加载骨架，  并在children到达后自动隐藏骨架  默认值：`False`
     用途：从后端（如Dash回调）异步注入内容时，避免手动切换loading。.
 
+- destroyOnCloseParts (dict; default False):
+    选择性地在模态框关闭（afterClose）时清理内容/标题  支持以下类型：  - 布尔：True =>
+    清理内容与标题；False => 不清理  - 字符串：\"content\" 或 \"title\"  -
+    数组：[\"content\", \"title\"] 等任意组合  - 对象：{ content: bool, title:
+    bool }    说明：  - 清理内容会将 `children` 置为 None；配合 autoLoading
+    可在下次打开时再次显示骨架  - 清理标题会将 `title` 置为 None  - 清理发生在
+    afterClose，不影响关闭动画.
+
+    `destroyOnCloseParts` is a boolean | a value equal to: 'content',
+    'title' | list of a value equal to: 'content', 'title's | dict
+    with keys:
+
+    - content (boolean; optional)
+
+    - title (boolean; optional)
+
 - data-* (string; optional):
     `data-*`格式属性通配.
 
@@ -308,6 +324,14 @@ Keyword arguments:
         }
     )
 
+    DestroyOnCloseParts = TypedDict(
+        "DestroyOnCloseParts",
+            {
+            "content": NotRequired[bool],
+            "title": NotRequired[bool]
+        }
+    )
+
 
     def __init__(
         self,
@@ -346,11 +370,12 @@ Keyword arguments:
         destroyOnClose: typing.Optional[bool] = None,
         loading: typing.Optional[bool] = None,
         autoLoading: typing.Optional[bool] = None,
+        destroyOnCloseParts: typing.Optional[typing.Union[bool, Literal["content", "title"], typing.Sequence[Literal["content", "title"]], "DestroyOnCloseParts"]] = None,
         **kwargs
     ):
-        self._prop_names = ['id', 'key', 'children', 'style', 'className', 'styles', 'classNames', 'locale', 'visible', 'title', 'renderFooter', 'okText', 'okButtonProps', 'cancelText', 'cancelButtonProps', 'width', 'centered', 'keyboard', 'closable', 'mask', 'maskClosable', 'okClickClose', 'preventClose', 'zIndex', 'okCounts', 'cancelCounts', 'closeCounts', 'confirmAutoSpin', 'loadingOkText', 'confirmLoading', 'transitionType', 'forceRender', 'destroyOnClose', 'loading', 'autoLoading', 'data-*', 'aria-*']
+        self._prop_names = ['id', 'key', 'children', 'style', 'className', 'styles', 'classNames', 'locale', 'visible', 'title', 'renderFooter', 'okText', 'okButtonProps', 'cancelText', 'cancelButtonProps', 'width', 'centered', 'keyboard', 'closable', 'mask', 'maskClosable', 'okClickClose', 'preventClose', 'zIndex', 'okCounts', 'cancelCounts', 'closeCounts', 'confirmAutoSpin', 'loadingOkText', 'confirmLoading', 'transitionType', 'forceRender', 'destroyOnClose', 'loading', 'autoLoading', 'destroyOnCloseParts', 'data-*', 'aria-*']
         self._valid_wildcard_attributes =            ['data-', 'aria-']
-        self.available_properties = ['id', 'key', 'children', 'style', 'className', 'styles', 'classNames', 'locale', 'visible', 'title', 'renderFooter', 'okText', 'okButtonProps', 'cancelText', 'cancelButtonProps', 'width', 'centered', 'keyboard', 'closable', 'mask', 'maskClosable', 'okClickClose', 'preventClose', 'zIndex', 'okCounts', 'cancelCounts', 'closeCounts', 'confirmAutoSpin', 'loadingOkText', 'confirmLoading', 'transitionType', 'forceRender', 'destroyOnClose', 'loading', 'autoLoading', 'data-*', 'aria-*']
+        self.available_properties = ['id', 'key', 'children', 'style', 'className', 'styles', 'classNames', 'locale', 'visible', 'title', 'renderFooter', 'okText', 'okButtonProps', 'cancelText', 'cancelButtonProps', 'width', 'centered', 'keyboard', 'closable', 'mask', 'maskClosable', 'okClickClose', 'preventClose', 'zIndex', 'okCounts', 'cancelCounts', 'closeCounts', 'confirmAutoSpin', 'loadingOkText', 'confirmLoading', 'transitionType', 'forceRender', 'destroyOnClose', 'loading', 'autoLoading', 'destroyOnCloseParts', 'data-*', 'aria-*']
         self.available_wildcard_properties =            ['data-', 'aria-']
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()
