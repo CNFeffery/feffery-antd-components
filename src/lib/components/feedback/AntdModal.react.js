@@ -52,6 +52,7 @@ const AntdModal = ({
     forceRender = false,
     destroyOnClose = true,
     loading = false,
+    autoLoading = false,
     ...others
 }) => {
 
@@ -83,6 +84,14 @@ const AntdModal = ({
     const listenClose = () => {
         setProps({ closeCounts: closeCounts + 1 })
     };
+
+    // --- autoLoading logic ---
+    // Consider children "present" only if there is at least one non-falsy node.
+    const hasChildren = React.Children.toArray(children).filter(Boolean).length > 0;
+    // When autoLoading is enabled: show the antd skeleton if modal is open and we don't have content yet.
+    // The moment children arrive, this flips to false automatically.
+    const autoSkeleton = autoLoading && visible && !hasChildren;
+    const effectiveLoading = Boolean(loading || autoSkeleton);
 
     return (
         <ConfigProvider locale={str2Locale.get(locale)}>
@@ -120,7 +129,7 @@ const AntdModal = ({
                 confirmLoading={confirmLoading}
                 forceRender={forceRender}
                 destroyOnHidden={destroyOnClose}
-                loading={loading}
+                loading={effectiveLoading}
                 data-dash-is-loading={useLoading()}
             >{children}</Modal>
         </ConfigProvider>
@@ -502,6 +511,15 @@ AntdModal.propTypes = {
      * 默认值：`false`
      */
     loading: PropTypes.bool,
+
+    /**
+     * 是否在模态框打开且未提供children内容时自动显示加载骨架，
+     * 并在children到达后自动隐藏骨架
+     * 默认值：`false`
+     *
+     * 用途：从后端（如Dash回调）异步注入内容时，避免手动切换loading。
+     */
+    autoLoading: PropTypes.bool,
 
     /**
      * `data-*`格式属性通配
