@@ -187,6 +187,9 @@ Keyword arguments:
 - maxCount (number; optional):
     `'multiple'`及 `'tags'`模式下有效，限制已选项数量上限.
 
+- showSearch (boolean; optional):
+    是否开启输入框可搜索功能.
+
 - popupContainer (a value equal to: 'parent', 'body'; default 'body'):
     相关展开层锚定策略，可选项有`'parent'`、`'body'`  默认值：`'body'`.
 
@@ -277,6 +280,7 @@ Keyword arguments:
         popupMatchSelectWidth: typing.Optional[bool] = None,
         readOnly: typing.Optional[bool] = None,
         maxCount: typing.Optional[NumberType] = None,
+        showSearch: typing.Optional[bool] = None,
         popupContainer: typing.Optional[Literal["parent", "body"]] = None,
         batchPropsNames: typing.Optional[typing.Sequence[str]] = None,
         batchPropsValues: typing.Optional[dict] = None,
@@ -285,9 +289,9 @@ Keyword arguments:
         persistence_type: typing.Optional[Literal["local", "session", "memory"]] = None,
         **kwargs
     ):
-        self._prop_names = ['id', 'key', 'style', 'className', 'popupClassName', 'name', 'enableBatchControl', 'locale', 'options', 'listHeight', 'colorsMode', 'colorsNameWidth', 'mode', 'disabled', 'size', 'bordered', 'variant', 'placeholder', 'placement', 'value', 'defaultValue', 'maxTagCount', 'status', 'optionFilterProp', 'searchValue', 'optionFilterMode', 'debounceSearchValue', 'debounceWait', 'autoSpin', 'autoClearSearchValue', 'emptyContent', 'loadingEmptyContent', 'dropdownBefore', 'dropdownAfter', 'prefix', 'suffixIcon', 'allowClear', 'autoFocus', 'popupMatchSelectWidth', 'readOnly', 'maxCount', 'popupContainer', 'batchPropsNames', 'batchPropsValues', 'data-*', 'aria-*', 'persistence', 'persisted_props', 'persistence_type']
+        self._prop_names = ['id', 'key', 'style', 'className', 'popupClassName', 'name', 'enableBatchControl', 'locale', 'options', 'listHeight', 'colorsMode', 'colorsNameWidth', 'mode', 'disabled', 'size', 'bordered', 'variant', 'placeholder', 'placement', 'value', 'defaultValue', 'maxTagCount', 'status', 'optionFilterProp', 'searchValue', 'optionFilterMode', 'debounceSearchValue', 'debounceWait', 'autoSpin', 'autoClearSearchValue', 'emptyContent', 'loadingEmptyContent', 'dropdownBefore', 'dropdownAfter', 'prefix', 'suffixIcon', 'allowClear', 'autoFocus', 'popupMatchSelectWidth', 'readOnly', 'maxCount', 'showSearch', 'popupContainer', 'batchPropsNames', 'batchPropsValues', 'data-*', 'aria-*', 'persistence', 'persisted_props', 'persistence_type']
         self._valid_wildcard_attributes =            ['data-', 'aria-']
-        self.available_properties = ['id', 'key', 'style', 'className', 'popupClassName', 'name', 'enableBatchControl', 'locale', 'options', 'listHeight', 'colorsMode', 'colorsNameWidth', 'mode', 'disabled', 'size', 'bordered', 'variant', 'placeholder', 'placement', 'value', 'defaultValue', 'maxTagCount', 'status', 'optionFilterProp', 'searchValue', 'optionFilterMode', 'debounceSearchValue', 'debounceWait', 'autoSpin', 'autoClearSearchValue', 'emptyContent', 'loadingEmptyContent', 'dropdownBefore', 'dropdownAfter', 'prefix', 'suffixIcon', 'allowClear', 'autoFocus', 'popupMatchSelectWidth', 'readOnly', 'maxCount', 'popupContainer', 'batchPropsNames', 'batchPropsValues', 'data-*', 'aria-*', 'persistence', 'persisted_props', 'persistence_type']
+        self.available_properties = ['id', 'key', 'style', 'className', 'popupClassName', 'name', 'enableBatchControl', 'locale', 'options', 'listHeight', 'colorsMode', 'colorsNameWidth', 'mode', 'disabled', 'size', 'bordered', 'variant', 'placeholder', 'placement', 'value', 'defaultValue', 'maxTagCount', 'status', 'optionFilterProp', 'searchValue', 'optionFilterMode', 'debounceSearchValue', 'debounceWait', 'autoSpin', 'autoClearSearchValue', 'emptyContent', 'loadingEmptyContent', 'dropdownBefore', 'dropdownAfter', 'prefix', 'suffixIcon', 'allowClear', 'autoFocus', 'popupMatchSelectWidth', 'readOnly', 'maxCount', 'showSearch', 'popupContainer', 'batchPropsNames', 'batchPropsValues', 'data-*', 'aria-*', 'persistence', 'persisted_props', 'persistence_type']
         self.available_wildcard_properties =            ['data-', 'aria-']
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()

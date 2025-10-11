@@ -47,6 +47,7 @@ const AntdSelect = ({
     popupContainer = 'body',
     readOnly,
     maxCount,
+    showSearch,
     popupMatchSelectWidth = true,
     persistence,
     persisted_props,
@@ -98,6 +99,7 @@ const AntdSelect = ({
                     popupContainer,
                     readOnly,
                     maxCount,
+                    showSearch,
                     popupMatchSelectWidth,
                     persistence,
                     persisted_props,
@@ -420,6 +422,11 @@ AntdSelect.propTypes = {
      * `'multiple'`及 `'tags'`模式下有效，限制已选项数量上限
      */
     maxCount: PropTypes.number,
+
+    /**
+     * 是否开启输入框可搜索功能
+     */
+    showSearch: PropTypes.bool,
 
     /**
      * 相关展开层锚定策略，可选项有`'parent'`、`'body'`

@@ -65,6 +65,7 @@ const AntdSelect = (props) => {
         popupContainer,
         readOnly,
         maxCount,
+        showSearch,
         popupMatchSelectWidth,
         persistence,
         persisted_props,
@@ -286,7 +287,7 @@ const AntdSelect = (props) => {
                         context.componentDisabled :
                         disabled
                 }
-                showSearch={!readOnly}
+                showSearch={isUndefined(showSearch) ? !readOnly : showSearch}
                 placement={placement}
                 status={status}
                 optionFilterProp={optionFilterProp}
