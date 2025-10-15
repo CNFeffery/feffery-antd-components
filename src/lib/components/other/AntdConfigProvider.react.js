@@ -37,6 +37,7 @@ const AntdConfigProvider = ({
     id,
     children,
     algorithm = 'default',
+    cssVar,
     useOldTheme,
     primaryColor,
     componentDisabled,
@@ -49,33 +50,33 @@ const AntdConfigProvider = ({
     enableLayer = false,
     setProps
 }) => {
-
+    const themeObject = useOldTheme
+        ? str2oldTheme.get(useOldTheme)
+        : omitBy({
+            algorithm: (
+                Array.isArray(algorithm)
+                    ? algorithm.map(e => str2algorithm.get(e))
+                    : str2algorithm.get(algorithm)
+            ),
+            cssVar: cssVar,
+            hashed: false,
+            token: omitBy(
+                {
+                    colorPrimary: primaryColor,
+                    ...token
+                },
+                isUndefined
+            ),
+            components: omitBy(
+                {
+                    ...componentsToken
+                },
+                isUndefined
+            )
+        }, isUndefined);
     let configProviderInstance = (
         <ConfigProvider id={id}
-            theme={
-                useOldTheme ?
-                    str2oldTheme.get(useOldTheme) :
-                    {
-                        algorithm: (
-                            Array.isArray(algorithm) ?
-                                algorithm.map(e => str2algorithm.get(e)) :
-                                str2algorithm.get(algorithm)
-                        ),
-                        token: omitBy(
-                            {
-                                colorPrimary: primaryColor,
-                                ...token
-                            },
-                            isUndefined
-                        ),
-                        components: omitBy(
-                            {
-                                ...componentsToken
-                            },
-                            isUndefined
-                        )
-                    }
-            }
+            theme={themeObject}
             wave={{ disabled: wavesDisabled }}
             data-dash-is-loading={useLoading()}>
             {children}
@@ -155,6 +156,20 @@ AntdConfigProvider.propTypes = {
     algorithm: PropTypes.oneOfType([
         PropTypes.oneOf(['default', 'dark', 'compact']),
         PropTypes.arrayOf(PropTypes.oneOf(['default', 'dark', 'compact']))
+    ]),
+
+    /**
+     * 是否启用 CSS 变量模式（等同 antd ConfigProvider theme.cssVar）
+     * 可设置为 `true` 或对象：`{ prefix?: string, key?: string }`
+     * 默认值：`undefined`（未传递）
+     * 参考：https://ant-design.antgroup.com/docs/react/css-variables
+     */
+    cssVar: PropTypes.oneOfType([
+        PropTypes.bool,
+        PropTypes.shape({
+            prefix: PropTypes.string,
+            key: PropTypes.string
+        })
     ]),
 
     /**
