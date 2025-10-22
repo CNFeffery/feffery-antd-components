@@ -1334,7 +1334,7 @@ const AntdTable = (props) => {
                                 textAlign: 'left',
                                 ...content.style
                             }}
-                            showSearch={true}
+                            showSearch={isUndefined(content.showSearch) ? true : content.showSearch}
                             options={content.options}
                             listHeight={content.listHeight}
                             mode={content.mode}

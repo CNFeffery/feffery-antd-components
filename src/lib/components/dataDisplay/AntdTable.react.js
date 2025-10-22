@@ -988,7 +988,11 @@ AntdTable.propTypes = {
                      * 适用于`'select'`模式，是否允许快捷清空已选项
                      * 默认值：`true`
                      */
-                    allowClear: PropTypes.bool
+                    allowClear: PropTypes.bool,
+                    /**
+                     * 适用于`'select'`模式，是否开启输入框可搜索功能
+                     */
+                    showSearch: PropTypes.bool
                 }),
                 /**
                  * 兼容携带自定义数据的场景

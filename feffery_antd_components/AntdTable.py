@@ -535,7 +535,10 @@ Keyword arguments:
         默认值：`'value'`.
 
     - allowClear (boolean; optional):
-        适用于`'select'`模式，是否允许快捷清空已选项  默认值：`True`. | dict
+        适用于`'select'`模式，是否允许快捷清空已选项  默认值：`True`.
+
+    - showSearch (boolean; optional):
+        适用于`'select'`模式，是否开启输入框可搜索功能. | dict
 
 - bordered (boolean; default False):
     是否渲染框线  默认值：`False`.
@@ -1133,7 +1136,8 @@ Keyword arguments:
             "value": NotRequired[typing.Union[typing.Union[str, NumberType], typing.Sequence[typing.Union[str, NumberType]]]],
             "maxTagCount": NotRequired[typing.Union[NumberType, Literal["responsive"]]],
             "optionFilterProp": NotRequired[Literal["value", "label"]],
-            "allowClear": NotRequired[bool]
+            "allowClear": NotRequired[bool],
+            "showSearch": NotRequired[bool]
         }
     )
 
