@@ -86,8 +86,12 @@ Keyword arguments:
     - danger (boolean; optional):
         按钮是否呈现危险状态  默认值：`False`.
 
-- stack (boolean; default False):
-    是否开启多通知自动折叠堆叠功能  默认值：`False`."""
+- stack (dict; default False):
+    是否开启多通知自动折叠堆叠功能  默认值：`False`.
+
+    `stack` is a boolean | dict with keys:
+
+    - threshold (number; optional)"""
     _children_props = ['message', 'description']
     _base_nodes = ['message', 'description', 'children']
     _namespace = 'feffery_antd_components'
@@ -100,6 +104,13 @@ Keyword arguments:
             "className": NotRequired[str],
             "type": NotRequired[Literal["default", "primary", "ghost", "dashed", "link", "text"]],
             "danger": NotRequired[bool]
+        }
+    )
+
+    Stack = TypedDict(
+        "Stack",
+            {
+            "threshold": NotRequired[NumberType]
         }
     )
 
@@ -121,7 +132,7 @@ Keyword arguments:
         pauseOnHover: typing.Optional[bool] = None,
         closable: typing.Optional[bool] = None,
         closeButton: typing.Optional["CloseButton"] = None,
-        stack: typing.Optional[bool] = None,
+        stack: typing.Optional[typing.Union[bool, "Stack"]] = None,
         **kwargs
     ):
         self._prop_names = ['id', 'key', 'style', 'className', 'message', 'description', 'type', 'placement', 'top', 'bottom', 'duration', 'showProgress', 'pauseOnHover', 'closable', 'closeButton', 'stack']

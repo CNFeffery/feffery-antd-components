@@ -194,7 +194,12 @@ AntdNotification.propTypes = {
      * 是否开启多通知自动折叠堆叠功能
      * 默认值：`false`
      */
-    stack: PropTypes.bool,
+    stack: PropTypes.oneOfType([
+        PropTypes.bool,
+        PropTypes.exact({
+            threshold: PropTypes.number
+        })
+    ]),
 
     /**
      * Dash-assigned callback that should be called to report property changes
