@@ -107,12 +107,12 @@ AntdNotification.propTypes = {
     /**
      * 通知提醒主要信息
      */
-    message: PropTypes.string,
+    message: PropTypes.node,
 
     /**
      * 通知提醒描述信息
      */
-    description: PropTypes.string,
+    description: PropTypes.node,
 
     /**
      * 通知提醒类型，可选项有`'default'`、`'success'`、`'error'`、`'info'`、`'warning'`

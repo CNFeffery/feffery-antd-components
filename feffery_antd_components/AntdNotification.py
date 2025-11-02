@@ -33,10 +33,10 @@ Keyword arguments:
 - className (string | dict; optional):
     当前组件css类名，支持[动态css](/advanced-classname).
 
-- message (string; optional):
+- message (a list of or a singular dash component, string or number; optional):
     通知提醒主要信息.
 
-- description (string; optional):
+- description (a list of or a singular dash component, string or number; optional):
     通知提醒描述信息.
 
 - type (a value equal to: 'default', 'success', 'error', 'info', 'warning'; default 'default'):
@@ -88,8 +88,8 @@ Keyword arguments:
 
 - stack (boolean; default False):
     是否开启多通知自动折叠堆叠功能  默认值：`False`."""
-    _children_props = []
-    _base_nodes = ['children']
+    _children_props = ['message', 'description']
+    _base_nodes = ['message', 'description', 'children']
     _namespace = 'feffery_antd_components'
     _type = 'AntdNotification'
     CloseButton = TypedDict(
@@ -110,8 +110,8 @@ Keyword arguments:
         key: typing.Optional[str] = None,
         style: typing.Optional[typing.Any] = None,
         className: typing.Optional[typing.Union[str, dict]] = None,
-        message: typing.Optional[str] = None,
-        description: typing.Optional[str] = None,
+        message: typing.Optional[ComponentType] = None,
+        description: typing.Optional[ComponentType] = None,
         type: typing.Optional[Literal["default", "success", "error", "info", "warning"]] = None,
         placement: typing.Optional[Literal["top", "bottom", "topLeft", "topRight", "bottomLeft", "bottomRight"]] = None,
         top: typing.Optional[NumberType] = None,
