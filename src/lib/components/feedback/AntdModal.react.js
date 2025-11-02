@@ -1,5 +1,5 @@
 // react核心
-import React, { useContext, useMemo } from 'react';
+import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 // antd核心
 import { Modal, ConfigProvider } from 'antd';
@@ -27,6 +27,7 @@ const AntdModal = ({
     locale = 'zh-cn',
     setProps,
     title,
+    loadingTitle,
     visible = false,
     renderFooter = false,
     okButtonProps,
@@ -52,8 +53,6 @@ const AntdModal = ({
     forceRender = false,
     destroyOnClose = true,
     loading = false,
-    autoLoading = false,
-    destroyOnCloseParts = false,
     ...others
 }) => {
 
@@ -81,47 +80,11 @@ const AntdModal = ({
         }
     };
 
-    // --- destroyOnCloseParts logic ---
-    // 支持：bool | "content" | "title" | ["content","title"] | { content: bool, title: bool }
-    const normalizedDestroy = useMemo(() => {
-        const norm = { content: false, title: false };
-        const val = destroyOnCloseParts;
-        if (val === true) {
-            norm.content = true; norm.title = true;
-        } else if (val === false || val == null) {
-            // keep defaults
-        } else if (typeof val === 'string') {
-            if (val === 'content') norm.content = true;
-            if (val === 'title') norm.title = true;
-        } else if (Array.isArray(val)) {
-            norm.content = val.includes('content');
-            norm.title = val.includes('title');
-        } else if (typeof val === 'object') {
-            norm.content = !!val.content;
-            norm.title = !!val.title;
-        }
-        return norm;
-    }, [destroyOnCloseParts]);
-
     const listenClose = () => {
-        const updates = { closeCounts: closeCounts + 1 };
-        // If specified, selectively destroy parts of the modal content on close.
-        if (normalizedDestroy.content) {
-            updates.children = null;
-        }
-        if (normalizedDestroy.title) {
-            updates.title = null;
-        }
-        setProps(updates);
+        setProps({ closeCounts: closeCounts + 1 })
     };
 
-    // --- autoLoading logic ---
-    // Consider children "present" only if there is at least one non-falsy node.
-    const hasChildren = React.Children.toArray(children).filter(Boolean).length > 0;
-    // When autoLoading is enabled: show the antd skeleton if modal is open and we don't have content yet.
-    // The moment children arrive, this flips to false automatically.
-    const autoSkeleton = autoLoading && visible && !hasChildren;
-    const effectiveLoading = Boolean(loading || autoSkeleton);
+    const effectiveTitle = loading && loadingTitle !== undefined ? loadingTitle : title;
 
     return (
         <ConfigProvider locale={str2Locale.get(locale)}>
@@ -138,7 +101,7 @@ const AntdModal = ({
                 styles={styles}
                 classNames={classNames}
                 key={key}
-                title={title}
+                title={effectiveTitle}
                 open={visible}
                 okText={confirmLoading ? (loadingOkText || okText) : okText}
                 cancelText={cancelText}
@@ -159,7 +122,7 @@ const AntdModal = ({
                 confirmLoading={confirmLoading}
                 forceRender={forceRender}
                 destroyOnHidden={destroyOnClose}
-                loading={effectiveLoading}
+                loading={loading}
                 data-dash-is-loading={useLoading()}
             >{children}</Modal>
         </ConfigProvider>
@@ -271,6 +234,11 @@ AntdModal.propTypes = {
      * 组件型，标题内容
      */
     title: PropTypes.node,
+
+    /**
+     * 组件型，loading状态下的标题内容
+     */
+    loadingTitle: PropTypes.node,
 
     /**
      * 是否渲染底部操作按钮
@@ -541,38 +509,6 @@ AntdModal.propTypes = {
      * 默认值：`false`
      */
     loading: PropTypes.bool,
-
-    /**
-     * 是否在模态框打开且未提供children内容时自动显示加载骨架，
-     * 并在children到达后自动隐藏骨架
-     * 默认值：`false`
-     *
-     * 用途：从后端（如Dash回调）异步注入内容时，避免手动切换loading。
-     */
-    autoLoading: PropTypes.bool,
-
-    /**
-     * 选择性地在模态框关闭（afterClose）时清理内容/标题
-     * 支持以下类型：
-     * - 布尔：true => 清理内容与标题；false => 不清理
-     * - 字符串："content" 或 "title"
-     * - 数组：["content", "title"] 等任意组合
-     * - 对象：{ content: bool, title: bool }
-     *
-     * 说明：
-     * - 清理内容会将 `children` 置为 null；配合 autoLoading 可在下次打开时再次显示骨架
-     * - 清理标题会将 `title` 置为 null
-     * - 清理发生在 afterClose，不影响关闭动画
-     */
-    destroyOnCloseParts: PropTypes.oneOfType([
-        PropTypes.bool,
-        PropTypes.oneOf(['content', 'title']),
-        PropTypes.arrayOf(PropTypes.oneOf(['content', 'title'])),
-        PropTypes.exact({
-            content: PropTypes.bool,
-            title: PropTypes.bool
-        })
-    ]),
 
     /**
      * `data-*`格式属性通配
