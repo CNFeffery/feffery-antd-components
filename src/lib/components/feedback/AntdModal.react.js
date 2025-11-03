@@ -27,6 +27,7 @@ const AntdModal = ({
     locale = 'zh-cn',
     setProps,
     title,
+    loadingTitle,
     visible = false,
     renderFooter = false,
     okButtonProps,
@@ -79,10 +80,11 @@ const AntdModal = ({
         }
     };
 
-    // 监听关闭按钮点击事件
     const listenClose = () => {
         setProps({ closeCounts: closeCounts + 1 })
     };
+
+    const effectiveTitle = loading && loadingTitle !== undefined ? loadingTitle : title;
 
     return (
         <ConfigProvider locale={str2Locale.get(locale)}>
@@ -99,7 +101,7 @@ const AntdModal = ({
                 styles={styles}
                 classNames={classNames}
                 key={key}
-                title={title}
+                title={effectiveTitle}
                 open={visible}
                 okText={confirmLoading ? (loadingOkText || okText) : okText}
                 cancelText={cancelText}
@@ -232,6 +234,11 @@ AntdModal.propTypes = {
      * 组件型，标题内容
      */
     title: PropTypes.node,
+
+    /**
+     * 组件型，loading状态下的标题内容
+     */
+    loadingTitle: PropTypes.node,
 
     /**
      * 是否渲染底部操作按钮

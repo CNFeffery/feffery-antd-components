@@ -92,6 +92,9 @@ Keyword arguments:
 - title (a list of or a singular dash component, string or number; optional):
     组件型，标题内容.
 
+- loadingTitle (a list of or a singular dash component, string or number; optional):
+    组件型，loading状态下的标题内容.
+
 - renderFooter (boolean; default False):
     是否渲染底部操作按钮  默认值：`False`.
 
@@ -238,8 +241,8 @@ Keyword arguments:
 
 - aria-* (string; optional):
     `aria-*`格式属性通配."""
-    _children_props = ['title', 'okText', 'cancelText', 'loadingOkText']
-    _base_nodes = ['title', 'okText', 'cancelText', 'loadingOkText', 'children']
+    _children_props = ['title', 'loadingTitle', 'okText', 'cancelText', 'loadingOkText']
+    _base_nodes = ['title', 'loadingTitle', 'okText', 'cancelText', 'loadingOkText', 'children']
     _namespace = 'feffery_antd_components'
     _type = 'AntdModal'
     Styles = TypedDict(
@@ -317,6 +320,7 @@ Keyword arguments:
         locale: typing.Optional[Literal["zh-cn", "en-us", "de-de", "ru-ru"]] = None,
         visible: typing.Optional[bool] = None,
         title: typing.Optional[ComponentType] = None,
+        loadingTitle: typing.Optional[ComponentType] = None,
         renderFooter: typing.Optional[bool] = None,
         okText: typing.Optional[ComponentType] = None,
         okButtonProps: typing.Optional["OkButtonProps"] = None,
@@ -343,9 +347,9 @@ Keyword arguments:
         loading: typing.Optional[bool] = None,
         **kwargs
     ):
-        self._prop_names = ['id', 'key', 'children', 'style', 'className', 'styles', 'classNames', 'locale', 'visible', 'title', 'renderFooter', 'okText', 'okButtonProps', 'cancelText', 'cancelButtonProps', 'width', 'centered', 'keyboard', 'closable', 'mask', 'maskClosable', 'okClickClose', 'preventClose', 'zIndex', 'okCounts', 'cancelCounts', 'closeCounts', 'confirmAutoSpin', 'loadingOkText', 'confirmLoading', 'transitionType', 'forceRender', 'destroyOnClose', 'loading', 'data-*', 'aria-*']
+        self._prop_names = ['id', 'key', 'children', 'style', 'className', 'styles', 'classNames', 'locale', 'visible', 'title', 'loadingTitle', 'renderFooter', 'okText', 'okButtonProps', 'cancelText', 'cancelButtonProps', 'width', 'centered', 'keyboard', 'closable', 'mask', 'maskClosable', 'okClickClose', 'preventClose', 'zIndex', 'okCounts', 'cancelCounts', 'closeCounts', 'confirmAutoSpin', 'loadingOkText', 'confirmLoading', 'transitionType', 'forceRender', 'destroyOnClose', 'loading', 'data-*', 'aria-*']
         self._valid_wildcard_attributes =            ['data-', 'aria-']
-        self.available_properties = ['id', 'key', 'children', 'style', 'className', 'styles', 'classNames', 'locale', 'visible', 'title', 'renderFooter', 'okText', 'okButtonProps', 'cancelText', 'cancelButtonProps', 'width', 'centered', 'keyboard', 'closable', 'mask', 'maskClosable', 'okClickClose', 'preventClose', 'zIndex', 'okCounts', 'cancelCounts', 'closeCounts', 'confirmAutoSpin', 'loadingOkText', 'confirmLoading', 'transitionType', 'forceRender', 'destroyOnClose', 'loading', 'data-*', 'aria-*']
+        self.available_properties = ['id', 'key', 'children', 'style', 'className', 'styles', 'classNames', 'locale', 'visible', 'title', 'loadingTitle', 'renderFooter', 'okText', 'okButtonProps', 'cancelText', 'cancelButtonProps', 'width', 'centered', 'keyboard', 'closable', 'mask', 'maskClosable', 'okClickClose', 'preventClose', 'zIndex', 'okCounts', 'cancelCounts', 'closeCounts', 'confirmAutoSpin', 'loadingOkText', 'confirmLoading', 'transitionType', 'forceRender', 'destroyOnClose', 'loading', 'data-*', 'aria-*']
         self.available_wildcard_properties =            ['data-', 'aria-']
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()
