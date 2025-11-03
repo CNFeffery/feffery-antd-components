@@ -107,12 +107,12 @@ AntdNotification.propTypes = {
     /**
      * 通知提醒主要信息
      */
-    message: PropTypes.string,
+    message: PropTypes.node,
 
     /**
      * 通知提醒描述信息
      */
-    description: PropTypes.string,
+    description: PropTypes.node,
 
     /**
      * 通知提醒类型，可选项有`'default'`、`'success'`、`'error'`、`'info'`、`'warning'`
@@ -194,7 +194,12 @@ AntdNotification.propTypes = {
      * 是否开启多通知自动折叠堆叠功能
      * 默认值：`false`
      */
-    stack: PropTypes.bool,
+    stack: PropTypes.oneOfType([
+        PropTypes.bool,
+        PropTypes.exact({
+            threshold: PropTypes.number
+        })
+    ]),
 
     /**
      * Dash-assigned callback that should be called to report property changes
