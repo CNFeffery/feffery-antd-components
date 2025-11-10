@@ -506,7 +506,23 @@ AntdTable.propTypes = {
                         tag: PropTypes.oneOfType([
                             PropTypes.string,
                             PropTypes.number
-                        ])
+                        ]),
+                        /**
+                         * 适用于`'tags'`模式，为当前标签添加额外的文字提示功能
+                         */
+                        tooltip: PropTypes.shape({
+                            /**
+                             * 文字提示内容
+                             */
+                            title: PropTypes.string,
+                            /**
+                             * 文字提示弹出方向，可选项有`'top'`、`'left'`、`'right'`、`'bottom'`、`'topLeft'`、`'topRight'`、`'bottomLeft'`、`'bottomRight'`、`'leftTop'`、`'leftBottom'`、`'rightTop'`、`'rightBottom'`
+                             * 默认值：`'top'`
+                             */
+                            placement: PropTypes.oneOf([
+                                'top', 'left', 'right', 'bottom', 'topLeft', 'topRight', 'bottomLeft', 'bottomRight'
+                            ]),
+                        }),
                     }),
                     /**
                      * 渲染多个标签
@@ -523,7 +539,23 @@ AntdTable.propTypes = {
                             tag: PropTypes.oneOfType([
                                 PropTypes.string,
                                 PropTypes.number
-                            ])
+                            ]),
+                            /**
+                             * 适用于`'tags'`模式，为当前标签添加额外的文字提示功能
+                             */
+                            tooltip: PropTypes.shape({
+                                /**
+                                 * 文字提示内容
+                                 */
+                                title: PropTypes.string,
+                                /**
+                                 * 文字提示弹出方向，可选项有`'top'`、`'left'`、`'right'`、`'bottom'`、`'topLeft'`、`'topRight'`、`'bottomLeft'`、`'bottomRight'`、`'leftTop'`、`'leftBottom'`、`'rightTop'`、`'rightBottom'`
+                                 * 默认值：`'top'`
+                                 */
+                                placement: PropTypes.oneOf([
+                                    'top', 'left', 'right', 'bottom', 'topLeft', 'topRight', 'bottomLeft', 'bottomRight'
+                                ]),
+                            }),
                         })
                     )
                 ]),
