@@ -1717,26 +1717,46 @@ const AntdTable = (props) => {
     }
 
     // 处理columns.title的增广功能设置
-    if (titlePopoverInfo) {
+    if (titlePopoverInfo && Array.isArray(titlePopoverInfo)) {
         for (let i = 0; i < columns.length; i++) {
-            if (Object.keys(titlePopoverInfo).includes(columns[i].dataIndex)) {
+            const currentDataIndex = columns[i].dataIndex;
+            // Find popover config for current column from array
+            const popoverConfig = titlePopoverInfo.find(item => item.dataIndex === currentDataIndex);
 
+            // Validate that popoverConfig exists and is a valid object
+            if (popoverConfig && typeof popoverConfig === 'object') {
+
+                // Preserve original title if not already preserved
                 if (!columns[i].title_) {
                     columns[i]['title_'] = columns[i]['title']
                 }
+
+                const originalTitle = columns[i].title_;
+                const popoverTitle = popoverConfig.title;
+                const popoverContent = popoverConfig.content;
+                const popoverPlacement = popoverConfig.placement || 'bottom';
+                const popoverOverlayStyle = popoverConfig.overlayStyle;
+
+                // Create the title render function
                 columns[i]['title'] = () => {
+                    // Check if content is a React element or needs wrapping
+                    const isContentNode = React.isValidElement(popoverContent);
+                    const contentToRender = isContentNode ?
+                        popoverContent :
+                        <div style={{
+                            maxWidth: '250px',
+                            wordWrap: 'break-word',
+                            whiteSpace: 'normal',
+                            wordBreak: 'break-all'
+                        }}>{popoverContent}</div>;
+
                     return <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                        {columns[i].title_}
+                        {originalTitle}
                         <Popover
-                            title={titlePopoverInfo[columns[i].dataIndex].title}
-                            content={<div style={{
-                                maxWidth: '250px',
-                                wordWrap: 'break-word',
-                                whiteSpace: 'normal',
-                                wordBreak: 'break-all'
-                            }}>{titlePopoverInfo[columns[i].dataIndex].content}</div>}
-                            overlayStyle={titlePopoverInfo[columns[i].dataIndex].overlayStyle}
-                            placement={titlePopoverInfo[columns[i].dataIndex].placement || 'bottom'}
+                            title={popoverTitle}
+                            content={contentToRender}
+                            overlayStyle={popoverOverlayStyle}
+                            placement={popoverPlacement}
                             getPopupContainer={containerId ? () => (document.getElementById(containerId) ? document.getElementById(containerId) : document.body) : undefined}>
                             <QuestionCircleOutlined
                                 style={{

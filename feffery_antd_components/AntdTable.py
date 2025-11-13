@@ -627,17 +627,19 @@ Keyword arguments:
 - recentlyMouseEnterRow (dict; optional):
     当`enableHoverListen=True`时，监听最近一次鼠标移入的行数据信息.
 
-- titlePopoverInfo (dict; optional):
+- titlePopoverInfo (list of dicts; optional):
     配置各字段标题额外气泡说明卡片信息相关参数.
 
-    `titlePopoverInfo` is a dict with strings as keys and values of
-    type dict with keys:
+    `titlePopoverInfo` is a list of dicts with keys:
 
-    - title (string; optional):
-        气泡卡片标题.
+    - dataIndex (string; required):
+        必填，对应字段的dataIndex.
 
-    - content (string; optional):
-        气泡卡片内容.
+    - title (a list of or a singular dash component, string or number; optional):
+        气泡卡片标题，支持字符串或组件型.
+
+    - content (a list of or a singular dash component, string or number; optional):
+        气泡卡片内容，支持字符串或组件型.
 
     - placement (a value equal to: 'top', 'left', 'right', 'bottom', 'topLeft', 'topRight', 'bottomLeft', 'bottomRight', 'leftTop', 'leftBottom', 'rightTop', 'rightBottom'; optional):
         气泡卡片弹出方位，可选项有`'top'`、`'left'`、`'right'`、`'bottom'`、`'topLeft'`、`'topRight'`、`'bottomLeft'`、`'bottomRight'`、`'leftTop'`、`'leftBottom'`、`'rightTop'`、`'rightBottom'`
@@ -1042,7 +1044,7 @@ Keyword arguments:
 
 - aria-* (string; optional):
     `aria-*`格式属性通配."""
-    _children_props = ['columns[].title', 'data[]{}', 'summaryRowContents[].content', 'expandedRowKeyToContent[].content', 'emptyContent', 'title', 'footer']
+    _children_props = ['columns[].title', 'data[]{}', 'titlePopoverInfo[].title', 'titlePopoverInfo[].content', 'summaryRowContents[].content', 'expandedRowKeyToContent[].content', 'emptyContent', 'title', 'footer']
     _base_nodes = ['emptyContent', 'title', 'footer', 'children']
     _namespace = 'feffery_antd_components'
     _type = 'AntdTable'
@@ -1214,8 +1216,9 @@ Keyword arguments:
     TitlePopoverInfo = TypedDict(
         "TitlePopoverInfo",
             {
-            "title": NotRequired[str],
-            "content": NotRequired[str],
+            "dataIndex": str,
+            "title": NotRequired[ComponentType],
+            "content": NotRequired[ComponentType],
             "placement": NotRequired[Literal["top", "left", "right", "bottom", "topLeft", "topRight", "bottomLeft", "bottomRight", "leftTop", "leftBottom", "rightTop", "rightBottom"]],
             "overlayStyle": NotRequired[dict]
         }
@@ -1373,7 +1376,7 @@ Keyword arguments:
         recentlyMouseEnterColumnDataIndex: typing.Optional[str] = None,
         recentlyMouseEnterRowKey: typing.Optional[typing.Union[str, NumberType]] = None,
         recentlyMouseEnterRow: typing.Optional[dict] = None,
-        titlePopoverInfo: typing.Optional[typing.Dict[typing.Union[str, float, int], "TitlePopoverInfo"]] = None,
+        titlePopoverInfo: typing.Optional[typing.Sequence["TitlePopoverInfo"]] = None,
         columnsFormatConstraint: typing.Optional[typing.Dict[typing.Union[str, float, int], "ColumnsFormatConstraint"]] = None,
         sortOptions: typing.Optional["SortOptions"] = None,
         showSorterTooltip: typing.Optional[bool] = None,
