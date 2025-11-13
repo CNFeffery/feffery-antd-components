@@ -38,9 +38,8 @@ Keyword arguments:
     默认值：`'default'`.
 
 - cssVar (dict; optional):
-    是否启用 CSS 变量模式（等同 antd ConfigProvider theme.cssVar）  可设置为 `True`
-    或对象：`{ prefix?: string, key?: string }`  默认值：`undefined`（未传递）
-    参考：https://ant-design.antgroup.com/docs/react/css-variables.
+    是否开启`CSS`变量模式，具体参考：https://ant-design.antgroup.com/docs/react/css-variables
+    默认值：`False`.
 
     `cssVar` is a boolean | dict with keys:
 
