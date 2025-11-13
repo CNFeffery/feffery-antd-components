@@ -1537,10 +1537,18 @@ const AntdTable = (props) => {
                         // 兼容单标签/多标签输入
                         <>
                             {(Array.isArray(tags) ? tags : [tags]).map(tag => {
-                                return (
+                                const tagElement = (
                                     <Tag color={tag.color}>
                                         {tag.tag}
                                     </Tag>
+                                );
+                                // 若当前标签需要附带文字提示
+                                return tag.tooltip ? (
+                                    <Tooltip title={tag.tooltip?.title} placement={tag.tooltip?.placement}>
+                                        {tagElement}
+                                    </Tooltip>
+                                ) : (
+                                    tagElement
                                 );
                             })}
                         </>

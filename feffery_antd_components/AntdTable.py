@@ -254,13 +254,37 @@ Keyword arguments:
         适用于`'tags'`模式，标签颜色.
 
     - tag (string | number; optional):
-        适用于`'tags'`模式，标签内容. | list of dicts with keys:
+        适用于`'tags'`模式，标签内容.
+
+    - tooltip (dict; optional):
+        适用于`'tags'`模式，为当前标签添加额外的文字提示功能.
+
+        `tooltip` is a dict with keys:
+
+        - title (string; optional):
+            文字提示内容.
+
+        - placement (a value equal to: 'top', 'left', 'right', 'bottom', 'topLeft', 'topRight', 'bottomLeft', 'bottomRight'; optional):
+            文字提示弹出方向，可选项有`'top'`、`'left'`、`'right'`、`'bottom'`、`'topLeft'`、`'topRight'`、`'bottomLeft'`、`'bottomRight'`、`'leftTop'`、`'leftBottom'`、`'rightTop'`、`'rightBottom'`
+            默认值：`'top'`. | list of dicts with keys:
 
     - color (string; optional):
         适用于`'tags'`模式，当前标签颜色.
 
     - tag (string | number; optional):
-        适用于`'tags'`模式，当前标签内容. | dict with keys:
+        适用于`'tags'`模式，当前标签内容.
+
+    - tooltip (dict; optional):
+        适用于`'tags'`模式，为当前标签添加额外的文字提示功能.
+
+        `tooltip` is a dict with keys:
+
+        - title (string; optional):
+            文字提示内容.
+
+        - placement (a value equal to: 'top', 'left', 'right', 'bottom', 'topLeft', 'topRight', 'bottomLeft', 'bottomRight'; optional):
+            文字提示弹出方向，可选项有`'top'`、`'left'`、`'right'`、`'bottom'`、`'topLeft'`、`'topRight'`、`'bottomLeft'`、`'bottomRight'`、`'leftTop'`、`'leftBottom'`、`'rightTop'`、`'rightBottom'`
+            默认值：`'top'`. | dict with keys:
 
     - disabled (boolean; optional):
         适用于`'button'`模式，同`AntdButton`中的同名参数.
@@ -1141,20 +1165,20 @@ Keyword arguments:
         }
     )
 
+    DataTooltip = TypedDict(
+        "DataTooltip",
+            {
+            "title": NotRequired[str],
+            "placement": NotRequired[Literal["top", "left", "right", "bottom", "topLeft", "topRight", "bottomLeft", "bottomRight"]]
+        }
+    )
+
     DataPopConfirmProps = TypedDict(
         "DataPopConfirmProps",
             {
             "title": NotRequired[str],
             "okText": NotRequired[str],
             "cancelText": NotRequired[str]
-        }
-    )
-
-    DataTooltip = TypedDict(
-        "DataTooltip",
-            {
-            "title": NotRequired[str],
-            "placement": NotRequired[Literal["top", "left", "right", "bottom", "topLeft", "topRight", "bottomLeft", "bottomRight"]]
         }
     )
 
