@@ -37,6 +37,16 @@ Keyword arguments:
     为内部组件设置快捷主题算法，支持多种主题组合，可选项有`'default'`、`'dark'`、`'compact'`
     默认值：`'default'`.
 
+- cssVar (dict; optional):
+    是否开启`CSS`变量模式，具体参考：https://ant-design.antgroup.com/docs/react/css-variables
+    默认值：`False`.
+
+    `cssVar` is a boolean | dict with keys:
+
+    - prefix (string; optional)
+
+    - key (string; optional)
+
 - useOldTheme (a value equal to: 'default', 'dark'; optional):
     是否强制使用`0.3.x`版本之前的主题样式，可选项有`'default'`、`'dark'`.
 
@@ -81,6 +91,14 @@ Keyword arguments:
     _base_nodes = ['children']
     _namespace = 'feffery_antd_components'
     _type = 'AntdConfigProvider'
+    CssVar = TypedDict(
+        "CssVar",
+            {
+            "prefix": NotRequired[str],
+            "key": NotRequired[str]
+        }
+    )
+
     Token = TypedDict(
         "Token",
             {
@@ -102,6 +120,7 @@ Keyword arguments:
         id: typing.Optional[typing.Union[str, dict]] = None,
         key: typing.Optional[str] = None,
         algorithm: typing.Optional[typing.Union[Literal["default", "dark", "compact"], typing.Sequence[Literal["default", "dark", "compact"]]]] = None,
+        cssVar: typing.Optional[typing.Union[bool, "CssVar"]] = None,
         useOldTheme: typing.Optional[Literal["default", "dark"]] = None,
         primaryColor: typing.Optional[str] = None,
         componentDisabled: typing.Optional[bool] = None,
@@ -114,9 +133,9 @@ Keyword arguments:
         enableLayer: typing.Optional[bool] = None,
         **kwargs
     ):
-        self._prop_names = ['id', 'key', 'children', 'algorithm', 'useOldTheme', 'primaryColor', 'componentDisabled', 'componentSize', 'locale', 'wavesDisabled', 'token', 'componentsToken', 'compatibilityMode', 'enableLayer']
+        self._prop_names = ['id', 'key', 'children', 'algorithm', 'cssVar', 'useOldTheme', 'primaryColor', 'componentDisabled', 'componentSize', 'locale', 'wavesDisabled', 'token', 'componentsToken', 'compatibilityMode', 'enableLayer']
         self._valid_wildcard_attributes =            []
-        self.available_properties = ['id', 'key', 'children', 'algorithm', 'useOldTheme', 'primaryColor', 'componentDisabled', 'componentSize', 'locale', 'wavesDisabled', 'token', 'componentsToken', 'compatibilityMode', 'enableLayer']
+        self.available_properties = ['id', 'key', 'children', 'algorithm', 'cssVar', 'useOldTheme', 'primaryColor', 'componentDisabled', 'componentSize', 'locale', 'wavesDisabled', 'token', 'componentsToken', 'compatibilityMode', 'enableLayer']
         self.available_wildcard_properties =            []
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()
