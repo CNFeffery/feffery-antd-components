@@ -493,7 +493,11 @@ const AntdTable = (props) => {
                     columnsFormatConstraint[rowColumns[i]].rule) {
                     // 检查是否满足预设的正则表达式规则
                     if (!eval(`/${columnsFormatConstraint[rowColumns[i]].rule}/`).test(row[rowColumns[i]])) {
-                        message.error(`编辑失败，${row[rowColumns[i]]} 输入${columnsFormatConstraint[rowColumns[i]]?.content || '不符合对应字段格式要求！'}`);
+                        message.error(
+                            columnsFormatConstraint[rowColumns[i]]?.content ?
+                                columnsFormatConstraint[rowColumns[i]]?.content.replace('[VALUE]', row[rowColumns[i]]) :
+                                locale2text.AntdTable[locale].columnEditableFormatConstraintMessage.replace('[VALUE]', row[rowColumns[i]])
+                        );
                         // 提前终止函数
                         return
                     }

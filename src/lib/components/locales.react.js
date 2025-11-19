@@ -84,6 +84,7 @@ const locale2text = {
             filterKeywordPlaceholder: '搜索',
             filterKeywordSearchButtonText: '搜索',
             filterKeywordResetButtonText: '重置',
+            columnEditableFormatConstraintMessage: '编辑失败，输入的“[VALUE]”不符合对应字段的格式要求。'
         },
         'en-us': {
             showTotalPrefix: 'Total ',
@@ -91,6 +92,7 @@ const locale2text = {
             filterKeywordPlaceholder: 'Search',
             filterKeywordSearchButtonText: 'Search',
             filterKeywordResetButtonText: 'Reset',
+            columnEditableFormatConstraintMessage: 'Edit failed, The input "[VALUE]" does not meet the format requirements for the corresponding field.'
         },
         'de-de': {
             showTotalPrefix: 'Gesamt ',
@@ -98,6 +100,7 @@ const locale2text = {
             filterKeywordPlaceholder: 'Suche',
             filterKeywordSearchButtonText: 'Suchen',
             filterKeywordResetButtonText: 'Zurücksetzen',
+            columnEditableFormatConstraintMessage: 'Bearbeiten fehlgeschlagen, Die Eingabe "[VALUE]" entspricht nicht den Anforderungen des entsprechenden Feldes.'
         },
         'ru-ru': {
             showTotalPrefix: 'Всего ',
@@ -105,6 +108,7 @@ const locale2text = {
             filterKeywordPlaceholder: 'Поиск',
             filterKeywordSearchButtonText: 'Поиск',
             filterKeywordResetButtonText: 'Сбросить',
+            columnEditableFormatConstraintMessage: 'Редактирование не удалось, введенное значение "[VALUE]" не соответствует требованиям поля.'
         }
     },
     AntdTransfer: {
