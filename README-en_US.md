@@ -33,7 +33,7 @@ pip install feffery-antd-components -U
 ## 2 Install the latest preview release version
 
 > [!NOTE]  
-> The latest preview release version (2025-10-23): `0.4.3rc3`
+> The latest preview release version (2025-11-19): `0.4.3rc4`
 
 ```bash
 pip install feffery-antd-components --pre -U
