@@ -2161,7 +2161,7 @@ export default React.memo(
 
         // 特殊处理：
         // 当recentlySelectValue发生变动且不涉及data变动时时，阻止本次重绘
-        if (changedProps.includes('recentlySelectValue') && !changedProps.includes('data')) {
+        if (changedProps.includes('recentlySelectValue') && !changedProps.includes('data') && !changedProps.includes('currentData')) {
             return true;
         }
 
