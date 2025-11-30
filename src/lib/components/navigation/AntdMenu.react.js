@@ -153,34 +153,37 @@ const str2Jsx = new Map([
 ])
 
 // 递归推导多层菜单结构
-const raw2Jsx = (obj, str2Jsx, menuItemKeyToTitle) => {
+const raw2Jsx = (obj, str2Jsx, menuItemKeyToTitle, menuItemKeyToIcon) => {
     // 若obj为数组
     if (Array.isArray(obj)) {
         // 若obj为数组，则针对数组中每个对象向下递归
-        obj = obj.map(obj_ => raw2Jsx(obj_, str2Jsx, menuItemKeyToTitle))
+        obj = obj.map(obj_ => raw2Jsx(obj_, str2Jsx, menuItemKeyToTitle, menuItemKeyToIcon))
 
     } else if (obj.hasOwnProperty('component')) {
         // 若obj包含children属性，则向下递归处理
         if (obj.hasOwnProperty('children')) {
-            Object.assign(obj, { children: obj.children.map(obj_ => raw2Jsx(obj_, str2Jsx, menuItemKeyToTitle)) })
+            Object.assign(obj, { children: obj.children.map(obj_ => raw2Jsx(obj_, str2Jsx, menuItemKeyToTitle, menuItemKeyToIcon)) })
             if (obj.component === 'SubMenu') {
                 obj = <SubMenu
                     key={obj.props.key}
                     title={menuItemKeyToTitle[obj.props.key] || obj.props.title}
                     disabled={obj.props.disabled}
                     icon={
-                        obj.props.iconRenderer === 'fontawesome' ?
-                            (
-                                React.createElement(
-                                    'i',
-                                    {
-                                        className: obj.props.icon
-                                    }
+                        menuItemKeyToIcon[obj.props.key] ||
+                        (
+                            obj.props.iconRenderer === 'fontawesome' ?
+                                (
+                                    React.createElement(
+                                        'i',
+                                        {
+                                            className: obj.props.icon
+                                        }
+                                    )
+                                ) :
+                                (
+                                    <AntdIcon icon={obj.props.icon} />
                                 )
-                            ) :
-                            (
-                                <AntdIcon icon={obj.props.icon} />
-                            )
+                        )
                     }>
                     {obj.children}
                 </SubMenu>
@@ -190,18 +193,21 @@ const raw2Jsx = (obj, str2Jsx, menuItemKeyToTitle) => {
                     title={menuItemKeyToTitle[obj.props.key] || obj.props.title}
                     disabled={obj.props.disabled}
                     icon={
-                        obj.props.iconRenderer === 'fontawesome' ?
-                            (
-                                React.createElement(
-                                    'i',
-                                    {
-                                        className: obj.props.icon
-                                    }
+                        menuItemKeyToIcon[obj.props.key] ||
+                        (
+                            obj.props.iconRenderer === 'fontawesome' ?
+                                (
+                                    React.createElement(
+                                        'i',
+                                        {
+                                            className: obj.props.icon
+                                        }
+                                    )
+                                ) :
+                                (
+                                    <AntdIcon icon={obj.props.icon} />
                                 )
-                            ) :
-                            (
-                                <AntdIcon icon={obj.props.icon} />
-                            )
+                        )
                     }>
                     {obj.children}
                 </ItemGroup>
@@ -218,18 +224,21 @@ const raw2Jsx = (obj, str2Jsx, menuItemKeyToTitle) => {
                     disabled={obj.props.disabled}
                     danger={obj.props.danger}
                     icon={
-                        obj.props.iconRenderer === 'fontawesome' ?
-                            (
-                                React.createElement(
-                                    'i',
-                                    {
-                                        className: obj.props.icon
-                                    }
+                        menuItemKeyToIcon[obj.props.key] ||
+                        (
+                            obj.props.iconRenderer === 'fontawesome' ?
+                                (
+                                    React.createElement(
+                                        'i',
+                                        {
+                                            className: obj.props.icon
+                                        }
+                                    )
+                                ) :
+                                (
+                                    <AntdIcon icon={obj.props.icon} />
                                 )
-                            ) :
-                            (
-                                <AntdIcon icon={obj.props.icon} />
-                            )
+                        )
                     }
                     name={obj.props && obj.props.name}
                 >
@@ -242,18 +251,21 @@ const raw2Jsx = (obj, str2Jsx, menuItemKeyToTitle) => {
                     disabled={obj.props.disabled}
                     danger={obj.props.danger}
                     icon={
-                        obj.props.iconRenderer === 'fontawesome' ?
-                            (
-                                React.createElement(
-                                    'i',
-                                    {
-                                        className: obj.props.icon
-                                    }
+                        menuItemKeyToIcon[obj.props.key] ||
+                        (
+                            obj.props.iconRenderer === 'fontawesome' ?
+                                (
+                                    React.createElement(
+                                        'i',
+                                        {
+                                            className: obj.props.icon
+                                        }
+                                    )
+                                ) :
+                                (
+                                    <AntdIcon icon={obj.props.icon} />
                                 )
-                            ) :
-                            (
-                                <AntdIcon icon={obj.props.icon} />
-                            )
+                        )
                     }
                     name={obj.props && obj.props.name}
                 >
@@ -276,6 +288,7 @@ const AntdMenu = ({
     expandIcon,
     menuItems,
     menuItemKeyToTitle,
+    menuItemKeyToIcon,
     mode = 'vertical',
     theme = 'light',
     defaultOpenKeys,
@@ -352,7 +365,7 @@ const AntdMenu = ({
     }, [currentKey])
 
     // 基于menuItems推导jsx数据结构
-    let _menuItems = raw2Jsx(cloneDeep(menuItems), str2Jsx, menuItemKeyToTitle || {})
+    let _menuItems = raw2Jsx(cloneDeep(menuItems), str2Jsx, menuItemKeyToTitle || {}, menuItemKeyToIcon || {});
 
     // 监听Item的点击事件
     const listenSelected = (item) => {
@@ -504,6 +517,11 @@ AntdMenu.propTypes = {
      * 为指定节点定义组件型菜单项标题，优先级高于menuItems中对应节点的title属性
      */
     menuItemKeyToTitle: PropTypes.objectOf(PropTypes.node),
+
+    /**
+     * 为指定节点定义组件型菜单项图标元素，优先级高于menuItems中对应节点的icon属性
+     */
+    menuItemKeyToIcon: PropTypes.objectOf(PropTypes.node),
 
     /**
      * 显示模式，可选项有`'vertical'`、`'horizontal'`、`'inline'`

@@ -51,6 +51,9 @@ Keyword arguments:
 - menuItemKeyToTitle (dict with strings as keys and values of type a list of or a singular dash component, string or number; optional):
     为指定节点定义组件型菜单项标题，优先级高于menuItems中对应节点的title属性.
 
+- menuItemKeyToIcon (dict with strings as keys and values of type a list of or a singular dash component, string or number; optional):
+    为指定节点定义组件型菜单项图标元素，优先级高于menuItems中对应节点的icon属性.
+
 - mode (a value equal to: 'vertical', 'horizontal', 'inline'; default 'vertical'):
     显示模式，可选项有`'vertical'`、`'horizontal'`、`'inline'`  默认值：`'vertical'`.
 
@@ -111,7 +114,7 @@ Keyword arguments:
 
 - persistence_type (a value equal to: 'local', 'session', 'memory'; optional):
     当前组件的属性持久化存储类型  默认值：`'local'`."""
-    _children_props = ['expandIcon', 'expandIcon.expand', 'expandIcon.collapse', 'menuItemKeyToTitle{}']
+    _children_props = ['expandIcon', 'expandIcon.expand', 'expandIcon.collapse', 'menuItemKeyToTitle{}', 'menuItemKeyToIcon{}']
     _base_nodes = ['expandIcon', 'children']
     _namespace = 'feffery_antd_components'
     _type = 'AntdMenu'
@@ -133,6 +136,7 @@ Keyword arguments:
         expandIcon: typing.Optional[typing.Union[ComponentType, "ExpandIcon"]] = None,
         menuItems: typing.Optional[typing.Sequence] = None,
         menuItemKeyToTitle: typing.Optional[typing.Dict[typing.Union[str, float, int], ComponentType]] = None,
+        menuItemKeyToIcon: typing.Optional[typing.Dict[typing.Union[str, float, int], ComponentType]] = None,
         mode: typing.Optional[Literal["vertical", "horizontal", "inline"]] = None,
         theme: typing.Optional[Literal["light", "dark"]] = None,
         currentKey: typing.Optional[str] = None,
@@ -153,9 +157,9 @@ Keyword arguments:
         persistence_type: typing.Optional[Literal["local", "session", "memory"]] = None,
         **kwargs
     ):
-        self._prop_names = ['id', 'key', 'style', 'className', 'expandIcon', 'menuItems', 'menuItemKeyToTitle', 'mode', 'theme', 'currentKey', 'currentItem', 'currentKeyPath', 'currentItemPath', 'openKeys', 'onlyExpandCurrentSubMenu', 'defaultOpenKeys', 'defaultSelectedKey', 'renderCollapsedButton', 'popupContainer', 'inlineCollapsed', 'inlineIndent', 'triggerSubMenuAction', 'data-*', 'aria-*', 'persistence', 'persisted_props', 'persistence_type']
+        self._prop_names = ['id', 'key', 'style', 'className', 'expandIcon', 'menuItems', 'menuItemKeyToTitle', 'menuItemKeyToIcon', 'mode', 'theme', 'currentKey', 'currentItem', 'currentKeyPath', 'currentItemPath', 'openKeys', 'onlyExpandCurrentSubMenu', 'defaultOpenKeys', 'defaultSelectedKey', 'renderCollapsedButton', 'popupContainer', 'inlineCollapsed', 'inlineIndent', 'triggerSubMenuAction', 'data-*', 'aria-*', 'persistence', 'persisted_props', 'persistence_type']
         self._valid_wildcard_attributes =            ['data-', 'aria-']
-        self.available_properties = ['id', 'key', 'style', 'className', 'expandIcon', 'menuItems', 'menuItemKeyToTitle', 'mode', 'theme', 'currentKey', 'currentItem', 'currentKeyPath', 'currentItemPath', 'openKeys', 'onlyExpandCurrentSubMenu', 'defaultOpenKeys', 'defaultSelectedKey', 'renderCollapsedButton', 'popupContainer', 'inlineCollapsed', 'inlineIndent', 'triggerSubMenuAction', 'data-*', 'aria-*', 'persistence', 'persisted_props', 'persistence_type']
+        self.available_properties = ['id', 'key', 'style', 'className', 'expandIcon', 'menuItems', 'menuItemKeyToTitle', 'menuItemKeyToIcon', 'mode', 'theme', 'currentKey', 'currentItem', 'currentKeyPath', 'currentItemPath', 'openKeys', 'onlyExpandCurrentSubMenu', 'defaultOpenKeys', 'defaultSelectedKey', 'renderCollapsedButton', 'popupContainer', 'inlineCollapsed', 'inlineIndent', 'triggerSubMenuAction', 'data-*', 'aria-*', 'persistence', 'persisted_props', 'persistence_type']
         self.available_wildcard_properties =            ['data-', 'aria-']
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()
