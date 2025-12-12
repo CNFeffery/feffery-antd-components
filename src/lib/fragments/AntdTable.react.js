@@ -611,7 +611,7 @@ const AntdTable = (props) => {
         let filterOptions = []
         for (let item of inputData) {
             // 若当前记录不为数组
-            if (item[columnDataIndex] && !Array.isArray(item[columnDataIndex])) {
+            if ((item[columnDataIndex] || item[columnDataIndex] === 0) && !Array.isArray(item[columnDataIndex])) {
                 if (item[columnDataIndex]?.content) {
                     filterOptions.push(item[columnDataIndex].content)
                 } else if (item[columnDataIndex]?.text) {
@@ -645,7 +645,7 @@ const AntdTable = (props) => {
         return Array.from(
             new Set(filterOptions)
         ).map(
-            value => ({ text: value ? value.toString() : '', value: value })
+            value => ({ text: (value || value === 0) ? value.toString() : '', value: value })
         ).sort(compareNumeric)
     }
 
@@ -677,7 +677,7 @@ const AntdTable = (props) => {
                             // 针对不同再渲染模式设计值筛选逻辑
                             onFilter: (value, record) => {
                                 // 仅支持非数组型合法输入值，对象型输入支持对content、text、label、tag属性进行值筛选
-                                if (record[columns[i].dataIndex] && !Array.isArray(record[columns[i].dataIndex])) {
+                                if ((record[columns[i].dataIndex] || record[columns[i].dataIndex] === 0) && !Array.isArray(record[columns[i].dataIndex])) {
                                     // 判断当前记录是否有content属性
                                     if (record[columns[i].dataIndex]?.content) {
                                         return record[columns[i].dataIndex].content === value;
@@ -688,7 +688,8 @@ const AntdTable = (props) => {
                                     } else if (record[columns[i].dataIndex]?.tag) {
                                         return record[columns[i].dataIndex].tag === value;
                                     } else if (record[columns[i].dataIndex]?.toString) {
-                                        return record[columns[i].dataIndex].toString() === value;
+                                        // 确保字符型、数值型均可稳定进行筛选
+                                        return record[columns[i].dataIndex].toString() === value.toString();
                                     }
                                 } else if (Array.isArray(record[columns[i].dataIndex])) {
                                     // 若当前记录为数组，分别检查数组元素对象是否具有content、tag、title属性
@@ -723,11 +724,11 @@ const AntdTable = (props) => {
                             ...columns[i],
                             defaultFilteredValue: defaultFilteredValues[columns[i].dataIndex],
                             filters: filterOptions[columns[i].dataIndex].filterCustomItems
-                                .map(value => ({ text: value ? value.toString() : '', value: value })),
+                                .map(value => ({ text: (value || value === 0) ? value.toString() : '', value: value })),
                             // 针对不同再渲染模式设计值筛选逻辑
                             onFilter: (value, record) => {
                                 // 仅支持非数组型合法输入值，对象型输入支持对content、text、label、tag属性进行值筛选
-                                if (record[columns[i].dataIndex] && !Array.isArray(record[columns[i].dataIndex])) {
+                                if ((record[columns[i].dataIndex] || record[columns[i].dataIndex] === 0) && !Array.isArray(record[columns[i].dataIndex])) {
                                     // 判断当前记录是否有content属性
                                     if (record[columns[i].dataIndex]?.content) {
                                         return record[columns[i].dataIndex].content === value;
@@ -738,7 +739,8 @@ const AntdTable = (props) => {
                                     } else if (record[columns[i].dataIndex]?.tag) {
                                         return record[columns[i].dataIndex].tag === value;
                                     } else if (record[columns[i].dataIndex]?.toString) {
-                                        return record[columns[i].dataIndex].toString() === value;
+                                        // 确保字符型、数值型均可稳定进行筛选
+                                        return record[columns[i].dataIndex].toString() === value.toString();
                                     }
                                 } else if (Array.isArray(record[columns[i].dataIndex])) {
                                     // 若当前记录为数组，分别检查数组元素对象是否具有content、tag、title属性
@@ -773,7 +775,7 @@ const AntdTable = (props) => {
                             // 针对不同再渲染模式设计值筛选逻辑
                             onFilter: (value, record) => {
                                 // 仅支持非数组型合法输入值，对象型输入支持对content、text、label、tag属性进行值筛选
-                                if (record[columns[i].dataIndex] && !Array.isArray(record[columns[i].dataIndex])) {
+                                if ((record[columns[i].dataIndex] || record[columns[i].dataIndex] === 0) && !Array.isArray(record[columns[i].dataIndex])) {
                                     if (record[columns[i].dataIndex]?.content) {
                                         return record[columns[i].dataIndex].content === value;
                                     } else if (record[columns[i].dataIndex]?.text) {
@@ -856,7 +858,7 @@ const AntdTable = (props) => {
                             ...columns[i],
                             defaultFilteredValue: defaultFilteredValues[columns[i].dataIndex],
                             filters: filterOptions[columns[i].dataIndex].filterCustomItems
-                                .map(value => ({ text: value ? value.toString() : '', value: value })),
+                                .map(value => ({ text: (value || value === 0) ? value.toString() : '', value: value })),
                             onFilter: (value, record) => true, // 契合后端刷新模式
                             filterMultiple: filterOptions[columns[i].dataIndex].filterMultiple,
                             filterSearch: filterOptions[columns[i].dataIndex].filterSearch
