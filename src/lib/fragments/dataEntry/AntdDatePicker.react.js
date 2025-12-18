@@ -1,5 +1,5 @@
 // react核心
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect, useContext, useMemo } from 'react';
 // antd核心
 import { DatePicker, ConfigProvider } from 'antd';
 // 辅助库
@@ -73,10 +73,19 @@ const AntdDatePicker = (props) => {
         persistence_type,
         batchPropsNames,
         needConfirm,
+        clickedDate,
+        dateOverlays,
         ...others
     } = props;
 
     const [rawValue, setRawValue] = useState(null);
+    const [uiClickedDate, setUiClickedDate] = useState(null);
+
+    useEffect(() => {
+        if (clickedDate && clickedDate !== uiClickedDate) {
+            setUiClickedDate(clickedDate);
+        }
+    }, [clickedDate]);
 
     // 解决value经回调更新后，rawValue未更新的问题
     useEffect(() => {
@@ -440,6 +449,81 @@ const AntdDatePicker = (props) => {
         }
     }
 
+    const renderBaseDateCell = (current, info) => {
+        if (!customCells) return info.originNode;
+        if (info.type !== 'date') return info.originNode;
+        const matchCell = customCells.filter(item => {
+            let conditions = true;
+            if (item.year)  conditions = conditions && current.year() === item.year;
+            if (item.month) conditions = conditions && current.month() + 1 === item.month;
+            if (item.date)  conditions = conditions && current.date() === item.date;
+            return conditions;
+        });
+        if (matchCell.length > 0) {
+            return (
+                <div
+                    className={
+                        matchCell[0].className ?
+                            `ant-picker-cell-inner ${matchCell[0].className}` :
+                            'ant-picker-cell-inner'
+                    }
+                    style={matchCell[0].style}
+                >
+                    {current.date()}
+                </div>
+            );
+        }
+        return info.originNode;
+    };
+
+    const preSelectCellRender = (current, info) => {
+        if (info.type !== 'date') return info.originNode;
+        const base = renderBaseDateCell(current, info);
+
+        return (
+            <div
+            onClick={() => {
+                const dStr = current.format(format);
+
+                // avoid redundant work
+                if (dStr === uiClickedDate) return;
+
+                // 1) update overlays immediately via local state (no Dash roundtrip)
+                setUiClickedDate(dStr);
+
+                // 2) expose to Dash after AntD commits selection (next frame)
+                if (typeof window !== 'undefined' && window.requestAnimationFrame) {
+                    window.requestAnimationFrame(() => setProps?.({ clickedDate: dStr }));
+                } else {
+                    setTimeout(() => setProps?.({ clickedDate: dStr }), 0);
+                }
+            }}
+            >
+            {base}
+            </div>
+        );
+    };
+
+    const activeDateStr = useMemo(() => {
+        if (uiClickedDate) return uiClickedDate;
+        if (clickedDate)   return clickedDate;
+        if (rawValue)      return rawValue.format(format);
+        return undefined;
+    }, [uiClickedDate, clickedDate, rawValue, format]);
+
+    const activeOverlay = useMemo(() => {
+        if (!dateOverlays || !activeDateStr) return undefined;
+        return dateOverlays.find(o => o?.date === activeDateStr);
+    }, [dateOverlays, activeDateStr]);
+
+    const effectivePresets = useMemo(() => {
+        const base = (activeOverlay?.presets ?? presets) || [];
+        return base.map(preset => ({
+            label: preset.label,
+            value: () => dayjs(preset.value, format)
+        }));
+    }, [activeOverlay, presets, format]);
+
     return (
         <div>
             <ConfigProvider
@@ -511,62 +595,11 @@ const AntdDatePicker = (props) => {
                     placement={placement}
                     open={isUndefined(readOnly) || !readOnly ? undefined : false}
                     inputReadOnly={readOnly}
-                    renderExtraFooter={() => extraFooter}
+                    renderExtraFooter={() => activeOverlay?.extraFooter ?? extraFooter}
                     showNow={showToday}
                     needConfirm={needConfirm}
-                    presets={
-                        // 处理预设快捷选项列表
-                        (presets || []).map(
-                            (preset) => ({
-                                label: preset.label,
-                                value: () => {
-                                    return dayjs(preset.value, format)
-                                }
-                            })
-                        )
-                    }
-                    cellRender={
-                        customCells ?
-                            (current, info) => {
-                                // 尝试搜索命中项
-                                let matchCell;
-                                // 目前仅作用于日期类型
-                                if (info.type === 'date') {
-                                    matchCell = customCells.filter(item => {
-                                        // 初始化基础条件
-                                        let conditions = true
-                                        // 若具有明确年份
-                                        if (item.year) {
-                                            conditions = conditions && current.year() === item.year
-                                        }
-                                        // 若具有明确月份
-                                        if (item.month) {
-                                            conditions = conditions && current.month() + 1 === item.month
-                                        }
-                                        // 若具有明确日期
-                                        if (item.date) {
-                                            conditions = conditions && current.date() === item.date
-                                        }
-                                        return conditions;
-                                    });
-                                }
-                                if (matchCell.length > 0) {
-                                    return (
-                                        <div className={
-                                            matchCell[0].className ?
-                                                `ant-picker-cell-inner ${matchCell[0].className}` :
-                                                'ant-picker-cell-inner'
-                                        }
-                                            style={matchCell[0].style}
-                                        >
-                                            {current.date()}
-                                        </div>
-                                    );
-                                }
-                                return info.originNode;
-                            } :
-                            undefined
-                    }
+                    presets={effectivePresets}
+                    cellRender={preSelectCellRender}
                     prefix={prefix}
                     suffixIcon={suffixIcon}
                     data-dash-is-loading={useLoading()}

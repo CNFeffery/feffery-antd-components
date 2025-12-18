@@ -154,6 +154,31 @@ Keyword arguments:
     - timestamp (number; optional):
         事件对应时间戳信息.
 
+- clickedDate (string; optional):
+    最近一次“日期单元格点击”的日期字符串（在确认之前触发；等价于 preSelect）  与 `format` 一致，默认形如
+    `'YYYY-MM-DD'`.
+
+- dateOverlays (list of dicts; optional):
+    针对特定日期的额外 footer 与 presets 叠加配置  `date` 必须与 `format` 一致（通常为
+    `'YYYY-MM-DD'`）.
+
+    `dateOverlays` is a list of dicts with keys:
+
+    - date (string; required):
+        叠加配置所对应的日期字符串（需与 `format` 一致）.
+
+    - extraFooter (a list of or a singular dash component, string or number; optional):
+        当该日期为最近一次点击时，底部额外区域渲染内容.
+
+    - presets (list of dicts; optional):
+        当该日期为最近一次点击时，展示的预设项（将覆盖全局 presets）.
+
+        `presets` is a list of dicts with keys:
+
+        - label (a list of or a singular dash component, string or number; optional)
+
+        - value (string; optional)
+
 - needConfirm (boolean; default False):
     是否需要点击按钮确认选值，传入`False`时失去焦点即代表选择  默认值：`False`.
 
@@ -207,7 +232,7 @@ Keyword arguments:
 - persistence_type (a value equal to: 'local', 'session', 'memory'; optional):
     属性持久化存储类型，可选项有`'local'`（本地持久化），`'session'`（会话持久化），`'memory'`（内存持久化）
     默认值：`'local'`."""
-    _children_props = ['extraFooter', 'presets[].label', 'prefix', 'suffixIcon']
+    _children_props = ['extraFooter', 'presets[].label', 'dateOverlays[].extraFooter', 'dateOverlays[].presets[].label', 'prefix', 'suffixIcon']
     _base_nodes = ['extraFooter', 'prefix', 'suffixIcon', 'children']
     _namespace = 'feffery_antd_components'
     _type = 'AntdDatePicker'
@@ -241,6 +266,23 @@ Keyword arguments:
             {
             "value": NotRequired[typing.Union[str, NumberType]],
             "timestamp": NotRequired[NumberType]
+        }
+    )
+
+    DateOverlaysPresets = TypedDict(
+        "DateOverlaysPresets",
+            {
+            "label": NotRequired[ComponentType],
+            "value": NotRequired[str]
+        }
+    )
+
+    DateOverlays = TypedDict(
+        "DateOverlays",
+            {
+            "date": str,
+            "extraFooter": NotRequired[ComponentType],
+            "presets": NotRequired[typing.Sequence["DateOverlaysPresets"]]
         }
     )
 
@@ -288,6 +330,8 @@ Keyword arguments:
         showToday: typing.Optional[bool] = None,
         presets: typing.Optional[typing.Sequence["Presets"]] = None,
         clickedPreset: typing.Optional["ClickedPreset"] = None,
+        clickedDate: typing.Optional[str] = None,
+        dateOverlays: typing.Optional[typing.Sequence["DateOverlays"]] = None,
         needConfirm: typing.Optional[bool] = None,
         customCells: typing.Optional[typing.Sequence["CustomCells"]] = None,
         prefix: typing.Optional[ComponentType] = None,
@@ -300,9 +344,9 @@ Keyword arguments:
         persistence_type: typing.Optional[Literal["local", "session", "memory"]] = None,
         **kwargs
     ):
-        self._prop_names = ['id', 'key', 'style', 'className', 'popupClassName', 'name', 'enableBatchControl', 'locale', 'format', 'picker', 'firstDayOfWeek', 'disabled', 'showTime', 'size', 'bordered', 'variant', 'placeholder', 'placement', 'value', 'defaultValue', 'pickerValue', 'disabledDatesStrategy', 'status', 'allowClear', 'autoFocus', 'readOnly', 'extraFooter', 'showToday', 'presets', 'clickedPreset', 'needConfirm', 'customCells', 'prefix', 'suffixIcon', 'popupContainer', 'batchPropsNames', 'batchPropsValues', 'data-*', 'aria-*', 'persistence', 'persisted_props', 'persistence_type']
+        self._prop_names = ['id', 'key', 'style', 'className', 'popupClassName', 'name', 'enableBatchControl', 'locale', 'format', 'picker', 'firstDayOfWeek', 'disabled', 'showTime', 'size', 'bordered', 'variant', 'placeholder', 'placement', 'value', 'defaultValue', 'pickerValue', 'disabledDatesStrategy', 'status', 'allowClear', 'autoFocus', 'readOnly', 'extraFooter', 'showToday', 'presets', 'clickedPreset', 'clickedDate', 'dateOverlays', 'needConfirm', 'customCells', 'prefix', 'suffixIcon', 'popupContainer', 'batchPropsNames', 'batchPropsValues', 'data-*', 'aria-*', 'persistence', 'persisted_props', 'persistence_type']
         self._valid_wildcard_attributes =            ['data-', 'aria-']
-        self.available_properties = ['id', 'key', 'style', 'className', 'popupClassName', 'name', 'enableBatchControl', 'locale', 'format', 'picker', 'firstDayOfWeek', 'disabled', 'showTime', 'size', 'bordered', 'variant', 'placeholder', 'placement', 'value', 'defaultValue', 'pickerValue', 'disabledDatesStrategy', 'status', 'allowClear', 'autoFocus', 'readOnly', 'extraFooter', 'showToday', 'presets', 'clickedPreset', 'needConfirm', 'customCells', 'prefix', 'suffixIcon', 'popupContainer', 'batchPropsNames', 'batchPropsValues', 'data-*', 'aria-*', 'persistence', 'persisted_props', 'persistence_type']
+        self.available_properties = ['id', 'key', 'style', 'className', 'popupClassName', 'name', 'enableBatchControl', 'locale', 'format', 'picker', 'firstDayOfWeek', 'disabled', 'showTime', 'size', 'bordered', 'variant', 'placeholder', 'placement', 'value', 'defaultValue', 'pickerValue', 'disabledDatesStrategy', 'status', 'allowClear', 'autoFocus', 'readOnly', 'extraFooter', 'showToday', 'presets', 'clickedPreset', 'clickedDate', 'dateOverlays', 'needConfirm', 'customCells', 'prefix', 'suffixIcon', 'popupContainer', 'batchPropsNames', 'batchPropsValues', 'data-*', 'aria-*', 'persistence', 'persisted_props', 'persistence_type']
         self.available_wildcard_properties =            ['data-', 'aria-']
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()
