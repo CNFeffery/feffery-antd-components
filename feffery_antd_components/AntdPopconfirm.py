@@ -192,7 +192,7 @@ Keyword arguments:
 
     - component_name (string; optional):
         Holds the name of the component that is loading."""
-    _children_props = ['icon', 'title', 'description', 'okText', 'cancelText']
+    _children_props: typing.List[str] = ['icon', 'title', 'description', 'okText', 'cancelText']
     _base_nodes = ['icon', 'title', 'description', 'okText', 'cancelText', 'children']
     _namespace = 'feffery_antd_components'
     _type = 'AntdPopconfirm'

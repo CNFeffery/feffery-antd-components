@@ -269,7 +269,7 @@ Keyword arguments:
 
 - aria-* (string; optional):
     `aria-*`格式属性通配."""
-    _children_props = ['icon', 'text', 'hint']
+    _children_props: typing.List[str] = ['icon', 'text', 'hint']
     _base_nodes = ['icon', 'text', 'hint', 'children']
     _namespace = 'feffery_antd_components'
     _type = 'AntdDraggerUpload'

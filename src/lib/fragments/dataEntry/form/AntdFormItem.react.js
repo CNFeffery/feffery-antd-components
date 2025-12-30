@@ -47,6 +47,7 @@ const AntdFormItem = (props) => {
     const formId = useContext(FormContext);
     const _validateStatus = useFormStore((state) => state.validateStatuses?.[formId]?.[label]);
     const _help = useFormStore((state) => state.helps?.[formId]?.[label]);
+    const _tooltip = useFormStore((state) => state.tooltips?.[formId]?.[label]);
 
     return (
         <Item
@@ -65,7 +66,7 @@ const AntdFormItem = (props) => {
             wrapperCol={wrapperCol}
             label={label}
             labelAlign={labelAlign}
-            tooltip={tooltip}
+            tooltip={tooltip || (formId && _tooltip)}
             extra={extra}
             help={help || (formId && _help)}
             hasFeedback={hasFeedback}

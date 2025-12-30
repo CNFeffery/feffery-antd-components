@@ -54,7 +54,7 @@ Keyword arguments:
 
 - iconRenderer (a value equal to: 'AntdIcon', 'fontawesome'; default 'AntdIcon'):
     自定义前缀图标渲染方式，可选项有`'AntdIcon'`、`'fontawesome'`."""
-    _children_props = []
+    _children_props: typing.List[str] = []
     _base_nodes = ['children']
     _namespace = 'feffery_antd_components'
     _type = 'AntdMessage'

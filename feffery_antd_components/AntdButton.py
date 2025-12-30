@@ -124,7 +124,7 @@ Keyword arguments:
 
 - aria-* (string; optional):
     `aria-*`格式属性通配."""
-    _children_props = ['loadingChildren', 'icon']
+    _children_props: typing.List[str] = ['loadingChildren', 'icon']
     _base_nodes = ['loadingChildren', 'icon', 'children']
     _namespace = 'feffery_antd_components'
     _type = 'AntdButton'

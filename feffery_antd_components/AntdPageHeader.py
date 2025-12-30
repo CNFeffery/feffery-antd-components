@@ -59,7 +59,7 @@ Keyword arguments:
 
 - aria-* (string; optional):
     `aria-*`格式属性通配."""
-    _children_props = ['title', 'subTitle']
+    _children_props: typing.List[str] = ['title', 'subTitle']
     _base_nodes = ['title', 'subTitle', 'children']
     _namespace = 'feffery_antd_components'
     _type = 'AntdPageHeader'

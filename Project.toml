@@ -2,7 +2,7 @@
 name = "FefferyAntdComponents"
 uuid = "1b08a953-4be3-4667-9a23-674b58f7de79"
 authors = ["CNFeffery <fefferypzy@gmail.com>"]
-version = "0.4.3-rc6"
+version = "0.4.3-rc7"
 
 [deps]
 Dash = "1b08a953-4be3-4667-9a23-3db579824955"

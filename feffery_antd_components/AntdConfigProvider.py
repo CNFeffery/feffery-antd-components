@@ -87,7 +87,7 @@ Keyword arguments:
 
 - enableLayer (boolean; default False):
     是否启用layer样式降权  默认值：`False`."""
-    _children_props = []
+    _children_props: typing.List[str] = []
     _base_nodes = ['children']
     _namespace = 'feffery_antd_components'
     _type = 'AntdConfigProvider'

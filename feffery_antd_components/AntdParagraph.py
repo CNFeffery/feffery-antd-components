@@ -89,7 +89,7 @@ Keyword arguments:
 
 - aria-* (string; optional):
     `aria-*`格式属性通配."""
-    _children_props = ['ellipsis.symbol']
+    _children_props: typing.List[str] = ['ellipsis.symbol']
     _base_nodes = ['children']
     _namespace = 'feffery_antd_components'
     _type = 'AntdParagraph'

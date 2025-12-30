@@ -83,7 +83,7 @@ Keyword arguments:
 
 - aria-* (string; optional):
     `aria-*`格式属性通配."""
-    _children_props = ['indicator']
+    _children_props: typing.List[str] = ['indicator']
     _base_nodes = ['indicator', 'children']
     _namespace = 'feffery_antd_components'
     _type = 'AntdSpin'

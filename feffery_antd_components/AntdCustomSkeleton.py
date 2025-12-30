@@ -67,7 +67,7 @@ Keyword arguments:
 
 - aria-* (string; optional):
     `aria-*`格式属性通配."""
-    _children_props = ['skeletonContent']
+    _children_props: typing.List[str] = ['skeletonContent']
     _base_nodes = ['skeletonContent', 'children']
     _namespace = 'feffery_antd_components'
     _type = 'AntdCustomSkeleton'

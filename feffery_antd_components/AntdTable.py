@@ -1044,7 +1044,7 @@ Keyword arguments:
 
 - aria-* (string; optional):
     `aria-*`格式属性通配."""
-    _children_props = ['columns[].title', 'data[]{}', 'titlePopoverInfo[].title', 'titlePopoverInfo[].content', 'summaryRowContents[].content', 'expandedRowKeyToContent[].content', 'emptyContent', 'title', 'footer']
+    _children_props: typing.List[str] = ['columns[].title', 'data[]{}', 'titlePopoverInfo[].title', 'titlePopoverInfo[].content', 'summaryRowContents[].content', 'expandedRowKeyToContent[].content', 'emptyContent', 'title', 'footer']
     _base_nodes = ['emptyContent', 'title', 'footer', 'children']
     _namespace = 'feffery_antd_components'
     _type = 'AntdTable'

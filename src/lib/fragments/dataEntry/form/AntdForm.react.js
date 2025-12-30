@@ -1,5 +1,5 @@
 // react核心
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 // antd核心
 import { Form } from 'antd';
 // 辅助库
@@ -36,6 +36,7 @@ const AntdForm = (props) => {
         values,
         validateStatuses,
         helps,
+        tooltips,
         setProps,
         ...others
     } = props;
@@ -46,6 +47,7 @@ const AntdForm = (props) => {
     const updateFormValues = useFormStore((state) => state.updateFormValues)
     const updateValidateStatuses = useFormStore((state) => state.updateValidateStatuses)
     const updateHelps = useFormStore((state) => state.updateHelps)
+    const updateTooltips = useFormStore((state) => state.updateTooltips)
 
     // 调试用
     // console.log('='.repeat(50))
@@ -74,18 +76,22 @@ const AntdForm = (props) => {
     }, [_values])
 
     useEffect(() => {
-        // 更新当前表单校验状态值
         if (enableBatchControl && id) {
             updateValidateStatuses(id, validateStatuses || {})
         }
     }, [validateStatuses])
 
     useEffect(() => {
-        // 更新当前表单校验状态值
         if (enableBatchControl && id) {
             updateHelps(id, helps || {})
         }
     }, [helps])
+
+    useEffect(() => {
+        if (enableBatchControl && id) {
+            updateTooltips(id, tooltips || {})
+        }
+    }, [tooltips])
 
     return (
         <FormContext.Provider

@@ -138,7 +138,7 @@ Keyword arguments:
 - persistence_type (a value equal to: 'local', 'session', 'memory'; optional):
     属性持久化存储类型，可选项有`'local'`（本地持久化），`'session'`（会话持久化），`'memory'`（内存持久化）
     默认值：`'local'`."""
-    _children_props = ['extraFooter', 'prefix', 'suffixIcon']
+    _children_props: typing.List[str] = ['extraFooter', 'prefix', 'suffixIcon']
     _base_nodes = ['extraFooter', 'prefix', 'suffixIcon', 'children']
     _namespace = 'feffery_antd_components'
     _type = 'AntdTimeRangePicker'

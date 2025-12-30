@@ -103,7 +103,7 @@ Keyword arguments:
 
 - aria-* (string; optional):
     `aria-*`格式属性通配."""
-    _children_props = ['title', 'content']
+    _children_props: typing.List[str] = ['title', 'content']
     _base_nodes = ['title', 'content', 'children']
     _namespace = 'feffery_antd_components'
     _type = 'AntdPopover'

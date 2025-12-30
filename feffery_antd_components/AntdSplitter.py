@@ -87,7 +87,7 @@ Keyword arguments:
 
 - aria-* (string; optional):
     `aria-*`格式属性通配."""
-    _children_props = ['items[].children']
+    _children_props: typing.List[str] = ['items[].children']
     _base_nodes = ['children']
     _namespace = 'feffery_antd_components'
     _type = 'AntdSplitter'

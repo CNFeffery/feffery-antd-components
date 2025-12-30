@@ -65,7 +65,7 @@ Keyword arguments:
 
 - aria-* (string; optional):
     `aria-*`格式属性通配."""
-    _children_props = ['trigger']
+    _children_props: typing.List[str] = ['trigger']
     _base_nodes = ['trigger', 'children']
     _namespace = 'feffery_antd_components'
     _type = 'AntdSider'

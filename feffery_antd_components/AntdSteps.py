@@ -92,7 +92,7 @@ Keyword arguments:
 
 - aria-* (string; optional):
     `aria-*`格式属性通配."""
-    _children_props = ['steps[].title', 'steps[].subTitle', 'steps[].description', 'steps[].icon']
+    _children_props: typing.List[str] = ['steps[].title', 'steps[].subTitle', 'steps[].description', 'steps[].icon']
     _base_nodes = ['children']
     _namespace = 'feffery_antd_components'
     _type = 'AntdSteps'

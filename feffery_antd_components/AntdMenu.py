@@ -114,7 +114,7 @@ Keyword arguments:
 
 - persistence_type (a value equal to: 'local', 'session', 'memory'; optional):
     当前组件的属性持久化存储类型  默认值：`'local'`."""
-    _children_props = ['expandIcon', 'expandIcon.expand', 'expandIcon.collapse', 'menuItemKeyToTitle{}', 'menuItemKeyToIcon{}']
+    _children_props: typing.List[str] = ['expandIcon', 'expandIcon.expand', 'expandIcon.collapse', 'menuItemKeyToTitle{}', 'menuItemKeyToIcon{}']
     _base_nodes = ['expandIcon', 'children']
     _namespace = 'feffery_antd_components'
     _type = 'AntdMenu'

@@ -103,7 +103,7 @@ Keyword arguments:
 
 - aria-* (string; optional):
     `aria-*`格式属性通配."""
-    _children_props = ['label', 'tooltip', 'extra', 'help']
+    _children_props: typing.List[str] = ['label', 'tooltip', 'extra', 'help']
     _base_nodes = ['label', 'tooltip', 'extra', 'help', 'children']
     _namespace = 'feffery_antd_components'
     _type = 'AntdFormItem'

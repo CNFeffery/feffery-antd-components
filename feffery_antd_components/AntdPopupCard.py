@@ -124,7 +124,7 @@ Keyword arguments:
 
 - aria-* (string; optional):
     `aria-*`格式属性通配."""
-    _children_props = ['title']
+    _children_props: typing.List[str] = ['title']
     _base_nodes = ['title', 'children']
     _namespace = 'feffery_antd_components'
     _type = 'AntdPopupCard'

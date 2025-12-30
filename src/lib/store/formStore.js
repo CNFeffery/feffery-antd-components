@@ -5,6 +5,7 @@ const useFormStore = create((set) => ({
     values: {},
     validateStatuses: {},
     helps: {},
+    tooltips: {},
     updateItemValue: (formId, newValueName, newValue) => set((state) => ({
         values: {
             ...state.values,
@@ -41,6 +42,12 @@ const useFormStore = create((set) => ({
         helps: {
             ...state.helps,
             [formId]: newHelps
+        }
+    })),
+    updateTooltips: (formId, newTooltips) => set((state) => ({
+        tooltips: {
+            ...state.tooltips,
+            [formId]: newTooltips
         }
     }))
 }));

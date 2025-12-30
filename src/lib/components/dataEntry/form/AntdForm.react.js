@@ -22,6 +22,7 @@ const AntdForm = ({
     values,
     validateStatuses,
     helps,
+    tooltips,
     setProps,
     ...others
 }) => {
@@ -44,6 +45,7 @@ const AntdForm = ({
                     values,
                     validateStatuses,
                     helps,
+                    tooltips,
                     setProps,
                     ...others
                 }
@@ -171,6 +173,11 @@ AntdForm.propTypes = {
      * 当`enableBatchControl=True`时，可用于统一设置内部各`AntdFormItem`组件的`help`值，键为对应`AntdFormItem`组件的`label`值，优先级低于各`AntdFormItem`组件的`help`值
      */
     helps: PropTypes.objectOf(PropTypes.node),
+
+    /**
+     * 当`enableBatchControl=True`时，可用于统一设置内部各`AntdFormItem`组件的`tooltip`值，键为对应`AntdFormItem`组件的`label`值，优先级低于各`AntdFormItem`组件的`tooltip`值
+     */
+    tooltips: PropTypes.objectOf(PropTypes.node),
 
     /**
      * `data-*`格式属性通配

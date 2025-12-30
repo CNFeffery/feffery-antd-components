@@ -71,7 +71,7 @@ Keyword arguments:
 
 - aria-* (string; optional):
     `aria-*`格式属性通配."""
-    _children_props = ['prefix', 'suffix', 'title']
+    _children_props: typing.List[str] = ['prefix', 'suffix', 'title']
     _base_nodes = ['prefix', 'suffix', 'title', 'children']
     _namespace = 'feffery_antd_components'
     _type = 'AntdCountdown'

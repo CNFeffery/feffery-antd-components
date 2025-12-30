@@ -145,7 +145,7 @@ Keyword arguments:
 
 - aria-* (string; optional):
     `aria-*`格式属性通配."""
-    _children_props = ['actions', 'title', 'extra']
+    _children_props: typing.List[str] = ['actions', 'title', 'extra']
     _base_nodes = ['actions', 'title', 'extra', 'children']
     _namespace = 'feffery_antd_components'
     _type = 'AntdCard'

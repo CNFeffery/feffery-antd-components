@@ -57,7 +57,7 @@ Keyword arguments:
 
 - aria-* (string; optional):
     `aria-*`格式属性通配."""
-    _children_props = ['tooltips', 'beforeIcon', 'afterIcon']
+    _children_props: typing.List[str] = ['tooltips', 'beforeIcon', 'afterIcon']
     _base_nodes = ['tooltips', 'beforeIcon', 'afterIcon', 'children']
     _namespace = 'feffery_antd_components'
     _type = 'AntdCopyText'

@@ -70,7 +70,7 @@ Keyword arguments:
 
 - aria-* (string; optional):
     `aria-*`格式属性通配."""
-    _children_props = ['items[].content', 'items[].icon', 'items[].label', 'pending', 'pendingDot']
+    _children_props: typing.List[str] = ['items[].content', 'items[].icon', 'items[].label', 'pending', 'pendingDot']
     _base_nodes = ['pending', 'pendingDot', 'children']
     _namespace = 'feffery_antd_components'
     _type = 'AntdTimeline'

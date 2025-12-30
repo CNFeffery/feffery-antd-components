@@ -143,7 +143,7 @@ Keyword arguments:
 
 - aria-* (string; optional):
     `aria-*`格式属性通配."""
-    _children_props = ['steps[].cover', 'steps[].title', 'steps[].description', 'steps[].nextButtonProps.children', 'steps[].prevButtonProps.children']
+    _children_props: typing.List[str] = ['steps[].cover', 'steps[].title', 'steps[].description', 'steps[].nextButtonProps.children', 'steps[].prevButtonProps.children']
     _base_nodes = ['children']
     _namespace = 'feffery_antd_components'
     _type = 'AntdTour'

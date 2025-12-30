@@ -124,7 +124,7 @@ Keyword arguments:
 
     - component_name (string; optional):
         Holds the name of the component that is loading."""
-    _children_props = ['commentContent']
+    _children_props: typing.List[str] = ['commentContent']
     _base_nodes = ['commentContent', 'children']
     _namespace = 'feffery_antd_components'
     _type = 'AntdComment'

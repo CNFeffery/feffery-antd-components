@@ -116,7 +116,7 @@ Keyword arguments:
 
 - aria-* (string; optional):
     `aria-*`格式属性通配."""
-    _children_props = ['items[].children', 'items[].title', 'items[].extra']
+    _children_props: typing.List[str] = ['items[].children', 'items[].title', 'items[].extra']
     _base_nodes = ['children']
     _namespace = 'feffery_antd_components'
     _type = 'AntdAccordion'

@@ -169,7 +169,7 @@ Keyword arguments:
 
 - aria-* (string; optional):
     `aria-*`格式属性通配."""
-    _children_props = ['buttonProps.icon', 'menuItems[].title', 'menuItems[].extra']
+    _children_props: typing.List[str] = ['buttonProps.icon', 'menuItems[].title', 'menuItems[].extra']
     _base_nodes = ['children']
     _namespace = 'feffery_antd_components'
     _type = 'AntdDropdown'

@@ -35,7 +35,7 @@ Keyword arguments:
 
 - token (dict; optional):
     监听当前组件所在作用范围对应的样式`token`参数，需配合上层`AntdConfigProvider`组件使用."""
-    _children_props = []
+    _children_props: typing.List[str] = []
     _base_nodes = ['children']
     _namespace = 'feffery_antd_components'
     _type = 'Fragment'

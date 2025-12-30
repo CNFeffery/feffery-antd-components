@@ -108,7 +108,7 @@ Keyword arguments:
 
 - aria-* (string; optional):
     `aria-*`格式属性通配."""
-    _children_props = ['presets[].label']
+    _children_props: typing.List[str] = ['presets[].label']
     _base_nodes = ['children']
     _namespace = 'feffery_antd_components'
     _type = 'AntdColorPicker'

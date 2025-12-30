@@ -109,7 +109,7 @@ Keyword arguments:
 
 - persistence_type (a value equal to: 'local', 'session', 'memory'; optional):
     当前组件的属性持久化存储类型  默认值：`'local'`."""
-    _children_props = []
+    _children_props: typing.List[str] = []
     _base_nodes = ['children']
     _namespace = 'feffery_antd_components'
     _type = 'AntdPagination'

@@ -75,7 +75,7 @@ Keyword arguments:
 
     - component_name (string; optional):
         Holds the name of the component that is loading."""
-    _children_props = ['value', 'prefix', 'suffix', 'title']
+    _children_props: typing.List[str] = ['value', 'prefix', 'suffix', 'title']
     _base_nodes = ['value', 'prefix', 'suffix', 'title', 'children']
     _namespace = 'feffery_antd_components'
     _type = 'AntdStatistic'

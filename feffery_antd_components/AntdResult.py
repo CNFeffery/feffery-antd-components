@@ -54,7 +54,7 @@ Keyword arguments:
 
 - aria-* (string; optional):
     `aria-*`格式属性通配."""
-    _children_props = ['extra', 'title', 'subTitle', 'icon']
+    _children_props: typing.List[str] = ['extra', 'title', 'subTitle', 'icon']
     _base_nodes = ['extra', 'title', 'subTitle', 'icon', 'children']
     _namespace = 'feffery_antd_components'
     _type = 'AntdResult'

@@ -47,7 +47,7 @@ Keyword arguments:
 
 - aria-* (string; optional):
     `aria-*`格式属性通配."""
-    _children_props = ['avatar', 'description', 'title']
+    _children_props: typing.List[str] = ['avatar', 'description', 'title']
     _base_nodes = ['avatar', 'description', 'title', 'children']
     _namespace = 'feffery_antd_components'
     _type = 'AntdCardMeta'

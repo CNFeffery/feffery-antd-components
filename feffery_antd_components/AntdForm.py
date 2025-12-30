@@ -89,12 +89,15 @@ Keyword arguments:
 - helps (dict with strings as keys and values of type a list of or a singular dash component, string or number; optional):
     当`enableBatchControl=True`时，可用于统一设置内部各`AntdFormItem`组件的`help`值，键为对应`AntdFormItem`组件的`label`值，优先级低于各`AntdFormItem`组件的`help`值.
 
+- tooltips (dict with strings as keys and values of type a list of or a singular dash component, string or number; optional):
+    当`enableBatchControl=True`时，可用于统一设置内部各`AntdFormItem`组件的`tooltip`值，键为对应`AntdFormItem`组件的`label`值，优先级低于各`AntdFormItem`组件的`tooltip`值.
+
 - data-* (string; optional):
     `data-*`格式属性通配.
 
 - aria-* (string; optional):
     `aria-*`格式属性通配."""
-    _children_props = ['helps{}']
+    _children_props: typing.List[str] = ['helps{}', 'tooltips{}']
     _base_nodes = ['children']
     _namespace = 'feffery_antd_components'
     _type = 'AntdForm'
@@ -134,11 +137,12 @@ Keyword arguments:
         values: typing.Optional[dict] = None,
         validateStatuses: typing.Optional[typing.Dict[typing.Union[str, float, int], Literal["success", "warning", "error", "validating"]]] = None,
         helps: typing.Optional[typing.Dict[typing.Union[str, float, int], ComponentType]] = None,
+        tooltips: typing.Optional[typing.Dict[typing.Union[str, float, int], ComponentType]] = None,
         **kwargs
     ):
-        self._prop_names = ['id', 'key', 'children', 'style', 'className', 'layout', 'labelCol', 'wrapperCol', 'colon', 'labelAlign', 'labelWrap', 'enableBatchControl', 'values', 'validateStatuses', 'helps', 'data-*', 'aria-*']
+        self._prop_names = ['id', 'key', 'children', 'style', 'className', 'layout', 'labelCol', 'wrapperCol', 'colon', 'labelAlign', 'labelWrap', 'enableBatchControl', 'values', 'validateStatuses', 'helps', 'tooltips', 'data-*', 'aria-*']
         self._valid_wildcard_attributes =            ['data-', 'aria-']
-        self.available_properties = ['id', 'key', 'children', 'style', 'className', 'layout', 'labelCol', 'wrapperCol', 'colon', 'labelAlign', 'labelWrap', 'enableBatchControl', 'values', 'validateStatuses', 'helps', 'data-*', 'aria-*']
+        self.available_properties = ['id', 'key', 'children', 'style', 'className', 'layout', 'labelCol', 'wrapperCol', 'colon', 'labelAlign', 'labelWrap', 'enableBatchControl', 'values', 'validateStatuses', 'helps', 'tooltips', 'data-*', 'aria-*']
         self.available_wildcard_properties =            ['data-', 'aria-']
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()

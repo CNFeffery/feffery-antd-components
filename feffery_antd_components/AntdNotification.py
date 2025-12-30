@@ -92,7 +92,7 @@ Keyword arguments:
     `stack` is a boolean | dict with keys:
 
     - threshold (number; optional)"""
-    _children_props = ['message', 'description']
+    _children_props: typing.List[str] = ['message', 'description']
     _base_nodes = ['message', 'description', 'children']
     _namespace = 'feffery_antd_components'
     _type = 'AntdNotification'

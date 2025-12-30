@@ -69,7 +69,7 @@ Keyword arguments:
 
 - aria-* (string; optional):
     `aria-*`格式属性通配."""
-    _children_props = ['hideLabel', 'showLabel']
+    _children_props: typing.List[str] = ['hideLabel', 'showLabel']
     _base_nodes = ['hideLabel', 'showLabel', 'children']
     _namespace = 'feffery_antd_components'
     _type = 'AntdSpoiler'

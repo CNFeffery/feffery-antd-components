@@ -77,7 +77,7 @@ Keyword arguments:
 
 - aria-* (string; optional):
     `aria-*`格式属性通配."""
-    _children_props = ['icon', 'description', 'tooltip', 'tooltip.title']
+    _children_props: typing.List[str] = ['icon', 'description', 'tooltip', 'tooltip.title']
     _base_nodes = ['icon', 'description', 'tooltip', 'children']
     _namespace = 'feffery_antd_components'
     _type = 'AntdFloatButtonGroup'

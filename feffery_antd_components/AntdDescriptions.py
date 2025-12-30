@@ -139,7 +139,7 @@ Keyword arguments:
 
 - aria-* (string; optional):
     `aria-*`格式属性通配."""
-    _children_props = ['items[].label', 'items[].children', 'title', 'extra']
+    _children_props: typing.List[str] = ['items[].label', 'items[].children', 'title', 'extra']
     _base_nodes = ['title', 'extra', 'children']
     _namespace = 'feffery_antd_components'
     _type = 'AntdDescriptions'

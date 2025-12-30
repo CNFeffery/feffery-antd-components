@@ -62,7 +62,7 @@ Keyword arguments:
 
 - aria-* (string; optional):
     `aria-*`格式属性通配."""
-    _children_props = ['content', 'icon']
+    _children_props: typing.List[str] = ['content', 'icon']
     _base_nodes = ['content', 'icon', 'children']
     _namespace = 'feffery_antd_components'
     _type = 'AntdTag'

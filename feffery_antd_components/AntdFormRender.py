@@ -690,7 +690,7 @@ Keyword arguments:
 
     - component_name (string; optional):
         Holds the name of the component that is loading."""
-    _children_props = ['footer']
+    _children_props: typing.List[str] = ['footer']
     _base_nodes = ['footer', 'children']
     _namespace = 'feffery_antd_components'
     _type = 'AntdFormRender'

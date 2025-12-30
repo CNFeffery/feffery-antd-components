@@ -92,7 +92,7 @@ Keyword arguments:
 
 - aria-* (string; optional):
     `aria-*`格式属性通配."""
-    _children_props = ['preview.mask', 'toolbarExtra']
+    _children_props: typing.List[str] = ['preview.mask', 'toolbarExtra']
     _base_nodes = ['toolbarExtra', 'children']
     _namespace = 'feffery_antd_components'
     _type = 'AntdImageGroup'

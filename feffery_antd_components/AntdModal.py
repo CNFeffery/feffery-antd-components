@@ -241,7 +241,7 @@ Keyword arguments:
 
 - aria-* (string; optional):
     `aria-*`格式属性通配."""
-    _children_props = ['title', 'loadingTitle', 'okText', 'cancelText', 'loadingOkText']
+    _children_props: typing.List[str] = ['title', 'loadingTitle', 'okText', 'cancelText', 'loadingOkText']
     _base_nodes = ['title', 'loadingTitle', 'okText', 'cancelText', 'loadingOkText', 'children']
     _namespace = 'feffery_antd_components'
     _type = 'AntdModal'
