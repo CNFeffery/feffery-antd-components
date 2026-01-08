@@ -44,19 +44,19 @@ Keyword arguments:
     针对树结构中的指定节点，定义作为标题的组件型内容，优先级高于`treeData`中对应的`title`值.
 
 - showIcon (boolean; default False):
-    是否渲染节点额外图标  默认值：`False`.
+    是否渲染节点额外图标 默认值：`False`.
 
 - selectable (boolean; default True):
-    节点是否可点击选择  默认值：`True`.
+    节点是否可点击选择 默认值：`True`.
 
 - multiple (boolean; default False):
-    节点是否允许多选  默认值：`False`.
+    节点是否允许多选 默认值：`False`.
 
 - checkable (boolean; default False):
-    节点是否可勾选  默认值：`False`.
+    节点是否可勾选 默认值：`False`.
 
 - defaultExpandAll (boolean; default False):
-    初始化是否展开全部节点  默认值：`False`.
+    初始化是否展开全部节点 默认值：`False`.
 
 - expandedKeys (list of strings; optional):
     监听或设置已展开节点`key`值数组.
@@ -65,7 +65,7 @@ Keyword arguments:
     初始化已展开节点`key`值数组.
 
 - defaultExpandParent (boolean; default False):
-    初始化是否展开处于展开状态节点的父节点  默认值：`True`.
+    初始化是否展开处于展开状态节点的父节点 默认值：`True`.
 
 - selectedKeys (list of strings; optional):
     监听或设置已选择节点`key`值数组.
@@ -83,7 +83,7 @@ Keyword arguments:
     监听或设置处于半勾选状态下的节点`key`值数组.
 
 - checkStrictly (boolean; default False):
-    节点与其后代节点之间的选择行为是否彼此独立  默认值：`False`.
+    节点与其后代节点之间的选择行为是否彼此独立 默认值：`False`.
 
 - showLine (dict; default { 'showLeafIcon': False }):
     是否显示连接线.
@@ -100,19 +100,19 @@ Keyword arguments:
     虚拟滚动模式下的组件最大像素高度，未设置时则不启用虚拟滚动功能.
 
 - draggable (boolean; default False):
-    节点是否可拖拽  默认值：`False`.
+    节点是否可拖拽 默认值：`False`.
 
 - showDragIcon (boolean; default True):
-    开启节点拖拽功能后，是否为节点渲染拖拽图标  默认值：`True`.
+    开启节点拖拽功能后，是否为节点渲染拖拽图标 默认值：`True`.
 
 - dragInSameLevel (boolean; default False):
-    当`draggable=True`时，是否仅允许同级拖拽  默认值：`False`.
+    当`draggable=True`时，是否仅允许同级拖拽 默认值：`False`.
 
 - dragDisabledKeys (list of strings; optional):
-    禁止进行拖拽调整的节点`key`值数组  默认值：`[]`.
+    禁止进行拖拽调整的节点`key`值数组 默认值：`[]`.
 
 - dropDisabledKeys (list of strings; optional):
-    禁止进行拖拽放置的节点`key`值数组  默认值：`[]`.
+    禁止进行拖拽放置的节点`key`值数组 默认值：`[]`.
 
 - draggedNodeKey (string; optional):
     监听最近一次被拖拽节点`key`值信息.
@@ -132,7 +132,7 @@ Keyword arguments:
         事件对应时间戳信息.
 
 - enableNodeFavorites (boolean; default False):
-    是否启用节点收藏功能  默认值：`False`.
+    是否启用节点收藏功能 默认值：`False`.
 
 - favoritedKeys (list of strings; optional):
     监听或设置已收藏节点`key`值数组.
@@ -146,7 +146,7 @@ Keyword arguments:
         滚动目标节点`key`值.
 
     - align (a value equal to: 'top', 'bottom', 'auto'; optional):
-        滚动目标节点对齐位置，可选项有`'top'`、`'bottom'`、`'auto'`  默认值：`'auto'`.
+        滚动目标节点对齐位置，可选项有`'top'`、`'bottom'`、`'auto'` 默认值：`'auto'`.
 
     - offset (number; optional):
         滚动后的像素偏移量.
@@ -155,9 +155,9 @@ Keyword arguments:
     快捷树搜索功能对应的单个关键词，或由多个关键词构成的数组.
 
 - caseSensitive (boolean; default True):
-    针对`searchKeyword`，是否大小写敏感  默认值：`True`.
+    针对`searchKeyword`，是否大小写敏感 默认值：`True`.
 
-- highlightStyle (dict; default {    fontWeight: 'bold',    backgroundColor: 'transparent',    padding: 0,    color: '#ff5500'}):
+- highlightStyle (dict; default {    fontWeight: 'bold',    backgroundColor: 'transparent',    padding: 0,    color: '#ff5500'}):
     快捷树搜索关键词匹配部分的高亮样式.
 
 - nodeCheckedSuffix (a list of or a singular dash component, string or number; optional):

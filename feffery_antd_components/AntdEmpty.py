@@ -78,7 +78,7 @@ Keyword arguments:
     描述信息内容.
 
 - image (string | a value equal to: 'default', 'simple'; default 'default'):
-    状态图片地址，也可以使用内置图片，可选项有`'default'`、`'simple'`  默认值：`'default'`.
+    状态图片地址，也可以使用内置图片，可选项有`'default'`、`'simple'` 默认值：`'default'`.
 
 - data-* (string; optional):
     `data-*`格式属性通配.

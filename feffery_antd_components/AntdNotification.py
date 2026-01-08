@@ -48,22 +48,22 @@ Keyword arguments:
     默认值：`'topRight'`.
 
 - top (number; default 24):
-    当通知从顶部弹出时，设置距离顶部的像素距离  默认值：`24`.
+    当通知从顶部弹出时，设置距离顶部的像素距离 默认值：`24`.
 
 - bottom (number; default 24):
-    当通知从底部弹出时，设置距离底部的像素距离  默认值：`24`.
+    当通知从底部弹出时，设置距离底部的像素距离 默认值：`24`.
 
 - duration (number; default 4.5):
-    通知从显示到自动消失的时长，单位：秒，当传入`None`时会一直显示  默认值：`4.5`.
+    通知从显示到自动消失的时长，单位：秒，当传入`None`时会一直显示 默认值：`4.5`.
 
 - showProgress (boolean; default False):
-    是否显示自动关闭进度条  默认值：`False`.
+    是否显示自动关闭进度条 默认值：`False`.
 
 - pauseOnHover (boolean; default True):
-    `showProgress=True`时，是否在鼠标移入时暂停进度条倒计时  默认值：`True`.
+    `showProgress=True`时，是否在鼠标移入时暂停进度条倒计时 默认值：`True`.
 
 - closable (boolean; default True):
-    是否显示关闭按钮  默认值：`True`.
+    是否显示关闭按钮 默认值：`True`.
 
 - closeButton (dict; optional):
     配置右下方关闭按钮相关参数，默认不显示关闭按钮.
@@ -84,10 +84,10 @@ Keyword arguments:
         默认值：`'default'`.
 
     - danger (boolean; optional):
-        按钮是否呈现危险状态  默认值：`False`.
+        按钮是否呈现危险状态 默认值：`False`.
 
 - stack (dict; default False):
-    是否开启多通知自动折叠堆叠功能  默认值：`False`.
+    是否开启多通知自动折叠堆叠功能 默认值：`False`.
 
     `stack` is a boolean | dict with keys:
 

@@ -34,7 +34,7 @@ Keyword arguments:
     当前组件css类名，支持[动态css](/advanced-classname).
 
 - type (a value equal to: 'line', 'card', 'editable-card'; default 'line'):
-    标签页类型，可选项有`'line'`、`'card'`、`'editable-card'`  默认值：`'line'`.
+    标签页类型，可选项有`'line'`、`'card'`、`'editable-card'` 默认值：`'line'`.
 
 - items (list of dicts; optional):
     定义标签项.
@@ -57,16 +57,16 @@ Keyword arguments:
         `'editable-card'`型标签页可用，用于自定义关闭按钮，设置为`None`或`False`时会隐藏默认的关闭按钮.
 
     - destroyInactiveTabPane (boolean; optional):
-        是否在当前标签页隐藏时，自动销毁当前标签页内部元素  默认值：`False`.
+        是否在当前标签页隐藏时，自动销毁当前标签页内部元素 默认值：`False`.
 
     - disabled (boolean; optional):
-        是否禁用当前标签页  默认值：`False`.
+        是否禁用当前标签页 默认值：`False`.
 
     - forceRender (boolean; optional):
-        初始化是否强制渲染当前标签页内部元素  默认值：`False`.
+        初始化是否强制渲染当前标签页内部元素 默认值：`False`.
 
     - closable (boolean; optional):
-        `'editable-card'`型标签页可用，控制当前标签页是否可被关闭  默认值：`True`.
+        `'editable-card'`型标签页可用，控制当前标签页是否可被关闭 默认值：`True`.
 
     - contextMenu (list of dicts; optional):
         为当前标签页标题配置右键菜单相关参数.
@@ -102,14 +102,13 @@ Keyword arguments:
     呈现禁用状态的标签页`key`值数组，优先级高于`items`中各标签页的`disabled`设定.
 
 - tabPosition (a value equal to: 'top', 'left', 'right', 'bottom'; default 'top'):
-    标签页切换控件显示方位，可选项有`'top'`、`'left'`、`'right'`、`'bottom'`
-    默认值：`'top'`.
+    标签页切换控件显示方位，可选项有`'top'`、`'left'`、`'right'`、`'bottom'` 默认值：`'top'`.
 
 - size (a value equal to: 'small', 'default', 'large'; default 'default'):
-    当前组件尺寸规格，可选项有`'small'`、`'default'`、`'large'`  默认值：'default'.
+    当前组件尺寸规格，可选项有`'small'`、`'default'`、`'large'` 默认值：'default'.
 
 - centered (boolean; default False):
-    是否居中显示标签页切换控件  默认值：`False`.
+    是否居中显示标签页切换控件 默认值：`False`.
 
 - indicator (dict; optional):
     配置指示条长度及对齐方式.
@@ -129,16 +128,16 @@ Keyword arguments:
     标签卡片css样式.
 
 - inkBarAnimated (boolean; default True):
-    标签卡片切换是否添加动画效果  默认值：`True`.
+    标签卡片切换是否添加动画效果 默认值：`True`.
 
 - tabPaneAnimated (boolean; default False):
-    标签内容切换是否添加动画效果  默认值：`False`.
+    标签内容切换是否添加动画效果 默认值：`False`.
 
 - latestDeletePane (string; optional):
     监听最近一次删除操作对应的标签页`key`值.
 
 - tabCloseCounts (number; default 0):
-    标签页关闭按钮累计点击次数  默认值：`0`.
+    标签页关闭按钮累计点击次数 默认值：`0`.
 
 - tabBarLeftExtraContent (a list of or a singular dash component, string or number; optional):
     组件型，第一方位额外元素.
@@ -179,7 +178,7 @@ Keyword arguments:
     是否开启[属性持久化](/prop-persistence).
 
 - persisted_props (list of a value equal to: 'activeKey's; optional):
-    开启属性持久化功能的若干属性名，可选项有`'activeKey'`  默认值：`['activeKey']`.
+    开启属性持久化功能的若干属性名，可选项有`'activeKey'` 默认值：`['activeKey']`.
 
 - persistence_type (a value equal to: 'local', 'session', 'memory'; optional):
     属性持久化存储类型，可选项有`'local'`（本地持久化），`'session'`（会话持久化），`'memory'`（内存持久化）

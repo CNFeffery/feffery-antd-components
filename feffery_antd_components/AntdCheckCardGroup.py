@@ -40,16 +40,16 @@ Keyword arguments:
     配合`AntdForm`表单批量值搜集/控制功能使用，充当当前表单项的字段名，以`id`作为缺省值.
 
 - enableBatchControl (boolean; default True):
-    控制当前组件是否参与有效的`AntdForm`表单批量值搜集/控制功能  默认值：`True`.
+    控制当前组件是否参与有效的`AntdForm`表单批量值搜集/控制功能 默认值：`True`.
 
 - multiple (boolean; default False):
-    是否开启多选  默认值：`False`.
+    是否开启多选 默认值：`False`.
 
 - allowNoValue (boolean; default True):
-    是否允许当前组合选择卡片中仅剩的选项被取消选中  默认值：`True`.
+    是否允许当前组合选择卡片中仅剩的选项被取消选中 默认值：`True`.
 
 - bordered (boolean; default True):
-    是否显示边框  默认值：`True`.
+    是否显示边框 默认值：`True`.
 
 - value (number | string | list of number | strings; optional):
     监听或设置已选中卡片值.
@@ -58,13 +58,13 @@ Keyword arguments:
     初始化已选中卡片值.
 
 - disabled (boolean; default False):
-    是否禁用当前组件  默认值：`False`.
+    是否禁用当前组件 默认值：`False`.
 
 - size (a value equal to: 'small', 'default', 'large'; default 'default'):
-    当前组件尺寸规格，可选项有`'small'`、`'default'`、`'large'`  默认值：`'default'`.
+    当前组件尺寸规格，可选项有`'small'`、`'default'`、`'large'` 默认值：`'default'`.
 
 - readOnly (boolean; default False):
-    是否渲染为只读状态  默认值：`False`.
+    是否渲染为只读状态 默认值：`False`.
 
 - data-* (string; optional):
     `data-*`格式属性通配.
@@ -76,7 +76,7 @@ Keyword arguments:
     是否开启[属性持久化](/prop-persistence).
 
 - persisted_props (list of a value equal to: 'value's; optional):
-    开启属性持久化功能的若干属性名，可选项有`'value'`  默认值：`['value']`.
+    开启属性持久化功能的若干属性名，可选项有`'value'` 默认值：`['value']`.
 
 - persistence_type (a value equal to: 'local', 'session', 'memory'; optional):
     属性持久化存储类型，可选项有`'local'`（本地持久化），`'session'`（会话持久化），`'memory'`（内存持久化）

@@ -41,10 +41,10 @@ Keyword arguments:
     默认值：'default'.
 
 - duration (number; default 3):
-    提示信息自动消失对应的延时，单位：秒，设置为`0`时不会自动消失  默认值：`3`.
+    提示信息自动消失对应的延时，单位：秒，设置为`0`时不会自动消失 默认值：`3`.
 
 - top (number; default 8):
-    提示信息距离顶端的像素距离  默认值：`8`.
+    提示信息距离顶端的像素距离 默认值：`8`.
 
 - maxCount (number; optional):
     最多允许同时出现的提示信息数量.

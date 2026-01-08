@@ -44,22 +44,22 @@ Keyword arguments:
     默认值：`'info'`.
 
 - showIcon (boolean; default False):
-    是否显示额外图标  默认值：`False`.
+    是否显示额外图标 默认值：`False`.
 
 - icon (a list of or a singular dash component, string or number; optional):
     组件型，当`showIcon=True`时，用于自定义图标元素.
 
 - closable (boolean; default False):
-    是否可关闭  默认值：`False`.
+    是否可关闭 默认值：`False`.
 
 - messageRenderMode (a value equal to: 'default', 'loop-text', 'marquee'; default 'default'):
-    渲染模式，可选项有`'default'`、`'loop-text'`、`'marquee'`  默认值：`'default'`.
+    渲染模式，可选项有`'default'`、`'loop-text'`、`'marquee'` 默认值：`'default'`.
 
 - action (a list of or a singular dash component, string or number; optional):
     组件型，定义右上角额外操作区元素.
 
 - banner (boolean; default False):
-    是否用作顶部公告  默认值：`False`.
+    是否用作顶部公告 默认值：`False`.
 
 - data-* (string; optional):
     `data-*`格式属性通配.

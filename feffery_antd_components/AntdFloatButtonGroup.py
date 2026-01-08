@@ -58,10 +58,10 @@ Keyword arguments:
         气泡卡片展开方向，可选项有`'top'`、`'left'`、`'right'`、`'bottom'`、`'topLeft'`、`'topRight'`、`'bottomLeft'`、`'bottomRight'`、`'leftTop'`、`'leftBottom'`、`'rightTop'`、`'rightBottom'`.
 
 - type (a value equal to: 'default', 'primary'; default 'default'):
-    按钮类型，可选项有`'default'`、`'primary'`  默认值：`'default'`.
+    按钮类型，可选项有`'default'`、`'primary'` 默认值：`'default'`.
 
 - shape (a value equal to: 'circle', 'square'; default 'circle'):
-    内部各悬浮按钮形状，可选项有`'circle'`、`'square'`  默认值：`'circle'`.
+    内部各悬浮按钮形状，可选项有`'circle'`、`'square'` 默认值：`'circle'`.
 
 - trigger (a value equal to: 'click', 'hover'; optional):
     菜单展开模式触发方式，可选项有`'click'`、`'hover'`.

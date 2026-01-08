@@ -37,13 +37,13 @@ Keyword arguments:
     配合`AntdForm`表单批量值搜集/控制功能使用，充当当前表单项的字段名，以`id`作为缺省值.
 
 - enableBatchControl (boolean; default True):
-    控制当前组件是否参与有效的`AntdForm`表单批量值搜集/控制功能  默认值：`True`.
+    控制当前组件是否参与有效的`AntdForm`表单批量值搜集/控制功能 默认值：`True`.
 
 - disabled (boolean; default False):
-    是否禁用当前组件  默认值：`False`.
+    是否禁用当前组件 默认值：`False`.
 
 - autoFocus (boolean; default False):
-    是否自动获取焦点  默认值：`False`.
+    是否自动获取焦点 默认值：`False`.
 
 - checked (boolean; optional):
     监听或设置当前开关是否打开.
@@ -55,13 +55,13 @@ Keyword arguments:
     组件型，关闭状态下内嵌内容.
 
 - size (a value equal to: 'default', 'small'; default 'default'):
-    当前组件尺寸规格，可选项有`'small'`、`'middle'`  默认值：`'default'`.
+    当前组件尺寸规格，可选项有`'small'`、`'middle'` 默认值：`'default'`.
 
 - loading (boolean; default False):
-    是否渲染加载中状态  默认值：`False`.
+    是否渲染加载中状态 默认值：`False`.
 
 - readOnly (boolean; default False):
-    是否渲染为只读状态  默认值：`False`.
+    是否渲染为只读状态 默认值：`False`.
 
 - batchPropsNames (list of strings; optional):
     需要纳入[批量属性监听](/batch-props-values)的若干属性名.
@@ -92,7 +92,7 @@ Keyword arguments:
     是否开启[属性持久化](/prop-persistence).
 
 - persisted_props (list of a value equal to: 'checked's; optional):
-    开启属性持久化功能的若干属性名，可选项有`'checked'`  默认值：`['checked']`.
+    开启属性持久化功能的若干属性名，可选项有`'checked'` 默认值：`['checked']`.
 
 - persistence_type (a value equal to: 'local', 'session', 'memory'; optional):
     属性持久化存储类型，可选项有`'local'`（本地持久化），`'session'`（会话持久化），`'memory'`（内存持久化）

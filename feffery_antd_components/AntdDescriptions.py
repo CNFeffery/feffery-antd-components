@@ -91,7 +91,7 @@ Keyword arguments:
         组件型，子项标题内容.
 
     - span (number | a value equal to: 'filled'; optional):
-        子项所占宽度份数，当设置为`'filled'`时会自适应占满当前行剩余可用空间  默认值：`1`.
+        子项所占宽度份数，当设置为`'filled'`时会自适应占满当前行剩余可用空间 默认值：`1`.
 
     - children (a list of or a singular dash component, string or number; optional):
         组件型，子项内容.
@@ -106,7 +106,7 @@ Keyword arguments:
     组件型，标题内容.
 
 - column (dict; default 3):
-    每行显示的字段项数量，支持响应式  默认值：`3`.
+    每行显示的字段项数量，支持响应式 默认值：`3`.
 
     `column` is a number | dict with keys:
 
@@ -123,13 +123,13 @@ Keyword arguments:
     - xs (number; optional)
 
 - bordered (boolean; default False):
-    是否显示边框  默认值：`False`.
+    是否显示边框 默认值：`False`.
 
 - size (a value equal to: 'small', 'default', 'large'; default 'default'):
-    整体尺寸规格，可选项有`'small'`、`'default'`、`'large'`  默认值：`'default'`.
+    整体尺寸规格，可选项有`'small'`、`'default'`、`'large'` 默认值：`'default'`.
 
 - layout (a value equal to: 'horizontal', 'vertical'; default 'horizontal'):
-    布局方式，可选项有`'horizontal'`、`'vertical'`  默认值：`'horizontal'`.
+    布局方式，可选项有`'horizontal'`、`'vertical'` 默认值：`'horizontal'`.
 
 - extra (a list of or a singular dash component, string or number; optional):
     组件型，设置操作区域，显示在右上方.

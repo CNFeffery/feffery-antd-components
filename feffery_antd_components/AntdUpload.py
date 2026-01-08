@@ -37,7 +37,7 @@ Keyword arguments:
     配合`AntdForm`表单批量值搜集/控制功能使用，充当当前表单项的字段名，以`id`作为缺省值.
 
 - enableBatchControl (boolean; default True):
-    控制当前组件是否参与有效的`AntdForm`表单批量值搜集/控制功能  默认值：`True`.
+    控制当前组件是否参与有效的`AntdForm`表单批量值搜集/控制功能 默认值：`True`.
 
 - locale (a value equal to: 'zh-cn', 'en-us', 'de-de', 'ru-ru'; default 'zh-cn'):
     组件文案语种，可选项有`'zh-cn'`（简体中文）、`'en-us'`（英语）、`'de-de'`（德语）、`'ru-ru'`（俄语）
@@ -53,7 +53,7 @@ Keyword arguments:
     文件上传服务接口额外headers参数.
 
 - withCredentials (boolean; default False):
-    是否在请求上传服务接口时自动携带cookies等凭据信息  默认值：`False`.
+    是否在请求上传服务接口时自动携带cookies等凭据信息 默认值：`False`.
 
 - withOriginFileObj (boolean; default False):
     `listUploadTaskRecord`监听结果中是否额外记录浏览器原生`originFileObj`相关信息
@@ -66,7 +66,7 @@ Keyword arguments:
     配合`downloadUrl`参数，设置文件下载服务接口额外参数.
 
 - downloadUrlFromBackend (boolean; default False):
-    是否将文件上传接口返回信息中的`url`属性作为下载链接地址  默认值：`False`.
+    是否将文件上传接口返回信息中的`url`属性作为下载链接地址 默认值：`False`.
 
 - fileListMaxLength (number; optional):
     限制已上传文件列表长度上限.
@@ -86,17 +86,17 @@ Keyword arguments:
     `buttonProps` is a dict with keys:
 
     - size (a value equal to: 'default', 'small', 'large'; optional):
-        按钮尺寸规格，可选项有`'default'`、`'small'`、`'large'`  默认值：`'default'`.
+        按钮尺寸规格，可选项有`'default'`、`'small'`、`'large'` 默认值：`'default'`.
 
     - type (a value equal to: 'primary', 'ghost', 'dashed', 'link', 'text', 'default'; optional):
         按钮类型，可选项有`'default'`、`'primary'`、`'ghost'`、`'dashed'`、`'link'`、`'text'`
         默认值：`'default'`.
 
     - danger (boolean; optional):
-        按钮是否渲染危险状态  默认值：`False`.
+        按钮是否渲染危险状态 默认值：`False`.
 
     - block (boolean; optional):
-        按钮是否撑满父元素  默认值：`False`.
+        按钮是否撑满父元素 默认值：`False`.
 
     - style (dict; optional):
         按钮css样式.
@@ -111,22 +111,22 @@ Keyword arguments:
     文件上传尺寸上限，单位：兆.
 
 - multiple (boolean; default False):
-    是否开启多文件上传模式  默认值：`False`.
+    是否开启多文件上传模式 默认值：`False`.
 
 - directory (boolean; default False):
-    是否开启文件夹上传模式  默认值：`False`.
+    是否开启文件夹上传模式 默认值：`False`.
 
 - failedTooltipInfo (string; optional):
-    文件上传失败消息提示文字内容  默认值：`'上传失败'`.
+    文件上传失败消息提示文字内容 默认值：`'上传失败'`.
 
 - showUploadList (boolean; default True):
-    是否显示已上传文件列表  默认值：`True`.
+    是否显示已上传文件列表 默认值：`True`.
 
 - confirmBeforeDelete (boolean; default False):
-    是否为已上传文件删除操作添加二次确认模态框  默认值：`False`.
+    是否为已上传文件删除操作添加二次确认模态框 默认值：`False`.
 
 - showPercent (boolean; default False):
-    是否显示上传进度条  默认值：`False`.
+    是否显示上传进度条 默认值：`False`.
 
 - progressProps (dict; optional):
     配置上传进度条相关参数.
@@ -160,16 +160,16 @@ Keyword arguments:
             进度文字前缀内容.
 
         - suffix (string; optional):
-            进度文字后缀内容  默认值：`'%'`.
+            进度文字后缀内容 默认值：`'%'`.
 
 - showSuccessMessage (boolean; default True):
-    是否在每个文件上传成功后，分别弹出消息提示  默认值：`True`.
+    是否在每个文件上传成功后，分别弹出消息提示 默认值：`True`.
 
 - showErrorMessage (boolean; default True):
-    是否在每个文件上传失败后，分别弹出消息提示  默认值：`True`.
+    是否在每个文件上传失败后，分别弹出消息提示 默认值：`True`.
 
 - pastable (boolean; default False):
-    是否开启粘贴上传，即本地复制文件后，在页面任意位置粘贴即可完成上传  默认值：`False`.
+    是否开启粘贴上传，即本地复制文件后，在页面任意位置粘贴即可完成上传 默认值：`False`.
 
 - lastUploadTaskRecord (dict; optional):
     监听最近一次文件上传任务相关信息.
@@ -274,7 +274,7 @@ Keyword arguments:
         当前文件大小.
 
 - disabled (boolean; default False):
-    是否禁用当前组件  默认值：`False`.
+    是否禁用当前组件 默认值：`False`.
 
 - status (a value equal to: 'error', 'warning'; optional):
     控制校验状态，可选项有`'error'`、`'warning'`.

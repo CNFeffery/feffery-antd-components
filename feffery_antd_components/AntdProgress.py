@@ -34,7 +34,7 @@ Keyword arguments:
     当前组件css类名，支持[动态css](/advanced-classname).
 
 - type (a value equal to: 'line', 'circle', 'dashboard'; default 'line'):
-    进度条类型，可选项有`'line'`、`'circle'`、`'dashboard'`  默认值：`'line'`.
+    进度条类型，可选项有`'line'`、`'circle'`、`'dashboard'` 默认值：`'line'`.
 
 - size (dict; default 'default'):
     进度条尺寸规格，可选项有`'small'`、`'default'`、`'large'`，传入数值型表示像素尺寸，传入字典型可分别控制宽度和高度
@@ -50,7 +50,7 @@ Keyword arguments:
         像素高度.
 
 - percent (number; default 0):
-    进度条进度，取值应在`0`到`100`之间，当`100`时默认会渲染为完成状态  默认值：`0`.
+    进度条进度，取值应在`0`到`100`之间，当`100`时默认会渲染为完成状态 默认值：`0`.
 
 - success (dict; optional):
     配置进度条完成状态相关参数.
@@ -58,7 +58,7 @@ Keyword arguments:
     `success` is a dict with keys:
 
     - percent (number; optional):
-        达到完成状态对应的进度，取值应在`0`到`100`之间  默认值：`100`.
+        达到完成状态对应的进度，取值应在`0`到`100`之间 默认值：`100`.
 
     - strokeColor (dict; optional):
         完成状态进度条颜色，支持渐变色.
@@ -81,10 +81,10 @@ Keyword arguments:
     `format` is a dict with keys:
 
     - prefix (string; optional):
-        进度提示前缀文字  默认值：`''`.
+        进度提示前缀文字 默认值：`''`.
 
     - suffix (string; optional):
-        进度提示后缀文字  默认值：`'%'`.
+        进度提示后缀文字 默认值：`'%'`.
 
     - content (a list of or a singular dash component, string or number; optional):
         组件型，强制设置显示内容.
@@ -94,7 +94,7 @@ Keyword arguments:
     默认值：`'normal'`.
 
 - showInfo (boolean; default True):
-    是否显示进度数值或状态图标  默认值：`True`.
+    是否显示进度数值或状态图标 默认值：`True`.
 
 - percentPosition (dict; optional):
     适用于`'line'`型进度条，配置进度条附带进度数值信息显示位置.
@@ -119,7 +119,7 @@ Keyword arguments:
         渐变色末端颜色. | dict with strings as keys and values of type string
 
 - strokeLinecap (a value equal to: 'round', 'butt', 'square'; optional):
-    进度条线型，可选项有`'round'`、`'butt'`、`'square'`  默认值：`'round'`.
+    进度条线型，可选项有`'round'`、`'butt'`、`'square'` 默认值：`'round'`.
 
 - strokeWidth (number; optional):
     进度条线的宽度，单位是进度条画布宽度的百分比.
@@ -128,7 +128,7 @@ Keyword arguments:
     未完成分段部分的颜色，默认无颜色.
 
 - gapDegree (number; optional):
-    进度条缺口角度，取值应在`0`到`295`之间，仅`type='dashboard'`时可用  默认值：`75`.
+    进度条缺口角度，取值应在`0`到`295`之间，仅`type='dashboard'`时可用 默认值：`75`.
 
 - gapPosition (a value equal to: 'top', 'bottom', 'left', 'right'; default 'bottom'):
     仪表盘缺口方向，可选项有`'top'`、`'bottom'`、`'left'`、`'right'`，仅`type='dashboard'`时可用

@@ -65,13 +65,13 @@ Keyword arguments:
     徽标显示的数字.
 
 - dot (boolean; default False):
-    是否用圆点代替数字显示  默认值：`False`.
+    是否用圆点代替数字显示 默认值：`False`.
 
 - showZero (boolean; default False):
-    当`count=0`时，是否强制显示数字  默认值：`False`.
+    当`count=0`时，是否强制显示数字 默认值：`False`.
 
 - overflowCount (number; default 99):
-    数字显示上限，超出会以显示`+`后缀  默认值：`99`.
+    数字显示上限，超出会以显示`+`后缀 默认值：`99`.
 
 - offset (list of numbers; optional):
     徽标在水平、竖直方向上的像素偏移，格式为`[水平偏移, 竖直偏移]`.
@@ -89,7 +89,7 @@ Keyword arguments:
     徽标尺寸规格，可选项有`'default'`、`'small'`.
 
 - nClicks (number; default 0):
-    监听徽标累计被点击次数  默认值：`0`.
+    监听徽标累计被点击次数 默认值：`0`.
 
 - data-* (string; optional):
     `data-*`格式属性通配.

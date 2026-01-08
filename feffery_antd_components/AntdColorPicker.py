@@ -41,37 +41,37 @@ Keyword arguments:
     配合`AntdForm`表单批量值搜集/控制功能使用，充当当前表单项的字段名，以`id`作为缺省值.
 
 - enableBatchControl (boolean; default True):
-    控制当前组件是否参与有效的`AntdForm`表单批量值搜集/控制功能  默认值：`True`.
+    控制当前组件是否参与有效的`AntdForm`表单批量值搜集/控制功能 默认值：`True`.
 
 - allowClear (boolean; default False):
-    是否允许清除已选颜色  默认值：`False`.
+    是否允许清除已选颜色 默认值：`False`.
 
 - arrow (dict; optional):
-    配置颜色选择面板额外箭头  默认值：`True`.
+    配置颜色选择面板额外箭头 默认值：`True`.
 
     `arrow` is a boolean | dict with keys:
 
     - pointAtCenter (boolean; optional):
-        箭头是否指向面板中心  默认值：`False`.
+        箭头是否指向面板中心 默认值：`False`.
 
 - defaultValue (string; optional):
     初始化已输入值.
 
 - value (string; optional):
-    监听或设置选中颜色值  默认值：`'#1677FF'`.
+    监听或设置选中颜色值 默认值：`'#1677FF'`.
 
 - format (a value equal to: 'rgb', 'hex', 'hsb'; default 'hex'):
-    监听或设置颜色格式，可选项有`'rgb'`、`'hex'`、`'hsb'`  默认值：`'hex'`.
+    监听或设置颜色格式，可选项有`'rgb'`、`'hex'`、`'hsb'` 默认值：`'hex'`.
 
 - mode (a value equal to: 'single', 'gradient' | list of a value equal to: 'single', 'gradient's; default 'single'):
     选择器模式，用于配置单色与渐变，可选项有`'single'`、`'gradient'`，支持单选项或多选项组合
     默认值：`single`.
 
 - disabled (boolean; default False):
-    是否禁用当前组件  默认值：`False`.
+    是否禁用当前组件 默认值：`False`.
 
 - disabledAlpha (boolean; default True):
-    是否禁用透明度选择  默认值：`True`.
+    是否禁用透明度选择 默认值：`True`.
 
 - open (boolean; optional):
     监听或设置颜色选择面板展开状态.
@@ -88,20 +88,20 @@ Keyword arguments:
         当前预设项所包含的颜色值数组.
 
     - defaultOpen (boolean; optional):
-        当前预设项默认是否展开  默认值：`True`.
+        当前预设项默认是否展开 默认值：`True`.
 
 - placement (a value equal to: 'top', 'topLeft', 'topRight', 'bottom', 'bottomLeft', 'bottomRight'; default 'bottomLeft'):
     颜色选择面板展开方向，可选项有`'top'`、`'topLeft'`、`'topRight'`、`'bottom'`、`'bottomLeft'`、`'bottomRight'`
     默认值：`'bottomRight'`.
 
 - showText (boolean; default False):
-    是否显示颜色值文本  默认值：`False`.
+    是否显示颜色值文本 默认值：`False`.
 
 - size (a value equal to: 'large', 'middle', 'small'; default 'middle'):
-    设置触发控件尺寸规格，可选项有`'large'`、`'middle'`、`'small'`  默认值：`'middle'`.
+    设置触发控件尺寸规格，可选项有`'large'`、`'middle'`、`'small'` 默认值：`'middle'`.
 
 - trigger (a value equal to: 'hover', 'click'; default 'click'):
-    颜色选择面板触发方式，可选项有`'hover'`、`'click'`  默认值：`'click'`.
+    颜色选择面板触发方式，可选项有`'hover'`、`'click'` 默认值：`'click'`.
 
 - data-* (string; optional):
     `data-*`格式属性通配.

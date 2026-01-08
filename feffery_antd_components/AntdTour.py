@@ -49,7 +49,7 @@ Keyword arguments:
         定位当前步骤目标元素的javascript代码字符串.
 
     - arrow (dict; optional):
-        配置当前步骤箭头  默认值：`True`.
+        配置当前步骤箭头 默认值：`True`.
 
         `arrow` is a boolean
 
@@ -72,7 +72,7 @@ Keyword arguments:
         当前引导步骤弹框相对目标元素的位置，可选项有`'center'`、`'left'`、`'leftTop'`、`'leftBottom'`、`'right'`、`'rightTop'`、`'rightBottom'`、`'top'`、`'topLeft'`、`'topRight'`、`'bottom'`、`'bottomLeft'`、`'bottomRight'`.
 
     - mask (dict; optional):
-        配置当前步骤蒙版层  默认值：`True`.
+        配置当前步骤蒙版层 默认值：`True`.
 
         `mask` is a boolean | dict with keys:
 
@@ -85,7 +85,7 @@ Keyword arguments:
             当前步骤蒙版层颜色.
 
     - type (a value equal to: 'default', 'primary'; optional):
-        当前步骤弹框类型，可选项有`'default'`、`'primary'`  默认值：`'default'`.
+        当前步骤弹框类型，可选项有`'default'`、`'primary'` 默认值：`'default'`.
 
     - nextButtonProps (dict; optional):
         配置当前步骤下一步按钮.
@@ -104,7 +104,7 @@ Keyword arguments:
             组件型，按钮内嵌元素.
 
 - arrow (dict; default True):
-    统一配置引导步骤弹框箭头  默认值：`True`.
+    统一配置引导步骤弹框箭头 默认值：`True`.
 
     `arrow` is a boolean | dict with keys:
 
@@ -116,7 +116,7 @@ Keyword arguments:
     默认值：`'bottom'`.
 
 - mask (dict; default True):
-    统一配置引导弹框蒙版  默认值：`True`.
+    统一配置引导弹框蒙版 默认值：`True`.
 
     `mask` is a boolean | dict with keys:
 
@@ -127,16 +127,16 @@ Keyword arguments:
         蒙版层颜色.
 
 - type (a value equal to: 'default', 'primary'; default 'default'):
-    统一设置引导步骤弹框类型，可选项有`'default'`、`'primary'`  默认值：`'default'`.
+    统一设置引导步骤弹框类型，可选项有`'default'`、`'primary'` 默认值：`'default'`.
 
 - open (boolean; default False):
-    监听或设置当前漫游式引导的打开状态  默认值：`False`.
+    监听或设置当前漫游式引导的打开状态 默认值：`False`.
 
 - current (number; optional):
     监听或设置当前漫游式引导所在步骤序号.
 
 - zIndex (number; default 1001):
-    当前漫游式引导z-index  默认值：`1001`.
+    当前漫游式引导z-index 默认值：`1001`.
 
 - data-* (string; optional):
     `data-*`格式属性通配.

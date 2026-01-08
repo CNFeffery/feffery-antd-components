@@ -55,10 +55,10 @@ Keyword arguments:
     为指定节点定义组件型菜单项图标元素，优先级高于menuItems中对应节点的icon属性.
 
 - mode (a value equal to: 'vertical', 'horizontal', 'inline'; default 'vertical'):
-    显示模式，可选项有`'vertical'`、`'horizontal'`、`'inline'`  默认值：`'vertical'`.
+    显示模式，可选项有`'vertical'`、`'horizontal'`、`'inline'` 默认值：`'vertical'`.
 
 - theme (a value equal to: 'light', 'dark'; default 'light'):
-    主题，可选项有`'light'`、`'dark'`  默认值：`'light'`.
+    主题，可选项有`'light'`、`'dark'` 默认值：`'light'`.
 
 - currentKey (string; optional):
     监听或设置当前已选中菜单项key值.
@@ -76,7 +76,7 @@ Keyword arguments:
     监听或设置当前已展开子菜单项key值.
 
 - onlyExpandCurrentSubMenu (boolean; default False):
-    是否只展开当前选中项的父级菜单  默认值：`False`.
+    是否只展开当前选中项的父级菜单 默认值：`False`.
 
 - defaultOpenKeys (list of strings; optional):
     默认展开的菜单项key值.
@@ -84,16 +84,16 @@ Keyword arguments:
 - defaultSelectedKey (string; optional)
 
 - renderCollapsedButton (boolean; default False):
-    是否渲染菜单折叠状态控制按钮  默认值：`False`.
+    是否渲染菜单折叠状态控制按钮 默认值：`False`.
 
 - popupContainer (a value equal to: 'parent', 'body'; default 'body'):
-    菜单展开层锚定策略，可选项有`'parent'`、`'body'`  默认值：`'body'`.
+    菜单展开层锚定策略，可选项有`'parent'`、`'body'` 默认值：`'body'`.
 
 - inlineCollapsed (boolean; optional):
-    当前菜单是否折叠，仅inline模式下有效  默认值：`False`.
+    当前菜单是否折叠，仅inline模式下有效 默认值：`False`.
 
 - inlineIndent (number; default 24):
-    inline模式下，子菜单相对上一级的像素缩进宽度  默认值：`24`.
+    inline模式下，子菜单相对上一级的像素缩进宽度 默认值：`24`.
 
 - triggerSubMenuAction (a value equal to: 'hover', 'click'; default 'hover'):
     `SubMenu`展开/关闭的触发行为，可选项有`'hover'`、`'click'`，`mode='inline'`下无效
@@ -113,7 +113,7 @@ Keyword arguments:
     默认值：`['currentKey', 'openKeys']`.
 
 - persistence_type (a value equal to: 'local', 'session', 'memory'; optional):
-    当前组件的属性持久化存储类型  默认值：`'local'`."""
+    当前组件的属性持久化存储类型 默认值：`'local'`."""
     _children_props: typing.List[str] = ['expandIcon', 'expandIcon.expand', 'expandIcon.collapse', 'menuItemKeyToTitle{}', 'menuItemKeyToIcon{}']
     _base_nodes = ['expandIcon', 'children']
     _namespace = 'feffery_antd_components'

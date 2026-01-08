@@ -41,7 +41,7 @@ Keyword arguments:
     默认值：`'zh-cn'`.
 
 - level (number; default 1):
-    标题级别，可选项有`1`、`2`、`3`、`4`、`5`  默认值：`1`.
+    标题级别，可选项有`1`、`2`、`3`、`4`、`5` 默认值：`1`.
 
 - code (boolean; optional):
     是否渲染为代码形式.

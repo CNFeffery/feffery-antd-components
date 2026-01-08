@@ -72,13 +72,13 @@ Keyword arguments:
     当`layput='horizontal'`时，控制是否在表单项标签部分末尾添加冒号.
 
 - labelAlign (a value equal to: 'left', 'right'; default 'right'):
-    表单项标签部分文本对齐方式，可选项有`'left'`、`'right'`  默认值：`'right'`.
+    表单项标签部分文本对齐方式，可选项有`'left'`、`'right'` 默认值：`'right'`.
 
 - labelWrap (boolean; default False):
-    针对超长表单项标签是否允许换行  默认值：`False`.
+    针对超长表单项标签是否允许换行 默认值：`False`.
 
 - enableBatchControl (boolean; default False):
-    是否启用表单批量控制功能，开启后会导致部分性能的损耗  默认值：`False`.
+    是否启用表单批量控制功能，开启后会导致部分性能的损耗 默认值：`False`.
 
 - values (dict; optional):
     当`enableBatchControl=True`时，可用于监听或设置搜集内部表单输入类组件的输入值变化情况，开启后内部表单输入类组件自身的`defaultValue`、`value`参数将会失效.

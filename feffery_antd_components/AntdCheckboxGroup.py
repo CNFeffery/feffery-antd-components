@@ -37,10 +37,10 @@ Keyword arguments:
     配合`AntdForm`表单批量值搜集/控制功能使用，充当当前表单项的字段名，以`id`作为缺省值.
 
 - enableBatchControl (boolean; default True):
-    控制当前组件是否参与有效的`AntdForm`表单批量值搜集/控制功能  默认值：`True`.
+    控制当前组件是否参与有效的`AntdForm`表单批量值搜集/控制功能 默认值：`True`.
 
 - disabled (boolean; default False):
-    是否禁用当前组件  默认值：`False`.
+    是否禁用当前组件 默认值：`False`.
 
 - options (list of dicts; optional):
     定义构造组合选择框所需的数据结构.
@@ -54,13 +54,13 @@ Keyword arguments:
         当前选择框对应值.
 
     - disabled (boolean; optional):
-        是否禁用当前选择框  默认值：`False`.s
+        是否禁用当前选择框 默认值：`False`.s
 
 - value (list of string | numbers; optional):
     监听或设置已选值.
 
 - readOnly (boolean; default False):
-    是否渲染为只读状态  默认值：`False`.
+    是否渲染为只读状态 默认值：`False`.
 
 - batchPropsNames (list of strings; optional):
     需要纳入[批量属性监听](/batch-props-values)的若干属性名.
@@ -78,7 +78,7 @@ Keyword arguments:
     是否开启[属性持久化](/prop-persistence).
 
 - persisted_props (list of a value equal to: 'value's; optional):
-    开启属性持久化功能的若干属性名，可选项有`'value'`  默认值：`['value']`.
+    开启属性持久化功能的若干属性名，可选项有`'value'` 默认值：`['value']`.
 
 - persistence_type (a value equal to: 'local', 'session', 'memory'; optional):
     属性持久化存储类型，可选项有`'local'`（本地持久化），`'session'`（会话持久化），`'memory'`（内存持久化）

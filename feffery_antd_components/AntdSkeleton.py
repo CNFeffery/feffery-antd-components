@@ -40,18 +40,18 @@ Keyword arguments:
     是否处于加载中状态.
 
 - active (boolean; default False):
-    是否显示动画  默认值：`False`.
+    是否显示动画 默认值：`False`.
 
 - delay (number; default 0):
-    加载动画渲染延时，单位：毫秒  默认值：`0`.
+    加载动画渲染延时，单位：毫秒 默认值：`0`.
 
 - avatar (dict; default False):
-    配置头像占位图相关参数，设置为`False`时不显示  默认值：`True`.
+    配置头像占位图相关参数，设置为`False`时不显示 默认值：`True`.
 
     `avatar` is a boolean | dict with keys:
 
     - active (boolean; optional):
-        头像占位图是否显示动画  默认值：`False`.
+        头像占位图是否显示动画 默认值：`False`.
 
     - shape (a value equal to: 'circle', 'square'; optional):
         头像占位图形状，可选项有`'circle'`、`'square'`.
@@ -61,7 +61,7 @@ Keyword arguments:
         默认值：`'default'`.
 
 - paragraph (dict; default True):
-    配置段落占位图相关参数，设置为`False`时不显示  默认值：`True`.
+    配置段落占位图相关参数，设置为`False`时不显示 默认值：`True`.
 
     `paragraph` is a boolean | dict with keys:
 
@@ -72,7 +72,7 @@ Keyword arguments:
         段落占位图宽度，当传入*int*或*string*型时，用于设置段落占位图最后一行的宽度，当传入*list*型时，用于逐行设置宽度.
 
 - title (dict; default True):
-    是否显示标题占位图  默认值：`True`.
+    是否显示标题占位图 默认值：`True`.
 
     `title` is a boolean | dict with keys:
 
@@ -80,13 +80,13 @@ Keyword arguments:
         标题占位图宽度.
 
 - round (boolean; default False):
-    段落、标题占位图是否渲染圆角  默认值：`False`.
+    段落、标题占位图是否渲染圆角 默认值：`False`.
 
 - debug (boolean; default False):
-    是否开启debug模式，开启后，每次动画加载都会在开发者工具的控制台打印相关`prop`信息  默认值：`False`.
+    是否开启debug模式，开启后，每次动画加载都会在开发者工具的控制台打印相关`prop`信息 默认值：`False`.
 
 - listenPropsMode (a value equal to: 'default', 'exclude', 'include'; default 'default'):
-    监听模式，可选项有`'default'`、`'exclude'`、`'include'`  默认值：`'default'`.
+    监听模式，可选项有`'default'`、`'exclude'`、`'include'` 默认值：`'default'`.
 
 - excludeProps (list of strings; optional):
     `listenPropsMode='exclude'`时，设置需要排除监听的回调目标列表，格式如`['组件id1.组件属性1',
@@ -97,7 +97,7 @@ Keyword arguments:
     '组件id2.组件属性2', ...]`.
 
 - manual (boolean; default False):
-    是否开启手动控制模式，开启后是否处于加载状态将由`loading`参数控制，与内部元素参与的回调状态无关  默认值：`False`.
+    是否开启手动控制模式，开启后是否处于加载状态将由`loading`参数控制，与内部元素参与的回调状态无关 默认值：`False`.
 
 - data-* (string; optional):
     `data-*`格式属性通配.

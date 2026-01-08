@@ -86,7 +86,7 @@ Keyword arguments:
     组件型，标题内容.
 
 - visible (boolean; default True):
-    设置或监听当前弹出式卡片是否显示  默认值：`True`.
+    设置或监听当前弹出式卡片是否显示 默认值：`True`.
 
 - width (number | string; optional):
     弹出式卡片像素宽度.
@@ -96,28 +96,28 @@ Keyword arguments:
     默认值：`'zoom'`.
 
 - forceRender (boolean; default False):
-    是否在初始化卡片未显示时，强制渲染卡片内部元素  默认值：`False`.
+    是否在初始化卡片未显示时，强制渲染卡片内部元素 默认值：`False`.
 
 - destroyOnClose (boolean; default True):
-    是否在卡片关闭后自动销毁内部元素  默认值：`True`.
+    是否在卡片关闭后自动销毁内部元素 默认值：`True`.
 
 - closable (boolean; default True):
-    是否显示右上角的关闭按钮  默认值：`True`.
+    是否显示右上角的关闭按钮 默认值：`True`.
 
 - closeIconType (a value equal to: 'default', 'outlined', 'two-tone'; default 'default'):
-    关闭按钮类型，可选项有`'default'`、`'outlined'`、`'two-tone'`  默认值：`'default'`.
+    关闭按钮类型，可选项有`'default'`、`'outlined'`、`'two-tone'` 默认值：`'default'`.
 
 - draggable (boolean; default False):
-    是否可拖拽  默认值：`False`.
+    是否可拖拽 默认值：`False`.
 
 - dragClassName (string | dict; optional):
     顶部可拖拽区域css类名.
 
 - zIndex (number; default 1000):
-    弹出式卡片z-index  默认值：`1000`.
+    弹出式卡片z-index 默认值：`1000`.
 
 - loading (boolean; default False):
-    是否整体渲染为加载中状态  默认值：`False`.
+    是否整体渲染为加载中状态 默认值：`False`.
 
 - data-* (string; optional):
     `data-*`格式属性通配.

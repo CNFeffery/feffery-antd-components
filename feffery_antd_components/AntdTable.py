@@ -144,7 +144,7 @@ Keyword arguments:
                 下拉菜单锚点标题内容.
 
             - arrow (boolean; optional):
-                下拉菜单是否显示指示箭头  默认值：`False`.
+                下拉菜单是否显示指示箭头 默认值：`False`.
 
             - disabled (boolean; optional):
                 是否整体禁用下拉菜单功能，优先级低于各记录值内部参数.
@@ -162,7 +162,7 @@ Keyword arguments:
         当前字段冻结方向，可选项有`'left'`、`'right'`，设置为`True`时等价于`'left'`.
 
     - editable (boolean; optional):
-        当前字段是否可编辑  默认值：`False`.
+        当前字段是否可编辑 默认值：`False`.
 
     - editOptions (dict; optional):
         配置可编辑模式下输入框相关参数.
@@ -170,7 +170,7 @@ Keyword arguments:
         `editOptions` is a dict with keys:
 
         - mode (a value equal to: 'default', 'text-area'; optional):
-            编辑框模式，可选项有`'default'`、`'text-area'`  默认值：`'default'`.
+            编辑框模式，可选项有`'default'`、`'text-area'` 默认值：`'default'`.
 
         - autoSize (dict; optional):
             当`mode='textarea'`时，配置文本框自适应高度相关功能，同`AntdInput`
@@ -194,7 +194,7 @@ Keyword arguments:
             当前字段下需进行输入框禁用的行记录`key`值列表.
 
     - align (a value equal to: 'left', 'center', 'right'; optional):
-        当前字段对齐方式，可选项有`'left'`、`'center'`、`'right'`  默认值：`'center'`.
+        当前字段对齐方式，可选项有`'left'`、`'center'`、`'right'` 默认值：`'center'`.
 
     - headerAlign (a value equal to: 'left', 'center', 'right'; optional):
         当前表头对齐方式，默认跟随当前字段对齐方式，可选项有`'left'`、`'center'`、`'right'`
@@ -207,7 +207,7 @@ Keyword arguments:
         控制当前字段最小宽度，仅当`tableLayout=\"auto\"`时有效.
 
     - hidden (boolean; optional):
-        是否隐藏当前字段  默认值：`False`.
+        是否隐藏当前字段 默认值：`False`.
 
     - className (string; optional):
         当前字段css类名.
@@ -220,10 +220,10 @@ Keyword arguments:
         默认值：`False`.
 
 - showHeader (boolean; default True):
-    是否显示表头  默认值：`True`.
+    是否显示表头 默认值：`True`.
 
 - rowHoverable (boolean; default True):
-    表格行是否开启鼠标悬停样式效果  默认值：`True`.
+    表格行是否开启鼠标悬停样式效果 默认值：`True`.
 
 - tableLayout (a value equal to: 'auto', 'fixed'; optional):
     当`columns`中各字段未设置`width`时，用于控制整体字段宽度分配方式，可选项有`'auto'`、`'fixed'`.
@@ -243,10 +243,10 @@ Keyword arguments:
         适用于`'link'`模式，链接地址.
 
     - target (string; optional):
-        适用于`'link'`模式，链接跳转行为  默认值：`'_blank'`.
+        适用于`'link'`模式，链接跳转行为 默认值：`'_blank'`.
 
     - disabled (boolean; optional):
-        适用于`'link'`模式，是否禁用当前链接  默认值：`False`.
+        适用于`'link'`模式，是否禁用当前链接 默认值：`False`.
 
       Or list of numbers | dict with keys:
 
@@ -391,13 +391,13 @@ Keyword arguments:
         适用于`'image'`模式，图片高度.
 
     - preview (boolean; optional):
-        适用于`'image'`模式，图片是否可交互预览  默认值：`True`. | dict with keys:
+        适用于`'image'`模式，图片是否可交互预览 默认值：`True`. | dict with keys:
 
     - placement (a value equal to: 'top-left', 'top-right', 'bottom-left', 'bottom-right'; optional):
         适用于`'corner-mark'`模式，角标显示方位，可选项有`'top-left'`、`'top-right'`、`'bottom-left'`、`'bottom-right'`.
 
     - color (string; optional):
-        适用于`'corner-mark'`模式，角标颜色  默认值：`'#1890ff'`.
+        适用于`'corner-mark'`模式，角标颜色 默认值：`'#1890ff'`.
 
     - content (number | string; optional):
         适用于`'corner-mark'`模式，单元格数值内容.
@@ -409,7 +409,7 @@ Keyword arguments:
         适用于`'corner-mark'`模式，角标竖直方向像素偏移量.
 
     - hide (boolean; optional):
-        适用于`'corner-mark'`模式，是否隐藏当前角标  默认值：`False`. | dict with keys:
+        适用于`'corner-mark'`模式，是否隐藏当前角标 默认值：`False`. | dict with keys:
 
     - checked (boolean; optional):
         适用于`'checkbox'`模式，当前勾选框状态.
@@ -460,7 +460,7 @@ Keyword arguments:
         适用于`'dropdown'`模式，额外补充信息.
 
     - isDivider (boolean; optional):
-        适用于`'dropdown'`模式，当前项是否渲染为分割线  默认值：`False`. | list of dicts with keys:
+        适用于`'dropdown'`模式，当前项是否渲染为分割线 默认值：`False`. | list of dicts with keys:
 
     - title (string; optional):
         适用于`'dropdown-links'`模式，当前下拉菜单项锚点内容.
@@ -478,7 +478,7 @@ Keyword arguments:
         适用于`'dropdown-links'`模式，当前按钮前缀图标渲染方式，可选项有`'AntdIcon'`、`'fontawesome'`.
 
     - isDivider (boolean; optional):
-        适用于`'dropdown-links'`模式，当前项是否渲染为分割线  默认值：`False`. | dict with keys:
+        适用于`'dropdown-links'`模式，当前项是否渲染为分割线 默认值：`False`. | dict with keys:
 
     - src (string; optional):
         适用于`'image-avatar'`模式，头像图片资源链接.
@@ -526,7 +526,7 @@ Keyword arguments:
             当前选项值.
 
     - listHeight (number; optional):
-        适用于`'select'`模式，下拉选择菜单像素高度  默认值：`256`.
+        适用于`'select'`模式，下拉选择菜单像素高度 默认值：`256`.
 
     - mode (a value equal to: 'multiple', 'tags'; optional):
         适用于`'select'`模式，选择模式，可选项有`'multiple'`、`'tags'`，默认为单选模式.
@@ -539,7 +539,7 @@ Keyword arguments:
         默认值：`'middle'`.
 
     - bordered (boolean; optional):
-        适用于`'select'`模式，是否渲染边框  默认值：`True`.
+        适用于`'select'`模式，是否渲染边框 默认值：`True`.
 
     - placeholder (string; optional):
         适用于`'select'`模式，选择框占位内容.
@@ -552,20 +552,20 @@ Keyword arguments:
         适用于`'select'`模式，下拉选择已选中值.
 
     - maxTagCount (number | a value equal to: 'responsive'; optional):
-        适用于`'select'`模式，最多显示的已选中选项数量，超出部分将会自动省略  默认值：`5`.
+        适用于`'select'`模式，最多显示的已选中选项数量，超出部分将会自动省略 默认值：`5`.
 
     - optionFilterProp (a value equal to: 'value', 'label'; optional):
         适用于`'select'`模式，选择框内搜索对应的目标字段，可选项有`'value'`、`'label'`
         默认值：`'value'`.
 
     - allowClear (boolean; optional):
-        适用于`'select'`模式，是否允许快捷清空已选项  默认值：`True`.
+        适用于`'select'`模式，是否允许快捷清空已选项 默认值：`True`.
 
     - showSearch (boolean; optional):
         适用于`'select'`模式，是否开启输入框可搜索功能. | dict
 
 - bordered (boolean; default False):
-    是否渲染框线  默认值：`False`.
+    是否渲染框线 默认值：`False`.
 
 - maxHeight (number | string; optional):
     表格最大像素高度，当实际表格高度超出限制时，会自动渲染竖直滚动条.
@@ -574,7 +574,7 @@ Keyword arguments:
     表格最大宽度，当实际表格宽度超出限制时，会自动渲染水平滚动条.
 
 - scrollToFirstRowOnChange (boolean; default True):
-    当分页、排序、筛选操作触发表格变化后，是否滚动到表格顶部  默认值：`True`.
+    当分页、排序、筛选操作触发表格变化后，是否滚动到表格顶部 默认值：`True`.
 
 - size (a value equal to: 'small', 'middle', 'large'; default 'middle'):
     表格单元格尺寸规格，可选项有`'small'`、`'middle'`、`'large'`.
@@ -589,10 +589,10 @@ Keyword arguments:
     监听已选行记录.
 
 - rowSelectionWidth (string | number; default 32):
-    行选择控件所在列宽度  默认值：`32`.
+    行选择控件所在列宽度 默认值：`32`.
 
 - rowSelectionCheckStrictly (boolean; optional):
-    针对嵌套行，各行与其所嵌套的内部行之间的行选择行为是否互相独立  默认值：`True`.
+    针对嵌套行，各行与其所嵌套的内部行之间的行选择行为是否互相独立 默认值：`True`.
 
 - rowSelectionIgnoreRowKeys (list of string | numbers; optional):
     指定不可被选中的行对应`key`值.
@@ -602,7 +602,7 @@ Keyword arguments:
     默认值：`False`.
 
 - sticky (dict; default False):
-    配置粘性表头相关功能  默认值：`False`.
+    配置粘性表头相关功能 默认值：`False`.
 
     `sticky` is a boolean | dict with keys:
 
@@ -616,7 +616,7 @@ Keyword arguments:
         粘性表头底部横向滚动条竖直方向上的像素偏移量.
 
 - enableHoverListen (boolean; default False):
-    是否启用行鼠标移入/移出事件监听，开启后可能会影响到部分其他功能，请根据实际情况进行使用  默认值：`False`.
+    是否启用行鼠标移入/移出事件监听，开启后可能会影响到部分其他功能，请根据实际情况进行使用 默认值：`False`.
 
 - recentlyMouseEnterColumnDataIndex (string; optional):
     当`enableHoverListen=True`时，监听最近一次鼠标移入的字段对应`dataIndex`信息.
@@ -627,18 +627,16 @@ Keyword arguments:
 - recentlyMouseEnterRow (dict; optional):
     当`enableHoverListen=True`时，监听最近一次鼠标移入的行数据信息.
 
-- titlePopoverInfo (list of dicts; optional):
+- titlePopoverInfo (dict; optional):
     配置各字段标题额外气泡说明卡片信息相关参数.
 
-    `titlePopoverInfo` is a list of dicts with keys:
+    `titlePopoverInfo` is a dict with strings as keys and values of
+    type dict with keys:
 
-    - dataIndex (string; required):
-        必填，对应字段的dataIndex.
-
-    - title (a list of or a singular dash component, string or number; optional):
+    - title (string; optional):
         气泡卡片标题，支持字符串或组件型.
 
-    - content (a list of or a singular dash component, string or number; optional):
+    - content (string; optional):
         气泡卡片内容，支持字符串或组件型.
 
     - placement (a value equal to: 'top', 'left', 'right', 'bottom', 'topLeft', 'topRight', 'bottomLeft', 'bottomRight', 'leftTop', 'leftBottom', 'rightTop', 'rightBottom'; optional):
@@ -679,7 +677,7 @@ Keyword arguments:
         当`forceCompareModes`为`'custom'`时，用于为相应字段设置自定义排序对应的元素顺序.
 
 - showSorterTooltip (boolean; default True):
-    针对可排序字段是否在鼠标移入表头后展示额外信息提示  默认值：`True`.
+    针对可排序字段是否在鼠标移入表头后展示额外信息提示 默认值：`True`.
 
 - showSorterTooltipTarget (a value equal to: 'full-header', 'sorter-icon'; default 'full-header'):
     控制可排序字段表头额外信息提示的鼠标移入触发目标，可选项有`'full-header'`、`'sorter-icon'`
@@ -702,10 +700,10 @@ Keyword arguments:
         `filterMode`为`'tree'`时，用于构造自定义树形菜单结构.
 
     - filterMultiple (boolean; optional):
-        `filterMode`为`'checkbox'`时，是否开启多选模式  默认值：`True`.
+        `filterMode`为`'checkbox'`时，是否开启多选模式 默认值：`True`.
 
     - filterSearch (boolean; optional):
-        `filterMode`为`'checkbox'`时，是否开启搜索框  默认值：`False`.
+        `filterMode`为`'checkbox'`时，是否开启搜索框 默认值：`False`.
 
 - defaultFilteredValues (dict with strings as keys and values of type list; optional):
     字段筛选相关字段默认选中的筛选值.
@@ -732,10 +730,10 @@ Keyword arguments:
         `pageSize`切换控件的可选项.
 
     - showTitle (boolean; optional):
-        各页码在鼠标移入时，是否显示浏览器原生提示信息  默认值：`True`.
+        各页码在鼠标移入时，是否显示浏览器原生提示信息 默认值：`True`.
 
     - showQuickJumper (boolean; optional):
-        是否渲染快捷跳页控件  默认值：`False`.
+        是否渲染快捷跳页控件 默认值：`False`.
 
     - showTotalPrefix (string; optional):
         总记录描述文案前缀文字.
@@ -744,22 +742,22 @@ Keyword arguments:
         总记录描述文案后缀文字.
 
     - hideOnSinglePage (boolean; optional):
-        是否在数据行数量不足一页时，自动隐藏分页相关控件  默认值：`False`.
+        是否在数据行数量不足一页时，自动隐藏分页相关控件 默认值：`False`.
 
     - simple (boolean; optional):
-        是否开启简洁模式  默认值：`False`.
+        是否开启简洁模式 默认值：`False`.
 
     - disabled (boolean; optional):
-        是否禁用分页相关控件  默认值：`False`.
+        是否禁用分页相关控件 默认值：`False`.
 
     - size (a value equal to: 'default', 'small'; optional):
-        分页控件尺寸规格，可选项有`'small'`、`'default'`  默认值：`'default'`.
+        分页控件尺寸规格，可选项有`'small'`、`'default'` 默认值：`'default'`.
 
     - total (number; optional):
         手动设置总记录数量，通常配合[服务端数据加载模式](/AntdTable-server-side-mode)使用.
 
     - showLessItems (boolean; optional):
-        是否优先展示较少的跳页项  默认值：`False`. | boolean
+        是否优先展示较少的跳页项 默认值：`False`. | boolean
 
 - currentData (list; optional):
     监听经过编辑修改操作后，最新状态下的表格数据源.
@@ -797,16 +795,16 @@ Keyword arguments:
         组件型，当前总结栏单元格内容.
 
     - colSpan (number; optional):
-        当前总结栏单元格横跨占据的字段数量  默认值：`1`.
+        当前总结栏单元格横跨占据的字段数量 默认值：`1`.
 
     - align (a value equal to: 'left', 'center', 'right'; optional):
         当前总结栏列对齐方式，可选项有`'left'`、`'center'`、`'right'`.
 
 - summaryRowBlankColumns (number; default 0):
-    总结栏每行用于占位的列数，适用于同时使用行选择等功能的场景  默认值：`0`.
+    总结栏每行用于占位的列数，适用于同时使用行选择等功能的场景 默认值：`0`.
 
 - summaryRowFixed (boolean | a value equal to: 'top', 'bottom'; default False):
-    总结栏是否启用固定布局功能，也可设置为`'top'`、`'bottom'`控制总结栏固定在顶部或底部  默认值：`False`.
+    总结栏是否启用固定布局功能，也可设置为`'top'`、`'bottom'`控制总结栏固定在顶部或底部 默认值：`False`.
 
 - conditionalStyleFuncs (dict with strings as keys and values of type string; optional):
     配置各字段条件格式化渲染对应的`javascript`函数字符串.
@@ -824,7 +822,7 @@ Keyword arguments:
     行展开控件所在列宽度.
 
 - expandRowByClick (boolean; default False):
-    是否允许通过直接点击行的方式展开对应行  默认值：`False`.
+    是否允许通过直接点击行的方式展开对应行 默认值：`False`.
 
 - defaultExpandedRowKeys (list of strings; optional):
     初始化处于展开状态的行对应`key`值.
@@ -833,7 +831,7 @@ Keyword arguments:
     监听或设置处于展开状态的行对应`key`值.
 
 - enableCellClickListenColumns (list of strings; optional):
-    是否启用单元格单击、双击、右键相关事件的监听，开启后可能会影响到部分其他功能，请根据实际情况进行使用  默认值：`False`.
+    是否启用单元格单击、双击、右键相关事件的监听，开启后可能会影响到部分其他功能，请根据实际情况进行使用 默认值：`False`.
 
 - recentlyCellClickColumn (string; optional):
     当`enableCellClickListenColumns=True`时，监听最近一次单元格单击事件对应的字段`dataIndex`.
@@ -842,7 +840,7 @@ Keyword arguments:
     当`enableCellClickListenColumns=True`时，监听最近一次单元格单击事件对应的行记录信息.
 
 - nClicksCell (number; default 0):
-    当`enableCellClickListenColumns=True`时，监听表格单元格单击事件累计发生次数  默认值：`0`.
+    当`enableCellClickListenColumns=True`时，监听表格单元格单击事件累计发生次数 默认值：`0`.
 
 - cellClickEvent (dict; optional):
     当`enableCellClickListenColumns=True`时，监听最近一次表格单元格单击事件详细参数.
@@ -877,7 +875,7 @@ Keyword arguments:
     当`enableCellClickListenColumns=True`时，监听最近一次单元格双击事件对应的行记录信息.
 
 - nDoubleClicksCell (number; default 0):
-    当`enableCellClickListenColumns=True`时，监听表格单元格双击事件累计发生次数  默认值：`0`.
+    当`enableCellClickListenColumns=True`时，监听表格单元格双击事件累计发生次数 默认值：`0`.
 
 - cellDoubleClickEvent (dict; optional):
     当`enableCellClickListenColumns=True`时，监听最近一次表格单元格双击事件详细参数.
@@ -912,7 +910,7 @@ Keyword arguments:
     当`enableCellClickListenColumns=True`时，监听最近一次单元格右键事件对应的行记录信息.
 
 - nContextMenuClicksCell (number; default 0):
-    当`enableCellClickListenColumns=True`时，监听表格单元格右键事件累计发生次数  默认值：`0`.
+    当`enableCellClickListenColumns=True`时，监听表格单元格右键事件累计发生次数 默认值：`0`.
 
 - cellContextMenuClickEvent (dict; optional):
     当`enableCellClickListenColumns=True`时，监听最近一次表格单元格右键事件详细参数.
@@ -944,19 +942,19 @@ Keyword arguments:
     组件型，自定义空数据状态下，表格内的显示内容.
 
 - cellUpdateOptimize (boolean; default False):
-    是否严格启用单元格内容渲染优化，开启后，会基于单元格数据对单元格内容进行渲染优化，减少渲染次数  默认值：`False`.
+    是否严格启用单元格内容渲染优化，开启后，会基于单元格数据对单元格内容进行渲染优化，减少渲染次数 默认值：`False`.
 
 - miniChartHeight (number; default 30):
-    针对再渲染模式中的各迷你图模式，统一设置相关单元格像素高度  默认值：`30`.
+    针对再渲染模式中的各迷你图模式，统一设置相关单元格像素高度 默认值：`30`.
 
 - miniChartAnimation (boolean; default False):
-    针对再渲染模式中的各迷你图模式，是否启用出场动画  默认值：`False`.
+    针对再渲染模式中的各迷你图模式，是否启用出场动画 默认值：`False`.
 
 - recentlyButtonClickedRow (dict; optional):
     针对再渲染模式中的`'button'`模式，监听最近一次按钮点击对应的行记录信息.
 
 - nClicksButton (number; default 0):
-    针对再渲染模式中的`'button'`模式，监听表格中按钮点击累计次数  默认值：`0`.
+    针对再渲染模式中的`'button'`模式，监听表格中按钮点击累计次数 默认值：`0`.
 
 - clickedContent (string; optional):
     针对再渲染模式中的`'button'`模式，监听最近一次按钮点击对应的按钮文字内容.
@@ -1013,14 +1011,13 @@ Keyword arguments:
     针对再渲染模式中的`'select'`模式，监听最近发生下拉选项值更新对应的选项值.
 
 - hiddenRowKeys (list of strings; optional):
-    需要进行隐藏的行记录`key`值数组  默认值：`[]`.
+    需要进行隐藏的行记录`key`值数组 默认值：`[]`.
 
 - dataDeepCompare (boolean; optional):
-    是否在表格底层进行重绘时，通过深度比较数据源`data`变化情况，来进行表格重绘优化，适用于中小数据量表格
-    默认值：`False`.
+    是否在表格底层进行重绘时，通过深度比较数据源`data`变化情况，来进行表格重绘优化，适用于中小数据量表格 默认值：`False`.
 
 - virtual (boolean; default False):
-    是否开启虚拟滚动模式  默认值：`False`.
+    是否开启虚拟滚动模式 默认值：`False`.
 
 - title (a list of or a singular dash component, string or number; optional):
     组件型，表格整体标题内容.
@@ -1029,7 +1026,7 @@ Keyword arguments:
     组件型，表格整体页脚内容.
 
 - loading (boolean; default False):
-    是否启用表格自带加载中状态  默认值：`False`.
+    是否启用表格自带加载中状态 默认值：`False`.
 
 - rowClassName (dict; optional):
     表格行css类名，支持通过`func`字段定义`javascript`函数动态计算.
@@ -1044,7 +1041,7 @@ Keyword arguments:
 
 - aria-* (string; optional):
     `aria-*`格式属性通配."""
-    _children_props: typing.List[str] = ['columns[].title', 'data[]{}', 'titlePopoverInfo[].title', 'titlePopoverInfo[].content', 'summaryRowContents[].content', 'expandedRowKeyToContent[].content', 'emptyContent', 'title', 'footer']
+    _children_props: typing.List[str] = ['columns[].title', 'data[]{}', 'summaryRowContents[].content', 'expandedRowKeyToContent[].content', 'emptyContent', 'title', 'footer']
     _base_nodes = ['emptyContent', 'title', 'footer', 'children']
     _namespace = 'feffery_antd_components'
     _type = 'AntdTable'
@@ -1216,9 +1213,8 @@ Keyword arguments:
     TitlePopoverInfo = TypedDict(
         "TitlePopoverInfo",
             {
-            "dataIndex": str,
-            "title": NotRequired[ComponentType],
-            "content": NotRequired[ComponentType],
+            "title": NotRequired[str],
+            "content": NotRequired[str],
             "placement": NotRequired[Literal["top", "left", "right", "bottom", "topLeft", "topRight", "bottomLeft", "bottomRight", "leftTop", "leftBottom", "rightTop", "rightBottom"]],
             "overlayStyle": NotRequired[dict]
         }
@@ -1376,7 +1372,7 @@ Keyword arguments:
         recentlyMouseEnterColumnDataIndex: typing.Optional[str] = None,
         recentlyMouseEnterRowKey: typing.Optional[typing.Union[str, NumberType]] = None,
         recentlyMouseEnterRow: typing.Optional[dict] = None,
-        titlePopoverInfo: typing.Optional[typing.Sequence["TitlePopoverInfo"]] = None,
+        titlePopoverInfo: typing.Optional[typing.Dict[typing.Union[str, float, int], "TitlePopoverInfo"]] = None,
         columnsFormatConstraint: typing.Optional[typing.Dict[typing.Union[str, float, int], "ColumnsFormatConstraint"]] = None,
         sortOptions: typing.Optional["SortOptions"] = None,
         showSorterTooltip: typing.Optional[bool] = None,

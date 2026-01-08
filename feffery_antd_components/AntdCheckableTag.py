@@ -43,7 +43,7 @@ Keyword arguments:
     组件型，未选择状态下的标签内容.
 
 - checked (boolean; default False):
-    监听或设置当前标签的选择状态  默认值：`False`.
+    监听或设置当前标签的选择状态 默认值：`False`.
 
 - data-* (string; optional):
     `data-*`格式属性通配.

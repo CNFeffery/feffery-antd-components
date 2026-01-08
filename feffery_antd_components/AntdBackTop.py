@@ -34,10 +34,10 @@ Keyword arguments:
     当前组件css类名，支持[动态css](/advanced-classname).
 
 - duration (number; default 0.45):
-    回到顶部过程耗时，单位：秒  默认值：`0.45`.
+    回到顶部过程耗时，单位：秒 默认值：`0.45`.
 
 - visibilityHeight (number; default 400):
-    回到顶部按钮显示时对应的页面滚动像素高度阈值  默认值：`400`.
+    回到顶部按钮显示时对应的页面滚动像素高度阈值 默认值：`400`.
 
 - containerId (string; optional):
     滚动事件监听的特定目标容器id.
@@ -46,7 +46,7 @@ Keyword arguments:
     滚动事件监听的特定目标容器js选择代码，优先级低于containerId.
 
 - nClicks (number; default 0):
-    监听回到顶部按钮累计被点击次数  默认值：`0`.
+    监听回到顶部按钮累计被点击次数 默认值：`0`.
 
 - data-* (string; optional):
     `data-*`格式属性通配.

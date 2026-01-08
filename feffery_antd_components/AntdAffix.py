@@ -40,7 +40,7 @@ Keyword arguments:
     触发固钉效果的视窗底部距离像素阈值.
 
 - offsetTop (number; default 0):
-    触发固钉效果的视窗顶部距离像素阈值  默认值：`0`.
+    触发固钉效果的视窗顶部距离像素阈值 默认值：`0`.
 
 - target (string; optional):
     滚动事件监听的特定目标容器id.

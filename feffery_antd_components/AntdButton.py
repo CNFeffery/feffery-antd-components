@@ -63,49 +63,49 @@ Keyword arguments:
     按钮点击跳转链接地址.
 
 - target (string; default '_blank'):
-    按钮点击跳转链接方式  默认值：`'_blank'`.
+    按钮点击跳转链接方式 默认值：`'_blank'`.
 
 - autoInsertSpace (boolean; default True):
-    按钮两个汉字内是否插入空格  默认值：`True`.
+    按钮两个汉字内是否插入空格 默认值：`True`.
 
 - block (boolean; default False):
-    按钮是否渲染为块级元素（宽度撑满父容器）  默认值：`False`.
+    按钮是否渲染为块级元素（宽度撑满父容器） 默认值：`False`.
 
 - danger (boolean; default False):
-    按钮是否呈现危险样式  默认值：`False`.
+    按钮是否呈现危险样式 默认值：`False`.
 
 - disabled (boolean; default False):
-    按钮是否呈现禁用状态  默认值：`False`.
+    按钮是否呈现禁用状态 默认值：`False`.
 
 - ghost (boolean; default False):
-    按钮是否呈现透明背景状态  默认值：`False`.
+    按钮是否呈现透明背景状态 默认值：`False`.
 
 - shape (a value equal to: 'default', 'circle', 'round'; default 'default'):
-    按钮形状，可选项有`'default'`、`'circle'`、`'round'`  默认值：`'default'`.
+    按钮形状，可选项有`'default'`、`'circle'`、`'round'` 默认值：`'default'`.
 
 - size (a value equal to: 'small', 'middle', 'large'; default 'middle'):
-    按钮尺寸规格，可选项有`'small'`、`'middle'`、`'large'`  默认值：`'middle'`.
+    按钮尺寸规格，可选项有`'small'`、`'middle'`、`'large'` 默认值：`'middle'`.
 
 - nClicks (number; default 0):
-    按钮累计点击次数，用于监听按钮点击行为  默认值：`0`.
+    按钮累计点击次数，用于监听按钮点击行为 默认值：`0`.
 
 - clickExecuteJsString (string; optional):
     按钮点击时需要附带执行的js程序字符串.
 
 - debounceWait (number; default 0):
-    按钮点击事件监听防抖延时，单位：毫秒  默认值：`0`.
+    按钮点击事件监听防抖延时，单位：毫秒 默认值：`0`.
 
 - icon (a list of or a singular dash component, string or number; optional):
     组件型，按钮内嵌前缀图标元素.
 
 - iconPosition (a value equal to: 'start', 'end'; default 'start'):
-    按钮图标组件的位置，可选项有`'start'`、`'end'`  默认值：`'start'`.
+    按钮图标组件的位置，可选项有`'start'`、`'end'` 默认值：`'start'`.
 
 - loading (boolean; optional):
-    按钮是否呈现加载状态  默认值：`False`.
+    按钮是否呈现加载状态 默认值：`False`.
 
 - autoSpin (boolean; default False):
-    当前按钮在每次点击后是否自动进入加载中状态  默认值：`False`.
+    当前按钮在每次点击后是否自动进入加载中状态 默认值：`False`.
 
 - motionType (a value equal to: 'happy-work'; optional):
     按钮额外的特殊交互类型，可选项有`'happy-work'`.

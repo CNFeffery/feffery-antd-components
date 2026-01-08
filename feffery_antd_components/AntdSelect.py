@@ -40,7 +40,7 @@ Keyword arguments:
     配合`AntdForm`表单批量值搜集/控制功能使用，充当当前表单项的字段名，以`id`作为缺省值.
 
 - enableBatchControl (boolean; default True):
-    控制当前组件是否参与有效的`AntdForm`表单批量值搜集/控制功能  默认值：`True`.
+    控制当前组件是否参与有效的`AntdForm`表单批量值搜集/控制功能 默认值：`True`.
 
 - locale (a value equal to: 'zh-cn', 'en-us', 'de-de', 'ru-ru'; default 'zh-cn'):
     组件文案语种，可选项有`'zh-cn'`（简体中文）、`'en-us'`（英语）、`'de-de'`（德语）、`'ru-ru'`（俄语）
@@ -60,7 +60,7 @@ Keyword arguments:
         当前选项值.
 
     - disabled (boolean; optional):
-        是否禁用当前选项  默认值：`False`.
+        是否禁用当前选项 默认值：`False`.
 
     - colors (list of strings; optional):
         针对色带特殊渲染模式，设置生成渐变色带所需的色彩值数组. | dict with keys:
@@ -83,7 +83,7 @@ Keyword arguments:
 
         - disabled (boolean; optional):
 
-            是否禁用当前选项  默认值：`False`.
+            是否禁用当前选项 默认值：`False`.
 
         - colors (list of strings; optional):
 
@@ -96,19 +96,19 @@ Keyword arguments:
     色带特殊渲染模式下，设置渲染形式，可选项有`'sequential'`、`'diverging'`.
 
 - colorsNameWidth (number; default 40):
-    色带特殊渲染模式下，设置各选项名称部分像素宽度  默认值：`40`.
+    色带特殊渲染模式下，设置各选项名称部分像素宽度 默认值：`40`.
 
 - mode (a value equal to: 'multiple', 'tags'; optional):
     选择模式，可选项有`'multiple'`（多选）、`'tags'`（自由新增）.
 
 - disabled (boolean; optional):
-    是否禁用当前组件  默认值：`False`.
+    是否禁用当前组件 默认值：`False`.
 
 - size (a value equal to: 'small', 'middle', 'large'; default 'middle'):
-    当前组件尺寸规格，可选项有`'small'`、`'middle'`、`'large'`  默认值：`'middle'`.
+    当前组件尺寸规格，可选项有`'small'`、`'middle'`、`'large'` 默认值：`'middle'`.
 
 - bordered (boolean; default True):
-    是否显示边框，设置为`True`时等价于`variant='outlined'`  默认值：`True`.
+    是否显示边框，设置为`True`时等价于`variant='outlined'` 默认值：`True`.
 
 - variant (a value equal to: 'outlined', 'borderless', 'filled', 'underlined'; optional):
     形态变体类型，可选项有`'outlined'`、`'borderless'`、`'filled'`、`'underlined'`，其中`'outlined'`等价于`bordered=True`，但优先级更高.
@@ -127,13 +127,13 @@ Keyword arguments:
     初始化已选值.
 
 - maxTagCount (number | a value equal to: 'responsive'; default 5):
-    当`multiple=True`时，已选值展示的最大数量  默认值：`5`.
+    当`multiple=True`时，已选值展示的最大数量 默认值：`5`.
 
 - status (a value equal to: 'error', 'warning'; optional):
     控制校验状态，可选项有`'error'`、`'warning'`.
 
 - optionFilterProp (a value equal to: 'value', 'label'; default 'value'):
-    基于搜索框中输入内容进行搜索的目标字段，可选项有`'value'`、`'label'`  默认值：`'value'`.
+    基于搜索框中输入内容进行搜索的目标字段，可选项有`'value'`、`'label'` 默认值：`'value'`.
 
 - searchValue (string; optional):
     监听搜索框已输入内容.
@@ -146,13 +146,13 @@ Keyword arguments:
     以防抖延时的方式监听搜索框已输入内容.
 
 - debounceWait (number; default 0):
-    防抖延时时长，单位：毫秒  默认值：`0`.
+    防抖延时时长，单位：毫秒 默认值：`0`.
 
 - autoSpin (boolean; default False):
-    是否在当前组件相关属性处理回调更新中状态时，以加载中状态进行渲染  默认值：`False`.
+    是否在当前组件相关属性处理回调更新中状态时，以加载中状态进行渲染 默认值：`False`.
 
 - autoClearSearchValue (boolean; default True):
-    当`mode`为`'multiple'`或`'tags'`时，设置是否在选中项后自动清空搜索框中的内容  默认值：`True`.
+    当`mode`为`'multiple'`或`'tags'`时，设置是否在选中项后自动清空搜索框中的内容 默认值：`True`.
 
 - emptyContent (a list of or a singular dash component, string or number; optional):
     组件型，自定义空数据状态提示内容.
@@ -173,16 +173,16 @@ Keyword arguments:
     自定义选择框后缀图标内容.
 
 - allowClear (boolean; default True):
-    是否允许一键清空已选值  默认值：`True`.
+    是否允许一键清空已选值 默认值：`True`.
 
 - autoFocus (boolean; default False):
-    是否自动获取焦点  默认值：`False`.
+    是否自动获取焦点 默认值：`False`.
 
 - popupMatchSelectWidth (boolean; default True):
-    选择菜单是否与选择框同宽，设置为`False`时将关闭虚拟滚动功能  默认值：`True`.
+    选择菜单是否与选择框同宽，设置为`False`时将关闭虚拟滚动功能 默认值：`True`.
 
 - readOnly (boolean; optional):
-    是否渲染为只读状态  默认值：`False`.
+    是否渲染为只读状态 默认值：`False`.
 
 - maxCount (number; optional):
     `'multiple'`及 `'tags'`模式下有效，限制已选项数量上限.
@@ -191,7 +191,7 @@ Keyword arguments:
     是否开启输入框可搜索功能.
 
 - popupContainer (a value equal to: 'parent', 'body'; default 'body'):
-    相关展开层锚定策略，可选项有`'parent'`、`'body'`  默认值：`'body'`.
+    相关展开层锚定策略，可选项有`'parent'`、`'body'` 默认值：`'body'`.
 
 - batchPropsNames (list of strings; optional):
     需要纳入[批量属性监听](/batch-props-values)的若干属性名.
@@ -209,7 +209,7 @@ Keyword arguments:
     是否开启[属性持久化](/prop-persistence).
 
 - persisted_props (list of a value equal to: 'value's; optional):
-    开启属性持久化功能的若干属性名，可选项有`'value'`  默认值：`['value']`.
+    开启属性持久化功能的若干属性名，可选项有`'value'` 默认值：`['value']`.
 
 - persistence_type (a value equal to: 'local', 'session', 'memory'; optional):
     属性持久化存储类型，可选项有`'local'`（本地持久化），`'session'`（会话持久化），`'memory'`（内存持久化）

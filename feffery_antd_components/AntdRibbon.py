@@ -40,7 +40,7 @@ Keyword arguments:
     缎带颜色.
 
 - placement (a value equal to: 'start', 'end'; default 'end'):
-    缎带显示位置，可选项有`'start'`、`'end'`  默认值：`'end'`.
+    缎带显示位置，可选项有`'start'`、`'end'` 默认值：`'end'`.
 
 - text (a list of or a singular dash component, string or number; optional):
     组件型，缎带内容.

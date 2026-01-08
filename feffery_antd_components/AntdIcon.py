@@ -44,10 +44,10 @@ Keyword arguments:
     当`mode='iconfont'`时，设置单个或多个阿里巴巴矢量图标源（在iconfont.cn上制作）.
 
 - nClicks (number; default 0):
-    图标累计点击次数，用于监听图标点击行为  默认值：`0`.
+    图标累计点击次数，用于监听图标点击行为 默认值：`0`.
 
 - debounceWait (number; default 0):
-    图标点击事件监听防抖延时，单位：毫秒  默认值：`0`.
+    图标点击事件监听防抖延时，单位：毫秒 默认值：`0`.
 
 - data-* (string; optional):
     `data-*`格式属性通配.

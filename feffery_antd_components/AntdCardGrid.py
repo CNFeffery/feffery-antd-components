@@ -37,10 +37,10 @@ Keyword arguments:
     当前组件css类名，支持[动态css](/advanced-classname).
 
 - hoverable (boolean; default True):
-    鼠标悬停时是否显示特殊样式  默认值：`True`.
+    鼠标悬停时是否显示特殊样式 默认值：`True`.
 
 - nClicks (number; default 0):
-    监听当前卡片网格累计点击次数  默认值：`0`.
+    监听当前卡片网格累计点击次数 默认值：`0`.
 
 - data-* (string; optional):
     `data-*`格式属性通配.

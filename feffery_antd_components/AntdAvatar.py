@@ -34,10 +34,10 @@ Keyword arguments:
     当前组件css类名，支持[动态css](/advanced-classname).
 
 - mode (a value equal to: 'text', 'icon', 'image'; default 'icon'):
-    头像模式，可选项有`'text'`、`'icon'`、`'image'`  默认值：`'icon'`.
+    头像模式，可选项有`'text'`、`'icon'`、`'image'` 默认值：`'icon'`.
 
 - gap (number; default 4):
-    `mode='text'`时，设置字符距离左右两侧边界的像素距离  默认值：`4`.
+    `mode='text'`时，设置字符距离左右两侧边界的像素距离 默认值：`4`.
 
 - text (string; optional):
     `mode='text'`时，设置文字内容.
@@ -82,7 +82,7 @@ Keyword arguments:
     - xxl (number; optional)
 
 - shape (a value equal to: 'circle', 'square'; default 'circle'):
-    头像形状，可选项有`'circle'`、`'square'`  默认值：`'circle'`.
+    头像形状，可选项有`'circle'`、`'square'` 默认值：`'circle'`.
 
 - data-* (string; optional):
     `data-*`格式属性通配.

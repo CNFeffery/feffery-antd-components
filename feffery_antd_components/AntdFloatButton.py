@@ -55,19 +55,19 @@ Keyword arguments:
         气泡卡片展开方向，可选项有`'top'`、`'left'`、`'right'`、`'bottom'`、`'topLeft'`、`'topRight'`、`'bottomLeft'`、`'bottomRight'`、`'leftTop'`、`'leftBottom'`、`'rightTop'`、`'rightBottom'`.
 
 - type (a value equal to: 'default', 'primary'; default 'default'):
-    按钮类型，可选项有`'default'`、`'primary'`  默认值：`'default'`.
+    按钮类型，可选项有`'default'`、`'primary'` 默认值：`'default'`.
 
 - shape (a value equal to: 'circle', 'square'; default 'circle'):
-    按钮形状，可选项有`'circle'`、`'square'`  默认值：`'circle'`.
+    按钮形状，可选项有`'circle'`、`'square'` 默认值：`'circle'`.
 
 - href (string; optional):
     按钮点击跳转链接地址.
 
 - target (string; default '_blank'):
-    按钮点击跳转链接方式  默认值：`'_blank'`.
+    按钮点击跳转链接方式 默认值：`'_blank'`.
 
 - nClicks (number; default 0):
-    按钮累计点击次数，用于监听按钮点击行为  默认值：`0`.
+    按钮累计点击次数，用于监听按钮点击行为 默认值：`0`.
 
 - data-* (string; optional):
     `data-*`格式属性通配.

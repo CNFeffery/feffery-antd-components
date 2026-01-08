@@ -40,19 +40,19 @@ Keyword arguments:
     当前是否收起.
 
 - collapsedWidth (number; default 80):
-    收起后呈现的像素宽度，设置为0时会额外渲染特殊触发组件  默认值：`80`.
+    收起后呈现的像素宽度，设置为0时会额外渲染特殊触发组件 默认值：`80`.
 
 - collapsible (boolean; default False):
-    是否可收起  默认值：`False`.
+    是否可收起 默认值：`False`.
 
 - reverseArrow (boolean; default False):
-    是否翻转收起箭头的方向，通常在Sider位于右侧时使用  默认值：`False`.
+    是否翻转收起箭头的方向，通常在Sider位于右侧时使用 默认值：`False`.
 
 - theme (a value equal to: 'light', 'dark'; default 'dark'):
-    主题，可选项有`'light'`、`'dark'`  默认值：`'dark'`.
+    主题，可选项有`'light'`、`'dark'` 默认值：`'dark'`.
 
 - width (number | string; default 200):
-    侧边栏像素宽度  默认值：`200`.
+    侧边栏像素宽度 默认值：`200`.
 
 - trigger (a list of or a singular dash component, string or number; optional):
     设置为`None`时不渲染自带的特殊触发组件.

@@ -1171,20 +1171,16 @@ AntdTable.propTypes = {
     /**
      * 配置各字段标题额外气泡说明卡片信息相关参数
      */
-    titlePopoverInfo: PropTypes.arrayOf(
+    titlePopoverInfo: PropTypes.objectOf(
         PropTypes.exact({
-            /**
-             * 必填，对应字段的dataIndex
-             */
-            dataIndex: PropTypes.string.isRequired,
             /**
              * 气泡卡片标题，支持字符串或组件型
              */
-            title: PropTypes.node,
+            title: PropTypes.string,
             /**
              * 气泡卡片内容，支持字符串或组件型
              */
-            content: PropTypes.node,
+            content: PropTypes.string,
             /**
              * 气泡卡片弹出方位，可选项有`'top'`、`'left'`、`'right'`、`'bottom'`、`'topLeft'`、`'topRight'`、`'bottomLeft'`、`'bottomRight'`、`'leftTop'`、`'leftBottom'`、`'rightTop'`、`'rightBottom'`
              * 默认值：`'bottom'`

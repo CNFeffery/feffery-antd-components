@@ -40,16 +40,16 @@ Keyword arguments:
     列所占宽度份数.
 
 - offset (number; default 0):
-    列左侧间隔宽度份数  默认值：`0`.
+    列左侧间隔宽度份数 默认值：`0`.
 
 - order (number; default 0):
-    列顺序  默认值：`0`.
+    列顺序 默认值：`0`.
 
 - pull (number; default 0):
-    列向左移动宽度份数  默认值：`0`.
+    列向左移动宽度份数 默认值：`0`.
 
 - push (number; default 0):
-    列向右移动宽度份数  默认值：`0`.
+    列向右移动宽度份数 默认值：`0`.
 
 - flex (string | number; optional):
     同css中的flex.

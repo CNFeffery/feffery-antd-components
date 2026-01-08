@@ -63,7 +63,7 @@ Keyword arguments:
     组件型，自定义幽灵节点图标.
 
 - reverse (boolean; default False):
-    是否逆序排列时间轴  默认值：`False`.
+    是否逆序排列时间轴 默认值：`False`.
 
 - data-* (string; optional):
     `data-*`格式属性通配.

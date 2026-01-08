@@ -77,10 +77,10 @@ Keyword arguments:
     配合`AntdForm`表单批量值搜集/控制功能使用，充当当前表单项的字段名，以`id`作为缺省值.
 
 - enableBatchControl (boolean; default True):
-    控制当前组件是否参与有效的`AntdForm`表单批量值搜集/控制功能  默认值：`True`.
+    控制当前组件是否参与有效的`AntdForm`表单批量值搜集/控制功能 默认值：`True`.
 
 - vertical (boolean; default False):
-    是否以垂直模式显示  默认值：`False`.
+    是否以垂直模式显示 默认值：`False`.
 
 - range (dict; default False):
     是否以范围模式显示.
@@ -88,10 +88,10 @@ Keyword arguments:
     `range` is a boolean | dict with keys:
 
     - editable (boolean; optional):
-        是否开启节点动态增减功能  默认值：`False`.
+        是否开启节点动态增减功能 默认值：`False`.
 
     - minCount (number; optional):
-        开启节点动态增减功能后，允许的最小节点数量  默认值：`0`.
+        开启节点动态增减功能后，允许的最小节点数量 默认值：`0`.
 
     - maxCount (number; optional):
         开启节点动态增减功能后，允许的最大节点数量.
@@ -118,7 +118,7 @@ Keyword arguments:
     滑动数值文字提示后缀信息.
 
 - disabled (boolean; default False):
-    是否禁用当前组件  默认值：`False`.
+    是否禁用当前组件 默认值：`False`.
 
 - value (number | list of numbers; optional):
     监听或设置已选值.
@@ -127,13 +127,13 @@ Keyword arguments:
     初始化已选值.
 
 - autoFocus (boolean; default False):
-    是否允许一键清空已选值  默认值：`True`.
+    是否允许一键清空已选值 默认值：`True`.
 
 - popupContainer (a value equal to: 'parent', 'body'; default 'body'):
-    相关展开层锚定策略，可选项有`'parent'`、`'body'`  默认值：`'body'`.
+    相关展开层锚定策略，可选项有`'parent'`、`'body'` 默认值：`'body'`.
 
 - readOnly (boolean; default False):
-    是否渲染为只读状态  默认值：`False`.
+    是否渲染为只读状态 默认值：`False`.
 
 - batchPropsNames (list of strings; optional):
     需要纳入[批量属性监听](/batch-props-values)的若干属性名.
@@ -151,7 +151,7 @@ Keyword arguments:
     是否开启[属性持久化](/prop-persistence).
 
 - persisted_props (list of a value equal to: 'value's; optional):
-    开启属性持久化功能的若干属性名，可选项有`'value'`  默认值：`['value']`.
+    开启属性持久化功能的若干属性名，可选项有`'value'` 默认值：`['value']`.
 
 - persistence_type (a value equal to: 'local', 'session', 'memory'; optional):
     属性持久化存储类型，可选项有`'local'`（本地持久化），`'session'`（会话持久化），`'memory'`（内存持久化）

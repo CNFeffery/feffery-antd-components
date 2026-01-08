@@ -82,13 +82,13 @@ Keyword arguments:
         当前子项右上角额外元素.
 
     - showArrow (boolean; optional):
-        是否展示当前手风琴项的箭头图标  默认值：`True`.
+        是否展示当前手风琴项的箭头图标 默认值：`True`.
 
     - forceRender (boolean; optional):
-        是否强制渲染内部元素  默认值：`False`.
+        是否强制渲染内部元素 默认值：`False`.
 
 - accordion (boolean; default True):
-    是否开启手风琴模式  默认值：`True`.
+    是否开启手风琴模式 默认值：`True`.
 
 - activeKey (string | list of strings | number | list of numbers; optional):
     监听或设置当前处于展开状态的手风琴项key值.
@@ -97,10 +97,10 @@ Keyword arguments:
     设置初始化处于展开状态的手风琴项key值.
 
 - bordered (boolean; default True):
-    是否渲染边框  默认值：`True`.
+    是否渲染边框 默认值：`True`.
 
 - size (a value equal to: 'large', 'middle', 'small'; default 'middle'):
-    组件尺寸规格，可选项有`'small'`、`'middle'`、`'large'`  默认值：`'middle'`.
+    组件尺寸规格，可选项有`'small'`、`'middle'`、`'large'` 默认值：`'middle'`.
 
 - collapsible (a value equal to: 'header', 'disabled', 'icon'; optional):
     设置所有子项折叠触发方式，可选项有`'header'`、`'disabled'`、`'icon'`.
@@ -109,7 +109,7 @@ Keyword arguments:
     设置折叠图标位置，可选项有`'left'`、`'right'`.
 
 - ghost (boolean; default False):
-    是否开启透明无边框模式  默认值：`False`.
+    是否开启透明无边框模式 默认值：`False`.
 
 - data-* (string; optional):
     `data-*`格式属性通配.

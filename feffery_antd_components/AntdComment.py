@@ -64,19 +64,19 @@ Keyword arguments:
     是否以相对时间格式呈现发布日期时间.
 
 - showLikeDislike (boolean; default True):
-    是否显示“支持/反对”按钮  默认值：`True`.
+    是否显示“支持/反对”按钮 默认值：`True`.
 
 - showReply (boolean; default True):
-    是否显示“添加回复”按钮  默认值：`True`.
+    是否显示“添加回复”按钮 默认值：`True`.
 
 - showDelete (boolean; default False):
-    是否显示“删除”按钮  默认值：`False`.
+    是否显示“删除”按钮 默认值：`False`.
 
 - replyClicks (number; default 0):
-    监听“添加回复”按钮累计点击次数  默认值：`0`.
+    监听“添加回复”按钮累计点击次数 默认值：`0`.
 
 - deleteClicks (number; default 0):
-    监听“删除”按钮累计点击次数  默认值：`0`.
+    监听“删除”按钮累计点击次数 默认值：`0`.
 
 - commentContent (a list of or a singular dash component, string or number; optional):
     组件型，评论正文内容.
@@ -98,7 +98,7 @@ Keyword arguments:
     配置评论用户头像，同`AntdAvatar`.
 
 - popupContainer (a value equal to: 'parent', 'body'; default 'body'):
-    相关展开层锚定策略，可选项有`'parent'`、`'body'`  默认值：`'body'`.
+    相关展开层锚定策略，可选项有`'parent'`、`'body'` 默认值：`'body'`.
 
 - batchPropsNames (list of strings; optional):
     需要纳入[批量属性监听](/batch-props-values)的若干属性名.

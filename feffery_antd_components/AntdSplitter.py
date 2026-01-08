@@ -34,7 +34,7 @@ Keyword arguments:
     当前组件css类名，支持[动态css](/advanced-classname).
 
 - layout (a value equal to: 'horizontal', 'vertical'; default 'horizontal'):
-    布局方向，可选项有`'horizontal'`、`'vertical'`  默认值：`'horizontal'`.
+    布局方向，可选项有`'horizontal'`、`'vertical'` 默认值：`'horizontal'`.
 
 - items (list of dicts; required):
     配置分隔面板子项.
@@ -68,7 +68,7 @@ Keyword arguments:
         最大尺寸，支持数字`px`或者文字`'百分比%'`类型.
 
     - collapsible (dict; optional):
-        是否可折叠  默认值：`False`.
+        是否可折叠 默认值：`False`.
 
         `collapsible` is a boolean | dict with keys:
 
@@ -77,10 +77,10 @@ Keyword arguments:
         - end (boolean; optional)
 
     - resizable (boolean; optional):
-        是否开启拖拽伸缩  默认值：`True`.
+        是否开启拖拽伸缩 默认值：`True`.
 
 - lazy (boolean; default False):
-    是否开启延迟渲染模式，开启后面板将在拖拽调整完成后才进行更新渲染  默认值：`False`.
+    是否开启延迟渲染模式，开启后面板将在拖拽调整完成后才进行更新渲染 默认值：`False`.
 
 - data-* (string; optional):
     `data-*`格式属性通配.

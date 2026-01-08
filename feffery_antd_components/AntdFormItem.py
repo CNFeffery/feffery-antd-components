@@ -37,7 +37,7 @@ Keyword arguments:
     当前组件css类名，支持[动态css](/advanced-classname).
 
 - required (boolean; default False):
-    是否显示表示必填项的额外“*”标识  默认值：`False`.
+    是否显示表示必填项的额外“*”标识 默认值：`False`.
 
 - labelCol (dict; optional):
     配置表单项标签部分相关参数，优先级高于所属`AntdForm`中的`labelCol`参数.
@@ -87,13 +87,13 @@ Keyword arguments:
     控制校验状态，可选项有`'success'`、`'warning'`、`'error'`、`'validating'`.
 
 - hasFeedback (boolean; default False):
-    与`validateStatus`设定的状态对应，用于控制是否显示额外的状态图标  默认值：`False`.
+    与`validateStatus`设定的状态对应，用于控制是否显示额外的状态图标 默认值：`False`.
 
 - help (a list of or a singular dash component, string or number; optional):
     组件型，与`validateStatus`状态一致的额外说明内容.
 
 - hidden (boolean; default False):
-    是否隐藏当前字段  默认值：`False`.
+    是否隐藏当前字段 默认值：`False`.
 
 - layout (a value equal to: 'horizontal', 'vertical'; optional):
     表单项布局模式，可选项有`'horizontal'`、`'vertical'`.

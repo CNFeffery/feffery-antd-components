@@ -69,31 +69,31 @@ Keyword arguments:
     背景颜色.
 
 - mouseEnterDelay (number; default 0.1):
-    鼠标移入到文字提示弹出延时，单位：秒  默认值：`0.1`.
+    鼠标移入到文字提示弹出延时，单位：秒 默认值：`0.1`.
 
 - mouseLeaveDelay (number; default 0.1):
-    鼠标移出到文字提示消失延时，单位：秒  默认值：`0.1`.
+    鼠标移出到文字提示消失延时，单位：秒 默认值：`0.1`.
 
 - trigger (a value equal to: 'hover', 'focus', 'click' | list of a value equal to: 'hover', 'focus', 'click's; default 'hover'):
-    触发方式，可选项有`'hover'`、`'focus'`、`'click'`，可多选  默认值：`'hover'`.
+    触发方式，可选项有`'hover'`、`'focus'`、`'click'`，可多选 默认值：`'hover'`.
 
 - zIndex (number; optional):
     文字提示卡片z-index.
 
 - arrow (a value equal to: 'show', 'hide', 'center'; default 'show'):
-    文字提示卡片附带箭头显示形式，可选项有`'show'`、`'hide'`、`'center'`  默认值：`'show'`.
+    文字提示卡片附带箭头显示形式，可选项有`'show'`、`'hide'`、`'center'` 默认值：`'show'`.
 
 - fresh (boolean; default False):
-    是否始终保持更新内容  默认值：`False`.
+    是否始终保持更新内容 默认值：`False`.
 
 - open (boolean; default False):
-    监听或设置当前文字提示卡片的展开状态  默认值：`False`.
+    监听或设置当前文字提示卡片的展开状态 默认值：`False`.
 
 - permanent (boolean; default False):
-    是否保持文字提示卡片处于`open`对应状态不变  默认值：`False`.
+    是否保持文字提示卡片处于`open`对应状态不变 默认值：`False`.
 
 - popupContainer (a value equal to: 'parent', 'body'; default 'body'):
-    文字提示卡片展开层锚定策略，可选项有`'parent'`、`'body'`  默认值：`'body'`.
+    文字提示卡片展开层锚定策略，可选项有`'parent'`、`'body'` 默认值：`'body'`.
 
 - data-* (string; optional):
     `data-*`格式属性通配.

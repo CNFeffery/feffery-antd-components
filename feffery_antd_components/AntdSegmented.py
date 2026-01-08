@@ -45,13 +45,13 @@ Keyword arguments:
         必填，选项值.
 
     - disabled (boolean; optional):
-        是否禁用当前选项  默认值：`False`.
+        是否禁用当前选项 默认值：`False`.
 
     - icon (string; optional):
         选项前缀图标，`iconRenderer='AntdIcon'`时同`AntdIcon`，`iconRenderer='fontawesome'`时表示css类名.
 
     - iconRenderer (a value equal to: 'AntdIcon', 'fontawesome'; optional):
-        选项前缀图标类型，可选项有`'AntdIcon'`、`'fontawesome'`  默认值：`'AntdIcon'`.s
+        选项前缀图标类型，可选项有`'AntdIcon'`、`'fontawesome'` 默认值：`'AntdIcon'`.s
 
 - value (string | number; optional):
     监听或设置当前选中值.
@@ -60,19 +60,19 @@ Keyword arguments:
     设置初始化选中值.
 
 - block (boolean; default False):
-    是否撑满父容器  默认值：`False`.
+    是否撑满父容器 默认值：`False`.
 
 - shape (a value equal to: 'default', 'round'; default 'default'):
-    形状，可选项有`'default'`、`'round'`  默认值：`'default'`.
+    形状，可选项有`'default'`、`'round'` 默认值：`'default'`.
 
 - vertical (boolean; default False):
-    是否垂直展示  默认值：`False`.
+    是否垂直展示 默认值：`False`.
 
 - disabled (boolean; default False):
-    是否禁用当前组件  默认值：`False`.
+    是否禁用当前组件 默认值：`False`.
 
 - size (a value equal to: 'large', 'middle', 'small'; default 'middle'):
-    组件尺寸规格，可选项有`'small'`、`'middle'`、`'large'`  默认值：`'middle'`.
+    组件尺寸规格，可选项有`'small'`、`'middle'`、`'large'` 默认值：`'middle'`.
 
 - batchPropsNames (list of strings; optional):
     需要纳入[批量属性监听](/batch-props-values)的若干属性名.
@@ -103,7 +103,7 @@ Keyword arguments:
     是否开启[属性持久化](/prop-persistence).
 
 - persisted_props (list of a value equal to: 'value's; optional):
-    开启属性持久化功能的若干属性名，可选项有`'value'`  默认值：`['value']`.
+    开启属性持久化功能的若干属性名，可选项有`'value'` 默认值：`['value']`.
 
 - persistence_type (a value equal to: 'local', 'session', 'memory'; optional):
     属性持久化存储类型，可选项有`'local'`（本地持久化），`'session'`（会话持久化），`'memory'`（内存持久化）

@@ -63,7 +63,7 @@ Keyword arguments:
     强制设置后代元素的语言，可选项有`'zh-cn'`（简体中文）、`'en-us'`（英语）、`'de-de'`（德语）.
 
 - wavesDisabled (boolean; default False):
-    是否禁用内部组件水波纹动效  默认值：`False`.
+    是否禁用内部组件水波纹动效 默认值：`False`.
 
 - token (dict; optional):
     配置`design token`相关参数.
@@ -71,7 +71,7 @@ Keyword arguments:
     `token` is a dict with keys:
 
     - motion (boolean; optional):
-        是否开启动画效果  默认值：`True`.
+        是否开启动画效果 默认值：`True`.
 
 - componentsToken (dict; optional):
     配置针对具体组件的`design token`相关参数.
@@ -80,13 +80,13 @@ Keyword arguments:
     type dict with keys:
 
     - algorithm (boolean; optional):
-        是否开启派生样式自动推导运算  默认值：`False`.
+        是否开启派生样式自动推导运算 默认值：`False`.
 
 - compatibilityMode (boolean; default False):
-    是否开启针对`88`及以下版本`Chromium`内核浏览器的向下兼容模式  默认值：`False`.
+    是否开启针对`88`及以下版本`Chromium`内核浏览器的向下兼容模式 默认值：`False`.
 
 - enableLayer (boolean; default False):
-    是否启用layer样式降权  默认值：`False`."""
+    是否启用layer样式降权 默认值：`False`."""
     _children_props: typing.List[str] = []
     _base_nodes = ['children']
     _namespace = 'feffery_antd_components'

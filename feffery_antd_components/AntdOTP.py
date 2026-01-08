@@ -37,7 +37,7 @@ Keyword arguments:
     配合`AntdForm`表单批量值搜集/控制功能使用，充当当前表单项的字段名，以`id`作为缺省值.
 
 - enableBatchControl (boolean; default True):
-    控制当前组件是否参与有效的`AntdForm`表单批量值搜集/控制功能  默认值：`True`.
+    控制当前组件是否参与有效的`AntdForm`表单批量值搜集/控制功能 默认值：`True`.
 
 - value (string; optional):
     监听或设置已选值.
@@ -46,19 +46,19 @@ Keyword arguments:
     初始化已选值.
 
 - disabled (boolean; default False):
-    是否禁用当前组件  默认值：`False`.
+    是否禁用当前组件 默认值：`False`.
 
 - length (number; default 6):
-    单体输入框数量  默认值：`6`.
+    单体输入框数量 默认值：`6`.
 
 - mask (boolean | string; default False):
-    自定义遮罩字符  默认值：`False`.
+    自定义遮罩字符 默认值：`False`.
 
 - status (a value equal to: 'error', 'warning'; optional):
     控制校验状态，可选项有`'error'`、`'warning'`.
 
 - size (a value equal to: 'small', 'middle', 'large'; default 'middle'):
-    当前组件尺寸规格，可选项有`'small'`、`'middle'`、`'large'`  默认值：`'middle'`.
+    当前组件尺寸规格，可选项有`'small'`、`'middle'`、`'large'` 默认值：`'middle'`.
 
 - variant (a value equal to: 'outlined', 'borderless', 'filled', 'underlined'; default 'outlined'):
     形态变体类型，可选项有`'outlined'`、`'borderless'`、`'filled'`、`'underlined'`，其中`'outlined'`等价于`bordered=True`，但优先级更高.
@@ -73,7 +73,7 @@ Keyword arguments:
     是否开启[属性持久化](/prop-persistence).
 
 - persisted_props (list of a value equal to: 'value's; optional):
-    开启属性持久化功能的若干属性名，可选项有`'value'`  默认值：`['value']`.
+    开启属性持久化功能的若干属性名，可选项有`'value'` 默认值：`['value']`.
 
 - persistence_type (a value equal to: 'local', 'session', 'memory'; optional):
     属性持久化存储类型，可选项有`'local'`（本地持久化），`'session'`（会话持久化），`'memory'`（内存持久化）

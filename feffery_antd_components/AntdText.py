@@ -71,7 +71,7 @@ Keyword arguments:
     设置内容特殊状态形式，可选项有`'secondary'`、`'success'`、`'warning'`、`'danger'`.
 
 - ellipsis (dict; default False):
-    配置内容省略相关功能，设置为`False`则不开启  默认值：`False`.
+    配置内容省略相关功能，设置为`False`则不开启 默认值：`False`.
 
     `ellipsis` is a boolean | dict with keys:
 

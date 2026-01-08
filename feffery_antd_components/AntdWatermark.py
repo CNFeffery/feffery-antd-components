@@ -46,7 +46,7 @@ Keyword arguments:
     配置水印内容，传入数组时渲染多行水印.
 
 - rotate (number; default -22):
-    水印旋转角度  默认值：`-22`.
+    水印旋转角度 默认值：`-22`.
 
 - zIndex (number; optional):
     水印z-index.
@@ -55,13 +55,13 @@ Keyword arguments:
     文字水印颜色.
 
 - fontSize (number; default 16):
-    文字水印字体大小  默认值：`16`.
+    文字水印字体大小 默认值：`16`.
 
 - gapX (number; default 212):
-    水印之间的水平像素间距  默认值：`212`.
+    水印之间的水平像素间距 默认值：`212`.
 
 - gapY (number; default 222):
-    水印之间的垂直像素间距  默认值：`222`.
+    水印之间的垂直像素间距 默认值：`222`.
 
 - image (string; optional):
     图片水印地址.
@@ -73,7 +73,7 @@ Keyword arguments:
     图片水印像素高度.
 
 - inherit (boolean; default True):
-    是否将水印传导给`AntdModal`、`AntdDrawer`等弹出类组件  默认值：`True`.
+    是否将水印传导给`AntdModal`、`AntdDrawer`等弹出类组件 默认值：`True`.
 
 - data-* (string; optional):
     `data-*`格式属性通配.

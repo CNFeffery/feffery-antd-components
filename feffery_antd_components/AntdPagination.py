@@ -38,22 +38,22 @@ Keyword arguments:
     默认值：`'zh-cn'`.
 
 - align (a value equal to: 'start', 'center', 'end'; default 'start'):
-    组件尺寸规格，可选项有`'start'`、`'center'`、`'end'`  默认值：`'start'`.
+    组件尺寸规格，可选项有`'start'`、`'center'`、`'end'` 默认值：`'start'`.
 
 - defaultCurrent (number; default 1):
-    初始化时的当前页码  默认值：`1`.
+    初始化时的当前页码 默认值：`1`.
 
 - defaultPageSize (number; default 10):
-    初始化时的每页条数  默认值：`10`.
+    初始化时的每页条数 默认值：`10`.
 
 - current (number; optional):
     监听或设置当前页码.
 
 - disabled (boolean; default False):
-    是否禁用当前组件功能  默认值：`False`.
+    是否禁用当前组件功能 默认值：`False`.
 
 - hideOnSinglePage (boolean; default False):
-    仅有一页时是否隐藏分页器  默认值：`False`.
+    仅有一页时是否隐藏分页器 默认值：`False`.
 
 - pageSize (number; optional):
     监听或设置每页条数.
@@ -62,10 +62,10 @@ Keyword arguments:
     每页条数切换可选项.
 
 - showSizeChanger (boolean; default False):
-    是否渲染每页条数切换器  默认值：`False`.
+    是否渲染每页条数切换器 默认值：`False`.
 
 - showQuickJumper (boolean; default False):
-    是否渲染快捷跳页控件  默认值：`False`.
+    是否渲染快捷跳页控件 默认值：`False`.
 
 - showTotalPrefix (string; optional):
     总记录数描述前缀内容.
@@ -74,22 +74,22 @@ Keyword arguments:
     总记录数描述后缀内容.
 
 - simple (boolean; default False):
-    是否启用简洁模式  默认值：`False`.
+    是否启用简洁模式 默认值：`False`.
 
 - size (a value equal to: 'default', 'small'; default 'default'):
-    组件尺寸规格，可选项有`'default'`、`'small'`  默认值：`'default'`.
+    组件尺寸规格，可选项有`'default'`、`'small'` 默认值：`'default'`.
 
 - total (number; optional):
     总记录数.
 
 - showTotal (boolean; default True):
-    是否渲染总记录数描述内容  默认值：`True`.
+    是否渲染总记录数描述内容 默认值：`True`.
 
 - showLessItems (boolean; default False):
-    是否显示较少的跳页按钮  默认值：`False`.
+    是否显示较少的跳页按钮 默认值：`False`.
 
 - batchPropsNames (list of strings; optional):
-    需要纳入批属性监听的属性名  默认值：`[]`.
+    需要纳入批属性监听的属性名 默认值：`[]`.
 
 - batchPropsValues (dict; optional):
     批量监听与当前batchPropsNames对应的属性值.
@@ -104,11 +104,11 @@ Keyword arguments:
     是否为当前组件开启持久化功能.
 
 - persisted_props (list of a value equal to: 'current', 'pageSize's; optional):
-    当前组件启用持久化的属性值数组，可选项有`'current'`、`'pageSize'`  默认值：`['current',
+    当前组件启用持久化的属性值数组，可选项有`'current'`、`'pageSize'` 默认值：`['current',
     'pageSize']`.
 
 - persistence_type (a value equal to: 'local', 'session', 'memory'; optional):
-    当前组件的属性持久化存储类型  默认值：`'local'`."""
+    当前组件的属性持久化存储类型 默认值：`'local'`."""
     _children_props: typing.List[str] = []
     _base_nodes = ['children']
     _namespace = 'feffery_antd_components'

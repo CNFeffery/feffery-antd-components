@@ -47,7 +47,7 @@ Keyword arguments:
     图片加载失败占位图资源地址.
 
 - preview (dict; default True):
-    配置图片预览相关功能，传入`False`时会禁用预览功能  默认值：`True`.
+    配置图片预览相关功能，传入`False`时会禁用预览功能 默认值：`True`.
 
     `preview` is a boolean | dict with keys:
 
@@ -67,13 +67,13 @@ Keyword arguments:
         缩略图根节点css类名.
 
     - scaleStep (number; optional):
-        `1+scaleStep`值为每一步缩放的倍数  默认值：`0.5`.
+        `1+scaleStep`值为每一步缩放的倍数 默认值：`0.5`.
 
     - minScale (number; optional):
-        最小缩放倍数  默认值：`1`.
+        最小缩放倍数 默认值：`1`.
 
     - maxScale (number; optional):
-        最大缩放倍数  默认值：`50`.
+        最大缩放倍数 默认值：`50`.
 
 - visible (boolean; optional):
     监听或设置当前图片组是否处于全屏预览状态.
@@ -82,7 +82,7 @@ Keyword arguments:
     监听或控制当前图片预览对应切换到的图片下标.
 
 - disableCurrent (boolean; default True):
-    是否关闭基于`current`的当前图片下标受控功能  默认值：`True`.
+    是否关闭基于`current`的当前图片下标受控功能 默认值：`True`.
 
 - toolbarExtra (a list of or a singular dash component, string or number; optional):
     针对预览模式下的工具栏，末尾扩充自定义工具图标元素.

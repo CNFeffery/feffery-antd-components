@@ -37,10 +37,10 @@ Keyword arguments:
     当前组件css类名，支持[动态css](/advanced-classname).
 
 - inline (boolean; default False):
-    是否渲染为行内元素  默认值：`False`.
+    是否渲染为行内元素 默认值：`False`.
 
 - inheritStyleToken (boolean; default False):
-    是否在背景色、字体颜色、字体大小等样式上联动`AntdConfigProvider`相关设置  默认值：`False`.
+    是否在背景色、字体颜色、字体大小等样式上联动`AntdConfigProvider`相关设置 默认值：`False`.
 
 - data-* (string; optional):
     `data-*`格式属性通配.

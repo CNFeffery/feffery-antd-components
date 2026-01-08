@@ -37,7 +37,7 @@ Keyword arguments:
     当前组件css类名，支持[动态css](/advanced-classname).
 
 - align (a value equal to: 'top', 'middle', 'bottom'; default 'top'):
-    竖直方向对齐方式，可选项有`'top'`、`'middle'`、`'bottom'`  默认值：`'top'`.
+    竖直方向对齐方式，可选项有`'top'`、`'middle'`、`'bottom'` 默认值：`'top'`.
 
 - gutter (dict; default 0):
     网格间隔，传入数值型时为水平像素间隔，传入数组时分别设置水平、垂直像素间隔，传入字典时可为响应式各断点设置水平像素间隔.
@@ -67,7 +67,7 @@ Keyword arguments:
     默认值：`'start'`.
 
 - wrap (boolean; default True):
-    是否允许自动换行  默认值：`True`.
+    是否允许自动换行 默认值：`True`.
 
 - data-* (string; optional):
     `data-*`格式属性通配.

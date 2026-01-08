@@ -41,7 +41,7 @@ Keyword arguments:
     复制目标内容.
 
 - format (a value equal to: 'text/plain', 'text/html'; default 'text/plain'):
-    剪切板内容的类型，可选项有`'text/plain'`、`text/html`  默认值：`'text/plain'`.
+    剪切板内容的类型，可选项有`'text/plain'`、`text/html` 默认值：`'text/plain'`.
 
 - tooltips (list of a list of or a singular dash component, string or numbers | boolean; optional):
     设置复制前后的文字提示内容，格式为`[复制前内容, 复制后内容]`，设置为`False`时关闭文字提示.

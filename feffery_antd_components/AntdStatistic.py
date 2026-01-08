@@ -37,7 +37,7 @@ Keyword arguments:
     支持组件型，要展示的数值.
 
 - showGroupSeparator (boolean; default True):
-    是否为数值型`value`添加千分位符  默认值：`True`.
+    是否为数值型`value`添加千分位符 默认值：`True`.
 
 - precision (number; optional):
     针对数值型`value`，设置数值精度.

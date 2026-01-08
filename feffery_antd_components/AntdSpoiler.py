@@ -53,16 +53,16 @@ Keyword arguments:
     组件型，收起状态下，展开按钮的文案内容.
 
 - labelPosition (a value equal to: 'left', 'right'; default 'left'):
-    展开/收起按钮的位置，可选项有`'left'`、`'right'`  默认值：`'left'`.
+    展开/收起按钮的位置，可选项有`'left'`、`'right'` 默认值：`'left'`.
 
 - open (boolean; default False):
-    监听或设置是否处于展开状态  默认值：`False`.
+    监听或设置是否处于展开状态 默认值：`False`.
 
 - maxHeight (number; default 50):
-    收起状态下，内容区域最大像素高度  默认值：`50`.
+    收起状态下，内容区域最大像素高度 默认值：`50`.
 
 - transitionDuration (number; default 0.1):
-    展开/收起过渡动画耗时，单位：秒  默认值：`0.1`.
+    展开/收起过渡动画耗时，单位：秒 默认值：`0.1`.
 
 - data-* (string; optional):
     `data-*`格式属性通配.

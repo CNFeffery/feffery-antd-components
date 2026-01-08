@@ -529,7 +529,7 @@ Keyword arguments:
     设置提交失败是否自动滚动到第一个错误字段，默认为False.
 
 - locale (a value equal to: 'zh-cn', 'en-us', 'de-de', 'ru-ru'; default 'zh-CN'):
-    设置展示语言，目前只支持中文、英文，  可选的有'zh-CN'与'en-US'，默认为'zh-CN'.
+    设置展示语言，目前只支持中文、英文， 可选的有'zh-CN'与'en-US'，默认为'zh-CN'.
 
 - footer (dict; optional):
     设置底部操作区域.

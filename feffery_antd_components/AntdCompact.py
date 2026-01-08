@@ -37,10 +37,10 @@ Keyword arguments:
     当前组件css类名，支持[动态css](/advanced-classname).
 
 - direction (a value equal to: 'vertical', 'horizontal'; default 'horizontal'):
-    排列方向，可选项有`'vertical'`、`'horizontal'`  默认值：`'horizontal'`.
+    排列方向，可选项有`'vertical'`、`'horizontal'` 默认值：`'horizontal'`.
 
 - block (boolean; default False):
-    是否渲染为块级元素（宽度撑满父容器）  默认值：`False`.
+    是否渲染为块级元素（宽度撑满父容器） 默认值：`False`.
 
 - data-* (string; optional):
     `data-*`格式属性通配.

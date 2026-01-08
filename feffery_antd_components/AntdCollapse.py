@@ -62,25 +62,25 @@ Keyword arguments:
     组件型，标题内容.
 
 - isOpen (boolean; default True):
-    是否展开  默认值：`True`.
+    是否展开 默认值：`True`.
 
 - size (a value equal to: 'large', 'middle', 'small'; default 'middle'):
-    组件尺寸规格，可选项有`'small'`、`'middle'`、`'large'`  默认值：`'middle'`.
+    组件尺寸规格，可选项有`'small'`、`'middle'`、`'large'` 默认值：`'middle'`.
 
 - bordered (boolean; default True):
-    是否渲染边框  默认值：`True`.
+    是否渲染边框 默认值：`True`.
 
 - showArrow (boolean; default True):
-    是否渲染箭头  默认值：`True`.
+    是否渲染箭头 默认值：`True`.
 
 - ghost (boolean; default False):
-    是否开启透明背景模式  默认值：`False`.
+    是否开启透明背景模式 默认值：`False`.
 
 - collapsible (a value equal to: 'header', 'disabled', 'icon'; optional):
     折叠交互触发行为，可选项有`'header'`（仅标题区域）、`'disabled'`（禁用折叠）、`'icon'`（仅图标区域）.
 
 - forceRender (boolean; default False):
-    初始化未展开时，是否强制渲染内部元素  默认值：`False`.
+    初始化未展开时，是否强制渲染内部元素 默认值：`False`.
 
 - data-* (string; optional):
     `data-*`格式属性通配.
@@ -92,7 +92,7 @@ Keyword arguments:
     是否开启[属性持久化](/prop-persistence).
 
 - persisted_props (list of a value equal to: 'isOpen's; optional):
-    开启属性持久化功能的若干属性名，可选项有`'isOpen'`  默认值：`['isOpen']`.
+    开启属性持久化功能的若干属性名，可选项有`'isOpen'` 默认值：`['isOpen']`.
 
 - persistence_type (a value equal to: 'local', 'session', 'memory'; optional):
     属性持久化存储类型，可选项有`'local'`（本地持久化），`'session'`（会话持久化），`'memory'`（内存持久化）

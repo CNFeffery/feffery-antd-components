@@ -4,7 +4,6 @@ if True:
     sys.path.append('../../../')
     import dash
     from dash import html
-
     import feffery_antd_components as fac
 
 app = dash.Dash(__name__)
@@ -13,9 +12,56 @@ app.layout = html.Div(
     [
         fac.AntdTable(
             columns=[
-                {'title': 'Name', 'dataIndex': 'name'},
+                {
+                    'title': fac.AntdSpace(
+                        [
+                            'Name',
+                            fac.AntdPopover(
+                                fac.AntdIcon(
+                                    icon='antd-question-circle'
+                                ),
+                                title='Hover for Name Info',
+                                content='Full names of team members',
+                            ),
+                        ],
+                        size='small',
+                    ),
+                    'dataIndex': 'name',
+                },
                 {'title': 'Role', 'dataIndex': 'role'},
-                {'title': 'Status', 'dataIndex': 'status'},
+                {
+                    'title': fac.AntdSpace(
+                        [
+                            'Status',
+                            fac.AntdPopover(
+                                fac.AntdIcon(
+                                    icon='antd-question-circle'
+                                ),
+                                title=fac.AntdText(
+                                    'Status Legend'
+                                ),
+                                content=fac.AntdDescriptions(
+                                    column=1,
+                                    bordered=True,
+                                    items=[
+                                        {
+                                            'label': 'Active',
+                                            'children': 'Currently available',
+                                        },
+                                        {
+                                            'label': 'On Leave',
+                                            'children': 'Temporarily out',
+                                        },
+                                    ],
+                                    size='small',
+                                    style={'maxWidth': 600},
+                                ),
+                            ),
+                        ],
+                        size='small',
+                    ),
+                    'dataIndex': 'status',
+                },
             ],
             data=[
                 {
@@ -38,40 +84,9 @@ app.layout = html.Div(
                 },
             ],
             bordered=True,
-            titlePopoverInfo=[
-                {
-                    'dataIndex': 'name',
-                    'title': 'Hover for Name Info',
-                    'content': 'Full names of team members',
-                },
-                {
-                    'dataIndex': 'status',
-                    'title': fac.AntdText('Status Legend'),
-                    'content': fac.AntdDescriptions(
-                        column=1,
-                        bordered=True,
-                        items=[
-                            {
-                                'label': 'Active',
-                                'children': 'Currently available',
-                            },
-                            {
-                                'label': 'On Leave',
-                                'children': 'Temporarily out',
-                            },
-                        ],
-                        size='small',
-                        style={'maxWidth': 600},
-                    ),
-                },
-            ],
         )
     ],
-    style={
-        'padding': 24,
-        'maxWidth': 640,
-        'margin': '0 auto',
-    },
+    style={'padding': 50},
 )
 
 

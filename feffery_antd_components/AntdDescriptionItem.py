@@ -62,7 +62,7 @@ Keyword arguments:
     组件型，标题内容.
 
 - span (number; default 1):
-    所占宽度份数  默认值：`1`.
+    所占宽度份数 默认值：`1`.
 
 - data-* (string; optional):
     `data-*`格式属性通配.

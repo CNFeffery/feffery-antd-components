@@ -49,13 +49,13 @@ Keyword arguments:
     标签链接跳转行为.
 
 - bordered (boolean; default True):
-    是否渲染边框  默认值：`True`.
+    是否渲染边框 默认值：`True`.
 
 - closeIcon (boolean; default False):
-    是否渲染关闭按钮  默认值：`False`.
+    是否渲染关闭按钮 默认值：`False`.
 
 - closeCounts (number; default 0):
-    `closeIcon=True`时，监听关闭按钮累计点击次数  默认值：`0`.
+    `closeIcon=True`时，监听关闭按钮累计点击次数 默认值：`0`.
 
 - data-* (string; optional):
     `data-*`格式属性通配.

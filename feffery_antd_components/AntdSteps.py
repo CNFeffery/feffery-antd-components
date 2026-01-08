@@ -57,32 +57,32 @@ Keyword arguments:
         强制设置当前步骤状态，同参数status.
 
 - current (number; default 0):
-    当前所处的步骤序号  默认值：`0`.
+    当前所处的步骤序号 默认值：`0`.
 
 - direction (a value equal to: 'horizontal', 'vertical'; default 'horizontal'):
-    步骤条显示方向，可选项有`'horizontal'`、`'vertical'`  默认值：`'horizontal'`.
+    步骤条显示方向，可选项有`'horizontal'`、`'vertical'` 默认值：`'horizontal'`.
 
 - labelPlacement (a value equal to: 'horizontal', 'vertical'; optional):
     标签内容显示方位，可选项有`'horizontal'`、`'vertical'`.
 
 - progressDot (boolean; default False):
-    是否渲染为点状步骤条  默认值：`False`.
+    是否渲染为点状步骤条 默认值：`False`.
 
 - size (a value equal to: 'default', 'small'; default 'default'):
-    步骤条尺寸规格，可选项有`'default'`、`'small'`  默认值：`'default'`.
+    步骤条尺寸规格，可选项有`'default'`、`'small'` 默认值：`'default'`.
 
 - status (a value equal to: 'wait', 'process', 'finish', 'error'; default 'process'):
     步骤条状态，可选项有`'wait'`、`'process'`、`'finish'`、`'error'`
     默认值：`'process'`.
 
 - type (a value equal to: 'default', 'navigation', 'inline'; default 'default'):
-    步骤条类型，可选项有`'default'`、`'navigation'`、`'inline'`  默认值：`'default'`.
+    步骤条类型，可选项有`'default'`、`'navigation'`、`'inline'` 默认值：`'default'`.
 
 - allowClick (boolean; default False):
-    是否可点击切换步骤  默认值：`False`.
+    是否可点击切换步骤 默认值：`False`.
 
 - responsive (boolean; default True):
-    是否在页面宽度小于532px时自动强制垂直显示  默认值：`True`.
+    是否在页面宽度小于532px时自动强制垂直显示 默认值：`True`.
 
 - percent (number; optional):
     当前步骤进度，取值应在0到100之间，适用于常规步骤条.

@@ -56,20 +56,20 @@ Keyword arguments:
     对齐方式，可选项有`'start'`、`'end'`、`'center'`、`'baseline'`.
 
 - direction (a value equal to: 'vertical', 'horizontal'; default 'horizontal'):
-    排列方向，可选项有`'vertical'`、`'horizontal'`  默认值：`'horizontal'`.
+    排列方向，可选项有`'vertical'`、`'horizontal'` 默认值：`'horizontal'`.
 
 - size (a value equal to: 'small', 'middle', 'large' | number; default 'small'):
     子元素间隔大小，可选项有`'small'`、`'middle'`、`'large'`，或直接设置数值型代表像素间隔
     默认值：`'small'`.
 
 - addSplitLine (boolean; default False):
-    是否添加分隔线  默认值：`False`.
+    是否添加分隔线 默认值：`False`.
 
 - customSplit (a list of or a singular dash component, string or number; optional):
     自定义分隔线元素.
 
 - wrap (boolean; default False):
-    子元素是否自动换行，仅`direction='horizontal'`时有效  默认值：`False`.
+    子元素是否自动换行，仅`direction='horizontal'`时有效 默认值：`False`.
 
 - data-* (string; optional):
     `data-*`格式属性通配.
