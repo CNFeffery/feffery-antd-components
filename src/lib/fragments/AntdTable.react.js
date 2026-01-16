@@ -1497,7 +1497,9 @@ const AntdTable = (props) => {
                                                 key={idx}
                                                 onClick={(e) => {
                                                     // 阻止事件冒泡
-                                                    e.stopPropagation();
+                                                    if ( !columns[i]['renderOptions']['likeDccLink'] ) {
+                                                        e.stopPropagation();
+                                                    }
                                                     setProps({
                                                         // 忽略组件型字段键值对
                                                         recentlyButtonClickedRow: omitBy(record, value => value?.$$typeof),
@@ -1513,7 +1515,7 @@ const AntdTable = (props) => {
                                                 variant={content_.variant}
                                                 danger={content_.danger}
                                                 disabled={content_.disabled}
-                                                href={content_.href}
+                                                href={columns[i]['renderOptions']['likeDccLink'] ? undefined : content_.href}
                                                 target={content_.target}
                                                 style={content_.style}
                                                 icon={
@@ -1540,11 +1542,23 @@ const AntdTable = (props) => {
                                             content_.tooltip ?
                                                 (
                                                     <Tooltip title={content_.tooltip?.title} placement={content_.tooltip?.placement}>
-                                                        {buttonElement}
+                                                        {
+                                                            (
+                                                                columns[i]['renderOptions']['likeDccLink'] ?
+                                                                    (
+                                                                        <UtilsLink key={idx} href={content_.href}>{buttonElement}</UtilsLink>
+                                                                    ) :
+                                                                    buttonElement
+                                                            )
+                                                        }
                                                     </Tooltip>
                                                 ) :
                                                 (
-                                                    buttonElement
+                                                    columns[i]['renderOptions']['likeDccLink'] ?
+                                                        (
+                                                            <UtilsLink key={idx} href={content_.href}>{buttonElement}</UtilsLink>
+                                                        ) :
+                                                        buttonElement
                                                 )
                                         );
                                     }
