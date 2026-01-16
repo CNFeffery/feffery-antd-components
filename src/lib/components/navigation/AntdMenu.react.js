@@ -1,5 +1,5 @@
 // react核心
-import React, { Component, useEffect, useMemo } from 'react';
+import React, { useEffect, useMemo } from 'react';
 import PropTypes from 'prop-types';
 // antd核心
 import { Menu, Button } from 'antd';
@@ -11,32 +11,13 @@ import {
 // 辅助库
 import { get, has, isArray, isUndefined, isNull, isString, cloneDeep } from 'lodash';
 import { pickBy } from 'ramda';
-import isAbsoluteUrl from 'is-absolute-url';
 import { useLoading } from '../utils';
 // 自定义hooks
 import useCss from '../../hooks/useCss';
+// 内部组件
+import { UtilsLink } from '../../internal_components/UtilsLink.react';
 
 const { SubMenu, Item, ItemGroup, Divider } = Menu;
-
-// 自定义UtilsLink
-function CustomEvent(event, params) {
-    params = params || {
-        bubbles: false,
-        cancelable: false,
-        detail: undefined
-    };
-    const evt = document.createEvent('CustomEvent');
-    evt.initCustomEvent(event, params.bubbles, params.cancelable, params.detail);
-    return evt;
-}
-CustomEvent.prototype = window.Event.prototype;
-
-function isExternalLink(external_link, href) {
-    if (isUndefined(external_link) || isNull(external_link)) {
-        return isAbsoluteUrl(href);
-    }
-    return external_link;
-}
 
 function findByKey(array, key) {
     for (let item of array) {
@@ -86,63 +67,6 @@ const getLevelKeys = (items1) => {
     func(items1);
     return key;
 };
-
-class UtilsLink extends Component {
-
-    constructor(props) {
-        super(props);
-        this.updateLocation = this.updateLocation.bind(this);
-    }
-
-    updateLocation(e) {
-        const hasModifiers = e.metaKey || e.shiftKey || e.altKey || e.ctrlKey;
-        if (hasModifiers) {
-            return;
-        }
-        if (this.props.disabled) {
-            e.preventDefault();
-            return;
-        }
-        if (this.props.preOnClick) {
-            this.props.preOnClick();
-        }
-        const { external_link, href } = this.props;
-        if (href && !isExternalLink(external_link, href)) {
-            // prevent anchor from updating location
-            e.preventDefault();
-            const { href } = this.props;
-            window.history.pushState({}, '', href);
-            window.dispatchEvent(new CustomEvent('_dashprivate_pushstate'));
-            // scroll back to top
-            window.scrollTo(0, 0);
-        }
-    }
-
-    render() {
-        const {
-            children,
-            external_link,
-            preOnClick,
-            target,
-            href,
-            download,
-            ...otherProps
-        } = this.props;
-        const linkIsExternal = href && isExternalLink(external_link, href);
-
-        return (
-            <a
-                href={href}
-                target={linkIsExternal ? target : null}
-                download={download && linkIsExternal ? download : null}
-                {...otherProps}
-                onClick={e => this.updateLocation(e)}
-            >
-                {children}
-            </a>
-        );
-    }
-}
 
 // 字符串 -> 组件
 const str2Jsx = new Map([
