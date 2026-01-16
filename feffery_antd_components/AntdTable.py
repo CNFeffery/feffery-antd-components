@@ -68,6 +68,10 @@ Keyword arguments:
         - renderLinkText (string; optional):
             当`renderType='link'`时，统一设置渲染链接文本内容.
 
+        - likeDccLink (boolean; optional):
+            当`renderType`为`'link'`、`'button'`时，统一设置链接跳转行为是否采用`dcc.Link`模式
+            默认值：`False`.
+
         - renderButtonSplit (boolean; optional):
             当`renderType='button'`时，控制多个按钮之间是否添加分割线.
 
@@ -1087,6 +1091,7 @@ Keyword arguments:
             {
             "renderType": NotRequired[Literal["link", "ellipsis", "copyable", "ellipsis-copyable", "tags", "status-badge", "image", "custom-format", "corner-mark", "row-merge", "dropdown", "dropdown-links", "image-avatar", "mini-line", "mini-bar", "mini-progress", "mini-ring-progress", "mini-area", "button", "checkbox", "switch", "select"]],
             "renderLinkText": NotRequired[str],
+            "likeDccLink": NotRequired[bool],
             "renderButtonSplit": NotRequired[bool],
             "renderButtonPopConfirmProps": NotRequired["ColumnsRenderOptionsRenderButtonPopConfirmProps"],
             "miniChartColor": NotRequired[str],

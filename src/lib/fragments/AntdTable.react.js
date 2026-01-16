@@ -53,6 +53,8 @@ import useStickyOffset from '../hooks/useStickyOffset';
 import PropsContext from '../contexts/PropsContext';
 // 参数类型
 import { propTypes, defaultProps } from '../components/dataDisplay/AntdTable.react';
+// 内部组件
+import { UtilsLink } from '../internal_components/UtilsLink.react';
 
 const { Text } = Typography;
 
@@ -1005,12 +1007,22 @@ const AntdTable = (props) => {
                             return null;
                         }
                         return (
-                            <a href={content.disabled ? undefined : content.href}
-                                target={content.target ? content.target : '_blank'}
-                                disabled={content.disabled}>
-                                {content.content ? content.content : columns[i]['renderOptions']['renderLinkText']}
-                            </a>
-                        )
+                            columns[i]['renderOptions']['likeDccLink'] ?
+                                (
+                                    <UtilsLink href={content.disabled ? undefined : content.href}
+                                        target={content.target ? content.target : '_blank'}
+                                        disabled={content.disabled}>
+                                        {content.content ? content.content : columns[i]['renderOptions']['renderLinkText']}
+                                    </UtilsLink>
+                                ) :
+                                (
+                                    <a href={content.disabled ? undefined : content.href}
+                                        target={content.target ? content.target : '_blank'}
+                                        disabled={content.disabled}>
+                                        {content.content ? content.content : columns[i]['renderOptions']['renderLinkText']}
+                                    </a>
+                                )
+                        );
                     }
                 } else {
                     columns[i]['render'] = content => {
@@ -1018,12 +1030,22 @@ const AntdTable = (props) => {
                             return null;
                         }
                         return (
-                            <a href={content.disabled ? undefined : content.href}
-                                target={content.target ? content.target : '_blank'}
-                                disabled={content.disabled}>
-                                {content.content ? content.content : ' '}
-                            </a>
-                        )
+                            columns[i]['renderOptions']['likeDccLink'] ?
+                                (
+                                    <UtilsLink href={content.disabled ? undefined : content.href}
+                                        target={content.target ? content.target : '_blank'}
+                                        disabled={content.disabled}>
+                                        {content.content ? content.content : ' '}
+                                    </UtilsLink>
+                                ) :
+                                (
+                                    <a href={content.disabled ? undefined : content.href}
+                                        target={content.target ? content.target : '_blank'}
+                                        disabled={content.disabled}>
+                                        {content.content ? content.content : ' '}
+                                    </a>
+                                )
+                        );
                     }
                 }
             }

@@ -59,6 +59,7 @@ class UtilsLink extends Component {
             target,
             href,
             download,
+            disabled,
             ...otherProps
         } = this.props;
         const linkIsExternal = href && isExternalLink(external_link, href);
@@ -68,6 +69,7 @@ class UtilsLink extends Component {
                 href={href}
                 target={linkIsExternal ? target : null}
                 download={download && linkIsExternal ? download : null}
+                disabled={disabled}
                 {...otherProps}
                 onClick={(e) => this.updateLocation(e)}
             >

@@ -220,6 +220,11 @@ AntdTable.propTypes = {
                  */
                 renderLinkText: PropTypes.string,
                 /**
+                 * 当`renderType`为`'link'`、`'button'`时，统一设置链接跳转行为是否采用`dcc.Link`模式
+                 * 默认值：`false`
+                 */
+                likeDccLink: PropTypes.bool,
+                /**
                  * 当`renderType='button'`时，控制多个按钮之间是否添加分割线
                  */
                 renderButtonSplit: PropTypes.bool,
