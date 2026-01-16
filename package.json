@@ -1,6 +1,6 @@
 {
     "name": "feffery_antd_components",
-    "version": "0.4.3-rc7",
+    "version": "0.4.3",
     "description": "Best implementation of Antd components in Plotly Dash.",
     "repository": {
         "type": "git",
@@ -71,11 +71,29 @@
         "react-docgen": "^5.4.3",
         "react-dom": "^18.3.1",
         "style-loader": "^0.23.1",
-        "styled-jsx": "^3.2.1",
+        "styled-jsx": "^4.0.0",
         "webpack": "4.36.1",
         "webpack-bundle-analyzer": "^4.7.0",
         "webpack-cli": "^3.3.6",
         "webpack-serve": "3.1.0"
+    },
+    "overrides": {
+        "@ant-design/charts": {
+            "@ant-design/icons": "$@ant-design/icons",
+            "antd": "$antd"
+        },
+        "react-fast-marquee": {
+            "react": "$react",
+            "react-dom": "$react-dom"
+        },
+        "react-highlight-words": {
+            "react": "$react",
+            "react-dom": "$react-dom"
+        },
+        "react-text-loop": {
+            "react": "$react",
+            "react-dom": "$react-dom"
+        }
     },
     "babel": {
         "presets": [
