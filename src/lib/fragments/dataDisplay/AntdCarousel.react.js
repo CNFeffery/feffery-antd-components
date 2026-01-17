@@ -51,7 +51,7 @@ const AntdCarousel = (props) => {
             key={key}
             arrows={arrows}
             autoplay={autoplay}
-            dotPosition={dotPosition}
+            dotPlacement={dotPosition}
             easing={easing}
             effect={effect}
             autoplaySpeed={autoplaySpeed}
