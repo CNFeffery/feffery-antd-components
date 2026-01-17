@@ -81,6 +81,8 @@ module.exports = (env, argv) => {
                         path.resolve('node_modules', 'yjs'),
                         path.resolve('node_modules', 'parse5'),
                         path.resolve('node_modules', '@ant-design'),
+                        path.resolve('node_modules', 'antd'),
+                        path.resolve('node_modules', '@rc-component'),
                     ],
                     use: {
                         loader: 'babel-loader',
