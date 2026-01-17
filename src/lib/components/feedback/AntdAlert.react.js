@@ -1,5 +1,4 @@
 // react核心
-import React from 'react';
 import PropTypes from 'prop-types';
 // antd核心
 import { Alert } from 'antd';
@@ -46,7 +45,7 @@ const AntdAlert = ({
                 }
                 style={style}
                 key={key}
-                message={
+                title={
                     <TextLoop mask>
                         {message.map(item => <div>{item}</div>)}
                     </TextLoop>
@@ -74,7 +73,7 @@ const AntdAlert = ({
             }
             style={style}
             key={key}
-            message={
+            title={
                 messageRenderMode === 'marquee' ?
                     <Marquee pauseOnHover gradient={false}>
                         {message}
