@@ -93,6 +93,12 @@
         "react-text-loop": {
             "react": "$react",
             "react-dom": "$react-dom"
+        },
+        "@ant-design/compatible": {
+            "antd": "$antd"
+        },
+        "@ant-design/pro-components": {
+            "antd": "$antd"
         }
     },
     "babel": {
