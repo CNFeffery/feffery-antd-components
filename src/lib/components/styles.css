@@ -3,6 +3,11 @@ body {
     margin: 0;
 }
 
+/* 隐藏幽灵行 */
+.ant-table-measure-row {
+    height: 0px !important;
+}
+
 .editable-cell {
     position: relative;
 }
