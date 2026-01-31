@@ -68,6 +68,39 @@ const AntdDropdown = ({
 
     const context = useContext(PropsContext)
 
+    // 递归处理菜单项，支持级联菜单
+    const transformMenuItem = (menuItem) => ({
+        type: menuItem.isDivider ? 'divider' : undefined,
+        disabled: menuItem.disabled,
+        key: menuItem.key || menuItem.title,
+        label: (
+            <a href={menuItem.href}
+                target={menuItem.target}>
+                {menuItem.title}
+            </a>
+        ),
+        extra: menuItem.extra,
+        icon: (
+            menuItem.icon ?
+                (
+                    menuItem.iconRenderer === 'fontawesome' ?
+                        (
+                            React.createElement(
+                                'i',
+                                {
+                                    className: menuItem.icon
+                                }
+                            )
+                        ) :
+                        (
+                            <AntdIcon icon={menuItem.icon} />
+                        )
+                ) :
+                null
+        ),
+        children: menuItem.children ? menuItem.children.map(transformMenuItem) : undefined
+    })
+
     return (
         <Dropdown
             // 提取具有data-*或aria-*通配格式的属性
@@ -81,38 +114,7 @@ const AntdDropdown = ({
             style={style}
             key={key}
             menu={{
-                items: menuItems.map(
-                    (menuItem) => ({
-                        type: menuItem.isDivider ? 'divider' : undefined,
-                        disabled: menuItem.disabled,
-                        key: menuItem.key || menuItem.title,
-                        label: (
-                            <a href={menuItem.href}
-                                target={menuItem.target}>
-                                {menuItem.title}
-                            </a>
-                        ),
-                        extra: menuItem.extra,
-                        icon: (
-                            menuItem.icon ?
-                                (
-                                    menuItem.iconRenderer === 'fontawesome' ?
-                                        (
-                                            React.createElement(
-                                                'i',
-                                                {
-                                                    className: menuItem.icon
-                                                }
-                                            )
-                                        ) :
-                                        (
-                                            <AntdIcon icon={menuItem.icon} />
-                                        )
-                                ) :
-                                null
-                        )
-                    })
-                ),
+                items: menuItems.map(transformMenuItem),
                 selectable: selectable,
                 multiple: multiple,
                 selectedKeys: selectedKeys,
@@ -358,7 +360,11 @@ AntdDropdown.propTypes = {
             /**
              * 节点是否渲染为分割线
              */
-            isDivider: PropTypes.bool
+            isDivider: PropTypes.bool,
+            /**
+             * 子菜单项，用于构建级联菜单
+             */
+            children: PropTypes.array
         })
     ),
 
