@@ -1,5 +1,5 @@
 <p align="center">
-	<img src="./fac-logo.svg" height=300></img>
+	<img src="./imgs/fac-logo.svg" height=300></img>
 </p>
 <h1 align="center">feffery-antd-components</h1>
 <div align="center">
@@ -58,13 +58,13 @@ Some components in `fac` have built-in copy information, and internationalizatio
 fac.AntdDatePicker(locale='en-us')
 ```
 
-<img src="./images/国际化示例_en-us.png" height=350></img>
+<img src="./imgs/国际化示例_en-us.png" height=350></img>
 
 ```Python
 fac.AntdDatePicker(locale='de-de')
 ```
 
-<img src="./images/国际化示例_de-de.png" height=350></img>
+<img src="./imgs/国际化示例_de-de.png" height=350></img>
 
 ## 6 Contributors
 
