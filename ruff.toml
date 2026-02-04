@@ -1,4 +1,20 @@
-line-length = 60
+line-length = 100
+show-fixes = true
+target-version = "py38"
+indent-width = 4
+
+[lint]
+select = [
+    "I",      # isort
+    "E",      # pycodestyle errors
+    "W",      # pycodestyle warnings
+    "F",      # pyflakes
+]
+ignore = [
+    "E501",   # line too long
+    "W191",   # indentation contains tabs
+]
 
 [format]
+docstring-code-format = true
 quote-style = "single"
