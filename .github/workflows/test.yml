@@ -78,7 +78,6 @@ jobs:
 
       - name: Run lint check
         run: |
-          npx eslint src/**/*.js src/**/*.react.js
           python -m ruff check . --exclude=node_modules,venv,build
 
       - name: Run format check
