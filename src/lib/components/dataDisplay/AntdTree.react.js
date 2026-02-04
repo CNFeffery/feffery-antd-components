@@ -1,7 +1,12 @@
 import React, { Suspense } from 'react';
 import PropTypes from 'prop-types';
 
-const LazyAntdTree = React.lazy(() => import(/* webpackChunkName: "data_entry" */ '../../fragments/dataDisplay/AntdTree.react'));
+const LazyAntdTree = React.lazy(
+    () =>
+        import(
+            /* webpackChunkName: "data_entry" */ '../../fragments/dataDisplay/AntdTree.react'
+        )
+);
 
 /**
  * 树形控件组件AntdTree
@@ -27,7 +32,7 @@ const AntdTree = ({
     defaultCheckedKeys,
     defaultSelectedKeys,
     multiple = false,
-    showLine = { 'showLeafIcon': false },
+    showLine = { showLeafIcon: false },
     switcherIcon,
     showIcon = false,
     height,
@@ -45,7 +50,7 @@ const AntdTree = ({
         fontWeight: 'bold',
         backgroundColor: 'transparent',
         padding: 0,
-        color: '#ff5500'
+        color: '#ff5500',
     },
     nodeCheckedSuffix,
     nodeUncheckedSuffix,
@@ -60,8 +65,8 @@ const AntdTree = ({
 }) => {
     return (
         <Suspense fallback={null}>
-            <LazyAntdTree {
-                ...{
+            <LazyAntdTree
+                {...{
                     id,
                     className,
                     setProps,
@@ -106,12 +111,12 @@ const AntdTree = ({
                     persisted_props,
                     persistence_type,
                     batchPropsNames,
-                    ...others
-                }
-            } />
+                    ...others,
+                }}
+            />
         </Suspense>
     );
-}
+};
 
 // 定义递归PropTypes
 const PropTreeNodeShape = {
@@ -173,8 +178,15 @@ const PropTreeNodeShape = {
          * 默认值：`'top'`
          */
         placement: PropTypes.oneOf([
-            'top', 'left', 'right', 'bottom', 'topLeft', 'topRight', 'bottomLeft', 'bottomRight'
-        ])
+            'top',
+            'left',
+            'right',
+            'bottom',
+            'topLeft',
+            'topRight',
+            'bottomLeft',
+            'bottomRight',
+        ]),
     }),
     /**
      * 配置当前节点右键菜单相关参数
@@ -202,7 +214,7 @@ const PropTreeNodeShape = {
     /**
      * 当前节点是否为叶节点
      */
-    isLeaf: PropTypes.bool
+    isLeaf: PropTypes.bool,
 };
 
 const PropTreeNode = PropTypes.shape(PropTreeNodeShape);
@@ -273,8 +285,15 @@ const PropFlatNodeShape = {
          * 默认值：`'top'`
          */
         placement: PropTypes.oneOf([
-            'top', 'left', 'right', 'bottom', 'topLeft', 'topRight', 'bottomLeft', 'bottomRight'
-        ])
+            'top',
+            'left',
+            'right',
+            'bottom',
+            'topLeft',
+            'topRight',
+            'bottomLeft',
+            'bottomRight',
+        ]),
     }),
     /**
      * 配置当前节点右键菜单相关参数
@@ -298,7 +317,7 @@ const PropFlatNodeShape = {
              */
             iconRenderer: PropTypes.oneOf(['AntdIcon', 'fontawesome']),
         })
-    )
+    ),
 };
 
 AntdTree.propTypes = {
@@ -320,10 +339,7 @@ AntdTree.propTypes = {
     /**
      * 当前组件css类名，支持[动态css](/advanced-classname)
      */
-    className: PropTypes.oneOfType([
-        PropTypes.string,
-        PropTypes.object
-    ]),
+    className: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
 
     /**
      * 对应`treeData`格式的渲染模式，可选项有`'tree'`（树形模式）、`'flat'`（扁平模式）
@@ -342,7 +358,7 @@ AntdTree.propTypes = {
         /**
          * 扁平模式对应结构
          */
-        PropTypes.arrayOf(PropFlatNodeShape)
+        PropTypes.arrayOf(PropFlatNodeShape),
     ]),
 
     /**
@@ -436,8 +452,8 @@ AntdTree.propTypes = {
             /**
              * 叶节点是否渲染前缀图标
              */
-            showLeafIcon: PropTypes.bool
-        })
+            showLeafIcon: PropTypes.bool,
+        }),
     ]),
 
     /**
@@ -500,7 +516,7 @@ AntdTree.propTypes = {
         /**
          * 事件对应时间戳信息
          */
-        timestamp: PropTypes.number
+        timestamp: PropTypes.number,
     }),
 
     /**
@@ -530,7 +546,7 @@ AntdTree.propTypes = {
         /**
          * 滚动后的像素偏移量
          */
-        offset: PropTypes.number
+        offset: PropTypes.number,
     }),
 
     /**
@@ -538,7 +554,7 @@ AntdTree.propTypes = {
      */
     searchKeyword: PropTypes.oneOfType([
         PropTypes.string,
-        PropTypes.arrayOf(PropTypes.string)
+        PropTypes.arrayOf(PropTypes.string),
     ]),
 
     /**
@@ -615,26 +631,38 @@ AntdTree.propTypes = {
     persistence: PropTypes.oneOfType([
         PropTypes.bool,
         PropTypes.string,
-        PropTypes.number
+        PropTypes.number,
     ]),
 
     /**
      * 开启属性持久化功能的若干属性名，可选项有`'selectedKeys'`、`'checkedKeys'`、`'expandedKeys'`、`'halfCheckedKeys'`
      * 默认值：`['selectedKeys', 'checkedKeys', 'expandedKeys', 'halfCheckedKeys']`
      */
-    persisted_props: PropTypes.arrayOf(PropTypes.oneOf(['selectedKeys', 'checkedKeys', 'expandedKeys', 'halfCheckedKeys'])),
+    persisted_props: PropTypes.arrayOf(
+        PropTypes.oneOf([
+            'selectedKeys',
+            'checkedKeys',
+            'expandedKeys',
+            'halfCheckedKeys',
+        ])
+    ),
 
     /**
      * 属性持久化存储类型，可选项有`'local'`（本地持久化），`'session'`（会话持久化），`'memory'`（内存持久化）
      * 默认值：`'local'`
      */
-    persistence_type: PropTypes.oneOf(['local', 'session', 'memory'])
+    persistence_type: PropTypes.oneOf(['local', 'session', 'memory']),
 };
 
 AntdTree.dashPersistence = {
-    persisted_props: ['selectedKeys', 'checkedKeys', 'expandedKeys', 'halfCheckedKeys'],
-    persistence_type: 'local'
-}
+    persisted_props: [
+        'selectedKeys',
+        'checkedKeys',
+        'expandedKeys',
+        'halfCheckedKeys',
+    ],
+    persistence_type: 'local',
+};
 
 export default AntdTree;
 

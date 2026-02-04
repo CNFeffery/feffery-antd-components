@@ -29,20 +29,25 @@ const AntdSpace = ({
     setProps,
     ...others
 }) => {
-
-    children = parseChildrenToArray(children)
+    children = parseChildrenToArray(children);
 
     if (addSplitLine) {
         if (direction === 'horizontal') {
             return (
                 <Space
                     // 提取具有data-*或aria-*通配格式的属性
-                    {...pickBy((_, k) => k.startsWith('data-') || k.startsWith('aria-'), others)}
+                    {...pickBy(
+                        (_, k) =>
+                            k.startsWith('data-') || k.startsWith('aria-'),
+                        others
+                    )}
                     id={id}
                     className={
-                        isString(className) ?
-                            className :
-                            (className ? useCss(className) : undefined)
+                        isString(className)
+                            ? className
+                            : className
+                              ? useCss(className)
+                              : undefined
                     }
                     style={style}
                     styles={styles}
@@ -53,7 +58,8 @@ const AntdSpace = ({
                     size={size}
                     split={<Divider type="vertical" />}
                     wrap={wrap}
-                    data-dash-is-loading={useLoading()}>
+                    data-dash-is-loading={useLoading()}
+                >
                     {children}
                 </Space>
             );
@@ -61,12 +67,17 @@ const AntdSpace = ({
         return (
             <Space
                 // 提取具有data-*或aria-*通配格式的属性
-                {...pickBy((_, k) => k.startsWith('data-') || k.startsWith('aria-'), others)}
+                {...pickBy(
+                    (_, k) => k.startsWith('data-') || k.startsWith('aria-'),
+                    others
+                )}
                 id={id}
                 className={
-                    isString(className) ?
-                        className :
-                        (className ? useCss(className) : undefined)
+                    isString(className)
+                        ? className
+                        : className
+                          ? useCss(className)
+                          : undefined
                 }
                 style={style}
                 styles={styles}
@@ -77,7 +88,8 @@ const AntdSpace = ({
                 size={size}
                 split={<Divider />}
                 wrap={wrap}
-                data-dash-is-loading={useLoading()}>
+                data-dash-is-loading={useLoading()}
+            >
                 {children}
             </Space>
         );
@@ -86,12 +98,17 @@ const AntdSpace = ({
     return (
         <Space
             // 提取具有data-*或aria-*通配格式的属性
-            {...pickBy((_, k) => k.startsWith('data-') || k.startsWith('aria-'), others)}
+            {...pickBy(
+                (_, k) => k.startsWith('data-') || k.startsWith('aria-'),
+                others
+            )}
             id={id}
             className={
-                isString(className) ?
-                    className :
-                    (className ? useCss(className) : undefined)
+                isString(className)
+                    ? className
+                    : className
+                      ? useCss(className)
+                      : undefined
             }
             style={style}
             styles={styles}
@@ -102,11 +119,12 @@ const AntdSpace = ({
             size={size}
             split={customSplit}
             wrap={wrap}
-            data-dash-is-loading={useLoading()}>
+            data-dash-is-loading={useLoading()}
+        >
             {children}
         </Space>
     );
-}
+};
 
 AntdSpace.propTypes = {
     /**
@@ -132,10 +150,7 @@ AntdSpace.propTypes = {
     /**
      * 当前组件css类名，支持[动态css](/advanced-classname)
      */
-    className: PropTypes.oneOfType([
-        PropTypes.string,
-        PropTypes.object
-    ]),
+    className: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
 
     /**
      * 细分控制子元素css样式
@@ -144,7 +159,7 @@ AntdSpace.propTypes = {
         /**
          * 控制子项容器元素css样式
          */
-        item: PropTypes.object
+        item: PropTypes.object,
     }),
 
     /**
@@ -154,7 +169,7 @@ AntdSpace.propTypes = {
         /**
          * 控制子项容器元素css类
          */
-        item: PropTypes.string
+        item: PropTypes.string,
     }),
 
     /**
@@ -174,7 +189,7 @@ AntdSpace.propTypes = {
      */
     size: PropTypes.oneOfType([
         PropTypes.oneOf(['small', 'middle', 'large']),
-        PropTypes.number
+        PropTypes.number,
     ]),
 
     /**
@@ -208,7 +223,7 @@ AntdSpace.propTypes = {
      * Dash-assigned callback that should be called to report property changes
      * to Dash, to make them available for callbacks.
      */
-    setProps: PropTypes.func
+    setProps: PropTypes.func,
 };
 
 export default AntdSpace;

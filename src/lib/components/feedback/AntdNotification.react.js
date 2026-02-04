@@ -26,15 +26,14 @@ const AntdNotification = ({
     closable = true,
     closeButton,
     stack = false,
-    setProps
+    setProps,
 }) => {
-
-    let config = {
-        className: (
-            isString(className) ?
-                className :
-                (className ? useCss(className) : undefined)
-        ),
+    const config = {
+        className: isString(className)
+            ? className
+            : className
+              ? useCss(className)
+              : undefined,
         style: style,
         message: message,
         description: description,
@@ -44,41 +43,41 @@ const AntdNotification = ({
         duration: duration,
         showProgress: showProgress,
         pauseOnHover: pauseOnHover,
-        closeIcon: (
-            closable ?
-                undefined :
-                <span style={{ visibility: "hidden" }} />
+        closeIcon: closable ? undefined : (
+            <span style={{ visibility: 'hidden' }} />
         ),
-        btn: (
-            closeButton ?
-                (
-                    <Button type="primary" size="small" onClick={() => api.destroy()} {...omit(closeButton, ['content'])}>
-                        {closeButton.content}
-                    </Button>
-                ) :
-                undefined
-        ),
-        stack: stack
-    }
+        btn: closeButton ? (
+            <Button
+                type="primary"
+                size="small"
+                onClick={() => api.destroy()}
+                {...omit(closeButton, ['content'])}
+            >
+                {closeButton.content}
+            </Button>
+        ) : undefined,
+        stack: stack,
+    };
 
-    const [notificationApi, contextHolder] = notification.useNotification(config);
+    const [notificationApi, contextHolder] =
+        notification.useNotification(config);
 
     useEffect(() => {
         if (type === 'default') {
-            notificationApi.open(config)
+            notificationApi.open(config);
         } else if (type === 'success') {
-            notificationApi.success(config)
+            notificationApi.success(config);
         } else if (type === 'error') {
-            notificationApi.error(config)
+            notificationApi.error(config);
         } else if (type === 'info') {
-            notificationApi.info(config)
+            notificationApi.info(config);
         } else if (type === 'warning') {
-            notificationApi.warning(config)
+            notificationApi.warning(config);
         }
-    })
+    });
 
     return <>{contextHolder}</>;
-}
+};
 
 AntdNotification.propTypes = {
     /**
@@ -99,10 +98,7 @@ AntdNotification.propTypes = {
     /**
      * 当前组件css类名，支持[动态css](/advanced-classname)
      */
-    className: PropTypes.oneOfType([
-        PropTypes.string,
-        PropTypes.object
-    ]),
+    className: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
 
     /**
      * 通知提醒主要信息
@@ -124,7 +120,14 @@ AntdNotification.propTypes = {
      * 通知提醒框在屏幕中的弹出位置，可选项有`'top'`、`'bottom'`、`'topLeft'`、`'topRight'`、`'bottomLeft'`、`'bottomRight'`
      * 默认值：`'topRight'`
      */
-    placement: PropTypes.oneOf(['top', 'bottom', 'topLeft', 'topRight', 'bottomLeft', 'bottomRight']),
+    placement: PropTypes.oneOf([
+        'top',
+        'bottom',
+        'topLeft',
+        'topRight',
+        'bottomLeft',
+        'bottomRight',
+    ]),
 
     /**
      * 当通知从顶部弹出时，设置距离顶部的像素距离
@@ -182,12 +185,19 @@ AntdNotification.propTypes = {
          * 按钮类型，可选项有`'default'`、`'primary'`、`'ghost'`、`'dashed'`、`'link'`、`'text'`
          * 默认值：`'default'`
          */
-        type: PropTypes.oneOf(['default', 'primary', 'ghost', 'dashed', 'link', 'text']),
+        type: PropTypes.oneOf([
+            'default',
+            'primary',
+            'ghost',
+            'dashed',
+            'link',
+            'text',
+        ]),
         /**
          * 按钮是否呈现危险状态
          * 默认值：`false`
          */
-        danger: PropTypes.bool
+        danger: PropTypes.bool,
     }),
 
     /**
@@ -197,8 +207,8 @@ AntdNotification.propTypes = {
     stack: PropTypes.oneOfType([
         PropTypes.bool,
         PropTypes.exact({
-            threshold: PropTypes.number
-        })
+            threshold: PropTypes.number,
+        }),
     ]),
 
     /**

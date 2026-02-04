@@ -1,7 +1,12 @@
 import React, { Suspense } from 'react';
 import PropTypes from 'prop-types';
 
-const LazyAntdPopover = React.lazy(() => import(/* webpackChunkName: "data_display" */ '../../fragments/dataDisplay/AntdPopover.react'));
+const LazyAntdPopover = React.lazy(
+    () =>
+        import(
+            /* webpackChunkName: "data_display" */ '../../fragments/dataDisplay/AntdPopover.react'
+        )
+);
 
 /**
  * 气泡卡片组件Popover
@@ -32,8 +37,8 @@ const AntdPopover = ({
 }) => {
     return (
         <Suspense fallback={null}>
-            <LazyAntdPopover {
-                ...{
+            <LazyAntdPopover
+                {...{
                     id,
                     children,
                     className,
@@ -55,12 +60,12 @@ const AntdPopover = ({
                     permanent,
                     popupContainer,
                     setProps,
-                    ...others
-                }
-            } />
+                    ...others,
+                }}
+            />
         </Suspense>
     );
-}
+};
 
 AntdPopover.propTypes = {
     /**
@@ -86,10 +91,7 @@ AntdPopover.propTypes = {
     /**
      * 当前组件css类名，支持[动态css](/advanced-classname)
      */
-    className: PropTypes.oneOfType([
-        PropTypes.string,
-        PropTypes.object
-    ]),
+    className: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
 
     /**
      * 细分控制子元素css样式
@@ -102,7 +104,7 @@ AntdPopover.propTypes = {
         /**
          * 内容元素css样式
          */
-        body: PropTypes.object
+        body: PropTypes.object,
     }),
 
     /**
@@ -116,7 +118,7 @@ AntdPopover.propTypes = {
         /**
          * 内容元素css类名
          */
-        body: PropTypes.string
+        body: PropTypes.string,
     }),
 
     /**
@@ -134,7 +136,18 @@ AntdPopover.propTypes = {
      * 默认值：`top'`
      */
     placement: PropTypes.oneOf([
-        'top', 'left', 'right', 'bottom', 'topLeft', 'topRight', 'bottomLeft', 'bottomRight', 'leftTop', 'leftBottom', 'rightTop', 'rightBottom'
+        'top',
+        'left',
+        'right',
+        'bottom',
+        'topLeft',
+        'topRight',
+        'bottomLeft',
+        'bottomRight',
+        'leftTop',
+        'leftBottom',
+        'rightTop',
+        'rightBottom',
     ]),
 
     /**
@@ -160,7 +173,7 @@ AntdPopover.propTypes = {
      */
     trigger: PropTypes.oneOfType([
         PropTypes.oneOf(['hover', 'focus', 'click']),
-        PropTypes.arrayOf(PropTypes.oneOf(['hover', 'focus', 'click']))
+        PropTypes.arrayOf(PropTypes.oneOf(['hover', 'focus', 'click'])),
     ]),
 
     /**
@@ -212,7 +225,7 @@ AntdPopover.propTypes = {
      * Dash-assigned callback that should be called to report property changes
      * to Dash, to make them available for callbacks.
      */
-    setProps: PropTypes.func
+    setProps: PropTypes.func,
 };
 
 export default AntdPopover;

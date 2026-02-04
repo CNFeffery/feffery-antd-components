@@ -1,7 +1,12 @@
 import React, { Suspense } from 'react';
 import PropTypes from 'prop-types';
 
-const LazyAntdInputNumber = React.lazy(() => import(/* webpackChunkName: "data_entry" */ '../../fragments/dataEntry/AntdInputNumber.react'));
+const LazyAntdInputNumber = React.lazy(
+    () =>
+        import(
+            /* webpackChunkName: "data_entry" */ '../../fragments/dataEntry/AntdInputNumber.react'
+        )
+);
 
 /**
  * 数值输入框组件AntdInputNumber
@@ -45,8 +50,8 @@ const AntdInputNumber = ({
 }) => {
     return (
         <Suspense fallback={null}>
-            <LazyAntdInputNumber {
-                ...{
+            <LazyAntdInputNumber
+                {...{
                     id,
                     className,
                     style,
@@ -81,12 +86,12 @@ const AntdInputNumber = ({
                     persisted_props,
                     persistence_type,
                     batchPropsNames,
-                    ...others
-                }
-            } />
+                    ...others,
+                }}
+            />
         </Suspense>
     );
-}
+};
 
 AntdInputNumber.propTypes = {
     /**
@@ -107,10 +112,7 @@ AntdInputNumber.propTypes = {
     /**
      * 当前组件css类名，支持[动态css](/advanced-classname)
      */
-    className: PropTypes.oneOfType([
-        PropTypes.string,
-        PropTypes.object
-    ]),
+    className: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
 
     /**
      * 配合`AntdForm`表单批量值搜集/控制功能使用，充当当前表单项的字段名，以`id`作为缺省值
@@ -164,26 +166,17 @@ AntdInputNumber.propTypes = {
     /**
      * 允许输入的数值下限，默认无限制
      */
-    min: PropTypes.oneOfType([
-        PropTypes.number,
-        PropTypes.string
-    ]),
+    min: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
 
     /**
      * 允许输入的数值上限，默认无限制
      */
-    max: PropTypes.oneOfType([
-        PropTypes.number,
-        PropTypes.string
-    ]),
+    max: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
 
     /**
      * 数值增减步长
      */
-    step: PropTypes.oneOfType([
-        PropTypes.number,
-        PropTypes.string
-    ]),
+    step: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
 
     /**
      * 数值精度
@@ -217,7 +210,12 @@ AntdInputNumber.propTypes = {
     /**
      * 形态变体类型，可选项有`'outlined'`、`'borderless'`、`'filled'`、`'underlined'`，其中`'outlined'`等价于`bordered=True`，但优先级更高
      */
-    variant: PropTypes.oneOf(['outlined', 'borderless', 'filled', 'underlined']),
+    variant: PropTypes.oneOf([
+        'outlined',
+        'borderless',
+        'filled',
+        'underlined',
+    ]),
 
     /**
      * 输入框占位文字内容
@@ -227,26 +225,17 @@ AntdInputNumber.propTypes = {
     /**
      * 监听或设置已输入值
      */
-    value: PropTypes.oneOfType([
-        PropTypes.number,
-        PropTypes.string
-    ]),
+    value: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
 
     /**
      * 初始化已输入值
      */
-    defaultValue: PropTypes.oneOfType([
-        PropTypes.number,
-        PropTypes.string
-    ]),
+    defaultValue: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
 
     /**
      * 监听防抖版本的已输入值
      */
-    debounceValue: PropTypes.oneOfType([
-        PropTypes.number,
-        PropTypes.string
-    ]),
+    debounceValue: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
 
     /**
      * 防抖延时时长，单位：毫秒
@@ -303,7 +292,7 @@ AntdInputNumber.propTypes = {
     persistence: PropTypes.oneOfType([
         PropTypes.bool,
         PropTypes.string,
-        PropTypes.number
+        PropTypes.number,
     ]),
 
     /**
@@ -316,13 +305,13 @@ AntdInputNumber.propTypes = {
      * 属性持久化存储类型，可选项有`'local'`（本地持久化），`'session'`（会话持久化），`'memory'`（内存持久化）
      * 默认值：`'local'`
      */
-    persistence_type: PropTypes.oneOf(['local', 'session', 'memory'])
+    persistence_type: PropTypes.oneOf(['local', 'session', 'memory']),
 };
 
 AntdInputNumber.dashPersistence = {
     persisted_props: ['value'],
-    persistence_type: 'local'
-}
+    persistence_type: 'local',
+};
 
 export default AntdInputNumber;
 

@@ -46,52 +46,56 @@ const AntdPagination = ({
     batchPropsNames = [],
     ...others
 }) => {
-
     // 批属性监听
     useEffect(() => {
         if (batchPropsNames && batchPropsNames.length !== 0) {
-            let _batchPropsValues = {};
-            for (let propName of batchPropsNames) {
+            const _batchPropsValues = {};
+            for (const propName of batchPropsNames) {
                 _batchPropsValues[propName] = props[propName];
             }
             setProps({
-                batchPropsValues: _batchPropsValues
-            })
+                batchPropsValues: _batchPropsValues,
+            });
         }
-    })
+    });
 
-    const context = useContext(PropsContext)
-    locale = (context && context.locale) || locale
+    const context = useContext(PropsContext);
+    locale = (context && context.locale) || locale;
 
     useEffect(() => {
         if (defaultCurrent && !current) {
-            setProps({ current: defaultCurrent })
+            setProps({ current: defaultCurrent });
         }
 
         if (defaultPageSize && !pageSize) {
-            setProps({ pageSize: defaultPageSize })
+            setProps({ pageSize: defaultPageSize });
         }
-    }, [])
+    }, []);
 
     const onChange = (page, pageSize) => {
-        setProps({ current: page, pageSize: pageSize })
-    }
+        setProps({ current: page, pageSize: pageSize });
+    };
 
     const renderShowTotal = (e) => {
-        return `${showTotalPrefix || locale2text.AntdPagination[locale].showTotalPrefix} ${e.toString()} ${showTotalSuffix || locale2text.AntdPagination[locale].showTotalSuffix}`
-    }
+        return `${showTotalPrefix || locale2text.AntdPagination[locale].showTotalPrefix} ${e.toString()} ${showTotalSuffix || locale2text.AntdPagination[locale].showTotalSuffix}`;
+    };
 
     // 返回定制化的前端部件
     return (
         <ConfigProvider locale={str2Locale.get(locale)}>
             <Pagination
                 // 提取具有data-*或aria-*通配格式的属性
-                {...pickBy((_, k) => k.startsWith('data-') || k.startsWith('aria-'), others)}
+                {...pickBy(
+                    (_, k) => k.startsWith('data-') || k.startsWith('aria-'),
+                    others
+                )}
                 id={id}
                 className={
-                    isString(className) ?
-                        className :
-                        (className ? useCss(className) : undefined)
+                    isString(className)
+                        ? className
+                        : className
+                          ? useCss(className)
+                          : undefined
                 }
                 style={style}
                 key={key}
@@ -101,9 +105,9 @@ const AntdPagination = ({
                 defaultPageSize={defaultPageSize}
                 current={current}
                 disabled={
-                    context && !isUndefined(context.componentDisabled) ?
-                        context.componentDisabled :
-                        disabled
+                    context && !isUndefined(context.componentDisabled)
+                        ? context.componentDisabled
+                        : disabled
                 }
                 hideOnSinglePage={hideOnSinglePage}
                 pageSizeOptions={pageSizeOptions}
@@ -119,7 +123,7 @@ const AntdPagination = ({
             />
         </ConfigProvider>
     );
-}
+};
 
 AntdPagination.propTypes = {
     /**
@@ -140,10 +144,7 @@ AntdPagination.propTypes = {
     /**
      * 当前组件css类名，支持[动态css](/advanced-classname)
      */
-    className: PropTypes.oneOfType([
-        PropTypes.string,
-        PropTypes.object
-    ]),
+    className: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
 
     /**
      * 组件文案语种，可选项有`'zh-cn'`（简体中文）、`'en-us'`（英语）、`'de-de'`（德语）、`'ru-ru'`（俄语）
@@ -280,25 +281,27 @@ AntdPagination.propTypes = {
     persistence: PropTypes.oneOfType([
         PropTypes.bool,
         PropTypes.string,
-        PropTypes.number
+        PropTypes.number,
     ]),
 
     /**
      * 当前组件启用持久化的属性值数组，可选项有`'current'`、`'pageSize'`
      * 默认值：`['current', 'pageSize']`
      */
-    persisted_props: PropTypes.arrayOf(PropTypes.oneOf(['current', 'pageSize'])),
+    persisted_props: PropTypes.arrayOf(
+        PropTypes.oneOf(['current', 'pageSize'])
+    ),
 
     /**
      * 当前组件的属性持久化存储类型
      * 默认值：`'local'`
      */
-    persistence_type: PropTypes.oneOf(['local', 'session', 'memory'])
+    persistence_type: PropTypes.oneOf(['local', 'session', 'memory']),
 };
 
 AntdPagination.dashPersistence = {
     persisted_props: ['current', 'pageSize'],
-    persistence_type: 'local'
-}
+    persistence_type: 'local',
+};
 
 export default AntdPagination;

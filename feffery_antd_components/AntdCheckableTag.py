@@ -1,8 +1,9 @@
 # AUTO GENERATED FILE - DO NOT EDIT
 
 import typing  # noqa: F401
-from typing_extensions import TypedDict, NotRequired, Literal # noqa: F401
+
 from dash.development.base_component import Component, _explicitize_args
+from typing_extensions import Literal, NotRequired, TypedDict  # noqa: F401
 
 ComponentSingleType = typing.Union[str, int, float, Component, None]
 ComponentType = typing.Union[
@@ -10,48 +11,46 @@ ComponentType = typing.Union[
     typing.Sequence[ComponentSingleType],
 ]
 
-NumberType = typing.Union[
-    typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex
-]
+NumberType = typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]
 
 
 class AntdCheckableTag(Component):
     """An AntdCheckableTag component.
-可选择标签AntdCheckableTag
+    可选择标签AntdCheckableTag
 
-Keyword arguments:
+    Keyword arguments:
 
-- id (string; optional):
-    组件唯一id.
+    - id (string; optional):
+        组件唯一id.
 
-- key (string; optional):
-    对当前组件的`key`值进行更新，可实现强制重绘当前组件的效果.
+    - key (string; optional):
+        对当前组件的`key`值进行更新，可实现强制重绘当前组件的效果.
 
-- className (string | dict; optional):
-    当前组件css类名，支持[动态css](/advanced-classname).
+    - className (string | dict; optional):
+        当前组件css类名，支持[动态css](/advanced-classname).
 
-- content (a list of or a singular dash component, string or number; optional):
-    组件型，标签内容.
+    - content (a list of or a singular dash component, string or number; optional):
+        组件型，标签内容.
 
-- checkedContent (a list of or a singular dash component, string or number; optional):
-    组件型，选择状态下的标签内容.
+    - checkedContent (a list of or a singular dash component, string or number; optional):
+        组件型，选择状态下的标签内容.
 
-- unCheckedContent (a list of or a singular dash component, string or number; optional):
-    组件型，未选择状态下的标签内容.
+    - unCheckedContent (a list of or a singular dash component, string or number; optional):
+        组件型，未选择状态下的标签内容.
 
-- checked (boolean; default False):
-    监听或设置当前标签的选择状态 默认值：`False`.
+    - checked (boolean; default False):
+        监听或设置当前标签的选择状态 默认值：`False`.
 
-- data-* (string; optional):
-    `data-*`格式属性通配.
+    - data-* (string; optional):
+        `data-*`格式属性通配.
 
-- aria-* (string; optional):
-    `aria-*`格式属性通配."""
+    - aria-* (string; optional):
+        `aria-*`格式属性通配."""
+
     _children_props: typing.List[str] = ['content', 'checkedContent', 'unCheckedContent']
     _base_nodes = ['content', 'checkedContent', 'unCheckedContent', 'children']
     _namespace = 'feffery_antd_components'
     _type = 'AntdCheckableTag'
-
 
     def __init__(
         self,
@@ -63,12 +62,34 @@ Keyword arguments:
         checkedContent: typing.Optional[ComponentType] = None,
         unCheckedContent: typing.Optional[ComponentType] = None,
         checked: typing.Optional[bool] = None,
-        **kwargs
+        **kwargs,
     ):
-        self._prop_names = ['id', 'key', 'style', 'className', 'content', 'checkedContent', 'unCheckedContent', 'checked', 'data-*', 'aria-*']
-        self._valid_wildcard_attributes =            ['data-', 'aria-']
-        self.available_properties = ['id', 'key', 'style', 'className', 'content', 'checkedContent', 'unCheckedContent', 'checked', 'data-*', 'aria-*']
-        self.available_wildcard_properties =            ['data-', 'aria-']
+        self._prop_names = [
+            'id',
+            'key',
+            'style',
+            'className',
+            'content',
+            'checkedContent',
+            'unCheckedContent',
+            'checked',
+            'data-*',
+            'aria-*',
+        ]
+        self._valid_wildcard_attributes = ['data-', 'aria-']
+        self.available_properties = [
+            'id',
+            'key',
+            'style',
+            'className',
+            'content',
+            'checkedContent',
+            'unCheckedContent',
+            'checked',
+            'data-*',
+            'aria-*',
+        ]
+        self.available_wildcard_properties = ['data-', 'aria-']
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()
         _locals.update(kwargs)  # For wildcard attrs and excess named props
@@ -76,4 +97,5 @@ Keyword arguments:
 
         super(AntdCheckableTag, self).__init__(**args)
 
-setattr(AntdCheckableTag, "__init__", _explicitize_args(AntdCheckableTag.__init__))
+
+setattr(AntdCheckableTag, '__init__', _explicitize_args(AntdCheckableTag.__init__))

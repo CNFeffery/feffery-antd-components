@@ -1,7 +1,12 @@
 import React, { Suspense } from 'react';
 import PropTypes from 'prop-types';
 
-const LazyAntdTable = React.lazy(() => import(/* webpackChunkName: "antd_table" */ '../../fragments/AntdTable.react'));
+const LazyAntdTable = React.lazy(
+    () =>
+        import(
+            /* webpackChunkName: "antd_table" */ '../../fragments/AntdTable.react'
+        )
+);
 
 /**
  * 表格组件AntdTable
@@ -71,8 +76,8 @@ const AntdTable = ({
 }) => {
     return (
         <Suspense fallback={null}>
-            <LazyAntdTable {
-                ...{
+            <LazyAntdTable
+                {...{
                     id,
                     className,
                     style,
@@ -133,12 +138,12 @@ const AntdTable = ({
                     rowClassName,
                     selectedRowsSyncWithData,
                     setProps,
-                    ...others
-                }
-            } />
+                    ...others,
+                }}
+            />
         </Suspense>
     );
-}
+};
 
 AntdTable.propTypes = {
     /**
@@ -180,10 +185,8 @@ AntdTable.propTypes = {
             /**
              * 必填，当前字段标题
              */
-            title: PropTypes.oneOfType([
-                PropTypes.func,
-                PropTypes.node
-            ]).isRequired,
+            title: PropTypes.oneOfType([PropTypes.func, PropTypes.node])
+                .isRequired,
             /**
              * 必填，当前字段唯一识别id
              */
@@ -193,7 +196,7 @@ AntdTable.propTypes = {
              */
             group: PropTypes.oneOfType([
                 PropTypes.string,
-                PropTypes.arrayOf(PropTypes.string)
+                PropTypes.arrayOf(PropTypes.string),
             ]),
             /**
              * 配置字段[再渲染模式](/AntdTable-rerender)相关参数
@@ -207,13 +210,30 @@ AntdTable.propTypes = {
                  */
                 renderType: PropTypes.oneOf([
                     // 内容展示类
-                    'link', 'ellipsis', 'copyable', 'ellipsis-copyable', 'tags',
-                    'status-badge', 'image', 'custom-format', 'corner-mark',
-                    'row-merge', 'dropdown', 'dropdown-links', 'image-avatar',
+                    'link',
+                    'ellipsis',
+                    'copyable',
+                    'ellipsis-copyable',
+                    'tags',
+                    'status-badge',
+                    'image',
+                    'custom-format',
+                    'corner-mark',
+                    'row-merge',
+                    'dropdown',
+                    'dropdown-links',
+                    'image-avatar',
                     // 迷你图类
-                    'mini-line', 'mini-bar', 'mini-progress', 'mini-ring-progress', 'mini-area',
+                    'mini-line',
+                    'mini-bar',
+                    'mini-progress',
+                    'mini-ring-progress',
+                    'mini-area',
                     // 监听交互类
-                    'button', 'checkbox', 'switch', 'select'
+                    'button',
+                    'checkbox',
+                    'switch',
+                    'select',
                 ]),
                 /**
                  * 当`renderType='link'`时，统一设置渲染链接文本内容
@@ -243,7 +263,7 @@ AntdTable.propTypes = {
                     /**
                      * 气泡确认框取消按钮文案
                      */
-                    cancelText: PropTypes.string
+                    cancelText: PropTypes.string,
                 }),
                 /**
                  * 当`renderType`为`'mini-line'`、`'mini-area'`、`'mini-bar'`时，设置图表颜色
@@ -277,7 +297,7 @@ AntdTable.propTypes = {
                     /**
                      * 内外位置，可选项有`'inner'`、`'outer'`
                      */
-                    type: PropTypes.oneOf(['inner', 'outer'])
+                    type: PropTypes.oneOf(['inner', 'outer']),
                 }),
                 /**
                  * 当`renderType`为`'mini-progress'`时，设置进度条形状类型，可选项有`'square'`、`'round'`
@@ -301,8 +321,8 @@ AntdTable.propTypes = {
                         /**
                          * 渐变色结束颜色
                          */
-                        to: PropTypes.string
-                    })
+                        to: PropTypes.string,
+                    }),
                 ]),
                 /**
                  * 当`renderType='mini-ring-progress'`时，设置进度数值像素大小
@@ -337,16 +357,21 @@ AntdTable.propTypes = {
                      * 下拉菜单展开方向，可选项有`'bottomLeft'`、`'bottomCenter'`、`'bottomRight'`、`'topLeft'`、`'topCenter'`、`'topRight'`
                      */
                     placement: PropTypes.oneOf([
-                        'bottomLeft', 'bottomCenter', 'bottomRight', 'topLeft', 'topCenter', 'topRight'
-                    ])
-                })
+                        'bottomLeft',
+                        'bottomCenter',
+                        'bottomRight',
+                        'topLeft',
+                        'topCenter',
+                        'topRight',
+                    ]),
+                }),
             }),
             /**
              * 当前字段冻结方向，可选项有`'left'`、`'right'`，设置为`true`时等价于`'left'`
              */
             fixed: PropTypes.oneOfType([
                 PropTypes.oneOf(['left', 'right']),
-                PropTypes.bool
+                PropTypes.bool,
             ]),
             /**
              * 当前字段是否可编辑
@@ -370,8 +395,8 @@ AntdTable.propTypes = {
                     PropTypes.bool,
                     PropTypes.exact({
                         minRows: PropTypes.number,
-                        maxRows: PropTypes.number
-                    })
+                        maxRows: PropTypes.number,
+                    }),
                 ]),
                 /**
                  * 限制当前字段可编辑模式下，输入框内最多可输入的字符数量，默认无限制
@@ -421,7 +446,7 @@ AntdTable.propTypes = {
              * 若当前字段通过参数`defaultFilteredValues`设置了初始化默认选中的筛选值，用于设置是否在用户点击重置按钮后恢复默认选中筛选项
              * 默认值：`false`
              */
-            filterResetToDefaultFilteredValue: PropTypes.bool
+            filterResetToDefaultFilteredValue: PropTypes.bool,
         })
     ),
 
@@ -487,7 +512,7 @@ AntdTable.propTypes = {
                      * 适用于`'link'`模式，是否禁用当前链接
                      * 默认值：`false`
                      */
-                    disabled: PropTypes.bool
+                    disabled: PropTypes.bool,
                 }),
                 /**
                  * `'mini-line'`模式、`'mini-bar'`模式、`'mini-area'`模式
@@ -510,7 +535,7 @@ AntdTable.propTypes = {
                          */
                         tag: PropTypes.oneOfType([
                             PropTypes.string,
-                            PropTypes.number
+                            PropTypes.number,
                         ]),
                         /**
                          * 适用于`'tags'`模式，为当前标签添加额外的文字提示功能
@@ -525,7 +550,14 @@ AntdTable.propTypes = {
                              * 默认值：`'top'`
                              */
                             placement: PropTypes.oneOf([
-                                'top', 'left', 'right', 'bottom', 'topLeft', 'topRight', 'bottomLeft', 'bottomRight'
+                                'top',
+                                'left',
+                                'right',
+                                'bottom',
+                                'topLeft',
+                                'topRight',
+                                'bottomLeft',
+                                'bottomRight',
                             ]),
                         }),
                     }),
@@ -543,7 +575,7 @@ AntdTable.propTypes = {
                              */
                             tag: PropTypes.oneOfType([
                                 PropTypes.string,
-                                PropTypes.number
+                                PropTypes.number,
                             ]),
                             /**
                              * 适用于`'tags'`模式，为当前标签添加额外的文字提示功能
@@ -558,11 +590,18 @@ AntdTable.propTypes = {
                                  * 默认值：`'top'`
                                  */
                                 placement: PropTypes.oneOf([
-                                    'top', 'left', 'right', 'bottom', 'topLeft', 'topRight', 'bottomLeft', 'bottomRight'
+                                    'top',
+                                    'left',
+                                    'right',
+                                    'bottom',
+                                    'topLeft',
+                                    'topRight',
+                                    'bottomLeft',
+                                    'bottomRight',
                                 ]),
                             }),
                         })
-                    )
+                    ),
                 ]),
                 /**
                  * `'button'`模式
@@ -579,15 +618,46 @@ AntdTable.propTypes = {
                         /**
                          * 适用于`'button'`模式，同`AntdButton`中的同名参数
                          */
-                        type: PropTypes.oneOf(['primary', 'ghost', 'dashed', 'link', 'text', 'default']),
+                        type: PropTypes.oneOf([
+                            'primary',
+                            'ghost',
+                            'dashed',
+                            'link',
+                            'text',
+                            'default',
+                        ]),
                         /**
                          * 适用于`'button'`模式，同`AntdButton`中的同名参数
                          */
-                        color: PropTypes.oneOf(['default', 'primary', 'danger', 'blue', 'purple', 'cyan', 'green', 'magenta', 'pink', 'red', 'orange', 'yellow', 'volcano', 'geekblue', 'lime', 'gold']),
+                        color: PropTypes.oneOf([
+                            'default',
+                            'primary',
+                            'danger',
+                            'blue',
+                            'purple',
+                            'cyan',
+                            'green',
+                            'magenta',
+                            'pink',
+                            'red',
+                            'orange',
+                            'yellow',
+                            'volcano',
+                            'geekblue',
+                            'lime',
+                            'gold',
+                        ]),
                         /**
                          * 适用于`'button'`模式，同`AntdButton`中的同名参数
                          */
-                        variant: PropTypes.oneOf(['outlined', 'dashed', 'solid', 'filled', 'text', 'link']),
+                        variant: PropTypes.oneOf([
+                            'outlined',
+                            'dashed',
+                            'solid',
+                            'filled',
+                            'text',
+                            'link',
+                        ]),
                         /**
                          * 适用于`'button'`模式，同`AntdButton`中的同名参数
                          */
@@ -623,7 +693,7 @@ AntdTable.propTypes = {
                             /**
                              * 气泡确认框取消按钮文案
                              */
-                            cancelText: PropTypes.string
+                            cancelText: PropTypes.string,
                         }),
                         /**
                          * 适用于`'button'`模式，按钮前缀图标类型，`iconRenderer`为`'AntdIcon'`时同`AntdIcon`同名参数，`iconRenderer`为`'fontawesome'`时为css类名
@@ -632,7 +702,10 @@ AntdTable.propTypes = {
                         /**
                          * 适用于`'button'`模式，按钮前缀图标渲染方式，可选项有`'AntdIcon'`、`'fontawesome'`
                          */
-                        iconRenderer: PropTypes.oneOf(['AntdIcon', 'fontawesome']),
+                        iconRenderer: PropTypes.oneOf([
+                            'AntdIcon',
+                            'fontawesome',
+                        ]),
                         /**
                          * 适用于`'button'`模式，为当前按钮添加额外的文字提示功能
                          */
@@ -646,13 +719,20 @@ AntdTable.propTypes = {
                              * 默认值：`'top'`
                              */
                             placement: PropTypes.oneOf([
-                                'top', 'left', 'right', 'bottom', 'topLeft', 'topRight', 'bottomLeft', 'bottomRight'
+                                'top',
+                                'left',
+                                'right',
+                                'bottom',
+                                'topLeft',
+                                'topRight',
+                                'bottomLeft',
+                                'bottomRight',
                             ]),
                         }),
                         /**
                          * 适用于`'button'`模式，额外补充信息
                          */
-                        custom: PropTypes.any
+                        custom: PropTypes.any,
                     }),
                     /**
                      * 渲染多个按钮
@@ -666,7 +746,14 @@ AntdTable.propTypes = {
                             /**
                              * 适用于`'button'`模式，同`AntdButton`中的同名参数
                              */
-                            type: PropTypes.oneOf(['primary', 'ghost', 'dashed', 'link', 'text', 'default']),
+                            type: PropTypes.oneOf([
+                                'primary',
+                                'ghost',
+                                'dashed',
+                                'link',
+                                'text',
+                                'default',
+                            ]),
                             /**
                              * 适用于`'button'`模式，同`AntdButton`中的同名参数
                              */
@@ -694,13 +781,16 @@ AntdTable.propTypes = {
                             /**
                              * 适用于`'button'`模式，当前按钮前缀图标渲染方式，可选项有`'AntdIcon'`、`'fontawesome'`
                              */
-                            iconRenderer: PropTypes.oneOf(['AntdIcon', 'fontawesome']),
+                            iconRenderer: PropTypes.oneOf([
+                                'AntdIcon',
+                                'fontawesome',
+                            ]),
                             /**
                              * 适用于`'button'`模式，额外补充信息
                              */
-                            custom: PropTypes.any
+                            custom: PropTypes.any,
                         })
-                    )
+                    ),
                 ]),
                 /**
                  * `'status-badge'`模式
@@ -709,14 +799,20 @@ AntdTable.propTypes = {
                     /**
                      * 适用于`'status-badge'`模式，状态徽标状态，可选项有`'success'`、`'processing'`、`'default'`、`'error'`、`'warning'`
                      */
-                    status: PropTypes.oneOf(['success', 'processing', 'default', 'error', 'warning']),
+                    status: PropTypes.oneOf([
+                        'success',
+                        'processing',
+                        'default',
+                        'error',
+                        'warning',
+                    ]),
                     /**
                      * 适用于`'status-badge'`模式，状态徽标标签内容
                      */
                     text: PropTypes.oneOfType([
                         PropTypes.string,
-                        PropTypes.number
-                    ])
+                        PropTypes.number,
+                    ]),
                 }),
                 /**
                  * `'image'`模式
@@ -731,13 +827,13 @@ AntdTable.propTypes = {
                      */
                     height: PropTypes.oneOfType([
                         PropTypes.string,
-                        PropTypes.number
+                        PropTypes.number,
                     ]),
                     /**
                      * 适用于`'image'`模式，图片是否可交互预览
                      * 默认值：`true`
                      */
-                    preview: PropTypes.bool
+                    preview: PropTypes.bool,
                 }),
                 /**
                  * `'corner-mark'`模式
@@ -746,7 +842,12 @@ AntdTable.propTypes = {
                     /**
                      * 适用于`'corner-mark'`模式，角标显示方位，可选项有`'top-left'`、`'top-right'`、`'bottom-left'`、`'bottom-right'`
                      */
-                    placement: PropTypes.oneOf(['top-left', 'top-right', 'bottom-left', 'bottom-right']),
+                    placement: PropTypes.oneOf([
+                        'top-left',
+                        'top-right',
+                        'bottom-left',
+                        'bottom-right',
+                    ]),
                     /**
                      * 适用于`'corner-mark'`模式，角标颜色
                      * 默认值：`'#1890ff'`
@@ -757,7 +858,7 @@ AntdTable.propTypes = {
                      */
                     content: PropTypes.oneOfType([
                         PropTypes.number,
-                        PropTypes.string
+                        PropTypes.string,
                     ]),
                     /**
                      * 适用于`'corner-mark'`模式，角标水平方向像素偏移量
@@ -771,7 +872,7 @@ AntdTable.propTypes = {
                      * 适用于`'corner-mark'`模式，是否隐藏当前角标
                      * 默认值：`false`
                      */
-                    hide: PropTypes.bool
+                    hide: PropTypes.bool,
                 }),
                 /**
                  * `'checkbox'`模式
@@ -792,7 +893,7 @@ AntdTable.propTypes = {
                     /**
                      * 适用于`'checkbox'`模式，额外补充信息
                      */
-                    custom: PropTypes.any
+                    custom: PropTypes.any,
                 }),
                 /**
                  * `'switch'`模式
@@ -817,7 +918,7 @@ AntdTable.propTypes = {
                     /**
                      * 适用于`'switch'`模式，额外补充信息
                      */
-                    custom: PropTypes.any
+                    custom: PropTypes.any,
                 }),
                 /**
                  * `'row-merge'`模式
@@ -828,12 +929,12 @@ AntdTable.propTypes = {
                      */
                     content: PropTypes.oneOfType([
                         PropTypes.number,
-                        PropTypes.string
+                        PropTypes.string,
                     ]),
                     /**
                      * 适用于`'row-merge'`模式，从当前单元格开始，向后合并的其他单元格数量
                      */
-                    rowSpan: PropTypes.number
+                    rowSpan: PropTypes.number,
                 }),
                 /**
                  * `'dropdown'`模式
@@ -855,7 +956,10 @@ AntdTable.propTypes = {
                         /**
                          * 适用于`'dropdown'`模式，当前按钮前缀图标渲染方式，可选项有`'AntdIcon'`、`'fontawesome'`
                          */
-                        iconRenderer: PropTypes.oneOf(['AntdIcon', 'fontawesome']),
+                        iconRenderer: PropTypes.oneOf([
+                            'AntdIcon',
+                            'fontawesome',
+                        ]),
                         /**
                          * 适用于`'dropdown'`模式，额外补充信息
                          */
@@ -864,7 +968,7 @@ AntdTable.propTypes = {
                          * 适用于`'dropdown'`模式，当前项是否渲染为分割线
                          * 默认值：`false`
                          */
-                        isDivider: PropTypes.bool
+                        isDivider: PropTypes.bool,
                     })
                 ),
                 /**
@@ -891,12 +995,15 @@ AntdTable.propTypes = {
                         /**
                          * 适用于`'dropdown-links'`模式，当前按钮前缀图标渲染方式，可选项有`'AntdIcon'`、`'fontawesome'`
                          */
-                        iconRenderer: PropTypes.oneOf(['AntdIcon', 'fontawesome']),
+                        iconRenderer: PropTypes.oneOf([
+                            'AntdIcon',
+                            'fontawesome',
+                        ]),
                         /**
                          * 适用于`'dropdown-links'`模式，当前项是否渲染为分割线
                          * 默认值：`false`
                          */
-                        isDivider: PropTypes.bool
+                        isDivider: PropTypes.bool,
                     })
                 ),
                 /**
@@ -920,14 +1027,14 @@ AntdTable.propTypes = {
                             md: PropTypes.number,
                             lg: PropTypes.number,
                             xl: PropTypes.number,
-                            xxl: PropTypes.number
-                        })
+                            xxl: PropTypes.number,
+                        }),
                     ]),
                     /**
                      * 适用于`'image-avatar'`模式，头像形状，可选项有`'circle'`、`'square'`
                      * 默认值：`'circle'`
                      */
-                    shape: PropTypes.oneOf(['circle', 'square'])
+                    shape: PropTypes.oneOf(['circle', 'square']),
                 }),
                 /**
                  * `'select'`模式
@@ -955,8 +1062,8 @@ AntdTable.propTypes = {
                              */
                             value: PropTypes.oneOfType([
                                 PropTypes.string,
-                                PropTypes.number
-                            ])
+                                PropTypes.number,
+                            ]),
                         })
                     ),
                     /**
@@ -976,9 +1083,7 @@ AntdTable.propTypes = {
                      * 适用于`'select'`模式，下拉选择尺寸规格，可选项有`'small'`、`'middle'`、`'large'`
                      * 默认值：`'middle'`
                      */
-                    size: PropTypes.oneOf([
-                        'small', 'middle', 'large'
-                    ]),
+                    size: PropTypes.oneOf(['small', 'middle', 'large']),
                     /**
                      * 适用于`'select'`模式，是否渲染边框
                      * 默认值：`true`
@@ -992,19 +1097,24 @@ AntdTable.propTypes = {
                      * 适用于`'select'`模式，下拉菜单展开方向，可选项有`'bottomLeft'`、`'bottomRight'`、`'topLeft'`、`'topRight'`
                      * 默认值：`'bottomLeft'`
                      */
-                    placement: PropTypes.oneOf(['bottomLeft', 'bottomRight', 'topLeft', 'topRight']),
+                    placement: PropTypes.oneOf([
+                        'bottomLeft',
+                        'bottomRight',
+                        'topLeft',
+                        'topRight',
+                    ]),
                     /**
                      * 适用于`'select'`模式，下拉选择已选中值
                      */
                     value: PropTypes.oneOfType([
                         PropTypes.oneOfType([
                             PropTypes.string,
-                            PropTypes.number
+                            PropTypes.number,
                         ]),
                         PropTypes.arrayOf(
                             PropTypes.oneOfType([
                                 PropTypes.string,
-                                PropTypes.number
+                                PropTypes.number,
                             ])
                         ),
                     ]),
@@ -1014,7 +1124,7 @@ AntdTable.propTypes = {
                      */
                     maxTagCount: PropTypes.oneOfType([
                         PropTypes.number,
-                        PropTypes.oneOf(['responsive'])
+                        PropTypes.oneOf(['responsive']),
                     ]),
                     /**
                      * 适用于`'select'`模式，选择框内搜索对应的目标字段，可选项有`'value'`、`'label'`
@@ -1029,12 +1139,12 @@ AntdTable.propTypes = {
                     /**
                      * 适用于`'select'`模式，是否开启输入框可搜索功能
                      */
-                    showSearch: PropTypes.bool
+                    showSearch: PropTypes.bool,
                 }),
                 /**
                  * 兼容携带自定义数据的场景
                  */
-                PropTypes.object
+                PropTypes.object,
             ])
         )
     ),
@@ -1048,10 +1158,7 @@ AntdTable.propTypes = {
     /**
      * 表格最大像素高度，当实际表格高度超出限制时，会自动渲染竖直滚动条
      */
-    maxHeight: PropTypes.oneOfType([
-        PropTypes.number,
-        PropTypes.string
-    ]),
+    maxHeight: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
 
     /**
      * 表格最大宽度，当实际表格宽度超出限制时，会自动渲染水平滚动条
@@ -1059,7 +1166,7 @@ AntdTable.propTypes = {
     maxWidth: PropTypes.oneOfType([
         PropTypes.number,
         PropTypes.string,
-        PropTypes.bool
+        PropTypes.bool,
     ]),
 
     /**
@@ -1082,10 +1189,7 @@ AntdTable.propTypes = {
      * 监听已选行对应`key`值
      */
     selectedRowKeys: PropTypes.arrayOf(
-        PropTypes.oneOfType([
-            PropTypes.string,
-            PropTypes.number
-        ])
+        PropTypes.oneOfType([PropTypes.string, PropTypes.number])
     ),
 
     /**
@@ -1099,7 +1203,7 @@ AntdTable.propTypes = {
      */
     rowSelectionWidth: PropTypes.oneOfType([
         PropTypes.string,
-        PropTypes.number
+        PropTypes.number,
     ]),
 
     /**
@@ -1112,10 +1216,7 @@ AntdTable.propTypes = {
      * 指定不可被选中的行对应`key`值
      */
     rowSelectionIgnoreRowKeys: PropTypes.arrayOf(
-        PropTypes.oneOfType([
-            PropTypes.string,
-            PropTypes.number
-        ])
+        PropTypes.oneOfType([PropTypes.string, PropTypes.number])
     ),
 
     /**
@@ -1136,7 +1237,7 @@ AntdTable.propTypes = {
              */
             belowSelector: PropTypes.oneOfType([
                 PropTypes.string,
-                PropTypes.arrayOf(PropTypes.string)
+                PropTypes.arrayOf(PropTypes.string),
             ]),
             /**
              * 粘性表头竖直方向上的像素偏移量
@@ -1145,8 +1246,8 @@ AntdTable.propTypes = {
             /**
              * 粘性表头底部横向滚动条竖直方向上的像素偏移量
              */
-            offsetScroll: PropTypes.number
-        })
+            offsetScroll: PropTypes.number,
+        }),
     ]),
 
     /**
@@ -1165,7 +1266,7 @@ AntdTable.propTypes = {
      */
     recentlyMouseEnterRowKey: PropTypes.oneOfType([
         PropTypes.string,
-        PropTypes.number
+        PropTypes.number,
     ]),
 
     /**
@@ -1191,12 +1292,23 @@ AntdTable.propTypes = {
              * 默认值：`'bottom'`
              */
             placement: PropTypes.oneOf([
-                'top', 'left', 'right', 'bottom', 'topLeft', 'topRight', 'bottomLeft', 'bottomRight', 'leftTop', 'leftBottom', 'rightTop', 'rightBottom'
+                'top',
+                'left',
+                'right',
+                'bottom',
+                'topLeft',
+                'topRight',
+                'bottomLeft',
+                'bottomRight',
+                'leftTop',
+                'leftBottom',
+                'rightTop',
+                'rightBottom',
             ]),
             /**
              * 气泡卡片展开层css样式
              */
-            overlayStyle: PropTypes.object
+            overlayStyle: PropTypes.object,
         })
     ),
 
@@ -1212,7 +1324,7 @@ AntdTable.propTypes = {
             /**
              * 用户输入内容校验失败时的提示说明信息
              */
-            content: PropTypes.string
+            content: PropTypes.string,
         })
     ),
 
@@ -1230,7 +1342,7 @@ AntdTable.propTypes = {
          */
         multiple: PropTypes.oneOfType([
             PropTypes.bool,
-            PropTypes.oneOf(['auto'])
+            PropTypes.oneOf(['auto']),
         ]),
         /**
          * 为各字段指定排序比较模式，可选项有`'number'`（强制数值型排序）、`'custom'`（自定义排序）
@@ -1241,7 +1353,7 @@ AntdTable.propTypes = {
         /**
          * 当`forceCompareModes`为`'custom'`时，用于为相应字段设置自定义排序对应的元素顺序
          */
-        customOrders: PropTypes.objectOf(PropTypes.array)
+        customOrders: PropTypes.objectOf(PropTypes.array),
     }),
 
     /**
@@ -1270,11 +1382,8 @@ AntdTable.propTypes = {
              * `filterMode`为`'checkbox'`时，用于自定义筛选菜单项
              */
             filterCustomItems: PropTypes.oneOfType([
-                PropTypes.arrayOf([
-                    PropTypes.string,
-                    PropTypes.number
-                ]),
-                PropTypes.any
+                PropTypes.arrayOf([PropTypes.string, PropTypes.number]),
+                PropTypes.any,
             ]),
             /**
              * `filterMode`为`'tree'`时，用于构造自定义树形菜单结构
@@ -1289,7 +1398,7 @@ AntdTable.propTypes = {
              * `filterMode`为`'checkbox'`时，是否开启搜索框
              * 默认值：`false`
              */
-            filterSearch: PropTypes.bool
+            filterSearch: PropTypes.bool,
         })
     ),
 
@@ -1308,7 +1417,12 @@ AntdTable.propTypes = {
              * 默认值：`'bottomRight'`
              */
             position: PropTypes.oneOf([
-                'topLeft', 'topCenter', 'topRight', 'bottomLeft', 'bottomCenter', 'bottomRight'
+                'topLeft',
+                'topCenter',
+                'topRight',
+                'bottomLeft',
+                'bottomCenter',
+                'bottomRight',
             ]),
             /**
              * 监听或设置每页允许显示的最大行记录数量
@@ -1372,9 +1486,9 @@ AntdTable.propTypes = {
              * 是否优先展示较少的跳页项
              * 默认值：`false`
              */
-            showLessItems: PropTypes.bool
+            showLessItems: PropTypes.bool,
         }),
-        PropTypes.bool
+        PropTypes.bool,
     ]),
 
     /**
@@ -1403,7 +1517,7 @@ AntdTable.propTypes = {
         /**
          * 监听排序涉及的字段对应排序方式，其中`'ascend'`表示升序，`'descend'`表示降序
          */
-        orders: PropTypes.arrayOf(PropTypes.oneOf(['ascend', 'descend']))
+        orders: PropTypes.arrayOf(PropTypes.oneOf(['ascend', 'descend'])),
     }),
 
     /**
@@ -1450,36 +1564,29 @@ AntdTable.propTypes = {
      */
     summaryRowFixed: PropTypes.oneOfType([
         PropTypes.bool,
-        PropTypes.oneOf(['top', 'bottom'])
+        PropTypes.oneOf(['top', 'bottom']),
     ]),
 
     /**
      * 配置各字段条件格式化渲染对应的`javascript`函数字符串
      */
-    conditionalStyleFuncs: PropTypes.objectOf(
-        PropTypes.string
-    ),
+    conditionalStyleFuncs: PropTypes.objectOf(PropTypes.string),
 
     /**
      * 配置各数据行的行展开内容，键为数据行`key`值，值为对应行的展开内容
      */
     expandedRowKeyToContent: PropTypes.arrayOf(
         PropTypes.exact({
-            key: PropTypes.oneOfType([
-                PropTypes.string,
-                PropTypes.number
-            ]).isRequired,
-            content: PropTypes.node
+            key: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
+                .isRequired,
+            content: PropTypes.node,
         })
     ),
 
     /**
      * 行展开控件所在列宽度
      */
-    expandedRowWidth: PropTypes.oneOfType([
-        PropTypes.string,
-        PropTypes.number
-    ]),
+    expandedRowWidth: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
 
     /**
      * 是否允许通过直接点击行的方式展开对应行
@@ -1550,7 +1657,7 @@ AntdTable.propTypes = {
         /**
          * 事件对应的时间戳
          */
-        timestamp: PropTypes.number
+        timestamp: PropTypes.number,
     }),
 
     /**
@@ -1600,7 +1707,7 @@ AntdTable.propTypes = {
         /**
          * 事件对应的时间戳
          */
-        timestamp: PropTypes.number
+        timestamp: PropTypes.number,
     }),
 
     /**
@@ -1650,7 +1757,7 @@ AntdTable.propTypes = {
         /**
          * 事件对应的时间戳
          */
-        timestamp: PropTypes.number
+        timestamp: PropTypes.number,
     }),
 
     /**
@@ -1705,9 +1812,7 @@ AntdTable.propTypes = {
     /**
      * 针对再渲染模式中的`'custom-format'`模式，键为对应字段`dataIndex`信息，值为对应的预处理`javascript`函数字符串
      */
-    customFormatFuncs: PropTypes.objectOf(
-        PropTypes.string
-    ),
+    customFormatFuncs: PropTypes.objectOf(PropTypes.string),
 
     /**
      * 针对再渲染模式中的`'checkbox'`模式，监听最近发生勾选事件的记录行
@@ -1778,16 +1883,10 @@ AntdTable.propTypes = {
      * 针对再渲染模式中的`'select'`模式，监听最近发生下拉选项值更新对应的选项值
      */
     recentlySelectValue: PropTypes.oneOfType([
-        PropTypes.oneOfType([
-            PropTypes.number,
-            PropTypes.string
-        ]),
+        PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
         PropTypes.arrayOf(
-            PropTypes.oneOfType([
-                PropTypes.number,
-                PropTypes.string
-            ])
-        )
+            PropTypes.oneOfType([PropTypes.number, PropTypes.string])
+        ),
     ]),
 
     /**
@@ -1833,8 +1932,8 @@ AntdTable.propTypes = {
             /**
              * 字符串形式的`javascript`函数
              */
-            func: PropTypes.string
-        })
+            func: PropTypes.string,
+        }),
     ]),
 
     /**
@@ -1851,7 +1950,7 @@ AntdTable.propTypes = {
      * Dash-assigned callback that should be called to report property changes
      * to Dash, to make them available for callbacks.
      */
-    setProps: PropTypes.func
+    setProps: PropTypes.func,
 };
 
 export default AntdTable;

@@ -9,13 +9,16 @@ import { useLoading } from '../../components/utils';
 // 自定义hooks
 import useCss from '../../hooks/useCss';
 // 参数类型
-import { propTypes, defaultProps } from '../../components/dataDisplay/AntdBadge.react';
+import {
+    propTypes,
+    defaultProps,
+} from '../../components/dataDisplay/AntdBadge.react';
 
 /**
  * 徽标组件AntdBadge
  */
 const AntdBadge = (props) => {
-    let {
+    const {
         id,
         children,
         className,
@@ -41,12 +44,17 @@ const AntdBadge = (props) => {
     return (
         <Badge
             // 提取具有data-*或aria-*通配格式的属性
-            {...pickBy((_, k) => k.startsWith('data-') || k.startsWith('aria-'), others)}
+            {...pickBy(
+                (_, k) => k.startsWith('data-') || k.startsWith('aria-'),
+                others
+            )}
             id={id}
             className={
-                isString(className) ?
-                    className :
-                    (className ? useCss(className) : undefined)
+                isString(className)
+                    ? className
+                    : className
+                      ? useCss(className)
+                      : undefined
             }
             style={style}
             styles={styles}
@@ -55,7 +63,7 @@ const AntdBadge = (props) => {
             color={color}
             count={count}
             dot={dot}
-            offset={(offset && offset.length === 2) ? offset : undefined}
+            offset={offset && offset.length === 2 ? offset : undefined}
             overflowCount={overflowCount}
             showZero={showZero}
             status={status}
@@ -64,9 +72,11 @@ const AntdBadge = (props) => {
             size={size}
             onClick={() => setProps({ nClicks: nClicks + 1 })}
             data-dash-is-loading={useLoading()}
-        >{children}</Badge>
+        >
+            {children}
+        </Badge>
     );
-}
+};
 
 export default AntdBadge;
 

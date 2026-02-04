@@ -1,7 +1,12 @@
 import React, { Suspense } from 'react';
 import PropTypes from 'prop-types';
 
-const LazyAntdAvatarGroup = React.lazy(() => import(/* webpackChunkName: "data_display" */ '../../fragments/dataDisplay/AntdAvatarGroup.react'));
+const LazyAntdAvatarGroup = React.lazy(
+    () =>
+        import(
+            /* webpackChunkName: "data_display" */ '../../fragments/dataDisplay/AntdAvatarGroup.react'
+        )
+);
 
 /**
  * 头像组合组件AntdAvatarGroup
@@ -19,8 +24,8 @@ const AntdAvatarGroup = ({
 }) => {
     return (
         <Suspense fallback={null}>
-            <LazyAntdAvatarGroup {
-                ...{
+            <LazyAntdAvatarGroup
+                {...{
                     id,
                     children,
                     className,
@@ -29,12 +34,12 @@ const AntdAvatarGroup = ({
                     max,
                     size,
                     setProps,
-                    ...others
-                }
-            } />
+                    ...others,
+                }}
+            />
         </Suspense>
     );
-}
+};
 
 AntdAvatarGroup.propTypes = {
     /**
@@ -60,10 +65,7 @@ AntdAvatarGroup.propTypes = {
     /**
      * 当前组件css类名，支持[动态css](/advanced-classname)
      */
-    className: PropTypes.oneOfType([
-        PropTypes.string,
-        PropTypes.object
-    ]),
+    className: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
 
     /**
      * 配置最多显示功能相关参数
@@ -91,7 +93,7 @@ AntdAvatarGroup.propTypes = {
              * 默认值：`'hover'`
              */
             trigger: PropTypes.oneOf(['hover', 'click']),
-        })
+        }),
     }),
 
     /**
@@ -107,8 +109,8 @@ AntdAvatarGroup.propTypes = {
             md: PropTypes.number,
             lg: PropTypes.number,
             xl: PropTypes.number,
-            xxl: PropTypes.number
-        })
+            xxl: PropTypes.number,
+        }),
     ]),
 
     /**
@@ -125,7 +127,7 @@ AntdAvatarGroup.propTypes = {
      * Dash-assigned callback that should be called to report property changes
      * to Dash, to make them available for callbacks.
      */
-    setProps: PropTypes.func
+    setProps: PropTypes.func,
 };
 
 export default AntdAvatarGroup;

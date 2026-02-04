@@ -6,10 +6,10 @@ import { Modal } from 'antd';
 import {
     CloseCircleFilled,
     CloseCircleOutlined,
-    CloseCircleTwoTone
-} from "@ant-design/icons";
+    CloseCircleTwoTone,
+} from '@ant-design/icons';
 // 辅助库
-import Draggable from "react-draggable";
+import Draggable from 'react-draggable';
 import { isString } from 'lodash';
 import { pickBy } from 'ramda';
 import { v4 as uuidv4 } from 'uuid';
@@ -43,14 +43,13 @@ const AntdPopupCard = ({
     setProps,
     ...others
 }) => {
-
-    const [handleId, setHandleId] = useState(uuidv4().replace(/\d+/g, ""));
+    const [handleId, setHandleId] = useState(uuidv4().replace(/\d+/g, ''));
     const [disabled, setDisabled] = useState(false);
     const [bounds, setBounds] = useState({
         left: 0,
         top: 0,
         bottom: 0,
-        right: 0
+        right: 0,
     });
     const draggleRef = useRef(null);
 
@@ -66,19 +65,24 @@ const AntdPopupCard = ({
             left: -targetRect.left + uiData.x,
             right: clientWidth - (targetRect.right - uiData.x),
             top: -targetRect.top + uiData.y,
-            bottom: clientHeight - (targetRect.bottom - uiData.y)
+            bottom: clientHeight - (targetRect.bottom - uiData.y),
         });
     };
 
     return (
         <Modal
             // 提取具有data-*或aria-*通配格式的属性
-            {...pickBy((_, k) => k.startsWith('data-') || k.startsWith('aria-'), others)}
+            {...pickBy(
+                (_, k) => k.startsWith('data-') || k.startsWith('aria-'),
+                others
+            )}
             id={id}
             className={
-                isString(className) ?
-                    className :
-                    (className ? useCss(className) : undefined)
+                isString(className)
+                    ? className
+                    : className
+                      ? useCss(className)
+                      : undefined
             }
             style={style}
             styles={styles}
@@ -88,15 +92,17 @@ const AntdPopupCard = ({
                 <div
                     id={handleId}
                     className={
-                        isString(dragClassName) ?
-                            dragClassName :
-                            (dragClassName ? useCss(dragClassName) : undefined)
+                        isString(dragClassName)
+                            ? dragClassName
+                            : dragClassName
+                              ? useCss(dragClassName)
+                              : undefined
                     }
                     style={{
-                        width: "100%",
-                        ...(
-                            dragClassName?.cursor ? {} : { cursor: draggable ? "move" : 'inherit' }
-                        )
+                        width: '100%',
+                        ...(dragClassName?.cursor
+                            ? {}
+                            : { cursor: draggable ? 'move' : 'inherit' }),
                     }}
                     onMouseOver={() => {
                         if (disabled) {
@@ -108,47 +114,47 @@ const AntdPopupCard = ({
                     }}
                 >
                     {title}
-                    {
-                        closable ?
-                            closeIconType === "outlined" ?
-                                (<CloseCircleOutlined
-                                    style={{
-                                        position: "absolute",
-                                        top: -12,
-                                        right: -12,
-                                        fontSize: 24,
-                                        cursor: "pointer"
-                                    }}
-                                    onClick={() => setProps({ visible: false })}
-                                />) :
-                                (
-                                    closeIconType == 'two-tone' ?
-                                        ((<CloseCircleTwoTone
-                                            style={{
-                                                position: "absolute",
-                                                top: -12,
-                                                right: -12,
-                                                fontSize: 24,
-                                                cursor: "pointer"
-                                            }}
-                                            onClick={() => setProps({ visible: false })}
-                                        />)) :
-                                        (<CloseCircleFilled
-                                            style={{
-                                                position: "absolute",
-                                                top: -12,
-                                                right: -12,
-                                                fontSize: 24,
-                                                cursor: "pointer"
-                                            }}
-                                            onClick={() => setProps({ visible: false })}
-                                        />)
-                                ) :
-                            null
-                    }
+                    {closable ? (
+                        closeIconType === 'outlined' ? (
+                            <CloseCircleOutlined
+                                style={{
+                                    position: 'absolute',
+                                    top: -12,
+                                    right: -12,
+                                    fontSize: 24,
+                                    cursor: 'pointer',
+                                }}
+                                onClick={() => setProps({ visible: false })}
+                            />
+                        ) : closeIconType == 'two-tone' ? (
+                            <CloseCircleTwoTone
+                                style={{
+                                    position: 'absolute',
+                                    top: -12,
+                                    right: -12,
+                                    fontSize: 24,
+                                    cursor: 'pointer',
+                                }}
+                                onClick={() => setProps({ visible: false })}
+                            />
+                        ) : (
+                            <CloseCircleFilled
+                                style={{
+                                    position: 'absolute',
+                                    top: -12,
+                                    right: -12,
+                                    fontSize: 24,
+                                    cursor: 'pointer',
+                                }}
+                                onClick={() => setProps({ visible: false })}
+                            />
+                        )
+                    ) : null}
                 </div>
             }
-            transitionName={transitionType === 'none' ? '' : `ant-${transitionType}`}
+            transitionName={
+                transitionType === 'none' ? '' : `ant-${transitionType}`
+            }
             forceRender={forceRender}
             destroyOnClose={destroyOnClose}
             width={width}
@@ -160,21 +166,28 @@ const AntdPopupCard = ({
             footer={false}
             wrapClassName={'ant-modal-wrap-overwrite'}
             modalRender={
-                draggable ? (modal) => (
-                    <Draggable
-                        disabled={disabled}
-                        bounds={bounds}
-                        handle={'#' + handleId}
-                        onStart={(event, uiData) => onStart(event, uiData)}
-                    >
-                        <div ref={draggleRef}>{modal}</div>
-                    </Draggable>
-                ) : undefined}
+                draggable
+                    ? (modal) => (
+                          <Draggable
+                              disabled={disabled}
+                              bounds={bounds}
+                              handle={'#' + handleId}
+                              onStart={(event, uiData) =>
+                                  onStart(event, uiData)
+                              }
+                          >
+                              <div ref={draggleRef}>{modal}</div>
+                          </Draggable>
+                      )
+                    : undefined
+            }
             loading={loading}
             data-dash-is-loading={useLoading()}
-        >{children}</Modal>
+        >
+            {children}
+        </Modal>
     );
-}
+};
 
 AntdPopupCard.propTypes = {
     /**
@@ -200,10 +213,7 @@ AntdPopupCard.propTypes = {
     /**
      * 当前组件css类名，支持[动态css](/advanced-classname)
      */
-    className: PropTypes.oneOfType([
-        PropTypes.string,
-        PropTypes.object
-    ]),
+    className: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
 
     /**
      * 细分控制子元素css样式
@@ -232,7 +242,7 @@ AntdPopupCard.propTypes = {
         /**
          * 底部元素css样式
          */
-        footer: PropTypes.object
+        footer: PropTypes.object,
     }),
 
     /**
@@ -262,7 +272,7 @@ AntdPopupCard.propTypes = {
         /**
          * 底部元素css类名
          */
-        footer: PropTypes.string
+        footer: PropTypes.string,
     }),
 
     /**
@@ -279,18 +289,26 @@ AntdPopupCard.propTypes = {
     /**
      * 弹出式卡片像素宽度
      */
-    width: PropTypes.oneOfType([
-        PropTypes.number,
-        PropTypes.string
-    ]),
+    width: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
 
     /**
      * 卡片显隐动画类型，可选项有`'none'`、`'fade'`、`'zoom'`、`'zoom-big'`、`'zoom-big-fast'`、`'slide-up'`、`'slide-down'`、`'slide-left'`、`'slide-right'`、`'move-up'`、`'move-down'`、`'move-left'`、`'move-right'`
      * 默认值：`'zoom'`
      */
     transitionType: PropTypes.oneOf([
-        'none', 'fade', 'zoom', 'zoom-big', 'zoom-big-fast', 'slide-up',
-        'slide-down', 'slide-left', 'slide-right', 'move-up', 'move-down', 'move-left', 'move-right'
+        'none',
+        'fade',
+        'zoom',
+        'zoom-big',
+        'zoom-big-fast',
+        'slide-up',
+        'slide-down',
+        'slide-left',
+        'slide-right',
+        'move-up',
+        'move-down',
+        'move-left',
+        'move-right',
     ]),
 
     /**
@@ -326,10 +344,7 @@ AntdPopupCard.propTypes = {
     /**
      * 顶部可拖拽区域css类名
      */
-    dragClassName: PropTypes.oneOfType([
-        PropTypes.string,
-        PropTypes.object
-    ]),
+    dragClassName: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
 
     /**
      * 弹出式卡片z-index
@@ -357,7 +372,7 @@ AntdPopupCard.propTypes = {
      * Dash-assigned callback that should be called to report property changes
      * to Dash, to make them available for callbacks.
      */
-    setProps: PropTypes.func
+    setProps: PropTypes.func,
 };
 
 export default AntdPopupCard;

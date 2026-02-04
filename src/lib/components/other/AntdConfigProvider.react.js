@@ -8,27 +8,26 @@ import {
     // 暗色主题
     darkTheme,
 } from '@ant-design/compatible';
-import { StyleProvider, legacyLogicalPropertiesTransformer } from '@ant-design/cssinjs'
+import {
+    StyleProvider,
+    legacyLogicalPropertiesTransformer,
+} from '@ant-design/cssinjs';
 // 辅助库
 import { isUndefined, omitBy } from 'lodash';
 import { useLoading } from '../utils';
 // 自定义上下文
 import PropsContext from '../../contexts/PropsContext';
 
-const str2algorithm = new Map(
-    [
-        ['default', theme.defaultAlgorithm],
-        ['dark', theme.darkAlgorithm],
-        ['compact', theme.compactAlgorithm]
-    ]
-);
+const str2algorithm = new Map([
+    ['default', theme.defaultAlgorithm],
+    ['dark', theme.darkAlgorithm],
+    ['compact', theme.compactAlgorithm],
+]);
 
-const str2oldTheme = new Map(
-    [
-        ['default', defaultTheme],
-        ['dark', darkTheme]
-    ]
-)
+const str2oldTheme = new Map([
+    ['default', defaultTheme],
+    ['dark', darkTheme],
+]);
 
 /**
  * 参数配置组件AntdConfigProvider
@@ -48,54 +47,57 @@ const AntdConfigProvider = ({
     componentsToken,
     compatibilityMode = false,
     enableLayer = false,
-    setProps
+    setProps,
 }) => {
     const themeObject = useOldTheme
         ? str2oldTheme.get(useOldTheme)
-        : omitBy({
-            algorithm: (
-                Array.isArray(algorithm)
-                    ? algorithm.map(e => str2algorithm.get(e))
-                    : str2algorithm.get(algorithm)
-            ),
-            cssVar: cssVar,
-            hashed: false,
-            token: omitBy(
-                {
-                    colorPrimary: primaryColor,
-                    ...token
-                },
-                isUndefined
-            ),
-            components: omitBy(
-                {
-                    ...componentsToken
-                },
-                isUndefined
-            )
-        }, isUndefined);
-    let configProviderInstance = (
-        <ConfigProvider id={id}
+        : omitBy(
+              {
+                  algorithm: Array.isArray(algorithm)
+                      ? algorithm.map((e) => str2algorithm.get(e))
+                      : str2algorithm.get(algorithm),
+                  cssVar: cssVar,
+                  hashed: false,
+                  token: omitBy(
+                      {
+                          colorPrimary: primaryColor,
+                          ...token,
+                      },
+                      isUndefined
+                  ),
+                  components: omitBy(
+                      {
+                          ...componentsToken,
+                      },
+                      isUndefined
+                  ),
+              },
+              isUndefined
+          );
+    const configProviderInstance = (
+        <ConfigProvider
+            id={id}
             theme={themeObject}
             wave={{ disabled: wavesDisabled }}
-            data-dash-is-loading={useLoading()}>
+            data-dash-is-loading={useLoading()}
+        >
             {children}
         </ConfigProvider>
-    )
+    );
 
     if (compatibilityMode) {
         return (
             <PropsContext.Provider
-                value={
-                    {
-                        locale,
-                        componentDisabled,
-                        componentSize
-                    }
-                }
+                value={{
+                    locale,
+                    componentDisabled,
+                    componentSize,
+                }}
             >
-                <StyleProvider hashPriority={'high'}
-                    transformers={[legacyLogicalPropertiesTransformer]}>
+                <StyleProvider
+                    hashPriority={'high'}
+                    transformers={[legacyLogicalPropertiesTransformer]}
+                >
                     {configProviderInstance}
                 </StyleProvider>
             </PropsContext.Provider>
@@ -103,35 +105,28 @@ const AntdConfigProvider = ({
     } else if (enableLayer) {
         return (
             <PropsContext.Provider
-                value={
-                    {
-                        locale,
-                        componentDisabled,
-                        componentSize
-                    }
-                }
+                value={{
+                    locale,
+                    componentDisabled,
+                    componentSize,
+                }}
             >
-                <StyleProvider layer>
-                    {configProviderInstance}
-                </StyleProvider>
-            </PropsContext.Provider>
-        );
-    } else {
-        return (
-            <PropsContext.Provider
-                value={
-                    {
-                        locale,
-                        componentDisabled,
-                        componentSize
-                    }
-                }
-            >
-                {configProviderInstance}
+                <StyleProvider layer>{configProviderInstance}</StyleProvider>
             </PropsContext.Provider>
         );
     }
-}
+    return (
+        <PropsContext.Provider
+            value={{
+                locale,
+                componentDisabled,
+                componentSize,
+            }}
+        >
+            {configProviderInstance}
+        </PropsContext.Provider>
+    );
+};
 
 AntdConfigProvider.propTypes = {
     /**
@@ -155,7 +150,7 @@ AntdConfigProvider.propTypes = {
      */
     algorithm: PropTypes.oneOfType([
         PropTypes.oneOf(['default', 'dark', 'compact']),
-        PropTypes.arrayOf(PropTypes.oneOf(['default', 'dark', 'compact']))
+        PropTypes.arrayOf(PropTypes.oneOf(['default', 'dark', 'compact'])),
     ]),
 
     /**
@@ -166,8 +161,8 @@ AntdConfigProvider.propTypes = {
         PropTypes.bool,
         PropTypes.shape({
             prefix: PropTypes.string,
-            key: PropTypes.string
-        })
+            key: PropTypes.string,
+        }),
     ]),
 
     /**
@@ -209,7 +204,7 @@ AntdConfigProvider.propTypes = {
          * 是否开启动画效果
          * 默认值：`true`
          */
-        motion: PropTypes.bool
+        motion: PropTypes.bool,
     }),
 
     /**
@@ -221,7 +216,7 @@ AntdConfigProvider.propTypes = {
              * 是否开启派生样式自动推导运算
              * 默认值：`false`
              */
-            algorithm: PropTypes.bool
+            algorithm: PropTypes.bool,
         })
     ),
 
@@ -241,7 +236,7 @@ AntdConfigProvider.propTypes = {
      * Dash-assigned callback that should be called to report property changes
      * to Dash, to make them available for callbacks.
      */
-    setProps: PropTypes.func
+    setProps: PropTypes.func,
 };
 
 export default AntdConfigProvider;

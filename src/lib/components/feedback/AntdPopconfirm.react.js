@@ -49,7 +49,6 @@ const AntdPopconfirm = ({
     setProps,
     ...others
 }) => {
-
     const arrowPoint = useMemo(() => {
         if (arrow === 'hide') {
             return false;
@@ -60,33 +59,38 @@ const AntdPopconfirm = ({
         return {
             pointAtCenter: true,
         };
-    }, [arrow])
+    }, [arrow]);
 
-    const context = useContext(PropsContext)
-    locale = (context && context.locale) || locale
+    const context = useContext(PropsContext);
+    locale = (context && context.locale) || locale;
 
-    children = parseChildrenToArray(children)
+    children = parseChildrenToArray(children);
 
     // 监听确认按钮点击事件
     const listenConfirm = () => {
-        setProps({ confirmCounts: confirmCounts + 1 })
+        setProps({ confirmCounts: confirmCounts + 1 });
     };
 
     // 监听取消按钮点击事件
     const listenCancel = () => {
-        setProps({ cancelCounts: cancelCounts + 1 })
+        setProps({ cancelCounts: cancelCounts + 1 });
     };
 
     return (
         <ConfigProvider locale={str2Locale.get(locale)}>
             <Popconfirm
                 // 提取具有data-*或aria-*通配格式的属性
-                {...pickBy((_, k) => k.startsWith('data-') || k.startsWith('aria-'), others)}
+                {...pickBy(
+                    (_, k) => k.startsWith('data-') || k.startsWith('aria-'),
+                    others
+                )}
                 id={id}
                 className={
-                    isString(className) ?
-                        className :
-                        (className ? useCss(className) : undefined)
+                    isString(className)
+                        ? className
+                        : className
+                          ? useCss(className)
+                          : undefined
                 }
                 style={style}
                 styles={styles}
@@ -96,9 +100,9 @@ const AntdPopconfirm = ({
                 title={title}
                 description={description}
                 disabled={
-                    context && !isUndefined(context.componentDisabled) ?
-                        context.componentDisabled :
-                        disabled
+                    context && !isUndefined(context.componentDisabled)
+                        ? context.componentDisabled
+                        : disabled
                 }
                 placement={placement}
                 mouseEnterDelay={mouseEnterDelay}
@@ -117,18 +121,19 @@ const AntdPopconfirm = ({
                     permanent ? undefined : (e) => setProps({ open: e })
                 }
                 getPopupContainer={
-                    popupContainer === 'parent' ?
-                        (triggerNode) => triggerNode.parentNode :
-                        undefined
+                    popupContainer === 'parent'
+                        ? (triggerNode) => triggerNode.parentNode
+                        : undefined
                 }
                 onCancel={listenCancel}
                 onConfirm={listenConfirm}
-                data-dash-is-loading={useLoading()}>
+                data-dash-is-loading={useLoading()}
+            >
                 {children}
             </Popconfirm>
         </ConfigProvider>
     );
-}
+};
 
 AntdPopconfirm.propTypes = {
     /**
@@ -154,10 +159,7 @@ AntdPopconfirm.propTypes = {
     /**
      * 当前组件css类名，支持[动态css](/advanced-classname)
      */
-    className: PropTypes.oneOfType([
-        PropTypes.string,
-        PropTypes.object
-    ]),
+    className: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
 
     /**
      * 细分控制子元素css样式
@@ -170,7 +172,7 @@ AntdPopconfirm.propTypes = {
         /**
          * 内容元素css样式
          */
-        body: PropTypes.object
+        body: PropTypes.object,
     }),
 
     /**
@@ -184,7 +186,7 @@ AntdPopconfirm.propTypes = {
         /**
          * 内容元素css类名
          */
-        body: PropTypes.string
+        body: PropTypes.string,
     }),
 
     /**
@@ -219,8 +221,18 @@ AntdPopconfirm.propTypes = {
      * 默认值：`'top'`
      */
     placement: PropTypes.oneOf([
-        'top', 'left', 'right', 'bottom', 'topLeft', 'topRight', 'bottomLeft',
-        'bottomRight', 'leftTop', 'leftBottom', 'rightTop', 'rightBottom'
+        'top',
+        'left',
+        'right',
+        'bottom',
+        'topLeft',
+        'topRight',
+        'bottomLeft',
+        'bottomRight',
+        'leftTop',
+        'leftBottom',
+        'rightTop',
+        'rightBottom',
     ]),
 
     /**
@@ -254,7 +266,14 @@ AntdPopconfirm.propTypes = {
          * 按钮类型，可选项有`'default'`、`'primary'`、`'ghost'`、`'dashed'`、`'link'`、`'text'`
          * 默认值：`'default'`
          */
-        type: PropTypes.oneOf(['primary', 'ghost', 'dashed', 'link', 'text', 'default']),
+        type: PropTypes.oneOf([
+            'primary',
+            'ghost',
+            'dashed',
+            'link',
+            'text',
+            'default',
+        ]),
 
         /**
          * 按钮是否呈现危险样式
@@ -282,7 +301,7 @@ AntdPopconfirm.propTypes = {
         /**
          * 按钮css类名
          */
-        className: PropTypes.string
+        className: PropTypes.string,
     }),
 
     /**
@@ -304,7 +323,14 @@ AntdPopconfirm.propTypes = {
          * 按钮类型，可选项有`'default'`、`'primary'`、`'ghost'`、`'dashed'`、`'link'`、`'text'`
          * 默认值：`'default'`
          */
-        type: PropTypes.oneOf(['primary', 'ghost', 'dashed', 'link', 'text', 'default']),
+        type: PropTypes.oneOf([
+            'primary',
+            'ghost',
+            'dashed',
+            'link',
+            'text',
+            'default',
+        ]),
 
         /**
          * 按钮是否呈现危险样式
@@ -332,7 +358,7 @@ AntdPopconfirm.propTypes = {
         /**
          * 按钮css类名
          */
-        className: PropTypes.string
+        className: PropTypes.string,
     }),
 
     /**
@@ -357,12 +383,10 @@ AntdPopconfirm.propTypes = {
      * 气泡确认框触发行为，可选项有`'hover'`、`'focus'`、`'click'`，可多选组合
      * 默认值：`'click'`
      */
-    trigger: PropTypes.oneOfType(
-        [
-            PropTypes.oneOf(['hover', 'focus', 'click']),
-            PropTypes.arrayOf(PropTypes.oneOf(['hover', 'focus', 'click']))
-        ]
-    ),
+    trigger: PropTypes.oneOfType([
+        PropTypes.oneOf(['hover', 'focus', 'click']),
+        PropTypes.arrayOf(PropTypes.oneOf(['hover', 'focus', 'click'])),
+    ]),
 
     /**
      * 气泡确认框z-index
@@ -421,14 +445,14 @@ AntdPopconfirm.propTypes = {
         /**
          * Holds the name of the component that is loading
          */
-        component_name: PropTypes.string
+        component_name: PropTypes.string,
     }),
 
     /**
      * Dash-assigned callback that should be called to report property changes
      * to Dash, to make them available for callbacks.
      */
-    setProps: PropTypes.func
+    setProps: PropTypes.func,
 };
 
 export default AntdPopconfirm;

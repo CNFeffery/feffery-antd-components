@@ -1,7 +1,12 @@
 import React, { Suspense } from 'react';
 import PropTypes from 'prop-types';
 
-const LazyAntdCalendar = React.lazy(() => import(/* webpackChunkName: "data_entry" */ '../../fragments/dataEntry/AntdCalendar.react'));
+const LazyAntdCalendar = React.lazy(
+    () =>
+        import(
+            /* webpackChunkName: "data_entry" */ '../../fragments/dataEntry/AntdCalendar.react'
+        )
+);
 
 /**
  * 日历组件AntdCalendar
@@ -27,8 +32,8 @@ const AntdCalendar = ({
 }) => {
     return (
         <Suspense fallback={null}>
-            <LazyAntdCalendar {
-                ...{
+            <LazyAntdCalendar
+                {...{
                     id,
                     className,
                     style,
@@ -45,12 +50,12 @@ const AntdCalendar = ({
                     persistence,
                     persisted_props,
                     persistence_type,
-                    ...others
-                }
-            } />
+                    ...others,
+                }}
+            />
         </Suspense>
     );
-}
+};
 
 AntdCalendar.propTypes = {
     /**
@@ -71,10 +76,7 @@ AntdCalendar.propTypes = {
     /**
      * 当前组件css类名，支持[动态css](/advanced-classname)
      */
-    className: PropTypes.oneOfType([
-        PropTypes.string,
-        PropTypes.object
-    ]),
+    className: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
 
     /**
      * 配合`AntdForm`表单批量值搜集/控制功能使用，充当当前表单项的字段名，以`id`作为缺省值
@@ -139,7 +141,7 @@ AntdCalendar.propTypes = {
             /**
              * 自定义内容
              */
-            content: PropTypes.node
+            content: PropTypes.node,
         })
     ),
 
@@ -154,7 +156,7 @@ AntdCalendar.propTypes = {
         /**
          * 事件发生时间戳
          */
-        timestamp: PropTypes.number
+        timestamp: PropTypes.number,
     }),
 
     /**
@@ -179,7 +181,7 @@ AntdCalendar.propTypes = {
     persistence: PropTypes.oneOfType([
         PropTypes.bool,
         PropTypes.string,
-        PropTypes.number
+        PropTypes.number,
     ]),
 
     /**
@@ -192,13 +194,13 @@ AntdCalendar.propTypes = {
      * 属性持久化存储类型，可选项有`'local'`（本地持久化），`'session'`（会话持久化），`'memory'`（内存持久化）
      * 默认值：`'local'`
      */
-    persistence_type: PropTypes.oneOf(['local', 'session', 'memory'])
+    persistence_type: PropTypes.oneOf(['local', 'session', 'memory']),
 };
 
 AntdCalendar.dashPersistence = {
     persisted_props: ['value'],
-    persistence_type: 'local'
-}
+    persistence_type: 'local',
+};
 
 export default AntdCalendar;
 

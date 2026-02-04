@@ -1,7 +1,12 @@
 import React, { Suspense } from 'react';
 import PropTypes from 'prop-types';
 
-const LazyAntdColorPicker = React.lazy(() => import(/* webpackChunkName: "data_entry" */ '../../fragments/dataEntry/AntdColorPicker.react'));
+const LazyAntdColorPicker = React.lazy(
+    () =>
+        import(
+            /* webpackChunkName: "data_entry" */ '../../fragments/dataEntry/AntdColorPicker.react'
+        )
+);
 
 /**
  * 颜色选择器组件AntdColorPicker
@@ -33,8 +38,8 @@ const AntdColorPicker = ({
 }) => {
     return (
         <Suspense fallback={null}>
-            <LazyAntdColorPicker {
-                ...{
+            <LazyAntdColorPicker
+                {...{
                     id,
                     className,
                     style,
@@ -57,12 +62,12 @@ const AntdColorPicker = ({
                     size,
                     trigger,
                     setProps,
-                    ...others
-                }
-            } />
+                    ...others,
+                }}
+            />
         </Suspense>
     );
-}
+};
 
 AntdColorPicker.propTypes = {
     /**
@@ -83,10 +88,7 @@ AntdColorPicker.propTypes = {
     /**
      * 当前组件css类名，支持[动态css](/advanced-classname)
      */
-    className: PropTypes.oneOfType([
-        PropTypes.string,
-        PropTypes.object
-    ]),
+    className: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
 
     /**
      * 组件文案语种，可选项有`'zh-cn'`（简体中文）、`'en-us'`（英语）、`'de-de'`（德语）、`'ru-ru'`（俄语）
@@ -122,8 +124,8 @@ AntdColorPicker.propTypes = {
              * 箭头是否指向面板中心
              * 默认值：`false`
              */
-            pointAtCenter: PropTypes.bool
-        })
+            pointAtCenter: PropTypes.bool,
+        }),
     ]),
 
     /**
@@ -149,9 +151,7 @@ AntdColorPicker.propTypes = {
      */
     mode: PropTypes.oneOfType([
         PropTypes.oneOf(['single', 'gradient']),
-        PropTypes.arrayOf(
-            PropTypes.oneOf(['single', 'gradient'])
-        )
+        PropTypes.arrayOf(PropTypes.oneOf(['single', 'gradient'])),
     ]),
 
     /**
@@ -188,7 +188,7 @@ AntdColorPicker.propTypes = {
              * 当前预设项默认是否展开
              * 默认值：`true`
              */
-            defaultOpen: PropTypes.bool
+            defaultOpen: PropTypes.bool,
         })
     ),
 
@@ -197,7 +197,12 @@ AntdColorPicker.propTypes = {
      * 默认值：`'bottomRight'`
      */
     placement: PropTypes.oneOf([
-        'top', 'topLeft', 'topRight', 'bottom', 'bottomLeft', 'bottomRight'
+        'top',
+        'topLeft',
+        'topRight',
+        'bottom',
+        'bottomLeft',
+        'bottomRight',
     ]),
 
     /**
@@ -232,7 +237,7 @@ AntdColorPicker.propTypes = {
      * Dash-assigned callback that should be called to report property changes
      * to Dash, to make them available for callbacks.
      */
-    setProps: PropTypes.func
+    setProps: PropTypes.func,
 };
 
 export default AntdColorPicker;

@@ -1,7 +1,12 @@
 import React, { Suspense } from 'react';
 import PropTypes from 'prop-types';
 
-const LazyAntdOTP = React.lazy(() => import(/* webpackChunkName: "data_entry" */ '../../fragments/dataEntry/AntdOTP.react'));
+const LazyAntdOTP = React.lazy(
+    () =>
+        import(
+            /* webpackChunkName: "data_entry" */ '../../fragments/dataEntry/AntdOTP.react'
+        )
+);
 
 /**
  * 一次性密码框组件AntdOTP
@@ -29,8 +34,8 @@ const AntdOTP = ({
 }) => {
     return (
         <Suspense fallback={null}>
-            <LazyAntdOTP {
-                ...{
+            <LazyAntdOTP
+                {...{
                     id,
                     className,
                     style,
@@ -49,12 +54,12 @@ const AntdOTP = ({
                     persistence,
                     persisted_props,
                     persistence_type,
-                    ...others
-                }
-            } />
+                    ...others,
+                }}
+            />
         </Suspense>
     );
-}
+};
 
 AntdOTP.propTypes = {
     /**
@@ -75,10 +80,7 @@ AntdOTP.propTypes = {
     /**
      * 当前组件css类名，支持[动态css](/advanced-classname)
      */
-    className: PropTypes.oneOfType([
-        PropTypes.string,
-        PropTypes.object
-    ]),
+    className: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
 
     /**
      * 配合`AntdForm`表单批量值搜集/控制功能使用，充当当前表单项的字段名，以`id`作为缺省值
@@ -117,10 +119,7 @@ AntdOTP.propTypes = {
      * 自定义遮罩字符
      * 默认值：`false`
      */
-    mask: PropTypes.oneOfType([
-        PropTypes.bool,
-        PropTypes.string
-    ]),
+    mask: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
 
     /**
      * 控制校验状态，可选项有`'error'`、`'warning'`
@@ -136,7 +135,12 @@ AntdOTP.propTypes = {
     /**
      * 形态变体类型，可选项有`'outlined'`、`'borderless'`、`'filled'`、`'underlined'`，其中`'outlined'`等价于`bordered=True`，但优先级更高
      */
-    variant: PropTypes.oneOf(['outlined', 'borderless', 'filled', 'underlined']),
+    variant: PropTypes.oneOf([
+        'outlined',
+        'borderless',
+        'filled',
+        'underlined',
+    ]),
 
     /**
      * `data-*`格式属性通配
@@ -160,7 +164,7 @@ AntdOTP.propTypes = {
     persistence: PropTypes.oneOfType([
         PropTypes.bool,
         PropTypes.string,
-        PropTypes.number
+        PropTypes.number,
     ]),
 
     /**
@@ -173,13 +177,13 @@ AntdOTP.propTypes = {
      * 属性持久化存储类型，可选项有`'local'`（本地持久化），`'session'`（会话持久化），`'memory'`（内存持久化）
      * 默认值：`'local'`
      */
-    persistence_type: PropTypes.oneOf(['local', 'session', 'memory'])
+    persistence_type: PropTypes.oneOf(['local', 'session', 'memory']),
 };
 
 AntdOTP.dashPersistence = {
     persisted_props: ['value'],
-    persistence_type: 'local'
-}
+    persistence_type: 'local',
+};
 
 export default AntdOTP;
 

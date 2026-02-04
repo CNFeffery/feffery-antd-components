@@ -5,13 +5,23 @@ import { Tree, Tooltip, Dropdown, Rate } from 'antd';
 import AntdIcon from '../../components/general/AntdIcon.react';
 // 辅助库
 import Highlighter from 'react-highlight-words';
-import { omitBy, isUndefined, isString, isObject, isArray, cloneDeep } from 'lodash';
+import {
+    omitBy,
+    isUndefined,
+    isString,
+    isObject,
+    isArray,
+    cloneDeep,
+} from 'lodash';
 import { pickBy } from 'ramda';
 import { flatToTree, useLoading } from '../../components/utils';
 // 自定义hooks
 import useCss from '../../hooks/useCss';
 // 参数类型
-import { propTypes, defaultProps } from '../../components/dataDisplay/AntdTree.react';
+import {
+    propTypes,
+    defaultProps,
+} from '../../components/dataDisplay/AntdTree.react';
 
 // 自定义工具函数
 // https://github.com/ant-design/ant-design/issues/15926
@@ -28,16 +38,22 @@ const isSameParent = (a, b) => {
     aLevel.pop();
 
     return aLevel.join('') === bLevel.join('');
-}
+};
 
 const filterTree = (toFilterData, keyword, caseSensitive) => {
-    return toFilterData.filter(node => {
+    return toFilterData.filter((node) => {
         // 首先检查当前节点是否匹配关键字
         let isMatch = false;
         if (Array.isArray(keyword)) {
-            isMatch = keyword.some(s => caseSensitive ? node.title.includes(s) : node.title.toLowerCase().includes(s.toLowerCase()));
+            isMatch = keyword.some((s) =>
+                caseSensitive
+                    ? node.title.includes(s)
+                    : node.title.toLowerCase().includes(s.toLowerCase())
+            );
         } else {
-            isMatch = caseSensitive ? node.title.includes(keyword) : node.title.toLowerCase().includes(keyword.toLowerCase());
+            isMatch = caseSensitive
+                ? node.title.includes(keyword)
+                : node.title.toLowerCase().includes(keyword.toLowerCase());
         }
 
         // 如果当前节点匹配关键字，但不是根节点，才保留它及其全部后代节点信息
@@ -58,7 +74,7 @@ const filterTree = (toFilterData, keyword, caseSensitive) => {
         // 如果当前节点和它的子节点都不匹配，返回 false，表示不保留该节点
         return false;
     });
-}
+};
 
 /**
  * 树形控件组件AntdTree
@@ -120,20 +136,20 @@ const AntdTree = (props) => {
         if (dataLoading.current) {
             dataLoading.current = false;
         }
-    }, [treeData])
+    }, [treeData]);
 
     // 批属性监听
     useEffect(() => {
         if (batchPropsNames && batchPropsNames.length !== 0) {
-            let _batchPropsValues = {};
-            for (let propName of batchPropsNames) {
+            const _batchPropsValues = {};
+            for (const propName of batchPropsNames) {
                 _batchPropsValues[propName] = props[propName];
             }
             setProps({
-                batchPropsValues: _batchPropsValues
-            })
+                batchPropsValues: _batchPropsValues,
+            });
         }
-    })
+    });
 
     const treeRef = useRef(null);
 
@@ -142,30 +158,39 @@ const AntdTree = (props) => {
         if (scrollTarget && treeRef.current) {
             treeRef.current.scrollTo(scrollTarget);
             setProps({
-                scrollTarget: null
-            })
+                scrollTarget: null,
+            });
         }
-    }, [scrollTarget])
+    }, [scrollTarget]);
 
     if (showLine) {
-        showLine = { 'showLeafIcon': false }
+        showLine = { showLeafIcon: false };
     }
 
     useEffect(() => {
         setProps({
-            expandedKeys: defaultExpandedKeys && !expandedKeys ? defaultExpandedKeys : expandedKeys,
-            selectedKeys: defaultSelectedKeys && !selectedKeys ? defaultSelectedKeys : selectedKeys,
-            checkedKeys: defaultCheckedKeys && !checkedKeys ? defaultCheckedKeys : checkedKeys
-        })
-    }, [])
+            expandedKeys:
+                defaultExpandedKeys && !expandedKeys
+                    ? defaultExpandedKeys
+                    : expandedKeys,
+            selectedKeys:
+                defaultSelectedKeys && !selectedKeys
+                    ? defaultSelectedKeys
+                    : selectedKeys,
+            checkedKeys:
+                defaultCheckedKeys && !checkedKeys
+                    ? defaultCheckedKeys
+                    : checkedKeys,
+        });
+    }, []);
 
     const flatToTreeData = useMemo(() => {
         return flatToTree(treeData);
-    }, [treeData])
+    }, [treeData]);
 
     // 根据treeDataMode对treeData进行预处理
     if (treeDataMode === 'flat') {
-        treeData = flatToTreeData
+        treeData = flatToTreeData;
     }
 
     // 用于以递归的方式将节点icon属性替换成相应的icon对象
@@ -173,113 +198,107 @@ const AntdTree = (props) => {
         if (isObject(inputTreeData)) {
             // 为节点添加tooltip相关参数
             if (inputTreeData.tooltipProps && isString(inputTreeData.title)) {
-                inputTreeData.title = (<Tooltip {...inputTreeData.tooltipProps}>
-                    {inputTreeData.title}
-                </Tooltip>)
+                inputTreeData.title = (
+                    <Tooltip {...inputTreeData.tooltipProps}>
+                        {inputTreeData.title}
+                    </Tooltip>
+                );
             }
             if (inputTreeData.children) {
                 if (isString(inputTreeData.icon)) {
-                    inputTreeData.icon = (
-                        inputTreeData.iconRenderer === 'fontawesome' ?
-                            (
-                                React.createElement(
-                                    'i',
-                                    {
-                                        className: inputTreeData.icon
-                                    }
-                                )
-                            ) :
-                            (
-                                <AntdIcon icon={inputTreeData.icon} />
-                            )
-                    )
+                    inputTreeData.icon =
+                        inputTreeData.iconRenderer === 'fontawesome' ? (
+                            React.createElement('i', {
+                                className: inputTreeData.icon,
+                            })
+                        ) : (
+                            <AntdIcon icon={inputTreeData.icon} />
+                        );
                 }
                 for (let i = 0; i < inputTreeData.children.length; i++) {
-                    inputTreeData.children[i] = add_leaf_node_icon(inputTreeData.children[i])
+                    inputTreeData.children[i] = add_leaf_node_icon(
+                        inputTreeData.children[i]
+                    );
                 }
             } else {
                 if (isString(inputTreeData.icon)) {
-                    inputTreeData.icon = (
-                        inputTreeData.iconRenderer === 'fontawesome' ?
-                            (
-                                React.createElement(
-                                    'i',
-                                    {
-                                        className: inputTreeData.icon
-                                    }
-                                )
-                            ) :
-                            (
-                                <AntdIcon icon={inputTreeData.icon} />
-                            )
-                    )
+                    inputTreeData.icon =
+                        inputTreeData.iconRenderer === 'fontawesome' ? (
+                            React.createElement('i', {
+                                className: inputTreeData.icon,
+                            })
+                        ) : (
+                            <AntdIcon icon={inputTreeData.icon} />
+                        );
                 }
             }
         }
 
         if (isArray(inputTreeData)) {
             for (var i = 0; i < inputTreeData.length; i++) {
-                inputTreeData[i] = add_leaf_node_icon(inputTreeData[i])
+                inputTreeData[i] = add_leaf_node_icon(inputTreeData[i]);
             }
         }
 
         return inputTreeData;
-    }
+    };
 
     const listenSelect = (e) => {
-        setProps({ selectedKeys: e })
-    }
+        setProps({ selectedKeys: e });
+    };
 
     const listenCheck = (checkedKeys, e) => {
         if (checkStrictly) {
             setProps({
                 checkedKeys: checkedKeys.checked,
-                halfCheckedKeys: checkedKeys.halfChecked
-            })
+                halfCheckedKeys: checkedKeys.halfChecked,
+            });
         } else {
             setProps({
                 checkedKeys: checkedKeys,
-                halfCheckedKeys: e.halfCheckedKeys
-            })
+                halfCheckedKeys: e.halfCheckedKeys,
+            });
         }
-    }
+    };
 
     const listenExpand = (e) => {
-        setProps({ expandedKeys: e })
-    }
+        setProps({ expandedKeys: e });
+    };
 
     const onDragEnter = (info) => {
-        setProps({ expandedKeys: info.expandedKeys })
+        setProps({ expandedKeys: info.expandedKeys });
     };
 
     let config = {
-        expandedKeys
-    }
+        expandedKeys,
+    };
 
-    config = omitBy(config, isUndefined)
+    config = omitBy(config, isUndefined);
 
     // 处理树节点拖拽事件，偏平结构模式下不可用
     const onDrop = (info) => {
-
         // 若当前放置目标节点前后同级不允许被放置
         if (dropDisabledKeys && dropDisabledKeys.includes(info.node.key)) {
             // 结束拖拽计算过程
-            return
+            return;
         }
 
         // 若仅允许同级拖拽
         if (dragInSameLevel) {
-            const canDrop = (isSameLevel(info.dragNode, info.node) && info.dropToGap) || (isSameParent(info.dragNode, info.node) && !info.dropToGap);
+            const canDrop =
+                (isSameLevel(info.dragNode, info.node) && info.dropToGap) ||
+                (isSameParent(info.dragNode, info.node) && !info.dropToGap);
             if (!canDrop) {
                 // 结束拖拽计算过程
-                return
+                return;
             }
         }
 
         const dropKey = info.node.key;
         const dragKey = info.dragNode.key;
         const dropPos = info.node.pos.split('-');
-        const dropPosition = info.dropPosition - Number(dropPos[dropPos.length - 1]);
+        const dropPosition =
+            info.dropPosition - Number(dropPos[dropPos.length - 1]);
         const loop = (data, _key, callback) => {
             for (let i = 0; i < data.length; i++) {
                 if (data[i].key === _key) {
@@ -328,27 +347,38 @@ const AntdTree = (props) => {
         // 更新拖拽完成后的树结构数据
         setProps({
             treeData: data,
-            draggedNodeKey: dragKey
-        })
+            draggedNodeKey: dragKey,
+        });
     };
 
     return (
         <Tree
             // 提取具有data-*或aria-*通配格式的属性
-            {...pickBy((_, k) => k.startsWith('data-') || k.startsWith('aria-'), others)}
+            {...pickBy(
+                (_, k) => k.startsWith('data-') || k.startsWith('aria-'),
+                others
+            )}
             id={id}
             className={
-                isString(className) ?
-                    className :
-                    (className ? useCss(className) : undefined)
+                isString(className)
+                    ? className
+                    : className
+                      ? useCss(className)
+                      : undefined
             }
             style={style}
             key={key}
             ref={treeRef}
             treeData={
-                searchKeyword ?
-                    add_leaf_node_icon(filterTree(cloneDeep(treeData), searchKeyword, caseSensitive)) :
-                    add_leaf_node_icon(cloneDeep(treeData))
+                searchKeyword
+                    ? add_leaf_node_icon(
+                          filterTree(
+                              cloneDeep(treeData),
+                              searchKeyword,
+                              caseSensitive
+                          )
+                      )
+                    : add_leaf_node_icon(cloneDeep(treeData))
             }
             selectedKeys={selectedKeys}
             checkedKeys={checkedKeys}
@@ -370,211 +400,265 @@ const AntdTree = (props) => {
             showIcon={showIcon}
             height={height}
             titleRender={(nodeData) => {
-                return (
-                    nodeData.contextMenu ?
-                        (
-                            <Dropdown
-                                menu={{
-                                    items: nodeData.contextMenu.map(
-                                        itemProps => {
-                                            return {
-                                                ...itemProps,
-                                                icon: itemProps.icon && (
-                                                    itemProps.iconRenderer === 'fontawesome' ?
-                                                        (
-                                                            React.createElement(
-                                                                'i',
-                                                                {
-                                                                    className: itemProps.icon
-                                                                }
-                                                            )
-                                                        ) :
-                                                        (
-                                                            <AntdIcon icon={itemProps.icon} />
-                                                        )
-                                                )
-                                            }
-                                        }
-                                    ),
-                                    // 右键菜单事件监听
-                                    onClick: (e) => {
-                                        // 阻止事件蔓延
-                                        e.domEvent.stopPropagation()
-                                        // 更新相关事件信息
-                                        setProps({
-                                            clickedContextMenu: {
-                                                nodeKey: nodeData.key,
-                                                menuKey: e.key,
-                                                timestamp: Date.now()
-                                            }
-                                        })
+                return nodeData.contextMenu ? (
+                    <Dropdown
+                        menu={{
+                            items: nodeData.contextMenu.map((itemProps) => {
+                                return {
+                                    ...itemProps,
+                                    icon:
+                                        itemProps.icon &&
+                                        (itemProps.iconRenderer ===
+                                        'fontawesome' ? (
+                                            React.createElement('i', {
+                                                className: itemProps.icon,
+                                            })
+                                        ) : (
+                                            <AntdIcon icon={itemProps.icon} />
+                                        )),
+                                };
+                            }),
+                            // 右键菜单事件监听
+                            onClick: (e) => {
+                                // 阻止事件蔓延
+                                e.domEvent.stopPropagation();
+                                // 更新相关事件信息
+                                setProps({
+                                    clickedContextMenu: {
+                                        nodeKey: nodeData.key,
+                                        menuKey: e.key,
+                                        timestamp: Date.now(),
+                                    },
+                                });
+                            },
+                        }}
+                        trigger={['contextMenu']}
+                    >
+                        <span
+                            className={
+                                nodeData.className
+                                    ? `ant-tree-title ${nodeData.className}`
+                                    : 'ant-tree-title'
+                            }
+                            style={{
+                                ...(checkedKeys?.includes(nodeData.key)
+                                    ? nodeCheckedStyle
+                                    : nodeUncheckedStyle),
+                                ...nodeData.style, // 优先级更高
+                            }}
+                        >
+                            {searchKeyword ? (
+                                <Highlighter
+                                    highlightStyle={highlightStyle}
+                                    searchWords={
+                                        Array.isArray(searchKeyword)
+                                            ? searchKeyword
+                                            : [searchKeyword]
                                     }
-                                }}
-                                trigger={['contextMenu']}
-                            >
-                                <span className={nodeData.className ? `ant-tree-title ${nodeData.className}` : "ant-tree-title"}
-                                    style={{
-                                        ...(checkedKeys?.includes(nodeData.key) ? nodeCheckedStyle : nodeUncheckedStyle),
-                                        ...nodeData.style // 优先级更高
-                                    }}>
-                                    {
-                                        searchKeyword ?
-                                            <Highlighter
-                                                highlightStyle={highlightStyle}
-                                                searchWords={Array.isArray(searchKeyword) ? searchKeyword : [searchKeyword]}
-                                                autoEscape
-                                                textToHighlight={nodeData.title}
-                                            /> :
-                                            (
-                                                treeNodeKeyToTitle && treeNodeKeyToTitle[nodeData.key] ?
-                                                    treeNodeKeyToTitle[nodeData.key] :
-                                                    nodeData.title
-                                            )
-                                    }
-                                    {
-                                        // 若当前节点满足收藏控件渲染条件
-                                        enableNodeFavorites && (isUndefined(nodeData.enableFavorites) || nodeData.enableFavorites) ?
-                                            <span style={{
-                                                paddingLeft: 2
-                                            }}
-                                                onClick={(e) => {
-                                                    // 阻止事件向外传递
-                                                    e.stopPropagation()
-                                                }}>
-                                                <Rate
-                                                    count={1}
-                                                    value={favoritedKeys.includes(nodeData.key) ? 1 : 0}
-                                                    onChange={(e) => {
-                                                        setProps({
-                                                            favoritedKeys: (
-                                                                favoritedKeys.includes(nodeData.key) ?
-                                                                    favoritedKeys.filter(key => key !== nodeData.key) :
-                                                                    [...favoritedKeys, nodeData.key]
-                                                            )
-                                                        })
-                                                    }}
-                                                />
-                                            </span> :
-                                            null
-                                    }
-                                    {checkedKeys?.includes(nodeData.key) ? nodeCheckedSuffix : nodeUncheckedSuffix}
-                                </span>
-                            </Dropdown>
-                        ) :
-                        (
-                            <span className={nodeData.className ? `ant-tree-title ${nodeData.className}` : "ant-tree-title"}
-                                style={{
-                                    ...(checkedKeys?.includes(nodeData.key) ? nodeCheckedStyle : nodeUncheckedStyle),
-                                    ...nodeData.style // 优先级更高
-                                }}>
-                                {
-                                    searchKeyword ?
-                                        (
-                                            nodeData.tooltipProps ?
-                                                <Tooltip {...nodeData.tooltipProps}>
-                                                    <Highlighter
-                                                        highlightStyle={highlightStyle}
-                                                        searchWords={Array.isArray(searchKeyword) ? searchKeyword : [searchKeyword]}
-                                                        autoEscape
-                                                        textToHighlight={nodeData.title.props.children}
-                                                    />
-                                                </Tooltip> :
-                                                <Highlighter
-                                                    highlightStyle={highlightStyle}
-                                                    searchWords={Array.isArray(searchKeyword) ? searchKeyword : [searchKeyword]}
-                                                    autoEscape
-                                                    textToHighlight={nodeData.title}
-                                                />
-                                        ) :
-                                        (
-                                            treeNodeKeyToTitle && treeNodeKeyToTitle[nodeData.key] ?
-                                                treeNodeKeyToTitle[nodeData.key] :
-                                                nodeData.title
-                                        )
-                                }
-                                {
-                                    // 若当前节点满足收藏控件渲染条件
-                                    enableNodeFavorites && (isUndefined(nodeData.enableFavorites) || nodeData.enableFavorites) ?
-                                        <span style={{
-                                            paddingLeft: 2
+                                    autoEscape
+                                    textToHighlight={nodeData.title}
+                                />
+                            ) : treeNodeKeyToTitle &&
+                              treeNodeKeyToTitle[nodeData.key] ? (
+                                treeNodeKeyToTitle[nodeData.key]
+                            ) : (
+                                nodeData.title
+                            )}
+                            {
+                                // 若当前节点满足收藏控件渲染条件
+                                enableNodeFavorites &&
+                                (isUndefined(nodeData.enableFavorites) ||
+                                    nodeData.enableFavorites) ? (
+                                    <span
+                                        style={{
+                                            paddingLeft: 2,
                                         }}
-                                            onClick={(e) => {
-                                                // 阻止事件向外传递
-                                                e.stopPropagation()
-                                            }}>
-                                            <Rate
-                                                count={1}
-                                                value={favoritedKeys.includes(nodeData.key) ? 1 : 0}
-                                                onChange={(e) => {
-                                                    setProps({
-                                                        favoritedKeys: (
-                                                            favoritedKeys.includes(nodeData.key) ?
-                                                                favoritedKeys.filter(key => key !== nodeData.key) :
-                                                                [...favoritedKeys, nodeData.key]
+                                        onClick={(e) => {
+                                            // 阻止事件向外传递
+                                            e.stopPropagation();
+                                        }}
+                                    >
+                                        <Rate
+                                            count={1}
+                                            value={
+                                                favoritedKeys.includes(
+                                                    nodeData.key
+                                                )
+                                                    ? 1
+                                                    : 0
+                                            }
+                                            onChange={(e) => {
+                                                setProps({
+                                                    favoritedKeys:
+                                                        favoritedKeys.includes(
+                                                            nodeData.key
                                                         )
-                                                    })
-                                                }}
-                                            />
-                                        </span> :
-                                        null
-                                }
-                                {checkedKeys?.includes(nodeData.key) ? nodeCheckedSuffix : nodeUncheckedSuffix}
-                            </span>
-                        )
+                                                            ? favoritedKeys.filter(
+                                                                  (key) =>
+                                                                      key !==
+                                                                      nodeData.key
+                                                              )
+                                                            : [
+                                                                  ...favoritedKeys,
+                                                                  nodeData.key,
+                                                              ],
+                                                });
+                                            }}
+                                        />
+                                    </span>
+                                ) : null
+                            }
+                            {checkedKeys?.includes(nodeData.key)
+                                ? nodeCheckedSuffix
+                                : nodeUncheckedSuffix}
+                        </span>
+                    </Dropdown>
+                ) : (
+                    <span
+                        className={
+                            nodeData.className
+                                ? `ant-tree-title ${nodeData.className}`
+                                : 'ant-tree-title'
+                        }
+                        style={{
+                            ...(checkedKeys?.includes(nodeData.key)
+                                ? nodeCheckedStyle
+                                : nodeUncheckedStyle),
+                            ...nodeData.style, // 优先级更高
+                        }}
+                    >
+                        {searchKeyword ? (
+                            nodeData.tooltipProps ? (
+                                <Tooltip {...nodeData.tooltipProps}>
+                                    <Highlighter
+                                        highlightStyle={highlightStyle}
+                                        searchWords={
+                                            Array.isArray(searchKeyword)
+                                                ? searchKeyword
+                                                : [searchKeyword]
+                                        }
+                                        autoEscape
+                                        textToHighlight={
+                                            nodeData.title.props.children
+                                        }
+                                    />
+                                </Tooltip>
+                            ) : (
+                                <Highlighter
+                                    highlightStyle={highlightStyle}
+                                    searchWords={
+                                        Array.isArray(searchKeyword)
+                                            ? searchKeyword
+                                            : [searchKeyword]
+                                    }
+                                    autoEscape
+                                    textToHighlight={nodeData.title}
+                                />
+                            )
+                        ) : treeNodeKeyToTitle &&
+                          treeNodeKeyToTitle[nodeData.key] ? (
+                            treeNodeKeyToTitle[nodeData.key]
+                        ) : (
+                            nodeData.title
+                        )}
+                        {
+                            // 若当前节点满足收藏控件渲染条件
+                            enableNodeFavorites &&
+                            (isUndefined(nodeData.enableFavorites) ||
+                                nodeData.enableFavorites) ? (
+                                <span
+                                    style={{
+                                        paddingLeft: 2,
+                                    }}
+                                    onClick={(e) => {
+                                        // 阻止事件向外传递
+                                        e.stopPropagation();
+                                    }}
+                                >
+                                    <Rate
+                                        count={1}
+                                        value={
+                                            favoritedKeys.includes(nodeData.key)
+                                                ? 1
+                                                : 0
+                                        }
+                                        onChange={(e) => {
+                                            setProps({
+                                                favoritedKeys:
+                                                    favoritedKeys.includes(
+                                                        nodeData.key
+                                                    )
+                                                        ? favoritedKeys.filter(
+                                                              (key) =>
+                                                                  key !==
+                                                                  nodeData.key
+                                                          )
+                                                        : [
+                                                              ...favoritedKeys,
+                                                              nodeData.key,
+                                                          ],
+                                            });
+                                        }}
+                                    />
+                                </span>
+                            ) : null
+                        }
+                        {checkedKeys?.includes(nodeData.key)
+                            ? nodeCheckedSuffix
+                            : nodeUncheckedSuffix}
+                    </span>
                 );
             }}
             showLeafIcon={false}
             // 处理树可拖拽特性
             draggable={
-                (draggable && treeDataMode !== 'flat') ?
-                    {
-                        icon: showDragIcon,
-                        nodeDraggable: (node) => {
-                            // 检查当前节点是否被禁用拖拽
-                            if (dragDisabledKeys && dragDisabledKeys.includes(node.key)) {
-                                return false;
-                            }
-                            return true;
-                        }
-                    } :
-                    false
+                draggable && treeDataMode !== 'flat'
+                    ? {
+                          icon: showDragIcon,
+                          nodeDraggable: (node) => {
+                              // 检查当前节点是否被禁用拖拽
+                              if (
+                                  dragDisabledKeys &&
+                                  dragDisabledKeys.includes(node.key)
+                              ) {
+                                  return false;
+                              }
+                              return true;
+                          },
+                      }
+                    : false
             }
             blockNode={draggable && treeDataMode !== 'flat'}
             onDrop={draggable && treeDataMode !== 'flat' ? onDrop : undefined}
             loadData={
-                enableAsyncLoad ?
-                    (node) => {
-                        // 更新最新的异步加载数据目标节点
-                        setProps({
-                            loadingNode: {
-                                key: node.key,
-                                title: node.title
-                            }
-                        })
-                        return new Promise(
-                            (resolve) => {
-                                // 更新数据异步加载标识
-                                dataLoading.current = true;
-                                // 轮询检测是否加载完成
-                                const timer = setInterval(
-                                    () => {
-                                        if (!dataLoading.current) {
-                                            clearInterval(timer);
-                                            resolve();
-                                        }
-                                    },
-                                    200
-                                );
-                            }
-                        )
-                    } :
-                    undefined
+                enableAsyncLoad
+                    ? (node) => {
+                          // 更新最新的异步加载数据目标节点
+                          setProps({
+                              loadingNode: {
+                                  key: node.key,
+                                  title: node.title,
+                              },
+                          });
+                          return new Promise((resolve) => {
+                              // 更新数据异步加载标识
+                              dataLoading.current = true;
+                              // 轮询检测是否加载完成
+                              const timer = setInterval(() => {
+                                  if (!dataLoading.current) {
+                                      clearInterval(timer);
+                                      resolve();
+                                  }
+                              }, 200);
+                          });
+                      }
+                    : undefined
             }
             data-dash-is-loading={useLoading()}
             {...config}
         />
     );
-}
+};
 
 export default AntdTree;
 

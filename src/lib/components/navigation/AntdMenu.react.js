@@ -3,13 +3,18 @@ import React, { useEffect, useMemo } from 'react';
 import PropTypes from 'prop-types';
 // antd核心
 import { Menu, Button } from 'antd';
-import AntdIcon from "../general/AntdIcon.react";
-import {
-    MenuUnfoldOutlined,
-    MenuFoldOutlined,
-} from '@ant-design/icons';
+import AntdIcon from '../general/AntdIcon.react';
+import { MenuUnfoldOutlined, MenuFoldOutlined } from '@ant-design/icons';
 // 辅助库
-import { get, has, isArray, isUndefined, isNull, isString, cloneDeep } from 'lodash';
+import {
+    get,
+    has,
+    isArray,
+    isUndefined,
+    isNull,
+    isString,
+    cloneDeep,
+} from 'lodash';
 import { pickBy } from 'ramda';
 import { useLoading } from '../utils';
 // 自定义hooks
@@ -20,7 +25,7 @@ import { UtilsLink } from '../../internal_components/UtilsLink.react';
 const { SubMenu, Item, ItemGroup, Divider } = Menu;
 
 function findByKey(array, key) {
-    for (let item of array) {
+    for (const item of array) {
         if (get(item, 'props.key') === key) {
             return item;
         }
@@ -35,9 +40,9 @@ function findByKey(array, key) {
 }
 
 function findKeyPath(array, key, path = []) {
-    for (let item of array) {
+    for (const item of array) {
         if (item?.props?.key) {
-            let currentPath = [...path, item.props.key];
+            const currentPath = [...path, item.props.key];
             if (get(item, 'props.key') === key) {
                 return currentPath;
             }
@@ -73,133 +78,139 @@ const str2Jsx = new Map([
     ['SubMenu', SubMenu],
     ['Item', Item],
     ['ItemGroup', ItemGroup],
-    ['Divider', Divider]
-])
+    ['Divider', Divider],
+]);
 
 // 递归推导多层菜单结构
 const raw2Jsx = (obj, str2Jsx, menuItemKeyToTitle, menuItemKeyToIcon) => {
     // 若obj为数组
     if (Array.isArray(obj)) {
         // 若obj为数组，则针对数组中每个对象向下递归
-        obj = obj.map(obj_ => raw2Jsx(obj_, str2Jsx, menuItemKeyToTitle, menuItemKeyToIcon))
-
+        obj = obj.map((obj_) =>
+            raw2Jsx(obj_, str2Jsx, menuItemKeyToTitle, menuItemKeyToIcon)
+        );
     } else if (obj.hasOwnProperty('component')) {
         // 若obj包含children属性，则向下递归处理
         if (obj.hasOwnProperty('children')) {
-            Object.assign(obj, { children: obj.children.map(obj_ => raw2Jsx(obj_, str2Jsx, menuItemKeyToTitle, menuItemKeyToIcon)) })
+            Object.assign(obj, {
+                children: obj.children.map((obj_) =>
+                    raw2Jsx(
+                        obj_,
+                        str2Jsx,
+                        menuItemKeyToTitle,
+                        menuItemKeyToIcon
+                    )
+                ),
+            });
             if (obj.component === 'SubMenu') {
-                obj = <SubMenu
-                    key={obj.props.key}
-                    title={menuItemKeyToTitle[obj.props.key] || obj.props.title}
-                    disabled={obj.props.disabled}
-                    icon={
-                        menuItemKeyToIcon[obj.props.key] ||
-                        (
-                            obj.props.iconRenderer === 'fontawesome' ?
-                                (
-                                    React.createElement(
-                                        'i',
-                                        {
-                                            className: obj.props.icon
-                                        }
-                                    )
-                                ) :
-                                (
-                                    <AntdIcon icon={obj.props.icon} />
-                                )
-                        )
-                    }>
-                    {obj.children}
-                </SubMenu>
+                obj = (
+                    <SubMenu
+                        key={obj.props.key}
+                        title={
+                            menuItemKeyToTitle[obj.props.key] || obj.props.title
+                        }
+                        disabled={obj.props.disabled}
+                        icon={
+                            menuItemKeyToIcon[obj.props.key] ||
+                            (obj.props.iconRenderer === 'fontawesome' ? (
+                                React.createElement('i', {
+                                    className: obj.props.icon,
+                                })
+                            ) : (
+                                <AntdIcon icon={obj.props.icon} />
+                            ))
+                        }
+                    >
+                        {obj.children}
+                    </SubMenu>
+                );
             } else {
-                obj = <ItemGroup
-                    key={obj.props.key}
-                    title={menuItemKeyToTitle[obj.props.key] || obj.props.title}
-                    disabled={obj.props.disabled}
-                    icon={
-                        menuItemKeyToIcon[obj.props.key] ||
-                        (
-                            obj.props.iconRenderer === 'fontawesome' ?
-                                (
-                                    React.createElement(
-                                        'i',
-                                        {
-                                            className: obj.props.icon
-                                        }
-                                    )
-                                ) :
-                                (
-                                    <AntdIcon icon={obj.props.icon} />
-                                )
-                        )
-                    }>
-                    {obj.children}
-                </ItemGroup>
+                obj = (
+                    <ItemGroup
+                        key={obj.props.key}
+                        title={
+                            menuItemKeyToTitle[obj.props.key] || obj.props.title
+                        }
+                        disabled={obj.props.disabled}
+                        icon={
+                            menuItemKeyToIcon[obj.props.key] ||
+                            (obj.props.iconRenderer === 'fontawesome' ? (
+                                React.createElement('i', {
+                                    className: obj.props.icon,
+                                })
+                            ) : (
+                                <AntdIcon icon={obj.props.icon} />
+                            ))
+                        }
+                    >
+                        {obj.children}
+                    </ItemGroup>
+                );
             }
         } else {
             // 检查obj.component是否为Divider
             if (obj.component === 'Divider') {
-                obj = <Divider dashed={obj.props && obj.props.dashed} />
+                obj = <Divider dashed={obj.props && obj.props.dashed} />;
             } else if (obj.props.href) {
                 // 生成Item对应的jsx
-                obj = <Item
-                    key={obj.props.key}
-                    title={menuItemKeyToTitle[obj.props.key] || obj.props.title}
-                    disabled={obj.props.disabled}
-                    danger={obj.props.danger}
-                    icon={
-                        menuItemKeyToIcon[obj.props.key] ||
-                        (
-                            obj.props.iconRenderer === 'fontawesome' ?
-                                (
-                                    React.createElement(
-                                        'i',
-                                        {
-                                            className: obj.props.icon
-                                        }
-                                    )
-                                ) :
-                                (
-                                    <AntdIcon icon={obj.props.icon} />
-                                )
-                        )
-                    }
-                    name={obj.props && obj.props.name}
-                >
-                    <UtilsLink href={obj.props.href} target={obj.props.target}>{menuItemKeyToTitle[obj.props.key] || obj.props.title}</UtilsLink>
-                </Item>
+                obj = (
+                    <Item
+                        key={obj.props.key}
+                        title={
+                            menuItemKeyToTitle[obj.props.key] || obj.props.title
+                        }
+                        disabled={obj.props.disabled}
+                        danger={obj.props.danger}
+                        icon={
+                            menuItemKeyToIcon[obj.props.key] ||
+                            (obj.props.iconRenderer === 'fontawesome' ? (
+                                React.createElement('i', {
+                                    className: obj.props.icon,
+                                })
+                            ) : (
+                                <AntdIcon icon={obj.props.icon} />
+                            ))
+                        }
+                        name={obj.props && obj.props.name}
+                    >
+                        <UtilsLink
+                            href={obj.props.href}
+                            target={obj.props.target}
+                        >
+                            {menuItemKeyToTitle[obj.props.key] ||
+                                obj.props.title}
+                        </UtilsLink>
+                    </Item>
+                );
             } else {
-                obj = <Item
-                    key={obj.props.key}
-                    title={menuItemKeyToTitle[obj.props.key] || obj.props.title}
-                    disabled={obj.props.disabled}
-                    danger={obj.props.danger}
-                    icon={
-                        menuItemKeyToIcon[obj.props.key] ||
-                        (
-                            obj.props.iconRenderer === 'fontawesome' ?
-                                (
-                                    React.createElement(
-                                        'i',
-                                        {
-                                            className: obj.props.icon
-                                        }
-                                    )
-                                ) :
-                                (
-                                    <AntdIcon icon={obj.props.icon} />
-                                )
-                        )
-                    }
-                    name={obj.props && obj.props.name}
-                >
-                    {menuItemKeyToTitle[obj.props.key] || obj.props.title}
-                </Item>
+                obj = (
+                    <Item
+                        key={obj.props.key}
+                        title={
+                            menuItemKeyToTitle[obj.props.key] || obj.props.title
+                        }
+                        disabled={obj.props.disabled}
+                        danger={obj.props.danger}
+                        icon={
+                            menuItemKeyToIcon[obj.props.key] ||
+                            (obj.props.iconRenderer === 'fontawesome' ? (
+                                React.createElement('i', {
+                                    className: obj.props.icon,
+                                })
+                            ) : (
+                                <AntdIcon icon={obj.props.icon} />
+                            ))
+                        }
+                        name={obj.props && obj.props.name}
+                    >
+                        {menuItemKeyToTitle[obj.props.key] || obj.props.title}
+                    </Item>
+                );
             }
         }
     }
     return obj;
-}
+};
 
 /**
  * 导航菜单组件AntdMenu
@@ -231,7 +242,6 @@ const AntdMenu = ({
     persistence_type,
     ...others
 }) => {
-
     const levelKeys = useMemo(() => {
         return getLevelKeys(menuItems);
     }, [menuItems]);
@@ -241,15 +251,21 @@ const AntdMenu = ({
             if (isUndefined(openKeys) || isNull(openKeys)) {
                 openKeys = [];
             }
-            const currentOpenKey = keys.find((key) => openKeys.indexOf(key) === -1);
+            const currentOpenKey = keys.find(
+                (key) => openKeys.indexOf(key) === -1
+            );
             if (!isUndefined(currentOpenKey)) {
                 const repeatIndex = keys
                     .filter((key) => key !== currentOpenKey)
-                    .findIndex((key) => levelKeys[key] === levelKeys[currentOpenKey]);
+                    .findIndex(
+                        (key) => levelKeys[key] === levelKeys[currentOpenKey]
+                    );
                 setProps({
                     openKeys: keys
                         .filter((_, index) => index !== repeatIndex)
-                        .filter((key) => levelKeys[key] <= levelKeys[currentOpenKey]),
+                        .filter(
+                            (key) => levelKeys[key] <= levelKeys[currentOpenKey]
+                        ),
                 });
             } else {
                 setProps({ openKeys: keys });
@@ -264,63 +280,84 @@ const AntdMenu = ({
         if (defaultSelectedKey && !currentKey) {
             // 当defaultSelectedKey不为空且currentKey为空时
             // 为currentKey初始化defaultSelectedKey对应的key值
-            setProps({ currentKey: defaultSelectedKey })
+            setProps({ currentKey: defaultSelectedKey });
         }
 
         // 初始化openKeys
         if (defaultOpenKeys) {
             // 当defaultOpenKeys不为空且openKeys为空时
             // 为openKeys初始化defaultOpenKeys对应的key值
-            setProps({ openKeys: defaultOpenKeys })
+            setProps({ openKeys: defaultOpenKeys });
         }
-    }, [])
+    }, []);
 
     useEffect(() => {
         // 当currentKey发生变化时，自动查找currentKey对应的菜单信息
-        let currentItem = findByKey(menuItems, currentKey)
+        const currentItem = findByKey(menuItems, currentKey);
         // 当currentKey发生变化时，自动查找currentKey对应的key路径信息和菜单路径信息
-        let currentKeyPath = findKeyPath(menuItems, currentKey)
-        let currentItemPath = currentKeyPath?.map(item => findByKey(menuItems, item))
+        const currentKeyPath = findKeyPath(menuItems, currentKey);
+        const currentItemPath = currentKeyPath?.map((item) =>
+            findByKey(menuItems, item)
+        );
         setProps({
             currentItem: currentItem,
             currentKeyPath: currentKeyPath,
-            currentItemPath: currentItemPath
-        })
-    }, [currentKey])
+            currentItemPath: currentItemPath,
+        });
+    }, [currentKey]);
 
     // 基于menuItems推导jsx数据结构
-    let _menuItems = raw2Jsx(cloneDeep(menuItems), str2Jsx, menuItemKeyToTitle || {}, menuItemKeyToIcon || {});
+    const _menuItems = raw2Jsx(
+        cloneDeep(menuItems),
+        str2Jsx,
+        menuItemKeyToTitle || {},
+        menuItemKeyToIcon || {}
+    );
 
     // 监听Item的点击事件
     const listenSelected = (item) => {
         // 将当前选中的key值赋给currentKey
-        setProps({ currentKey: item.key })
-    }
+        setProps({ currentKey: item.key });
+    };
 
     if (renderCollapsedButton) {
         return (
             <div style={{ width: '100%' }}>
-                <Button type="primary" onClick={() => setProps({ inlineCollapsed: !inlineCollapsed })}>
-                    {React.createElement(inlineCollapsed ? MenuUnfoldOutlined : MenuFoldOutlined)}
+                <Button
+                    type="primary"
+                    onClick={() =>
+                        setProps({ inlineCollapsed: !inlineCollapsed })
+                    }
+                >
+                    {React.createElement(
+                        inlineCollapsed ? MenuUnfoldOutlined : MenuFoldOutlined
+                    )}
                 </Button>
                 <Menu
                     // 提取具有data-*或aria-*通配格式的属性
-                    {...pickBy((_, k) => k.startsWith('data-') || k.startsWith('aria-'), others)}
+                    {...pickBy(
+                        (_, k) =>
+                            k.startsWith('data-') || k.startsWith('aria-'),
+                        others
+                    )}
                     id={id}
                     className={
-                        isString(className) ?
-                            className :
-                            (className ? useCss(className) : undefined)
+                        isString(className)
+                            ? className
+                            : className
+                              ? useCss(className)
+                              : undefined
                     }
                     style={style}
                     key={key}
                     expandIcon={
                         has(expandIcon, 'collapse') && has(expandIcon, 'expand')
-                            ? (props) => props.isSubMenu
-                                ? (props.isOpen
-                                    ? expandIcon.collapse
-                                    : expandIcon.expand)
-                                : undefined
+                            ? (props) =>
+                                  props.isSubMenu
+                                      ? props.isOpen
+                                          ? expandIcon.collapse
+                                          : expandIcon.expand
+                                      : undefined
                             : expandIcon
                     }
                     mode={mode}
@@ -328,13 +365,17 @@ const AntdMenu = ({
                     selectedKeys={[currentKey]}
                     openKeys={openKeys}
                     defaultOpenKeys={defaultOpenKeys}
-                    defaultSelectedKeys={defaultSelectedKey ? [defaultSelectedKey] : defaultSelectedKey}
+                    defaultSelectedKeys={
+                        defaultSelectedKey
+                            ? [defaultSelectedKey]
+                            : defaultSelectedKey
+                    }
                     onSelect={listenSelected}
                     onOpenChange={onOpenChange}
                     getPopupContainer={
-                        popupContainer === 'parent' ?
-                            (triggerNode) => triggerNode.parentNode :
-                            undefined
+                        popupContainer === 'parent'
+                            ? (triggerNode) => triggerNode.parentNode
+                            : undefined
                     }
                     inlineCollapsed={inlineCollapsed}
                     inlineIndent={inlineIndent}
@@ -345,51 +386,58 @@ const AntdMenu = ({
                 </Menu>
             </div>
         );
-    } else {
-        return (
-            <Menu
-                // 提取具有data-*或aria-*通配格式的属性
-                {...pickBy((_, k) => k.startsWith('data-') || k.startsWith('aria-'), others)}
-                id={id}
-                className={
-                    isString(className) ?
-                        className :
-                        (className ? useCss(className) : undefined)
-                }
-                style={style}
-                key={key}
-                expandIcon={
-                    has(expandIcon, 'collapse') && has(expandIcon, 'expand')
-                        ? (props) => props.isSubMenu
-                            ? (props.isOpen
-                                ? expandIcon.collapse
-                                : expandIcon.expand)
-                            : undefined
-                        : expandIcon
-                }
-                mode={mode}
-                theme={theme}
-                selectedKeys={[currentKey]}
-                openKeys={openKeys}
-                defaultOpenKeys={defaultOpenKeys}
-                defaultSelectedKeys={defaultSelectedKey ? [defaultSelectedKey] : defaultSelectedKey}
-                onSelect={listenSelected}
-                onOpenChange={onOpenChange}
-                getPopupContainer={
-                    popupContainer === 'parent' ?
-                        (triggerNode) => triggerNode.parentNode :
-                        undefined
-                }
-                inlineCollapsed={inlineCollapsed}
-                inlineIndent={inlineIndent}
-                triggerSubMenuAction={triggerSubMenuAction}
-                data-dash-is-loading={useLoading()}
-            >
-                {_menuItems}
-            </Menu>
-        );
     }
-}
+    return (
+        <Menu
+            // 提取具有data-*或aria-*通配格式的属性
+            {...pickBy(
+                (_, k) => k.startsWith('data-') || k.startsWith('aria-'),
+                others
+            )}
+            id={id}
+            className={
+                isString(className)
+                    ? className
+                    : className
+                      ? useCss(className)
+                      : undefined
+            }
+            style={style}
+            key={key}
+            expandIcon={
+                has(expandIcon, 'collapse') && has(expandIcon, 'expand')
+                    ? (props) =>
+                          props.isSubMenu
+                              ? props.isOpen
+                                  ? expandIcon.collapse
+                                  : expandIcon.expand
+                              : undefined
+                    : expandIcon
+            }
+            mode={mode}
+            theme={theme}
+            selectedKeys={[currentKey]}
+            openKeys={openKeys}
+            defaultOpenKeys={defaultOpenKeys}
+            defaultSelectedKeys={
+                defaultSelectedKey ? [defaultSelectedKey] : defaultSelectedKey
+            }
+            onSelect={listenSelected}
+            onOpenChange={onOpenChange}
+            getPopupContainer={
+                popupContainer === 'parent'
+                    ? (triggerNode) => triggerNode.parentNode
+                    : undefined
+            }
+            inlineCollapsed={inlineCollapsed}
+            inlineIndent={inlineIndent}
+            triggerSubMenuAction={triggerSubMenuAction}
+            data-dash-is-loading={useLoading()}
+        >
+            {_menuItems}
+        </Menu>
+    );
+};
 
 AntdMenu.propTypes = {
     /**
@@ -410,10 +458,7 @@ AntdMenu.propTypes = {
     /**
      * 当前组件css类名，支持[动态css](/advanced-classname)
      */
-    className: PropTypes.oneOfType([
-        PropTypes.string,
-        PropTypes.object
-    ]),
+    className: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
 
     /**
      * 自定义展开图标，建议仅在`mode='inline'`时使用字典类型
@@ -428,8 +473,8 @@ AntdMenu.propTypes = {
             /**
              * 收起图标
              */
-            collapse: PropTypes.node
-        })
+            collapse: PropTypes.node,
+        }),
     ]),
 
     /**
@@ -550,25 +595,27 @@ AntdMenu.propTypes = {
     persistence: PropTypes.oneOfType([
         PropTypes.bool,
         PropTypes.string,
-        PropTypes.number
+        PropTypes.number,
     ]),
 
     /**
      * 当前组件启用持久化的属性值数组，可选项有`'currentKey'`、`'openKeys'`
      * 默认值：`['currentKey', 'openKeys']`
      */
-    persisted_props: PropTypes.arrayOf(PropTypes.oneOf(['currentKey', 'openKeys'])),
+    persisted_props: PropTypes.arrayOf(
+        PropTypes.oneOf(['currentKey', 'openKeys'])
+    ),
 
     /**
      * 当前组件的属性持久化存储类型
      * 默认值：`'local'`
      */
-    persistence_type: PropTypes.oneOf(['local', 'session', 'memory'])
+    persistence_type: PropTypes.oneOf(['local', 'session', 'memory']),
 };
 
 AntdMenu.dashPersistence = {
     persisted_props: ['currentKey', 'openKeys'],
-    persistence_type: 'local'
-}
+    persistence_type: 'local',
+};
 
 export default AntdMenu;

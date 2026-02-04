@@ -28,16 +28,20 @@ const AntdFloatButton = ({
     setProps,
     ...others
 }) => {
-
     return (
         <FloatButton
             // 提取具有data-*或aria-*通配格式的属性
-            {...pickBy((_, k) => k.startsWith('data-') || k.startsWith('aria-'), others)}
+            {...pickBy(
+                (_, k) => k.startsWith('data-') || k.startsWith('aria-'),
+                others
+            )}
             id={id}
             className={
-                isString(className) ?
-                    className :
-                    (className ? useCss(className) : undefined)
+                isString(className)
+                    ? className
+                    : className
+                      ? useCss(className)
+                      : undefined
             }
             style={style}
             key={key}
@@ -52,7 +56,7 @@ const AntdFloatButton = ({
             data-dash-is-loading={useLoading()}
         />
     );
-}
+};
 
 AntdFloatButton.propTypes = {
     /**
@@ -73,10 +77,7 @@ AntdFloatButton.propTypes = {
     /**
      * 当前组件css类名，支持[动态css](/advanced-classname)
      */
-    className: PropTypes.oneOfType([
-        PropTypes.string,
-        PropTypes.object
-    ]),
+    className: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
 
     /**
      * 组件型，按钮内嵌前缀图标元素
@@ -105,8 +106,21 @@ AntdFloatButton.propTypes = {
             /**
              * 气泡卡片展开方向，可选项有`'top'`、`'left'`、`'right'`、`'bottom'`、`'topLeft'`、`'topRight'`、`'bottomLeft'`、`'bottomRight'`、`'leftTop'`、`'leftBottom'`、`'rightTop'`、`'rightBottom'`
              */
-            placement: PropTypes.oneOf(['top', 'left', 'right', 'bottom', 'topLeft', 'topRight', 'bottomLeft', 'bottomRight', 'leftTop', 'leftBottom', 'rightTop', 'rightBottom'])
-        })
+            placement: PropTypes.oneOf([
+                'top',
+                'left',
+                'right',
+                'bottom',
+                'topLeft',
+                'topRight',
+                'bottomLeft',
+                'bottomRight',
+                'leftTop',
+                'leftBottom',
+                'rightTop',
+                'rightBottom',
+            ]),
+        }),
     ]),
 
     /**
@@ -152,7 +166,7 @@ AntdFloatButton.propTypes = {
      * Dash-assigned callback that should be called to report property changes
      * to Dash, to make them available for callbacks.
      */
-    setProps: PropTypes.func
+    setProps: PropTypes.func,
 };
 
 export default AntdFloatButton;

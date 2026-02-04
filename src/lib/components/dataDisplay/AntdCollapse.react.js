@@ -37,59 +37,62 @@ const AntdCollapse = ({
     persistence_type,
     ...others
 }) => {
+    children = parseChildrenToArray(children);
 
-    children = parseChildrenToArray(children)
-
-    const context = useContext(PropsContext)
+    const context = useContext(PropsContext);
 
     return (
         <Collapse
             // 提取具有data-*或aria-*通配格式的属性
-            {...pickBy((_, k) => k.startsWith('data-') || k.startsWith('aria-'), others)}
+            {...pickBy(
+                (_, k) => k.startsWith('data-') || k.startsWith('aria-'),
+                others
+            )}
             id={id}
             className={
-                isString(className) ?
-                    className :
-                    (className ? useCss(className) : undefined)
+                isString(className)
+                    ? className
+                    : className
+                      ? useCss(className)
+                      : undefined
             }
             style={style}
             key={key}
-            items={
-                [
-                    {
-                        key: '1',
-                        label: title,
-                        children: children,
-                        showArrow: showArrow,
-                        forceRender: forceRender,
-                        styles: styles,
-                        classNames: classNames
-                    }
-                ]
-            }
+            items={[
+                {
+                    key: '1',
+                    label: title,
+                    children: children,
+                    showArrow: showArrow,
+                    forceRender: forceRender,
+                    styles: styles,
+                    classNames: classNames,
+                },
+            ]}
             activeKey={isOpen ? ['1'] : []}
             bordered={bordered}
             size={
-                context && !isUndefined(context.componentSize) ?
-                    context.componentSize :
-                    size
+                context && !isUndefined(context.componentSize)
+                    ? context.componentSize
+                    : size
             }
             ghost={ghost}
             collapsible={collapsible}
             onChange={(e) => {
                 if (e.length === 1) {
                     setProps({
-                        isOpen: true
-                    })
+                        isOpen: true,
+                    });
                 } else {
                     setProps({
-                        isOpen: false
-                    })
+                        isOpen: false,
+                    });
                 }
             }}
-            data-dash-is-loading={useLoading()} />
+            data-dash-is-loading={useLoading()}
+        />
     );
-}
+};
 
 AntdCollapse.propTypes = {
     /**
@@ -115,10 +118,7 @@ AntdCollapse.propTypes = {
     /**
      * 当前组件css类名，支持[动态css](/advanced-classname)
      */
-    className: PropTypes.oneOfType([
-        PropTypes.string,
-        PropTypes.object
-    ]),
+    className: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
 
     /**
      * 细分控制子元素css样式
@@ -131,7 +131,7 @@ AntdCollapse.propTypes = {
         /**
          * 内容元素css样式
          */
-        body: PropTypes.object
+        body: PropTypes.object,
     }),
 
     /**
@@ -145,7 +145,7 @@ AntdCollapse.propTypes = {
         /**
          * 内容元素css类名
          */
-        body: PropTypes.string
+        body: PropTypes.string,
     }),
 
     /**
@@ -216,7 +216,7 @@ AntdCollapse.propTypes = {
     persistence: PropTypes.oneOfType([
         PropTypes.bool,
         PropTypes.string,
-        PropTypes.number
+        PropTypes.number,
     ]),
 
     /**
@@ -229,12 +229,12 @@ AntdCollapse.propTypes = {
      * 属性持久化存储类型，可选项有`'local'`（本地持久化），`'session'`（会话持久化），`'memory'`（内存持久化）
      * 默认值：`'local'`
      */
-    persistence_type: PropTypes.oneOf(['local', 'session', 'memory'])
+    persistence_type: PropTypes.oneOf(['local', 'session', 'memory']),
 };
 
 AntdCollapse.dashPersistence = {
     persisted_props: ['isOpen'],
-    persistence_type: 'local'
-}
+    persistence_type: 'local',
+};
 
 export default AntdCollapse;

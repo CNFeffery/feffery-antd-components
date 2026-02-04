@@ -1,7 +1,12 @@
 import React, { Suspense } from 'react';
 import PropTypes from 'prop-types';
 
-const LazyAntdCountup = React.lazy(() => import(/* webpackChunkName: "data_display" */ '../../fragments/dataDisplay/AntdCountup.react'));
+const LazyAntdCountup = React.lazy(
+    () =>
+        import(
+            /* webpackChunkName: "data_display" */ '../../fragments/dataDisplay/AntdCountup.react'
+        )
+);
 
 /**
  * 正计时组件AntdCountup
@@ -24,8 +29,8 @@ const AntdCountup = ({
 }) => {
     return (
         <Suspense fallback={null}>
-            <LazyAntdCountup {
-                ...{
+            <LazyAntdCountup
+                {...{
                     id,
                     className,
                     style,
@@ -39,12 +44,12 @@ const AntdCountup = ({
                     titleTooltip,
                     valueStyle,
                     setProps,
-                    ...others
-                }
-            } />
+                    ...others,
+                }}
+            />
         </Suspense>
     );
-}
+};
 
 AntdCountup.propTypes = {
     /**
@@ -65,10 +70,7 @@ AntdCountup.propTypes = {
     /**
      * 当前组件css类名，支持[动态css](/advanced-classname)
      */
-    className: PropTypes.oneOfType([
-        PropTypes.string,
-        PropTypes.object
-    ]),
+    className: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
 
     /**
      * 日期时间显示格式，[参考资料](https://day.js.org/docs/en/display/format)，如`HH:mm:ss`代表`时:分:秒`
@@ -125,7 +127,7 @@ AntdCountup.propTypes = {
      * Dash-assigned callback that should be called to report property changes
      * to Dash, to make them available for callbacks.
      */
-    setProps: PropTypes.func
+    setProps: PropTypes.func,
 };
 
 export default AntdCountup;

@@ -1,7 +1,12 @@
 import React, { Suspense } from 'react';
 import PropTypes from 'prop-types';
 
-const LazyAntdImage = React.lazy(() => import(/* webpackChunkName: "data_display" */ '../../fragments/dataDisplay/AntdImage.react'));
+const LazyAntdImage = React.lazy(
+    () =>
+        import(
+            /* webpackChunkName: "data_display" */ '../../fragments/dataDisplay/AntdImage.react'
+        )
+);
 
 /**
  * 图片组件AntdImage
@@ -26,8 +31,8 @@ const AntdImage = ({
 }) => {
     return (
         <Suspense fallback={null}>
-            <LazyAntdImage {
-                ...{
+            <LazyAntdImage
+                {...{
                     id,
                     className,
                     style,
@@ -43,12 +48,12 @@ const AntdImage = ({
                     preview,
                     toolbarExtra,
                     setProps,
-                    ...others
-                }
-            } />
+                    ...others,
+                }}
+            />
         </Suspense>
     );
-}
+};
 
 AntdImage.propTypes = {
     /**
@@ -69,10 +74,7 @@ AntdImage.propTypes = {
     /**
      * 当前组件css类名，支持[动态css](/advanced-classname)
      */
-    className: PropTypes.oneOfType([
-        PropTypes.string,
-        PropTypes.object
-    ]),
+    className: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
 
     /**
      * 组件文案语种，可选项有`'zh-cn'`（简体中文）、`'en-us'`（英语）、`'de-de'`（德语）、`'ru-ru'`（俄语）
@@ -88,25 +90,19 @@ AntdImage.propTypes = {
     /**
      * 图片宽度
      */
-    width: PropTypes.oneOfType([
-        PropTypes.number,
-        PropTypes.string
-    ]),
+    width: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
 
     /**
      * 图片高度
      */
-    height: PropTypes.oneOfType([
-        PropTypes.number,
-        PropTypes.string
-    ]),
+    height: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
 
     /**
      * 配置图片资源地址，当传入数组时为多图片模式
      */
     src: PropTypes.oneOfType([
         PropTypes.string,
-        PropTypes.arrayOf(PropTypes.string)
+        PropTypes.arrayOf(PropTypes.string),
     ]),
 
     /**
@@ -171,8 +167,8 @@ AntdImage.propTypes = {
              * 最大缩放倍数
              * 默认值：`50`
              */
-            maxScale: PropTypes.number
-        })
+            maxScale: PropTypes.number,
+        }),
     ]),
 
     /**
@@ -194,7 +190,7 @@ AntdImage.propTypes = {
      * Dash-assigned callback that should be called to report property changes
      * to Dash, to make them available for callbacks.
      */
-    setProps: PropTypes.func
+    setProps: PropTypes.func,
 };
 
 export default AntdImage;

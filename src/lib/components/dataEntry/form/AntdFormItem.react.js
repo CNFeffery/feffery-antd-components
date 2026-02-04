@@ -1,7 +1,12 @@
 import React, { Suspense } from 'react';
 import PropTypes from 'prop-types';
 
-const LazyAntdFormItem = React.lazy(() => import(/* webpackChunkName: "data_entry" */ '../../../fragments/dataEntry/form/AntdFormItem.react'));
+const LazyAntdFormItem = React.lazy(
+    () =>
+        import(
+            /* webpackChunkName: "data_entry" */ '../../../fragments/dataEntry/form/AntdFormItem.react'
+        )
+);
 
 /**
  * 表单项组件AntdFormItem
@@ -30,8 +35,8 @@ const AntdFormItem = ({
 }) => {
     return (
         <Suspense fallback={null}>
-            <LazyAntdFormItem {
-                ...{
+            <LazyAntdFormItem
+                {...{
                     id,
                     children,
                     className,
@@ -51,12 +56,12 @@ const AntdFormItem = ({
                     hasFeedback,
                     layout,
                     setProps,
-                    ...others
-                }
-            } />
+                    ...others,
+                }}
+            />
         </Suspense>
     );
-}
+};
 
 AntdFormItem.propTypes = {
     /**
@@ -82,10 +87,7 @@ AntdFormItem.propTypes = {
     /**
      * 当前组件css类名，支持[动态css](/advanced-classname)
      */
-    className: PropTypes.oneOfType([
-        PropTypes.string,
-        PropTypes.object
-    ]),
+    className: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
 
     /**
      * 是否显示表示必填项的额外“*”标识
@@ -108,10 +110,7 @@ AntdFormItem.propTypes = {
         /**
          * 同css中的flex属性，用于更灵活的控制标签部分所占宽度
          */
-        flex: PropTypes.oneOfType([
-            PropTypes.string,
-            PropTypes.number
-        ])
+        flex: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
     }),
 
     /**
@@ -129,10 +128,7 @@ AntdFormItem.propTypes = {
         /**
          * 同css中的flex属性，用于更灵活的控制控件部分所占宽度
          */
-        flex: PropTypes.oneOfType([
-            PropTypes.string,
-            PropTypes.number
-        ])
+        flex: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
     }),
 
     /**
@@ -164,7 +160,12 @@ AntdFormItem.propTypes = {
     /**
      * 控制校验状态，可选项有`'success'`、`'warning'`、`'error'`、`'validating'`
      */
-    validateStatus: PropTypes.oneOf(['success', 'warning', 'error', 'validating']),
+    validateStatus: PropTypes.oneOf([
+        'success',
+        'warning',
+        'error',
+        'validating',
+    ]),
 
     /**
      * 与`validateStatus`设定的状态对应，用于控制是否显示额外的状态图标
@@ -202,7 +203,7 @@ AntdFormItem.propTypes = {
      * Dash-assigned callback that should be called to report property changes
      * to Dash, to make them available for callbacks.
      */
-    setProps: PropTypes.func
+    setProps: PropTypes.func,
 };
 
 export default AntdFormItem;

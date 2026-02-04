@@ -9,7 +9,10 @@ import { useLoading } from '../../../components/utils';
 // 自定义hooks
 import useCss from '../../../hooks/useCss';
 // 参数类型
-import { propTypes, defaultProps } from '../../../components/dataDisplay/card/AntdCardMeta.react';
+import {
+    propTypes,
+    defaultProps,
+} from '../../../components/dataDisplay/card/AntdCardMeta.react';
 
 const { Meta } = Card;
 
@@ -17,7 +20,7 @@ const { Meta } = Card;
  * 结构化卡片组件AntdCardMeta
  */
 const AntdCardMeta = (props) => {
-    let {
+    const {
         id,
         className,
         style,
@@ -32,22 +35,27 @@ const AntdCardMeta = (props) => {
     return (
         <Meta
             // 提取具有data-*或aria-*通配格式的属性
-            {...pickBy((_, k) => k.startsWith('data-') || k.startsWith('aria-'), others)}
+            {...pickBy(
+                (_, k) => k.startsWith('data-') || k.startsWith('aria-'),
+                others
+            )}
             id={id}
             className={
-                isString(className) ?
-                    className :
-                    (className ? useCss(className) : undefined)
+                isString(className)
+                    ? className
+                    : className
+                      ? useCss(className)
+                      : undefined
             }
             style={style}
             key={key}
             avatar={avatar}
             description={description}
             title={title}
-            data-dash-is-loading={useLoading()}>
-        </Meta>
+            data-dash-is-loading={useLoading()}
+        ></Meta>
     );
-}
+};
 
 export default AntdCardMeta;
 

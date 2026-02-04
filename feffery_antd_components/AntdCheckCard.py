@@ -1,8 +1,9 @@
 # AUTO GENERATED FILE - DO NOT EDIT
 
 import typing  # noqa: F401
-from typing_extensions import TypedDict, NotRequired, Literal # noqa: F401
+
 from dash.development.base_component import Component, _explicitize_args
+from typing_extensions import Literal, NotRequired, TypedDict  # noqa: F401
 
 ComponentSingleType = typing.Union[str, int, float, Component, None]
 ComponentType = typing.Union[
@@ -10,76 +11,74 @@ ComponentType = typing.Union[
     typing.Sequence[ComponentSingleType],
 ]
 
-NumberType = typing.Union[
-    typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex
-]
+NumberType = typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]
 
 
 class AntdCheckCard(Component):
     """An AntdCheckCard component.
-选择卡片组件AntdCheckCard
+    选择卡片组件AntdCheckCard
 
-Keyword arguments:
+    Keyword arguments:
 
-- id (string; optional):
-    组件唯一id.
+    - id (string; optional):
+        组件唯一id.
 
-- key (string; optional):
-    对当前组件的`key`值进行更新，可实现强制重绘当前组件的效果.
+    - key (string; optional):
+        对当前组件的`key`值进行更新，可实现强制重绘当前组件的效果.
 
-- children (a list of or a singular dash component, string or number; optional):
-    组件型，内嵌元素.
+    - children (a list of or a singular dash component, string or number; optional):
+        组件型，内嵌元素.
 
-- className (string | dict; optional):
-    当前组件css类名，支持[动态css](/advanced-classname).
+    - className (string | dict; optional):
+        当前组件css类名，支持[动态css](/advanced-classname).
 
-- name (string; optional):
-    配合`AntdForm`表单批量值搜集/控制功能使用，充当当前表单项的字段名，以`id`作为缺省值.
+    - name (string; optional):
+        配合`AntdForm`表单批量值搜集/控制功能使用，充当当前表单项的字段名，以`id`作为缺省值.
 
-- enableBatchControl (boolean; default True):
-    控制当前组件是否参与有效的`AntdForm`表单批量值搜集/控制功能 默认值：`True`.
+    - enableBatchControl (boolean; default True):
+        控制当前组件是否参与有效的`AntdForm`表单批量值搜集/控制功能 默认值：`True`.
 
-- checked (boolean; optional):
-    监听或设置是否被选中.
+    - checked (boolean; optional):
+        监听或设置是否被选中.
 
-- defaultChecked (boolean; optional):
-    初始化是否被选中.
+    - defaultChecked (boolean; optional):
+        初始化是否被选中.
 
-- bordered (boolean; default True):
-    是否显示边框 默认值：`True`.
+    - bordered (boolean; default True):
+        是否显示边框 默认值：`True`.
 
-- disabled (boolean; default False):
-    是否禁用当前组件 默认值：`False`.
+    - disabled (boolean; default False):
+        是否禁用当前组件 默认值：`False`.
 
-- size (a value equal to: 'small', 'default', 'large'; default 'default'):
-    当前组件尺寸规格，可选项有`'small'`、`'default'`、`'large'` 默认值：`'default'`.
+    - size (a value equal to: 'small', 'default', 'large'; default 'default'):
+        当前组件尺寸规格，可选项有`'small'`、`'default'`、`'large'` 默认值：`'default'`.
 
-- value (number | string; optional):
-    当前选择卡片值.
+    - value (number | string; optional):
+        当前选择卡片值.
 
-- readOnly (boolean; default False):
-    是否渲染为只读状态 默认值：`False`.
+    - readOnly (boolean; default False):
+        是否渲染为只读状态 默认值：`False`.
 
-- data-* (string; optional):
-    `data-*`格式属性通配.
+    - data-* (string; optional):
+        `data-*`格式属性通配.
 
-- aria-* (string; optional):
-    `aria-*`格式属性通配.
+    - aria-* (string; optional):
+        `aria-*`格式属性通配.
 
-- persistence (boolean | string | number; optional):
-    是否开启[属性持久化](/prop-persistence).
+    - persistence (boolean | string | number; optional):
+        是否开启[属性持久化](/prop-persistence).
 
-- persisted_props (list of a value equal to: 'checked's; optional):
-    开启属性持久化功能的若干属性名，可选项有`'checked'` 默认值：`['checked']`.
+    - persisted_props (list of a value equal to: 'checked's; optional):
+        开启属性持久化功能的若干属性名，可选项有`'checked'` 默认值：`['checked']`.
 
-- persistence_type (a value equal to: 'local', 'session', 'memory'; optional):
-    属性持久化存储类型，可选项有`'local'`（本地持久化），`'session'`（会话持久化），`'memory'`（内存持久化）
-    默认值：`'local'`."""
+    - persistence_type (a value equal to: 'local', 'session', 'memory'; optional):
+        属性持久化存储类型，可选项有`'local'`（本地持久化），`'session'`（会话持久化），`'memory'`（内存持久化）
+        默认值：`'local'`."""
+
     _children_props: typing.List[str] = []
     _base_nodes = ['children']
     _namespace = 'feffery_antd_components'
     _type = 'AntdCheckCard'
-
 
     def __init__(
         self,
@@ -94,18 +93,58 @@ Keyword arguments:
         defaultChecked: typing.Optional[bool] = None,
         bordered: typing.Optional[bool] = None,
         disabled: typing.Optional[bool] = None,
-        size: typing.Optional[Literal["small", "default", "large"]] = None,
+        size: typing.Optional[Literal['small', 'default', 'large']] = None,
         value: typing.Optional[typing.Union[NumberType, str]] = None,
         readOnly: typing.Optional[bool] = None,
         persistence: typing.Optional[typing.Union[bool, str, NumberType]] = None,
-        persisted_props: typing.Optional[typing.Sequence[Literal["checked"]]] = None,
-        persistence_type: typing.Optional[Literal["local", "session", "memory"]] = None,
-        **kwargs
+        persisted_props: typing.Optional[typing.Sequence[Literal['checked']]] = None,
+        persistence_type: typing.Optional[Literal['local', 'session', 'memory']] = None,
+        **kwargs,
     ):
-        self._prop_names = ['id', 'key', 'children', 'style', 'className', 'name', 'enableBatchControl', 'checked', 'defaultChecked', 'bordered', 'disabled', 'size', 'value', 'readOnly', 'data-*', 'aria-*', 'persistence', 'persisted_props', 'persistence_type']
-        self._valid_wildcard_attributes =            ['data-', 'aria-']
-        self.available_properties = ['id', 'key', 'children', 'style', 'className', 'name', 'enableBatchControl', 'checked', 'defaultChecked', 'bordered', 'disabled', 'size', 'value', 'readOnly', 'data-*', 'aria-*', 'persistence', 'persisted_props', 'persistence_type']
-        self.available_wildcard_properties =            ['data-', 'aria-']
+        self._prop_names = [
+            'id',
+            'key',
+            'children',
+            'style',
+            'className',
+            'name',
+            'enableBatchControl',
+            'checked',
+            'defaultChecked',
+            'bordered',
+            'disabled',
+            'size',
+            'value',
+            'readOnly',
+            'data-*',
+            'aria-*',
+            'persistence',
+            'persisted_props',
+            'persistence_type',
+        ]
+        self._valid_wildcard_attributes = ['data-', 'aria-']
+        self.available_properties = [
+            'id',
+            'key',
+            'children',
+            'style',
+            'className',
+            'name',
+            'enableBatchControl',
+            'checked',
+            'defaultChecked',
+            'bordered',
+            'disabled',
+            'size',
+            'value',
+            'readOnly',
+            'data-*',
+            'aria-*',
+            'persistence',
+            'persisted_props',
+            'persistence_type',
+        ]
+        self.available_wildcard_properties = ['data-', 'aria-']
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()
         _locals.update(kwargs)  # For wildcard attrs and excess named props
@@ -113,4 +152,5 @@ Keyword arguments:
 
         super(AntdCheckCard, self).__init__(children=children, **args)
 
-setattr(AntdCheckCard, "__init__", _explicitize_args(AntdCheckCard.__init__))
+
+setattr(AntdCheckCard, '__init__', _explicitize_args(AntdCheckCard.__init__))

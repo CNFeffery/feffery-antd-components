@@ -1,7 +1,12 @@
 import React, { Suspense } from 'react';
 import PropTypes from 'prop-types';
 
-const LazyAntdSwitch = React.lazy(() => import(/* webpackChunkName: "data_entry" */ '../../fragments/dataEntry/AntdSwitch.react'));
+const LazyAntdSwitch = React.lazy(
+    () =>
+        import(
+            /* webpackChunkName: "data_entry" */ '../../fragments/dataEntry/AntdSwitch.react'
+        )
+);
 
 /**
  * 开关组件AntdSwitch
@@ -30,8 +35,8 @@ const AntdSwitch = ({
 }) => {
     return (
         <Suspense fallback={null}>
-            <LazyAntdSwitch {
-                ...{
+            <LazyAntdSwitch
+                {...{
                     id,
                     style,
                     className,
@@ -51,12 +56,12 @@ const AntdSwitch = ({
                     persisted_props,
                     persistence_type,
                     batchPropsNames,
-                    ...others
-                }
-            } />
+                    ...others,
+                }}
+            />
         </Suspense>
     );
-}
+};
 
 AntdSwitch.propTypes = {
     /**
@@ -77,10 +82,7 @@ AntdSwitch.propTypes = {
     /**
      * 当前组件css类名，支持[动态css](/advanced-classname)
      */
-    className: PropTypes.oneOfType([
-        PropTypes.string,
-        PropTypes.object
-    ]),
+    className: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
 
     /**
      * 配合`AntdForm`表单批量值搜集/控制功能使用，充当当前表单项的字段名，以`id`作为缺省值
@@ -169,7 +171,7 @@ AntdSwitch.propTypes = {
         /**
          * Holds the name of the component that is loading
          */
-        component_name: PropTypes.string
+        component_name: PropTypes.string,
     }),
 
     /**
@@ -184,7 +186,7 @@ AntdSwitch.propTypes = {
     persistence: PropTypes.oneOfType([
         PropTypes.bool,
         PropTypes.string,
-        PropTypes.number
+        PropTypes.number,
     ]),
 
     /**
@@ -197,13 +199,13 @@ AntdSwitch.propTypes = {
      * 属性持久化存储类型，可选项有`'local'`（本地持久化），`'session'`（会话持久化），`'memory'`（内存持久化）
      * 默认值：`'local'`
      */
-    persistence_type: PropTypes.oneOf(['local', 'session', 'memory'])
+    persistence_type: PropTypes.oneOf(['local', 'session', 'memory']),
 };
 
 AntdSwitch.dashPersistence = {
     persisted_props: ['checked'],
-    persistence_type: 'local'
-}
+    persistence_type: 'local',
+};
 
 export default AntdSwitch;
 

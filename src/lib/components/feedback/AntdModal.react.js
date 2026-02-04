@@ -55,18 +55,17 @@ const AntdModal = ({
     loading = false,
     ...others
 }) => {
-
-    const context = useContext(PropsContext)
-    locale = (context && context.locale) || locale
+    const context = useContext(PropsContext);
+    locale = (context && context.locale) || locale;
 
     // 监听确认按钮点击事件
     const listenOk = () => {
         if (okClickClose) {
-            setProps({ visible: false, okCounts: okCounts + 1 })
+            setProps({ visible: false, okCounts: okCounts + 1 });
         } else if (confirmAutoSpin) {
-            setProps({ okCounts: okCounts + 1, confirmLoading: true })
+            setProps({ okCounts: okCounts + 1, confirmLoading: true });
         } else {
-            setProps({ okCounts: okCounts + 1 })
+            setProps({ okCounts: okCounts + 1 });
         }
     };
 
@@ -74,28 +73,34 @@ const AntdModal = ({
     const listenCancel = () => {
         // 是否阻止默认的各类关闭触发行为生效
         if (preventClose) {
-            setProps({ cancelCounts: cancelCounts + 1 })
+            setProps({ cancelCounts: cancelCounts + 1 });
         } else {
-            setProps({ visible: false, cancelCounts: cancelCounts + 1 })
+            setProps({ visible: false, cancelCounts: cancelCounts + 1 });
         }
     };
 
     const listenClose = () => {
-        setProps({ closeCounts: closeCounts + 1 })
+        setProps({ closeCounts: closeCounts + 1 });
     };
 
-    const effectiveTitle = loading && loadingTitle !== undefined ? loadingTitle : title;
+    const effectiveTitle =
+        loading && loadingTitle !== undefined ? loadingTitle : title;
 
     return (
         <ConfigProvider locale={str2Locale.get(locale)}>
             <Modal
                 // 提取具有data-*或aria-*通配格式的属性
-                {...pickBy((_, k) => k.startsWith('data-') || k.startsWith('aria-'), others)}
+                {...pickBy(
+                    (_, k) => k.startsWith('data-') || k.startsWith('aria-'),
+                    others
+                )}
                 id={id}
                 className={
-                    isString(className) ?
-                        className :
-                        (className ? useCss(className) : undefined)
+                    isString(className)
+                        ? className
+                        : className
+                          ? useCss(className)
+                          : undefined
                 }
                 style={style}
                 styles={styles}
@@ -103,11 +108,13 @@ const AntdModal = ({
                 key={key}
                 title={effectiveTitle}
                 open={visible}
-                okText={confirmLoading ? (loadingOkText || okText) : okText}
+                okText={confirmLoading ? loadingOkText || okText : okText}
                 cancelText={cancelText}
                 okButtonProps={okButtonProps}
                 cancelButtonProps={cancelButtonProps}
-                transitionName={transitionType === 'none' ? '' : `ant-${transitionType}`}
+                transitionName={
+                    transitionType === 'none' ? '' : `ant-${transitionType}`
+                }
                 width={width}
                 centered={centered}
                 keyboard={keyboard}
@@ -124,10 +131,12 @@ const AntdModal = ({
                 destroyOnHidden={destroyOnClose}
                 loading={loading}
                 data-dash-is-loading={useLoading()}
-            >{children}</Modal>
+            >
+                {children}
+            </Modal>
         </ConfigProvider>
     );
-}
+};
 
 AntdModal.propTypes = {
     /**
@@ -153,10 +162,7 @@ AntdModal.propTypes = {
     /**
      * 当前组件css类名，支持[动态css](/advanced-classname)
      */
-    className: PropTypes.oneOfType([
-        PropTypes.string,
-        PropTypes.object
-    ]),
+    className: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
 
     /**
      * 细分控制子元素css样式
@@ -185,7 +191,7 @@ AntdModal.propTypes = {
         /**
          * 底部元素css样式
          */
-        footer: PropTypes.object
+        footer: PropTypes.object,
     }),
 
     /**
@@ -215,7 +221,7 @@ AntdModal.propTypes = {
         /**
          * 底部元素css类名
          */
-        footer: PropTypes.string
+        footer: PropTypes.string,
     }),
 
     /**
@@ -265,7 +271,14 @@ AntdModal.propTypes = {
          * 按钮类型，可选项有`'default'`、`'primary'`、`'ghost'`、`'dashed'`、`'link'`、`'text'`
          * 默认值：`'default'`
          */
-        type: PropTypes.oneOf(['primary', 'ghost', 'dashed', 'link', 'text', 'default']),
+        type: PropTypes.oneOf([
+            'primary',
+            'ghost',
+            'dashed',
+            'link',
+            'text',
+            'default',
+        ]),
 
         /**
          * 按钮是否呈现危险样式
@@ -293,7 +306,7 @@ AntdModal.propTypes = {
         /**
          * 按钮css类名
          */
-        className: PropTypes.string
+        className: PropTypes.string,
     }),
 
     /**
@@ -315,7 +328,14 @@ AntdModal.propTypes = {
          * 按钮类型，可选项有`'default'`、`'primary'`、`'ghost'`、`'dashed'`、`'link'`、`'text'`
          * 默认值：`'default'`
          */
-        type: PropTypes.oneOf(['primary', 'ghost', 'dashed', 'link', 'text', 'default']),
+        type: PropTypes.oneOf([
+            'primary',
+            'ghost',
+            'dashed',
+            'link',
+            'text',
+            'default',
+        ]),
 
         /**
          * 按钮是否呈现危险样式
@@ -343,7 +363,7 @@ AntdModal.propTypes = {
         /**
          * 按钮css类名
          */
-        className: PropTypes.string
+        className: PropTypes.string,
     }),
 
     /**
@@ -358,46 +378,28 @@ AntdModal.propTypes = {
             /**
              * 对应页面宽度<576px的响应式断点
              */
-            xs: PropTypes.oneOfType([
-                PropTypes.number,
-                PropTypes.string
-            ]),
+            xs: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
             /**
              * 对应页面宽度≥576px的响应式断点
              */
-            sm: PropTypes.oneOfType([
-                PropTypes.number,
-                PropTypes.string
-            ]),
+            sm: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
             /**
              * 对应页面宽度≥768px的响应式断点
              */
-            md: PropTypes.oneOfType([
-                PropTypes.number,
-                PropTypes.string
-            ]),
+            md: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
             /**
              * 对应页面宽度≥992px的响应式断点
              */
-            lg: PropTypes.oneOfType([
-                PropTypes.number,
-                PropTypes.string
-            ]),
+            lg: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
             /**
              * 对应页面宽度≥1200px的响应式断点
              */
-            xl: PropTypes.oneOfType([
-                PropTypes.number,
-                PropTypes.string
-            ]),
+            xl: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
             /**
              * 对应页面宽度≥1600px的响应式断点
              */
-            xxl: PropTypes.oneOfType([
-                PropTypes.number,
-                PropTypes.string
-            ])
-        })
+            xxl: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+        }),
     ]),
 
     /**
@@ -488,8 +490,19 @@ AntdModal.propTypes = {
      * 默认值：`'zoom'`
      */
     transitionType: PropTypes.oneOf([
-        'none', 'fade', 'zoom', 'zoom-big', 'zoom-big-fast', 'slide-up',
-        'slide-down', 'slide-left', 'slide-right', 'move-up', 'move-down', 'move-left', 'move-right'
+        'none',
+        'fade',
+        'zoom',
+        'zoom-big',
+        'zoom-big-fast',
+        'slide-up',
+        'slide-down',
+        'slide-left',
+        'slide-right',
+        'move-up',
+        'move-down',
+        'move-left',
+        'move-right',
     ]),
 
     /**
@@ -524,7 +537,7 @@ AntdModal.propTypes = {
      * Dash-assigned callback that should be called to report property changes
      * to Dash, to make them available for callbacks.
      */
-    setProps: PropTypes.func
+    setProps: PropTypes.func,
 };
 
 export default AntdModal;

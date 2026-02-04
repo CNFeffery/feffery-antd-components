@@ -1,7 +1,12 @@
 import React, { Suspense } from 'react';
 import PropTypes from 'prop-types';
 
-const LazyAntdForm = React.lazy(() => import(/* webpackChunkName: "data_entry" */ '../../../fragments/dataEntry/form/AntdForm.react'));
+const LazyAntdForm = React.lazy(
+    () =>
+        import(
+            /* webpackChunkName: "data_entry" */ '../../../fragments/dataEntry/form/AntdForm.react'
+        )
+);
 
 /**
  * 表单组件AntdForm
@@ -28,8 +33,8 @@ const AntdForm = ({
 }) => {
     return (
         <Suspense fallback={null}>
-            <LazyAntdForm {
-                ...{
+            <LazyAntdForm
+                {...{
                     id,
                     children,
                     className,
@@ -47,12 +52,12 @@ const AntdForm = ({
                     helps,
                     tooltips,
                     setProps,
-                    ...others
-                }
-            } />
+                    ...others,
+                }}
+            />
         </Suspense>
     );
-}
+};
 
 AntdForm.propTypes = {
     /**
@@ -78,10 +83,7 @@ AntdForm.propTypes = {
     /**
      * 当前组件css类名，支持[动态css](/advanced-classname)
      */
-    className: PropTypes.oneOfType([
-        PropTypes.string,
-        PropTypes.object
-    ]),
+    className: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
 
     /**
      * 表单布局模式，可选项有`'horizontal'`、`'vertical'`、`'inline'`
@@ -104,10 +106,7 @@ AntdForm.propTypes = {
         /**
          * 同css中的flex属性，用于更灵活的控制标签部分所占宽度
          */
-        flex: PropTypes.oneOfType([
-            PropTypes.string,
-            PropTypes.number
-        ])
+        flex: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
     }),
 
     /**
@@ -125,10 +124,7 @@ AntdForm.propTypes = {
         /**
          * 同css中的flex属性，用于更灵活的控制控件部分所占宽度
          */
-        flex: PropTypes.oneOfType([
-            PropTypes.string,
-            PropTypes.number
-        ])
+        flex: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
     }),
 
     /**
@@ -193,7 +189,7 @@ AntdForm.propTypes = {
      * Dash-assigned callback that should be called to report property changes
      * to Dash, to make them available for callbacks.
      */
-    setProps: PropTypes.func
+    setProps: PropTypes.func,
 };
 
 export default AntdForm;

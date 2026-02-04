@@ -23,32 +23,33 @@ const AntdSplitter = ({
     setProps,
     ...others
 }) => {
-
     return (
         <Splitter
             // 提取具有data-*或aria-*通配格式的属性
-            {...pickBy((_, k) => k.startsWith('data-') || k.startsWith('aria-'), others)}
+            {...pickBy(
+                (_, k) => k.startsWith('data-') || k.startsWith('aria-'),
+                others
+            )}
             id={id}
             className={
-                isString(className) ?
-                    className :
-                    (className ? useCss(className) : undefined)
+                isString(className)
+                    ? className
+                    : className
+                      ? useCss(className)
+                      : undefined
             }
             style={style}
             key={key}
             layout={layout}
             lazy={lazy}
-            data-dash-is-loading={useLoading()}>
-            {
-                (items || []).map(
-                    (item, index) => (
-                        <Splitter.Panel key={index} {...item} />
-                    )
-                )
-            }
+            data-dash-is-loading={useLoading()}
+        >
+            {(items || []).map((item, index) => (
+                <Splitter.Panel key={index} {...item} />
+            ))}
         </Splitter>
     );
-}
+};
 
 AntdSplitter.propTypes = {
     /**
@@ -69,10 +70,7 @@ AntdSplitter.propTypes = {
     /**
      * 当前组件css类名，支持[动态css](/advanced-classname)
      */
-    className: PropTypes.oneOfType([
-        PropTypes.string,
-        PropTypes.object
-    ]),
+    className: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
 
     /**
      * 布局方向，可选项有`'horizontal'`、`'vertical'`
@@ -106,29 +104,20 @@ AntdSplitter.propTypes = {
              */
             defaultSize: PropTypes.oneOfType([
                 PropTypes.number,
-                PropTypes.string
+                PropTypes.string,
             ]),
             /**
              * 面板尺寸，支持数字`px`或者文字`'百分比%'`类型
              */
-            size: PropTypes.oneOfType([
-                PropTypes.number,
-                PropTypes.string
-            ]),
+            size: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
             /**
              * 最小尺寸，支持数字`px`或者文字`'百分比%'`类型
              */
-            min: PropTypes.oneOfType([
-                PropTypes.number,
-                PropTypes.string
-            ]),
+            min: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
             /**
              * 最大尺寸，支持数字`px`或者文字`'百分比%'`类型
              */
-            max: PropTypes.oneOfType([
-                PropTypes.number,
-                PropTypes.string
-            ]),
+            max: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
             /**
              * 是否可折叠
              * 默认值：`false`
@@ -137,8 +126,8 @@ AntdSplitter.propTypes = {
                 PropTypes.bool,
                 PropTypes.shape({
                     start: PropTypes.bool,
-                    end: PropTypes.bool
-                })
+                    end: PropTypes.bool,
+                }),
             ]),
             /**
              * 是否开启拖拽伸缩
@@ -168,7 +157,7 @@ AntdSplitter.propTypes = {
      * Dash-assigned callback that should be called to report property changes
      * to Dash, to make them available for callbacks.
      */
-    setProps: PropTypes.func
+    setProps: PropTypes.func,
 };
 
 export default AntdSplitter;

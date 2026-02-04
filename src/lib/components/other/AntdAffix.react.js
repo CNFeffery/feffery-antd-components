@@ -25,31 +25,35 @@ const AntdAffix = ({
     setProps,
     ...others
 }) => {
-
-    children = parseChildrenToArray(children)
+    children = parseChildrenToArray(children);
 
     return (
         <Affix
             // 提取具有data-*或aria-*通配格式的属性
-            {...pickBy((_, k) => k.startsWith('data-') || k.startsWith('aria-'), others)}
+            {...pickBy(
+                (_, k) => k.startsWith('data-') || k.startsWith('aria-'),
+                others
+            )}
             id={id}
             className={
-                isString(className) ?
-                    className :
-                    (className ? useCss(className) : undefined)
+                isString(className)
+                    ? className
+                    : className
+                      ? useCss(className)
+                      : undefined
             }
             style={style}
             key={key}
             offsetBottom={offsetBottom}
             offsetTop={offsetTop}
-            target={() => target ? document.getElementById(target) : window}
+            target={() => (target ? document.getElementById(target) : window)}
             onChange={(e) => setProps({ affixed: e })}
             data-dash-is-loading={useLoading()}
         >
             {children}
         </Affix>
     );
-}
+};
 
 AntdAffix.propTypes = {
     /**
@@ -75,10 +79,7 @@ AntdAffix.propTypes = {
     /**
      * 当前组件css类名，支持[动态css](/advanced-classname)
      */
-    className: PropTypes.oneOfType([
-        PropTypes.string,
-        PropTypes.object
-    ]),
+    className: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
 
     /**
      * 触发固钉效果的视窗底部距离像素阈值
@@ -115,7 +116,7 @@ AntdAffix.propTypes = {
      * Dash-assigned callback that should be called to report property changes
      * to Dash, to make them available for callbacks.
      */
-    setProps: PropTypes.func
+    setProps: PropTypes.func,
 };
 
 export default AntdAffix;

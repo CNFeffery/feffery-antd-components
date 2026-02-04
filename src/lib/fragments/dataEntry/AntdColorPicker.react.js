@@ -16,7 +16,10 @@ import FormContext from '../../contexts/FormContext';
 // 状态管理
 import useFormStore from '../../store/formStore';
 // 参数类型
-import { propTypes, defaultProps } from '../../components/dataEntry/AntdColorPicker.react';
+import {
+    propTypes,
+    defaultProps,
+} from '../../components/dataEntry/AntdColorPicker.react';
 
 /**
  * 颜色选择器组件AntdColorPicker
@@ -50,50 +53,60 @@ const AntdColorPicker = (props) => {
 
     const parseLinearGradient = (gradient) => {
         const matches = gradient.match(/\brgb\([^)]*\)\s*(\d+%?)/g);
-        if (!matches) return [];
+        if (!matches) {
+            return [];
+        }
 
-        // 处理匹配项，确保每个颜色后面都有百分比  
-        let colors = [];
+        // 处理匹配项，确保每个颜色后面都有百分比
+        const colors = [];
         let lastPercent = 0;
         matches.forEach((match, index) => {
             const [color, percentStr] = match.split(/\s+/);
             let percent = parseInt(percentStr.replace('%', ''), 10);
 
-            // 如果百分比缺失，使用上一个百分比或100%（如果是最后一个元素）  
+            // 如果百分比缺失，使用上一个百分比或100%（如果是最后一个元素）
             if (isNaN(percent)) {
-                percent = (index === matches.length - 1) ? 100 : lastPercent;
+                percent = index === matches.length - 1 ? 100 : lastPercent;
             }
 
-            // 更新最后使用的百分比  
+            // 更新最后使用的百分比
             lastPercent = percent;
 
-            // 添加到结果数组中  
+            // 添加到结果数组中
             colors.push({ color: color, percent: percent });
         });
 
         return colors;
-    }
+    };
 
     const parseValue = (parseString) => {
-        return parseString?.startsWith('linear-gradient') ? parseLinearGradient(parseString) : parseString?.toLowerCase()
-    }
+        return parseString?.startsWith('linear-gradient')
+            ? parseLinearGradient(parseString)
+            : parseString?.toLowerCase();
+    };
 
     const [formatColor, setFormatColor] = useState({});
 
-    const context = useContext(PropsContext)
-    locale = (context && context.locale) || locale
+    const context = useContext(PropsContext);
+    locale = (context && context.locale) || locale;
 
-    const formId = useContext(FormContext)
+    const formId = useContext(FormContext);
 
-    const updateItemValue = useFormStore((state) => state.updateItemValue)
-    const deleteItemValue = useFormStore((state) => state.deleteItemValue)
+    const updateItemValue = useFormStore((state) => state.updateItemValue);
+    const deleteItemValue = useFormStore((state) => state.deleteItemValue);
 
     // 收集当前组件相关表单值
-    const currentFormValue = useFormStore(state => state.values?.[formId]?.[name || id])
+    const currentFormValue = useFormStore(
+        (state) => state.values?.[formId]?.[name || id]
+    );
 
     const _defaultValue = useMemo(() => {
-        return defaultValue ? defaultValue : (mode === 'gradient' ? 'linear-gradient(90deg, rgb(22,119,255) 0%, rgb(22,119,255) 100%)' : '#1677ff')
-    }, [])
+        return defaultValue
+            ? defaultValue
+            : mode === 'gradient'
+              ? 'linear-gradient(90deg, rgb(22,119,255) 0%, rgb(22,119,255) 100%)'
+              : '#1677ff';
+    }, []);
 
     useEffect(() => {
         // 初始化value
@@ -101,22 +114,22 @@ const AntdColorPicker = (props) => {
             // 当_defaultValue不为空且value为空时，为value初始化_defaultValue对应的value值
             setProps({
                 value: _defaultValue,
-            })
+            });
         }
-        let _value = parseValue(_defaultValue || value);
+        const _value = parseValue(_defaultValue || value);
         let color;
         if (isArray(_value)) {
-            color = _value[0].color
+            color = _value[0].color;
         } else {
-            color = _value
+            color = _value;
         }
-        let _color = new Color(color);
+        const _color = new Color(color);
         setFormatColor({
             hex: _color.toHexString()?.toLowerCase(),
             rgb: _color.toRgbString()?.toLowerCase(),
-            hsb: _color.toHsbString()?.toLowerCase()
-        })
-    }, [])
+            hsb: _color.toHsbString()?.toLowerCase(),
+        });
+    }, []);
 
     // 处理组件卸载后，对应表单项值的清除
     useEffect(() => {
@@ -124,37 +137,43 @@ const AntdColorPicker = (props) => {
             // 若上文中存在有效表单id
             if (formId && (name || id) && enableBatchControl) {
                 // 表单值更新
-                deleteItemValue(formId, name || id)
+                deleteItemValue(formId, name || id);
             }
-        }
-    }, [name, id])
+        };
+    }, [name, id]);
 
     // 每次format发生变更时，同步更新value值
     const onFormatChange = (_format) => {
-        setProps({ format: _format })
+        setProps({ format: _format });
         if (value) {
             setProps({
-                value: _format === 'hex' ?
-                    formatColor.hex :
-                    (
-                        _format === 'rgb' ?
-                            formatColor.rgb :
-                            formatColor.hsb
-                    )
-            })
+                value:
+                    _format === 'hex'
+                        ? formatColor.hex
+                        : _format === 'rgb'
+                          ? formatColor.rgb
+                          : formatColor.hsb,
+            });
         }
-    }
+    };
 
     return (
-        <ConfigProvider locale={locale !== 'en-us' ? str2Locale.get(locale) : undefined}>
+        <ConfigProvider
+            locale={locale !== 'en-us' ? str2Locale.get(locale) : undefined}
+        >
             <ColorPicker
                 // 提取具有data-*或aria-*通配格式的属性
-                {...pickBy((_, k) => k.startsWith('data-') || k.startsWith('aria-'), others)}
+                {...pickBy(
+                    (_, k) => k.startsWith('data-') || k.startsWith('aria-'),
+                    others
+                )}
                 id={id}
                 className={
-                    isString(className) ?
-                        className :
-                        (className ? useCss(className) : undefined)
+                    isString(className)
+                        ? className
+                        : className
+                          ? useCss(className)
+                          : undefined
                 }
                 style={style}
                 key={key}
@@ -162,16 +181,16 @@ const AntdColorPicker = (props) => {
                 arrow={arrow}
                 defaultValue={parseValue(_defaultValue)}
                 value={
-                    formId && (name || id) && enableBatchControl ?
-                        parseValue(currentFormValue) :
-                        parseValue(value)
+                    formId && (name || id) && enableBatchControl
+                        ? parseValue(currentFormValue)
+                        : parseValue(value)
                 }
                 format={format}
                 mode={mode}
                 disabled={
-                    context && !isUndefined(context.componentDisabled) ?
-                        context.componentDisabled :
-                        disabled
+                    context && !isUndefined(context.componentDisabled)
+                        ? context.componentDisabled
+                        : disabled
                 }
                 disabledAlpha={disabledAlpha}
                 open={open}
@@ -189,55 +208,45 @@ const AntdColorPicker = (props) => {
                         updateItemValue(
                             formId,
                             name || id,
-                            (
-                                has(e, 'colors') ?
-                                    e.toCssString() :
-                                    (
-                                        format === 'hex' ?
-                                            e.toHexString() :
-                                            (
-                                                format === 'rgb' ?
-                                                    e.toRgbString() :
-                                                    e.toHsbString()
-                                            )
-                                    )
+                            (has(e, 'colors')
+                                ? e.toCssString()
+                                : format === 'hex'
+                                  ? e.toHexString()
+                                  : format === 'rgb'
+                                    ? e.toRgbString()
+                                    : e.toHsbString()
                             )?.toLowerCase()
-                        )
+                        );
                     }
                     setProps({
-                        value: (
-                            has(e, 'colors') ?
-                                e.toCssString() :
-                                (
-                                    format === 'hex' ?
-                                        e.toHexString() :
-                                        (
-                                            format === 'rgb' ?
-                                                e.toRgbString() :
-                                                e.toHsbString()
-                                        )
-                                )
-                        )?.toLowerCase()
-                    })
+                        value: (has(e, 'colors')
+                            ? e.toCssString()
+                            : format === 'hex'
+                              ? e.toHexString()
+                              : format === 'rgb'
+                                ? e.toRgbString()
+                                : e.toHsbString()
+                        )?.toLowerCase(),
+                    });
                     setFormatColor({
                         hex: e.toHexString()?.toLowerCase(),
                         rgb: e.toRgbString()?.toLowerCase(),
-                        hsb: e.toHsbString()?.toLowerCase()
-                        ,
-                    })
+                        hsb: e.toHsbString()?.toLowerCase(),
+                    });
                 }}
                 onClear={() => {
                     // AntdForm表单批量控制
                     if (formId && (name || id) && enableBatchControl) {
                         // 表单值更新
-                        updateItemValue(formId, name || id, null)
+                        updateItemValue(formId, name || id, null);
                     }
-                    setProps({ value: null })
+                    setProps({ value: null });
                 }}
-                data-dash-is-loading={useLoading()} />
+                data-dash-is-loading={useLoading()}
+            />
         </ConfigProvider>
     );
-}
+};
 
 export default AntdColorPicker;
 

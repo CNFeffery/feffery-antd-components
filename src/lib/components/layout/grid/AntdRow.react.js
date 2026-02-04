@@ -25,18 +25,22 @@ const AntdRow = ({
     setProps,
     ...others
 }) => {
-
-    children = parseChildrenToArray(children)
+    children = parseChildrenToArray(children);
 
     return (
         <Row
             // 提取具有data-*或aria-*通配格式的属性
-            {...pickBy((_, k) => k.startsWith('data-') || k.startsWith('aria-'), others)}
+            {...pickBy(
+                (_, k) => k.startsWith('data-') || k.startsWith('aria-'),
+                others
+            )}
             id={id}
             className={
-                isString(className) ?
-                    className :
-                    (className ? useCss(className) : undefined)
+                isString(className)
+                    ? className
+                    : className
+                      ? useCss(className)
+                      : undefined
             }
             style={style}
             key={key}
@@ -44,11 +48,12 @@ const AntdRow = ({
             gutter={gutter}
             justify={justify}
             wrap={wrap}
-            data-dash-is-loading={useLoading()}>
+            data-dash-is-loading={useLoading()}
+        >
             {children}
         </Row>
     );
-}
+};
 
 AntdRow.propTypes = {
     /**
@@ -74,10 +79,7 @@ AntdRow.propTypes = {
     /**
      * 当前组件css类名，支持[动态css](/advanced-classname)
      */
-    className: PropTypes.oneOfType([
-        PropTypes.string,
-        PropTypes.object
-    ]),
+    className: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
 
     /**
      * 竖直方向对齐方式，可选项有`'top'`、`'middle'`、`'bottom'`
@@ -115,8 +117,8 @@ AntdRow.propTypes = {
             /**
              * 页面宽度大于等于1600px时的水平像素间隔
              */
-            xxl: PropTypes.number
-        })
+            xxl: PropTypes.number,
+        }),
     ]),
 
     /**
@@ -124,7 +126,11 @@ AntdRow.propTypes = {
      * 默认值：`'start'`
      */
     justify: PropTypes.oneOf([
-        'start', 'end', 'center', 'space-around', 'space-between'
+        'start',
+        'end',
+        'center',
+        'space-around',
+        'space-between',
     ]),
 
     /**
@@ -147,7 +153,7 @@ AntdRow.propTypes = {
      * Dash-assigned callback that should be called to report property changes
      * to Dash, to make them available for callbacks.
      */
-    setProps: PropTypes.func
+    setProps: PropTypes.func,
 };
 
 export default AntdRow;

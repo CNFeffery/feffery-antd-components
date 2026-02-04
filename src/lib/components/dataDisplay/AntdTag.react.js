@@ -1,7 +1,12 @@
 import React, { Suspense } from 'react';
 import PropTypes from 'prop-types';
 
-const LazyAntdTag = React.lazy(() => import(/* webpackChunkName: "data_display" */ '../../fragments/dataDisplay/AntdTag.react'));
+const LazyAntdTag = React.lazy(
+    () =>
+        import(
+            /* webpackChunkName: "data_display" */ '../../fragments/dataDisplay/AntdTag.react'
+        )
+);
 
 /**
  * 标签组件AntdTag
@@ -24,8 +29,8 @@ const AntdTag = ({
 }) => {
     return (
         <Suspense fallback={null}>
-            <LazyAntdTag {
-                ...{
+            <LazyAntdTag
+                {...{
                     id,
                     className,
                     style,
@@ -39,12 +44,12 @@ const AntdTag = ({
                     closeIcon,
                     closeCounts,
                     setProps,
-                    ...others
-                }
-            } />
+                    ...others,
+                }}
+            />
         </Suspense>
     );
-}
+};
 
 AntdTag.propTypes = {
     /**
@@ -65,10 +70,7 @@ AntdTag.propTypes = {
     /**
      * 当前组件css类名，支持[动态css](/advanced-classname)
      */
-    className: PropTypes.oneOfType([
-        PropTypes.string,
-        PropTypes.object
-    ]),
+    className: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
 
     /**
      * 组件型，标签内容
@@ -127,7 +129,7 @@ AntdTag.propTypes = {
      * Dash-assigned callback that should be called to report property changes
      * to Dash, to make them available for callbacks.
      */
-    setProps: PropTypes.func
+    setProps: PropTypes.func,
 };
 
 export default AntdTag;

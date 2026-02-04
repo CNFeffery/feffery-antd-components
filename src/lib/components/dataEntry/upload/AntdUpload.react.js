@@ -1,7 +1,12 @@
 import React, { Suspense } from 'react';
 import PropTypes from 'prop-types';
 
-const LazyAntdUpload = React.lazy(() => import(/* webpackChunkName: "upload" */ '../../../fragments/upload/AntdUpload.react'));
+const LazyAntdUpload = React.lazy(
+    () =>
+        import(
+            /* webpackChunkName: "upload" */ '../../../fragments/upload/AntdUpload.react'
+        )
+);
 
 /**
  * 文件上传组件AntdUpload
@@ -48,8 +53,8 @@ const AntdUpload = ({
 }) => {
     return (
         <Suspense fallback={null}>
-            <LazyAntdUpload {
-                ...{
+            <LazyAntdUpload
+                {...{
                     id,
                     className,
                     style,
@@ -87,12 +92,12 @@ const AntdUpload = ({
                     disabled,
                     status,
                     setProps,
-                    ...others
-                }
-            } />
+                    ...others,
+                }}
+            />
         </Suspense>
     );
-}
+};
 
 AntdUpload.propTypes = {
     /**
@@ -113,10 +118,7 @@ AntdUpload.propTypes = {
     /**
      * 当前组件css类名，支持[动态css](/advanced-classname)
      */
-    className: PropTypes.oneOfType([
-        PropTypes.string,
-        PropTypes.object
-    ]),
+    className: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
 
     /**
      * 配合`AntdForm`表单批量值搜集/控制功能使用，充当当前表单项的字段名，以`id`作为缺省值
@@ -212,7 +214,14 @@ AntdUpload.propTypes = {
          * 按钮类型，可选项有`'default'`、`'primary'`、`'ghost'`、`'dashed'`、`'link'`、`'text'`
          * 默认值：`'default'`
          */
-        type: PropTypes.oneOf(['primary', 'ghost', 'dashed', 'link', 'text', 'default']),
+        type: PropTypes.oneOf([
+            'primary',
+            'ghost',
+            'dashed',
+            'link',
+            'text',
+            'default',
+        ]),
 
         /**
          * 按钮是否渲染危险状态
@@ -234,7 +243,7 @@ AntdUpload.propTypes = {
         /**
          * 按钮css类名
          */
-        className: PropTypes.string
+        className: PropTypes.string,
     }),
 
     /**
@@ -303,8 +312,8 @@ AntdUpload.propTypes = {
                 /**
                  * 渐变色结束颜色
                  */
-                to: PropTypes.string
-            })
+                to: PropTypes.string,
+            }),
         ]),
         /**
          * 进度条像素宽度
@@ -322,8 +331,8 @@ AntdUpload.propTypes = {
              * 进度文字后缀内容
              * 默认值：`'%'`
              */
-            suffix: PropTypes.string
-        })
+            suffix: PropTypes.string,
+        }),
     }),
 
     /**
@@ -377,7 +386,7 @@ AntdUpload.propTypes = {
             /**
              * 上传任务的接口响应信息
              */
-            uploadResponse: PropTypes.any
+            uploadResponse: PropTypes.any,
         }),
         PropTypes.arrayOf(
             PropTypes.exact({
@@ -408,9 +417,9 @@ AntdUpload.propTypes = {
                 /**
                  * 上传任务的接口响应信息
                  */
-                uploadResponse: PropTypes.any
+                uploadResponse: PropTypes.any,
             })
-        )
+        ),
     ]),
 
     /**
@@ -453,7 +462,7 @@ AntdUpload.propTypes = {
             /**
              * 当`withOriginFileObj=True`时，监听当前文件上传任务对应的`originFileObj`主要信息
              */
-            originFileObj: PropTypes.any
+            originFileObj: PropTypes.any,
         })
     ),
 
@@ -485,7 +494,7 @@ AntdUpload.propTypes = {
             /**
              * 当前文件大小
              */
-            fileSize: PropTypes.number
+            fileSize: PropTypes.number,
         })
     ),
 
@@ -522,14 +531,14 @@ AntdUpload.propTypes = {
         /**
          * Holds the name of the component that is loading
          */
-        component_name: PropTypes.string
+        component_name: PropTypes.string,
     }),
 
     /**
      * Dash-assigned callback that should be called to report property changes
      * to Dash, to make them available for callbacks.
      */
-    setProps: PropTypes.func
+    setProps: PropTypes.func,
 };
 
 export default AntdUpload;

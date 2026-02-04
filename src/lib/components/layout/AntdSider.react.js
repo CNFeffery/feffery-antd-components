@@ -31,22 +31,26 @@ const AntdSider = ({
     setProps,
     ...others
 }) => {
-
-    const onCollapse = collapsed => {
+    const onCollapse = (collapsed) => {
         setProps({ collapsed });
     };
 
-    children = parseChildrenToArray(children)
+    children = parseChildrenToArray(children);
 
     return (
         <Sider
             // 提取具有data-*或aria-*通配格式的属性
-            {...pickBy((_, k) => k.startsWith('data-') || k.startsWith('aria-'), others)}
+            {...pickBy(
+                (_, k) => k.startsWith('data-') || k.startsWith('aria-'),
+                others
+            )}
             id={id}
             className={
-                isString(className) ?
-                    className :
-                    (className ? useCss(className) : undefined)
+                isString(className)
+                    ? className
+                    : className
+                      ? useCss(className)
+                      : undefined
             }
             style={style}
             key={key}
@@ -59,11 +63,12 @@ const AntdSider = ({
             trigger={trigger}
             breakpoint={breakpoint}
             onCollapse={onCollapse}
-            data-dash-is-loading={useLoading()}>
+            data-dash-is-loading={useLoading()}
+        >
             {children}
         </Sider>
     );
-}
+};
 
 AntdSider.propTypes = {
     /**
@@ -89,10 +94,7 @@ AntdSider.propTypes = {
     /**
      * 当前组件css类名，支持[动态css](/advanced-classname)
      */
-    className: PropTypes.oneOfType([
-        PropTypes.string,
-        PropTypes.object
-    ]),
+    className: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
 
     /**
      * 当前是否收起
@@ -128,10 +130,7 @@ AntdSider.propTypes = {
      * 侧边栏像素宽度
      * 默认值：`200`
      */
-    width: PropTypes.oneOfType([
-        PropTypes.number,
-        PropTypes.string
-    ]),
+    width: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
 
     /**
      * 设置为`None`时不渲染自带的特殊触发组件
@@ -157,7 +156,7 @@ AntdSider.propTypes = {
      * Dash-assigned callback that should be called to report property changes
      * to Dash, to make them available for callbacks.
      */
-    setProps: PropTypes.func
+    setProps: PropTypes.func,
 };
 
 export default AntdSider;

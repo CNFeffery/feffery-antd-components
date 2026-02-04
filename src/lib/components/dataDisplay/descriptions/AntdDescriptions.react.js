@@ -1,7 +1,12 @@
 import React, { Suspense } from 'react';
 import PropTypes from 'prop-types';
 
-const LazyAntdDescriptions = React.lazy(() => import(/* webpackChunkName: "data_display" */ '../../../fragments/dataDisplay/descriptions/AntdDescriptions.react'));
+const LazyAntdDescriptions = React.lazy(
+    () =>
+        import(
+            /* webpackChunkName: "data_display" */ '../../../fragments/dataDisplay/descriptions/AntdDescriptions.react'
+        )
+);
 
 /**
  * 描述列表组件AntdDescriptions
@@ -26,8 +31,8 @@ const AntdDescriptions = ({
 }) => {
     return (
         <Suspense fallback={null}>
-            <LazyAntdDescriptions {
-                ...{
+            <LazyAntdDescriptions
+                {...{
                     id,
                     children,
                     className,
@@ -43,12 +48,12 @@ const AntdDescriptions = ({
                     layout,
                     extra,
                     setProps,
-                    ...others
-                }
-            } />
+                    ...others,
+                }}
+            />
         </Suspense>
     );
-}
+};
 
 AntdDescriptions.propTypes = {
     /**
@@ -74,10 +79,7 @@ AntdDescriptions.propTypes = {
     /**
      * 当前组件css类名，支持[动态css](/advanced-classname)
      */
-    className: PropTypes.oneOfType([
-        PropTypes.string,
-        PropTypes.object
-    ]),
+    className: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
 
     /**
      * 细分控制子元素css样式
@@ -106,7 +108,7 @@ AntdDescriptions.propTypes = {
         /**
          * 内容元素css样式
          */
-        content: PropTypes.object
+        content: PropTypes.object,
     }),
 
     /**
@@ -136,7 +138,7 @@ AntdDescriptions.propTypes = {
         /**
          * 内容元素css类名
          */
-        content: PropTypes.string
+        content: PropTypes.string,
     }),
 
     /**
@@ -154,7 +156,7 @@ AntdDescriptions.propTypes = {
              */
             span: PropTypes.oneOfType([
                 PropTypes.number,
-                PropTypes.oneOf(['filled'])
+                PropTypes.oneOf(['filled']),
             ]),
             /**
              * 组件型，子项内容
@@ -167,7 +169,7 @@ AntdDescriptions.propTypes = {
             /**
              * 子项css类名
              */
-            className: PropTypes.string
+            className: PropTypes.string,
         })
     ),
 
@@ -188,8 +190,8 @@ AntdDescriptions.propTypes = {
             lg: PropTypes.number,
             md: PropTypes.number,
             sm: PropTypes.number,
-            xs: PropTypes.number
-        })
+            xs: PropTypes.number,
+        }),
     ]),
 
     /**
@@ -229,7 +231,7 @@ AntdDescriptions.propTypes = {
      * Dash-assigned callback that should be called to report property changes
      * to Dash, to make them available for callbacks.
      */
-    setProps: PropTypes.func
+    setProps: PropTypes.func,
 };
 
 export default AntdDescriptions;

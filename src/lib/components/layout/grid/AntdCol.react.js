@@ -33,18 +33,22 @@ const AntdCol = ({
     setProps,
     ...others
 }) => {
-
-    children = parseChildrenToArray(children)
+    children = parseChildrenToArray(children);
 
     return (
         <Col
             // 提取具有data-*或aria-*通配格式的属性
-            {...pickBy((_, k) => k.startsWith('data-') || k.startsWith('aria-'), others)}
+            {...pickBy(
+                (_, k) => k.startsWith('data-') || k.startsWith('aria-'),
+                others
+            )}
             id={id}
             className={
-                isString(className) ?
-                    className :
-                    (className ? useCss(className) : undefined)
+                isString(className)
+                    ? className
+                    : className
+                      ? useCss(className)
+                      : undefined
             }
             style={{ height: '100%', ...style }}
             key={key}
@@ -60,11 +64,12 @@ const AntdCol = ({
             lg={lg}
             xl={xl}
             xxl={xxl}
-            data-dash-is-loading={useLoading()}>
+            data-dash-is-loading={useLoading()}
+        >
             {children}
         </Col>
     );
-}
+};
 
 AntdCol.propTypes = {
     /**
@@ -90,10 +95,7 @@ AntdCol.propTypes = {
     /**
      * 当前组件css类名，支持[动态css](/advanced-classname)
      */
-    className: PropTypes.oneOfType([
-        PropTypes.string,
-        PropTypes.object
-    ]),
+    className: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
 
     /**
      * 列所占宽度份数
@@ -127,10 +129,7 @@ AntdCol.propTypes = {
     /**
      * 同css中的flex
      */
-    flex: PropTypes.oneOfType([
-        PropTypes.string,
-        PropTypes.number
-    ]),
+    flex: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
 
     /**
      * 配置列在页面宽度小于567px时的布局参数，传入数值型时代表span参数，传入字典时分别设置各布局参数
@@ -161,8 +160,8 @@ AntdCol.propTypes = {
             /**
              * 同push参数
              */
-            push: PropTypes.number
-        })
+            push: PropTypes.number,
+        }),
     ]),
 
     /**
@@ -194,8 +193,8 @@ AntdCol.propTypes = {
             /**
              * 同push参数
              */
-            push: PropTypes.number
-        })
+            push: PropTypes.number,
+        }),
     ]),
 
     /**
@@ -227,8 +226,8 @@ AntdCol.propTypes = {
             /**
              * 同push参数
              */
-            push: PropTypes.number
-        })
+            push: PropTypes.number,
+        }),
     ]),
 
     /**
@@ -260,8 +259,8 @@ AntdCol.propTypes = {
             /**
              * 同push参数
              */
-            push: PropTypes.number
-        })
+            push: PropTypes.number,
+        }),
     ]),
 
     /**
@@ -293,8 +292,8 @@ AntdCol.propTypes = {
             /**
              * 同push参数
              */
-            push: PropTypes.number
-        })
+            push: PropTypes.number,
+        }),
     ]),
 
     /**
@@ -326,8 +325,8 @@ AntdCol.propTypes = {
             /**
              * 同push参数
              */
-            push: PropTypes.number
-        })
+            push: PropTypes.number,
+        }),
     ]),
 
     /**
@@ -344,7 +343,7 @@ AntdCol.propTypes = {
      * Dash-assigned callback that should be called to report property changes
      * to Dash, to make them available for callbacks.
      */
-    setProps: PropTypes.func
+    setProps: PropTypes.func,
 };
 
 export default AntdCol;

@@ -21,23 +21,27 @@ const AntdSkeletonImage = ({
     setProps,
     ...others
 }) => {
-
     return (
         <Skeleton.Image
             // 提取具有data-*或aria-*通配格式的属性
-            {...pickBy((_, k) => k.startsWith('data-') || k.startsWith('aria-'), others)}
+            {...pickBy(
+                (_, k) => k.startsWith('data-') || k.startsWith('aria-'),
+                others
+            )}
             id={id}
             style={style}
             className={
-                isString(className) ?
-                    className :
-                    (className ? useCss(className) : undefined)
+                isString(className)
+                    ? className
+                    : className
+                      ? useCss(className)
+                      : undefined
             }
             key={key}
             data-dash-is-loading={useLoading()}
         />
     );
-}
+};
 
 AntdSkeletonImage.propTypes = {
     /**
@@ -58,10 +62,7 @@ AntdSkeletonImage.propTypes = {
     /**
      * 当前组件css类名，支持[动态css](/advanced-classname)
      */
-    className: PropTypes.oneOfType([
-        PropTypes.string,
-        PropTypes.object
-    ]),
+    className: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
 
     /**
      * `data-*`格式属性通配
@@ -77,7 +78,7 @@ AntdSkeletonImage.propTypes = {
      * Dash-assigned callback that should be called to report property changes
      * to Dash, to make them available for callbacks.
      */
-    setProps: PropTypes.func
+    setProps: PropTypes.func,
 };
 
 export default AntdSkeletonImage;

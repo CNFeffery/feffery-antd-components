@@ -1,7 +1,12 @@
 import React, { Suspense } from 'react';
 import PropTypes from 'prop-types';
 
-const LazyAntdRate = React.lazy(() => import(/* webpackChunkName: "data_entry" */ '../../fragments/dataEntry/AntdRate.react'));
+const LazyAntdRate = React.lazy(
+    () =>
+        import(
+            /* webpackChunkName: "data_entry" */ '../../fragments/dataEntry/AntdRate.react'
+        )
+);
 
 /**
  * 评分组件AntdRate
@@ -30,8 +35,8 @@ const AntdRate = ({
 }) => {
     return (
         <Suspense fallback={null}>
-            <LazyAntdRate {
-                ...{
+            <LazyAntdRate
+                {...{
                     id,
                     className,
                     style,
@@ -51,12 +56,12 @@ const AntdRate = ({
                     persisted_props,
                     persistence_type,
                     batchPropsNames,
-                    ...others
-                }
-            } />
+                    ...others,
+                }}
+            />
         </Suspense>
     );
-}
+};
 
 AntdRate.propTypes = {
     /**
@@ -77,10 +82,7 @@ AntdRate.propTypes = {
     /**
      * 当前组件css类名，支持[动态css](/advanced-classname)
      */
-    className: PropTypes.oneOfType([
-        PropTypes.string,
-        PropTypes.object
-    ]),
+    className: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
 
     /**
      * 配合`AntdForm`表单批量值搜集/控制功能使用，充当当前表单项的字段名，以`id`作为缺省值
@@ -114,9 +116,7 @@ AntdRate.propTypes = {
     /**
      * 为各分值设置提示文字信息
      */
-    tooltips: PropTypes.arrayOf(
-        PropTypes.string
-    ),
+    tooltips: PropTypes.arrayOf(PropTypes.string),
 
     /**
      * 是否渲染为只读评分形式
@@ -173,7 +173,7 @@ AntdRate.propTypes = {
     persistence: PropTypes.oneOfType([
         PropTypes.bool,
         PropTypes.string,
-        PropTypes.number
+        PropTypes.number,
     ]),
 
     /**
@@ -186,13 +186,13 @@ AntdRate.propTypes = {
      * 属性持久化存储类型，可选项有`'local'`（本地持久化），`'session'`（会话持久化），`'memory'`（内存持久化）
      * 默认值：`'local'`
      */
-    persistence_type: PropTypes.oneOf(['local', 'session', 'memory'])
+    persistence_type: PropTypes.oneOf(['local', 'session', 'memory']),
 };
 
 AntdRate.dashPersistence = {
     persisted_props: ['value'],
-    persistence_type: 'local'
-}
+    persistence_type: 'local',
+};
 
 export default AntdRate;
 

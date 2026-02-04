@@ -10,7 +10,10 @@ import { pickBy } from 'ramda';
 // 自定义hooks
 import useCss from '../../hooks/useCss';
 // 参数类型
-import { propTypes, defaultProps } from '../../components/dataDisplay/AntdPopover.react';
+import {
+    propTypes,
+    defaultProps,
+} from '../../components/dataDisplay/AntdPopover.react';
 
 /**
  * 气泡卡片组件Popover
@@ -51,9 +54,9 @@ const AntdPopover = (props) => {
         return {
             pointAtCenter: true,
         };
-    }, [arrow])
+    }, [arrow]);
 
-    children = parseChildrenToArray(children)
+    children = parseChildrenToArray(children);
 
     if (!content) {
         return <>{children}</>;
@@ -62,22 +65,36 @@ const AntdPopover = (props) => {
     return (
         <Popover
             // 提取具有data-*或aria-*通配格式的属性
-            {...pickBy((_, k) => k.startsWith('data-') || k.startsWith('aria-'), others)}
+            {...pickBy(
+                (_, k) => k.startsWith('data-') || k.startsWith('aria-'),
+                others
+            )}
             id={id}
             className={
-                isString(className) ?
-                    className :
-                    (className ? useCss(className) : undefined)
+                isString(className)
+                    ? className
+                    : className
+                      ? useCss(className)
+                      : undefined
             }
             style={style}
             styles={styles}
             classNames={classNames}
             key={key}
-            title={(title && title.content) ?
-                <div>
-                    {<AntdIcon icon={title.prefixIcon} />}
-                    {<span style={{ marginLeft: '5px' }}>{title.content}</span>}
-                </div> : title}
+            title={
+                title && title.content ? (
+                    <div>
+                        {<AntdIcon icon={title.prefixIcon} />}
+                        {
+                            <span style={{ marginLeft: '5px' }}>
+                                {title.content}
+                            </span>
+                        }
+                    </div>
+                ) : (
+                    title
+                )
+            }
             content={content}
             placement={placement}
             color={color}
@@ -88,18 +105,18 @@ const AntdPopover = (props) => {
             arrow={arrowPoint}
             fresh={fresh}
             open={open}
-            onOpenChange={
-                permanent ? undefined : (e) => setProps({ open: e })
-            }
+            onOpenChange={permanent ? undefined : (e) => setProps({ open: e })}
             getPopupContainer={
-                popupContainer === 'parent' ?
-                    (triggerNode) => triggerNode.parentNode :
-                    undefined
+                popupContainer === 'parent'
+                    ? (triggerNode) => triggerNode.parentNode
+                    : undefined
             }
             data-dash-is-loading={useLoading()}
-        >{children}</Popover>
+        >
+            {children}
+        </Popover>
     );
-}
+};
 
 export default AntdPopover;
 

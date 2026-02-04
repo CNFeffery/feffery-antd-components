@@ -9,13 +9,16 @@ import { useLoading } from '../../components/utils';
 // 自定义hooks
 import useCss from '../../hooks/useCss';
 // 参数类型
-import { propTypes, defaultProps } from '../../components/dataDisplay/AntdCarousel.react';
+import {
+    propTypes,
+    defaultProps,
+} from '../../components/dataDisplay/AntdCarousel.react';
 
 /**
  * 走马灯组件AntdCarousel
  */
 const AntdCarousel = (props) => {
-    let {
+    const {
         id,
         children,
         className,
@@ -40,12 +43,17 @@ const AntdCarousel = (props) => {
     return (
         <Carousel
             // 提取具有data-*或aria-*通配格式的属性
-            {...pickBy((_, k) => k.startsWith('data-') || k.startsWith('aria-'), others)}
+            {...pickBy(
+                (_, k) => k.startsWith('data-') || k.startsWith('aria-'),
+                others
+            )}
             id={id}
             className={
-                isString(className) ?
-                    className :
-                    (className ? useCss(className) : undefined)
+                isString(className)
+                    ? className
+                    : className
+                      ? useCss(className)
+                      : undefined
             }
             style={style}
             key={key}
@@ -62,9 +70,17 @@ const AntdCarousel = (props) => {
             slidesToShow={slidesToShow}
             slidesToScroll={slidesToScroll}
             data-dash-is-loading={useLoading()}
-        >{(Array.isArray(children) ? children : [children]).map((child, i) => <div className='ant-carousel-item-wrapper' key={i}>{child}</div>)}</Carousel>
+        >
+            {(Array.isArray(children) ? children : [children]).map(
+                (child, i) => (
+                    <div className="ant-carousel-item-wrapper" key={i}>
+                        {child}
+                    </div>
+                )
+            )}
+        </Carousel>
     );
-}
+};
 
 export default AntdCarousel;
 

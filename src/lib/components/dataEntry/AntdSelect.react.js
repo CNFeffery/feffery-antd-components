@@ -1,7 +1,12 @@
 import React, { Suspense } from 'react';
 import PropTypes from 'prop-types';
 
-const LazyAntdSelect = React.lazy(() => import(/* webpackChunkName: "data_entry" */ '../../fragments/dataEntry/AntdSelect.react'));
+const LazyAntdSelect = React.lazy(
+    () =>
+        import(
+            /* webpackChunkName: "data_entry" */ '../../fragments/dataEntry/AntdSelect.react'
+        )
+);
 
 /**
  * 下拉选择组件AntdSelect
@@ -57,8 +62,8 @@ const AntdSelect = ({
 }) => {
     return (
         <Suspense fallback={null}>
-            <LazyAntdSelect {
-                ...{
+            <LazyAntdSelect
+                {...{
                     id,
                     style,
                     className,
@@ -105,12 +110,12 @@ const AntdSelect = ({
                     persisted_props,
                     persistence_type,
                     batchPropsNames,
-                    ...others
-                }
-            } />
+                    ...others,
+                }}
+            />
         </Suspense>
     );
-}
+};
 
 AntdSelect.propTypes = {
     /**
@@ -131,10 +136,7 @@ AntdSelect.propTypes = {
     /**
      * 当前组件css类名，支持[动态css](/advanced-classname)
      */
-    className: PropTypes.oneOfType([
-        PropTypes.string,
-        PropTypes.object
-    ]),
+    className: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
 
     /**
      * 展开菜单css类名
@@ -173,10 +175,8 @@ AntdSelect.propTypes = {
                 /**
                  * 当前选项值
                  */
-                value: PropTypes.oneOfType([
-                    PropTypes.string,
-                    PropTypes.number
-                ]).isRequired,
+                value: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
+                    .isRequired,
                 /**
                  * 是否禁用当前选项
                  * 默认值：`false`
@@ -185,7 +185,7 @@ AntdSelect.propTypes = {
                 /**
                  * 针对色带特殊渲染模式，设置生成渐变色带所需的色彩值数组
                  */
-                colors: PropTypes.arrayOf(PropTypes.string)
+                colors: PropTypes.arrayOf(PropTypes.string),
             }),
             PropTypes.exact({
                 /**
@@ -206,7 +206,7 @@ AntdSelect.propTypes = {
                          */
                         value: PropTypes.oneOfType([
                             PropTypes.string,
-                            PropTypes.number
+                            PropTypes.number,
                         ]).isRequired,
                         /**
                          * 是否禁用当前选项
@@ -216,10 +216,10 @@ AntdSelect.propTypes = {
                         /**
                          * 针对色带特殊渲染模式，设置生成渐变色带所需的色彩值数组
                          */
-                        colors: PropTypes.arrayOf(PropTypes.string)
+                        colors: PropTypes.arrayOf(PropTypes.string),
                     })
-                )
-            })
+                ),
+            }),
         ])
     ),
 
@@ -265,7 +265,12 @@ AntdSelect.propTypes = {
     /**
      * 形态变体类型，可选项有`'outlined'`、`'borderless'`、`'filled'`、`'underlined'`，其中`'outlined'`等价于`bordered=True`，但优先级更高
      */
-    variant: PropTypes.oneOf(['outlined', 'borderless', 'filled', 'underlined']),
+    variant: PropTypes.oneOf([
+        'outlined',
+        'borderless',
+        'filled',
+        'underlined',
+    ]),
 
     /**
      * 输入框占位文字内容
@@ -276,21 +281,20 @@ AntdSelect.propTypes = {
      * 选择面板展开方向，可选项有`'bottomLeft'`、`'bottomRight'`、`'topLeft'`、`'topRight'`
      * 默认值：`'bottomLeft'`
      */
-    placement: PropTypes.oneOf(['bottomLeft', 'bottomRight', 'topLeft', 'topRight']),
+    placement: PropTypes.oneOf([
+        'bottomLeft',
+        'bottomRight',
+        'topLeft',
+        'topRight',
+    ]),
 
     /**
      * 监听或设置已选值
      */
     value: PropTypes.oneOfType([
-        PropTypes.oneOfType([
-            PropTypes.string,
-            PropTypes.number
-        ]),
+        PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
         PropTypes.arrayOf(
-            PropTypes.oneOfType([
-                PropTypes.string,
-                PropTypes.number
-            ])
+            PropTypes.oneOfType([PropTypes.string, PropTypes.number])
         ),
     ]),
 
@@ -298,15 +302,9 @@ AntdSelect.propTypes = {
      * 初始化已选值
      */
     defaultValue: PropTypes.oneOfType([
-        PropTypes.oneOfType([
-            PropTypes.string,
-            PropTypes.number
-        ]),
+        PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
         PropTypes.arrayOf(
-            PropTypes.oneOfType([
-                PropTypes.string,
-                PropTypes.number
-            ])
+            PropTypes.oneOfType([PropTypes.string, PropTypes.number])
         ),
     ]),
 
@@ -316,7 +314,7 @@ AntdSelect.propTypes = {
      */
     maxTagCount: PropTypes.oneOfType([
         PropTypes.number,
-        PropTypes.oneOf(['responsive'])
+        PropTypes.oneOf(['responsive']),
     ]),
 
     /**
@@ -339,7 +337,12 @@ AntdSelect.propTypes = {
      * 搜索匹配模式，可选项有`'case-insensitive'`（大小写不敏感）、`'case-sensitive'`（大小写敏感）、`'regex'`（正则表达式）、`'remote-match'`（远程匹配模式）
      * 默认值：`'case-insensitive'`
      */
-    optionFilterMode: PropTypes.oneOf(['case-insensitive', 'case-sensitive', 'regex', 'remote-match']),
+    optionFilterMode: PropTypes.oneOf([
+        'case-insensitive',
+        'case-sensitive',
+        'regex',
+        'remote-match',
+    ]),
 
     /**
      * 以防抖延时的方式监听搜索框已输入内容
@@ -466,7 +469,7 @@ AntdSelect.propTypes = {
     persistence: PropTypes.oneOfType([
         PropTypes.bool,
         PropTypes.string,
-        PropTypes.number
+        PropTypes.number,
     ]),
 
     /**
@@ -479,13 +482,13 @@ AntdSelect.propTypes = {
      * 属性持久化存储类型，可选项有`'local'`（本地持久化），`'session'`（会话持久化），`'memory'`（内存持久化）
      * 默认值：`'local'`
      */
-    persistence_type: PropTypes.oneOf(['local', 'session', 'memory'])
+    persistence_type: PropTypes.oneOf(['local', 'session', 'memory']),
 };
 
 AntdSelect.dashPersistence = {
     persisted_props: ['value'],
-    persistence_type: 'local'
-}
+    persistence_type: 'local',
+};
 
 export default AntdSelect;
 

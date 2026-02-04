@@ -1,7 +1,12 @@
 import React, { Suspense } from 'react';
 import PropTypes from 'prop-types';
 
-const LazyAntdInput = React.lazy(() => import(/* webpackChunkName: "data_entry" */ '../../fragments/dataEntry/AntdInput.react'));
+const LazyAntdInput = React.lazy(
+    () =>
+        import(
+            /* webpackChunkName: "data_entry" */ '../../fragments/dataEntry/AntdInput.react'
+        )
+);
 
 /**
  * 输入框组件AntdInput
@@ -50,8 +55,8 @@ const AntdInput = ({
 }) => {
     return (
         <Suspense fallback={null}>
-            <LazyAntdInput {
-                ...{
+            <LazyAntdInput
+                {...{
                     id,
                     className,
                     style,
@@ -91,12 +96,12 @@ const AntdInput = ({
                     persisted_props,
                     persistence_type,
                     batchPropsNames,
-                    ...others
-                }
-            } />
+                    ...others,
+                }}
+            />
         </Suspense>
     );
-}
+};
 
 AntdInput.propTypes = {
     /**
@@ -117,10 +122,7 @@ AntdInput.propTypes = {
     /**
      * 当前组件css类名，支持[动态css](/advanced-classname)
      */
-    className: PropTypes.oneOfType([
-        PropTypes.string,
-        PropTypes.object
-    ]),
+    className: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
 
     /**
      * 细分控制子元素css样式
@@ -149,7 +151,7 @@ AntdInput.propTypes = {
         /**
          * 控制文本域元素css样式
          */
-        textarea: PropTypes.object
+        textarea: PropTypes.object,
     }),
 
     /**
@@ -179,7 +181,7 @@ AntdInput.propTypes = {
         /**
          * 控制文本域元素css类名
          */
-        textarea: PropTypes.string
+        textarea: PropTypes.string,
     }),
 
     /**
@@ -226,7 +228,12 @@ AntdInput.propTypes = {
     /**
      * 形态变体类型，可选项有`'outlined'`、`'borderless'`、`'filled'`、`'underlined'`，其中`'outlined'`等价于`bordered=True`，但优先级更高
      */
-    variant: PropTypes.oneOf(['outlined', 'borderless', 'filled', 'underlined']),
+    variant: PropTypes.oneOf([
+        'outlined',
+        'borderless',
+        'filled',
+        'underlined',
+    ]),
 
     /**
      * 输入框占位文字内容
@@ -315,8 +322,8 @@ AntdInput.propTypes = {
             /**
              * 输入框最大行数
              */
-            maxRows: PropTypes.number
-        })
+            maxRows: PropTypes.number,
+        }),
     ]),
 
     /**
@@ -397,7 +404,7 @@ AntdInput.propTypes = {
     persistence: PropTypes.oneOfType([
         PropTypes.bool,
         PropTypes.string,
-        PropTypes.number
+        PropTypes.number,
     ]),
 
     /**
@@ -410,13 +417,13 @@ AntdInput.propTypes = {
      * 属性持久化存储类型，可选项有`'local'`（本地持久化），`'session'`（会话持久化），`'memory'`（内存持久化）
      * 默认值：`'local'`
      */
-    persistence_type: PropTypes.oneOf(['local', 'session', 'memory'])
+    persistence_type: PropTypes.oneOf(['local', 'session', 'memory']),
 };
 
 AntdInput.dashPersistence = {
     persisted_props: ['value', 'md5Value'],
-    persistence_type: 'local'
-}
+    persistence_type: 'local',
+};
 
 export default AntdInput;
 

@@ -41,39 +41,43 @@ const AntdDrawer = ({
     setProps,
     ...others
 }) => {
-
     const onClose = () => {
-        setProps({ visible: false })
-    }
+        setProps({ visible: false });
+    };
 
     return (
         <Drawer
             // 提取具有data-*或aria-*通配格式的属性
-            {...pickBy((_, k) => k.startsWith('data-') || k.startsWith('aria-'), others)}
+            {...pickBy(
+                (_, k) => k.startsWith('data-') || k.startsWith('aria-'),
+                others
+            )}
             id={id}
             key={key}
             className={
-                isString(className) ?
-                    className :
-                    (className ? useCss(className) : undefined)
+                isString(className)
+                    ? className
+                    : className
+                      ? useCss(className)
+                      : undefined
             }
             style={
-                containerId || containerSelector ?
-                    {
-                        ...{ position: 'absolute' },
-                        ...style
-                    } :
-                    style
+                containerId || containerSelector
+                    ? {
+                          ...{ position: 'absolute' },
+                          ...style,
+                      }
+                    : style
             }
             classNames={classNames}
             styles={styles}
             rootStyle={
-                containerId || containerSelector ?
-                    {
-                        position: 'absolute',
-                        ...rootStyle
-                    } :
-                    rootStyle
+                containerId || containerSelector
+                    ? {
+                          position: 'absolute',
+                          ...rootStyle,
+                      }
+                    : rootStyle
             }
             open={visible}
             title={title}
@@ -82,13 +86,14 @@ const AntdDrawer = ({
             forceRender={forceRender}
             destroyOnClose={destroyOnClose}
             getContainer={
-                containerId || containerSelector ?
-                    (
-                        containerId ?
-                            () => document.getElementById(containerId) || document.body :
-                            () => eval(containerSelector)
-                    ) :
-                    undefined}
+                containerId || containerSelector
+                    ? containerId
+                        ? () =>
+                              document.getElementById(containerId) ||
+                              document.body
+                        : () => eval(containerSelector)
+                    : undefined
+            }
             height={height}
             mask={mask}
             maskClosable={maskClosable}
@@ -99,10 +104,11 @@ const AntdDrawer = ({
             footer={footer}
             onClose={onClose}
             data-dash-is-loading={useLoading()}
-        >{children}
+        >
+            {children}
         </Drawer>
     );
-}
+};
 
 AntdDrawer.propTypes = {
     /**
@@ -128,10 +134,7 @@ AntdDrawer.propTypes = {
     /**
      * 当前组件css类名，支持[动态css](/advanced-classname)
      */
-    className: PropTypes.oneOfType([
-        PropTypes.string,
-        PropTypes.object
-    ]),
+    className: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
 
     /**
      * 配置各子元素的css类名
@@ -156,7 +159,7 @@ AntdDrawer.propTypes = {
         /**
          * 抽屉容器元素css类名
          */
-        content: PropTypes.string
+        content: PropTypes.string,
     }),
 
     /**
@@ -182,7 +185,7 @@ AntdDrawer.propTypes = {
         /**
          * 抽屉容器元素css样式
          */
-        content: PropTypes.object
+        content: PropTypes.object,
     }),
 
     /**
@@ -229,19 +232,13 @@ AntdDrawer.propTypes = {
      * 抽屉像素宽度，`placement`为`'left'`、`'right'`时有效
      * 默认值：`256`
      */
-    width: PropTypes.oneOfType([
-        PropTypes.number,
-        PropTypes.string
-    ]),
+    width: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
 
     /**
      * 抽屉像素高度，`placement`为`'top'`、`'bottom'`时有效
      * 默认值：`256`
      */
-    height: PropTypes.oneOfType([
-        PropTypes.number,
-        PropTypes.string
-    ]),
+    height: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
 
     /**
      * 是否显示遮罩层
@@ -301,7 +298,7 @@ AntdDrawer.propTypes = {
      * Dash-assigned callback that should be called to report property changes
      * to Dash, to make them available for callbacks.
      */
-    setProps: PropTypes.func
+    setProps: PropTypes.func,
 };
 
 export default AntdDrawer;

@@ -1,7 +1,12 @@
 import React, { Suspense } from 'react';
 import PropTypes from 'prop-types';
 
-const LazyAntdAccordion = React.lazy(() => import(/* webpackChunkName: "data_display" */ '../../fragments/dataDisplay/AntdAccordion.react'));
+const LazyAntdAccordion = React.lazy(
+    () =>
+        import(
+            /* webpackChunkName: "data_display" */ '../../fragments/dataDisplay/AntdAccordion.react'
+        )
+);
 
 /**
  * 手风琴组件AntdAccordion
@@ -27,8 +32,8 @@ const AntdAccordion = ({
 }) => {
     return (
         <Suspense fallback={null}>
-            <LazyAntdAccordion {
-                ...{
+            <LazyAntdAccordion
+                {...{
                     id,
                     className,
                     style,
@@ -45,12 +50,12 @@ const AntdAccordion = ({
                     expandIconPosition,
                     ghost,
                     setProps,
-                    ...others
-                }
-            } />
+                    ...others,
+                }}
+            />
         </Suspense>
     );
-}
+};
 
 AntdAccordion.propTypes = {
     /**
@@ -71,10 +76,7 @@ AntdAccordion.propTypes = {
     /**
      * 当前组件css类名，支持[动态css](/advanced-classname)
      */
-    className: PropTypes.oneOfType([
-        PropTypes.string,
-        PropTypes.object
-    ]),
+    className: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
 
     /**
      * 细分控制子元素css样式
@@ -87,7 +89,7 @@ AntdAccordion.propTypes = {
         /**
          * 内容元素css样式
          */
-        body: PropTypes.object
+        body: PropTypes.object,
     }),
 
     /**
@@ -101,7 +103,7 @@ AntdAccordion.propTypes = {
         /**
          * 内容元素css类名
          */
-        body: PropTypes.string
+        body: PropTypes.string,
     }),
 
     /**
@@ -118,7 +120,7 @@ AntdAccordion.propTypes = {
              */
             className: PropTypes.oneOfType([
                 PropTypes.string,
-                PropTypes.object
+                PropTypes.object,
             ]),
             /**
              * 当前子项css样式
@@ -127,10 +129,8 @@ AntdAccordion.propTypes = {
             /**
              * 必填，当前子项唯一key值
              */
-            key: PropTypes.oneOfType([
-                PropTypes.string,
-                PropTypes.number
-            ]).isRequired,
+            key: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
+                .isRequired,
             /**
              * 当前子项折叠触发方式，可选项有`'header'`、`'disabled'`、`'icon'`
              */
@@ -169,7 +169,7 @@ AntdAccordion.propTypes = {
         PropTypes.string,
         PropTypes.arrayOf(PropTypes.string),
         PropTypes.number,
-        PropTypes.arrayOf(PropTypes.number)
+        PropTypes.arrayOf(PropTypes.number),
     ]),
 
     /**
@@ -179,7 +179,7 @@ AntdAccordion.propTypes = {
         PropTypes.string,
         PropTypes.arrayOf(PropTypes.string),
         PropTypes.number,
-        PropTypes.arrayOf(PropTypes.number)
+        PropTypes.arrayOf(PropTypes.number),
     ]),
 
     /**
@@ -224,7 +224,7 @@ AntdAccordion.propTypes = {
      * Dash-assigned callback that should be called to report property changes
      * to Dash, to make them available for callbacks.
      */
-    setProps: PropTypes.func
+    setProps: PropTypes.func,
 };
 
 export default AntdAccordion;

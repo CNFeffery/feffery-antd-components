@@ -1,7 +1,12 @@
 import React, { Suspense } from 'react';
 import PropTypes from 'prop-types';
 
-const LazyAntdBadge = React.lazy(() => import(/* webpackChunkName: "data_display" */ '../../fragments/dataDisplay/AntdBadge.react'));
+const LazyAntdBadge = React.lazy(
+    () =>
+        import(
+            /* webpackChunkName: "data_display" */ '../../fragments/dataDisplay/AntdBadge.react'
+        )
+);
 
 /**
  * 徽标组件AntdBadge
@@ -30,8 +35,8 @@ const AntdBadge = ({
 }) => {
     return (
         <Suspense fallback={null}>
-            <LazyAntdBadge {
-                ...{
+            <LazyAntdBadge
+                {...{
                     id,
                     children,
                     className,
@@ -51,12 +56,12 @@ const AntdBadge = ({
                     size,
                     nClicks,
                     setProps,
-                    ...others
-                }
-            } />
+                    ...others,
+                }}
+            />
         </Suspense>
     );
-}
+};
 
 AntdBadge.propTypes = {
     /**
@@ -82,10 +87,7 @@ AntdBadge.propTypes = {
     /**
      * 当前组件css类名，支持[动态css](/advanced-classname)
      */
-    className: PropTypes.oneOfType([
-        PropTypes.string,
-        PropTypes.object
-    ]),
+    className: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
 
     /**
      * 细分控制子元素css样式
@@ -98,7 +100,7 @@ AntdBadge.propTypes = {
         /**
          * 控制徽标元素css样式
          */
-        indicator: PropTypes.object
+        indicator: PropTypes.object,
     }),
 
     /**
@@ -112,7 +114,7 @@ AntdBadge.propTypes = {
         /**
          * 控制徽标元素css类
          */
-        indicator: PropTypes.string
+        indicator: PropTypes.string,
     }),
 
     /**
@@ -151,7 +153,13 @@ AntdBadge.propTypes = {
     /**
      * 徽标状态，可选项有`'success'`、`'processing'`、`'default'`、`'error'`、`'warning'`
      */
-    status: PropTypes.oneOf(['success', 'processing', 'default', 'error', 'warning']),
+    status: PropTypes.oneOf([
+        'success',
+        'processing',
+        'default',
+        'error',
+        'warning',
+    ]),
 
     /**
      * 参数`status`有效时，设置徽标文本内容
@@ -188,7 +196,7 @@ AntdBadge.propTypes = {
      * Dash-assigned callback that should be called to report property changes
      * to Dash, to make them available for callbacks.
      */
-    setProps: PropTypes.func
+    setProps: PropTypes.func,
 };
 
 export default AntdBadge;

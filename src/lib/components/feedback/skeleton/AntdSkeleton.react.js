@@ -34,10 +34,12 @@ const AntdSkeleton = ({
     setProps,
     ...others
 }) => {
-
     const ctx = window.dash_component_api.useDashContext();
     // 获取内部加载中组件信息
-    const loading_info = ctx.useSelector(loadingSelector(ctx.componentPath), equals);
+    const loading_info = ctx.useSelector(
+        loadingSelector(ctx.componentPath),
+        equals
+    );
 
     const [showLoading, setShowLoading] = useState(loading);
     const timer = useRef();
@@ -55,7 +57,9 @@ const AntdSkeleton = ({
                 // 当listenPropsMode为'default'时
                 if (listenPropsMode === 'default') {
                     if (debug) {
-                        loading_info.forEach(item => console.log(item.id + '.' + item.property))
+                        loading_info.forEach((item) =>
+                            console.log(item.id + '.' + item.property)
+                        );
                     }
                     delayTimer.current = setTimeout(
                         () => setShowLoading(true),
@@ -64,9 +68,18 @@ const AntdSkeleton = ({
                 } else if (listenPropsMode === 'exclude') {
                     // 当listenPropsMode为'exclude'模式时
                     // 当前触发加载状态的组件+属性组合均不在排除列表中时，激活动画
-                    if (loading_info.every(item => excludeProps.indexOf(item.id + '.' + item.property) === -1)) {
+                    if (
+                        loading_info.every(
+                            (item) =>
+                                excludeProps.indexOf(
+                                    item.id + '.' + item.property
+                                ) === -1
+                        )
+                    ) {
                         if (debug) {
-                            loading_info.forEach(item => console.log(item.id + '.' + item.property))
+                            loading_info.forEach((item) =>
+                                console.log(item.id + '.' + item.property)
+                            );
                         }
                         delayTimer.current = setTimeout(
                             () => setShowLoading(true),
@@ -76,9 +89,18 @@ const AntdSkeleton = ({
                 } else if (listenPropsMode === 'include') {
                     // 当listenPropsMode为'include'模式时
                     // 当前触发加载状态的组件+属性组合至少有一个在包含列表中时，激活动画
-                    if (loading_info.some(item => includeProps.indexOf(item.id + '.' + item.property) !== -1)) {
+                    if (
+                        loading_info.some(
+                            (item) =>
+                                includeProps.indexOf(
+                                    item.id + '.' + item.property
+                                ) !== -1
+                        )
+                    ) {
                         if (debug) {
-                            loading_info.forEach(item => console.log(item.id + '.' + item.property))
+                            loading_info.forEach((item) =>
+                                console.log(item.id + '.' + item.property)
+                            );
                         }
                         delayTimer.current = setTimeout(
                             () => setShowLoading(true),
@@ -86,7 +108,6 @@ const AntdSkeleton = ({
                         );
                     }
                 }
-
             } else if (loading_info.length === 0 && showLoading) {
                 timer.current = setTimeout(() => setShowLoading(false));
             }
@@ -96,12 +117,17 @@ const AntdSkeleton = ({
     return (
         <Skeleton
             // 提取具有data-*或aria-*通配格式的属性
-            {...pickBy((_, k) => k.startsWith('data-') || k.startsWith('aria-'), others)}
+            {...pickBy(
+                (_, k) => k.startsWith('data-') || k.startsWith('aria-'),
+                others
+            )}
             id={id}
             className={
-                isString(className) ?
-                    className :
-                    (className ? useCss(className) : undefined)
+                isString(className)
+                    ? className
+                    : className
+                      ? useCss(className)
+                      : undefined
             }
             style={style}
             key={key}
@@ -112,10 +138,11 @@ const AntdSkeleton = ({
             round={round}
             title={title}
             data-dash-is-loading={useLoading()}
-        >{children}
+        >
+            {children}
         </Skeleton>
     );
-}
+};
 
 AntdSkeleton.propTypes = {
     /**
@@ -141,10 +168,7 @@ AntdSkeleton.propTypes = {
     /**
      * 当前组件css类名，支持[动态css](/advanced-classname)
      */
-    className: PropTypes.oneOfType([
-        PropTypes.string,
-        PropTypes.object
-    ]),
+    className: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
 
     /**
      * 是否处于加载中状态
@@ -185,9 +209,9 @@ AntdSkeleton.propTypes = {
              */
             size: PropTypes.oneOfType([
                 PropTypes.number,
-                PropTypes.oneOf(['large', 'small', 'default'])
+                PropTypes.oneOf(['large', 'small', 'default']),
             ]),
-        })
+        }),
     ]),
 
     /**
@@ -210,13 +234,10 @@ AntdSkeleton.propTypes = {
                 PropTypes.number,
                 PropTypes.string,
                 PropTypes.arrayOf(
-                    PropTypes.oneOfType([
-                        PropTypes.number,
-                        PropTypes.string
-                    ])
-                )
-            ])
-        })
+                    PropTypes.oneOfType([PropTypes.number, PropTypes.string])
+                ),
+            ]),
+        }),
     ]),
 
     /**
@@ -229,11 +250,8 @@ AntdSkeleton.propTypes = {
             /**
              * 标题占位图宽度
              */
-            width: PropTypes.oneOfType([
-                PropTypes.number,
-                PropTypes.string
-            ])
-        })
+            width: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+        }),
     ]),
 
     /**
@@ -284,7 +302,7 @@ AntdSkeleton.propTypes = {
      * Dash-assigned callback that should be called to report property changes
      * to Dash, to make them available for callbacks.
      */
-    setProps: PropTypes.func
+    setProps: PropTypes.func,
 };
 
 AntdSkeleton.dashChildrenUpdate = true;

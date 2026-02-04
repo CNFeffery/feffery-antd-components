@@ -1,7 +1,7 @@
 {
     "name": "feffery_antd_components",
-    "version": "0.4.4",
-    "description": "Best implementation of Antd components in Plotly Dash.",
+    "version": "0.4.5",
+    "description": "Plotly Dash components based on Ant Design",
     "repository": {
         "type": "git",
         "url": "https://github.com/CNFeffery/feffery-antd-components.git"
@@ -9,15 +9,21 @@
     "bugs": {
         "url": "https://github.com/CNFeffery/feffery-antd-components/issues"
     },
-    "homepage": "http://fac.feffery.tech/",
+    "homepage": "http://fac.feffery.tech",
     "main": "build/index.js",
     "scripts": {
-        "start": "webpack-serve --config ./webpack.serve.config.js --open",
+        "start": "webpack serve --config ./webpack.serve.config.js --open",
+        "validate-init": "python _validate_init.py",
+        "prepublishOnly": "npm run validate-init",
         "build:js": "webpack --mode production",
-        "build:backends": "dash-generate-components ./src/lib/components feffery_antd_components --keep-prop-order ALL -p package-info.json --r-prefix 'feffery' --jl-prefix 'feffery'",
-        "build:backends-activated": "(. venv/bin/activate || venv\\scripts\\activate && npm run build:py_and_r)",
-        "build": "npm run build:js && npm run build:backends",
-        "build:activated": "npm run build:js && npm run build:backends-activated"
+        "build:backends": "dash-generate-components ./src/lib/components feffery_antd_components --keep-prop-order ALL -p package-info.json --r-prefix '' --jl-prefix '' --ignore \\.test\\.",
+        "build:backends-activated": "(. venv/bin/activate || venv\\scripts\\activate && npm run build:backends)",
+        "build": "npm run prettier && npm run build:js && npm run build:backends && npm run ruff:check && npm run ruff:format",
+        "build:activated": "npm run build:js && npm run build:backends-activated",
+        "prettier": "prettier --write src/**/*.js src/**/*.react.js",
+        "ruff:check": "python -m ruff check . --fix --exclude=node_modules,venv,build",
+        "ruff:format": "python -m ruff format . --exclude=node_modules,venv,build",
+        "format": "npm run prettier && npm run ruff:format"
     },
     "author": "CNFeffery <fefferypzy@gmail.com>",
     "email": "fefferypzy@gmail.com",
@@ -65,7 +71,7 @@
         "less": "^3.13.1",
         "less-loader": "^5.0.0",
         "lodash": "^4.17.21",
-        "npm": "^6.1.0",
+        "prettier": "^3.7.4",
         "prop-types": "^15.7.2",
         "react": "^18.3.1",
         "react-docgen": "^5.4.3",

@@ -1,7 +1,12 @@
 import React, { Suspense } from 'react';
 import PropTypes from 'prop-types';
 
-const LazyAntdCheckboxGroup = React.lazy(() => import(/* webpackChunkName: "data_entry" */ '../../fragments/dataEntry/AntdCheckboxGroup.react'));
+const LazyAntdCheckboxGroup = React.lazy(
+    () =>
+        import(
+            /* webpackChunkName: "data_entry" */ '../../fragments/dataEntry/AntdCheckboxGroup.react'
+        )
+);
 
 /**
  * 组合选择框组件AntdCheckboxGroup
@@ -26,8 +31,8 @@ const AntdCheckboxGroup = ({
 }) => {
     return (
         <Suspense fallback={null}>
-            <LazyAntdCheckboxGroup {
-                ...{
+            <LazyAntdCheckboxGroup
+                {...{
                     id,
                     style,
                     className,
@@ -43,12 +48,12 @@ const AntdCheckboxGroup = ({
                     persisted_props,
                     persistence_type,
                     batchPropsNames,
-                    ...others
-                }
-            } />
+                    ...others,
+                }}
+            />
         </Suspense>
     );
-}
+};
 
 AntdCheckboxGroup.propTypes = {
     /**
@@ -69,10 +74,7 @@ AntdCheckboxGroup.propTypes = {
     /**
      * 当前组件css类名，支持[动态css](/advanced-classname)
      */
-    className: PropTypes.oneOfType([
-        PropTypes.string,
-        PropTypes.object
-    ]),
+    className: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
 
     /**
      * 配合`AntdForm`表单批量值搜集/控制功能使用，充当当前表单项的字段名，以`id`作为缺省值
@@ -108,14 +110,14 @@ AntdCheckboxGroup.propTypes = {
                  */
                 value: PropTypes.oneOfType([
                     PropTypes.string,
-                    PropTypes.number
+                    PropTypes.number,
                 ]),
                 /**
                  * 是否禁用当前选择框
                  * 默认值：`false`
                  */
-                disabled: PropTypes.bool
-            })
+                disabled: PropTypes.bool,
+            }),
         ])
     ),
 
@@ -123,10 +125,7 @@ AntdCheckboxGroup.propTypes = {
      * 监听或设置已选值
      */
     value: PropTypes.arrayOf(
-        PropTypes.oneOfType([
-            PropTypes.string,
-            PropTypes.number
-        ])
+        PropTypes.oneOfType([PropTypes.string, PropTypes.number])
     ),
 
     /**
@@ -167,7 +166,7 @@ AntdCheckboxGroup.propTypes = {
     persistence: PropTypes.oneOfType([
         PropTypes.bool,
         PropTypes.string,
-        PropTypes.number
+        PropTypes.number,
     ]),
 
     /**
@@ -180,13 +179,13 @@ AntdCheckboxGroup.propTypes = {
      * 属性持久化存储类型，可选项有`'local'`（本地持久化），`'session'`（会话持久化），`'memory'`（内存持久化）
      * 默认值：`'local'`
      */
-    persistence_type: PropTypes.oneOf(['local', 'session', 'memory'])
+    persistence_type: PropTypes.oneOf(['local', 'session', 'memory']),
 };
 
 AntdCheckboxGroup.dashPersistence = {
     persisted_props: ['value'],
-    persistence_type: 'local'
-}
+    persistence_type: 'local',
+};
 
 export default AntdCheckboxGroup;
 

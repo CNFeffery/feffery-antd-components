@@ -1,7 +1,12 @@
 import React, { Suspense } from 'react';
 import PropTypes from 'prop-types';
 
-const LazyAntdTimePicker = React.lazy(() => import(/* webpackChunkName: "data_entry" */ '../../fragments/dataEntry/AntdTimePicker.react'));
+const LazyAntdTimePicker = React.lazy(
+    () =>
+        import(
+            /* webpackChunkName: "data_entry" */ '../../fragments/dataEntry/AntdTimePicker.react'
+        )
+);
 
 /**
  * 时间选择组件AntdTimePicker
@@ -47,8 +52,8 @@ const AntdTimePicker = ({
 }) => {
     return (
         <Suspense fallback={null}>
-            <LazyAntdTimePicker {
-                ...{
+            <LazyAntdTimePicker
+                {...{
                     id,
                     className,
                     style,
@@ -85,12 +90,12 @@ const AntdTimePicker = ({
                     persistence_type,
                     batchPropsNames,
                     needConfirm,
-                    ...others
-                }
-            } />
+                    ...others,
+                }}
+            />
         </Suspense>
     );
-}
+};
 
 AntdTimePicker.propTypes = {
     /**
@@ -111,10 +116,7 @@ AntdTimePicker.propTypes = {
     /**
      * 当前组件css类名，支持[动态css](/advanced-classname)
      */
-    className: PropTypes.oneOfType([
-        PropTypes.string,
-        PropTypes.object
-    ]),
+    className: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
 
     /**
      * 展开菜单css类名
@@ -189,7 +191,12 @@ AntdTimePicker.propTypes = {
     /**
      * 形态变体类型，可选项有`'outlined'`、`'borderless'`、`'filled'`、`'underlined'`，其中`'outlined'`等价于`bordered=True`，但优先级更高
      */
-    variant: PropTypes.oneOf(['outlined', 'borderless', 'filled', 'underlined']),
+    variant: PropTypes.oneOf([
+        'outlined',
+        'borderless',
+        'filled',
+        'underlined',
+    ]),
 
     /**
      * 输入框占位文字内容
@@ -200,7 +207,12 @@ AntdTimePicker.propTypes = {
      * 选择面板展开方向，可选项有`'bottomLeft'`、`'bottomRight'`、`'topLeft'`、`'topRight'`
      * 默认值：`'bottomLeft'`
      */
-    placement: PropTypes.oneOf(['bottomLeft', 'bottomRight', 'topLeft', 'topRight']),
+    placement: PropTypes.oneOf([
+        'bottomLeft',
+        'bottomRight',
+        'topLeft',
+        'topRight',
+    ]),
 
     /**
      * 监听或设置已选值，与`format`格式对应
@@ -289,8 +301,8 @@ AntdTimePicker.propTypes = {
     needConfirm: PropTypes.bool,
 
     /**
-    * Object that holds the loading state object coming from dash-renderer
-    */
+     * Object that holds the loading state object coming from dash-renderer
+     */
     loading_state: PropTypes.shape({
         /**
          * Determines if the component is loading or not
@@ -303,7 +315,7 @@ AntdTimePicker.propTypes = {
         /**
          * Holds the name of the component that is loading
          */
-        component_name: PropTypes.string
+        component_name: PropTypes.string,
     }),
 
     /**
@@ -318,7 +330,7 @@ AntdTimePicker.propTypes = {
     persistence: PropTypes.oneOfType([
         PropTypes.bool,
         PropTypes.string,
-        PropTypes.number
+        PropTypes.number,
     ]),
 
     /**
@@ -331,13 +343,13 @@ AntdTimePicker.propTypes = {
      * 属性持久化存储类型，可选项有`'local'`（本地持久化），`'session'`（会话持久化），`'memory'`（内存持久化）
      * 默认值：`'local'`
      */
-    persistence_type: PropTypes.oneOf(['local', 'session', 'memory'])
+    persistence_type: PropTypes.oneOf(['local', 'session', 'memory']),
 };
 
 AntdTimePicker.dashPersistence = {
     persisted_props: ['value'],
-    persistence_type: 'local'
-}
+    persistence_type: 'local',
+};
 
 export default AntdTimePicker;
 

@@ -1,7 +1,12 @@
 import React, { Suspense } from 'react';
 import PropTypes from 'prop-types';
 
-const LazyAntdTimeline = React.lazy(() => import(/* webpackChunkName: "data_display" */ '../../fragments/dataDisplay/AntdTimeline.react'));
+const LazyAntdTimeline = React.lazy(
+    () =>
+        import(
+            /* webpackChunkName: "data_display" */ '../../fragments/dataDisplay/AntdTimeline.react'
+        )
+);
 
 /**
  * 时间轴组件AntdTimeline
@@ -21,8 +26,8 @@ const AntdTimeline = ({
 }) => {
     return (
         <Suspense fallback={null}>
-            <LazyAntdTimeline {
-                ...{
+            <LazyAntdTimeline
+                {...{
                     id,
                     className,
                     style,
@@ -33,12 +38,12 @@ const AntdTimeline = ({
                     pendingDot,
                     reverse,
                     setProps,
-                    ...others
-                }
-            } />
+                    ...others,
+                }}
+            />
         </Suspense>
     );
-}
+};
 
 AntdTimeline.propTypes = {
     /**
@@ -59,10 +64,7 @@ AntdTimeline.propTypes = {
     /**
      * 当前组件css类名，支持[动态css](/advanced-classname)
      */
-    className: PropTypes.oneOfType([
-        PropTypes.string,
-        PropTypes.object
-    ]),
+    className: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
 
     /**
      * 必填，定义时间轴节点
@@ -89,7 +91,7 @@ AntdTimeline.propTypes = {
             /**
              * 当前节点位置，可选项有`'left'`、`'right'`
              */
-            position: PropTypes.oneOf(['left', 'right'])
+            position: PropTypes.oneOf(['left', 'right']),
         })
     ).isRequired,
 
@@ -128,7 +130,7 @@ AntdTimeline.propTypes = {
      * Dash-assigned callback that should be called to report property changes
      * to Dash, to make them available for callbacks.
      */
-    setProps: PropTypes.func
+    setProps: PropTypes.func,
 };
 
 export default AntdTimeline;

@@ -22,58 +22,51 @@ const AntdMessage = ({
     iconRenderer = 'AntdIcon',
     top = 8,
     maxCount,
-    setProps
+    setProps,
 }) => {
-
-    let config = {
-        className: (
-            isString(className) ?
-                className :
-                (className ? useCss(className) : undefined)
-        ),
+    const config = {
+        className: isString(className)
+            ? className
+            : className
+              ? useCss(className)
+              : undefined,
         style: style,
         content: content || ' ', // 规避content为空时Objects are not valid as a React child报错问题
         duration: duration,
         top: top,
-        maxCount: maxCount
-    }
+        maxCount: maxCount,
+    };
 
     if (icon) {
-        config.icon = (
-            iconRenderer === 'fontawesome' ?
-                (
-                    React.createElement(
-                        'i',
-                        {
-                            className: icon,
-                            style: { marginRight: 3 }
-                        }
-                    )
-                ) :
-                (
-                    <AntdIcon icon={icon} style={{ marginRight: 3 }} />
-                )
-        )
+        config.icon =
+            iconRenderer === 'fontawesome' ? (
+                React.createElement('i', {
+                    className: icon,
+                    style: { marginRight: 3 },
+                })
+            ) : (
+                <AntdIcon icon={icon} style={{ marginRight: 3 }} />
+            );
     }
 
     const [messageApi, contextHolder] = message.useMessage(config);
 
     useEffect(() => {
         if (type === 'default') {
-            messageApi.open(config)
+            messageApi.open(config);
         } else if (type === 'success') {
-            messageApi.success(config)
+            messageApi.success(config);
         } else if (type === 'error') {
-            messageApi.error(config)
+            messageApi.error(config);
         } else if (type === 'info') {
-            messageApi.info(config)
+            messageApi.info(config);
         } else if (type === 'warning') {
-            messageApi.warning(config)
+            messageApi.warning(config);
         }
-    })
+    });
 
     return <>{contextHolder}</>;
-}
+};
 
 AntdMessage.propTypes = {
     /**
@@ -138,7 +131,7 @@ AntdMessage.propTypes = {
      * Dash-assigned callback that should be called to report property changes
      * to Dash, to make them available for callbacks.
      */
-    setProps: PropTypes.func
+    setProps: PropTypes.func,
 };
 
 export default AntdMessage;

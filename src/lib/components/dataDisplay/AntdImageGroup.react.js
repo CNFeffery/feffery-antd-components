@@ -1,7 +1,12 @@
 import React, { Suspense } from 'react';
 import PropTypes from 'prop-types';
 
-const LazyAntdImageGroup = React.lazy(() => import(/* webpackChunkName: "data_display" */ '../../fragments/dataDisplay/AntdImageGroup.react'));
+const LazyAntdImageGroup = React.lazy(
+    () =>
+        import(
+            /* webpackChunkName: "data_display" */ '../../fragments/dataDisplay/AntdImageGroup.react'
+        )
+);
 
 /**
  * 图片组合组件AntdImageGroup
@@ -25,8 +30,8 @@ const AntdImageGroup = ({
 }) => {
     return (
         <Suspense fallback={null}>
-            <LazyAntdImageGroup {
-                ...{
+            <LazyAntdImageGroup
+                {...{
                     id,
                     children,
                     className,
@@ -41,12 +46,12 @@ const AntdImageGroup = ({
                     disableCurrent,
                     toolbarExtra,
                     setProps,
-                    ...others
-                }
-            } />
+                    ...others,
+                }}
+            />
         </Suspense>
     );
-}
+};
 
 AntdImageGroup.propTypes = {
     /**
@@ -72,10 +77,7 @@ AntdImageGroup.propTypes = {
     /**
      * 当前组件css类名，支持[动态css](/advanced-classname)
      */
-    className: PropTypes.oneOfType([
-        PropTypes.string,
-        PropTypes.object
-    ]),
+    className: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
 
     /**
      * 组件文案语种，可选项有`'zh-cn'`（简体中文）、`'en-us'`（英语）、`'de-de'`（德语）、`'ru-ru'`（俄语）
@@ -134,8 +136,8 @@ AntdImageGroup.propTypes = {
              * 最大缩放倍数
              * 默认值：`50`
              */
-            maxScale: PropTypes.number
-        })
+            maxScale: PropTypes.number,
+        }),
     ]),
 
     /**
@@ -173,7 +175,7 @@ AntdImageGroup.propTypes = {
      * Dash-assigned callback that should be called to report property changes
      * to Dash, to make them available for callbacks.
      */
-    setProps: PropTypes.func
+    setProps: PropTypes.func,
 };
 
 export default AntdImageGroup;

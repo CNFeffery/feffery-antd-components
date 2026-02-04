@@ -1,7 +1,8 @@
 import dash
 from dash import html
-import feffery_antd_components as fac
 from feffery_dash_utils.style_utils import style
+
+import feffery_antd_components as fac
 
 app = dash.Dash(
     __name__,
@@ -13,9 +14,7 @@ app.layout = fac.AntdConfigProvider(
     html.Div(
         fac.AntdSpace(
             [
-                fac.AntdButton(
-                    '按钮示例', type='primary', size=size
-                )
+                fac.AntdButton('按钮示例', type='primary', size=size)
                 for size in ['large', 'middle', 'small']
             ],
             align='center',

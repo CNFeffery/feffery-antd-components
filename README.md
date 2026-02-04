@@ -1,5 +1,5 @@
 <p align="center">
-	<img src="./fac-logo.svg" height=300></img>
+	<img src="./imgs/fac-logo.svg" height=300></img>
 </p>
 <h1 align="center">feffery-antd-components</h1>
 <div align="center">
@@ -59,13 +59,13 @@ app = dash.Dash(serve_locally=False)
 fac.AntdDatePicker(locale='en-us')
 ```
 
-<img src="./images/国际化示例_en-us.png" height=350></img>
+<img src="./imgs/国际化示例_en-us.png" height=350></img>
 
 ```Python
 fac.AntdDatePicker(locale='de-de')
 ```
 
-<img src="./images/国际化示例_de-de.png" height=350></img>
+<img src="./imgs/国际化示例_de-de.png" height=350></img>
 
 ## 6 贡献者
 
@@ -78,11 +78,11 @@ fac.AntdDatePicker(locale='de-de')
 > 微信公众号「玩转 Dash」，欢迎扫码关注 👇
 
 <p align="center" >
-  <img src="./images/公众号.png" height=220 />
+  <img src="./imgs/公众号.png" height=220 />
 </p>
 
 > 「玩转 Dash」知识星球，海量教程案例模板资源，专业的答疑咨询服务，欢迎扫码加入 👇
 
 <p align="center" >
-  <img src="./images/知识星球.jpg" height=220 />
+  <img src="./imgs/知识星球.jpg" height=220 />
 </p>

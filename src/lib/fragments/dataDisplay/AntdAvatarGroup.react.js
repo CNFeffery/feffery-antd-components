@@ -9,13 +9,16 @@ import { useLoading } from '../../components/utils';
 // 自定义hooks
 import useCss from '../../hooks/useCss';
 // 参数类型
-import { propTypes, defaultProps } from '../../components/dataDisplay/AntdAvatarGroup.react';
+import {
+    propTypes,
+    defaultProps,
+} from '../../components/dataDisplay/AntdAvatarGroup.react';
 
 /**
  * 头像组合组件AntdAvatarGroup
  */
 const AntdAvatarGroup = (props) => {
-    let {
+    const {
         id,
         children,
         className,
@@ -30,21 +33,28 @@ const AntdAvatarGroup = (props) => {
     return (
         <Avatar.Group
             // 提取具有data-*或aria-*通配格式的属性
-            {...pickBy((_, k) => k.startsWith('data-') || k.startsWith('aria-'), others)}
+            {...pickBy(
+                (_, k) => k.startsWith('data-') || k.startsWith('aria-'),
+                others
+            )}
             id={id}
             className={
-                isString(className) ?
-                    className :
-                    (className ? useCss(className) : undefined)
+                isString(className)
+                    ? className
+                    : className
+                      ? useCss(className)
+                      : undefined
             }
             style={style}
             key={key}
             max={max}
             size={size}
             data-dash-is-loading={useLoading()}
-        >{children}</Avatar.Group>
+        >
+            {children}
+        </Avatar.Group>
     );
-}
+};
 
 export default AntdAvatarGroup;
 

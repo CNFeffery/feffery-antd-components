@@ -1,7 +1,12 @@
 import React, { Suspense } from 'react';
 import PropTypes from 'prop-types';
 
-const LazyAntdDatePicker = React.lazy(() => import(/* webpackChunkName: "data_entry" */ '../../fragments/dataEntry/AntdDatePicker.react'));
+const LazyAntdDatePicker = React.lazy(
+    () =>
+        import(
+            /* webpackChunkName: "data_entry" */ '../../fragments/dataEntry/AntdDatePicker.react'
+        )
+);
 
 /**
  * 日期选择组件AntdDatePicker
@@ -50,8 +55,8 @@ const AntdDatePicker = ({
 }) => {
     return (
         <Suspense fallback={null}>
-            <LazyAntdDatePicker {
-                ...{
+            <LazyAntdDatePicker
+                {...{
                     id,
                     className,
                     style,
@@ -91,12 +96,12 @@ const AntdDatePicker = ({
                     persistence_type,
                     batchPropsNames,
                     needConfirm,
-                    ...others
-                }
-            } />
+                    ...others,
+                }}
+            />
         </Suspense>
     );
-}
+};
 
 AntdDatePicker.propTypes = {
     /**
@@ -117,10 +122,7 @@ AntdDatePicker.propTypes = {
     /**
      * 当前组件css类名，支持[动态css](/advanced-classname)
      */
-    className: PropTypes.oneOfType([
-        PropTypes.string,
-        PropTypes.object
-    ]),
+    className: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
 
     /**
      * 展开菜单css类名
@@ -182,8 +184,8 @@ AntdDatePicker.propTypes = {
              * 与`defaultValue`对应的时间格式，[参考资料](https://day.js.org/docs/en/display/format)
              * 默认值：`'HH:mm:ss'`
              */
-            format: PropTypes.string
-        })
+            format: PropTypes.string,
+        }),
     ]),
 
     /**
@@ -201,7 +203,12 @@ AntdDatePicker.propTypes = {
     /**
      * 形态变体类型，可选项有`'outlined'`、`'borderless'`、`'filled'`、`'underlined'`，其中`'outlined'`等价于`bordered=True`，但优先级更高
      */
-    variant: PropTypes.oneOf(['outlined', 'borderless', 'filled', 'underlined']),
+    variant: PropTypes.oneOf([
+        'outlined',
+        'borderless',
+        'filled',
+        'underlined',
+    ]),
 
     /**
      * 输入框占位文字内容
@@ -212,7 +219,12 @@ AntdDatePicker.propTypes = {
      * 选择面板展开方向，可选项有`'bottomLeft'`、`'bottomRight'`、`'topLeft'`、`'topRight'`
      * 默认值：`'bottomLeft'`
      */
-    placement: PropTypes.oneOf(['bottomLeft', 'bottomRight', 'topLeft', 'topRight']),
+    placement: PropTypes.oneOf([
+        'bottomLeft',
+        'bottomRight',
+        'topLeft',
+        'topRight',
+    ]),
 
     /**
      * 监听或设置已选值，与`format`格式对应
@@ -238,13 +250,32 @@ AntdDatePicker.propTypes = {
              * 当前策略类型，可选项有`'eq'`（等于）、`'ne'`（不等于）、`'le'`（小于等于）、`'lt'`（小于）、`'ge'`（大于等于）
              * 、`'gt'`（大于）、`'in'`（属于）、`'not-in'`（不属于）、`'in-enumerate-dates'`（属于日期字符串枚举数组），`'not-in-enumerate-dates'`（不属于日期字符串枚举数组）
              */
-            mode: PropTypes.oneOf(['eq', 'ne', 'le', 'lt', 'ge', 'gt', 'in', 'not-in', 'in-enumerate-dates', 'not-in-enumerate-dates']),
+            mode: PropTypes.oneOf([
+                'eq',
+                'ne',
+                'le',
+                'lt',
+                'ge',
+                'gt',
+                'in',
+                'not-in',
+                'in-enumerate-dates',
+                'not-in-enumerate-dates',
+            ]),
             /**
              * 当前策略约束目标，可选项有`'dayOfYear'`（按年份天数）、`'dayOfWeek'`（按周天数）、`'day'`（按日）
              * 、`'month'`（按月份）、`'quarter'`（按季度）、`'year'`（按年份）、`'specific-date'`（具体日期）
              * ，其中在`'specific-date'`目标下，`value`值将严格按照`'YYYY-MM-DD'`格式进行解析
              */
-            target: PropTypes.oneOf(['day', 'month', 'quarter', 'year', 'dayOfYear', 'dayOfWeek', 'specific-date']),
+            target: PropTypes.oneOf([
+                'day',
+                'month',
+                'quarter',
+                'year',
+                'dayOfYear',
+                'dayOfWeek',
+                'specific-date',
+            ]),
             /**
              * 与策略类型、策略约束目标相对应的实际约束值
              */
@@ -252,8 +283,8 @@ AntdDatePicker.propTypes = {
                 PropTypes.number,
                 PropTypes.string,
                 PropTypes.arrayOf(PropTypes.number),
-                PropTypes.arrayOf(PropTypes.string)
-            ])
+                PropTypes.arrayOf(PropTypes.string),
+            ]),
         })
     ),
 
@@ -303,7 +334,7 @@ AntdDatePicker.propTypes = {
             /**
              * 当前预设项对应值，与`format`格式对应
              */
-            value: PropTypes.string
+            value: PropTypes.string,
         })
     ),
 
@@ -314,14 +345,11 @@ AntdDatePicker.propTypes = {
         /**
          * 对应预设项值
          */
-        value: PropTypes.oneOfType([
-            PropTypes.string,
-            PropTypes.number
-        ]),
+        value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
         /**
          * 事件对应时间戳信息
          */
-        timestamp: PropTypes.number
+        timestamp: PropTypes.number,
     }),
 
     /**
@@ -354,7 +382,7 @@ AntdDatePicker.propTypes = {
             /**
              * 自定义css类名
              */
-            className: PropTypes.string
+            className: PropTypes.string,
         })
     ),
 
@@ -406,7 +434,7 @@ AntdDatePicker.propTypes = {
     persistence: PropTypes.oneOfType([
         PropTypes.bool,
         PropTypes.string,
-        PropTypes.number
+        PropTypes.number,
     ]),
 
     /**
@@ -419,13 +447,13 @@ AntdDatePicker.propTypes = {
      * 属性持久化存储类型，可选项有`'local'`（本地持久化），`'session'`（会话持久化），`'memory'`（内存持久化）
      * 默认值：`'local'`
      */
-    persistence_type: PropTypes.oneOf(['local', 'session', 'memory'])
+    persistence_type: PropTypes.oneOf(['local', 'session', 'memory']),
 };
 
 AntdDatePicker.dashPersistence = {
     persisted_props: ['value'],
-    persistence_type: 'local'
-}
+    persistence_type: 'local',
+};
 
 export default AntdDatePicker;
 

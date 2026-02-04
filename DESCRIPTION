@@ -1,12 +1,12 @@
 Package: fefferyAntdComponents
-Title: Best implementation of Antd components in Plotly Dash.
-Version: 0.4.4
-Description: Best implementation of Antd components in Plotly Dash.
+Title: Plotly Dash components based on Ant Design
+Version: 0.4.5
+Description: Plotly Dash components based on Ant Design
 Depends: R (>= 3.0.2)
 Imports: 
 Suggests: 
 License: MIT + file LICENSE
-URL: http://fac.feffery.tech/
+URL: http://fac.feffery.tech
 BugReports: https://github.com/CNFeffery/feffery-antd-components/issues
 Encoding: UTF-8
 LazyData: true

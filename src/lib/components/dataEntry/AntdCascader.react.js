@@ -1,7 +1,12 @@
 import React, { Suspense } from 'react';
 import PropTypes from 'prop-types';
 
-const LazyAntdCascader = React.lazy(() => import(/* webpackChunkName: "data_entry" */ '../../fragments/dataEntry/AntdCascader.react'));
+const LazyAntdCascader = React.lazy(
+    () =>
+        import(
+            /* webpackChunkName: "data_entry" */ '../../fragments/dataEntry/AntdCascader.react'
+        )
+);
 
 /**
  * 级联选择组件AntdCascader
@@ -49,8 +54,8 @@ const AntdCascader = ({
 }) => {
     return (
         <Suspense fallback={null}>
-            <LazyAntdCascader {
-                ...{
+            <LazyAntdCascader
+                {...{
                     id,
                     style,
                     className,
@@ -89,22 +94,19 @@ const AntdCascader = ({
                     persisted_props,
                     persistence_type,
                     batchPropsNames,
-                    ...others
-                }
-            } />
+                    ...others,
+                }}
+            />
         </Suspense>
     );
-}
+};
 
 // 定义递归PropTypes
 const PropOptionNodeShape = {
     /**
      * 当前节点值
      */
-    value: PropTypes.oneOfType([
-        PropTypes.string,
-        PropTypes.number
-    ]).isRequired,
+    value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
     /**
      * 当前节点唯一识别id
      */
@@ -116,7 +118,7 @@ const PropOptionNodeShape = {
     /**
      * 是否禁用当前节点
      */
-    disabled: PropTypes.bool
+    disabled: PropTypes.bool,
 };
 
 const PropOptionNode = PropTypes.shape(PropOptionNodeShape);
@@ -128,10 +130,7 @@ const PropFlatOptionNodeShape = {
     /**
      * 当前节点值
      */
-    value: PropTypes.oneOfType([
-        PropTypes.string,
-        PropTypes.number
-    ]).isRequired,
+    value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
     /**
      * 当前节点标题内容
      */
@@ -147,7 +146,7 @@ const PropFlatOptionNodeShape = {
     /**
      * 当前节点对应父节点`key`值
      */
-    parent: PropTypes.string
+    parent: PropTypes.string,
 };
 
 AntdCascader.propTypes = {
@@ -169,10 +168,7 @@ AntdCascader.propTypes = {
     /**
      * 当前组件css类名，支持[动态css](/advanced-classname)
      */
-    className: PropTypes.oneOfType([
-        PropTypes.string,
-        PropTypes.object
-    ]),
+    className: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
 
     /**
      * 展开菜单css类名
@@ -213,7 +209,7 @@ AntdCascader.propTypes = {
         /**
          * 偏平模式对应结构
          */
-        PropTypes.arrayOf(PropFlatOptionNodeShape)
+        PropTypes.arrayOf(PropFlatOptionNodeShape),
     ]).isRequired,
 
     /**
@@ -260,7 +256,12 @@ AntdCascader.propTypes = {
     /**
      * 形态变体类型，可选项有`'outlined'`、`'borderless'`、`'filled'`、`'underlined'`，其中`'outlined'`等价于`bordered=True`，但优先级更高
      */
-    variant: PropTypes.oneOf(['outlined', 'borderless', 'filled', 'underlined']),
+    variant: PropTypes.oneOf([
+        'outlined',
+        'borderless',
+        'filled',
+        'underlined',
+    ]),
 
     /**
      * 输入框占位文字内容
@@ -271,26 +272,25 @@ AntdCascader.propTypes = {
      * 选择菜单展开方向，可选项有`'bottomLeft'`、`'bottomRight'`、`'topLeft'`、`'topRight'`
      * 默认值：`'bottomLeft'`
      */
-    placement: PropTypes.oneOf(['bottomLeft', 'bottomRight', 'topLeft', 'topRight']),
+    placement: PropTypes.oneOf([
+        'bottomLeft',
+        'bottomRight',
+        'topLeft',
+        'topRight',
+    ]),
 
     /**
      * 监听或设置已选值
      */
     value: PropTypes.oneOfType([
         PropTypes.arrayOf(
-            PropTypes.oneOfType([
-                PropTypes.string,
-                PropTypes.number
-            ])
+            PropTypes.oneOfType([PropTypes.string, PropTypes.number])
         ),
         PropTypes.arrayOf(
             PropTypes.arrayOf(
-                PropTypes.oneOfType([
-                    PropTypes.string,
-                    PropTypes.number
-                ])
+                PropTypes.oneOfType([PropTypes.string, PropTypes.number])
             )
-        )
+        ),
     ]),
 
     /**
@@ -298,19 +298,13 @@ AntdCascader.propTypes = {
      */
     defaultValue: PropTypes.oneOfType([
         PropTypes.arrayOf(
-            PropTypes.oneOfType([
-                PropTypes.string,
-                PropTypes.number
-            ])
+            PropTypes.oneOfType([PropTypes.string, PropTypes.number])
         ),
         PropTypes.arrayOf(
             PropTypes.arrayOf(
-                PropTypes.oneOfType([
-                    PropTypes.string,
-                    PropTypes.number
-                ])
+                PropTypes.oneOfType([PropTypes.string, PropTypes.number])
             )
-        )
+        ),
     ]),
 
     /**
@@ -324,7 +318,7 @@ AntdCascader.propTypes = {
      */
     maxTagCount: PropTypes.oneOfType([
         PropTypes.number,
-        PropTypes.oneOf(['responsive'])
+        PropTypes.oneOf(['responsive']),
     ]),
 
     /**
@@ -409,7 +403,7 @@ AntdCascader.propTypes = {
     persistence: PropTypes.oneOfType([
         PropTypes.bool,
         PropTypes.string,
-        PropTypes.number
+        PropTypes.number,
     ]),
 
     /**
@@ -422,13 +416,13 @@ AntdCascader.propTypes = {
      * 属性持久化存储类型，可选项有`'local'`（本地持久化），`'session'`（会话持久化），`'memory'`（内存持久化）
      * 默认值：`'local'`
      */
-    persistence_type: PropTypes.oneOf(['local', 'session', 'memory'])
+    persistence_type: PropTypes.oneOf(['local', 'session', 'memory']),
 };
 
 AntdCascader.dashPersistence = {
     persisted_props: ['value'],
-    persistence_type: 'local'
-}
+    persistence_type: 'local',
+};
 
 export default AntdCascader;
 

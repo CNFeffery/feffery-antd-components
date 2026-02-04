@@ -14,13 +14,16 @@ import FormContext from '../../../contexts/FormContext';
 // 状态管理
 import useFormStore from '../../../store/formStore';
 // 参数类型
-import { propTypes, defaultProps } from '../../../components/dataEntry/form/AntdForm.react';
+import {
+    propTypes,
+    defaultProps,
+} from '../../../components/dataEntry/form/AntdForm.react';
 
 /**
  * 表单组件AntdForm
  */
 const AntdForm = (props) => {
-    let {
+    const {
         id,
         children,
         className,
@@ -42,12 +45,14 @@ const AntdForm = (props) => {
     } = props;
 
     // 订阅当前表单值搜集状态的变动
-    const _values = useFormStore((state) => state.values[id])
+    const _values = useFormStore((state) => state.values[id]);
 
-    const updateFormValues = useFormStore((state) => state.updateFormValues)
-    const updateValidateStatuses = useFormStore((state) => state.updateValidateStatuses)
-    const updateHelps = useFormStore((state) => state.updateHelps)
-    const updateTooltips = useFormStore((state) => state.updateTooltips)
+    const updateFormValues = useFormStore((state) => state.updateFormValues);
+    const updateValidateStatuses = useFormStore(
+        (state) => state.updateValidateStatuses
+    );
+    const updateHelps = useFormStore((state) => state.updateHelps);
+    const updateTooltips = useFormStore((state) => state.updateTooltips);
 
     // 调试用
     // console.log('='.repeat(50))
@@ -57,54 +62,62 @@ const AntdForm = (props) => {
     useUnmount(() => {
         // 处理内存泄漏及相关的其他问题
         if (enableBatchControl && id) {
-            updateFormValues(id, undefined)
+            updateFormValues(id, undefined);
         }
-    })
+    });
 
     // _values状态响应value变化
     useEffect(() => {
         if (enableBatchControl && id) {
-            updateFormValues(id, values)
+            updateFormValues(id, values);
         }
-    }, [values])
+    }, [values]);
 
     // value响应_value状态变化
     useEffect(() => {
-        if (enableBatchControl && id && !isUndefined(_values) && !isEmpty(_values)) {
-            setProps({ values: _values })
+        if (
+            enableBatchControl &&
+            id &&
+            !isUndefined(_values) &&
+            !isEmpty(_values)
+        ) {
+            setProps({ values: _values });
         }
-    }, [_values])
+    }, [_values]);
 
     useEffect(() => {
         if (enableBatchControl && id) {
-            updateValidateStatuses(id, validateStatuses || {})
+            updateValidateStatuses(id, validateStatuses || {});
         }
-    }, [validateStatuses])
+    }, [validateStatuses]);
 
     useEffect(() => {
         if (enableBatchControl && id) {
-            updateHelps(id, helps || {})
+            updateHelps(id, helps || {});
         }
-    }, [helps])
+    }, [helps]);
 
     useEffect(() => {
         if (enableBatchControl && id) {
-            updateTooltips(id, tooltips || {})
+            updateTooltips(id, tooltips || {});
         }
-    }, [tooltips])
+    }, [tooltips]);
 
     return (
-        <FormContext.Provider
-            value={enableBatchControl ? id : null}
-        >
+        <FormContext.Provider value={enableBatchControl ? id : null}>
             <Form
                 // 提取具有data-*或aria-*通配格式的属性
-                {...pickBy((_, k) => k.startsWith('data-') || k.startsWith('aria-'), others)}
+                {...pickBy(
+                    (_, k) => k.startsWith('data-') || k.startsWith('aria-'),
+                    others
+                )}
                 id={id}
                 className={
-                    isString(className) ?
-                        className :
-                        (className ? useCss(className) : undefined)
+                    isString(className)
+                        ? className
+                        : className
+                          ? useCss(className)
+                          : undefined
                 }
                 style={style}
                 key={key}
@@ -114,12 +127,13 @@ const AntdForm = (props) => {
                 labelAlign={labelAlign}
                 labelWrap={labelWrap}
                 layout={layout}
-                data-dash-is-loading={useLoading()}>
+                data-dash-is-loading={useLoading()}
+            >
                 {children}
             </Form>
-        </FormContext.Provider >
+        </FormContext.Provider>
     );
-}
+};
 
 export default AntdForm;
 

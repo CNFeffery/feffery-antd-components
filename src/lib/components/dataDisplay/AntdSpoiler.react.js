@@ -1,7 +1,12 @@
 import React, { Suspense } from 'react';
 import PropTypes from 'prop-types';
 
-const LazyAntdSpoiler = React.lazy(() => import(/* webpackChunkName: "data_display" */ '../../fragments/dataDisplay/AntdSpoiler.react'));
+const LazyAntdSpoiler = React.lazy(
+    () =>
+        import(
+            /* webpackChunkName: "data_display" */ '../../fragments/dataDisplay/AntdSpoiler.react'
+        )
+);
 
 /**
  * 展开收起组件AntdSpoiler
@@ -26,8 +31,8 @@ const AntdSpoiler = ({
 }) => {
     return (
         <Suspense fallback={null}>
-            <LazyAntdSpoiler {
-                ...{
+            <LazyAntdSpoiler
+                {...{
                     id,
                     children,
                     className,
@@ -43,12 +48,12 @@ const AntdSpoiler = ({
                     maxHeight,
                     transitionDuration,
                     setProps,
-                    ...others
-                }
-            } />
+                    ...others,
+                }}
+            />
         </Suspense>
     );
-}
+};
 
 AntdSpoiler.propTypes = {
     /**
@@ -74,18 +79,12 @@ AntdSpoiler.propTypes = {
     /**
      * 当前组件css类名，支持[动态css](/advanced-classname)
      */
-    className: PropTypes.oneOfType([
-        PropTypes.string,
-        PropTypes.object
-    ]),
+    className: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
 
     /**
      * 内容区css类名，支持[动态css](/advanced-classname)
      */
-    contentClassName: PropTypes.oneOfType([
-        PropTypes.string,
-        PropTypes.object
-    ]),
+    contentClassName: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
 
     /**
      * 内容区css样式
@@ -146,8 +145,8 @@ AntdSpoiler.propTypes = {
      * Dash-assigned callback that should be called to report property changes
      * to Dash, to make them available for callbacks.
      */
-    setProps: PropTypes.func
-}
+    setProps: PropTypes.func,
+};
 
 export default AntdSpoiler;
 

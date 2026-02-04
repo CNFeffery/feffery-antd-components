@@ -3,33 +3,37 @@ import { toPairs, flatten } from 'ramda';
 
 const flatToTree = (rawFlat) => {
     if (rawFlat) {
-        let temp = cloneDeep(rawFlat)
-        let parents = temp.filter((item) => isUndefined(item.parent))
-        let children = temp.filter((item) => item.parent)
+        const temp = cloneDeep(rawFlat);
+        const parents = temp.filter((item) => isUndefined(item.parent));
+        const children = temp.filter((item) => item.parent);
 
         children.forEach((item) => {
-            let currentNode = temp.find((node) => node.key === item.parent)
+            const currentNode = temp.find((node) => node.key === item.parent);
 
-            currentNode && (currentNode.children ? currentNode.children.push(item) : currentNode.children = [item])
+            currentNode &&
+                (currentNode.children
+                    ? currentNode.children.push(item)
+                    : (currentNode.children = [item]));
         });
         return parents;
     }
     return rawFlat;
-}
+};
 
-const parseChildrenToArray = children => {
+const parseChildrenToArray = (children) => {
     if (children && !Array.isArray(children)) {
         return [children];
     }
     return children;
 };
 
-const resolveChildProps = child => window.dash_component_api.getLayout(child.props.componentPath)?.props;
+const resolveChildProps = (child) =>
+    window.dash_component_api.getLayout(child.props.componentPath)?.props;
 
-const useLoading = () => window.dash_component_api.useDashContext().useLoading() || undefined;
+const useLoading = () =>
+    window.dash_component_api.useDashContext().useLoading() || undefined;
 
-const loadingSelector = (componentPath) => state => {
-
+const loadingSelector = (componentPath) => (state) => {
     let stringPath = JSON.stringify(componentPath);
     stringPath = stringPath.substring(0, stringPath.length - 1);
 
@@ -41,7 +45,7 @@ const loadingSelector = (componentPath) => state => {
             return acc;
         },
         []
-    )
+    );
 
     if (loadingChildren?.length) {
         return flatten(loadingChildren);
@@ -49,4 +53,10 @@ const loadingSelector = (componentPath) => state => {
     return [];
 };
 
-export { flatToTree, parseChildrenToArray, resolveChildProps, useLoading, loadingSelector };
+export {
+    flatToTree,
+    parseChildrenToArray,
+    resolveChildProps,
+    useLoading,
+    loadingSelector,
+};

@@ -14,13 +14,16 @@ import FormContext from '../../../contexts/FormContext';
 // 状态管理
 import useFormStore from '../../../store/formStore';
 // 参数类型
-import { propTypes, defaultProps } from '../../../components/dataEntry/check-card/AntdCheckCard.react';
+import {
+    propTypes,
+    defaultProps,
+} from '../../../components/dataEntry/check-card/AntdCheckCard.react';
 
 /**
  * 选择卡片组件AntdCheckCard
  */
 const AntdCheckCard = (props) => {
-    let {
+    const {
         id,
         children,
         className,
@@ -42,20 +45,20 @@ const AntdCheckCard = (props) => {
         ...others
     } = props;
 
-    const context = useContext(PropsContext)
-    const formId = useContext(FormContext)
+    const context = useContext(PropsContext);
+    const formId = useContext(FormContext);
 
-    const updateItemValue = useFormStore((state) => state.updateItemValue)
-    const deleteItemValue = useFormStore((state) => state.deleteItemValue)
+    const updateItemValue = useFormStore((state) => state.updateItemValue);
+    const deleteItemValue = useFormStore((state) => state.deleteItemValue);
 
     // 处理AntdForm表单值搜集功能
     useEffect(() => {
         // 若上文中存在有效表单id
         if (formId && (name || id) && enableBatchControl) {
             // 表单值更新
-            updateItemValue(formId, name || id, checked)
+            updateItemValue(formId, name || id, checked);
         }
-    }, [checked, name, id])
+    }, [checked, name, id]);
 
     // 处理组件卸载后，对应表单项值的清除
     useEffect(() => {
@@ -63,26 +66,31 @@ const AntdCheckCard = (props) => {
             // 若上文中存在有效表单id
             if (formId && (name || id) && enableBatchControl) {
                 // 表单值更新
-                deleteItemValue(formId, name || id)
+                deleteItemValue(formId, name || id);
             }
-        }
-    }, [name, id])
+        };
+    }, [name, id]);
 
     useEffect(() => {
         if (!isUndefined(defaultChecked) && isUndefined(checked)) {
-            setProps({ checked: defaultChecked })
+            setProps({ checked: defaultChecked });
         }
-    }, [])
+    }, []);
 
     return (
         <CheckCard
             // 提取具有data-*或aria-*通配格式的属性
-            {...pickBy((_, k) => k.startsWith('data-') || k.startsWith('aria-'), others)}
+            {...pickBy(
+                (_, k) => k.startsWith('data-') || k.startsWith('aria-'),
+                others
+            )}
             id={id}
             className={
-                isString(className) ?
-                    className :
-                    (className ? useCss(className) : undefined)
+                isString(className)
+                    ? className
+                    : className
+                      ? useCss(className)
+                      : undefined
             }
             style={style}
             key={key}
@@ -92,19 +100,20 @@ const AntdCheckCard = (props) => {
             value={value}
             defaultChecked={defaultChecked}
             disabled={
-                context && !isUndefined(context.componentDisabled) ?
-                    context.componentDisabled :
-                    disabled
+                context && !isUndefined(context.componentDisabled)
+                    ? context.componentDisabled
+                    : disabled
             }
             size={size}
-            onChange={e => {
+            onChange={(e) => {
                 if (!readOnly) {
-                    setProps({ checked: e })
+                    setProps({ checked: e });
                 }
             }}
-            data-dash-is-loading={useLoading()} />
+            data-dash-is-loading={useLoading()}
+        />
     );
-}
+};
 
 export default AntdCheckCard;
 

@@ -50,9 +50,8 @@ const AntdButton = ({
     title,
     ...others
 }) => {
-
     // 使用自定义上下文
-    const context = useContext(PropsContext)
+    const context = useContext(PropsContext);
 
     // 防抖点击事件监听
     const { run: onClick } = useRequest(
@@ -60,38 +59,43 @@ const AntdButton = ({
             // 若clickExecuteJsString有效，则通过eval进行执行
             if (clickExecuteJsString) {
                 try {
-                    eval(clickExecuteJsString)
+                    eval(clickExecuteJsString);
                 } catch (error) {
-                    console.error(error)
+                    console.error(error);
                 }
             }
 
             if (autoSpin) {
                 // 更新nClicks，并自动进入loading状态
-                setProps({ nClicks: nClicks + 1, loading: true })
+                setProps({ nClicks: nClicks + 1, loading: true });
             } else {
                 // 更新nClicks
-                setProps({ nClicks: nClicks + 1 })
+                setProps({ nClicks: nClicks + 1 });
             }
         },
         {
             debounceWait: debounceWait,
             debounceLeading: true,
-            manual: true
+            manual: true,
         }
-    )
+    );
 
     const renderElement = (
         <Button
             // 提取具有data-*或aria-*通配格式的属性
-            {...pickBy((_, k) => k.startsWith('data-') || k.startsWith('aria-'), others)}
+            {...pickBy(
+                (_, k) => k.startsWith('data-') || k.startsWith('aria-'),
+                others
+            )}
             id={id}
             key={key}
             style={style}
             className={
-                isString(className) ?
-                    className :
-                    (className ? useCss(className) : undefined)
+                isString(className)
+                    ? className
+                    : className
+                      ? useCss(className)
+                      : undefined
             }
             styles={styles}
             classNames={classNames}
@@ -102,16 +106,16 @@ const AntdButton = ({
             block={block}
             danger={danger}
             disabled={
-                context && !isUndefined(context.componentDisabled) ?
-                    context.componentDisabled :
-                    disabled
+                context && !isUndefined(context.componentDisabled)
+                    ? context.componentDisabled
+                    : disabled
             }
             ghost={ghost}
             shape={shape}
             size={
-                context && !isUndefined(context.componentSize) ?
-                    context.componentSize :
-                    size
+                context && !isUndefined(context.componentSize)
+                    ? context.componentSize
+                    : size
             }
             icon={icon}
             iconPosition={iconPosition}
@@ -122,19 +126,15 @@ const AntdButton = ({
             onClick={onClick}
             data-dash-is-loading={useLoading()}
         >
-            {loading ? (loadingChildren || children) : children}
+            {loading ? loadingChildren || children : children}
         </Button>
     );
 
     if (motionType === 'happy-work') {
-        return (
-            <HappyProvider >
-                {renderElement}
-            </HappyProvider>
-        )
+        return <HappyProvider>{renderElement}</HappyProvider>;
     }
     return renderElement;
-}
+};
 
 AntdButton.propTypes = {
     /**
@@ -160,10 +160,7 @@ AntdButton.propTypes = {
     /**
      * 当前组件css类名，支持[动态css](/advanced-classname)
      */
-    className: PropTypes.oneOfType([
-        PropTypes.string,
-        PropTypes.object
-    ]),
+    className: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
 
     /**
      * 细分控制子元素css样式
@@ -172,7 +169,7 @@ AntdButton.propTypes = {
         /**
          * 按钮图标元素css样式
          */
-        icon: PropTypes.object
+        icon: PropTypes.object,
     }),
 
     /**
@@ -182,7 +179,7 @@ AntdButton.propTypes = {
         /**
          * 按钮图标元素css类名
          */
-        icon: PropTypes.string
+        icon: PropTypes.string,
     }),
 
     /**
@@ -297,12 +294,36 @@ AntdButton.propTypes = {
     /**
      * 按钮颜色风格，可选项有`'default'`、`'primary'`、`'danger'`，以及可用的一系列内置颜色：`'blue'`、`'purple'`、`'cyan'`、`'green'`、`'magenta'`、`'pink'`、`'red'`、`'orange'`、`'yellow'`、`'volcano'`、`'geekblue'`、`'lime'`、`'gold'`
      */
-    color: PropTypes.oneOf(['default', 'primary', 'danger', 'blue', 'purple', 'cyan', 'green', 'magenta', 'pink', 'red', 'orange', 'yellow', 'volcano', 'geekblue', 'lime', 'gold']),
+    color: PropTypes.oneOf([
+        'default',
+        'primary',
+        'danger',
+        'blue',
+        'purple',
+        'cyan',
+        'green',
+        'magenta',
+        'pink',
+        'red',
+        'orange',
+        'yellow',
+        'volcano',
+        'geekblue',
+        'lime',
+        'gold',
+    ]),
 
     /**
      * 形态变体类型，可选项有`'outlined'`、`'dashed'`、`'solid'`、`'filled'`、`'text'`、`'link'`
      */
-    variant: PropTypes.oneOf(['outlined', 'dashed', 'solid', 'filled', 'text', 'link']),
+    variant: PropTypes.oneOf([
+        'outlined',
+        'dashed',
+        'solid',
+        'filled',
+        'text',
+        'link',
+    ]),
 
     /**
      * 原生按钮title属性
@@ -323,7 +344,7 @@ AntdButton.propTypes = {
      * Dash-assigned callback that should be called to report property changes
      * to Dash, to make them available for callbacks.
      */
-    setProps: PropTypes.func
+    setProps: PropTypes.func,
 };
 
 export default AntdButton;

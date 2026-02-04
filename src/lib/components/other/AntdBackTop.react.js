@@ -28,34 +28,37 @@ const AntdBackTop = ({
     setProps,
     ...others
 }) => {
-
     return (
         <BackTop
             // 提取具有data-*或aria-*通配格式的属性
-            {...pickBy((_, k) => k.startsWith('data-') || k.startsWith('aria-'), others)}
+            {...pickBy(
+                (_, k) => k.startsWith('data-') || k.startsWith('aria-'),
+                others
+            )}
             id={id}
             className={
-                isString(className) ?
-                    className :
-                    (className ? useCss(className) : undefined)
+                isString(className)
+                    ? className
+                    : className
+                      ? useCss(className)
+                      : undefined
             }
             style={style}
             key={key}
             target={
-                containerId || containerSelector ?
-                    (
-                        containerId ?
-                            () => document.getElementById(containerId) || window :
-                            () => eval(containerSelector)
-                    ) :
-                    () => window
+                containerId || containerSelector
+                    ? containerId
+                        ? () => document.getElementById(containerId) || window
+                        : () => eval(containerSelector)
+                    : () => window
             }
             duration={duration * 1000}
             visibilityHeight={visibilityHeight}
             onClick={() => setProps({ nClicks: nClicks + 1 })}
-            data-dash-is-loading={useLoading()} />
+            data-dash-is-loading={useLoading()}
+        />
     );
-}
+};
 
 AntdBackTop.propTypes = {
     /**
@@ -76,10 +79,7 @@ AntdBackTop.propTypes = {
     /**
      * 当前组件css类名，支持[动态css](/advanced-classname)
      */
-    className: PropTypes.oneOfType([
-        PropTypes.string,
-        PropTypes.object
-    ]),
+    className: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
 
     /**
      * 回到顶部过程耗时，单位：秒
@@ -123,7 +123,7 @@ AntdBackTop.propTypes = {
      * Dash-assigned callback that should be called to report property changes
      * to Dash, to make them available for callbacks.
      */
-    setProps: PropTypes.func
+    setProps: PropTypes.func,
 };
 
 export default AntdBackTop;

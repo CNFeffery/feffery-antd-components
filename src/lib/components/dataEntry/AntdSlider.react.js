@@ -1,7 +1,12 @@
 import React, { Suspense } from 'react';
 import PropTypes from 'prop-types';
 
-const LazyAntdSlider = React.lazy(() => import(/* webpackChunkName: "data_entry" */ '../../fragments/dataEntry/AntdSlider.react'));
+const LazyAntdSlider = React.lazy(
+    () =>
+        import(
+            /* webpackChunkName: "data_entry" */ '../../fragments/dataEntry/AntdSlider.react'
+        )
+);
 
 /**
  * 滑动输入条组件AntdSlider
@@ -39,8 +44,8 @@ const AntdSlider = ({
 }) => {
     return (
         <Suspense fallback={null}>
-            <LazyAntdSlider {
-                ...{
+            <LazyAntdSlider
+                {...{
                     id,
                     className,
                     style,
@@ -69,12 +74,12 @@ const AntdSlider = ({
                     persisted_props,
                     persistence_type,
                     batchPropsNames,
-                    ...others
-                }
-            } />
+                    ...others,
+                }}
+            />
         </Suspense>
     );
-}
+};
 
 AntdSlider.propTypes = {
     /**
@@ -95,10 +100,7 @@ AntdSlider.propTypes = {
     /**
      * 当前组件css类名，支持[动态css](/advanced-classname)
      */
-    className: PropTypes.oneOfType([
-        PropTypes.string,
-        PropTypes.object
-    ]),
+    className: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
 
     /**
      * 细分控制子元素css样式
@@ -123,7 +125,7 @@ AntdSlider.propTypes = {
         /**
          * 抓取点元素css样式
          */
-        handle: PropTypes.object
+        handle: PropTypes.object,
     }),
 
     /**
@@ -149,7 +151,7 @@ AntdSlider.propTypes = {
         /**
          * 抓取点元素css类名
          */
-        handle: PropTypes.string
+        handle: PropTypes.string,
     }),
 
     /**
@@ -188,8 +190,8 @@ AntdSlider.propTypes = {
             /**
              * 开启节点动态增减功能后，允许的最大节点数量
              */
-            maxCount: PropTypes.number
-        })
+            maxCount: PropTypes.number,
+        }),
     ]),
 
     /**
@@ -238,7 +240,7 @@ AntdSlider.propTypes = {
      */
     value: PropTypes.oneOfType([
         PropTypes.number,
-        PropTypes.arrayOf(PropTypes.number)
+        PropTypes.arrayOf(PropTypes.number),
     ]),
 
     /**
@@ -246,7 +248,7 @@ AntdSlider.propTypes = {
      */
     defaultValue: PropTypes.oneOfType([
         PropTypes.number,
-        PropTypes.arrayOf(PropTypes.number)
+        PropTypes.arrayOf(PropTypes.number),
     ]),
 
     /**
@@ -299,7 +301,7 @@ AntdSlider.propTypes = {
     persistence: PropTypes.oneOfType([
         PropTypes.bool,
         PropTypes.string,
-        PropTypes.number
+        PropTypes.number,
     ]),
 
     /**
@@ -312,13 +314,13 @@ AntdSlider.propTypes = {
      * 属性持久化存储类型，可选项有`'local'`（本地持久化），`'session'`（会话持久化），`'memory'`（内存持久化）
      * 默认值：`'local'`
      */
-    persistence_type: PropTypes.oneOf(['local', 'session', 'memory'])
+    persistence_type: PropTypes.oneOf(['local', 'session', 'memory']),
 };
 
 AntdSlider.dashPersistence = {
     persisted_props: ['value'],
-    persistence_type: 'local'
-}
+    persistence_type: 'local',
+};
 
 export default AntdSlider;
 

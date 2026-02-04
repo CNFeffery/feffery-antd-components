@@ -52,21 +52,20 @@ const AntdDropdown = ({
     batchPropsNames = [],
     ...others
 }) => {
-
     // 批属性监听
     useEffect(() => {
         if (batchPropsNames && batchPropsNames.length !== 0) {
-            let _batchPropsValues = {};
-            for (let propName of batchPropsNames) {
+            const _batchPropsValues = {};
+            for (const propName of batchPropsNames) {
                 _batchPropsValues[propName] = props[propName];
             }
             setProps({
-                batchPropsValues: _batchPropsValues
-            })
+                batchPropsValues: _batchPropsValues,
+            });
         }
-    })
+    });
 
-    const context = useContext(PropsContext)
+    const context = useContext(PropsContext);
 
     // 递归处理菜单项，支持级联菜单
     const transformMenuItem = (menuItem) => ({
@@ -74,42 +73,39 @@ const AntdDropdown = ({
         disabled: menuItem.disabled,
         key: menuItem.key || menuItem.title,
         label: (
-            <a href={menuItem.href}
-                target={menuItem.target}>
+            <a href={menuItem.href} target={menuItem.target}>
                 {menuItem.title}
             </a>
         ),
         extra: menuItem.extra,
-        icon: (
-            menuItem.icon ?
-                (
-                    menuItem.iconRenderer === 'fontawesome' ?
-                        (
-                            React.createElement(
-                                'i',
-                                {
-                                    className: menuItem.icon
-                                }
-                            )
-                        ) :
-                        (
-                            <AntdIcon icon={menuItem.icon} />
-                        )
-                ) :
-                null
-        ),
-        children: menuItem.children ? menuItem.children.map(transformMenuItem) : undefined
-    })
+        icon: menuItem.icon ? (
+            menuItem.iconRenderer === 'fontawesome' ? (
+                React.createElement('i', {
+                    className: menuItem.icon,
+                })
+            ) : (
+                <AntdIcon icon={menuItem.icon} />
+            )
+        ) : null,
+        children: menuItem.children
+            ? menuItem.children.map(transformMenuItem)
+            : undefined,
+    });
 
     return (
         <Dropdown
             // 提取具有data-*或aria-*通配格式的属性
-            {...pickBy((_, k) => k.startsWith('data-') || k.startsWith('aria-'), others)}
+            {...pickBy(
+                (_, k) => k.startsWith('data-') || k.startsWith('aria-'),
+                others
+            )}
             id={id}
             className={
-                isString(className) ?
-                    className :
-                    (className ? useCss(className) : undefined)
+                isString(className)
+                    ? className
+                    : className
+                      ? useCss(className)
+                      : undefined
             }
             style={style}
             key={key}
@@ -122,28 +118,33 @@ const AntdDropdown = ({
                     setProps({
                         clickedKey: item.key,
                         nClicks: nClicks + 1,
-                        ...(
-                            freePosition && !multiple ?
-                                {
-                                    visible: false
-                                } :
-                                {}
-                        )
-                    })
+                        ...(freePosition && !multiple
+                            ? {
+                                  visible: false,
+                              }
+                            : {}),
+                    });
                 },
-                onSelect: (e) => setProps({ selectedKeys: (e.selectedKeys || []).filter(key => !nonSelectableKeys.includes(key)) }),
-                onDeselect: (e) => setProps({ selectedKeys: e.selectedKeys })
+                onSelect: (e) =>
+                    setProps({
+                        selectedKeys: (e.selectedKeys || []).filter(
+                            (key) => !nonSelectableKeys.includes(key)
+                        ),
+                    }),
+                onDeselect: (e) => setProps({ selectedKeys: e.selectedKeys }),
             }}
             arrow={arrow}
             disabled={
-                context && !isUndefined(context.componentDisabled) ?
-                    context.componentDisabled :
-                    disabled
+                context && !isUndefined(context.componentDisabled)
+                    ? context.componentDisabled
+                    : disabled
             }
             overlayClassName={
-                isString(overlayClassName) ?
-                    overlayClassName :
-                    (overlayClassName ? useCss(overlayClassName) : undefined)
+                isString(overlayClassName)
+                    ? overlayClassName
+                    : overlayClassName
+                      ? useCss(overlayClassName)
+                      : undefined
             }
             overlayStyle={overlayStyle}
             placement={placement}
@@ -152,58 +153,54 @@ const AntdDropdown = ({
             open={visible}
             onOpenChange={(e) => setProps({ visible: e })}
             getPopupContainer={
-                popupContainer === 'parent' ?
-                    (triggerNode) => triggerNode.parentNode :
-                    undefined
+                popupContainer === 'parent'
+                    ? (triggerNode) => triggerNode.parentNode
+                    : undefined
             }
-            data-dash-is-loading={useLoading()}>
+            data-dash-is-loading={useLoading()}
+        >
             {
                 // 开启自由位置模式
-                freePosition ?
-                    (
-                        <div
-                            style={{
-                                width: 1,
-                                height: 1,
-                                position: 'fixed',
-                                background: 'transparent',
-                                ...freePositionStyle
-                            }}
-                            className={freePositionClassName}
-                        />
-                    ) :
-                    (
-                        children ?
-                            (
-                                <div className={
-                                    isString(wrapperClassName) ?
-                                        wrapperClassName :
-                                        (wrapperClassName ? useCss(wrapperClassName) : undefined)
-                                }
-                                    style={{
-                                        display: 'inline-block',
-                                        ...wrapperStyle
-                                    }}>
-                                    {children}
-                                </div>
-                            ) :
-                            (
-                                buttonMode ?
-                                    <Button
-                                        {...buttonProps}
-                                    >
-                                        {title} <DownOutlined />
-                                    </Button>
-                                    :
-                                    <Link onClick={e => e.preventDefault()}>
-                                        {title} <DownOutlined />
-                                    </Link>
-                            )
-                    )
+                freePosition ? (
+                    <div
+                        style={{
+                            width: 1,
+                            height: 1,
+                            position: 'fixed',
+                            background: 'transparent',
+                            ...freePositionStyle,
+                        }}
+                        className={freePositionClassName}
+                    />
+                ) : children ? (
+                    <div
+                        className={
+                            isString(wrapperClassName)
+                                ? wrapperClassName
+                                : wrapperClassName
+                                  ? useCss(wrapperClassName)
+                                  : undefined
+                        }
+                        style={{
+                            display: 'inline-block',
+                            ...wrapperStyle,
+                        }}
+                    >
+                        {children}
+                    </div>
+                ) : buttonMode ? (
+                    <Button {...buttonProps}>
+                        {title} <DownOutlined />
+                    </Button>
+                ) : (
+                    <Link onClick={(e) => e.preventDefault()}>
+                        {title} <DownOutlined />
+                    </Link>
+                )
             }
         </Dropdown>
     );
-}
+};
 
 AntdDropdown.propTypes = {
     /**
@@ -229,10 +226,7 @@ AntdDropdown.propTypes = {
     /**
      * 当前组件css类名，支持[动态css](/advanced-classname)
      */
-    className: PropTypes.oneOfType([
-        PropTypes.string,
-        PropTypes.object
-    ]),
+    className: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
 
     /**
      * 锚定元素父容器css样式
@@ -242,10 +236,7 @@ AntdDropdown.propTypes = {
     /**
      * 锚定元素父容器css类名
      */
-    wrapperClassName: PropTypes.oneOfType([
-        PropTypes.string,
-        PropTypes.object
-    ]),
+    wrapperClassName: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
 
     /**
      * 下拉菜单触发元素标题内容，children参数未设置时有效
@@ -275,7 +266,14 @@ AntdDropdown.propTypes = {
          * 按钮类型，可选项有`'default'`、`'primary'`、`'ghost'`、`'dashed'`、`'link'`、`'text'`
          * 默认值：`'default'`
          */
-        type: PropTypes.oneOf(['default', 'primary', 'ghost', 'dashed', 'link', 'text']),
+        type: PropTypes.oneOf([
+            'default',
+            'primary',
+            'ghost',
+            'dashed',
+            'link',
+            'text',
+        ]),
         /**
          * 按钮是否呈现危险样式
          * 默认值：`false`
@@ -288,7 +286,7 @@ AntdDropdown.propTypes = {
         /**
          * 按钮css类名
          */
-        className: PropTypes.string
+        className: PropTypes.string,
     }),
 
     /**
@@ -364,7 +362,7 @@ AntdDropdown.propTypes = {
             /**
              * 子菜单项，用于构建级联菜单
              */
-            children: PropTypes.array
+            children: PropTypes.array,
         })
     ),
 
@@ -406,10 +404,7 @@ AntdDropdown.propTypes = {
     /**
      * 下拉菜单容器css类名，支持[动态css](/advanced-classname)
      */
-    overlayClassName: PropTypes.oneOfType([
-        PropTypes.string,
-        PropTypes.object
-    ]),
+    overlayClassName: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
 
     /**
      * 下拉菜单容器css样式
@@ -419,7 +414,14 @@ AntdDropdown.propTypes = {
     /**
      * 下拉菜单弹出方位，可选项有`'bottomLeft'`、`'bottomCenter'`、`'bottomRight'`、`'topLeft'`、`'topCenter'`、`'topRight'`
      */
-    placement: PropTypes.oneOf(['bottomLeft', 'bottomCenter', 'bottomRight', 'topLeft', 'topCenter', 'topRight']),
+    placement: PropTypes.oneOf([
+        'bottomLeft',
+        'bottomCenter',
+        'bottomRight',
+        'topLeft',
+        'topCenter',
+        'topRight',
+    ]),
 
     /**
      * 下拉菜单显示触发方式，可选项有`'click'`、`'hover'`
@@ -470,7 +472,7 @@ AntdDropdown.propTypes = {
      * Dash-assigned callback that should be called to report property changes
      * to Dash, to make them available for callbacks.
      */
-    setProps: PropTypes.func
+    setProps: PropTypes.func,
 };
 
 export default AntdDropdown;
