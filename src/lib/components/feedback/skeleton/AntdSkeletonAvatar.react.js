@@ -24,17 +24,21 @@ const AntdSkeletonAvatar = ({
     setProps,
     ...others
 }) => {
-
     return (
         <Skeleton.Avatar
             // 提取具有data-*或aria-*通配格式的属性
-            {...pickBy((_, k) => k.startsWith('data-') || k.startsWith('aria-'), others)}
+            {...pickBy(
+                (_, k) => k.startsWith('data-') || k.startsWith('aria-'),
+                others
+            )}
             id={id}
             style={style}
             className={
-                isString(className) ?
-                    className :
-                    (className ? useCss(className) : undefined)
+                isString(className)
+                    ? className
+                    : className
+                      ? useCss(className)
+                      : undefined
             }
             key={key}
             active={active}
@@ -43,7 +47,7 @@ const AntdSkeletonAvatar = ({
             data-dash-is-loading={useLoading()}
         />
     );
-}
+};
 
 AntdSkeletonAvatar.propTypes = {
     /**
@@ -64,10 +68,7 @@ AntdSkeletonAvatar.propTypes = {
     /**
      * 当前组件css类名，支持[动态css](/advanced-classname)
      */
-    className: PropTypes.oneOfType([
-        PropTypes.string,
-        PropTypes.object
-    ]),
+    className: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
 
     /**
      * 是否显示动画
@@ -87,7 +88,7 @@ AntdSkeletonAvatar.propTypes = {
      */
     size: PropTypes.oneOfType([
         PropTypes.number,
-        PropTypes.oneOf(['large', 'small', 'default'])
+        PropTypes.oneOf(['large', 'small', 'default']),
     ]),
 
     /**
@@ -104,7 +105,7 @@ AntdSkeletonAvatar.propTypes = {
      * Dash-assigned callback that should be called to report property changes
      * to Dash, to make them available for callbacks.
      */
-    setProps: PropTypes.func
+    setProps: PropTypes.func,
 };
 
 export default AntdSkeletonAvatar;

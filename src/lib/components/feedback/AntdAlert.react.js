@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 // antd核心
 import { Alert } from 'antd';
 // 辅助库
-import TextLoop from 'react-text-loop'
+import TextLoop from 'react-text-loop';
 import Marquee from 'react-fast-marquee';
 import { isString } from 'lodash';
 import { pickBy } from 'ramda';
@@ -32,23 +32,29 @@ const AntdAlert = ({
     setProps,
     ...others
 }) => {
-
     if (messageRenderMode === 'loop-text' && Array.isArray(message)) {
         return (
             <Alert
                 // 提取具有data-*或aria-*通配格式的属性
-                {...pickBy((_, k) => k.startsWith('data-') || k.startsWith('aria-'), others)}
+                {...pickBy(
+                    (_, k) => k.startsWith('data-') || k.startsWith('aria-'),
+                    others
+                )}
                 id={id}
                 className={
-                    isString(className) ?
-                        className :
-                        (className ? useCss(className) : undefined)
+                    isString(className)
+                        ? className
+                        : className
+                          ? useCss(className)
+                          : undefined
                 }
                 style={style}
                 key={key}
                 message={
                     <TextLoop mask>
-                        {message.map(item => <div>{item}</div>)}
+                        {message.map((item) => (
+                            <div>{item}</div>
+                        ))}
                     </TextLoop>
                 }
                 type={type}
@@ -58,28 +64,36 @@ const AntdAlert = ({
                 closable={closable}
                 action={action}
                 banner={banner}
-                data-dash-is-loading={useLoading()} />
+                data-dash-is-loading={useLoading()}
+            />
         );
     }
 
     return (
         <Alert
             // 提取具有data-*或aria-*通配格式的属性
-            {...pickBy((_, k) => k.startsWith('data-') || k.startsWith('aria-'), others)}
+            {...pickBy(
+                (_, k) => k.startsWith('data-') || k.startsWith('aria-'),
+                others
+            )}
             id={id}
             className={
-                isString(className) ?
-                    className :
-                    (className ? useCss(className) : undefined)
+                isString(className)
+                    ? className
+                    : className
+                      ? useCss(className)
+                      : undefined
             }
             style={style}
             key={key}
             message={
-                messageRenderMode === 'marquee' ?
+                messageRenderMode === 'marquee' ? (
                     <Marquee pauseOnHover gradient={false}>
                         {message}
-                    </Marquee> :
+                    </Marquee>
+                ) : (
                     message
+                )
             }
             type={type}
             description={description}
@@ -88,9 +102,10 @@ const AntdAlert = ({
             closable={closable}
             action={action}
             banner={banner}
-            data-dash-is-loading={useLoading()} />
+            data-dash-is-loading={useLoading()}
+        />
     );
-}
+};
 
 AntdAlert.propTypes = {
     /**
@@ -111,10 +126,7 @@ AntdAlert.propTypes = {
     /**
      * 当前组件css类名，支持[动态css](/advanced-classname)
      */
-    className: PropTypes.oneOfType([
-        PropTypes.string,
-        PropTypes.object
-    ]),
+    className: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
 
     /**
      * 主要提示信息内容
@@ -180,7 +192,7 @@ AntdAlert.propTypes = {
      * Dash-assigned callback that should be called to report property changes
      * to Dash, to make them available for callbacks.
      */
-    setProps: PropTypes.func
+    setProps: PropTypes.func,
 };
 
 export default AntdAlert;

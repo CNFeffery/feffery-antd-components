@@ -4,6 +4,7 @@ if True:
     sys.path.append('../../../')
     import dash
     from dash import html
+
     import feffery_antd_components as fac
 
 app = dash.Dash(__name__)
@@ -15,16 +16,12 @@ app.layout = html.Div(
                 {
                     'title': 'Single Tag',
                     'dataIndex': 'single-tag',
-                    'renderOptions': {
-                        'renderType': 'tags'
-                    },
+                    'renderOptions': {'renderType': 'tags'},
                 },
                 {
                     'title': 'Multiple Tags',
                     'dataIndex': 'multiple-tags',
-                    'renderOptions': {
-                        'renderType': 'tags'
-                    },
+                    'renderOptions': {'renderType': 'tags'},
                 },
             ],
             data=[

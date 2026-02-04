@@ -1,7 +1,12 @@
 import React, { Suspense } from 'react';
 import PropTypes from 'prop-types';
 
-const LazyAntdEmpty = React.lazy(() => import(/* webpackChunkName: "data_display" */ '../../fragments/dataDisplay/AntdEmpty.react'));
+const LazyAntdEmpty = React.lazy(
+    () =>
+        import(
+            /* webpackChunkName: "data_display" */ '../../fragments/dataDisplay/AntdEmpty.react'
+        )
+);
 
 /**
  * 空状态组件AntdEmpty
@@ -22,8 +27,8 @@ const AntdEmpty = ({
 }) => {
     return (
         <Suspense fallback={null}>
-            <LazyAntdEmpty {
-                ...{
+            <LazyAntdEmpty
+                {...{
                     id,
                     children,
                     className,
@@ -35,12 +40,12 @@ const AntdEmpty = ({
                     description,
                     image,
                     setProps,
-                    ...others
-                }
-            } />
+                    ...others,
+                }}
+            />
         </Suspense>
     );
-}
+};
 
 AntdEmpty.propTypes = {
     /**
@@ -82,7 +87,7 @@ AntdEmpty.propTypes = {
         /**
          * 底部元素css样式
          */
-        footer: PropTypes.object
+        footer: PropTypes.object,
     }),
 
     /**
@@ -104,16 +109,13 @@ AntdEmpty.propTypes = {
         /**
          * 底部元素css类名
          */
-        footer: PropTypes.string
+        footer: PropTypes.string,
     }),
 
     /**
      * 当前组件css类名，支持[动态css](/advanced-classname)
      */
-    className: PropTypes.oneOfType([
-        PropTypes.string,
-        PropTypes.object
-    ]),
+    className: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
 
     /**
      * 组件文案语种，可选项有`'zh-cn'`（简体中文）、`'en-us'`（英语）、`'de-de'`（德语）、`'ru-ru'`（俄语）
@@ -124,10 +126,7 @@ AntdEmpty.propTypes = {
     /**
      * 描述信息内容
      */
-    description: PropTypes.oneOfType([
-        PropTypes.node,
-        PropTypes.bool
-    ]),
+    description: PropTypes.oneOfType([PropTypes.node, PropTypes.bool]),
 
     /**
      * 状态图片地址，也可以使用内置图片，可选项有`'default'`、`'simple'`
@@ -135,9 +134,7 @@ AntdEmpty.propTypes = {
      */
     image: PropTypes.oneOfType([
         PropTypes.string,
-        PropTypes.oneOf([
-            'default', 'simple'
-        ])
+        PropTypes.oneOf(['default', 'simple']),
     ]),
 
     /**
@@ -154,7 +151,7 @@ AntdEmpty.propTypes = {
      * Dash-assigned callback that should be called to report property changes
      * to Dash, to make them available for callbacks.
      */
-    setProps: PropTypes.func
+    setProps: PropTypes.func,
 };
 
 export default AntdEmpty;

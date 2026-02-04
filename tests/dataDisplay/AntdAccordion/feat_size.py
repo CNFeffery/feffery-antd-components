@@ -3,8 +3,9 @@ if True:
 
     sys.path.append('../../../')
     import dash
-    import feffery_antd_components as fac
     from feffery_dash_utils.style_utils import style
+
+    import feffery_antd_components as fac
 
 app = dash.Dash(__name__)
 
@@ -16,9 +17,7 @@ app.layout = fac.AntdCenter(
                     {
                         'title': f'手风琴项示例{i}',
                         'key': i,
-                        'children': fac.AntdText(
-                            f'手风琴项示例{i}'
-                        ),
+                        'children': fac.AntdText(f'手风琴项示例{i}'),
                     }
                     for i in range(1, 6)
                 ],

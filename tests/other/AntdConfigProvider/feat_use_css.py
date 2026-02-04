@@ -1,7 +1,7 @@
 if True:
     import sys
 
-    sys.path.append("../../../")  # adjust if needed
+    sys.path.append('../../../')  # adjust if needed
 
     import dash
     from dash import html
@@ -18,50 +18,50 @@ app.layout = fac.AntdConfigProvider(
             fac.AntdSpace(
                 [
                     fac.AntdSegmented(
-                        id="theme-mode",
+                        id='theme-mode',
                         options=[
-                            {"label": "Light", "value": "light"},
-                            {"label": "Dark", "value": "dark"},
+                            {'label': 'Light', 'value': 'light'},
+                            {'label': 'Dark', 'value': 'dark'},
                         ],
-                        value="dark",
+                        value='dark',
                     ),
                     html.Div(
-                        "HTML styled via AntD CSS vars",
+                        'HTML styled via AntD CSS vars',
                         style={
-                            "background": "var(--ant-color-bg-container)",
-                            "color": "var(--ant-color-text)",
-                            "border": "1px solid var(--ant-color-split)",
-                            "padding": 12,
-                            "borderRadius": 6,
+                            'background': 'var(--ant-color-bg-container)',
+                            'color': 'var(--ant-color-text)',
+                            'border': '1px solid var(--ant-color-split)',
+                            'padding': 12,
+                            'borderRadius': 6,
                         },
                     ),
                     fac.AntdDivider(),
                     fac.AntdText(
-                        "Resolved design tokens:",
+                        'Resolved design tokens:',
                         strong=True,
                     ),
-                    html.Pre(id="show-token", style={"whiteSpace": "pre-wrap"}),
+                    html.Pre(id='show-token', style={'whiteSpace': 'pre-wrap'}),
                 ],
-                direction="vertical",
-                size="large",
-                style={"width": "100%", "maxWidth": 800},
+                direction='vertical',
+                size='large',
+                style={'width': '100%', 'maxWidth': 800},
             ),
-            style=style(height="100vh", overflowY="auto"),
+            style=style(height='100vh', overflowY='auto'),
         ),
-        id="listen-token",  # exposes `token` for the clientside callback
+        id='listen-token',  # exposes `token` for the clientside callback
     ),
-    id="cfg",
-    algorithm="dark",  # initial theme
-    token={"fontSize": 18},  # sample token override
+    id='cfg',
+    algorithm='dark',  # initial theme
+    token={'fontSize': 18},  # sample token override
     cssVar=True,
 )
 
 
 # Toggle between algorithms
-@app.callback(Output("cfg", "algorithm"), Input("theme-mode", "value"))
+@app.callback(Output('cfg', 'algorithm'), Input('theme-mode', 'value'))
 def apply_theme(mode: str):
-    return "dark" if mode == "dark" else "default"
+    return 'dark' if mode == 'dark' else 'default'
 
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     app.run(debug=True)

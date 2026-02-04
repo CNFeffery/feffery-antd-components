@@ -3,8 +3,9 @@ if True:
 
     sys.path.append('../../../')
     from dash import Dash, html
-    import feffery_antd_components as fac
     from feffery_dash_utils.style_utils import style
+
+    import feffery_antd_components as fac
 
 app = Dash(__name__)
 
@@ -20,9 +21,7 @@ app.layout = html.Div(
                                 {
                                     'children': fac.AntdCenter(
                                         f'item{i}',
-                                        style={
-                                            'height': '100%'
-                                        },
+                                        style={'height': '100%'},
                                     )
                                 }
                                 for i in range(1, 3)
@@ -37,9 +36,7 @@ app.layout = html.Div(
                                 {
                                     'children': fac.AntdCenter(
                                         f'item{i}',
-                                        style={
-                                            'height': '100%'
-                                        },
+                                        style={'height': '100%'},
                                     )
                                 }
                                 for i in range(1, 4)
@@ -78,18 +75,14 @@ app.layout = html.Div(
                                 {
                                     'children': fac.AntdCenter(
                                         '30%',
-                                        style={
-                                            'height': '100%'
-                                        },
+                                        style={'height': '100%'},
                                     ),
                                     'defaultSize': '30%',
                                 },
                                 {
                                     'children': fac.AntdCenter(
                                         '70%',
-                                        style={
-                                            'height': '100%'
-                                        },
+                                        style={'height': '100%'},
                                     ),
                                     'defaultSize': '70%',
                                 },
@@ -104,18 +97,14 @@ app.layout = html.Div(
                                 {
                                     'children': fac.AntdCenter(
                                         '30%',
-                                        style={
-                                            'height': '100%'
-                                        },
+                                        style={'height': '100%'},
                                     ),
                                     'defaultSize': '30%',
                                 },
                                 {
                                     'children': fac.AntdCenter(
                                         '70%',
-                                        style={
-                                            'height': '100%'
-                                        },
+                                        style={'height': '100%'},
                                     ),
                                     'defaultSize': '70%',
                                 },
@@ -138,9 +127,7 @@ app.layout = html.Div(
                                 {
                                     'children': fac.AntdCenter(
                                         'min: 50 max: 90%',
-                                        style={
-                                            'height': '100%'
-                                        },
+                                        style={'height': '100%'},
                                     ),
                                     'defaultSize': '30%',
                                     'min': 50,
@@ -149,9 +136,7 @@ app.layout = html.Div(
                                 {
                                     'children': fac.AntdCenter(
                                         '70%',
-                                        style={
-                                            'height': '100%'
-                                        },
+                                        style={'height': '100%'},
                                     ),
                                     'defaultSize': '70%',
                                 },
@@ -166,9 +151,7 @@ app.layout = html.Div(
                                 {
                                     'children': fac.AntdCenter(
                                         'min: 50 max: 90%',
-                                        style={
-                                            'height': '100%'
-                                        },
+                                        style={'height': '100%'},
                                     ),
                                     'defaultSize': '30%',
                                     'min': 50,
@@ -177,9 +160,7 @@ app.layout = html.Div(
                                 {
                                     'children': fac.AntdCenter(
                                         '70%',
-                                        style={
-                                            'height': '100%'
-                                        },
+                                        style={'height': '100%'},
                                     ),
                                     'defaultSize': '70%',
                                 },
@@ -202,9 +183,7 @@ app.layout = html.Div(
                                 {
                                     'children': fac.AntdCenter(
                                         f'item{i}',
-                                        style={
-                                            'height': '100%'
-                                        },
+                                        style={'height': '100%'},
                                     ),
                                     'collapsible': True,
                                 }
@@ -220,9 +199,7 @@ app.layout = html.Div(
                                 {
                                     'children': fac.AntdCenter(
                                         f'item{i}',
-                                        style={
-                                            'height': '100%'
-                                        },
+                                        style={'height': '100%'},
                                     ),
                                     'collapsible': True,
                                 }
@@ -246,9 +223,7 @@ app.layout = html.Div(
                                 {
                                     'children': fac.AntdCenter(
                                         'item1',
-                                        style={
-                                            'height': '100%'
-                                        },
+                                        style={'height': '100%'},
                                     ),
                                     'defaultSize': '30%',
                                 },
@@ -258,26 +233,20 @@ app.layout = html.Div(
                                             {
                                                 'children': fac.AntdCenter(
                                                     'item2',
-                                                    style={
-                                                        'height': '100%'
-                                                    },
+                                                    style={'height': '100%'},
                                                 ),
                                                 'defaultSize': '30%',
                                             },
                                             {
                                                 'children': fac.AntdCenter(
                                                     'item3',
-                                                    style={
-                                                        'height': '100%'
-                                                    },
+                                                    style={'height': '100%'},
                                                 ),
                                                 'defaultSize': '70%',
                                             },
                                         ],
                                         layout='vertical',
-                                        style={
-                                            'height': '100%'
-                                        },
+                                        style={'height': '100%'},
                                     ),
                                     'defaultSize': '70%',
                                 },

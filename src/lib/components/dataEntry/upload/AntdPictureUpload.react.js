@@ -1,7 +1,12 @@
 import React, { Suspense } from 'react';
 import PropTypes from 'prop-types';
 
-const LazyAntdPictureUpload = React.lazy(() => import(/* webpackChunkName: "upload" */ '../../../fragments/upload/AntdPictureUpload.react'));
+const LazyAntdPictureUpload = React.lazy(
+    () =>
+        import(
+            /* webpackChunkName: "upload" */ '../../../fragments/upload/AntdPictureUpload.react'
+        )
+);
 
 /**
  * 图片上传组件AntdPictureUpload
@@ -26,7 +31,17 @@ const AntdPictureUpload = ({
     uploadId,
     fileListMaxLength = null,
     buttonContent,
-    fileTypes = ['tiff', 'bmp', 'gif', 'png', 'jpeg', 'jpg', 'webp', 'ico', 'tif'],
+    fileTypes = [
+        'tiff',
+        'bmp',
+        'gif',
+        'png',
+        'jpeg',
+        'jpg',
+        'webp',
+        'ico',
+        'tif',
+    ],
     fileMaxSize = 10,
     failedTooltipInfo,
     showRemoveIcon = true,
@@ -46,8 +61,8 @@ const AntdPictureUpload = ({
 }) => {
     return (
         <Suspense fallback={null}>
-            <LazyAntdPictureUpload {
-                ...{
+            <LazyAntdPictureUpload
+                {...{
                     id,
                     className,
                     style,
@@ -83,12 +98,12 @@ const AntdPictureUpload = ({
                     disabled,
                     status,
                     setProps,
-                    ...others
-                }
-            } />
+                    ...others,
+                }}
+            />
         </Suspense>
     );
-}
+};
 
 AntdPictureUpload.propTypes = {
     /**
@@ -109,10 +124,7 @@ AntdPictureUpload.propTypes = {
     /**
      * 当前组件css类名，支持[动态css](/advanced-classname)
      */
-    className: PropTypes.oneOfType([
-        PropTypes.string,
-        PropTypes.object
-    ]),
+    className: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
 
     /**
      * 配合`AntdForm`表单批量值搜集/控制功能使用，充当当前表单项的字段名，以`id`作为缺省值
@@ -237,7 +249,7 @@ AntdPictureUpload.propTypes = {
          * 组件型，图片编辑模态框取消按钮内容
          * 默认值：`'取消'`
          */
-        modalCancel: PropTypes.node
+        modalCancel: PropTypes.node,
     }),
 
     /**
@@ -316,8 +328,8 @@ AntdPictureUpload.propTypes = {
                 /**
                  * 渐变色结束颜色
                  */
-                to: PropTypes.string
-            })
+                to: PropTypes.string,
+            }),
         ]),
         /**
          * 进度条像素宽度
@@ -335,8 +347,8 @@ AntdPictureUpload.propTypes = {
              * 进度文字后缀内容
              * 默认值：`'%'`
              */
-            suffix: PropTypes.string
-        })
+            suffix: PropTypes.string,
+        }),
     }),
 
     /**
@@ -389,7 +401,7 @@ AntdPictureUpload.propTypes = {
             /**
              * 上传任务的接口响应信息
              */
-            uploadResponse: PropTypes.any
+            uploadResponse: PropTypes.any,
         }),
         PropTypes.arrayOf(
             PropTypes.exact({
@@ -420,9 +432,9 @@ AntdPictureUpload.propTypes = {
                 /**
                  * 上传任务的接口响应信息
                  */
-                uploadResponse: PropTypes.any
+                uploadResponse: PropTypes.any,
             })
-        )
+        ),
     ]),
 
     /**
@@ -461,7 +473,7 @@ AntdPictureUpload.propTypes = {
             /**
              * 上传任务的接口响应信息
              */
-            uploadResponse: PropTypes.any
+            uploadResponse: PropTypes.any,
         })
     ),
 
@@ -493,7 +505,7 @@ AntdPictureUpload.propTypes = {
             /**
              * 当前文件大小
              */
-            fileSize: PropTypes.number
+            fileSize: PropTypes.number,
         })
     ),
 
@@ -522,7 +534,7 @@ AntdPictureUpload.propTypes = {
      * Dash-assigned callback that should be called to report property changes
      * to Dash, to make them available for callbacks.
      */
-    setProps: PropTypes.func
+    setProps: PropTypes.func,
 };
 
 export default AntdPictureUpload;

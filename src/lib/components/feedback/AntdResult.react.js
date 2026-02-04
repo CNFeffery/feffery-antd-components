@@ -27,34 +27,37 @@ const AntdResult = ({
     setProps,
     ...others
 }) => {
-
     return (
         <Result
             // 提取具有data-*或aria-*通配格式的属性
-            {...pickBy((_, k) => k.startsWith('data-') || k.startsWith('aria-'), others)}
+            {...pickBy(
+                (_, k) => k.startsWith('data-') || k.startsWith('aria-'),
+                others
+            )}
             id={id}
             className={
-                isString(className) ?
-                    className :
-                    (className ? useCss(className) : undefined)
+                isString(className)
+                    ? className
+                    : className
+                      ? useCss(className)
+                      : undefined
             }
             style={style}
             key={key}
             icon={
                 icon ||
-                (
-                    status === 'loading' ?
-                        <LoadingOutlined style={{ color: '#1890ff' }} /> :
-                        undefined)
+                (status === 'loading' ? (
+                    <LoadingOutlined style={{ color: '#1890ff' }} />
+                ) : undefined)
             }
             extra={extra}
             status={status}
             title={title}
             subTitle={subTitle}
-            data-dash-is-loading={useLoading()}>
-        </Result>
+            data-dash-is-loading={useLoading()}
+        ></Result>
     );
-}
+};
 
 AntdResult.propTypes = {
     /**
@@ -75,10 +78,7 @@ AntdResult.propTypes = {
     /**
      * 当前组件css类名，支持[动态css](/advanced-classname)
      */
-    className: PropTypes.oneOfType([
-        PropTypes.string,
-        PropTypes.object
-    ]),
+    className: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
 
     /**
      * 组件型，操作区域
@@ -89,7 +89,16 @@ AntdResult.propTypes = {
      * 状态，可选项有`'success'`、`'error'`、`'info'`、`'warning'`、`'404'`、`'403'`、`'500'`
      * 默认值：`'info'`
      */
-    status: PropTypes.oneOf(['success', 'error', 'info', 'warning', '404', '403', '500', 'loading']),
+    status: PropTypes.oneOf([
+        'success',
+        'error',
+        'info',
+        'warning',
+        '404',
+        '403',
+        '500',
+        'loading',
+    ]),
 
     /**
      * 组件型，标题内容
@@ -120,7 +129,7 @@ AntdResult.propTypes = {
      * Dash-assigned callback that should be called to report property changes
      * to Dash, to make them available for callbacks.
      */
-    setProps: PropTypes.func
+    setProps: PropTypes.func,
 };
 
 export default AntdResult;

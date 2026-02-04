@@ -1,7 +1,12 @@
 import React, { Suspense } from 'react';
 import PropTypes from 'prop-types';
 
-const LazyAntdCard = React.lazy(() => import(/* webpackChunkName: "data_display" */ '../../../fragments/dataDisplay/card/AntdCard.react'));
+const LazyAntdCard = React.lazy(
+    () =>
+        import(
+            /* webpackChunkName: "data_display" */ '../../../fragments/dataDisplay/card/AntdCard.react'
+        )
+);
 
 const AntdCard = ({
     id,
@@ -25,8 +30,8 @@ const AntdCard = ({
 }) => {
     return (
         <Suspense fallback={null}>
-            <LazyAntdCard {
-                ...{
+            <LazyAntdCard
+                {...{
                     id,
                     children,
                     className,
@@ -44,12 +49,12 @@ const AntdCard = ({
                     title,
                     nClicks,
                     setProps,
-                    ...others
-                }
-            } />
+                    ...others,
+                }}
+            />
         </Suspense>
     );
-}
+};
 
 AntdCard.propTypes = {
     /**
@@ -75,10 +80,7 @@ AntdCard.propTypes = {
     /**
      * 当前组件css类名，支持[动态css](/advanced-classname)
      */
-    className: PropTypes.oneOfType([
-        PropTypes.string,
-        PropTypes.object
-    ]),
+    className: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
 
     /**
      * 细分控制子元素css样式
@@ -107,7 +109,7 @@ AntdCard.propTypes = {
         /**
          * 设置卡片底部操作组css样式
          */
-        actions: PropTypes.object
+        actions: PropTypes.object,
     }),
 
     /**
@@ -137,7 +139,7 @@ AntdCard.propTypes = {
         /**
          * 设置卡片底部操作组css类名
          */
-        actions: PropTypes.string
+        actions: PropTypes.string,
     }),
 
     /**
@@ -173,7 +175,7 @@ AntdCard.propTypes = {
         /**
          * 链接css样式
          */
-        style: PropTypes.object
+        style: PropTypes.object,
     }),
 
     /**
@@ -200,7 +202,7 @@ AntdCard.propTypes = {
         /**
          * 图片css样式
          */
-        style: PropTypes.object
+        style: PropTypes.object,
     }),
 
     /**
@@ -241,7 +243,7 @@ AntdCard.propTypes = {
      * Dash-assigned callback that should be called to report property changes
      * to Dash, to make them available for callbacks.
      */
-    setProps: PropTypes.func
+    setProps: PropTypes.func,
 };
 
 export default AntdCard;

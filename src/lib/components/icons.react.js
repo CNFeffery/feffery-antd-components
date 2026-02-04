@@ -262,7 +262,7 @@ import {
     FastForwardOutlined,
     FastBackwardOutlined,
     SunOutlined,
-    MoonOutlined
+    MoonOutlined,
 } from '@ant-design/icons';
 import {
     BsAlarm,
@@ -271,15 +271,15 @@ import {
     BsLink,
     BsLink45Deg,
     BsListCheck,
-    BsListTask
-} from "react-icons/bs/index.esm";
+    BsListTask,
+} from 'react-icons/bs/index.esm';
 import {
     BiAnalyse,
     BiTable,
     BiLayer,
     BiLayerMinus,
-    BiLayerPlus
-} from "react-icons/bi/index.esm";
+    BiLayerPlus,
+} from 'react-icons/bi/index.esm';
 import {
     DiPython,
     DiLinux,
@@ -289,8 +289,8 @@ import {
     DiMarkdown,
     DiPostgresql,
     DiTerminal,
-    DiWindows
-} from "react-icons/di/index.esm";
+    DiWindows,
+} from 'react-icons/di/index.esm';
 import {
     FcAdvertising,
     FcApproval,
@@ -387,8 +387,8 @@ import {
     FcTreeStructure,
     FcUpload,
     FcViewDetails,
-    FcVlc
-} from "react-icons/fc/index.esm";
+    FcVlc,
+} from 'react-icons/fc/index.esm';
 import {
     MdAccountCircle,
     MdAlarm,
@@ -508,13 +508,10 @@ import {
     MdPeople,
     MdStar,
     MdStarBorder,
-    MdStarHalf
-} from "react-icons/md/index.esm";
-import {
-    ImEarth,
-    ImSphere
-} from "react-icons/im/index.esm";
-import { GiMeshNetwork } from "react-icons/gi/index.esm";
+    MdStarHalf,
+} from 'react-icons/md/index.esm';
+import { ImEarth, ImSphere } from 'react-icons/im/index.esm';
+import { GiMeshNetwork } from 'react-icons/gi/index.esm';
 import {
     PiCircle,
     PiPolygon,
@@ -568,9 +565,9 @@ import {
     PiMathOperations,
     PiPlus,
     PiMinus,
-    PiPath
+    PiPath,
 } from 'react-icons/pi/index.esm';
-import { SiGitee } from 'react-icons/si/index.esm'
+import { SiGitee } from 'react-icons/si/index.esm';
 
 // vscode中，使用正则查找目标后，按快捷键alt+enter批量选中匹配项
 const str2Icon = new Map([
@@ -1130,8 +1127,7 @@ const str2Icon = new Map([
     ['pi-plus', <PiPlus />],
     ['pi-minus', <PiMinus />],
     ['pi-path', <PiPath />],
-    ['si-gitee', <SiGitee />]
-])
+    ['si-gitee', <SiGitee />],
+]);
 
-
-export { str2Icon }
+export { str2Icon };

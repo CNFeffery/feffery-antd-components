@@ -25,42 +25,45 @@ const AntdCenter = ({
     setProps,
     ...others
 }) => {
-
     const { token } = useToken();
 
-    children = parseChildrenToArray(children)
+    children = parseChildrenToArray(children);
 
     return (
         <div
             // 提取具有data-*或aria-*通配格式的属性
-            {...pickBy((_, k) => k.startsWith('data-') || k.startsWith('aria-'), others)}
+            {...pickBy(
+                (_, k) => k.startsWith('data-') || k.startsWith('aria-'),
+                others
+            )}
             id={id}
             className={
-                isString(className) ?
-                    className :
-                    (className ? useCss(className) : undefined)
+                isString(className)
+                    ? className
+                    : className
+                      ? useCss(className)
+                      : undefined
             }
             style={{
                 display: inline ? 'inline-flex' : 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
-                ...(
-                    inheritStyleToken ?
-                        {
-                            backgroundColor: token.colorBgBase,
-                            color: token.colorTextBase,
-                            fontSize: token.fontSize,
-                        } :
-                        {}
-                ),
-                ...style
+                ...(inheritStyleToken
+                    ? {
+                          backgroundColor: token.colorBgBase,
+                          color: token.colorTextBase,
+                          fontSize: token.fontSize,
+                      }
+                    : {}),
+                ...style,
             }}
             key={key}
-            data-dash-is-loading={useLoading()}>
+            data-dash-is-loading={useLoading()}
+        >
             {children}
         </div>
     );
-}
+};
 
 AntdCenter.propTypes = {
     /**
@@ -86,10 +89,7 @@ AntdCenter.propTypes = {
     /**
      * 当前组件css类名，支持[动态css](/advanced-classname)
      */
-    className: PropTypes.oneOfType([
-        PropTypes.string,
-        PropTypes.object
-    ]),
+    className: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
 
     /**
      * 是否渲染为行内元素
@@ -117,7 +117,7 @@ AntdCenter.propTypes = {
      * Dash-assigned callback that should be called to report property changes
      * to Dash, to make them available for callbacks.
      */
-    setProps: PropTypes.func
+    setProps: PropTypes.func,
 };
 
 export default AntdCenter;

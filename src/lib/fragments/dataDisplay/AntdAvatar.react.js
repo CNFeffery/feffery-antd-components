@@ -10,13 +10,16 @@ import { useLoading } from '../../components/utils';
 // 自定义hooks
 import useCss from '../../hooks/useCss';
 // 参数类型
-import { propTypes, defaultProps } from '../../components/dataDisplay/AntdAvatar.react';
+import {
+    propTypes,
+    defaultProps,
+} from '../../components/dataDisplay/AntdAvatar.react';
 
 /**
  * 头像组件AntdAvatar
  */
 const AntdAvatar = (props) => {
-    let {
+    const {
         id,
         className,
         style,
@@ -42,12 +45,17 @@ const AntdAvatar = (props) => {
         return (
             <Avatar
                 // 提取具有data-*或aria-*通配格式的属性
-                {...pickBy((_, k) => k.startsWith('data-') || k.startsWith('aria-'), others)}
+                {...pickBy(
+                    (_, k) => k.startsWith('data-') || k.startsWith('aria-'),
+                    others
+                )}
                 id={id}
                 className={
-                    isString(className) ?
-                        className :
-                        (className ? useCss(className) : undefined)
+                    isString(className)
+                        ? className
+                        : className
+                          ? useCss(className)
+                          : undefined
                 }
                 style={style}
                 key={key}
@@ -62,17 +70,21 @@ const AntdAvatar = (props) => {
             />
         );
     } else if (mode === 'text') {
-
         // text文字模式
         return (
             <Avatar
                 // 提取具有data-*或aria-*通配格式的属性
-                {...pickBy((_, k) => k.startsWith('data-') || k.startsWith('aria-'), others)}
+                {...pickBy(
+                    (_, k) => k.startsWith('data-') || k.startsWith('aria-'),
+                    others
+                )}
                 id={id}
                 className={
-                    isString(className) ?
-                        className :
-                        (className ? useCss(className) : undefined)
+                    isString(className)
+                        ? className
+                        : className
+                          ? useCss(className)
+                          : undefined
                 }
                 style={style}
                 key={key}
@@ -80,47 +92,48 @@ const AntdAvatar = (props) => {
                 size={size}
                 shape={shape}
                 data-dash-is-loading={useLoading()}
-            >{text}</Avatar>
-        );
-    } else {
-        // icon图标模式
-        return (
-            <Avatar
-                // 提取具有data-*或aria-*通配格式的属性
-                {...pickBy((_, k) => k.startsWith('data-') || k.startsWith('aria-'), others)}
-                id={id}
-                className={
-                    isString(className) ?
-                        className :
-                        (className ? useCss(className) : undefined)
-                }
-                style={style}
-                key={key}
-                icon={
-                    icon ?
-                        (
-                            iconRenderer === 'fontawesome' ?
-                                (
-                                    React.createElement(
-                                        'i',
-                                        {
-                                            className: icon
-                                        }
-                                    )
-                                ) :
-                                (
-                                    <AntdIcon icon={icon} />
-                                )
-                        ) :
-                        <AntdIcon icon={'antd-user'} />
-                }
-                size={size}
-                shape={shape}
-                data-dash-is-loading={useLoading()}
-            />
+            >
+                {text}
+            </Avatar>
         );
     }
-}
+    // icon图标模式
+    return (
+        <Avatar
+            // 提取具有data-*或aria-*通配格式的属性
+            {...pickBy(
+                (_, k) => k.startsWith('data-') || k.startsWith('aria-'),
+                others
+            )}
+            id={id}
+            className={
+                isString(className)
+                    ? className
+                    : className
+                      ? useCss(className)
+                      : undefined
+            }
+            style={style}
+            key={key}
+            icon={
+                icon ? (
+                    iconRenderer === 'fontawesome' ? (
+                        React.createElement('i', {
+                            className: icon,
+                        })
+                    ) : (
+                        <AntdIcon icon={icon} />
+                    )
+                ) : (
+                    <AntdIcon icon={'antd-user'} />
+                )
+            }
+            size={size}
+            shape={shape}
+            data-dash-is-loading={useLoading()}
+        />
+    );
+};
 
 export default AntdAvatar;
 

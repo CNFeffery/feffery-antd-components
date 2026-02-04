@@ -1,7 +1,12 @@
 import React, { Suspense } from 'react';
 import PropTypes from 'prop-types';
 
-const LazyAntdTransfer = React.lazy(() => import(/* webpackChunkName: "data_entry" */ '../../fragments/dataEntry/AntdTransfer.react'));
+const LazyAntdTransfer = React.lazy(
+    () =>
+        import(
+            /* webpackChunkName: "data_entry" */ '../../fragments/dataEntry/AntdTransfer.react'
+        )
+);
 
 /**
  * 穿梭框组件AntdTransfer
@@ -37,8 +42,8 @@ const AntdTransfer = ({
 }) => {
     return (
         <Suspense fallback={null}>
-            <LazyAntdTransfer {
-                ...{
+            <LazyAntdTransfer
+                {...{
                     id,
                     className,
                     style,
@@ -65,12 +70,12 @@ const AntdTransfer = ({
                     persisted_props,
                     persistence_type,
                     batchPropsNames,
-                    ...others
-                }
-            } />
+                    ...others,
+                }}
+            />
         </Suspense>
     );
-}
+};
 
 AntdTransfer.propTypes = {
     /**
@@ -91,10 +96,7 @@ AntdTransfer.propTypes = {
     /**
      * 当前组件css类名，支持[动态css](/advanced-classname)
      */
-    className: PropTypes.oneOfType([
-        PropTypes.string,
-        PropTypes.object
-    ]),
+    className: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
 
     /**
      * 配合`AntdForm`表单批量值搜集/控制功能使用，充当当前表单项的字段名，以`id`作为缺省值
@@ -117,26 +119,21 @@ AntdTransfer.propTypes = {
      * 配置选项
      */
     dataSource: PropTypes.arrayOf(
-        PropTypes.exact(
-            {
-                /**
-                 * 当前选项唯一识别id
-                 */
-                key: PropTypes.oneOfType([
-                    PropTypes.string,
-                    PropTypes.number
-                ]),
-                /**
-                 * 组件型，当前选项标题内容
-                 */
-                title: PropTypes.node,
-                /**
-                 * 是否禁用当前选项
-                 * 默认值：`false`
-                 */
-                disabled: PropTypes.bool
-            }
-        )
+        PropTypes.exact({
+            /**
+             * 当前选项唯一识别id
+             */
+            key: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+            /**
+             * 组件型，当前选项标题内容
+             */
+            title: PropTypes.node,
+            /**
+             * 是否禁用当前选项
+             * 默认值：`false`
+             */
+            disabled: PropTypes.bool,
+        })
     ),
 
     /**
@@ -147,10 +144,7 @@ AntdTransfer.propTypes = {
     /**
      * 穿梭框整体高度
      */
-    height: PropTypes.oneOfType([
-        PropTypes.string,
-        PropTypes.number
-    ]),
+    height: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
 
     // 用于设置是否以分页模式展示左右区域内部超长的项目集合，默认为false
     /**
@@ -163,8 +157,8 @@ AntdTransfer.propTypes = {
             /**
              * 每页最大选项数
              */
-            pageSize: PropTypes.number
-        })
+            pageSize: PropTypes.number,
+        }),
     ]),
 
     /**
@@ -189,7 +183,11 @@ AntdTransfer.propTypes = {
      * 搜索匹配模式，可选项有`'case-insensitive'`（大小写不敏感）、`'case-sensitive'`（大小写敏感）、`'regex'`（正则表达式）
      * 默认值：`'case-insensitive'`
      */
-    optionFilterMode: PropTypes.oneOf(['case-insensitive', 'case-sensitive', 'regex']),
+    optionFilterMode: PropTypes.oneOf([
+        'case-insensitive',
+        'case-sensitive',
+        'regex',
+    ]),
 
     /**
      * 是否显示全选勾选框
@@ -206,10 +204,7 @@ AntdTransfer.propTypes = {
      * 监听或设置右侧区域已选项`key`值
      */
     targetKeys: PropTypes.arrayOf(
-        PropTypes.oneOfType([
-            PropTypes.number,
-            PropTypes.string
-        ])
+        PropTypes.oneOfType([PropTypes.number, PropTypes.string])
     ),
 
     /**
@@ -221,10 +216,7 @@ AntdTransfer.propTypes = {
      * 监听最近一次选项移动涉及的选项`key`值
      */
     moveKeys: PropTypes.arrayOf(
-        PropTypes.oneOfType([
-            PropTypes.number,
-            PropTypes.string
-        ])
+        PropTypes.oneOfType([PropTypes.number, PropTypes.string])
     ),
 
     /**
@@ -282,7 +274,7 @@ AntdTransfer.propTypes = {
         /**
          * Holds the name of the component that is loading
          */
-        component_name: PropTypes.string
+        component_name: PropTypes.string,
     }),
 
     /**
@@ -291,7 +283,7 @@ AntdTransfer.propTypes = {
     persistence: PropTypes.oneOfType([
         PropTypes.bool,
         PropTypes.string,
-        PropTypes.number
+        PropTypes.number,
     ]),
 
     /**
@@ -304,13 +296,13 @@ AntdTransfer.propTypes = {
      * 属性持久化存储类型，可选项有`'local'`（本地持久化），`'session'`（会话持久化），`'memory'`（内存持久化）
      * 默认值：`'local'`
      */
-    persistence_type: PropTypes.oneOf(['local', 'session', 'memory'])
+    persistence_type: PropTypes.oneOf(['local', 'session', 'memory']),
 };
 
 AntdTransfer.dashPersistence = {
     persisted_props: ['targetKeys'],
-    persistence_type: 'local'
-}
+    persistence_type: 'local',
+};
 
 export default AntdTransfer;
 

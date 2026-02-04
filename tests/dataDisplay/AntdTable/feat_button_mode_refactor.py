@@ -2,11 +2,13 @@ if True:
     import sys
 
     sys.path.append('../../../')
-    import dash
     import json
+
+    import dash
     from dash import html
-    import feffery_antd_components as fac
     from dash.dependencies import Input, Output, State
+
+    import feffery_antd_components as fac
 
 app = dash.Dash(__name__)
 
@@ -18,16 +20,12 @@ app.layout = html.Div(
                 {
                     'title': 'button示例1',
                     'dataIndex': 'button示例1',
-                    'renderOptions': {
-                        'renderType': 'button'
-                    },
+                    'renderOptions': {'renderType': 'button'},
                 },
                 {
                     'title': 'button示例2',
                     'dataIndex': 'button示例2',
-                    'renderOptions': {
-                        'renderType': 'button'
-                    },
+                    'renderOptions': {'renderType': 'button'},
                 },
                 {
                     'title': 'button示例3',
@@ -44,9 +42,7 @@ app.layout = html.Div(
                 {
                     'title': 'button示例4',
                     'dataIndex': 'button示例4',
-                    'renderOptions': {
-                        'renderType': 'button'
-                    },
+                    'renderOptions': {'renderType': 'button'},
                 },
             ],
             data=[
@@ -78,9 +74,7 @@ app.layout = html.Div(
                             'content': '有确认框',
                             'type': 'link',
                             'danger': True,
-                            'popConfirmProps': {
-                                'title': '确认继续？'
-                            },
+                            'popConfirmProps': {'title': '确认继续？'},
                         },
                         {
                             'content': '无确认框',
@@ -102,12 +96,8 @@ app.layout = html.Div(
     Output('table-rerender-button-demo-output', 'children'),
     Input('table-rerender-button-demo', 'nClicksButton'),
     [
-        State(
-            'table-rerender-button-demo', 'clickedContent'
-        ),
-        State(
-            'table-rerender-button-demo', 'clickedCustom'
-        ),
+        State('table-rerender-button-demo', 'clickedContent'),
+        State('table-rerender-button-demo', 'clickedCustom'),
         State(
             'table-rerender-button-demo',
             'recentlyButtonClickedDataIndex',

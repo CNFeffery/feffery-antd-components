@@ -1,7 +1,12 @@
 import React, { Suspense } from 'react';
 import PropTypes from 'prop-types';
 
-const LazyAntdMentions = React.lazy(() => import(/* webpackChunkName: "data_entry" */ '../../fragments/dataEntry/AntdMentions.react'));
+const LazyAntdMentions = React.lazy(
+    () =>
+        import(
+            /* webpackChunkName: "data_entry" */ '../../fragments/dataEntry/AntdMentions.react'
+        )
+);
 
 /**
  * 提及组件AntdMentions
@@ -33,8 +38,8 @@ const AntdMentions = ({
 }) => {
     return (
         <Suspense fallback={null}>
-            <LazyAntdMentions {
-                ...{
+            <LazyAntdMentions
+                {...{
                     id,
                     className,
                     style,
@@ -57,12 +62,12 @@ const AntdMentions = ({
                     popupContainer,
                     setProps,
                     batchPropsNames,
-                    ...others
-                }
-            } />
+                    ...others,
+                }}
+            />
         </Suspense>
     );
-}
+};
 
 AntdMentions.propTypes = {
     /**
@@ -83,10 +88,7 @@ AntdMentions.propTypes = {
     /**
      * 当前组件css类名，支持[动态css](/advanced-classname)
      */
-    className: PropTypes.oneOfType([
-        PropTypes.string,
-        PropTypes.object
-    ]),
+    className: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
 
     /**
      * 展开菜单css类名
@@ -118,8 +120,8 @@ AntdMentions.propTypes = {
             /**
              * 输入框最大行数
              */
-            maxRows: PropTypes.number
-        })
+            maxRows: PropTypes.number,
+        }),
     ]),
 
     /**
@@ -150,7 +152,7 @@ AntdMentions.propTypes = {
             /**
              * 当前选项值
              */
-            value: PropTypes.string
+            value: PropTypes.string,
         })
     ).isRequired,
 
@@ -180,7 +182,12 @@ AntdMentions.propTypes = {
     /**
      * 形态变体类型，可选项有`'outlined'`、`'borderless'`、`'filled'`、`'underlined'`，其中`'outlined'`等价于`bordered=True`，但优先级更高
      */
-    variant: PropTypes.oneOf(['outlined', 'borderless', 'filled', 'underlined']),
+    variant: PropTypes.oneOf([
+        'outlined',
+        'borderless',
+        'filled',
+        'underlined',
+    ]),
 
     /**
      * 输入框占位文字内容
@@ -228,7 +235,7 @@ AntdMentions.propTypes = {
      * Dash-assigned callback that should be called to report property changes
      * to Dash, to make them available for callbacks.
      */
-    setProps: PropTypes.func
+    setProps: PropTypes.func,
 };
 
 export default AntdMentions;

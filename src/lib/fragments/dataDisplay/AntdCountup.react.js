@@ -1,6 +1,6 @@
 // antd核心
 import { Statistic, Space, Tooltip } from 'antd';
-import { QuestionCircleOutlined } from "@ant-design/icons";
+import { QuestionCircleOutlined } from '@ant-design/icons';
 // 辅助库
 import dayjs from 'dayjs';
 import { isString } from 'lodash';
@@ -9,7 +9,10 @@ import { useLoading } from '../../components/utils';
 // 自定义hooks
 import useCss from '../../hooks/useCss';
 // 参数类型
-import { propTypes, defaultProps } from '../../components/dataDisplay/AntdCountup.react';
+import {
+    propTypes,
+    defaultProps,
+} from '../../components/dataDisplay/AntdCountup.react';
 
 const { Timer } = Statistic;
 
@@ -17,7 +20,7 @@ const { Timer } = Statistic;
  *正计时组件AntdCountup
  */
 const AntdCountup = (props) => {
-    let {
+    const {
         id,
         className,
         style,
@@ -37,12 +40,17 @@ const AntdCountup = (props) => {
     return (
         <Timer
             // 提取具有data-*或aria-*通配格式的属性
-            {...pickBy((_, k) => k.startsWith('data-') || k.startsWith('aria-'), others)}
+            {...pickBy(
+                (_, k) => k.startsWith('data-') || k.startsWith('aria-'),
+                others
+            )}
             id={id}
             className={
-                isString(className) ?
-                    className :
-                    (className ? useCss(className) : undefined)
+                isString(className)
+                    ? className
+                    : className
+                      ? useCss(className)
+                      : undefined
             }
             style={style}
             key={key}
@@ -51,19 +59,23 @@ const AntdCountup = (props) => {
             format={format}
             prefix={prefix}
             suffix={suffix}
-            title={titleTooltip ?
-                <Space size={5}>
-                    {title}
-                    <Tooltip title={titleTooltip} >
-                        <QuestionCircleOutlined />
-                    </Tooltip>
-                </Space>
-                : title}
+            title={
+                titleTooltip ? (
+                    <Space size={5}>
+                        {title}
+                        <Tooltip title={titleTooltip}>
+                            <QuestionCircleOutlined />
+                        </Tooltip>
+                    </Space>
+                ) : (
+                    title
+                )
+            }
             valueStyle={valueStyle}
             data-dash-is-loading={useLoading()}
         />
     );
-}
+};
 
 export default AntdCountup;
 

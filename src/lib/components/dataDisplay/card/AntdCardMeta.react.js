@@ -1,7 +1,12 @@
 import React, { Suspense } from 'react';
 import PropTypes from 'prop-types';
 
-const LazyAntdCardMeta = React.lazy(() => import(/* webpackChunkName: "data_display" */ '../../../fragments/dataDisplay/card/AntdCardMeta.react'));
+const LazyAntdCardMeta = React.lazy(
+    () =>
+        import(
+            /* webpackChunkName: "data_display" */ '../../../fragments/dataDisplay/card/AntdCardMeta.react'
+        )
+);
 
 /**
  * 结构化卡片组件AntdCardMeta
@@ -19,8 +24,8 @@ const AntdCardMeta = ({
 }) => {
     return (
         <Suspense fallback={null}>
-            <LazyAntdCardMeta {
-                ...{
+            <LazyAntdCardMeta
+                {...{
                     id,
                     className,
                     style,
@@ -29,12 +34,12 @@ const AntdCardMeta = ({
                     description,
                     title,
                     setProps,
-                    ...others
-                }
-            } />
+                    ...others,
+                }}
+            />
         </Suspense>
     );
-}
+};
 
 AntdCardMeta.propTypes = {
     /**
@@ -55,10 +60,7 @@ AntdCardMeta.propTypes = {
     /**
      * 当前组件css类名，支持[动态css](/advanced-classname)
      */
-    className: PropTypes.oneOfType([
-        PropTypes.string,
-        PropTypes.object
-    ]),
+    className: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
 
     /**
      * 组件型，头像元素
@@ -89,7 +91,7 @@ AntdCardMeta.propTypes = {
      * Dash-assigned callback that should be called to report property changes
      * to Dash, to make them available for callbacks.
      */
-    setProps: PropTypes.func
+    setProps: PropTypes.func,
 };
 
 export default AntdCardMeta;

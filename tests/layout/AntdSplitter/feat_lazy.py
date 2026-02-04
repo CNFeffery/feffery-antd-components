@@ -3,8 +3,9 @@ if True:
 
     sys.path.append('../../../')
     from dash import Dash, html
-    import feffery_antd_components as fac
     from feffery_dash_utils.style_utils import style
+
+    import feffery_antd_components as fac
 
 app = Dash(__name__)
 

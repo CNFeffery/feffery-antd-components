@@ -1,7 +1,12 @@
 import React, { Suspense } from 'react';
 import PropTypes from 'prop-types';
 
-const LazyAntdQRCode = React.lazy(() => import(/* webpackChunkName: "data_display" */ '../../fragments/dataDisplay/AntdQRCode.react'));
+const LazyAntdQRCode = React.lazy(
+    () =>
+        import(
+            /* webpackChunkName: "data_display" */ '../../fragments/dataDisplay/AntdQRCode.react'
+        )
+);
 
 /**
  * 二维码组件AntdQRCode
@@ -30,8 +35,8 @@ const AntdQRCode = ({
 }) => {
     return (
         <Suspense fallback={null}>
-            <LazyAntdQRCode {
-                ...{
+            <LazyAntdQRCode
+                {...{
                     id,
                     className,
                     style,
@@ -51,12 +56,12 @@ const AntdQRCode = ({
                     autoSpin,
                     refreshClicks,
                     setProps,
-                    ...others
-                }
-            } />
+                    ...others,
+                }}
+            />
         </Suspense>
     );
-}
+};
 
 AntdQRCode.propTypes = {
     /**
@@ -77,10 +82,7 @@ AntdQRCode.propTypes = {
     /**
      * 当前组件css类名，支持[动态css](/advanced-classname)
      */
-    className: PropTypes.oneOfType([
-        PropTypes.string,
-        PropTypes.object
-    ]),
+    className: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
 
     /**
      * 组件文案语种，可选项有`'zh-cn'`（简体中文）、`'en-us'`（英语）、`'de-de'`（德语）、`'ru-ru'`（俄语）
@@ -118,8 +120,8 @@ AntdQRCode.propTypes = {
         PropTypes.number,
         PropTypes.exact({
             width: PropTypes.number,
-            height: PropTypes.number
-        })
+            height: PropTypes.number,
+        }),
     ]),
 
     /**
@@ -183,7 +185,7 @@ AntdQRCode.propTypes = {
      * Dash-assigned callback that should be called to report property changes
      * to Dash, to make them available for callbacks.
      */
-    setProps: PropTypes.func
+    setProps: PropTypes.func,
 };
 
 export default AntdQRCode;

@@ -4,6 +4,7 @@ if True:
     sys.path.append('../../../')
     import dash
     from dash import html
+
     import feffery_antd_components as fac
 
 app = dash.Dash(__name__)
@@ -20,10 +21,7 @@ app.layout = html.Div(
             ],
             data=[
                 {
-                    **{
-                        f'字段{i}': '示例内容'
-                        for i in range(1, 6)
-                    },
+                    **{f'字段{i}': '示例内容' for i in range(1, 6)},
                     'key': f'row-{row + 1}',
                 }
                 for row in range(3)

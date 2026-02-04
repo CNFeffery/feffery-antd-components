@@ -3,8 +3,9 @@ if True:
 
     sys.path.append('../../../')
     from dash import Dash, html
-    import feffery_antd_components as fac
     from feffery_dash_utils.style_utils import style
+
+    import feffery_antd_components as fac
 
 app = Dash(__name__)
 
@@ -39,14 +40,10 @@ app.layout = html.Div(
                                                 'title': f'菜单项{sub_menu}-{item_group}-{item}',
                                             },
                                         }
-                                        for item in range(
-                                            1, 3
-                                        )
+                                        for item in range(1, 3)
                                     ],
                                 }
-                                for item_group in range(
-                                    1, 3
-                                )
+                                for item_group in range(1, 3)
                             ],
                         }
                         for sub_menu in range(1, 5)
@@ -54,7 +51,7 @@ app.layout = html.Div(
                     mode=mode,
                     expandIcon={
                         'expand': fac.AntdIcon(icon='antd-down-circle'),
-                        'collapse': fac.AntdIcon(icon='antd-up-circle')
+                        'collapse': fac.AntdIcon(icon='antd-up-circle'),
                     },
                     style={'width': 256},
                 ),

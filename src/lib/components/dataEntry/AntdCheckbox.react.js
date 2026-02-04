@@ -1,7 +1,12 @@
 import React, { Suspense } from 'react';
 import PropTypes from 'prop-types';
 
-const LazyAntdCheckbox = React.lazy(() => import(/* webpackChunkName: "data_entry" */ '../../fragments/dataEntry/AntdCheckbox.react'));
+const LazyAntdCheckbox = React.lazy(
+    () =>
+        import(
+            /* webpackChunkName: "data_entry" */ '../../fragments/dataEntry/AntdCheckbox.react'
+        )
+);
 
 /**
  * 选择框组件AntdCheckbox
@@ -28,8 +33,8 @@ const AntdCheckbox = ({
 }) => {
     return (
         <Suspense fallback={null}>
-            <LazyAntdCheckbox {
-                ...{
+            <LazyAntdCheckbox
+                {...{
                     id,
                     style,
                     className,
@@ -47,12 +52,12 @@ const AntdCheckbox = ({
                     persisted_props,
                     persistence_type,
                     batchPropsNames,
-                    ...others
-                }
-            } />
+                    ...others,
+                }}
+            />
         </Suspense>
     );
-}
+};
 
 AntdCheckbox.propTypes = {
     /**
@@ -73,10 +78,7 @@ AntdCheckbox.propTypes = {
     /**
      * 当前组件css类名，支持[动态css](/advanced-classname)
      */
-    className: PropTypes.oneOfType([
-        PropTypes.string,
-        PropTypes.object
-    ]),
+    className: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
 
     /**
      * 配合`AntdForm`表单批量值搜集/控制功能使用，充当当前表单项的字段名，以`id`作为缺省值
@@ -156,7 +158,7 @@ AntdCheckbox.propTypes = {
     persistence: PropTypes.oneOfType([
         PropTypes.bool,
         PropTypes.string,
-        PropTypes.number
+        PropTypes.number,
     ]),
 
     /**
@@ -169,13 +171,13 @@ AntdCheckbox.propTypes = {
      * 属性持久化存储类型，可选项有`'local'`（本地持久化），`'session'`（会话持久化），`'memory'`（内存持久化）
      * 默认值：`'local'`
      */
-    persistence_type: PropTypes.oneOf(['local', 'session', 'memory'])
+    persistence_type: PropTypes.oneOf(['local', 'session', 'memory']),
 };
 
 AntdCheckbox.dashPersistence = {
     persisted_props: ['checked'],
-    persistence_type: 'local'
-}
+    persistence_type: 'local',
+};
 
 export default AntdCheckbox;
 

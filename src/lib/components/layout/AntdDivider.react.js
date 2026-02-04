@@ -1,13 +1,13 @@
 // react核心
-import PropTypes from "prop-types";
+import PropTypes from 'prop-types';
 // antd核心
-import { Divider } from "antd";
+import { Divider } from 'antd';
 // 辅助库
-import { isString } from "lodash";
+import { isString } from 'lodash';
 import { pickBy } from 'ramda';
-import { useLoading } from "../utils";
+import { useLoading } from '../utils';
 // 自定义hooks
-import useCss from "../../hooks/useCss";
+import useCss from '../../hooks/useCss';
 
 /**
  * 分割线组件AntdDivider
@@ -32,12 +32,14 @@ const AntdDivider = ({
     size,
     ...others
 }) => {
-
-    if (direction === "horizontal") {
+    if (direction === 'horizontal') {
         return (
             <Divider
                 // 提取具有data-*或aria-*通配格式的属性
-                {...pickBy((_, k) => k.startsWith('data-') || k.startsWith('aria-'), others)}
+                {...pickBy(
+                    (_, k) => k.startsWith('data-') || k.startsWith('aria-'),
+                    others
+                )}
                 id={id}
                 style={{
                     ...style,
@@ -52,14 +54,14 @@ const AntdDivider = ({
                     isString(className)
                         ? className
                         : className
-                            ? useCss(className)
-                            : undefined
+                          ? useCss(className)
+                          : undefined
                 }
                 key={key}
                 dashed={isDashed}
                 variant={variant}
                 orientation={innerTextOrientation}
-                type={"horizontal"}
+                type={'horizontal'}
                 plain={plain}
                 size={size}
                 data-dash-is-loading={useLoading()}
@@ -67,11 +69,14 @@ const AntdDivider = ({
                 {children}
             </Divider>
         );
-    } else if (direction === "vertical") {
+    } else if (direction === 'vertical') {
         return (
             <Divider
                 // 提取具有data-*或aria-*通配格式的属性
-                {...pickBy((_, k) => k.startsWith('data-') || k.startsWith('aria-'), others)}
+                {...pickBy(
+                    (_, k) => k.startsWith('data-') || k.startsWith('aria-'),
+                    others
+                )}
                 id={id}
                 style={{
                     ...style,
@@ -86,14 +91,14 @@ const AntdDivider = ({
                     isString(className)
                         ? className
                         : className
-                            ? useCss(className)
-                            : undefined
+                          ? useCss(className)
+                          : undefined
                 }
                 key={key}
                 dashed={isDashed}
                 variant={variant}
                 orientation={innerTextOrientation}
-                type={"vertical"}
+                type={'vertical'}
                 plain={plain}
                 data-dash-is-loading={useLoading()}
             >
@@ -122,10 +127,7 @@ AntdDivider.propTypes = {
     /**
      * 当前组件css类名，支持[动态css](/advanced-classname)
      */
-    className: PropTypes.oneOfType([
-        PropTypes.string,
-        PropTypes.object
-    ]),
+    className: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
 
     /**
      * 当前组件css样式
@@ -136,7 +138,7 @@ AntdDivider.propTypes = {
      * 内嵌元素对齐方式，可选项有`'left'`、`'center'`、`'right'`
      * 默认值：`'center'`
      */
-    innerTextOrientation: PropTypes.oneOf(["left", "center", "right"]),
+    innerTextOrientation: PropTypes.oneOf(['left', 'center', 'right']),
 
     /**
      * 是否渲染为虚线形式
@@ -148,15 +150,12 @@ AntdDivider.propTypes = {
      * 分割线方向，可选项有`'horizontal'`、`'vertical'`
      * 默认值：`'horizontal'`
      */
-    direction: PropTypes.oneOf(["horizontal", "vertical"]),
+    direction: PropTypes.oneOf(['horizontal', 'vertical']),
 
     /**
      * 内嵌元素字体大小
      */
-    fontSize: PropTypes.oneOfType([
-        PropTypes.string,
-        PropTypes.number
-    ]),
+    fontSize: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
 
     /**
      * 分割线颜色

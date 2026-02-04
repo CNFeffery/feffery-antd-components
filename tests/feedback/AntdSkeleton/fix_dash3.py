@@ -3,11 +3,13 @@ if True:
 
     sys.path.append('../../../')
     import time
+
     import dash
     from dash import html
-    import feffery_antd_components as fac
     from dash.dependencies import Input, Output
     from feffery_dash_utils.style_utils import style
+
+    import feffery_antd_components as fac
 
 app = dash.Dash(__name__)
 
@@ -18,11 +20,7 @@ app.layout = html.Div(
             id='skeleton-basic-demo-trigger',
             style={'marginBottom': 10},
         ),
-        fac.AntdSkeleton(
-            fac.AntdParagraph(
-                id='skeleton-basic-demo-output'
-            )
-        ),
+        fac.AntdSkeleton(fac.AntdParagraph(id='skeleton-basic-demo-output')),
     ],
     style=style(padding=50),
 )

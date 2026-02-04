@@ -4,8 +4,9 @@ if True:
     sys.path.append('../../../')
     import dash
     from dash import html
-    import feffery_antd_components as fac
     from feffery_dash_utils.style_utils import style
+
+    import feffery_antd_components as fac
 
 app = dash.Dash(__name__)
 
@@ -16,9 +17,7 @@ app.layout = html.Div(
                 fac.AntdSpace(
                     [
                         'False',
-                        fac.AntdCopyText(
-                            text='测试', tooltips=False
-                        ),
+                        fac.AntdCopyText(text='测试', tooltips=False),
                     ]
                 ),
                 fac.AntdSpace(
@@ -39,12 +38,8 @@ app.layout = html.Div(
                         fac.AntdCopyText(
                             text='测试',
                             tooltips=[
-                                fac.AntdText(
-                                    '点击复制~', strong=True
-                                ),
-                                fac.AntdText(
-                                    '复制完成~', strong=True
-                                ),
+                                fac.AntdText('点击复制~', strong=True),
+                                fac.AntdText('复制完成~', strong=True),
                             ],
                         ),
                     ]

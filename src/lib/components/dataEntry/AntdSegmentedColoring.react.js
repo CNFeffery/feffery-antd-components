@@ -3,7 +3,12 @@
 import React, { Suspense } from 'react';
 import PropTypes from 'prop-types';
 
-const LazyAntdSegmentedColoring = React.lazy(() => import(/* webpackChunkName: "data_entry" */ '../../fragments/dataEntry/AntdSegmentedColoring.react'));
+const LazyAntdSegmentedColoring = React.lazy(
+    () =>
+        import(
+            /* webpackChunkName: "data_entry" */ '../../fragments/dataEntry/AntdSegmentedColoring.react'
+        )
+);
 
 /**
  * 分段着色组件AntdSegmentedColoring
@@ -38,8 +43,8 @@ const AntdSegmentedColoring = ({
 }) => {
     return (
         <Suspense fallback={null}>
-            <LazyAntdSegmentedColoring {
-                ...{
+            <LazyAntdSegmentedColoring
+                {...{
                     id,
                     key,
                     className,
@@ -65,12 +70,12 @@ const AntdSegmentedColoring = ({
                     pureLegendLabelStyle,
                     setProps,
                     batchPropsNames,
-                    ...others
-                }
-            } />
+                    ...others,
+                }}
+            />
         </Suspense>
     );
-}
+};
 
 AntdSegmentedColoring.propTypes = {
     /**
@@ -91,10 +96,7 @@ AntdSegmentedColoring.propTypes = {
     /**
      * 当前组件css类名，支持[动态css](/advanced-classname)
      */
-    className: PropTypes.oneOfType([
-        PropTypes.string,
-        PropTypes.object
-    ]),
+    className: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
 
     /**
      * 必填，监听或设置分段断点数组
@@ -161,7 +163,12 @@ AntdSegmentedColoring.propTypes = {
     /**
      * 形态变体类型，可选项有`'outlined'`、`'borderless'`、`'filled'`、`'underlined'`，其中`'outlined'`等价于`bordered=True`，但优先级更高
      */
-    variant: PropTypes.oneOf(['outlined', 'borderless', 'filled', 'underlined']),
+    variant: PropTypes.oneOf([
+        'outlined',
+        'borderless',
+        'filled',
+        'underlined',
+    ]),
 
     /**
      * 各分段数值输入框占位文字内容
@@ -211,7 +218,7 @@ AntdSegmentedColoring.propTypes = {
         /**
          * 事件对应时间戳
          */
-        timestamp: PropTypes.number
+        timestamp: PropTypes.number,
     }),
 
     /**
@@ -243,7 +250,7 @@ AntdSegmentedColoring.propTypes = {
      * Dash-assigned callback that should be called to report property changes
      * to Dash, to make them available for callbacks.
      */
-    setProps: PropTypes.func
+    setProps: PropTypes.func,
 };
 
 export default AntdSegmentedColoring;

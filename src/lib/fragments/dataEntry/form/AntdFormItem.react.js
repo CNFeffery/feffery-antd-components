@@ -13,7 +13,10 @@ import FormContext from '../../../contexts/FormContext';
 // 状态管理
 import useFormStore from '../../../store/formStore';
 // 参数类型
-import { propTypes, defaultProps } from '../../../components/dataEntry/form/AntdFormItem.react';
+import {
+    propTypes,
+    defaultProps,
+} from '../../../components/dataEntry/form/AntdFormItem.react';
 
 const { Item } = Form;
 
@@ -21,7 +24,7 @@ const { Item } = Form;
  * 表单项组件AntdFormItem
  */
 const AntdFormItem = (props) => {
-    let {
+    const {
         id,
         children,
         className,
@@ -45,19 +48,26 @@ const AntdFormItem = (props) => {
     } = props;
 
     const formId = useContext(FormContext);
-    const _validateStatus = useFormStore((state) => state.validateStatuses?.[formId]?.[label]);
+    const _validateStatus = useFormStore(
+        (state) => state.validateStatuses?.[formId]?.[label]
+    );
     const _help = useFormStore((state) => state.helps?.[formId]?.[label]);
     const _tooltip = useFormStore((state) => state.tooltips?.[formId]?.[label]);
 
     return (
         <Item
             // 提取具有data-*或aria-*通配格式的属性
-            {...pickBy((_, k) => k.startsWith('data-') || k.startsWith('aria-'), others)}
+            {...pickBy(
+                (_, k) => k.startsWith('data-') || k.startsWith('aria-'),
+                others
+            )}
             id={id}
             className={
-                isString(className) ?
-                    className :
-                    (className ? useCss(className) : undefined)
+                isString(className)
+                    ? className
+                    : className
+                      ? useCss(className)
+                      : undefined
             }
             style={style}
             key={key}
@@ -74,11 +84,12 @@ const AntdFormItem = (props) => {
             required={required}
             validateStatus={validateStatus || (formId && _validateStatus)}
             layout={layout}
-            data-dash-is-loading={useLoading()}>
+            data-dash-is-loading={useLoading()}
+        >
             {children}
         </Item>
     );
-}
+};
 
 export default React.memo(AntdFormItem);
 

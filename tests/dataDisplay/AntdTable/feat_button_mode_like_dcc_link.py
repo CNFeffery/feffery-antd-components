@@ -3,10 +3,12 @@ if True:
 
     sys.path.append('../../../')
     import json
+
     import dash
     from dash import html
-    import feffery_antd_components as fac
     from dash.dependencies import Input, Output, State
+
+    import feffery_antd_components as fac
 
 app = dash.Dash(__name__)
 
@@ -27,9 +29,7 @@ app.layout = html.Div(
                 {
                     'title': 'button示例2',
                     'dataIndex': 'button示例2',
-                    'renderOptions': {
-                        'renderType': 'button'
-                    },
+                    'renderOptions': {'renderType': 'button'},
                 },
                 {
                     'title': 'button示例3',
@@ -84,12 +84,8 @@ app.layout = html.Div(
     Output('table-rerender-button-demo-output', 'children'),
     Input('table-rerender-button-demo', 'nClicksButton'),
     [
-        State(
-            'table-rerender-button-demo', 'clickedContent'
-        ),
-        State(
-            'table-rerender-button-demo', 'clickedCustom'
-        ),
+        State('table-rerender-button-demo', 'clickedContent'),
+        State('table-rerender-button-demo', 'clickedCustom'),
         State(
             'table-rerender-button-demo',
             'recentlyButtonClickedDataIndex',

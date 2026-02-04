@@ -1,10 +1,5 @@
 // react核心
-import React, {
-    useContext,
-    useState,
-    useEffect,
-    useRef
-} from 'react';
+import React, { useContext, useState, useEffect, useRef } from 'react';
 // antd核心
 import {
     Table,
@@ -28,23 +23,31 @@ import {
     Select,
     Divider,
     Tooltip,
-    Progress
+    Progress,
 } from 'antd';
 import {
     TinyLine,
     TinyArea,
     TinyColumn,
-    RingProgress
+    RingProgress,
 } from '@ant-design/plots';
 import AntdIcon from '../components/general/AntdIcon.react';
 import {
     SearchOutlined,
     QuestionCircleOutlined,
-    DownOutlined
+    DownOutlined,
 } from '@ant-design/icons';
 // 辅助库
 import Highlighter from 'react-highlight-words';
-import { isNumber, isEqual, isString, isBoolean, isEmpty, omitBy, isUndefined } from 'lodash';
+import {
+    isNumber,
+    isEqual,
+    isString,
+    isBoolean,
+    isEmpty,
+    omitBy,
+    isUndefined,
+} from 'lodash';
 import { pickBy } from 'ramda';
 import { str2Locale, locale2text } from '../components/locales.react';
 import { useLoading } from '../components/utils';
@@ -52,7 +55,10 @@ import useStickyOffset from '../hooks/useStickyOffset';
 // 上下文
 import PropsContext from '../contexts/PropsContext';
 // 参数类型
-import { propTypes, defaultProps } from '../components/dataDisplay/AntdTable.react';
+import {
+    propTypes,
+    defaultProps,
+} from '../components/dataDisplay/AntdTable.react';
 // 内部组件
 import { UtilsLink } from '../internal_components/UtilsLink.react';
 
@@ -62,52 +68,72 @@ const insertNewColumnNode = (column, group, currentLevel, currentNode) => {
     // 若当前递归到的层级小于group数组长度
     if (currentLevel < group.length) {
         // 尝试在currentNode中搜索dataIndex等于当前group层级的元素
-        let matchColumnIdx = currentNode.findIndex(item => item.dataIndex === group[currentLevel])
+        const matchColumnIdx = currentNode.findIndex(
+            (item) => item.dataIndex === group[currentLevel]
+        );
         // 若未在currentNode中搜索到当前group层级对应元素
         if (matchColumnIdx === -1) {
             // 向currentNode中push当前group层级对应元素
             currentNode.push({
                 dataIndex: group[currentLevel],
                 title: group[currentLevel],
-                children: []
-            })
+                children: [],
+            });
             // 继续向下一层级递归
-            insertNewColumnNode(column, group, currentLevel + 1, currentNode[currentNode.length - 1].children)
+            insertNewColumnNode(
+                column,
+                group,
+                currentLevel + 1,
+                currentNode[currentNode.length - 1].children
+            );
         } else {
             // 若在currentNode中搜索到当前group层级对应元素
             // 继续向下一层级递归
-            insertNewColumnNode(column, group, currentLevel + 1, currentNode[matchColumnIdx].children)
+            insertNewColumnNode(
+                column,
+                group,
+                currentLevel + 1,
+                currentNode[matchColumnIdx].children
+            );
         }
     } else {
         // 否则则视作到达最深层
-        currentNode.push({ ...column })
+        currentNode.push({ ...column });
     }
-}
+};
 
-const splitSummaryRowContents = (summaryRowContents, columnCount, blankColumns) => {
-    let summaryGroups = (
-        blankColumns > 0 ?
-            [Array.from({ length: blankColumns }, () => ({ empty: true }))] :
-            [[]]
-    );
+const splitSummaryRowContents = (
+    summaryRowContents,
+    columnCount,
+    blankColumns
+) => {
+    const summaryGroups =
+        blankColumns > 0
+            ? [Array.from({ length: blankColumns }, () => ({ empty: true }))]
+            : [[]];
     let currentGroupSpans = 0;
-    for (let item of summaryRowContents) {
+    for (const item of summaryRowContents) {
         // 检查当前字段追加到末尾分组后，是否超出总列数
         if (currentGroupSpans + (item.colSpan || 1) > columnCount) {
-            currentGroupSpans = (item.colSpan || 1);
+            currentGroupSpans = item.colSpan || 1;
             // 处理前置空白列填充
             if (blankColumns > 0) {
-                summaryGroups.push([...Array.from({ length: blankColumns }, () => ({ empty: true })), item])
+                summaryGroups.push([
+                    ...Array.from({ length: blankColumns }, () => ({
+                        empty: true,
+                    })),
+                    item,
+                ]);
             } else {
-                summaryGroups.push([item])
+                summaryGroups.push([item]);
             }
         } else {
-            currentGroupSpans += (item.colSpan || 1)
-            summaryGroups[summaryGroups.length - 1].push(item)
+            currentGroupSpans += item.colSpan || 1;
+            summaryGroups[summaryGroups.length - 1].push(item);
         }
     }
     return summaryGroups;
-}
+};
 
 const findItemByKey = (array, key) => {
     let foundItem = null;
@@ -140,13 +166,13 @@ const replaceItemByKey = (array, key, replacement) => {
     }
 
     return false;
-}
+};
 
 // 定义不触发重绘的参数数组
 const preventUpdateProps = [
     'recentlyMouseEnterColumnDataIndex',
     'recentlyMouseEnterRowKey',
-    'recentlyMouseEnterRow'
+    'recentlyMouseEnterRow',
 ];
 
 /**
@@ -216,8 +242,8 @@ const AntdTable = (props) => {
         ...others
     } = props;
 
-    const context = useContext(PropsContext)
-    locale = (context && context.locale) || locale
+    const context = useContext(PropsContext);
+    locale = (context && context.locale) || locale;
 
     useEffect(() => {
         // 处理pagination参数的默认值问题
@@ -226,29 +252,34 @@ const AntdTable = (props) => {
             setProps({
                 pagination: {
                     ...pagination,
-                    current: pagination?.current ? pagination?.current : 1
-                }
-            })
+                    current: pagination?.current ? pagination?.current : 1,
+                },
+            });
         }
     }, []);
 
     const [searchText, setSearchText] = useState('');
     const [searchedColumn, setSearchedColumn] = useState('');
 
-    const stickyObj = (sticky && typeof sticky === 'object') ? sticky : {};
+    const stickyObj = sticky && typeof sticky === 'object' ? sticky : {};
     const belowSelector = stickyObj.belowSelector ?? undefined;
     const offsetHeader = Number(stickyObj.offsetHeader || 0);
-    const autoMeasuredOffset = belowSelector ? useStickyOffset({ selector: belowSelector, extra: offsetHeader }) : offsetHeader;
-    const { belowSelector: _rm1,
+    const autoMeasuredOffset = belowSelector
+        ? useStickyOffset({ selector: belowSelector, extra: offsetHeader })
+        : offsetHeader;
+    const {
+        belowSelector: _rm1,
         offsetHeader: _rm2,
         ...stickyRest
     } = stickyObj;
-    const computedSticky = sticky === true || belowSelector || (sticky && typeof sticky === 'object')
-        ? { ...stickyRest, offsetHeader: autoMeasuredOffset }
-        : undefined;
+    const computedSticky =
+        sticky === true ||
+        belowSelector ||
+        (sticky && typeof sticky === 'object')
+            ? { ...stickyRest, offsetHeader: autoMeasuredOffset }
+            : undefined;
 
     const onPageChange = (pagination, filter, sorter, currentData) => {
-
         // 当本次事件由翻页操作引发时
         if (currentData.action === 'paginate') {
             setProps({
@@ -256,85 +287,102 @@ const AntdTable = (props) => {
                     ...pagination,
                     pageSize: pagination.pageSize,
                     current: pagination.current,
-                    position: pagination.position ?
-                        (
-                            Array.isArray(pagination.position) ?
-                                pagination.position[0] :
-                                pagination.position
-                        ) :
-                        pagination.position
+                    position: pagination.position
+                        ? Array.isArray(pagination.position)
+                            ? pagination.position[0]
+                            : pagination.position
+                        : pagination.position,
                 },
-                currentData: currentData.currentDataSource
-            })
+                currentData: currentData.currentDataSource,
+            });
         } else if (currentData.action === 'sort') {
             // 当sorter为数组时，即为多字段组合排序方式时
             if (Array.isArray(sorter)) {
-                setProps(
-                    {
-                        sorter: {
-                            columns: sorter.map(item => item.column.dataIndex),
-                            orders: sorter.map(item => item.order)
-                        }
-                    }
-                )
+                setProps({
+                    sorter: {
+                        columns: sorter.map((item) => item.column.dataIndex),
+                        orders: sorter.map((item) => item.order),
+                    },
+                });
             } else if (sorter.order) {
                 // 单字段排序方式
-                setProps(
-                    {
-                        sorter: {
-                            columns: [sorter.column.dataIndex],
-                            orders: [sorter.order]
-                        }
-                    }
-                )
+                setProps({
+                    sorter: {
+                        columns: [sorter.column.dataIndex],
+                        orders: [sorter.order],
+                    },
+                });
             } else {
                 // 非排序状态
-                setProps(
-                    {
-                        sorter: {
-                            columns: [],
-                            orders: []
-                        }
-                    }
-                )
+                setProps({
+                    sorter: {
+                        columns: [],
+                        orders: [],
+                    },
+                });
             }
         } else if (currentData.action === 'filter') {
-            setProps({ filter: filter })
+            setProps({ filter: filter });
         }
-    }
+    };
 
     // 自定义关键词搜索过滤模式
     let searchInput;
     const getColumnSearchProps = (dataIndex, title) => ({
-        filterDropdown: ({ setSelectedKeys, selectedKeys, confirm, clearFilters }) => (
+        filterDropdown: ({
+            setSelectedKeys,
+            selectedKeys,
+            confirm,
+            clearFilters,
+        }) => (
             <div style={{ padding: 8 }}>
                 <Input
-                    ref={node => {
+                    ref={(node) => {
                         searchInput = node;
                     }}
                     placeholder={`${locale2text.AntdTable[locale].filterKeywordPlaceholder} ${title}`}
                     value={selectedKeys[0]}
-                    onChange={e => setSelectedKeys(e.target.value ? [e.target.value] : [])}
-                    onPressEnter={() => handleSearch(selectedKeys, confirm, dataIndex)}
+                    onChange={(e) =>
+                        setSelectedKeys(e.target.value ? [e.target.value] : [])
+                    }
+                    onPressEnter={() =>
+                        handleSearch(selectedKeys, confirm, dataIndex)
+                    }
                     style={{ marginBottom: 8, display: 'block' }}
                 />
                 <Space>
                     <Button
                         type="primary"
-                        onClick={() => handleSearch(selectedKeys, confirm, dataIndex)}
+                        onClick={() =>
+                            handleSearch(selectedKeys, confirm, dataIndex)
+                        }
                         icon={<SearchOutlined />}
                         size="small"
                         style={{ width: 90 }}
                     >
-                        {locale2text.AntdTable[locale].filterKeywordSearchButtonText}
+                        {
+                            locale2text.AntdTable[locale]
+                                .filterKeywordSearchButtonText
+                        }
                     </Button>
-                    <Button onClick={() => handleSearchReset(clearFilters)} size="small" style={{ width: 90 }}>
-                        {locale2text.AntdTable[locale].filterKeywordResetButtonText}
+                    <Button
+                        onClick={() => handleSearchReset(clearFilters)}
+                        size="small"
+                        style={{ width: 90 }}
+                    >
+                        {
+                            locale2text.AntdTable[locale]
+                                .filterKeywordResetButtonText
+                        }
                     </Button>
                 </Space>
             </div>
         ),
-        filterIcon: filtered => <SearchOutlined style={{ color: filtered ? '#1890ff' : undefined }} />,
+        filterIcon: (filtered) => (
+            <SearchOutlined
+                style={{ color: filtered ? '#1890ff' : undefined }}
+            />
+        ),
         // 搜索筛选
         onFilter: (value, record) => {
             if (mode === 'client-side') {
@@ -342,46 +390,69 @@ const AntdTable = (props) => {
                 if (record[dataIndex] && !Array.isArray(record[dataIndex])) {
                     // 判断当前记录是否有content属性
                     if (record[dataIndex]?.content) {
-                        return record[dataIndex].content.toString().toLowerCase().includes(value?.toLowerCase())
+                        return record[dataIndex].content
+                            .toString()
+                            .toLowerCase()
+                            .includes(value?.toLowerCase());
                     } else if (record[dataIndex]?.text) {
-                        return record[dataIndex].text.toString().toLowerCase().includes(value?.toLowerCase())
+                        return record[dataIndex].text
+                            .toString()
+                            .toLowerCase()
+                            .includes(value?.toLowerCase());
                     } else if (record[dataIndex]?.label) {
-                        return record[dataIndex].label.toString().toLowerCase().includes(value?.toLowerCase())
+                        return record[dataIndex].label
+                            .toString()
+                            .toLowerCase()
+                            .includes(value?.toLowerCase());
                     } else if (record[dataIndex]?.tag) {
-                        return record[dataIndex].tag.toString().toLowerCase().includes(value?.toLowerCase())
+                        return record[dataIndex].tag
+                            .toString()
+                            .toLowerCase()
+                            .includes(value?.toLowerCase());
                     } else if (record[dataIndex]?.toString) {
-                        return record[dataIndex].toString().toLowerCase().includes(value?.toLowerCase())
+                        return record[dataIndex]
+                            .toString()
+                            .toLowerCase()
+                            .includes(value?.toLowerCase());
                     }
                 } else if (Array.isArray(record[dataIndex])) {
                     // 若当前记录为数组，分别检查数组元素对象是否具有content、tag、title属性
-                    if (record[dataIndex].some(item => item?.content)) {
+                    if (record[dataIndex].some((item) => item?.content)) {
                         // 检查当前记录数组中是否至少有一个对象的content属性命中关键词
-                        return record[dataIndex].some(
-                            item => item?.content.toString().toLowerCase().includes(value?.toLowerCase())
-                        )
-                    } else if (record[dataIndex].some(item => item?.tag)) {
+                        return record[dataIndex].some((item) =>
+                            item?.content
+                                .toString()
+                                .toLowerCase()
+                                .includes(value?.toLowerCase())
+                        );
+                    } else if (record[dataIndex].some((item) => item?.tag)) {
                         // 检查当前记录数组中是否至少有一个对象的tag属性命中关键词
-                        return record[dataIndex].some(
-                            item => item?.tag.toString().toLowerCase().includes(value?.toLowerCase())
-                        )
-                    } else if (record[dataIndex].some(item => item?.title)) {
+                        return record[dataIndex].some((item) =>
+                            item?.tag
+                                .toString()
+                                .toLowerCase()
+                                .includes(value?.toLowerCase())
+                        );
+                    } else if (record[dataIndex].some((item) => item?.title)) {
                         // 检查当前记录数组中是否至少有一个对象的title属性命中关键词
-                        return record[dataIndex].some(
-                            item => item?.title.toString().toLowerCase().includes(value?.toLowerCase())
-                        )
+                        return record[dataIndex].some((item) =>
+                            item?.title
+                                .toString()
+                                .toLowerCase()
+                                .includes(value?.toLowerCase())
+                        );
                     }
                 }
                 return false;
-            } else {
-                return true
             }
+            return true;
         },
-        onFilterDropdownVisibleChange: visible => {
+        onFilterDropdownVisibleChange: (visible) => {
             if (visible) {
                 setTimeout(() => searchInput.select(), 100);
             }
         },
-        render: text =>
+        render: (text) =>
             searchedColumn === dataIndex ? (
                 <Highlighter
                     highlightStyle={{ backgroundColor: '#ffc069', padding: 0 }}
@@ -400,42 +471,45 @@ const AntdTable = (props) => {
         setSearchedColumn(dataIndex);
     };
 
-    const handleSearchReset = clearFilters => {
+    const handleSearchReset = (clearFilters) => {
         clearFilters();
         setSearchText('');
     };
 
     if (!data) {
-        data = []
+        data = [];
     }
 
     // 当未设置行key时，自动以自增1的字符型结果作为key
-    for (let i in data) {
+    for (const i in data) {
         if (!data[i].hasOwnProperty('key')) {
-            data[i]['key'] = i.toString()
+            data[i].key = i.toString();
         }
     }
 
     // 为pagination补充默认参数值
     if (isBoolean(pagination) && !pagination) {
-
     } else {
         pagination = {
             ...pagination,
-            showTotalPrefix: pagination?.showTotalPrefix || locale2text.AntdTable[locale].showTotalPrefix,
-            showTotalSuffix: pagination?.showTotalSuffix || locale2text.AntdTable[locale].showTotalSuffix
-        }
+            showTotalPrefix:
+                pagination?.showTotalPrefix ||
+                locale2text.AntdTable[locale].showTotalPrefix,
+            showTotalSuffix:
+                pagination?.showTotalSuffix ||
+                locale2text.AntdTable[locale].showTotalSuffix,
+        };
     }
 
     // 根据columns中的hidden属性控制是否忽略对应字段
-    columns = columns.filter(item => !item.hidden)
+    columns = columns.filter((item) => !item.hidden);
 
     // 为columns配置默认align参数
-    for (let i in columns) {
+    for (const i in columns) {
         columns[i] = {
             align: 'center',
-            ...columns[i]
-        }
+            ...columns[i],
+        };
     }
 
     // 自定义可编辑单元格
@@ -476,32 +550,47 @@ const AntdTable = (props) => {
             });
         };
 
-        const [dataSource, setDataSource] = useState(data)
+        const [dataSource, setDataSource] = useState(data);
 
         // 负责监听单元格内容修改动作从而进行相关值的更新
         const handleSave = (row, setProps, dataSource, setDataSource) => {
-
             const newData = [...dataSource];
-            const item = findItemByKey(newData, row.key)
+            const item = findItemByKey(newData, row.key);
 
-            const rowColumns = Object.getOwnPropertyNames(row)
+            const rowColumns = Object.getOwnPropertyNames(row);
 
             // 循环取出属性名，再判断属性值是否一致
             for (let i = 0; i < rowColumns.length; i++) {
                 // 找到发生值修改的字段
-                if (row[rowColumns[i]] !== item[rowColumns[i]] &&
+                if (
+                    row[rowColumns[i]] !== item[rowColumns[i]] &&
                     columnsFormatConstraint &&
                     columnsFormatConstraint[rowColumns[i]] &&
-                    columnsFormatConstraint[rowColumns[i]].rule) {
+                    columnsFormatConstraint[rowColumns[i]].rule
+                ) {
                     // 检查是否满足预设的正则表达式规则
-                    if (!eval(`/${columnsFormatConstraint[rowColumns[i]].rule}/`).test(row[rowColumns[i]])) {
+                    if (
+                        !eval(
+                            `/${columnsFormatConstraint[rowColumns[i]].rule}/`
+                        ).test(row[rowColumns[i]])
+                    ) {
                         message.error(
-                            columnsFormatConstraint[rowColumns[i]]?.content ?
-                                columnsFormatConstraint[rowColumns[i]]?.content.replace('[VALUE]', row[rowColumns[i]]) :
-                                locale2text.AntdTable[locale].columnEditableFormatConstraintMessage.replace('[VALUE]', row[rowColumns[i]])
+                            columnsFormatConstraint[rowColumns[i]]?.content
+                                ? columnsFormatConstraint[
+                                      rowColumns[i]
+                                  ]?.content.replace(
+                                      '[VALUE]',
+                                      row[rowColumns[i]]
+                                  )
+                                : locale2text.AntdTable[
+                                      locale
+                                  ].columnEditableFormatConstraintMessage.replace(
+                                      '[VALUE]',
+                                      row[rowColumns[i]]
+                                  )
                         );
                         // 提前终止函数
-                        return
+                        return;
                     }
                 }
             }
@@ -510,37 +599,45 @@ const AntdTable = (props) => {
             let _changedColumn = null;
             for (let i = 0; i < rowColumns.length; i++) {
                 if (row[rowColumns[i]] !== item[rowColumns[i]]) {
-                    _changedColumn = rowColumns[i]
+                    _changedColumn = rowColumns[i];
                 }
             }
 
-            replaceItemByKey(newData, row.key, { ...item, ...row })
+            replaceItemByKey(newData, row.key, { ...item, ...row });
 
             setDataSource(newData);
 
             setProps({
                 currentData: newData,
                 // 忽略组件型字段键值对
-                recentlyChangedRow: omitBy(row, value => value?.$$typeof),
+                recentlyChangedRow: omitBy(row, (value) => value?.$$typeof),
                 recentlyChangedColumn: _changedColumn,
-                data: newData
-            })
+                data: newData,
+            });
         };
 
         const save = async () => {
             try {
                 const values = await form.validateFields();
                 toggleEdit();
-                handleSave({ ...record, ...values }, setProps, dataSource, setDataSource);
+                handleSave(
+                    { ...record, ...values },
+                    setProps,
+                    dataSource,
+                    setDataSource
+                );
             } catch (errInfo) {
-                console.log(errInfo)
+                console.log(errInfo);
             }
         };
 
         let childNode = children;
 
         if (editable) {
-            let recordDisabled = (columns.filter(e => e.dataIndex === dataIndex)[0].editOptions?.disabledKeys || []).includes(record.key)
+            const recordDisabled = (
+                columns.filter((e) => e.dataIndex === dataIndex)[0].editOptions
+                    ?.disabledKeys || []
+            ).includes(record.key);
             childNode = editing ? (
                 <Form.Item
                     style={{
@@ -554,42 +651,63 @@ const AntdTable = (props) => {
                         },
                     ]}
                 >
-                    {
-                        columns.filter(e => e.dataIndex === dataIndex)[0].editOptions?.mode === 'text-area' ?
-                            <Input.TextArea
-                                autoSize={columns.filter(e => e.dataIndex === dataIndex)[0].editOptions?.autoSize}
-                                maxLength={columns.filter(e => e.dataIndex === dataIndex)[0].editOptions?.maxLength}
-                                placeholder={columns.filter(e => e.dataIndex === dataIndex)[0].editOptions?.placeholder}
-                                ref={inputRef}
-                                onBlur={save}
-                                onFocus={() => {
-                                    // 移动光标至内容末尾
-                                    inputRef.current?.focus({
-                                        cursor: 'end',
-                                    })
-                                }}
-                                disabled={recordDisabled}
-                            /> :
-                            <Input
-                                maxLength={columns.filter(e => e.dataIndex === dataIndex)[0].editOptions?.maxLength}
-                                placeholder={columns.filter(e => e.dataIndex === dataIndex)[0].editOptions?.placeholder}
-                                ref={inputRef}
-                                onPressEnter={save}
-                                onBlur={save}
-                                disabled={recordDisabled}
-                            />
-                    }
+                    {columns.filter((e) => e.dataIndex === dataIndex)[0]
+                        .editOptions?.mode === 'text-area' ? (
+                        <Input.TextArea
+                            autoSize={
+                                columns.filter(
+                                    (e) => e.dataIndex === dataIndex
+                                )[0].editOptions?.autoSize
+                            }
+                            maxLength={
+                                columns.filter(
+                                    (e) => e.dataIndex === dataIndex
+                                )[0].editOptions?.maxLength
+                            }
+                            placeholder={
+                                columns.filter(
+                                    (e) => e.dataIndex === dataIndex
+                                )[0].editOptions?.placeholder
+                            }
+                            ref={inputRef}
+                            onBlur={save}
+                            onFocus={() => {
+                                // 移动光标至内容末尾
+                                inputRef.current?.focus({
+                                    cursor: 'end',
+                                });
+                            }}
+                            disabled={recordDisabled}
+                        />
+                    ) : (
+                        <Input
+                            maxLength={
+                                columns.filter(
+                                    (e) => e.dataIndex === dataIndex
+                                )[0].editOptions?.maxLength
+                            }
+                            placeholder={
+                                columns.filter(
+                                    (e) => e.dataIndex === dataIndex
+                                )[0].editOptions?.placeholder
+                            }
+                            ref={inputRef}
+                            onPressEnter={save}
+                            onBlur={save}
+                            disabled={recordDisabled}
+                        />
+                    )}
                 </Form.Item>
             ) : (
                 <div
                     className="editable-cell-value-wrap"
                     style={{
                         whiteSpace: 'break-spaces',
-                        ...(recordDisabled ? { cursor: 'no-drop' } : {})
+                        ...(recordDisabled ? { cursor: 'no-drop' } : {}),
                     }}
                     onClick={recordDisabled ? undefined : toggleEdit}
                 >
-                    {(children[1] || children[1] === 0) ? children : ' '}
+                    {children[1] || children[1] === 0 ? children : ' '}
                 </div>
             );
         }
@@ -603,53 +721,56 @@ const AntdTable = (props) => {
             return -1;
         } else if (x.value > y.value) {
             return 1;
-        } else {
-            return 0;
         }
-    }
+        return 0;
+    };
 
     // 多模式值筛选选项自动生成策略
     const generateFilterOptions = (inputData, columnDataIndex) => {
-        let filterOptions = []
-        for (let item of inputData) {
+        let filterOptions = [];
+        for (const item of inputData) {
             // 若当前记录不为数组
-            if ((item[columnDataIndex] || item[columnDataIndex] === 0) && !Array.isArray(item[columnDataIndex])) {
+            if (
+                (item[columnDataIndex] || item[columnDataIndex] === 0) &&
+                !Array.isArray(item[columnDataIndex])
+            ) {
                 if (item[columnDataIndex]?.content) {
-                    filterOptions.push(item[columnDataIndex].content)
+                    filterOptions.push(item[columnDataIndex].content);
                 } else if (item[columnDataIndex]?.text) {
-                    filterOptions.push(item[columnDataIndex].text)
+                    filterOptions.push(item[columnDataIndex].text);
                 } else if (item[columnDataIndex]?.label) {
-                    filterOptions.push(item[columnDataIndex].label)
+                    filterOptions.push(item[columnDataIndex].label);
                 } else if (item[columnDataIndex]?.tag) {
-                    filterOptions.push(item[columnDataIndex].tag)
+                    filterOptions.push(item[columnDataIndex].tag);
                 } else if (item[columnDataIndex]?.toString) {
-                    filterOptions.push(item[columnDataIndex])
+                    filterOptions.push(item[columnDataIndex]);
                 }
             } else if (Array.isArray(item[columnDataIndex])) {
                 // 若当前记录为数组，提取数组元素对象中存在的content或tag属性
-                if (item[columnDataIndex].some(_item => _item?.content)) {
+                if (item[columnDataIndex].some((_item) => _item?.content)) {
                     filterOptions = filterOptions.concat(
                         item[columnDataIndex]
-                            .filter(_item => _item?.content)
-                            .map(_item => _item.content)
-                    )
-                } else if (item[columnDataIndex].some(_item => _item?.tag)) {
+                            .filter((_item) => _item?.content)
+                            .map((_item) => _item.content)
+                    );
+                } else if (item[columnDataIndex].some((_item) => _item?.tag)) {
                     filterOptions = filterOptions.concat(
                         item[columnDataIndex]
-                            .filter(_item => _item?.tag)
-                            .map(_item => _item.tag)
-                    )
+                            .filter((_item) => _item?.tag)
+                            .map((_item) => _item.tag)
+                    );
                 }
             }
         }
 
         // 将提取到的合法筛选值去重结构化并排序
-        return Array.from(
-            new Set(filterOptions)
-        ).map(
-            value => ({ text: (value || value === 0) ? value.toString() : '', value: value })
-        ).sort(compareNumeric)
-    }
+        return Array.from(new Set(filterOptions))
+            .map((value) => ({
+                text: value || value === 0 ? value.toString() : '',
+                value: value,
+            }))
+            .sort(compareNumeric);
+    };
 
     // 处理可筛选特性
     // 若为前端渲染模式，在filterOptions中每个字段filterCustomItems缺失的情况下
@@ -658,64 +779,141 @@ const AntdTable = (props) => {
         // 为filterOptions.filterDataIndexes中定义的每个字段添加过滤功能
         for (let i = 0; i < columns.length; i++) {
             // 若当前字段在filterOptions的keys()中
-            if (Object.keys(filterOptions).indexOf(columns[i].dataIndex) !== -1) {
+            if (
+                Object.keys(filterOptions).indexOf(columns[i].dataIndex) !== -1
+            ) {
                 // 若当前字段对应filterOptions子元素有filterMode.filterMode为'keyword'
-                if (filterOptions[columns[i].dataIndex].filterMode === 'keyword') {
+                if (
+                    filterOptions[columns[i].dataIndex].filterMode === 'keyword'
+                ) {
                     columns[i] = {
                         ...columns[i],
-                        ...getColumnSearchProps(columns[i].dataIndex, columns[i].title)
-                    }
-                } else if (filterOptions[columns[i].dataIndex].filterMode === 'tree') {
+                        ...getColumnSearchProps(
+                            columns[i].dataIndex,
+                            columns[i].title
+                        ),
+                    };
+                } else if (
+                    filterOptions[columns[i].dataIndex].filterMode === 'tree'
+                ) {
                     // 若当前字段筛选模式为'tree'模式
                     // 若当前字段对应filterOptions子元素下有filterCustomTreeItems属性
                     // 则为其添加自定义树形选项
-                    if (filterOptions[columns[i].dataIndex].filterCustomTreeItems) {
+                    if (
+                        filterOptions[columns[i].dataIndex]
+                            .filterCustomTreeItems
+                    ) {
                         columns[i] = {
                             ...columns[i],
-                            defaultFilteredValue: defaultFilteredValues[columns[i].dataIndex],
+                            defaultFilteredValue:
+                                defaultFilteredValues[columns[i].dataIndex],
                             filterMode: 'tree',
                             // 直接使用自定义树形筛选菜单结构
-                            filters: filterOptions[columns[i].dataIndex].filterCustomTreeItems,
+                            filters:
+                                filterOptions[columns[i].dataIndex]
+                                    .filterCustomTreeItems,
                             // 针对不同再渲染模式设计值筛选逻辑
                             onFilter: (value, record) => {
                                 // 仅支持非数组型合法输入值，对象型输入支持对content、text、label、tag属性进行值筛选
-                                if ((record[columns[i].dataIndex] || record[columns[i].dataIndex] === 0) && !Array.isArray(record[columns[i].dataIndex])) {
+                                if (
+                                    (record[columns[i].dataIndex] ||
+                                        record[columns[i].dataIndex] === 0) &&
+                                    !Array.isArray(record[columns[i].dataIndex])
+                                ) {
                                     // 判断当前记录是否有content属性
                                     if (record[columns[i].dataIndex]?.content) {
-                                        return record[columns[i].dataIndex].content === value;
-                                    } else if (record[columns[i].dataIndex]?.text) {
-                                        return record[columns[i].dataIndex].text === value;
-                                    } else if (record[columns[i].dataIndex]?.label) {
-                                        return record[columns[i].dataIndex].label === value;
-                                    } else if (record[columns[i].dataIndex]?.tag) {
-                                        return record[columns[i].dataIndex].tag === value;
-                                    } else if (record[columns[i].dataIndex]?.toString) {
+                                        return (
+                                            record[columns[i].dataIndex]
+                                                .content === value
+                                        );
+                                    } else if (
+                                        record[columns[i].dataIndex]?.text
+                                    ) {
+                                        return (
+                                            record[columns[i].dataIndex]
+                                                .text === value
+                                        );
+                                    } else if (
+                                        record[columns[i].dataIndex]?.label
+                                    ) {
+                                        return (
+                                            record[columns[i].dataIndex]
+                                                .label === value
+                                        );
+                                    } else if (
+                                        record[columns[i].dataIndex]?.tag
+                                    ) {
+                                        return (
+                                            record[columns[i].dataIndex].tag ===
+                                            value
+                                        );
+                                    } else if (
+                                        record[columns[i].dataIndex]?.toString
+                                    ) {
                                         // 确保字符型、数值型均可稳定进行筛选
-                                        return record[columns[i].dataIndex].toString() === value.toString();
+                                        return (
+                                            record[
+                                                columns[i].dataIndex
+                                            ].toString() === value.toString()
+                                        );
                                     }
-                                } else if (Array.isArray(record[columns[i].dataIndex])) {
+                                } else if (
+                                    Array.isArray(record[columns[i].dataIndex])
+                                ) {
                                     // 若当前记录为数组，分别检查数组元素对象是否具有content、tag、title属性
-                                    if (record[columns[i].dataIndex].some(item => item?.content)) {
+                                    if (
+                                        record[columns[i].dataIndex].some(
+                                            (item) => item?.content
+                                        )
+                                    ) {
                                         // 检查当前记录数组中是否至少有一个对象的content属性等于筛选值value
-                                        return record[columns[i].dataIndex].some(
-                                            item => item?.content.toString().toLowerCase() === value?.toLowerCase()
+                                        return record[
+                                            columns[i].dataIndex
+                                        ].some(
+                                            (item) =>
+                                                item?.content
+                                                    .toString()
+                                                    .toLowerCase() ===
+                                                value?.toLowerCase()
+                                        );
+                                    } else if (
+                                        record[columns[i].dataIndex].some(
+                                            (item) => item?.tag
                                         )
-                                    } else if (record[columns[i].dataIndex].some(item => item?.tag)) {
+                                    ) {
                                         // 检查当前记录数组中是否至少有一个对象的tag属性命中关键词
-                                        return record[columns[i].dataIndex].some(
-                                            item => item?.tag.toString().toLowerCase() === value?.toLowerCase()
+                                        return record[
+                                            columns[i].dataIndex
+                                        ].some(
+                                            (item) =>
+                                                item?.tag
+                                                    .toString()
+                                                    .toLowerCase() ===
+                                                value?.toLowerCase()
+                                        );
+                                    } else if (
+                                        record[columns[i].dataIndex].some(
+                                            (item) => item?.title
                                         )
-                                    } else if (record[columns[i].dataIndex].some(item => item?.title)) {
+                                    ) {
                                         // 检查当前记录数组中是否至少有一个对象的title属性命中关键词
-                                        return record[columns[i].dataIndex].some(
-                                            item => item?.title.toString().toLowerCase() === value?.toLowerCase()
-                                        )
+                                        return record[
+                                            columns[i].dataIndex
+                                        ].some(
+                                            (item) =>
+                                                item?.title
+                                                    .toString()
+                                                    .toLowerCase() ===
+                                                value?.toLowerCase()
+                                        );
                                     }
                                 }
                                 return false;
                             },
-                            filterSearch: filterOptions[columns[i].dataIndex].filterSearch
-                        }
+                            filterSearch:
+                                filterOptions[columns[i].dataIndex]
+                                    .filterSearch,
+                        };
                     }
                 } else {
                     // 否则则一律视为'checkbox'模式
@@ -724,96 +922,236 @@ const AntdTable = (props) => {
                     if (filterOptions[columns[i].dataIndex].filterCustomItems) {
                         columns[i] = {
                             ...columns[i],
-                            defaultFilteredValue: defaultFilteredValues[columns[i].dataIndex],
-                            filters: filterOptions[columns[i].dataIndex].filterCustomItems
-                                .map(value => ({ text: (value || value === 0) ? value.toString() : '', value: value })),
+                            defaultFilteredValue:
+                                defaultFilteredValues[columns[i].dataIndex],
+                            filters: filterOptions[
+                                columns[i].dataIndex
+                            ].filterCustomItems.map((value) => ({
+                                text:
+                                    value || value === 0
+                                        ? value.toString()
+                                        : '',
+                                value: value,
+                            })),
                             // 针对不同再渲染模式设计值筛选逻辑
                             onFilter: (value, record) => {
                                 // 仅支持非数组型合法输入值，对象型输入支持对content、text、label、tag属性进行值筛选
-                                if ((record[columns[i].dataIndex] || record[columns[i].dataIndex] === 0) && !Array.isArray(record[columns[i].dataIndex])) {
+                                if (
+                                    (record[columns[i].dataIndex] ||
+                                        record[columns[i].dataIndex] === 0) &&
+                                    !Array.isArray(record[columns[i].dataIndex])
+                                ) {
                                     // 判断当前记录是否有content属性
                                     if (record[columns[i].dataIndex]?.content) {
-                                        return record[columns[i].dataIndex].content === value;
-                                    } else if (record[columns[i].dataIndex]?.text) {
-                                        return record[columns[i].dataIndex].text === value;
-                                    } else if (record[columns[i].dataIndex]?.label) {
-                                        return record[columns[i].dataIndex].label === value;
-                                    } else if (record[columns[i].dataIndex]?.tag) {
-                                        return record[columns[i].dataIndex].tag === value;
-                                    } else if (record[columns[i].dataIndex]?.toString) {
+                                        return (
+                                            record[columns[i].dataIndex]
+                                                .content === value
+                                        );
+                                    } else if (
+                                        record[columns[i].dataIndex]?.text
+                                    ) {
+                                        return (
+                                            record[columns[i].dataIndex]
+                                                .text === value
+                                        );
+                                    } else if (
+                                        record[columns[i].dataIndex]?.label
+                                    ) {
+                                        return (
+                                            record[columns[i].dataIndex]
+                                                .label === value
+                                        );
+                                    } else if (
+                                        record[columns[i].dataIndex]?.tag
+                                    ) {
+                                        return (
+                                            record[columns[i].dataIndex].tag ===
+                                            value
+                                        );
+                                    } else if (
+                                        record[columns[i].dataIndex]?.toString
+                                    ) {
                                         // 确保字符型、数值型均可稳定进行筛选
-                                        return record[columns[i].dataIndex].toString() === value.toString();
+                                        return (
+                                            record[
+                                                columns[i].dataIndex
+                                            ].toString() === value.toString()
+                                        );
                                     }
-                                } else if (Array.isArray(record[columns[i].dataIndex])) {
+                                } else if (
+                                    Array.isArray(record[columns[i].dataIndex])
+                                ) {
                                     // 若当前记录为数组，分别检查数组元素对象是否具有content、tag、title属性
-                                    if (record[columns[i].dataIndex].some(item => item?.content)) {
+                                    if (
+                                        record[columns[i].dataIndex].some(
+                                            (item) => item?.content
+                                        )
+                                    ) {
                                         // 检查当前记录数组中是否至少有一个对象的content属性等于筛选值value
-                                        return record[columns[i].dataIndex].some(
-                                            item => item?.content.toString().toLowerCase() === value?.toLowerCase()
+                                        return record[
+                                            columns[i].dataIndex
+                                        ].some(
+                                            (item) =>
+                                                item?.content
+                                                    .toString()
+                                                    .toLowerCase() ===
+                                                value?.toLowerCase()
+                                        );
+                                    } else if (
+                                        record[columns[i].dataIndex].some(
+                                            (item) => item?.tag
                                         )
-                                    } else if (record[columns[i].dataIndex].some(item => item?.tag)) {
+                                    ) {
                                         // 检查当前记录数组中是否至少有一个对象的tag属性命中关键词
-                                        return record[columns[i].dataIndex].some(
-                                            item => item?.tag.toString().toLowerCase() === value?.toLowerCase()
+                                        return record[
+                                            columns[i].dataIndex
+                                        ].some(
+                                            (item) =>
+                                                item?.tag
+                                                    .toString()
+                                                    .toLowerCase() ===
+                                                value?.toLowerCase()
+                                        );
+                                    } else if (
+                                        record[columns[i].dataIndex].some(
+                                            (item) => item?.title
                                         )
-                                    } else if (record[columns[i].dataIndex].some(item => item?.title)) {
+                                    ) {
                                         // 检查当前记录数组中是否至少有一个对象的title属性命中关键词
-                                        return record[columns[i].dataIndex].some(
-                                            item => item?.title.toString().toLowerCase() === value?.toLowerCase()
-                                        )
+                                        return record[
+                                            columns[i].dataIndex
+                                        ].some(
+                                            (item) =>
+                                                item?.title
+                                                    .toString()
+                                                    .toLowerCase() ===
+                                                value?.toLowerCase()
+                                        );
                                     }
                                 }
                                 return false;
                             },
-                            filterMultiple: filterOptions[columns[i].dataIndex].filterMultiple,
-                            filterSearch: filterOptions[columns[i].dataIndex].filterSearch
-                        }
+                            filterMultiple:
+                                filterOptions[columns[i].dataIndex]
+                                    .filterMultiple,
+                            filterSearch:
+                                filterOptions[columns[i].dataIndex]
+                                    .filterSearch,
+                        };
                     } else {
                         // 否则自动基于数据中的唯一值生成选项列表
                         columns[i] = {
                             ...columns[i],
-                            defaultFilteredValue: defaultFilteredValues[columns[i].dataIndex],
-                            filters: generateFilterOptions(data, columns[i].dataIndex),
+                            defaultFilteredValue:
+                                defaultFilteredValues[columns[i].dataIndex],
+                            filters: generateFilterOptions(
+                                data,
+                                columns[i].dataIndex
+                            ),
                             // 针对不同再渲染模式设计值筛选逻辑
                             onFilter: (value, record) => {
                                 // 仅支持非数组型合法输入值，对象型输入支持对content、text、label、tag属性进行值筛选
-                                if ((record[columns[i].dataIndex] || record[columns[i].dataIndex] === 0) && !Array.isArray(record[columns[i].dataIndex])) {
+                                if (
+                                    (record[columns[i].dataIndex] ||
+                                        record[columns[i].dataIndex] === 0) &&
+                                    !Array.isArray(record[columns[i].dataIndex])
+                                ) {
                                     if (record[columns[i].dataIndex]?.content) {
-                                        return record[columns[i].dataIndex].content === value;
-                                    } else if (record[columns[i].dataIndex]?.text) {
-                                        return record[columns[i].dataIndex].text === value;
-                                    } else if (record[columns[i].dataIndex]?.label) {
-                                        return record[columns[i].dataIndex].label === value;
-                                    } else if (record[columns[i].dataIndex]?.tag) {
-                                        return record[columns[i].dataIndex].tag === value;
-                                    } else if (record[columns[i].dataIndex]?.toString) {
+                                        return (
+                                            record[columns[i].dataIndex]
+                                                .content === value
+                                        );
+                                    } else if (
+                                        record[columns[i].dataIndex]?.text
+                                    ) {
+                                        return (
+                                            record[columns[i].dataIndex]
+                                                .text === value
+                                        );
+                                    } else if (
+                                        record[columns[i].dataIndex]?.label
+                                    ) {
+                                        return (
+                                            record[columns[i].dataIndex]
+                                                .label === value
+                                        );
+                                    } else if (
+                                        record[columns[i].dataIndex]?.tag
+                                    ) {
+                                        return (
+                                            record[columns[i].dataIndex].tag ===
+                                            value
+                                        );
+                                    } else if (
+                                        record[columns[i].dataIndex]?.toString
+                                    ) {
                                         // 确保字符型、数值型均可稳定进行筛选
-                                        return record[columns[i].dataIndex].toString() === value.toString();
+                                        return (
+                                            record[
+                                                columns[i].dataIndex
+                                            ].toString() === value.toString()
+                                        );
                                     }
-                                } else if (Array.isArray(record[columns[i].dataIndex])) {
+                                } else if (
+                                    Array.isArray(record[columns[i].dataIndex])
+                                ) {
                                     // 若当前记录为数组，分别检查数组元素对象是否具有content、tag、title属性
-                                    if (record[columns[i].dataIndex].some(item => item?.content)) {
+                                    if (
+                                        record[columns[i].dataIndex].some(
+                                            (item) => item?.content
+                                        )
+                                    ) {
                                         // 检查当前记录数组中是否至少有一个对象的content属性等于筛选值value
-                                        return record[columns[i].dataIndex].some(
-                                            item => item?.content.toString().toLowerCase() === value?.toLowerCase()
+                                        return record[
+                                            columns[i].dataIndex
+                                        ].some(
+                                            (item) =>
+                                                item?.content
+                                                    .toString()
+                                                    .toLowerCase() ===
+                                                value?.toLowerCase()
+                                        );
+                                    } else if (
+                                        record[columns[i].dataIndex].some(
+                                            (item) => item?.tag
                                         )
-                                    } else if (record[columns[i].dataIndex].some(item => item?.tag)) {
+                                    ) {
                                         // 检查当前记录数组中是否至少有一个对象的tag属性命中关键词
-                                        return record[columns[i].dataIndex].some(
-                                            item => item?.tag.toString().toLowerCase() === value?.toLowerCase()
+                                        return record[
+                                            columns[i].dataIndex
+                                        ].some(
+                                            (item) =>
+                                                item?.tag
+                                                    .toString()
+                                                    .toLowerCase() ===
+                                                value?.toLowerCase()
+                                        );
+                                    } else if (
+                                        record[columns[i].dataIndex].some(
+                                            (item) => item?.title
                                         )
-                                    } else if (record[columns[i].dataIndex].some(item => item?.title)) {
+                                    ) {
                                         // 检查当前记录数组中是否至少有一个对象的title属性命中关键词
-                                        return record[columns[i].dataIndex].some(
-                                            item => item?.title.toString().toLowerCase() === value?.toLowerCase()
-                                        )
+                                        return record[
+                                            columns[i].dataIndex
+                                        ].some(
+                                            (item) =>
+                                                item?.title
+                                                    .toString()
+                                                    .toLowerCase() ===
+                                                value?.toLowerCase()
+                                        );
                                     }
                                 }
                                 return false;
                             },
-                            filterMultiple: filterOptions[columns[i].dataIndex]?.filterMultiple,
-                            filterSearch: filterOptions[columns[i].dataIndex]?.filterSearch
-                        }
+                            filterMultiple:
+                                filterOptions[columns[i].dataIndex]
+                                    ?.filterMultiple,
+                            filterSearch:
+                                filterOptions[columns[i].dataIndex]
+                                    ?.filterSearch,
+                        };
                     }
                 }
             }
@@ -825,52 +1163,83 @@ const AntdTable = (props) => {
         // 为filterOptions.filterDataIndexes中定义的每个字段添加过滤功能
         for (let i = 0; i < columns.length; i++) {
             // 若当前字段在filterOptions的keys()中
-            if (Object.keys(filterOptions).indexOf(columns[i].dataIndex) !== -1) {
+            if (
+                Object.keys(filterOptions).indexOf(columns[i].dataIndex) !== -1
+            ) {
                 // 若当前字段对应filterOptions子元素有filterMode属性且filterMode属性为'keyword'
-                if (filterOptions[columns[i].dataIndex].filterMode === 'keyword') {
+                if (
+                    filterOptions[columns[i].dataIndex].filterMode === 'keyword'
+                ) {
                     columns[i] = {
                         ...columns[i],
-                        ...getColumnSearchProps(columns[i].dataIndex, columns[i].title)
-                    }
-                } else if (filterOptions[columns[i].dataIndex].filterMode === 'tree') {
+                        ...getColumnSearchProps(
+                            columns[i].dataIndex,
+                            columns[i].title
+                        ),
+                    };
+                } else if (
+                    filterOptions[columns[i].dataIndex].filterMode === 'tree'
+                ) {
                     // 若当前字段筛选模式为'tree'模式
                     // 若当前字段对应filterOptions子元素下有filterCustomTreeItems属性
                     // 则为其添加自定义树形选项
-                    if (filterOptions[columns[i].dataIndex].filterCustomTreeItems) {
+                    if (
+                        filterOptions[columns[i].dataIndex]
+                            .filterCustomTreeItems
+                    ) {
                         columns[i] = {
                             ...columns[i],
-                            defaultFilteredValue: defaultFilteredValues[columns[i].dataIndex],
+                            defaultFilteredValue:
+                                defaultFilteredValues[columns[i].dataIndex],
                             filterMode: 'tree',
-                            filters: filterOptions[columns[i].dataIndex].filterCustomTreeItems,
-                            onFilter: (value, record) => true // 契合后端刷新模式
-                        }
+                            filters:
+                                filterOptions[columns[i].dataIndex]
+                                    .filterCustomTreeItems,
+                            onFilter: (value, record) => true, // 契合后端刷新模式
+                        };
                     } else {
                         columns[i] = {
                             ...columns[i],
                             filters: [],
-                            onFilter: (value, record) => true
-                        }
+                            onFilter: (value, record) => true,
+                        };
                     }
                 } else {
                     // 否则则一律视为'checkbox'模式
                     // 若当前字段对应filterOptions子元素下有filterCustomItems属性
                     // 则为其添加自定义选项
-                    if (filterOptions[columns[i].dataIndex].hasOwnProperty('filterCustomItems')) {
+                    if (
+                        filterOptions[columns[i].dataIndex].hasOwnProperty(
+                            'filterCustomItems'
+                        )
+                    ) {
                         columns[i] = {
                             ...columns[i],
-                            defaultFilteredValue: defaultFilteredValues[columns[i].dataIndex],
-                            filters: filterOptions[columns[i].dataIndex].filterCustomItems
-                                .map(value => ({ text: (value || value === 0) ? value.toString() : '', value: value })),
+                            defaultFilteredValue:
+                                defaultFilteredValues[columns[i].dataIndex],
+                            filters: filterOptions[
+                                columns[i].dataIndex
+                            ].filterCustomItems.map((value) => ({
+                                text:
+                                    value || value === 0
+                                        ? value.toString()
+                                        : '',
+                                value: value,
+                            })),
                             onFilter: (value, record) => true, // 契合后端刷新模式
-                            filterMultiple: filterOptions[columns[i].dataIndex].filterMultiple,
-                            filterSearch: filterOptions[columns[i].dataIndex].filterSearch
-                        }
+                            filterMultiple:
+                                filterOptions[columns[i].dataIndex]
+                                    .filterMultiple,
+                            filterSearch:
+                                filterOptions[columns[i].dataIndex]
+                                    .filterSearch,
+                        };
                     } else {
                         columns[i] = {
                             ...columns[i],
                             filters: [],
-                            onFilter: (value, record) => true
-                        }
+                            onFilter: (value, record) => true,
+                        };
                     }
                 }
             }
@@ -883,8 +1252,8 @@ const AntdTable = (props) => {
         multiple: false,
         forceCompareModes: {},
         customOrders: {},
-        ...sortOptions
-    }
+        ...sortOptions,
+    };
 
     // 配置字段排序参数
     for (let i = 0; i < sortOptions.sortDataIndexes.length; i++) {
@@ -892,82 +1261,113 @@ const AntdTable = (props) => {
             // 若sortOptions与data中本轮迭代到的dataIndex一致
             if (sortOptions.sortDataIndexes[i] === columns[j].dataIndex) {
                 // 根据是否组合排序模式来决定当前字段的排序参数设置
-                columns[j]['sorter'] = {
+                columns[j].sorter = {
                     compare: (a, b) => {
                         // 当渲染模式为server-side时，禁用前端排序操作
                         if (mode === 'server-side') {
-                            return 0
+                            return 0;
+                        }
+                        // 初始化排序直接比较值
+                        let valueA = null;
+                        let valueB = null;
+                        // 兼容各种具有单个值的再渲染模式，提取待比较的成对数据
+                        if (
+                            a[columns[j].dataIndex]?.content ||
+                            b[columns[j].dataIndex]?.content
+                        ) {
+                            valueA = a[columns[j].dataIndex]?.content;
+                            valueB = b[columns[j].dataIndex]?.content;
+                        } else if (
+                            a[columns[j].dataIndex]?.text ||
+                            b[columns[j].dataIndex]?.text
+                        ) {
+                            valueA = a[columns[j].dataIndex]?.text;
+                            valueB = b[columns[j].dataIndex]?.text;
+                        } else if (
+                            a[columns[j].dataIndex]?.label ||
+                            b[columns[j].dataIndex]?.label
+                        ) {
+                            valueA = a[columns[j].dataIndex]?.label;
+                            valueB = b[columns[j].dataIndex]?.label;
+                        } else if (
+                            a[columns[j].dataIndex]?.tag ||
+                            b[columns[j].dataIndex]?.tag
+                        ) {
+                            valueA = a[columns[j].dataIndex]?.tag;
+                            valueB = b[columns[j].dataIndex]?.tag;
+                        } else if (
+                            a[columns[j].dataIndex]?.toString ||
+                            b[columns[j].dataIndex]?.toString
+                        ) {
+                            valueA = a[columns[j].dataIndex];
+                            valueB = b[columns[j].dataIndex];
+                        }
+                        // 根据valueA、valueB的数据类型返回不同逻辑的判断结果
+                        // 若valueA、valueB至少有1个为数值型，则视作数值型比较
+                        // 若当前字段使用了强制比较模式
+                        if (
+                            sortOptions.forceCompareModes[columns[j].dataIndex]
+                        ) {
+                            // 数值比较模式
+                            if (
+                                sortOptions.forceCompareModes[
+                                    columns[j].dataIndex
+                                ] === 'number'
+                            ) {
+                                // 强制转换比较值为数值型
+                                const numberA = Number(valueA);
+                                const numberB = Number(valueB);
+                                if (numberA < numberB) {
+                                    return -1;
+                                } else if (numberA > numberB) {
+                                    return 1;
+                                }
+                                return 0;
+                            } else if (
+                                sortOptions.forceCompareModes[
+                                    columns[j].dataIndex
+                                ] === 'custom' &&
+                                sortOptions.customOrders[columns[j].dataIndex]
+                            ) {
+                                // 自定义顺序模式
+                                // 查询比较值在对应的自定义顺序中的索引
+                                const orderA =
+                                    sortOptions.customOrders[
+                                        columns[j].dataIndex
+                                    ].indexOf(valueA);
+                                const orderB =
+                                    sortOptions.customOrders[
+                                        columns[j].dataIndex
+                                    ].indexOf(valueB);
+                                if (orderA < orderB) {
+                                    return 1;
+                                } else if (orderA > orderB) {
+                                    return -1;
+                                }
+                                return 0;
+                            }
                         } else {
-                            // 初始化排序直接比较值
-                            let valueA = null
-                            let valueB = null
-                            // 兼容各种具有单个值的再渲染模式，提取待比较的成对数据
-                            if (a[columns[j].dataIndex]?.content || b[columns[j].dataIndex]?.content) {
-                                valueA = a[columns[j].dataIndex]?.content
-                                valueB = b[columns[j].dataIndex]?.content
-                            } else if (a[columns[j].dataIndex]?.text || b[columns[j].dataIndex]?.text) {
-                                valueA = a[columns[j].dataIndex]?.text
-                                valueB = b[columns[j].dataIndex]?.text
-                            } else if (a[columns[j].dataIndex]?.label || b[columns[j].dataIndex]?.label) {
-                                valueA = a[columns[j].dataIndex]?.label
-                                valueB = b[columns[j].dataIndex]?.label
-                            } else if (a[columns[j].dataIndex]?.tag || b[columns[j].dataIndex]?.tag) {
-                                valueA = a[columns[j].dataIndex]?.tag
-                                valueB = b[columns[j].dataIndex]?.tag
-                            } else if (a[columns[j].dataIndex]?.toString || b[columns[j].dataIndex]?.toString) {
-                                valueA = a[columns[j].dataIndex]
-                                valueB = b[columns[j].dataIndex]
+                            // 默认自动判断
+                            if (isNumber(valueA) || isNumber(valueB)) {
+                                return valueA - valueB;
                             }
-                            // 根据valueA、valueB的数据类型返回不同逻辑的判断结果
-                            // 若valueA、valueB至少有1个为数值型，则视作数值型比较
-                            // 若当前字段使用了强制比较模式
-                            if (sortOptions.forceCompareModes[columns[j].dataIndex]) {
-                                // 数值比较模式
-                                if (sortOptions.forceCompareModes[columns[j].dataIndex] === 'number') {
-                                    // 强制转换比较值为数值型
-                                    let numberA = Number(valueA)
-                                    let numberB = Number(valueB)
-                                    if (numberA < numberB) {
-                                        return -1;
-                                    } else if (numberA > numberB) {
-                                        return 1;
-                                    }
-                                    return 0;
-                                } else if (sortOptions.forceCompareModes[columns[j].dataIndex] === 'custom' &&
-                                    sortOptions.customOrders[columns[j].dataIndex]) {
-                                    // 自定义顺序模式
-                                    // 查询比较值在对应的自定义顺序中的索引
-                                    let orderA = sortOptions.customOrders[columns[j].dataIndex].indexOf(valueA)
-                                    let orderB = sortOptions.customOrders[columns[j].dataIndex].indexOf(valueB)
-                                    if (orderA < orderB) {
-                                        return 1;
-                                    } else if (orderA > orderB) {
-                                        return -1;
-                                    }
-                                    return 0;
-                                }
-                            } else {
-                                // 默认自动判断
-                                if (isNumber(valueA) || isNumber(valueB)) {
-                                    return valueA - valueB
-                                } else {
-                                    // 否则均视作字符型比较
-                                    let stringA = valueA?.toString().toUpperCase()
-                                    let stringB = valueB?.toString().toUpperCase()
-                                    if (stringA < stringB) {
-                                        return -1;
-                                    } else if (stringA > stringB) {
-                                        return 1;
-                                    }
-                                    return 0;
-                                }
+                            // 否则均视作字符型比较
+                            const stringA = valueA?.toString().toUpperCase();
+                            const stringB = valueB?.toString().toUpperCase();
+                            if (stringA < stringB) {
+                                return -1;
+                            } else if (stringA > stringB) {
+                                return 1;
                             }
+                            return 0;
                         }
                     },
-                    multiple: sortOptions['multiple'] ?
-                        (sortOptions['multiple'] === 'auto' ? 1 : sortOptions.sortDataIndexes.length - i) :
-                        undefined
-                }
+                    multiple: sortOptions.multiple
+                        ? sortOptions.multiple === 'auto'
+                            ? 1
+                            : sortOptions.sortDataIndexes.length - i
+                        : undefined,
+                };
             }
         }
     }
@@ -975,291 +1375,427 @@ const AntdTable = (props) => {
     // 配置各种再渲染模式
     for (let i = 0; i < columns.length; i++) {
         // 当前字段具有renderOptions参数时且renderOptions参数是字典时
-        if (columns[i]['renderOptions'] && columns[i]['renderOptions']['renderType']) {
+        if (columns[i].renderOptions && columns[i].renderOptions.renderType) {
             // ellipsis模式
-            if (columns[i]['renderOptions']['renderType'] === 'ellipsis') {
-                columns[i]['ellipsis'] = {
-                    showTitle: false
-                }
-                columns[i]['render'] = content => (
-                    <Text ellipsis={{ tooltip: content }}>
-                        {content}
-                    </Text>
-                )
+            if (columns[i].renderOptions.renderType === 'ellipsis') {
+                columns[i].ellipsis = {
+                    showTitle: false,
+                };
+                columns[i].render = (content) => (
+                    <Text ellipsis={{ tooltip: content }}>{content}</Text>
+                );
             }
             // row-merge模式
-            else if (columns[i]['renderOptions']['renderType'] === 'row-merge') {
-                columns[i]['render'] = (content, record, index) => {
+            else if (columns[i].renderOptions.renderType === 'row-merge') {
+                columns[i].render = (content, record, index) => {
                     return {
                         children: content.content,
                         props: {
-                            rowSpan: content.rowSpan
+                            rowSpan: content.rowSpan,
+                        },
+                    };
+                };
+            }
+            // link模式
+            else if (columns[i].renderOptions.renderType === 'link') {
+                // 检查renderLinkText参数是否定义
+                if (columns[i].renderOptions.renderLinkText) {
+                    columns[i].render = (content) => {
+                        if (
+                            (!content || isEmpty(content)) &&
+                            content !== 0 &&
+                            content !== ''
+                        ) {
+                            return null;
                         }
+                        return columns[i].renderOptions.likeDccLink ? (
+                            <UtilsLink
+                                href={
+                                    content.disabled ? undefined : content.href
+                                }
+                                target={
+                                    content.target ? content.target : '_blank'
+                                }
+                                disabled={content.disabled}
+                            >
+                                {content.content
+                                    ? content.content
+                                    : columns[i].renderOptions.renderLinkText}
+                            </UtilsLink>
+                        ) : (
+                            <a
+                                href={
+                                    content.disabled ? undefined : content.href
+                                }
+                                target={
+                                    content.target ? content.target : '_blank'
+                                }
+                                disabled={content.disabled}
+                            >
+                                {content.content
+                                    ? content.content
+                                    : columns[i].renderOptions.renderLinkText}
+                            </a>
+                        );
+                    };
+                } else {
+                    columns[i].render = (content) => {
+                        if (
+                            (!content || isEmpty(content)) &&
+                            content !== 0 &&
+                            content !== ''
+                        ) {
+                            return null;
+                        }
+                        return columns[i].renderOptions.likeDccLink ? (
+                            <UtilsLink
+                                href={
+                                    content.disabled ? undefined : content.href
+                                }
+                                target={
+                                    content.target ? content.target : '_blank'
+                                }
+                                disabled={content.disabled}
+                            >
+                                {content.content ? content.content : ' '}
+                            </UtilsLink>
+                        ) : (
+                            <a
+                                href={
+                                    content.disabled ? undefined : content.href
+                                }
+                                target={
+                                    content.target ? content.target : '_blank'
+                                }
+                                disabled={content.disabled}
+                            >
+                                {content.content ? content.content : ' '}
+                            </a>
+                        );
                     };
                 }
             }
-            // link模式
-            else if (columns[i]['renderOptions']['renderType'] === 'link') {
-                // 检查renderLinkText参数是否定义
-                if (columns[i]['renderOptions']['renderLinkText']) {
-                    columns[i]['render'] = content => {
-                        if ((!content || isEmpty(content)) && content !== 0 && content !== '') {
-                            return null;
-                        }
-                        return (
-                            columns[i]['renderOptions']['likeDccLink'] ?
-                                (
-                                    <UtilsLink href={content.disabled ? undefined : content.href}
-                                        target={content.target ? content.target : '_blank'}
-                                        disabled={content.disabled}>
-                                        {content.content ? content.content : columns[i]['renderOptions']['renderLinkText']}
-                                    </UtilsLink>
-                                ) :
-                                (
-                                    <a href={content.disabled ? undefined : content.href}
-                                        target={content.target ? content.target : '_blank'}
-                                        disabled={content.disabled}>
-                                        {content.content ? content.content : columns[i]['renderOptions']['renderLinkText']}
-                                    </a>
-                                )
-                        );
-                    }
-                } else {
-                    columns[i]['render'] = content => {
-                        if ((!content || isEmpty(content)) && content !== 0 && content !== '') {
-                            return null;
-                        }
-                        return (
-                            columns[i]['renderOptions']['likeDccLink'] ?
-                                (
-                                    <UtilsLink href={content.disabled ? undefined : content.href}
-                                        target={content.target ? content.target : '_blank'}
-                                        disabled={content.disabled}>
-                                        {content.content ? content.content : ' '}
-                                    </UtilsLink>
-                                ) :
-                                (
-                                    <a href={content.disabled ? undefined : content.href}
-                                        target={content.target ? content.target : '_blank'}
-                                        disabled={content.disabled}>
-                                        {content.content ? content.content : ' '}
-                                    </a>
-                                )
-                        );
-                    }
-                }
-            }
             // copyable模式
-            else if (columns[i]['renderOptions']['renderType'] === 'copyable') {
-                columns[i]['render'] = content => {
-                    if ((!content || isEmpty(content)) && content !== 0 && content !== '') {
+            else if (columns[i].renderOptions.renderType === 'copyable') {
+                columns[i].render = (content) => {
+                    if (
+                        (!content || isEmpty(content)) &&
+                        content !== 0 &&
+                        content !== ''
+                    ) {
                         return null;
                     }
-                    return (
-                        <Text copyable={true}>
-                            {content}
-                        </Text>
-                    )
-                }
+                    return <Text copyable={true}>{content}</Text>;
+                };
             }
             // dropdown模式
-            else if (columns[i]['renderOptions']['renderType'] === 'dropdown') {
-                columns[i]['render'] = (menuItems, record) => {
+            else if (columns[i].renderOptions.renderType === 'dropdown') {
+                columns[i].render = (menuItems, record) => {
                     // 针对空值进行错误处理
-                    menuItems = menuItems || []
+                    menuItems = menuItems || [];
                     return (
                         <Dropdown
                             overlay={
-                                <Menu onClick={(item, key, keyPath, domEvent) => {
-                                    setTimeout(function () {
-                                        setProps({
-                                            nClicksDropdownItem: nClicksDropdownItem + 1,
-                                            recentlyClickedDropdownItemTitle: item.key,
-                                            recentlyDropdownItemClickedDataIndex: columns[i].dataIndex,
-                                            // 忽略组件型字段键值对
-                                            recentlyDropdownItemClickedRow: omitBy(record, value => value?.$$typeof)
-                                        })
-                                    }, 200);
-                                }}>
-                                    {
-                                        menuItems.map(
-                                            menuItem => (
-                                                menuItem ?
-                                                    // 判断isDivider参数是否不为false
-                                                    (
-                                                        menuItem.isDivider ?
-                                                            <Menu.Divider /> :
-                                                            <Menu.Item
-                                                                icon={
-                                                                    menuItem.icon && (
-                                                                        menuItem.iconRenderer === 'fontawesome' ?
-                                                                            (
-                                                                                React.createElement(
-                                                                                    'i',
-                                                                                    {
-                                                                                        className: menuItem.icon
-                                                                                    }
-                                                                                )
-                                                                            ) :
-                                                                            (
-                                                                                <AntdIcon icon={menuItem.icon} />
-                                                                            )
-                                                                    )
+                                <Menu
+                                    onClick={(item, key, keyPath, domEvent) => {
+                                        setTimeout(function () {
+                                            setProps({
+                                                nClicksDropdownItem:
+                                                    nClicksDropdownItem + 1,
+                                                recentlyClickedDropdownItemTitle:
+                                                    item.key,
+                                                recentlyDropdownItemClickedDataIndex:
+                                                    columns[i].dataIndex,
+                                                // 忽略组件型字段键值对
+                                                recentlyDropdownItemClickedRow:
+                                                    omitBy(
+                                                        record,
+                                                        (value) =>
+                                                            value?.$$typeof
+                                                    ),
+                                            });
+                                        }, 200);
+                                    }}
+                                >
+                                    {menuItems.map((menuItem) =>
+                                        menuItem ? (
+                                            // 判断isDivider参数是否不为false
+                                            menuItem.isDivider ? (
+                                                <Menu.Divider />
+                                            ) : (
+                                                <Menu.Item
+                                                    icon={
+                                                        menuItem.icon &&
+                                                        (menuItem.iconRenderer ===
+                                                        'fontawesome' ? (
+                                                            React.createElement(
+                                                                'i',
+                                                                {
+                                                                    className:
+                                                                        menuItem.icon,
                                                                 }
-                                                                disabled={menuItem.disabled}
-                                                                key={menuItem.title}>
-                                                                <a >{menuItem.title}</a>
-                                                            </Menu.Item>
-                                                    ) :
-                                                    null
+                                                            )
+                                                        ) : (
+                                                            <AntdIcon
+                                                                icon={
+                                                                    menuItem.icon
+                                                                }
+                                                            />
+                                                        ))
+                                                    }
+                                                    disabled={menuItem.disabled}
+                                                    key={menuItem.title}
+                                                >
+                                                    <a>{menuItem.title}</a>
+                                                </Menu.Item>
                                             )
-                                        )
-                                    }
+                                        ) : null
+                                    )}
                                 </Menu>
                             }
-                            arrow={columns[i]['renderOptions']?.dropdownProps?.arrow}
-                            disabled={columns[i]['renderOptions']?.dropdownProps?.disabled || menuItems.length === 0}
-                            overlayClassName={columns[i]['renderOptions']?.dropdownProps?.overlayClassName}
-                            overlayStyle={columns[i]['renderOptions']?.dropdownProps?.overlayStyle}
-                            placement={columns[i]['renderOptions']?.dropdownProps?.placement}
-                            trigger={
-                                columns[i]['renderOptions']?.dropdownProps?.trigger ?
-                                    [columns[i]['renderOptions'].dropdownProps.trigger] : ['hover']
+                            arrow={
+                                columns[i].renderOptions?.dropdownProps?.arrow
                             }
-                            getPopupContainer={containerId ? () => (document.getElementById(containerId) ? document.getElementById(containerId) : document.body) : undefined}>
-                            <a className="ant-dropdown-link"
-                                onClick={e => e.preventDefault()}>
-                                {columns[i]['renderOptions']?.dropdownProps?.title} <DownOutlined />
+                            disabled={
+                                columns[i].renderOptions?.dropdownProps
+                                    ?.disabled || menuItems.length === 0
+                            }
+                            overlayClassName={
+                                columns[i].renderOptions?.dropdownProps
+                                    ?.overlayClassName
+                            }
+                            overlayStyle={
+                                columns[i].renderOptions?.dropdownProps
+                                    ?.overlayStyle
+                            }
+                            placement={
+                                columns[i].renderOptions?.dropdownProps
+                                    ?.placement
+                            }
+                            trigger={
+                                columns[i].renderOptions?.dropdownProps?.trigger
+                                    ? [
+                                          columns[i].renderOptions.dropdownProps
+                                              .trigger,
+                                      ]
+                                    : ['hover']
+                            }
+                            getPopupContainer={
+                                containerId
+                                    ? () =>
+                                          document.getElementById(containerId)
+                                              ? document.getElementById(
+                                                    containerId
+                                                )
+                                              : document.body
+                                    : undefined
+                            }
+                        >
+                            <a
+                                className="ant-dropdown-link"
+                                onClick={(e) => e.preventDefault()}
+                            >
+                                {columns[i].renderOptions?.dropdownProps?.title}{' '}
+                                <DownOutlined />
                             </a>
                         </Dropdown>
                     );
-                }
+                };
             }
             // dropdown-links模式
-            else if (columns[i]['renderOptions']['renderType'] === 'dropdown-links') {
-                columns[i]['render'] = menuItems => {
+            else if (columns[i].renderOptions.renderType === 'dropdown-links') {
+                columns[i].render = (menuItems) => {
                     // 针对空值进行错误处理
-                    menuItems = menuItems || []
+                    menuItems = menuItems || [];
                     return (
                         <Dropdown
                             overlay={
                                 <Menu>
-                                    {
-                                        menuItems.map(
-                                            menuItem => (
-                                                menuItem ?
-                                                    // 判断isDivider参数是否不为false
-                                                    (
-                                                        menuItem.isDivider ?
-                                                            <Menu.Divider /> :
-                                                            <Menu.Item
-                                                                icon={
-                                                                    menuItem.icon && (
-                                                                        menuItem.iconRenderer === 'fontawesome' ?
-                                                                            (
-                                                                                React.createElement(
-                                                                                    'i',
-                                                                                    {
-                                                                                        className: menuItem.icon
-                                                                                    }
-                                                                                )
-                                                                            ) :
-                                                                            (
-                                                                                <AntdIcon icon={menuItem.icon} />
-                                                                            )
-                                                                    )
+                                    {menuItems.map((menuItem) =>
+                                        menuItem ? (
+                                            // 判断isDivider参数是否不为false
+                                            menuItem.isDivider ? (
+                                                <Menu.Divider />
+                                            ) : (
+                                                <Menu.Item
+                                                    icon={
+                                                        menuItem.icon &&
+                                                        (menuItem.iconRenderer ===
+                                                        'fontawesome' ? (
+                                                            React.createElement(
+                                                                'i',
+                                                                {
+                                                                    className:
+                                                                        menuItem.icon,
                                                                 }
-                                                                disabled={menuItem.disabled}
-                                                                key={menuItem.title}>
-                                                                <a href={menuItem.href}
-                                                                    target={'_blank'}>
-                                                                    {menuItem.title}
-                                                                </a>
-                                                            </Menu.Item>
-                                                    ) :
-                                                    null
+                                                            )
+                                                        ) : (
+                                                            <AntdIcon
+                                                                icon={
+                                                                    menuItem.icon
+                                                                }
+                                                            />
+                                                        ))
+                                                    }
+                                                    disabled={menuItem.disabled}
+                                                    key={menuItem.title}
+                                                >
+                                                    <a
+                                                        href={menuItem.href}
+                                                        target={'_blank'}
+                                                    >
+                                                        {menuItem.title}
+                                                    </a>
+                                                </Menu.Item>
                                             )
-                                        )
-                                    }
+                                        ) : null
+                                    )}
                                 </Menu>
                             }
-                            arrow={columns[i]['renderOptions']?.dropdownProps?.arrow}
-                            disabled={columns[i]['renderOptions']?.dropdownProps?.disabled || menuItems.length === 0}
-                            overlayClassName={columns[i]['renderOptions']?.dropdownProps?.overlayClassName}
-                            overlayStyle={columns[i]['renderOptions']?.dropdownProps?.overlayStyle}
-                            placement={columns[i]['renderOptions']?.dropdownProps?.placement}
-                            trigger={
-                                columns[i]['renderOptions']?.dropdownProps?.trigger ?
-                                    [columns[i]['renderOptions'].dropdownProps.trigger] : ['hover']
+                            arrow={
+                                columns[i].renderOptions?.dropdownProps?.arrow
                             }
-                            getPopupContainer={containerId ? () => (document.getElementById(containerId) ? document.getElementById(containerId) : document.body) : undefined}>
-                            <a className="ant-dropdown-link"
-                                onClick={e => e.preventDefault()}>
-                                {columns[i]['renderOptions']?.dropdownProps?.title} <DownOutlined />
+                            disabled={
+                                columns[i].renderOptions?.dropdownProps
+                                    ?.disabled || menuItems.length === 0
+                            }
+                            overlayClassName={
+                                columns[i].renderOptions?.dropdownProps
+                                    ?.overlayClassName
+                            }
+                            overlayStyle={
+                                columns[i].renderOptions?.dropdownProps
+                                    ?.overlayStyle
+                            }
+                            placement={
+                                columns[i].renderOptions?.dropdownProps
+                                    ?.placement
+                            }
+                            trigger={
+                                columns[i].renderOptions?.dropdownProps?.trigger
+                                    ? [
+                                          columns[i].renderOptions.dropdownProps
+                                              .trigger,
+                                      ]
+                                    : ['hover']
+                            }
+                            getPopupContainer={
+                                containerId
+                                    ? () =>
+                                          document.getElementById(containerId)
+                                              ? document.getElementById(
+                                                    containerId
+                                                )
+                                              : document.body
+                                    : undefined
+                            }
+                        >
+                            <a
+                                className="ant-dropdown-link"
+                                onClick={(e) => e.preventDefault()}
+                            >
+                                {columns[i].renderOptions?.dropdownProps?.title}{' '}
+                                <DownOutlined />
                             </a>
                         </Dropdown>
                     );
-                }
+                };
             }
             // ellipsis-copyable模式
-            else if (columns[i]['renderOptions']['renderType'] === 'ellipsis-copyable') {
-                columns[i]['ellipsis'] = {
-                    showTitle: false
-                }
-                columns[i]['render'] = content => {
-                    if ((!content || isEmpty(content)) && content !== 0 && content !== '') {
+            else if (
+                columns[i].renderOptions.renderType === 'ellipsis-copyable'
+            ) {
+                columns[i].ellipsis = {
+                    showTitle: false,
+                };
+                columns[i].render = (content) => {
+                    if (
+                        (!content || isEmpty(content)) &&
+                        content !== 0 &&
+                        content !== ''
+                    ) {
                         return null;
                     }
                     return (
                         <Text copyable={true} ellipsis={{ tooltip: content }}>
                             {content}
                         </Text>
-                    )
-                }
+                    );
+                };
             }
             // corner-mark模式
-            else if (columns[i]['renderOptions']['renderType'] === 'corner-mark') {
-                columns[i]['render'] = content => {
-                    if ((!content || isEmpty(content)) && content !== 0 && content !== '') {
+            else if (columns[i].renderOptions.renderType === 'corner-mark') {
+                columns[i].render = (content) => {
+                    if (
+                        (!content || isEmpty(content)) &&
+                        content !== 0 &&
+                        content !== ''
+                    ) {
                         return null;
                     }
                     return (
-                        <div className={content.placement ? 'ant-corner-mark-' + content.placement : 'ant-corner-mark-top-right'}
+                        <div
+                            className={
+                                content.placement
+                                    ? 'ant-corner-mark-' + content.placement
+                                    : 'ant-corner-mark-top-right'
+                            }
                             style={{
-                                '--ant-corner-mark-color': content.hide ? 'transparent' : (content.color ? content.color : '#1890ff'),
-                                '--ant-corner-mark-transform': `translate(${content.offsetX ? content.offsetX : 0}px, ${content.offsetY ? content.offsetY : 0}px)`
-                            }}>
+                                '--ant-corner-mark-color': content.hide
+                                    ? 'transparent'
+                                    : content.color
+                                      ? content.color
+                                      : '#1890ff',
+                                '--ant-corner-mark-transform': `translate(${content.offsetX ? content.offsetX : 0}px, ${content.offsetY ? content.offsetY : 0}px)`,
+                            }}
+                        >
                             {content.content}
                         </div>
-                    )
-                }
+                    );
+                };
             }
             // status-badge模式
-            else if (columns[i]['renderOptions']['renderType'] === 'status-badge') {
-                columns[i]['render'] = content => {
-                    if ((!content || isEmpty(content)) && content !== 0 && content !== '') {
+            else if (columns[i].renderOptions.renderType === 'status-badge') {
+                columns[i].render = (content) => {
+                    if (
+                        (!content || isEmpty(content)) &&
+                        content !== 0 &&
+                        content !== ''
+                    ) {
                         return null;
                     }
                     return (
                         <Badge status={content.status} text={content.text} />
-                    )
-                }
+                    );
+                };
             }
             // image模式
-            else if (columns[i]['renderOptions']['renderType'] === 'image') {
-                columns[i]['render'] = content => {
-                    if ((!content || isEmpty(content)) && content !== 0 && content !== '') {
+            else if (columns[i].renderOptions.renderType === 'image') {
+                columns[i].render = (content) => {
+                    if (
+                        (!content || isEmpty(content)) &&
+                        content !== 0 &&
+                        content !== ''
+                    ) {
                         return null;
                     }
                     return (
-                        <Image src={content.src} height={content.height} preview={content.preview} />
-                    )
-                }
+                        <Image
+                            src={content.src}
+                            height={content.height}
+                            preview={content.preview}
+                        />
+                    );
+                };
             }
             // image-avatar模式
-            else if (columns[i]['renderOptions']['renderType'] === 'image-avatar') {
-                columns[i]['render'] = content => {
-                    if ((!content || isEmpty(content)) && content !== 0 && content !== '') {
+            else if (columns[i].renderOptions.renderType === 'image-avatar') {
+                columns[i].render = (content) => {
+                    if (
+                        (!content || isEmpty(content)) &&
+                        content !== 0 &&
+                        content !== ''
+                    ) {
                         return null;
                     }
                     return (
@@ -1268,15 +1804,16 @@ const AntdTable = (props) => {
                             size={content?.size}
                             shape={content?.shape}
                         />
-                    )
-                }
+                    );
+                };
             }
             // checkbox模式
-            else if (columns[i]['renderOptions']['renderType'] === 'checkbox') {
-                columns[i]['render'] = (content, record) => {
-                    const currentDataIndex = columns[i]['dataIndex']
+            else if (columns[i].renderOptions.renderType === 'checkbox') {
+                columns[i].render = (content, record) => {
+                    const currentDataIndex = columns[i].dataIndex;
                     return (
-                        <Checkbox checked={content.checked}
+                        <Checkbox
+                            checked={content.checked}
                             disabled={content.disabled}
                             onChange={(e) => {
                                 // 修改对应行对应字段item.checked值
@@ -1286,36 +1823,41 @@ const AntdTable = (props) => {
                                         if (item.key === record.key) {
                                             data[i][currentDataIndex] = {
                                                 ...record[currentDataIndex],
-                                                checked: e.target.checked
-                                            }
-                                            throw new Error("目标已修改");
+                                                checked: e.target.checked,
+                                            };
+                                            throw new Error('目标已修改');
                                         }
                                     });
-                                } catch (e) {
-                                };
+                                } catch (e) {}
 
                                 setTimeout(function () {
                                     setProps({
                                         data: data,
                                         // 忽略组件型字段键值对
-                                        recentlyCheckedRow: omitBy(record, value => value?.$$typeof),
+                                        recentlyCheckedRow: omitBy(
+                                            record,
+                                            (value) => value?.$$typeof
+                                        ),
                                         recentlyCheckedLabel: content.label,
-                                        recentlyCheckedDataIndex: columns[i]['dataIndex'],
-                                        recentlyCheckedStatus: e.target.checked
-                                    })
+                                        recentlyCheckedDataIndex:
+                                            columns[i].dataIndex,
+                                        recentlyCheckedStatus: e.target.checked,
+                                    });
                                 }, 200);
-                            }}>
+                            }}
+                        >
                             {content.label}
                         </Checkbox>
                     );
-                }
+                };
             }
             // switch模式
-            else if (columns[i]['renderOptions']['renderType'] === 'switch') {
-                columns[i]['render'] = (content, record) => {
-                    const currentDataIndex = columns[i]['dataIndex']
+            else if (columns[i].renderOptions.renderType === 'switch') {
+                columns[i].render = (content, record) => {
+                    const currentDataIndex = columns[i].dataIndex;
                     return (
-                        <Switch checked={content.checked}
+                        <Switch
+                            checked={content.checked}
                             disabled={content.disabled}
                             checkedChildren={content.checkedChildren}
                             unCheckedChildren={content.unCheckedChildren}
@@ -1327,42 +1869,50 @@ const AntdTable = (props) => {
                                         if (item.key === record.key) {
                                             data[i][currentDataIndex] = {
                                                 ...record[currentDataIndex],
-                                                checked: checked
-                                            }
-                                            throw new Error("目标已修改");
+                                                checked: checked,
+                                            };
+                                            throw new Error('目标已修改');
                                         }
                                     });
-                                } catch (e) {
-                                };
+                                } catch (e) {}
 
                                 setTimeout(function () {
                                     setProps({
                                         data: data,
                                         // 忽略组件型字段键值对
-                                        recentlySwitchRow: omitBy(record, value => value?.$$typeof),
-                                        recentlySwitchDataIndex: columns[i]['dataIndex'],
-                                        recentlySwitchStatus: checked
-                                    })
+                                        recentlySwitchRow: omitBy(
+                                            record,
+                                            (value) => value?.$$typeof
+                                        ),
+                                        recentlySwitchDataIndex:
+                                            columns[i].dataIndex,
+                                        recentlySwitchStatus: checked,
+                                    });
                                 }, 200);
-                            }} />
+                            }}
+                        />
                     );
-                }
+                };
             }
             // select模式
-            else if (columns[i]['renderOptions']['renderType'] === 'select') {
-                columns[i]['render'] = (content, record) => {
-                    const currentDataIndex = columns[i]['dataIndex']
+            else if (columns[i].renderOptions.renderType === 'select') {
+                columns[i].render = (content, record) => {
+                    const currentDataIndex = columns[i].dataIndex;
                     // 针对空值进行错误处理
-                    content = content || {}
+                    content = content || {};
                     return (
                         <Select
                             className={content.className}
                             style={{
                                 width: '100%',
                                 textAlign: 'left',
-                                ...content.style
+                                ...content.style,
                             }}
-                            showSearch={isUndefined(content.showSearch) ? true : content.showSearch}
+                            showSearch={
+                                isUndefined(content.showSearch)
+                                    ? true
+                                    : content.showSearch
+                            }
                             options={content.options}
                             listHeight={content.listHeight}
                             mode={content.mode}
@@ -1383,346 +1933,285 @@ const AntdTable = (props) => {
                                         if (item.key === record.key) {
                                             data[i][currentDataIndex] = {
                                                 ...record[currentDataIndex],
-                                                value: value
-                                            }
+                                                value: value,
+                                            };
                                             // 提前打断循环过程
-                                            throw new Error("目标已修改");
+                                            throw new Error('目标已修改');
                                         }
                                     });
-                                } catch (e) {
-                                };
+                                } catch (e) {}
 
-                                setTimeout(
-                                    () => {
-                                        setProps({
-                                            data: data,
-                                            // 忽略组件型字段键值对
-                                            recentlySelectRow: omitBy(record, value => value?.$$typeof),
-                                            recentlySelectDataIndex: columns[i]['dataIndex'],
-                                            recentlySelectValue: value
-                                        })
-                                    },
-                                    200
-                                );
-                            }} />
+                                setTimeout(() => {
+                                    setProps({
+                                        data: data,
+                                        // 忽略组件型字段键值对
+                                        recentlySelectRow: omitBy(
+                                            record,
+                                            (value) => value?.$$typeof
+                                        ),
+                                        recentlySelectDataIndex:
+                                            columns[i].dataIndex,
+                                        recentlySelectValue: value,
+                                    });
+                                }, 200);
+                            }}
+                        />
                     );
-                }
+                };
             }
             // button模式
-            else if (columns[i]['renderOptions']['renderType'] === 'button') {
+            else if (columns[i].renderOptions.renderType === 'button') {
                 // 根据参数配置生成按钮
-                columns[i]['render'] = (content, record) => {
+                columns[i].render = (content, record) => {
                     // 合并单按钮/多按钮渲染逻辑
                     content = Array.isArray(content) ? content : [content];
                     return (
-                        <Space split={columns[i]['renderOptions'].renderButtonSplit && <Divider type={"vertical"} />} wrap={true}>
-                            {
-                                content.map(
-                                    (content_, idx) => {
-                                        // 若当前按钮需要附带气泡确认框
-                                        if (columns[i]['renderOptions']['renderButtonPopConfirmProps'] || content_['popConfirmProps']) {
-                                            let popConfirmProps = columns[i]['renderOptions']['renderButtonPopConfirmProps'] || content_['popConfirmProps'];
-                                            let buttonElement = (
-                                                <Button
-                                                    size={'small'}
-                                                    type={content_.type}
-                                                    color={content_.color}
-                                                    variant={content_.variant}
-                                                    danger={content_.danger}
-                                                    disabled={content_.disabled}
-                                                    style={content_.style}
-                                                    icon={
-                                                        content_.icon && (
-                                                            content_.iconRenderer === 'fontawesome' ?
-                                                                (
-                                                                    React.createElement(
-                                                                        'i',
-                                                                        {
-                                                                            className: content_.icon
-                                                                        }
-                                                                    )
-                                                                ) :
-                                                                (
-                                                                    <AntdIcon icon={content_.icon} />
-                                                                )
-                                                        )
-                                                    }
-                                                    onClick={(e) => {
-                                                        // 阻止事件冒泡
-                                                        e.stopPropagation();
-                                                    }}>
-                                                    {content_.content}
-                                                </Button>
-                                            );
-                                            return (
-                                                <Popconfirm
-                                                    key={idx}
-                                                    title={popConfirmProps.title}
-                                                    okText={popConfirmProps.okText}
-                                                    cancelText={popConfirmProps.cancelText}
-                                                    disabled={content_.disabled}
-                                                    getPopupContainer={containerId ? () => (document.getElementById(containerId) ? document.getElementById(containerId) : document.body) : undefined}
-                                                    onConfirm={(e) => {
-                                                        // 阻止事件冒泡
-                                                        e.stopPropagation();
-                                                        setProps({
-                                                            // 忽略组件型字段键值对
-                                                            recentlyButtonClickedRow: omitBy(record, value => value?.$$typeof),
-                                                            nClicksButton: nClicksButton + 1,
-                                                            clickedContent: content_.content,
-                                                            clickedCustom: content_.custom,
-                                                            recentlyButtonClickedDataIndex: columns[i].dataIndex
-                                                        })
-                                                    }}
-                                                    onCancel={(e) => {
-                                                        // 阻止事件冒泡
-                                                        e.stopPropagation();
-                                                    }}>
-                                                    {
-                                                        content_.tooltip ?
-                                                            (
-                                                                <Tooltip title={content_.tooltip?.title} placement={content_.tooltip?.placement}>
-                                                                    {buttonElement}
-                                                                </Tooltip>
-                                                            ) :
-                                                            (
-                                                                buttonElement
-                                                            )
-                                                    }
-                                                </Popconfirm>
-                                            );
-                                        }
-                                        let buttonElement = (
-                                            <Button
-                                                key={idx}
-                                                onClick={(e) => {
-                                                    // 阻止事件冒泡
-                                                    if ( !columns[i]['renderOptions']['likeDccLink'] ) {
-                                                        e.stopPropagation();
-                                                    }
-                                                    setProps({
-                                                        // 忽略组件型字段键值对
-                                                        recentlyButtonClickedRow: omitBy(record, value => value?.$$typeof),
-                                                        nClicksButton: nClicksButton + 1,
-                                                        clickedContent: content_.content,
-                                                        clickedCustom: content_.custom,
-                                                        recentlyButtonClickedDataIndex: columns[i].dataIndex
-                                                    })
-                                                }}
-                                                size={'small'}
-                                                type={content_.type}
-                                                color={content_.color}
-                                                variant={content_.variant}
-                                                danger={content_.danger}
-                                                disabled={content_.disabled}
-                                                href={columns[i]['renderOptions']['likeDccLink'] ? undefined : content_.href}
-                                                target={content_.target}
-                                                style={content_.style}
-                                                icon={
-                                                    content_.icon && (
-                                                        content_.iconRenderer === 'fontawesome' ?
-                                                            (
-                                                                React.createElement(
-                                                                    'i',
-                                                                    {
-                                                                        className: content_.icon
-                                                                    }
-                                                                )
-                                                            ) :
-                                                            (
-                                                                <AntdIcon icon={content_.icon} />
-                                                            )
-                                                    )
-                                                }>
-                                                {content_.content}
-                                            </Button>
-                                        );
-                                        // 否则仅渲染按钮
-                                        return (
-                                            content_.tooltip ?
-                                                (
-                                                    <Tooltip title={content_.tooltip?.title} placement={content_.tooltip?.placement}>
-                                                        {
-                                                            (
-                                                                columns[i]['renderOptions']['likeDccLink'] ?
-                                                                    (
-                                                                        <UtilsLink key={idx} href={content_.href}>{buttonElement}</UtilsLink>
-                                                                    ) :
-                                                                    buttonElement
-                                                            )
-                                                        }
-                                                    </Tooltip>
-                                                ) :
-                                                (
-                                                    columns[i]['renderOptions']['likeDccLink'] ?
-                                                        (
-                                                            <UtilsLink key={idx} href={content_.href}>{buttonElement}</UtilsLink>
-                                                        ) :
-                                                        buttonElement
-                                                )
-                                        );
-                                    }
+                        <Space
+                            split={
+                                columns[i].renderOptions.renderButtonSplit && (
+                                    <Divider type={'vertical'} />
                                 )
                             }
+                            wrap={true}
+                        >
+                            {content.map((content_, idx) => {
+                                // 若当前按钮需要附带气泡确认框
+                                if (
+                                    columns[i].renderOptions
+                                        .renderButtonPopConfirmProps ||
+                                    content_.popConfirmProps
+                                ) {
+                                    const popConfirmProps =
+                                        columns[i].renderOptions
+                                            .renderButtonPopConfirmProps ||
+                                        content_.popConfirmProps;
+                                    const buttonElement = (
+                                        <Button
+                                            size={'small'}
+                                            type={content_.type}
+                                            color={content_.color}
+                                            variant={content_.variant}
+                                            danger={content_.danger}
+                                            disabled={content_.disabled}
+                                            style={content_.style}
+                                            icon={
+                                                content_.icon &&
+                                                (content_.iconRenderer ===
+                                                'fontawesome' ? (
+                                                    React.createElement('i', {
+                                                        className:
+                                                            content_.icon,
+                                                    })
+                                                ) : (
+                                                    <AntdIcon
+                                                        icon={content_.icon}
+                                                    />
+                                                ))
+                                            }
+                                            onClick={(e) => {
+                                                // 阻止事件冒泡
+                                                e.stopPropagation();
+                                            }}
+                                        >
+                                            {content_.content}
+                                        </Button>
+                                    );
+                                    return (
+                                        <Popconfirm
+                                            key={idx}
+                                            title={popConfirmProps.title}
+                                            okText={popConfirmProps.okText}
+                                            cancelText={
+                                                popConfirmProps.cancelText
+                                            }
+                                            disabled={content_.disabled}
+                                            getPopupContainer={
+                                                containerId
+                                                    ? () =>
+                                                          document.getElementById(
+                                                              containerId
+                                                          )
+                                                              ? document.getElementById(
+                                                                    containerId
+                                                                )
+                                                              : document.body
+                                                    : undefined
+                                            }
+                                            onConfirm={(e) => {
+                                                // 阻止事件冒泡
+                                                e.stopPropagation();
+                                                setProps({
+                                                    // 忽略组件型字段键值对
+                                                    recentlyButtonClickedRow:
+                                                        omitBy(
+                                                            record,
+                                                            (value) =>
+                                                                value?.$$typeof
+                                                        ),
+                                                    nClicksButton:
+                                                        nClicksButton + 1,
+                                                    clickedContent:
+                                                        content_.content,
+                                                    clickedCustom:
+                                                        content_.custom,
+                                                    recentlyButtonClickedDataIndex:
+                                                        columns[i].dataIndex,
+                                                });
+                                            }}
+                                            onCancel={(e) => {
+                                                // 阻止事件冒泡
+                                                e.stopPropagation();
+                                            }}
+                                        >
+                                            {content_.tooltip ? (
+                                                <Tooltip
+                                                    title={
+                                                        content_.tooltip?.title
+                                                    }
+                                                    placement={
+                                                        content_.tooltip
+                                                            ?.placement
+                                                    }
+                                                >
+                                                    {buttonElement}
+                                                </Tooltip>
+                                            ) : (
+                                                buttonElement
+                                            )}
+                                        </Popconfirm>
+                                    );
+                                }
+                                const buttonElement = (
+                                    <Button
+                                        key={idx}
+                                        onClick={(e) => {
+                                            // 阻止事件冒泡
+                                            if (
+                                                !columns[i].renderOptions
+                                                    .likeDccLink
+                                            ) {
+                                                e.stopPropagation();
+                                            }
+                                            setProps({
+                                                // 忽略组件型字段键值对
+                                                recentlyButtonClickedRow:
+                                                    omitBy(
+                                                        record,
+                                                        (value) =>
+                                                            value?.$$typeof
+                                                    ),
+                                                nClicksButton:
+                                                    nClicksButton + 1,
+                                                clickedContent:
+                                                    content_.content,
+                                                clickedCustom: content_.custom,
+                                                recentlyButtonClickedDataIndex:
+                                                    columns[i].dataIndex,
+                                            });
+                                        }}
+                                        size={'small'}
+                                        type={content_.type}
+                                        color={content_.color}
+                                        variant={content_.variant}
+                                        danger={content_.danger}
+                                        disabled={content_.disabled}
+                                        href={
+                                            columns[i].renderOptions.likeDccLink
+                                                ? undefined
+                                                : content_.href
+                                        }
+                                        target={content_.target}
+                                        style={content_.style}
+                                        icon={
+                                            content_.icon &&
+                                            (content_.iconRenderer ===
+                                            'fontawesome' ? (
+                                                React.createElement('i', {
+                                                    className: content_.icon,
+                                                })
+                                            ) : (
+                                                <AntdIcon
+                                                    icon={content_.icon}
+                                                />
+                                            ))
+                                        }
+                                    >
+                                        {content_.content}
+                                    </Button>
+                                );
+                                // 否则仅渲染按钮
+                                return content_.tooltip ? (
+                                    <Tooltip
+                                        title={content_.tooltip?.title}
+                                        placement={content_.tooltip?.placement}
+                                    >
+                                        {columns[i].renderOptions
+                                            .likeDccLink ? (
+                                            <UtilsLink
+                                                key={idx}
+                                                href={content_.href}
+                                            >
+                                                {buttonElement}
+                                            </UtilsLink>
+                                        ) : (
+                                            buttonElement
+                                        )}
+                                    </Tooltip>
+                                ) : columns[i].renderOptions.likeDccLink ? (
+                                    <UtilsLink key={idx} href={content_.href}>
+                                        {buttonElement}
+                                    </UtilsLink>
+                                ) : (
+                                    buttonElement
+                                );
+                            })}
                         </Space>
                     );
-                }
+                };
             }
             // tags模式
-            else if (columns[i]['renderOptions']['renderType'] === 'tags') {
-
-                columns[i]['render'] = tags => {
+            else if (columns[i].renderOptions.renderType === 'tags') {
+                columns[i].render = (tags) => {
                     if ((!tags || isEmpty(tags)) && tags !== 0 && tags !== '') {
                         return null;
                     }
                     return (
                         // 兼容单标签/多标签输入
                         <>
-                            {(Array.isArray(tags) ? tags : [tags]).map(tag => {
-                                const tagElement = (
-                                    <Tag color={tag.color}>
-                                        {tag.tag}
-                                    </Tag>
-                                );
-                                // 若当前标签需要附带文字提示
-                                return tag.tooltip ? (
-                                    <Tooltip title={tag.tooltip?.title} placement={tag.tooltip?.placement}>
-                                        {tagElement}
-                                    </Tooltip>
-                                ) : (
-                                    tagElement
-                                );
-                            })}
+                            {(Array.isArray(tags) ? tags : [tags]).map(
+                                (tag) => {
+                                    const tagElement = (
+                                        <Tag color={tag.color}>{tag.tag}</Tag>
+                                    );
+                                    // 若当前标签需要附带文字提示
+                                    return tag.tooltip ? (
+                                        <Tooltip
+                                            title={tag.tooltip?.title}
+                                            placement={tag.tooltip?.placement}
+                                        >
+                                            {tagElement}
+                                        </Tooltip>
+                                    ) : (
+                                        tagElement
+                                    );
+                                }
+                            )}
                         </>
-                    )
-                }
+                    );
+                };
             }
             // custom-format模式
-            else if (columns[i]['renderOptions']['renderType'] === 'custom-format') {
+            else if (columns[i].renderOptions.renderType === 'custom-format') {
                 // 若customFormatFuncs对应当前字段的属性值存在
-                if (customFormatFuncs[columns[i]['dataIndex']]) {
-                    columns[i]['render'] = eval(customFormatFuncs[columns[i]['dataIndex']])
-                }
-            }
-            // mini-line模式
-            else if (columns[i]['renderOptions']['renderType'] === 'mini-line') {
-                columns[i]['render'] = data => {
-                    let config = {
-                        autoFit: true,
-                        padding: 0,
-                        data: data,
-                        animation: miniChartAnimation,
-                        smooth: true
-                    };
-                    // 检查是否设置了tooltipCustomContent参数
-                    if (columns[i]['renderOptions']?.tooltipCustomContent) {
-                        config = {
-                            ...config,
-                            tooltip: {
-                                customContent: eval(columns[i]['renderOptions'].tooltipCustomContent)
-                            }
-                        }
-                    }
-                    // 检查是否设置了miniChartColor参数
-                    if (columns[i]['renderOptions']?.miniChartColor) {
-                        config = {
-                            ...config,
-                            color: columns[i]['renderOptions'].miniChartColor
-                        }
-                    }
-                    return <div style={{ height: miniChartHeight }}><TinyLine {...config} /></div>;
-                }
-            }
-            // mini-bar模式
-            else if (columns[i]['renderOptions']['renderType'] === 'mini-bar') {
-                columns[i]['render'] = data => {
-                    let config = {
-                        padding: 0,
-                        autoFit: true,
-                        data: data,
-                        animation: miniChartAnimation,
-                    };
-                    // 检查是否设置了tooltipCustomContent参数
-                    if (columns[i]['renderOptions']?.tooltipCustomContent) {
-                        config = {
-                            ...config,
-                            tooltip: {
-                                customContent: eval(columns[i]['renderOptions'].tooltipCustomContent)
-                            }
-                        }
-                    }
-                    // 检查是否设置了miniChartColor参数
-                    if (columns[i]['renderOptions']?.miniChartColor) {
-                        config = {
-                            ...config,
-                            color: columns[i]['renderOptions'].miniChartColor
-                        }
-                    }
-                    return <div style={{ height: miniChartHeight }}><TinyColumn {...config} /></div>;
-                }
-            }
-            // mini-progress模式
-            else if (columns[i]['renderOptions']['renderType'] === 'mini-progress') {
-                columns[i]['render'] = data => {
-                    return (
-                        <div style={{ height: miniChartHeight, alignItems: 'center', display: 'flex' }}>
-                            <Progress percent={(data * 100)}
-                                format={
-                                    (percent) => {
-                                        if (isUndefined(columns[i]['renderOptions']['progressPercentPrecision'])) {
-                                            return percent + '%';
-                                        }
-                                        return percent.toFixed(columns[i]['renderOptions']['progressPercentPrecision']) + '%';
-                                    }
-                                }
-                                strokeColor={
-                                    data * 100 === 100 ?
-                                        columns[i]['renderOptions']['progressOneHundredPercentColor'] :
-                                        columns[i]['renderOptions']['progressColor']
-                                }
-                                trailColor={'#E8EDF3'}
-                                status={data * 100 >= 100 ? undefined : 'normal'}
-                                showInfo={Boolean(columns[i]['renderOptions']['progressShowPercent'])}
-                                strokeLinecap={columns[i]['renderOptions']['progressStrokeLinecap'] || 'square'}
-                                size={
-                                    columns[i]['renderOptions']['progressSize'] ?
-                                        ['100%', columns[i]['renderOptions']['progressSize']] :
-                                        ['100%', 15]
-                                }
-                                percentPosition={columns[i]['renderOptions']['progressPercentPosition']}
-                            />
-                        </div>
+                if (customFormatFuncs[columns[i].dataIndex]) {
+                    columns[i].render = eval(
+                        customFormatFuncs[columns[i].dataIndex]
                     );
                 }
             }
-            // mini-ring-progress模式
-            else if (columns[i]['renderOptions']['renderType'] === 'mini-ring-progress') {
-                columns[i]['render'] = data => {
-                    let config = {
-                        autoFit: true,
-                        padding: 0,
-                        percent: data,
-                        animation: miniChartAnimation,
-                        color: [
-                            data === 1 ?
-                                (columns[i]['renderOptions']['progressOneHundredPercentColor'] || '#52c41a') :
-                                '#5B8FF9',
-                            '#E8EDF3'
-                        ],
-                        statistic: {
-                            content: {
-                                style: {
-                                    fontSize: columns[i]['renderOptions']['ringProgressFontSize']
-                                }
-                            }
-                        }
-                    };
-                    return <div style={{ height: miniChartHeight }}><RingProgress {...config} /></div>;
-                }
-            }
-            // mini-area模式
-            else if (columns[i]['renderOptions']['renderType'] === 'mini-area') {
-                columns[i]['render'] = data => {
+            // mini-line模式
+            else if (columns[i].renderOptions.renderType === 'mini-line') {
+                columns[i].render = (data) => {
                     let config = {
                         autoFit: true,
                         padding: 0,
@@ -1731,29 +2220,206 @@ const AntdTable = (props) => {
                         smooth: true,
                     };
                     // 检查是否设置了tooltipCustomContent参数
-                    if (columns[i]['renderOptions']?.tooltipCustomContent) {
+                    if (columns[i].renderOptions?.tooltipCustomContent) {
                         config = {
                             ...config,
                             tooltip: {
-                                customContent: eval(columns[i]['renderOptions'].tooltipCustomContent)
-                            }
-                        }
+                                customContent: eval(
+                                    columns[i].renderOptions
+                                        .tooltipCustomContent
+                                ),
+                            },
+                        };
                     }
                     // 检查是否设置了miniChartColor参数
-                    if (columns[i]['renderOptions']?.miniChartColor) {
+                    if (columns[i].renderOptions?.miniChartColor) {
+                        config = {
+                            ...config,
+                            color: columns[i].renderOptions.miniChartColor,
+                        };
+                    }
+                    return (
+                        <div style={{ height: miniChartHeight }}>
+                            <TinyLine {...config} />
+                        </div>
+                    );
+                };
+            }
+            // mini-bar模式
+            else if (columns[i].renderOptions.renderType === 'mini-bar') {
+                columns[i].render = (data) => {
+                    let config = {
+                        padding: 0,
+                        autoFit: true,
+                        data: data,
+                        animation: miniChartAnimation,
+                    };
+                    // 检查是否设置了tooltipCustomContent参数
+                    if (columns[i].renderOptions?.tooltipCustomContent) {
+                        config = {
+                            ...config,
+                            tooltip: {
+                                customContent: eval(
+                                    columns[i].renderOptions
+                                        .tooltipCustomContent
+                                ),
+                            },
+                        };
+                    }
+                    // 检查是否设置了miniChartColor参数
+                    if (columns[i].renderOptions?.miniChartColor) {
+                        config = {
+                            ...config,
+                            color: columns[i].renderOptions.miniChartColor,
+                        };
+                    }
+                    return (
+                        <div style={{ height: miniChartHeight }}>
+                            <TinyColumn {...config} />
+                        </div>
+                    );
+                };
+            }
+            // mini-progress模式
+            else if (columns[i].renderOptions.renderType === 'mini-progress') {
+                columns[i].render = (data) => {
+                    return (
+                        <div
+                            style={{
+                                height: miniChartHeight,
+                                alignItems: 'center',
+                                display: 'flex',
+                            }}
+                        >
+                            <Progress
+                                percent={data * 100}
+                                format={(percent) => {
+                                    if (
+                                        isUndefined(
+                                            columns[i].renderOptions
+                                                .progressPercentPrecision
+                                        )
+                                    ) {
+                                        return percent + '%';
+                                    }
+                                    return (
+                                        percent.toFixed(
+                                            columns[i].renderOptions
+                                                .progressPercentPrecision
+                                        ) + '%'
+                                    );
+                                }}
+                                strokeColor={
+                                    data * 100 === 100
+                                        ? columns[i].renderOptions
+                                              .progressOneHundredPercentColor
+                                        : columns[i].renderOptions.progressColor
+                                }
+                                trailColor={'#E8EDF3'}
+                                status={
+                                    data * 100 >= 100 ? undefined : 'normal'
+                                }
+                                showInfo={Boolean(
+                                    columns[i].renderOptions.progressShowPercent
+                                )}
+                                strokeLinecap={
+                                    columns[i].renderOptions
+                                        .progressStrokeLinecap || 'square'
+                                }
+                                size={
+                                    columns[i].renderOptions.progressSize
+                                        ? [
+                                              '100%',
+                                              columns[i].renderOptions
+                                                  .progressSize,
+                                          ]
+                                        : ['100%', 15]
+                                }
+                                percentPosition={
+                                    columns[i].renderOptions
+                                        .progressPercentPosition
+                                }
+                            />
+                        </div>
+                    );
+                };
+            }
+            // mini-ring-progress模式
+            else if (
+                columns[i].renderOptions.renderType === 'mini-ring-progress'
+            ) {
+                columns[i].render = (data) => {
+                    const config = {
+                        autoFit: true,
+                        padding: 0,
+                        percent: data,
+                        animation: miniChartAnimation,
+                        color: [
+                            data === 1
+                                ? columns[i].renderOptions
+                                      .progressOneHundredPercentColor ||
+                                  '#52c41a'
+                                : '#5B8FF9',
+                            '#E8EDF3',
+                        ],
+                        statistic: {
+                            content: {
+                                style: {
+                                    fontSize:
+                                        columns[i].renderOptions
+                                            .ringProgressFontSize,
+                                },
+                            },
+                        },
+                    };
+                    return (
+                        <div style={{ height: miniChartHeight }}>
+                            <RingProgress {...config} />
+                        </div>
+                    );
+                };
+            }
+            // mini-area模式
+            else if (columns[i].renderOptions.renderType === 'mini-area') {
+                columns[i].render = (data) => {
+                    let config = {
+                        autoFit: true,
+                        padding: 0,
+                        data: data,
+                        animation: miniChartAnimation,
+                        smooth: true,
+                    };
+                    // 检查是否设置了tooltipCustomContent参数
+                    if (columns[i].renderOptions?.tooltipCustomContent) {
+                        config = {
+                            ...config,
+                            tooltip: {
+                                customContent: eval(
+                                    columns[i].renderOptions
+                                        .tooltipCustomContent
+                                ),
+                            },
+                        };
+                    }
+                    // 检查是否设置了miniChartColor参数
+                    if (columns[i].renderOptions?.miniChartColor) {
                         config = {
                             ...config,
                             areaStyle: {
-                                fill: columns[i]['renderOptions'].miniChartColor,
-                                fillOpacity: 0.4
+                                fill: columns[i].renderOptions.miniChartColor,
+                                fillOpacity: 0.4,
                             },
                             line: {
-                                color: columns[i]['renderOptions'].miniChartColor
-                            }
-                        }
+                                color: columns[i].renderOptions.miniChartColor,
+                            },
+                        };
                     }
-                    return <div style={{ height: miniChartHeight }}><TinyArea {...config} /></div>;
-                }
+                    return (
+                        <div style={{ height: miniChartHeight }}>
+                            <TinyArea {...config} />
+                        </div>
+                    );
+                };
             }
         }
     }
@@ -1761,72 +2427,106 @@ const AntdTable = (props) => {
     if (titlePopoverInfo) {
         for (let i = 0; i < columns.length; i++) {
             if (Object.keys(titlePopoverInfo).includes(columns[i].dataIndex)) {
-
                 if (!columns[i].title_) {
-                    columns[i]['title_'] = columns[i]['title']
+                    columns[i].title_ = columns[i].title;
                 }
-                columns[i]['title'] = () => {
-                    return <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                        {columns[i].title_}
-                        <Popover
-                            title={titlePopoverInfo[columns[i].dataIndex].title}
-                            content={<div style={{
-                                maxWidth: '250px',
-                                wordWrap: 'break-word',
-                                whiteSpace: 'normal',
-                                wordBreak: 'break-all'
-                            }}>{titlePopoverInfo[columns[i].dataIndex].content}</div>}
-                            overlayStyle={titlePopoverInfo[columns[i].dataIndex].overlayStyle}
-                            placement={titlePopoverInfo[columns[i].dataIndex].placement || 'bottom'}
-                            getPopupContainer={containerId ? () => (document.getElementById(containerId) ? document.getElementById(containerId) : document.body) : undefined}>
-                            <QuestionCircleOutlined
-                                style={{
-                                    color: '#8c8c8c',
-                                    paddingLeft: '4px',
-                                    cursor: 'pointer'
-                                }} />
-                        </Popover>
-                    </div>
-                }
+                columns[i].title = () => {
+                    return (
+                        <div
+                            style={{
+                                display: 'flex',
+                                alignItems: 'center',
+                                justifyContent: 'center',
+                            }}
+                        >
+                            {columns[i].title_}
+                            <Popover
+                                title={
+                                    titlePopoverInfo[columns[i].dataIndex].title
+                                }
+                                content={
+                                    <div
+                                        style={{
+                                            maxWidth: '250px',
+                                            wordWrap: 'break-word',
+                                            whiteSpace: 'normal',
+                                            wordBreak: 'break-all',
+                                        }}
+                                    >
+                                        {
+                                            titlePopoverInfo[
+                                                columns[i].dataIndex
+                                            ].content
+                                        }
+                                    </div>
+                                }
+                                overlayStyle={
+                                    titlePopoverInfo[columns[i].dataIndex]
+                                        .overlayStyle
+                                }
+                                placement={
+                                    titlePopoverInfo[columns[i].dataIndex]
+                                        .placement || 'bottom'
+                                }
+                                getPopupContainer={
+                                    containerId
+                                        ? () =>
+                                              document.getElementById(
+                                                  containerId
+                                              )
+                                                  ? document.getElementById(
+                                                        containerId
+                                                    )
+                                                  : document.body
+                                        : undefined
+                                }
+                            >
+                                <QuestionCircleOutlined
+                                    style={{
+                                        color: '#8c8c8c',
+                                        paddingLeft: '4px',
+                                        cursor: 'pointer',
+                                    }}
+                                />
+                            </Popover>
+                        </div>
+                    );
+                };
             }
         }
     }
 
     // 添加表头单元格监听事件
-    columns = columns.map(
-        (item, idx) => (
-            {
-                ...item,
-                ...{
-                    onHeaderCell: (e) => {
-                        return {
-                            islast: idx - (columns.length - 1),
-                            ...(
-                                enableHoverListen ?
-                                    {
-                                        onMouseEnter: event => { setProps({ recentlyMouseEnterColumnDataIndex: e.dataIndex }) }
-                                    } :
-                                    {}
-                            ),
-                            // 独立控制表头对齐
-                            ...(
-                                e.headerAlign ?
-                                    {
-                                        style: { textAlign: e.headerAlign }
-                                    } :
-                                    {}
-                            )
-                        };
-                    }
-                }
-            }
-        )
-    )
+    columns = columns.map((item, idx) => ({
+        ...item,
+        ...{
+            onHeaderCell: (e) => {
+                return {
+                    islast: idx - (columns.length - 1),
+                    ...(enableHoverListen
+                        ? {
+                              onMouseEnter: (event) => {
+                                  setProps({
+                                      recentlyMouseEnterColumnDataIndex:
+                                          e.dataIndex,
+                                  });
+                              },
+                          }
+                        : {}),
+                    // 独立控制表头对齐
+                    ...(e.headerAlign
+                        ? {
+                              style: { textAlign: e.headerAlign },
+                          }
+                        : {}),
+                };
+            },
+        },
+    }));
 
-    let rowSelection
+    let rowSelection;
     // 处理行选择功能设置
     if (rowSelectionType) {
-
         rowSelection = {
             columnWidth: rowSelectionWidth,
             checkStrictly: rowSelectionCheckStrictly,
@@ -1836,203 +2536,232 @@ const AntdTable = (props) => {
             selections: [
                 Table.SELECTION_ALL,
                 Table.SELECTION_INVERT,
-                Table.SELECTION_NONE
+                Table.SELECTION_NONE,
             ],
             onChange: (selectedRowKeys, selectedRows) => {
                 setProps({
-                    selectedRowKeys: (
+                    selectedRowKeys:
                         // 排除被忽略选择的行
-                        rowSelectionIgnoreRowKeys ?
-                            selectedRowKeys.filter(item => !rowSelectionIgnoreRowKeys.includes(item)) :
-                            selectedRowKeys
-                    ),
-                    selectedRows: (
+                        rowSelectionIgnoreRowKeys
+                            ? selectedRowKeys.filter(
+                                  (item) =>
+                                      !rowSelectionIgnoreRowKeys.includes(item)
+                              )
+                            : selectedRowKeys,
+                    selectedRows:
                         // 排除被忽略选择的行
-                        rowSelectionIgnoreRowKeys ?
-                            selectedRows.map(
-                                // 忽略组件型字段键值对
-                                record => omitBy(record, value => value?.$$typeof)
-                            ).filter(
-                                record => !rowSelectionIgnoreRowKeys.includes(record.key)
-                            ) :
-                            selectedRows.map(
-                                record => omitBy(record, value => value?.$$typeof)
-                            )
-                    )
-                })
+                        rowSelectionIgnoreRowKeys
+                            ? selectedRows
+                                  .map(
+                                      // 忽略组件型字段键值对
+                                      (record) =>
+                                          omitBy(
+                                              record,
+                                              (value) => value?.$$typeof
+                                          )
+                                  )
+                                  .filter(
+                                      (record) =>
+                                          !rowSelectionIgnoreRowKeys.includes(
+                                              record.key
+                                          )
+                                  )
+                            : selectedRows.map((record) =>
+                                  omitBy(record, (value) => value?.$$typeof)
+                              ),
+                });
             },
             renderCell: (checked, record, index, originNode) => {
                 // 排除不可选择的行
-                if (rowSelectionIgnoreRowKeys && rowSelectionIgnoreRowKeys.includes(record.key)) {
+                if (
+                    rowSelectionIgnoreRowKeys &&
+                    rowSelectionIgnoreRowKeys.includes(record.key)
+                ) {
                     return null;
                 }
                 return originNode;
-            }
-        }
+            },
+        };
     }
 
     // 处理行可展开内容功能
-    let rowExpandedRowRender
+    let rowExpandedRowRender;
     if (expandedRowKeyToContent && Array.isArray(expandedRowKeyToContent)) {
         rowExpandedRowRender = new Map(
-            expandedRowKeyToContent.map(
-                item => [item.key, item.content]
-            )
-        )
+            expandedRowKeyToContent.map((item) => [item.key, item.content])
+        );
     }
 
     // 检查当前是否至少有一个字段是可编辑的
-    let atLeastOneColumnEditable = columns.some(item => item.editable)
+    const atLeastOneColumnEditable = columns.some((item) => item.editable);
 
     // 减少不必要的单元格重绘
     if (cellUpdateOptimize) {
-        columns = columns.map(
-            item => {
-                return {
-                    ...item,
-                    // 减少不必要的单元格重绘
-                    shouldCellUpdate: (record, prevRecord) => {
-                        if (isEqual(record, prevRecord)) {
-                            return false;
-                        }
-                        return true;
+        columns = columns.map((item) => {
+            return {
+                ...item,
+                // 减少不必要的单元格重绘
+                shouldCellUpdate: (record, prevRecord) => {
+                    if (isEqual(record, prevRecord)) {
+                        return false;
                     }
-                };
-            }
-        )
+                    return true;
+                },
+            };
+        });
     }
 
     // 配置自定义组件
-    const components = {}
+    const components = {};
 
     // 若至少有一个字段开启编辑功能
     if (atLeastOneColumnEditable) {
         components.body = {
             row: EditableRow,
             cell: EditableCell,
-        }
+        };
     }
 
     // 统一合并处理onCell自定义函数逻辑
-    columns = [...columns].map(
-        item => {
-            return {
-                ...item,
-                ...{
-                    onCell: (record, index) => {
-                        // 初始化onCell返回值
-                        let returnValue = {}
-                        // 处理自定义样式特性
-                        if (conditionalStyleFuncs && conditionalStyleFuncs[item.dataIndex]) {
-                            try {
-                                returnValue = {
-                                    ...returnValue,
-                                    ...eval(conditionalStyleFuncs[item.dataIndex])(record, index)
-                                }
-                            } catch (e) {
-                                console.error(e)
-                            }
-                        }
-                        // 处理单元格单击、双击、右键事件
-                        if (enableCellClickListenColumns && enableCellClickListenColumns.includes(item.dataIndex)) {
-                            try {
-                                returnValue = {
-                                    ...returnValue,
-                                    onClick: e => {
-                                        setProps({
-                                            recentlyCellClickColumn: item.dataIndex,
-                                            recentlyCellClickRecord: omitBy(record, value => value?.$$typeof),
-                                            nClicksCell: nClicksCell + 1,
-                                            cellClickEvent: {
-                                                pageX: e.pageX,
-                                                pageY: e.pageY,
-                                                clientX: e.clientX,
-                                                clientY: e.clientY,
-                                                screenX: e.screenX,
-                                                screenY: e.screenY,
-                                                timestamp: Date.now()
-                                            }
-                                        })
-                                    },
-                                    onDoubleClick: e => {
-                                        setProps({
-                                            recentlyCellDoubleClickColumn: item.dataIndex,
-                                            recentlyCellDoubleClickRecord: omitBy(record, value => value?.$$typeof),
-                                            nDoubleClicksCell: nDoubleClicksCell + 1,
-                                            cellDoubleClickEvent: {
-                                                pageX: e.pageX,
-                                                pageY: e.pageY,
-                                                clientX: e.clientX,
-                                                clientY: e.clientY,
-                                                screenX: e.screenX,
-                                                screenY: e.screenY,
-                                                timestamp: Date.now()
-                                            }
-                                        })
-                                    },
-                                    onContextMenu: e => {
-                                        // 阻止浏览器默认右键菜单
-                                        e.preventDefault()
-                                        setProps({
-                                            recentlyContextMenuClickColumn: item.dataIndex,
-                                            recentlyContextMenuClickRecord: omitBy(record, value => value?.$$typeof),
-                                            nContextMenuClicksCell: nContextMenuClicksCell + 1,
-                                            cellContextMenuClickEvent: {
-                                                pageX: e.pageX,
-                                                pageY: e.pageY,
-                                                clientX: e.clientX,
-                                                clientY: e.clientY,
-                                                screenX: e.screenX,
-                                                screenY: e.screenY,
-                                                timestamp: Date.now()
-                                            }
-                                        })
-                                    }
-                                }
-                            } catch (e) {
-                                console.error(e)
-                            }
-                        }
-
-                        // 处理可编辑特性
-                        if (item.editable) {
-                            try {
-                                returnValue = {
-                                    ...returnValue,
+    columns = [...columns].map((item) => {
+        return {
+            ...item,
+            ...{
+                onCell: (record, index) => {
+                    // 初始化onCell返回值
+                    let returnValue = {};
+                    // 处理自定义样式特性
+                    if (
+                        conditionalStyleFuncs &&
+                        conditionalStyleFuncs[item.dataIndex]
+                    ) {
+                        try {
+                            returnValue = {
+                                ...returnValue,
+                                ...eval(conditionalStyleFuncs[item.dataIndex])(
                                     record,
-                                    editable: item.editable,
-                                    dataIndex: item.dataIndex,
-                                    title: item.title
-                                }
-                            } catch (e) {
-                                console.error(e)
-                            }
+                                    index
+                                ),
+                            };
+                        } catch (e) {
+                            console.error(e);
                         }
-
-                        return returnValue;
                     }
-                }
-            };
-        }
-    )
+                    // 处理单元格单击、双击、右键事件
+                    if (
+                        enableCellClickListenColumns &&
+                        enableCellClickListenColumns.includes(item.dataIndex)
+                    ) {
+                        try {
+                            returnValue = {
+                                ...returnValue,
+                                onClick: (e) => {
+                                    setProps({
+                                        recentlyCellClickColumn: item.dataIndex,
+                                        recentlyCellClickRecord: omitBy(
+                                            record,
+                                            (value) => value?.$$typeof
+                                        ),
+                                        nClicksCell: nClicksCell + 1,
+                                        cellClickEvent: {
+                                            pageX: e.pageX,
+                                            pageY: e.pageY,
+                                            clientX: e.clientX,
+                                            clientY: e.clientY,
+                                            screenX: e.screenX,
+                                            screenY: e.screenY,
+                                            timestamp: Date.now(),
+                                        },
+                                    });
+                                },
+                                onDoubleClick: (e) => {
+                                    setProps({
+                                        recentlyCellDoubleClickColumn:
+                                            item.dataIndex,
+                                        recentlyCellDoubleClickRecord: omitBy(
+                                            record,
+                                            (value) => value?.$$typeof
+                                        ),
+                                        nDoubleClicksCell:
+                                            nDoubleClicksCell + 1,
+                                        cellDoubleClickEvent: {
+                                            pageX: e.pageX,
+                                            pageY: e.pageY,
+                                            clientX: e.clientX,
+                                            clientY: e.clientY,
+                                            screenX: e.screenX,
+                                            screenY: e.screenY,
+                                            timestamp: Date.now(),
+                                        },
+                                    });
+                                },
+                                onContextMenu: (e) => {
+                                    // 阻止浏览器默认右键菜单
+                                    e.preventDefault();
+                                    setProps({
+                                        recentlyContextMenuClickColumn:
+                                            item.dataIndex,
+                                        recentlyContextMenuClickRecord: omitBy(
+                                            record,
+                                            (value) => value?.$$typeof
+                                        ),
+                                        nContextMenuClicksCell:
+                                            nContextMenuClicksCell + 1,
+                                        cellContextMenuClickEvent: {
+                                            pageX: e.pageX,
+                                            pageY: e.pageY,
+                                            clientX: e.clientX,
+                                            clientY: e.clientY,
+                                            screenX: e.screenX,
+                                            screenY: e.screenY,
+                                            timestamp: Date.now(),
+                                        },
+                                    });
+                                },
+                            };
+                        } catch (e) {
+                            console.error(e);
+                        }
+                    }
+
+                    // 处理可编辑特性
+                    if (item.editable) {
+                        try {
+                            returnValue = {
+                                ...returnValue,
+                                record,
+                                editable: item.editable,
+                                dataIndex: item.dataIndex,
+                                title: item.title,
+                            };
+                        } catch (e) {
+                            console.error(e);
+                        }
+                    }
+
+                    return returnValue;
+                },
+            },
+        };
+    });
 
     // 若存在至少一个字段有group参数，则对columns进行重构以支持多层表头
-    let tempColumns = []
-    if (columns.some(e => e.group)) {
+    let tempColumns = [];
+    if (columns.some((e) => e.group)) {
         // 新逻辑
-        for (let column of columns) {
+        for (const column of columns) {
             if (column.group) {
                 if (isString(column.group)) {
-                    insertNewColumnNode(column, [column.group], 0, tempColumns)
+                    insertNewColumnNode(column, [column.group], 0, tempColumns);
                 } else {
-                    insertNewColumnNode(column, column.group, 0, tempColumns)
+                    insertNewColumnNode(column, column.group, 0, tempColumns);
                 }
             } else {
-                tempColumns.push(column)
+                tempColumns.push(column);
             }
         }
     } else {
-        tempColumns = [...columns]
+        tempColumns = [...columns];
     }
 
     return (
@@ -2042,30 +2771,37 @@ const AntdTable = (props) => {
         >
             <Table
                 // 提取具有data-*或aria-*通配格式的属性
-                {...pickBy((_, k) => k.startsWith('data-') || k.startsWith('aria-'), others)}
+                {...pickBy(
+                    (_, k) => k.startsWith('data-') || k.startsWith('aria-'),
+                    others
+                )}
                 id={id}
                 className={className}
                 style={style}
                 key={key}
                 components={components}
                 rowClassName={
-                    rowClassName ?
-                        (record, index) => {
-                            // 初始化rowClassName返回值
-                            let _rowClassName = atLeastOneColumnEditable ? 'editable-row' : '';
-                            // 若rowClassName参数通过func进行javascript函数定义
-                            if (rowClassName.func) {
-                                _rowClassName += ` ${eval(rowClassName.func)(record, index)}`
-                            } else {
-                                _rowClassName += ` ${rowClassName}`
-                            }
-                            return _rowClassName.trimStart()
-                        } :
-                        (atLeastOneColumnEditable ? () => 'editable-row' : undefined)
+                    rowClassName
+                        ? (record, index) => {
+                              // 初始化rowClassName返回值
+                              let _rowClassName = atLeastOneColumnEditable
+                                  ? 'editable-row'
+                                  : '';
+                              // 若rowClassName参数通过func进行javascript函数定义
+                              if (rowClassName.func) {
+                                  _rowClassName += ` ${eval(rowClassName.func)(record, index)}`;
+                              } else {
+                                  _rowClassName += ` ${rowClassName}`;
+                              }
+                              return _rowClassName.trimStart();
+                          }
+                        : atLeastOneColumnEditable
+                          ? () => 'editable-row'
+                          : undefined
                 }
                 dataSource={
                     // 根据hiddenRowKeys参数情况进行指定行记录的隐藏
-                    data.filter(e => !hiddenRowKeys.includes(e.key))
+                    data.filter((e) => !hiddenRowKeys.includes(e.key))
                 }
                 columns={tempColumns}
                 showHeader={showHeader}
@@ -2076,79 +2812,104 @@ const AntdTable = (props) => {
                 sticky={computedSticky}
                 pagination={
                     // 确保pagination=false生效
-                    pagination &&
-                    {
+                    pagination && {
                         ...pagination,
                         ...{
-                            showTotal: total => `${pagination.showTotalPrefix} ${total} ${pagination.showTotalSuffix}`
+                            showTotal: (total) =>
+                                `${pagination.showTotalPrefix} ${total} ${pagination.showTotalSuffix}`,
                         },
-                        position: (pagination.position && !Array.isArray(pagination.position))
-                            ? [pagination.position] : pagination.position
+                        position:
+                            pagination.position &&
+                            !Array.isArray(pagination.position)
+                                ? [pagination.position]
+                                : pagination.position,
                     }
                 }
                 bordered={bordered}
-                scroll={{ x: maxWidth, y: maxHeight, scrollToFirstRowOnChange: scrollToFirstRowOnChange }}
+                scroll={{
+                    x: maxWidth,
+                    y: maxHeight,
+                    scrollToFirstRowOnChange: scrollToFirstRowOnChange,
+                }}
                 onChange={onPageChange}
                 onRow={
-                    enableHoverListen ?
-                        (record, index) => {
-                            return {
-                                onMouseEnter: event => {
-                                    setProps({
-                                        recentlyMouseEnterRowKey: record.key,
-                                        // 忽略组件型字段键值对
-                                        recentlyMouseEnterRow: omitBy(record, value => value?.$$typeof)
-                                    })
-                                }, // 鼠标移入行
-                            };
-                        } : undefined
+                    enableHoverListen
+                        ? (record, index) => {
+                              return {
+                                  onMouseEnter: (event) => {
+                                      setProps({
+                                          recentlyMouseEnterRowKey: record.key,
+                                          // 忽略组件型字段键值对
+                                          recentlyMouseEnterRow: omitBy(
+                                              record,
+                                              (value) => value?.$$typeof
+                                          ),
+                                      });
+                                  }, // 鼠标移入行
+                              };
+                          }
+                        : undefined
                 }
-                summary={summaryRowContents ? () => (
-                    <Table.Summary fixed={summaryRowFixed}>
-                        {
-                            splitSummaryRowContents(summaryRowContents, columns.length, summaryRowBlankColumns).map(
-                                (group, idx) => (
-                                    <Table.Summary.Row key={idx}>
-                                        {group.map((item, i) =>
-                                        (
-                                            item.empty ?
-                                                (
-                                                    <Table.Summary.Cell index={i} />
-                                                ) :
-                                                (
-                                                    <Table.Summary.Cell index={i} colSpan={item.colSpan} align={item.align}>
-                                                        {item.content}
-                                                    </Table.Summary.Cell>
-                                                )
-                                        )
-                                        )}
-                                    </Table.Summary.Row>
-                                )
-                            )
-                        }
-                    </Table.Summary>
-                ) : undefined}
+                summary={
+                    summaryRowContents
+                        ? () => (
+                              <Table.Summary fixed={summaryRowFixed}>
+                                  {splitSummaryRowContents(
+                                      summaryRowContents,
+                                      columns.length,
+                                      summaryRowBlankColumns
+                                  ).map((group, idx) => (
+                                      <Table.Summary.Row key={idx}>
+                                          {group.map((item, i) =>
+                                              item.empty ? (
+                                                  <Table.Summary.Cell
+                                                      index={i}
+                                                  />
+                                              ) : (
+                                                  <Table.Summary.Cell
+                                                      index={i}
+                                                      colSpan={item.colSpan}
+                                                      align={item.align}
+                                                  >
+                                                      {item.content}
+                                                  </Table.Summary.Cell>
+                                              )
+                                          )}
+                                      </Table.Summary.Row>
+                                  ))}
+                              </Table.Summary>
+                          )
+                        : undefined
+                }
                 expandable={
-                    rowExpandedRowRender ? {
-                        defaultExpandedRowKeys: defaultExpandedRowKeys,
-                        expandedRowKeys: expandedRowKeys || defaultExpandedRowKeys,
-                        expandedRowRender: (record) => rowExpandedRowRender.get(record.key),
-                        rowExpandable: (record) => rowExpandedRowRender.has(record.key),
-                        columnWidth: expandedRowWidth,
-                        expandRowByClick: expandRowByClick,
-                        onExpandedRowsChange: (e) => setProps({
-                            expandedRowKeys: e
-                        })
-                    } : {
-                        // 兼容行记录自带children的自动展开情况
-                        defaultExpandedRowKeys: defaultExpandedRowKeys,
-                        expandedRowKeys: expandedRowKeys || defaultExpandedRowKeys,
-                        columnWidth: expandedRowWidth,
-                        expandRowByClick: expandRowByClick,
-                        onExpandedRowsChange: (e) => setProps({
-                            expandedRowKeys: e
-                        })
-                    }
+                    rowExpandedRowRender
+                        ? {
+                              defaultExpandedRowKeys: defaultExpandedRowKeys,
+                              expandedRowKeys:
+                                  expandedRowKeys || defaultExpandedRowKeys,
+                              expandedRowRender: (record) =>
+                                  rowExpandedRowRender.get(record.key),
+                              rowExpandable: (record) =>
+                                  rowExpandedRowRender.has(record.key),
+                              columnWidth: expandedRowWidth,
+                              expandRowByClick: expandRowByClick,
+                              onExpandedRowsChange: (e) =>
+                                  setProps({
+                                      expandedRowKeys: e,
+                                  }),
+                          }
+                        : {
+                              // 兼容行记录自带children的自动展开情况
+                              defaultExpandedRowKeys: defaultExpandedRowKeys,
+                              expandedRowKeys:
+                                  expandedRowKeys || defaultExpandedRowKeys,
+                              columnWidth: expandedRowWidth,
+                              expandRowByClick: expandRowByClick,
+                              onExpandedRowsChange: (e) =>
+                                  setProps({
+                                      expandedRowKeys: e,
+                                  }),
+                          }
                 }
                 virtual={virtual}
                 title={title && (() => title)}
@@ -2156,61 +2917,68 @@ const AntdTable = (props) => {
                 data-dash-is-loading={useLoading()}
                 loading={loading}
                 getPopupContainer={
-                    containerId ?
-                        () => (
-                            document.getElementById(containerId) ?
-                                document.getElementById(containerId) :
-                                document.body
-                        ) :
-                        undefined}
-                showSorterTooltip={showSorterTooltip && showSorterTooltipTarget ? { target: showSorterTooltipTarget } : showSorterTooltip}
+                    containerId
+                        ? () =>
+                              document.getElementById(containerId)
+                                  ? document.getElementById(containerId)
+                                  : document.body
+                        : undefined
+                }
+                showSorterTooltip={
+                    showSorterTooltip && showSorterTooltipTarget
+                        ? { target: showSorterTooltipTarget }
+                        : showSorterTooltip
+                }
             />
         </ConfigProvider>
     );
 };
 
-export default React.memo(
-    AntdTable,
-    (prevProps, nextProps) => {
-        // 计算发生变化的参数名
-        const changedProps = Object.keys(nextProps)
-            .filter(key => !isEqual(prevProps[key], nextProps[key]))
+export default React.memo(AntdTable, (prevProps, nextProps) => {
+    // 计算发生变化的参数名
+    const changedProps = Object.keys(nextProps).filter(
+        (key) => !isEqual(prevProps[key], nextProps[key])
+    );
 
-        // 特殊处理：
-        // 当recentlySelectValue发生变动且不涉及data变动时时，阻止本次重绘
-        if (changedProps.includes('recentlySelectValue') && !changedProps.includes('data') && !changedProps.includes('currentData')) {
-            return true;
-        }
-
-        // #80
-        // selectedRowsSyncWithData=true时，当data发生更新，在selectedRowKeys有效时，对selectedRows进行同步更新
-        if (
-            nextProps['selectedRowsSyncWithData'] &&
-            nextProps['selectedRowKeys'] &&
-            changedProps.includes('data')
-        ) {
-            // 同步更新selectedRows的值
-            nextProps.setProps({
-                // 忽略组件型字段键值对
-                selectedRows: nextProps['data'].filter(item => nextProps['selectedRowKeys'].includes(item.key))
-                    .map(
-                        record => omitBy(record, value => value?.$$typeof)
-                    )
-            })
-        }
-
-        // // 判断当前轮次变更的prop是否均在preventUpdateProps中
-        // console.log({ changedProps })
-        // console.log(
-        //     '免重绘props：',
-        //     changedProps.every(propName => preventUpdateProps.includes(propName))
-        // )
-
-        // changedProps中全部变化的prop都在preventUpdateProps中声明时
-        // 阻止本次重绘
-        return changedProps.every(propName => preventUpdateProps.includes(propName));
+    // 特殊处理：
+    // 当recentlySelectValue发生变动且不涉及data变动时时，阻止本次重绘
+    if (
+        changedProps.includes('recentlySelectValue') &&
+        !changedProps.includes('data') &&
+        !changedProps.includes('currentData')
+    ) {
+        return true;
     }
-);
+
+    // #80
+    // selectedRowsSyncWithData=true时，当data发生更新，在selectedRowKeys有效时，对selectedRows进行同步更新
+    if (
+        nextProps.selectedRowsSyncWithData &&
+        nextProps.selectedRowKeys &&
+        changedProps.includes('data')
+    ) {
+        // 同步更新selectedRows的值
+        nextProps.setProps({
+            // 忽略组件型字段键值对
+            selectedRows: nextProps.data
+                .filter((item) => nextProps.selectedRowKeys.includes(item.key))
+                .map((record) => omitBy(record, (value) => value?.$$typeof)),
+        });
+    }
+
+    // // 判断当前轮次变更的prop是否均在preventUpdateProps中
+    // console.log({ changedProps })
+    // console.log(
+    //     '免重绘props：',
+    //     changedProps.every(propName => preventUpdateProps.includes(propName))
+    // )
+
+    // changedProps中全部变化的prop都在preventUpdateProps中声明时
+    // 阻止本次重绘
+    return changedProps.every((propName) =>
+        preventUpdateProps.includes(propName)
+    );
+});
 
 AntdTable.defaultProps = defaultProps;
 AntdTable.propTypes = propTypes;

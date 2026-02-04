@@ -1,7 +1,12 @@
 import React, { Suspense } from 'react';
 import PropTypes from 'prop-types';
 
-const LazyAntdTooltip = React.lazy(() => import(/* webpackChunkName: "data_display" */ '../../fragments/dataDisplay/AntdTooltip.react'));
+const LazyAntdTooltip = React.lazy(
+    () =>
+        import(
+            /* webpackChunkName: "data_display" */ '../../fragments/dataDisplay/AntdTooltip.react'
+        )
+);
 
 /**
  * 文字提示组件AntdTooltip
@@ -31,8 +36,8 @@ const AntdTooltip = ({
 }) => {
     return (
         <Suspense fallback={null}>
-            <LazyAntdTooltip {
-                ...{
+            <LazyAntdTooltip
+                {...{
                     id,
                     children,
                     className,
@@ -53,12 +58,12 @@ const AntdTooltip = ({
                     permanent,
                     popupContainer,
                     setProps,
-                    ...others
-                }
-            } />
+                    ...others,
+                }}
+            />
         </Suspense>
     );
-}
+};
 
 AntdTooltip.propTypes = {
     /**
@@ -84,10 +89,7 @@ AntdTooltip.propTypes = {
     /**
      * 当前组件css类名，支持[动态css](/advanced-classname)
      */
-    className: PropTypes.oneOfType([
-        PropTypes.string,
-        PropTypes.object
-    ]),
+    className: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
 
     /**
      * 细分控制子元素css样式
@@ -100,7 +102,7 @@ AntdTooltip.propTypes = {
         /**
          * 内容元素css样式
          */
-        body: PropTypes.object
+        body: PropTypes.object,
     }),
 
     /**
@@ -114,7 +116,7 @@ AntdTooltip.propTypes = {
         /**
          * 内容元素css类名
          */
-        body: PropTypes.string
+        body: PropTypes.string,
     }),
 
     /**
@@ -127,7 +129,14 @@ AntdTooltip.propTypes = {
      * 默认值：`'top'`
      */
     placement: PropTypes.oneOf([
-        'top', 'left', 'right', 'bottom', 'topLeft', 'topRight', 'bottomLeft', 'bottomRight'
+        'top',
+        'left',
+        'right',
+        'bottom',
+        'topLeft',
+        'topRight',
+        'bottomLeft',
+        'bottomRight',
     ]),
 
     /**
@@ -151,12 +160,10 @@ AntdTooltip.propTypes = {
      * 触发方式，可选项有`'hover'`、`'focus'`、`'click'`，可多选
      * 默认值：`'hover'`
      */
-    trigger: PropTypes.oneOfType(
-        [
-            PropTypes.oneOf(['hover', 'focus', 'click']),
-            PropTypes.arrayOf(PropTypes.oneOf(['hover', 'focus', 'click']))
-        ]
-    ),
+    trigger: PropTypes.oneOfType([
+        PropTypes.oneOf(['hover', 'focus', 'click']),
+        PropTypes.arrayOf(PropTypes.oneOf(['hover', 'focus', 'click'])),
+    ]),
 
     /**
      * 文字提示卡片z-index
@@ -215,14 +222,14 @@ AntdTooltip.propTypes = {
         /**
          * Holds the name of the component that is loading
          */
-        component_name: PropTypes.string
+        component_name: PropTypes.string,
     }),
 
     /**
      * Dash-assigned callback that should be called to report property changes
      * to Dash, to make them available for callbacks.
      */
-    setProps: PropTypes.func
+    setProps: PropTypes.func,
 };
 
 export default AntdTooltip;

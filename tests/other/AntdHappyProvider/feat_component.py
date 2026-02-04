@@ -4,8 +4,9 @@ if True:
     sys.path.append('../../../')
     import dash
     from dash import html
-    import feffery_antd_components as fac
     from feffery_dash_utils.style_utils import style
+
+    import feffery_antd_components as fac
 
 app = dash.Dash(__name__)
 
@@ -19,14 +20,10 @@ app.layout = html.Div(
                     'children': fac.AntdHappyProvider(
                         fac.AntdSpace(
                             [
-                                fac.AntdButton(
-                                    '测试', type='primary'
-                                ),
+                                fac.AntdButton('测试', type='primary'),
                                 fac.AntdSwitch(),
                                 fac.AntdCheckbox(),
-                                fac.AntdRadioGroup(
-                                    options=['a', 'b', 'c']
-                                ),
+                                fac.AntdRadioGroup(options=['a', 'b', 'c']),
                             ]
                         )
                     ),
@@ -37,14 +34,10 @@ app.layout = html.Div(
                     'children': fac.AntdHappyProvider(
                         fac.AntdSpace(
                             [
-                                fac.AntdButton(
-                                    '测试', type='primary'
-                                ),
+                                fac.AntdButton('测试', type='primary'),
                                 fac.AntdSwitch(),
                                 fac.AntdCheckbox(),
-                                fac.AntdRadioGroup(
-                                    options=['a', 'b', 'c']
-                                ),
+                                fac.AntdRadioGroup(options=['a', 'b', 'c']),
                             ]
                         ),
                         disabled=True,

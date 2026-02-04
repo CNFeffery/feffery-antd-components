@@ -1,8 +1,9 @@
 # AUTO GENERATED FILE - DO NOT EDIT
 
 import typing  # noqa: F401
-from typing_extensions import TypedDict, NotRequired, Literal # noqa: F401
+
 from dash.development.base_component import Component, _explicitize_args
+from typing_extensions import Literal, NotRequired, TypedDict  # noqa: F401
 
 ComponentSingleType = typing.Union[str, int, float, Component, None]
 ComponentType = typing.Union[
@@ -10,93 +11,87 @@ ComponentType = typing.Union[
     typing.Sequence[ComponentSingleType],
 ]
 
-NumberType = typing.Union[
-    typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex
-]
+NumberType = typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]
 
 
 class AntdQRCode(Component):
     """An AntdQRCode component.
-二维码组件AntdQRCode
+    二维码组件AntdQRCode
 
-Keyword arguments:
+    Keyword arguments:
 
-- id (string; optional):
-    组件唯一id.
+    - id (string; optional):
+        组件唯一id.
 
-- key (string; optional):
-    对当前组件的`key`值进行更新，可实现强制重绘当前组件的效果.
+    - key (string; optional):
+        对当前组件的`key`值进行更新，可实现强制重绘当前组件的效果.
 
-- className (string | dict; optional):
-    当前组件css类名，支持[动态css](/advanced-classname).
+    - className (string | dict; optional):
+        当前组件css类名，支持[动态css](/advanced-classname).
 
-- locale (a value equal to: 'zh-cn', 'en-us', 'de-de', 'ru-ru'; default 'zh-cn'):
-    组件文案语种，可选项有`'zh-cn'`（简体中文）、`'en-us'`（英语）、`'de-de'`（德语）、`'ru-ru'`（俄语）
-    默认值：`'zh-cn'`.
+    - locale (a value equal to: 'zh-cn', 'en-us', 'de-de', 'ru-ru'; default 'zh-cn'):
+        组件文案语种，可选项有`'zh-cn'`（简体中文）、`'en-us'`（英语）、`'de-de'`（德语）、`'ru-ru'`（俄语）
+        默认值：`'zh-cn'`.
 
-- value (string; optional):
-    二维码解析结果.
+    - value (string; optional):
+        二维码解析结果.
 
-- type (a value equal to: 'canvas', 'svg'; default 'canvas'):
-    渲染方式，可选项有`'canvas'`、`'svg'` 默认值：`'canvas'`.
+    - type (a value equal to: 'canvas', 'svg'; default 'canvas'):
+        渲染方式，可选项有`'canvas'`、`'svg'` 默认值：`'canvas'`.
 
-- icon (string; optional):
-    二维码内嵌图片地址.
+    - icon (string; optional):
+        二维码内嵌图片地址.
 
-- size (number; default 160):
-    二维码像素边长 默认值：`160`.
+    - size (number; default 160):
+        二维码像素边长 默认值：`160`.
 
-- iconSize (dict; default 40):
-    二维码内嵌图片像素边长 默认值：`40`.
+    - iconSize (dict; default 40):
+        二维码内嵌图片像素边长 默认值：`40`.
 
-    `iconSize` is a number | dict with keys:
+        `iconSize` is a number | dict with keys:
 
-    - width (number; optional)
+        - width (number; optional)
 
-    - height (number; optional)
+        - height (number; optional)
 
-- color (string; default '#000'):
-    二维码颜色 默认值：`'#000'`.
+    - color (string; default '#000'):
+        二维码颜色 默认值：`'#000'`.
 
-- bgColor (string; default 'transparent'):
-    二维码背景颜色 默认值：`'transparent'`.
+    - bgColor (string; default 'transparent'):
+        二维码背景颜色 默认值：`'transparent'`.
 
-- bordered (boolean; default True):
-    二维码是否渲染边框 默认值：`True`.
+    - bordered (boolean; default True):
+        二维码是否渲染边框 默认值：`True`.
 
-- errorLevel (a value equal to: 'L', 'M', 'Q', 'H'; default 'M'):
-    二维码纠错级别，可选项有`'L'`、`'M'`、`'Q'`、`'H'` 默认值：`'M'`.
+    - errorLevel (a value equal to: 'L', 'M', 'Q', 'H'; default 'M'):
+        二维码纠错级别，可选项有`'L'`、`'M'`、`'Q'`、`'H'` 默认值：`'M'`.
 
-- status (a value equal to: 'active', 'expired', 'loading', 'scanned'; default 'active'):
-    二维码状态，可选项有`'active'`、`'expired'`、`'loading'`、`'scanned'`
-    默认值：`'active'`.
+    - status (a value equal to: 'active', 'expired', 'loading', 'scanned'; default 'active'):
+        二维码状态，可选项有`'active'`、`'expired'`、`'loading'`、`'scanned'`
+        默认值：`'active'`.
 
-- expires (number; optional):
-    当前二维码过期时间，单位：秒，到期后二维码状态将会被强制更新为`'expired'`.
+    - expires (number; optional):
+        当前二维码过期时间，单位：秒，到期后二维码状态将会被强制更新为`'expired'`.
 
-- autoSpin (boolean; default False):
-    是否在`value`处于回调更新中时，自动切换为`loading`状态 默认值：`False`.
+    - autoSpin (boolean; default False):
+        是否在`value`处于回调更新中时，自动切换为`loading`状态 默认值：`False`.
 
-- refreshClicks (number; default 0):
-    监听当前\"点击刷新\"按钮累计点击次数，仅在`status`为`'expired'`时有效 默认值：`0`.
+    - refreshClicks (number; default 0):
+        监听当前\"点击刷新\"按钮累计点击次数，仅在`status`为`'expired'`时有效 默认值：`0`.
 
-- data-* (string; optional):
-    `data-*`格式属性通配.
+    - data-* (string; optional):
+        `data-*`格式属性通配.
 
-- aria-* (string; optional):
-    `aria-*`格式属性通配."""
+    - aria-* (string; optional):
+        `aria-*`格式属性通配."""
+
     _children_props: typing.List[str] = []
     _base_nodes = ['children']
     _namespace = 'feffery_antd_components'
     _type = 'AntdQRCode'
     IconSize = TypedDict(
-        "IconSize",
-            {
-            "width": NotRequired[NumberType],
-            "height": NotRequired[NumberType]
-        }
+        'IconSize', {'width': NotRequired[NumberType], 'height': NotRequired[NumberType]}
     )
-
 
     def __init__(
         self,
@@ -104,26 +99,68 @@ Keyword arguments:
         key: typing.Optional[str] = None,
         style: typing.Optional[typing.Any] = None,
         className: typing.Optional[typing.Union[str, dict]] = None,
-        locale: typing.Optional[Literal["zh-cn", "en-us", "de-de", "ru-ru"]] = None,
+        locale: typing.Optional[Literal['zh-cn', 'en-us', 'de-de', 'ru-ru']] = None,
         value: typing.Optional[str] = None,
-        type: typing.Optional[Literal["canvas", "svg"]] = None,
+        type: typing.Optional[Literal['canvas', 'svg']] = None,
         icon: typing.Optional[str] = None,
         size: typing.Optional[NumberType] = None,
-        iconSize: typing.Optional[typing.Union[NumberType, "IconSize"]] = None,
+        iconSize: typing.Optional[typing.Union[NumberType, 'IconSize']] = None,
         color: typing.Optional[str] = None,
         bgColor: typing.Optional[str] = None,
         bordered: typing.Optional[bool] = None,
-        errorLevel: typing.Optional[Literal["L", "M", "Q", "H"]] = None,
-        status: typing.Optional[Literal["active", "expired", "loading", "scanned"]] = None,
+        errorLevel: typing.Optional[Literal['L', 'M', 'Q', 'H']] = None,
+        status: typing.Optional[Literal['active', 'expired', 'loading', 'scanned']] = None,
         expires: typing.Optional[NumberType] = None,
         autoSpin: typing.Optional[bool] = None,
         refreshClicks: typing.Optional[NumberType] = None,
-        **kwargs
+        **kwargs,
     ):
-        self._prop_names = ['id', 'key', 'style', 'className', 'locale', 'value', 'type', 'icon', 'size', 'iconSize', 'color', 'bgColor', 'bordered', 'errorLevel', 'status', 'expires', 'autoSpin', 'refreshClicks', 'data-*', 'aria-*']
-        self._valid_wildcard_attributes =            ['data-', 'aria-']
-        self.available_properties = ['id', 'key', 'style', 'className', 'locale', 'value', 'type', 'icon', 'size', 'iconSize', 'color', 'bgColor', 'bordered', 'errorLevel', 'status', 'expires', 'autoSpin', 'refreshClicks', 'data-*', 'aria-*']
-        self.available_wildcard_properties =            ['data-', 'aria-']
+        self._prop_names = [
+            'id',
+            'key',
+            'style',
+            'className',
+            'locale',
+            'value',
+            'type',
+            'icon',
+            'size',
+            'iconSize',
+            'color',
+            'bgColor',
+            'bordered',
+            'errorLevel',
+            'status',
+            'expires',
+            'autoSpin',
+            'refreshClicks',
+            'data-*',
+            'aria-*',
+        ]
+        self._valid_wildcard_attributes = ['data-', 'aria-']
+        self.available_properties = [
+            'id',
+            'key',
+            'style',
+            'className',
+            'locale',
+            'value',
+            'type',
+            'icon',
+            'size',
+            'iconSize',
+            'color',
+            'bgColor',
+            'bordered',
+            'errorLevel',
+            'status',
+            'expires',
+            'autoSpin',
+            'refreshClicks',
+            'data-*',
+            'aria-*',
+        ]
+        self.available_wildcard_properties = ['data-', 'aria-']
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()
         _locals.update(kwargs)  # For wildcard attrs and excess named props
@@ -131,4 +168,5 @@ Keyword arguments:
 
         super(AntdQRCode, self).__init__(**args)
 
-setattr(AntdQRCode, "__init__", _explicitize_args(AntdQRCode.__init__))
+
+setattr(AntdQRCode, '__init__', _explicitize_args(AntdQRCode.__init__))

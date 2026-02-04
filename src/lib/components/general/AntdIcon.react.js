@@ -27,18 +27,17 @@ const AntdIcon = ({
     setProps,
     ...others
 }) => {
-
     const { run: onClick } = useRequest(
         () => {
             // 更新nClicks
-            setProps({ nClicks: nClicks + 1 })
+            setProps({ nClicks: nClicks + 1 });
         },
         {
             debounceWait: debounceWait,
             debounceLeading: true,
-            manual: true
+            manual: true,
         }
-    )
+    );
 
     if (icon) {
         // 内置图标模式
@@ -46,29 +45,40 @@ const AntdIcon = ({
             return (
                 <span
                     // 提取具有data-*或aria-*通配格式的属性
-                    {...pickBy((_, k) => k.startsWith('data-') || k.startsWith('aria-'), others)}
+                    {...pickBy(
+                        (_, k) =>
+                            k.startsWith('data-') || k.startsWith('aria-'),
+                        others
+                    )}
                     id={id}
                     className={
-                        isString(className) ?
-                            className :
-                            (className ? useCss(className) : undefined)
+                        isString(className)
+                            ? className
+                            : className
+                              ? useCss(className)
+                              : undefined
                     }
                     style={
-                        (
-                            icon.startsWith('fc-') ||
-                            icon.startsWith('md-') ||
-                            icon.startsWith('di-') ||
-                            icon.startsWith('bi-') ||
-                            icon.startsWith('bs-') ||
-                            icon.startsWith('gi-') ||
-                            icon.startsWith('si-')
-                        ) ?
-                            { ...{ verticalAlign: 'middle', userSelect: 'none' }, ...style } :
-                            { ...{ userSelect: 'none' }, ...style }
+                        icon.startsWith('fc-') ||
+                        icon.startsWith('md-') ||
+                        icon.startsWith('di-') ||
+                        icon.startsWith('bi-') ||
+                        icon.startsWith('bs-') ||
+                        icon.startsWith('gi-') ||
+                        icon.startsWith('si-')
+                            ? {
+                                  ...{
+                                      verticalAlign: 'middle',
+                                      userSelect: 'none',
+                                  },
+                                  ...style,
+                              }
+                            : { ...{ userSelect: 'none' }, ...style }
                     }
                     key={key}
                     onClick={onClick}
-                    data-dash-is-loading={useLoading()}>
+                    data-dash-is-loading={useLoading()}
+                >
                     {str2Icon.get(icon)}
                 </span>
             );
@@ -81,26 +91,31 @@ const AntdIcon = ({
             return (
                 <span
                     // 提取具有data-*或aria-*通配格式的属性
-                    {...pickBy((_, k) => k.startsWith('data-') || k.startsWith('aria-'), others)}
+                    {...pickBy(
+                        (_, k) =>
+                            k.startsWith('data-') || k.startsWith('aria-'),
+                        others
+                    )}
                     id={id}
                     className={
-                        isString(className) ?
-                            className :
-                            (className ? useCss(className) : undefined)
+                        isString(className)
+                            ? className
+                            : className
+                              ? useCss(className)
+                              : undefined
                     }
-                    style={
-                        { ...{ userSelect: 'none' }, ...style }
-                    }
+                    style={{ ...{ userSelect: 'none' }, ...style }}
                     key={key}
                     onClick={onClick}
-                    data-dash-is-loading={useLoading()}>
+                    data-dash-is-loading={useLoading()}
+                >
                     <IconFont type={icon} />
                 </span>
             );
         }
     }
     return null;
-}
+};
 
 AntdIcon.propTypes = {
     /**
@@ -121,10 +136,7 @@ AntdIcon.propTypes = {
     /**
      * 当前组件css类名，支持[动态css](/advanced-classname)
      */
-    className: PropTypes.oneOfType([
-        PropTypes.string,
-        PropTypes.object
-    ]),
+    className: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
 
     /**
      * 图标调用模式，可选项有`'default'`（内置图标）、`'iconfont'`（阿里巴巴矢量图标）
@@ -142,7 +154,7 @@ AntdIcon.propTypes = {
      */
     scriptUrl: PropTypes.oneOfType([
         PropTypes.string,
-        PropTypes.arrayOf(PropTypes.string)
+        PropTypes.arrayOf(PropTypes.string),
     ]),
 
     /**
@@ -171,7 +183,7 @@ AntdIcon.propTypes = {
      * Dash-assigned callback that should be called to report property changes
      * to Dash, to make them available for callbacks.
      */
-    setProps: PropTypes.func
+    setProps: PropTypes.func,
 };
 
 export default AntdIcon;

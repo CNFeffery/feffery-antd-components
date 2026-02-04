@@ -3,7 +3,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 // antd核心
 import { Statistic, Space, Tooltip } from 'antd';
-import { QuestionCircleOutlined } from "@ant-design/icons";
+import { QuestionCircleOutlined } from '@ant-design/icons';
 // 辅助库
 import { isString, isNumber } from 'lodash';
 import { pickBy } from 'ramda';
@@ -30,16 +30,20 @@ const AntdStatistic = ({
     setProps,
     ...others
 }) => {
-
     return (
         <Statistic
             // 提取具有data-*或aria-*通配格式的属性
-            {...pickBy((_, k) => k.startsWith('data-') || k.startsWith('aria-'), others)}
+            {...pickBy(
+                (_, k) => k.startsWith('data-') || k.startsWith('aria-'),
+                others
+            )}
             id={id}
             className={
-                isString(className) ?
-                    className :
-                    (className ? useCss(className) : undefined)
+                isString(className)
+                    ? className
+                    : className
+                      ? useCss(className)
+                      : undefined
             }
             style={style}
             key={key}
@@ -51,19 +55,23 @@ const AntdStatistic = ({
             precision={precision}
             prefix={prefix}
             suffix={suffix}
-            title={titleTooltip ?
-                <Space size={5}>
-                    {title}
-                    <Tooltip title={titleTooltip} >
-                        <QuestionCircleOutlined />
-                    </Tooltip>
-                </Space>
-                : title}
+            title={
+                titleTooltip ? (
+                    <Space size={5}>
+                        {title}
+                        <Tooltip title={titleTooltip}>
+                            <QuestionCircleOutlined />
+                        </Tooltip>
+                    </Space>
+                ) : (
+                    title
+                )
+            }
             valueStyle={valueStyle}
             data-dash-is-loading={useLoading()}
         />
     );
-}
+};
 
 AntdStatistic.propTypes = {
     /**
@@ -84,10 +92,7 @@ AntdStatistic.propTypes = {
     /**
      * 当前组件css类名，支持[动态css](/advanced-classname)
      */
-    className: PropTypes.oneOfType([
-        PropTypes.string,
-        PropTypes.object
-    ]),
+    className: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
 
     /**
      * 支持组件型，要展示的数值
@@ -95,7 +100,7 @@ AntdStatistic.propTypes = {
     value: PropTypes.oneOfType([
         PropTypes.number,
         PropTypes.string,
-        PropTypes.node
+        PropTypes.node,
     ]),
 
     /**
@@ -156,14 +161,14 @@ AntdStatistic.propTypes = {
         /**
          * Holds the name of the component that is loading
          */
-        component_name: PropTypes.string
+        component_name: PropTypes.string,
     }),
 
     /**
      * Dash-assigned callback that should be called to report property changes
      * to Dash, to make them available for callbacks.
      */
-    setProps: PropTypes.func
+    setProps: PropTypes.func,
 };
 
 export default AntdStatistic;

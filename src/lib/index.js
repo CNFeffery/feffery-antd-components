@@ -114,10 +114,8 @@ import AntdWatermark from './components/other/AntdWatermark.react';
 import AntdConfigProvider from './components/other/AntdConfigProvider.react';
 import AntdHappyProvider from './components/other/AntdHappyProvider.react';
 import Fragment from './components/other/Fragment.react';
-// 表单生成
-// import AntdFormRender from './components/formRender/AntdFormRender.react';
-// css样式
-import './components/styles.css'; // 自定义样式
+// 额外自定义样式
+import './components/styles.css';
 
 export {
     // 通用

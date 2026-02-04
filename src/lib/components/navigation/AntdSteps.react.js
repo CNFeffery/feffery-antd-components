@@ -31,22 +31,26 @@ const AntdSteps = ({
     setProps,
     ...others
 }) => {
-
     // 限制current上限
-    setProps({ current: current < steps.length ? current : steps.length })
+    setProps({ current: current < steps.length ? current : steps.length });
 
     // 限制current下限
-    setProps({ current: current >= 0 ? current : 0 })
+    setProps({ current: current >= 0 ? current : 0 });
 
     return (
         <Steps
             // 提取具有data-*或aria-*通配格式的属性
-            {...pickBy((_, k) => k.startsWith('data-') || k.startsWith('aria-'), others)}
+            {...pickBy(
+                (_, k) => k.startsWith('data-') || k.startsWith('aria-'),
+                others
+            )}
             id={id}
             className={
-                isString(className) ?
-                    className :
-                    (className ? useCss(className) : undefined)
+                isString(className)
+                    ? className
+                    : className
+                      ? useCss(className)
+                      : undefined
             }
             style={style}
             key={key}
@@ -60,11 +64,15 @@ const AntdSteps = ({
             type={type}
             responsive={responsive}
             percent={percent}
-            onChange={allowClick ? (current) => setProps({ current: current }) : undefined}
+            onChange={
+                allowClick
+                    ? (current) => setProps({ current: current })
+                    : undefined
+            }
             data-dash-is-loading={useLoading()}
         />
     );
-}
+};
 
 AntdSteps.propTypes = {
     /**
@@ -85,10 +93,7 @@ AntdSteps.propTypes = {
     /**
      * 当前组件css类名，支持[动态css](/advanced-classname)
      */
-    className: PropTypes.oneOfType([
-        PropTypes.string,
-        PropTypes.object
-    ]),
+    className: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
 
     /**
      * 必填，步骤内容定义数据结构
@@ -118,7 +123,7 @@ AntdSteps.propTypes = {
             /**
              * 强制设置当前步骤状态，同参数status
              */
-            status: PropTypes.oneOf(['wait', 'process', 'finish', 'error'])
+            status: PropTypes.oneOf(['wait', 'process', 'finish', 'error']),
         })
     ).isRequired,
 
@@ -194,7 +199,7 @@ AntdSteps.propTypes = {
      * Dash-assigned callback that should be called to report property changes
      * to Dash, to make them available for callbacks.
      */
-    setProps: PropTypes.func
+    setProps: PropTypes.func,
 };
 
 export default AntdSteps;

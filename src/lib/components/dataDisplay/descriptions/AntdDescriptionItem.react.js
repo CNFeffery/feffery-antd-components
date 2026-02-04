@@ -1,7 +1,12 @@
 import React, { Suspense } from 'react';
 import PropTypes from 'prop-types';
 
-const LazyAntdDescriptionItem = React.lazy(() => import(/* webpackChunkName: "data_display" */ '../../../fragments/dataDisplay/descriptions/AntdDescriptionItem.react'));
+const LazyAntdDescriptionItem = React.lazy(
+    () =>
+        import(
+            /* webpackChunkName: "data_display" */ '../../../fragments/dataDisplay/descriptions/AntdDescriptionItem.react'
+        )
+);
 
 /**
  * 描述列表子项组件AntdDescriptionItem
@@ -21,8 +26,8 @@ const AntdDescriptionItem = ({
 }) => {
     return (
         <Suspense fallback={null}>
-            <LazyAntdDescriptionItem {
-                ...{
+            <LazyAntdDescriptionItem
+                {...{
                     id,
                     children,
                     className,
@@ -33,12 +38,12 @@ const AntdDescriptionItem = ({
                     label,
                     span,
                     setProps,
-                    ...others
-                }
-            } />
+                    ...others,
+                }}
+            />
         </Suspense>
     );
-}
+};
 
 AntdDescriptionItem.propTypes = {
     /**
@@ -64,10 +69,7 @@ AntdDescriptionItem.propTypes = {
     /**
      * 当前组件css类名，支持[动态css](/advanced-classname)
      */
-    className: PropTypes.oneOfType([
-        PropTypes.string,
-        PropTypes.object
-    ]),
+    className: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
 
     /**
      * 细分控制子元素css样式
@@ -80,7 +82,7 @@ AntdDescriptionItem.propTypes = {
         /**
          * 内容元素css样式
          */
-        content: PropTypes.object
+        content: PropTypes.object,
     }),
 
     /**
@@ -94,7 +96,7 @@ AntdDescriptionItem.propTypes = {
         /**
          * 内容元素css类名
          */
-        content: PropTypes.string
+        content: PropTypes.string,
     }),
 
     /**
@@ -122,7 +124,7 @@ AntdDescriptionItem.propTypes = {
      * Dash-assigned callback that should be called to report property changes
      * to Dash, to make them available for callbacks.
      */
-    setProps: PropTypes.func
+    setProps: PropTypes.func,
 };
 
 export default AntdDescriptionItem;

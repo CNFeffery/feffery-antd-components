@@ -3,13 +3,15 @@ import FormRender, { useForm } from 'form-render';
 import { Cascader } from 'antd';
 import { isString } from 'lodash';
 import useCss from '../../hooks/useCss';
-import { propTypes, defaultProps } from '../../components/formRender/AntdFormRender.react';
-
+import {
+    propTypes,
+    defaultProps,
+} from '../../components/formRender/AntdFormRender.react';
 
 // 定义表单生成组件AntdFormRender，api参数参考https://xrender.fun/form-render/api-props
 const AntdFormRender = (props) => {
     // 取得必要属性或参数
-    let {
+    const {
         id,
         className,
         style,
@@ -40,11 +42,11 @@ const AntdFormRender = (props) => {
         resetForm,
         resetFormClicks,
         setProps,
-        loading_state
+        loading_state,
     } = props;
 
     function evalAllValidator(json) {
-        for (let key in json) {
+        for (const key in json) {
             if (typeof json[key] === 'object') {
                 json[key] = evalAllValidator(json[key]);
             } else if (key === 'validator') {
@@ -55,56 +57,48 @@ const AntdFormRender = (props) => {
     }
 
     const cascader = (props) => {
-
-        return (
-            <Cascader
-                {...props}
-                onChange={(e) => props.onChange(e)}
-            />
-        )
-    }
+        return <Cascader {...props} onChange={(e) => props.onChange(e)} />;
+    };
 
     const form = useForm();
 
     const onFinish = (data) => {
-        setProps({ validateStatuses: true })
-        setProps({ values: data })
-    }
+        setProps({ validateStatuses: true });
+        setProps({ values: data });
+    };
 
     const onFinishFailed = (data) => {
-        setProps({ validateStatuses: false })
-        setProps({ values: data.values })
-    }
+        setProps({ validateStatuses: false });
+        setProps({ values: data.values });
+    };
 
     const schemaConfig = useMemo(() => {
         if (schema) {
-            let schemaJson = JSON.parse(JSON.stringify(schema));
+            const schemaJson = JSON.parse(JSON.stringify(schema));
             return evalAllValidator(schemaJson);
         }
     }, [schema]);
 
     const footerConfig = useMemo(() => {
-        if (typeof (footer) == 'boolean') {
-            return footer
-        } else {
-            if ('$$typeof' in footer) {
-                return () => (<>{footer}</>)
-            } else {
-                return {
-                    submit: {
-                        text: footer?.submit?.text,
-                        hide: footer?.submit?.hide,
-                        ...footer?.submit?.btnProps
-                    },
-                    reset: {
-                        text: footer?.reset?.text,
-                        hide: footer?.reset?.hide,
-                        ...footer?.reset?.btnProps
-                    }
-                }
-            }
+        if (typeof footer === 'boolean') {
+            return footer;
         }
-    }, [footer])
+        if ('$$typeof' in footer) {
+            return () => <>{footer}</>;
+        }
+        return {
+            submit: {
+                text: footer?.submit?.text,
+                hide: footer?.submit?.hide,
+                ...footer?.submit?.btnProps,
+            },
+            reset: {
+                text: footer?.reset?.text,
+                hide: footer?.reset?.hide,
+                ...footer?.reset?.btnProps,
+            },
+        };
+    }, [footer]);
 
     const watchConfig = useMemo(() => {
         if (watch) {
@@ -112,11 +106,11 @@ const AntdFormRender = (props) => {
                 Object.entries(watch).map(([key, value]) => [key, eval(value)])
             );
         }
-    }, [watch])
+    }, [watch]);
 
     useEffect(() => {
         form.setValues(values);
-    }, [values])
+    }, [values]);
 
     useEffect(() => {
         if (submitForm) {
@@ -124,7 +118,7 @@ const AntdFormRender = (props) => {
             setProps({ submitFormClicks: submitFormClicks + 1 });
             setProps({ submitForm: false });
         }
-    }, [submitForm])
+    }, [submitForm]);
 
     useEffect(() => {
         if (resetForm) {
@@ -132,16 +126,18 @@ const AntdFormRender = (props) => {
             setProps({ resetFormClicks: resetFormClicks + 1 });
             setProps({ resetForm: false });
         }
-    }, [resetForm])
+    }, [resetForm]);
 
     return (
         <FormRender
             id={id}
             form={form}
             className={
-                isString(className) ?
-                    className :
-                    (className ? useCss(className) : undefined)
+                isString(className)
+                    ? className
+                    : className
+                      ? useCss(className)
+                      : undefined
             }
             style={style}
             key={key}
@@ -172,7 +168,7 @@ const AntdFormRender = (props) => {
             }
         />
     );
-}
+};
 
 export default React.memo(AntdFormRender);
 

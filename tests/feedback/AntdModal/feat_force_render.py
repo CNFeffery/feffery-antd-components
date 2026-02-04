@@ -4,24 +4,21 @@ if True:
     sys.path.append('../../../')
     import dash
     from dash import html
-    import feffery_antd_components as fac
-    from feffery_dash_utils.style_utils import style
     from dash.dependencies import Input, Output
+    from feffery_dash_utils.style_utils import style
+
+    import feffery_antd_components as fac
 
 app = dash.Dash(__name__)
 
 app.layout = html.Div(
     [
         fac.AntdModal(
-            fac.AntdInput(
-                id='modal-demo1-input', defaultValue='demo1'
-            ),
+            fac.AntdInput(id='modal-demo1-input', defaultValue='demo1'),
             id='modal-demo1',
         ),
         fac.AntdModal(
-            fac.AntdInput(
-                id='modal-demo2-input', defaultValue='demo2'
-            ),
+            fac.AntdInput(id='modal-demo2-input', defaultValue='demo2'),
             id='modal-demo2',
             forceRender=True,
         ),

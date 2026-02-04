@@ -4,6 +4,7 @@ if True:
     sys.path.append('../../../')
     import dash
     from dash import html
+
     import feffery_antd_components as fac
 
 app = dash.Dash(__name__)
@@ -30,9 +31,7 @@ app.layout = html.Div(
                         }
                         for i in range(1, 6)
                     ],
-                    suffixIcon=fac.AntdIcon(
-                        icon='antd-user'
-                    ),
+                    suffixIcon=fac.AntdIcon(icon='antd-user'),
                     style={'width': 350},
                 ),
             ],

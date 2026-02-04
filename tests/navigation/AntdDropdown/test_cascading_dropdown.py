@@ -4,8 +4,9 @@ if True:
     sys.path.append('./')
     import dash
     from dash import html
-    import feffery_antd_components as fac
     from dash.dependencies import Input, Output
+
+    import feffery_antd_components as fac
 
 app = dash.Dash(__name__)
 
@@ -46,9 +47,9 @@ app.layout = html.Div(
                                             'title': 'Privacy',
                                             'key': 'nav-settings-privacy',
                                         },
-                                    ]
+                                    ],
                                 },
-                            ]
+                            ],
                         },
                         {
                             'title': 'Actions',
@@ -67,13 +68,13 @@ app.layout = html.Div(
                                             'title': 'New File',
                                             'key': 'actions-create-file',
                                         },
-                                    ]
+                                    ],
                                 },
                                 {
                                     'title': 'Delete',
                                     'key': 'actions-delete',
                                 },
-                            ]
+                            ],
                         },
                         {'isDivider': True},
                         {
@@ -81,15 +82,12 @@ app.layout = html.Div(
                             'key': 'help',
                             'icon': 'QuestionCircleOutlined',
                         },
-                    ]
+                    ],
                 ),
-                html.Div(
-                    id='dropdown-output',
-                    style={'marginTop': '20px', 'fontSize': '16px'}
-                ),
+                html.Div(id='dropdown-output', style={'marginTop': '20px', 'fontSize': '16px'}),
             ],
-            style={'padding': '20px'}
-        )
+            style={'padding': '20px'},
+        ),
     ]
 )
 

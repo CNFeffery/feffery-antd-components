@@ -2,9 +2,11 @@ if True:
     import sys
 
     sys.path.append('../../../')
+    from datetime import datetime
+
     import dash
     from dash import html
-    from datetime import datetime
+
     import feffery_antd_components as fac
 
 app = dash.Dash(__name__)
@@ -16,18 +18,14 @@ app.layout = html.Div(
                 {
                     'title': 'select示例1',
                     'dataIndex': 'select示例1',
-                    'renderOptions': {
-                        'renderType': 'select'
-                    },
+                    'renderOptions': {'renderType': 'select'},
                 },
                 {
                     'title': 'placeholder示例',
                     'dataIndex': 'placeholder示例',
                     'editable': True,
                     'width': '20%',
-                    'editOptions': {
-                        'placeholder': '请输入内容'
-                    },
+                    'editOptions': {'placeholder': '请输入内容'},
                 },
                 {
                     'title': 'int型示例',
@@ -66,9 +64,7 @@ app.layout = html.Div(
                     'int型示例': 123,
                     'float型示例': 1.23,
                     'str型示例': '示例字符',
-                    '日期时间示例': datetime.now().strftime(
-                        '%Y-%m-%d %H:%M:%S'
-                    ),
+                    '日期时间示例': datetime.now().strftime('%Y-%m-%d %H:%M:%S'),
                 }
             ]
             * 3,

@@ -10,7 +10,10 @@ import { useLoading } from '../../components/utils';
 // 自定义hooks
 import useCss from '../../hooks/useCss';
 // 参数类型
-import { propTypes, defaultProps } from '../../components/dataDisplay/AntdTabs.react';
+import {
+    propTypes,
+    defaultProps,
+} from '../../components/dataDisplay/AntdTabs.react';
 
 /**
  * 标签页组件AntdTabs
@@ -50,118 +53,127 @@ const AntdTabs = (props) => {
         // 初始化value
         if (defaultActiveKey && !activeKey) {
             // 当defaultValue不为空时，为value初始化defaultValue对应的value值
-            setProps({ activeKey: defaultActiveKey })
+            setProps({ activeKey: defaultActiveKey });
         }
-    }, [])
+    }, []);
 
     useEffect(() => {
         // 更新最新的标签页数量
         setProps({
-            tabCount: (items || []).length
-        })
-    }, [items])
+            tabCount: (items || []).length,
+        });
+    }, [items]);
 
     useEffect(() => {
         // 同步当前items子项key值数组
         setProps({
-            itemKeys: (items || []).map(item => item.key)
-        })
-    }, [items])
+            itemKeys: (items || []).map((item) => item.key),
+        });
+    }, [items]);
 
-    const onChange = e => {
-        setProps({ activeKey: e })
-    }
+    const onChange = (e) => {
+        setProps({ activeKey: e });
+    };
 
     const onEdit = (targetKey, action) => {
-        setProps({ latestDeletePane: targetKey, tabCloseCounts: tabCloseCounts + 1 })
-    }
+        setProps({
+            latestDeletePane: targetKey,
+            tabCloseCounts: tabCloseCounts + 1,
+        });
+    };
 
     // 根据disabledTabKeys进行指定标签页的禁用
     if (disabledTabKeys) {
-        items = (items || []).map(
-            item => {
-                // 处理批量标签页禁用
-                if (disabledTabKeys.includes(item.key)) {
-                    item = {
-                        ...item,
-                        disabled: true
-                    }
-                }
-                return item;
+        items = (items || []).map((item) => {
+            // 处理批量标签页禁用
+            if (disabledTabKeys.includes(item.key)) {
+                item = {
+                    ...item,
+                    disabled: true,
+                };
             }
-        )
+            return item;
+        });
     }
 
     return (
         <>
             <Tabs
                 // 提取具有data-*或aria-*通配格式的属性
-                {...pickBy((_, k) => k.startsWith('data-') || k.startsWith('aria-'), others)}
+                {...pickBy(
+                    (_, k) => k.startsWith('data-') || k.startsWith('aria-'),
+                    others
+                )}
                 id={id}
                 className={
-                    isString(className) ?
-                        className :
-                        (className ? useCss(className) : undefined)
+                    isString(className)
+                        ? className
+                        : className
+                          ? useCss(className)
+                          : undefined
                 }
                 style={
                     // 子项为空且无额外内容时
-                    ((!items || items.length === 0) && !(tabBarLeftExtraContent || tabBarRightExtraContent)) ?
-                        { ...style, display: 'none' } :
-                        style
+                    (!items || items.length === 0) &&
+                    !(tabBarLeftExtraContent || tabBarRightExtraContent)
+                        ? { ...style, display: 'none' }
+                        : style
                 }
                 key={key}
                 items={
                     // 处理标签页标题右键菜单功能
-                    (items || []).map(
-                        item => {
-                            if (item.contextMenu) {
-                                item.label = <Dropdown
+                    (items || []).map((item) => {
+                        if (item.contextMenu) {
+                            item.label = (
+                                <Dropdown
                                     menu={{
                                         items: item.contextMenu.map(
-                                            itemProps => {
+                                            (itemProps) => {
                                                 return {
                                                     ...itemProps,
-                                                    icon: itemProps.icon && (
-                                                        itemProps.iconRenderer === 'fontawesome' ?
-                                                            (
-                                                                React.createElement(
-                                                                    'i',
-                                                                    {
-                                                                        className: itemProps.icon
-                                                                    }
-                                                                )
-                                                            ) :
-                                                            (
-                                                                <AntdIcon icon={itemProps.icon} />
+                                                    icon:
+                                                        itemProps.icon &&
+                                                        (itemProps.iconRenderer ===
+                                                        'fontawesome' ? (
+                                                            React.createElement(
+                                                                'i',
+                                                                {
+                                                                    className:
+                                                                        itemProps.icon,
+                                                                }
                                                             )
-                                                    )
-                                                }
+                                                        ) : (
+                                                            <AntdIcon
+                                                                icon={
+                                                                    itemProps.icon
+                                                                }
+                                                            />
+                                                        )),
+                                                };
                                             }
                                         ),
                                         // 右键菜单事件监听
                                         onClick: (e) => {
                                             // 阻止事件蔓延
-                                            e.domEvent.stopPropagation()
+                                            e.domEvent.stopPropagation();
                                             // 更新相关事件信息
                                             setProps({
                                                 clickedContextMenu: {
                                                     tabKey: item.key,
                                                     menuKey: e.key,
-                                                    timestamp: Date.now()
-                                                }
-                                            })
-                                        }
+                                                    timestamp: Date.now(),
+                                                },
+                                            });
+                                        },
                                     }}
                                     trigger={['contextMenu']}
                                 >
-                                    <div >
-                                        {item.label}
-                                    </div>
+                                    <div>{item.label}</div>
                                 </Dropdown>
-                            }
-                            return item;
+                            );
                         }
-                    )
+                        return item;
+                    })
                 }
                 defaultActiveKey={defaultActiveKey}
                 activeKey={activeKey}
@@ -179,32 +191,31 @@ const AntdTabs = (props) => {
                         }
                         return origin;
                     },
-                    align: indicator?.align
+                    align: indicator?.align,
                 }}
                 tabBarGutter={tabBarGutter}
                 tabBarStyle={tabBarStyle}
                 tabBarExtraContent={{
                     left: tabBarLeftExtraContent,
-                    right: tabBarRightExtraContent
+                    right: tabBarRightExtraContent,
                 }}
                 animated={{
                     inkBar: inkBarAnimated,
-                    tabPane: tabPaneAnimated
+                    tabPane: tabPaneAnimated,
                 }}
                 destroyOnHidden={destroyInactiveTabPane}
                 hideAdd={true}
                 onChange={onChange}
                 onEdit={onEdit}
-                data-dash-is-loading={useLoading()} />
+                data-dash-is-loading={useLoading()}
+            />
             {
                 // 子项为空时
-                (!items || items.length === 0) ?
-                    placeholder :
-                    null
+                !items || items.length === 0 ? placeholder : null
             }
         </>
     );
-}
+};
 
 export default AntdTabs;
 

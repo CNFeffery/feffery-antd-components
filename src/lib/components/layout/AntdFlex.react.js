@@ -26,18 +26,22 @@ const AntdFlex = ({
     setProps,
     ...others
 }) => {
-
-    children = parseChildrenToArray(children)
+    children = parseChildrenToArray(children);
 
     return (
         <Flex
             // 提取具有data-*或aria-*通配格式的属性
-            {...pickBy((_, k) => k.startsWith('data-') || k.startsWith('aria-'), others)}
+            {...pickBy(
+                (_, k) => k.startsWith('data-') || k.startsWith('aria-'),
+                others
+            )}
             id={id}
             className={
-                isString(className) ?
-                    className :
-                    (className ? useCss(className) : undefined)
+                isString(className)
+                    ? className
+                    : className
+                      ? useCss(className)
+                      : undefined
             }
             style={style}
             key={key}
@@ -47,11 +51,12 @@ const AntdFlex = ({
             align={align}
             flex={flex}
             gap={gap}
-            data-dash-is-loading={useLoading()}>
+            data-dash-is-loading={useLoading()}
+        >
             {children}
         </Flex>
     );
-}
+};
 
 AntdFlex.propTypes = {
     /**
@@ -77,10 +82,7 @@ AntdFlex.propTypes = {
     /**
      * 当前组件css类名，支持[动态css](/advanced-classname)
      */
-    className: PropTypes.oneOfType([
-        PropTypes.string,
-        PropTypes.object
-    ]),
+    className: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
 
     /**
      * 是否使用垂直主轴
@@ -92,10 +94,7 @@ AntdFlex.propTypes = {
      * 子元素换行显示行为，同css中的flex-wrap，也可直接传入布尔型设置是否自动换行
      * 默认值：`'nowrap'`
      */
-    wrap: PropTypes.oneOfType([
-        PropTypes.string,
-        PropTypes.bool
-    ]),
+    wrap: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),
 
     /**
      * 子元素在主轴方向上的对齐方式，同css中的justify-content
@@ -121,7 +120,7 @@ AntdFlex.propTypes = {
     gap: PropTypes.oneOfType([
         PropTypes.string,
         PropTypes.number,
-        PropTypes.oneOf(['small', 'middle', 'large'])
+        PropTypes.oneOf(['small', 'middle', 'large']),
     ]),
 
     /**
@@ -138,7 +137,7 @@ AntdFlex.propTypes = {
      * Dash-assigned callback that should be called to report property changes
      * to Dash, to make them available for callbacks.
      */
-    setProps: PropTypes.func
+    setProps: PropTypes.func,
 };
 
 export default AntdFlex;

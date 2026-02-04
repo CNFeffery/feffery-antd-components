@@ -2,9 +2,11 @@ if True:
     import sys
 
     sys.path.append('../../../')
+    from datetime import datetime
+
     import dash
     from dash import html
-    from datetime import datetime
+
     import feffery_antd_components as fac
 
 app = dash.Dash(__name__)

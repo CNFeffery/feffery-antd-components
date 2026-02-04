@@ -31,38 +31,32 @@ const AntdTour = ({
     setProps,
     ...others
 }) => {
-
     return (
-        <ConfigProvider
-            locale={str2Locale.get(locale)}
-        >
+        <ConfigProvider locale={str2Locale.get(locale)}>
             <Tour
                 // 提取具有data-*或aria-*通配格式的属性
-                {...pickBy((_, k) => k.startsWith('data-') || k.startsWith('aria-'), others)}
+                {...pickBy(
+                    (_, k) => k.startsWith('data-') || k.startsWith('aria-'),
+                    others
+                )}
                 id={id}
                 className={
-                    isString(className) ?
-                        className :
-                        (className ? useCss(className) : undefined)
+                    isString(className)
+                        ? className
+                        : className
+                          ? useCss(className)
+                          : undefined
                 }
                 style={style}
                 key={key}
-                steps={
-                    steps.map(
-                        (item) => ({
-                            ...item,
-                            target: (
-                                item.targetId ?
-                                    () => document.getElementById(item.targetId) :
-                                    (
-                                        item.targetSelector ?
-                                            () => document.querySelector(item.targetSelector) :
-                                            null
-                                    )
-                            )
-                        })
-                    )
-                }
+                steps={steps.map((item) => ({
+                    ...item,
+                    target: item.targetId
+                        ? () => document.getElementById(item.targetId)
+                        : item.targetSelector
+                          ? () => document.querySelector(item.targetSelector)
+                          : null,
+                }))}
                 arrow={arrow}
                 placement={placement}
                 mask={mask}
@@ -73,10 +67,11 @@ const AntdTour = ({
                 onChange={(e) => setProps({ current: e })}
                 onClose={() => setProps({ open: false })}
                 onFinish={() => setProps({ open: false })}
-                data-dash-is-loading={useLoading()} />
+                data-dash-is-loading={useLoading()}
+            />
         </ConfigProvider>
     );
-}
+};
 
 AntdTour.propTypes = {
     /**
@@ -97,10 +92,7 @@ AntdTour.propTypes = {
     /**
      * 当前组件css类名，支持[动态css](/advanced-classname)
      */
-    className: PropTypes.oneOfType([
-        PropTypes.string,
-        PropTypes.object
-    ]),
+    className: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
 
     /**
      * 组件文案语种，可选项有`'zh-cn'`（简体中文）、`'en-us'`（英语）、`'de-de'`（德语）、`'ru-ru'`（俄语）
@@ -131,8 +123,8 @@ AntdTour.propTypes = {
                     /**
                      * 箭头是否指向目标中心
                      */
-                    pointAtCenter: PropTypes.bool
-                })
+                    pointAtCenter: PropTypes.bool,
+                }),
             ]),
             /**
              * 组件型，当前步骤弹框的封面内容
@@ -150,7 +142,19 @@ AntdTour.propTypes = {
              * 当前引导步骤弹框相对目标元素的位置，可选项有`'center'`、`'left'`、`'leftTop'`、`'leftBottom'`、`'right'`、`'rightTop'`、`'rightBottom'`、`'top'`、`'topLeft'`、`'topRight'`、`'bottom'`、`'bottomLeft'`、`'bottomRight'`
              */
             placement: PropTypes.oneOf([
-                'center', 'left', 'leftTop', 'leftBottom', 'right', 'rightTop', 'rightBottom', 'top', 'topLeft', 'topRight', 'bottom', 'bottomLeft', 'bottomRight'
+                'center',
+                'left',
+                'leftTop',
+                'leftBottom',
+                'right',
+                'rightTop',
+                'rightBottom',
+                'top',
+                'topLeft',
+                'topRight',
+                'bottom',
+                'bottomLeft',
+                'bottomRight',
             ]),
             /**
              * 配置当前步骤蒙版层
@@ -166,8 +170,8 @@ AntdTour.propTypes = {
                     /**
                      * 当前步骤蒙版层颜色
                      */
-                    color: PropTypes.string
-                })
+                    color: PropTypes.string,
+                }),
             ]),
             /**
              * 当前步骤弹框类型，可选项有`'default'`、`'primary'`
@@ -181,7 +185,7 @@ AntdTour.propTypes = {
                 /**
                  * 组件型，按钮内嵌元素
                  */
-                children: PropTypes.node
+                children: PropTypes.node,
             }),
             /**
              * 配置当前步骤上一步按钮
@@ -190,8 +194,8 @@ AntdTour.propTypes = {
                 /**
                  * 组件型，按钮内嵌元素
                  */
-                children: PropTypes.node
-            })
+                children: PropTypes.node,
+            }),
         })
     ),
 
@@ -205,8 +209,8 @@ AntdTour.propTypes = {
             /**
              * 箭头是否指向目标中心
              */
-            pointAtCenter: PropTypes.bool
-        })
+            pointAtCenter: PropTypes.bool,
+        }),
     ]),
 
     /**
@@ -214,7 +218,19 @@ AntdTour.propTypes = {
      * 默认值：`'bottom'`
      */
     placement: PropTypes.oneOf([
-        'center', 'left', 'leftTop', 'leftBottom', 'right', 'rightTop', 'rightBottom', 'top', 'topLeft', 'topRight', 'bottom', 'bottomLeft', 'bottomRight'
+        'center',
+        'left',
+        'leftTop',
+        'leftBottom',
+        'right',
+        'rightTop',
+        'rightBottom',
+        'top',
+        'topLeft',
+        'topRight',
+        'bottom',
+        'bottomLeft',
+        'bottomRight',
     ]),
 
     /**
@@ -231,8 +247,8 @@ AntdTour.propTypes = {
             /**
              * 蒙版层颜色
              */
-            color: PropTypes.string
-        })
+            color: PropTypes.string,
+        }),
     ]),
 
     /**
@@ -272,7 +288,7 @@ AntdTour.propTypes = {
      * Dash-assigned callback that should be called to report property changes
      * to Dash, to make them available for callbacks.
      */
-    setProps: PropTypes.func
+    setProps: PropTypes.func,
 };
 
 export default AntdTour;

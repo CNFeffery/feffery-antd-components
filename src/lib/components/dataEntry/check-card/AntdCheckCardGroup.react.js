@@ -1,7 +1,12 @@
 import React, { Suspense } from 'react';
 import PropTypes from 'prop-types';
 
-const LazyAntdCheckCardGroup = React.lazy(() => import(/* webpackChunkName: "data_entry" */ '../../../fragments/dataEntry/check-card/AntdCheckCardGroup.react'));
+const LazyAntdCheckCardGroup = React.lazy(
+    () =>
+        import(
+            /* webpackChunkName: "data_entry" */ '../../../fragments/dataEntry/check-card/AntdCheckCardGroup.react'
+        )
+);
 
 /**
  * 组合选择卡片组件AntdCheckCardGroup
@@ -30,8 +35,8 @@ const AntdCheckCardGroup = ({
 }) => {
     return (
         <Suspense fallback={null}>
-            <LazyAntdCheckCardGroup {
-                ...{
+            <LazyAntdCheckCardGroup
+                {...{
                     id,
                     children,
                     className,
@@ -51,12 +56,12 @@ const AntdCheckCardGroup = ({
                     persistence,
                     persisted_props,
                     persistence_type,
-                    ...others
-                }
-            } />
+                    ...others,
+                }}
+            />
         </Suspense>
     );
-}
+};
 
 AntdCheckCardGroup.propTypes = {
     /**
@@ -82,10 +87,7 @@ AntdCheckCardGroup.propTypes = {
     /**
      * 当前组件css类名，支持[动态css](/advanced-classname)
      */
-    className: PropTypes.oneOfType([
-        PropTypes.string,
-        PropTypes.object
-    ]),
+    className: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
 
     /**
      * 配合`AntdForm`表单批量值搜集/控制功能使用，充当当前表单项的字段名，以`id`作为缺省值
@@ -120,32 +122,20 @@ AntdCheckCardGroup.propTypes = {
      * 监听或设置已选中卡片值
      */
     value: PropTypes.oneOfType([
-        PropTypes.oneOfType([
-            PropTypes.number,
-            PropTypes.string
-        ]),
+        PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
         PropTypes.arrayOf(
-            PropTypes.oneOfType([
-                PropTypes.number,
-                PropTypes.string
-            ])
-        )
+            PropTypes.oneOfType([PropTypes.number, PropTypes.string])
+        ),
     ]),
 
     /**
      * 初始化已选中卡片值
      */
     defaultValue: PropTypes.oneOfType([
-        PropTypes.oneOfType([
-            PropTypes.number,
-            PropTypes.string
-        ]),
+        PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
         PropTypes.arrayOf(
-            PropTypes.oneOfType([
-                PropTypes.number,
-                PropTypes.string
-            ])
-        )
+            PropTypes.oneOfType([PropTypes.number, PropTypes.string])
+        ),
     ]),
 
     /**
@@ -188,7 +178,7 @@ AntdCheckCardGroup.propTypes = {
     persistence: PropTypes.oneOfType([
         PropTypes.bool,
         PropTypes.string,
-        PropTypes.number
+        PropTypes.number,
     ]),
 
     /**
@@ -201,13 +191,13 @@ AntdCheckCardGroup.propTypes = {
      * 属性持久化存储类型，可选项有`'local'`（本地持久化），`'session'`（会话持久化），`'memory'`（内存持久化）
      * 默认值：`'local'`
      */
-    persistence_type: PropTypes.oneOf(['local', 'session', 'memory'])
+    persistence_type: PropTypes.oneOf(['local', 'session', 'memory']),
 };
 
 AntdCheckCardGroup.dashPersistence = {
     persisted_props: ['value'],
-    persistence_type: 'local'
-}
+    persistence_type: 'local',
+};
 
 export default AntdCheckCardGroup;
 

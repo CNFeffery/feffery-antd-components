@@ -10,14 +10,13 @@ const { useToken } = theme;
  * 空节点组件Fragment
  */
 const Fragment = (props) => {
-
     const { token: _token } = useToken();
 
     useEffect(() => {
         props.setProps({ token: _token });
-    }, [_token])
+    }, [_token]);
 
-    return (<>{props.children}</>);
+    return <>{props.children}</>;
 };
 
 Fragment.propTypes = {
@@ -45,7 +44,7 @@ Fragment.propTypes = {
      * Dash-assigned callback that should be called to report property changes
      * to Dash, to make them available for callbacks.
      */
-    setProps: PropTypes.func
+    setProps: PropTypes.func,
 };
 
 export default Fragment;

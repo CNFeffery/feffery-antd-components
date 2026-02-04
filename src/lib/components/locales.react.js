@@ -7,27 +7,27 @@ const str2Locale = new Map([
     ['zh-cn', zhCN],
     ['en-us', enUS],
     ['de-de', deDE],
-    ['ru-ru', ruRU]
-])
+    ['ru-ru', ruRU],
+]);
 
 const locale2text = {
     AntdSpoiler: {
         'zh-cn': {
             hideLabel: '收起',
-            showLabel: '查看更多'
+            showLabel: '查看更多',
         },
         'en-us': {
             hideLabel: 'Hide',
-            showLabel: 'Show more'
+            showLabel: 'Show more',
         },
         'de-de': {
             hideLabel: 'Verbergen',
-            showLabel: 'Mehr anzeigen'
+            showLabel: 'Mehr anzeigen',
         },
         'ru-ru': {
             hideLabel: 'Скрыть',
-            showLabel: 'Показать больше'
-        }
+            showLabel: 'Показать больше',
+        },
     },
     AntdPictureUpload: {
         'zh-cn': {
@@ -57,25 +57,25 @@ const locale2text = {
             confirmBeforeDeleteCancelText: 'Отмена',
             imgCropModalOKText: 'Ок',
             imgCropModalCancelText: 'Отмена',
-        }
+        },
     },
     AntdPagination: {
         'zh-cn': {
             showTotalPrefix: '共 ',
-            showTotalSuffix: ' 条记录'
+            showTotalSuffix: ' 条记录',
         },
         'en-us': {
             showTotalPrefix: 'Total ',
-            showTotalSuffix: ' items'
+            showTotalSuffix: ' items',
         },
         'de-de': {
             showTotalPrefix: 'Gesamt ',
-            showTotalSuffix: ' items'
+            showTotalSuffix: ' items',
         },
         'ru-ru': {
             showTotalPrefix: 'Всего ',
-            showTotalSuffix: ' элементов'
-        }
+            showTotalSuffix: ' элементов',
+        },
     },
     AntdTable: {
         'zh-cn': {
@@ -84,7 +84,8 @@ const locale2text = {
             filterKeywordPlaceholder: '搜索',
             filterKeywordSearchButtonText: '搜索',
             filterKeywordResetButtonText: '重置',
-            columnEditableFormatConstraintMessage: '编辑失败，输入的“[VALUE]”不符合对应字段的格式要求。'
+            columnEditableFormatConstraintMessage:
+                '编辑失败，输入的“[VALUE]”不符合对应字段的格式要求。',
         },
         'en-us': {
             showTotalPrefix: 'Total ',
@@ -92,7 +93,8 @@ const locale2text = {
             filterKeywordPlaceholder: 'Search',
             filterKeywordSearchButtonText: 'Search',
             filterKeywordResetButtonText: 'Reset',
-            columnEditableFormatConstraintMessage: 'Edit failed, The input "[VALUE]" does not meet the format requirements for the corresponding field.'
+            columnEditableFormatConstraintMessage:
+                'Edit failed, The input "[VALUE]" does not meet the format requirements for the corresponding field.',
         },
         'de-de': {
             showTotalPrefix: 'Gesamt ',
@@ -100,7 +102,8 @@ const locale2text = {
             filterKeywordPlaceholder: 'Suche',
             filterKeywordSearchButtonText: 'Suchen',
             filterKeywordResetButtonText: 'Zurücksetzen',
-            columnEditableFormatConstraintMessage: 'Bearbeiten fehlgeschlagen, Die Eingabe "[VALUE]" entspricht nicht den Anforderungen des entsprechenden Feldes.'
+            columnEditableFormatConstraintMessage:
+                'Bearbeiten fehlgeschlagen, Die Eingabe "[VALUE]" entspricht nicht den Anforderungen des entsprechenden Feldes.',
         },
         'ru-ru': {
             showTotalPrefix: 'Всего ',
@@ -108,22 +111,23 @@ const locale2text = {
             filterKeywordPlaceholder: 'Поиск',
             filterKeywordSearchButtonText: 'Поиск',
             filterKeywordResetButtonText: 'Сбросить',
-            columnEditableFormatConstraintMessage: 'Редактирование не удалось, введенное значение "[VALUE]" не соответствует требованиям поля.'
-        }
+            columnEditableFormatConstraintMessage:
+                'Редактирование не удалось, введенное значение "[VALUE]" не соответствует требованиям поля.',
+        },
     },
     AntdTransfer: {
         'zh-cn': {
-            titles: ['待选区', '选定区']
+            titles: ['待选区', '选定区'],
         },
         'en-us': {
-            titles: ['Source', 'Target']
+            titles: ['Source', 'Target'],
         },
         'de-de': {
-            titles: ['Quelle', 'Ziel']
+            titles: ['Quelle', 'Ziel'],
         },
         'ru-ru': {
-            titles: ['Источник', 'Цель']
-        }
+            titles: ['Источник', 'Цель'],
+        },
     },
     Upload: {
         'zh-cn': {
@@ -131,29 +135,38 @@ const locale2text = {
             uploadFailed: '上传失败！',
             sizeError: ['文件大小超出', 'MB限制！'],
             typeError: ['上传失败，', '文件格式不符合要求！'],
-            buttonContent: '点击上传文件'
+            buttonContent: '点击上传文件',
         },
         'en-us': {
             uploadSuccess: 'upload success!',
             uploadFailed: 'upload failed!',
             sizeError: ['File size exceeds the ', 'MB limit!'],
-            typeError: ['Uploading failed, The format of ', ' does not meet requirements!'],
-            buttonContent: 'Click to upload file'
+            typeError: [
+                'Uploading failed, The format of ',
+                ' does not meet requirements!',
+            ],
+            buttonContent: 'Click to upload file',
         },
         'de-de': {
             uploadSuccess: 'Hochladen erfolgreich!',
             uploadFailed: 'Hochladen fehlgeschlagen!',
             sizeError: ['Dateigröße überschreitet das Limit von ', 'MB!'],
-            typeError: ['Hochladen fehlgeschlagen. Das Format von ', ' entspricht nicht den Anforderungen!'],
-            buttonContent: 'Klicken, um eine Datei hochzuladen'
+            typeError: [
+                'Hochladen fehlgeschlagen. Das Format von ',
+                ' entspricht nicht den Anforderungen!',
+            ],
+            buttonContent: 'Klicken, um eine Datei hochzuladen',
         },
         'ru-ru': {
             uploadSuccess: 'Загрузка успешна!',
             uploadFailed: 'Ошибка загрузки!',
             sizeError: ['Размер файла превышает ', 'MB ограничение!'],
-            typeError: ['Ошибка загрузки, формат ', ' не соответствует требованиям!'],
-            buttonContent: 'Нажмите для загрузки файла'
-        }
+            typeError: [
+                'Ошибка загрузки, формат ',
+                ' не соответствует требованиям!',
+            ],
+            buttonContent: 'Нажмите для загрузки файла',
+        },
     },
     AntdComment: {
         'zh-cn': {
@@ -191,8 +204,8 @@ const locale2text = {
             deleteConfirmOkText: 'Да',
             deleteConfirmCancelText: 'Нет',
             deleteTitle: 'Удалить',
-        }
-    }
-}
+        },
+    },
+};
 
 export { str2Locale, locale2text };

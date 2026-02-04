@@ -1,7 +1,12 @@
 import React, { Suspense } from 'react';
 import PropTypes from 'prop-types';
 
-const LazyAntdDraggerUpload = React.lazy(() => import(/* webpackChunkName: "upload" */ '../../../fragments/upload/AntdDraggerUpload.react'));
+const LazyAntdDraggerUpload = React.lazy(
+    () =>
+        import(
+            /* webpackChunkName: "upload" */ '../../../fragments/upload/AntdDraggerUpload.react'
+        )
+);
 
 /**
  * 文件拖拽上传组件AntdDraggerUpload
@@ -50,8 +55,8 @@ const AntdDraggerUpload = ({
 }) => {
     return (
         <Suspense fallback={null}>
-            <LazyAntdDraggerUpload {
-                ...{
+            <LazyAntdDraggerUpload
+                {...{
                     id,
                     className,
                     style,
@@ -91,12 +96,12 @@ const AntdDraggerUpload = ({
                     disabled,
                     status,
                     setProps,
-                    ...others
-                }
-            } />
+                    ...others,
+                }}
+            />
         </Suspense>
     );
-}
+};
 
 AntdDraggerUpload.propTypes = {
     /**
@@ -117,10 +122,7 @@ AntdDraggerUpload.propTypes = {
     /**
      * 当前组件css类名，支持[动态css](/advanced-classname)
      */
-    className: PropTypes.oneOfType([
-        PropTypes.string,
-        PropTypes.object
-    ]),
+    className: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
 
     /**
      * 配合`AntdForm`表单批量值搜集/控制功能使用，充当当前表单项的字段名，以`id`作为缺省值
@@ -136,10 +138,7 @@ AntdDraggerUpload.propTypes = {
     /**
      * 拖拽区域css类名，支持[动态css](/advanced-classname)
      */
-    draggerClassName: PropTypes.oneOfType([
-        PropTypes.string,
-        PropTypes.object
-    ]),
+    draggerClassName: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
 
     /**
      * 拖拽区域css样式
@@ -286,8 +285,8 @@ AntdDraggerUpload.propTypes = {
                 /**
                  * 渐变色结束颜色
                  */
-                to: PropTypes.string
-            })
+                to: PropTypes.string,
+            }),
         ]),
         /**
          * 进度条像素宽度
@@ -305,8 +304,8 @@ AntdDraggerUpload.propTypes = {
              * 进度文字后缀内容
              * 默认值：`'%'`
              */
-            suffix: PropTypes.string
-        })
+            suffix: PropTypes.string,
+        }),
     }),
 
     /**
@@ -359,7 +358,7 @@ AntdDraggerUpload.propTypes = {
             /**
              * 上传任务的接口响应信息
              */
-            uploadResponse: PropTypes.any
+            uploadResponse: PropTypes.any,
         }),
         PropTypes.arrayOf(
             PropTypes.exact({
@@ -390,9 +389,9 @@ AntdDraggerUpload.propTypes = {
                 /**
                  * 上传任务的接口响应信息
                  */
-                uploadResponse: PropTypes.any
+                uploadResponse: PropTypes.any,
             })
-        )
+        ),
     ]),
 
     /**
@@ -435,7 +434,7 @@ AntdDraggerUpload.propTypes = {
             /**
              * 当`withOriginFileObj=True`时，监听当前文件上传任务对应的`originFileObj`主要信息
              */
-            originFileObj: PropTypes.any
+            originFileObj: PropTypes.any,
         })
     ),
 
@@ -467,7 +466,7 @@ AntdDraggerUpload.propTypes = {
             /**
              * 当前文件大小
              */
-            fileSize: PropTypes.number
+            fileSize: PropTypes.number,
         })
     ),
 
@@ -496,7 +495,7 @@ AntdDraggerUpload.propTypes = {
      * Dash-assigned callback that should be called to report property changes
      * to Dash, to make them available for callbacks.
      */
-    setProps: PropTypes.func
+    setProps: PropTypes.func,
 };
 
 export default AntdDraggerUpload;

@@ -1,7 +1,12 @@
 import React, { Suspense } from 'react';
 import PropTypes from 'prop-types';
 
-const LazyAntdCheckableTag = React.lazy(() => import(/* webpackChunkName: "data_display" */ '../../fragments/dataDisplay/AntdCheckableTag.react'));
+const LazyAntdCheckableTag = React.lazy(
+    () =>
+        import(
+            /* webpackChunkName: "data_display" */ '../../fragments/dataDisplay/AntdCheckableTag.react'
+        )
+);
 
 /**
  * 可选择标签AntdCheckableTag
@@ -20,8 +25,8 @@ const AntdCheckableTag = ({
 }) => {
     return (
         <Suspense fallback={null}>
-            <LazyAntdCheckableTag {
-                ...{
+            <LazyAntdCheckableTag
+                {...{
                     id,
                     className,
                     style,
@@ -31,12 +36,12 @@ const AntdCheckableTag = ({
                     unCheckedContent,
                     checked,
                     setProps,
-                    ...others
-                }
-            } />
+                    ...others,
+                }}
+            />
         </Suspense>
     );
-}
+};
 
 AntdCheckableTag.propTypes = {
     /**
@@ -57,10 +62,7 @@ AntdCheckableTag.propTypes = {
     /**
      * 当前组件css类名，支持[动态css](/advanced-classname)
      */
-    className: PropTypes.oneOfType([
-        PropTypes.string,
-        PropTypes.object
-    ]),
+    className: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
 
     /**
      * 组件型，标签内容
@@ -97,7 +99,7 @@ AntdCheckableTag.propTypes = {
      * Dash-assigned callback that should be called to report property changes
      * to Dash, to make them available for callbacks.
      */
-    setProps: PropTypes.func
+    setProps: PropTypes.func,
 };
 
 export default AntdCheckableTag;

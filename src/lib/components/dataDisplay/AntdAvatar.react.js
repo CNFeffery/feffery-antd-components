@@ -1,7 +1,12 @@
 import React, { Suspense } from 'react';
 import PropTypes from 'prop-types';
 
-const LazyAntdAvatar = React.lazy(() => import(/* webpackChunkName: "data_display" */ '../../fragments/dataDisplay/AntdAvatar.react'));
+const LazyAntdAvatar = React.lazy(
+    () =>
+        import(
+            /* webpackChunkName: "data_display" */ '../../fragments/dataDisplay/AntdAvatar.react'
+        )
+);
 
 /**
  * 头像组件AntdAvatar
@@ -28,8 +33,8 @@ const AntdAvatar = ({
 }) => {
     return (
         <Suspense fallback={null}>
-            <LazyAntdAvatar {
-                ...{
+            <LazyAntdAvatar
+                {...{
                     id,
                     className,
                     style,
@@ -47,12 +52,12 @@ const AntdAvatar = ({
                     size,
                     shape,
                     setProps,
-                    ...others
-                }
-            } />
+                    ...others,
+                }}
+            />
         </Suspense>
     );
-}
+};
 
 AntdAvatar.propTypes = {
     /**
@@ -73,10 +78,7 @@ AntdAvatar.propTypes = {
     /**
      * 当前组件css类名，支持[动态css](/advanced-classname)
      */
-    className: PropTypes.oneOfType([
-        PropTypes.string,
-        PropTypes.object
-    ]),
+    className: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
 
     /**
      * 头像模式，可选项有`'text'`、`'icon'`、`'image'`
@@ -125,7 +127,7 @@ AntdAvatar.propTypes = {
      */
     draggable: PropTypes.oneOfType([
         PropTypes.bool,
-        PropTypes.oneOf(['true', 'false'])
+        PropTypes.oneOf(['true', 'false']),
     ]),
 
     /**
@@ -145,8 +147,8 @@ AntdAvatar.propTypes = {
             md: PropTypes.number,
             lg: PropTypes.number,
             xl: PropTypes.number,
-            xxl: PropTypes.number
-        })
+            xxl: PropTypes.number,
+        }),
     ]),
 
     /**
@@ -169,7 +171,7 @@ AntdAvatar.propTypes = {
      * Dash-assigned callback that should be called to report property changes
      * to Dash, to make them available for callbacks.
      */
-    setProps: PropTypes.func
+    setProps: PropTypes.func,
 };
 
 export default AntdAvatar;

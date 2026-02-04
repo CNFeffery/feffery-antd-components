@@ -4,8 +4,9 @@ if True:
     sys.path.append('../')
     import dash
     from dash import html
-    import feffery_antd_components as fac
     from feffery_dash_utils.style_utils import style
+
+    import feffery_antd_components as fac
 
 app = dash.Dash(__name__)
 
@@ -46,9 +47,7 @@ app.layout = html.Div(
                     variant='underlined',
                     options=[],
                 ),
-                fac.AntdOTP(
-                    variant='underlined', value='123456'
-                ),
+                fac.AntdOTP(variant='underlined', value='123456'),
                 fac.AntdSegmentedColoring(
                     min=-10,
                     max=10,

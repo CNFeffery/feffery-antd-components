@@ -9,13 +9,16 @@ import { useLoading } from '../../components/utils';
 // 自定义hooks
 import useCss from '../../hooks/useCss';
 // 参数类型
-import { propTypes, defaultProps } from '../../components/dataDisplay/AntdTag.react';
+import {
+    propTypes,
+    defaultProps,
+} from '../../components/dataDisplay/AntdTag.react';
 
 /**
  * 标签组件AntdTag
  */
 const AntdTag = (props) => {
-    let {
+    const {
         id,
         className,
         style,
@@ -35,13 +38,18 @@ const AntdTag = (props) => {
     return (
         <Tag
             // 提取具有data-*或aria-*通配格式的属性
-            {...pickBy((_, k) => k.startsWith('data-') || k.startsWith('aria-'), others)}
+            {...pickBy(
+                (_, k) => k.startsWith('data-') || k.startsWith('aria-'),
+                others
+            )}
             id={id}
             key={key}
             className={
-                isString(className) ?
-                    className :
-                    (className ? useCss(className) : undefined)
+                isString(className)
+                    ? className
+                    : className
+                      ? useCss(className)
+                      : undefined
             }
             style={style}
             icon={icon}
@@ -52,14 +60,21 @@ const AntdTag = (props) => {
                 // 阻止默认关闭事件
                 e.preventDefault();
                 setProps({
-                    closeCounts: closeCounts + 1
-                })
+                    closeCounts: closeCounts + 1,
+                });
             }}
-            data-dash-is-loading={useLoading()}>
-            {href ? <a href={href} target={target}>{content}</a> : content}
+            data-dash-is-loading={useLoading()}
+        >
+            {href ? (
+                <a href={href} target={target}>
+                    {content}
+                </a>
+            ) : (
+                content
+            )}
         </Tag>
     );
-}
+};
 
 export default AntdTag;
 

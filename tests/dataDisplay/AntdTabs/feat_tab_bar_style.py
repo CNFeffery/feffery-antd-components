@@ -4,8 +4,9 @@ if True:
     sys.path.append('../../../')
     import dash
     from dash import html
-    import feffery_antd_components as fac
     from feffery_dash_utils.style_utils import style
+
+    import feffery_antd_components as fac
 
 app = dash.Dash(__name__)
 
@@ -16,9 +17,7 @@ app.layout = html.Div(
                 {
                     'key': f'标签页{i}',
                     'label': f'标签页{i}',
-                    'icon': fac.AntdIcon(
-                        icon='antd-function'
-                    ),
+                    'icon': fac.AntdIcon(icon='antd-function'),
                     'children': fac.AntdCenter(
                         f'这是标签页{i}的内容示例',
                         style={

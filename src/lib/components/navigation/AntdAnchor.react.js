@@ -30,18 +30,20 @@ const AntdAnchor = ({
     setProps,
     ...others
 }) => {
-
     // 监听锚点被点击情况
     const onClick = (e, link) => {
         setProps({
-            clickedLink: link
-        })
-    }
+            clickedLink: link,
+        });
+    };
 
     return (
         <div
             // 提取具有data-*或aria-*通配格式的属性
-            {...pickBy((_, k) => k.startsWith('data-') || k.startsWith('aria-'), others)}
+            {...pickBy(
+                (_, k) => k.startsWith('data-') || k.startsWith('aria-'),
+                others
+            )}
             style={{ float: align }}
             data-dash-is-loading={useLoading()}
         >
@@ -49,9 +51,11 @@ const AntdAnchor = ({
                 <Anchor
                     id={id}
                     className={
-                        isString(className) ?
-                            className :
-                            (className ? useCss(className) : undefined)
+                        isString(className)
+                            ? className
+                            : className
+                              ? useCss(className)
+                              : undefined
                     }
                     style={style}
                     key={key}
@@ -59,12 +63,11 @@ const AntdAnchor = ({
                     direction={direction}
                     onClick={onClick}
                     getContainer={
-                        containerId ? (
-                            document.getElementById(containerId) ?
-                                () => document.getElementById(containerId) :
-                                undefined
-                        ) :
-                            undefined
+                        containerId
+                            ? document.getElementById(containerId)
+                                ? () => document.getElementById(containerId)
+                                : undefined
+                            : undefined
                     }
                     targetOffset={targetOffset}
                     affix={affix}
@@ -73,11 +76,12 @@ const AntdAnchor = ({
                     replace={replace}
                     getCurrentAnchor={
                         currentAnchor ? () => currentAnchor : undefined
-                    } />
+                    }
+                />
             }
         </div>
     );
-}
+};
 
 // 定义递归PropTypes
 const PropLinkNodeShape = {
@@ -98,7 +102,7 @@ const PropLinkNodeShape = {
     /**
      * 节点链接跳转行为
      */
-    target: PropTypes.string
+    target: PropTypes.string,
 };
 
 const PropLinkNode = PropTypes.shape(PropLinkNodeShape);
@@ -124,10 +128,7 @@ AntdAnchor.propTypes = {
     /**
      * 当前组件css类名，支持[动态css](/advanced-classname)
      */
-    className: PropTypes.oneOfType([
-        PropTypes.string,
-        PropTypes.object
-    ]),
+    className: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
 
     /**
      * 目录层次数据结构
@@ -203,7 +204,7 @@ AntdAnchor.propTypes = {
      * Dash-assigned callback that should be called to report property changes
      * to Dash, to make them available for callbacks.
      */
-    setProps: PropTypes.func
+    setProps: PropTypes.func,
 };
 
 export default AntdAnchor;

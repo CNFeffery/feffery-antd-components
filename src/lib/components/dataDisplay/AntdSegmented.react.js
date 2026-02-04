@@ -1,7 +1,12 @@
 import React, { Suspense } from 'react';
 import PropTypes from 'prop-types';
 
-const LazyAntdSegmented = React.lazy(() => import(/* webpackChunkName: "data_display" */ '../../fragments/dataDisplay/AntdSegmented.react'));
+const LazyAntdSegmented = React.lazy(
+    () =>
+        import(
+            /* webpackChunkName: "data_display" */ '../../fragments/dataDisplay/AntdSegmented.react'
+        )
+);
 
 /**
  * 分段控制器组件AntdSegmented
@@ -28,8 +33,8 @@ const AntdSegmented = ({
 }) => {
     return (
         <Suspense fallback={null}>
-            <LazyAntdSegmented {
-                ...{
+            <LazyAntdSegmented
+                {...{
                     id,
                     style,
                     className,
@@ -47,12 +52,12 @@ const AntdSegmented = ({
                     persisted_props,
                     persistence_type,
                     batchPropsNames,
-                    ...others
-                }
-            } />
+                    ...others,
+                }}
+            />
         </Suspense>
     );
-}
+};
 
 AntdSegmented.propTypes = {
     /**
@@ -73,10 +78,7 @@ AntdSegmented.propTypes = {
     /**
      * 当前组件css类名，支持[动态css](/advanced-classname)
      */
-    className: PropTypes.oneOfType([
-        PropTypes.string,
-        PropTypes.object
-    ]),
+    className: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
 
     /**
      * 配置选项相关参数
@@ -93,10 +95,8 @@ AntdSegmented.propTypes = {
                 /**
                  * 必填，选项值
                  */
-                value: PropTypes.oneOfType([
-                    PropTypes.string,
-                    PropTypes.number
-                ]).isRequired,
+                value: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
+                    .isRequired,
                 /**
                  * 是否禁用当前选项
                  * 默认值：`false`
@@ -111,25 +111,19 @@ AntdSegmented.propTypes = {
                  * 默认值：`'AntdIcon'`
                  */
                 iconRenderer: PropTypes.oneOf(['AntdIcon', 'fontawesome']),
-            })
+            }),
         ])
     ),
 
     /**
      * 监听或设置当前选中值
      */
-    value: PropTypes.oneOfType([
-        PropTypes.string,
-        PropTypes.number
-    ]),
+    value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
 
     /**
      * 设置初始化选中值
      */
-    defaultValue: PropTypes.oneOfType([
-        PropTypes.string,
-        PropTypes.number
-    ]),
+    defaultValue: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
 
     /**
      * 是否撑满父容器
@@ -193,7 +187,7 @@ AntdSegmented.propTypes = {
         /**
          * Holds the name of the component that is loading
          */
-        component_name: PropTypes.string
+        component_name: PropTypes.string,
     }),
 
     /**
@@ -208,7 +202,7 @@ AntdSegmented.propTypes = {
     persistence: PropTypes.oneOfType([
         PropTypes.bool,
         PropTypes.string,
-        PropTypes.number
+        PropTypes.number,
     ]),
 
     /**
@@ -221,13 +215,13 @@ AntdSegmented.propTypes = {
      * 属性持久化存储类型，可选项有`'local'`（本地持久化），`'session'`（会话持久化），`'memory'`（内存持久化）
      * 默认值：`'local'`
      */
-    persistence_type: PropTypes.oneOf(['local', 'session', 'memory'])
+    persistence_type: PropTypes.oneOf(['local', 'session', 'memory']),
 };
 
 AntdSegmented.dashPersistence = {
     persisted_props: ['value'],
-    persistence_type: 'local'
-}
+    persistence_type: 'local',
+};
 
 export default AntdSegmented;
 

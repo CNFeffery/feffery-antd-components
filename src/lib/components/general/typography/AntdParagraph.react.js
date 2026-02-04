@@ -38,22 +38,26 @@ const AntdParagraph = ({
     setProps,
     ...others
 }) => {
+    const context = useContext(PropsContext);
+    locale = (context && context.locale) || locale;
 
-    const context = useContext(PropsContext)
-    locale = (context && context.locale) || locale
-
-    children = parseChildrenToArray(children)
+    children = parseChildrenToArray(children);
 
     return (
         <ConfigProvider locale={str2Locale.get(locale)}>
             <Paragraph
                 // 提取具有data-*或aria-*通配格式的属性
-                {...pickBy((_, k) => k.startsWith('data-') || k.startsWith('aria-'), others)}
+                {...pickBy(
+                    (_, k) => k.startsWith('data-') || k.startsWith('aria-'),
+                    others
+                )}
                 id={id}
                 className={
-                    isString(className) ?
-                        className :
-                        (className ? useCss(className) : undefined)
+                    isString(className)
+                        ? className
+                        : className
+                          ? useCss(className)
+                          : undefined
                 }
                 style={style}
                 key={key}
@@ -67,12 +71,13 @@ const AntdParagraph = ({
                 underline={underline}
                 type={type}
                 ellipsis={ellipsis}
-                data-dash-is-loading={useLoading()}>
+                data-dash-is-loading={useLoading()}
+            >
                 {children}
             </Paragraph>
         </ConfigProvider>
     );
-}
+};
 
 AntdParagraph.propTypes = {
     /**
@@ -98,10 +103,7 @@ AntdParagraph.propTypes = {
     /**
      * 当前组件css类名，支持[动态css](/advanced-classname)
      */
-    className: PropTypes.oneOfType([
-        PropTypes.string,
-        PropTypes.object
-    ]),
+    className: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
 
     /**
      * 组件文案语种，可选项有`'zh-cn'`（简体中文）、`'en-us'`（英语）、`'de-de'`（德语）、`'ru-ru'`（俄语）
@@ -166,7 +168,7 @@ AntdParagraph.propTypes = {
              */
             expandable: PropTypes.oneOfType([
                 PropTypes.bool,
-                PropTypes.oneOf(['collapsible'])
+                PropTypes.oneOf(['collapsible']),
             ]),
             /**
              * 最大显示行数
@@ -179,8 +181,8 @@ AntdParagraph.propTypes = {
             /**
              * 组件型，自定义内容展开控件
              */
-            symbol: PropTypes.node
-        })
+            symbol: PropTypes.node,
+        }),
     ]),
 
     /**
@@ -197,7 +199,7 @@ AntdParagraph.propTypes = {
      * Dash-assigned callback that should be called to report property changes
      * to Dash, to make them available for callbacks.
      */
-    setProps: PropTypes.func
+    setProps: PropTypes.func,
 };
 
 export default AntdParagraph;

@@ -1,7 +1,12 @@
 import React, { Suspense } from 'react';
 import PropTypes from 'prop-types';
 
-const LazyAntdCarousel = React.lazy(() => import(/* webpackChunkName: "data_display" */ '../../fragments/dataDisplay/AntdCarousel.react'));
+const LazyAntdCarousel = React.lazy(
+    () =>
+        import(
+            /* webpackChunkName: "data_display" */ '../../fragments/dataDisplay/AntdCarousel.react'
+        )
+);
 
 /**
  * 走马灯组件AntdCarousel
@@ -29,8 +34,8 @@ const AntdCarousel = ({
 }) => {
     return (
         <Suspense fallback={null}>
-            <LazyAntdCarousel {
-                ...{
+            <LazyAntdCarousel
+                {...{
                     id,
                     children,
                     className,
@@ -49,12 +54,12 @@ const AntdCarousel = ({
                     slidesToShow,
                     slidesToScroll,
                     setProps,
-                    ...others
-                }
-            } />
+                    ...others,
+                }}
+            />
         </Suspense>
     );
-}
+};
 
 AntdCarousel.propTypes = {
     /**
@@ -80,10 +85,7 @@ AntdCarousel.propTypes = {
     /**
      * 当前组件css类名，支持[动态css](/advanced-classname)
      */
-    className: PropTypes.oneOfType([
-        PropTypes.string,
-        PropTypes.object
-    ]),
+    className: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
 
     /**
      * 是否显示箭头
@@ -101,8 +103,8 @@ AntdCarousel.propTypes = {
             /**
              * 是否展示指示点进度条
              */
-            dotDuration: PropTypes.bool
-        })
+            dotDuration: PropTypes.bool,
+        }),
     ]),
 
     /**
@@ -179,7 +181,7 @@ AntdCarousel.propTypes = {
      * Dash-assigned callback that should be called to report property changes
      * to Dash, to make them available for callbacks.
      */
-    setProps: PropTypes.func
+    setProps: PropTypes.func,
 };
 
 export default AntdCarousel;

@@ -31,13 +31,15 @@ const AntdWatermark = ({
     inherit = true,
     ...others
 }) => {
-
-    children = parseChildrenToArray(children)
+    children = parseChildrenToArray(children);
 
     return (
         <WaterMark
             // 提取具有data-*或aria-*通配格式的属性
-            {...pickBy((_, k) => k.startsWith('data-') || k.startsWith('aria-'), others)}
+            {...pickBy(
+                (_, k) => k.startsWith('data-') || k.startsWith('aria-'),
+                others
+            )}
             id={id}
             className={className}
             style={style}
@@ -55,11 +57,12 @@ const AntdWatermark = ({
             width={width}
             height={height}
             inherit={inherit}
-            data-dash-is-loading={useLoading()}>
+            data-dash-is-loading={useLoading()}
+        >
             {children}
         </WaterMark>
     );
-}
+};
 
 AntdWatermark.propTypes = {
     /**
@@ -102,7 +105,7 @@ AntdWatermark.propTypes = {
      */
     content: PropTypes.oneOfType([
         PropTypes.string,
-        PropTypes.arrayOf(PropTypes.string)
+        PropTypes.arrayOf(PropTypes.string),
     ]),
 
     /**
@@ -174,7 +177,7 @@ AntdWatermark.propTypes = {
      * Dash-assigned callback that should be called to report property changes
      * to Dash, to make them available for callbacks.
      */
-    setProps: PropTypes.func
+    setProps: PropTypes.func,
 };
 
 export default AntdWatermark;

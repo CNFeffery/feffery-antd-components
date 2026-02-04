@@ -1,7 +1,12 @@
 import React, { Suspense } from 'react';
 import PropTypes from 'prop-types';
 
-const LazyAntdDateRangePicker = React.lazy(() => import(/* webpackChunkName: "data_entry" */ '../../fragments/dataEntry/AntdDateRangePicker.react'));
+const LazyAntdDateRangePicker = React.lazy(
+    () =>
+        import(
+            /* webpackChunkName: "data_entry" */ '../../fragments/dataEntry/AntdDateRangePicker.react'
+        )
+);
 
 /**
  * 日期范围选择组件AntdDateRangePicker
@@ -50,8 +55,8 @@ const AntdDateRangePicker = ({
 }) => {
     return (
         <Suspense fallback={null}>
-            <LazyAntdDateRangePicker {
-                ...{
+            <LazyAntdDateRangePicker
+                {...{
                     id,
                     className,
                     style,
@@ -91,12 +96,12 @@ const AntdDateRangePicker = ({
                     persistence_type,
                     batchPropsNames,
                     needConfirm,
-                    ...others
-                }
-            } />
+                    ...others,
+                }}
+            />
         </Suspense>
     );
-}
+};
 
 AntdDateRangePicker.propTypes = {
     /**
@@ -117,10 +122,7 @@ AntdDateRangePicker.propTypes = {
     /**
      * 当前组件css类名，支持[动态css](/advanced-classname)
      */
-    className: PropTypes.oneOfType([
-        PropTypes.string,
-        PropTypes.object
-    ]),
+    className: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
 
     /**
      * 展开菜单css类名
@@ -182,17 +184,15 @@ AntdDateRangePicker.propTypes = {
              * 与`defaultValue`对应的时间格式，[参考资料](https://day.js.org/docs/en/display/format)
              * 默认值：`'HH:mm:ss'`
              */
-            format: PropTypes.string
-        })
+            format: PropTypes.string,
+        }),
     ]),
 
     /**
      * 当前组件尺寸规格，可选项有`'small'`、`'middle'`、`'large'`
      * 默认值：`'middle'`
      */
-    size: PropTypes.oneOf([
-        'small', 'middle', 'large'
-    ]),
+    size: PropTypes.oneOf(['small', 'middle', 'large']),
 
     /**
      * 是否显示边框，设置为`true`时等价于`variant='outlined'`
@@ -203,7 +203,12 @@ AntdDateRangePicker.propTypes = {
     /**
      * 形态变体类型，可选项有`'outlined'`、`'borderless'`、`'filled'`、`'underlined'`，其中`'outlined'`等价于`bordered=True`，但优先级更高
      */
-    variant: PropTypes.oneOf(['outlined', 'borderless', 'filled', 'underlined']),
+    variant: PropTypes.oneOf([
+        'outlined',
+        'borderless',
+        'filled',
+        'underlined',
+    ]),
 
     /**
      * 输入框占位文字内容
@@ -214,7 +219,12 @@ AntdDateRangePicker.propTypes = {
      * 选择面板展开方向，可选项有`'bottomLeft'`、`'bottomRight'`、`'topLeft'`、`'topRight'`
      * 默认值：`'bottomLeft'`
      */
-    placement: PropTypes.oneOf(['bottomLeft', 'bottomRight', 'topLeft', 'topRight']),
+    placement: PropTypes.oneOf([
+        'bottomLeft',
+        'bottomRight',
+        'topLeft',
+        'topRight',
+    ]),
 
     /**
      * 监听或设置已选值，与`format`格式对应
@@ -231,7 +241,7 @@ AntdDateRangePicker.propTypes = {
      */
     pickerValue: PropTypes.oneOfType([
         PropTypes.string,
-        PropTypes.arrayOf(PropTypes.string)
+        PropTypes.arrayOf(PropTypes.string),
     ]),
 
     /**
@@ -244,15 +254,31 @@ AntdDateRangePicker.propTypes = {
              * 、`'gt'`（大于）、`'in'`（属于）、`'not-in'`（不属于）、`'in-enumerate-dates'`（属于日期字符串枚举数组），`'not-in-enumerate-dates'`（不属于日期字符串枚举数组）
              */
             mode: PropTypes.oneOf([
-                'eq', 'ne', 'le', 'lt', 'ge', 'gt', 'in', 'not-in',
-                'in-enumerate-dates', 'not-in-enumerate-dates'
+                'eq',
+                'ne',
+                'le',
+                'lt',
+                'ge',
+                'gt',
+                'in',
+                'not-in',
+                'in-enumerate-dates',
+                'not-in-enumerate-dates',
             ]),
             /**
              * 当前策略约束目标，可选项有`'dayOfYear'`（按年份天数）、`'dayOfWeek'`（按周天数）、`'day'`（按日）
              * 、`'month'`（按月份）、`'quarter'`（按季度）、`'year'`（按年份）、`'specific-date'`（具体日期）
              * ，其中在`'specific-date'`目标下，`value`值将严格按照`'YYYY-MM-DD'`格式进行解析
              */
-            target: PropTypes.oneOf(['day', 'month', 'quarter', 'year', 'dayOfYear', 'dayOfWeek', 'specific-date']),
+            target: PropTypes.oneOf([
+                'day',
+                'month',
+                'quarter',
+                'year',
+                'dayOfYear',
+                'dayOfWeek',
+                'specific-date',
+            ]),
             /**
              * 与策略类型、策略约束目标相对应的实际约束值
              */
@@ -260,8 +286,8 @@ AntdDateRangePicker.propTypes = {
                 PropTypes.number,
                 PropTypes.string,
                 PropTypes.arrayOf(PropTypes.number),
-                PropTypes.arrayOf(PropTypes.string)
-            ])
+                PropTypes.arrayOf(PropTypes.string),
+            ]),
         })
     ),
 
@@ -310,7 +336,7 @@ AntdDateRangePicker.propTypes = {
             /**
              * 当前预设项对应值，与`format`格式对应
              */
-            value: PropTypes.arrayOf(PropTypes.string)
+            value: PropTypes.arrayOf(PropTypes.string),
         })
     ),
 
@@ -321,14 +347,11 @@ AntdDateRangePicker.propTypes = {
         /**
          * 对应预设项值
          */
-        value: PropTypes.oneOfType([
-            PropTypes.string,
-            PropTypes.number
-        ]),
+        value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
         /**
          * 事件对应时间戳信息
          */
-        timestamp: PropTypes.number
+        timestamp: PropTypes.number,
     }),
 
     /**
@@ -361,7 +384,7 @@ AntdDateRangePicker.propTypes = {
             /**
              * 自定义css类名
              */
-            className: PropTypes.string
+            className: PropTypes.string,
         })
     ),
 
@@ -407,7 +430,7 @@ AntdDateRangePicker.propTypes = {
     persistence: PropTypes.oneOfType([
         PropTypes.bool,
         PropTypes.string,
-        PropTypes.number
+        PropTypes.number,
     ]),
 
     /**
@@ -426,13 +449,13 @@ AntdDateRangePicker.propTypes = {
      * Dash-assigned callback that should be called to report property changes
      * to Dash, to make them available for callbacks.
      */
-    setProps: PropTypes.func
+    setProps: PropTypes.func,
 };
 
 AntdDateRangePicker.dashPersistence = {
     persisted_props: ['value'],
-    persistence_type: 'local'
-}
+    persistence_type: 'local',
+};
 
 export default AntdDateRangePicker;
 

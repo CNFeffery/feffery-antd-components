@@ -9,13 +9,16 @@ import { parseChildrenToArray, useLoading } from '../../components/utils';
 // 自定义hooks
 import useCss from '../../hooks/useCss';
 // 参数类型
-import { propTypes, defaultProps } from '../../components/dataDisplay/AntdTooltip.react';
+import {
+    propTypes,
+    defaultProps,
+} from '../../components/dataDisplay/AntdTooltip.react';
 
 /**
  * 文字提示组件AntdTooltip
  */
 const AntdTooltip = (props) => {
-    let {
+    const {
         id,
         children,
         className,
@@ -49,21 +52,26 @@ const AntdTooltip = (props) => {
         return {
             pointAtCenter: true,
         };
-    }, [arrow])
+    }, [arrow]);
 
     if (!title) {
-        return <>{parseChildrenToArray(children)}</>
+        return <>{parseChildrenToArray(children)}</>;
     }
 
     return (
         <Tooltip
             // 提取具有data-*或aria-*通配格式的属性
-            {...pickBy((_, k) => k.startsWith('data-') || k.startsWith('aria-'), others)}
+            {...pickBy(
+                (_, k) => k.startsWith('data-') || k.startsWith('aria-'),
+                others
+            )}
             id={id}
             className={
-                isString(className) ?
-                    className :
-                    (className ? useCss(className) : undefined)
+                isString(className)
+                    ? className
+                    : className
+                      ? useCss(className)
+                      : undefined
             }
             style={style}
             styles={styles}
@@ -79,19 +87,18 @@ const AntdTooltip = (props) => {
             arrow={arrowPoint}
             fresh={fresh}
             open={open}
-            onOpenChange={
-                permanent ? undefined : (e) => setProps({ open: e })
-            }
+            onOpenChange={permanent ? undefined : (e) => setProps({ open: e })}
             getPopupContainer={
-                popupContainer === 'parent' ?
-                    (triggerNode) => triggerNode.parentNode :
-                    undefined
+                popupContainer === 'parent'
+                    ? (triggerNode) => triggerNode.parentNode
+                    : undefined
             }
-            data-dash-is-loading={useLoading()}>
+            data-dash-is-loading={useLoading()}
+        >
             {parseChildrenToArray(children)}
         </Tooltip>
     );
-}
+};
 
 export default AntdTooltip;
 

@@ -4,8 +4,9 @@ if True:
     sys.path.append('../../../')
     import dash
     from dash import html
-    import feffery_antd_components as fac
     from feffery_dash_utils.style_utils import style
+
+    import feffery_antd_components as fac
 
 app = dash.Dash(__name__)
 
@@ -39,9 +40,7 @@ app.layout = html.Div(
                     ),
                     label='密码',
                 ),
-                fac.AntdCheckbox(
-                    id='login-remember-me', label='记住我'
-                ),
+                fac.AntdCheckbox(id='login-remember-me', label='记住我'),
                 fac.AntdButton(
                     '登录',
                     id='login-button',

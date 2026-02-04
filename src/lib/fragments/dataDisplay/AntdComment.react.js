@@ -4,7 +4,12 @@ import React, { useEffect, useContext } from 'react';
 import { Tooltip, Popconfirm, ConfigProvider } from 'antd';
 import { Comment } from '@ant-design/compatible';
 import AntdAvatar from './AntdAvatar.react';
-import { DislikeOutlined, LikeOutlined, DislikeFilled, LikeFilled } from '@ant-design/icons';
+import {
+    DislikeOutlined,
+    LikeOutlined,
+    DislikeFilled,
+    LikeFilled,
+} from '@ant-design/icons';
 // 辅助库
 import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
@@ -18,10 +23,13 @@ import useCss from '../../hooks/useCss';
 // 上下文
 import PropsContext from '../../contexts/PropsContext';
 // 参数类型
-import { propTypes, defaultProps } from '../../components/dataDisplay/AntdComment.react';
+import {
+    propTypes,
+    defaultProps,
+} from '../../components/dataDisplay/AntdComment.react';
 
 // 调用dayjs相对时间插件模块
-dayjs.extend(relativeTime)
+dayjs.extend(relativeTime);
 
 /**
  * 评论组件AntdComment
@@ -58,18 +66,18 @@ const AntdComment = (props) => {
     // 批量属性监听
     useEffect(() => {
         if (batchPropsNames && batchPropsNames.length !== 0) {
-            let _batchPropsValues = {};
-            for (let propName of batchPropsNames) {
+            const _batchPropsValues = {};
+            for (const propName of batchPropsNames) {
                 _batchPropsValues[propName] = props[propName];
             }
             setProps({
-                batchPropsValues: _batchPropsValues
-            })
+                batchPropsValues: _batchPropsValues,
+            });
         }
-    })
+    });
 
-    const context = useContext(PropsContext)
-    locale = (context && context.locale) || locale
+    const context = useContext(PropsContext);
+    locale = (context && context.locale) || locale;
 
     if (locale === 'zh-cn') {
         dayjs.locale('zh-cn');
@@ -79,90 +87,135 @@ const AntdComment = (props) => {
         dayjs.locale('de');
     }
 
-    children = parseChildrenToArray(children)
+    children = parseChildrenToArray(children);
 
     useEffect(() => {
         if (!action && defaultAction) {
             setProps({
-                action: defaultAction
-            })
+                action: defaultAction,
+            });
         }
-    }, [])
+    }, []);
 
     const like = () => {
         setProps({
             likesCount: action === 'liked' ? likesCount - 1 : likesCount + 1,
             action: action === 'liked' ? 'default' : 'liked',
-            dislikesCount: action === 'disliked' ? dislikesCount - 1 : dislikesCount
+            dislikesCount:
+                action === 'disliked' ? dislikesCount - 1 : dislikesCount,
         });
     };
 
     const dislike = () => {
         setProps({
-            dislikesCount: action === 'disliked' ? dislikesCount - 1 : dislikesCount + 1,
+            dislikesCount:
+                action === 'disliked' ? dislikesCount - 1 : dislikesCount + 1,
             action: action === 'disliked' ? 'default' : 'disliked',
-            likesCount: action === 'liked' ? likesCount - 1 : likesCount
-        })
+            likesCount: action === 'liked' ? likesCount - 1 : likesCount,
+        });
     };
 
     const actions = [
-        showLikeDislike ?
-            <Tooltip key="comment-basic-like" title={locale2text.AntdComment[locale].likeTooltipTitle}>
+        showLikeDislike ? (
+            <Tooltip
+                key="comment-basic-like"
+                title={locale2text.AntdComment[locale].likeTooltipTitle}
+            >
                 <span onClick={like}>
-                    {action === 'liked' ? <LikeFilled style={{ color: 'rgb(236, 65, 65)' }} /> : <LikeOutlined />}
+                    {action === 'liked' ? (
+                        <LikeFilled style={{ color: 'rgb(236, 65, 65)' }} />
+                    ) : (
+                        <LikeOutlined />
+                    )}
                     <span className="comment-action">{likesCount}</span>
                 </span>
-            </Tooltip> : undefined,
-        showLikeDislike ?
-            <Tooltip key="comment-basic-dislike" title={locale2text.AntdComment[locale].dislikeTooltipTitle}>
+            </Tooltip>
+        ) : undefined,
+        showLikeDislike ? (
+            <Tooltip
+                key="comment-basic-dislike"
+                title={locale2text.AntdComment[locale].dislikeTooltipTitle}
+            >
                 <span onClick={dislike}>
-                    {React.createElement(action === 'disliked' ? DislikeFilled : DislikeOutlined)}
+                    {React.createElement(
+                        action === 'disliked' ? DislikeFilled : DislikeOutlined
+                    )}
                     <span className="comment-action">{dislikesCount}</span>
                 </span>
-            </Tooltip> : undefined,
-        showReply ?
-            <span key="comment-basic-reply-to" onClick={() => {
-                setProps({ replyClicks: replyClicks + 1 })
-            }}>{locale2text.AntdComment[locale].replayTitle}</span> : undefined,
-        showDelete ?
+            </Tooltip>
+        ) : undefined,
+        showReply ? (
+            <span
+                key="comment-basic-reply-to"
+                onClick={() => {
+                    setProps({ replyClicks: replyClicks + 1 });
+                }}
+            >
+                {locale2text.AntdComment[locale].replayTitle}
+            </span>
+        ) : undefined,
+        showDelete ? (
             <Popconfirm
                 title={locale2text.AntdComment[locale].deleteConfirmTitle}
                 onConfirm={() => setProps({ deleteClicks: deleteClicks + 1 })}
                 okText={locale2text.AntdComment[locale].deleteConfirmOkText}
-                cancelText={locale2text.AntdComment[locale].deleteConfirmCancelText}
+                cancelText={
+                    locale2text.AntdComment[locale].deleteConfirmCancelText
+                }
                 getPopupContainer={
-                    popupContainer === 'parent' ?
-                        (triggerNode) => triggerNode.parentNode :
-                        undefined
-                }>
-                <span key="comment-basic-delete">{locale2text.AntdComment[locale].deleteTitle}</span>
-            </Popconfirm> : undefined
+                    popupContainer === 'parent'
+                        ? (triggerNode) => triggerNode.parentNode
+                        : undefined
+                }
+            >
+                <span key="comment-basic-delete">
+                    {locale2text.AntdComment[locale].deleteTitle}
+                </span>
+            </Popconfirm>
+        ) : undefined,
     ];
 
     return (
         <ConfigProvider locale={str2Locale.get(locale)}>
             <Comment
                 // 提取具有data-*或aria-*通配格式的属性
-                {...pickBy((_, k) => k.startsWith('data-') || k.startsWith('aria-'), others)}
+                {...pickBy(
+                    (_, k) => k.startsWith('data-') || k.startsWith('aria-'),
+                    others
+                )}
                 id={id}
                 className={
-                    isString(className) ?
-                        className :
-                        (className ? useCss(className) : undefined)
+                    isString(className)
+                        ? className
+                        : className
+                          ? useCss(className)
+                          : undefined
                 }
                 style={style}
                 key={commentId}
                 actions={actions}
-                author={<a href={authorNameHref} target={'_blank'}>{authorName}</a>}
-                avatar={<AntdAvatar {...avatarProps} />}
-                content={
-                    <p>{commentContent}</p>
+                author={
+                    <a href={authorNameHref} target={'_blank'}>
+                        {authorName}
+                    </a>
                 }
+                avatar={<AntdAvatar {...avatarProps} />}
+                content={<p>{commentContent}</p>}
                 datetime={
-                    <Tooltip title={dayjs().format(publishTime.value)} placement={'right'}>
-                        <span>{fromNow ?
-                            dayjs(publishTime.value, publishTime.format ? publishTime.format : 'YYYY-MM-DD HH:mm:ss').fromNow() :
-                            publishTime.value}</span>
+                    <Tooltip
+                        title={dayjs().format(publishTime.value)}
+                        placement={'right'}
+                    >
+                        <span>
+                            {fromNow
+                                ? dayjs(
+                                      publishTime.value,
+                                      publishTime.format
+                                          ? publishTime.format
+                                          : 'YYYY-MM-DD HH:mm:ss'
+                                  ).fromNow()
+                                : publishTime.value}
+                        </span>
                     </Tooltip>
                 }
                 data-dash-is-loading={useLoading()}
@@ -171,7 +224,7 @@ const AntdComment = (props) => {
             </Comment>
         </ConfigProvider>
     );
-}
+};
 
 export default AntdComment;
 

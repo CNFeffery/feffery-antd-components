@@ -2,11 +2,13 @@ if True:
     import sys
 
     sys.path.append('../../../')
-    import dash
-    import feffery_antd_components as fac
     from datetime import datetime, timedelta
+
+    import dash
     from dash.dependencies import Input, Output
     from feffery_dash_utils.style_utils import style
+
+    import feffery_antd_components as fac
 
 app = dash.Dash(__name__)
 
@@ -14,9 +16,7 @@ app.layout = lambda: fac.AntdCenter(
     [
         fac.AntdCountdown(
             id='countdown-demo',
-            value=(
-                datetime.now() + timedelta(seconds=6)
-            ).strftime('%Y-%m-%d %H:%M:%S:%f'),
+            value=(datetime.now() + timedelta(seconds=6)).strftime('%Y-%m-%d %H:%M:%S:%f'),
             format='HH:mm:ss:SSS',
         ),
         fac.Fragment(id='message'),
@@ -32,8 +32,7 @@ app.layout = lambda: fac.AntdCenter(
 )
 def show_finish_event(finishEvent):
     return fac.AntdNotification(
-        message='倒计时结束：'
-        + str(finishEvent['timestamp']),
+        message='倒计时结束：' + str(finishEvent['timestamp']),
     )
 
 

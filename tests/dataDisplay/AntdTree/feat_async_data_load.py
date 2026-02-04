@@ -3,11 +3,13 @@ if True:
 
     sys.path.append('../../../')
     import time
+
     import dash
     from dash import html
-    import feffery_antd_components as fac
-    from feffery_dash_utils.tree_utils import TreeManager
     from dash.dependencies import Input, Output, State
+    from feffery_dash_utils.tree_utils import TreeManager
+
+    import feffery_antd_components as fac
 
 app = dash.Dash(__name__)
 

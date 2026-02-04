@@ -28,10 +28,12 @@ const AntdCustomSkeleton = ({
     setProps,
     ...others
 }) => {
-
     const ctx = window.dash_component_api.useDashContext();
     // 获取内部加载中组件信息
-    const loading_info = ctx.useSelector(loadingSelector(ctx.componentPath), equals);
+    const loading_info = ctx.useSelector(
+        loadingSelector(ctx.componentPath),
+        equals
+    );
 
     const [showLoading, setShowLoading] = useState(loading);
     const timer = useRef();
@@ -49,7 +51,9 @@ const AntdCustomSkeleton = ({
                 // 当listenPropsMode为'default'时
                 if (listenPropsMode === 'default') {
                     if (debug) {
-                        loading_info.forEach(item => console.log(item.id + '.' + item.property))
+                        loading_info.forEach((item) =>
+                            console.log(item.id + '.' + item.property)
+                        );
                     }
                     delayTimer.current = setTimeout(
                         () => setShowLoading(true),
@@ -58,9 +62,18 @@ const AntdCustomSkeleton = ({
                 } else if (listenPropsMode === 'exclude') {
                     // 当listenPropsMode为'exclude'模式时
                     // 当前触发加载状态的组件+属性组合均不在排除列表中时，激活动画
-                    if (loading_info.every(item => excludeProps.indexOf(item.id + '.' + item.property) === -1)) {
+                    if (
+                        loading_info.every(
+                            (item) =>
+                                excludeProps.indexOf(
+                                    item.id + '.' + item.property
+                                ) === -1
+                        )
+                    ) {
                         if (debug) {
-                            loading_info.forEach(item => console.log(item.id + '.' + item.property))
+                            loading_info.forEach((item) =>
+                                console.log(item.id + '.' + item.property)
+                            );
                         }
                         delayTimer.current = setTimeout(
                             () => setShowLoading(true),
@@ -70,9 +83,18 @@ const AntdCustomSkeleton = ({
                 } else if (listenPropsMode === 'include') {
                     // 当listenPropsMode为'include'模式时
                     // 当前触发加载状态的组件+属性组合至少有一个在包含列表中时，激活动画
-                    if (loading_info.some(item => includeProps.indexOf(item.id + '.' + item.property) !== -1)) {
+                    if (
+                        loading_info.some(
+                            (item) =>
+                                includeProps.indexOf(
+                                    item.id + '.' + item.property
+                                ) !== -1
+                        )
+                    ) {
                         if (debug) {
-                            loading_info.forEach(item => console.log(item.id + '.' + item.property))
+                            loading_info.forEach((item) =>
+                                console.log(item.id + '.' + item.property)
+                            );
                         }
                         delayTimer.current = setTimeout(
                             () => setShowLoading(true),
@@ -80,7 +102,6 @@ const AntdCustomSkeleton = ({
                         );
                     }
                 }
-
             } else if (loading_info.length === 0 && showLoading) {
                 timer.current = setTimeout(() => setShowLoading(false));
             }
@@ -90,20 +111,26 @@ const AntdCustomSkeleton = ({
     return (
         <div
             // 提取具有data-*或aria-*通配格式的属性
-            {...pickBy((_, k) => k.startsWith('data-') || k.startsWith('aria-'), others)}
+            {...pickBy(
+                (_, k) => k.startsWith('data-') || k.startsWith('aria-'),
+                others
+            )}
             id={id}
             className={
-                isString(className) ?
-                    className :
-                    (className ? useCss(className) : undefined)
+                isString(className)
+                    ? className
+                    : className
+                      ? useCss(className)
+                      : undefined
             }
             style={style}
             key={key}
             data-dash-is-loading={useLoading()}
-        >{(manual ? loading : showLoading) ? skeletonContent : children}
+        >
+            {(manual ? loading : showLoading) ? skeletonContent : children}
         </div>
     );
-}
+};
 
 AntdCustomSkeleton.propTypes = {
     /**
@@ -129,10 +156,7 @@ AntdCustomSkeleton.propTypes = {
     /**
      * 当前组件css类名，支持[动态css](/advanced-classname)
      */
-    className: PropTypes.oneOfType([
-        PropTypes.string,
-        PropTypes.object
-    ]),
+    className: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
 
     /**
      * 组件型，加载状态下显示的内容
@@ -192,7 +216,7 @@ AntdCustomSkeleton.propTypes = {
      * Dash-assigned callback that should be called to report property changes
      * to Dash, to make them available for callbacks.
      */
-    setProps: PropTypes.func
+    setProps: PropTypes.func,
 };
 
 export default AntdCustomSkeleton;

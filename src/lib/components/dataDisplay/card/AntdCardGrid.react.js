@@ -1,7 +1,12 @@
 import React, { Suspense } from 'react';
 import PropTypes from 'prop-types';
 
-const LazyAntdCardGrid = React.lazy(() => import(/* webpackChunkName: "data_display" */ '../../../fragments/dataDisplay/card/AntdCardGrid.react'));
+const LazyAntdCardGrid = React.lazy(
+    () =>
+        import(
+            /* webpackChunkName: "data_display" */ '../../../fragments/dataDisplay/card/AntdCardGrid.react'
+        )
+);
 
 /**
  * 卡片网格组件AntdCardGrid
@@ -19,8 +24,8 @@ const AntdCardGrid = ({
 }) => {
     return (
         <Suspense fallback={null}>
-            <LazyAntdCardGrid {
-                ...{
+            <LazyAntdCardGrid
+                {...{
                     id,
                     children,
                     className,
@@ -29,12 +34,12 @@ const AntdCardGrid = ({
                     hoverable,
                     nClicks,
                     setProps,
-                    ...others
-                }
-            } />
+                    ...others,
+                }}
+            />
         </Suspense>
     );
-}
+};
 
 AntdCardGrid.propTypes = {
     /**
@@ -60,10 +65,7 @@ AntdCardGrid.propTypes = {
     /**
      * 当前组件css类名，支持[动态css](/advanced-classname)
      */
-    className: PropTypes.oneOfType([
-        PropTypes.string,
-        PropTypes.object
-    ]),
+    className: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
 
     /**
      * 鼠标悬停时是否显示特殊样式
@@ -91,7 +93,7 @@ AntdCardGrid.propTypes = {
      * Dash-assigned callback that should be called to report property changes
      * to Dash, to make them available for callbacks.
      */
-    setProps: PropTypes.func
+    setProps: PropTypes.func,
 };
 
 export default AntdCardGrid;

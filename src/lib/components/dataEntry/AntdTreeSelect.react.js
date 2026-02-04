@@ -1,7 +1,12 @@
 import React, { Suspense } from 'react';
 import PropTypes from 'prop-types';
 
-const LazyAntdTreeSelect = React.lazy(() => import(/* webpackChunkName: "data_entry" */ '../../fragments/dataEntry/AntdTreeSelect.react'));
+const LazyAntdTreeSelect = React.lazy(
+    () =>
+        import(
+            /* webpackChunkName: "data_entry" */ '../../fragments/dataEntry/AntdTreeSelect.react'
+        )
+);
 
 /**
  * 树选择组件AntdTreeSelect
@@ -62,8 +67,8 @@ const AntdTreeSelect = ({
 }) => {
     return (
         <Suspense fallback={null}>
-            <LazyAntdTreeSelect {
-                ...{
+            <LazyAntdTreeSelect
+                {...{
                     id,
                     style,
                     className,
@@ -115,12 +120,12 @@ const AntdTreeSelect = ({
                     persisted_props,
                     persistence_type,
                     batchPropsNames,
-                    ...others
-                }
-            } />
+                    ...others,
+                }}
+            />
         </Suspense>
     );
-}
+};
 
 // 定义递归PropTypes
 const PropTreeNodeShape = {
@@ -135,10 +140,7 @@ const PropTreeNodeShape = {
     /**
      * 当前节点唯一值
      */
-    value: PropTypes.oneOfType([
-        PropTypes.string,
-        PropTypes.number
-    ]).isRequired,
+    value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
     /**
      * 是否禁用当前节点
      */
@@ -158,7 +160,7 @@ const PropTreeNodeShape = {
     /**
      * 当前节点是否为叶节点（末端节点）
      */
-    isLeaf: PropTypes.bool
+    isLeaf: PropTypes.bool,
 };
 
 const PropTreeNode = PropTypes.shape(PropTreeNodeShape);
@@ -178,10 +180,7 @@ const PropFlatNodeShape = {
     /**
      * 当前节点唯一值
      */
-    value: PropTypes.oneOfType([
-        PropTypes.string,
-        PropTypes.number
-    ]).isRequired,
+    value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
     /**
      * 是否禁用当前节点
      */
@@ -205,7 +204,7 @@ const PropFlatNodeShape = {
     /**
      * 当前节点所属父节点`key`值
      */
-    parent: PropTypes.string
+    parent: PropTypes.string,
 };
 
 AntdTreeSelect.propTypes = {
@@ -227,10 +226,7 @@ AntdTreeSelect.propTypes = {
     /**
      * 当前组件css类名，支持[动态css](/advanced-classname)
      */
-    className: PropTypes.oneOfType([
-        PropTypes.string,
-        PropTypes.object
-    ]),
+    className: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
 
     /**
      * 展开菜单css类名
@@ -271,7 +267,7 @@ AntdTreeSelect.propTypes = {
         /**
          * 扁平模式对应结构
          */
-        PropTypes.arrayOf(PropFlatNodeShape)
+        PropTypes.arrayOf(PropFlatNodeShape),
     ]).isRequired,
 
     /**
@@ -300,7 +296,12 @@ AntdTreeSelect.propTypes = {
     /**
      * 设置形态变体类型，可选的有'outlined'、'borderless'、'filled'、`'underlined'`，其中'outlined'等价于bordered=true，优先级高于bordered
      */
-    variant: PropTypes.oneOf(['outlined', 'borderless', 'filled', 'underlined']),
+    variant: PropTypes.oneOf([
+        'outlined',
+        'borderless',
+        'filled',
+        'underlined',
+    ]),
 
     /**
      * 输入框占位文字内容
@@ -311,7 +312,12 @@ AntdTreeSelect.propTypes = {
      * 选择菜单展开方向，可选项有`'bottomLeft'`、`'bottomRight'`、`'topLeft'`、`'topRight'`
      * 默认值：`'bottomLeft'`
      */
-    placement: PropTypes.oneOf(['bottomLeft', 'bottomRight', 'topLeft', 'topRight']),
+    placement: PropTypes.oneOf([
+        'bottomLeft',
+        'bottomRight',
+        'topLeft',
+        'topRight',
+    ]),
 
     /**
      * 是否显示连接线
@@ -326,10 +332,7 @@ AntdTreeSelect.propTypes = {
         PropTypes.string,
         PropTypes.number,
         PropTypes.arrayOf(
-            PropTypes.oneOfType([
-                PropTypes.string,
-                PropTypes.number
-            ]),
+            PropTypes.oneOfType([PropTypes.string, PropTypes.number])
         ),
     ]),
 
@@ -340,10 +343,7 @@ AntdTreeSelect.propTypes = {
         PropTypes.string,
         PropTypes.number,
         PropTypes.arrayOf(
-            PropTypes.oneOfType([
-                PropTypes.string,
-                PropTypes.number
-            ]),
+            PropTypes.oneOfType([PropTypes.string, PropTypes.number])
         ),
     ]),
 
@@ -358,7 +358,7 @@ AntdTreeSelect.propTypes = {
      */
     maxTagCount: PropTypes.oneOfType([
         PropTypes.number,
-        PropTypes.oneOf(['responsive'])
+        PropTypes.oneOf(['responsive']),
     ]),
 
     /**
@@ -448,7 +448,11 @@ AntdTreeSelect.propTypes = {
      * 搜索匹配模式，可选项有`'case-insensitive'`（大小写不敏感）、`'case-sensitive'`（大小写敏感）、`'regex'`（正则表达式）
      * 默认值：`'case-insensitive'`
      */
-    treeNodeFilterMode: PropTypes.oneOf(['case-insensitive', 'case-sensitive', 'regex']),
+    treeNodeFilterMode: PropTypes.oneOf([
+        'case-insensitive',
+        'case-sensitive',
+        'regex',
+    ]),
 
     /**
      * 当`multiple=true`时，设置是否在选中项后自动清空搜索框中的内容
@@ -460,7 +464,11 @@ AntdTreeSelect.propTypes = {
      * 已选项回填搜索框策略，可选项有`'show-all'`、`'show-parent'`、`'show-child'`
      * 默认值：`'show-all'`
      */
-    showCheckedStrategy: PropTypes.oneOf(['show-all', 'show-parent', 'show-child']),
+    showCheckedStrategy: PropTypes.oneOf([
+        'show-all',
+        'show-parent',
+        'show-child',
+    ]),
 
     /**
      * 组件型，选择菜单前缀内容
@@ -532,7 +540,7 @@ AntdTreeSelect.propTypes = {
         /**
          * Holds the name of the component that is loading
          */
-        component_name: PropTypes.string
+        component_name: PropTypes.string,
     }),
 
     /**
@@ -547,7 +555,7 @@ AntdTreeSelect.propTypes = {
     persistence: PropTypes.oneOfType([
         PropTypes.bool,
         PropTypes.string,
-        PropTypes.number
+        PropTypes.number,
     ]),
 
     /**
@@ -560,13 +568,13 @@ AntdTreeSelect.propTypes = {
      * 属性持久化存储类型，可选项有`'local'`（本地持久化），`'session'`（会话持久化），`'memory'`（内存持久化）
      * 默认值：`'local'`
      */
-    persistence_type: PropTypes.oneOf(['local', 'session', 'memory'])
+    persistence_type: PropTypes.oneOf(['local', 'session', 'memory']),
 };
 
 AntdTreeSelect.dashPersistence = {
     persisted_props: ['value'],
-    persistence_type: 'local'
-}
+    persistence_type: 'local',
+};
 
 export default AntdTreeSelect;
 

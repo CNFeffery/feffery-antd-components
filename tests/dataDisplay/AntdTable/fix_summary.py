@@ -3,6 +3,7 @@ if True:
 
     sys.path.append('../../../')
     import dash
+
     import feffery_antd_components as fac
 
 app = dash.Dash(__name__)
@@ -394,27 +395,19 @@ app.layout = dash.html.Div(
                         'align': 'center',
                     },
                     {
-                        'content': fac.AntdText(
-                            children='28674.91', strong=True
-                        ),
+                        'content': fac.AntdText(children='28674.91', strong=True),
                         'align': 'center',
                     },
                     {
-                        'content': fac.AntdText(
-                            children='55754.67', strong=True
-                        ),
+                        'content': fac.AntdText(children='55754.67', strong=True),
                         'align': 'center',
                     },
                     {
-                        'content': fac.AntdText(
-                            children='64878.22', strong=True
-                        ),
+                        'content': fac.AntdText(children='64878.22', strong=True),
                         'align': 'center',
                     },
                     {
-                        'content': fac.AntdText(
-                            children='39251.52', strong=True
-                        ),
+                        'content': fac.AntdText(children='39251.52', strong=True),
                         'align': 'center',
                     },
                     {

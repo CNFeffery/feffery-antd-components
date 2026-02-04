@@ -2,11 +2,13 @@ if True:
     import sys
 
     sys.path.append('../../../')
-    import feffery_antd_components as fac
     import json
+
     from dash import Dash, html
     from dash.dependencies import Input, Output
     from feffery_dash_utils.style_utils import style
+
+    import feffery_antd_components as fac
 
 app = Dash(__name__)
 
@@ -201,9 +203,7 @@ app.layout = html.Div(
     Input('splitter-2', 'currentSizes'),
 )
 def update_output(currentSizes):
-    return json.dumps(
-        currentSizes, indent=4, ensure_ascii=False
-    )
+    return json.dumps(currentSizes, indent=4, ensure_ascii=False)
 
 
 if __name__ == '__main__':

@@ -1,4 +1,4 @@
-import { Component } from "react";
+import { Component } from 'react';
 import isAbsoluteUrl from 'is-absolute-url';
 import { isUndefined, isNull } from 'lodash';
 
@@ -8,8 +8,13 @@ function CustomEvent(event, params) {
         cancelable: false,
         detail: undefined,
     };
-    const evt = document.createEvent("CustomEvent");
-    evt.initCustomEvent(event, params.bubbles, params.cancelable, params.detail);
+    const evt = document.createEvent('CustomEvent');
+    evt.initCustomEvent(
+        event,
+        params.bubbles,
+        params.cancelable,
+        params.detail
+    );
     return evt;
 }
 CustomEvent.prototype = window.Event.prototype;
@@ -44,8 +49,8 @@ class UtilsLink extends Component {
             // prevent anchor from updating location
             e.preventDefault();
             const { href } = this.props;
-            window.history.pushState({}, "", href);
-            window.dispatchEvent(new CustomEvent("_dashprivate_pushstate"));
+            window.history.pushState({}, '', href);
+            window.dispatchEvent(new CustomEvent('_dashprivate_pushstate'));
             // scroll back to top
             window.scrollTo(0, 0);
         }

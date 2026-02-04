@@ -14,7 +14,10 @@ import FormContext from '../../../contexts/FormContext';
 // 状态管理
 import useFormStore from '../../../store/formStore';
 // 参数类型
-import { propTypes, defaultProps } from '../../../components/dataEntry/check-card/AntdCheckCardGroup.react';
+import {
+    propTypes,
+    defaultProps,
+} from '../../../components/dataEntry/check-card/AntdCheckCardGroup.react';
 
 /**
  * 组合选择卡片组件AntdCheckCardGroup
@@ -43,20 +46,20 @@ const AntdCheckCardGroup = (props) => {
         ...others
     } = props;
 
-    const context = useContext(PropsContext)
-    const formId = useContext(FormContext)
+    const context = useContext(PropsContext);
+    const formId = useContext(FormContext);
 
-    const updateItemValue = useFormStore((state) => state.updateItemValue)
-    const deleteItemValue = useFormStore((state) => state.deleteItemValue)
+    const updateItemValue = useFormStore((state) => state.updateItemValue);
+    const deleteItemValue = useFormStore((state) => state.deleteItemValue);
 
     // 处理AntdForm表单值搜集功能
     useEffect(() => {
         // 若上文中存在有效表单id
         if (formId && (name || id) && enableBatchControl) {
             // 表单值更新
-            updateItemValue(formId, name || id, value)
+            updateItemValue(formId, name || id, value);
         }
-    }, [value, name, id])
+    }, [value, name, id]);
 
     // 处理组件卸载后，对应表单项值的清除
     useEffect(() => {
@@ -64,28 +67,33 @@ const AntdCheckCardGroup = (props) => {
             // 若上文中存在有效表单id
             if (formId && (name || id) && enableBatchControl) {
                 // 表单值更新
-                deleteItemValue(formId, name || id)
+                deleteItemValue(formId, name || id);
             }
-        }
-    }, [name, id])
+        };
+    }, [name, id]);
 
     useEffect(() => {
         if (defaultValue && !value) {
-            setProps({ value: defaultValue })
+            setProps({ value: defaultValue });
         }
-    }, [])
+    }, []);
 
-    children = parseChildrenToArray(children)
+    children = parseChildrenToArray(children);
 
     return (
         <CheckCard.Group
             // 提取具有data-*或aria-*通配格式的属性
-            {...pickBy((_, k) => k.startsWith('data-') || k.startsWith('aria-'), others)}
+            {...pickBy(
+                (_, k) => k.startsWith('data-') || k.startsWith('aria-'),
+                others
+            )}
             id={id}
             className={
-                isString(className) ?
-                    className :
-                    (className ? useCss(className) : undefined)
+                isString(className)
+                    ? className
+                    : className
+                      ? useCss(className)
+                      : undefined
             }
             style={style}
             key={key}
@@ -94,28 +102,29 @@ const AntdCheckCardGroup = (props) => {
             value={value}
             defaultValue={defaultValue}
             disabled={
-                context && !isUndefined(context.componentDisabled) ?
-                    context.componentDisabled :
-                    disabled
+                context && !isUndefined(context.componentDisabled)
+                    ? context.componentDisabled
+                    : disabled
             }
             size={size}
             onChange={(e) => {
                 // 只读模式下不进行值更新
                 if (!readOnly) {
                     if (allowNoValue) {
-                        setProps({ value: e })
+                        setProps({ value: e });
                     } else {
                         if (e && e.length !== 0) {
-                            setProps({ value: e })
+                            setProps({ value: e });
                         }
                     }
                 }
             }}
-            data-dash-is-loading={useLoading()} >
+            data-dash-is-loading={useLoading()}
+        >
             {children}
-        </ CheckCard.Group>
+        </CheckCard.Group>
     );
-}
+};
 
 export default AntdCheckCardGroup;
 

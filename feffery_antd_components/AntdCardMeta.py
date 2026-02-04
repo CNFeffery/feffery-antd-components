@@ -1,8 +1,9 @@
 # AUTO GENERATED FILE - DO NOT EDIT
 
 import typing  # noqa: F401
-from typing_extensions import TypedDict, NotRequired, Literal # noqa: F401
+
 from dash.development.base_component import Component, _explicitize_args
+from typing_extensions import Literal, NotRequired, TypedDict  # noqa: F401
 
 ComponentSingleType = typing.Union[str, int, float, Component, None]
 ComponentType = typing.Union[
@@ -10,45 +11,43 @@ ComponentType = typing.Union[
     typing.Sequence[ComponentSingleType],
 ]
 
-NumberType = typing.Union[
-    typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex
-]
+NumberType = typing.Union[typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex]
 
 
 class AntdCardMeta(Component):
     """An AntdCardMeta component.
-结构化卡片组件AntdCardMeta
+    结构化卡片组件AntdCardMeta
 
-Keyword arguments:
+    Keyword arguments:
 
-- id (string; optional):
-    组件唯一id.
+    - id (string; optional):
+        组件唯一id.
 
-- key (string; optional):
-    对当前组件的`key`值进行更新，可实现强制重绘当前组件的效果.
+    - key (string; optional):
+        对当前组件的`key`值进行更新，可实现强制重绘当前组件的效果.
 
-- className (string | dict; optional):
-    当前组件css类名，支持[动态css](/advanced-classname).
+    - className (string | dict; optional):
+        当前组件css类名，支持[动态css](/advanced-classname).
 
-- avatar (a list of or a singular dash component, string or number; optional):
-    组件型，头像元素.
+    - avatar (a list of or a singular dash component, string or number; optional):
+        组件型，头像元素.
 
-- description (a list of or a singular dash component, string or number; optional):
-    组件型，描述内容.
+    - description (a list of or a singular dash component, string or number; optional):
+        组件型，描述内容.
 
-- title (a list of or a singular dash component, string or number; optional):
-    组件型，标题内容.
+    - title (a list of or a singular dash component, string or number; optional):
+        组件型，标题内容.
 
-- data-* (string; optional):
-    `data-*`格式属性通配.
+    - data-* (string; optional):
+        `data-*`格式属性通配.
 
-- aria-* (string; optional):
-    `aria-*`格式属性通配."""
+    - aria-* (string; optional):
+        `aria-*`格式属性通配."""
+
     _children_props: typing.List[str] = ['avatar', 'description', 'title']
     _base_nodes = ['avatar', 'description', 'title', 'children']
     _namespace = 'feffery_antd_components'
     _type = 'AntdCardMeta'
-
 
     def __init__(
         self,
@@ -59,12 +58,32 @@ Keyword arguments:
         avatar: typing.Optional[ComponentType] = None,
         description: typing.Optional[ComponentType] = None,
         title: typing.Optional[ComponentType] = None,
-        **kwargs
+        **kwargs,
     ):
-        self._prop_names = ['id', 'key', 'style', 'className', 'avatar', 'description', 'title', 'data-*', 'aria-*']
-        self._valid_wildcard_attributes =            ['data-', 'aria-']
-        self.available_properties = ['id', 'key', 'style', 'className', 'avatar', 'description', 'title', 'data-*', 'aria-*']
-        self.available_wildcard_properties =            ['data-', 'aria-']
+        self._prop_names = [
+            'id',
+            'key',
+            'style',
+            'className',
+            'avatar',
+            'description',
+            'title',
+            'data-*',
+            'aria-*',
+        ]
+        self._valid_wildcard_attributes = ['data-', 'aria-']
+        self.available_properties = [
+            'id',
+            'key',
+            'style',
+            'className',
+            'avatar',
+            'description',
+            'title',
+            'data-*',
+            'aria-*',
+        ]
+        self.available_wildcard_properties = ['data-', 'aria-']
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()
         _locals.update(kwargs)  # For wildcard attrs and excess named props
@@ -72,4 +91,5 @@ Keyword arguments:
 
         super(AntdCardMeta, self).__init__(**args)
 
-setattr(AntdCardMeta, "__init__", _explicitize_args(AntdCardMeta.__init__))
+
+setattr(AntdCardMeta, '__init__', _explicitize_args(AntdCardMeta.__init__))

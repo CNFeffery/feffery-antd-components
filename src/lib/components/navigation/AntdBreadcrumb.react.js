@@ -24,107 +24,103 @@ const AntdBreadcrumb = ({
     setProps,
     ...others
 }) => {
-
     return (
         <Breadcrumb
             // 提取具有data-*或aria-*通配格式的属性
-            {...pickBy((_, k) => k.startsWith('data-') || k.startsWith('aria-'), others)}
+            {...pickBy(
+                (_, k) => k.startsWith('data-') || k.startsWith('aria-'),
+                others
+            )}
             id={id}
             className={
-                isString(className) ?
-                    className :
-                    (className ? useCss(className) : undefined)
+                isString(className)
+                    ? className
+                    : className
+                      ? useCss(className)
+                      : undefined
             }
             style={style}
             key={key}
-            items={
-                items.map(
-                    item => ({
-                        key: item.key,
-                        title: (
-                            <>
-                                {
-                                    item.icon ? (
-                                        item.iconRenderer === 'fontawesome' ?
-                                            (
-                                                React.createElement(
-                                                    'i',
-                                                    {
-                                                        className: item.icon,
-                                                        style: { marginRight: 3 }
-                                                    }
-                                                )
-                                            ) :
-                                            (
-                                                <AntdIcon icon={item.icon} style={{ marginRight: 3 }} />
-                                            )
-                                    ) : null
-                                }
-                                <a href={item.href} target={item.target}>{item.title}</a>
-                            </>
-                        ),
-                        onClick: (e) => setProps({
-                            clickedItem: {
-                                itemTitle: item.title,
-                                itemKey: item.key,
-                                timestamp: Date.now()
-                            }
-                        }),
-                        menu: (
-                            item.menuItems ?
-                                {
-                                    items: (
-                                        item.menuItems.map(
-                                            menuItem => ({
-                                                key: menuItem.title || menuItem.key,
-                                                label: (
-                                                    <>
-                                                        {
-                                                            menuItem.icon ? (
-                                                                menuItem.iconRenderer === 'fontawesome' ?
-                                                                    (
-                                                                        React.createElement(
-                                                                            'i',
-                                                                            {
-                                                                                className: menuItem.icon,
-                                                                                style: { marginRight: 3 }
-                                                                            }
-                                                                        )
-                                                                    ) :
-                                                                    (
-                                                                        <AntdIcon icon={menuItem.icon} style={{ marginRight: 3 }} />
-                                                                    )
-                                                            ) : null
-                                                        }
-                                                        <a href={menuItem.href}
-                                                            target={menuItem.target}
-                                                            onClick={
-                                                                (e) => setProps({
-                                                                    clickedItem: {
-                                                                        itemTitle: item.title,
-                                                                        itemKey: item.key,
-                                                                        menuItemTitle: menuItem.title,
-                                                                        menuItemKey: menuItem.key,
-                                                                        timestamp: Date.now()
-                                                                    }
-                                                                })
-                                                            }>{menuItem.title}</a>
-                                                    </>
-                                                ),
-                                                disabled: menuItem.disabled,
-                                            })
-                                        )
-                                    )
-                                }
-                                : null
-                        )
-                    })
-                )
-            }
+            items={items.map((item) => ({
+                key: item.key,
+                title: (
+                    <>
+                        {item.icon ? (
+                            item.iconRenderer === 'fontawesome' ? (
+                                React.createElement('i', {
+                                    className: item.icon,
+                                    style: { marginRight: 3 },
+                                })
+                            ) : (
+                                <AntdIcon
+                                    icon={item.icon}
+                                    style={{ marginRight: 3 }}
+                                />
+                            )
+                        ) : null}
+                        <a href={item.href} target={item.target}>
+                            {item.title}
+                        </a>
+                    </>
+                ),
+                onClick: (e) =>
+                    setProps({
+                        clickedItem: {
+                            itemTitle: item.title,
+                            itemKey: item.key,
+                            timestamp: Date.now(),
+                        },
+                    }),
+                menu: item.menuItems
+                    ? {
+                          items: item.menuItems.map((menuItem) => ({
+                              key: menuItem.title || menuItem.key,
+                              label: (
+                                  <>
+                                      {menuItem.icon ? (
+                                          menuItem.iconRenderer ===
+                                          'fontawesome' ? (
+                                              React.createElement('i', {
+                                                  className: menuItem.icon,
+                                                  style: { marginRight: 3 },
+                                              })
+                                          ) : (
+                                              <AntdIcon
+                                                  icon={menuItem.icon}
+                                                  style={{ marginRight: 3 }}
+                                              />
+                                          )
+                                      ) : null}
+                                      <a
+                                          href={menuItem.href}
+                                          target={menuItem.target}
+                                          onClick={(e) =>
+                                              setProps({
+                                                  clickedItem: {
+                                                      itemTitle: item.title,
+                                                      itemKey: item.key,
+                                                      menuItemTitle:
+                                                          menuItem.title,
+                                                      menuItemKey: menuItem.key,
+                                                      timestamp: Date.now(),
+                                                  },
+                                              })
+                                          }
+                                      >
+                                          {menuItem.title}
+                                      </a>
+                                  </>
+                              ),
+                              disabled: menuItem.disabled,
+                          })),
+                      }
+                    : null,
+            }))}
             separator={separator}
-            data-dash-is-loading={useLoading()} />
+            data-dash-is-loading={useLoading()}
+        />
     );
-}
+};
 
 AntdBreadcrumb.propTypes = {
     /**
@@ -145,10 +141,7 @@ AntdBreadcrumb.propTypes = {
     /**
      * 当前组件css类名，支持[动态css](/advanced-classname)
      */
-    className: PropTypes.oneOfType([
-        PropTypes.string,
-        PropTypes.object
-    ]),
+    className: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
 
     /**
      * 面包屑节点数据结构
@@ -213,9 +206,9 @@ AntdBreadcrumb.propTypes = {
                      * 前缀图标渲染方式，可选项有`'AntdIcon'`、`'fontawesome'`
                      * 默认值：`'AntdIcon'`
                      */
-                    iconRenderer: PropTypes.oneOf(['AntdIcon', 'fontawesome'])
+                    iconRenderer: PropTypes.oneOf(['AntdIcon', 'fontawesome']),
                 })
-            )
+            ),
         })
     ),
 
@@ -248,7 +241,7 @@ AntdBreadcrumb.propTypes = {
         /**
          * 点击事件时间戳
          */
-        timestamp: PropTypes.number
+        timestamp: PropTypes.number,
     }),
 
     /**
@@ -265,7 +258,7 @@ AntdBreadcrumb.propTypes = {
      * Dash-assigned callback that should be called to report property changes
      * to Dash, to make them available for callbacks.
      */
-    setProps: PropTypes.func
+    setProps: PropTypes.func,
 };
 
 export default AntdBreadcrumb;

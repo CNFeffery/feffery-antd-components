@@ -8,7 +8,7 @@ import { isString, isNumber } from 'lodash';
 import { pickBy, equals } from 'ramda';
 import { useLoading, loadingSelector } from '../utils';
 // 自定义hooks
-import useCss from '../../hooks/useCss'
+import useCss from '../../hooks/useCss';
 
 /**
  * 加载动画组件AntdSpin
@@ -35,18 +35,24 @@ const AntdSpin = ({
     setProps,
     ...others
 }) => {
-
     const ctx = window.dash_component_api.useDashContext();
     // 获取内部加载中组件信息
-    const loading_info = ctx.useSelector(loadingSelector(ctx.componentPath), equals);
+    const loading_info = ctx.useSelector(
+        loadingSelector(ctx.componentPath),
+        equals
+    );
 
     useEffect(() => {
         // 检查数值型percent参数是否取值在合法的0到100之间
         if (isNumber(percent) && (percent < 0 || percent > 100)) {
             // 抛出中英文错误提示
-            setProps({ _dash_error: new Error('数值型percent取值应在0到100之间！\nThe value of the numerical type "percent" should be between 0 and 100!') });
+            setProps({
+                _dash_error: new Error(
+                    '数值型percent取值应在0到100之间！\nThe value of the numerical type "percent" should be between 0 and 100!'
+                ),
+            });
         }
-    }, [percent])
+    }, [percent]);
 
     const [showSpinning, setShowSpinning] = useState(spinning);
     const timer = useRef();
@@ -61,29 +67,48 @@ const AntdSpin = ({
                 // 当listenPropsMode为'default'时
                 if (listenPropsMode === 'default') {
                     if (debug) {
-                        loading_info.forEach(item => console.log(item.id + '.' + item.property))
+                        loading_info.forEach((item) =>
+                            console.log(item.id + '.' + item.property)
+                        );
                     }
                     setShowSpinning(true);
                 } else if (listenPropsMode === 'exclude') {
                     // 当listenPropsMode为'exclude'模式时
                     // 当前触发加载状态的组件+属性组合均不在排除列表中时，激活动画
-                    if (loading_info.every(item => excludeProps.indexOf(item.id + '.' + item.property) === -1)) {
+                    if (
+                        loading_info.every(
+                            (item) =>
+                                excludeProps.indexOf(
+                                    item.id + '.' + item.property
+                                ) === -1
+                        )
+                    ) {
                         if (debug) {
-                            loading_info.forEach(item => console.log(item.id + '.' + item.property))
+                            loading_info.forEach((item) =>
+                                console.log(item.id + '.' + item.property)
+                            );
                         }
                         setShowSpinning(true);
                     }
                 } else if (listenPropsMode === 'include') {
                     // 当listenPropsMode为'include'模式时
                     // 当前触发加载状态的组件+属性组合至少有一个在包含列表中时，激活动画
-                    if (loading_info.some(item => includeProps.indexOf(item.id + '.' + item.property) !== -1)) {
+                    if (
+                        loading_info.some(
+                            (item) =>
+                                includeProps.indexOf(
+                                    item.id + '.' + item.property
+                                ) !== -1
+                        )
+                    ) {
                         if (debug) {
-                            loading_info.forEach(item => console.log(item.id + '.' + item.property))
+                            loading_info.forEach((item) =>
+                                console.log(item.id + '.' + item.property)
+                            );
                         }
                         setShowSpinning(true);
                     }
                 }
-
             } else if (loading_info.length === 0 && showSpinning) {
                 timer.current = setTimeout(() => setShowSpinning(false));
             }
@@ -96,18 +121,26 @@ const AntdSpin = ({
             <>
                 <Spin
                     // 提取具有data-*或aria-*通配格式的属性
-                    {...pickBy((_, k) => k.startsWith('data-') || k.startsWith('aria-'), others)}
+                    {...pickBy(
+                        (_, k) =>
+                            k.startsWith('data-') || k.startsWith('aria-'),
+                        others
+                    )}
                     id={id}
                     className={
-                        isString(className) ?
-                            className :
-                            (className ? useCss(className) : undefined)
+                        isString(className)
+                            ? className
+                            : className
+                              ? useCss(className)
+                              : undefined
                     }
                     key={key}
                     wrapperClassName={
-                        isString(wrapperClassName) ?
-                            wrapperClassName :
-                            (wrapperClassName ? useCss(wrapperClassName) : undefined)
+                        isString(wrapperClassName)
+                            ? wrapperClassName
+                            : wrapperClassName
+                              ? useCss(wrapperClassName)
+                              : undefined
                     }
                     style={style}
                     spinning={manual ? spinning : showSpinning}
@@ -117,7 +150,8 @@ const AntdSpin = ({
                     tip={text}
                     indicator={indicator}
                     percent={percent}
-                    data-dash-is-loading={useLoading()} />
+                    data-dash-is-loading={useLoading()}
+                />
                 {children}
             </>
         );
@@ -126,18 +160,25 @@ const AntdSpin = ({
     return (
         <Spin
             // 提取具有data-*或aria-*通配格式的属性
-            {...pickBy((_, k) => k.startsWith('data-') || k.startsWith('aria-'), others)}
+            {...pickBy(
+                (_, k) => k.startsWith('data-') || k.startsWith('aria-'),
+                others
+            )}
             id={id}
             className={
-                isString(className) ?
-                    className :
-                    (className ? useCss(className) : undefined)
+                isString(className)
+                    ? className
+                    : className
+                      ? useCss(className)
+                      : undefined
             }
             key={key}
             wrapperClassName={
-                isString(wrapperClassName) ?
-                    wrapperClassName :
-                    (wrapperClassName ? useCss(wrapperClassName) : undefined)
+                isString(wrapperClassName)
+                    ? wrapperClassName
+                    : wrapperClassName
+                      ? useCss(wrapperClassName)
+                      : undefined
             }
             style={style}
             spinning={manual ? spinning : showSpinning}
@@ -147,9 +188,13 @@ const AntdSpin = ({
             tip={text}
             indicator={indicator}
             percent={percent}
-            data-dash-is-loading={useLoading()} > {children} </Spin>
+            data-dash-is-loading={useLoading()}
+        >
+            {' '}
+            {children}{' '}
+        </Spin>
     );
-}
+};
 
 AntdSpin.propTypes = {
     /**
@@ -175,18 +220,12 @@ AntdSpin.propTypes = {
     /**
      * 当前组件css类名，支持[动态css](/advanced-classname)
      */
-    className: PropTypes.oneOfType([
-        PropTypes.string,
-        PropTypes.object
-    ]),
+    className: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
 
     /**
      * 外层容器css类名
      */
-    wrapperClassName: PropTypes.oneOfType([
-        PropTypes.string,
-        PropTypes.object
-    ]),
+    wrapperClassName: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
 
     /**
      * 是否处于加载中状态
@@ -268,7 +307,7 @@ AntdSpin.propTypes = {
      * Dash-assigned callback that should be called to report property changes
      * to Dash, to make them available for callbacks.
      */
-    setProps: PropTypes.func
+    setProps: PropTypes.func,
 };
 
 export default AntdSpin;

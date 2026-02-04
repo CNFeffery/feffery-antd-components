@@ -4,6 +4,7 @@ if True:
     sys.path.append('../../../')
     import dash
     from dash import html
+
     import feffery_antd_components as fac
 
 app = dash.Dash(__name__)
@@ -20,9 +21,7 @@ app.layout = html.Div(
             data=[{'value': x} for x in range(10)],
             filterOptions={
                 'value': {
-                    'filterCustomItems': [
-                        x for x in range(10)
-                    ],
+                    'filterCustomItems': [x for x in range(10)],
                 },
             },
         )

@@ -1,7 +1,12 @@
 import React, { Suspense } from 'react';
 import PropTypes from 'prop-types';
 
-const LazyAntdTabs = React.lazy(() => import(/* webpackChunkName: "data_display" */ '../../fragments/dataDisplay/AntdTabs.react'));
+const LazyAntdTabs = React.lazy(
+    () =>
+        import(
+            /* webpackChunkName: "data_display" */ '../../fragments/dataDisplay/AntdTabs.react'
+        )
+);
 
 /**
  * 标签页组件AntdTabs
@@ -37,8 +42,8 @@ const AntdTabs = ({
 }) => {
     return (
         <Suspense fallback={null}>
-            <LazyAntdTabs {
-                ...{
+            <LazyAntdTabs
+                {...{
                     id,
                     className,
                     style,
@@ -65,12 +70,12 @@ const AntdTabs = ({
                     persistence,
                     persisted_props,
                     persistence_type,
-                    ...others
-                }
-            } />
+                    ...others,
+                }}
+            />
         </Suspense>
     );
-}
+};
 
 AntdTabs.propTypes = {
     /**
@@ -91,10 +96,7 @@ AntdTabs.propTypes = {
     /**
      * 当前组件css类名，支持[动态css](/advanced-classname)
      */
-    className: PropTypes.oneOfType([
-        PropTypes.string,
-        PropTypes.object
-    ]),
+    className: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
 
     /**
      * 标签页类型，可选项有`'line'`、`'card'`、`'editable-card'`
@@ -126,10 +128,7 @@ AntdTabs.propTypes = {
             /**
              * `'editable-card'`型标签页可用，用于自定义关闭按钮，设置为`None`或`false`时会隐藏默认的关闭按钮
              */
-            closeIcon: PropTypes.oneOfType([
-                PropTypes.bool,
-                PropTypes.node,
-            ]),
+            closeIcon: PropTypes.oneOfType([PropTypes.bool, PropTypes.node]),
             /**
              * 是否在当前标签页隐藏时，自动销毁当前标签页内部元素
              * 默认值：`false`
@@ -172,7 +171,7 @@ AntdTabs.propTypes = {
                      */
                     iconRenderer: PropTypes.oneOf(['AntdIcon', 'fontawesome']),
                 })
-            )
+            ),
         })
     ),
 
@@ -225,7 +224,7 @@ AntdTabs.propTypes = {
         /**
          * 指示条对齐方式，可选项有`'start'`、`'center'`、`'end'`
          */
-        align: PropTypes.oneOf(['start', 'center', 'end'])
+        align: PropTypes.oneOf(['start', 'center', 'end']),
     }),
 
     /**
@@ -296,7 +295,7 @@ AntdTabs.propTypes = {
         /**
          * 事件对应时间戳信息
          */
-        timestamp: PropTypes.number
+        timestamp: PropTypes.number,
     }),
 
     /**
@@ -326,7 +325,7 @@ AntdTabs.propTypes = {
     persistence: PropTypes.oneOfType([
         PropTypes.bool,
         PropTypes.string,
-        PropTypes.number
+        PropTypes.number,
     ]),
 
     /**
@@ -339,13 +338,13 @@ AntdTabs.propTypes = {
      * 属性持久化存储类型，可选项有`'local'`（本地持久化），`'session'`（会话持久化），`'memory'`（内存持久化）
      * 默认值：`'local'`
      */
-    persistence_type: PropTypes.oneOf(['local', 'session', 'memory'])
+    persistence_type: PropTypes.oneOf(['local', 'session', 'memory']),
 };
 
 AntdTabs.dashPersistence = {
     persisted_props: ['activeKey'],
-    persistence_type: 'local'
-}
+    persistence_type: 'local',
+};
 
 export default AntdTabs;
 

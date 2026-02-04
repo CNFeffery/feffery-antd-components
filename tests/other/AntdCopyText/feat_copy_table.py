@@ -3,12 +3,14 @@ if True:
 
     sys.path.append('../../../')
     import io
+
     import dash
     import pandas as pd
     from dash import html
-    import feffery_antd_components as fac
     from dash.dependencies import Input, Output
     from feffery_dash_utils.style_utils import style
+
+    import feffery_antd_components as fac
 
 app = dash.Dash(__name__)
 
@@ -23,23 +25,13 @@ app.layout = html.Div(
                 }
                 for i in range(1, 6)
             ],
-            data=[
-                {
-                    f'字段{i}': f'字段{i}第{row}行'
-                    for i in range(1, 6)
-                }
-                for row in range(10)
-            ],
+            data=[{f'字段{i}': f'字段{i}第{row}行' for i in range(1, 6)} for row in range(10)],
             pagination=False,
             bordered=True,
             title=fac.AntdCopyText(
                 id='copy-table',
-                beforeIcon=fac.AntdButton(
-                    '复制表格', type='primary'
-                ),
-                afterIcon=fac.AntdButton(
-                    '复制成功', type='primary'
-                ),
+                beforeIcon=fac.AntdButton('复制表格', type='primary'),
+                afterIcon=fac.AntdButton('复制成功', type='primary'),
             ),
         )
     ],
@@ -56,9 +48,7 @@ def generate_copy_text(data):
 
     temp_io = io.StringIO()
 
-    pd.DataFrame(data).to_csv(
-        temp_io, sep='\t', index=False
-    )
+    pd.DataFrame(data).to_csv(temp_io, sep='\t', index=False)
 
     return temp_io.getvalue()
 

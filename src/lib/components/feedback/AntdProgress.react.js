@@ -36,16 +36,20 @@ const AntdProgress = ({
     setProps,
     ...others
 }) => {
-
     return (
         <Progress
             // 提取具有data-*或aria-*通配格式的属性
-            {...pickBy((_, k) => k.startsWith('data-') || k.startsWith('aria-'), others)}
+            {...pickBy(
+                (_, k) => k.startsWith('data-') || k.startsWith('aria-'),
+                others
+            )}
             id={id}
             className={
-                isString(className) ?
-                    className :
-                    (className ? useCss(className) : undefined)
+                isString(className)
+                    ? className
+                    : className
+                      ? useCss(className)
+                      : undefined
             }
             style={style}
             key={key}
@@ -53,23 +57,28 @@ const AntdProgress = ({
             size={size}
             percent={percent}
             success={success}
-            format={format ? p => (format && format.content) ?
-                format.content : (
-                    ((format && format.prefix) ? format.prefix : '') +
-                    `${p}` +
-                    ((format && format.suffix) ? format.suffix : '%')
-                ) : undefined}
+            format={
+                format
+                    ? (p) =>
+                          format && format.content
+                              ? format.content
+                              : (format && format.prefix ? format.prefix : '') +
+                                `${p}` +
+                                (format && format.suffix ? format.suffix : '%')
+                    : undefined
+            }
             status={status}
             showInfo={showInfo}
             percentPosition={percentPosition}
-            strokeColor={strokeColor ?
-                (
-                    strokeColor.from && strokeColor.to ?
-                        {
-                            '0%': strokeColor.from,
-                            '100%': strokeColor.to
-                        } : strokeColor
-                ) : undefined
+            strokeColor={
+                strokeColor
+                    ? strokeColor.from && strokeColor.to
+                        ? {
+                              '0%': strokeColor.from,
+                              '100%': strokeColor.to,
+                          }
+                        : strokeColor
+                    : undefined
             }
             strokeLinecap={strokeLinecap}
             strokeWidth={strokeWidth}
@@ -80,7 +89,7 @@ const AntdProgress = ({
             data-dash-is-loading={useLoading()}
         ></Progress>
     );
-}
+};
 
 AntdProgress.propTypes = {
     /**
@@ -101,10 +110,7 @@ AntdProgress.propTypes = {
     /**
      * 当前组件css类名，支持[动态css](/advanced-classname)
      */
-    className: PropTypes.oneOfType([
-        PropTypes.string,
-        PropTypes.object
-    ]),
+    className: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
 
     /**
      * 进度条类型，可选项有`'line'`、`'circle'`、`'dashboard'`
@@ -119,10 +125,7 @@ AntdProgress.propTypes = {
     size: PropTypes.oneOfType([
         PropTypes.number,
         PropTypes.arrayOf(
-            PropTypes.oneOfType([
-                PropTypes.number,
-                PropTypes.string
-            ])
+            PropTypes.oneOfType([PropTypes.number, PropTypes.string])
         ),
         PropTypes.oneOf(['small', 'default']),
         PropTypes.shape({
@@ -133,8 +136,8 @@ AntdProgress.propTypes = {
             /**
              * 像素高度
              */
-            height: PropTypes.number
-        })
+            height: PropTypes.number,
+        }),
     ]),
 
     /**
@@ -166,9 +169,9 @@ AntdProgress.propTypes = {
                 /**
                  * 渐变色末端颜色
                  */
-                to: PropTypes.string
-            })
-        ])
+                to: PropTypes.string,
+            }),
+        ]),
     }),
 
     /**
@@ -188,7 +191,7 @@ AntdProgress.propTypes = {
         /**
          * 组件型，强制设置显示内容
          */
-        content: PropTypes.node
+        content: PropTypes.node,
     }),
 
     /**
@@ -214,7 +217,7 @@ AntdProgress.propTypes = {
         /**
          * 内外位置，可选项有`'inner'`、`'outer'`
          */
-        type: PropTypes.oneOf(['inner', 'outer'])
+        type: PropTypes.oneOf(['inner', 'outer']),
     }),
 
     /**
@@ -231,9 +234,9 @@ AntdProgress.propTypes = {
             /**
              * 渐变色末端颜色
              */
-            to: PropTypes.string
+            to: PropTypes.string,
         }),
-        PropTypes.objectOf(PropTypes.string)
+        PropTypes.objectOf(PropTypes.string),
     ]),
 
     /**
@@ -277,8 +280,8 @@ AntdProgress.propTypes = {
             /**
              * 分段间隔像素大小
              */
-            gap: PropTypes.number
-        })
+            gap: PropTypes.number,
+        }),
     ]),
 
     /**
@@ -295,7 +298,7 @@ AntdProgress.propTypes = {
      * Dash-assigned callback that should be called to report property changes
      * to Dash, to make them available for callbacks.
      */
-    setProps: PropTypes.func
+    setProps: PropTypes.func,
 };
 
 export default AntdProgress;

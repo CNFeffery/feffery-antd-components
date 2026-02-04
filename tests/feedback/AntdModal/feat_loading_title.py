@@ -9,7 +9,6 @@ from feffery_dash_utils.style_utils import style
 
 import feffery_antd_components as fac
 
-
 app = dash.Dash(__name__)
 
 app.layout = html.Div(
@@ -67,9 +66,7 @@ def populate_modal(visible):
     if not visible:
         return no_update, no_update
 
-    time.sleep(
-        2
-    )  # simulate an expensive calculation or network request
+    time.sleep(2)  # simulate an expensive calculation or network request
     return (
         fac.AntdSpace(
             [
@@ -78,9 +75,7 @@ def populate_modal(visible):
                     title='Daily report assembled',
                     subTitle='This content replaces the loading skeleton once ready.',
                 ),
-                fac.AntdParagraph(
-                    'Close the modal and click the button again to repeat the demo.'
-                ),
+                fac.AntdParagraph('Close the modal and click the button again to repeat the demo.'),
             ],
             direction='vertical',
         ),

@@ -9,7 +9,10 @@ import { parseChildrenToArray, useLoading } from '../../../components/utils';
 // 自定义hooks
 import useCss from '../../../hooks/useCss';
 // 参数类型
-import { propTypes, defaultProps } from '../../../components/dataDisplay/card/AntdCardGrid.react';
+import {
+    propTypes,
+    defaultProps,
+} from '../../../components/dataDisplay/card/AntdCardGrid.react';
 
 /**
  * 卡片网格组件AntdCardGrid
@@ -27,27 +30,33 @@ const AntdCardGrid = (props) => {
         ...others
     } = props;
 
-    children = parseChildrenToArray(children)
+    children = parseChildrenToArray(children);
 
     return (
         <Card.Grid
             // 提取具有data-*或aria-*通配格式的属性
-            {...pickBy((_, k) => k.startsWith('data-') || k.startsWith('aria-'), others)}
+            {...pickBy(
+                (_, k) => k.startsWith('data-') || k.startsWith('aria-'),
+                others
+            )}
             id={id}
             className={
-                isString(className) ?
-                    className :
-                    (className ? useCss(className) : undefined)
+                isString(className)
+                    ? className
+                    : className
+                      ? useCss(className)
+                      : undefined
             }
             style={style}
             key={key}
             hoverable={hoverable}
             onClick={(e) => setProps({ nClicks: nClicks + 1 })}
-            data-dash-is-loading={useLoading()}>
+            data-dash-is-loading={useLoading()}
+        >
             {children}
         </Card.Grid>
     );
-}
+};
 
 export default AntdCardGrid;
 

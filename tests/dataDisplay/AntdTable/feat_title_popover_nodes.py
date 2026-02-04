@@ -4,6 +4,7 @@ if True:
     sys.path.append('../../../')
     import dash
     from dash import html
+
     import feffery_antd_components as fac
 
 app = dash.Dash(__name__)
@@ -17,9 +18,7 @@ app.layout = html.Div(
                         [
                             'Name',
                             fac.AntdPopover(
-                                fac.AntdIcon(
-                                    icon='antd-question-circle'
-                                ),
+                                fac.AntdIcon(icon='antd-question-circle'),
                                 title='Hover for Name Info',
                                 content='Full names of team members',
                             ),
@@ -34,12 +33,8 @@ app.layout = html.Div(
                         [
                             'Status',
                             fac.AntdPopover(
-                                fac.AntdIcon(
-                                    icon='antd-question-circle'
-                                ),
-                                title=fac.AntdText(
-                                    'Status Legend'
-                                ),
+                                fac.AntdIcon(icon='antd-question-circle'),
+                                title=fac.AntdText('Status Legend'),
                                 content=fac.AntdDescriptions(
                                     column=1,
                                     bordered=True,

@@ -4,6 +4,7 @@ if True:
     sys.path.append('../../../')
     import dash
     from dash import html
+
     import feffery_antd_components as fac
 
 app = dash.Dash(__name__)
@@ -20,13 +21,7 @@ app.layout = html.Div(
                 }
                 for align in ['left', 'center', 'right']
             ],
-            data=[
-                {
-                    align: 999
-                    for align in ['left', 'center', 'right']
-                }
-            ]
-            * 3,
+            data=[{align: 999 for align in ['left', 'center', 'right']}] * 3,
             bordered=True,
         )
     ],

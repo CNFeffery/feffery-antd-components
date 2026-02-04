@@ -1,7 +1,12 @@
 import React, { Suspense } from 'react';
 import PropTypes from 'prop-types';
 
-const LazyAntdTimeRangePicker = React.lazy(() => import(/* webpackChunkName: "data_entry" */ '../../fragments/dataEntry/AntdTimeRangePicker.react'));
+const LazyAntdTimeRangePicker = React.lazy(
+    () =>
+        import(
+            /* webpackChunkName: "data_entry" */ '../../fragments/dataEntry/AntdTimeRangePicker.react'
+        )
+);
 
 /**
  * 时间范围选择组件AntdTimeRangePicker
@@ -47,8 +52,8 @@ const AntdTimeRangePicker = ({
 }) => {
     return (
         <Suspense fallback={null}>
-            <LazyAntdTimeRangePicker {
-                ...{
+            <LazyAntdTimeRangePicker
+                {...{
                     id,
                     className,
                     style,
@@ -85,12 +90,12 @@ const AntdTimeRangePicker = ({
                     persistence_type,
                     batchPropsNames,
                     needConfirm,
-                    ...others
-                }
-            } />
+                    ...others,
+                }}
+            />
         </Suspense>
     );
-}
+};
 
 AntdTimeRangePicker.propTypes = {
     /**
@@ -111,10 +116,7 @@ AntdTimeRangePicker.propTypes = {
     /**
      * 当前组件css类名，支持[动态css](/advanced-classname)
      */
-    className: PropTypes.oneOfType([
-        PropTypes.string,
-        PropTypes.object
-    ]),
+    className: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
 
     /**
      * 展开菜单css类名
@@ -189,7 +191,12 @@ AntdTimeRangePicker.propTypes = {
      * 选择面板展开方向，可选项有`'bottomLeft'`、`'bottomRight'`、`'topLeft'`、`'topRight'`
      * 默认值：`'bottomLeft'`
      */
-    placement: PropTypes.oneOf(['bottomLeft', 'bottomRight', 'topLeft', 'topRight']),
+    placement: PropTypes.oneOf([
+        'bottomLeft',
+        'bottomRight',
+        'topLeft',
+        'topRight',
+    ]),
 
     /**
      * 是否禁用当前组件
@@ -216,7 +223,12 @@ AntdTimeRangePicker.propTypes = {
     /**
      * 形态变体类型，可选项有`'outlined'`、`'borderless'`、`'filled'`、`'underlined'`，其中`'outlined'`等价于`bordered=True`，但优先级更高
      */
-    variant: PropTypes.oneOf(['outlined', 'borderless', 'filled', 'underlined']),
+    variant: PropTypes.oneOf([
+        'outlined',
+        'borderless',
+        'filled',
+        'underlined',
+    ]),
 
     /**
      * 当前组件尺寸规格，可选项有`'small'`、`'middle'`、`'large'`
@@ -299,7 +311,7 @@ AntdTimeRangePicker.propTypes = {
     persistence: PropTypes.oneOfType([
         PropTypes.bool,
         PropTypes.string,
-        PropTypes.number
+        PropTypes.number,
     ]),
 
     /**
@@ -312,13 +324,13 @@ AntdTimeRangePicker.propTypes = {
      * 属性持久化存储类型，可选项有`'local'`（本地持久化），`'session'`（会话持久化），`'memory'`（内存持久化）
      * 默认值：`'local'`
      */
-    persistence_type: PropTypes.oneOf(['local', 'session', 'memory'])
+    persistence_type: PropTypes.oneOf(['local', 'session', 'memory']),
 };
 
 AntdTimeRangePicker.dashPersistence = {
     persisted_props: ['value'],
-    persistence_type: 'local'
-}
+    persistence_type: 'local',
+};
 
 export default AntdTimeRangePicker;
 

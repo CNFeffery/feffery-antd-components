@@ -2,13 +2,15 @@ if True:
     import sys
 
     sys.path.append('../../../')
-    import dash
     import json
     import random
+
+    import dash
     from dash import html
-    import feffery_antd_components as fac
-    from feffery_dash_utils.style_utils import style
     from dash.dependencies import Input, Output, State
+    from feffery_dash_utils.style_utils import style
+
+    import feffery_antd_components as fac
 
 app = dash.Dash(__name__)
 
@@ -44,9 +46,7 @@ app.layout = html.Div(
                     data=[
                         {
                             'int型示例': i,
-                            'float型示例': round(
-                                i * 0.1, 1
-                            ),
+                            'float型示例': round(i * 0.1, 1),
                             'str型示例': f'示例字符{i}',
                             '日期时间示例': f'2099-01-0{i}',
                         }
@@ -68,18 +68,12 @@ app.layout = html.Div(
                             'title': f'字段{i}',
                             'dataIndex': f'字段{i}',
                             'width': '20%',
-                            'defaultSortOrder': 'ascend'
-                            if i % 2 == 0
-                            else 'descend',
+                            'defaultSortOrder': 'ascend' if i % 2 == 0 else 'descend',
                         }
                         for i in range(1, 6)
                     ],
                     data=[
-                        {
-                            f'字段{j}': random.randint(1, 4)
-                            for j in range(1, 6)
-                        }
-                        for i in range(10)
+                        {f'字段{j}': random.randint(1, 4) for j in range(1, 6)} for i in range(10)
                     ],
                     bordered=True,
                     sortOptions={

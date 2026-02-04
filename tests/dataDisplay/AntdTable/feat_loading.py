@@ -2,13 +2,15 @@ if True:
     import sys
 
     sys.path.append('../../../')
-    import dash
-    import time
     import random
+    import time
+
+    import dash
     from dash import html
-    import feffery_antd_components as fac
     from dash.dependencies import Input, Output
     from feffery_dash_utils.style_utils import style
+
+    import feffery_antd_components as fac
 
 app = dash.Dash(__name__)
 
@@ -32,13 +34,7 @@ app.layout = html.Div(
                         for i in range(10)
                     ],
                     data=[
-                        {
-                            f'字段{i}': random.randint(
-                                1, 100
-                            )
-                            for i in range(10)
-                        }
-                        for _ in range(10)
+                        {f'字段{i}': random.randint(1, 100) for i in range(10)} for _ in range(10)
                     ],
                     bordered=True,
                 ),
@@ -63,13 +59,7 @@ app.layout = html.Div(
 def update_data(nClicks):
     time.sleep(1)
 
-    return [
-        {
-            f'字段{i}': random.randint(1, 100)
-            for i in range(10)
-        }
-        for _ in range(10)
-    ]
+    return [{f'字段{i}': random.randint(1, 100) for i in range(10)} for _ in range(10)]
 
 
 if __name__ == '__main__':

@@ -3,10 +3,12 @@ if True:
 
     sys.path.append('../../../')
     import json
+
     from dash import Dash, html
-    import feffery_antd_components as fac
     from dash.dependencies import Input, Output
     from feffery_dash_utils.style_utils import style
+
+    import feffery_antd_components as fac
 
 app = Dash(__name__)
 

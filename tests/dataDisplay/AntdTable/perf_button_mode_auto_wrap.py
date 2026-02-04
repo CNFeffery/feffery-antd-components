@@ -4,6 +4,7 @@ if True:
     sys.path.append('../../../')
     import dash
     from dash import html
+
     import feffery_antd_components as fac
 
 app = dash.Dash(__name__)
@@ -15,19 +16,10 @@ app.layout = html.Div(
                 {
                     'dataIndex': '按钮示例',
                     'title': '按钮示例',
-                    'renderOptions': {
-                        'renderType': 'button'
-                    },
+                    'renderOptions': {'renderType': 'button'},
                 }
             ],
-            data=[
-                {
-                    '按钮示例': [
-                        {'content': f'按钮{i}'}
-                        for i in range(50)
-                    ]
-                }
-            ],
+            data=[{'按钮示例': [{'content': f'按钮{i}'} for i in range(50)]}],
             bordered=True,
         )
     ],

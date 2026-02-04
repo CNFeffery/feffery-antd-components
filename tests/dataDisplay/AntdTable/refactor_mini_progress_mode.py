@@ -4,6 +4,7 @@ if True:
     sys.path.append('../../../')
     import dash
     from dash import html
+
     import feffery_antd_components as fac
 
 app = dash.Dash(__name__, compress=True)
@@ -17,9 +18,7 @@ app.layout = html.Div(
                         {
                             'title': 'mini-progress示例1',
                             'dataIndex': 'mini-progress示例1',
-                            'renderOptions': {
-                                'renderType': 'mini-progress'
-                            },
+                            'renderOptions': {'renderType': 'mini-progress'},
                         },
                         {
                             'title': 'mini-progress示例2',
@@ -75,8 +74,7 @@ app.layout = html.Div(
                             'mini-progress示例3': x,
                             'mini-progress示例4': x,
                             'mini-progress示例5': x,
-                            'mini-progress示例6': x
-                            + 0.00123456,
+                            'mini-progress示例6': x + 0.00123456,
                         }
                         for x in [0, 0.66, 1]
                     ],

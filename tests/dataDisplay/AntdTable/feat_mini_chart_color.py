@@ -5,8 +5,9 @@ if True:
     import dash
     import numpy as np
     from dash import html
-    import feffery_antd_components as fac
     from feffery_dash_utils.style_utils import style
+
+    import feffery_antd_components as fac
 
 app = dash.Dash(__name__)
 
@@ -37,14 +38,8 @@ app.layout = html.Div(
                 ],
                 data=[
                     {
-                        'mini-line示例1': [
-                            np.random.rand()
-                            for i in range(25)
-                        ],
-                        'mini-line示例2': [
-                            np.random.rand()
-                            for i in range(25)
-                        ],
+                        'mini-line示例1': [np.random.rand() for i in range(25)],
+                        'mini-line示例2': [np.random.rand() for i in range(25)],
                     }
                 ]
                 * 3,
@@ -75,14 +70,8 @@ app.layout = html.Div(
                 ],
                 data=[
                     {
-                        'mini-bar示例1': [
-                            np.random.rand()
-                            for i in range(25)
-                        ],
-                        'mini-bar示例2': [
-                            np.random.rand()
-                            for i in range(25)
-                        ],
+                        'mini-bar示例1': [np.random.rand() for i in range(25)],
+                        'mini-bar示例2': [np.random.rand() for i in range(25)],
                     }
                 ]
                 * 3,
@@ -113,14 +102,8 @@ app.layout = html.Div(
                 ],
                 data=[
                     {
-                        'mini-area示例1': [
-                            np.random.rand()
-                            for i in range(25)
-                        ],
-                        'mini-area示例2': [
-                            np.random.rand()
-                            for i in range(25)
-                        ],
+                        'mini-area示例1': [np.random.rand() for i in range(25)],
+                        'mini-area示例2': [np.random.rand() for i in range(25)],
                     }
                 ]
                 * 3,

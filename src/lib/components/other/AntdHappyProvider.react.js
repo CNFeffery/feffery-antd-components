@@ -1,17 +1,14 @@
 // react核心
-import PropTypes from "prop-types";
+import PropTypes from 'prop-types';
 // antd核心
-import { HappyProvider } from "@ant-design/happy-work-theme";
+import { HappyProvider } from '@ant-design/happy-work-theme';
 // 辅助库
-import { useLoading } from "../utils";
+import { useLoading } from '../utils';
 
 /**
  * 快乐工作特效组件AntdHappyProvider
  */
-const AntdHappyProvider = ({
-    children,
-    disabled = false
-}) => {
+const AntdHappyProvider = ({ children, disabled = false }) => {
     return (
         <HappyProvider disabled={disabled} data-dash-is-loading={useLoading()}>
             {children}

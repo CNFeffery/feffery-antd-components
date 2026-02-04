@@ -4,9 +4,10 @@ if True:
     sys.path.append('../../../')
     import dash
     from dash import html
-    import feffery_antd_components as fac
-    from feffery_dash_utils.style_utils import style
     from dash.dependencies import Input, Output, State
+    from feffery_dash_utils.style_utils import style
+
+    import feffery_antd_components as fac
 
 app = dash.Dash(__name__)
 
@@ -59,15 +60,11 @@ app.layout = html.Div(
         State('tabs-add-delete-demo', 'activeKey'),
     ],
 )
-def tabs_add_delete_demo(
-    nClicks, latestDeletePane, origin_items, activeKey
-):
+def tabs_add_delete_demo(nClicks, latestDeletePane, origin_items, activeKey):
     if dash.ctx.triggered_id == 'tabs-add-delete-demo-add':
         if origin_items:
             # 提取已有items中的最大key值
-            origin_max_key = max(
-                [int(item['key']) for item in origin_items]
-            )
+            origin_max_key = max([int(item['key']) for item in origin_items])
 
         else:
             origin_max_key = 0
@@ -76,10 +73,10 @@ def tabs_add_delete_demo(
             [
                 *origin_items,
                 {
-                    'label': f'标签页{origin_max_key+1}',
+                    'label': f'标签页{origin_max_key + 1}',
                     'key': str(origin_max_key + 1),
                     'children': fac.AntdCenter(
-                        f'标签页{origin_max_key+1}',
+                        f'标签页{origin_max_key + 1}',
                         style={
                             'height': 200,
                             'fontSize': 28,
@@ -92,14 +89,8 @@ def tabs_add_delete_demo(
 
     elif dash.ctx.triggered_id == 'tabs-add-delete-demo':
         return [
-            [
-                item
-                for item in origin_items
-                if item['key'] != latestDeletePane
-            ],
-            '1'
-            if latestDeletePane == activeKey
-            else dash.no_update,
+            [item for item in origin_items if item['key'] != latestDeletePane],
+            '1' if latestDeletePane == activeKey else dash.no_update,
         ]
 
     return dash.no_update
@@ -111,9 +102,7 @@ def tabs_add_delete_demo(
     State('tabs-add-delete-demo', 'tabCloseCounts'),
     prevent_initial_call=True,
 )
-def tabs_add_delete_demo_tab_count(
-    tabCount, tabCloseCounts
-):
+def tabs_add_delete_demo_tab_count(tabCount, tabCloseCounts):
     return fac.AntdMessage(
         content=f'标签页自由增删示例 tabCount: {tabCount}，标签页关闭次数：{tabCloseCounts}',
         type='info',

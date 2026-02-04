@@ -5,6 +5,7 @@ if True:
     import dash
     from dash import html
     from dash.dependencies import Input, Output
+
     import feffery_antd_components as fac
 
 app = dash.Dash(__name__)
@@ -61,10 +62,7 @@ def test_max_count_demo(value):
     length = 0
     if value:
         length = len(value)
-    return [
-        html.Span(f'{length} / 3'),
-        fac.AntdIcon(icon='antd-down')
-    ]
+    return [html.Span(f'{length} / 3'), fac.AntdIcon(icon='antd-down')]
 
 
 if __name__ == '__main__':

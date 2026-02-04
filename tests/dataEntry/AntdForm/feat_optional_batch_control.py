@@ -3,11 +3,13 @@ if True:
 
     sys.path.append('../../../')
     import json
+
     import dash
     from dash import html
-    import feffery_antd_components as fac
     from dash.dependencies import Input, Output
     from feffery_dash_utils.style_utils import style
+
+    import feffery_antd_components as fac
 
 app = dash.Dash(__name__)
 
@@ -20,8 +22,7 @@ app.layout = html.Div(
                         fac.AntdFormItem(
                             fac.AntdInput(
                                 name=f'表单项{i}',
-                                enableBatchControl=i % 2
-                                == 0,
+                                enableBatchControl=i % 2 == 0,
                             ),
                             label=f'表单项{i}',
                         )
@@ -31,14 +32,10 @@ app.layout = html.Div(
                     enableBatchControl=True,
                     layout='vertical',
                     values={
-                        f'表单项{i}': f'这是表单项{i}的设定值'
-                        for i in range(1, 6)
-                        if i % 2 == 0
+                        f'表单项{i}': f'这是表单项{i}的设定值' for i in range(1, 6) if i % 2 == 0
                     },
                 ),
-                html.Pre(
-                    id='callback-listen-value-form-demo-output'
-                ),
+                html.Pre(id='callback-listen-value-form-demo-output'),
             ],
             direction='vertical',
             style={'width': '100%'},
@@ -49,9 +46,7 @@ app.layout = html.Div(
 
 
 @app.callback(
-    Output(
-        'callback-listen-value-form-demo-output', 'children'
-    ),
+    Output('callback-listen-value-form-demo-output', 'children'),
     Input('callback-listen-value-form-demo', 'values'),
 )
 def callback_listen_value_demo(values):

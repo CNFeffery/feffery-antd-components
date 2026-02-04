@@ -11,7 +11,10 @@ import { useLoading } from '../../components/utils';
 // 自定义hooks
 import useCss from '../../hooks/useCss';
 // 参数类型
-import { propTypes, defaultProps } from '../../components/dataDisplay/AntdSpoiler.react';
+import {
+    propTypes,
+    defaultProps,
+} from '../../components/dataDisplay/AntdSpoiler.react';
 
 const { Link } = Typography;
 
@@ -19,7 +22,7 @@ const { Link } = Typography;
  * 展开收起组件AntdSpoiler
  */
 const AntdSpoiler = (props) => {
-    let {
+    const {
         id,
         children,
         className,
@@ -44,52 +47,62 @@ const AntdSpoiler = (props) => {
     return (
         <div
             // 提取具有data-*或aria-*通配格式的属性
-            {...pickBy((_, k) => k.startsWith('data-') || k.startsWith('aria-'), others)}
+            {...pickBy(
+                (_, k) => k.startsWith('data-') || k.startsWith('aria-'),
+                others
+            )}
             id={id}
             key={key}
             className={
-                isString(className) ?
-                    className :
-                    (className ? useCss(className) : undefined)
+                isString(className)
+                    ? className
+                    : className
+                      ? useCss(className)
+                      : undefined
             }
             style={style}
-            data-dash-is-loading={useLoading()}>
+            data-dash-is-loading={useLoading()}
+        >
             <div
                 className={
-                    isString(contentClassName) ?
-                        contentClassName :
-                        (contentClassName ? useCss(contentClassName) : undefined)
+                    isString(contentClassName)
+                        ? contentClassName
+                        : contentClassName
+                          ? useCss(contentClassName)
+                          : undefined
                 }
-                style={
-                    {
-                        transitionTimingFunction: 'ease',
-                        ...contentStyle,
-                        maxHeight: open ? (size && size.height) : maxHeight,
-                        transitionDuration: `${transitionDuration}s`,
-                        transitionProperty: 'max-height',
-                        overflow: 'hidden'
-                    }
-                }>
-                <div ref={ref}>
-                    {children}
-                </div>
+                style={{
+                    transitionTimingFunction: 'ease',
+                    ...contentStyle,
+                    maxHeight: open ? size && size.height : maxHeight,
+                    transitionDuration: `${transitionDuration}s`,
+                    transitionProperty: 'max-height',
+                    overflow: 'hidden',
+                }}
+            >
+                <div ref={ref}>{children}</div>
             </div>
-            <div style={{
-                textAlign: labelPosition
-            }}>
-                <Link onClick={() => {
-                    setProps({
-                        open: !open
-                    })
-                }}>
-                    {
-                        open ? hideLabel || locale2text.AntdSpoiler[locale].hideLabel : showLabel || locale2text.AntdSpoiler[locale].showLabel
-                    }
+            <div
+                style={{
+                    textAlign: labelPosition,
+                }}
+            >
+                <Link
+                    onClick={() => {
+                        setProps({
+                            open: !open,
+                        });
+                    }}
+                >
+                    {open
+                        ? hideLabel || locale2text.AntdSpoiler[locale].hideLabel
+                        : showLabel ||
+                          locale2text.AntdSpoiler[locale].showLabel}
                 </Link>
             </div>
         </div>
     );
-}
+};
 
 export default AntdSpoiler;
 

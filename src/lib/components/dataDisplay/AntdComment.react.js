@@ -1,7 +1,12 @@
 import React, { Suspense } from 'react';
 import PropTypes from 'prop-types';
 
-const LazyAntdComment = React.lazy(() => import(/* webpackChunkName: "data_display" */ '../../fragments/dataDisplay/AntdComment.react'));
+const LazyAntdComment = React.lazy(
+    () =>
+        import(
+            /* webpackChunkName: "data_display" */ '../../fragments/dataDisplay/AntdComment.react'
+        )
+);
 
 /**
  * 评论组件AntdComment
@@ -35,8 +40,8 @@ const AntdComment = ({
 }) => {
     return (
         <Suspense fallback={null}>
-            <LazyAntdComment {
-                ...{
+            <LazyAntdComment
+                {...{
                     id,
                     children,
                     className,
@@ -61,12 +66,12 @@ const AntdComment = ({
                     popupContainer,
                     setProps,
                     batchPropsNames,
-                    ...others
-                }
-            } />
+                    ...others,
+                }}
+            />
         </Suspense>
     );
-}
+};
 
 AntdComment.propTypes = {
     /**
@@ -92,10 +97,7 @@ AntdComment.propTypes = {
     /**
      * 当前组件css类名，支持[动态css](/advanced-classname)
      */
-    className: PropTypes.oneOfType([
-        PropTypes.string,
-        PropTypes.object
-    ]),
+    className: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
 
     /**
      * 组件文案语种，可选项有`'zh-cn'`（简体中文）、`'en-us'`（英语）、`'de-de'`（德语）、`'ru-ru'`（俄语）
@@ -129,7 +131,7 @@ AntdComment.propTypes = {
         /**
          * 与日期时间字符串匹配的格式
          */
-        format: PropTypes.string
+        format: PropTypes.string,
     }).isRequired,
 
     /**
@@ -236,14 +238,14 @@ AntdComment.propTypes = {
         /**
          * Holds the name of the component that is loading
          */
-        component_name: PropTypes.string
+        component_name: PropTypes.string,
     }),
 
     /**
      * Dash-assigned callback that should be called to report property changes
      * to Dash, to make them available for callbacks.
      */
-    setProps: PropTypes.func
+    setProps: PropTypes.func,
 };
 
 export default AntdComment;

@@ -1,7 +1,12 @@
 import React, { Suspense } from 'react';
 import PropTypes from 'prop-types';
 
-const LazyAntdRibbon = React.lazy(() => import(/* webpackChunkName: "data_display" */ '../../fragments/dataDisplay/AntdRibbon.react'));
+const LazyAntdRibbon = React.lazy(
+    () =>
+        import(
+            /* webpackChunkName: "data_display" */ '../../fragments/dataDisplay/AntdRibbon.react'
+        )
+);
 
 /**
  * 缎带组件AntdRibbon
@@ -20,8 +25,8 @@ const AntdRibbon = ({
 }) => {
     return (
         <Suspense fallback={null}>
-            <LazyAntdRibbon {
-                ...{
+            <LazyAntdRibbon
+                {...{
                     id,
                     children,
                     className,
@@ -31,12 +36,12 @@ const AntdRibbon = ({
                     placement,
                     text,
                     setProps,
-                    ...others
-                }
-            } />
+                    ...others,
+                }}
+            />
         </Suspense>
     );
-}
+};
 
 AntdRibbon.propTypes = {
     /**
@@ -62,10 +67,7 @@ AntdRibbon.propTypes = {
     /**
      * 当前组件css类名，支持[动态css](/advanced-classname)
      */
-    className: PropTypes.oneOfType([
-        PropTypes.string,
-        PropTypes.object
-    ]),
+    className: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
 
     /**
      * 缎带颜色
@@ -97,7 +99,7 @@ AntdRibbon.propTypes = {
      * Dash-assigned callback that should be called to report property changes
      * to Dash, to make them available for callbacks.
      */
-    setProps: PropTypes.func
+    setProps: PropTypes.func,
 };
 
 export default AntdRibbon;

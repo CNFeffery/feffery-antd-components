@@ -4,8 +4,9 @@ if True:
     sys.path.append('../../../')
     import dash
     from dash import html
-    import feffery_antd_components as fac
     from feffery_dash_utils.style_utils import style
+
+    import feffery_antd_components as fac
 
 app = dash.Dash(__name__)
 
@@ -16,17 +17,13 @@ app.layout = html.Div(
                 {
                     'title': 'select示例1',
                     'dataIndex': 'select示例1',
-                    'renderOptions': {
-                        'renderType': 'select'
-                    },
+                    'renderOptions': {'renderType': 'select'},
                     'width': 'calc(100% / 3)',
                 },
                 {
                     'title': 'select示例2',
                     'dataIndex': 'select示例2',
-                    'renderOptions': {
-                        'renderType': 'select'
-                    },
+                    'renderOptions': {'renderType': 'select'},
                     'width': 'calc(100% / 3)',
                 },
             ],
