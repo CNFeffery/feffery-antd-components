@@ -35,8 +35,8 @@ class AntdPictureUpload(Component):
     - enableBatchControl (boolean; default True):
         控制当前组件是否参与有效的`AntdForm`表单批量值搜集/控制功能 默认值：`True`.
 
-    - locale (a value equal to: 'zh-cn', 'en-us', 'de-de', 'ru-ru'; default 'zh-cn'):
-        组件文案语种，可选项有`'zh-cn'`（简体中文）、`'en-us'`（英语）、`'de-de'`（德语）、`'ru-ru'`（俄语）
+    - locale (a value equal to: 'zh-cn', 'en-us', 'de-de', 'ru-ru', 'fr-fr'; default 'zh-cn'):
+        组件文案语种，可选项有`'zh-cn'`（简体中文）、`'en-us'`（英语）、`'de-de'`（德语）、`'fr-fr'`（法语）、`'ru-ru'`（俄语）
         默认值：`'zh-cn'`.
 
     - apiUrl (string; optional):
@@ -380,7 +380,7 @@ class AntdPictureUpload(Component):
         className: typing.Optional[typing.Union[str, dict]] = None,
         name: typing.Optional[str] = None,
         enableBatchControl: typing.Optional[bool] = None,
-        locale: typing.Optional[Literal['zh-cn', 'en-us', 'de-de', 'ru-ru']] = None,
+        locale: typing.Optional[Literal['zh-cn', 'en-us', 'de-de', 'ru-ru', 'fr-fr']] = None,
         apiUrl: typing.Optional[str] = None,
         apiUrlExtraParams: typing.Optional[dict] = None,
         headers: typing.Optional[dict] = None,

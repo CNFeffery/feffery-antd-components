@@ -78,8 +78,8 @@ class AntdModal(Component):
         - footer (string; optional):
             底部元素css类名.
 
-    - locale (a value equal to: 'zh-cn', 'en-us', 'de-de', 'ru-ru'; default 'zh-cn'):
-        组件文案语种，可选项有`'zh-cn'`（简体中文）、`'en-us'`（英语）、`'de-de'`（德语）、`'ru-ru'`（俄语）
+    - locale (a value equal to: 'zh-cn', 'en-us', 'de-de', 'ru-ru', 'fr-fr'; default 'zh-cn'):
+        组件文案语种，可选项有`'zh-cn'`（简体中文）、`'en-us'`（英语）、`'de-de'`（德语）、`'fr-fr'`（法语）、`'ru-ru'`（俄语）
         默认值：`'zh-cn'`.
 
     - visible (boolean; default False):
@@ -319,7 +319,7 @@ class AntdModal(Component):
         className: typing.Optional[typing.Union[str, dict]] = None,
         styles: typing.Optional['Styles'] = None,
         classNames: typing.Optional['ClassNames'] = None,
-        locale: typing.Optional[Literal['zh-cn', 'en-us', 'de-de', 'ru-ru']] = None,
+        locale: typing.Optional[Literal['zh-cn', 'en-us', 'de-de', 'ru-ru', 'fr-fr']] = None,
         visible: typing.Optional[bool] = None,
         title: typing.Optional[ComponentType] = None,
         loadingTitle: typing.Optional[ComponentType] = None,

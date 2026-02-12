@@ -32,8 +32,8 @@ class AntdComment(Component):
     - className (string | dict; optional):
         当前组件css类名，支持[动态css](/advanced-classname).
 
-    - locale (a value equal to: 'zh-cn', 'en-us', 'de-de', 'ru-ru'; default 'zh-cn'):
-        组件文案语种，可选项有`'zh-cn'`（简体中文）、`'en-us'`（英语）、`'de-de'`（德语）、`'ru-ru'`（俄语）
+    - locale (a value equal to: 'zh-cn', 'en-us', 'de-de', 'ru-ru', 'fr-fr'; default 'zh-cn'):
+        组件文案语种，可选项有`'zh-cn'`（简体中文）、`'en-us'`（英语）、`'de-de'`（德语）、`'fr-fr'`（法语）、`'ru-ru'`（俄语）
         默认值：`'zh-cn'`.
 
     - commentId (string; optional):
@@ -143,7 +143,7 @@ class AntdComment(Component):
         key: typing.Optional[str] = None,
         style: typing.Optional[typing.Any] = None,
         className: typing.Optional[typing.Union[str, dict]] = None,
-        locale: typing.Optional[Literal['zh-cn', 'en-us', 'de-de', 'ru-ru']] = None,
+        locale: typing.Optional[Literal['zh-cn', 'en-us', 'de-de', 'ru-ru', 'fr-fr']] = None,
         commentId: typing.Optional[str] = None,
         authorName: typing.Optional[str] = None,
         authorNameHref: typing.Optional[str] = None,

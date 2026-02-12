@@ -524,7 +524,7 @@ class AntdFormRender(Component):
     - scrollToFirstError (boolean; default False):
         设置提交失败是否自动滚动到第一个错误字段，默认为False.
 
-    - locale (a value equal to: 'zh-cn', 'en-us', 'de-de', 'ru-ru'; default 'zh-CN'):
+    - locale (a value equal to: 'zh-cn', 'en-us', 'de-de', 'ru-ru', 'fr-fr'; default 'zh-CN'):
         设置展示语言，目前只支持中文、英文， 可选的有'zh-CN'与'en-US'，默认为'zh-CN'.
 
     - footer (dict; optional):
@@ -939,7 +939,7 @@ class AntdFormRender(Component):
         column: typing.Optional[NumberType] = None,
         disabled: typing.Optional[bool] = None,
         scrollToFirstError: typing.Optional[bool] = None,
-        locale: typing.Optional[Literal['zh-cn', 'en-us', 'de-de', 'ru-ru']] = None,
+        locale: typing.Optional[Literal['zh-cn', 'en-us', 'de-de', 'ru-ru', 'fr-fr']] = None,
         footer: typing.Optional[typing.Union[bool, 'Footer', ComponentType]] = None,
         configProvider: typing.Optional[dict] = None,
         validateMessages: typing.Optional['ValidateMessages'] = None,

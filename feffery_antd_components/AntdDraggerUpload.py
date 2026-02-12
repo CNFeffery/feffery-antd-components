@@ -41,8 +41,8 @@ class AntdDraggerUpload(Component):
     - draggerStyle (dict; optional):
         拖拽区域css样式.
 
-    - locale (a value equal to: 'zh-cn', 'en-us', 'de-de', 'ru-ru'; default 'zh-cn'):
-        组件文案语种，可选项有`'zh-cn'`（简体中文）、`'en-us'`（英语）、`'de-de'`（德语）、`'ru-ru'`（俄语）
+    - locale (a value equal to: 'zh-cn', 'en-us', 'de-de', 'ru-ru', 'fr-fr'; default 'zh-cn'):
+        组件文案语种，可选项有`'zh-cn'`（简体中文）、`'en-us'`（英语）、`'de-de'`（德语）、`'fr-fr'`（法语）、`'ru-ru'`（俄语）
         默认值：`'zh-cn'`.
 
     - apiUrl (string; optional):
@@ -337,7 +337,7 @@ class AntdDraggerUpload(Component):
         enableBatchControl: typing.Optional[bool] = None,
         draggerClassName: typing.Optional[typing.Union[str, dict]] = None,
         draggerStyle: typing.Optional[dict] = None,
-        locale: typing.Optional[Literal['zh-cn', 'en-us', 'de-de', 'ru-ru']] = None,
+        locale: typing.Optional[Literal['zh-cn', 'en-us', 'de-de', 'ru-ru', 'fr-fr']] = None,
         apiUrl: typing.Optional[str] = None,
         apiUrlExtraParams: typing.Optional[dict] = None,
         headers: typing.Optional[dict] = None,
