@@ -85,10 +85,10 @@ AntdQRCode.propTypes = {
     className: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
 
     /**
-     * 组件文案语种，可选项有`'zh-cn'`（简体中文）、`'en-us'`（英语）、`'de-de'`（德语）、`'ru-ru'`（俄语）
+     * 组件文案语种，可选项有`'zh-cn'`（简体中文）、`'en-us'`（英语）、`'de-de'`（德语）、`'fr-fr'`（法语）、`'ru-ru'`（俄语）
      * 默认值：`'zh-cn'`
      */
-    locale: PropTypes.oneOf(['zh-cn', 'en-us', 'de-de', 'ru-ru']),
+    locale: PropTypes.oneOf(['zh-cn', 'en-us', 'de-de', 'ru-ru', 'fr-fr']),
 
     /**
      * 二维码解析结果
