@@ -2,12 +2,14 @@ import zhCN from 'antd/lib/locale/zh_CN';
 import enUS from 'antd/lib/locale/en_US';
 import deDE from 'antd/lib/locale/de_DE';
 import ruRU from 'antd/lib/locale/ru_RU';
+import frFR from 'antd/lib/locale/fr_FR';
 
 const str2Locale = new Map([
     ['zh-cn', zhCN],
     ['en-us', enUS],
     ['de-de', deDE],
     ['ru-ru', ruRU],
+    ['fr-fr', frFR],
 ]);
 
 const locale2text = {
@@ -27,6 +29,10 @@ const locale2text = {
         'ru-ru': {
             hideLabel: 'Скрыть',
             showLabel: 'Показать больше',
+        },
+        'fr-fr': {
+            hideLabel: 'Cacher',
+            showLabel: 'Afficher plus',
         },
     },
     AntdPictureUpload: {
@@ -58,6 +64,13 @@ const locale2text = {
             imgCropModalOKText: 'Ок',
             imgCropModalCancelText: 'Отмена',
         },
+        'fr-fr': {
+            confirmBeforeDeleteTitle: 'Confirmer la suppression',
+            confirmBeforeDeleteOkText: 'OK',
+            confirmBeforeDeleteCancelText: 'Annuler',
+            imgCropModalOKText: 'OK',
+            imgCropModalCancelText: 'Annuler',
+        },
     },
     AntdPagination: {
         'zh-cn': {
@@ -75,6 +88,10 @@ const locale2text = {
         'ru-ru': {
             showTotalPrefix: 'Всего ',
             showTotalSuffix: ' элементов',
+        },
+        'fr-fr': {
+            showTotalPrefix: 'Total  ',
+            showTotalSuffix: ' articles',
         },
     },
     AntdTable: {
@@ -114,6 +131,15 @@ const locale2text = {
             columnEditableFormatConstraintMessage:
                 'Редактирование не удалось, введенное значение "[VALUE]" не соответствует требованиям поля.',
         },
+        'fr-fr': {
+            showTotalPrefix: 'Total ',
+            showTotalSuffix: ' articles',
+            filterKeywordPlaceholder: 'Rechercher',
+            filterKeywordSearchButtonText: 'Rechercher',
+            filterKeywordResetButtonText: 'Réinitialiser',
+            columnEditableFormatConstraintMessage:
+                'Échec de la modification. La valeur saisie "[VALUE]" ne respecte pas les exigences de format du champ correspondant.',
+        },
     },
     AntdTransfer: {
         'zh-cn': {
@@ -127,6 +153,9 @@ const locale2text = {
         },
         'ru-ru': {
             titles: ['Источник', 'Цель'],
+        },
+        'fr-fr': {
+            titles: ['Source', 'Cible'],
         },
     },
     Upload: {
@@ -167,6 +196,16 @@ const locale2text = {
             ],
             buttonContent: 'Нажмите для загрузки файла',
         },
+        'fr-fr': {
+            uploadSuccess: 'téléversement réussi !',
+            uploadFailed: 'échec du téléversement !',
+            sizeError: ['La taille du fichier dépasse la limite de ', 'Mo !'],
+            typeError: [
+                'Échec du téléversement, le format de ',
+                ' ne respecte pas les exigences !',
+            ],
+            buttonContent: 'Cliquez pour téléverser un fichier',
+        },
     },
     AntdComment: {
         'zh-cn': {
@@ -204,6 +243,15 @@ const locale2text = {
             deleteConfirmOkText: 'Да',
             deleteConfirmCancelText: 'Нет',
             deleteTitle: 'Удалить',
+        },
+        'fr-fr': {
+            likeTooltipTitle: 'j’aime',
+            dislikeTooltipTitle: 'je n’aime pas',
+            replayTitle: 'Ajouter une réponse',
+            deleteConfirmTitle: 'Confirmer la suppression',
+            deleteConfirmOkText: 'Oui',
+            deleteConfirmCancelText: 'Non',
+            deleteTitle: 'Supprimer',
         },
     },
 };
