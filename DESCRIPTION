@@ -1,6 +1,6 @@
 Package: fefferyAntdComponents
 Title: Plotly Dash components based on Ant Design
-Version: 0.4.5
+Version: 0.4.6-rc1
 Description: Plotly Dash components based on Ant Design
 Depends: R (>= 3.0.2)
 Imports: 

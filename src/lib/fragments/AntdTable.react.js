@@ -453,7 +453,7 @@ const AntdTable = (props) => {
             }
         },
         render: (text) =>
-            searchedColumn === dataIndex ? (
+            searchedColumn === dataIndex && isString(text) ? (
                 <Highlighter
                     highlightStyle={{ backgroundColor: '#ffc069', padding: 0 }}
                     searchWords={[searchText]}
