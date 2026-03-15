@@ -54,9 +54,9 @@ const AntdSpace = ({
                     classNames={classNames}
                     key={key}
                     align={align}
-                    direction={direction}
+                    orientation={direction}
                     size={size}
-                    split={<Divider type="vertical" />}
+                    separator={<Divider orientation="vertical" />}
                     wrap={wrap}
                     data-dash-is-loading={useLoading()}
                 >
@@ -84,9 +84,9 @@ const AntdSpace = ({
                 classNames={classNames}
                 key={key}
                 align={align}
-                direction={direction}
+                orientation={direction}
                 size={size}
-                split={<Divider />}
+                separator={<Divider />}
                 wrap={wrap}
                 data-dash-is-loading={useLoading()}
             >
@@ -115,9 +115,9 @@ const AntdSpace = ({
             classNames={classNames}
             key={key}
             align={align}
-            direction={direction}
+            orientation={direction}
             size={size}
-            split={customSplit}
+            separator={customSplit}
             wrap={wrap}
             data-dash-is-loading={useLoading()}
         >
