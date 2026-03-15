@@ -61,7 +61,7 @@ const AntdDivider = ({
                 dashed={isDashed}
                 variant={variant}
                 orientation={innerTextOrientation}
-                type={'horizontal'}
+                vertical={false}
                 plain={plain}
                 size={size}
                 data-dash-is-loading={useLoading()}
@@ -98,7 +98,7 @@ const AntdDivider = ({
                 dashed={isDashed}
                 variant={variant}
                 orientation={innerTextOrientation}
-                type={'vertical'}
+                vertical={true}
                 plain={plain}
                 data-dash-is-loading={useLoading()}
             >
