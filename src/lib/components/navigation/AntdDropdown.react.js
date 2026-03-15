@@ -22,8 +22,10 @@ const { Link } = Typography;
 const AntdDropdown = ({
     id,
     children,
-    className,
     style,
+    className,
+    styles,
+    classNames,
     wrapperStyle,
     wrapperClassName,
     key,
@@ -108,6 +110,8 @@ const AntdDropdown = ({
                       : undefined
             }
             style={style}
+            classNames={classNames}
+            styles={styles}
             key={key}
             menu={{
                 items: menuItems.map(transformMenuItem),
@@ -219,6 +223,58 @@ AntdDropdown.propTypes = {
      * 当前组件css类名，支持[动态css](/advanced-classname)
      */
     className: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
+
+    /**
+     * 细分控制子元素css样式
+     */
+    styles: PropTypes.exact({
+        /**
+         * 根元素css样式
+         */
+        root: PropTypes.object,
+        /**
+         * 标题内容区域css样式
+         */
+        itemTitle: PropTypes.object,
+        /**
+         * 单个选项css样式
+         */
+        item: PropTypes.object,
+        /**
+         * 选项主要内容区域css样式
+         */
+        itemContent: PropTypes.object,
+        /**
+         * 选项图标区域css样式
+         */
+        itemIcon: PropTypes.object,
+    }),
+
+    /**
+     * 细分控制子元素css类名
+     */
+    classNames: PropTypes.exact({
+        /**
+         * 根元素css类名
+         */
+        root: PropTypes.string,
+        /**
+         * 标题内容区域css类名
+         */
+        itemTitle: PropTypes.string,
+        /**
+         * 单个选项css类名
+         */
+        item: PropTypes.string,
+        /**
+         * 选项主要内容区域css类名
+         */
+        itemContent: PropTypes.string,
+        /**
+         * 选项图标区域css类名
+         */
+        itemIcon: PropTypes.string,
+    }),
 
     /**
      * 锚定元素父容器css样式
