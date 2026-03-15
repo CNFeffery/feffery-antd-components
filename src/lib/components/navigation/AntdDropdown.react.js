@@ -139,13 +139,6 @@ const AntdDropdown = ({
                     ? context.componentDisabled
                     : disabled
             }
-            overlayClassName={
-                isString(overlayClassName)
-                    ? overlayClassName
-                    : overlayClassName
-                      ? useCss(overlayClassName)
-                      : undefined
-            }
             overlayStyle={overlayStyle}
             placement={placement}
             trigger={[trigger]}
@@ -400,11 +393,6 @@ AntdDropdown.propTypes = {
      * 默认值：`false`
      */
     disabled: PropTypes.bool,
-
-    /**
-     * 下拉菜单容器css类名，支持[动态css](/advanced-classname)
-     */
-    overlayClassName: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
 
     /**
      * 下拉菜单容器css样式
