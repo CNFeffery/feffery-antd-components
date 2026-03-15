@@ -139,7 +139,6 @@ const AntdDropdown = ({
                     ? context.componentDisabled
                     : disabled
             }
-            overlayStyle={overlayStyle}
             placement={placement}
             trigger={[trigger]}
             autoAdjustOverflow={autoAdjustOverflow}
@@ -393,11 +392,6 @@ AntdDropdown.propTypes = {
      * 默认值：`false`
      */
     disabled: PropTypes.bool,
-
-    /**
-     * 下拉菜单容器css样式
-     */
-    overlayStyle: PropTypes.object,
 
     /**
      * 下拉菜单弹出方位，可选项有`'bottomLeft'`、`'bottomCenter'`、`'bottomRight'`、`'topLeft'`、`'topCenter'`、`'topRight'`
