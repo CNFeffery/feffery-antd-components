@@ -44,7 +44,7 @@ const AntdCompact = ({
             }
             style={style}
             key={key}
-            direction={direction}
+            orientation={direction}
             block={block}
             data-dash-is-loading={useLoading()}
         >
