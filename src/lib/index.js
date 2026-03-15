@@ -234,6 +234,4 @@ export {
     AntdConfigProvider,
     AntdHappyProvider,
     Fragment,
-    // 表单生成
-    // AntdFormRender
 };
