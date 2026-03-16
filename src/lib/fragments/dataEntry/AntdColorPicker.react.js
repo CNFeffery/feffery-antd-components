@@ -1,5 +1,5 @@
 // react核心
-import React, { useEffect, useContext, useMemo, useState } from 'react';
+import { useEffect, useContext, useMemo, useState } from 'react';
 // antd核心
 import { ColorPicker, ConfigProvider } from 'antd';
 import { Color } from '@rc-component/color-picker';
