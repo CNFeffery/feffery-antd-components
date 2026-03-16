@@ -40,7 +40,7 @@ const AntdSplitter = ({
             }
             style={style}
             key={key}
-            layout={layout}
+            orientation={layout}
             lazy={lazy}
             data-dash-is-loading={useLoading()}
         >

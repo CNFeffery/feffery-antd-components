@@ -65,7 +65,8 @@ const AntdCascader = (props) => {
         id,
         style,
         className,
-        popupClassName,
+        styles,
+        classNames,
         key,
         name,
         enableBatchControl,
@@ -201,7 +202,8 @@ const AntdCascader = (props) => {
                               : undefined
                     }
                     style={style}
-                    popupClassName={popupClassName}
+                    classNames={classNames}
+                    styles={styles}
                     key={key}
                     options={
                         optionsNodeKeyToLabel
@@ -284,7 +286,8 @@ const AntdCascader = (props) => {
                           : undefined
                 }
                 style={style}
-                popupClassName={popupClassName}
+                classNames={classNames}
+                styles={styles}
                 key={key}
                 options={
                     optionsNodeKeyToLabel

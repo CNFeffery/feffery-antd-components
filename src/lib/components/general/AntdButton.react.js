@@ -118,7 +118,7 @@ const AntdButton = ({
                     : size
             }
             icon={icon}
-            iconPosition={iconPosition}
+            iconPlacement={iconPosition}
             loading={loading}
             color={color}
             variant={variant}

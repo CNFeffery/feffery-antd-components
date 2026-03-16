@@ -15,7 +15,8 @@ const AntdDateRangePicker = ({
     id,
     className,
     style,
-    popupClassName,
+    classNames,
+    styles,
     key,
     name,
     enableBatchControl = true,
@@ -60,7 +61,8 @@ const AntdDateRangePicker = ({
                     id,
                     className,
                     style,
-                    popupClassName,
+                    classNames,
+                    styles,
                     key,
                     name,
                     enableBatchControl,
@@ -125,9 +127,114 @@ AntdDateRangePicker.propTypes = {
     className: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
 
     /**
-     * 展开菜单css类名
+     * 细分控制子元素css样式
      */
-    popupClassName: PropTypes.string,
+    styles: PropTypes.exact({
+        /**
+         * 根元素css样式
+         */
+        root: PropTypes.object,
+        /**
+         * 前缀元素css样式
+         */
+        prefix: PropTypes.object,
+        /**
+         * 输入框元素css样式
+         */
+        input: PropTypes.object,
+        /**
+         * 后缀元素css样式
+         */
+        suffix: PropTypes.object,
+        /**
+         * 弹出菜单相关元素css样式
+         */
+        popup: PropTypes.exact({
+            /**
+             * 弹出框元素css样式
+             */
+            root: PropTypes.object,
+            /**
+             * 容器元素css样式
+             */
+            container: PropTypes.object,
+            /**
+             * 弹出框头部元素css样式
+             */
+            header: PropTypes.object,
+            /**
+             * 弹出框主体元素css样式
+             */
+            body: PropTypes.object,
+            /**
+             * 弹出框内容元素css样式
+             */
+            content: PropTypes.object,
+            /**
+             * 弹出框单项元素css样式
+             */
+            item: PropTypes.object,
+            /**
+             * 弹出框底部元素css样式
+             */
+            footer: PropTypes.object,
+        }),
+    }),
+
+    /**
+     * 细分控制子元素css类名
+     */
+    classNames: PropTypes.exact({
+        /**
+         * 根元素css类名
+         */
+        root: PropTypes.string,
+        /**
+         * 前缀元素css类名
+         */
+        prefix: PropTypes.string,
+        /**
+         * 输入框元素css类名
+         */
+        input: PropTypes.string,
+        /**
+         * 后缀元素css类名
+         */
+        suffix: PropTypes.string,
+        /**
+         * 弹出菜单相关元素css类名
+         */
+        popup: PropTypes.exact({
+            /**
+             * 弹出框元素css类名
+             */
+            root: PropTypes.string,
+            /**
+             * 容器元素css类名
+             */
+            container: PropTypes.string,
+            /**
+             * 弹出框头部元素css类名
+             */
+            header: PropTypes.string,
+            /**
+             * 弹出框主体元素css类名
+             */
+            body: PropTypes.string,
+            /**
+             * 弹出框内容元素css类名
+             */
+            content: PropTypes.string,
+            /**
+             * 弹出框单项元素css类名
+             */
+            item: PropTypes.string,
+            /**
+             * 弹出框底部元素css类名
+             */
+            footer: PropTypes.string,
+        }),
+    }),
 
     /**
      * 配合`AntdForm`表单批量值搜集/控制功能使用，充当当前表单项的字段名，以`id`作为缺省值

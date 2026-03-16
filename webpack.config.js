@@ -78,11 +78,14 @@ module.exports = (env, argv) => {
                 {
                     test: /\.c?js$/,
                     include: [
+                        path.resolve('node_modules', '@rc-component'),
+                        path.resolve('node_modules', 'antd'),
                         path.resolve('node_modules', 'lib0'),
                         path.resolve('node_modules', '@reactflow'),
                         path.resolve('node_modules', 'yjs'),
                         path.resolve('node_modules', 'parse5'),
                         path.resolve('node_modules', '@ant-design'),
+                        path.resolve('node_modules', 'react-icons'),
                     ],
                     use: {
                         loader: 'babel-loader',

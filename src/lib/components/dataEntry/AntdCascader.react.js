@@ -15,7 +15,8 @@ const AntdCascader = ({
     id,
     style,
     className,
-    popupClassName,
+    styles,
+    classNames,
     key,
     name,
     enableBatchControl = true,
@@ -59,7 +60,8 @@ const AntdCascader = ({
                     id,
                     style,
                     className,
-                    popupClassName,
+                    styles,
+                    classNames,
                     key,
                     name,
                     enableBatchControl,
@@ -171,9 +173,130 @@ AntdCascader.propTypes = {
     className: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
 
     /**
-     * 展开菜单css类名
+     * 细分控制子元素css样式
      */
-    popupClassName: PropTypes.string,
+    styles: PropTypes.exact({
+        /**
+         * 根元素css样式
+         */
+        root: PropTypes.object,
+        /**
+         * 前缀元素css样式
+         */
+        prefix: PropTypes.object,
+        /**
+         * 多选容器css样式
+         */
+        content: PropTypes.object,
+        /**
+         * 占位符元素css样式
+         */
+        placeholder: PropTypes.object,
+        /**
+         * 清除按钮元素css样式
+         */
+        clear: PropTypes.object,
+        /**
+         * 多选项元素css样式
+         */
+        item: PropTypes.object,
+        /**
+         * 多选项内容区域css样式
+         */
+        itemContent: PropTypes.object,
+        /**
+         * 多选项移除按钮css样式
+         */
+        itemRemove: PropTypes.object,
+        /**
+         * 输入框元素css样式
+         */
+        input: PropTypes.object,
+        /**
+         * 后缀元素css样式
+         */
+        suffix: PropTypes.object,
+        /**
+         * 弹出菜单相关元素css样式
+         */
+        popup: PropTypes.exact({
+            /**
+             * 弹出菜单元素css样式
+             */
+            root: PropTypes.object,
+            /**
+             * 弹出菜单列表元素css样式
+             */
+            list: PropTypes.object,
+            /**
+             * 弹出菜单条目元素css样式
+             */
+            listItem: PropTypes.object,
+        }),
+    }),
+
+    /**
+     * 细分控制子元素css类名
+     */
+    classNames: PropTypes.exact({
+        /**
+         * 根元素css类名
+         */
+        root: PropTypes.string,
+        /**
+         * 前缀元素css类名
+         */
+        prefix: PropTypes.string,
+        /**
+         * 多选容器css类名
+         */
+        content: PropTypes.string,
+        /**
+         * 占位符元素css类名
+         */
+        placeholder: PropTypes.string,
+        /**
+         * 清除按钮元素css类名
+         */
+        clear: PropTypes.string,
+        /**
+         * 多选项元素css类名
+         */
+        item: PropTypes.string,
+        /**
+         * 多选项内容区域css类名
+         */
+        itemContent: PropTypes.string,
+        /**
+         * 多选项移除按钮css类名
+         */
+        itemRemove: PropTypes.string,
+        /**
+         * 输入框元素css类名
+         */
+        input: PropTypes.string,
+        /**
+         * 后缀元素css类名
+         */
+        suffix: PropTypes.string,
+        /**
+         * 弹出菜单相关元素css类名
+         */
+        popup: PropTypes.exact({
+            /**
+             * 弹出菜单元素css类名
+             */
+            root: PropTypes.string,
+            /**
+             * 弹出菜单列表元素css类名
+             */
+            list: PropTypes.string,
+            /**
+             * 弹出菜单条目元素css类名
+             */
+            listItem: PropTypes.string,
+        }),
+    }),
 
     /**
      * 配合`AntdForm`表单批量值搜集/控制功能使用，充当当前表单项的字段名，以`id`作为缺省值
