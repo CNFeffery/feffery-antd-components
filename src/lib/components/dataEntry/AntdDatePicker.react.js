@@ -177,8 +177,8 @@ AntdDatePicker.propTypes = {
             /**
              * 弹出框底部元素css样式
              */
-            footer: PropTypes.object
-        })
+            footer: PropTypes.object,
+        }),
     }),
 
     /**
@@ -232,8 +232,8 @@ AntdDatePicker.propTypes = {
             /**
              * 弹出框底部元素css类名
              */
-            footer: PropTypes.string
-        })
+            footer: PropTypes.string,
+        }),
     }),
 
     /**

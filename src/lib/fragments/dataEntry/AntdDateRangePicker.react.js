@@ -1,5 +1,5 @@
 // react核心
-import React, { useState, useEffect, useContext } from 'react';
+import { useState, useEffect, useContext } from 'react';
 // antd核心
 import { DatePicker, ConfigProvider } from 'antd';
 // 辅助库
@@ -42,7 +42,8 @@ const AntdDateRangePicker = (props) => {
         id,
         className,
         style,
-        popupClassName,
+        classNames,
+        styles,
         key,
         name,
         enableBatchControl,
@@ -480,7 +481,8 @@ const AntdDateRangePicker = (props) => {
                               : undefined
                     }
                     style={style}
-                    popupClassName={popupClassName}
+                    classNames={classNames}
+                    styles={styles}
                     key={key}
                     format={format}
                     size={

@@ -231,8 +231,8 @@ AntdCascader.propTypes = {
             /**
              * 弹出菜单条目元素css样式
              */
-            listItem: PropTypes.object
-        })
+            listItem: PropTypes.object,
+        }),
     }),
 
     /**
@@ -294,8 +294,8 @@ AntdCascader.propTypes = {
             /**
              * 弹出菜单条目元素css类名
              */
-            listItem: PropTypes.string
-        })
+            listItem: PropTypes.string,
+        }),
     }),
 
     /**
