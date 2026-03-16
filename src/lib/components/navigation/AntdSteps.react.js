@@ -20,7 +20,6 @@ const AntdSteps = ({
     current = 0,
     direction = 'horizontal',
     labelPlacement,
-    progressDot = false,
     size = 'default',
     status = 'process',
     type = 'default',
@@ -56,9 +55,8 @@ const AntdSteps = ({
             key={key}
             items={steps}
             current={current}
-            direction={direction}
-            labelPlacement={labelPlacement}
-            progressDot={progressDot}
+            orientation={direction}
+            titlePlacement={labelPlacement}
             size={size}
             status={status}
             type={type}
@@ -145,12 +143,6 @@ AntdSteps.propTypes = {
     labelPlacement: PropTypes.oneOf(['horizontal', 'vertical']),
 
     /**
-     * 是否渲染为点状步骤条
-     * 默认值：`false`
-     */
-    progressDot: PropTypes.bool,
-
-    /**
      * 步骤条尺寸规格，可选项有`'default'`、`'small'`
      * 默认值：`'default'`
      */
@@ -163,10 +155,10 @@ AntdSteps.propTypes = {
     status: PropTypes.oneOf(['wait', 'process', 'finish', 'error']),
 
     /**
-     * 步骤条类型，可选项有`'default'`、`'navigation'`、`'inline'`
+     * 步骤条类型，可选项有`'default'`、`'navigation'`、`'inline'`、`'dot'`、`'panel'`
      * 默认值：`'default'`
      */
-    type: PropTypes.oneOf(['default', 'navigation', 'inline']),
+    type: PropTypes.oneOf(['default', 'navigation', 'inline', 'dot', 'panel']),
 
     /**
      * 是否可点击切换步骤
