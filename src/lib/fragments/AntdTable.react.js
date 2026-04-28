@@ -2739,6 +2739,23 @@ const AntdTable = (props) => {
                         }
                     }
 
+                    // 补充单元格鼠标移入监听事件
+                    returnValue = {
+                        ...returnValue,
+                        onMouseEnter: (event) => {
+                            setProps({
+                                recentlyMouseEnterColumnDataIndex:
+                                    item.dataIndex,
+                                recentlyMouseEnterRowKey: record.key,
+                                // 忽略组件型字段键值对
+                                recentlyMouseEnterRow: omitBy(
+                                    record,
+                                    (value) => value?.$$typeof
+                                ),
+                            });
+                        },
+                    };
+
                     return returnValue;
                 },
             },
