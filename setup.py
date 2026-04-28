@@ -23,7 +23,7 @@ setup(
     long_description=long_description,
     long_description_content_type='text/markdown',
     install_requires=[
-        'dash>=3.3.0',
+        'dash>=3.4.0',
     ],
     classifiers=[
         'Framework :: Dash',
