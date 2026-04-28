@@ -1,6 +1,6 @@
 {
     "name": "feffery_antd_components",
-    "version": "0.4.6-rc1",
+    "version": "0.4.6",
     "description": "Plotly Dash components based on Ant Design",
     "repository": {
         "type": "git",
